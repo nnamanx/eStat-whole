@@ -1467,7 +1467,7 @@ function cropData(data) {
 	    removeRegression();
           }
       })
-
+/*
       // eStatH 메뉴
       d3.select("#estatH").on("click",function() {
         window.open("../eStatH");
@@ -1492,7 +1492,7 @@ function cropData(data) {
       d3.select("#langBtn").on("click",function() {
         window.open("index_en.html","_self");
       })
-
+*/
       // Example Download Button
       d3.select("#downBtn").on("click",function() {
         // to be done
