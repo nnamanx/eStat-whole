@@ -28,15 +28,20 @@ var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0
 
 var nLanguage = 2;
 var nString   = 50;
-var nMsg      = 45;
+var appStr    = new Array(nString);
 var svgStr    = new Array(nString);
-var alertMsg  = new Array(nMsg);
+var alertMsg  = new Array(nString);
 for (j = 0; j < nString; j++) {
+  appStr[j]   = new Array(nLanguage);
   svgStr[j]   = new Array(nLanguage);
-}
-for (j = 0; j < nMsg; j++) {
   alertMsg[j] = new Array(nLanguage);
 }
+
+appStr[1][0] = "../eStatH/index.html";
+appStr[2][0] = "../eStatU/index.html";
+appStr[3][0] = "../eStatE/index.html";
+appStr[4][0] = "../ExLearning/index.html";
+appStr[5][0] = "index_en.html";
 
 alertMsg[1][0]  = "선택된 변량중에 자료가 없는 것이 있습니다!";
 alertMsg[2][0]  = "시트에서 분석을 원하는 변량를 선택(변량번호 클릭)한 후 버튼을 눌러주세요!  변량이 2개 이상일 경우 첫 선택변량는 그룹변량이 됩니다. ";
@@ -118,6 +123,12 @@ svgStr[45][0] = "최솟값";
 svgStr[46][0] = "중앙값"; 
 svgStr[47][0] = "최댓값";  
 svgStr[48][0] = "전체";
+
+appStr[1][1] = "../eStatH/index_en.html";
+appStr[2][1] = "../eStatU/index_en.html";
+appStr[3][1] = "../eStatE/index_en.html";
+appStr[4][1] = "../ExLearning/index_en.html";
+appStr[5][1] = "index.html";
 
 alertMsg[1][1]  = "One of the selected variables does not have data.";
 alertMsg[2][1]  = "Select variables for analysis (clicking column names) one by one. If two variables, first one is group variable. ";

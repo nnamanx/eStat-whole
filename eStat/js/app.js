@@ -1,20 +1,16 @@
-
       var chart = d3.select("#SVG");
-
       // 기본 버튼 칼러색 설정
       var buttonColorB = "#E0FFFF";
       var buttonColorH = "#FF4500";
-
       // 메뉴 칼러
       var exampleDataNo = 10
       var menuColor = new Array(exampleDataNo+1);
-
       var i, j, k, m, temp, tempi;
       var freqMin, freqMax, numVar, rawData, checkNumeric, checkVarSelect; 
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var svgWidth2, svgHeight2;
       var title, graphNum;
-      var langNum      = 0;
+//      var langNum      = 0;
       var rowMax       = 100;  // 시트행 최대
       var colMax       = 10;   // 시트열 최대
       var buffer       = 20;   // 우측 y선과 범례와  간격
@@ -22,13 +18,11 @@
       var maxNumEdit   = 9;    // 변량편집시 최대 변량값 수
       var jj           = 0;    // 변량편집시 초기 컬럼 번호
       var graphNumMax  = 26;   // 그래프 종류의 최대 개수  현재 25개
-
       // 그래프별 초기제목, 주제목, x제목, y제목
       var iTitle      = new Array(graphNumMax);
       var mTitle      = new Array(graphNumMax);
       var yTitle      = new Array(graphNumMax);
       var xTitle      = new Array(graphNumMax);
-
       // datasheet raw variable
       var numCol, numRow;
       var robs        = new Array(colMax);
@@ -38,7 +32,6 @@
       var rvar        = new Array(colMax);  // 2차원 배열로 아래에 정의
       var rvalue      = new Array(colMax);  // 2차원 배열로 아래에 정의
       var rvalueLabel = new Array(colMax);  // 2차원 배열로 아래에 정의
-
       // selected variable for analysis
       var tdobs        = new Array(colMax);
       var tdvarNumber  = new Array(colMax);
@@ -47,7 +40,6 @@
       var tdvar        = new Array(colMax);  // 2차원 배열로 아래에 정의
       var tdvalue      = new Array(colMax);  // 2차원 배열로 아래에 정의
       var tdvalueLabel = new Array(colMax);  // 2차원 배열로 아래에 정의
-
       for (j = 0; j < colMax; j++) {
           rvarName[j]     = "V"+(j+1).toString();
           rvar[j]         = new Array(rowMax);
@@ -61,7 +53,6 @@
             tdvalueLabel[j][i] = null;
           }
      }
-
       // Sorting freq and Ascend/Descend Indexing Label
       var dataR   = new Array(rowMax);
       var dataA   = new Array(rowMax);
@@ -72,8 +63,7 @@
       var vlabelR = new Array(rowMax);
       var vlabelA = new Array(rowMax);
       var vlabelD = new Array(rowMax);
- 
-      // dependent variable
+       // dependent variable
       var dobs, dvarNumber, dvarName, ndvalue;
       var dvar         = new Array(rowMax);
       var dvalueNum    = new Array(rowMax);
@@ -81,7 +71,6 @@
       var dvalueLabel  = new Array(rowMax);
       var dvalueFreq   = new Array(rowMax);
       var dataY        = new Array(rowMax);
-
       // group variable
       var gobs, gvarNumber, gvarName, ngvalue, ngroup;
       var gvar         = new Array(rowMax);
@@ -89,10 +78,8 @@
       var gdataValue   = new Array(rowMax);
       var gvalueLabel  = new Array(rowMax);
       var gvalueFreq   = new Array(rowMax);
- 
-      var currentDataSet= new Array(rowMax);
+       var currentDataSet= new Array(rowMax);
       var currentLabel  = new Array(rowMax);
-
       // 연속형 그래프 변량 정의
       var tobs;
       var tdata        = new Array(rowMax);
@@ -100,13 +87,11 @@
       var stat         = new Array(30);
       var xmin, xmax, ymin, ymax, xbuffer, ybuffer;
       var gxmin, gxmax, gxrange, gymin, gymax, gyrange;
-
       // 그룹 변량 정의
       var ngroupMax  = 50;
       var nobs       = new Array(ngroupMax);
       var dataSet    = new Array(ngroupMax);
       var groupFreq  = new Array(ngroupMax);
-
       for (k=0; k<ngroupMax; k++) {
           dataSet[k] = new Array(rowMax);
       }  
@@ -119,7 +104,6 @@
       var maxi   = new Array(ngroupMax);
       var avg    = new Array(ngroupMax);
       var std    = new Array(ngroupMax);
-
       // 산점도 변량 정의
       var xobs, xvarNumber, xvarName, yobs, yvarNumber, yvarName;
       var scatterS    = new Array(20);
@@ -137,14 +121,12 @@
       var betaR       = new Array(ngroupMax);
       var corr        = new Array(ngroupMax);
       var rsquare     = new Array(ngroupMax);
-
       // 히스토그램 변량
       var nint, xstep, freqmax;  
       var gxminH, gxmaxH, gyminH, gymaxH;
       var dataValueH = new Array(rowMax);  // 히스토그램 각 구간값: 최대 구간의 수 =199개
       var freq       = new Array(ngroupMax);
       for (k=0; k<ngroupMax; k++) freq[k] = new Array(rowMax);
-
       // 가설검정 변량
       var df, info, alpha, pvalue, b, c, d, e, f, g, h;
       var mu, nn, xbar, stdev, vari, variS, teststat, left, right;
@@ -154,7 +136,6 @@
       var statT = new Array(20);
       var statF = new Array(20);
       var ntot, mtot, ssb, ssw, msb, msw, temp; 
-
       // 그래프 종류, 체크버튼  블린 변량들
       var VerticalBar, HorizontalBar;
       var SeparateBar, StackBar, RatioBar, SideBar, BothBar;
@@ -164,10 +145,8 @@
       var checkFreq, checkBandFreq, checkMissing, checkData, checkSave;
       var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
       var checkRegress;
-
       buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
       graphTitle();  // 디폴트 그래프 제목 
-
 // =================================================================
 // 시트 컨트롤
 // =================================================================
@@ -176,9 +155,7 @@
       var data    = [ [] ];
       numVar      = 0;
       for (j = 0; j < colMax; j++) colWidth[j] = 50;
-
       document.getElementById("loadFileName").value = "Untitled.csv";
-
       container = document.getElementById('datasheet');
       datasheet = new Handsontable(container, {
         data: data,
@@ -195,18 +172,14 @@
         multiSelect: true,
         fragmentSelection: false,
       });
-
       initEventControl(datasheet);
-
     // 데이터 시트 이벤트 컨트롤 함수  ---------------------------------------------
     function initEventControl(datasheet) {
-
       // 시트 셀 어느 이벤트 발생하든 cell alignment : 문자 left, 숫자 right
       datasheet.addHook('afterChange', function(change, source){
 //        console.log(change.length);
         var row = change[0][0];
         var col = change[0][1];
-
         if (isNaN(change[0][3])) {
           datasheet.setCellMeta(row,col,"className","htLeft");
         }
@@ -222,7 +195,6 @@
               if (rvar[j][i] == null || rvar[j][i] == "" ) { }
               else robs[j]++;
             }  
-
             // 소수점이하 자리수 체크
             rvarDeci[j] = 0;
             for (i=0; i<robs[j]; i++) {
@@ -245,22 +217,16 @@
             for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
           }
         }
-
         datasheet.render();
-
         // 선택된 변수 초기화
         document.getElementById("select").value = "";
         numVar = 0;
-
       });
-
-
       // 시트 컬럼 이벤트 컨트롤
       datasheet.addHook('afterOnCellMouseDown', function(event,coords){
 //        console.log(coords);
 //        console.log(coords.row+" "+coords.col);
         var selected, numOfSelectedColumns;
-
         if (coords.row == -1) {
           selected    = datasheet.getSelected();
           numOfSelectedColumns =  selected[3] - selected[1] + 1;
@@ -274,27 +240,20 @@
               tdvalueLabel[numVar+j] = rvalueLabel[k];       
 	      tdvar[numVar+j]        = datasheet.getDataAtCol(j + selected[1]);
 	  }
-
           numVar += numOfSelectedColumns;
-
           var str = "";
           for (i=0; i<numVar; i++) {
             str += " "+tdvarNumber[i].toString()+",";
           }
           d3.select("#select").node().value = str;
-
           buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
         }
       });
-
     }  // 데이터시트 이벤트 초기화 함수 끝 --------------------------------------------
-
-
       // 변량 선택 취소
       d3.select("#debugBtn").on("click",function() {
         variableSelectClear();
       })
-
       // 변량 선택 초기화 함수
       function variableSelectClear() {
          document.getElementById("select").value = "";
@@ -308,10 +267,8 @@
 	 }
          numVar = 0;
       }
-
       // 새 시트
       d3.select("#new").on("click",function() {
-
 	  try {
 	      datasheet.destroy();
 	  } catch (e) {
@@ -324,8 +281,6 @@
           rvarName[j]     = "V"+(j+1).toString();
         }
      
-
-
         datasheet = new Handsontable(container, {
           minRows: rowMax,
           minCols: colMax,
@@ -340,9 +295,7 @@
           multiSelect: true,
           fragmentSelection: false,
         });
-
          datasheet.selectCell(0,0);   // 커서 위치를 (0,0)으로
-
          variableSelectClear();
          document.getElementById("loadFileName").value = "Untitled.csv";
          for(j = 0; j < colMax; j++) {
@@ -358,17 +311,12 @@
 	   tdvar[j]        = [];
 	 }
          numVar = 0;
-
          initEventControl(datasheet);
-
       }) // endof new sheet
-
       // import CSV file
       d3.select("#icon_importCSV").on("click",function() {
           $("#importCSV").click();
       })
-
-
       function importCSV(obj) {
           var fr = new FileReader();
         str = obj.files[0].name;
@@ -376,7 +324,6 @@
         fr.onload = function(e) {
 	    data  = d3.csvParse(fr.result);
            datasheet.destroy();
-
             datasheet = new Handsontable(container, {
              data: data.map(Object.values),
              minRows: rowMax,     // 파일 읽을때는 데이터 개수만큼만 되어야
@@ -391,8 +338,6 @@
 	     multiSelect: true,
 	     fragmentSelection: false,
 	   });
-
-
            // load된 데이터 문자 숫자 alignment, colWidth 조정
            var colCharMax = [];
            var m, strRead;
@@ -409,7 +354,6 @@
                  else k++;
                }
                if (k > colCharMax[j]) colCharMax[j] = k;
-
                // 문자 왼쪽정렬, 숫자 오른쪽정렬
                if (isNaN(datasheet.getDataAtCell(i,j)) ) {
                  datasheet.setCellMeta(i,j,"className","htLeft");
@@ -417,7 +361,6 @@
                else {
                  datasheet.setCellMeta(i,j,"className","htRight");
                }
-
                // 소수점이하 자리수 체크
                m = strRead.indexOf(".");
                if (m > -1) {
@@ -426,16 +369,13 @@
                }
          
 	     } // endof i
-
              if (colCharMax[j] < 6) colWidth[j] = 55;
              else colWidth[j] = 5 + colCharMax[j]*8;
            } // endof j
 	   datasheet.getSettings().colWidths = colWidth;
            datasheet.render();
-
            // 새 파일 분석을 위한 초기화
            variableSelectClear();
-
            // 새 파일 값으로 변량 입력 : To be finished with system file
            for (j = 0; j < colMax; j++) {
              rvar[j]     = datasheet.getDataAtCol(j);
@@ -446,7 +386,6 @@
                else robs[j]++;
              }  
            }
-
            // 각 변량별 변량값 계산  To be finished with system file
            numRow = robs[0];
            numCol = 0;
@@ -461,36 +400,26 @@
                }
              }
            }
-
            // 화면, 버튼, 그래프 제목 초기화 
            buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
            graphTitle();  // 디폴트 그래프 제목 
-
            initEventControl(datasheet);
-
         } // endof fr.onload = function(e)
-
         fr.readAsText(obj.files[0]);
         $("#importCSV").val("");
       } // endof function importCSV(o) --------------------------------------------
-
       // open json system file ----------------------------------------------------------------
       d3.select("#open").on("click",function() {
          $("#input_openFile").click();
       })
-
       function loadFile(obj) {
         var fr = new FileReader();
         str = obj.files[0].name;
         document.getElementById("loadFileName").value = str;
-
         fr.onload = function(e) {
 	    var dataobj  = JSON.parse(fr.result);
-
            datasheet.destroy();
-	
-
-           datasheet = new Handsontable(container, {
+	           datasheet = new Handsontable(container, {
 	       data: dataobj.data,
 	       minRows: rowMax,
 	       minCols: colMax,
@@ -504,8 +433,6 @@
 	     multiSelect: true,
 	     fragmentSelection: false,
 	   });
-
-
            // load된 데이터 문자 숫자 alignment, colWidth 조정
            var colCharMax = [];
            var m, strRead;
@@ -522,7 +449,6 @@
                  else k++;
                }
                if (k > colCharMax[j]) colCharMax[j] = k;
-
                // 문자 왼쪽정렬, 숫자 오른쪽정렬
                if (isNaN(datasheet.getDataAtCell(i,j)) ) {
                  datasheet.setCellMeta(i,j,"className","htLeft");
@@ -530,7 +456,6 @@
                else {
                  datasheet.setCellMeta(i,j,"className","htRight");
                }
-
                // 소수점이하 자리수 체크
                m = strRead.indexOf(".");
                if (m > -1) {
@@ -539,27 +464,21 @@
                }
          
 	     } // endof i
-
              if (colCharMax[j] < 6) colWidth[j] = 55;
              else colWidth[j] = 5 + colCharMax[j]*8;
            } // endof j
 	   datasheet.getSettings().colWidths = colWidth;
            datasheet.render();
-
            // 새 파일 분석을 위한 초기화
            variableSelectClear();
-
            // 새 파일 값으로 변량 입력 : To be finished with system file
            for (j = 0; j < colMax; j++) {
              rvar[j]     = datasheet.getDataAtCol(j);
            }
-
            // 화면, 버튼, 그래프 제목 초기화 
            buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
            graphTitle();  // 디폴트 그래프 제목 
-
            initEventControl(datasheet);
-
            // 기타 시스템 변수 불러오기
 	   rvarName    = dataobj.rvarName;
 	   robs        = dataobj.robs;
@@ -574,7 +493,6 @@
          $("#input_openFile").val("");
       }
 				   
-
 // crop a sheet data with empty cells to a complete rectangular data
 function cropData(data) {
     var newdata = [];
@@ -584,31 +502,23 @@ function cropData(data) {
 	else if(i == -1) { newdata.push(row); }
     });
     return newdata;
-}
-
-			   
+}			   
     // export datasheet to csv ------------------------------------------
     d3.select("#exportCSV").on("click",function() {
         checkDataSave();
         if (checkSave == false) return;
-	
-	var croppedData = cropData(datasheet.getData());
-
+		var croppedData = cropData(datasheet.getData());
 	var csvhead = datasheet
 	    .getColHeader()
 	    .slice(0, croppedData[0].length)
 	    .map(function(s) {return "\"" + s + "\"";});
 	var csvbody = croppedData.reduce(function(a,b) {return a + "\n" + b;});
 	var text =  csvhead + "\n" + csvbody;
-
 	var filename = $("#loadFileName").val().replace(/\.json$/, ".csv");
 	$("#loadFileName").val(filename);
-	
-	var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+		var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
 	saveAs(blob, filename);
     }) //----------------------------------------------------------------
-
-
     // save file ---------------------------------------------------------
     d3.select("#save").on("click",function() {
         checkDataSave();
@@ -617,7 +527,6 @@ function cropData(data) {
 	var croppedColHeader = datasheet.getColHeader()
 	    .slice(0, data[0].length);
 	// rvar, rvarName, robs, rvalueNum, rvalue, rvalueLabel
-
 	var dataobj = {
 	    data       : croppedData,
 	    colHeaders : croppedColHeader,
@@ -630,14 +539,11 @@ function cropData(data) {
             numRow     : numRow,
 	}
 	var jsonstr = JSON.stringify(dataobj);
-
 	var filename = $("#loadFileName").val().replace(/\.csv$/, ".json");
 	$("#loadFileName").val(filename);
-
 	var blob = new Blob([jsonstr], {type: "text/plain;charset=utf-8"});
 	saveAs(blob, filename);
     }) // ------------------------------------------------------------------
-
     // Data Save 가능여부 체크				   
     function checkDataSave() {
         checkSave = true;
@@ -651,7 +557,6 @@ function cropData(data) {
           }
         }
     }
-
 				   
     // From https://milooy.wordpress.com/2017/03/28/javascript-print-page/
     // sheet Print
@@ -668,7 +573,6 @@ function cropData(data) {
 	document.body.style.display = 'block';
 	printDiv.style.display = 'none';
     });
-
     // svg Graph Save
       d3.select("#saveGraph").on("click",function() {
         var svg    = d3.select("#SVG");
@@ -680,7 +584,6 @@ function cropData(data) {
 	    saveAs( dataBlob, 'eStatGraph.png' );
 	}
     });
-
     // svg Graph Print
     d3.select("#printGraph").on("click",function() {
 	const html = document.querySelector('html');
@@ -694,7 +597,6 @@ function cropData(data) {
 	document.body.style.display = 'block';
 	printDiv.style.display = 'none';	
     });
-
     // svg Graph Move
     d3.select("#moveGraph").on("click",function() {
         var svg    = d3.select("#SVG");
@@ -710,13 +612,10 @@ function cropData(data) {
 //			     .attr("width", width)
 //			     .attr("height", height));
     });
-
     // save Table
     d3.select("#saveTable").on("click", function() {
         saveAs(new Blob([d3.select("#screenTable").html()]), "eStatLog.html");
-
     });
-
     // print Table
     d3.select("#printTable").on("click",function() {
 	const html = document.querySelector('html');
@@ -730,11 +629,9 @@ function cropData(data) {
 	document.body.style.display = 'block';
 	printDiv.style.display = 'none';	
     });
-
 // =================================================================
 // 버튼, 라디오버튼, 체크박스 클릭
 // =================================================================
-
       // 학습수준 버튼
       var rad1 = document.myForm1.type1;
       rad1[0].onclick = function() { // 초등
@@ -764,7 +661,6 @@ function cropData(data) {
          document.getElementById("estatU").style.display           = "block"; // 대학 모듈 
          document.getElementById("estat").style.display            = "block"; // 예제학습 보이기
       }
-
       // 분리형 막대그래프 : 주메뉴
       d3.select("#separate1").on("click",function() {
          graphNum = 1;
@@ -774,7 +670,6 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          SeparateBar   = true;
          VerticalBar   = true;
@@ -784,7 +679,6 @@ function cropData(data) {
          chart.selectAll("*").remove();
          if (ngroup == 1) currentDataSet = dataSet[0];
          currentLabel = dvalueLabel;
-
          drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, 
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
          document.getElementById("sub1").style.display = "block";       //분리형 막대 도수표시
@@ -793,7 +687,6 @@ function cropData(data) {
            document.myForm2.type2.value = 1;
          }
       })
-
       // 분리형 수직 막대그래프 : 부메뉴
       d3.select("#separate2V").on("click",function() {
          graphNum = 1;
@@ -803,7 +696,6 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          SeparateBar   = true;
          VerticalBar   = true;
@@ -813,7 +705,6 @@ function cropData(data) {
          chart.selectAll("*").remove();
          if (ngroup == 1) currentDataSet = dataSet[0];
          currentLabel = dvalueLabel;
-
          drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, 
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
          document.getElementById("sub1").style.display = "block";  //분리형 막대 도수표시
@@ -822,7 +713,6 @@ function cropData(data) {
            document.myForm2.type2.value = 1;
          }
       })
-
       // 분리형 수평 막대그래프 : 부메뉴
       d3.select("#separate2H").on("click",function() {
          graphNum = 6;
@@ -832,7 +722,6 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          SeparateBar   = true;
          VerticalBar   = false; 
@@ -842,7 +731,6 @@ function cropData(data) {
          chart.selectAll("*").remove();
          if (ngroup == 1) currentDataSet = dataSet[0];
          currentLabel = dvalueLabel;
-
          drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, 
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
          if (ngroup == 1) {
@@ -850,7 +738,6 @@ function cropData(data) {
            document.myForm2.type2.value = 1;
          }
       })
-
       // 막대그래프 도수표시 버튼 클릭
       d3.select("#freq").on("click",function() {
         if (SeparateBar) {
@@ -864,7 +751,6 @@ function cropData(data) {
           }
         }
       })
-
       // 그룹이 없을 경우 막대그래프 내림차순, 올림차순 버튼
       var rad2 = document.myForm2.type2;
       rad2[0].onclick = function() { // 원자료
@@ -894,7 +780,6 @@ function cropData(data) {
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
         }        
       }
-
       // 쌓는형 수직 막대 버튼 클릭
       d3.select("#stack2V").on("click",function() {
          graphNum = 2;
@@ -908,17 +793,14 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          StackBar      = true
          VerticalBar   = true;
          HorizontalBar = false;
          document.getElementById("stack2V").style.backgroundColor    = buttonColorH;
- 
-         chart.selectAll("*").remove();
+          chart.selectAll("*").remove();
          drawStackBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
       })
-
       // 쌓는형 수평 막대 버튼 클릭
       d3.select("#stack2H").on("click",function() {
          graphNum = 7;
@@ -932,17 +814,14 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          StackBar      = true;
          VerticalBar   = false; 
          HorizontalBar = true;
          document.getElementById("stack2H").style.backgroundColor    = buttonColorH;
- 
-         chart.selectAll("*").remove();
+          chart.selectAll("*").remove();
          drawStackBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
       })
-
       // 비율형 수직 막대 버튼 클릭
       d3.select("#ratio2V").on("click",function() {
          graphNum = 3;
@@ -956,17 +835,14 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          RatioBar      = true;
          VerticalBar   = true;
          HorizontalBar = false;
          document.getElementById("ratio2V").style.backgroundColor    = buttonColorH;
- 
-         chart.selectAll("*").remove();
+          chart.selectAll("*").remove();
          drawRatioBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
       })
-
       // 비율형 수평 막대 버튼 클릭
       d3.select("#ratio2H").on("click",function() {
          graphNum = 8;
@@ -980,17 +856,14 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          RatioBar      = true;
          VerticalBar   = false; 
          HorizontalBar = true;
          document.getElementById("ratio2H").style.backgroundColor    = buttonColorH;
- 
-         chart.selectAll("*").remove();
+          chart.selectAll("*").remove();
          drawRatioBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
       })
-
       // 나란형 수직 막대그래프
       d3.select("#side2V").on("click",function() {
          graphNum = 4;
@@ -1004,17 +877,14 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          SideBar       = true;
          VerticalBar   = true;
          HorizontalBar = false;
          document.getElementById("side2V").style.backgroundColor     = buttonColorH;
- 
-         chart.selectAll("*").remove();
+          chart.selectAll("*").remove();
          drawSideBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
       })
-
       // 나란형 수평 막대그래프
       d3.select("#side2H").on("click",function() {
          graphNum = 9;
@@ -1028,17 +898,14 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          SideBar       = true;
          VerticalBar   = false; 
          HorizontalBar = true;
          document.getElementById("side2H").style.backgroundColor     = buttonColorH;
- 
-         chart.selectAll("*").remove();
+          chart.selectAll("*").remove();
          drawSideBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
       })
-
       // 양쪽형 수직 막대 버튼 클릭
       d3.select("#bothbar2V").on("click",function() {
          graphNum = 5;
@@ -1051,7 +918,6 @@ function cropData(data) {
            alert(alertMsg[31][langNum]); 
            return;
          };
-
          if (ngroup == 2) {
            if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
            buttonColorChange();
@@ -1064,7 +930,6 @@ function cropData(data) {
            drawBothBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
          }
       })
-
       // 양쪽형 수평 막대 버튼 클릭
       d3.select("#bothbar2H").on("click",function() {
          graphNum = 10;
@@ -1089,7 +954,6 @@ function cropData(data) {
            drawBothBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
          }
       })
-
       // 원그래프 버튼 클릭 : 주메뉴
       d3.select("#pie1").on("click",function() {
          graphNum = 11;
@@ -1099,15 +963,12 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          PieChart    = true;
          document.getElementById("pie1").style.backgroundColor      = buttonColorH;
-
          chart.selectAll("*").remove();
  	 drawPieChart(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);  
       })
-
       // 도넛그래프 버튼 클릭
       d3.select("#donut2").on("click",function() {
          graphNum = 12;
@@ -1117,16 +978,13 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          document.getElementById("mean").checked = false;
          buttonColorChange();
          DonutGraph  = true;
          document.getElementById("donut2").style.backgroundColor      = buttonColorH;
-
          chart.selectAll("*").remove();
          drawPieChart(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet) ;
       })
-
       // 띠그래프 버튼 클릭 : 주메뉴
       d3.select("#band1").on("click",function() {
          graphNum = 13;
@@ -1136,18 +994,14 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          document.getElementById("mean").checked = false;
          buttonColorChange();
          BandGraph   = true;
          document.getElementById("band1").style.backgroundColor     = buttonColorH;
-
          chart.selectAll("*").remove();
          drawBandGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
          document.getElementById("sub3").style.display = "block";  //띠그래프 도수표시
       })
-
-
      // 띠그래프 도수표시 버튼 클릭
       d3.select("#mean").on("click",function() {
         if (!BandGraph) return;
@@ -1162,18 +1016,15 @@ function cropData(data) {
 	    removeBandFreq();
           }
       })
-
       // 꺽은선그래프 클릭 : 주메뉴
       d3.select("#line1").on("click",function() {
          graphNum = 14;
          dataClassify();
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          buttonColorChange();
          LineGraph   = true;
          document.getElementById("line1").style.backgroundColor     = buttonColorH;
- 
-         chart.selectAll("*").remove();
+          chart.selectAll("*").remove();
          currentLabel = dvalueLabel;
          drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMin, freqMax, currentLabel, currentDataSet, dataSet);
          if (ngroup == 1) {
@@ -1181,7 +1032,6 @@ function cropData(data) {
            document.myForm3.type3.value = 1;
          }
       })
-
       // 그룹이 없을 경우 꺽은선그래프 내림차순, 올림차순 버튼
       var rad3 = document.myForm3.type3;
       rad3[0].onclick = function() { // 원자료
@@ -1208,7 +1058,6 @@ function cropData(data) {
           drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMin, freqMax, currentLabel, currentDataSet, dataSet);
         }
       }
-
       // 도수분포표 버튼 클릭
       d3.select("#freqTable").on("click",function() {
          dataClassify();
@@ -1217,16 +1066,13 @@ function cropData(data) {
            return;
          };
          if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
          document.getElementById("mean").checked = false;
          buttonColorChange();
          FreqTable   = true;
          document.getElementById("freqTable").style.backgroundColor     = buttonColorH;
-
          ngvalue = ngroup;
          freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabel, ngroup, gvarName, gvalueLabel);
       })
-
       // ==========================================================================================
       // 연속형 변량 그래프 ========================================================================
       //===========================================================================================
@@ -1235,13 +1081,11 @@ function cropData(data) {
         graphNum = 15;
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         DotGraph  = true;
         document.getElementById("dot1").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);       
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-
         chart.selectAll("*").remove();
         drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
         document.getElementById("sub5").style.display = "block";  //점그래프 평균, 표준편차표시
@@ -1261,7 +1105,6 @@ function cropData(data) {
           }
         }
       })
-
       // 점그래프 표준편차 표시
       d3.select("#DotStd").on("click",function() {
         if(DotGraph) {
@@ -1276,19 +1119,16 @@ function cropData(data) {
           }
         }
       })
-
       // 히스토그램 주메뉴 -----------------------------------------------------------------------------------------
       d3.select("#hist1").on("click",function() {
         graphNum = 19;
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         Histogram = true;
         document.getElementById("hist1").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);       
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-
         chart.selectAll("*").remove();
         nint  = 7;
         xstep = (tstat[7] - tstat[3]) / nint; // (전체 최대 - 최소) / 인터발수  : 양쪽 그래프 buffer 
@@ -1299,7 +1139,6 @@ function cropData(data) {
         gymaxH = para.c;
         document.getElementById("sub7").style.display = "block";  //히스토그램 선택사항 표시
       })
-
      // 히스토그램 평균표시
       d3.select("#HistMean").on("click",function() {
         if (Histogram == false) return;
@@ -1325,7 +1164,6 @@ function cropData(data) {
           removeHistFreq();
         }
       })
-
       // 히스토그램 꺽은선그래프 표시 
       d3.select("#HistLine").on("click",function() {
         if (Histogram == false) return;
@@ -1338,18 +1176,15 @@ function cropData(data) {
           removeHistLine()
         }      
       })
-
       // 히스토그램 도수분포표 표시 
       d3.select("#histTable").on("click",function() {;
         if (Histogram == false) return;
           showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gvalueLabel)
       })
-
       // 새 구간으로 히스토그램 업데이트
       d3.select("#HistRedraw").on("click", function(){ 
         if (Histogram == false) return; 
         chart.selectAll("*").remove();  // 전화면 제거
-
 	var start = parseFloat(d3.select("#HistInit").node().value);  // 시작값 
         xstep = parseFloat(d3.select("#HistStep").node().value);      // 구간너비 
         if (start > tstat[3]) start = tstat[3];
@@ -1359,46 +1194,37 @@ function cropData(data) {
         gxmaxH = para.a;
         gyminH = para.b;
         gymaxH = para.c;
-
         if(checkHistMean) showHistMean(ngroup, avg, gxminH, gxmaxH);   // 평균 표시
         if(checkHistFreq) showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, gyminH, gymaxH); // 도수 표시
         if(checkHistLine) showHistLine(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, gyminH, gymaxH); // 꺽은선 표시
- 
-      })
-
+       })
       // 상자그래프 : 주메뉴 -----------------------------------------------------------------------------------------
       d3.select("#box1").on("click",function() {
         graphNum = 16;
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         BoxGraph  = true;
         document.getElementById("box1").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);       
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-
         chart.selectAll("*").remove();
 //        chart.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top/2).text(title);
         drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidth, oneHeight, tstat);
       })
-
       // 줄기잎그래프 : 주메뉴 -----------------------------------------------------------------------------------------
       d3.select("#stem1").on("click",function() {
         graphNum = 17;
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         StemLeaf  = true;
         document.getElementById("stem1").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);       
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-
         chart.selectAll("*").remove();
         drawStemLeaf(ngroup, nobs, dataSet, tstat, graphWidth, buffer);
       })
-
       // 양쪽형 줄기와 잎 그림 버튼 클릭
       d3.select("#bothstem2").on("click",function() { 
         graphNum = 18;
@@ -1408,24 +1234,19 @@ function cropData(data) {
           return;
         }
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         StemBoth  = true;
         document.getElementById("bothstem2").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);       
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-
         chart.selectAll("*").remove();
         drawStemLeafBoth(ngroup, nobs, dataSet, tstat, graphWidth, buffer);
       })
-
       // 기초통계량 버튼 클릭 -------------------------------------------------------------------------------
       d3.select("#statTable").on("click",function() {  
-
         dataClassifyM();
         if (rawData == false) return;
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         StatTable = true;
         document.getElementById("statTable").style.backgroundColor = buttonColorH;
@@ -1434,27 +1255,21 @@ function cropData(data) {
     
         statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi,tstat);
       })
-
       // 산점도 버튼 클릭 -------------------------------------------------------------------------------
       d3.select("#scatter1").on("click",function() {  
         graphNum = 20;
         dataClassifyS();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         Scatter = true;
         document.getElementById("scatter1").style.backgroundColor = buttonColorH;    
-
         tobs = xobs;
         SortAscendBasic(tobs, gdata, dataA);        // Sorting data in ascending order 
         ngroup  = DotValueFreq(tobs, dataA, gdataValue, gvalueFreq ) 
         bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd,alphaR,betaR,corr,rsquare) 
-
         drawScatter(ngroup,gvalueLabel,tobs,xdata,ydata,gdata,scatterS);
         document.getElementById("sub6").style.display = "block";  //회귀선 표시
-
      })
-
       // 산점도 회귀선 그리기
       d3.select("#regress").on("click",function() {
           if(Scatter == false) return;
@@ -1467,38 +1282,32 @@ function cropData(data) {
 	    removeRegression();
           }
       })
-/*
+
       // eStatH 메뉴
       d3.select("#estatH").on("click",function() {
-        window.open("../eStatH");
+        window.open(appStr[1][langNum]);1
       })
-
       // eStatU 메뉴
       d3.select("#estatU").on("click",function() {
-        window.open("../eStatU");
+        window.open(appStr[2][langNum]);
       })
-
       // eStatE 메뉴
       d3.select("#estatE").on("click",function() {
-        window.open("../eStatE");
+        window.open(appStr[3][langNum]);
       })
-
       // eStat 메뉴
       d3.select("#estat").on("click",function() {
-        window.open("../ExLearning");
+        window.open(appStr[4][langNum]);
       })
-
       // language Button
       d3.select("#langBtn").on("click",function() {
-        window.open("index_en.html","_self");
+        window.open(appStr[5][langNum]);
       })
-*/
+
       // Example Download Button
       d3.select("#downBtn").on("click",function() {
         // to be done
-
       })
-
       // 모평균 가설검정
       d3.select("#testM1").on("click",function() {
         graphNum = 21;
@@ -1508,15 +1317,12 @@ function cropData(data) {
         };
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         THmean1 = true;
         document.getElementById("testM1").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);       
-
         chart.selectAll("*").remove();
         document.getElementById("sub8").style.display = "block";  //가설검정 선택사항표시
-
         hypoType = 1;
         h1Type   = 1;
         testType = 2;
@@ -1531,7 +1337,6 @@ function cropData(data) {
         temp = t_inv(1 - alpha/2, df, info) * stdev / Math.sqrt(nn);
         left  = xbar - temp;
         right = xbar + temp;  
-
         f = t_inv(h, df, info);
         g = -f;
         if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
@@ -1545,27 +1350,22 @@ function cropData(data) {
         statT[5] = stdev;
         statT[6] = left;
         statT[7] = right;
-
         drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
       })
-
       // 모평균 가설검정 재실행
         // H1 type
         var h8 = document.myForm80.type0;
         h8[0].onclick = function() { h1Type = 1; }    // 양측검정
         h8[1].onclick = function() { h1Type = 2; }    // 우측검정
         h8[2].onclick = function() { h1Type = 3; }    // 좌측검정
-
         // Test type
         var test8 = document.myForm81.type1;
         test8[0].onclick = function() { testType = 2; }  // Z-test
         test8[1].onclick = function() { testType = 1; }  // t-test
- 
-        // alpha
+         // alpha
         var a8 = document.myForm82.type2;
         a8[0].onclick = function() { alpha = 0.05; }  
         a8[1].onclick = function() { alpha = 0.01; }  
-
       d3.select("#executeTH8").on("click",function() {
         graphNum = 21;
         // input value
@@ -1574,7 +1374,6 @@ function cropData(data) {
             alert(alertMsg[38][langNum]); 
             return;
         }
-
         nn    = tstat[0];
         df    = nn - 1;
         xbar  = tstat[1];
@@ -1586,16 +1385,13 @@ function cropData(data) {
             return;
           }
         }
-
         // confidence interval
         if (testType == 1) temp = stdnormal_inv(1 - alpha/2, info) * stdev / Math.sqrt(nn);
         else temp = t_inv(1 - alpha/2, df, info) * stdev / Math.sqrt(nn);
         left  = xbar - temp;
         right = xbar + temp;  
-
         // test statistics
         teststat = (xbar - mu) / (stdev / Math.sqrt(nn));
-
         statT[0] = mu;      // 초기 mu
         statT[1] = stdev;   // Z test 경우 sigma
         statT[2] = alpha;
@@ -1604,9 +1400,7 @@ function cropData(data) {
         statT[5] = tstat[2];
         statT[6] = left;
         statT[7] = right;
-
         chart.selectAll("*").remove();
-
         if (isNaN(mu) || isNaN(nn) || isNaN(xbar) || isNaN(stdev) || nn < 2 || stdev <= 0 ) {  // wrong input
           chart.append("text").attr("class","mean")
              .attr("x", 150)
@@ -1663,10 +1457,7 @@ function cropData(data) {
           }
              
         }
-
       })
-
-
       // 모분산 가설검정
       d3.select("#testS1").on("click",function() {
         graphNum = 22;
@@ -1676,14 +1467,11 @@ function cropData(data) {
         };
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         THsigma1 = true;
         document.getElementById("testS1").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);       
-
         document.getElementById("sub9").style.display = "block";  //가설검정 선택사항표시
-
         hypoType = 2;
         h1Type   = 1;
         alpha    = 0.05;
@@ -1697,14 +1485,11 @@ function cropData(data) {
         temp = t_inv(1 - alpha/2, df, info) * stdev / Math.sqrt(nn);
         left  = xbar - temp;
         right = xbar + temp;  
-
         // confidence interval
         left  = df * variS / chisq_inv(1 - alpha/2, df, info);
         right = df * variS / chisq_inv(alpha/2, df, info);
-
         // test statistics
         teststat = df *  variS / vari;
-
         statT[0] = variS;    // 초기 variance
         statT[2] = alpha;
         statT[3] = tstat[0]; // nn
@@ -1712,9 +1497,7 @@ function cropData(data) {
         statT[5] = tstat[2]; // stdev
         statT[6] = left;
         statT[7] = right;
-
         chart.selectAll("*").remove();
-
         if (isNaN(vari) || isNaN(nn) || isNaN(variS) || vari <= 0 || nn < 2 || variS <= 0 ) {  // wrong input
           chart.append("text").attr("class","mean").attr("x", 150) .attr("y", 100)
              .text("No input or wrong input !!   Try again.").style("stroke","red")
@@ -1749,19 +1532,16 @@ function cropData(data) {
           }         
         }
       })
-
       // 모분산 가설검정 재실행
         // H1 type
         var h9 = document.myForm90.type0;
         h9[0].onclick = function() { h1Type = 1 }    // 양측검정
         h9[1].onclick = function() { h1Type = 2 }    // 우측검정
         h9[2].onclick = function() { h1Type = 3 }    // 좌측검정
-
         // alpha
         var a9 = document.myForm92.type2;
         a9[0].onclick = function() { alpha = 0.05; }  
         a9[1].onclick = function() { alpha = 0.01; }  
-
       d3.select("#executeTH9").on("click",function() {
         graphNum = 22;
         // input value
@@ -1770,14 +1550,11 @@ function cropData(data) {
             alert(alertMsg[40][langNum]); 
             return;
         }
-
         // confidence interval
         left  = df * variS / chisq_inv(1 - alpha/2, df, info)
         right = df * variS / chisq_inv(alpha/2, df, info)
-
         // test statistics
         teststat = df *  variS / vari;
-
         statT[0] = vari;    // 초기 variance
         statT[2] = alpha;
         statT[3] = tstat[0]; // nn
@@ -1785,10 +1562,8 @@ function cropData(data) {
         statT[5] = tstat[2]; // stdev
         statT[6] = left;
         statT[7] = right;
-
         chart.selectAll("*").remove();
         df    = statT[3] - 1;
-
         if (isNaN(vari) || isNaN(nn) || isNaN(variS) || vari <= 0 || nn < 2 || variS <= 0 ) {  // wrong input
           chart.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
              .text("No input or wrong input !!   Try again.").style("stroke","red");
@@ -1823,7 +1598,6 @@ function cropData(data) {
           }         
         }
       })
-
       // 두 모평균 가설검정
       d3.select("#testM12").on("click",function() {
         graphNum = 23; 
@@ -1831,24 +1605,19 @@ function cropData(data) {
           alert(alertMsg[41][langNum]); 
           return;
         };
-
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         THmean12 = true;
         document.getElementById("testM12").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);    
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);    
-
         chart.selectAll("*").remove();
         document.getElementById("sub10").style.display = "block";  //가설검정 선택사항표시
-
         hypoType = 41;
         h1Type = 1; 
         testType = 1;
         alpha = 0.05; 
-
         mu    = 0;
         nn1   = nobs[0];
         xbar1 = avg[0];
@@ -1856,7 +1625,6 @@ function cropData(data) {
         nn2   = nobs[1];
         xbar2 = avg[1];
         var2  = std[1]*std[1];
-
         // test statistics
         df  = nn1 + nn2 - 2;
         df1 = nn1 - 1;
@@ -1878,9 +1646,7 @@ function cropData(data) {
         statT[6] = nn2;
         statT[7] = xbar2;
         statT[8] = std[1];
-
         chart.selectAll("*").remove();
-
         if (isNaN(nn1) || isNaN(nn2) || isNaN(xbar1) || isNaN(xbar2) || isNaN(var1) || isNaN(var2) ||
             nn1 < 2 || nn2 < 2 || var1 <= 0 || var2 <= 0) {  // wrong input
             chart.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
@@ -1933,26 +1699,21 @@ function cropData(data) {
             drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
           }          
         }
-
       })
-
       // 가설검정 Mu 12 재실행
         // H1 type
         var h10 = document.myForm100.type0;
         h10[0].onclick = function() { h1Type = 1 }    // 양측검정
         h10[1].onclick = function() { h1Type = 2 }    // 우측검정
         h10[2].onclick = function() { h1Type = 3 }    // 좌측검정
-
         // Test type
         var test10 = document.myForm101.type1;
         test10[0].onclick = function() { testType = 1; hypoType = 41 }  // same population variance
         test10[1].onclick = function() { testType = 2; hypoType = 42 }  // not same population variances
-
         // alpha
         var a10 = document.myForm102.type2;
         a10[0].onclick = function() { alpha = 0.05; }  
         a10[1].onclick = function() { alpha = 0.01; }  
-
       d3.select("#executeTH10").on("click",function() {
         graphNum = 23;
         mu    = parseFloat(d3.select("#mu10").node().value);
@@ -1962,8 +1723,7 @@ function cropData(data) {
         nn2   = nobs[1];
         xbar2 = avg[1];
         var2  = std[1]*std[1];
- 
-        // test statistics
+         // test statistics
         df  = nn1 + nn2 - 2;
         df1 = nn1 - 1;
         df2 = nn2 - 1;
@@ -1973,7 +1733,6 @@ function cropData(data) {
         varAdd    = t1 + t2;
         if (testType == 1) teststat = (xbar1 - xbar2 - mu) / Math.sqrt(varPooled/nn1 + varPooled/nn2); 
         else teststat = (xbar1 - xbar2 - mu) / Math.sqrt(varAdd);
-
         statT[0] = mu;      // 초기 D
         if (testType == 1) statT[1] = Math.sqrt(varPooled/nn1 + varPooled/nn2);
         else statT[1] = Math.sqrt(varAdd);
@@ -1984,7 +1743,6 @@ function cropData(data) {
         statT[6] = nn2;
         statT[7] = xbar2;
         statT[8] = std[1];
-
         chart.selectAll("*").remove();
         
         if (isNaN(nn1) || isNaN(nn2) || isNaN(xbar1) || isNaN(xbar2) || isNaN(var1) || isNaN(var2) ||
@@ -2039,9 +1797,7 @@ function cropData(data) {
             drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
           }          
         }
-
       })
-
       // 두 모분산 가설검정
       d3.select("#testS12").on("click",function() {
         graphNum = 24;
@@ -2049,33 +1805,26 @@ function cropData(data) {
           alert(alertMsg[41][langNum]); 
           return;
         };
-
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         THsigma12 = true;
         document.getElementById("testS12").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);    
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);    
-
         chart.selectAll("*").remove();
         document.getElementById("sub11").style.display = "block";  //가설검정 선택사항표시
-
         hypoType = 5;
         h1Type = 1; 
         alpha = 0.05; 
-
         nn1   = nobs[0];
         nn2   = nobs[1];
         df1   = nn1 - 1;
         df2   = nn2 - 1;
         var1  = std[0]*std[0];
         var2  = std[1]*std[1];
-
         // test statistics
         teststat  = var1 / var2;
-
         statF[0] = teststat;
         statF[2] = alpha;
         statF[3] = nobs[0]; // nn1
@@ -2084,9 +1833,7 @@ function cropData(data) {
         statF[6] = nobs[1]; // nn2
         statF[7] = avg[1];  // xbar2
         statF[8] = std[1];  // std2
-
         chart.selectAll("*").remove();
-
         if (isNaN(nn1) || isNaN(nn2) || isNaN(var1) || isNaN(var2) ||
                nn1 < 2 || nn2 <2 || var1 <= 0 || var2 <= 0) {  // wrong input
           chart.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
@@ -2118,35 +1865,28 @@ function cropData(data) {
             drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue);
           }          
         }
-
       })
-
       // 두 모분산 가설검정 재실행
         // H1 type
         var h11 = document.myForm110.type0;
         h11[0].onclick = function() { h1Type = 1 }    // 양측검정
         h11[1].onclick = function() { h1Type = 2 }    // 우측검정
         h11[2].onclick = function() { h1Type = 3 }    // 좌측검정
-
         // alpha
         var a11 = document.myForm112.type2;
         a11[0].onclick = function() { alpha = 0.05; }  
         a11[1].onclick = function() { alpha = 0.01; }  
-
       d3.select("#executeTH11").on("click",function() {
         graphNum = 24;
         hypoType = 5;
-
         nn1   = nobs[0];
         nn2   = nobs[1];
         df1   = nn1 - 1;
         df2   = nn2 - 1;
         var1  = std[0]*std[0];
         var2  = std[1]*std[1];
- 
-        // test statistics
+         // test statistics
         teststat = var1 / var2;
-
         statF[0] = teststat;
         statF[2] = alpha;
         statF[3] = nobs[0]; // nn1
@@ -2155,9 +1895,7 @@ function cropData(data) {
         statF[6] = nobs[1]; // nn2
         statF[7] = avg[1];  // xbar2
         statF[8] = std[1];  // std2
-
         chart.selectAll("*").remove();
-
         if (isNaN(nn1) || isNaN(nn2) || isNaN(var1) || isNaN(var2) ||
                nn1 < 2 || nn2 <2 || var1 <= 0 || var2 <= 0) {  // wrong input
           chart.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
@@ -2165,7 +1903,6 @@ function cropData(data) {
           return;
         }
         else { // F-test
-
           if (h1Type == 1) {
             h = alpha / 2;  
             f = f_inv(h, df1, df2, info);
@@ -2191,9 +1928,7 @@ function cropData(data) {
             drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
           }          
         }
-
       })
-
       // 분산분석
       d3.select("#anova").on("click",function() {
         graphNum = 25;
@@ -2201,23 +1936,18 @@ function cropData(data) {
           alert(alertMsg[41][langNum]); 
           return;
         };
-
         dataClassifyM();
         if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
-
         buttonColorChange();
         THanova = true;
         document.getElementById("anova").style.backgroundColor = buttonColorH;
         TotalStat(dobs, dvar, tstat);    
         GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);    
-
         chart.selectAll("*").remove();
         document.getElementById("sub12").style.display = "block";  //가설검정 선택사항표시
-
         hypoType = 7;
         h1Type = 2; 
         alpha = 0.05; 
-
         var strnn   = "";
         var strxbar = "";
         var strstd  = "";
@@ -2227,7 +1957,6 @@ function cropData(data) {
           strxbar += " m"+(i+1).toString()+"="+(f2(avg[i])).toString()+", ";
           strstd  += " s"+(i+1).toString()+"="+(f2(std[i])).toString()+", ";
         } 
-
         chart.selectAll("*").remove();
     
         // ANOVA F-test statistics
@@ -2237,12 +1966,10 @@ function cropData(data) {
           ssw  = 0;
           for (i=0; i<ngroup; i++) ntot += nobs[i]; 
           df2  = ntot - ngroup;
-
           // total mean
           mtot = 0;
           for (i=0; i<ngroup; i++) mtot += nobs[i] * avg[i];
           mtot /= ntot;
-
           // between & within sum of squares
           ssb = 0;
           ssw = 0;
@@ -2254,31 +1981,25 @@ function cropData(data) {
         
           msb = ssb / df1;
           msw = ssw / df2;
-
           statF[0] = msb / msw;
           statF[1] = ssb;
           statF[2] = ssw;
           statF[3] = ssb + ssw;
           statF[4] = msb;
           statF[5] = msw;
-
           h = alpha;  
           f = 0;
           g = f_inv(1-h, df1, df2, info);
           pvalue = 1 - f_cdf(statF[0], df1, df2, info);
           drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
       })
-
-
       // 분산분석 재실행
       // 분산분석 재실행 alpha
         var a12 = document.myForm122.type2;
         a12[0].onclick = function() { alpha = 0.05; }  
         a12[1].onclick = function() { alpha = 0.01; }  
-
       d3.select("#executeTH12").on("click",function() {
         graphNum = 25;
-
         chart.selectAll("*").remove();
         hypoType = 7;
         h1Type = 2; 
@@ -2290,12 +2011,10 @@ function cropData(data) {
           ssw  = 0;
           for (i=0; i<ngroup; i++) ntot += nobs[i]; 
           df2  = ntot - ngroup;
-
           // total mean
           mtot = 0;
           for (i=0; i<ngroup; i++) mtot += nobs[i] * avg[i];
           mtot /= ntot;
-
           // between & within sum of squares
           ssb = 0;
           ssw = 0;
@@ -2307,25 +2026,19 @@ function cropData(data) {
         
           msb = ssb / df1;
           msw = ssw / df2;
-
           statF[0] = msb / msw;
           statF[1] = ssb;
           statF[2] = ssw;
           statF[3] = ssb + ssw;
           statF[4] = msb;
           statF[5] = msw;
-
           h = alpha;  
           f = 0;
           g = f_inv(1-h, df1, df2, info);
           pvalue = 1 - f_cdf(statF[0], df1, df2, info);
           drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
- 
-      })
-
+       })
       // 시트 변량편집
-
-
       // 그래프 제목편집
       d3.select("#editGraph").on("click",function() {
         if (graphNum > 20) {
@@ -2336,13 +2049,11 @@ function cropData(data) {
         EditGraph = true;
         document.getElementById("editGraph").style.backgroundColor = buttonColorH;
         document.getElementById("sub13").style.display = "block";  //그래프 제목편집 선택사항표시   
-
         // 현재 제목 쓰기
         d3.select("#titleMain").node().value = mTitle[graphNum];
         d3.select("#titleY").node().value    = yTitle[graphNum];
         d3.select("#titleX").node().value    = xTitle[graphNum];
       })
-
       // 그래프 제목편집 실행
       d3.select("#executeTH13").on("click",function() {
         mTitle[graphNum] = d3.select("#titleMain").node().value;
@@ -2350,26 +2061,20 @@ function cropData(data) {
         xTitle[graphNum] = d3.select("#titleX").node().value;
         redrawGraph(graphNum);
       })
-
       // jQuery 대화상자 초기화?
       $(".dialog").dialog({
         autoOpen: false,
         modal: true,
       });
-
       // 변량 편집 버튼 : V1 (jj=0) 만 해당
       d3.select("#variableBtn").on("click",function() {
         variableSelectClear();
         jj = 0;
         document.getElementById("varlist").value = 1;
         buttonColorChange();
-
 	$("#sub14").dialog("open");
-
         selectVarInit();
-
       })
-
       // 편집창 varlist에 이벤트 발생시 update 처리 함수 --------------------------
       function selectVarUpdate() {
         // 변량명을 rvarName에 입력
@@ -2387,12 +2092,9 @@ function cropData(data) {
               rvalueLabel[jj][k] = d3.select(str2).node().value;
             }      
         }
-
         jj = parseInt(document.getElementById("varlist").value) - 1;
         selectVarInit();
-
       } // endof selectVarUpdate()  ---------------------------------------------
-
       // 편집창 varlist에 초기값 표시 함수 ---------------------------------------
       function selectVarInit() {
         // 변량명 초기화  
@@ -2411,7 +2113,6 @@ function cropData(data) {
           }
         }
       } // endof selectVarInit -------------------------------------------------
-
       // 변량편집 저장 (최종 편집 변량에 적용)
       d3.select("#vconfirm").on("click",function() {
         selectVarUpdate();
@@ -2419,7 +2120,6 @@ function cropData(data) {
            colHeaders: rvarName
         });      
       })
-
       // 변량편집 나가기
       d3.select("#vcancel").on("click",function() { 
         selectVarUpdate();
@@ -2428,4 +2128,3 @@ function cropData(data) {
         });   
 	$("#sub14").dialog("close");
       })
-
