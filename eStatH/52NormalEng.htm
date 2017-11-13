@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Normal Distribution</title>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="d3.v4.min.js"></script>
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatH_en.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Normal Distribution</b> 
+      <a class="menu" href="eStatH_en.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+    mean &mu;=    <input type="text" class="textarea" value="0"  size=6 id="mu">  &nbsp; &nbsp; 
+    std dev &sigma;= <input type="text" class="textarea" value="1"  size=6 id="sigma"> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+    (if typed) <input type="button" value="Calculate" size=12 id="btn2Normal">   <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+
+    <section class="range-slider">
+    <input value="300" min="0" max="800" type="range" onchange="showValueNormal1(this.value)"/>
+    <input value="500" min="0" max="800" type="range" onchange="showValueNormal2(this.value)"/>
+    </section>
+    
+    <form name="myForm"> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name = "type1" value="1" checked> 
+         P( &nbsp; <input type="text" class="textarea" value="-1" size=6  id="a"> &nbsp;  < &nbsp;  Z &nbsp; < &nbsp; 
+         <input type="text" class="textarea"  value="1"  size=6 id="b">  &nbsp; ) &nbsp;  =   &nbsp; 
+         <input type="text" class="textarea2" value="0.6827"  size=14 id="c"> <p> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name = "type1" value="2" > 
+         P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp; Z &nbsp; < &nbsp;
+         <input type="text" class="textarea2" value="1.6449" size=6  id="d"> &nbsp; ) &nbsp; = &nbsp;
+         <input type="text" class="textarea"  value="0.95"  size=14  id="e">  <br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+         <sup><small>0 </small></sup>
+         <input type="range" min="0" max="100" value="95" id="range3N" onchange="showValueNormal3(this.value)"/>
+         <sup><small>1</small> </sup> <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name = "type1" value="3" >   
+         P( &nbsp; <input type="text" class="textarea2" value="-1.9600" size=6  id="f"> &nbsp;  < &nbsp;  Z &nbsp; < &nbsp; 
+         <input type="text" class="textarea2"  value="1.9600"  size=6 id="g">  &nbsp; ) &nbsp;  =   &nbsp; 
+         <input type="text" class="textarea" value="0.95"  size=14 id="h">  <br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+         <sup><small>0 </small></sup>
+         <input type="range" min="0" max="100" value="95" id="range4N" onchange="showValueNormal4(this.value)"/>
+         <sup><small>1</small> </sup> <br>
+    References:  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/NormalDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 
+      <a href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution" target="_blank" >KhanAcademy </a> &nbsp; 
+    </form>
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth    = 600;
+      svgHeight   = 510;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, avg, std, min, Q1, median, Q3, max, freqMaxP, gxmin, gxmax, gymin, gymax, info;
+      var stat = new Array(30);
+      var title;
+      var mu, sigma, a, b, c, d, e, f, g, h;
+      var dataSet;
+
+      // 초기 정규분포 (-1,1) 확률 그리기
+      mu    = 0;
+      sigma = 1;
+      a     = -1;
+      b     = 1;
+      c     = stdnormal_cdf(b) - stdnormal_cdf(a);
+      drawNormalGraph(mu, sigma, a, b, c);
+
+      // 정규분포 확률 ------------------------------------------------------------------------------------
+      var rad = document.myForm.type1;
+      var radioType = 1;
+      rad[0].onclick = function() {     // P(a< Z < b) = c
+          radioType = 1;  
+          bar.selectAll("*").remove();
+          a = parseFloat(d3.select("#a").node().value); 
+          if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
+          b = parseFloat(d3.select("#b").node().value);
+          if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
+          if ( a > b ) c = 0;
+          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+          d3.select("#c").node().value = f4(c);
+          drawNormalGraph(mu, sigma, a, b, c);
+      }
+      rad[1].onclick = function() {     // P(Z < d) = e
+          radioType = 2;
+          bar.selectAll("*").remove();
+          mu    = parseFloat(d3.select("#mu").node().value); 
+          sigma = parseFloat(d3.select("#sigma").node().value); 
+          e = parseFloat(d3.select("#e").node().value); 
+          d = mu + sigma*stdnormal_inv(e, info);
+          d3.select("#d").node().value = f4(d);
+          drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
+      }
+      rad[2].onclick = function() {     // P(f < Z < g) = h
+          radioType = 3;
+          bar.selectAll("*").remove();
+          mu    = parseFloat(d3.select("#mu").node().value); 
+          sigma = parseFloat(d3.select("#sigma").node().value); 
+          h = parseFloat(d3.select("#h").node().value); 
+          if (h > 0.999999) {
+             f = mu - 4*sigma;
+             g = mu + 4*sigma;
+          }
+          else {
+             g = mu + sigma*stdnormal_inv(1-(1-h)/2, info);
+             f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
+          }
+          d3.select("#f").node().value = f4(f);
+          d3.select("#g").node().value = f4(g);
+          drawNormalGraph(mu, sigma, f, g, h); 
+      }    
+
+      // 확률계산 실행버튼 클릭
+      d3.select("#btn2Normal").on("click",function() {
+        bar.selectAll("*").remove();
+
+        margin  = {top: 50, bottom: 50, left: 50, right: 20};
+        graphWidth2   = svgWidth2 - margin.left - margin.right;
+        graphHeight2  = svgHeight2 - margin.top - margin.bottom;
+ 
+        mu    = parseFloat(d3.select("#mu").node().value); 
+        sigma = parseFloat(d3.select("#sigma").node().value); 
+//        if (sigma == 0) break;
+
+        if (radioType == 1) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          a = parseFloat(d3.select("#a").node().value); 
+          if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
+          b = parseFloat(d3.select("#b").node().value);
+          if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
+          if ( a > b ) c = 0;
+          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+          d3.select("#c").node().value = f4(c);
+          drawNormalGraph(mu, sigma, a, b, c);
+        } 
+        else if (radioType == 2) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          e = parseFloat(d3.select("#e").node().value); 
+          document.getElementById("range3N").value  = f0(e*100);
+          if (e > 0.99999) d = mu + 4*sigma;
+          else if (e < 0.00001) d = mu - 4*sigma;
+          else d = mu + sigma*stdnormal_inv(e, info);
+          d3.select("#d").node().value = f4(d);
+          drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
+       }
+       else if (radioType == 3) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          h = parseFloat(d3.select("#h").node().value); 
+          document.getElementById("range4N").value  = f0(h*100);
+          if (h > 0.999999) {
+             f = mu - 4*sigma;
+             g = mu + 4*sigma;
+          }
+          else {
+             g = mu + sigma*stdnormal_inv(1-(1-h)/2, info);
+             f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
+          }
+          d3.select("#f").node().value = f4(f);
+          d3.select("#g").node().value = f4(g);
+          drawNormalGraph(mu, sigma, f, g, h); 
+       }
+      })
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>대수의 법칙</title>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="d3.v4.min.js"></script>
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatH.js" ></script>
+</head>
+
+<body>
+
+  <div width="600" height="640" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 대수의 법칙: 동전던지기 실험</b> 
+      <a class="menu" href="eStatH.htm"><b>메뉴</b></a>  
+    </div>
+    <br>
+    <svg id="DotGraphEst" width="600" height="630"> </svg>
+    <form>
+     <input type="button" value="실행" id="large">  &nbsp; &nbsp; &nbsp;
+     n = <input type="text" class="textarea" value="1000" size=4 id="nlarge"> <sup><small>100</small></sup>  
+     <input type="range" min="100" max="10000" value="1000" id="rangeLarge" onchange="showValueSample(this.value)"/> <sup><small>10000</small></sup>  &nbsp;
+    </form>
+  </div>
+
+  <script type="text/javascript">
+      function showValueSample(newValue) {document.getElementById("nlarge").value = newValue;}
+  </script>
+
+  <script>
+      var dot2 = d3.select("#DotGraphEst")
+
+      var totalHeight = 640;
+      var svgWidth    = 600;
+      var svgHeight   = 320;  // 모집단 그래프 영역
+      var margin, graphWidth, graphHeight;
+
+      margin      = {top: 20, bottom: 30, left: 20, right: 20};
+      graphWidth  = svgWidth - margin.left - margin.right;
+      graphHeight = svgHeight  + 280 - margin.top - margin.bottom;
+
+      var i, j, k; // 
+      var nint, step, buffer, nvalue, gxmin, gxmax; 
+ 
+      var nobs   = 1000;
+      var radius = 2;
+      var samplePercent;
+
+      var statP      = new Array(20);
+      var statS      = new Array(20);
+      var bins       = new Array(200);
+      var dataSet    = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dataValue  = new Array(nobs);
+      var dvalueFreq = new Array(nobs);
+      var tdata      = new Array(nobs);
+      var tdataY     = new Array(nobs);
+
+      var generator, title;
+
+      lawLarge(nobs);
+
+      // 대수의 법칙 버튼 클릭
+      d3.select("#large").on("click",function() {
+        dot2.selectAll("*").remove();  
+
+        nlarge  = parseFloat(d3.select("#nlarge").node().value);    // 표본크기    
+        // slider control
+        document.getElementById("rangeLarge").value  = nlarge;
+   
+        lawLarge(nlarge);
+      }) 
+
+  </script>
+
+</body>
+</html>

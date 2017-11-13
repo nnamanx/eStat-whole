@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Poisson Distribution</title>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="d3.v4.min.js"></script>
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Poisson Distribution</b> 
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br> 
+    <svg id="chart2" width="600" height="600"> </svg> <br>
+    <input type="button" value="Execute" size=1 id="executePoisson"> &nbsp;
+      m = <input type="text" class="textarea" value="1.0" size=3 id="lambda">
+      <sup><small> 0.1 </small></sup> 
+    <input type="range" min="1" max="100" value="10" id="rangeLambda" onchange="showValueLambda(this.value, valueLabel, poissonP)"/>
+      <sup><small> 10 </small></sup>  &nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" value="freq2" id=freqPoisson>show probability</label> &nbsp; <p>
+    <input type="button" value="Poisson Prob Table" size=3 id="poissonT"> <p>
+    References:  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Poisson_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/PoissonDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="https://stattrek.com/probability-distributions/poisson.aspx" target="_blank" >StatTrek </a> &nbsp; 
+  </div>
+
+  <div width="650" style="position:absolute; left:10px; top:770px"> <p>
+    <table id="poissonTable" cellpadding="2" cellspacing="2" border="2" >  </table>
+  </div>
+
+  <script>
+ 
+      var bar = d3.select("#chart2");
+
+      var i, j, k, sum, temp, info;
+      var lambda, avg, std;
+      var xmin, xmax, ymin, ymax, gxmin, gxmax, gxrange, gymin, gymax, gyrange;
+      var nobs;
+
+      var nvalue = 21;
+      var checkFreq = false;
+
+      // svg 파라미터
+      var svgWidth    = 600;
+      var svgHeight   = 600;
+      var margin      = {top: 50, bottom: 60, left: 40, right: 40};
+
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+ 
+      var poissonP   = new Array(nvalue);
+      var valueLabel = new Array(nvalue);
+      lambda = parseFloat(d3.select("#lambda").node().value);
+      xmin = 0;
+      xmax = nvalue;
+      ymin = 0;
+      ymax = 0.4;
+      if (lambda < 0.7) ymax = 0.8;
+      drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax);
+
+      // Poisson분포 실행버튼 클릭 =================================================================================
+      d3.select("#executePoisson").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("freqPoisson").checked = false;
+        checkFreq = false;
+	  removeBinomialFreq2();
+
+        lambda = parseFloat(d3.select("#lambda").node().value);    // 성공확률 p
+        if (lambda < 0.1) lambda = 0.1;
+        if (lambda > 10)  lambda = 10.0;
+        // slider control
+        document.getElementById("rangeLambda").value  = 10*lambda;
+
+        drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax);
+
+        if (checkFreq) showPoissonFreq(nvalue, poissonP, xmin, xmax, ymin, ymax);
+      })
+
+      // Poisson분포 확률표시 버튼 클릭
+      d3.select("#freqPoisson").on("click",function() {
+        if(this.checked) {
+          checkFreq  = true;
+          showBinomialFreq2(nvalue, poissonP, xmin, xmax, ymin, ymax);
+        } else {
+          checkFreq = false;
+	  removeBinomialFreq2();
+        }
+      })
+
+      // Poisson분포표 버튼 클릭
+      d3.select("#poissonT").on("click",function() {
+          poissonTable(nvalue, lambda, poissonP);
+      })
+
+  </script>
+
+</body>
+</html>

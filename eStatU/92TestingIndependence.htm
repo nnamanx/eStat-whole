@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Testing Independence</title>
+  <script src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> Testing Hypothesis : Independence of Two Variables </b>
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[Hypothesis]</b>
+      <span class="fontmath">&nbsp;&nbsp;
+        H<sub>o</sub> : Row and column variables are independent 
+      </span>
+      <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+      <span class="fontmath">
+	H<sub>1</sub> : Row and column variables are independent
+       </span>
+    </form>
+  
+    <b>[Test Type]</b> &nbsp; <span class="fontmath">&chi;<sup>2</sup></span> test
+
+    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+      significance level <span class="fontmath">&alpha;</span> = 
+      <input type="radio" name = "type2" value="1" checked> 5%       
+      <input type="radio" name = "type2" value="2" > 1%
+    </form>       
+
+    <b>[Sample Data]</b>&nbsp; <span class="fontguide">(input sample data to any # of rows & columns)</span>
+   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> &nbsp;</td>
+	  <td>&nbsp;Column 1</td>
+	  <td>&nbsp;Column 2</td>
+	  <td>&nbsp;Column 3</td>
+	  <td>&nbsp;Column 4</td>
+	  <td>&nbsp;Column 5</td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> Row 1 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data11"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data12"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data13"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data14"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data15"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> Row 2 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data21"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data22"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data23"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data24"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data25"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> Row 3 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data31"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data32"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data33"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data34"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data35"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> Row 4 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data41"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data42"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data43"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data44"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data45"></td>
+	</tr>
+      </tbody>
+    </table>
+     
+    <input type="button" value="Execute" size=12 id="executeTH8"> <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var i, j, k, nobs, nrow, ncol, df, info, stat, pvalue, alpha, f, g, h; 
+      var gxmin, gxmax, gymin, gymax, title;
+      var hypoType = 8;
+      var h1Type   = 2;
+      var nr = 5;
+      var nc = 6;
+      var cell = new Array(nr);
+      var expf = new Array(nr);
+      for (i=0; i<nr; i++) {
+        cell[i] = new Array(nc);
+        expf[i] = new Array(nc);
+      }
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      a[0].onclick = function() { alpha = 0.05; }  
+      a[1].onclick = function() { alpha = 0.01; }  
+
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH8").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        cell[1][1] = parseFloat(d3.select("#data11").node().value);
+        cell[1][2] = parseFloat(d3.select("#data12").node().value);
+        cell[1][3] = parseFloat(d3.select("#data13").node().value);
+        cell[1][4] = parseFloat(d3.select("#data14").node().value);
+        cell[1][5] = parseFloat(d3.select("#data15").node().value);
+        cell[2][1] = parseFloat(d3.select("#data21").node().value);
+        cell[2][2] = parseFloat(d3.select("#data22").node().value);
+        cell[2][3] = parseFloat(d3.select("#data23").node().value);
+        cell[2][4] = parseFloat(d3.select("#data24").node().value);
+        cell[2][5] = parseFloat(d3.select("#data25").node().value);
+        cell[3][1] = parseFloat(d3.select("#data31").node().value);
+        cell[3][2] = parseFloat(d3.select("#data32").node().value);
+        cell[3][3] = parseFloat(d3.select("#data33").node().value);
+        cell[3][4] = parseFloat(d3.select("#data34").node().value);
+        cell[3][5] = parseFloat(d3.select("#data35").node().value);
+        cell[4][1] = parseFloat(d3.select("#data41").node().value);
+        cell[4][2] = parseFloat(d3.select("#data42").node().value);
+        cell[4][3] = parseFloat(d3.select("#data43").node().value);
+        cell[4][4] = parseFloat(d3.select("#data44").node().value);
+        cell[4][5] = parseFloat(d3.select("#data45").node().value);
+
+        nobs = 0;
+        nrow = 0;
+        ncol = 0;   
+        for (i=1; i<nr; i++) if ( ! isNaN(cell[i][1]) ) nrow++;
+        for (j=1; j<nc; j++) if ( ! isNaN(cell[1][j]) ) ncol++;
+
+        for (i=1; i<=nrow; i++) cell[i][0] = 0;
+        for (j=1; j<=ncol; j++) cell[0][j] = 0;
+        for (i=1; i<=nrow; i++) {
+          for (j=1; j<=ncol; j++) {
+            cell[i][0] += cell[i][j];
+            cell[0][j] += cell[i][j];
+          }
+          nobs += cell[i][0];
+        }
+
+        // expected frequency
+        for (j=1; j<=ncol; j++) expf[0][j] = cell[0][j] / nobs;
+        for (i=1; i<=nrow; i++) {
+          for (j=1; j<=ncol; j++) {
+            expf[i][j] = cell[i][0] * expf[0][j];
+          }
+        }
+
+        // test statistics
+        df = (nrow-1) * (ncol - 1);
+        stat = 0;
+        for (i=1; i<=nrow; i++) {
+          for (j=1; j<=ncol; j++) {
+            temp = cell[i][j] - expf[i][j];
+            stat = temp * temp / expf[i][j];
+          }
+        }
+
+        if (nrow < 2 || ncol < 2) {
+         bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.").style("stroke","red");
+        }
+        else if ((nrow == 2 && ncol == 2) &&   (isNaN(cell[1][1]) || isNaN(cell[1][2]) || 
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 2 && ncol == 3) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) ||
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 2 && ncol == 4) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) || isNaN(cell[1][4]) || 
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) || isNaN(cell[2][4]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 2 && ncol == 5) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) || isNaN(cell[1][4]) || isNaN(cell[1][5]) ||
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) || isNaN(cell[2][4]) || isNaN(cell[2][5]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");        }
+        else if ((nrow == 3 && ncol == 2) &&   (isNaN(cell[1][1]) || isNaN(cell[1][2]) || 
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 3 && ncol == 3) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) ||
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) || isNaN(cell[3][3]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 3 && ncol == 4) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) || isNaN(cell[1][4]) || 
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) || isNaN(cell[2][4]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) || isNaN(cell[3][3]) || isNaN(cell[3][4]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 3 && ncol == 5) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) || isNaN(cell[1][4]) || isNaN(cell[1][5]) ||
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) || isNaN(cell[2][4]) || isNaN(cell[2][5]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) || isNaN(cell[3][3]) || isNaN(cell[3][4]) || isNaN(cell[3][5]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        }
+        else if ((nrow == 4 && ncol == 2) &&   (isNaN(cell[1][1]) || isNaN(cell[1][2]) || 
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) || 
+                                                isNaN(cell[4][1]) || isNaN(cell[4][2]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 4 && ncol == 3) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) ||
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) || isNaN(cell[3][3]) ||
+                                                isNaN(cell[4][1]) || isNaN(cell[4][2]) || isNaN(cell[4][3]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 4 && ncol == 4) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) || isNaN(cell[1][4]) || 
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) || isNaN(cell[2][4]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) || isNaN(cell[3][3]) || isNaN(cell[3][4]) ||
+                                                isNaN(cell[4][1]) || isNaN(cell[4][2]) || isNaN(cell[4][3]) || isNaN(cell[4][4]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        } else if ((nrow == 4 && ncol == 5) && (isNaN(cell[1][1]) || isNaN(cell[1][2]) || isNaN(cell[1][3]) || isNaN(cell[1][4]) || isNaN(cell[1][5]) ||
+                                                isNaN(cell[2][1]) || isNaN(cell[2][2]) || isNaN(cell[2][3]) || isNaN(cell[2][4]) || isNaN(cell[2][5]) ||
+                                                isNaN(cell[3][1]) || isNaN(cell[3][2]) || isNaN(cell[3][3]) || isNaN(cell[3][4]) || isNaN(cell[3][5]) ||
+                                                isNaN(cell[4][1]) || isNaN(cell[4][2]) || isNaN(cell[4][3]) || isNaN(cell[4][4]) || isNaN(cell[4][5]) ) ) {
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100).text("No input or wrong input !!   Try again.").style("stroke","red");
+        }
+        else {    // chisq-test
+            h = alpha;  
+            if (df < 10) f = 0;
+            else f = chisq_inv(0.0001, df, info);
+            g = chisq_inv(1-h, df, info);
+            pvalue = 1 - chisq_cdf(stat, df, info)
+            drawChisqGraphTH(hypoType, h1Type, stat, df, f, g, h, pvalue);
+        }  
+      })
+
+  </script>
+</body>
+</html>

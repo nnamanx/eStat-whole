@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Geometric Distribution</title>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="d3.v4.min.js"></script>
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+
+  <script type="text/javascript">
+  </script>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Geometric Distribution</b> 
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <svg id="chart2" width="600" height="600"> </svg> <br>
+
+    <input type="button" value="Execute" size=1 id="executeGeometric"> &nbsp;
+      p = <input type="text" class="textarea" value="0.5" size=3 id="geoP">
+      <sup><small> 0 </small></sup> 
+    <input type="range" min="2" max="99" value="50" id="rangeGeoP" onchange="showValueGeoP(this.value, valueLabel, geometricP)"/>
+      <sup><small> 1 </small></sup>  &nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" value="freq2" id=freqGeometric>show probability</label> &nbsp; <p>
+    <input type="button" value="Geometric Prob Table" size=3 id="geometricT"> <p>
+    References:  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Geometric_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/GeometricDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="https://stattrek.com/statistics/dictionary.aspx?definition=geometric_distribution" target="_blank" >StatTrek </a> &nbsp; 
+  </div>
+
+  <div width="650" style="position:absolute; left:10px; top:770px"> <p>
+    <table id="geometricTable" cellpadding="2" cellspacing="2" border="2" >  </table>
+  </div>
+
+  <script>
+
+      var bar = d3.select("#chart2");
+
+      var i, j, k, sum, temp, info;
+      var geoP, avg, std;
+      var xmin, xmax, ymin, ymax, gxmin, gxmax, gxrange, gymin, gymax, gyrange;
+      var nvalue;
+      var checkFreq = false;
+
+      // svg 파라미터
+      var svgWidth    = 600;
+      var svgHeight   = 600;
+      var margin      = {top: 50, bottom: 60, left: 40, right: 40};
+
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+ 
+      var geometricP = new Array(nvalue);
+      var valueLabel = new Array(nvalue);
+
+      geoP = parseFloat(d3.select("#geoP").node().value);
+      if (geoP > 0.2) nvalue = 21;
+      else if (geoP > 0.1) nvalue = 31;
+      else nvalue = 51;
+
+      var xmin = 0;
+      var xmax = nvalue;
+      var ymin = 0;
+      var ymax = 0.7;
+      
+      drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP);
+
+      // Geometric분포 실행버튼 클릭 =================================================================================
+      d3.select("#executeGeometric").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("freqGeometric").checked = false;
+        checkFreq = false;
+        removeBinomialFreq2();
+
+        geoP = parseFloat(d3.select("#geoP").node().value);    // 성공확률 p
+        if (geoP < 0.01)  geoP = 0.01;
+        if (geoP > 0.99)  geoP = 0.99;
+        // slider control
+        document.getElementById("rangeGeoP").value  = 100*geoP;
+
+        if (geoP > 0.2) nvalue = 21;
+        else if (geoP > 0.1) nvalue = 31;
+        else if (geoP > 0.02) nvalue = 51;
+        else nvalue = 101;
+
+        drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP);
+      })
+
+      // Geometric 분포 확률표시 버튼 클릭
+      d3.select("#freqGeometric").on("click",function() {
+        if(this.checked) {
+          checkFreq  = true;
+          geoP = parseFloat(d3.select("#geoP").node().value);    // 성공확률 p
+          if (geoP < 0.01)  geoP = 0.01;
+          if (geoP > 0.99)  geoP = 0.99;
+          if (geoP > 0.2) nvalue = 21;
+          else if (geoP > 0.1) nvalue = 31;
+          else if (geoP > 0.02) nvalue = 51;
+          else nvalue = 101;
+          // 확률및 통계량 계산
+          for (i=0; i<nvalue; i++) {
+            geometricP[i] = geometric_pdf(i, geoP, info)
+          }
+          showBinomialFreq2(nvalue, geometricP, xmin, xmax, ymin, ymax);
+ 
+        } else {
+          checkFreq = false;
+	  removeBinomialFreq2();
+
+        }
+      })
+
+      // Geometric분포표 버튼 클릭
+      d3.select("#geometricT").on("click",function() {
+          geometricTable(nvalue, geoP, geometricP);
+      })
+
+  </script>
+
+</body>
+</html>

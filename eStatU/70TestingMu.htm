@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Testing Hypothesis &mu;</title>
+  <script src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Testing Hypothesis : Population Mean &mu; </b>
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[Hypothesis]</b> 
+      <span class="fontmath">&nbsp;&nbsp;
+        H<sub>o</sub> : &mu; = &mu;<sub>o</sub> &nbsp;
+      </span>
+      <input type="text" class="textarea" size=6 id="mu"> 
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : &mu; &ne;  &mu;<sub>o</sub> &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : &mu; > &mu;<sub>o</sub> &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : &mu; < &mu;<sub>o</sub>    
+      </span>
+    </form>
+
+    <form name="myForm1"> 
+      <b>[Test Type]</b> &nbsp;
+      <input type="radio" name = "type1" value="1" > Z-test       
+      <input type="radio" name = "type1" value="2" checked> <span class="fontmath">t</span>-test
+    </form> 
+
+    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+      significance level &nbsp; <span class="fontmath">&alpha;</span> = 
+      <input type="radio" name = "type2" value="1" checked> 5%       
+      <input type="radio" name = "type2" value="2" > 1%
+    </form>       
+
+    <b>[Sample Data]</b>&nbsp; <span class="fontguide">(input either sample data or sample statistics using csv / bsv)</span>   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><input type="text" size=60 id="data1"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[Sample Statistics]</b>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td>sample size</td>
+	  <td><span class="fontmath">n</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn"></td>
+          <td> <span class="fontguide">(>1) </span></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td>sample mean</td>
+	  <td><span class="fontmath">m</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="xbar"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td>sample variance</td>
+	  <td><span class="fontmath">s<sup>2</sup></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="std"></td>
+          <td><span class="fontguide">(if Z-test, population variance &sigma;<sup>2</sup>)</span> </td>
+	</tr>
+      </tbody>
+    </table>
+
+    <b>[Confidence Interval]</b> &nbsp; <span class="fontguide">(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)</span>     
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span class="fontmath">m</span></td>
+	  <td>&plusmn;</td>
+	  <td><span class="fontmath">t<sub>n-1, 1-&alpha;/2<sub></span></td>
+          <td><span class="fontmath"> (s / &radic; n )</span></td>
+          <td>&hArr;</td>
+	  <td>(&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;)</td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <br><input type="button" value="Execute" size=12 id="executeTH"> <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+ 
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, avg, std, gxmin, gxmax, gymin, gymax;
+      var title;
+      var df, info, alpha, pvalue, b, c, d, e, f, g, h;
+      var mu, nn, xbar, std, stat, teststat, left, right, temp;
+      var hypoType = 1;
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+
+      // Test type
+      var test = document.myForm1.type1;
+      var testType = test.value;
+      test[0].onclick = function() { testType = 1; }  // Z-test
+      test[1].onclick = function() { testType = 2; }  // t-test
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      a[0].onclick = function() { alpha = 0.05; }  
+      a[1].onclick = function() { alpha = 0.01; }  
+
+      // data input control =====================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn").value   = stat.n;    
+        document.getElementById("xbar").value = f2(stat.xbar);
+        document.getElementById("std").value  = f2(stat.var);  
+        if (testType == 1) temp = stdnormal_inv(1 - alpha/2, info) * Math.sqrt(stat.var /stat.n);
+        else temp = t_inv(1 - alpha/2, stat.n - 1, info) * Math.sqrt(stat.var / stat.n);
+        left  = stat.xbar - temp;
+        right = stat.xbar + temp;  
+        document.getElementById("cleft").value   = f2(left);
+        document.getElementById("cright").value  = f2(right); 
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = ''; 
+      }
+
+      d3.select("#nn").on("input", updateData);
+      d3.select("#xbar").on("input", updateData);
+      d3.select("#std").on("input", updateData);
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        mu   = parseFloat(d3.select("#mu").node().value);
+        nn   = parseFloat(d3.select("#nn").node().value);
+        xbar = parseFloat(d3.select("#xbar").node().value);
+        std  = Math.sqrt(parseFloat(d3.select("#std").node().value));
+        df = nn - 1;
+
+        // confidence interval
+        if (testType == 1) temp = stdnormal_inv(1 - alpha/2, info) * std / Math.sqrt(nn);
+        else temp = t_inv(1 - alpha/2, df, info) * std / Math.sqrt(nn);
+        left  = xbar - temp;
+        right = xbar + temp;  
+        document.getElementById("cleft").value   = f2(left);
+        document.getElementById("cright").value  = f2(right); 
+
+        // test statistics
+        teststat = (xbar - mu) / (std / Math.sqrt(nn));
+
+        if (isNaN(mu) || isNaN(nn) || isNaN(xbar) || isNaN(std) || nn < 2 || std <= 0 ) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150)
+             .attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else if (testType == 1) {    // Z-test
+          if (h1Type == 1) {
+            h = alpha / 2;  
+            f = stdnormal_inv(h, info);
+            g = -f;
+            if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
+            else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+          else if (h1Type == 2) {
+            h = alpha;  
+            f = -5
+            g = stdnormal_inv(1-h, info);
+            pvalue = 1 - stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+          else {
+            h = alpha;  
+            f = stdnormal_inv(h, info);
+            g = 5;
+            pvalue = stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+        }
+        else { // t-test
+          if (h1Type == 1) {
+            h = alpha / 2;  
+            f = t_inv(h, df, info);
+            g = -f;
+            if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
+            else  pvalue = 2 * (1 - t_cdf(teststat, df, info));
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+          }
+          else if (h1Type == 2) {
+            h = alpha;  
+            f = -5;   //t_inv(0.0001, df, info);
+            g = t_inv(1-h, df, info);
+            pvalue = 1 - t_cdf(teststat, df, info);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+          }
+          else {
+            h = alpha;  
+            f = t_inv(h, df, info);
+            g = 5;    //t_inv(0.9999, df, info);
+            pvalue = t_cdf(teststat, df, info);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+          }
+    
+          
+        }
+      })
+
+
+  </script>
+</body>
+</html>

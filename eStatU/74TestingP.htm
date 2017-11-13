@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Testing Hypothesis P</title>
+  <script src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> Testing Hypothesis : Population Proportion P </b>
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[Hypothesis]</b> 
+      <span class="fontmath">&nbsp;&nbsp;
+        H<sub>o</sub> : P = P<sub>o</sub> &nbsp;
+      </span>
+      <input type="text" class="textarea" size=6 id="mu">&nbsp;  <span class="fontmath"> 0 < P<sub>o</sub> < 1</span>
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : P &ne;  P<sub>o</sub> &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : P > P<sub>o</sub> &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : P < P<sub>o</sub>    
+      </span>
+    </form>
+
+    <form name="myForm1"> 
+      <b>[Test Type]</b> Z-test 
+    </form> 
+
+    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+      significance level &nbsp; <span class="fontmath">&alpha;</span> = 
+      <input type="radio" name = "type2" value="1" checked> 5%       
+      <input type="radio" name = "type2" value="2" > 1%
+    </form>       
+ 
+    <b>[Sample Statistics]</b>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td>sample size</td>
+	  <td><span class="fontmath">n</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td>sample proportion</td>
+	  <td><span class="fontmath">p</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="pp"></td>
+          <td><span class="fontmath"> 0 < p < 1</span>  </td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[Confidence Interval]</b>      
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span class="fontmath">p</span></td>
+	  <td>&plusmn;</td>
+	  <td><span class="fontmath">Z<sub>n-1, 1-&alpha;/2<sub></span></td>
+          <td><span class="fontmath"> &radic; ( p*(1-p) /n )</span></td>
+          <td>&hArr;</td>
+	  <td>(&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;)</td>
+	</tr>
+      </tbody>
+    </table>
+
+    <br><input type="button" value="Execute" size=12 id="executeTH"> <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+ 
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, avg, std, info, gxmin, gxmax, gymin, gymax;
+      var title;
+      var alpha, pvalue, b, c, d, e, f, g, h;
+      var mu, nn, pp, std, teststat, left, right, temp;
+      var hypoType = 3;
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      a[0].onclick = function() { alpha = 0.05; }  
+      a[1].onclick = function() { alpha = 0.01; }  
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        mu = parseFloat(d3.select("#mu").node().value);
+        nn = parseFloat(d3.select("#nn").node().value);
+        pp = parseFloat(d3.select("#pp").node().value);
+
+        // confidence interval
+        temp = stdnormal_inv(1 - alpha/2, info) * Math.sqrt(pp*(1-pp)/nn);
+        left  = pp - temp;
+        right = pp + temp;  
+        document.getElementById("cleft").value   = f2(left);
+        document.getElementById("cright").value  = f2(right); 
+
+        // test statistics
+        teststat = (pp - mu) / (Math.sqrt(pp*(1-pp)/nn));
+
+        if (isNaN(mu) || isNaN(nn) || isNaN(pp) || mu <= 0 || mu >= 1 || nn < 2 || pp <= 0 || pp >= 1) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150)
+             .attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else {    // Z-test
+          if (h1Type == 1) {
+            h = alpha / 2;  
+            f = stdnormal_inv(h, info);
+            g = -f;
+            if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
+            else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+          else if (h1Type == 2) {
+            h = alpha;  
+            f = -5
+            g = stdnormal_inv(1-h, info);
+            pvalue = 1 - stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+          else {
+            h = alpha;  
+            f = stdnormal_inv(h, info);
+            g = 5;
+            pvalue = stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+        }
+
+      })
+
+
+  </script>
+</body>
+</html>

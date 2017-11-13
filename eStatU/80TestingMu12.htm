@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Testing &mu;1, &mu;2</title>
+  <script src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Testing Hypothesis : Two Population Means &mu;<sub>1</sub>,  &mu;<sub>2</sub> </b>
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[Hypothesis]</b>
+      <span class="fontmath"> &nbsp;&nbsp; 
+        H<sub>o</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D &nbsp; 
+      </span>
+      <input type="text" class="textarea" value=0 size=6 id="mu4">&nbsp; 
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> &ne; D &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> > D &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> < D      
+       </span>
+    </form>
+    
+    <form name="myForm1"> 
+    <b>[Test Type]</b> &nbsp; Assume &nbsp;
+      <span class="fontmath">
+      <input type="radio" name = "type1" value="1" checked>
+      &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> &nbsp;&nbsp;
+      <input type="radio" name = "type1" value="2" >
+      &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup>  </span>  
+    </form>
+
+    <form name="myForm2">&nbsp;&nbsp;&nbsp;
+      significance level  &nbsp; <span class="fontmath"> &alpha; </span> =
+      <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
+      <input type="radio" name = "type2" value="2" > 1%
+    </form>       
+
+    <b>[Sample Data]</b>&nbsp;<span class="fontguide"> (input either sample data or sample statistics using csv / bsv) </span>
+    
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td>population 1</td>
+	  <td><input type="text" size=60 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td>population 2</td>
+	  <td><input type="text" size=60 id="data2"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[Sample Statistics]</b>
+    
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td>sample size</td>         
+	  <td><span class="fontmath">n<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
+	  <td><span class="fontmath">n<sub>2</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td>sample mean</td>
+	  <td><span class="fontmath">m<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
+	  <td><span class="fontmath">m<sub>2</sub></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td>sample variance</td>
+	  <td><span class="fontmath">s<sub>1</sub><sup>2</sup></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="var41"></td>
+	  <td><span class="fontmath">s<sub>2</sub><sup>2</sup></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="var42"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <input type="button" value="Execute" size=12 id="executeTH4"> <p>
+ 
+    <div>
+      <svg id="chart" width="600" height="400"> </svg>
+    </div>
+  </div> 
+
+  <script>
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, avg, std, gxmin, gxmax, gymin, gymax;
+      var title;
+      var df, df1, df2, info, alpha, pvalue, b, c, d, e, f, g, h, t1, t2;
+      var mu4, nn41,nn42, xbar41, xbar42, var41, var42, teststat, varPooled, varAdd;
+      var hypoType = 41;
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+
+      // Test type
+      var test = document.myForm1.type1;
+      var testType = test.value;
+      test[0].onclick = function() { testType = 1; hypoType = 41 }  // same population variance
+      test[1].onclick = function() { testType = 2; hypoType = 42 }  // not same population variances
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      a[0].onclick = function() { alpha = 0.05; }  
+      a[1].onclick = function() { alpha = 0.01; }  
+
+      // input data control ===================================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn41").value   = stat.n;    
+        document.getElementById("xbar41").value = f2(stat.xbar);
+        document.getElementById("var41").value  = f2(stat.var);    
+      });
+
+      d3.select("#data2").on("input", function() {
+        stat = simplestat("#data2");   
+        document.getElementById("nn42").value   = stat.n;    
+        document.getElementById("xbar42").value = f2(stat.xbar);
+        document.getElementById("var42").value  = f2(stat.var);    
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = '';
+        document.getElementById("data2").value = '';    
+      }
+
+      d3.select("#nn41").on("input", updateData);
+      d3.select("#nn42").on("input", updateData);
+      d3.select("#xbar41").on("input", updateData);
+      d3.select("#xbar42").on("input", updateData);
+      d3.select("#var41").on("input", updateData);
+      d3.select("#var42").on("input", updateData);
+
+      // Testing Hypothesis ===========================================================
+      d3.select("#executeTH4").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        mu4    = parseFloat(d3.select("#mu4").node().value);
+        nn41   = parseFloat(d3.select("#nn41").node().value);
+        nn42   = parseFloat(d3.select("#nn42").node().value);
+        xbar41 = parseFloat(d3.select("#xbar41").node().value);
+        xbar42 = parseFloat(d3.select("#xbar42").node().value);
+        var41  = parseFloat(d3.select("#var41").node().value);
+        var42  = parseFloat(d3.select("#var42").node().value);
+
+        // test statistics
+        df  = nn41 + nn42 - 2;
+        df1 = nn41 - 1;
+        df2 = nn42 - 1;
+        varPooled = ( df1*var41 + df2*var42 ) / df;
+        t1 = var41 / nn41;
+        t2 = var42 / nn42;
+        varAdd    = t1 + t2;
+        if (testType == 1) teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varPooled/nn41 + varPooled/nn42); 
+        else teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varAdd);
+        
+        if (isNaN(nn41) || isNaN(nn42) || isNaN(xbar41) || isNaN(xbar42) || isNaN(var41) || isNaN(var42) ||
+            nn41 < 2 || nn42 < 2 || var41 <= 0 || var42 <= 0) {  // wrong input
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else {    // t-test        
+          if (h1Type == 1) {
+            h = alpha / 2;  
+            if (testType == 1) {
+              f = t_inv(h, df, info);
+              g = -f;
+              if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
+              else  pvalue = 2 * (1 - t_cdf(teststat, df, info));
+            }
+            else if (testType == 2) {
+              f = (t1*t_inv(h, df1, info) + t2*t_inv(h, df2, info)) / varAdd;
+              g = -f;
+              if (teststat < 0)  pvalue = 2 * (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd;
+              else  pvalue = 2 * (1 - (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd );
+            }
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+          }
+          else if (h1Type == 2) {
+            h = alpha; 
+            if (testType == 1) {             
+              f = t_inv(0.0001, df, info);
+              g = t_inv(1-h, df, info);
+              pvalue = 1 - t_cdf(teststat, df, info);
+            }
+            else if (testType == 2) {
+              f = t_inv(0.0001, df, info);
+              g = (t1*t_inv(1-h, df1, info) + t2*t_inv(1-h, df2, info)) / varAdd;
+              pvalue = 1 - ( (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd );
+            }
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+          }
+          else {
+            h = alpha; 
+            if (testType == 1) { 
+              f = t_inv(h, df, info);
+              g = t_inv(0.9999, df, info);
+              pvalue = t_cdf(teststat, df, info);
+            }
+            else if (testType == 2) {
+              f = (t1*t_inv(h, df1, info) + t2*t_inv(h, df2, info)) / varAdd;
+              g = t_inv(0.9999, df, info);
+              pvalue = (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd ;
+            }
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+          }          
+        }
+
+      })
+
+  </script>
+</body>
+</html>

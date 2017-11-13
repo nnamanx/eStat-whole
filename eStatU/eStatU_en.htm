@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>eStatU</title>
+  <script src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+  <h1 style="color:#4CAF50;" >&nbsp;
+    eStat: University Statistics Education with Dynamic Graph</h1> 
+<!--  <p style="text-align:right">&infin; &nbsp; free software for students in the world  &nbsp; &infin;</p> -->
+  </div>
+  <p>
+<!--
+  <div style="position:absolute; left:20px; top:80px">
+    <button class="button" id="menuBtn">Main Menu </button> &nbsp;&nbsp;
+  </div>
+-->
+  <div width="360" height="360" style="position:absolute; left:10px; top:130px">
+  <ul>
+    <li><a href="41BinomialEng.htm">Binomial Experiment</a></li>
+    <li><a href="42BinomialEng.htm">Binomial Distribution</a></li>
+    <li><a href="44PoissonEng.htm">Poisson Distribution</a></li>
+    <li><a href="45GeometricEng.htm">Geometric Distribution</a></li>
+    <li><a href="46HyperGeoEng.htm">HyperGeometric Distribution</a></li>
+    <li><a href="50ExponentialEng.htm">Exponential Distribution</a></li>
+    <li><a href="51NormalEng.htm">Normal Experiment</a></li>
+    <li><a href="52NormalEng.htm">Normal Distribution</a></li>
+    <li><a href="54TdistEng.htm">t Distribution</a></li>
+    <li><a href="56ChisqEng.htm">ChiSquare Distribution</a></li>
+    <li><a href="58FdistEng.htm">F Distribution</a></li>
+  </ul>
+  </div>
+
+  <div width="400" height="400" style="position:absolute; left:270px; top:130px">
+    <svg id="ScatterPlot2" width="400" height="400"> </svg> 
+    <p style="text-align:center">Contact: jjlee@ssu.ac.kr &nbsp;&nbsp;&nbsp; &copy; K-Plot.org, Korea</p>
+  </div>
+
+  <div width="360" height="360" style="position:absolute; left:685px; top:80px">
+  <ul>
+    <li><a href="61SampleEng.htm">Population vs Sample</a></li>
+    <li><a href="63SampleEng.htm">Law of Large Number</a></li>
+    <li><a href="62SampleEng.htm">Dist. of Sample Means</a></li>
+    <li><a href="64SampleEng.htm">Confidence Interval</a></li>
+    <li><a href="70TestingMu.htm">Testing Hypothesis: &mu;</a></li>
+    <li><a href="72TestingSigma.htm">Testing Hypothesis: &sigma;<sup>2</sup></a></li>
+    <li><a href="74TestingP.htm">Testing Hypothesis: P</a></li>
+    <li><a href="80TestingMu12.htm">Testing Hypothesis: &mu;<sub>1</sub>, &mu;<sub>2</sub>  </a></li>
+    <li><a href="82TestingSigma12.htm">Testing Hypothesis: &sigma;<sub>1</sub><sup>2</sup>,&sigma;<sub>2</sub><sup>2</sup> </a></li>
+    <li><a href="84TestingP12.htm">Testing Hypothesis: P<sub>1</sub>, P<sub>2</sub>  </a></li>
+    <li><a href="90TestingANOVA.htm">Testing Hypothesis: ANOVA </a></li>
+    <li><a href="92TestingIndependence.htm">Testing Independence</a></li>
+    <li><a href="31CorrelationEng.htm">Correlation Coefficient</a></li>
+    <li><a href="32RegressionEng.htm">Regression Experiment</a></li>
+  </ul>
+  </div>
+
+  <script>
+      var svg = d3.select("#ScatterPlot2"); 
+
+      var svgWidth    = 350;
+      var svgHeight   = 350;
+      var margin      = {top: 20, bottom: 20, left: 20, right: 20};
+      var buffer      = 40;
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+
+      var stat      = new Array(30);
+      var tobs      = 20;
+      var xdata     = new Array(tobs);
+      var ydata     = new Array(tobs);
+      var generator = d3.randomNormal(0,1);
+      var checkTitle= false;
+
+      svg.selectAll("*").remove();  // 전화면 제거
+      var r = 0.6;  // 시작값 
+      for (var i=0; i<tobs; i++) {
+            xdata[i] = generator();
+            ydata[i] = r*xdata[i] + Math.sqrt(1-r*r)*generator();
+      }
+
+      basicScatterStat(tobs, xdata, ydata, stat)
+      showScatterPlot(tobs, xdata, ydata, stat[5], stat[6], stat[15], stat[16], graphWidth, graphHeight, checkTitle);
+      showRegression2(stat[7], stat[8], stat[9], stat[10], stat[5], stat[6], stat[15], stat[16], checkTitle);
+
+       // eStat 주메뉴
+      d3.select("#menuBtn").on("click",function() {
+       location.href="eStat_en.htm";
+      })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HyperGeometric Distribution</title>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="d3.v4.min.js"></script>
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; HyperGeometric Distribution</b> 
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+      lot size  N =   <input type="text" class="textarea" value="30"  size=6 id="NN">  &nbsp; &nbsp; >  &nbsp; &nbsp;
+      defect size D = <input type="text" class="textarea" value="5"  size=6 id="DD">  <p>
+    <svg id="chart" width="600" height="600"> </svg> <br>
+    <input type="button" value="Execute" size=1 id="executeHyperG"> &nbsp;
+      n = <input type="text" class="textarea" value="10"   size=3 id="nn">&nbsp;<sup><small> 1 </small></sup>  
+    <input type="range" min="1" max="20" value="10" id="rangeHyperG" onchange="showValueHyperGeo(this.value, valueLabel, hyperGeoP)"/>  
+      <sup><small>20</small></sup>  &nbsp;&nbsp;
+    <label><input type="checkbox" value="freq2" id=freqHyperG>show probability</label> &nbsp; <p>
+    <input type="button" value="HyperGeometric Prob Table" size=3 id="executeHyperGeoTable"> <p>
+    References:  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Hypergeometric_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/HypergeometricDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="http://stattrek.com/probability-distributions/hypergeometric.aspx" target="_blank" >StatTrek </a> &nbsp; 
+  </div>
+
+  <div width="650" style="position:absolute; left:10px; top:810px"> <p>
+    <table id="hyperGeoTable" cellpadding="2" cellspacing="2" border="2" >  </table>
+  </div>
+
+  <script>
+
+      var bar = d3.select("#chart");
+
+      // 초기하분포 초기화면 셋팅
+      var i, j, k, sum, nvalue, info;
+      var NN, DD, nn, avg,  std, savg, sstd;
+      var xmin, xmax, ymin, ymax, gxmin, gxmax, gxrange, gymin, gymax, gyrange;
+      var nobs;
+      var nvalueMax  = 31;
+      var hyperGeoP  = new Array(nvalueMax);
+      var valueLabel = new Array(nvalueMax);
+
+      var checkFreq   = false;
+ 
+      var margin      = {top: 50, bottom: 60, left: 40, right: 40};
+      var svgWidth    = 600;
+      var svgHeight   = 600;
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+
+      NN = parseFloat(d3.select("#NN").node().value);    // lot 크기 
+      DD = parseFloat(d3.select("#DD").node().value);    // defect 크기 
+      nn = parseFloat(d3.select("#nn").node().value);    // sample size
+      nvalue = nn + 1;
+
+      xmin = 0;
+      xmax = nvalue;
+      ymin = 0;
+      ymax = 0.6;
+
+      drawHyperGeoBarGraph(valueLabel, hyperGeoP, xmin, xmax, ymin, ymax);
+
+
+      // 초기하분포 실행버튼 클릭 =================================================================================
+      d3.select("#executeHyperG").on("click",function() {
+        nn = parseFloat(d3.select("#nn").node().value);    // sample size
+        // slider control
+        document.getElementById("rangeHyperG").value  = nn;
+        drawHyperGeoBarGraph(valueLabel, hyperGeoP, xmin, xmax, ymin, ymax);
+        if (checkFreq) showBinomialFreq2(nvalue, hyperGeoP, xmin, xmax, ymin, ymax);
+      })
+
+      // 초기하분포 확률표시 버튼 클릭
+      d3.select("#freqHyperG").on("click",function() {
+        if(this.checked) {
+          checkFreq  = true;
+          nn = parseFloat(d3.select("#nn").node().value);   // sample 크기 n
+          showBinomialFreq2(nn+1, hyperGeoP, xmin, xmax, ymin, ymax);
+        } else {
+          checkFreq = false;
+	  removeBinomialFreq2();
+        }
+      })
+
+      // 초기하분포표 버튼 클릭
+      d3.select("#executeHyperGeoTable").on("click",function() {
+          NN = parseFloat(d3.select("#NN").node().value);    // lot 크기 
+          DD = parseFloat(d3.select("#DD").node().value);    // defect 크기 
+          nn = parseFloat(d3.select("#nn").node().value);   // sample 크기 n
+          hyperGeoTable(NN, DD, nn, hyperGeoP);
+      })
+
+  </script>
+</body>
+</html>

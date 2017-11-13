@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Confidence Interval</title>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="d3.v4.min.js"></script>
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatH_en.js" ></script>
+</head>
+
+<body>
+
+  <div width="600" height="640" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Confidence Interval Experiment</b> 
+      <a class="menu" href="eStatH_en.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <svg id="DotGraphEst" width="600" height="630"> </svg>
+    <form> 
+      <input type="button" value="Execute"  id="intervalEst"> &nbsp; 
+      sample size n = <input type="text" class="textarea" value="20" size=4 id="initEst"> &nbsp; &nbsp;
+      repetition     <input type="text" class="textarea" value="5"  size=4 id="iterEst"> <br>
+    </form>
+    <form name="myFormEst">  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      confidence level  &nbsp; <input type="radio" name = "type1" value="1" > 0.90  &nbsp; 
+      <input type="radio" name = "type1" value="2" checked> 0.95  &nbsp; 
+      <input type="radio" name = "type1" value="3" > 0.99
+    </form>
+  </div>
+
+  <script>
+
+      var dot2 = d3.select("#DotGraphEst")
+
+      var totalHeight = 640;
+      var svgWidth    = 600;
+      var svgHeight   = 320;  // 모집단 그래프 영역
+      var margin, graphWidht, graphHeight;
+
+      var i, j, k; // 
+      var nint, step, buffer, nvalue, gxmin, gxmax; 
+ 
+      var nobs   = 1000;
+      var radius = 2;
+      var samplePercent;
+
+      var statP      = new Array(20);
+      var statS      = new Array(20);
+      var bins       = new Array(200);
+      var dataSet    = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dataValue  = new Array(nobs);
+      var dvalueFreq = new Array(nobs);
+      var tdata      = new Array(nobs);
+      var tdataY     = new Array(nobs);
+
+      var generator, title;
+      var checkSampling = false;
+      var checkInterval = true;
+
+      // Confidence Interval Simulation ---------------------------------------------------------------
+
+         dot2.selectAll("*").remove();        
+
+         margin      = {top: 20, bottom: 100, left: 20, right: 20};;
+         graphWidth  = svgWidth - margin.left - margin.right;
+         graphHeight = svgHeight - margin.top - margin.bottom;
+
+         title  = "N(0,1) Population (N="+nobs.toString()+")";
+         dot2.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
+
+         normalGenerator(nobs, dataSet);
+         nint    = 80;
+         step    = 8/nint;
+         bins[0] = -4;
+         showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
+         gxmin  = statP[9];
+         gxmax  = statP[10];
+         xrange = gxmax - gxmin;
+         start = 0;
+         drawStatSample(statP, start, 1) ;
+
+      // 신뢰도 선택
+      var rad = document.myFormEst.type1;
+      var confidenceLevel = "95%";
+      var zvalue = 1.96;
+      rad[0].onclick = function() {     // 90%
+        confidenceLevel = "90%";
+        zvalue = 1.645;
+      }
+      rad[1].onclick = function() {     // 95%
+        confidenceLevel = "95%";
+        zvalue = 1.96;
+      }
+      rad[2].onclick = function() {     // 99%
+        confidenceLevel = "99%";
+        zvalue = 2.575;
+      }
+
+      // 구간추정 시뮬레이션 버튼 클릭
+      d3.select("#intervalEst").on("click",function() {
+        removeAllSample3();      
+        dot2.append("text").attr("class","title").attr("x", margin.left)
+           .attr("y", svgHeight - margin.bottom/3 -10)
+           .text("")
+  
+        dot2.append("text").attr("class","title").attr("x", margin.left)
+           .attr("y", svgHeight - margin.bottom/3 -10)
+           .text("Population Mean "+confidenceLevel+" Confidence Interval")
+
+	var sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
+        var niter = parseFloat(d3.select("#iterEst").node().value);    // 시뮬레이션 반복수 
+        if (sobs < 20 ) sobs = 20;
+        if (niter > 300) niter = 300;
+        var oneHeight = (totalHeight - svgHeight) / niter; 
+
+        var error = 0;
+        for (var gg = 0; gg < niter; gg++) {
+
+          var sdata  = [];
+          var sdataY = [];
+          var sindex = [];
+          var jth;
+          for (i=0; i<sobs; i++) {
+           jth = Math.floor(Math.random()*nobs);
+           sdata[i]  = tdata[jth];
+           sindex[i] = jth;
+          }
+
+          for (j=0; j<=nvalue; j++) dvalueFreq[j]=0;
+          for (i=0; i<sobs; i++) {
+            for (j=0; j<=nvalue; j++) {
+              if(sdata[i] == dataValue[j]) {
+                dvalueFreq[j]++; 
+                sdataY[i] = dvalueFreq[j];
+                break;
+              }
+            } // endof j
+          } // endof i
+
+          // draw dot graph using sample
+          start = svgHeight - margin.bottom/3 + gg*oneHeight;
+          if(niter <6) {
+            for (k=0; k<sobs; k++) {
+              dot2.append("circle")
+                 .attr("class","circleS")
+                 .attr("cx", margin.left+graphWidth*(tdata[k]-gxmin)/xrange)
+                 .attr("cy", margin.top + graphHeight - tdataY[k]*4)
+                 .transition()                           // 애니매이션 효과 지정
+                 .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+                 .duration(2000)                         // 1초동안 애니매이션이 진행되도록 설정
+                 .attr("r", 2)
+                 .attr("cx", margin.left+graphWidth*(sdata[k]-gxmin)/xrange)
+                 .attr("cy", start + oneHeight - sdataY[k]*4)
+            }
+          }
+
+          // 표본 통계량 계산 after sorting
+          sdata.sort(function(a,b){return a-b});
+          sum   = 0;
+          for (i=0; i<sobs; i++) {sum += sdata[i];}
+          savg   = sum / sobs;
+          sqsum = 0;
+          for (i=0; i<sobs; i++) {
+            temp = sdata[i]-savg;
+            sqsum += temp*temp;
+          }
+          sstd = Math.sqrt(sqsum / sobs);
+
+          temp = zvalue*sstd/Math.sqrt(sobs);
+          if ( savg - temp > 0 || savg + temp < 0 ) error++;
+ 
+          drawInterval(sobs, savg, sstd, gxmin, xrange, zvalue, oneHeight, niter, start);
+  
+        } // endof gg
+
+        var accuracy = niter - error;
+        var accuracyPercent = 100*accuracy/niter;
+        var str = "Estimation Accuracy = " + accuracyPercent+"%"+" ("+accuracy+"/"+niter+")";
+
+        dot2.append("text").attr("class","meanG")
+           .attr("x", margin.left)
+           .attr("y", svgHeight)
+           .text(str)
+      }) 
+
+  </script>
+
+</body>
+</html>

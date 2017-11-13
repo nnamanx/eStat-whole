@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Testing Two Variances</title>
+  <script src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Testing Hypothesis : Two Population Variances &sigma;<sub>1</sub><sup>2</sup>,  &sigma;<sub>2</sub><sup>2</sup>&nbsp; </b>
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[Hypothesis]</b>
+      <span class="fontmath"> &nbsp;&nbsp; 
+         H<sub>o</sub> : &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup>&nbsp;
+      </span>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="fontmath">
+            <input type="radio" name = "type0" value="1" checked> 
+              H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup> &nbsp; &nbsp;     
+            <input type="radio" name = "type0" value="2" > 
+              H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  >   &sigma;<sub>2</sub><sup>2</sup> &nbsp; &nbsp;     
+            <input type="radio" name = "type0" value="3" >   
+              H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  <   &sigma;<sub>2</sub><sup>2</sup>
+      </span>
+    </form>
+
+    <b>[Test Type]</b> &nbsp; <span class="fontmath">F </span> test
+
+    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+      significance level <span class="fontmath">&alpha; </span> = 
+      <input type="radio" name = "type2" value="1" checked> 5%       
+      <input type="radio" name = "type2" value="2" > 1%
+    </form>       
+    
+    <b>[Sample Data]</b>&nbsp;<span class="fontguide"> (input either sample data or sample statistics using csv / bsv) </span>
+    
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td>population 1</td>
+	  <td><input type="text" size=60 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td>population 2</td>
+	  <td><input type="text" size=60 id="data2"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[Sample Statistics]</b>
+    
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td>sample size</td>         
+	  <td><span class="fontmath">n<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn51"></td>
+	  <td><span class="fontmath">n<sub>2</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn52"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td>sample variance</td>
+	  <td><span class="fontmath">s<sub>1</sub><sup>2</sup></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="var51"></td>
+	  <td><span class="fontmath">s<sub>2</sub><sup>2</sup></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="var52"></td>
+	</tr>
+      </tbody>
+    </table>
+
+    <input type="button" value="Execute" size=12 id="executeTH5"> <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, stat, gxmin, gxmax, gymin, gymax;
+      var stat5 = new Array(9);
+      var title;
+      var df1, df2, info, alpha, pvalue, b, c, d, e, f, g, h;
+      var nn51, nn52, var51, var52;
+      var hypoType = 5;
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      a[0].onclick = function() { alpha = 0.05; }  
+      a[1].onclick = function() { alpha = 0.01; }  
+
+      // input data control ===================================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn51").value   = stat.n;    
+        document.getElementById("var51").value  = f2(stat.var);    
+      });
+
+      d3.select("#data2").on("input", function() {
+        stat = simplestat("#data2");   
+        document.getElementById("nn52").value   = stat.n;    
+        document.getElementById("var52").value  = f2(stat.var);    
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = '';
+        document.getElementById("data2").value = '';    
+      }
+
+      d3.select("#nn51").on("input", updateData);
+      d3.select("#nn52").on("input", updateData);
+      d3.select("#var51").on("input", updateData);
+      d3.select("#var52").on("input", updateData);
+
+      // Testing Hypothesis ===========================================================
+      d3.select("#executeTH5").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        nn51  = parseFloat(d3.select("#nn51").node().value);
+        nn52  = parseFloat(d3.select("#nn52").node().value);
+        var51 = parseFloat(d3.select("#var51").node().value);
+        var52 = parseFloat(d3.select("#var52").node().value);
+
+        // test statistics
+        df1   = nn51 - 1;
+        df2   = nn52 - 1;
+        stat5[0] = var51 / var52;
+
+        if (isNaN(nn51) || isNaN(nn52) || isNaN(var51) || isNaN(var52) ||
+               nn51 < 2 || nn52 <2 || var51 <= 0 || var52 <= 0) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150)
+             .attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else { // F-test
+          if (h1Type == 1) {
+            h = alpha / 2;  
+            f = f_inv(h, df1, df2, info);
+            g = f_inv(1-h, df1, df2, info);
+            pvalue = f_cdf(stat5[0], df1, df2, info);
+            if (stat5[0] > 0.5) pvalue = 1 - pvalue;
+            pvalue = 2 * pvalue;
+            drawFdistGraphTH(hypoType, h1Type, stat5, df1, df2, f, g, h, pvalue);
+          }
+          else if (h1Type == 2) {
+            h = alpha;  
+            f = 0;
+            g = f_inv(1-h, df1, df2, info);
+            pvalue = 1 - f_cdf(stat5[0], df1, df2, info);
+            drawFdistGraphTH(hypoType, h1Type, stat5, df1, df2, f, g, h, pvalue);
+          }
+          else {
+            h = alpha;  
+            f = f_inv(h, df1, df2, info);
+            g = 10;
+            pvalue = f_cdf(stat5[0], df1, df2, info);
+            drawFdistGraphTH(hypoType, h1Type, stat5, df1, df2, f, g, h, pvalue);
+          }          
+        }
+
+      })
+
+  </script>
+</body>
+</html>

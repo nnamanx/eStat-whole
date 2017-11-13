@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Testing P1, P2</title>
+  <script src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="eStat.css">
+  <script src="DistributionsUtil.js" ></script>
+  <script src="eStatU.js" ></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; Testing Hypothesis : Two Population Means P<sub>1</sub>,  P<sub>2</sub> </b>
+      <a class="menu" href="eStatU.htm"><b>Menu</b></a>  
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[Hypothesis]</b>
+      <span class="fontmath"> &nbsp;&nbsp; 
+        H<sub>o</sub> : P<sub>1</sub> - P<sub>2</sub> = D &nbsp; 
+      </span>
+      <input type="text" class="textarea" size=6 value=0 id="mu6">
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : P<sub>1</sub> - P<sub>2</sub> &ne; D &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : P<sub>1</sub> - P<sub>2</sub> > D &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : P<sub>1</sub> - P<sub>2</sub> < D      
+       </span>
+    </form>
+    
+    <form name="myForm1"> 
+    <b>[Test Type]</b> &nbsp;Z-test 
+    </form>
+
+    <form name="myForm2">&nbsp;&nbsp;&nbsp;
+      significance level  &nbsp; <span class="fontmath"> &alpha; </span> =
+      <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
+      <input type="radio" name = "type2" value="2" > 1%
+    </form>       
+   
+    <b>[Sample Statistics]</b>
+    
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td>sample size</td>         
+	  <td><span class="fontmath">n<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn61"></td>
+	  <td><span class="fontmath">n<sub>2</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn62"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td>sample proportion</td>
+	  <td><span class="fontmath">p<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="pp61"></td>
+	  <td><span class="fontmath">p<sub>2</sub></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="pp62"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <input type="button" value="Execute" size=12 id="executeTH6"> <p>
+ 
+    <div>
+      <svg id="chart" width="600" height="400"> </svg>
+    </div>
+  </div> 
+
+  <script>
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, avg, std, gxmin, gxmax, gymin, gymax;
+      var title;
+      var info, alpha, pvalue, b, c, d, e, f, g, h, t1, t2;
+      var mu6, nn61,nn62, pp61, pp62, teststat, pbar;
+      var hypoType = 6;
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      a[0].onclick = function() { alpha = 0.05; }  
+      a[1].onclick = function() { alpha = 0.01; }  
+
+      // Testing Hypothesis ===========================================================
+      d3.select("#executeTH6").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        mu6    = parseFloat(d3.select("#mu6").node().value);
+        nn61   = parseFloat(d3.select("#nn61").node().value);
+        nn62   = parseFloat(d3.select("#nn62").node().value);
+        pp61   = parseFloat(d3.select("#pp61").node().value);
+        pp62   = parseFloat(d3.select("#pp62").node().value);
+
+        // test statistics
+        pbar = ( nn61*pp61 + nn62*pp62 ) / (nn61 + nn62);
+
+        teststat = (pp61 - pp62 - mu6) / Math.sqrt(pbar*(1-pbar)* (1/nn61 + 1/nn62)); 
+           
+        if (isNaN(nn61) || isNaN(nn62) || isNaN(pp61) || isNaN(pp62) ||
+            nn61 < 2 || nn62 < 2 || pp61 <= 0 || pp62 <= 0 || pp61 >= 1 || pp62 >= 1) {  // wrong input
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else {    // Z-test
+          if (h1Type == 1) {
+            h = alpha / 2;  
+            f = stdnormal_inv(h, info);
+            g = -f;
+            if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
+            else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+          else if (h1Type == 2) {
+            h = alpha;  
+            f = -5
+            g = stdnormal_inv(1-h, info);
+            pvalue = 1 - stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+          else {
+            h = alpha;  
+            f = stdnormal_inv(h, info);
+            g = 5;
+            pvalue = stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+          }
+        }
+      })
+
+  </script>
+</body>
+</html>
