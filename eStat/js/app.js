@@ -1301,7 +1301,7 @@ function cropData(data) {
       })
       // language Button
       d3.select("#langBtn").on("click",function() {
-        window.open(appStr[5][langNum]);
+          window.open(appStr[5][langNum], "_self");
       })
 
       // Example Download Button
