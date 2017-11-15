@@ -400,6 +400,28 @@ function updateGlobalDataVariables()  {
 }
 
 
+
+/*
+ * open an example
+ *
+ */
+
+d3.select("#icon_openExample").on("click", function() {
+    $("#exampleFileListing").dialog("open");    
+
+});
+
+$(document).ready(function() {
+    $("#exampleFileListing").fileTree({root: '../Example/' }, function(file) {
+        document.getElementById("loadFileName").value = file.split('/').pop();
+	d3.csv(file, function(csvdata) {
+	    data = csvdata.map(Object.values);  
+	    updateDatasheetWithArrayOfRows(data, csvdata.columns);
+	});
+    });
+});
+
+
 /*
  * import a CSV file
  *
