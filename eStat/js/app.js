@@ -175,7 +175,83 @@ datasheet = new Handsontable(container, {
     fragmentSelection: false,
 });
 initEventControl(datasheet);
-// 데이터 시트 이벤트 컨트롤 함수  ---------------------------------------------
+
+// 변량 선택 취소
+d3.select("#debugBtn").on("click", function() {
+    variableSelectClear();
+})
+// 변량 선택 초기화 함수
+function variableSelectClear() {
+    document.getElementById("select").value = "";
+    for (j = 0; j < numVar; j++) {
+        tdvarNumber[j] = null;
+        tdvarName[j] = null;
+        for (k = 0; k < rowMax; k++) {
+            tdvalueLabel[j][k] = null;
+            tdvar[j][k] = null;
+        }
+    }
+    numVar = 0;
+}
+// 새 시트
+d3.select("#new").on("click", function() {
+    try {
+        datasheet.destroy();
+    } catch (e) {
+        // alert("");
+    }
+
+    numVar = 0;
+    for (j = 0; j < colMax; j++) {
+        colWidth[j] = 50;
+        rvarName[j] = "V" + (j + 1).toString();
+    }
+
+    datasheet = new Handsontable(container, {
+        minRows: rowMax,
+        minCols: colMax,
+        minSpareRows: 1,
+        colWidths: colWidth,
+        colHeaders: rvarName,
+        className: "htRight",
+        rowHeaders: true,
+        rowHeaderWidth: 30,
+        contextMenu: true,
+        outsideClickDeselects: false,
+        multiSelect: true,
+        fragmentSelection: false,
+    });
+    datasheet.selectCell(0, 0); // 커서 위치를 (0,0)으로
+    variableSelectClear();
+    document.getElementById("loadFileName").value = "Untitled.csv";
+    for (j = 0; j < colMax; j++) {
+        robs[j] = 0;
+        for (i = 0; i < rowMax; i++) {
+            rvar[j][i] = null;
+            rvalue[j][i] = null;
+            rvalueLabel[j][i] = null;
+        }
+        tdvarNumber[j] = null;
+        tdvarName[j] = null;
+        tdvalueLabel[j] = [];
+        tdvar[j] = [];
+    }
+    numVar = 0;
+    initEventControl(datasheet);
+}) // endof new sheet
+
+
+
+/*
+ *  Common functions for initializing the handsontable
+ *  when the datasheet is updated
+ *
+ */
+
+
+//
+// Hook Handsontable Events
+//
 function initEventControl(datasheet) {
     // 시트 셀 어느 이벤트 발생하든 cell alignment : 문자 left, 숫자 right
     datasheet.addHook('afterChange', function(change, source) {
@@ -250,44 +326,114 @@ function initEventControl(datasheet) {
         }
     });
 } // 데이터시트 이벤트 초기화 함수 끝 --------------------------------------------
-// 변량 선택 취소
-d3.select("#debugBtn").on("click", function() {
-    variableSelectClear();
-})
-// 변량 선택 초기화 함수
-function variableSelectClear() {
-    document.getElementById("select").value = "";
-    for (j = 0; j < numVar; j++) {
-        tdvarNumber[j] = null;
-        tdvarName[j] = null;
-        for (k = 0; k < rowMax; k++) {
-            tdvalueLabel[j][k] = null;
-            tdvar[j][k] = null;
+
+
+
+// automatically set alignment and colWidth
+// according to the data types (string, numeric)
+//
+function updateCellMeta() {
+    var colCharMax = [];
+    var m, strRead;
+    for (j = 0; j < datasheet.countCols(); j++) {
+        colCharMax[j] = 0;
+        rvarDeci[j] = 0;
+        for (i = 0; i < datasheet.countRows(); i++) {
+            strRead = datasheet.getDataAtCell(i, j);
+            if (strRead == null) continue;
+            // count # of char, 영어 1, 한글 2
+            k = 0;
+            for (m = 0; m < strRead.length; m++) {
+                if (is_hangul_char(strRead[m])) k = k + 2;
+                else k++;
+            }
+            if (k > colCharMax[j]) colCharMax[j] = k;
+            // 문자 왼쪽정렬, 숫자 오른쪽정렬
+            if (isNaN(datasheet.getDataAtCell(i, j))) {
+                datasheet.setCellMeta(i, j, "className", "htLeft");
+            } else {
+                datasheet.setCellMeta(i, j, "className", "htRight");
+            }
+            // 소수점이하 자리수 체크
+            m = strRead.indexOf(".");
+            if (m > -1) {
+                k = strRead.length - (m + 1);
+                if (k > rvarDeci[j]) rvarDeci[j] = k;
+            }
+
+        } // endof i
+        if (colCharMax[j] < 6) colWidth[j] = 55;
+        else colWidth[j] = 5 + colCharMax[j] * 8;
+    } // endof j
+    datasheet.getSettings().colWidths = colWidth;
+    datasheet.render();
+}
+
+
+// update global data variables:
+// rvar, rvarName, robs, numRow, numCol, rvalue
+//
+function updateGlobalDataVariables()  {
+    // 새 파일 값으로 변량 입력 : To be finished with system file
+    for (j = 0; j < colMax; j++) {
+        rvar[j] = datasheet.getDataAtCol(j);
+        rvarName[j] = datasheet.getColHeader(j);
+        robs[j] = 0;
+        for (i = 0; i < rowMax; i++) {
+            if (rvar[j][i] == null || rvar[j][i] == "") {} else robs[j]++;
         }
     }
-    numVar = 0;
-}
-// 새 시트
-d3.select("#new").on("click", function() {
-    try {
-        datasheet.destroy();
-    } catch (e) {
-        // alert("");
-    }
-
-    numVar = 0;
+    // 각 변량별 변량값 계산  To be finished with system file
+    numRow = robs[0];
+    numCol = 0;
     for (j = 0; j < colMax; j++) {
-        colWidth[j] = 50;
-        rvarName[j] = "V" + (j + 1).toString();
+        if (robs[j] != 0) {
+            numCol++;
+            for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
+            rvalueNum[j] = sortAscend(robs[j], dataA, dataValue, dvalueFreq);
+            for (k = 0; k < rvalueNum[j]; k++) {
+                rvalue[j][k] = dataValue[k];
+                rvalueLabel[j][k] = null; // 시스템 파일 읽으면 정정 요
+            }
+        }
     }
+}
 
+
+/*
+ * import a CSV file
+ *
+ *
+ */
+$("#icon_importCSV").click(function() {
+    $("#input_importCSV").click();
+})
+$("#input_importCSV").change(importCSV);
+
+function importCSV(evt) {
+    var fr = new FileReader();
+    str = evt.target.files[0].name;
+    document.getElementById("loadFileName").value = str;
+    fr.onload = function(e) {
+        csvdata = d3.csvParse(fr.result);   // parse csv into [{}, {}, .., {}]
+	data = csvdata.map(Object.values);     // convert it to [[], [], ..., []]
+	updateDatasheetWithArrayOfRows(data, csvdata.columns);
+    }
+    fr.readAsText(evt.target.files[0]);
+    $("#input_importCSV").val("");
+}
+
+function updateDatasheetWithArrayOfRows(data, colHeaders) {
+    
+    datasheet.destroy();
+    
     datasheet = new Handsontable(container, {
-        minRows: rowMax,
+        data: data,
+        minRows: rowMax, // 파일 읽을때는 데이터 개수만큼만 되어야
         minCols: colMax,
-        minSpareRows: 1,
+        minSpareRows: 0,
         colWidths: colWidth,
-        colHeaders: rvarName,
-        className: "htRight",
+        colHeaders: colHeaders,
         rowHeaders: true,
         rowHeaderWidth: 30,
         contextMenu: true,
@@ -295,206 +441,81 @@ d3.select("#new").on("click", function() {
         multiSelect: true,
         fragmentSelection: false,
     });
-    datasheet.selectCell(0, 0); // 커서 위치를 (0,0)으로
+
+    // initialize 
+    updateCellMeta();
     variableSelectClear();
-    document.getElementById("loadFileName").value = "Untitled.csv";
-    for (j = 0; j < colMax; j++) {
-        robs[j] = 0;
-        for (i = 0; i < rowMax; i++) {
-            rvar[j][i] = null;
-            rvalue[j][i] = null;
-            rvalueLabel[j][i] = null;
-        }
-        tdvarNumber[j] = null;
-        tdvarName[j] = null;
-        tdvalueLabel[j] = [];
-        tdvar[j] = [];
-    }
-    numVar = 0;
+    buttonColorChange();              // svg 크기, 모든 버튼 체크 초기화
+    graphTitle();                     // set default graph title
     initEventControl(datasheet);
-}) // endof new sheet
+    updateGlobalDataVariables();
+}
 
-// import CSV file
-$("#icon_importCSV").click(function() {
-    $("#importCSV").click();
-})
-$("#importCSV").change(importCSV);
 
-function importCSV(evt) {
-    var fr = new FileReader();
-    str = evt.target.files[0].name;
-    document.getElementById("loadFileName").value = str;
-    fr.onload = function(e) {
-        data = d3.csvParse(fr.result);
-        datasheet.destroy();
-        datasheet = new Handsontable(container, {
-            data: data.map(Object.values),
-            minRows: rowMax, // 파일 읽을때는 데이터 개수만큼만 되어야
-            minCols: colMax,
-            minSpareRows: 0,
-            colWidths: colWidth,
-            colHeaders: data.columns,
-            rowHeaders: true,
-            rowHeaderWidth: 30,
-            contextMenu: true,
-            outsideClickDeselects: false,
-            multiSelect: true,
-            fragmentSelection: false,
-        });
-        // load된 데이터 문자 숫자 alignment, colWidth 조정
-        var colCharMax = [];
-        var m, strRead;
-        for (j = 0; j < datasheet.countCols(); j++) {
-            colCharMax[j] = 0;
-            rvarDeci[j] = 0;
-            for (i = 0; i < datasheet.countRows(); i++) {
-                strRead = datasheet.getDataAtCell(i, j);
-                if (strRead == null) continue;
-                // count # of char, 영어 1, 한글 2
-                k = 0;
-                for (m = 0; m < strRead.length; m++) {
-                    if (is_hangul_char(strRead[m])) k = k + 2;
-                    else k++;
-                }
-                if (k > colCharMax[j]) colCharMax[j] = k;
-                // 문자 왼쪽정렬, 숫자 오른쪽정렬
-                if (isNaN(datasheet.getDataAtCell(i, j))) {
-                    datasheet.setCellMeta(i, j, "className", "htLeft");
-                } else {
-                    datasheet.setCellMeta(i, j, "className", "htRight");
-                }
-                // 소수점이하 자리수 체크
-                m = strRead.indexOf(".");
-                if (m > -1) {
-                    k = strRead.length - (m + 1);
-                    if (k > rvarDeci[j]) rvarDeci[j] = k;
-                }
 
-            } // endof i
-            if (colCharMax[j] < 6) colWidth[j] = 55;
-            else colWidth[j] = 5 + colCharMax[j] * 8;
-        } // endof j
-        datasheet.getSettings().colWidths = colWidth;
-        datasheet.render();
-        // 새 파일 분석을 위한 초기화
-        variableSelectClear();
-        // 새 파일 값으로 변량 입력 : To be finished with system file
-        for (j = 0; j < colMax; j++) {
-            rvar[j] = datasheet.getDataAtCol(j);
-            rvarName[j] = datasheet.getColHeader(j);
-            robs[j] = 0;
-            for (i = 0; i < rowMax; i++) {
-                if (rvar[j][i] == null || rvar[j][i] == "") {} else robs[j]++;
-            }
-        }
-        // 각 변량별 변량값 계산  To be finished with system file
-        numRow = robs[0];
-        numCol = 0;
-        for (j = 0; j < colMax; j++) {
-            if (robs[j] != 0) {
-                numCol++;
-                for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
-                rvalueNum[j] = sortAscend(robs[j], dataA, dataValue, dvalueFreq);
-                for (k = 0; k < rvalueNum[j]; k++) {
-                    rvalue[j][k] = dataValue[k];
-                    rvalueLabel[j][k] = null; // 시스템 파일 읽으면 정정 요
-                }
-            }
-        }
-        // 화면, 버튼, 그래프 제목 초기화 
-        buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
-        graphTitle(); // 디폴트 그래프 제목 
-        initEventControl(datasheet);
-    } // endof fr.onload = function(e)
-    fr.readAsText(evt.target.files[0]);
-    $("#importCSV").val("");
-} // endof function importCSV(o) --------------------------------------------
-
-// open json system file ----------------------------------------------------------------
-$("#open").click(function() {
+/*
+ * open a data file (JSON)
+ *
+ *
+ */
+$("#icon_openFile").click(function() {
     $("#input_openFile").click();
 })
-$("#input_openFile").change(loadFile);
+$("#input_openFile").change(openFile);
 
-function loadFile(evt) {
+function openFile(evt) {
     var fr = new FileReader();
     str = evt.target.files[0].name;
     document.getElementById("loadFileName").value = str;
     fr.onload = function(e) {
         var dataobj = JSON.parse(fr.result);
-        datasheet.destroy();
-        datasheet = new Handsontable(container, {
-            data: dataobj.data,
-            minRows: rowMax,
-            minCols: colMax,
-            minSpareRows: 1,
-            colWidths: colWidth,
-            colHeaders: dataobj.colHeaders,
-            rowHeaders: true,
-            rowHeaderWidth: 30,
-            contextMenu: true,
-            outsideClickDeselects: false,
-            multiSelect: true,
-            fragmentSelection: false,
-        });
-        // load된 데이터 문자 숫자 alignment, colWidth 조정
-        var colCharMax = [];
-        var m, strRead;
-        for (j = 0; j < datasheet.countCols(); j++) {
-            colCharMax[j] = 0;
-            rvarDeci[j] = 0;
-            for (i = 0; i < datasheet.countRows(); i++) {
-                strRead = datasheet.getDataAtCell(i, j);
-                if (strRead == null) continue;
-                // count # of char, 영어 1, 한글 2
-                k = 0;
-                for (m = 0; m < strRead.length; m++) {
-                    if (is_hangul_char(strRead[m])) k = k + 2;
-                    else k++;
-                }
-                if (k > colCharMax[j]) colCharMax[j] = k;
-                // 문자 왼쪽정렬, 숫자 오른쪽정렬
-                if (isNaN(datasheet.getDataAtCell(i, j))) {
-                    datasheet.setCellMeta(i, j, "className", "htLeft");
-                } else {
-                    datasheet.setCellMeta(i, j, "className", "htRight");
-                }
-                // 소수점이하 자리수 체크
-                m = strRead.indexOf(".");
-                if (m > -1) {
-                    k = strRead.length - (m + 1);
-                    if (k > rvarDeci[j]) rvarDeci[j] = k;
-                }
-
-            } // endof i
-            if (colCharMax[j] < 6) colWidth[j] = 55;
-            else colWidth[j] = 5 + colCharMax[j] * 8;
-        } // endof j
-        datasheet.getSettings().colWidths = colWidth;
-        datasheet.render();
-        // 새 파일 분석을 위한 초기화
-        variableSelectClear();
-        // 새 파일 값으로 변량 입력 : To be finished with system file
-        for (j = 0; j < colMax; j++) {
-            rvar[j] = datasheet.getDataAtCol(j);
-        }
-        // 화면, 버튼, 그래프 제목 초기화 
-        buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
-        graphTitle(); // 디폴트 그래프 제목 
-        initEventControl(datasheet);
-        // 기타 시스템 변수 불러오기
-        rvarName = dataobj.rvarName;
-        robs = dataobj.robs;
-        rvalueNum = dataobj.rvalueNum;
-        rvalue = dataobj.rvalue;
-        rvalueLabel = dataobj.rvalueLabel;
-        numCol = dataobj.numCol;
-        numRow = dataobj.numRow;
-
+	updateDatasheetWith(dataobj);
     }
     fr.readAsText(evt.target.files[0]);
     $("#input_openFile").val("");
 }
+
+function updateDatasheetWith(dataobj) {
+    
+    datasheet.destroy();
+    
+    datasheet = new Handsontable(container, {
+        data: dataobj.data,
+        minRows: rowMax,
+        minCols: colMax,
+        minSpareRows: 1,
+        colWidths: colWidth,
+        colHeaders: dataobj.colHeaders,
+        rowHeaders: true,
+        rowHeaderWidth: 30,
+        contextMenu: true,
+        outsideClickDeselects: false,
+        multiSelect: true,
+        fragmentSelection: false,
+    });
+
+    // initialize 
+    updateCellMeta();
+    variableSelectClear();
+    buttonColorChange();              // svg 크기, 모든 버튼 체크 초기화
+    graphTitle();                     // set default graph title
+    initEventControl(datasheet);
+    
+    // 새 파일 값으로 변량 입력 : To be finished with system file
+    for (j = 0; j < colMax; j++) {
+        rvar[j] = datasheet.getDataAtCol(j);
+    }
+    // 기타 시스템 변수 불러오기
+    rvarName = dataobj.rvarName;
+    robs = dataobj.robs;
+    rvalueNum = dataobj.rvalueNum;
+    rvalue = dataobj.rvalue;
+    rvalueLabel = dataobj.rvalueLabel;
+    numCol = dataobj.numCol;
+    numRow = dataobj.numRow;
+}
+
+
 
 // crop a sheet data with empty cells to a complete rectangular data
 function cropData(data) {
