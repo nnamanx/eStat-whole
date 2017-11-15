@@ -418,6 +418,7 @@ $(document).ready(function() {
 	    data = csvdata.map(Object.values);  
 	    updateDatasheetWithArrayOfRows(data, csvdata.columns);
 	});
+	$("#exampleFileListing").dialog("close");    	
     });
 });
 
