@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
     <title>eStat: Stat Education SW</title>
@@ -32,7 +32,7 @@
       <div class="tooltip">
         <img src="img/02csv.png" id="icon_importCSV" width="38px" height="38px">
         <span class="tooltiptext">csv Open</span>
-        <input type="file" accept=".csv" onchange="importCSV(this)" style="display:none" id="importCSV">	
+        <input type="file" accept=".csv" style="display:none" id="importCSV">	
       </div>  
       <div class="tooltip">
         <img src="img/03csv.png" id="exportCSV" width="38px" height="38px">
@@ -41,7 +41,7 @@
       <div class="tooltip">
         <img src="img/02.png" id="open" width="38px" height="38px">
         <span class="tooltiptext">json Open</span>
-        <input type="file" accept=".json" onchange="loadFile(this)" style="display:none" id="input_openFile">
+        <input type="file" accept=".json" style="display:none" id="input_openFile">
       </div> 
       <div class="tooltip">
         <img src="img/03.png" id="save" width="38px" height="38px">
@@ -509,7 +509,7 @@
 
       <div class="dialog" id="sub14"> <!-- 변수정보 편집 -->
         <div>         
-          <select id="varlist" onchange="selectVarUpdate()"> 
+          <select id="varlist">
              <option value="1">V1</option>
             <option value="2">V2</option>
             <option value="3">V3</option>
