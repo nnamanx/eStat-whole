@@ -12,7 +12,7 @@ td {
 .handsontable col.rowHeader {
     width: 30px;
 }
-
+/*
 .dropbtn {
     background-color: #f1f1f1;
     color: black;
@@ -29,7 +29,7 @@ td {
 }
 
 .dropbutton {
-    background-color: #f1f1f1; /* Green */
+    background-color: #f1f1f1;
     color: black;
     padding: 3px;
     text-align: left;
@@ -81,7 +81,7 @@ li a {
     color: white;
     padding: 8px 16px;
     text-decoration: none;
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     border: 1px solid green;
 }
 
@@ -91,7 +91,7 @@ li a:hover {
 }
 
 .btn-group .button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     border: 1px solid green;
     color: white;
     padding: 8px 10px;
@@ -105,12 +105,12 @@ li a:hover {
 }
 
 .btn-group .button:not(:last-child) {
-    border-bottom: none; /* Prevent double borders */
-}
+    border-bottom: none; 
 
 .btn-group .button:hover {
     background-color: #3e8e41;
 }
+*/
 
 .sliderS {
    width: 100px;
