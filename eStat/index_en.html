@@ -175,7 +175,17 @@
 
   <div id="screenLeft" style="position:absolute; left:10px; top:72px;">
       <label id="inputLabel">
-        File Name <input type="text" value="" id="loadFileName" height="15px" size=40> <br>
+        File Name <input type="text" value="" id="loadFileName" height="15px" size=40>
+
+	<input type="button" value="from URL" id="button_readFromURL">
+	<div class="dialog" id="dialog_readFromURL">
+	  URL: <input type="text" value="" id="text_readFromURL" size=40>
+	  <input type="button" value="Submit" id="button_readFromURLSubmit">
+	</div>
+
+
+	
+	<br>
         Var Selected <input type="text" value="" id="select" height="15px" size=18> &nbsp;
         <input type="button" value="Cancel" id="debugBtn" style="font-size: 12px; height;20px;"> &nbsp;
         <input type="button" value="EditVar" id="variableBtn" style="font-size: 12px; height;20px;"> 

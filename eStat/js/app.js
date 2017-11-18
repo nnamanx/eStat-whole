@@ -1,4 +1,3 @@
-
 var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
@@ -345,6 +344,8 @@ function initEventControl(datasheet) {
         }
     });
 } // 데이터시트 이벤트 초기화 함수 끝 --------------------------------------------
+
+
 // automatically set alignment and colWidth
 // according to the data types (string, numeric)
 //
@@ -382,7 +383,10 @@ function updateCellMeta() {
     } // endof j
     datasheet.getSettings().colWidths = colWidth;
     datasheet.render();
-} // update global data variables:
+}
+
+
+// update global data variables:
 // rvar, rvarName, robs, numRow, numCol, rvalue
 //
 function updateGlobalDataVariables() {
@@ -417,19 +421,39 @@ function updateGlobalDataVariables() {
  */
 
 d3.select("#icon_openExample").on("click", function() {
-    $("#exampleFileListing").dialog("open");    
+    $("#exampleFileListing").dialog("open");
 
 });
 
 $(document).ready(function() {
-    $("#exampleFileListing").fileTree({root: '../Example/' }, function(file) {
+    $("#exampleFileListing").fileTree({
+        root: '../Example/'
+    }, function(file) {
         document.getElementById("loadFileName").value = file.split('/').pop();
-	d3.csv(file, function(csvdata) {
-	    data = csvdata.map(Object.values);  
-	    updateDatasheetWithArrayOfRows(data, csvdata.columns);
-	});
-	$("#exampleFileListing").dialog("close");    	
+        d3.csv(file, function(csvdata) {
+            data = csvdata.map(Object.values);
+            updateDatasheetWithArrayOfRows(data, csvdata.columns);
+        });
+        $("#exampleFileListing").dialog("close");
     });
+});
+/*    
+ *  read data from URL
+ *
+ */
+$("#button_readFromURL").click(function() {
+    $("#dialog_readFromURL").dialog("open");
+});
+$("#button_readFromURLSubmit").click(function() {
+    $("#dialog_readFromURL").dialog("close");
+    var url = $("#text_readFromURL").val();
+    $("#text_readFromURL").val("");
+    document.getElementById("loadFileName").value = url.split('/').pop();
+    d3.csv(url, function(csvdata) {
+        data = csvdata.map(Object.values);
+        updateDatasheetWithArrayOfRows(data, csvdata.columns);
+    });
+
 });
 
 
@@ -440,7 +464,7 @@ $(document).ready(function() {
  */
 $("#icon_importCSV").click(function() {
     $("#input_importCSV").click();
-})
+});
 $("#input_importCSV").change(importCSV);
 
 function importCSV(evt) {
@@ -2134,6 +2158,7 @@ d3.select("#executeTH13").on("click", function() {
 $(".dialog").dialog({
     autoOpen: false,
     modal: true,
+    width: 'auto',
 });
 // 변량 편집 버튼 : V1 (jj=0) 만 해당
 d3.select("#variableBtn").on("click", function() {
