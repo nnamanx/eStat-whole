@@ -1,4 +1,5 @@
-﻿var chart = d3.select("#SVG");
+
+var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
 var buttonColorH = "#FF4500";
@@ -52,7 +53,7 @@ for (j = 0; j < colMax; j++) {
         rvalueLabel[j][i] = null;
         tdvalueLabel[j][i] = null;
     }
-}// Sorting freq and Ascend/Descend Indexing Label
+} // Sorting freq and Ascend/Descend Indexing Label
 var dataR = new Array(rowMax);
 var dataA = new Array(rowMax);
 var dataD = new Array(rowMax);
@@ -93,7 +94,8 @@ var dataSet = new Array(ngroupMax);
 var groupFreq = new Array(ngroupMax);
 for (k = 0; k < ngroupMax; k++) {
     dataSet[k] = new Array(rowMax);
-}var nobs = new Array(ngroupMax);
+}
+var nobs = new Array(ngroupMax);
 var mini = new Array(ngroupMax);
 var Q1 = new Array(ngroupMax);
 var median = new Array(ngroupMax);
@@ -144,37 +146,35 @@ var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkRegress;
 buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
 graphTitle(); // 디폴트 그래프 제목 
-      // 학습수준 컨트롤
-      var levelNum   = localStorage.getItem("level");
-      if (levelNum == null) levelNum = "3";
-      document.myForm1.type1.value = parseInt(levelNum);
-      if (levelNum == "1") { // 초등
-         document.getElementById("screenTopMiddle2").style.display = "none";  // 연속형 그래프 감추기
-         document.getElementById("bothstem2").style.display        = "none";  // 양쪽형 줄기잎 감추기
-         document.getElementById("statTable").style.display        = "none";  // 기초통계량 감추기
-         document.getElementById("estatE").style.display           = "block"; // 예제 보이기
-         document.getElementById("estatU").style.display           = "none";  // 대학 모듈 감추기
-         document.getElementById("screenTopRight1").style.display  = "none";  // 가설검정 감추기
-         document.getElementById("estat").style.display            = "block"; // 예제학습 보이기
-      }
-      else if (levelNum == "2") { // 중등
-         document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
-         document.getElementById("bothstem2").style.display        = "block"; // 양쪽형 줄기
-         document.getElementById("statTable").style.display        = "block"; // 기초통계량 
-         document.getElementById("screenTopRight1").style.display  = "none";  // 가설검정 감추기
-         document.getElementById("estatE").style.display           = "block"; // 예제 보이기
-         document.getElementById("estatU").style.display           = "none";  // 대학 모듈 감추기
-         document.getElementById("estat").style.display            = "block"; // 예제학습 보이기
-      }
-      else if (levelNum == "3") { // 대학
-         document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
-         document.getElementById("bothstem2").style.display        = "block"; // 양쪽형 줄기
-         document.getElementById("statTable").style.display        = "block"; // 기초통계량 
-         document.getElementById("screenTopRight1").style.display  = "block"; // 가설검정 
-         document.getElementById("estatE").style.display           = "block"; // 예제 보이기
-         document.getElementById("estatU").style.display           = "block"; // 대학 모듈 
-         document.getElementById("estat").style.display            = "block"; // 예제학습 보이기
-      }
+// 학습수준 컨트롤
+var levelNum = localStorage.getItem("level");
+if (levelNum == null) levelNum = "3";
+document.myForm1.type1.value = parseInt(levelNum);
+if (levelNum == "1") { // 초등
+    document.getElementById("screenTopMiddle2").style.display = "none"; // 연속형 그래프 감추기
+    document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
+    document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
+    document.getElementById("estatE").style.display = "block"; // 예제 보이기
+    document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
+    document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estat").style.display = "block"; // 예제학습 보이기
+} else if (levelNum == "2") { // 중등
+    document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
+    document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
+    document.getElementById("statTable").style.display = "block"; // 기초통계량 
+    document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estatE").style.display = "block"; // 예제 보이기
+    document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
+    document.getElementById("estat").style.display = "block"; // 예제학습 보이기
+} else if (levelNum == "3") { // 대학
+    document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
+    document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
+    document.getElementById("statTable").style.display = "block"; // 기초통계량 
+    document.getElementById("screenTopRight1").style.display = "block"; // 가설검정 
+    document.getElementById("estatE").style.display = "block"; // 예제 보이기
+    document.getElementById("estatU").style.display = "block"; // 대학 모듈 
+    document.getElementById("estat").style.display = "block"; // 예제학습 보이기
+}
 // =================================================================
 // 시트 컨트롤
 // =================================================================
@@ -219,7 +219,7 @@ function variableSelectClear() {
         }
     }
     numVar = 0;
-}// 새 시트
+} // 새 시트
 d3.select("#new").on("click", function() {
     try {
         datasheet.destroy();
@@ -382,10 +382,10 @@ function updateCellMeta() {
     } // endof j
     datasheet.getSettings().colWidths = colWidth;
     datasheet.render();
-}// update global data variables:
+} // update global data variables:
 // rvar, rvarName, robs, numRow, numCol, rvalue
 //
-function updateGlobalDataVariables()  {
+function updateGlobalDataVariables() {
     // 새 파일 값으로 변량 입력 : To be finished with system file
     for (j = 0; j < colMax; j++) {
         rvar[j] = datasheet.getDataAtCol(j);
@@ -420,21 +420,24 @@ $("#icon_importCSV").click(function() {
     $("#input_importCSV").click();
 })
 $("#input_importCSV").change(importCSV);
+
 function importCSV(evt) {
     var fr = new FileReader();
     str = evt.target.files[0].name;
     document.getElementById("loadFileName").value = str;
     fr.onload = function(e) {
-        csvdata = d3.csvParse(fr.result);   // parse csv into [{}, {}, .., {}]
-	data = csvdata.map(Object.values);     // convert it to [[], [], ..., []]
-	updateDatasheetWithArrayOfRows(data, csvdata.columns);
+        csvdata = d3.csvParse(fr.result); // parse csv into [{}, {}, .., {}]
+        data = csvdata.map(Object.values); // convert it to [[], [], ..., []]
+        updateDatasheetWithArrayOfRows(data, csvdata.columns);
     }
     fr.readAsText(evt.target.files[0]);
     $("#input_importCSV").val("");
-}function updateDatasheetWithArrayOfRows(data, colHeaders) {
-    
+}
+
+function updateDatasheetWithArrayOfRows(data, colHeaders) {
+
     datasheet.destroy();
-    
+
     datasheet = new Handsontable(container, {
         data: data,
         minRows: rowMax, // 파일 읽을때는 데이터 개수만큼만 되어야
@@ -452,8 +455,8 @@ function importCSV(evt) {
     // initialize 
     updateCellMeta();
     variableSelectClear();
-    buttonColorChange();              // svg 크기, 모든 버튼 체크 초기화
-    graphTitle();                     // set default graph title
+    buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
+    graphTitle(); // set default graph title
     initEventControl(datasheet);
     updateGlobalDataVariables();
 }
@@ -467,20 +470,23 @@ $("#icon_openFile").click(function() {
     $("#input_openFile").click();
 })
 $("#input_openFile").change(openFile);
+
 function openFile(evt) {
     var fr = new FileReader();
     str = evt.target.files[0].name;
     document.getElementById("loadFileName").value = str;
     fr.onload = function(e) {
         var dataobj = JSON.parse(fr.result);
-	updateDatasheetWith(dataobj);
+        updateDatasheetWith(dataobj);
     }
     fr.readAsText(evt.target.files[0]);
     $("#input_openFile").val("");
-}function updateDatasheetWith(dataobj) {
-    
+}
+
+function updateDatasheetWith(dataobj) {
+
     datasheet.destroy();
-    
+
     datasheet = new Handsontable(container, {
         data: dataobj.data,
         minRows: rowMax,
@@ -498,10 +504,10 @@ function openFile(evt) {
     // initialize 
     updateCellMeta();
     variableSelectClear();
-    buttonColorChange();              // svg 크기, 모든 버튼 체크 초기화
-    graphTitle();                     // set default graph title
+    buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
+    graphTitle(); // set default graph title
     initEventControl(datasheet);
-    
+
     // 새 파일 값으로 변량 입력 : To be finished with system file
     for (j = 0; j < colMax; j++) {
         rvar[j] = datasheet.getDataAtCol(j);
@@ -514,7 +520,7 @@ function openFile(evt) {
     rvalueLabel = dataobj.rvalueLabel;
     numCol = dataobj.numCol;
     numRow = dataobj.numRow;
-}// crop a sheet data with empty cells to a complete rectangular data
+} // crop a sheet data with empty cells to a complete rectangular data
 function cropData(data) {
     var newdata = [];
     data.forEach(function(row) {
@@ -528,7 +534,7 @@ function cropData(data) {
         }
     });
     return newdata;
-}// export datasheet to csv ------------------------------------------
+} // export datasheet to csv ------------------------------------------
 d3.select("#exportCSV").on("click", function() {
     checkDataSave();
     if (checkSave == false) return;
@@ -589,7 +595,7 @@ function checkDataSave() {
             }
         }
     }
-}// From https://milooy.wordpress.com/2017/03/28/javascript-print-page/
+} // From https://milooy.wordpress.com/2017/03/28/javascript-print-page/
 // sheet Print
 d3.select("#printSheet").on("click", function() {
     const html = document.querySelector('html');
@@ -611,6 +617,7 @@ d3.select("#saveGraph").on("click", function() {
     var height = svgHeight;
     var svgString = getSVGString(svg.node());
     svgString2Image(svgString, width, height, 'png', save);
+
     function save(dataBlob, filesize) {
         saveAs(dataBlob, 'eStatGraph.png');
     }
@@ -668,7 +675,7 @@ var rad1 = document.myForm1.type1;
 rad1[0].onclick = function() { // 초등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
-    localStorage.setItem("level",levelNum);
+    localStorage.setItem("level", levelNum);
     document.getElementById("screenTopMiddle2").style.display = "none"; // 연속형 그래프 감추기
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
     document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
@@ -676,10 +683,11 @@ rad1[0].onclick = function() { // 초등
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-}rad1[1].onclick = function() { // 중등
+}
+rad1[1].onclick = function() { // 중등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
-    localStorage.setItem("level",levelNum);
+    localStorage.setItem("level", levelNum);
     document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량 
@@ -687,10 +695,11 @@ rad1[0].onclick = function() { // 초등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-}rad1[2].onclick = function() { // 대학
+}
+rad1[2].onclick = function() { // 대학
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
-    localStorage.setItem("level",levelNum);
+    localStorage.setItem("level", levelNum);
     document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량 
@@ -698,7 +707,7 @@ rad1[0].onclick = function() { // 초등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈 
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-}// 분리형 막대그래프 : 주메뉴
+} // 분리형 막대그래프 : 주메뉴
 d3.select("#separate1").on("click", function() {
     graphNum = 1;
     dataClassify();
@@ -795,7 +804,8 @@ rad2[0].onclick = function() { // 원자료
         drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
     }
-}rad2[1].onclick = function() { // 내림차순
+}
+rad2[1].onclick = function() { // 내림차순
     if (SeparateBar && ngroup == 1) {
         chart.selectAll("*").remove();
         currentDataSet = dataD;
@@ -803,7 +813,8 @@ rad2[0].onclick = function() { // 원자료
         drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
     }
-}rad2[2].onclick = function() { // 올림차순
+}
+rad2[2].onclick = function() { // 올림차순
     if (SeparateBar && ngroup == 1) {
         chart.selectAll("*").remove();
         currentDataSet = dataA;
@@ -811,7 +822,7 @@ rad2[0].onclick = function() { // 원자료
         drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
     }
-}// 쌓는형 수직 막대 버튼 클릭
+} // 쌓는형 수직 막대 버튼 클릭
 d3.select("#stack2V").on("click", function() {
     graphNum = 2;
     dataClassify();
@@ -1070,21 +1081,23 @@ rad3[0].onclick = function() { // 원자료
         currentLabel = vlabelR;
         drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMin, freqMax, currentLabel, currentDataSet, dataSet);
     }
-}rad3[1].onclick = function() { // 내림차순
+}
+rad3[1].onclick = function() { // 내림차순
     if (LineGraph && ngroup == 1) {
         chart.selectAll("*").remove();
         currentDataSet = dataD;
         currentLabel = vlabelD;
         drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMin, freqMax, currentLabel, currentDataSet, dataSet);
     }
-}rad3[2].onclick = function() { // 올림차순
+}
+rad3[2].onclick = function() { // 올림차순
     if (LineGraph && ngroup == 1) {
         chart.selectAll("*").remove();
         currentDataSet = dataA;
         currentLabel = vlabelA;
         drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMin, freqMax, currentLabel, currentDataSet, dataSet);
     }
-}// 도수분포표 버튼 클릭
+} // 도수분포표 버튼 클릭
 d3.select("#freqTable").on("click", function() {
     dataClassify();
     if (freqMin < 0) {
@@ -1393,9 +1406,11 @@ test8[1].onclick = function() {
 var a8 = document.myForm82.type2;
 a8[0].onclick = function() {
     alpha = 0.05;
-}a8[1].onclick = function() {
+}
+a8[1].onclick = function() {
     alpha = 0.01;
-}d3.select("#executeTH8").on("click", function() {
+}
+d3.select("#executeTH8").on("click", function() {
     graphNum = 21;
     // input value
     mu = parseFloat(d3.select("#mu8").node().value);
@@ -1567,9 +1582,11 @@ h9[2].onclick = function() {
 var a9 = document.myForm92.type2;
 a9[0].onclick = function() {
     alpha = 0.05;
-}a9[1].onclick = function() {
+}
+a9[1].onclick = function() {
     alpha = 0.01;
-}d3.select("#executeTH9").on("click", function() {
+}
+d3.select("#executeTH9").on("click", function() {
     graphNum = 22;
     // input value
     vari = parseFloat(d3.select("#vari9").node().value);
@@ -1743,9 +1760,11 @@ test10[1].onclick = function() {
 var a10 = document.myForm102.type2;
 a10[0].onclick = function() {
     alpha = 0.05;
-}a10[1].onclick = function() {
+}
+a10[1].onclick = function() {
     alpha = 0.01;
-}d3.select("#executeTH10").on("click", function() {
+}
+d3.select("#executeTH10").on("click", function() {
     graphNum = 23;
     mu = parseFloat(d3.select("#mu10").node().value);
     nn1 = nobs[0];
@@ -1903,9 +1922,11 @@ h11[2].onclick = function() {
 var a11 = document.myForm112.type2;
 a11[0].onclick = function() {
     alpha = 0.05;
-}a11[1].onclick = function() {
+}
+a11[1].onclick = function() {
     alpha = 0.01;
-}d3.select("#executeTH11").on("click", function() {
+}
+d3.select("#executeTH11").on("click", function() {
     graphNum = 24;
     hypoType = 5;
     nn1 = nobs[0];
@@ -2022,9 +2043,11 @@ d3.select("#anova").on("click", function() {
 var a12 = document.myForm122.type2;
 a12[0].onclick = function() {
     alpha = 0.05;
-}a12[1].onclick = function() {
+}
+a12[1].onclick = function() {
     alpha = 0.01;
-}d3.select("#executeTH12").on("click", function() {
+}
+d3.select("#executeTH12").on("click", function() {
     graphNum = 25;
     chart.selectAll("*").remove();
     hypoType = 7;
@@ -2101,6 +2124,7 @@ d3.select("#variableBtn").on("click", function() {
 })
 // 편집창 varlist에 이벤트 발생시 update 처리 함수 --------------------------
 $("#varlist").change(selectVarUpdate);
+
 function selectVarUpdate() {
     // 변량명을 rvarName에 입력
     rvarName[jj] = d3.select("#vname").node().value;
