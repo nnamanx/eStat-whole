@@ -263,6 +263,8 @@ d3.select("#new").on("click", function() {
     numVar = 0;
     initEventControl(datasheet);
 }) // endof new sheet
+
+
 /*
  *  Common functions for initializing the handsontable
  *  when the datasheet is updated
@@ -407,7 +409,9 @@ function updateGlobalDataVariables()  {
             }
         }
     }
-}/*
+}
+
+/*
  * import a CSV file
  *
  *
@@ -452,7 +456,9 @@ function importCSV(evt) {
     graphTitle();                     // set default graph title
     initEventControl(datasheet);
     updateGlobalDataVariables();
-}/*
+}
+
+/*
  * open a data file (JSON)
  *
  *
