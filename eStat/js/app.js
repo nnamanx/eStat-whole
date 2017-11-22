@@ -209,7 +209,7 @@ d3.select("#debugBtn").on("click", function() {
 })
 // 변량 선택 초기화 함수
 function variableSelectClear() {
-    document.getElementById("select").value = "";
+    document.getElementById("selectedVars").value = "";
     for (j = 0; j < numVar; j++) {
         tdvarNumber[j] = null;
         tdvarName[j] = null;
@@ -314,7 +314,7 @@ function initEventControl(datasheet) {
         }
         datasheet.render();
         // 선택된 변수 초기화
-        document.getElementById("select").value = "";
+        document.getElementById("selectedVars").value = "";
         numVar = 0;
     });
     // 시트 컬럼 이벤트 컨트롤
@@ -348,7 +348,7 @@ function initEventControl(datasheet) {
             for (i = 0; i < numVar; i++) {
                 str += " " + tdvarNumber[i].toString() + ",";
             }
-            d3.select("#select").node().value = str;
+            d3.select("#selectedVars").node().value = str;
             buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
         }
     });
@@ -2211,3 +2211,49 @@ d3.select("#vcancel").on("click", function() {
     });
     $("#sub14").dialog("close");
 })
+
+
+// Language Selector
+
+$(document).ready(function() {
+    var userLang = navigator.language || navigator.userLanguage;
+    $('#select_language').val(userLang);    
+    setLanguage(userLang);
+});
+
+
+$('#select_language').change(function() {
+    var lang = $("#select_language option:selected").val();
+    setLanguage(lang);
+});
+
+function setLanguage(lang) {
+    $('[data-msgid]').each(function() {
+	var $this = $(this);
+	$this.html($.message[lang][$this.data('msgid')]);
+    });
+}
+
+$.message = {}
+$.message.ko = {
+    'eStat' : 'eStat: 통계교육SW',
+    'Filename' : '파일이름',
+    'Selected Variables': '선택변량',
+    'Cancel' : '취소',
+    'Edit Variables' : '변량편집',
+    'Level' : '수준',
+    'ElementaryLevel' : '초',
+    'MiddleLevel' : '중',
+    'UniversityLevel' : '대',    
+}
+$.message.en = {
+    'eStat' : 'eStat : Stat Education SW',
+    'Filename' : 'Filename',
+    'Selected Variables': 'Selected Vars',
+    'Cancel' : 'Cancel',
+    'Edit Variables' : 'EditVar',
+    'Level' : 'Level',
+    'ElementaryLevel' : 'E',
+    'MiddleLevel' : 'M',
+    'UniversityLevel' : 'U',
+}
