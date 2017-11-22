@@ -21,28 +21,48 @@
 
   <div id="screenTop" > 
     <div id="screenTopLeft" style="position:absolute; top:20px; ">
+
       <div class="tooltip" > &nbsp;
         <img src="img/example.png" id="exBtn" class="imageBtn1" >
         <span class="tooltiptext">예제 불러오기</span>
       </div>
+
       <div class="tooltip">
         <img src="img/01.png" id="new" width="38px" height="38px">
         <span class="tooltiptext">새시트</span>
       </div>  
+
       <div class="tooltip">
         <img src="img/02csv.png" id="icon_importCSV" width="38px" height="38px">
         <span class="tooltiptext">csv 불러오기</span>
         <input type="file" accept=".csv" style="display:none" id="input_importCSV">	
       </div>  
+
+      <div class="tooltip">
+        <img src="img/open_url.png" id="button_readFromURL" width="38px" height="38px">
+        <span class="tooltiptext">WWW 불러오기</span>
+      </div>  
+	<div class="dialog" id="dialog_readFromURL">
+	  URL: <input type="text" value="" id="text_readFromURL" size=40>
+	  <input type="button" value="확인" id="button_readFromURLSubmit">
+	  <br>
+	  <p>예: https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/iris.csv</p>
+	</div>
+
+   <div class="tooltip">
+        <img src="img/02.png" id="icon_openFile" width="38px" height="38px">
+        <span class="tooltiptext">json 불러오기</span>
+        <input type="file" accept=".json" style="display:none" id="input_openFile">
+      </div>
+      
+
+      
       <div class="tooltip">
         <img src="img/03csv.png" id="exportCSV" width="38px" height="38px">
         <span class="tooltiptext">csv 저장</span>
       </div>  
-      <div class="tooltip">
-        <img src="img/02.png" id="icon_openFile" width="38px" height="38px">
-        <span class="tooltiptext">json 불러오기</span>
-        <input type="file" accept=".json" style="display:none" id="input_openFile">
-      </div> 
+
+   
       <div class="tooltip">
         <img src="img/03.png" id="save" width="38px" height="38px">
         <span class="tooltiptext">json 저장</span>
@@ -138,7 +158,7 @@
       <div class="tooltip" >
 	<a href="../eStatU" target="_blank">	
           <img src="img/eStatU.png" id="estatU" class="imageBtn1">
-	</a>
+	</a>p
         <span class="tooltiptext">대학 통계교육</span>
       </div>
     </div>
@@ -176,13 +196,6 @@
       <label id="inputLabel">
         파일이름 <input type="text" value="" id="loadFileName" height="15px" size=40>
 
-	<input type="button" value="웹 주소" id="button_readFromURL">
-	<div class="dialog" id="dialog_readFromURL">
-	  URL: <input type="text" value="" id="text_readFromURL" size=40>
-	  <input type="button" value="확인" id="button_readFromURLSubmit">
-	</div>
-
-	
         <br>
         선택변량 <input type="text" value="" id="select" height="15px" size=20> &nbsp;
         <input type="button" value="취소" id="debugBtn" style="font-size: 12px; height;20px;"> &nbsp;&nbsp;
