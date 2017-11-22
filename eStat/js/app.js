@@ -12,7 +12,7 @@ var svgWidth, svgHeight, margin, graphWidth, graphHeight;
 var svgWidth2, svgHeight2;
 var title, graphNum;
 //	var langNum	 = 0;
-var rowMax = 100; // 시트행 최대
+var rowMax = 200; // 시트행 최대
 var colMax = 10; // 시트열 최대
 var buffer = 20; // 우측 y선과 범례와  간격
 var bothBarGap = 35; // 양쪽막대의 갭
@@ -331,8 +331,16 @@ function initEventControl(datasheet) {
                 tdobs[numVar + j] = robs[k];
                 tdvalueNum[numVar + j] = rvalueNum[k];
                 tdvarName[numVar + j] = datasheet.getColHeader(j + selected[1]);
-                tdvalue[numVar + j] = rvalue[k];
+/*
+		tdvalue[numVar + j] = rvalue[k];
                 tdvalueLabel[numVar + j] = rvalueLabel[k];
+*/
+		 // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+              for (m = 0; m < robs[k]; m++) {
+                tdvalue[numVar+j][m]      = rvalue[k][m];
+                tdvalueLabel[numVar+j][m] = rvalueLabel[k][m];     
+              }
+		
                 tdvar[numVar + j] = datasheet.getDataAtCol(j + selected[1]);
             }
             numVar += numOfSelectedColumns;
