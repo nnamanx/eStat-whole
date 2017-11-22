@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>eStat: 통계교육SW</title>
+    <title data-msgid="eStat">eStat: 통계교육SW</title>
     <meta charset='utf-8'>
     <link rel="stylesheet" href="css/eStat.css">
     <link rel="stylesheet" href="lib/handsontable/handsontable.full.min.css">
@@ -176,13 +176,19 @@
       </div>
     </div>
 
+    
     <div id="screenTopRight3" style="position:absolute; left:1440px; top:20px; width:100">
-      <form name="myForm1">
-        <input type="button" onclick="location.href='index_en.html';" value="English" id="langBtn" style="font-size: 14px; height;50px;"> <br>
-        수준 
-        <input type="radio" name = "type1" value="1" id="level1">초
-        <input type="radio" name = "type1" value="2" id="level2">중
-        <input type="radio" name = "type1" value="3" id="level3" checked>대
+      <select id="select_language">
+	<option value="en">English</option>
+	<option value="ko">한국어</option>
+      </select>
+      <br>
+
+      <form name='myForm1'>
+       <span data-msgid="Level">수준</span>
+        <input type="radio" name = "type1" value="1" id="level1"><span data-msgid='ElementaryLevel'>초</span>
+        <input type="radio" name = "type1" value="2" id="level2"><span data-msgid='MiddleLevel'>중</span>
+        <input type="radio" name = "type1" value="3" id="level3" checked><span data-msgid='UniversityLevel'>대</span>
       </form>
     </div>
 
@@ -190,16 +196,21 @@
 
   </div>
 
-  <div id="screenLeft" style="position:absolute; left:10px; top:72px;">
-      <label id="inputLabel">
-        파일이름 <input type="text" value="" id="loadFileName" height="15px" size=40>
+  <div id="screenLeft" style="position:absolute; left:10px; top:72px; font-size: 12px;">
+        <label for='loadFileName' data-msgid="Filename">파일이름</label>
+	<input type="text" value="" id="loadFileName" height="15px" size=40>
+        <br>
+	
+        <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
+	<input type="text" value="" id="selectedVars" height="15px" size=20> &nbsp;
 
-        <br>
-        선택변량 <input type="text" value="" id="select" height="15px" size=20> &nbsp;
-        <input type="button" value="취소" id="debugBtn" style="font-size: 12px; height;20px;"> &nbsp;&nbsp;
-        <input type="button" value="변량편집" id="variableBtn" style="font-size: 12px; height;20px;"> 
-        <br>
-      </label>
+	<button id="debugBtn" style='height: 20px; padding: 0 10px 0 10px;'>
+	  <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
+	</button>
+
+	<button id='variableBtn' style='height: 20px; padding: 0 10px 0 10px;'>
+	  <span data-msgid='Edit Variables'>변량편집</span>
+	</button>
       <div id="datasheet" style="width:380px; height:675px; overflow: auto;"> </div>
 
   </div>
