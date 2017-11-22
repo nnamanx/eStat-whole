@@ -2236,6 +2236,11 @@ d3.select("#vcancel").on("click", function() {
 
 // Language Selector
 
+languageNumber = {
+    'ko' : 0,
+    'en' : 1,
+}
+
 $(document).ready(function() {
     var userLang = navigator.language || navigator.userLanguage;
     $('#select_language').val(userLang);    
@@ -2249,6 +2254,7 @@ $('#select_language').change(function() {
 });
 
 function setLanguage(lang) {
+    langNum = languageNumber[lang];    
     $('[data-msgid]').each(function() {
 	var $this = $(this);
 	$this.html($.message[lang][$this.data('msgid')]);
