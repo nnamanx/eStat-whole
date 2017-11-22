@@ -38,16 +38,23 @@
         <img src="img/02csv.png" id="icon_importCSV" width="38px" height="38px">
         <span class="tooltiptext">csv Open</span>
         <input type="file" accept=".csv" style="display:none" id="input_importCSV">	
-      </div>  
+      </div>
+
       <div class="tooltip">
-        <img src="img/03csv.png" id="exportCSV" width="38px" height="38px">
-        <span class="tooltiptext">csv Save</span>
+        <img src="img/open_url.png" id="button_readFromURL" width="38px" height="38px">
+        <span class="tooltiptext">Read from URL</span>
       </div>  
+
       <div class="tooltip">
         <img src="img/02.png" id="icon_openFile" width="38px" height="38px">
         <span class="tooltiptext">json Open</span>
         <input type="file" accept=".json" style="display:none" id="input_openFile">
       </div> 
+	
+      <div class="tooltip">
+        <img src="img/03csv.png" id="exportCSV" width="38px" height="38px">
+        <span class="tooltiptext">csv Save</span>
+      </div>  
       <div class="tooltip">
         <img src="img/03.png" id="save" width="38px" height="38px">
         <span class="tooltiptext">json Save</span>
@@ -177,14 +184,6 @@
       <label id="inputLabel">
         File Name <input type="text" value="" id="loadFileName" height="15px" size=40>
 
-	<input type="button" value="from URL" id="button_readFromURL">
-	<div class="dialog" id="dialog_readFromURL">
-	  URL: <input type="text" value="" id="text_readFromURL" size=40>
-	  <input type="button" value="Submit" id="button_readFromURLSubmit">
-	</div>
-
-
-	
 	<br>
         Var Selected <input type="text" value="" id="select" height="15px" size=18> &nbsp;
         <input type="button" value="Cancel" id="debugBtn" style="font-size: 12px; height;20px;"> &nbsp;
@@ -520,6 +519,15 @@
         </form>           
       </div>  
 
+      <!---- Dialogs ---->
+      
+	<div class="dialog" id="dialog_readFromURL">
+	  URL: <input type="text" value="" id="text_readFromURL" size=40>
+	  <input type="button" value="Submit" id="button_readFromURLSubmit">
+	  <br>
+	  <p>예: https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/iris.csv</p>
+	</div>
+      
       <div class="dialog" id="sub14"> <!-- 변수정보 편집 -->
         <div>         
           <select id="varlist">

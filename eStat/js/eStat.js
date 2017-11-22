@@ -50,6 +50,8 @@ alertMsg[4][0]  = "각 열의 자료수가 다르거나 결측치가 있으면 �
 alertMsg[5][0]  = "그룹의 수가 너무 많으면 화면의 사이즈가 작아 그래프가 겹처보일 수 있습니다.";
 alertMsg[6][0]  = "요약자료의 분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
 alertMsg[7][0]  = "원시자료에서 두 개이상 선택된 변량에 대해서는 그래프를 그리거나 표를 만들 수 없습니다.";
+alertMsg[8][0]  = "점그림은 데이터 수가 200개 이하일때 가능합니다.";
+alertMsg[9][0]  = "줄기와 잎 그림은 데이터 수가 100개 이하일때 가능합니다.";
 alertMsg[12][0] = "분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
 alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합치 않습니다";
 alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
@@ -137,6 +139,8 @@ alertMsg[4][1]  = "If observations of the selected variables are different or ob
 alertMsg[5][1]  = "Too many groups! Graphs may be overlapped due to size of the screen.";
 alertMsg[6][1]  = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
 alertMsg[7][1]  = "If more than three variables are selected on raw data, analysis or creating table is not allowed.";
+alertMsg[8][1]  = "Dot Graph is allowd if the number of observation is less than 200.";
+alertMsg[9][1]  = "Stem & Leaf Plot is allowd if the number of observation is less than 100.";
 alertMsg[12][1] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
 alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
 alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
@@ -201,7 +205,7 @@ svgStr[36][1] = "<h3> Histogram<br>Frequency Table</h3>";
 svgStr[37][1] = "Group Name";
 svgStr[38][1] = "Interval";
 svgStr[39][1] = "Stem";
-svgStr[40][1] = "Leaf";
+svgStr[40][1] = " Leaf";
 svgStr[41][1] = "Group 1  Leaf";
 svgStr[42][1] = "Group 2  Leaf"
 svgStr[43][1] = "<h3>Basic Statistics</h3>";
@@ -554,7 +558,8 @@ function dataClassify() {
         for (k=0; k<ngvalue; k++) {
           gdataValue[k]  = tdvalue[0][k];
           if ( tdvalueLabel[0][k] == null ) {
-            gvalueLabel[k] = tdvalue[0][k];
+            if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
+            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
           }
           else {
             gvalueLabel[k] = tdvalueLabel[0][k];
@@ -755,7 +760,6 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
             else str = "("+svgStr[18][langNum]+" "+gvarName+") " + " "+dvarName+svgStr[19][langNum]+ iTitle[graphNum];
           } 
           else str = iTitle[graphNum];   
-//          mTitle[graphNum] = str
         } else {
           str = mTitle[graphNum];
         }     
@@ -1073,11 +1077,7 @@ function drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue
             if (ngroup == 1) {tdata = currentDataSet;}
             else {  // 그룹명 범례
               for (j=0; j<ndvalue; j++) tdata[j] = dataSet[k][j];
-              if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-              }
-              else str = gvalueLabel[k];
+              str = gvalueLabel[k];
               chart.append("rect")
                    .style("fill",myColor[k])
                    .attr("x",margin.left + graphWidth + bufferLegend - 5)
@@ -1136,11 +1136,14 @@ function drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue
             if (ngroup == 1) {tdata = currentDataSet;}
             else {
               for (j=0; j<ndvalue; j++) tdata[j] = dataSet[k][j];
+/*
               if (rawData) {
                 if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
                 else str = gvalueLabel[k]; 
               }
-              else str = gvalueLabel[k];
+              else 
+*/
+              str = gvalueLabel[k];
   
               chart.append("rect")
                  .style("fill",myColor[k])
@@ -1300,11 +1303,7 @@ function drawStackBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNu
           for (k=0; k<ngroup; k++) {
             for (j=0; j<ndvalue; j++) tdata[j] = dataSet[k][j];
             // 범례
-            if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-            }
-            else str = gvalueLabel[k];
+            str = gvalueLabel[k];
 
             chart.append("rect")
                  .style("fill",myColor[k])
@@ -1363,11 +1362,7 @@ function drawStackBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNu
 
           // 범례
           for (k=0; k<ngroup; k++) {
-            if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-            }
-            else str = gvalueLabel[k];
+            str = gvalueLabel[k];
 
             chart.append("rect")
                  .style("fill",myColor[k])
@@ -1480,11 +1475,7 @@ function drawRatioBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, d
           for (k=0; k<ngroup; k++) {
             for (j=0; j<ndvalue; j++) tdata[j] = dataSet[k][j]/tsum[j];
             // 범례
-            if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-            }
-            else str = gvalueLabel[k];
+            str = gvalueLabel[k];
 
             chart.append("rect")
                  .style("fill",myColor[k])
@@ -1541,11 +1532,7 @@ function drawRatioBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, d
         else { // 가로형 막대그래프
           // 범례
           for (k=0; k<ngroup; k++) {
-            if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-            }
-            else str = gvalueLabel[k];
+            str = gvalueLabel[k];
 
             chart.append("rect")
                  .style("fill",myColor[k])
@@ -1646,11 +1633,7 @@ function drawSideBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dv
              .style("stroke","black") 
           // 범례
           for (k=0; k<ngroup; k++) {
-              if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-              }
-              else str = gvalueLabel[k];
+              str = gvalueLabel[k];
               chart.append("rect")
                    .style("fill",myColor[k])
                    .attr("x",margin.left + graphWidth + bufferLegend - 5)
@@ -1691,11 +1674,7 @@ function drawSideBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dv
         else { // 가로형 막대그래프
           // 범례
           for (k=0; k<ngroup; k++) {
-             if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-            }
-            else str = gvalueLabel[k];
+            str = gvalueLabel[k];
             chart.append("rect")
                  .style("fill",myColor[k])
                  .attr("x",margin.left + graphWidth + bufferLegend - 5)
@@ -1818,11 +1797,7 @@ function drawBothBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNum
             for (j=0; j<ndvalue; j++) tdata[j] = dataSet[k][j];
 
             // 범례
-            if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-            }
-            else str = gvalueLabel[k];
+            str = gvalueLabel[k];
 
             if (k == 0) {
               ty = margin.top + graphHeight/4 - 5;
@@ -1902,11 +1877,7 @@ function drawBothBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNum
 
           // 범례
           for (k=0; k<ngroup; k++) {
-            if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-            }
-            else str = gvalueLabel[k];
+            str = gvalueLabel[k];
 
             if (k==0) {
               chart.append("text")
@@ -2315,11 +2286,7 @@ function drawPieChart(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNu
 	          .attr("id", "piechart" + k);
            // 범례
            if (ngroup > 1) {
-             if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-             }
-             else str = gvalueLabel[k];
+             str = gvalueLabel[k];
              chart.append("text")
                   .attr("font-size","12px")
                   .attr("font-family","sans-seirf")
@@ -2382,11 +2349,7 @@ function drawBandGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarN
         for (k=0; k<ngroup; k++) {
            // 범례
            if (ngroup > 1) {
-             if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-             }
-             else str = gvalueLabel[k];
+             str = gvalueLabel[k];
              chart.append("rect")
                   .style("fill",myColor[k])
                   .attr("x",margin.left + graphWidth + bufferLegend - 10)
@@ -2628,11 +2591,7 @@ function drawLegend(gvalueLabel) {
         var y1;
 
         for (k=0; k<ngroup; k++) {
-          if (rawData) {
-                if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-                else str = gvalueLabel[k]; 
-          }
-          else str = gvalueLabel[k];
+          str = gvalueLabel[k];
           y1 = margin.top + 20 + k*20;
           chart.append("circle")
                .attr("cx",x1-5)
@@ -2665,6 +2624,18 @@ function dataClassifyM() {
           checkData = false;
           alert(alertMsg[1][langNum]);
           return;
+        }
+        if (graphNum == 15 && tdobs[k] > 200) { // 점그림 데이터수 제한
+          checkData = false;
+          alert(alertMsg[8][langNum]);
+          return;
+        }
+        if (graphNum == 17 || graphNum == 18) { // 줄기잎 그림 데이터수 제한
+          if(tdobs[k] > 100) { 
+            checkData = false;
+            alert(alertMsg[9][langNum]);
+            return;
+          }
         }
       }
       // 변량 선택 안하면 경고
@@ -2752,8 +2723,10 @@ function dataClassifyM() {
         ngvalue     = tdvalueNum[0];
         for (k=0; k<ngvalue; k++) {
           gdataValue[k]  = tdvalue[0][k];
+
           if ( tdvalueLabel[0][k] == null ) {
-            gvalueLabel[k] = tdvalue[0][k];
+            if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
+            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
           }
           else {
             gvalueLabel[k] = tdvalueLabel[0][k];
@@ -2917,8 +2890,10 @@ function dataClassifyS() {
           ngvalue     = tdvalueNum[0]
           for (k=0; k<ngvalue; k++) {
             gdataValue[k]  = tdvalue[0][k];
+
             if ( tdvalueLabel[0][k] == null ) {
-              gvalueLabel[k] = tdvalue[0][k];
+              if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
             }
             else {
               gvalueLabel[k] = tdvalueLabel[0][k];
@@ -3173,8 +3148,7 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
         for (k=0; k<ngroup; k++) {
           // 범례
           if (ngroup > 1) {
-            if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-            else str = gvalueLabel[k];  
+            str = gvalueLabel[k];  
             chart.append("text")
                  .attr("font-size","12px")
                  .attr("font-family","sans-seirf")
@@ -3421,8 +3395,7 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
       for (k=0; k<ngroup; k++) {
         // 범례
         if (ngroup > 1) {
-          if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-          else str = gvalueLabel[k];  
+          str = gvalueLabel[k];  
           chart.append("text")
                .attr("font-size","12px")
                .attr("font-family","sans-seirf")
@@ -3753,8 +3726,7 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
 
           // 범례
           if (ngroup > 1) {
-            if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-            else str = gvalueLabel[k];  
+            str = gvalueLabel[k];  
             chart.append("text")
                  .attr("font-size","12px")
                  .attr("font-family","sans-seirf")
@@ -4254,9 +4226,13 @@ function bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd
         xsum[k] = 0; ysum[k] = 0; sxx[k] = 0; sxy[k] = 0; syy[k] = 0; nobs[k] = 0;
       }
       for (i=0; i<tobs; i++) {
-        nobs[gdata[i]-1]++;
-        xsum[gdata[i]-1] += xdata[i];
-        ysum[gdata[i]-1] += ydata[i];
+        // gdata[i]의 gdataValue에서 위치파악
+        for (j=0; j<ngroup; j++) {
+          if (gdata[i] == gdataValue[j]) {k=j; break;}  
+        }     
+        nobs[k]++;
+        xsum[k] += xdata[i];
+        ysum[k] += ydata[i];   
         xsum[ngroup]     += xdata[i];
         ysum[ngroup]     += ydata[i];
       }
@@ -4269,11 +4245,16 @@ function bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd
       yavg[ngroup] = ysum[ngroup] / tobs;
  
       for (i=0; i<tobs; i++) {
-        tempx = xdata[i] - xavg[gdata[i]-1];
-        tempy = ydata[i] - yavg[gdata[i]-1];
-        sxx[gdata[i]-1] += tempx*tempx;
-        syy[gdata[i]-1] += tempy*tempy;
-        sxy[gdata[i]-1] += tempx*tempy; 
+        // gdata[i]의 gdataValue에서 위치파악
+        for (j=0; j<ngroup; j++) {
+          if (gdata[i] == gdataValue[j]) {k=j; break;}  
+        }
+        tempx = xdata[i] - xavg[k];
+        tempy = ydata[i] - yavg[k];
+        sxx[k] += tempx*tempx;
+        syy[k] += tempy*tempy;
+        sxy[k] += tempx*tempy; 
+
         tempx = xdata[i] - xavg[ngroup];
         tempy = ydata[i] - yavg[ngroup];
         sxx[ngroup] += tempx*tempx;
@@ -4303,7 +4284,7 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
         // 주제목
         if (mTitle[graphNum] == "") {
           if (numVar == 2) str = xvarName + " : "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
-          else str = "(그룹 "+gvarName+ ") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
+          else str = "("+svgStr[18][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
 //          mTitle[graphNum] = str;
         }
         else str = mTitle[graphNum];
@@ -4432,8 +4413,7 @@ function drawScatterAxis(gxmin, gxmax, gymin, gymax, graphWidth, graphHeight) {
 function drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter) {
       var tx, ty;
       for (var k=0; k<ngroup; k++) {
-        if (tdvalueLabel[0][k] == null) str = svgStr[18][langNum]+ (k+1).toString();
-        else str = gvalueLabel[k];  
+        str = gvalueLabel[k];  
         tx = margin.left + graphWidth + bufferScatter;
         ty = margin.top+10 + k*20;
         chart.append("circle")
@@ -4456,6 +4436,7 @@ function drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter) {
 // Show Regression line
 function showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS) {
         var x1, y1, x2, y2, tx, ty;
+        var tx1, ty1, tx2, ty2;
 
         if (ngroup > 1) margin = {top: 90, bottom: 90, left: 70, right:150};
         else            margin = {top: 90, bottom: 90, left: 100, right: 120};
@@ -4470,10 +4451,38 @@ function showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS) {
         graphHeight = scatterS[9];
 
         for (var k=0; k<ngroup; k++) {
+/*
           x1  = margin.left;
           y1  = margin.top  + graphHeight - graphHeight*((alphaR[k]+betaR[k]*gxmin)-gymin)/gyrange;
           x2  = margin.left + graphWidth;
           y2  = margin.top  + graphHeight - graphHeight*((alphaR[k]+betaR[k]*gxmax)-gymin)/gyrange;
+*/          
+          // 그래프 영역을 벗어났을때의 처리
+          tx1 = gxmin;
+          ty1 = alphaR[k]+betaR[k]*tx1;
+          if (ty1 > gymax) {
+            tx1 = (gymax - alphaR[k]) / betaR[k];
+            ty1 = alphaR[k] + betaR[k]*tx1; 
+          }
+          if (ty1 < gymin) {
+            tx1 = (gymin - alphaR[k]) / betaR[k];
+            ty1 = alphaR[k] + betaR[k]*tx1; 
+          }
+          tx2 = gxmax;
+          ty2 = alphaR[k]+betaR[k]*tx2;
+          if (ty2 > gymax) {
+            tx2 = (gymax - alphaR[k]) / betaR[k];
+            ty2 = alphaR[k] + betaR[k]*tx2; 
+          }
+          if (ty2 < gymin) {
+            tx2 = (gymin - alphaR[k]) / betaR[k];
+            ty2 = alphaR[k] + betaR[k]*tx2; 
+          }
+
+          x1  = margin.left + graphWidth*(tx1-gxmin)/gxrange;
+          y1  = margin.top  + graphHeight - graphHeight*(ty1-gymin)/gyrange;
+          x2  = margin.left + graphWidth*(tx2-gxmin)/gxrange;
+          y2  = margin.top  + graphHeight - graphHeight*(ty2-gymin)/gyrange;
           
           chart.append("line")
                  .attr("class","reglabel")
