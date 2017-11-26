@@ -184,11 +184,11 @@
         <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
 	<input type="text" value="" id="selectedVars" height="15px" size=20> &nbsp;
 
-	<button id="debugBtn" style='height: 20px; padding: 0 10px 0 10px;'>
+	<button type="button" id="debugBtn" style='height: 20px; padding: 0 10px 0 10px;'>
 	  <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
 	</button>
 
-	<button id='variableBtn' style='height: 20px; padding: 0 10px 0 10px;'>
+	<button type="button" id='variableBtn' style='height: 20px; padding: 0 10px 0 10px;'>
 	  <span data-msgid='Edit Variables'>변량편집</span>
 	</button>
       <div id="datasheet" style="width:380px; height:675px; overflow: auto;"> </div>
@@ -309,11 +309,11 @@
         <label>&nbsp;<input type="checkbox" id="HistMean"><span data-msgid="Mean">평균</span></label>
         <label><input type="checkbox" id="HistFreq"><span data-msgid="Frequency">도수</span></label>
         <label><input type="checkbox" id="HistLine"><span data-msgid="Frequency Polygon">도수분포다각형</span></label> &nbsp
-	<button id="histTable" >
+	<button type="button" id="histTable" >
 	  <span data-msgid="Frequency Table">도수분포표</span>
 	</button>
         <br>&nbsp
-	<button id="HistRedraw" >
+	<button type="button" id="HistRedraw" >
 	  <span data-msgid="Execute New Interval">새 구간으로 실행</span>
 	</button>&nbsp
         &nbsp;<span data-msgid="Interval Start">구간시작</span> <input type="text" class="textarea" value="0" size=4  id="HistInit"> &nbsp
@@ -359,7 +359,7 @@
             </span>
           </span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <button size=12 id="executeTH8" >
+	  <button type="button" size=12 id="executeTH8" >
 	    <span data-msgid="Execute">실행</span>
 	  </button>&nbsp
         </form>
@@ -409,7 +409,7 @@
             <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-	  <button size=12 id="executeTH9" >
+	  <button type="button" size=12 id="executeTH9" >
 	    <span data-msgid="Execute">실행</span>
 	  </button>&nbsp
         </form>
@@ -463,7 +463,7 @@
           <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-	  <button size=12 id="executeTH10" >
+	  <button type="button" size=12 id="executeTH10" >
 	    <span data-msgid="Execute">실행</span>
 	  </button>&nbsp
         </form>
@@ -497,7 +497,7 @@
             <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <button size=12 id="executeTH11" >
+	  <button type="button" size=12 id="executeTH11" >
 	    <span data-msgid="Execute">실행</span>
 	  </button>&nbsp
         </form>
@@ -521,7 +521,7 @@
           <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <button size=12 id="executeTH12" >
+	  <button type="button" size=12 id="executeTH12" >
 	    <span data-msgid="Execute">실행</span>
 	  </button>&nbsp
         </form>
@@ -534,7 +534,7 @@
           &nbsp;&nbsp;<span data-msgid="y title : ">y축제목 :</span> <input type="text" id="titleY" size="20">  <br>
           &nbsp;&nbsp;<span data-msgid="x title : ">x축제목 :</span> <input type="text" id="titleX" size="20">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <button size=12 id="executeTH13" >
+	  <button type="button" size=12 id="executeTH13" >
 	    <span data-msgid="Modify">수정</span>
 	  </button>
         </form>
@@ -545,7 +545,7 @@
 	<div class="dialog" id="dialog_readFromURL">
 	  URL: <input type="text" value="" id="text_readFromURL" size=70>
           &nbsp;&nbsp;
-	  <button id="button_readFromURLSubmit" >
+	  <button type="button" id="button_readFromURLSubmit" >
 	    <span data-msgid="Confirm">확인</span>
 	  </button>
 	  <br>
@@ -636,11 +636,11 @@
         </table>
         <h5>&nbsp;&nbsp; <span data-msgid="* Less than nine value labels allowed.">* 9개 이하의 변량값명을 지정할 수 있음</span> </h5>
         &nbsp;&nbsp;
-	  <button id="vconfirm" size="10" >
+	  <button type="button" id="vconfirm" size="10" >
 	    <span data-msgid="Save">저장</span>
 	  </button>
         &nbsp;&nbsp;
-	  <button id="vcancel" size="10" >
+	  <button type="button" id="vcancel" size="10" >
 	    <span data-msgid="Exit">나가기</span>
 	  </button>
       </div>
