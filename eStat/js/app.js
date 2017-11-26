@@ -2204,6 +2204,7 @@ languageNumber = {
 }
 $(document).ready(function() {
     var userLang = navigator.language || navigator.userLanguage;
+    userLang = userLang.split("-")[0];
     $('#select_language').val(userLang);
     setLanguage(userLang);
 });
