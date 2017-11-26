@@ -10,7 +10,7 @@ var freqMin, freqMax, numVar, rawData, checkNumeric, checkVarSelect;
 var svgWidth, svgHeight, margin, graphWidth, graphHeight;
 var svgWidth2, svgHeight2;
 var title, graphNum;
-//	var langNum	 = 0;
+var langNum = 0;
 var rowMax = 200; // 시트행 최대
 var colMax = 10; // 시트열 최대
 var buffer = 20; // 우측 y선과 범례와  간격
@@ -144,7 +144,7 @@ var checkFreq, checkBandFreq, checkMissing, checkData, checkSave;
 var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkRegress;
 buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
-graphTitle(); // 디폴트 그래프 제목 
+graphTitle(); // 디폴트 그래프 제목
 // 학습수준 컨트롤
 var levelNum = localStorage.getItem("level");
 if (levelNum == null) levelNum = "3";
@@ -160,7 +160,7 @@ if (levelNum == "1") { // 초등
 } else if (levelNum == "2") { // 중등
     document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
-    document.getElementById("statTable").style.display = "block"; // 기초통계량 
+    document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
@@ -168,13 +168,12 @@ if (levelNum == "1") { // 초등
 } else if (levelNum == "3") { // 대학
     document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
-    document.getElementById("statTable").style.display = "block"; // 기초통계량 
-    document.getElementById("screenTopRight1").style.display = "block"; // 가설검정 
+    document.getElementById("statTable").style.display = "block"; // 기초통계량
+    document.getElementById("screenTopRight1").style.display = "block"; // 가설검정
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
-    document.getElementById("estatU").style.display = "block"; // 대학 모듈 
+    document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-}
-// =================================================================
+} // =================================================================
 // 시트 컨트롤
 // =================================================================
 // sheet 초기화 및 만들기
@@ -262,8 +261,6 @@ d3.select("#new").on("click", function() {
     numVar = 0;
     initEventControl(datasheet);
 }) // endof new sheet
-
-
 /*
  *  Common functions for initializing the handsontable
  *  when the datasheet is updated
@@ -283,7 +280,7 @@ function initEventControl(datasheet) {
         } else {
             datasheet.setCellMeta(row, col, "className", "htRight");
         }
-        // update raw data & obs 
+        // update raw data & obs
         for (j = 0; j < colMax; j++) {
             rvar[j] = datasheet.getDataAtCol(j);
             robs[j] = 0;
@@ -330,16 +327,16 @@ function initEventControl(datasheet) {
                 tdobs[numVar + j] = robs[k];
                 tdvalueNum[numVar + j] = rvalueNum[k];
                 tdvarName[numVar + j] = datasheet.getColHeader(j + selected[1]);
-/*
-		tdvalue[numVar + j] = rvalue[k];
-                tdvalueLabel[numVar + j] = rvalueLabel[k];
-*/
-		 // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
-              for (m = 0; m < robs[k]; m++) {
-                tdvalue[numVar+j][m]      = rvalue[k][m];
-                tdvalueLabel[numVar+j][m] = rvalueLabel[k][m];     
-              }
-		
+                /*
+                		tdvalue[numVar + j] = rvalue[k];
+                                tdvalueLabel[numVar + j] = rvalueLabel[k];
+                */
+                // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+                for (m = 0; m < robs[k]; m++) {
+                    tdvalue[numVar + j][m] = rvalue[k][m];
+                    tdvalueLabel[numVar + j][m] = rvalueLabel[k][m];
+                }
+
                 tdvar[numVar + j] = datasheet.getDataAtCol(j + selected[1]);
             }
             numVar += numOfSelectedColumns;
@@ -352,8 +349,6 @@ function initEventControl(datasheet) {
         }
     });
 } // 데이터시트 이벤트 초기화 함수 끝 --------------------------------------------
-
-
 // automatically set alignment and colWidth
 // according to the data types (string, numeric)
 //
@@ -391,10 +386,7 @@ function updateCellMeta() {
     } // endof j
     datasheet.getSettings().colWidths = colWidth;
     datasheet.render();
-}
-
-
-// update global data variables:
+} // update global data variables:
 // rvar, rvarName, robs, numRow, numCol, rvalue
 //
 function updateGlobalDataVariables() {
@@ -422,7 +414,6 @@ function updateGlobalDataVariables() {
         }
     }
 }
-
 /*
  * open an example
  *
@@ -464,7 +455,6 @@ $("#button_readFromURLSubmit").click(function() {
 
 });
 
-
 /*
  * import a CSV file
  *
@@ -489,9 +479,7 @@ function importCSV(evt) {
 }
 
 function updateDatasheetWithArrayOfRows(data, colHeaders) {
-
     datasheet.destroy();
-
     datasheet = new Handsontable(container, {
         data: data,
         minRows: rowMax, // 파일 읽을때는 데이터 개수만큼만 되어야
@@ -506,7 +494,7 @@ function updateDatasheetWithArrayOfRows(data, colHeaders) {
         multiSelect: true,
         fragmentSelection: false,
     });
-    // initialize 
+    // initialize
     updateCellMeta();
     variableSelectClear();
     buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
@@ -514,7 +502,6 @@ function updateDatasheetWithArrayOfRows(data, colHeaders) {
     initEventControl(datasheet);
     updateGlobalDataVariables();
 }
-
 /*
  * open a data file (JSON)
  *
@@ -538,9 +525,7 @@ function openFile(evt) {
 }
 
 function updateDatasheetWith(dataobj) {
-
     datasheet.destroy();
-
     datasheet = new Handsontable(container, {
         data: dataobj.data,
         minRows: rowMax,
@@ -555,13 +540,12 @@ function updateDatasheetWith(dataobj) {
         multiSelect: true,
         fragmentSelection: false,
     });
-    // initialize 
+    // initialize
     updateCellMeta();
     variableSelectClear();
     buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
     graphTitle(); // set default graph title
     initEventControl(datasheet);
-
     // 새 파일 값으로 변량 입력 : To be finished with system file
     for (j = 0; j < colMax; j++) {
         rvar[j] = datasheet.getDataAtCol(j);
@@ -637,7 +621,7 @@ d3.select("#save").on("click", function() {
     });
     saveAs(blob, filename);
 }) // ------------------------------------------------------------------
-// Data Save 가능여부 체크				   
+// Data Save 가능여부 체크
 function checkDataSave() {
     checkSave = true;
     for (j = 0; j < numCol; j++) {
@@ -744,7 +728,7 @@ rad1[1].onclick = function() { // 중등
     localStorage.setItem("level", levelNum);
     document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
-    document.getElementById("statTable").style.display = "block"; // 기초통계량 
+    document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
@@ -756,12 +740,13 @@ rad1[2].onclick = function() { // 대학
     localStorage.setItem("level", levelNum);
     document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
-    document.getElementById("statTable").style.display = "block"; // 기초통계량 
-    document.getElementById("screenTopRight1").style.display = "block"; // 가설검정 
+    document.getElementById("statTable").style.display = "block"; // 기초통계량
+    document.getElementById("screenTopRight1").style.display = "block"; // 가설검정
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
-    document.getElementById("estatU").style.display = "block"; // 대학 모듈 
+    document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-} // 분리형 막대그래프 : 주메뉴
+}
+// 분리형 막대그래프 : 주메뉴
 d3.select("#separate1").on("click", function() {
     graphNum = 1;
     dataClassify();
@@ -876,7 +861,8 @@ rad2[2].onclick = function() { // 올림차순
         drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
     }
-} // 쌓는형 수직 막대 버튼 클릭
+}
+// 쌓는형 수직 막대 버튼 클릭
 d3.select("#stack2V").on("click", function() {
     graphNum = 2;
     dataClassify();
@@ -1169,7 +1155,7 @@ d3.select("#freqTable").on("click", function() {
 // ==========================================================================================
 // 연속형 변량 그래프 ========================================================================
 //===========================================================================================
-// 그룹 점그래프 : 주메뉴 
+// 그룹 점그래프 : 주메뉴
 d3.select("#dot1").on("click", function() {
     graphNum = 15;
     dataClassifyM();
@@ -1223,7 +1209,7 @@ d3.select("#hist1").on("click", function() {
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     chart.selectAll("*").remove();
     nint = 7;
-    xstep = (tstat[7] - tstat[3]) / nint; // (전체 최대 - 최소) / 인터발수	: 양쪽 그래프 buffer 
+    xstep = (tstat[7] - tstat[3]) / nint; // (전체 최대 - 최소) / 인터발수	: 양쪽 그래프 buffer
     gxminH = tstat[3] - xstep;
     var para = drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName);
     gxmaxH = para.a;
@@ -1253,7 +1239,7 @@ d3.select("#HistFreq").on("click", function() {
         removeHistFreq();
     }
 })
-// 히스토그램 꺽은선그래프 표시 
+// 히스토그램 꺽은선그래프 표시
 d3.select("#HistLine").on("click", function() {
     if (Histogram == false) return;
     if (this.checked) {
@@ -1264,7 +1250,7 @@ d3.select("#HistLine").on("click", function() {
         removeHistLine()
     }
 })
-// 히스토그램 도수분포표 표시 
+// 히스토그램 도수분포표 표시
 d3.select("#histTable").on("click", function() {;
     if (Histogram == false) return;
     showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gvalueLabel)
@@ -1273,8 +1259,8 @@ d3.select("#histTable").on("click", function() {;
 d3.select("#HistRedraw").on("click", function() {
     if (Histogram == false) return;
     chart.selectAll("*").remove(); // 전화면 제거
-    var start = parseFloat(d3.select("#HistInit").node().value); // 시작값 
-    xstep = parseFloat(d3.select("#HistStep").node().value); // 구간너비 
+    var start = parseFloat(d3.select("#HistInit").node().value); // 시작값
+    xstep = parseFloat(d3.select("#HistStep").node().value); // 구간너비
     if (start > tstat[3]) start = tstat[3];
     if (xstep <= 0) xstep = (tstat[7] - tstat[3]) / nint;
     gxminH = start - xstep;
@@ -1351,7 +1337,7 @@ d3.select("#scatter1").on("click", function() {
     Scatter = true;
     document.getElementById("scatter1").style.backgroundColor = buttonColorH;
     tobs = xobs;
-    SortAscendBasic(tobs, gdata, dataA); // Sorting data in ascending order 
+    SortAscendBasic(tobs, gdata, dataA); // Sorting data in ascending order
     ngroup = DotValueFreq(tobs, dataA, gdataValue, gvalueFreq)
     bivarStatByGroup(ngroup, tobs, xdata, ydata, gdata, nobs, xavg, yavg, xstd, ystd, alphaR, betaR, corr, rsquare)
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
@@ -1746,7 +1732,7 @@ d3.select("#testM12").on("click", function() {
         chart.append("text").attr("class", "mean").attr("x", 150).attr("y", 100)
             .text("No input or wrong input !!	 Try again.").style("stroke", "red");
         return;
-    } else { // t-test	   
+    } else { // t-test
         if (h1Type == 1) {
             h = alpha / 2;
             if (testType == 1) {
@@ -1853,7 +1839,7 @@ d3.select("#executeTH10").on("click", function() {
         chart.append("text").attr("class", "mean").attr("x", 150).attr("y", 100)
             .text("No input or wrong input !!	 Try again.").style("stroke", "red");
         return;
-    } else { // t-test	   
+    } else { // t-test
         if (h1Type == 1) {
             h = alpha / 2;
             if (testType == 1) {
@@ -2149,7 +2135,7 @@ d3.select("#editGraph").on("click", function() {
     buttonColorChange();
     EditGraph = true;
     document.getElementById("editGraph").style.backgroundColor = buttonColorH;
-    document.getElementById("sub13").style.display = "block"; //그래프 제목편집 선택사항표시   
+    document.getElementById("sub13").style.display = "block"; //그래프 제목편집 선택사항표시
     // 현재 제목 쓰기
     d3.select("#titleMain").node().value = mTitle[graphNum];
     d3.select("#titleY").node().value = yTitle[graphNum];
@@ -2162,12 +2148,14 @@ d3.select("#executeTH13").on("click", function() {
     xTitle[graphNum] = d3.select("#titleX").node().value;
     redrawGraph(graphNum);
 })
+
 // jQuery 대화상자 초기화?
 $(".dialog").dialog({
     autoOpen: false,
     modal: true,
     width: 'auto',
 });
+
 // 변량 편집 버튼 : V1 (jj=0) 만 해당
 d3.select("#variableBtn").on("click", function() {
     variableSelectClear();
@@ -2202,7 +2190,7 @@ function selectVarUpdate() {
 } // endof selectVarUpdate()  ---------------------------------------------
 // 편집창 varlist에 초기값 표시 함수 ---------------------------------------
 function selectVarInit() {
-    // 변량명 초기화  
+    // 변량명 초기화
     d3.select("#vname").node().value = rvarName[jj];
     // 편집창 셀에 변량값 입력
     for (k = 0; k < maxNumEdit; k++) {
@@ -2232,56 +2220,247 @@ d3.select("#vcancel").on("click", function() {
     });
     $("#sub14").dialog("close");
 })
-
-
 // Language Selector
-
 languageNumber = {
-    'ko' : 0,
-    'en' : 1,
+    'ko': 0,
+    'en': 1,
 }
-
 $(document).ready(function() {
     var userLang = navigator.language || navigator.userLanguage;
-    $('#select_language').val(userLang);    
+    userLang = userLang.split("-")[0];
+    $('#select_language').val(userLang);
     setLanguage(userLang);
 });
-
-
 $('#select_language').change(function() {
     var lang = $("#select_language option:selected").val();
     setLanguage(lang);
 });
 
 function setLanguage(lang) {
-    langNum = languageNumber[lang];    
+    langNum = languageNumber[lang];
     $('[data-msgid]').each(function() {
-	var $this = $(this);
-	$this.html($.message[lang][$this.data('msgid')]);
+        var $this = $(this);
+        $this.html($.message[lang][$this.data('msgid')]);
     });
+    graphTitle()
 }
-
 $.message = {}
 $.message.ko = {
-    'eStat' : 'eStat: 통계교육SW',
-    'Filename' : '파일이름',
-    'Selected Variables': '선택변량',
-    'Cancel' : '취소',
-    'Edit Variables' : '변량편집',
-    'Level' : '수준',
-    'ElementaryLevel' : '초',
-    'MiddleLevel' : '중',
-    'UniversityLevel' : '대',    
+    "eStat : Stat Education SW" : "eStat: 통계교육SW",
+    "Filename" : "파일이름",
+    "Selected Variables" : "선택변량",
+    "Cancel" : "취소",
+    "Edit Variables" : "변량편집",
+    "Level" : "수준",
+    "ElementaryLevel" : "초",
+    "MiddleLevel" : "중",
+    "UniversityLevel" : "대",
+    "Example" : "예제 불러오기",
+    "New Sheets" : "새시트",
+    "csv Open" : "csv 불러오기",
+    "www Open" : "www 불러오기",
+    "json Open" : "json 불러오기",
+    "csv Save" : "csv 저장",
+    "json Save" : "json 저장",
+    "Print Sheet" : "시트 Print",
+    "Bar Graph" : "막대그래프",
+    "Pie Chart" : "원그래프",
+    "Band Graph" : "띠그래프",
+    "Line Graph" : "꺽은선그래프",
+    "Dot Graph" : "점그래프",
+    "Histogram" : "히스토그램",
+    "Stem & Leaf Plot" : "줄기와 잎그림",
+    "Box-Whisker Plot" : "상자그래프",
+    "Scatterplot" : "산점도",
+    "Frequency Table" : "도수분포표",
+    "Basic Statistics" : "기초통계량",
+    "Testing Hypothesis &mu;" : "추검정 &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>" : "추검정 &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "검정 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "검정 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance" : "분산분석",
+    "High School Stat Education" : "고등 통계교육",
+    "University Stat Education" : "대학 통계교육",
+    "Elem Stat Graph Example" : "초중그래프 예",
+    "Learning eStat w Example" : "eStat 예제학습",
+    "Vertical Separated Bar" : "수직 분리형",
+    "Vertical Stacked Bar" : "수직 쌓는형",
+    "Vertical Ratio Bar" : "수직 비율형",
+    "Vertical Side by Side Bar" : "수직 나란형",
+    "Vertical Two Sided Bar" : "수직 양쪽형",
+    "Horizontal Separated Bar" : "수평 분리형",
+    "Horizontal Stacked Bar" : "수평 쌓는형",
+    "Horizontal Ratio Bar" : "수평 비율형",
+    "Horizontal Side by Side Bar" : "수평 나란형",
+    "Horizontal Two Sided Bar" : "수평 양쪽형",
+    "Doughnut Graph" : "도넛그래프",
+    "Two Sided Stem & Leaf Plot" : "양쪽형 줄기",
+    "Graph Save" : "그래프 저장",
+    "Graph Print" : "그래프 Print",
+    "Move to Table" : "테이블로 이동",
+    "Edit Title" : "제목편집",
+    "Table Save" : "테이블 저장",
+    "Table Print" : "테이블 인쇄",
+    "Frequency" : "도수표시",
+    "(Sorting)" : "(정렬)",
+    "Raw Data" : "원자료",
+    "Descending" : "내림차순",
+    "Ascending" : "올림차순",
+    "Frequency" : "도수표시",
+    "(Sorting)" : "(정렬)",
+    "Raw Data" : "원자료",
+    "Descending" : "내림차순",
+    "Ascending" : "올림차순",
+    "Mean" : "평균",
+    "Std Deviation" : "표준편차",
+    "Regression" : "회귀선",
+    "Mean" : "평균",
+    "Frequency" : "도수",
+    "Frequency Polygon" : "도수분포다각형",
+    "Frequency Table" : "도수분포표",
+    "Execute New Interval" : "새 구간으로 실행",
+    "Interval Start" : "구간시작",
+    "Interval Width" : "구간너비",
+    "t-test" : "t-검정",
+    "Z-test" : "Z-검정",
+    "(if Z-test, enter &sigma;)" : "(Z-검정이면 입력)",
+    "Significance Level" : "유의수준",
+    "Execute" : "실행",
+    "(Confidence Interval)" : "(신뢰구간)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(Z-검정이면, Z<sub>1-&alpha;/2 </sub> 이용)",
+    "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> 검정",
+    "Significance Level" : "유의수준",
+    "Execute" : "실행",
+    "(Confidence Interval)" : "(신뢰구간)",
+    "Variance Assumption" : "분산가정",
+    "Significance Level" : "유의수준",
+    "Execute" : "실행",
+    "F test" : "F 검정",
+    "Significance Level" : "유의수준",
+    "Execute" : "실행",
+    "At least one pair of means is different" : "적어도 한쌍 이상의 평균이 다름",
+    "F test" : "F 검정",
+    "Significance Level" : "유의수준",
+    "Execute" : "실행",
+    "Main Title : " : "주 제목 : ",
+    "y title : " : "y축제목 : ",
+    "x title : " : "x축제목 : ",
+    "Modify" : "수정",
+    "Confirm" : "확인",
+    "Variable Name" : "변량명",
+    "Variable Value" : "변량값",
+    "Value Label" : "변량값명",
+    "* Less than nine value labels allowed." : "* 9개 이하의 변량값명을 지정할 수 있음",
+    "Save" : "저장",
+    "Exit" : "나가기",
 }
 $.message.en = {
-    'eStat' : 'eStat : Stat Education SW',
-    'Filename' : 'Filename',
-    'Selected Variables': 'Selected Vars',
-    'Cancel' : 'Cancel',
-    'Edit Variables' : 'EditVar',
-    'Level' : 'Level',
-    'ElementaryLevel' : 'E',
-    'MiddleLevel' : 'M',
-    'UniversityLevel' : 'U',
+    "eStat : Stat Education SW" : "eStat : Stat Education SW",
+    "Filename" : "Filename",
+    "Selected Variables" : "Var Select",
+    "Cancel" : "Cancel",
+    "Edit Variables" : "EditVar",
+    "Level" : "Level",
+    "ElementaryLevel" : "E",
+    "MiddleLevel" : "M",
+    "UniversityLevel" : "U",
+    "Example" : "Example",
+    "New Sheets" : "New Sheets",
+    "csv Open" : "csv Open",
+    "www Open" : "www Open",
+    "json Open" : "json Open",
+    "csv Save" : "csv Save",
+    "json Save" : "json Save",
+    "Print Sheet" : "Print Sheet",
+    "Bar Graph" : "Bar Graph",
+    "Pie Chart" : "Pie Chart",
+    "Band Graph" : "Band Graph",
+    "Line Graph" : "Line Graph",
+    "Dot Graph" : "Dot Graph",
+    "Histogram" : "Histogram",
+    "Stem & Leaf Plot" : "Stem & Leaf Plot",
+    "Box-Whisker Plot" : "Box-Whisker Plot",
+    "Scatterplot" : "Scatterplot",
+    "Frequency Table" : "Frequency Table",
+    "Basic Statistics" : "Basic Statistics",
+    "Testing Hypothesis &mu;" : "Testing Hypothesis &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>" : "Testing Hypothesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance" : "Analysis of Variance",
+    "High School Stat Education" : "High School Stat Education",
+    "University Stat Education" : "University Stat Education",
+    "Elem Stat Graph Example" : "Elem Stat Graph Example",
+    "Learning eStat w Example" : "Learning eStat w Example",
+    "Vertical Separated Bar" : "Vertical Separated Bar",
+    "Vertical Stacked Bar" : "Vertical Stacked Bar",
+    "Vertical Ratio Bar" : "Vertical Ratio Bar",
+    "Vertical Side by Side Bar" : "Vertical Side by Side Bar",
+    "Vertical Two Sided Bar" : "Vertical Two Sided Bar",
+    "Horizontal Separated Bar" : "Horizontal Separated Bar",
+    "Horizontal Stacked Bar" : "Horizontal Stacked Bar",
+    "Horizontal Ratio Bar" : "Horizontal Ratio Bar",
+    "Horizontal Side by Side Bar" : "Horizontal Side by Side Bar",
+    "Horizontal Two Sided Bar" : "Horizontal Two Sided Bar",
+    "Doughnut Graph" : "Doughnut Graph",
+    "Two Sided Stem & Leaf Plot" : "Two Sided Stem & Leaf Plot",
+    "Graph Save" : "Graph Save",
+    "Graph Print" : "Graph Print",
+    "Move to Table" : "Move to Table",
+    "Edit Title" : "Edit Title",
+    "Table Save" : "Table Save",
+    "Table Print" : "Table Print",
+    "Frequency" : "Frequency",
+    "(Sorting)" : "(Sorting)",
+    "Raw Data" : "Raw Data",
+    "Descending" : "Descending",
+    "Ascending" : "Ascending",
+    "Frequency" : "Frequency",
+    "(Sorting)" : "(Sorting)",
+    "Raw Data" : "Raw Data",
+    "Descending" : "Descending",
+    "Ascending" : "Ascending",
+    "Mean" : "Mean",
+    "Std Deviation" : "Std Deviation",
+    "Regression" : "Regression",
+    "Mean" : "Mean",
+    "Frequency" : "Frequency",
+    "Frequency Polygon" : "Frequency Polygon",
+    "Frequency Table" : "Frequency Table",
+    "Execute New Interval" : "Execute New Interval",
+    "Interval Start" : "Interval Start",
+    "Interval Width" : "Interval Width",
+    "t-test" : "t-test",
+    "Z-test" : "Z-test",
+    "(if Z-test, enter &sigma;)" : "(if Z-test, enter &sigma;)",
+    "Significance Level" : "Significance Level",
+    "Execute" : "Execute",
+    "(Confidence Interval)" : "(Confidence Interval)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)",
+    "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> test",
+    "Significance Level" : "Significance Level",
+    "Execute" : "Execute",
+    "(Confidence Interval)" : "(Confidence Interval)",
+    "Variance Assumption" : "Variance Assumption",
+    "Significance Level" : "Significance Level",
+    "Execute" : "Execute",
+    "F test" : "F test",
+    "Significance Level" : "Significance Level",
+    "Execute" : "Execute",
+    "At least one pair of means is different" : "At least one pair of means is different",
+    "F test" : "F test",
+    "Significance Level" : "Significance Level",
+    "Execute" : "Execute",
+    "Main Title : " : "Main Title : ",
+    "y title : " : "y title : ",
+    "x title : " : "x title : ",
+    "Modify" : "Modify",
+    "Confirm" : "Confirm",
+    "Variable Name" : "Variable Name",
+    "Variable Value" : "Variable Value",
+    "Value Label" : "Value Label",
+    "* Less than nine value labels allowed." : "* Less than nine value labels allowed.",
+    "Save" : "Save",
+    "Exit" : "Exit",
 }
 

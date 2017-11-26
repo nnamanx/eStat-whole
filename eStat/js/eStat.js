@@ -759,7 +759,8 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
             if (ngroup == 1) str = dvarName+svgStr[19][langNum]+iTitle[graphNum];
             else str = "("+svgStr[18][langNum]+" "+gvarName+") " + " "+dvarName+svgStr[19][langNum]+ iTitle[graphNum];
           } 
-          else str = iTitle[graphNum];   
+          else str = iTitle[graphNum];  
+          mTitle[graphNum] = str; 
         } else {
           str = mTitle[graphNum];
         }     
@@ -771,6 +772,7 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
         // x축제목 값설정
         xstr = dvarName;
         if (xTitle[graphNum] != "") xstr = xTitle[graphNum];
+        xTitle[graphNum] = xstr;
 
         // 주제목
         chart.append("text")
@@ -2506,10 +2508,10 @@ function drawXaxis(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth) {
 
         // draw x축 레이블
         var angle, str;
-        ty = y1;
-        if (ndvalue < 10)     {angle = 0;  str = "barname";  y1 =  svgHeight - margin.bottom + 15; }
-        else if(ndvalue < 30) {angle = 30; str = "barnames"; y1 =  svgHeight - margin.bottom + 10;}
-        else                  {angle = 90; str = "barnames"; y1 =  svgHeight - margin.bottom + 5;}
+        ty = margin.top + graphHeight;        
+        if (ndvalue < 10)     {angle = 0;  str = "middle";  y1 =  ty + 15; }
+        else if(ndvalue < 30) {angle = 30; str = "start";   y1 =  ty + 10;}
+        else                  {angle = 90; str = "start";   y1 =  ty + 5;}
 
         for (var i=0; i<ndvalue; i++) {
           tx = margin.left + gapWidth + barWidth/2 + i*betweenbarWidth;
@@ -2525,7 +2527,7 @@ function drawXaxis(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth) {
                .style("stroke","black") 
                .style("stroke-width","0.5")    
           chart.append("text")   // x축 레이블
-               .attr("text-anchor","middle")
+               .attr("text-anchor",str)
                .attr("font-size","9px")
                .attr("font-family","sans-serif")
                .attr("x", x1)
@@ -3092,7 +3094,7 @@ function drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNa
         if (mTitle[graphNum] == "") {
           if (ngroup == 1) str = dvarName+svgStr[19][langNum]+iTitle[graphNum];
           else str = "("+svgStr[18][langNum]+" "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum];
-//          mTitle[graphNum] = str;
+          mTitle[graphNum] = str;
         }
         else str = mTitle[graphNum];
     
@@ -3143,7 +3145,7 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(dvarName)
-
+        xTitle[graphNum] = dvarName;
         // 그룹별 점그래프
         for (k=0; k<ngroup; k++) {
           // 범례
@@ -3379,6 +3381,7 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
            .attr("x",margin.left + graphWidth/2)
            .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
            .text(dvarName)
+      xTitle[graphNum] = dvarName;
       // Y축 제목
       str = svgStr[16][langNum];
       chart.append("text")
@@ -3390,7 +3393,7 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
            .attr("y",margin.top+ 15)
            .text(str)
            .attr("transform", "rotate(-90 30 100)")
-
+      yTitle[graphNum] = str;
       // 그룹 히스토그램
       for (k=0; k<ngroup; k++) {
         // 범례
@@ -4285,7 +4288,7 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
         if (mTitle[graphNum] == "") {
           if (numVar == 2) str = xvarName + " : "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
           else str = "("+svgStr[18][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
-//          mTitle[graphNum] = str;
+          mTitle[graphNum] = str;
         }
         else str = mTitle[graphNum];
 
@@ -4307,6 +4310,7 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
              .attr("y",margin.top + 20)
              .text(yvarName)
              .attr("transform", "rotate(-90 30 100)")
+        yTitle[graphNum] = yvarName;
         // X축 제목
         chart.append("text")
              .attr("font-size","12px")
@@ -4316,7 +4320,7 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(xvarName)
-
+        xTitle[graphNum] = xvarName;
 }
 
 // 산점도 그리기 ----------------------------------------------------------------------------------------------
