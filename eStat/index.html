@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
     <title data-msgid="eStat">eStat: 통계교육SW</title>
@@ -14,75 +14,64 @@
     <script src="lib/DistributionsUtil.js" ></script>
     <script src="lib/convertSVG.js"></script>   
     <script src="js/eStat.js" ></script>
-    <script> var langNum = 0; </script>
 </head>
 
 <body>
 
   <div id="screenTop" > 
     <div id="screenTopLeft" style="position:absolute; top:20px; ">
-
       <div class="tooltip" > &nbsp;
         <img src="img/example.png" id="exBtn" class="imageBtn1" >
-        <span class="tooltiptext">예제 불러오기</span>
+        <span class="tooltiptext" data-msgid="tooltip11">예제 불러오기</span>
       </div>
-
       <div class="tooltip">
         <img src="img/01.png" id="new" width="38px" height="38px">
-        <span class="tooltiptext">새시트</span>
+        <span class="tooltiptext" data-msgid="tooltip12">새시트</span>
       </div>  
-
       <div class="tooltip">
         <img src="img/02csv.png" id="icon_importCSV" width="38px" height="38px">
-        <span class="tooltiptext">csv 불러오기</span>
+        <span class="tooltiptext" data-msgid="tooltip13">csv 불러오기</span>
         <input type="file" accept=".csv" style="display:none" id="input_importCSV">	
       </div>  
-
       <div class="tooltip">
         <img src="img/open_url.png" id="button_readFromURL" width="38px" height="38px">
-        <span class="tooltiptext">WWW 불러오기</span>
+        <span class="tooltiptext" data-msgid="tooltip14">WWW 불러오기</span>
       </div>  
-
-   <div class="tooltip">
+      <div class="tooltip">
         <img src="img/02.png" id="icon_openFile" width="38px" height="38px">
-        <span class="tooltiptext">json 불러오기</span>
+        <span class="tooltiptext" data-msgid="tooltip15">json 불러오기</span>
         <input type="file" accept=".json" style="display:none" id="input_openFile">
       </div>
-      
-
-      
       <div class="tooltip">
         <img src="img/03csv.png" id="exportCSV" width="38px" height="38px">
-        <span class="tooltiptext">csv 저장</span>
+        <span class="tooltiptext" data-msgid="tooltip16">csv 저장</span>
       </div>  
-
-   
       <div class="tooltip">
         <img src="img/03.png" id="save" width="38px" height="38px">
-        <span class="tooltiptext">json 저장</span>
+        <span class="tooltiptext" data-msgid="tooltip17">json 저장</span>
       </div>  
       <div class="tooltip">
         <img src="img/04.png" id="printSheet" width="38px" height="38px">
-        <span class="tooltiptext">시트 인쇄</span>
+        <span class="tooltiptext" data-msgid="tooltip18">시트 인쇄</span>
       </div>  
     </div>
 
     <div id="screenTopMiddle1" style="position:absolute; left:410px; top:20px; ">
       <div class="tooltip">
         <img src="img/v1_type.png" id="separate1" class="imageBtn1">
-        <span class="tooltiptext">막대그래프</span>
+        <span class="tooltiptext" data-msgid="tooltip21">막대그래프</span>
       </div>  
       <div class="tooltip">
         <img src="img/pie_type.png"    id="pie1" class="imageBtn1">
-        <span class="tooltiptext">원그래프</span>
+        <span class="tooltiptext" data-msgid="tooltip22">원그래프</span>
       </div>   
       <div class="tooltip">
         <img src="img/stack2_type.png" id="band1" class="imageBtn1">
-        <span class="tooltiptext">띠그래프</span>
+        <span class="tooltiptext" data-msgid="tooltip23">띠그래프</span>
       </div> 
       <div class="tooltip">
         <img src="img/08.png"          id="line1" class="imageBtn1">
-        <span class="tooltiptext">꺽은선그래프</span>
+        <span class="tooltiptext" data-msgid="tooltip24">꺽은선그래프</span>
       </div>   
     </div>
 
@@ -90,23 +79,23 @@
       &nbsp;
       <div class="tooltip">
         <img src="img/dot_icon.png"  id="dot1"  class="imageBtn1">
-        <span class="tooltiptext">점그래프</span>
+        <span class="tooltiptext" data-msgid="tooltip25">점그래프</span>
       </div>   
       <div class="tooltip">   
         <img src="img/histo_type.png" id="hist1" class="imageBtn1">
-        <span class="tooltiptext">히스토그램</span>
+        <span class="tooltiptext" data-msgid="tooltip26">히스토그램</span>
       </div>  
       <div class="tooltip">
         <img src="img/leaf_type.png" id="stem1" class="imageBtn1">
-        <span class="tooltiptext">줄기와 잎그림</span>
+        <span class="tooltiptext" data-msgid="tooltip27">줄기와 잎그림</span>
       </div>
       <div class="tooltip">
         <img src="img/box_type2.png" id="box1"  class="imageBtn1">
-        <span class="tooltiptext">상자그래프</span>
+        <span class="tooltiptext" data-msgid="tooltip28">상자그래프</span>
       </div> 
       <div class="tooltip">   
         <img src="img/scatter.png" id="scatter1" class="imageBtn1">
-        <span class="tooltiptext">산점도</span>
+        <span class="tooltiptext" data-msgid="tooltip9">산점도</span>
       </div>
     </div>
 
@@ -114,46 +103,46 @@
       &nbsp;
       <div class="tooltip">
         <img src="img/0725_3.png" id="freqTable" class="imageBtn1">
-        <span class="tooltiptext">도수분포표</span>
+        <span class="tooltiptext" data-msgid="tooltip30">도수분포표</span>
       </div> 
       <div class="tooltip">   
         <img src="img/0725_1.png" id="statTable" class="imageBtn1"> 
-        <span class="tooltiptext">기초통계량</span>
+        <span class="tooltiptext" data-msgid="tooltip31">기초통계량</span>
       </div> 
     </div>
 
     <div id="screenTopRight1" style="position:absolute; left:1010px; top:20px; ">
       <div class="tooltip">
         <img src="img/thmu.png" id="testM1" class="imageBtn3">
-        <span class="tooltiptext">추검정 &mu;</span>
+        <span class="tooltiptext" data-msgid="tooltip41">추검정 &mu;</span>
       </div>  
       <div class="tooltip">
         <img src="img/thsigma.png" id="testS1" class="imageBtn3">
-        <span class="tooltiptext">추검정 &sigma;<sup>2</sup></span>
+        <span class="tooltiptext" data-msgid="tooltip42">추검정 &sigma;<sup>2</sup></span>
       </div>  
       <div class="tooltip">
         <img src="img/thmu12.png" id="testM12" class="imageBtn3">
-        <span class="tooltiptext">검정 &mu;<sub>1</sub>, &mu;<sub>2</sub></span>
+        <span class="tooltiptext" data-msgid="tooltip43">검정 &mu;<sub>1</sub>, &mu;<sub>2</sub></span>
       </div>  
       <div class="tooltip">
         <img src="img/thsigma12.png" id="testS12" class="imageBtn3">
-        <span class="tooltiptext">검정 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup></span>
+        <span class="tooltiptext" data-msgid="tooltip44">검정 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup></span>
       </div>  
       <div class="tooltip">
         <img src="img/anova.png" id="anova" class="imageBtn3">
-        <span class="tooltiptext">분산분석</span>
+        <span class="tooltiptext" data-msgid="tooltip45">분산분석</span>
       </div>  
       <div class="tooltip" >
 	<a href="../eStatH" target="_blank">
           <img src="img/eStatH.png" id="estatH" class="imageBtn1">
 	</a>
-        <span class="tooltiptext">고등 통계교육</span>
+        <span class="tooltiptext" data-msgid="tooltip51">고등 통계교육</span>
       </div>
       <div class="tooltip" >
 	<a href="../eStatU" target="_blank">	
           <img src="img/eStatU.png" id="estatU" class="imageBtn1">
 	</a>
-        <span class="tooltiptext">대학 통계교육</span>
+        <span class="tooltiptext" data-msgid="tooltip52">대학 통계교육</span>
       </div>
     </div>
 
@@ -162,16 +151,15 @@
 	<a href="../eStatE" target="_blank">		
           <img src="img/graphEX.png" id="estatE" class="imageBtn1" >
 	</a>
-        <span class="tooltiptext">초중그래프 예</span>
+        <span class="tooltiptext" data-msgid="tooltip53">초중그래프 예</span>
       </div> 
       <div class="tooltip" >
 	<a href="../ExLearning" target="_blank">
           <img src="img/estat.png" id="estat" class="imageBtn1" >
 	</a>
-        <span class="tooltiptext">eStat 예제학습</span>
+        <span class="tooltiptext" data-msgid="tooltip54">eStat 예제학습</span>
       </div>
     </div>
-
     
     <div id="screenTopRight3" style="position:absolute; left:1440px; top:20px; width:100">
       <select id="select_language">
@@ -179,24 +167,20 @@
 	<option value="ko">한국어</option>
       </select>
       <br>
-
       <form name='myForm1'>
        <span data-msgid="Level">수준</span>
-        <input type="radio" name = "type1" value="1" id="level1"><span data-msgid='ElementaryLevel'>초</span>
-        <input type="radio" name = "type1" value="2" id="level2"><span data-msgid='MiddleLevel'>중</span>
-        <input type="radio" name = "type1" value="3" id="level3" checked><span data-msgid='UniversityLevel'>대</span>
+        <input type="radio" name = "type1" value="1" id="level1"><span data-msgid="ElementaryLevel">초</span>
+        <input type="radio" name = "type1" value="2" id="level2"><span data-msgid="MiddleLevel">중</span>
+        <input type="radio" name = "type1" value="3" id="level3" checked><span data-msgid="UniversityLevel">대</span>
       </form>
     </div>
-
-  </div>
 
   </div>
 
   <div id="screenLeft" style="position:absolute; left:10px; top:72px; font-size: 12px;">
         <label for='loadFileName' data-msgid="Filename">파일이름</label>
 	<input type="text" value="" id="loadFileName" height="15px" size=40>
-        <br>
-	
+        <br>	
         <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
 	<input type="text" value="" id="selectedVars" height="15px" size=20> &nbsp;
 
@@ -217,68 +201,68 @@
         &nbsp;
         <div class="tooltip">
           <img src="img/v4_type.png" id="separate2V" class="imageBtn2">
-          <span class="tooltiptext">수직 분리형</span>
+          <span class="tooltiptext" data-msgid="tooltip61">수직 분리형</span>
         </div>  
         <div class="tooltip">
           <img src="img/v2_type.png" id="stack2V" class="imageBtn2">
-          <span class="tooltiptext">수직 쌓는형</span>
+          <span class="tooltiptext" data-msgid="tooltip62">수직 쌓는형</span>
         </div> 
         <div class="tooltip">
           <img src="img/v3_type.png" id="ratio2V" class="imageBtn2">
-          <span class="tooltiptext">수직 비율형</span>
+          <span class="tooltiptext" data-msgid="tooltip63">수직 비율형</span>
         </div>  
         <div class="tooltip">
           <img src="img/v6_type.png" id="side2V" class="imageBtn2">
-          <span class="tooltiptext">수직 나란형</span>
+          <span class="tooltiptext" data-msgid="tooltip64">수직 나란형</span>
         </div>  
         <div class="tooltip">
           <img src="img/v5_type.png" id="bothbar2V" class="imageBtn2">
-          <span class="tooltiptext">수직 양쪽형</span>
+          <span class="tooltiptext" data-msgid="tooltip65">수직 양쪽형</span>
         </div>
         <div class="tooltip">
           <img src="img/h4_type.png" id="separate2H" class="imageBtn2">
-          <span class="tooltiptext">수평 분리형</span>
+          <span class="tooltiptext" data-msgid="tooltip66">수평 분리형</span>
         </div>  
         <div class="tooltip">
           <img src="img/h2_type.png" id="stack2H" class="imageBtn2">
-          <span class="tooltiptext">수평 쌓는형</span>
+          <span class="tooltiptext" data-msgid="tooltip67">수평 쌓는형</span>
         </div> 
         <div class="tooltip">
           <img src="img/h3_type.png" id="ratio2H" class="imageBtn2">
-          <span class="tooltiptext">수평 비율형</span>
+          <span class="tooltiptext" data-msgid="tooltip68">수평 비율형</span>
         </div>  
         <div class="tooltip">
           <img src="img/h6_type.png" id="side2H" class="imageBtn2">
-          <span class="tooltiptext">수평 나란형</span>
+          <span class="tooltiptext" data-msgid="tooltip69">수평 나란형</span>
         </div>  
         <div class="tooltip">
           <img src="img/h5_type.png" id="bothbar2H" class="imageBtn2">
-          <span class="tooltiptext">수평 양쪽형</span>
+          <span class="tooltiptext" data-msgid="tooltip70">수평 양쪽형</span>
         </div>
         <div class="tooltip">
           <img src="img/donut_type.png"  id="donut2" class="imageBtn2">
-          <span class="tooltiptext">도넛그래프</span>
+          <span class="tooltiptext" data-msgid="tooltip71">도넛그래프</span>
         </div>
         <div class="tooltip">
           <img src="img/leaf_type_both.png" id="bothstem2" class="imageBtn2">
-          <span class="tooltiptext">양쪽형 줄기</span>
+          <span class="tooltiptext" data-msgid="tooltip72">양쪽형 줄기</span>
         </div>  
         &nbsp;&nbsp;   
         <div class="tooltip">
           <img src="img/03saveGraph.png" id="saveGraph" class="imageBtn2">
-          <span class="tooltiptext">그래프 저장</span>
+          <span class="tooltiptext" data-msgid="tooltip81">그래프 저장</span>
         </div> 
         <div class="tooltip">
           <img src="img/04printGraph.png" id="printGraph" class="imageBtn2">
-          <span class="tooltiptext">그래프 인쇄</span>
+          <span class="tooltiptext" data-msgid="tooltip82">그래프 인쇄</span>
         </div>  
         <div class="tooltip">
           <img src="img/03moveGraph.png" id="moveGraph" class="imageBtn2">
-          <span class="tooltiptext">테이블로 이동</span>
+          <span class="tooltiptext" data-msgid="tooltip83">테이블로 이동</span>
         </div> 
         <div class="tooltip">
           <img src="img/editGraph.png" id="editGraph" class="imageBtn2">
-          <span class="tooltiptext">제목편집</span>
+          <span class="tooltiptext" data-msgid="tooltip84">제목편집</span>
         </div>
     </div> <!-- end of SVGtop -->
 
@@ -288,47 +272,52 @@
 
     <div id="option" style="position:relative; left:0px; top:5px"> 
       <div id="sub1">
-        <label>&nbsp;(분리형 막대)&nbsp;<input type="checkbox" id=freq>도수표시</label> 
+        <label>&nbsp;&nbsp;<input type="checkbox" id="freq"><span data-msgid="strsub011">도수표시</span></label> 
       </div>
       <form name="myForm2" >
         <div id="sub2">
-        &nbsp;(분리형 막대 정렬) 
-        <input type="radio" name = "type2" value="1" id="raw" checked>  원자료
-        <input type="radio" name = "type2" value="2" id="descend">    내림차순
-        <input type="radio" name = "type2" value="3" id="ascend">     올림차순 
+        &nbsp;<span data-msgid="strsub021">(정렬)</span> 
+        <input type="radio" name = "type2" value="1" id="raw" checked><span data-msgid="strsub022">  원자료</span>
+        <input type="radio" name = "type2" value="2" id="descend">    <span data-msgid="strsub023">내림차순</span>
+        <input type="radio" name = "type2" value="3" id="ascend">     <span data-msgid="strsub024">올림차순</span>
         </div>
       </form>
 
       <div id="sub3">
-        <label>&nbsp;(띠그래프) <input type="checkbox" id=mean>&nbsp;도수표시</label> <br> 
+        <label>&nbsp;<input type="checkbox" id="mean">&nbsp;<span data-msgid="strsub031">도수표시</span></label> <br> 
       </div>
 
       <form name="myForm3">
         <div id="sub4">
-        &nbsp;(꺽은선그래프 정렬)&nbsp;
-        <input type="radio" name = "type3" value="1" id="raw2" checked>  원자료
-        <input type="radio" name = "type3" value="2" id="descend2">    내림차순
-        <input type="radio" name = "type3" value="3" id="ascend2">     올림차순 <p>
+        &nbsp;<span data-msgid="strsub041">(정렬)</span>&nbsp;
+        <input type="radio" name = "type3" value="1" id="raw2" checked><span data-msgid="strsub042">  원자료</span>
+        <input type="radio" name = "type3" value="2" id="descend2">    <span data-msgid="strsub043">내림차순</span>
+        <input type="radio" name = "type3" value="3" id="ascend2">     <span data-msgid="strsub044">올림차순</span> <p>
         </div>
       </form>
  
       <div id="sub5">
-        &nbsp;(점그래프) <label><input type="checkbox" id=DotMean> 평균</label>
-        <label><input type="checkbox" id=DotStd>표준편차</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;<label><input type="checkbox" id="DotMean"><span data-msgid="strsub051"> 평균</span></label>
+        <label><input type="checkbox" id="DotStd"><span data-msgid="strsub052">표준편차</span></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
 
       <div id="sub6">
-        &nbsp;(산점도) <label><input type="checkbox" id="regress">회귀선</label>  <br>
+        &nbsp;<label><input type="checkbox" id="regress"><span data-msgid="strsub061">회귀선</span></label>  <br>
       </div>
 
       <div id="sub7">
-        <label>&nbsp;(히스토그램) <input type="checkbox" id=HistMean>평균</label>
-        <label><input type="checkbox" id=HistFreq>도수</label>
-        <label><input type="checkbox" id=HistLine>도수분포다각형</label> &nbsp
-        <input type="button" value="도수분포표", id=histTable> <br>
-        &nbsp;<input type="button" value="새 구간으로 실행" id="HistRedraw">  &nbsp
-        &nbsp;구간시작 <input type="text" class="textarea" value="0" size=4  id="HistInit"> &nbsp
-        &nbsp;구간너비 <input type="text" class="textarea" value="10" size=4 id="HistStep"> <p>
+        <label>&nbsp;<input type="checkbox" id="HistMean"><span data-msgid="strsub071">평균</span></label>
+        <label><input type="checkbox" id="HistFreq"><span data-msgid="strsub072">도수</span></label>
+        <label><input type="checkbox" id="HistLine"><span data-msgid="strsub073">도수분포다각형</span></label> &nbsp
+	<button id="histTable" >
+	  <span data-msgid="strsub074">도수분포표</span>
+	</button>
+        <br>&nbsp
+	<button id="HistRedraw" >
+	  <span data-msgid="strsub075">새 구간으로 실행</span>
+	</button>&nbsp
+        &nbsp;<span data-msgid="strsub076">구간시작</span> <input type="text" class="textarea" value="0" size=4  id="HistInit"> &nbsp
+        &nbsp;<span data-msgid="strsub077">구간너비</span> <input type="text" class="textarea" value="10" size=4 id="HistStep"> <p>
       </div>
 
       <div id="sub8"> <!-- TH 1 Mean -->
@@ -351,37 +340,40 @@
 
         <form name="myForm81">&nbsp; &nbsp;
           <span class="fontmath">
-            <input type="radio" name = "type1" value="2" checked> <span class="fontmath">t</span>-test
-            <input type="radio" name = "type1" value="1" > Z-test       
+            <input type="radio" name = "type1" value="2" checked> <span class="fontmath" data-msgid="strsub081">t</span>
+            <input type="radio" name = "type1" value="1" > <span class="fontmath" data-msgid="strsub082">Z</span>       
           </span>
           &nbsp;&nbsp;&nbsp;
           <span class="fontmath">&sigma;</span> =
           <input type="text" class="textarea" size=6 id="std8"> &nbsp;
-          <span class="fontguide">(if Z-test, input &sigma;)</span>
+          <span class="fontguide" data-msgid="strsub083">(Z-검정이면 입력)</span>
          </form>       
 
         <form name="myForm82">&nbsp; &nbsp;
           <span class="fontmath">
-            significance level &nbsp; <span class="fontmath">&alpha;</span> = 
+            <span data-msgid="strsub084">significance level</span> &nbsp; 
+            <span class="fontmath">&alpha;</span> = 
             <span>
-            <input type="radio" name = "type2" value="1" checked> 5%       
-            <input type="radio" name = "type2" value="2" > 1%
+              <input type="radio" name = "type2" value="1" checked> 5%       
+              <input type="radio" name = "type2" value="2" > 1%
             </span>
           </span> 
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="button" value="ReExecute" size=12 id="executeTH8" style="background-color:white;">
+	  <button size=12 id="executeTH8" >
+	    <span data-msgid="strsub085">실행</span>
+	  </button>&nbsp
         </form>   
                  
         <table>
           <tbody>
             <tr>
-              <td colspan="5"><span class="fontmath">&nbsp; [Confidence Interval] </span> </td>
+              <td colspan="5"><span class="fontmath" data-msgid="strsub086">&nbsp; [Confidence Interval] </span> </td>
               <td>&nbsp;</td>
               <td><span class="fontmath">m</span></td>
               <td>&plusmn;</td>
               <td><span class="fontmath">t<sub>n-1, 1-&alpha;/2<sub></span></td>
               <td><span class="fontmath"> (s / &radic; n )</span></td>
-              <td colspan="4"><span class="fontguide">(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)</span> </td>
+              <td colspan="4"><span class="fontguide" data-msgid="strsub087">(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)</span> </td>
               <td>&nbsp;</td>
             </tr>
           </tbody>
@@ -408,21 +400,24 @@
         </form>
   
         <form name="myForm92">&nbsp;&nbsp;&nbsp; 
-          <span class="fontmath">&chi;<sup>2</sup> test </span>    
+          <span class="fontmath" data-msgid="strsub091">&chi;<sup>2</sup> test </span>    
           <br> &nbsp;&nbsp;&nbsp;
           <span class="fontmath">
-            significance level &nbsp; <span class="fontmath">&alpha;</span> = 
+            <span class="fontmath" data-msgid="strsub092">significance level</span> &nbsp;
+            <span class="fontmath">&alpha;</span> = 
             <input type="radio" name = "type2" value="1" checked> 5%       
             <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
-          <input type="button" value="ReExecute" size=12 id="executeTH9" style="background-color:white;">
+	  <button size=12 id="executeTH9" >
+	    <span data-msgid="strsub093">실행</span>
+	  </button>&nbsp
         </form>       
 
         <table>
           <tbody>
             <tr>
-              <td colspan="8"><span class="fontmath">&nbsp; [Confidence Interval] </span> </td>
+              <td colspan="8">&nbsp; <span class="fontmath" data-msgid="strsub094">[Confidence Interval] </span> </td>
               <td>&nbsp;</td>
 	      <td><span class="fontmath">(&nbsp;(n-1)s<sup>2</sup> / &chi;<sup>2</sup> <sub>n-1,1-&alpha;/2</sub></span>&nbsp;,</td>
 	      <td><span class="fontmath">(n-1)s<sup>2</sup> / &chi;<sup>2</sup> <sub>n-1,&alpha;/2</sub> &nbsp;)</span></td>
@@ -451,24 +446,26 @@
     
         <form name="myForm101"> 
           &nbsp; &nbsp; &nbsp;       
-          <span class="fontmath">
-          Assume 
-          <input type="radio" name = "type1" value="1" checked>
-          &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> &nbsp;&nbsp;
-          <input type="radio" name = "type1" value="2" >
-          &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup>  </span>  
+          <span class="fontmath" data-msgid="strsub101"> Assume </span>
+          <span>
+            <input type="radio" name = "type1" value="1" checked>
+            &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> &nbsp;&nbsp;
+            <input type="radio" name = "type1" value="2" >
+            &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup>  </span>  
           </span>
         </form>
 
         <form name="myForm102"> 
           &nbsp; &nbsp; &nbsp;
-          <span class="fontmath">significance level  &nbsp;  &alpha; </span> =
+          <span class="fontmath" data-msgid="strsub102">significance level  &nbsp;  &alpha; </span> 
           <span>
           <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
           <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <input type="button" value="ReExecute" size=12 id="executeTH10" style="background-color:white;">
+	  <button size=12 id="executeTH10" >
+	    <span data-msgid="strsub103">실행</span>
+	  </button>&nbsp
         </form>       
 
       </div>      
@@ -491,16 +488,18 @@
         </form>
 
         <form name="myForm112">&nbsp;&nbsp;&nbsp; 
-          <span class="fontmath">F  test </span>
+          <span class="fontmath" data-msgid="strsub111">F  test </span>
           <br>
           &nbsp;&nbsp;&nbsp; 
-          <span class="fontmath"> significance level &nbsp; &alpha; </span> = 
+          <span class="fontmath" data-msgid="strsub112"> significance level &nbsp; &alpha; </span> 
           <span>
-          <input type="radio" name = "type2" value="1" checked> 5%       
-          <input type="radio" name = "type2" value="2" > 1%
+            <input type="radio" name = "type2" value="1" checked> 5%       
+            <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="button" value="ReExecute" size=12 id="executeTH11" style="background-color:white;">
+	  <button size=12 id="executeTH11" >
+	    <span data-msgid="strsub113">실행</span>
+	  </button>&nbsp
         </form>         
 
       </div>      
@@ -509,41 +508,48 @@
       
         <div class="fontmath">&nbsp;
           H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub> &nbsp;&nbsp;
-          H<sub>1</sub> : at least one pair of population means is not equal   
+          H<sub>1</sub> : <span data-msgid="strsub121">at least one pair of population means is not equal</span>   
         </div> 
  
         <form name="myForm122">&nbsp;&nbsp;&nbsp; 
-          <span class="fontmath">F  test </span>
+          <span class="fontmath" data-msgid="strsub122" >F  test </span>
           <br>
           &nbsp;&nbsp;&nbsp; 
-          <span class="fontmath"> significance level &nbsp; &alpha; </span> = 
+          <span class="fontmath" data-msgid="strsub123"> significance level &nbsp; &alpha; </span>  
           <span>
           <input type="radio" name = "type2" value="1" checked> 5%       
           <input type="radio" name = "type2" value="2" > 1%
           </span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="button" value="ReExecute" size=12 id="executeTH12" style="background-color:white;">
+	  <button size=12 id="executeTH12" >
+	    <span data-msgid="strsub124">실행</span>
+	  </button>&nbsp
         </form>           
       </div>      
 
       <div id="sub13"> <!-- 그래프 제목 편집 -->
         <form>
           <p>
-          &nbsp;&nbsp;주 제목 : <input type="text" id="titleMain" size="50">  <br>
-          &nbsp;&nbsp;y축제목 : <input type="text" id="titleY" size="20">  <br>
-          &nbsp;&nbsp;x축제목 : <input type="text" id="titleX" size="20">  
+          &nbsp;&nbsp;<span data-msgid="strsub131">주 제목 :</span> <input type="text" id="titleMain" size="50">  <br>
+          &nbsp;&nbsp;<span data-msgid="strsub132">y축제목 :</span> <input type="text" id="titleY" size="20">  <br>
+          &nbsp;&nbsp;<span data-msgid="strsub133">x축제목 :</span> <input type="text" id="titleX" size="20">  
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="button" value="수정" size=12 id="executeTH13" style="background-color:white;">
+	  <button size=12 id="executeTH13" >
+	    <span data-msgid="strsub134">수정</span>
+	  </button>
         </form>           
       </div>  
 
       <!---- Dialogs ---->
 
 	<div class="dialog" id="dialog_readFromURL">
-	  URL: <input type="text" value="" id="text_readFromURL" size=40>
-	  <input type="button" value="확인" id="button_readFromURLSubmit">
+	  URL: <input type="text" value="" id="text_readFromURL" size=70>
+          &nbsp;&nbsp;
+	  <button id="button_readFromURLSubmit" >
+	    <span data-msgid="strsub135">확인</span>
+	  </button>
 	  <br>
-	  <p>예: https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/iris.csv</p>
+	  <p>Ex: https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/iris.csv</p>
 	</div>
       
       <div class="dialog" id="sub14"> <!-- 변수정보 편집 -->
@@ -560,7 +566,8 @@
             <option value="9">V9</option>
             <option value="10">V10</option>
           </select>
-          &nbsp; 변량명 : <input type="text" size=10 id="vname" >
+          &nbsp; <span data-msgid="strsub141">변량명</span> 
+          <input type="text" size=10 id="vname" >
         </div>
 
         <table>
@@ -568,8 +575,8 @@
             <tr>
               <td>&nbsp;</td>
               <td>#</td>
-              <td>변량값</td>
-              <td>변량값명</td>
+              <td><span data-msgid="strsub142">변량값</span></td>
+              <td><span data-msgid="strsub143">변량값명</span></td>
             </tr>
             <tr>
               <td>&nbsp;</td>
@@ -627,10 +634,15 @@
             </tr>
           </tbody>
         </table>
-        <h5>&nbsp;&nbsp; * 9개 이하의 변량값명을 지정할 수 있음 </h5>
-        &nbsp;&nbsp; <input type="button" value="저장" id="vconfirm"  size="10">
-        &nbsp;&nbsp; <input type="button" value="나가기" id="vcancel" size="10" >
-
+        <h5>&nbsp;&nbsp; <span data-msgid="strsub144">* 9개 이하의 변량값명을 지정할 수 있음</span> </h5>
+        &nbsp;&nbsp; 
+	  <button id="vconfirm" size="10" >
+	    <span data-msgid="strsub145">저장</span>
+	  </button>
+        &nbsp;&nbsp; 
+	  <button id="vcancel" size="10" >
+	    <span data-msgid="strsub146">나가기</span>
+	  </button>
       </div>
 
     </div> 
@@ -641,11 +653,11 @@
         &nbsp;
         <div class="tooltip" style="position:relative; left:0px; top:0px; "> 
           <img src="img/03saveTable.png" id="saveTable" class="imageBtn2">
-          <span class="tooltiptext">테이블 저장</span>
+          <span class="tooltiptext" data-msgid="tooltip91">테이블 저장</span>
         </div>   
         <div class="tooltip" style="position:relative; left:0px; top:0px; "> 
           <img src="img/04printTable.png" id="printTable" class="imageBtn2">
-          <span class="tooltiptext">테이블 인쇄</span>
+          <span class="tooltiptext" data-msgid="tooltip92">테이블 인쇄</span>
         </div> 
   </div> 
 
