@@ -2226,10 +2226,13 @@ languageNumber = {
     'en': 1,
 }
 $(document).ready(function() {
-    var userLang = navigator.language || navigator.userLanguage;
-    userLang = userLang.split("-")[0];
-    $('#select_language').val(userLang);
-    setLanguage(userLang);
+    var lang = localStorage.getItem("lang");
+    if(lang == null) {
+	var navLang = navigator.language || navigator.userLanguage;
+	lang = navLang.split("-")[0];
+    }
+    $('#select_language').val(lang);
+    setLanguage(lang);
 });
 $('#select_language').change(function() {
     var lang = $("#select_language option:selected").val();
@@ -2238,6 +2241,7 @@ $('#select_language').change(function() {
 
 function setLanguage(lang) {
     langNum = languageNumber[lang];
+    localStorage.setItem("lang", lang);
     $('[data-msgid]').each(function() {
         var $this = $(this);
         $this.html($.message[lang][$this.data('msgid')]);
