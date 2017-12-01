@@ -17,10 +17,10 @@
 </head>
 
 <body>
-
-  <div id="screenTop">
-    <div id="screenTopLeft" style="position:absolute; top:20px; ">
-      <div class="tooltip" > &nbsp;
+    <div id="screenTop">
+	<div id="estat-toolbar" class="toolbar" style="overflow-x: auto;">
+	    <div id="tool-group-file" class="tool-group">
+		<div class="tooltip" >
         <img src="img/example.png" id="exBtn" class="imageBtn1" >
         <span class="tooltiptext" data-msgid="Example">예제 불러오기</span>
       </div>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div id="screenTopMiddle1" style="position:absolute; left:410px; top:20px; ">
+	    <div id="tool-group-graph-categorical" class="tool-group">
       <div class="tooltip">
         <img src="img/v1_type.png" id="separate1" class="imageBtn1">
         <span class="tooltiptext" data-msgid="Bar Graph">막대그래프</span>
@@ -73,9 +73,9 @@
         <img src="img/08.png"          id="line1" class="imageBtn1">
         <span class="tooltiptext" data-msgid="Line Graph">꺽은선그래프</span>
       </div>
-    </div>
+        </div>
 
-    <div id="screenTopMiddle2" style="position:absolute; left:590px; top:20px; ">
+	    <div id="tool-group-graph-numeric" class="tool-group">
       &nbsp;
       <div class="tooltip">
         <img src="img/dot_icon.png"  id="dot1"  class="imageBtn1">
@@ -99,7 +99,7 @@
       </div>
     </div>
 
-    <div id="screenTopMiddle3" style="position:absolute; left:820px; top:20px; ">
+	    <div id="tool-group-summary-stat" class="tool-group">
       &nbsp;
       <div class="tooltip">
         <img src="img/0725_3.png" id="freqTable" class="imageBtn1">
@@ -111,7 +111,7 @@
       </div>
     </div>
 
-    <div id="screenTopRight1" style="position:absolute; left:1010px; top:20px; ">
+	    <div id="tool-group-testing" class="tool-group">
       <div class="tooltip">
         <img src="img/thmu.png" id="testM1" class="imageBtn3">
         <span class="tooltiptext" data-msgid="Testing Hypothesis &amp;mu;">추검정 &mu;</span>
@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <div id="screenTopRight2" style="position:absolute; left:1340px; top:20px; ">
+	    <div id="tool-group-edu" class="tool-group">
       <div class="tooltip" >
 	<a href="../eStatE" target="_blank">
           <img src="img/graphEX.png" id="estatE" class="imageBtn1" >
@@ -159,9 +159,9 @@
 	</a>
         <span class="tooltiptext" data-msgid="Learning eStat w Example">eStat 예제학습</span>
       </div>
-    </div>
+        </div>
 
-    <div id="screenTopRight3" style="position:absolute; left:1440px; top:20px; width:100">
+	    <div id="tool-group-setting" class="tool-group">
       <select id="select_language">
 	<option value="en">English</option>
 	<option value="ko">한국어</option>
@@ -173,11 +173,11 @@
         <input type="radio" name = "type1" value="2" id="level2"><span data-msgid="MiddleLevel">중</span>
         <input type="radio" name = "type1" value="3" id="level3" checked><span data-msgid="UniversityLevel">대</span>
       </form>
-    </div>
-
+        </div>
+	</div>
   </div>
 
-  <div id="screenLeft" style="position:absolute; left:10px; top:72px; font-size: 12px;">
+  <div id="screenLeft" style="font-size: 12px; float: left;">
         <label for='loadFileName' data-msgid="Filename">파일이름</label>
 	<input type="text" value="" id="loadFileName" height="15px" size=40>
         <br>
@@ -195,7 +195,7 @@
 
   </div>
 
-  <div id="screenMiddle" style="position:absolute; left:400px; top:80px;">
+  <div id="screenMiddle" style="float: left;">
 
     <div id="screenSVGtop" style="position:relative; left:0px; top:0px">
         &nbsp;
@@ -648,8 +648,8 @@
     </div>
   </div>
 
-
-  <div id="screenTableTop" style="position:absolute; left:1010px; top:80px; width: 600px; height:30px; border:1px solid black; background-color:#f1f1f1;">
+  <div id="screenRight" style="float:left;">
+  <div id="screenTableTop" >
         &nbsp;
         <div class="tooltip" style="position:relative; left:0px; top:0px; ">
           <img src="img/03saveTable.png" id="saveTable" class="imageBtn2">
@@ -661,10 +661,11 @@
         </div>
   </div>
 
-  <div id="screenTable" style="position:absolute; left:1010px; top:122px; width: 600px; height:670px; border:1px solid black; overflow: auto;">
+  <div id="screenTable" style="overflow: auto;">
     <div id="loc">
     </div>
   </div>
+
 
 <script src="js/app.js"> </script>
 </body>
