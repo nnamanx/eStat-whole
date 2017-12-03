@@ -328,14 +328,17 @@ section.range-slider input[type=range]::-moz-focus-outer {
  *
  *
  */     
-
+#estat-app {
+    width: 100%;
+}
 #estat-bars {
     height: 70px;
+    width: 100%;
     border: 1px solid black;
     background-color: lightblue;
 }
 #estat-toolbars {
-    //    overflow-x : auto;
+    overflow-x : auto;
 }
 #estat-main-container {
     min-width: 960px;
