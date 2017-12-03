@@ -1,13 +1,13 @@
 ﻿.handsontable table thead th{
-        font-size:12px;
+    font-size:12px;
 }
 .ht_clone_left th {
-        font-size:12px;
+    font-size:12px;
 }
 td {
-	padding: 0.5em;
-	text-align: center;
-	font-size: 12px;
+    padding: 0.5em;
+    text-align: center;
+    font-size: 12px;
 }
 .handsontable col.rowHeader {
     width: 30px;
@@ -113,7 +113,7 @@ li a:hover {
 */
 
 .sliderS {
-   width: 100px;
+    width: 100px;
 }
 .slider-width{
     width: 2006px;
@@ -167,7 +167,7 @@ section.range-slider input:last-of-type::-moz-range-track {
 }
 
 section.range-slider input[type=range]::-moz-focus-outer {
-  border: 0;
+    border: 0;
 }
 /*
     div.title {
@@ -187,11 +187,11 @@ section.range-slider input[type=range]::-moz-focus-outer {
     }
 */
 .menu {
-        background-color:#4CAF50;
-        color:white;
-        font-size:16px;
-        padding: 2px 6px;
-        float: right;
+    background-color:#4CAF50;
+    color:white;
+    font-size:16px;
+    padding: 2px 6px;
+    float: right;
     
 }
 
@@ -236,105 +236,167 @@ section.range-slider input[type=range]::-moz-focus-outer {
 }
 
 
-//      #screenTop     {height:60px; border:1px solid black; background-color:lightblue;}
-      #screenLeft    {width: 380px; height:680px; }
-      #datasheet     {width: 380px; height:675px; border:1px solid black; }
-      #debugBtn      {font-size: 12px; padding: 4px 8px; }
-      #inputLabel    {font-family: sans-serif; font-size: 12px; padding: 2px 0;}
-      #option        {width: 600px; height:112px; border:1px solid black; background-color:#f1f1f1;
-                      font-family: sans-serif; font-size: 12px;}
-      #screenSVGtop  {width: 600px; height:30px;  border:1px solid black; background-color:#f1f1f1;}
-      #screenTableTop{width: 600px; height:30px;  border:1px solid black; background-color:#f1f1f1;}
-      #screenTable   {width: 600px; height:680px; border:1px solid black; } 
-      #SVG           {width: 600px; height:560px; border:1px solid black;}
-      #SVG rect      {stroke : black; stroke-width : 1px; opacity : 0.7; }
-      #variableBtn   {font-size: 12px; padding: 4px 8px; }
 
-     .axis text {font-family: sans-serif; font-size: 9px;}
-     .axis path,
-     .axis line {fill: none; stroke-width : 1px; stroke: black; }
+.axis text {font-family: sans-serif; font-size: 9px;}
+.axis path,
+.axis line {fill: none; stroke-width : 1px; stroke: black; }
 
-     .bar {stroke: black; stroke-width: 1;}
-     .bandfreq{font-family: sans-serif; font-size: 8pt; text-anchor: middle;}
-     .barname {font-family: sans-serif; font-size: 8pt; text-anchor: middle;}
-     .barnames{font-family: sans-serif; font-size: 8pt; text-anchor: start;}
-     .barnameh{font-family: sans-serif; font-size: 8pt; text-anchor: end;}
+.bar {stroke: black; stroke-width: 1;}
+.bandfreq{font-family: sans-serif; font-size: 8pt; text-anchor: middle;}
+.barname {font-family: sans-serif; font-size: 8pt; text-anchor: middle;}
+.barnames{font-family: sans-serif; font-size: 8pt; text-anchor: start;}
+.barnameh{font-family: sans-serif; font-size: 8pt; text-anchor: end;}
 
-     .circle {stroke: black; fill: #FF3500;}
-     .circleG{stroke: black; fill:green; }
-     .circleN{stroke: #0055FFF; fill:none; stroke-width: 2px;}
-     .circleP{stroke: black; fill: #0055FF;}
-     .circleR{stroke: black; fill:red; }
-     .circleS{stroke: black; fill: #FF3500;}
+.circle {stroke: black; fill: #FF3500;}
+.circleG{stroke: black; fill:green; }
+.circleN{stroke: #0055FFF; fill:none; stroke-width: 2px;}
+.circleP{stroke: black; fill: #0055FF;}
+.circleR{stroke: black; fill:red; }
+.circleS{stroke: black; fill: #FF3500;}
 
 
-     .font01   {font-size:9pt; stroke: #0055FF; text-anchor: middle;}
-     .fontmath {font-size:11pt; font-family: "times new roman"; font-style : italic;  }
-     .fontguide{font-size:10pt; font-family: "times new roman"; font-style : italic; color: blue;}
-     .freq     {font-size:11pt; stroke:black; text-anchor: end;}
-     .freqfont {font-family: sans-serif; font-size: 8pt; stroke:red; text-anchor: middle;}
-     .freqfont2{font-size:8pt; fill:red; text-anchor: middle;}
+.font01   {font-size:9pt; stroke: #0055FF; text-anchor: middle;}
+.fontmath {font-size:11pt; font-family: "times new roman"; font-style : italic;  }
+.fontguide{font-size:10pt; font-family: "times new roman"; font-style : italic; color: blue;}
+.freq     {font-size:11pt; stroke:black; text-anchor: end;}
+.freqfont {font-family: sans-serif; font-size: 8pt; stroke:red; text-anchor: middle;}
+.freqfont2{font-size:8pt; fill:red; text-anchor: middle;}
 
-     .hand{stroke: black}
-     .histfreq {font-size:8pt; fill:red; text-anchor: middle;}
-     .histline {font-size:9pt; stroke-width: 2; stroke:lime ; fill:black}
-     .histmean {font-size: 7pt; stroke: red; text-anchor: middle;}
+.hand{stroke: black}
+.histfreq {font-size:8pt; fill:red; text-anchor: middle;}
+.histline {font-size:9pt; stroke-width: 2; stroke:lime ; fill:black}
+.histmean {font-size: 7pt; stroke: red; text-anchor: middle;}
 
-     .imageBtn1 {width:40px; height:40px; border-radius:10px}
-     .imageBtn2 {width:25px; height:25px; border-radius:5px}
-     .imageBtn3 {width:40px; height:40px; border-radius:10px}
+.imageBtn1 {width:40px; height:40px; border-radius:10px}
+.imageBtn2 {width:25px; height:25px; border-radius:5px}
+.imageBtn3 {width:40px; height:40px; border-radius:10px}
 
-     .label  {font-size: 11px; font-family: sans-serif; text-anchor: start;}
-     .leaf   {font-size:10pt; text-anchor: end;}
-     .legend {font-size: 11pt; font-family: sans-serif; stroke : black;  text-anchor: start;}
-     .line   {fill: black; stroke-width : 2px; stroke: black;}
-     .line2  {fill: black; stroke-width : 0.7px; stroke: black;}
-     .lineb  {fill: #0055FF; stroke-width : 2px; stroke: #0055FF;}
-     .lineB  {stroke: #0055FF; stroke-width: 2px; }
-     .lineNormal{stroke: red; stroke-width: 2px;} 
-     .lineR  {stroke: red; stroke-width: 3px;} 
-     .lineS  {stroke: #FF3500}
+.label  {font-size: 11px; font-family: sans-serif; text-anchor: start;}
+.leaf   {font-size:10pt; text-anchor: end;}
+.legend {font-size: 11pt; font-family: sans-serif; stroke : black;  text-anchor: start;}
+.line   {fill: black; stroke-width : 2px; stroke: black;}
+.line2  {fill: black; stroke-width : 0.7px; stroke: black;}
+.lineb  {fill: #0055FF; stroke-width : 2px; stroke: #0055FF;}
+.lineB  {stroke: #0055FF; stroke-width: 2px; }
+.lineNormal{stroke: red; stroke-width: 2px;} 
+.lineR  {stroke: red; stroke-width: 3px;} 
+.lineS  {stroke: #FF3500}
 
-     .main text {font: 13px sans-serif;}
-     .mainTitle {font: 17px sans-serif; stroke : black; text-anchor: middle;}
-     .mean {font-family: sans-serif; font-size:9pt; stroke: #0055FF; text-anchor: middle;}
-     .meanL{font-family: sans-serif; font-size:9pt; stroke: green; text-align: left; text-anchor: start;}
-     .mean9{font-family: sans-serif; font-size:9pt; stroke: red; text-anchor: middle;}
-     .meanP{font-size:8pt; stroke: #00A2FF}
-     .meanS{font-size:8pt; stroke: #FF3500}
-     .meanB{font-size:9pt; stroke: blue;}
-     .meanG{font-size:9pt; stroke: green;}
-     .meanR{font-size:9pt; stroke: #FF3500;}
-     .myaxis {font-family: sans-serif; font-size:7pt; stroke: black; stroke-width : 1px; text-anchor: middle;}
+.main text {font: 13px sans-serif;}
+.mainTitle {font: 17px sans-serif; stroke : black; text-anchor: middle;}
+.mean {font-family: sans-serif; font-size:9pt; stroke: #0055FF; text-anchor: middle;}
+.meanL{font-family: sans-serif; font-size:9pt; stroke: green; text-align: left; text-anchor: start;}
+.mean9{font-family: sans-serif; font-size:9pt; stroke: red; text-anchor: middle;}
+.meanP{font-size:8pt; stroke: #00A2FF}
+.meanS{font-size:8pt; stroke: #FF3500}
+.meanB{font-size:9pt; stroke: blue;}
+.meanG{font-size:9pt; stroke: green;}
+.meanR{font-size:9pt; stroke: #FF3500;}
+.myaxis {font-family: sans-serif; font-size:7pt; stroke: black; stroke-width : 1px; text-anchor: middle;}
 
-     .pie {fill:yellow; stroke:white;}
-     .pieFreq {font-size: 9pt; text-anchor:middle; stroke:white;}
-     .population {stroke: black; fill: blue;}
+.pie {fill:yellow; stroke:white;}
+.pieFreq {font-size: 9pt; text-anchor:middle; stroke:white;}
+.population {stroke: black; fill: blue;}
 
-     .rect{stroke: black; fill: #0055FF; stroke-width: 1px; }
-     .reglabel {font-size: 13px; font-family: sans-serif; text-anchor: start;}
-     .reglabel2{font-size: 13px; font-family: sans-serif;}
-     .reglabel3{font-size: 15px; font-family: sans-serif; stroke: red; text-anchor: start;}
-     .regline  {stroke: red}
+.rect{stroke: black; fill: #0055FF; stroke-width: 1px; }
+.reglabel {font-size: 13px; font-family: sans-serif; text-anchor: start;}
+.reglabel2{font-size: 13px; font-family: sans-serif;}
+.reglabel3{font-size: 15px; font-family: sans-serif; stroke: red; text-anchor: start;}
+.regline  {stroke: red}
 
-     .scorefont{font-size:9pt; stroke:#0055FF; text-anchor: middle;}
-     .stat {font-size:9pt; stroke: black; text-anchor: middle;}
-     .std  {font-size:8pt; stroke: blue; text-anchor: middle;}
-     .stdP {font-size:8pt; stroke: #00A2FF}
-     .stdS {font-size:8pt; stroke: #FF3500}
-     .stem {font-size:10pt; stroke:black; text-anchor: end;}
+.scorefont{font-size:9pt; stroke:#0055FF; text-anchor: middle;}
+.stat {font-size:9pt; stroke: black; text-anchor: middle;}
+.std  {font-size:8pt; stroke: blue; text-anchor: middle;}
+.stdP {font-size:8pt; stroke: #00A2FF}
+.stdS {font-size:8pt; stroke: #FF3500}
+.stem {font-size:10pt; stroke:black; text-anchor: end;}
 
-     .textarea  {text-align: center; }
-     .textarea2 {text-align: center; background-color: yellow; border:1px solid black;}
+.textarea  {text-align: center; }
+.textarea2 {text-align: center; background-color: yellow; border:1px solid black;}
 
-     .title {font-size:13pt; stroke:blue; text-anchor: start;}
-     .titleS{font-size:12pt; stroke:#FF3500;}
-     .titleStem{font-family: sans-serif; font-size:10pt; text-anchor: start;}
-     .xlevel{font-size:8pt; stroke: black; text-anchor: middle;}
-     .xTitle {font-size: 12px; font-family: sans-serif; stroke : black; text-anchor: middle;}
-     .yTitle {font-size: 12px; font-family: sans-serif; stroke : black; text-anchor: end;}
+.title {font-size:13pt; stroke:blue; text-anchor: start;}
+.titleS{font-size:12pt; stroke:#FF3500;}
+.titleStem{font-family: sans-serif; font-size:10pt; text-anchor: start;}
+.xlevel{font-size:8pt; stroke: black; text-anchor: middle;}
+.xTitle {font-size: 12px; font-family: sans-serif; stroke : black; text-anchor: middle;}
+.yTitle {font-size: 12px; font-family: sans-serif; stroke : black; text-anchor: end;}
 
 
+
+/*
+ * Layout
+ *
+ *
+ */     
+
+#estat-bars {
+    height: 70px;
+    border: 1px solid black;
+    background-color: lightblue;
+}
+#estat-toolbars {
+    //    overflow-x : auto;
+}
+#estat-main-container {
+    min-width: 960px;
+    width: 100%;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
+}
+#screenLeft {
+    flex: 1;
+    width: 600px;
+    min-width: 200px;
+    height: 90vh;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+}
+#datasheet {
+    width: 100%;
+    height: 100%;
+    border:1px solid black;
+    overflow: hidden;
+}
+
+#screenMiddle {
+    flex: none;
+    border: 1px solid red;
+    height: 90vh;
+    width: 600px;
+}
+
+#screenRight {
+    flex: 1;
+    border: 1px solid red;
+    height: 90vh;
+    width : calc((100% - 706px)*0.5);
+}
+
+
+#debugBtn      {font-size: 12px; padding: 4px 8px; }
+#inputLabel    {font-family: sans-serif; font-size: 12px; padding: 2px 0;}
+#option        {
+    width: 100%;
+    height:112px;
+    border:1px solid black;
+    background-color:#f1f1f1;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+#screenSVGtop  {width: 100%; height:30px;  border:1px solid black; background-color:#f1f1f1;}
+#screenTableTop{width: 100%; height:30px;  border:1px solid black; background-color:#f1f1f1;}
+
+#screenTable   {
+    width: 100%;
+    height: calc(100% - 35px);
+    border:1px solid black;
+    overflow: auto;
+} 
+#SVG           {width: 600px; height:560px; border:1px solid black;}
+#SVG rect      {stroke : black; stroke-width : 1px; opacity : 0.7; }
+#variableBtn   {font-size: 12px; padding: 4px 8px; }
 
 
 /*
@@ -344,8 +406,15 @@ section.range-slider input[type=range]::-moz-focus-outer {
  */
 .toolbar {
     white-space: nowrap;
+    height: 100%;
 }
 .tool-group {
     display: inline-block;
+    //    border-left: 1px solid #AAA;
+    //    border-right: 1px solid #AAA;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-     
+
+
