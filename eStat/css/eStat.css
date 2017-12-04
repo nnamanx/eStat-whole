@@ -352,7 +352,7 @@ section.range-slider input[type=range]::-moz-focus-outer {
     width: 600px;
     min-width: 200px;
     height: 90vh;
-    border: 1px solid red;
+//    border: 1px solid red;
     display: flex;
     flex-direction: column;
 }
@@ -365,14 +365,14 @@ section.range-slider input[type=range]::-moz-focus-outer {
 
 #screenMiddle {
     flex: none;
-    border: 1px solid red;
+//    border: 1px solid red;
     height: 90vh;
     width: 600px;
 }
 
 #screenRight {
     flex: 1;
-    border: 1px solid red;
+//    border: 1px solid red;
     height: 90vh;
     width : calc((100% - 706px)*0.5);
 }
