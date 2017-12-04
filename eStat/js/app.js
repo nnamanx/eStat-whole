@@ -150,26 +150,26 @@ var levelNum = localStorage.getItem("level");
 if (levelNum == null) levelNum = "3";
 document.myForm1.type1.value = parseInt(levelNum);
 if (levelNum == "1") { // 초등
-    document.getElementById("screenTopMiddle2").style.display = "none"; // 연속형 그래프 감추기
+    document.getElementById("tool-group-graph-numeric").style.display = "none"; // 연속형 그래프 감추기
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
     document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
-    document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
+    document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 } else if (levelNum == "2") { // 중등
-    document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
+    document.getElementById("tool-group-graph-numeric").style.display = "inline-block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
-    document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
+    document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 } else if (levelNum == "3") { // 대학
-    document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
+    document.getElementById("tool-group-graph-numeric").style.display = "inline-block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
-    document.getElementById("screenTopRight1").style.display = "block"; // 가설검정
+    document.getElementById("tool-group-testing").style.display = "inline-block"; // 가설검정
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
@@ -714,22 +714,22 @@ rad1[0].onclick = function() { // 초등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
-    document.getElementById("screenTopMiddle2").style.display = "none"; // 연속형 그래프 감추기
+    document.getElementById("tool-group-graph-numeric").style.display = "none"; // 연속형 그래프 감추기
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
     document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
-    document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
+    document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
 rad1[1].onclick = function() { // 중등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
-    document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
+    document.getElementById("tool-group-graph-numeric").style.display = "inline-block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
-    document.getElementById("screenTopRight1").style.display = "none"; // 가설검정 감추기
+    document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
@@ -738,10 +738,10 @@ rad1[2].onclick = function() { // 대학
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
-    document.getElementById("screenTopMiddle2").style.display = "block"; // 연속형 그래프
+    document.getElementById("tool-group-graph-numeric").style.display = "inline-block"; // 연속형 그래프
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
-    document.getElementById("screenTopRight1").style.display = "block"; // 가설검정
+    document.getElementById("tool-group-testing").style.display = "inline-block"; // 가설검정
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
