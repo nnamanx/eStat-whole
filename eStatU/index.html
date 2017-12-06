@@ -2,24 +2,19 @@
 <html>
 
 <head>
-  <title>eStatU</title>
-  <script src="d3.v4.min.js"></script>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="eStatU.js" ></script>
+    <title>eStatU</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
 </head>
 
 <body>
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
   <h1 style="color:#4CAF50;" >&nbsp;
     eStat: University Statistics Education with Dynamic Graph</h1> 
-<!--  <p style="text-align:right">&infin; &nbsp; free software for students in the world  &nbsp; &infin;</p> -->
   </div>
   <p>
-<!-- 
-  <div style="position:absolute; left:20px; top:80px">
-    <button class="button" id="menuBtn">Main Menu </button> &nbsp;&nbsp;
-  </div>
--->
   <div width="360" height="360" style="position:absolute; left:10px; top:130px">
   <ul>
     <li><a href="41BinomialEng.htm">Binomial Experiment</a></li>
@@ -87,11 +82,12 @@
       basicScatterStat(tobs, xdata, ydata, stat)
       showScatterPlot(tobs, xdata, ydata, stat[5], stat[6], stat[15], stat[16], graphWidth, graphHeight, checkTitle);
       showRegression2(stat[7], stat[8], stat[9], stat[10], stat[5], stat[6], stat[15], stat[16], checkTitle);
-
+/*
        // eStat 주메뉴
       d3.select("#menuBtn").on("click",function() {
        location.href="eStat.htm";
       })
+*/
   </script>
 
 </body>
