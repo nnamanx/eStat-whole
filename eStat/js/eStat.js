@@ -760,7 +760,6 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
             else str = "("+svgStr[18][langNum]+" "+gvarName+") " + " "+dvarName+svgStr[19][langNum]+ iTitle[graphNum];
           } 
           else str = iTitle[graphNum];  
-          mTitle[graphNum] = str; 
         } else {
           str = mTitle[graphNum];
         }     
@@ -3094,7 +3093,6 @@ function drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNa
         if (mTitle[graphNum] == "") {
           if (ngroup == 1) str = dvarName+svgStr[19][langNum]+iTitle[graphNum];
           else str = "("+svgStr[18][langNum]+" "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum];
-          mTitle[graphNum] = str;
         }
         else str = mTitle[graphNum];
     
@@ -4288,7 +4286,6 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
         if (mTitle[graphNum] == "") {
           if (numVar == 2) str = xvarName + " : "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
           else str = "("+svgStr[18][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
-          mTitle[graphNum] = str;
         }
         else str = mTitle[graphNum];
 
@@ -4789,15 +4786,15 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
 
          }
          else if (h1Type == 2) {
-           chart.append("text").attr("class","mean").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("class","mean").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
+           chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("class","mean").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("class","mean").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
+           chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
          }
 
@@ -4970,15 +4967,15 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
 
          }
          else if (h1Type == 2) {
-           chart.append("text").attr("class","mean").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("class","mean").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
+           chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("class","mean").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("class","mean").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
+           chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
          }
 
@@ -5162,15 +5159,15 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
 
          }
          else if (h1Type == 2) {
-           chart.append("text").attr("class","mean").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("class","mean").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
+           chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("class","mean").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("class","mean").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
+           chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
               .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
          }
 

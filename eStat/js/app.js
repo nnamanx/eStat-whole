@@ -2337,7 +2337,7 @@ $.message.ko = {
 }
 $.message.en = {
     "eStat : Stat Education SW" : "eStat : Stat Education SW",
-    "Filename" : "Filename",
+    "Filename" : "File Name",
     "Selected Variables" : "Var Select",
     "Cancel" : "Cancel",
     "Edit Variables" : "EditVar",
