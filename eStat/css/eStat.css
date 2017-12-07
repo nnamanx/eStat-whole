@@ -352,7 +352,7 @@ section.range-slider input[type=range]::-moz-focus-outer {
 
 #screenLeft {
     flex: none;
-    width: 320px;
+    width: 350px;
     height: 100%;
     display: flex;
     flex-direction: column;
