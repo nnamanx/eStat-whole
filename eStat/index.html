@@ -172,15 +172,17 @@
 	    </select>
 	    <br>
 	    <form action="#" name='myForm1'>
-	      <span data-msgid="Level">수준</span>
-	      <input type="radio" name = "type1" value="1" id="level1"><span data-msgid="ElementaryLevel">초</span>
-	      <input type="radio" name = "type1" value="2" id="level2"><span data-msgid="MiddleLevel">중</span>
-	      <input type="radio" name = "type1" value="3" id="level3" checked><span data-msgid="UniversityLevel">대</span>
+		  <span data-msgid="Level">수준</span>
+		  <input type="radio" name = "type1" value="1" id="level1"><span data-msgid="ElementaryLevel">초</span>
+		  <input type="radio" name = "type1" value="2" id="level2"><span data-msgid="MiddleLevel">중</span>
+		  <input type="radio" name = "type1" value="3" id="level3" checked><span data-msgid="UniversityLevel">대</span>
 	    </form>
 	  </div>
 	</div>
-      </div>
+            </div>
 
+      <div class="splitter-horizontal-1"></div>
+      
       <main id="estat-main-container">
 	<div id="screenLeft" style="font-size: 12px;">
 	  <div>
@@ -201,9 +203,11 @@
 	  <div id="datasheet"> </div>
 	</div>
 
+	<div class="splitter-vertical-1"></div>
+	
 	<div id="screenMiddle">
 
-	  <div id="screenSVGtop" class="toolbar" style="position:relative; left:0px; top:0px">
+	  <div id="graph-toolbars" class="toolbar">
 	    <div class="tool-group">
 	    <div class="tooltip">
 	      <img src="img/v4_type.png" id="separate2V" class="imageBtn2">
@@ -270,16 +274,16 @@
 	    </div>
 	    <div class="tooltip">
 	      <img src="img/editGraph.png" id="editGraph" class="imageBtn2">
-	      <span class="tooltiptext" data-msgid="Edit Title">제목편집</span>
+		      <span class="tooltiptext" data-msgid="Edit Title">제목편집</span>
 	    </div>
 	    </div>
-	  </div> <!-- end of SVGtop -->
+	  </div> <!-- end of graph-toolbars -->
 
-	  <div id="svgArea">
-	    <svg id="SVG" style="position:relative; left:0px; top:10px">  </svg>
-	  </div>
+	  <div id="graph-main-container">
+		      <svg id="SVG"></svg>
+		  </div>
 
-	  <div id="option" style="position:relative; left:0px; top:5px;">
+	  <div id="graph-option-container">
 	    <div id="sub1">
 	      <label>&nbsp;&nbsp;<input type="checkbox" id="freq"><span data-msgid="Frequency">도수표시</span></label>
 	    </div>
@@ -543,16 +547,18 @@
 		&nbsp;&nbsp;<span data-msgid="x title : ">x축제목 :</span> <input type="text" id="titleX" size="20">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="button" size=12 id="executeTH13" >
-		  <span data-msgid="Modify">수정</span>
+			    <span data-msgid="Modify">수정</span>
 		</button>
 	      </form>
 	    </div>
 
-	  </div>
-	</div>
+	  </div> <!-- end of graph-option-container -->
+	</div> <!-- end of screenMiddle -->
 
+	<div class="splitter-vertical-1"></div>
+	
 	<div id="screenRight">
-	  <div id="screenTableTop" style="width: 100%">
+	  <div id="screenTableTop" class="toolbar">
 	    &nbsp;
 	    <div class="tooltip" style="position:relative; left:0px; top:0px; ">
 	      <img src="img/03saveTable.png" id="saveTable" class="imageBtn2">
@@ -568,7 +574,7 @@
 	    <div id="loc">
 	    </div>
 	  </div>
-	</div>
+	</div> <!-- end of screenRight -->
 
       </main>
 

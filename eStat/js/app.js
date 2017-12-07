@@ -663,7 +663,7 @@ d3.select("#saveGraph").on("click", function() {
 // svg Graph Print
 d3.select("#printGraph").on("click", function() {
     const html = document.querySelector('html');
-    const printContents = document.querySelector('#svgArea').innerHTML;
+    const printContents = document.querySelector('#graph-main-container').innerHTML;
     const printDiv = document.createElement('DIV');
     printDiv.className = 'print-div';
     html.appendChild(printDiv);
