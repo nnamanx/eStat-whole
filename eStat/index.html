@@ -181,22 +181,25 @@
       <div class="splitter-horizontal-1"></div>
       
       <main id="estat-main-container">
-	<div id="screenLeft" style="font-size: 12px;">
-	  <div>
-            <label for='loadFileName' data-msgid="Filename">파일이름</label>
-	    <input type="text" value="" id="loadFileName" height="15px" size=38>
-            <br>
-            <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
-	    <input type="text" value="" id="selectedVars" height="15px" size=18>
-
-	    <button type="button" id="debugBtn" style='height: 20px; padding: 0 10px 0 10px;'>
-	      <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
-	    </button>
-
-	    <button type="button" id='variableBtn' style='height: 20px; padding: 0 10px 0 10px;'>
-	      <span data-msgid='Edit Variables'>변량편집</span>
-	    </button>
-	  </div>
+	  
+	  <div id="screenLeft" style="font-size: 12px;">
+	      
+	      <div id="datasheet-option-container">
+		  <div class="form-group">
+		      <label for='loadFileName' data-msgid="Filename">파일이름</label>
+		      <input type="text" value="" id="loadFileName">
+		  </div>
+		  <div class="form-group">
+		      <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
+		      <input type="text" value="" id="selectedVars">
+		      <button type="button" id="debugBtn" style='height: 20px; padding: 0 10px; margin-right: 2px;'>
+			  <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
+		      </button>
+		      <button type="button" id='variableBtn' style='height: 20px; padding: 0 10px; margin-right: 2px;'>
+			  <span data-msgid='Edit Variables'>변량편집</span>
+		      </button>
+		  </div>
+	      </div>
 	  <div id="datasheet"> </div>
 	</div>
 
