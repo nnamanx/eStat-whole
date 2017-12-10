@@ -441,6 +441,11 @@ section.range-slider input[type=range]::-moz-focus-outer {
     font-size: 12px;
 }
 
+#graph-option-container > .option-group {
+    display: none;
+}
+
+
 
 #screenRight {
     flex: 1;

@@ -27,6 +27,7 @@ var xTitle = new Array(graphNumMax);
 var numCol, numRow;
 var robs = new Array(colMax);
 var rvarName = new Array(colMax);
+var defaultColHeaders = Array(colMax).fill(1).map((x,y) => "V" + (x+y));
 var rvarDeci = new Array(colMax);
 var rvalueNum = new Array(colMax);
 var rvar = new Array(colMax); // 2차원 배열로 아래에 정의
@@ -173,7 +174,9 @@ if (levelNum == "1") { // 초등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-} // =================================================================
+}
+
+// =================================================================
 // 시트 컨트롤
 // =================================================================
 // sheet 초기화 및 만들기
@@ -486,7 +489,7 @@ function updateDatasheetWithArrayOfRows(data, colHeaders) {
         minCols: colMax,
         minSpareRows: 0,
         colWidths: colWidth,
-        colHeaders: colHeaders,
+        colHeaders: colHeaders.concat(defaultColHeaders.slice(colHeaders.length)),
         rowHeaders: true,
         rowHeaderWidth: 30,
         contextMenu: true,
@@ -532,7 +535,7 @@ function updateDatasheetWith(dataobj) {
         minCols: colMax,
         minSpareRows: 1,
         colWidths: colWidth,
-        colHeaders: dataobj.colHeaders,
+        colHeaders: dataobj.colHeaders.concat(defaultColHeaders.slice(dataobj.colHeaders.length)),
         rowHeaders: true,
         rowHeaderWidth: 30,
         contextMenu: true,
