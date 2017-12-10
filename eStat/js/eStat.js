@@ -127,7 +127,7 @@ svgStr[47][0] = "최댓값";
 svgStr[48][0] = "전체";
 
 appStr[1][1] = "../eStatH/index_en.html";
-appStr[2][1] = "../eStatU/index_en.html";
+appStr[2][1] = "../eStatU/index.html";
 appStr[3][1] = "../eStatE/index_en.html";
 appStr[4][1] = "../ExLearning/index_en.html";
 appStr[5][1] = "index.html";
