@@ -382,10 +382,15 @@ section.range-slider input[type=range]::-moz-focus-outer {
 }
 
 #datasheet-option-container .form-group input {
-    flex : 1 0 auto;
+    flex : 1;
+    min-width: 50px;
     display: block;
     margin: 2px;
     padding: 2px;
+}
+
+#datasheet-option-container .form-group button {
+    white-space: nowrap;
 }
 
 #datasheet {
