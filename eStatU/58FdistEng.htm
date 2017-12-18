@@ -2,21 +2,22 @@
 <html>
 
 <head>
-    <title>F Distribution</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="F Distribution">F Distribution</title>
 </head>
 
 <body>
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; F Distribution</b> 
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="F Distribution">F Distribution</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
-    <br>
  
     &nbsp; df1 =  <input type="text" class="textarea" value="5"  size=2 id="df1"> 
     <sup><small>1 </small></sup>
@@ -25,9 +26,11 @@
     &nbsp; df2 =  <input type="text" class="textarea" value="10"  size=2 id="df2"> 
     <sup><small>1 </small></sup>
     <input type="range" min="1" max="100" value="10"  class="sliderS" id="range2F" onchange="showValueF02(this.value)"/>
-    <sup><small>100 </small></sup> &nbsp; &nbsp; 
-    <input type="button" value="Calculate" size=10 id="executeF"> <p>
-
+    <sup><small>100 </small></sup> &nbsp; &nbsp;&nbsp;&nbsp; 
+      <button type="button" id="executeF" >
+        <span data-msgid="Execute">Execute</span>
+      </button>
+    <p>
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
@@ -66,7 +69,7 @@
          <sup><small>0 </small></sup>
          <input type="range" min="0" max="100" value="95" id="range4F" onchange="showValueF4(this.value)"/>
          <sup><small>1</small> </sup> <br>
-      References: &nbsp;
+    <span data-msgid="Reference Site">Reference Site</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/F-distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/F-Distribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://stattrek.com/probability-distributions/f-distribution.aspx" target="_blank" >StatTrek </a> &nbsp; 

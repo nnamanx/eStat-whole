@@ -2,28 +2,32 @@
 <html>
 
 <head>
-    <title>Chi-sqare Distribution</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="ChiSquare Distribution">Chi-sqare Distribution</title>
 </head>
 
 <body>
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Chi-square Distribution</b> 
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="ChiSquare Distribution">ChiSquae Distribution</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     &nbsp; df =  <input type="text" class="textarea" value="10"  size=4 id="dfchi"> 
     <sup><small>1 </small></sup>
     <input type="range" min="1" max="100" value="10" id="range1C" onchange="showValueChisq0(this.value)"/>
     <sup><small>100 </small></sup> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-    (if typed) <input type="button" value="Calculate" size=12 id="executeT">     
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    <span data-msgid="If typed">If typed</span>  &nbsp; 
+      <button type="button" id="executeChi" >
+        <span data-msgid="Execute">Execute</span>
+      </button>  
     <p>
     <svg id="chart" width="600" height="400"> </svg> 
 
@@ -63,7 +67,7 @@
          <sup><small>0 </small></sup>
          <input type="range" min="0" max="100" value="95" id="range4C" onchange="showValueChisq4(this.value)"/>
          <sup><small>1</small> </sup> <br>
-      References: &nbsp;
+    <span data-msgid="Reference Site">Reference Site</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/Chi-SquaredDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://stattrek.com/probability-distributions/chi-square.aspx" target="_blank" >StatTrek </a> &nbsp; 
@@ -142,7 +146,7 @@
       }    
 
       // 확률계산 실행버튼 클릭
-      d3.select("#executeT").on("click",function() {
+      d3.select("#executeChi").on("click",function() {
         bar.selectAll("*").remove();
 
  

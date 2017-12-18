@@ -2,23 +2,29 @@
 <html>
 
 <head>
-    <title>Testing Two Variances</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Testing Hypothesis sigma12_title">Testing Two Variances</title>
 </head>
 
 <body>
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Testing Hypothesis : Two Population Variances &sigma;<sub>1</sub><sup>2</sup>,  &sigma;<sub>2</sub><sup>2</sup>&nbsp; </b>
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; 
+         <span data-msgid="Testing Hypothesis sigma12">
+           Testing Hypothesis : Two Population Variances &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>&nbsp; 
+         </span>
+      </b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <form name="myForm0"> 
-      <b>[Hypothesis]</b>
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
       <span class="fontmath"> &nbsp;&nbsp; 
          H<sub>o</sub> : &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup>&nbsp;
       </span>
@@ -33,38 +39,43 @@
       </span>
     </form>
 
-    <b>[Test Type]</b> &nbsp; <span class="fontmath">F </span> test
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    <span class="fontmath" data-msgid="F-test">F test</span>
 
     <form name="myForm2">&nbsp;&nbsp;&nbsp; 
-      significance level <span class="fontmath">&alpha; </span> = 
+      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+      <span class="fontmath">&alpha; </span> = 
       <input type="radio" name = "type2" value="1" checked> 5%       
       <input type="radio" name = "type2" value="2" > 1%
     </form>       
     
-    <b>[Sample Data]</b>&nbsp;<span class="fontguide"> (input either sample data or sample statistics using csv / bsv) </span>
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using csv / bsv)
+    </span>   
     
     <table class="data">
       <tbody>
 	<tr>
           <td> &nbsp; &nbsp;</td>
-	  <td>population 1</td>
+	  <td><span data-msgid="Sample">Sample</span> 1</td>
 	  <td><input type="text" size=60 id="data1"></td>
 	</tr>
 	<tr>
           <td> &nbsp; &nbsp;</td>
-	  <td>population 2</td>
+	  <td><span data-msgid="Sample">Sample</span> 2</td>
 	  <td><input type="text" size=60 id="data2"></td>
 	</tr>
       </tbody>
     </table>
     
-    <b>[Sample Statistics]</b>
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
     
     <table class="stat">
       <tbody>
 	<tr>
           <td></td>
-	  <td>sample size</td>         
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>         
 	  <td><span class="fontmath">n<sub>1</sub></span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="nn51"></td>
@@ -74,7 +85,7 @@
 	</tr>
 	<tr>
           <td></td>
-	  <td>sample variance</td>
+	  <td><span data-msgid="Sample Variance">Sample Variance</span></td>
 	  <td><span class="fontmath">s<sub>1</sub><sup>2</sup></span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="var51"></td>
@@ -85,7 +96,10 @@
       </tbody>
     </table>
 
-    <input type="button" value="Execute" size=12 id="executeTH5"> <p>
+    <button type="button" id="executeTH5" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <p>
     <svg id="chart" width="600" height="400"> </svg> 
   </div> 
 

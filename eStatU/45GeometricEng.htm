@@ -2,9 +2,11 @@
 <html>
 
 <head>
-  <title>Geometric Distribution</title>
+  <title data-msgid="Geometric Distribution">Geometric Distribution</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
 </head>
@@ -17,20 +19,29 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Geometric Distribution</b> 
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Geometric Distribution">Geometric Distribution</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <svg id="chart2" width="600" height="600"> </svg> <br>
-
-    <input type="button" value="Execute" size=1 id="executeGeometric"> &nbsp;
+    <svg id="chart2" width="600" height="600"> </svg>
+    <br>
+    <button type="button" id="executeGeometric" >
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;
       p = <input type="text" class="textarea" value="0.5" size=3 id="geoP">
       <sup><small> 0 </small></sup> 
     <input type="range" min="2" max="99" value="50" id="rangeGeoP" onchange="showValueGeoP(this.value, valueLabel, geometricP)"/>
       <sup><small> 1 </small></sup>  &nbsp;&nbsp;&nbsp;&nbsp;
-    <label><input type="checkbox" value="freq2" id=freqGeometric>show probability</label> &nbsp; <p>
-    <input type="button" value="Geometric Prob Table" size=3 id="geometricT"> <p>
-    References:  &nbsp; 
+    <label><input type="checkbox" value="freq2" id=freqGeometric>
+      <span data-msgid="Show Probability">Show Probability<span>
+    </label>
+    <p>
+    <button type="button" id="geometricT" >
+        <span data-msgid="Geometric Prob Table">Geometric Prob Table</span>
+    </button>  
+    <p>
+    <span data-msgid="Reference Site">Reference</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Geometric_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/GeometricDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="https://stattrek.com/statistics/dictionary.aspx?definition=geometric_distribution" target="_blank" >StatTrek </a> &nbsp; 

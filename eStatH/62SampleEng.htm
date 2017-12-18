@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Sampling Distribution</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Dist of Sample Means">Dist of Sample Means</title>
 </head>
 
 <body>
@@ -14,22 +16,26 @@
   <div width="600" height="640" style="position:absolute; left:10px; top:0px">  
     <br>
     <div class="title">
-      <b>&nbsp; Sampling Distribution of Sample Means(CLT)</b> 
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Dist of Sample Means">Sampling Distribution of Sample Means</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <svg id="DotGraphSample" width="600" height="620"> </svg>
     <form name="myForm">  
-      Population:
+      <span data-msgid="Population">Population</span> :
       <input type="radio" name = "type1" value="1" checked> N(0,1)
-      <input type="radio" name = "type1" value="2" > Exponential(0.3)
-      <input type="radio" name = "type1" value="3" > Uniform(0,1) <br>
+      <input type="radio" name = "type1" value="2" ><span data-msgid="Exponential"> Exponentia(0.3) </span>
+      <input type="radio" name = "type1" value="3" ><span data-msgid="Uniform"> Uniform(0,1)</span> <br>
     </form>
     <form> 
-      <input type="button" value="Execute"  id="samplingCLT"> &nbsp;
-      sample size n1 = <input type="text" class="textarea" value="5" size=4 id="init1CLT"> &nbsp;
-      n2 =  <input type="text" class="textarea" value="10" size=4 id="init2CLT"> &nbsp;
-      n3 =  <input type="text" class="textarea" value="20" size=4 id="init3CLT"> <p>
+      <button type="button" id="samplingCLT" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      &nbsp;
+      <span data-msgid="Sample Size">Sample Size</span> 
+      n1 = <input type="text" class="textarea" value="5" size=4 id="init1CLT"> &nbsp;
+      n2 = <input type="text" class="textarea" value="10" size=4 id="init2CLT"> &nbsp;
+      n3 = <input type="text" class="textarea" value="20" size=4 id="init3CLT"> <p>
     </form>
   </div>
   
@@ -71,7 +77,7 @@
       margin      = {top: 20, bottom: 100, left: 20, right: 20};
       graphWidth  = svgWidth - margin.left - margin.right;
       graphHeight = svgHeight - margin.top - margin.bottom;
-      title  = "N(0,1) Population (N="+nobs.toString()+")";
+      title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
       dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
       normalGenerator(nobs, dataSet);
       nint    = 80;
@@ -84,11 +90,9 @@
       // 라디오 버튼 클릭 for data generation
       var rad = document.myForm.type1;
       rad[0].onclick = function() {     // Normal(0,1)
-
          dot.selectAll("*").remove();
-         title  = "N(0,1) Population (N="+nobs.toString()+")";
+         title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
-
          normalGenerator(nobs, dataSet);
          nint    = 80;
          step    = 8/nint;
@@ -97,9 +101,8 @@
       }
       rad[1].onclick = function() {     // Exponential(0.3)
          dot.selectAll("*").remove();
-         title  = "Exponential(lambda=0.3) Population (N="+nobs.toString()+")";
+         title  = svgStrU[49][langNum]+"(0.3) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
-
          expGenerator(nobs, dataSet);
          nint    = 100;
          step    = 18/nint;
@@ -108,7 +111,7 @@
       }
       rad[2].onclick = function() {     // Uniform(0,10)
          dot.selectAll("*").remove();
-         title  = "Uniform(0,1) Population (N="+nobs.toString()+")";
+         title  = svgStrU[50][langNum] + "(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
          for (i=0; i<nobs; i++) dataSet[i] = Math.random();
          nint    = 50;

@@ -2,23 +2,29 @@
 <html>
 
 <head>
-    <title>Testing Hypothesis P</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Testing Hypothesis P_title">Testing Hypothesis P</title>
 </head>
 
 <body>
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b> Testing Hypothesis : Population Proportion P </b>
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b> &nbsp; 
+          <span data-msgid="Testing Hypothesis P">
+            Testing Hypothesis : Population Proportion P 
+          </span>
+      </b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <form name="myForm0"> 
-      <b>[Hypothesis]</b> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
       <span class="fontmath">&nbsp;&nbsp;
         H<sub>o</sub> : P = P<sub>o</sub> &nbsp;
       </span>
@@ -34,29 +40,31 @@
       </span>
     </form>
 
-    <form name="myForm1"> 
-      <b>[Test Type]</b> Z-test 
-    </form> 
+    <div> 
+      <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+      <span data-msgid="Z-test">Z-test</span> 
+    </div> 
 
     <form name="myForm2">&nbsp;&nbsp;&nbsp; 
-      significance level &nbsp; <span class="fontmath">&alpha;</span> = 
+      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+      <span class="fontmath">&alpha;</span> = 
       <input type="radio" name = "type2" value="1" checked> 5%       
       <input type="radio" name = "type2" value="2" > 1%
     </form>       
  
-    <b>[Sample Statistics]</b>   
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
     <table class="stat">
       <tbody>
 	<tr>
           <td></td>
-	  <td>sample size</td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
 	  <td><span class="fontmath">n</span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="nn"></td>
 	</tr>
 	<tr>
           <td></td>
-	  <td>sample proportion</td>
+	  <td><span data-msgid="Sample Proportion">Sample Proportion</span></td>
 	  <td><span class="fontmath">p</span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="pp"></td>
@@ -65,7 +73,7 @@
       </tbody>
     </table>
     
-    <b>[Confidence Interval]</b>      
+    <b>[<span data-msgid="Confidence Interval">Confidence Interval]</b>      
     <table class="stat">
       <tbody>
 	<tr>
@@ -81,7 +89,10 @@
       </tbody>
     </table>
 
-    <br><input type="button" value="Execute" size=12 id="executeTH"> <p>
+    <button type="button" id="executeTH3" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <p>
     <svg id="chart" width="600" height="400"> </svg> 
   </div> 
 
@@ -114,7 +125,7 @@
       a[1].onclick = function() { alpha = 0.01; }  
 
       // Testing Hypothesis ======================================
-      d3.select("#executeTH").on("click",function() {
+      d3.select("#executeTH3").on("click",function() {
         bar.selectAll("*").remove();
 
         // input value

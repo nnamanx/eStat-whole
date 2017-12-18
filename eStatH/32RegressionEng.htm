@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Regression</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Regression Experiment">Regression</title>
 </head>
 
 <body>
@@ -14,14 +16,19 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Regression Simulation</b>
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Regression Experiment">Regression Experiment</span></b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <svg id="ScatterPlot2" width="600" height="600"> </svg> <p> 
-    <input type="button" value="Erase All" id="erase">  &nbsp;&nbsp;   
-    <input type="radio" name="addtype" id="add_on"  value="on" checked /><label>Add Point</label>&nbsp;   
-    <input type="radio" name="addtype" id="add_off" value="off" /><label>Erase Point</label>    
+    <button type="button" id="erase" >
+        <span data-msgid="Erase All">Erase All</span>
+    </button> 
+    &nbsp;&nbsp;   
+    <input type="radio" name="addtype" id="add_on"  value="on" checked />
+      <label><span data-msgid="Add Point">Add Point</span></label>&nbsp;   
+    <input type="radio" name="addtype" id="add_off" value="off" />
+      <label><span data-msgid="Erase Point">Erase Point</span></label>    
   </div>
 
   <script>
@@ -82,8 +89,8 @@
 
 
       // 회귀선 시뮬레이션 -------------------------------------------------------------
-      var sub1  = "- Create points by click, then eStat finds a regression line.";
-      var sub2  = "- Move or erase a point. Watch change of the regression line.";
+      var sub1  = svgStrU[52][langNum];
+      var sub2  = svgStrU[53][langNum];
       var ty    = margin.top/3;
       svg.append("text").attr("class","titleS").attr("x",margin.left).attr("y",ty).text(sub1);
       svg.append("text").attr("class","titleS").attr("x",margin.left).attr("y",ty+20).text(sub2);

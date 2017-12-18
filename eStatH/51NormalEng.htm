@@ -2,25 +2,33 @@
 <html>
 
 <head>
-  <title>Normal Experiment</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Normal Experiment">Normal Experiment</title>
 </head>
   
 <body>
   <div width="600" height="510" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Normal Distribution Experiment</b> 
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Normal Experiment">Normal Experiment</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <svg id="DotGraphNormal" width="600" height="510"> </svg>
+
     <form>
-      <input type="button" value="Execute" size= 5 id="btn1Normal"> &nbsp; &nbsp;
-      <label><input type="checkbox" id=meanNormal>statistics/boxPlot</label> <p>
+      <button type="button" id="btn1Normal" >
+        <span data-msgid="Execute">Execute</span>
+      </button>
+      &nbsp; 
+      <label><input type="checkbox" id=meanNormal>
+        <span data-msgid="Stat/BoxPlot">Stat/BoxPlot</span>
+      </label> <p>
     </form>
   </div>
 
@@ -45,7 +53,7 @@
       var mu, sigma, a, b, c, d, e, f, g, h;
       var nobs = 500;
 
-      title  = "N(0,1) Dist"+" n="+nobs;
+      title  = "N(0,1) "+svgStrU[24][langNum]+"   n="+nobs;
       dot.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top).text(title) 
       showDotGraphNormalP(nobs, stat);
 
