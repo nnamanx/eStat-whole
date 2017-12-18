@@ -2,9 +2,11 @@
 <html>
 
 <head>
-    <title>Exponential Distribution</title>
+    <title data-msgid="Exponential Distribution">Exponential Distribution</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
 </head>
@@ -13,8 +15,8 @@
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Exponential Distribution</b> 
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Exponential Distribution">Exponential Distribution</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     &nbsp; &lambda; = <input type="text" class="textarea" value="1.0"  size=4 id="explambda"> 
@@ -22,14 +24,16 @@
     <input type="range" min="1" max="100" value="10" id="range1E" onchange="showValueExponential0(this.value)"/>
     <sup><small>10 </small></sup> 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    (if typed) <input type="button" value="Calculate" size=12 id="executeE">     
-
+    <span data-msgid="If typed">If typed</span>  &nbsp; 
+      <button type="button" id="executeE" >
+        <span data-msgid="Execute">Execute</span>
+      </button>
     <p>
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-    <input value="10" min="0" max="300" type="range" onchange="showValueExponential1(this.value)"/>
-    <input value="40" min="0" max="300" type="range" onchange="showValueExponential2(this.value)"/>
+    <input value="60" min="0" max="300" type="range" onchange="showValueExponential1(this.value)"/>
+    <input value="240" min="0" max="300" type="range" onchange="showValueExponential2(this.value)"/>
     </section>
 
     <form name="myForm"> 
@@ -63,7 +67,7 @@
          <sup><small>0 </small></sup>
          <input type="range" min="0" max="100" value="95" id="range4E" onchange="showValueExponential4(this.value)"/>
          <sup><small>1</small> </sup> <br>
-      References: &nbsp;
+    <span data-msgid="Reference Site">Reference Site</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Exponential_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/ExponentialDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://www.itl.nist.gov/div898/handbook/eda/section3/eda3667.htm" target="_blank" >NIST </a> &nbsp; 

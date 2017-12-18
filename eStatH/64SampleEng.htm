@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Confidence Interval</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Confidence Interval">Confidence Interval</title>
 </head>
 
 <body>
@@ -14,19 +16,25 @@
   <div width="600" height="640" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Confidence Interval Experiment</b> 
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Confidence Interval">Confidence Interval Experiment</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>   
     </div>
     <br>
     <svg id="DotGraphEst" width="600" height="630"> </svg>
     <form> 
-      <input type="button" value="Execute"  id="intervalEst"> &nbsp; 
-      sample size n = <input type="text" class="textarea" value="20" size=4 id="initEst"> &nbsp; &nbsp;
-      repetition     <input type="text" class="textarea" value="5"  size=4 id="iterEst"> <br>
+      <button type="button" id="intervalEst" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      &nbsp; 
+      <span data-msgid="Sample Size">Sample Size</span>
+      n = <input type="text" class="textarea" value="20" size=4 id="initEst"> &nbsp; &nbsp;
+      <span data-msgid="Repetition">Repetition</span>
+      <input type="text" class="textarea" value="5"  size=4 id="iterEst"> <br>
     </form>
     <form name="myFormEst">  
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      confidence level  &nbsp; <input type="radio" name = "type1" value="1" > 0.90  &nbsp; 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span data-msgid="Confidence Level">Confidence Level</span>  
+      &nbsp; <input type="radio" name = "type1" value="1" > 0.90  &nbsp; 
       <input type="radio" name = "type1" value="2" checked> 0.95  &nbsp; 
       <input type="radio" name = "type1" value="3" > 0.99
     </form>
@@ -70,7 +78,7 @@
          graphWidth  = svgWidth - margin.left - margin.right;
          graphHeight = svgHeight - margin.top - margin.bottom;
 
-         title  = "N(0,1) Population (N="+nobs.toString()+")";
+         title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot2.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
 
          normalGenerator(nobs, dataSet);
@@ -110,7 +118,7 @@
   
         dot2.append("text").attr("class","title").attr("x", margin.left)
            .attr("y", svgHeight - margin.bottom/3 -10)
-           .text("Population Mean "+confidenceLevel+" Confidence Interval")
+           .text(svgStrU[19][langNum]+" "+confidenceLevel+" "+svgStrU[20][langNum])
 
 	var sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
         var niter = parseFloat(d3.select("#iterEst").node().value);    // 시뮬레이션 반복수 
@@ -180,7 +188,7 @@
 
         var accuracy = niter - error;
         var accuracyPercent = 100*accuracy/niter;
-        var str = "Estimation Accuracy = " + accuracyPercent+"%"+" ("+accuracy+"/"+niter+")";
+        var str = svgStrU[51][langNum] + " = " + accuracyPercent+"%"+" ("+accuracy+"/"+niter+")";
 
         dot2.append("text").attr("class","meanG")
            .attr("x", margin.left)

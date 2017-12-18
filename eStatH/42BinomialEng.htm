@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Binomial Distribution</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Binomial Distribution">Binomial Distribution</title>
 </head>
 
 <body>
@@ -14,23 +16,34 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      &nbsp; <b> Binomial Distribution</b> 
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      &nbsp; <b> <span data-msgid="Binomial Distribution"Binomial Distribution</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <svg id="chart2" width="600" height="600"> </svg> <br>
-    <input type="button" value="Execute" size=1 id="execute2Binomial"> &nbsp;
-      n = <input type="text" class="textarea" value="10"   size=3 id="nn2">&nbsp;<sup><small> 1 </small></sup>  
+    <svg id="chart2" width="600" height="600"> </svg>
+    <br>
+    <button type="button" id="execute2Binomial" >
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;
+      n = <input type="text" class="textarea" value="10"   size=3 id="nn2"><sup><small> 1 </small></sup>  
     <input type="range" min="1" max="100" value="10" id="range3Binomial" onchange="showValueBinomial3(this.value, valueLabel, binomialP2)"/>  
-      <sup><small>100</small></sup>  &nbsp;&nbsp;
+      <sup><small>100</small></sup>  &nbsp;
       p = <input type="text" class="textarea" value="0.5" size=3 id="pp2"><sup><small> 0 </small></sup> 
     <input type="range" min="1" max="99" value="50" id="range4Binomial" onchange="showValueBinomial4(this.value, valueLabel, binomialP2)"/>
-      <sup><small> 1 </small></sup> <p>   
-      <input type="button" value="Binomial Prob Table" size=3 id="execute3Binomial"> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label><input type="checkbox" value="freq2" id=freq2Binomial>show probability</label> &nbsp;
-      <label><input type="checkbox" value="freq3" id=freq3Binomial>Normal approx</label> (n>=10)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <p>
-    References:  &nbsp; 
+      <sup><small> 1 </small></sup> <p>  
+    <button type="button" id="execute3Binomial" >
+      <span data-msgid="Binomial Prob Table">Binomial Prob Table</span>
+    </button>  
+    &nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" value="freq2" id=freq2Binomial>
+      <span data-msgid="Show Probability">Show Probability<span>
+    </label> &nbsp;
+    <label><input type="checkbox" value="freq3" id=freq3Binomial>
+      <span data-msgid="Normal Approx">Normal Approx<span> (n>=10)
+    </label>
+    <p>
+    <span data-msgid="Reference Site">Reference</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Binomial_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/BinomialDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="https://stattrek.com/probability-distributions/binomial.aspx" target="_blank" >StatTrek </a> &nbsp; 

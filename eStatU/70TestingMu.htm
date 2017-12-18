@@ -2,23 +2,30 @@
 <html>
 
 <head>
-    <title>Testing Hypothesis &mu;</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Testing Hypothesis mu_title">Testing Hypothesis &mu;</title>
 </head>
 
 <body>
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Testing Hypothesis : Population Mean &mu; </b>
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; 
+         <span data-msgid="Testing Hypothesis mu">
+           Testing Hypothesis : Population Mean &mu; 
+         </span> 
+      </b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
+
     <form name="myForm0"> 
-      <b>[Hypothesis]</b> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b> 
       <span class="fontmath">&nbsp;&nbsp;
         H<sub>o</sub> : &mu; = &mu;<sub>o</sub> &nbsp;
       </span>
@@ -35,18 +42,22 @@
     </form>
 
     <form name="myForm1"> 
-      <b>[Test Type]</b> &nbsp;
-      <input type="radio" name = "type1" value="1" > Z-test       
-      <input type="radio" name = "type1" value="2" checked> <span class="fontmath">t</span>-test
+      <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+      <input type="radio" name = "type1" value="1" ><span class="fontmath" data-msgid="Z-test"> Z-test</span>      
+      <input type="radio" name = "type1" value="2" checked> <span class="fontmath" data-msgid="t-test">t-test</span>
     </form> 
 
     <form name="myForm2">&nbsp;&nbsp;&nbsp; 
-      significance level &nbsp; <span class="fontmath">&alpha;</span> = 
+      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+      <span class="fontmath">&alpha;</span> = 
       <input type="radio" name = "type2" value="1" checked> 5%       
       <input type="radio" name = "type2" value="2" > 1%
     </form>       
 
-    <b>[Sample Data]</b>&nbsp; <span class="fontguide">(input either sample data or sample statistics using csv / bsv)</span>   
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using csv / bsv)
+    </span>   
     <table class="data">
       <tbody>
 	<tr>
@@ -56,12 +67,12 @@
       </tbody>
     </table>
     
-    <b>[Sample Statistics]</b>   
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
     <table class="stat">
       <tbody>
 	<tr>
           <td></td>
-	  <td>sample size</td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
 	  <td><span class="fontmath">n</span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="nn"></td>
@@ -69,23 +80,24 @@
 	</tr>
 	<tr>
           <td></td>
-	  <td>sample mean</td>
+	  <td><span data-msgid="Sample Mean">Sample Mean</span></td>
 	  <td><span class="fontmath">m</span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="xbar"></td>
 	</tr>
 	<tr>
           <td></td>
-	  <td>sample variance</td>
+	  <td><span data-msgid="Sample Variance">Sample Variance</span></td>
 	  <td><span class="fontmath">s<sup>2</sup></span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="std"></td>
-          <td><span class="fontguide">(if Z-test, population variance &sigma;<sup>2</sup>)</span> </td>
+          <td><span class="fontguide" data-msgid="if Z-test-1">(if Z-test, enter population variance &sigma;<sup>2</sup>)</span> </td>
 	</tr>
       </tbody>
     </table>
 
-    <b>[Confidence Interval]</b> &nbsp; <span class="fontguide">(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)</span>     
+    <b>[<span data-msgid="Confidence Interval">Confidence Interval]</b>
+       &nbsp; <span class="fontguide" data-msgid="if Z-test-2">(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)</span>     
     <table class="stat">
       <tbody>
 	<tr>
@@ -100,8 +112,10 @@
 	</tr>
       </tbody>
     </table>
-    
-    <br><input type="button" value="Execute" size=12 id="executeTH"> <p>
+    <button type="button" id="executeTH" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <p>
     <svg id="chart" width="600" height="400"> </svg> 
   </div> 
 

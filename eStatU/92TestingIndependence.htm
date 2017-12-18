@@ -2,56 +2,96 @@
 <html>
 
 <head>
-    <title>Testing Independence</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Testing Independence">Testing Independence</title>
 </head>
 
 <body>
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b> Testing Hypothesis : Independence of Two Variables </b>
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b> &nbsp; 
+          <span data-msgid="Testing Independence">
+            Testing Hypothesis : Independence of Two Variables
+          </span>
+      </b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <form name="myForm0"> 
-      <b>[Hypothesis]</b>
-      <span class="fontmath">&nbsp;&nbsp;
-        H<sub>o</sub> : Row and column variables are independent 
-      </span>
-      <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-      <span class="fontmath">
-	H<sub>1</sub> : Row and column variables are independent
-       </span>
-    </form>
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>o</sub> : 
+                <span data-msgid="Row-Col-0">Row and column variables are independent</span> 
+              </span>
+          </td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>1</sub> : 
+                <span data-msgid="Row-Col-1">Row and column variables are not independent</span> 
+              </span> 
+          </td>
+	</tr>
+      </tbody>
+    </table>
   
-    <b>[Test Type]</b> &nbsp; <span class="fontmath">&chi;<sup>2</sup></span> test
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Test Type">Test Type</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontmath" data-msgid="Chi-test">&chi;<sup>2</sup> test</span></td>
+          <td></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span data-msgid="Significance Level">Significance Level</span></td>
+          <td>
+            <form name="myForm2"> 
+              <span class="fontmath">&alpha;</span> = 
+              <input type="radio" name = "type2" value="1" checked> 5%       
+              <input type="radio" name = "type2" value="2" > 1%
+            </form>       
+          </td>
+	</tr>
+      </tbody>
+    </table>
 
-    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
-      significance level <span class="fontmath">&alpha;</span> = 
-      <input type="radio" name = "type2" value="1" checked> 5%       
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>       
-
-    <b>[Sample Data]</b>&nbsp; <span class="fontguide">(input sample data to any # of rows & columns)</span>
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Sample Data">Sample Data</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontguide" data-msgid="Enter any number of row">(input any # of rows & columns)</span></td>
+          <td></td>
+	</tr>
+      </tbody>
+    </table>
    
     <table class="data">
       <tbody>
 	<tr>
           <td> &nbsp;&nbsp;&nbsp;</td>
           <td> &nbsp;</td>
-	  <td>&nbsp;Column 1</td>
-	  <td>&nbsp;Column 2</td>
-	  <td>&nbsp;Column 3</td>
-	  <td>&nbsp;Column 4</td>
-	  <td>&nbsp;Column 5</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 1</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 2</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 3</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 4</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 5</td>
 	</tr>
 	<tr>
           <td> &nbsp;&nbsp;&nbsp;</td>
-          <td> Row 1 &nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 1 &nbsp;</td>
 	  <td><input type="text" class"textarea"  size=10 id="data11"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data12"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data13"></td>
@@ -60,7 +100,7 @@
 	</tr>
 	<tr>
           <td> &nbsp;&nbsp;&nbsp;</td>
-          <td> Row 2 &nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 2 &nbsp;</td>
 	  <td><input type="text" class"textarea"  size=10 id="data21"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data22"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data23"></td>
@@ -69,7 +109,7 @@
 	</tr>
 	<tr>
           <td> &nbsp;&nbsp;&nbsp;</td>
-          <td> Row 3 &nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 3 &nbsp;</td>
 	  <td><input type="text" class"textarea"  size=10 id="data31"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data32"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data33"></td>
@@ -78,7 +118,7 @@
 	</tr>
 	<tr>
           <td> &nbsp;&nbsp;&nbsp;</td>
-          <td> Row 4 &nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 4 &nbsp;</td>
 	  <td><input type="text" class"textarea"  size=10 id="data41"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data42"></td>
 	  <td><input type="text" class"textarea"  size=10 id="data43"></td>
@@ -87,8 +127,11 @@
 	</tr>
       </tbody>
     </table>
-     
-    <input type="button" value="Execute" size=12 id="executeTH8"> <p>
+
+    <button type="button" id="executeTH8" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <p>
     <svg id="chart" width="600" height="400"> </svg> 
   </div> 
 

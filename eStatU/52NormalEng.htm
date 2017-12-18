@@ -2,26 +2,33 @@
 <html>
 
 <head>
-    <title>Normal Distribution</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Normal Distribution">Normal Distribution</title>
 </head>
 
 <body>
   <div width="600" height="410" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Normal Distribution</b> 
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Normal Distribution">Normal Distribution</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-    mean &mu;=    <input type="text" class="textarea" value="0"  size=6 id="mu">  &nbsp; &nbsp; 
-    std dev &sigma;= <input type="text" class="textarea" value="1"  size=6 id="sigma"> 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-    (if typed) <input type="button" value="Calculate" size=12 id="btn2Normal">   <p>
+    <span data-msgid="Mean">Mean</span>&nbsp; 
+    &mu;=    <input type="text" class="textarea" value="0"  size=6 id="mu">  &nbsp; 
+    <span data-msgid="Std Dev">Std Dev</span>&nbsp;
+    &sigma;= <input type="text" class="textarea" value="1"  size=6 id="sigma"> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="If typed">If typed</span>  &nbsp; 
+      <button type="button" id="btn2Normal" >
+        <span data-msgid="Execute">Execute</span>
+      </button>
+    <p>
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
@@ -60,7 +67,7 @@
          <sup><small>0 </small></sup>
          <input type="range" min="0" max="100" value="95" id="range4N" onchange="showValueNormal4(this.value)"/>
          <sup><small>1</small> </sup> <br>
-    References:  &nbsp; 
+    <span data-msgid="Reference Site">Reference Site</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/NormalDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 

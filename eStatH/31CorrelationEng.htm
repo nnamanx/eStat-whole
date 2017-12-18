@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Correlation Coefficient</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <title data-msgid="Correlation Coefficient">Correlation Coefficient</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
 </head>
 
 <body>
@@ -14,17 +16,24 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Correlation Simulation</b>
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Correlation Coefficient">Correlation Coefficient</span></b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <svg id="ScatterPlot2" width="600" height="600"> </svg> 
     <form name="myFormCorr"> 
-      <input type="button" value="Execute" id="redrawCorr"> &nbsp; 
-      correlation coefficient <input type="text" class="textarea" value="0.8" size=4 id="initCorr"><small><sup> -1 </small></sup>
+      <button type="button" id="redrawCorr" >
+        <span data-msgid="Execute">Execute</span>
+      </button>
+      &nbsp;
+      <span data-msgid="Correlation Coefficient">Correlation Coefficient</span>
+      <input type="text" class="textarea" value="0.8" size=4 id="initCorr"><small><sup> -1 </small></sup>
       <input type="range" min="0" max="200" value="180" step="10" id="rangeCorr" onchange="showValue(this.value)"/>
       <small><sup> 1 </small></sup> &nbsp 
-      <label><input type="checkbox" id="regress2">regression line</label> 
+      <label>
+        <input type="checkbox" id="regress2">
+        <span data-msgid="Regression Line">Regression Line </span>
+      </label> 
     </form>
   </div>
 
@@ -40,7 +49,6 @@
       var svg     = d3.select("#ScatterPlot2"); 
 
       var i, r;
-
       var svgWidth    = 600;
       var svgHeight   = 600;
       var margin      = {top: 70, bottom: 70, left: 70, right: 70};
@@ -53,10 +61,6 @@
       var xdata     = new Array(tobs);
       var ydata     = new Array(tobs);
       var generator = d3.randomNormal(0,1) 
-
-      var sub   = "- Select correlation coefficient, then click Execute button -";
-      var ty    = margin.top/2;
-      svg.append("text").attr("class","titleS").attr("x",margin.left).attr("y",ty).text(sub);
       var checkTitle = true;
 
       // 초기 그림

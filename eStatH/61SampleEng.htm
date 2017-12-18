@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Sampling</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Sampling">Sampling</title>
 </head>
 
 <body>
@@ -14,24 +16,33 @@
   <div width="600" height="640" style="position:absolute; left:10px; top:0px"> 
     <br>
     <div class="title">
-      <b>&nbsp; Population vs Sample</b> 
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Population vs Sample">Population vs Sample</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>   
     </div>
     <br> 
     <svg id="DotGraphSample" width="600" height="600"> </svg>
     <form name="myForm">  
-      Population:
+      <span data-msgid="Population">Population</span> :
       <input type="radio" name = "type1" value="1" checked> N(0,1)
-      <input type="radio" name = "type1" value="2" > Exponential(0.3)
-      <input type="radio" name = "type1" value="3" > Uniform(0,1) <br>
+      <input type="radio" name = "type1" value="2" ><span data-msgid="Exponential"> Exponentia(0.3) </span>
+      <input type="radio" name = "type1" value="3" ><span data-msgid="Uniform"> Uniform(0,1)</span> <br>
     </form>
-    <form> 
-      Sample: &nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="button" value="Sampling 5%"  id="sampling05">
-      <input type="button" value="Sampling 10%" id="sampling10">
-      <input type="button" value="Sampling 20%" id="sampling20"> &nbsp;&nbsp;
-      <label><input type="checkbox" id=meanSample>statistics/boxPlot</label> <br> 
-    </form>
+    <div> 
+      <span data-msgid="Sample">Sample</span> : &nbsp;&nbsp;&nbsp;
+      <button type="button" id="sampling05" >
+        <span data-msgid="Sample05">Sampling 5%</span>
+      </button> &nbsp;
+      <button type="button" id="sampling10" >
+        <span data-msgid="Sample10">Sampling 10%</span>
+      </button> &nbsp;
+      <button type="button" id="sampling20" >
+        <span data-msgid="Sample20">Sampling 20%</span>
+      </button> 
+      &nbsp;&nbsp;&nbsp;
+      <label><input type="checkbox" id=meanSample>
+        <span data-msgid="Statistics/BoxPlot"> Statistics/BoxPlot</span>
+      </label> <br> 
+    </div>
   </div>
   
 
@@ -72,7 +83,7 @@
         margin      = {top: 20, bottom: 100, left: 20, right: 20};
         graphWidth  = svgWidth - margin.left - margin.right;
         graphHeight = svgHeight - margin.top - margin.bottom;
-        title  = "N(0,1) Population (N="+nobs.toString()+")";
+        title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
         dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
         normalGenerator(nobs, dataSet);
         nint    = 80;
@@ -86,9 +97,8 @@
       var rad = document.myForm.type1;
       rad[0].onclick = function() {     // Normal(0,1)
          dot.selectAll("*").remove();
-         title  = "N(0,1) Population (N="+nobs.toString()+")";
+         title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
-
          normalGenerator(nobs, dataSet);
          nint    = 80;
          step    = 8/nint;
@@ -97,9 +107,8 @@
       }
       rad[1].onclick = function() {     // Exponential(0.3)
          dot.selectAll("*").remove();
-         title  = "Exponential(lambda=0.3) Population (N="+nobs.toString()+")";
+         title  = svgStrU[49][langNum]+"(0.3) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
-
          expGenerator(nobs, dataSet);
          nint    = 100;
          step    = 18/nint;
@@ -108,7 +117,7 @@
       }
       rad[2].onclick = function() {     // Uniform(0,10)
          dot.selectAll("*").remove();
-         title  = "Uniform(0,1) Population (N="+nobs.toString()+")";
+         title  = svgStrU[50][langNum] + "(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
          for (i=0; i<nobs; i++) dataSet[i] = Math.random();
          nint    = 50;
@@ -131,16 +140,25 @@
       // 샘플링 버튼 클릭
       d3.select("#sampling05").on("click",function() {
           removeAllSample();
+          document.getElementById("meanSample").checked = false;
+          checkMean = false;
+          removeMeanSample();
           samplePercent = 0.05;
           drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, statP, statS);
       }) 
       d3.select("#sampling10").on("click",function() {
           removeAllSample();
+          document.getElementById("meanSample").checked = false;
+          checkMean = false;
+          removeMeanSample();
           samplePercent = 0.10;
           drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, statP, statS);
       })
       d3.select("#sampling20").on("click",function() {
           removeAllSample();
+          document.getElementById("meanSample").checked = false;
+          checkMean = false;
+          removeMeanSample();
           samplePercent = 0.20;
           drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, statP, statS);
       }) 

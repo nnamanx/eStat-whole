@@ -2,9 +2,11 @@
 <html>
 
 <head>
-  <title>Poisson Distribution</title>
+  <title data-msgid="Poisson Distribution">Poisson Distribution</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
 </head>
@@ -14,19 +16,29 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Poisson Distribution</b> 
-      <a class="menu" href="index.html"><b>Menu</b></a>  
+      <b>&nbsp; <span data-msgid="Poisson Distribution">Poisson Distribution</span></b> 
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br> 
-    <svg id="chart2" width="600" height="600"> </svg> <br>
-    <input type="button" value="Execute" size=1 id="executePoisson"> &nbsp;
+    <svg id="chart2" width="600" height="600"> </svg>
+    <br>
+    <button type="button" id="executePoisson" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;
       m = <input type="text" class="textarea" value="1.0" size=3 id="lambda">
       <sup><small> 0.1 </small></sup> 
     <input type="range" min="1" max="100" value="10" id="rangeLambda" onchange="showValueLambda(this.value, valueLabel, poissonP)"/>
       <sup><small> 10 </small></sup>  &nbsp;&nbsp;&nbsp;&nbsp;
-    <label><input type="checkbox" value="freq2" id=freqPoisson>show probability</label> &nbsp; <p>
-    <input type="button" value="Poisson Prob Table" size=3 id="poissonT"> <p>
-    References:  &nbsp; 
+    <label><input type="checkbox" value="freq2" id=freqPoisson>
+      <span data-msgid="Show Probability">Show Probability<span>
+    </label> 
+    <p> 
+    <button type="button" id="poissonT" >
+        <span data-msgid="Poisson Prob Table">Binomial Prob Table</span>
+    </button>  
+    <p>
+    <span data-msgid="Reference Site">Reference</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Poisson_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/PoissonDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="https://stattrek.com/probability-distributions/poisson.aspx" target="_blank" >StatTrek </a> &nbsp; 

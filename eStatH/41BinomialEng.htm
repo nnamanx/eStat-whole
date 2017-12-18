@@ -2,11 +2,13 @@
 <html>
 
 <head>
-  <title>Binomial Experiment</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="DistributionsUtil.js" ></script>
-  <script src="eStatH_en.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <title data-msgid="Binomial Experiment">Binomial Experiment</title>
 </head>
 
 <body>
@@ -14,19 +16,22 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; Binomial Experiment</b>
-      <a class="menu" href="index_en.html"><b>Menu</b></a>  
+      &nbsp; <b><span data-msgid="Binomial Experiment">Binomial Experiment</span></b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <form>
       <svg id="chart" width="600" height="600"> </svg> <br>   
-      <input type="button" value="Execute" size=1 id="executeBinomial"> &nbsp;
+      <button type="button" id="executeBinomial" >
+        <span data-msgid="Execute">Execute</span>
+      </button>
+      &nbsp;
       n = <input type="text" class="textarea" value="2"   size=3 id="nn">&nbsp;<sup><small> 1 </small></sup> 
       <input type="range" min="1" max="10" value="2" id="range1Binomial" onchange="showValueBinomial1(this.value)"/><sup><small> 10 </small></sup> &nbsp;&nbsp;
       p = <input type="text" class="textarea" value="0.5" size=3 id="pp"><sup><small> 0 </small></sup> 
       <input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/><sup><small> 1</small></sup>  <p>   
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label><input type="checkbox" value="freq" id=freqBinomial>show probability</label> <p>
+      <label><input type="checkbox" value="freq" id=freqBinomial><span data-msgid="show probability">show probability</span></label> <p>
     </form>
   </div>
 
@@ -80,11 +85,11 @@
       pp = 0.5;
       nvalue = nn + 1;
 
-      title  = "Binomial Dist n = "+nn.toString()+", p = "+f2(pp);
+      title  = svgStrU[1][langNum]+" n = "+nn.toString()+", p = "+f2(pp);
       dot.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top/2).text(title)
       avg  = nn * pp;
       std  = Math.sqrt(nn*pp*(1-pp));
-      title  = "Mean = "+f2(avg).toString()+", Std Dev = "+f2(std).toString();
+      title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
       dot.append("text").attr("class","title").attr("x", margin.left+graphWidth -200).attr("y", margin.top/2 ).text(title)
 
       // 확률  계산

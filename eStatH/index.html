@@ -3,33 +3,33 @@
 
 <head>
   <title>eStatH</title>
-  <link rel="stylesheet" href="eStat.css">
-  <script src="d3.v4.min.js"></script>
-  <script src="eStatH.js" ></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
 </head>
 
 <body>
 
  
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
-    <h1 style="color:#4CAF50;"> &nbsp;eStat: 고등통계교육 소프트웨어</h1> 
-<!--    <p style="text-align:right">&infin; &nbsp; free software for students in the world  &nbsp; &infin;</p> 
-  <div style="position:absolute; left:10px; top:80px">
-    <button class="button" id="menuBtn">Main Menu </button> &nbsp;&nbsp;
-  </div>
--->
+    <h1 style="color:#4CAF50;" > &nbsp; 
+      <span data-msgid="eStatH HighStatEdu">eStatH - High School Statistics Education SW</span>
+    </h1> 
 
   <ul width="150px" style="position:absolute; left:10px; top:130px">
-    <li><a href="31Correlation.htm">상관계수</a></li>
-    <li><a href="32Regression.htm">선형회귀 시뮬레이션</a></li>
-    <li><a href="41Binomial.htm">이항분포 시뮬레이션</a></li>
-    <li><a href="42Binomial.htm">이항분포</a></li>
-    <li><a href="51Normal.htm">정규분포 시뮬레이션</a></li>
-    <li><a href="52Normal.htm">정규분포</a></li>
-    <li><a href="61Sample.htm">모집단과 표본</a></li>
-    <li><a href="62Sample.htm">표본평균의 표집분포</a></li>
-    <li><a href="63Sample.htm">대수의 법칙</a></li>
-    <li><a href="64Sample.htm">신뢰구간</a></li>
+    <li><a href="/estat/eStatH/41BinomialEng.htm"><span data-msgid="Binomial Experiment">Binomial Experiment</span></a></li>
+    <li><a href="/estat/eStatH/42BinomialEng.htm"><span data-msgid="Binomial Distribution">Binomial Distribution</span></a></li>
+    <li><a href="/estat/eStatH/51NormalEng.htm"><span data-msgid="Normal Experiment">Normal Experiment</span></a></li>
+    <li><a href="/estat/eStatH/52NormalEng.htm"><span data-msgid="Normal Distribution">Normal Distribution</span></a></li>
+    <li><a href="/estat/eStatH/61SampleEng.htm"><span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
+    <li><a href="/estat/eStatH/63SampleEng.htm"><span data-msgid="Law of Large Number">Law of Large Number</span></a></li>
+    <li><a href="/estat/eStatH/62SampleEng.htm"><span data-msgid="Dist of Sample Means">Dist of Sample Means</span></a></li>
+    <li><a href="/estat/eStatH/64SampleEng.htm"><span data-msgid="Confidence Interval">Confidence Interval</span></a></li>
+    <li><a href="/estat/eStatH/31CorrelationEng.htm"><span data-msgid="Correlation Coefficient">Correlation Coefficient</span></a></li>
+    <li><a href="/estat/eStatH/32RegressionEng.htm"><span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
   </ul>
 
   <div width="360" height="360" style="position:absolute; left:300px; top:130px">
@@ -40,48 +40,14 @@
   </div>
   <script>
       var svg = d3.select("#ScatterPlot2"); 
-
       svg.selectAll("*").remove();  // 전화면 제거
       var svgWidth    = 360;
       var svgHeight   = 360;
       var margin      = {top: 20, bottom: 20, left: 20, right: 20};
       var graphWidth  = svgWidth - margin.left - margin.right;
       var graphHeight = svgHeight - margin.top - margin.bottom;
-
       var tobs      = 10;
       lawLargeDemo(tobs);
-
-/*
-      var svgWidth    = 350;
-      var svgHeight   = 350;
-      var margin      = {top: 20, bottom: 20, left: 20, right: 20};
-      var buffer      = 40;
-      var graphWidth  = svgWidth - margin.left - margin.right;
-      var graphHeight = svgHeight - margin.top - margin.bottom;
-
-      var stat      = new Array(30);
-      var tobs      = 20;
-      var xdata     = new Array(tobs);
-      var ydata     = new Array(tobs);
-      var generator = d3.randomNormal(0,1);
-      var checkTitle= false;
-
-      svg.selectAll("*").remove();  // 전화면 제거
-      var r = 0.6;  // 시작값 
-      for (var i=0; i<tobs; i++) {
-            xdata[i] = generator();
-            ydata[i] = r*xdata[i] + Math.sqrt(1-r*r)*generator();
-      }
-
-      basicScatterStat(tobs, xdata, ydata, stat)
-      showScatterPlot(tobs, xdata, ydata, stat[5], stat[6], stat[15], stat[16], graphWidth, graphHeight, checkTitle);
-      showRegression2(stat[7], stat[8], stat[9], stat[10], stat[5], stat[6], stat[15], stat[16], checkTitle);
-*/
-       // eStat 주메뉴
-      d3.select("#menuBtn").on("click",function() {
-       location.href="eStat.htm";
-      })
-
   </script>
 
 </body>
