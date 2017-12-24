@@ -1836,9 +1836,10 @@ function showValueExponential3(newValue) {
           if (lambda > 10) lambda = 10;
           document.getElementById("e").value  = newValue/100;
           e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.99999) d = 4;
-          else if (e < 0.00001) d = - 4;
-          else d = exponential_inv(e, lambda, info);
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
+          d = exponential_inv(e, lambda, info);
           d3.select("#d").node().value = f4(d);
           drawExponentialGraph(lambda, 0, d, e);
        }
@@ -1853,14 +1854,11 @@ function showValueExponential4(newValue) {
           if (lambda > 10) lambda = 10;
           document.getElementById("h").value  = newValue/100;
           h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.999999) {
-             f = 0;
-             g = 100;
-          }
-          else {
-             g = exponential_inv(1-(1-h)/2, lambda, info);
-             f = exponential_inv((1-h)/2, lambda, info);
-          }
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
+          g = exponential_inv(1-(1-h)/2, lambda, info);
+          f = exponential_inv((1-h)/2, lambda, info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawExponentialGraph(lambda, f, g, h); 
@@ -2285,9 +2283,10 @@ function showValueNormal3(newValue) {
           var sigma = parseFloat(d3.select("#sigma").node().value); 
           document.getElementById("e").value  = newValue/100;
           e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.99999) d = mu + 4*sigma;
-          else if (e < 0.00001) d = mu - 4*sigma;
-          else d = mu + sigma*stdnormal_inv(e);
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
+          d = mu + sigma*stdnormal_inv(e);
           d3.select("#d").node().value = f4(d);
           drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
        }
@@ -2303,14 +2302,11 @@ function showValueNormal4(newValue) {
           var sigma = parseFloat(d3.select("#sigma").node().value); 
           document.getElementById("h").value  = newValue/100;
           h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.999999) {
-             f = mu - 4*sigma;
-             g = mu + 4*sigma;
-          }
-          else {
-             g = mu + sigma*stdnormal_inv(1-(1-h)/2);
-             f = mu - sigma*stdnormal_inv(1-(1-h)/2);
-          }
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
+          g = mu + sigma*stdnormal_inv(1-(1-h)/2);
+          f = mu - sigma*stdnormal_inv(1-(1-h)/2);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawNormalGraph(mu, sigma, f, g, h); 
@@ -2486,9 +2482,10 @@ function showValueT3(newValue) {
           var df = parseFloat(d3.select("#dft").node().value); 
           document.getElementById("e").value  = newValue/100;
           e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.99999) d = 5;
-          else if (e < 0.00001) d = - 5;
-          else d = t_inv(e, df, info);
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
+          d = t_inv(e, df, info);
           d3.select("#d").node().value = f4(d);
           drawTdistGraph(df, -5, d, e);
        }
@@ -2501,14 +2498,11 @@ function showValueT4(newValue) {
           var df = parseFloat(d3.select("#dft").node().value); 
           document.getElementById("h").value  = newValue/100;
           h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.999999) {
-             f = - 5;
-             g = 5;
-          }
-          else {
-             g = t_inv(1-(1-h)/2, df, info);
-             f = -t_inv(1-(1-h)/2, df, info);
-          }
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
+          g = t_inv(1-(1-h)/2, df, info);
+          f = -t_inv(1-(1-h)/2, df, info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawTdistGraph(df, f, g, h); 
@@ -2694,9 +2688,10 @@ function showValueChisq3(newValue) {
           var df = parseFloat(d3.select("#dfchi").node().value); 
           document.getElementById("e").value  = newValue/100;
           e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.99999) d = 4;
-          else if (e < 0.00001) d = - 4;
-          else d = chisq_inv(e, df, info);
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
+          d = chisq_inv(e, df, info);
           d3.select("#d").node().value = f4(d);
           drawChisqGraph(df, 0, d, e);
        }
@@ -2709,14 +2704,11 @@ function showValueChisq4(newValue) {
           var df = parseFloat(d3.select("#dfchi").node().value); 
           document.getElementById("h").value  = newValue/100;
           h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.999999) {
-             f = 0;
-             g = 100;
-          }
-          else {
-             g = chisq_inv(1-(1-h)/2, df, info);
-             f = chisq_inv((1-h)/2, df, info);
-          }
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
+          g = chisq_inv(1-(1-h)/2, df, info);
+          f = chisq_inv((1-h)/2, df, info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawChisqGraph(df, f, g, h); 
@@ -2902,9 +2894,10 @@ function showValueF3(newValue) {
           var df2 = parseFloat(d3.select("#df2").node().value);  
           document.getElementById("e").value  = newValue/100;
           e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.99999) d = 4;
-          else if (e < 0.00001) d = - 4;
-          else d = f_inv(e, df1, df2,  info);
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
+          d = f_inv(e, df1, df2,  info);
           d3.select("#d").node().value = f4(d);
           drawFGraph(df1, df2,  0, d, e);
        }
@@ -2918,14 +2911,11 @@ function showValueF4(newValue) {
           var df2 = parseFloat(d3.select("#df2").node().value);  
           document.getElementById("h").value  = newValue/100;
           h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.999999) {
-             f = 0;
-             g = 100;
-          }
-          else {
-             g = f_inv(1-(1-h)/2, df1, df2,  info);
-             f = f_inv((1-h)/2, df1, df2,  info);
-          }
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
+          g = f_inv(1-(1-h)/2, df1, df2,  info);
+          f = f_inv((1-h)/2, df1, df2,  info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawFGraph(df1, df2,  f, g, h); 
@@ -4103,7 +4093,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
          tx = margin.left + graphWidth2/2;
          ty = margin.top + 15;
          if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s^2 / ( sigma_o^2 )  ~  ChiSq("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8) str = svgStrU[23][langNum]+"Sum( EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8) str = svgStrU[23][langNum]+"Sum( (EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);

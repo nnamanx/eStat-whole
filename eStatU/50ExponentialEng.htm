@@ -124,6 +124,9 @@
           if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
           else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
           e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
           d = exponential_inv(e, lambda, info);
           d3.select("#d").node().value = f4(d);
           drawExponentialGraph(lambda, 0, d, e);
@@ -135,14 +138,11 @@
           if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
           else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
           h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.999999) {
-             f = 0;
-             g = 100;
-          }
-          else {
-             g = exponential_inv(1-(1-h)/2, lambda, info);
-             f = exponential_inv((1-h)/2, lambda, info);
-          }
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
+          g = exponential_inv(1-(1-h)/2, lambda, info);
+          f = exponential_inv((1-h)/2, lambda, info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawExponentialGraph(lambda, f, g, h); 
@@ -178,10 +178,11 @@
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
           document.getElementById("range3E").value  = f0(e*100);
-          if (e > 0.99999) d = 100;
-          else if (e < 0.00001) d = 0.00001;
-          else d = exponential_inv(e, lambda, info);
+          d = exponential_inv(e, lambda, info);
           d3.select("#d").node().value = f4(d);
           drawExponentialGraph(lambda, 0, d, e);
        }
@@ -189,15 +190,12 @@
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           h = parseFloat(d3.select("#h").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
           document.getElementById("range4E").value  = f0(h*100);
-          if (h > 0.999999) {
-             f = 0.00001;
-             g = 100;
-          }
-          else {
-             g = exponential_inv(1-(1-h)/2, lambda, info);
-             f = exponential_inv((1-h)/2, lambda, info);
-          }
+          g = exponential_inv(1-(1-h)/2, lambda, info);
+          f = exponential_inv((1-h)/2, lambda, info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawExponentialGraph(lambda, f, g, h); 

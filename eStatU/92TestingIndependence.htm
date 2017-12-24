@@ -220,7 +220,7 @@
         for (i=1; i<=nrow; i++) {
           for (j=1; j<=ncol; j++) {
             temp = cell[i][j] - expf[i][j];
-            stat = temp * temp / expf[i][j];
+            stat += temp * temp / expf[i][j];
           }
         }
 
