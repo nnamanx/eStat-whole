@@ -121,6 +121,9 @@
           bar.selectAll("*").remove();
           df    = parseFloat(d3.select("#dft").node().value); 
           e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
           d = t_inv(e, df, info);
           d3.select("#d").node().value = f4(d);
           drawTdistGraph(df, -5, d, e);
@@ -129,15 +132,12 @@
           radioType = 3;
           bar.selectAll("*").remove();
           df    = parseFloat(d3.select("#dft").node().value); 
-          h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.999999) {
-             f = - 5;
-             g = 5;
-          }
-          else {
-             g = t_inv(1-(1-h)/2, df, info);
-             f = - t_inv(1-(1-h)/2, df, info);
-          }
+          h = parseFloat(d3.select("#h").node().value);
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
+          g = t_inv(1-(1-h)/2, df, info);
+          f = - t_inv(1-(1-h)/2, df, info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawTdistGraph(df, f, g, h); 
@@ -171,10 +171,11 @@
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
           document.getElementById("range3T").value  = f0(e*100);
-          if (e > 0.99999) d = 5;
-          else if (e < 0.00001) d = - 5;
-          else d = t_inv(e, df, info);
+          d = t_inv(e, df, info);
           d3.select("#d").node().value = f4(d);
           drawTdistGraph(df, -5, d, e);
        }
@@ -182,15 +183,12 @@
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           h = parseFloat(d3.select("#h").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
           document.getElementById("range4T").value  = f0(h*100);
-          if (h > 0.999999) {
-             f = - 5;
-             g = 5;
-          }
-          else {
-             g = t_inv(1-(1-h)/2, df, info);
-             f = - t_inv(1-(1-h)/2, df, info);
-          }
+          g = t_inv(1-(1-h)/2, df, info);
+          f = - t_inv(1-(1-h)/2, df, info);
           d3.select("#f").node().value = f4(f);
           d3.select("#g").node().value = f4(g);
           drawTdistGraph(df, f, g, h); 
