@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    if(window.navigator.userAgent.indexOf("MSIE") > 0) {
+	alert("Internet Explorer에서는 제대로 작동하지 않을 수 있습니다. Chrome 웹브라우저를 권장합니다.");
+    };
+});
+		  
 var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
@@ -11,8 +17,8 @@ var svgWidth, svgHeight, margin, graphWidth, graphHeight;
 var svgWidth2, svgHeight2;
 var title, graphNum;
 var langNum = 0;
-var rowMax = 200; // 시트행 최대
-var colMax = 10; // 시트열 최대
+var rowMax = 10000; // 시트행 최대
+var colMax = 20; // 시트열 최대
 var buffer = 20; // 우측 y선과 범례와  간격
 var bothBarGap = 35; // 양쪽막대의 갭
 var maxNumEdit = 9; // 변량편집시 최대 변량값 수
