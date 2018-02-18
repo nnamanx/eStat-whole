@@ -1,4 +1,4 @@
-﻿// eStat.js
+// eStat.js
     svgWidth     = 600;
     svgHeight    = 560;
     margin       = {top:80, bottom:80, left:80, right:100};
@@ -25,195 +25,6 @@ var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0
                  "#669966","#663366","#999966","#996666","#CCCC66","#CC9966","#CC6666","#CCFF66","#FFFF66","#FFCC66","#FF0066",
                  "#0000CC","#00FFCC","#0033CC","#3333CC","#3300CC","#33CCCC","#3366CC","#6666CC","#6633CC","#66CCCC","#6699CC",
                  "#9999CC","#9966CC","#99CCCC","#CCCCCC","#CCFFCC","#CC33CC","#CC99CC","#FFFFCC","#FFCCCC","#003300","#666600"];
-
-var nLanguage = 2;
-var nString   = 50;
-var appStr    = new Array(nString);
-var svgStr    = new Array(nString);
-var alertMsg  = new Array(nString);
-for (j = 0; j < nString; j++) {
-  appStr[j]   = new Array(nLanguage);
-  svgStr[j]   = new Array(nLanguage);
-  alertMsg[j] = new Array(nLanguage);
-}
-
-appStr[1][0] = "../eStatH/index.html";
-appStr[2][0] = "../eStatU/index.html";
-appStr[3][0] = "../eStatE/index.html";
-appStr[4][0] = "../ExLearning/index.html";
-appStr[5][0] = "index_en.html";
-
-alertMsg[1][0]  = "선택된 변량중에 자료가 없는 것이 있습니다!";
-alertMsg[2][0]  = "시트에서 분석을 원하는 변량를 선택(변량번호 클릭)한 후 버튼을 눌러주세요!  변량이 2개 이상일 경우 첫 선택변량는 그룹변량이 됩니다. ";
-alertMsg[3][0]  = "선택된 열에 결측치가 있습니다.";
-alertMsg[4][0]  = "각 열의 자료수가 다르거나 결측치가 있으면 처리를 할 수 없습니다.";
-alertMsg[5][0]  = "그룹의 수가 너무 많으면 화면의 사이즈가 작아 그래프가 겹처보일 수 있습니다.";
-alertMsg[6][0]  = "요약자료의 분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
-alertMsg[7][0]  = "원시자료에서 두 개이상 선택된 변량에 대해서는 그래프를 그리거나 표를 만들 수 없습니다.";
-alertMsg[8][0]  = "점그림은 데이터 수가 200개 이하일때 가능합니다.";
-alertMsg[9][0]  = "줄기와 잎 그림은 데이터 수가 100개 이하일때 가능합니다.";
-alertMsg[12][0] = "분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
-alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합치 않습니다";
-alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
-alertMsg[17][0] = "산점도는 최소 x축변량 y축량이 필요합니다."; 
-alertMsg[18][0] = "네 개이상 선택된 변량에 대해서는 산점도를 그릴 수 없습니다.";
-alertMsg[19][0] = "X축데이터에 문자가 있어 산점도를 처리할수 없습니다";
-alertMsg[20][0] = "Y축데이터에 문자가 있어 산점도를 처리할수 없습니다";
-alertMsg[21][0] = "자료에 결측치가 있으면 저장할 수 없습니다.";
-alertMsg[22][0] = "음수자료의 막대그래프는 그릴 수 없습니다."; 
-alertMsg[25][0] = "한그룹의 경우 쌓는형 막대그래프는 그릴 수 없습니다."; 
-alertMsg[27][0] = "한그룹의 경우 비율형 막대그래프는 그릴 수 없습니다."; 
-alertMsg[29][0] = "한그룹의 경우 나란형 막대그래프는 그릴 수 없습니다."; 
-alertMsg[31][0] = "한그룹의 경우 양쪽형 막대그래프는 그릴 수 없습니다."; 
-alertMsg[32][0] = "음수자료의 원그래프는 그릴 수 없습니다."; 
-alertMsg[33][0] = "음수자료의 도넛그래프는 그릴 수 없습니다."; 
-alertMsg[34][0] = "음수자료의 띠그래프는 그릴 수 없습니다."; 
-alertMsg[35][0] = "음수자료의 도수분포표는 표시할 수 없습니다."; 
-alertMsg[36][0] = "두 그룹에 대해서만 양쪽형 그래프를 그릴 수 있습니다.";
-alertMsg[37][0] = "한 (분석변량)에 대해서만 가설검정을 할 수 있습니다."; 
-alertMsg[38][0] = "mu is NaN . Ener value and then retry!";
-alertMsg[39][0] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][0] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][0] = "두 변량 (그룹변량과 분석변량)에 대해서만 가설검정을 할 수 있습니다."; 
-alertMsg[42][0] = "가설검정의 제목은 편집할 수 없습니다! ";
-
-svgStr[1][0]  = " 막대그래프";        	
-svgStr[2][0]  = " 원그래프";   		
-svgStr[3][0]  = " 도넛그래프";       	
-svgStr[4][0]  = " 띠그래프";          	
-svgStr[5][0]  = " 꺽은선그래프";       	
-svgStr[6][0]  = " 점그래프";         	
-svgStr[7][0]  = " 상자그래프";         	
-svgStr[8][0]  = " 줄기와 잎 그림";     	
-svgStr[9][0]  = " 히스토그램";         	
-svgStr[10][0] = " 산점도";           	
-svgStr[11][0] = " 모평균 가설검정";      
-svgStr[12][0] = " 모분산 가설검정";    	
-svgStr[13][0] = " 두 모평균 가설검정";   
-svgStr[14][0] = " 두 모분산 가설검정";   
-svgStr[15][0] = " 분산분석"; 
-svgStr[16][0] = "도 수"; 
-svgStr[17][0] = "비 율";
-svgStr[18][0] = "그룹";
-svgStr[19][0] = "의 ";
-svgStr[20][0] = "<h3>요약자료<br>도수분포표</h3>";
-svgStr[21][0] = "그룹변량";
-svgStr[22][0] = "행변량";
-svgStr[23][0] = "합계";   
-svgStr[24][0] = "합  계";
-svgStr[25][0] = "<h3>도수분포표</h3>";
-svgStr[26][0] = "분석변량";
-svgStr[27][0] = "변량값";
-svgStr[28][0] = "변량값명";
-svgStr[29][0] = "도수";
-svgStr[30][0] = "백분률(%)"; 
-svgStr[31][0] = "<h3>교차표</h3>";
-svgStr[32][0] = "열변량";
-svgStr[33][0] = "행변량";
-svgStr[34][0] = "평균"
-svgStr[35][0] = "표준편차"
-svgStr[36][0] = "<h3> 구간별<br>도수분포표</h3>";
-svgStr[37][0] = "그룹명";
-svgStr[38][0] = "계급구간";
-svgStr[39][0] = "줄기";
-svgStr[40][0] = " 잎";
-svgStr[41][0] = "그룹 1  잎";
-svgStr[42][0] = "그룹 2  잎"
-svgStr[43][0] = "<h3>기초통계량</h3>";
-svgStr[44][0] = "자료수";  
-svgStr[45][0] = "최솟값";  
-svgStr[46][0] = "중앙값"; 
-svgStr[47][0] = "최댓값";  
-svgStr[48][0] = "전체";
-
-appStr[1][1] = "../eStatH/index.html";
-appStr[2][1] = "../eStatU/index.html";
-appStr[3][1] = "../eStatE/index_en.html";
-appStr[4][1] = "../ExLearning/index_en.html";
-appStr[5][1] = "index.html";
-
-alertMsg[1][1]  = "One of the selected variables does not have data.";
-alertMsg[2][1]  = "Select variables for analysis (clicking column names) one by one. If two variables, first one is group variable. ";
-alertMsg[3][1]  = "Missing data on the selected variable.";
-alertMsg[4][1]  = "If observations of the selected variables are different or observations are different, analysis is not allowed.";
-alertMsg[5][1]  = "Too many groups! Graphs may be overlapped due to size of the screen.";
-alertMsg[6][1]  = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
-alertMsg[7][1]  = "If more than three variables are selected on raw data, analysis or creating table is not allowed.";
-alertMsg[8][1]  = "Dot Graph is allowd if the number of observation is less than 200.";
-alertMsg[9][1]  = "Stem & Leaf Plot is allowd if the number of observation is less than 100.";
-alertMsg[12][1] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
-alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
-alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
-alertMsg[17][1] = "Scatter plot requires at least x variable and y variable."; 
-alertMsg[18][1] = "More than three variables are not allowed for scatter plot.";
-alertMsg[19][1] = "If there is a character on X variable, scatter plot cannot be drawn.";
-alertMsg[20][1] = "If there is a character on Y variable, scatter plot cannot be drawn.";
-alertMsg[21][1] = "If there is a missing data, save is not allowed.";
-alertMsg[22][1] = "If there is a negative number, bargraph cannot be drawn."; 
-alertMsg[25][1] = "If there is only one group, stacked bar graph is not allowed."; 
-alertMsg[27][1] = "If there is only one group, ratio bar graph is not allowed."; 
-alertMsg[29][1] = "If there is only one group, side-by-side bar graph is not allowed."; 
-alertMsg[31][1] = "If there is only one group, both-side bar graph is not allowed."; 
-alertMsg[32][1] = "If there is a negative number, piechart cannot be drawn."; 
-alertMsg[33][1] = "If there is a negative number, donut graph cannot be drawn."; 
-alertMsg[34][1] = "If there is a negative number, band graph cannot be drawn."; 
-alertMsg[35][1] = "If there is a negative number, frequency table cannot be drawn."; 
-alertMsg[36][1] = "This bar graph is allowed only for two groups.";
-alertMsg[37][1] = "This testing hypothesis is allowed only for one variable."; 
-alertMsg[38][1] = "mu is NaN . Ener value and then retry!";
-alertMsg[39][1] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][1] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][1] = "This testing hypothesis is allowed only for two variable. Group variable should have only two groups";  
-alertMsg[42][1] = "Title editing of testing hypothesis is not allowed! ";
-
-svgStr[1][1]  = " Bar Graph";        	
-svgStr[2][1]  = " Pie Chart";   		
-svgStr[3][1]  = " Donut Graph";       	
-svgStr[4][1]  = " Band Graph";          	
-svgStr[5][1]  = " Line Graph";       	
-svgStr[6][1]  = " Dot Graph";         	
-svgStr[7][1]  = " Box-Whisker Plot";         	
-svgStr[8][1]  = " Stem and Leaf Plot";     	
-svgStr[9][1]  = " Histogram";         	
-svgStr[10][1] = " Scatter Plot";           	
-svgStr[11][1] = " Testing Hypothesis: Population Mean";      
-svgStr[12][1] = " Testing Hypothesis: Population Variance";    	
-svgStr[13][1] = " Testing Hypothesis: Two Population Means";   
-svgStr[14][1] = " Testing Hypothesis: Two Population Variances";   
-svgStr[15][1] = " Analysis of Variance"; 
-svgStr[16][1] = "Frequency"; 
-svgStr[17][1] = "Ratio";
-svgStr[18][1] = "Group ";
-svgStr[19][1] = " ";
-svgStr[20][1] = "<h3>Summary Data<br>Frequency Table</h3>";
-svgStr[21][1] = "Group Variable";
-svgStr[22][1] = "Row Variable";
-svgStr[23][1] = "Total";   
-svgStr[24][1] = "Total";
-svgStr[25][1] = "<h3>Frequency Table</h3>";
-svgStr[26][1] = "Analysis Variable";
-svgStr[27][1] = "Var Value";
-svgStr[28][1] = "Value Label";
-svgStr[29][1] = "Frequency";
-svgStr[30][1] = "Percent(%)"; 
-svgStr[31][1] = "<h3>Cross Table</h3>";
-svgStr[32][1] = "Col Variable";
-svgStr[33][1] = "Row Variable";
-svgStr[34][1] = "Mean"
-svgStr[35][1] = "Std Dev"
-svgStr[36][1] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStr[37][1] = "Group Name";
-svgStr[38][1] = "Interval";
-svgStr[39][1] = "Stem";
-svgStr[40][1] = " Leaf";
-svgStr[41][1] = "Group 1  Leaf";
-svgStr[42][1] = "Group 2  Leaf"
-svgStr[43][1] = "<h3>Basic Statistics</h3>";
-svgStr[44][1] = "Observation";  
-svgStr[45][1] = "Minimum";  
-svgStr[46][1] = "Median"; 
-svgStr[47][1] = "Maximum";  
-svgStr[48][1] = "Total";
 
 // 한글 체크 
 function is_hangul_char(ch) {
@@ -777,10 +588,10 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
         chart.append("text")
              .attr("x",margin.left + titleBuffer)
              .attr("y",margin.top/2 + 10)
-             .attr("font-size","17px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","17px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .text(str)
        
         // 축제목
@@ -789,10 +600,10 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
           chart.append("text")
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .text(xstr)
         }
         else if (LineGraph) {
@@ -800,10 +611,10 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
           chart.append("text")
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .text(xstr)
 
           // Y축 제목
@@ -811,10 +622,10 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
           var ty = margin.top + 15;
 
           chart.append("text")
-               .attr("font-size","12px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","end")
+               .style("font-size","12px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","end")
                .attr("x",margin.left/2-15)
                .attr("y",margin.top+ 15)
                .text(ystr)
@@ -823,10 +634,10 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
         else if(VerticalBar) {  // 세로형 막대그래프
           // X축 제목
           chart.append("text")
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(xstr)
@@ -835,10 +646,10 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
           var ty = margin.top + 15;
 
           chart.append("text")
-               .attr("font-size","12px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","end")
+               .style("font-size","12px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","end")
                .attr("x",tx)
                .attr("y",ty)
                .text(ystr)
@@ -850,10 +661,10 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
 //          str = xTitle[graphNum];
 //          else str = gvarName;
           chart.append("text")
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(xstr)
@@ -890,9 +701,9 @@ function drawLabel(ngroup, ndvalue, label, betweenbarWidth, barWidth, gapWidth, 
 
              if (BothBar) {              
                chart.append("text")
-                    .attr("text-anchor",str)
-                    .attr("font-family","sans-serif")
-                    .attr("font-size","8pt")
+                    .style("text-anchor",str)
+                    .style("font-family","sans-serif")
+                    .style("font-size","8pt")
                     .attr("x",x1)
                     .attr("y",y1)
                     .attr("transform","rotate("+angle+","+x1+","+y1+")  ")
@@ -907,9 +718,9 @@ function drawLabel(ngroup, ndvalue, label, betweenbarWidth, barWidth, gapWidth, 
                   .style("stroke","black") 
                   .style("stroke-width","0.5")                    
                chart.append("text")
-                  .attr("text-anchor",str)
-                  .attr("font-family","sans-serif")
-                  .attr("font-size","9px")
+                  .style("text-anchor",str)
+                  .style("font-family","sans-serif")
+                  .style("font-size","9px")
                   .attr("x",x1)
                   .attr("y",y1)
                   .attr("transform","rotate("+angle+","+x1+","+y1+")  ")
@@ -924,9 +735,9 @@ function drawLabel(ngroup, ndvalue, label, betweenbarWidth, barWidth, gapWidth, 
               for (j=0; j<ndvalue; j++) {
                 chart.append("text")
                    .attr("class", "barname")
-                   .attr("text-anchor","middle")
-                   .attr("font-family","sans-serif")
-                   .attr("font-size","8pt")
+                   .style("text-anchor","middle")
+                   .style("font-family","sans-serif")
+                   .style("font-size","8pt")
                    .attr("x",margin.left + graphWidth/2)
                    .attr("y",margin.top + tgapHeight + barHeight/2 + j*betweenbarHeight)
                    .text(label[ndvalue-j-1])
@@ -936,9 +747,9 @@ function drawLabel(ngroup, ndvalue, label, betweenbarWidth, barWidth, gapWidth, 
               for (j=0; j<ndvalue; j++) {
                 chart.append("text")
                    .attr("class", "barnameh")
-                   .attr("text-anchor","end")
-                   .attr("font-family","sans-serif")
-                   .attr("font-size","8pt")
+                   .style("text-anchor","end")
+                   .style("font-family","sans-serif")
+                   .style("font-size","8pt")
                    .attr("x",margin.left - 5)
                    .attr("y",margin.top + tgapHeight + barHeight/2 +j*betweenbarHeight)
                    .text(label[j])
@@ -949,9 +760,9 @@ function drawLabel(ngroup, ndvalue, label, betweenbarWidth, barWidth, gapWidth, 
               for (j=0; j<ndvalue; j++) {
                 chart.append("text")
                    .attr("class", "barnameh")
-                   .attr("text-anchor","end")
-                   .attr("font-family","sans-serif")
-                   .attr("font-size","8pt")
+                   .style("text-anchor","end")
+                   .style("font-family","sans-serif")
+                   .style("font-size","8pt")
                    .attr("x",margin.left - 5)
                    .attr("y",margin.top + k*oneHeight +  tgapHeight + barHeight/2 + j*betweenbarHeight)
                    .text(label[j])
@@ -1087,10 +898,10 @@ function drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue
                    .attr("height",8)
           
               chart.append("text")
-                   .attr("font-size","12px")
-                   .attr("font-family","sans-seirf")
-                   .attr("stroke","black")
-                   .attr("text-anchor","start")
+                   .style("font-size","12px")
+                   .style("font-family","sans-seirf")
+                   .style("stroke","black")
+                   .style("text-anchor","start")
                    .style("stroke",myColor[k])
                    .attr("x",margin.left + graphWidth + bufferLegend + 10)
                    .attr("y",margin.top + oneHeight/2 + oneHeight*k + 10)
@@ -1313,10 +1124,10 @@ function drawStackBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNu
                  .attr("width",8)
                  .attr("height",8)
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
                  .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + bufferLegend + 10)
                  .attr("y",margin.top + 20 + k*20 + 10)
@@ -1372,10 +1183,10 @@ function drawStackBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNu
                  .attr("width",8)
                  .attr("height",8)
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
                  .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + bufferLegend + 10)
                  .attr("y",margin.top + 20 + k*20 + 10)
@@ -1485,10 +1296,10 @@ function drawRatioBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, d
                  .attr("width",8)
                  .attr("height",8)
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
                  .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + bufferLegend + 10)
                  .attr("y",margin.top + 20 + k*20 + 10)
@@ -1542,10 +1353,10 @@ function drawRatioBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, d
                  .attr("width",8)
                  .attr("height",8)
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
                  .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + bufferLegend + 10)
                  .attr("y",margin.top + 20 + k*20 + 10)
@@ -1642,10 +1453,10 @@ function drawSideBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dv
                    .attr("width",8)
                    .attr("height",8)
               chart.append("text")
-                   .attr("font-size","12px")
-                   .attr("font-family","sans-seirf")
-                   .attr("stroke","black")
-                   .attr("text-anchor","start")
+                   .style("font-size","12px")
+                   .style("font-family","sans-seirf")
+                   .style("stroke","black")
+                   .style("text-anchor","start")
                    .style("stroke",myColor[k])
                    .attr("x",margin.left + graphWidth + bufferLegend + 10)
                    .attr("y",margin.top + 20 + k*20 + 10)
@@ -1683,10 +1494,10 @@ function drawSideBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dv
                  .attr("width",8)
                  .attr("height",8)
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
                  .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + bufferLegend + 10)
                  .attr("y",margin.top + 20 + k*20 + 10)
@@ -1812,10 +1623,10 @@ function drawBothBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNum
                  .attr("width",8)
                  .attr("height",8)
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
                  .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + bufferLegend + 10)
                  .attr("y",ty+10)
@@ -1882,10 +1693,10 @@ function drawBothBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNum
 
             if (k==0) {
               chart.append("text")
-                   .attr("font-size","12px")
-                   .attr("font-family","sans-seirf")
-                   .attr("stroke","black")
-                   .attr("text-anchor","start")
+                   .style("font-size","12px")
+                   .style("font-family","sans-seirf")
+                   .style("stroke","black")
+                   .style("text-anchor","start")
                    .style("stroke",myColor[k])
                    .attr("x",x1 )
                    .attr("y",margin.top)
@@ -1894,10 +1705,10 @@ function drawBothBar(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNum
             }
             else {
               chart.append("text")
-                   .attr("font-size","12px")
-                   .attr("font-family","sans-seirf")
-                   .attr("stroke","black")
-                   .attr("text-anchor","start")
+                   .style("font-size","12px")
+                   .style("font-family","sans-seirf")
+                   .style("stroke","black")
+                   .style("text-anchor","start")
                    .style("stroke",myColor[k])
                    .attr("x",x1 + 2*bothBarGap )
                    .attr("y",margin.top)
@@ -2289,10 +2100,10 @@ function drawPieChart(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNu
            if (ngroup > 1) {
              str = gvalueLabel[k];
              chart.append("text")
-                  .attr("font-size","12px")
-                  .attr("font-family","sans-seirf")
-                  .attr("stroke","black")
-                  .attr("text-anchor","start")
+                  .style("font-size","12px")
+                  .style("font-family","sans-seirf")
+                  .style("stroke","black")
+                  .style("text-anchor","start")
                   .style("stroke",myColor[k])
                   .attr("x",margin.left + graphWidth + bufferLegend)
                   .attr("y",margin.top + oneHeight/2 + oneHeight*k)
@@ -2322,10 +2133,10 @@ function drawPieChart(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNu
                   }
                 })
           pieSlice.append("text")
-                  .attr("font-size","10px")
-                  .attr("font-family","sans-seirf")
-                  .attr("stroke","white")
-                  .attr("text-anchor","middle")
+                  .style("font-size","10px")
+                  .style("font-family","sans-seirf")
+                  .style("stroke","white")
+                  .style("text-anchor","middle")
                   .attr("transform",function(d,i){ return "translate("+arc.centroid(d)+")";})
                   .text(function(d,i){ return dvalueLabel[i]+": "+d.value;})
         } 
@@ -2359,10 +2170,10 @@ function drawBandGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarN
                   .attr("height",8)
 
              chart.append("text")
-                  .attr("font-size","12px")
-                  .attr("font-family","sans-seirf")
-                  .attr("stroke","black")
-                  .attr("text-anchor","start")
+                  .style("font-size","12px")
+                  .style("font-family","sans-seirf")
+                  .style("stroke","black")
+                  .style("text-anchor","start")
                   .style("stroke",myColor[k])
                   .attr("x",margin.left + graphWidth + bufferLegend + 5)
                   .attr("y",margin.top + bandHeight/2 + oneHeight*k +5)
@@ -2401,15 +2212,15 @@ function drawBandGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarN
                     .attr("x",bandX[j]+bandWidth[j]/2)
                     .attr("y",ty+5)
                     .text(tdata[j])
-                    .attr("font-size","10px")
-                    .attr("font-family","sans-seirf")
-                    .attr("text-anchor","middle")
+                    .style("font-size","10px")
+                    .style("font-family","sans-seirf")
+                    .style("text-anchor","middle")
                     .style("stroke","white")
                chart.append("text")
-                    .attr("font-size","10px")
-                    .attr("font-family","sans-seirf")
-                    .attr("text-anchor","middle")
-                    .attr("stroke",myColor[j])
+                    .style("font-size","10px")
+                    .style("font-family","sans-seirf")
+                    .style("text-anchor","middle")
+                    .style("stroke",myColor[j])
                     .attr("x",bandX[j]+bandWidth[j]/2)
                     .attr("y",t2)
                     .text(f1(tratio[j])+"%")
@@ -2434,10 +2245,10 @@ function drawBandGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarN
                  .attr("width",8)
                  .attr("height",8)
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("text-anchor","start")
-                 .attr("stroke",myColor[j])
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("text-anchor","start")
+                 .style("stroke",myColor[j])
                  .attr("x",tx + 13)
                  .attr("y",ty + 8)
                  .text(str);
@@ -2526,9 +2337,9 @@ function drawXaxis(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth) {
                .style("stroke","black") 
                .style("stroke-width","0.5")    
           chart.append("text")   // x축 레이블
-               .attr("text-anchor",str)
-               .attr("font-size","9px")
-               .attr("font-family","sans-serif")
+               .style("text-anchor",str)
+               .style("font-size","9px")
+               .style("font-family","sans-serif")
                .attr("x", x1)
                .attr("y", y1)
                .attr("transform","rotate("+angle+","+x1+","+y1+")  ")
@@ -2600,10 +2411,10 @@ function drawLegend(gvalueLabel) {
                .style("fill",myColor[k])
                .attr("r", 4);
           chart.append("text")
-               .attr("font-size","12px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","start")  
+               .style("font-size","12px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","start")  
                .attr("x",x1+5)
                .attr("y",y1+5)
                .text(str)
@@ -3099,10 +2910,10 @@ function drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNa
         chart.append("text")
              .attr("x",margin.left + titleBuffer)
              .attr("y",margin.top/2 + 10)
-             .attr("font-size","17px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","17px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .text(str)
 }
 
@@ -3136,10 +2947,10 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
 
         // X축 제목
         chart.append("text")
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(dvarName)
@@ -3150,10 +2961,10 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
           if (ngroup > 1) {
             str = gvalueLabel[k];  
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
                  .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + 20)
                  .attr("y",margin.top + oneHeight/2 + oneHeight*k)
@@ -3241,10 +3052,10 @@ function showDotMean(ngroup, avg, gxmin, gxmax, graphWidth, graphHeight) {
             .style("stroke","red")            
          chart.append("text")
               .attr("class","mean")
-              .attr("text-anchor","middle")
-              .attr("font-size","9px")
-              .attr("font-family","sans-serif")
-              .attr("stroke","#0055FF")
+              .style("text-anchor","middle")
+              .style("font-size","9px")
+              .style("font-family","sans-serif")
+              .style("stroke","#0055FF")
               .attr("x", avgx)
               .attr("y", ty + 32 + oneHeight)
              .text(svgStr[34][langNum]+"="+f2(avg[k]))
@@ -3302,10 +3113,10 @@ function showDotStd(avg, std, gxmin, gxmax, graphWidth, graphHeight) {
             .style("fill","blue")           
          chart.append("text")
               .attr("class","std")
-              .attr("text-anchor","middle")
-              .attr("font-size","9px")
-              .attr("font-family","sans-serif")
-              .attr("stroke","#0055FF")
+              .style("text-anchor","middle")
+              .style("font-size","9px")
+              .style("font-family","sans-serif")
+              .style("stroke","#0055FF")
               .attr("x", avgx+80)
               .attr("y", ty+12)
               .text(svgStr[35][langNum]+"="+f2(std[k]))
@@ -3372,10 +3183,10 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
       drawHistAxis(ngroup, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidth, graphHeight);
       // X축 제목
       chart.append("text")
-           .attr("font-size","12px")
-           .attr("font-family","sans-seirf")
-           .attr("stroke","black")
-           .attr("text-anchor","middle")
+           .style("font-size","12px")
+           .style("font-family","sans-seirf")
+           .style("stroke","black")
+           .style("text-anchor","middle")
            .attr("x",margin.left + graphWidth/2)
            .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
            .text(dvarName)
@@ -3383,10 +3194,10 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
       // Y축 제목
       str = svgStr[16][langNum];
       chart.append("text")
-           .attr("font-size","12px")
-           .attr("font-family","sans-seirf")
-           .attr("stroke","black")
-           .attr("text-anchor","end")
+           .style("font-size","12px")
+           .style("font-family","sans-seirf")
+           .style("stroke","black")
+           .style("text-anchor","end")
            .attr("x",margin.left/2-15)
            .attr("y",margin.top+ 15)
            .text(str)
@@ -3398,10 +3209,10 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
         if (ngroup > 1) {
           str = gvalueLabel[k];  
           chart.append("text")
-               .attr("font-size","12px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","start")
+               .style("font-size","12px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","start")
                .style("stroke",myColor[k])
                .attr("x",margin.left + graphWidth + 20)
                .attr("y",margin.top + oneHeight/2 + oneHeight*k)
@@ -3416,8 +3227,8 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
             chart.append("rect")
                 .style("fill",myColor[k])
                 .attr("class","bar")
-                .attr("stroke","black")
-                .attr("stroke-width","1px")
+                .style("stroke","black")
+                .style("stroke-width","1px")
                 .attr("x",tempx)
                 .attr("width",tempw)
                 .attr("height",0)
@@ -3486,11 +3297,11 @@ function drawHistAxis(ngroup, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphW
               .style("stroke","black") 
           chart.append("text")
               .attr("class","myaxis")
-              .attr("text-anchor","middle")
-              .attr("font-family","sans-serif")
-              .attr("font-size","7px")
-              .attr("font-family","sans-serif")
-              .attr("stroke","#0055FF")
+              .style("text-anchor","middle")
+              .style("font-family","sans-serif")
+              .style("font-size","7px")
+              .style("font-family","sans-serif")
+              .style("stroke","#0055FF")
               .attr("x",x1)
               .attr("y",y2+15)
               .text(f2(dataValueH[i]))
@@ -3517,10 +3328,10 @@ function showHistMean(ngroup, avg, gxminH, gxmaxH) {
                 .attr("y2",tempy + oneHeight)
           chart.append("text")
                 .attr("class","histmean")
-                .attr("stroke","red")
-                .attr("text-anchor","middle")
-                .attr("font-family","sans-serif")
-                .attr("font-size","7pt")
+                .style("stroke","red")
+                .style("text-anchor","middle")
+                .style("font-family","sans-serif")
+                .style("font-size","7pt")
                 .attr("x", tempx)
                 .attr("y", tempy + oneHeight+5)
                 .text(svgStr[34][langNum]+"="+f2(avg[k]))
@@ -3550,10 +3361,10 @@ function showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, 
             y1 = margin.top + (k+1)*oneHeight - oneHeight*(freq[k][i]-gyminH)/gyrangeH;
             chart.append("text")
                 .attr("class","histfreq")
-                .attr("stroke","red")
-                .attr("text-anchor","middle")
-                .attr("font-family","sans-serif")
-                .attr("font-size","8pt")
+                .style("stroke","red")
+                .style("text-anchor","middle")
+                .style("font-family","sans-serif")
+                .style("font-size","8pt")
                 .attr("x", x1)
                 .attr("y", y1-4)
                 .text(freq[k][i])
@@ -3585,16 +3396,16 @@ function showHistLine(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, 
             y2 = margin.top + (k+1)*oneHeight - oneHeight*(freq[k][i+1]-gyminH)/gyrangeH;
             chart.append("circle")
               .attr("class","histline")
-              .attr("stroke","lime")
-              .attr("stroke-width","2px")
+              .style("stroke","lime")
+              .style("stroke-width","2px")
               .attr("cx",x1)
               .attr("cy",y1)
               .attr("r",3)
        
             chart.append("line")
               .attr("class","histline")
-              .attr("stroke","lime")
-              .attr("stroke-width","2px")
+              .style("stroke","lime")
+              .style("stroke-width","2px")
               .attr("x1",x1)
               .attr("x2",x2)
               .attr("y1",y1)
@@ -3602,8 +3413,8 @@ function showHistLine(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, 
  
             chart.append("circle")
               .attr("class","histline")
-              .attr("stroke","lime")
-              .attr("stroke-width","2px")
+              .style("stroke","lime")
+              .style("stroke-width","2px")
               .attr("cx",x2)
               .attr("cy",y2)
               .attr("r",3)
@@ -3729,10 +3540,10 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
           if (ngroup > 1) {
             str = gvalueLabel[k];  
             chart.append("text")
-                 .attr("font-size","12px")
-                 .attr("font-family","sans-seirf")
-                 .attr("stroke","black")
-                 .attr("text-anchor","start")               .style("stroke",myColor[k])
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")               .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + 10)
                  .attr("y",margin.top + oneHeight/4 + oneHeight*k + 20)
                  .text(str);
@@ -3745,10 +3556,10 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
           chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
              .style("stroke",myColor[k]).style("stroke-width","2px")       
           chart.attr("class","stat").append("text").attr("x", x2-3).attr("y", y2+13).text("min="+mini[k])
-               .attr("font-size","9px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","middle")
+               .style("font-size","9px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","middle")
 
           // 최소 => Q1
           x2 = x1 + graphWidth*(Q1[k]-mini[k])/gxrange;
@@ -3761,10 +3572,10 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
           chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
              .style("stroke",myColor[k]).style("stroke-width","2px")
           chart.attr("class","stat").append("text").attr("x", x2-3).attr("y", y2+13).text("max="+maxi[k])
-               .attr("font-size","9px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","middle")
+               .style("font-size","9px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","middle")
 
           // 상자
           x1 = margin.left + graphWidth*(Q1[k]-gxmin)/gxrange;
@@ -3775,17 +3586,17 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
           
           // Q1
           chart.append("text").attr("class","stat").attr("x", x1+3).attr("y", y2+25).text("Q1="+f2(Q1[k]))
-               .attr("font-size","9px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","middle")
+               .style("font-size","9px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","middle")
 
           // Q3
           chart.append("text").attr("class","stat").attr("x", x1+width+6).attr("y", y2+25).text("Q3="+f2(Q3[k]))
-               .attr("font-size","9px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","middle")
+               .style("font-size","9px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","middle")
 
           // Q3 => max
           x1 = margin.left + graphWidth*(Q3[k]-gxmin)/gxrange;
@@ -3799,10 +3610,10 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
           chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
              .style("stroke","lime").style("stroke-width","2px")
           chart.append("text").attr("class","stat").attr("x", x1+6).attr("y", y2+13).text("m="+f2(median[k]))
-               .attr("font-size","9px")
-               .attr("font-family","sans-seirf")
-               .attr("stroke","black")
-               .attr("text-anchor","middle")
+               .style("font-size","9px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","middle")
 
        }
 }
@@ -4292,17 +4103,17 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
         chart.append("text")
              .attr("x",margin.left + titleBuffer)
              .attr("y",margin.top/2)
-             .attr("font-size","17px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","17px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .text(str)
         // Y축 제목
         chart.append("text")
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","end")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","end")
              .attr("x",-margin.top - 50)
              .attr("y",margin.top + 20)
              .text(yvarName)
@@ -4310,10 +4121,10 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
         yTitle[graphNum] = yvarName;
         // X축 제목
         chart.append("text")
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","middle")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(xvarName)
@@ -4424,10 +4235,10 @@ function drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter) {
              .attr("r", 4);
         chart.append("text")
              .style("stroke",myColor[k])
-             .attr("font-size","12px")
-             .attr("font-family","sans-seirf")
-             .attr("stroke","black")
-             .attr("text-anchor","start")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","start")
              .attr("x",tx+8)
              .attr("y",ty+5)
              .text(str)
@@ -4714,14 +4525,14 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
            str += "D = " + f2(statT[0]); 
          }
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 1)       str = "[TestStat] = (m - \u03bco) / ( s/\u221A n )  ~  t("+df+") Distribution";
-         else if (hypoType == 41) str = "[TestStat] = (m1-m2-D) / (pooledStd * \u221A(1/n1+1/n2))  ~  t("+df+") Distribution";
-         else if (hypoType == 42) str = "[TestStat] = (m1-m2-D) / (sqrt(var1/n1 + var2/n2))  ~  t'("+df+") Distribution";  
+         if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03bco) / ( s/\u221A n )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 41) str = svgStrU[23][langNum]+"(m1-m2-D) / (pooledStd * \u221A(1/n1+1/n2))  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m1-m2-D) / (sqrt(var1/n1 + var2/n2))  ~  t'("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
@@ -4739,7 +4550,7 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","black").attr("stroke-width","2px")
+                .style("stroke","black").style("stroke-width","2px")
            x1   = x2;
            y1   = y2;    
          }
@@ -4753,7 +4564,7 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
            y1   = margin.top  + graphHeight2;
            y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","#0055FF").attr("stroke-width","2px")
+                .style("stroke","#0055FF").style("stroke-width","2px")
            tempx += step;        
          } while( tempx <= b ) 
 
@@ -4762,40 +4573,40 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
          chart.append("line").attr("x1",ta).attr("y1",ty-40).attr("x2",ta).attr("y2",ty-15)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-40).attr("x2",tb).attr("y2",ty-15)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("text").attr("x", ta).attr("y", ty+5).text(f2(a))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          chart.append("text").attr("x", tb).attr("y", ty+5).text(f2(b))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
-         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- Accept Ho ->")
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          if (h1Type == 1) {  
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          }
          else if (h1Type == 2) {
-           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
 
          // draw test statistics
@@ -4804,20 +4615,24 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","green");
-         chart.append("text").attr("x", x1).attr("y", y2+15).text("[TestStat] = "+f3(teststat))
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-         chart.append("text").attr("x", x1).attr("y", y2+30).text(" p-value  = "+f3(pvalue))
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("stroke-width","2px");
+         chart.append("text").attr("x", x1).attr("y", y2+15)
+              .text(svgStrU[23][langNum]+f3(teststat))
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
+         chart.append("text").attr("x", x1).attr("y", y2+30)
+              .text(svgStrU[27][langNum]+f3(pvalue))
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Decision
          if (teststat > a && teststat < b) {
-           chart.append("text").attr("x", tx).attr("y", y2+50).text("[Decision] Accept Ho")
-                .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+50)
+                .text(svgStrU[28][langNum]+svgStrU[26][langNum])
+                .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", tx).attr("y", y2+50).text("[Decision] Reject Ho")
-                .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+50)
+                .text(svgStrU[28][langNum]+svgStrU[25][langNum])
+                .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          chart.append("line").attr("class","line2")
               .attr("x1",0).attr("y1",y2+60).attr("x2",svgWidth2).attr("y2",y2+60);
@@ -4826,28 +4641,28 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
          tx = 20;
          ty = margin.top + graphHeight2 + 140;
          if (hypoType == 1) {
-           str  = "[Sample Statistics] size n = "  + statT[3] + ", ";
-           str += " mean m = " + f2(statT[4]) + ", ";
-           str += " std s = "  + f2(statT[5]) ;
+           str  = svgStrU[54][langNum]+" "+svgStrU[44][langNum]+" n = "  + statT[3] + ", ";
+           str += svgStrU[34][langNum]+" m = " + f2(statT[4]) + ", ";
+           str += svgStrU[35][langNum]+" s = "  + f2(statT[5]) ;
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
-           str  = "[Confidence Interval] ";
-           str += " "+(100*(1-alpha)).toString()+"% confidence level ";
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           str  = "["+svgStrU[20][langNum]+"] ";
+           str += " "+(100*(1-alpha)).toString()+"% "+svgStrU[57][langNum]+" ";
            str += " ( "+ f2(statT[6]) +" , " + f2(statT[7]) + " )";
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
          }
          else if (hypoType == 41 || hypoType == 42) {
-           str  = "[Sample 1 Statistics] size n1 = "  + statT[3] + ", ";
-           str += " mean m1 = " + f2(statT[4]) + ", ";
-           str += " std s1 = "  + f2(statT[5]) ;
+           str  = svgStrU[55][langNum]+" "+svgStrU[44][langNum]+" n1 = "  + statT[3] + ", ";
+           str += svgStrU[34][langNum]+" m1 = " + f2(statT[4]) + ", ";
+           str += svgStrU[35][langNum]+" s1 = " + f2(statT[5]) ;
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
-           str  = "[Sample 2 Statistics] size n2 = "  + statT[6] + ", ";
-           str += " mean m2 = " + f2(statT[7]) + ", ";
-           str += " std s2 = "  + f2(statT[8]) ;
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           str  = svgStrU[56][langNum]+" "+svgStrU[44][langNum]+" n2 = "  + statT[6] + ", ";
+           str += svgStrU[34][langNum]+" m2 = " + f2(statT[7]) + ", ";
+           str += svgStrU[35][langNum]+" s2 = " + f2(statT[8]) ;
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
          }
 
 }     
@@ -4894,14 +4709,14 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
            else                  str +=" H1: P1 < P";
          }
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 1)      str = "[TestStat] = (m - mu) / ( s / sqrt(n) )  ~  N(0,1) Distribution";
-         else if (hypoType == 3) str = "[TestStat] = (p - Po) / ( sqrt(p*(1-p)/n) )  ~  N(0,1) Distribution";
-         else if (hypoType == 6) str = "[TestStat] = (p1 - p2 - D) / (sqrt(pbar*(1-pbar)(1/n1 + 1/n2) )  ~  N(0,1) Distribution";
+         if (hypoType == 1)      str = svgStrU[23][langNum]+"(m - mu) / ( s / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3) str = svgStrU[23][langNum]+"(p - Po) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6) str = svgStrU[23][langNum]+"(p1 - p2 - D) / (sqrt(pbar*(1-pbar)(1/n1 + 1/n2) )  ~  N(0,1)";
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
@@ -4919,7 +4734,7 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","black").attr("stroke-width","2px")
+                .style("stroke","black").style("stroke-width","2px")
            x1   = x2;
            y1   = y2;    
          }
@@ -4933,7 +4748,7 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
            y1   = margin.top  + graphHeight2;
            y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","#0055FF").attr("stroke-width","2px")
+                .style("stroke","#0055FF").style("stroke-width","2px")
            tempx += step;        
          } while( tempx <= b ) 
 
@@ -4942,41 +4757,40 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
          chart.append("line").attr("x1",ta).attr("y1",ty-40).attr("x2",ta).attr("y2",ty-15)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-40).attr("x2",tb).attr("y2",ty-15)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("text").attr("x", ta).attr("y", ty+5).text(f2(a))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          chart.append("text").attr("x", tb).attr("y", ty+5).text(f2(b))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
-         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- Accept Ho ->")
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
  
          if (h1Type == 1) {  
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          }
          else if (h1Type == 2) {
-           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
 
          // draw test statistics
@@ -4985,23 +4799,23 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","green");
-         chart.append("text").attr("x", x1).attr("y", y2+15).text("[TestStat] = "+f3(teststat))
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-         chart.append("text").attr("x", x1).attr("y", y2+30).text(" p-value  = "+f3(pvalue))
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke-width","2px").style("stroke","green");
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(teststat))
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Decision
          if (teststat > a && teststat < b) {
-           chart.append("text").attr("x", tx).attr("y", y2+50).text("[Decision] Accept Ho")
-                .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[26][langNum])
+                .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", tx).attr("y", y2+50).text("[Decision] Reject Ho")
-                .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[25][langNum])
+                .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          chart.append("line").attr("x1",0).attr("y1",y2+60).attr("x2",svgWidth2).attr("y2",y2+60)
-              .attr("stroke-width","0.7px").attr("stroke","black");
+              .style("stroke-width","0.7px").style("stroke","black");
 
          // print sample stat & confidence interval
          tx = 20;
@@ -5011,12 +4825,12 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
            str += " mean m = " + f2(statT[4]) + ", ";
            str += " std s = "  + f2(statT[5]) ;
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            str  = "[Confidence Interval] ";
            str += " with "+(100*(1-alpha)).toString()+"% Confidence level ";
            str += " ( "+ f2(statT[6]) +" , " + f2(statT[7]) + " )";
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
          }
 
 }     
@@ -5057,7 +4871,7 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tx, ty, str;
-         var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange;
+         var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange, temp;
 
          gxmin = 0;
          gymin = 0;
@@ -5088,13 +4902,13 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
            str +=" H1: row and columen are dependent";
          }
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 2)      str = "[TestStat] = (n - 1) s\u00B2 / \u03C3o\u00B2 ~ \u03C7\u00B2("+df+") Distribution";
-         else if (hypoType == 8) str = "[TestStat] = Sum( EF - OF)^2 / EF ) ~  ChiSq("+df+") Distribution";
+         if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3o\u00B2 ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8) str = svgStrU[23][langNum]+"Sum( EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
@@ -5112,7 +4926,7 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","black").attr("stroke-width","2px")
+                .style("stroke","black").style("stroke-width","2px")
            x1   = x2;
            y1   = y2;    
          }
@@ -5126,7 +4940,7 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
            y1   = margin.top  + graphHeight2;
            y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","#0055FF").attr("stroke-width","2px")
+                .style("stroke","#0055FF").style("stroke-width","2px")
            tempx += step;        
          } while( tempx <= b ) 
 
@@ -5135,80 +4949,82 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
          chart.append("line").attr("x1",ta).attr("y1",ty-40).attr("x2",ta).attr("y2",ty-15)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-40).attr("x2",tb).attr("y2",ty-15)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("text").attr("x", ta).attr("y", ty+5).text(f2(a))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          chart.append("text").attr("x", tb).attr("y", ty+5).text(f2(b))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
-         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- Accept Ho ->")
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
  
          if (h1Type == 1) {  
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          }
          else if (h1Type == 2) {
-           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
 
          // draw test statistics
-         x1 = margin.left + graphWidth2*(teststat-gxmin)/gxrange;
+         temp = teststat;
+         if (temp > gxmax) temp = gxmax+(gxmax-gxmin)/10;
+         x1 = margin.left + graphWidth2*(temp-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","green");
-         chart.append("text").attr("x", x1).attr("y", y2+15).text("[TestStat] = "+f3(teststat))
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-         chart.append("text").attr("x", x1).attr("y", y2+30).text(" p-value  = "+f3(pvalue))
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke-width","2px").style("stroke","green");
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(teststat))
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Decision
          if (teststat > a && teststat < b) {
-           chart.append("text").attr("x", tx).attr("y", y2+50).text("[Decision] Accept Ho")
-                .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[26][langNum])
+                .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", tx).attr("y", y2+50).text("[Decision] Reject Ho")
-                .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[25][langNum])
+                .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          chart.append("line").attr("x1",0).attr("y1",y2+60).attr("x2",svgWidth2).attr("y2",y2+60)
-              .attr("stroke-width","0.7px").attr("stroke","black");
+              .style("stroke-width","0.7px").style("stroke","black");
 
          // print sample stat & confidence interval
          tx = 20;
          ty = margin.top + graphHeight2 + 140;
          if (hypoType == 2) {
-           str  = "[Sample Statistics] size n = "  + statT[3] + ", ";
-           str += " mean m = " + f2(statT[4]) + ", ";
-           str += " std s = "  + f2(statT[5]) ;
+           str  = svgStrU[54][langNum]+" "+svgStrU[44][langNum]+" n = "  + statT[3] + ", ";
+           str += svgStrU[34][langNum]+" m = " + f2(statT[4]) + ", ";
+           str += svgStrU[35][langNum]+" s = " + f2(statT[5]) ;
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
-           str  = "[Confidence Interval] ";
-           str += " "+(100*(1-alpha)).toString()+"% confidence level ";
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           str  = "["+svgStrU[20][langNum]+"] ";
+           str += " "+(100*(1-alpha)).toString()+"% "+svgStrU[57][langNum]+" ";
            str += " ( "+ f2(statT[6]) +" , " + f2(statT[7]) + " )";
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")  
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")  
          }
 
 }     
@@ -5225,7 +5041,7 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tc, td, te, t1, t2, t3, tx, ty, str;
-         var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange;
+         var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange, temp;
 
          gxmin = 0;
          gxmax = 10;
@@ -5253,14 +5069,14 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
            str +=" H1: at least one pair of means is no equal ";
          }
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // 통계량 
          ty += 20;
-         if (hypoType == 5)       str = "[TestStat] = ( s1\u00B2 / s2\u00B2 )  ~  F("+df1+","+df2+") Distribution";
-         else if (hypoType == 7)  str = "[TestStat] = (BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") Distribution";
+         if (hypoType == 5)       str = svgStrU[23][langNum]+"( s1\u00B2 / s2\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         else if (hypoType == 7)  str = svgStrU[23][langNum]+"(BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
@@ -5278,7 +5094,7 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","black").attr("stroke-width","2px")
+                .style("stroke","black").style("stroke-width","2px")
            x1   = x2;
            y1   = y2;    
          }
@@ -5292,7 +5108,7 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
            y1   = margin.top  + graphHeight2;
            y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
            chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-                .attr("stroke","#0055FF").attr("stroke-width","2px")
+                .style("stroke","#0055FF").style("stroke-width","2px")
            tempx += step;        
          } while( tempx <= b ) 
 
@@ -5301,125 +5117,142 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 30;
          chart.append("line").attr("x1",ta).attr("y1",ty-30).attr("x2",ta).attr("y2",ty-10)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-30).attr("x2",tb).attr("y2",ty-10)
-              .attr("stroke","#0055FF").attr("stroke-width","2px")
+              .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("text").attr("x", ta).attr("y", ty+10).text(f2(a))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          chart.append("text").attr("x", tb).attr("y", ty+10).text(f2(b))
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
-         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- Accept Ho ->")
-              .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
+              .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          if (h1Type == 1) {  
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
-           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          }
          else if (h1Type == 2) {
-           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- Rejectt Ho")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", ta-60).attr("y", ty).text("Reject Ho ->")
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
            chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-              .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
 
          // draw test statistic & decision
-         x1 = margin.left + graphWidth2*(statF[0]-gxmin)/gxrange;
-         if (x1 > margin.left + graphWidth2) x1 = margin.left + graphWidth2 + 10;
+         temp = statF[0];
+         if (temp > gxmax) temp = gxmax + (gxmax-gxmin)/10;
+         x1 = margin.left + graphWidth2*(temp-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 50;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","green");
-         chart.append("text").attr("x", x1).attr("y", y2+10).text("[TestStat] = "+f2(statF[0])+", p-value  = "+f3(pvalue) )
-              .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+              .style("stroke-width","2px").style("stroke","green");
+         chart.append("text").attr("x", x1).attr("y", y2+10)
+              .text("Fo = "+f2(statF[0])+", "+svgStrU[27][langNum]+f3(pvalue) )
+              .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          if (statF[0] > a && statF[0] < b) {
-           chart.append("text").attr("x", tx).attr("y", y2+25).text("[Decision] Accept Ho")
-                .attr("stroke","#0055FF").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+25).text(svgStrU[28][langNum]+svgStrU[26][langNum])
+                .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
          else {
-           chart.append("text").attr("x", tx).attr("y", y2+25).text("[Decision] Reject Ho")
-                .attr("stroke","red").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","middle")
+           chart.append("text").attr("x", tx).attr("y", y2+25).text(svgStrU[28][langNum]+svgStrU[25][langNum])
+                .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
 
          if (hypoType == 5) ty = y2 + 45;
          else if (hypoType == 7) ty = y2 +35;
          chart.append("line").attr("x1",0).attr("y1",ty).attr("x2",svgWidth2).attr("y2",ty)
-              .attr("stroke-width","0.7px").attr("stroke","black");
+              .style("stroke-width","0.7px").style("stroke","black");
 
          // sample statistics & anova table
          if (hypoType == 7) {
            tx = 10;
            ty = y2 + 53;
-
-           str  = "Sample Size : "
-           for (k=0; k<ngroup; k++) {str += "n"+(k+1).toString()+"="+nobs[k]+", ";}
+           str = svgStrU[54][langNum];
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
-           str  = "Sample Mean : "
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           tx += 20;
+           ty += 15;
+           str  = svgStrU[44][langNum]+" : ";
+           chart.append("text").attr("x", tx).attr("y", ty).text(str)
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           str = "";
+           for (k=0; k<ngroup; k++) {str += "n"+(k+1).toString()+"="+nobs[k]+", ";}
+           chart.append("text").attr("x", tx+60).attr("y", ty).text(str)
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           ty += 15;
+           str  = svgStrU[34][langNum]+" : ";
+           chart.append("text").attr("x", tx).attr("y", ty).text(str)
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           str = "";
            for (k=0; k<ngroup; k++) {str += "m"+(k+1).toString()+"="+f2(avg[k])+", ";}
-           chart.append("text").attr("x", tx).attr("y", ty+15).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
-           str  = "Sample Stdev: "
+           chart.append("text").attr("x", tx+60).attr("y", ty).text(str)
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           ty += 15;
+           str  = svgStrU[35][langNum]+" : ";
+           chart.append("text").attr("x", tx).attr("y", ty).text(str)
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           str = "";
            for (k=0; k<ngroup; k++) {str += "s"+(k+1).toString()+"="+f2(std[k])+", ";}
-           chart.append("text").attr("x", tx).attr("y", ty+30).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+           chart.append("text").attr("x", tx+60).attr("y", ty).text(str)
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
 
-           ta = 70;      tb = ta + 100; tc = tb + 60; td = tc + 100; te = td + 80;
-           t1 = ty + 35; t2 = t1 + 15; t3 = t2 + 15; t4 = t3 + 15;
+           ta = 70; tb = ta + 100; tc = tb + 60; td = tc + 100; te = td + 80;
+           t1 = ty + 5; t2 = t1 + 15;  t3 = t2 + 15; t4 = t3 + 15;
            chart.append("text").attr("x", ta-60).attr("y", t2).text("[ANOVA]")
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
 
            chart.append("text").attr("x", ta).attr("y", t2).text("BSS="+f2(statF[1]) )
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            chart.append("text").attr("x", tb).attr("y", t2).text("df="+df1)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            chart.append("text").attr("x", tc).attr("y", t2).text("MSB="+f2(statF[4]) )
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            chart.append("text").attr("x", td).attr("y", t2).text("Fobs="+f2(statF[0]) )
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            chart.append("text").attr("x", te).attr("y", t2).text("p-value="+f3(pvalue) )
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
 
            chart.append("text").attr("x", ta).attr("y", t3).text("ESS="+f2(statF[2]) )
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            chart.append("text").attr("x", tb).attr("y", t3).text("df="+df2)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            chart.append("text").attr("x", tc).attr("y", t3).text("MSE="+f2(statF[5]) )
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
 
            chart.append("text").attr("x", ta).attr("y", t4).text("TSS="+f2(statF[3]) )
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
          }
          else if (hypoType == 5){
            tx = 20;
            ty = margin.top + graphHeight2 + 130;
 
-           str  = "[Sample 1 Statistics] size n1 = "  + statF[3] + ", ";
-           str += " mean m1 = " + f2(statF[4]) + ", ";
-           str += " std s1 = "  + f2(statF[5]) ;
+           str  = svgStrU[55][langNum]+" "+svgStrU[44][langNum]+" n1 = "  + statF[3] + ", ";
+           str += svgStrU[34][langNum]+" m1 = " + f2(statF[4]) + ", ";
+           str += svgStrU[35][langNum]+" s1 = " + f2(statF[5]) ;
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")
-           str  = "[Sample 2 Statistics] size n2 = "  + statF[6] + ", ";
-           str += " mean m2 = " + f2(statF[7]) + ", ";
-           str += " std s2 = "  + f2(statF[8]) ;
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
+           str  = svgStrU[56][langNum]+" "+svgStrU[44][langNum]+" n2 = "  + statF[6] + ", ";
+           str += svgStrU[34][langNum]+" m2 = " + f2(statF[7]) + ", ";
+           str += svgStrU[35][langNum]+" s2 = " + f2(statF[8]) ;
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
-                .attr("stroke","green").attr("font-size","9pt").attr("font-family","sans-serif").attr("text-anchor","start")  
+                .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")  
          }
 
 }     

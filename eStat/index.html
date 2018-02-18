@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
   <head>
     <title data-msgid="eStat : Stat Education SW">eStat: 통계교육SW</title>
@@ -13,12 +13,11 @@
     <script src="lib/FileSaver.min.js" ></script>
     <script src="lib/DistributionsUtil.js" ></script>
     <script src="lib/convertSVG.js"></script>
+    <script src="js/language.js" ></script>
     <script src="js/eStat.js" ></script>
   </head>
 
   <body>
-
-
     <div id="estat-app">
       <div id="estat-bars">
 	<div id="estat-toolbars" class="toolbar">
@@ -164,8 +163,10 @@
 
 	  <div id="tool-group-setting" class="tool-group">
 	    <select id="select_language">
-	      <option value="en">English</option>
 	      <option value="ko">한국어</option>
+	      <option value="en">English</option>
+	      <option value="jp">日本語</option>
+	      <option value="cn">中國語</option>
 	    </select>
 	    <br>
 	    <form action="#" name='myForm1'>
