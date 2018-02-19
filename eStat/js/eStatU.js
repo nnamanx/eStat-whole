@@ -1,4 +1,4 @@
-﻿var f0 = d3.format(".0f");
+var f0 = d3.format(".0f");
 var f1 = d3.format(".1f");
 var f2 = d3.format(".2f");
 var f3 = d3.format(".3f");
@@ -13,339 +13,6 @@ var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0
                  "#669966","#663366","#999966","#996666","#CCCC66","#CC9966","#CC6666","#CCFF66","#FFFF66","#FFCC66","#FF0066",
                  "#0000CC","#00FFCC","#0033CC","#3333CC","#3300CC","#33CCCC","#3366CC","#6666CC","#6633CC","#66CCCC","#6699CC",
                  "#9999CC","#9966CC","#99CCCC","#CCCCCC","#CCFFCC","#CC33CC","#CC99CC","#FFFFCC","#FFCCCC","#003300","#666600"];
-var j;
-var langNum;
-// Language Selector
-languageNumber = {
-    'ko': 0,
-    'en': 1,
-    'jp': 2,
-}
-$(document).ready(function() {
-    var lang = localStorage.getItem("lang");
-    if(lang == null) {
-	var navLang = navigator.language || navigator.userLanguage;
-	lang = navLang.split("-")[0];
-    }
-    $('#select_language').val(lang);
-    setLanguage(lang);
-});
-$('#select_language').change(function() {
-    var lang = $("#select_language option:selected").val();
-    setLanguage(lang);
-});
-function setLanguage(lang) {
-    langNum = languageNumber[lang];
-    localStorage.setItem("lang", lang);
-    $('[data-msgid]').each(function() {
-        var $this = $(this);
-        $this.html($.message[lang][$this.data('msgid')]);
-    });
-}
-// 언어 컨트롤
-var lang = localStorage.getItem("lang");
-if (lang == null) lang = "en";
-if (lang == "ko") langNum = 0;
-else if (lang == "en") langNum = 1;
-// console.log("eStatU.js langNum="+langNum);
-$.message = {}
-$.message.ko = {
-    "eStatU UnivStatEdu" : "eStatU - 대학 통계교육 SW",
-    "eStatH HighStatEdu" : "eStatH - 고등 통계교육 SW",
-    "Menu" : "메뉴",
-    "Binomial Experiment" : "이항분포실험",
-    "Binomial Distribution" : "이항분포",
-    "Binomial Prob Table" : "이항분포표",
-    "Poisson Distribution" : "포아송분포",
-    "Poisson Prob Table" : "포아송분포표",
-    "Geometric Distribution" : "기하분포",
-    "Geometric Prob Table" : "기하분포표",
-    "HyperGeometric Distribution" : "초기하분포",
-    "HyperGeometric Prob Table" : "초기하분포표",
-    "Exponential Distribution" : "지수분포",
-    "Normal Experiment" : "정규분포실험",
-    "Normal Distribution" : "정규분포",
-    "Normal Approx" : "정규분포근사",
-    "t Distribution" : "t 분포",
-    "ChiSquare Distribution" : "카이제곱분포",
-    "F Distribution" : "F 분포",
-    "Sampling" : "표본추출",
-    "Population vs Sample" : "모집단과 표본",
-    "Population" : "모집단",
-    "Sample" : "표본",
-    "Exponential" : "지수분포(0.3)",
-    "Uniform" : "균등분포(0,1)",    
-    "Sample05" : "5% 표본추출",
-    "Sample10" : "10% 표본추출",
-    "Sample20" : "20% 표본추출",
-    "Statistics/BoxPlot" : "통계량/상자그림",
-    "Law of Large Number" : "대수의 법칙",
-    "Dist of Sample Means" : "표본평균의 표집분포",
-    "Sample Size" : "표본크기",
-    "Confidence Interval" : "신뢰구간",
-    "Estimation Accuracy" : "추정 정확도",
-    "Repetition" : "반복수",
-    "Confidence Level" : "신뢰수준",
-    "Testing Hypothesis mu_title" : "추검정 모평균",
-    "Testing Hypothesis mu_title" : "추검정 모평균",
-    "Testing Hypothesis sigma_title" : "추검정 모분산",
-    "Testing Hypothesis P_title" : "추검정 모비율",
-    "Testing Hypothesis mu12_title" : "두 모평균 가설검정",
-    "Testing Hypothesis sigma12_title" : "두 모분산 가설검정",
-    "Testing Hypothesis P12_title" : "두 모비율 검정",
-    "Testing Hypothesis mu" : "추정 및 가설검정 : 모평균 &mu;",
-    "Testing Hypothesis sigma" : "추정 및 가설검정 : 모분산 &sigma;<sup>2</sup>",
-    "Testing Hypothesis P" : "추정 및 가설검정 : 모비율 P",
-    "Testing Hypothesis mu12" : "가설검정 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12" : "가설검정 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12" : "가설검정 : P<sub>1</sub>, P<sub>2</sub>",
-    "Testing Hypothesis ANOVA" : "분산분석",
-    "Testing Independence" : "독립성 검정",
-    "Correlation Coefficient" : "상관계수",
-    "Regression Experiment" : "회귀실험",
-    "Hypothesis" : "가  설",
-    "Test Type" : "검정형태",
-    "Z-test" : "Z-검정",
-    "t-test" : "t-검정",
-    "Chi-test" : "&chi;<sup>2</sup>-검정",
-    "F-test" : "F-검정",
-    "Significance Level" : "유의수준",
-    "Sample Data" : "표본자료",
-    "input either sample data" : "(표본자료를 여기 입력, 아니면 다음 표본통계량을 입력(공란, 콤마로 구분)",
-    "Sample Statistics" : "표본통계량",
-    "Sample Mean" : "표본평균",
-    "Sample Variance" : "표본분산",
-    "Sample Proportion" : "표본비율",
-    "Confidence Interval" : "신뢰구간",
-    "if Z-test-1" : "(Z-검정이면, 모분산 입력)",
-    "if Z-test-2" : "(Z-검정이면, Z<sub>1-&alpha;/2 </sub> 이용)",
-    "Execute" : "실행",
-    "Variance Assumption" : "분산가정",
-    "At least one pair" : "적어도 한쌍 이상의 평균이 다름",
-    "Row-Col-0" : "행변량과 열변량이 독립",
-    "Row-Col-1" : "행변량과 열변량이 독립 아님",
-    "Enter any number of row" : "(왼쪽 위 셀부터 행과 열의 관측도수 입력)",
-    "Row" : "행",
-    "Column" : "열",
-    "Show Probability" : "확률표시",
-    "Regression Line" : "회귀선",
-    "Erase All" : "화면 지우기",
-    "Add Point" : "점 더하기",
-    "Erase Point" : "점 지우기",
-    "Reference Site" : "참고사이트",
-    "Lot Size" : "로트 개수",
-    "Defect Size" : "불량 개수",
-    "If typed" : "(숫자입력한 경우)",
-    "Stat/BoxPlot" : "통계량/상자그림",
-    "Mean" : "평균",
-    "Std Dev" : "표준편차",
-}
-$.message.en = {
-    "eStatU UnivStatEdu" : "eStatU - University Statistics Education SW",
-    "eStatH HighStatEdu" : "eStatH - High School Statistics Education SW",
-    "Menu" : "Menu",
-    "Binomial Experiment" : "Binomial Experiment",
-    "Binomial Distribution" : "Binomial Distribution",
-    "Binomial Prob Table" : "Binomial Prob Table",
-    "Poisson Distribution" : "Poisson Distribution",
-    "Poisson Prob Table" : "Poisson Prob Table",
-    "Geometric Distribution" : "Geometric Distribution",
-    "Geometric Prob Table" : "Geometric Prob Table",
-    "HyperGeometric Distribution" : "HyperGeometric Distribution",
-    "HyperGeometric Prob Table" : "HyperGeometric Prob Table",
-    "Exponential Distribution" : "Exponential Distribution",
-    "Normal Experiment" : "Normal Experiment",
-    "Normal Distribution" : "Normal Distribution",
-    "Normal Approx" : "Normal Approx",
-    "t Distribution" : "t Distribution",
-    "ChiSquare Distribution" : "ChiSquare Distribution",
-    "F Distribution" : "F Distribution",
-    "Sampling" : "Sampling",
-    "Population vs Sample" : "Population vs Sample",
-    "Population" : "Population",
-    "Sample" : "Sample",
-    "Exponential" : "Exponential(0.3)",
-    "Uniform" : "Uniform(0,1)",    
-    "Sample05" : "Sampling 5%",
-    "Sample10" : "Sampling 10%",
-    "Sample20" : "Sampling 20%",
-    "Statistics/BoxPlot" : "Statistics/BoxPlot",
-    "Law of Large Number" : "Law of Large Number",
-    "Dist of Sample Means" : "Dist of Sample Means",
-    "Sample Size" : "Sample Size",
-    "Confidence Interval" : "Confidence Interval",
-    "Estimation Accuracy" : "Estimation Accuracy",
-    "Repetition" : "Repetition",
-    "Confidence Level" : "Confidence Level",
-    "Testing Hypothesis mu_title" : "Testing Mean",
-    "Testing Hypothesis sigma_title" : "Testing Variance",
-    "Testing Hypothesis P_title" : "Testing Proportion",
-    "Testing Hypothesis mu12_title" : "Testing Two Means",
-    "Testing Hypothesis sigma12_title" : "Testing Two Variances",
-    "Testing Hypothesis P12_title" : "Testing Two Proportions",
-    "Testing Hypothesis mu" : "Testing Hypothesis &mu;",
-    "Testing Hypothesis sigma" : "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P" : "Testing Hypothesis P",
-    "Testing Hypothesis mu12" : "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12" : "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12" : "Testing Hypothesis P<sub>1</sub>, P<sub>2</sub>",
-    "Testing Hypothesis ANOVA" : "Testing Hypothesis ANOVA",
-    "Testing Independence" : "Testing Independence",
-    "Correlation Coefficient" : "Correlation Coeff",
-    "Regression Experiment" : "Regression Experiment",
-    "Hypothesis" : "Hypothesis",
-    "Test Type" : "Test Type",
-    "Z-test" : "Z-test",
-    "t-test" : "t-test",
-    "Chi-test" : "&chi;<sup>2</sup>-test",
-    "F-test" : "F-test",
-    "Significance Level" : "Significance Level",
-    "Sample Data" : "Sample Data",
-    "input either sample data" : "Input either sample data, or sample statistics at the next boxes usign csv/bsv",
-    "Sample Statistics" : "Sample Statistics",
-    "Sample Mean" : "Sample Mean",
-    "Sample Variance" : "Sample Variance",
-    "Sample Proportion" : "Sample Proportion",
-    "Confidence Interval" : "Confidence Interval",
-    "if Z-test-1" : "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
-    "if Z-test-2" : "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used.)",
-    "Execute" : "Execute",
-    "Variance Assumption" : "Variance Assumption",
-    "Significance Level" : "Significance Level",
-    "At least one pair" : "At least one pair of means is different",
-    "Row-Col-0" : "Row and column variables are independent",
-    "Row-Col-1" : "Row and column variables are not independent",
-    "Enter any number of row" : "(Enter observation from upper left cell)",
-    "Row" : "Row",
-    "Column" : "Column",
-    "Show Probability" : "Show Probability",
-    "Regression Line" : "Regression Line",
-    "Erase All" : "Erase Screen",
-    "Add Point" : "Add Point",
-    "Erase Point" : "Erase Point",
-    "Reference Site" : "Reference Site",
-    "Lot Size" : "Lot Size",
-    "Defect Size" : "Defect Size",
-    "If typed" : "(If number is typed)",
-    "Stat/BoxPlot" : "Stat/BoxPlot",
-    "Mean" : "Mean",
-    "Std Dev" : "Std Dev",
-}
-
-var nLanguage = 2;
-var nString   = 60;
-var svgStrU   = new Array(nString);
-for (j = 0; j < nString; j++) {
-  svgStrU[j]   = new Array(nLanguage);
-}
-svgStrU[1][0]  = "이항분포";        	
-svgStrU[2][0]  = "반복수";   		
-svgStrU[3][0]  = "평균";       	
-svgStrU[4][0]  = "표준편차";          	
-svgStrU[5][0]  = "포아송분포";       	
-svgStrU[6][0]  = "기하분포";         	
-svgStrU[7][0]  = "초기하분포";         	
-svgStrU[8][0]  = "모집단";     	
-svgStrU[9][0]  = "표본의 분포";         	
-svgStrU[10][0] = "대수의 법칙";           	
-svgStrU[11][0] = "뒷면";      
-svgStrU[12][0] = "앞면";    	
-svgStrU[13][0] = "동전 앞면";   
-svgStrU[14][0] = "  앞면의 수  ";   
-svgStrU[15][0] = "  시행 횟수  "; 
-svgStrU[16][0] = "표본평균들의 분포"; 
-svgStrU[17][0] = "반복";
-svgStrU[18][0] = "표준오차";
-svgStrU[19][0] = "모평균";
-svgStrU[20][0] = "신뢰구간";
-svgStrU[21][0] = "추정정확도";
-svgStrU[22][0] = "표본평균";
-svgStrU[23][0] = "[검정통계량] = ";   
-svgStrU[24][0] = "분포";
-svgStrU[25][0] = "기각 Ho";
-svgStrU[26][0] = "채택 Ho";
-svgStrU[27][0] = "p-값 = ";
-svgStrU[28][0] = "[의사결정] ";
-svgStrU[29][0] = "[분산분석]";
-svgStrU[30][0] = "상관계수를 입력하고 실행버튼을 누르세요."; 
-svgStrU[31][0] = "회귀선";
-svgStrU[32][0] = "열변량";
-svgStrU[33][0] = "행변량";
-svgStrU[34][0] = "평균"
-svgStrU[35][0] = "표준편차"
-svgStrU[36][0] = "<h3> 구간별<br>도수분포표</h3>";
-svgStrU[37][0] = "그룹명";
-svgStrU[38][0] = "계급구간";
-svgStrU[39][0] = "줄기";
-svgStrU[40][0] = " 잎";
-svgStrU[41][0] = "그룹 1  잎";
-svgStrU[42][0] = "그룹 2  잎"
-svgStrU[43][0] = "<h3>기초통계량</h3>";
-svgStrU[44][0] = "자료수";  
-svgStrU[45][0] = "최솟값";  
-svgStrU[46][0] = "중앙값"; 
-svgStrU[47][0] = "최댓값";  
-svgStrU[48][0] = "전체";
-svgStrU[49][0] = "지수분포";
-svgStrU[50][0] = "균등분포";
-svgStrU[51][0] = "추정 정확도";
-svgStrU[52][0] = "- 마우스 클릭으로 점을 세 개 이상 만들면 회귀선이 그려짐";
-svgStrU[53][0] = "- 마우스로 한 점을 이동/지우기 하면서 회귀선 변화를 관측";
-
-svgStrU[1][1]  = "Binomial Distribution";        	
-svgStrU[2][1]  = "repetition";   		
-svgStrU[3][1]  = "Mean";       	
-svgStrU[4][1]  = "Std Dev";          	
-svgStrU[5][1]  = "Poissson Distribution";       	
-svgStrU[6][1]  = "Geometric Distribution";         	
-svgStrU[7][1]  = "HyperGeometric Distribution";         	
-svgStrU[8][1]  = "Populaton";     	
-svgStrU[9][1]  = "Sample Dist";         	
-svgStrU[10][1] = "Law of Large Number";           	
-svgStrU[11][1] = "Tail";      
-svgStrU[12][1] = "Head";    	
-svgStrU[13][1] = "Coin Head";   
-svgStrU[14][1] = "Number of Heads";   
-svgStrU[15][1] = "Number of Trials"; 
-svgStrU[16][1] = "Dist of Sample Means"; 
-svgStrU[17][1] = "repetition";
-svgStrU[18][1] = "std err";
-svgStrU[19][1] = "Population Mean";
-svgStrU[20][1] = "Confidence Interval";
-svgStrU[21][1] = "Estimation Accuracy";
-svgStrU[22][1] = "sample mean";
-svgStrU[23][1] = "[TestStat] = ";   
-svgStrU[24][1] = "Distribution";
-svgStrU[25][1] = "Reject Ho";
-svgStrU[26][1] = "Accept Ho";
-svgStrU[27][1] = " p-value  = ";
-svgStrU[28][1] = "[Decision] ";
-svgStrU[29][1] = "[ANOVA]";
-svgStrU[30][1] = "Enter Correlation Coefficient and click Execute button"; 
-svgStrU[31][1] = "Regression";
-svgStrU[32][1] = "Row Var";
-svgStrU[33][1] = "Col Var";
-svgStrU[34][1] = "Mean"
-svgStrU[35][1] = "Std Dev"
-svgStrU[36][1] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStrU[37][1] = "Group Name";
-svgStrU[38][1] = "Interval";
-svgStrU[39][1] = "Stem";
-svgStrU[40][1] = " Leaf";
-svgStrU[41][1] = "Group 1  Leaf";
-svgStrU[42][1] = "Group 2  Leaf"
-svgStrU[43][1] = "<h3>Basic Statistics</h3>";
-svgStrU[44][1] = "Observation";  
-svgStrU[45][1] = "Minimum";  
-svgStrU[46][1] = "Median"; 
-svgStrU[47][1] = "Maximum";  
-svgStrU[48][1] = "Total";
-svgStrU[49][1] = "Exponential";
-svgStrU[50][1] = "Uniform";
-svgStrU[51][1] = "Estimation Accuracy";
-svgStrU[52][1] = "- Create points by click, then eStat finds a regression line.";
-svgStrU[53][1] = "- Move or erase a point. Watch change of the regression line.";
-
 
 // =====================================================================================
 // dual slider control Functions *******************************************************************
@@ -764,7 +431,7 @@ function showScatterPlot(nobs, xdata, ydata, gxmin, gxmax, gymin, gymax, graphWi
      if(checkTitle) {
         var title = svgStrU[30][langNum];
         svg.append("text").attr("x",margin.left).attr("y",margin.top/2).text(title)
-           .attr("font-size","13pt").attr("stroke","blue").attr("text-anchor","start")
+           .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
         // x축 그리기
         var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
         var ty = margin.top + graphHeight;
@@ -941,7 +608,7 @@ function showScatterPlot3(graphWidth, graphHeight) {
 	   .attr("y1", y1)
 	   .attr("x2", x2)
 	   .attr("y2", y2)
-	   .attr("stroke", "royalblue");
+	   .style("stroke", "royalblue");
     }
     // 회귀선, 상관계수, 결정계수
     var y1 = margin.top + graphHeight +  margin.bottom/2 + 10;
@@ -979,13 +646,13 @@ function BinomialTriangle(nvalue, pp, tx, ty) {
            .attr("y", t2 - rectSize)
            .attr("width",  2*rectSize)
            .attr("height", 2*rectSize)
-           .attr("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
+           .style("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
         dot.append("line")
            .attr("x1", t1)
            .attr("y1", t2+rectSize)
            .attr("x2", t1)
            .attr("y2", t2+3*rectSize+oneHeight)
-           .attr("stroke-width","2px").attr("stroke","#0055FF")
+           .attr("stroke-width","2px").style("stroke","#0055FF")
         // 각 사각형 좌표 계산      
         for (i=0; i<nvalue; i++) {
           tx[i][0] = margin.left + graphWidth/2 - rectSizeDiv2- i*oneWidth;
@@ -996,7 +663,7 @@ function BinomialTriangle(nvalue, pp, tx, ty) {
                .attr("y", ty[i][0])
                .attr("width",  rectSize)
                .attr("height", rectSize)
-               .attr("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
+               .style("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
           }
           for (k=1; k<=i; k++) {
             tx[i][k] = tx[i][k-1] + 2*oneWidth; 
@@ -1007,7 +674,7 @@ function BinomialTriangle(nvalue, pp, tx, ty) {
                  .attr("y", ty[i][k])
                  .attr("width",  rectSize)
                  .attr("height", rectSize)
-                 .attr("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
+                 .style("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
             }
           } // endof k
         } // endof i
@@ -1017,9 +684,9 @@ function BinomialTriangle(nvalue, pp, tx, ty) {
           t1 = tx[nvalue-1][j] + rectSizeDiv2;
           t2 = ty[nvalue-1][j] + rectSize + 6;
           dot.append("circle").attr("cx",t1).attr("cy",t2).attr("r",rectSize)
-             .attr("stroke","#0055FF").attr("stroke-width","2px").attr("fill","none")
+             .style("stroke","#0055FF").attr("stroke-width","2px").attr("fill","none")
           dot.append("text").attr("x",t1).attr("y",t2+5).text(j)
-             .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
         }        
         // 사각형 연결 line
         for (i=0; i<nvalue-1; i++) {
@@ -1030,19 +697,19 @@ function BinomialTriangle(nvalue, pp, tx, ty) {
               x2 = tx[i+1][k] + rectSizeDiv2;
               y2 = ty[i+1][k] + rectSizeDiv2;
               if (k==j && pp < 0.5) dot.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                       .attr("stoke-width","2px").attr("stroke","#0055FF")
+                                       .attr("stoke-width","2px").style("stroke","#0055FF")
               else                  dot.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                       .attr("stroke-width","1px").attr("stroke","#0055FF")
+                                       .attr("stroke-width","1px").style("stroke","#0055FF")
               if (k==j+1 && pp < 0.5) dot.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                         .attr("stroke-width","1px").attr("stroke","#0055FF")
+                                         .attr("stroke-width","1px").style("stroke","#0055FF")
               else                    dot.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                         .attr("stroke-width","2px").attr("stroke","#0055FF")
+                                         .attr("stroke-width","2px").style("stroke","#0055FF")
               t1 = (x1 + x2) / 2;
               t2 = (y1 + y2) / 2;
               if (k==j) dot.append("text").attr("x", t1).attr("y", t2).text("0")
-                           .attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+                           .style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
               else      dot.append("text").attr("x", t1).attr("y", t2).text("1")
-                           .attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+                           .style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
             } // endof k
           } // endof j
         } // endof i
@@ -1062,14 +729,14 @@ function BinomialSimulation(nobs,nvalue,tdataY) {
             .attr("y1", y1)
             .attr("x2", margin.left+graphWidth)
             .attr("y2", y1)
-            .attr("stroke","black").attr("stroke-width","2px")
+            .style("stroke","black").attr("stroke-width","2px")
          for (j=0; j<nvalue; j++) {
            x1 = tx[nvalue-1][j]+rectSizeDiv2;
            dot.append("text")
               .attr("x", x1)
               .attr("y", y1+15)
               .text(j)
-              .attr("font-family","sans-serif").attr("font-size","8pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","8pt").style("stroke","red").style("text-anchor","middle")
          } // endof j
   
           // 점 애니메이션 시작
@@ -1082,9 +749,9 @@ function BinomialSimulation(nobs,nvalue,tdataY) {
               t2 = margin.top/2;
 	      x0 = tx[0][0] + rectSizeDiv2;
 	      y0 = ty[0][0] + rectSizeDiv2;
-              var cir = dot.append("circle").attr("stroke","black").attr("fill","red") 
+              var cir = dot.append("circle").style("stroke","black").attr("fill","red") 
               var currentPath = dot.append("line")
-                                   .attr("stroke-width","3px").attr("stroke","red")
+                                   .attr("stroke-width","3px").style("stroke","red")
               cir.attr("cx", t1)
                  .attr("cy", t2)
                  .attr("r", 10)
@@ -1145,7 +812,7 @@ function BinomialSimulation(nobs,nvalue,tdataY) {
              .attr("x", margin.left+20)
              .attr("y", svgHeight-margin.bottom/2)
              .text(str)
-             .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")        
+             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")        
 } // endof BinomialSimulation Function 
  // 실험된 이항분포 각 값의 확률 표시
 function showBinomialFreq(nvalue, binomialP1, tdataY, tx) {
@@ -1220,7 +887,7 @@ function drawBinomialLabel(nvalue2, label, betweenbarWidth) {
              .attr("x",margin.left + barMargin + barWidth/2 + k*betweenbarWidth )
              .attr("y",y1+20)
              .text(label[k])
-             .attr("font-family","sans-serif").attr("font-size","8pt").attr("text-anchor","middle")
+             .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
           } else if (nvalue2 < 70) {
              if  (k%2 == 1) {
                bar.append("text")
@@ -1228,7 +895,7 @@ function drawBinomialLabel(nvalue2, label, betweenbarWidth) {
                   .attr("x",margin.left + barMargin + barWidth/2 + k*betweenbarWidth )
                   .attr("y",y1+20)
                   .text(label[k])
-                 .attr("font-family","sans-serif").attr("font-size","8pt").attr("text-anchor","middle")
+                 .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
             }
           } else {
              if  (k%3 == 1) {
@@ -1237,7 +904,7 @@ function drawBinomialLabel(nvalue2, label, betweenbarWidth) {
                   .attr("x",margin.left + barMargin + barWidth/2 + k*betweenbarWidth )
                   .attr("y",y1+20)
                   .text(label[k])
-                  .attr("font-family","sans-serif").attr("font-size","8pt").attr("text-anchor","middle")
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
             }
           }
           
@@ -1271,14 +938,14 @@ function drawBinomialBarGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, labe
          var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
          var title  = svgStrU[1][langNum]+" n = "+nn2.toString()+", p = "+f2(pp2);
          bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
-            .attr("font-size","13pt").attr("stroke","blue").attr("text-anchor","start")
+            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
          var avg  = nn2 * pp2;
          var std  = Math.sqrt(nn2*pp2*(1-pp2));
          var str = svgStrU[3][langNum]+" = "+f2(avg)+",  "+svgStrU[4][langNum]+" = "+f2(std);
          bar.append("text")
             .attr("x", margin.left + graphWidth/2 - 40)
             .attr("y", svgHeight - margin.bottom/3).text(str)
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // 확률및 통계량 계산
          for (var i=0; i<nvalue2; i++) {
            label[i] = i;
@@ -1369,7 +1036,7 @@ function showBinomialNormal(nn2, pp2, xmin, xmax, ymin, ymax) {
            x2   = margin.left + barMargin + barWidth/2 + graphWidth*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight - graphHeight*(y[k]-gymin)/gyrange;
            bar.append("line").attr("class","lineNormal").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","red")
+              .attr("stroke-width","2px").style("stroke","red")
            x1   = x2;
            y1   = y2;    
 //           document.write(k+" "+x[k]+" "+y[k]+"<br>")
@@ -1464,12 +1131,12 @@ function drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, y
          std  = Math.sqrt(lambda);
           var title  = svgStrU[5][langNum]+" m = "+f1(lambda);
          bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
-            .attr("font-size","13pt").attr("stroke","blue").attr("text-anchor","start")
+            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
          var str = svgStrU[3][langNum]+" = "+f2(avg)+",  "+svgStrU[4][langNum]+" = "+f2(std);
          bar.append("text")
             .attr("x", margin.left + graphWidth/2 - 40)
             .attr("y", svgHeight - margin.bottom/3).text(str)
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          for (var k=0; k<nvalue; k++) {
            bar.append("rect")
             .style("fill",function(d,i) {return myColor[0];})
@@ -1575,12 +1242,12 @@ function drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP) {
          std  = Math.sqrt((1-geoP)/(geoP*geoP));
           var title  = svgStrU[6][langNum]+" p = "+f1(geoP);
          bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
-            .attr("font-size","13pt").attr("stroke","blue").attr("text-anchor","start")
+            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
          var str = svgStrU[3][langNum]+" = "+f2(avg)+",  "+svgStrU[4][langNum]+" = "+f2(std);
          bar.append("text")
             .attr("x", margin.left + graphWidth/2 - 40)
             .attr("y", svgHeight - margin.bottom/3).text(str)
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          for (var k=0; k<nvalue; k++) {
            bar.append("rect")
             .style("fill",function(d,i) {return myColor[0];})
@@ -1674,14 +1341,14 @@ function drawHyperGeoBarGraph(label, hyperGeoP, xmin, xmax, ymin, ymax) {
          var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
          var title  = svgStrU[7][langNum]+" N = "+NN.toString()+", D = "+DD.toString()+", n = "+nn.toString() ;
          bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
-            .attr("font-size","13pt").attr("stroke","blue").attr("text-anchor","start")
+            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
          var avg  = nn * DD / NN;
          var std  = Math.sqrt(nn*DD/NN*(1-DD/NN));
          var str  = svgStrU[3][langNum]+" = "+f2(avg)+",  "+svgStrU[4][langNum]+" = "+f2(std);
          bar.append("text")
             .attr("x", margin.left + graphWidth/2 - 40)
             .attr("y", svgHeight - margin.bottom/3).text(str)
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // 확률및 통계량 계산
          for (var i=0; i<nvalue; i++) {
            label[i] = i;
@@ -1899,7 +1566,7 @@ function drawExponentialGraph(lambda, a, b, prob) {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -1916,7 +1583,7 @@ function drawExponentialGraph(lambda, a, b, prob) {
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -1924,12 +1591,12 @@ function drawExponentialGraph(lambda, a, b, prob) {
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
          y1 = svgHeight2 - margin.bottom - graphHeight2/10 + 10;
@@ -1937,7 +1604,7 @@ function drawExponentialGraph(lambda, a, b, prob) {
             .attr("x", x1)
             .attr("y", y1)
             .text(f4(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
 // =====================================================================================
 // Normal functions 
@@ -2120,13 +1787,13 @@ function drawStatNormal(stat, start) {
            .attr("x", avgx)
            .attr("y", ty + 15)
            .text(svgStrU[3][langNum]+"="+f2(avg))
-           .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+           .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
         dot.append("text")
            .attr("class","mean")
            .attr("x", stdpx+10)
            .attr("y", ty+15)
            .text(svgStrU[4][langNum]+"="+f2(std))
-           .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+           .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
 }     
 // 상자그래프 표시 함수
 function drawBoxNormal(stat, start) {
@@ -2155,7 +1822,7 @@ function drawBoxNormal(stat, start) {
            .attr("x", x1)
            .attr("y", y1-3)
            .text("min="+f2(min))
-           .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+           .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
         x2 = x1 + graphWidth*(Q1-min)/xrange;
         dot.append("line")
            .attr("class","mean")
@@ -2175,7 +1842,7 @@ function drawBoxNormal(stat, start) {
           .attr("x", x1)
           .attr("y", y1-3)
           .text("max="+f2(max))
-          .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+          .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
         x1 = margin.left + graphWidth*(Q1-gxmin)/xrange;
         width = graphWidth*IQR/xrange;
         height = lineHeight;
@@ -2190,12 +1857,12 @@ function drawBoxNormal(stat, start) {
            .attr("x", x1)
            .attr("y", y2+lineHeight/2)
            .text("Q1="+f2(Q1))
-           .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+           .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
         dot.append("text")
            .attr("x", x1+width)
            .attr("y", y2+lineHeight/2)
            .text("Q3="+f2(Q3))
-           .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+           .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
         x1 = margin.left + graphWidth*(Q3-gxmin)/xrange;
         x2 = x1 + graphWidth*(max-Q3)/xrange;
         dot.append("line")
@@ -2216,7 +1883,7 @@ function drawBoxNormal(stat, start) {
            .attr("x", x1)
            .attr("y", y2+lineHeight/2+10)
            .text("Med="+f2(median))
-           .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+           .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
 }// 평균 상자그림 제거
 function removeMeanNormal() {
 	dot.selectAll("circle.mean").remove();
@@ -2360,7 +2027,7 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -2377,7 +2044,7 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -2385,12 +2052,12 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
          y1 = svgHeight2 - margin.bottom - graphHeight2/10+10;
@@ -2398,7 +2065,7 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
             .attr("x", x1)
             .attr("y", y1)
             .text(f4(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
 // ==========================================================================
 // t-distribution function
@@ -2536,7 +2203,7 @@ function drawTdistGraph(df, a, b, prob) {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -2553,7 +2220,7 @@ function drawTdistGraph(df, a, b, prob) {
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -2561,12 +2228,12 @@ function drawTdistGraph(df, a, b, prob) {
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
          y1 = svgHeight2 - margin.bottom - graphHeight2/10 + 10;
@@ -2574,7 +2241,7 @@ function drawTdistGraph(df, a, b, prob) {
             .attr("x", x1)
             .attr("y", y1)
             .text(f4(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
 // N(0,1) 그래프 함수 --------------------------------------------------
 function drawStdNormalGraph() {
@@ -2604,7 +2271,7 @@ function drawStdNormalGraph() {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("class","lineNormal").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","red")
+              .attr("stroke-width","2px").style("stroke","red")
            x1   = x2;
            y1   = y2;    
          }
@@ -2746,7 +2413,7 @@ function drawChisqGraph(df, a, b, prob) {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -2763,7 +2430,7 @@ function drawChisqGraph(df, a, b, prob) {
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -2771,12 +2438,12 @@ function drawChisqGraph(df, a, b, prob) {
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
          y1 = svgHeight2 - margin.bottom - graphHeight2/10 + 10;
@@ -2784,7 +2451,7 @@ function drawChisqGraph(df, a, b, prob) {
             .attr("x", x1)
             .attr("y", y1)
             .text(f4(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
 //===========================================================================
 // F-distribution function
@@ -2955,7 +2622,7 @@ function drawFGraph(df1, df2,  a, b, prob) {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -2972,7 +2639,7 @@ function drawFGraph(df1, df2,  a, b, prob) {
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -2980,12 +2647,12 @@ function drawFGraph(df1, df2,  a, b, prob) {
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
             .text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
          y1 = svgHeight2 - margin.bottom - graphHeight2/10 + 10;
@@ -2993,7 +2660,7 @@ function drawFGraph(df1, df2,  a, b, prob) {
             .attr("x", x1)
             .attr("y", y1)
             .text(f4(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
 // =====================================================================================
 // sampling functions 
@@ -3134,7 +2801,7 @@ function drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, sta
            .attr("x", margin.left)
            .attr("y", svgHeight+20)
            .text(str)
-           .attr("font-size","12pt").attr("stroke","#FF3500").attr("text-anchor","start")
+           .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
         for (j=0; j<=nvalue; j++) dvalueFreq[j]=0;
         for (i=0; i<sobs; i++) {
           for (j=0; j<=nvalue; j++) {
@@ -3159,7 +2826,7 @@ function drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, sta
            .attr("y1",ty)
            .attr("x2",margin.left+graphWidth)
            .attr("y2",ty)
-           .attr("stroke","#FF3500")
+           .style("stroke","#FF3500")
 //        drawAxisSample(start,gxmin, gxmax);
         for (k=0; k<sobs; k++) {
           var cx1 = margin.left+graphWidth*(tdata[k]-gxmin)/xrange;
@@ -3169,7 +2836,7 @@ function drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, sta
           dot.append("circle")
              .attr("class","circleS")
              .attr("fill","#FF3500")
-             .attr("stroke","black")
+             .style("stroke","black")
              .attr("cx", cx1)
              .attr("cy", cy1 )
              .transition()                           // 애니매이션 효과 지정
@@ -3212,7 +2879,7 @@ function drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, sta
 function CLT() {      
         dot.append("text").attr("x", margin.left).attr("y", svgHeight - margin.bottom/2 + 20)
            .text(svgStrU[16][langNum]+" (100 "+svgStrU[17][1]+")" )
-           .attr("font-size","12pt").attr("stroke","#FF3500").attr("text-anchor","start")
+           .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
         var niter = 3;  
         var n = new Array(30)
 	n[0] = parseFloat(d3.select("#init1CLT").node().value);    // 표본크기 
@@ -3228,7 +2895,7 @@ function CLT() {
            .attr("x", margin.left)
            .attr("y", svgHeight + gg*oneHeight)
            .text("n = "+n[gg])
-           .attr("font-size","12pt").attr("stroke","#FF3500").attr("text-anchor","start")
+           .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
           var sdata  = [];
           var sdataY = [];
           var avg = 0;
@@ -3277,11 +2944,11 @@ function CLT() {
              .attr("y1",ty)
              .attr("x2",margin.left+graphWidth)
              .attr("y2",ty)
-             .attr("stroke","#FF3500")
+             .style("stroke","#FF3500")
            
           for (k=0; k<kiter; k++) {
             dot.append("circle")
-               .attr("fill","#FF3500").attr("stroke","black")
+               .attr("fill","#FF3500").style("stroke","black")
                .transition()                           // 애니매이션 효과 지정
                .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
                .duration(2000)                         // 1초동안 애니매이션이 진행되도록 설정
@@ -3318,7 +2985,7 @@ function drawDotSample(obs, tdata, tdataY, gxmin, gxmax, start) {
             .attr("r", radius)
             .attr("cx", function(d,i){ return margin.left+graphWidth*(d-gxmin)/xrange; } )
             .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
-            .attr("fill","#0055FF").attr("stroke","black")
+            .attr("fill","#0055FF").style("stroke","black")
        } else if (checkInterval) {
          dot2.selectAll("circle")
             .data(tdata)
@@ -3332,7 +2999,7 @@ function drawDotSample(obs, tdata, tdataY, gxmin, gxmax, start) {
             .attr("r", radius)
             .attr("cx", function(d,i){ return margin.left+graphWidth*(d-gxmin)/xrange; } )
             .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
-            .attr("fill","#0055FF").attr("stroke","black")
+            .attr("fill","#0055FF").style("stroke","black")
        }
 }// x축 눈금 표시
 function drawAxisSample(start, gxmin, gxmax) {
@@ -3367,54 +3034,54 @@ function drawStatSample(stat, start, type) {
       if (checkSampling) {  
         dot.append("line") 
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",avgx)
            .attr("y1",ty)
            .attr("x2",avgx)
            .attr("y2",start + margin.top + graphHeight - freqMax*2*radius - 10) 
         dot.append("circle")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("cx",avgx)
            .attr("cy",ty)
            .attr("r",2)
         dot.append("line")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",stdmx)
            .attr("y1",ty)
            .attr("x2",avgx)
            .attr("y2",ty)
         dot.append("line")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",stdpx)
            .attr("y1",ty)
            .attr("x2",avgx)
            .attr("y2",ty)
         dot.append("circle")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("cx",stdmx)
            .attr("cy",ty)
            .attr("r",2)
         dot.append("circle")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("cx",stdpx)
            .attr("cy",ty)
            .attr("r",2)
         dot.append("text")
            .attr("class","meanP")      
-           .attr("font-size","8pt")
-           .attr("stroke",strmean)
+           .style("font-size","8pt")
+           .style("stroke",strmean)
            .attr("x", avgx-28)
            .attr("y", ty + 15)
            .text(svgStrU[3][langNum]+"="+f2(avg))
         dot.append("text")
            .attr("class","meanP")      
-           .attr("font-size","8pt")
-           .attr("stroke",strmean)
+           .style("font-size","8pt")
+           .style("stroke",strmean)
            .attr("x", stdpx+10)
            .attr("y", ty+5)
            .text(strstd+f2(std))
@@ -3445,22 +3112,22 @@ function drawBoxSample(stat, start, type) {
         y2 = y1 + lineHeight;
         dot.append("line")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",x1)
            .attr("y1",y1)
            .attr("x2",x2)
            .attr("y2",y2)
         dot.append("text")
            .attr("class","meanP")      
-           .attr("font-size","8pt")
-           .attr("stroke",strmean)
+           .style("font-size","8pt")
+           .style("stroke",strmean)
            .attr("x", x2-28)
            .attr("y", y1-3)
            .text("min="+f2(min))
         x2 = x1 + graphWidth*(Q1-min)/xrange;
         dot.append("line")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",x1)
            .attr("y1",y1+lineHeight/2)
            .attr("x2",x2)
@@ -3469,15 +3136,15 @@ function drawBoxSample(stat, start, type) {
         x2 = x1;
         dot.append("line")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",x1)
            .attr("y1",y1)
            .attr("x2",x2)
            .attr("y2",y2) 
         dot.append("text")
            .attr("class","meanP")      
-           .attr("font-size","8pt")
-           .attr("stroke",strmean)
+           .style("font-size","8pt")
+           .style("stroke",strmean)
            .attr("x", x2-28)
            .attr("y", y1-3)
            .text("max="+f2(max))
@@ -3486,7 +3153,7 @@ function drawBoxSample(stat, start, type) {
         height = lineHeight;
         dot.append("rect")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("stroke-width","1px")
            .style("fill","yellow")
            .attr("x",x1)
@@ -3495,15 +3162,15 @@ function drawBoxSample(stat, start, type) {
            .attr("height",height)
          dot.append("text")
            .attr("class","meanP")      
-           .attr("font-size","8pt")
-           .attr("stroke",strmean)
+           .style("font-size","8pt")
+           .style("stroke",strmean)
            .attr("x", x1-22)
            .attr("y", y2+lineHeight/2)
            .text("Q1="+f2(Q1))
         dot.append("text")
            .attr("class","meanP")      
-           .attr("font-size","8pt")
-           .attr("stroke",strmean)
+           .style("font-size","8pt")
+           .style("stroke",strmean)
            .attr("x", x1+width-20)
            .attr("y", y2+lineHeight/2)
            .text("Q3="+f2(Q3))
@@ -3511,7 +3178,7 @@ function drawBoxSample(stat, start, type) {
         x2 = x1 + graphWidth*(max-Q3)/xrange;
         dot.append("line")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",x1)
            .attr("y1",y1+lineHeight/2)
            .attr("x2",x2)
@@ -3520,15 +3187,15 @@ function drawBoxSample(stat, start, type) {
         x2 = x1;
         dot.append("line")
            .attr("class","meanP")      
-           .attr("stroke",strmean)
+           .style("stroke",strmean)
            .attr("x1",x1)
            .attr("y1",y1)
            .attr("x2",x2)
            .attr("y2",y2)
         dot.append("text")
            .attr("class","meanP")      
-           .attr("font-size","8pt")
-           .attr("stroke",strmean)
+           .style("font-size","8pt")
+           .style("stroke",strmean)
            .attr("x", x1-30)
            .attr("y", y2+lineHeight/2+10)
            .text("Med="+f2(median))
@@ -3589,11 +3256,11 @@ function lawLarge(nobs) {
 //        var lineDataC = [ [175,60], [185,50], [195,60], [190,70], [205,60], [215,50] ];
         var lineGenerator = d3.line().curve(d3.curveCardinal);
         var pathString    = lineGenerator(lineDataT);
-        dot2.append("path").attr("d", pathString).attr("stroke","black").attr("fill", "none").attr("class","hand");
+        dot2.append("path").attr("d", pathString).style("stroke","black").attr("fill", "none").attr("class","hand");
         pathString    = lineGenerator(lineDataB);
-        dot2.append("path").attr("d", pathString).attr("stroke","black").attr("fill", "none").attr("class","hand");
+        dot2.append("path").attr("d", pathString).style("stroke","black").attr("fill", "none").attr("class","hand");
 //        pathString    = lineGenerator(lineDataC);
-//        dot2.append("path").attr("d", pathString).attr("stroke","black").attr("fill", "none").attr("class","hand");
+//        dot2.append("path").attr("d", pathString).style("stroke","black").attr("fill", "none").attr("class","hand");
         dot2.append("rect").attr("class","hand").attr("x",x1-tgapx).attr("y",y1+tgaph)
             .attr("width",twidth).attr("height",theight).attr("rx",trx).attr("ry",trx)
             .style("stroke","black").style("fill","white");
@@ -3636,8 +3303,7 @@ function lawLarge(nobs) {
         dot2.append("text").attr("class","meanG").attr("x",tx+150).attr("y",ty-50).text(svgStrU[12][langNum]).style("stroke","blue");
         dot2.append("text").attr("class","meanG").attr("x",tx-135).attr("y",ty-50).text(svgStrU[11][langNum]).style("stroke","red");
         dot2.append("text").attr("x",tx-20).attr("y",margin.top+ybuffer*0.5).text(svgStrU[10][langNum]).style("stroke","blue")
-            .attr("font-size","13pt").attr("stroke","blue").attr("text-anchor","start")
-
+            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
         // 첫째 원 동전던지기
         g = 0;
         sum = 0;
@@ -3710,8 +3376,7 @@ function lawLarge(nobs) {
               tx1 = tx2;
               ty1 = ty2;
         } // endof j
-}
-// 대수의 법칙 데모 함수
+}// 대수의 법칙 데모 함수
 function lawLargeDemo(nobs) {
         var i, i1, i2, k, color;
         var x1, x2, x3, y1, y2, y3;
@@ -3728,8 +3393,6 @@ function lawLargeDemo(nobs) {
         var trx        = 10;
         var tgaph      = 10;
         var tgapx      = 4;
-
-
         // 손 tossing graph
         x1 = margin.left + 4*xbuffer;
         y1 = margin.top + ybuffer;
@@ -3739,12 +3402,11 @@ function lawLargeDemo(nobs) {
 //        var lineDataC = [ [175,60], [185,50], [195,60], [190,70], [205,60], [215,50] ];
         var lineGenerator = d3.line().curve(d3.curveCardinal);
         var pathString    = lineGenerator(lineDataT);
-        svg.append("path").attr("d", pathString).attr("stroke","black").attr("fill", "none").attr("class","hand");
+        svg.append("path").attr("d", pathString).style("stroke","black").attr("fill", "none").attr("class","hand");
         pathString    = lineGenerator(lineDataB);
-        svg.append("path").attr("d", pathString).attr("stroke","black").attr("fill", "none").attr("class","hand");
+        svg.append("path").attr("d", pathString).style("stroke","black").attr("fill", "none").attr("class","hand");
 //        pathString    = lineGenerator(lineDataC);
-//        svg.append("path").attr("d", pathString).attr("stroke","black").attr("fill", "none").attr("class","hand");
-
+//        svg.append("path").attr("d", pathString).style("stroke","black").attr("fill", "none").attr("class","hand");
         svg.append("rect").attr("class","hand").attr("x",x1-tgapx).attr("y",y1+tgaph)
             .attr("width",twidth).attr("height",theight).attr("rx",trx).attr("ry",trx)
             .style("stroke","black").style("fill","white");
@@ -3754,12 +3416,9 @@ function lawLargeDemo(nobs) {
         svg.append("rect").attr("class","hand").attr("x",x1-3*tgapx).attr("y",y1+3*tgaph)
             .attr("width",twidth).attr("height",theight).attr("rx",trx).attr("ry",trx)
             .style("stroke","black").style("fill","white");
-
-
         // 처음 50개 점 만들고 궤적 그리기
         i1 = -50; i2 = -50;
         for (k=0; k<tobs; k++) {
-
            setTimeout(function() {	               
               x1 = margin.left + graphWidth/2 ;            // 하늘 좌표
               y1 = margin.top + ybuffer+33;
@@ -3796,13 +3455,10 @@ function lawLargeDemo(nobs) {
 	         .attr("cy", y3+i)
                  .style("fill",color)
                  .style("stroke","white")
-
             }, 300*k); // endof setTimeout
         
         } // endof k 
-
-}
-// 구간추정 표시 함수
+}// 구간추정 표시 함수
 function drawInterval(nobs, avg, std, gxmin, xrange, clevel, height, niter, start) {
         var ty    = start + height;
         var temp  = clevel*std/Math.sqrt(nobs);
@@ -3814,26 +3470,25 @@ function drawInterval(nobs, avg, std, gxmin, xrange, clevel, height, niter, star
         if (avg + temp < 0) checkMu = false;
         if (checkMu) {
           dot2.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
-              .attr("stroke","green")
+              .style("stroke","green")
           dot2.append("line")  .attr("class","meanG").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .attr("stroke","green")
+              .style("stroke","green")
           dot2.append("line")  .attr("class","meanG").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .attr("stroke","green")
+              .style("stroke","green")
         }
         else {
           dot2.append("circle").attr("class","meanR").attr("cx",avgx).attr("cy",ty).attr("r",2)
-              .attr("stroke","red")
+              .style("stroke","red")
           dot2.append("line")  .attr("class","meanR").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .attr("stroke","red")
+              .style("stroke","red")
           dot2.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .attr("stroke","red")
+              .style("stroke","red")
         }
-
         if (niter < 6) {
           if (checkMu) dot2.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
-                           .attr("stroke","green")
+                           .style("stroke","green")
           else dot2.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
-                   .attr("stroke","red")
+                   .style("stroke","red")
         }
 }// 전체 구간추정 표본그림 제거
 function removeAllSample3() {
@@ -3867,7 +3522,7 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
          else if (hypoType == 42) str = svgStrU[23][langNum]+"(m1 - m2 - D) / ( sqrt(var1/n1 + var2/n2) )  ~  t'("+df+") "+svgStrU[24][langNum];
     
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
          var x = [];
@@ -3883,7 +3538,7 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -3900,7 +3555,7 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -3908,57 +3563,57 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
          bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle") 
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle") 
          if (h1Type == 1) {  
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else if (h1Type == 2) {
            bar.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else {
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
          x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
-         bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2).style("stroke","green")
-              .attr("stroke","black").attr("stroke-width","2px");
+         bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+            .style("stroke","green").attr("stroke-width","2px");
          bar.append("text").attr("x", x1).attr("y", y2+15)
             .text(svgStrU[23][langNum]+f3(stat))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          bar.append("text").attr("x", x1).attr("y", y2+30)
             .text(svgStrU[27][langNum]+f3(pvalue))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          if (stat > a && stat < b) {
            bar.append("text").attr("x", tx).attr("y", y2+50)
               .text(svgStrU[28][langNum]+svgStrU[26][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","blue").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
          }
          else {
            bar.append("text").attr("x", tx).attr("y", y2+50)
               .text(svgStrU[28][langNum]+svgStrU[25][langNum])
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
 }     
 // 정규분포 그래프 함수 --------------------------------------------------
@@ -3980,7 +3635,7 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          else if (hypoType == 3) str = svgStrU[23][langNum]+"(p - Po) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
          else if (hypoType == 6) str = svgStrU[23][langNum]+"(p1 - p2 - D) / (sqrt(pbar*(1-pbar)(1/n1 + 1/n2) )  ~  N(0,1)";
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
          var x = [];
@@ -3996,7 +3651,7 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -4013,7 +3668,7 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -4021,33 +3676,33 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
          bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
-          if (h1Type == 1) {  
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         if (h1Type == 1) {  
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else if (h1Type == 2) {
            bar.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else {
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
          x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
@@ -4055,19 +3710,19 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-            .attr("stroke","green").attr("stroke-width","2px");
+            .style("stroke","green").attr("stroke-width","2px");
          bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          if (stat > a && stat < b) {
            bar.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[26][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","blue").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
          }
          else {
            bar.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
 }     
 // =============================================================================================================
@@ -4078,7 +3733,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
          var margin  = {top: 40, bottom: 130, left: 100, right: 100};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
-         var x1, y1, x2, y2, info, ta, tb, tx, ty, str;
+         var x1, y1, x2, y2, info, ta, tb, tx, ty, str, temp;
          var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange;
          gxmin = 0;
          gymin = 0;
@@ -4095,7 +3750,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
          if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s^2 / ( sigma_o^2 )  ~  ChiSq("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 8) str = svgStrU[23][langNum]+"Sum( (EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
          var x = [];
@@ -4111,7 +3766,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -4128,7 +3783,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -4136,53 +3791,55 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
          bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          if (h1Type == 1) {  
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else if (h1Type == 2) {
            bar.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else {
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
-         x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
+         temp = stat;
+         if (temp > gxmax) temp = gxmax+(gxmax-gxmin)/10;
+         x1 = margin.left + graphWidth2*(temp-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-            .attr("stroke","green").attr("stroke-width","2px");
+            .style("stroke","green").attr("stroke-width","2px");
          bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          if (stat > a && stat < b) {
            bar.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[26][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","blue").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
          }
          else {
            bar.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
 }     
 // =============================================================================================================
@@ -4195,12 +3852,12 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tc, td, te, t1, t2, t3, tx, ty, str;
-         var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange;
+         var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange, temp;
          gxmin = 0;
          gxmax = 10;
          gymin = 0;
          ymax  = 1.5;
-          gxrange = gxmax - gxmin;
+         gxrange = gxmax - gxmin;
          gymax   = ymax + ymax/5; 
          gyrange = gymax - gymin;
          tx = margin.left + graphWidth2/2;
@@ -4208,7 +3865,7 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
          if (hypoType == 5)       str = svgStrU[23][langNum]+"(s1^2 / s2^2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          else if (hypoType == 7)  str = svgStrU[23][langNum]+"(BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
          var x = [];
@@ -4224,7 +3881,7 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
            x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
            y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
            bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke","black").attr("stroke-width","2px");
+              .style("stroke","black").attr("stroke-width","2px");
            x1   = x2;
            y1   = y2;    
          }
@@ -4241,7 +3898,7 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
               .attr("y1",y1)
               .attr("x2",x2)
               .attr("y2",y2)
-              .attr("stroke-width","2px").attr("stroke","#0055FF")
+              .attr("stroke-width","2px").style("stroke","#0055FF")
            tempx += step;        
          } while( tempx <= b ) 
          // a, b, prob 표시
@@ -4249,45 +3906,47 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 30;
          bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","#0055FF").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          if (h1Type == 1) {  
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else if (h1Type == 2) {
            bar.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          else {
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
-         x1 = margin.left + graphWidth2*(stat[0]-gxmin)/gxrange;
+         temp = stat[0];
+         if (temp > gxmax) temp = gxmax + (gxmax-gxmin)/10;
+         x1 = margin.left + graphWidth2*(temp-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 45;
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-            .attr("stroke","green").attr("stroke-width","2px");
+            .style("stroke","green").attr("stroke-width","2px");
          bar.append("text").attr("x", x1).attr("y", y2+10).text("Fo = "+f2(stat[0])+", "+svgStrU[27][langNum]+f3(pvalue) )
-            .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","green").attr("text-anchor","middle")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
-         if (hypoType == 7) {
+         if (hypoType == 7) { // ANOVA
            ta = 50;      tb = ta + 100; tc = tb + 60; td = tc + 100; te = td + 140;
            t1 = y2 + 30; t2 = t1 + 15; t3 = t2 + 15; t4 = t3 + 15;
            bar.append("text").attr("class","meanL").attr("x", ta).attr("y", t1).text(svgStrU[29][langNum]);
@@ -4297,25 +3956,25 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
            bar.append("text").attr("class","meanL").attr("x", td).attr("y", t2).text("Fo="+f2(stat[0]) );
            if (stat[0] > a && stat[0] < b) {
              bar.append("text").attr("x", te).attr("y", t2).text(svgStrU[28][langNum]+svgStrU[26][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","blue").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
            }
            else {
              bar.append("text").attr("x", te).attr("y", t2).text(svgStrU[28][langNum]+svgStrU[25][langNum])
-               .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            }
            bar.append("text").attr("class","meanL").attr("x", ta).attr("y", t3).text("ESS="+f2(stat[2]) );
            bar.append("text").attr("class","meanL").attr("x", tb).attr("y", t3).text("df="+df2);
            bar.append("text").attr("class","meanL").attr("x", tc).attr("y", t3).text("MSE="+f2(stat[5]) );
            bar.append("text").attr("class","meanL").attr("x", ta).attr("y", t4).text("TSS="+f2(stat[3]) );
          }
-         else if (hypoType == 5){
+         else if (hypoType == 5){ // sigma1, sigma2
            if (stat[0] > a && stat[0] < b) {
              bar.append("text").attr("x", tx).attr("y", y2+40).text(svgStrU[28][langNum]+svgStrU[26][langNum])
-                .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","blue").attr("text-anchor","middle")
+                .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
            }
            else {
              bar.append("text").attr("x", tx).attr("y", y2+40).text(svgStrU[28][langNum]+svgStrU[25][langNum])
-              .attr("font-family","sans-serif").attr("font-size","9pt").attr("stroke","red").attr("text-anchor","middle")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            }
          }
 }     
