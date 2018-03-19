@@ -3674,7 +3674,8 @@ function drawStemLeaf(ngroup, nobs, dataSet, tstat, graphWidth, buffer) {
         for (j=0; j<nvalue; j++) {
           temp = stem[j].toFixed(0);
           len  = temp.length;
-          stemStr[j]    = temp.substr(0,len-1); 
+          if (temp == 0) { stemStr[j] = "0"; }
+	  else { stemStr[j] = temp.substrr(0, len-1); }
           if (stemStr[j] == null) stemStr[j] = "0";
           dvalueFreq[j] = 0;
           leaf[j] = new Array(100);
