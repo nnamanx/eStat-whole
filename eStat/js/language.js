@@ -1,7 +1,7 @@
 ﻿// language.js
 
 var langNum;
-var nLanguage = 4;
+var nLanguage = 8;
 var nString   = 60;
 var appStr    = new Array(nString);
 var svgStr    = new Array(nString);
@@ -19,7 +19,11 @@ languageNumber = {
     'ko': 0,
     'en': 1,
     'jp': 2,
-    'cn': 3,
+    'cn': 3,
+    'fr': 4,
+    'de': 5,
+    'es': 6,
+    'pt': 7,
 }
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
@@ -49,6 +53,10 @@ if (lang == "ko") langNum = 0;
 else if (lang == "en") langNum = 1;
 else if (lang == "jp") langNum = 2;
 else if (lang == "cn") langNum = 3;
+else if (lang == "fr") langNum = 4;
+else if (lang == "de") langNum = 5;
+else if (lang == "es") langNum = 6;
+else if (lang == "pt") langNum = 7;
 // console.log("eStatU.js langNum="+langNum);
 
 $.message = {}
@@ -204,17 +212,14 @@ $.message.ko = {
     "t-test" : "t-검정",
     "Chi-test" : "&chi;<sup>2</sup>-검정",
     "F-test" : "F-검정",
-    "Significance Level" : "유의수준",
     "Sample Data" : "표본자료",
     "input either sample data" : "(표본자료를 여기 입력, 아니면 다음 표본통계량을 입력(공란, 콤마로 구분)",
     "Sample Statistics" : "표본통계량",
     "Sample Mean" : "표본평균",
     "Sample Variance" : "표본분산",
     "Sample Proportion" : "표본비율",
-    "Confidence Interval" : "신뢰구간",
     "if Z-test-1" : "(Z-검정이면, 모분산 입력)",
     "if Z-test-2" : "(Z-검정이면, Z<sub>1-&alpha;/2 </sub> 이용)",
-    "Execute" : "실행",
     "Variance Assumption" : "분산가정",
     "At least one pair" : "적어도 한쌍 이상의 평균이 다름",
     "Row-Col-0" : "행변량과 열변량이 독립",
@@ -463,11 +468,8 @@ $.message.en = {
     "(Confidence Interval)" : "(Confidence Interval)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)",
     "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> test",
-    "Significance Level" : "Significance Level",
-    "Execute" : "Execute",
     "Variance Assumption" : "Variance Assumption",
     "F test" : "F test",
-    "Significance Level" : "Significance Level",
     "At least one pair of means is different" : "At least one pair of means is different",
     "Main Title : " : "Main Title : ",
     "y title : " : "y title : ",
@@ -539,19 +541,15 @@ $.message.en = {
     "t-test" : "t-test",
     "Chi-test" : "&chi;<sup>2</sup>-test",
     "F-test" : "F-test",
-    "Significance Level" : "Significance Level",
     "Sample Data" : "Sample Data",
     "input either sample data" : "Input either sample data, or sample statistics at the next boxes usign csv/bsv",
     "Sample Statistics" : "Sample Statistics",
     "Sample Mean" : "Sample Mean",
     "Sample Variance" : "Sample Variance",
     "Sample Proportion" : "Sample Proportion",
-    "Confidence Interval" : "Confidence Interval",
     "if Z-test-1" : "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
     "if Z-test-2" : "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used.)",
-    "Execute" : "Execute",
     "Variance Assumption" : "Variance Assumption",
-    "Significance Level" : "Significance Level",
     "At least one pair" : "At least one pair of means is different",
     "Row-Col-0" : "Row and column variables are independent",
     "Row-Col-1" : "Row and column variables are not independent",
@@ -669,7 +667,7 @@ svgStrU[4][1]  = "Std Dev";
 svgStrU[5][1]  = "Poissson Distribution";       	
 svgStrU[6][1]  = "Geometric Distribution";         	
 svgStrU[7][1]  = "HyperGeometric Distribution";         	
-svgStrU[8][1]  = "Populaton";     	
+svgStrU[8][1]  = "Population";     	
 svgStrU[9][1]  = "Sample Dist";         	
 svgStrU[10][1] = "Law of Large Number";           	
 svgStrU[11][1] = "Tail";      
@@ -725,187 +723,184 @@ svgStrU[59][1] = "";
 
 // Japanese
 $.message.jp = {
-    "eStat : Stat Education SW" : "eStat: 統計教育SW",
-    "Filename" : "ファイル名",
-    "Selected Variables" : "選択変量",
-    "Cancel" : "キャンセル",
-    "Edit Variables" : "変量編集",
-    "Level" : "レベル",
-    "ElementaryLevel" : "小学",
-    "MiddleLevel" : "中学",
-    "UniversityLevel" : "大学",
-    "Example" : "例題データ読み込み",
-    "New Sheets" : "新規シート",
-    "csv Open" : "csv読み込み",
-    "www Open" : "wwwから読み込み",
-    "json Open" : "json読み込み",
-    "csv Save" : "csv保存",
-    "json Save" : "json保存",
-    "Print Sheet" : "シートPrint",
-    "Bar Graph" : "棒グラフ",
-    "Pie Chart" : "円グラフ",
-    "Band Graph" : "帯グラフ",
-    "Line Graph" : "折れ線グラフ",
-    "Dot Graph" : "点グラフ",
-    "Histogram" : "ヒストグラム",
-    "Stem & Leaf Plot" : "幹葉図",
-    "Box-Whisker Plot" : "箱ひげ図",
-    "Scatterplot" : "散布図",
-    "Frequency Table" : "度数分布表",
-    "Basic Statistics" : "基礎統計量",
-    "Testing Hypothesis &mu;" : "点推定 &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>" : "推・検定 &sigma;<sup>2</sup>",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "検定 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "検定 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Analysis of Variance" : "分散分析",
-    "High School Stat Education" : "高校統計教育",
-    "University Stat Education" : "大学統計教育",
-    "Elem Stat Graph Example" : "小中学グラフの例",
-    "Learning eStat w Example" : "eStat例題学習",
-    "Vertical Separated Bar" : "縦分離型",
-    "Vertical Stacked Bar" : "縦積み重ね型",
-    "Vertical Ratio Bar" : "縦比率型",
-    "Vertical Side by Side Bar" : "縦並び型",
-    "Vertical Two Sided Bar" : "縦両側型",
-    "Horizontal Separated Bar" : "横分離型",
-    "Horizontal Stacked Bar" : "横積み重ね型",
-    "Horizontal Ratio Bar" : "横比率型",
-    "Horizontal Side by Side Bar" : "横並び型",
-    "Horizontal Two Sided Bar" : "横両側型",
-    "Doughnut Graph" : "ドーナツグラフ",
-    "Two Sided Stem & Leaf Plot" : "両側葉図",
-    "Graph Save" : "グラフ保存",
-    "Graph Print" : "グラフ印刷",
-    "Move to Table" : "テーブルへ移動",
-    "Edit Title" : "タイトル編集",
-    "Table Save" : "テーブル保存",
-    "Table Print" : "テーブル印刷",
-    "Frequency" : "度数表示",
-    "(Sorting)" : "(並べ替え)",
-    "Raw Data" : "元データ",
-    "Descending" : "降順",
-    "Ascending" : "昇順",
-    "Mean" : "平均",
-    "Std Deviation" : "標準偏差",
-    "Regression" : "回帰直線",
-    "Frequency Polygon" : "度数分布多角形",
-    "Frequency Table" : "度数分布表",
-    "Execute New Interval" : "区間を変えた実行",
-    "Interval Start" : "区間始点",
-    "Interval Width" : "区間の幅",
-    "t-test" : "t-検定",
-    "Z-test" : "Z-検定",
-    "(if Z-test, enter &sigma;)" : "(Z-検定のとき入力)",
-    "Significance Level" : "有意水準",
-    "Execute" : "実行",
-    "(Confidence Interval)" : "(信頼区間)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(Z-検定のとき, Z<sub>1-&alpha;/2 </sub> 利用)",
-    "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> 検定",
-    "Variance Assumption" : "分散仮定",
-    "F test" : "F 検定",
-    "At least one pair of means is different" : "少なくとも一つ以上のペアの平均が異なる",
-    "F test" : "F 検定",
-    "Main Title : " : "タイトル : ",
-    "y title : " : "y軸タイトル : ",
-    "x title : " : "x軸タイトル : ",
-    "Modify" : "修正",
-    "Confirm" : "確認",
-    "Variable Name" : "変数名",
-    "Variable Value" : "変数値",
-    "Value Label" : "変数ラベル",
-    "* Less than nine value labels allowed." : "* 9個以下の変数名を指定することができます.",
-    "Save" : "保存",
-    "Exit" : "閉じる",
-    "eStatU UnivStatEdu" : "eStatU - 大学統計教育 SW",
-    "eStatH HighStatEdu" : "eStatH - 高校統計教育 SW",
-    "Menu" : "メニュー",
-    "Binomial Experiment" : "二項分布実験",
-    "Binomial Distribution" : "二項分布",
-    "Binomial Prob Table" : "二項分布テーブル",
-    "Poisson Distribution" : "ポアソン分布",
-    "Poisson Prob Table" : "ポアソン分布テーブル",
-    "Geometric Distribution" : "幾何分布",
-    "Geometric Prob Table" : "幾何分布テーブル",
-    "HyperGeometric Distribution" : "超幾何分布",
-    "HyperGeometric Prob Table" : "超幾何分布テーブル",
-    "Exponential Distribution" : "指数分布",
-    "Normal Experiment" : "正規分布実験",
-    "Normal Distribution" : "正規分布",
-    "Normal Approx" : "正規分布近似",
-    "t Distribution" : "t 分布",
-    "ChiSquare Distribution" : "カイ二乗分布",
-    "F Distribution" : "F 分布",
-    "Sampling" : "サンプル抽出",
-    "Population vs Sample" : "母集団とサンプル",
-    "Population" : "母集団",
-    "Sample" : "サンプル",
-    "Exponential" : "指数分布(0.3)",
-    "Uniform" : "一様分布(0,1)",    
-    "Sample05" : "5% 標本抽出",
-    "Sample10" : "10% 標本抽出",
-    "Sample20" : "20% 標本抽出",
-    "Statistics/BoxPlot" : "統計量/箱ひげ図",
-    "Law of Large Number" : "大数の法則",
-    "Dist of Sample Means" : "標本平均の標本分布",
-    "Sample Size" : "サンプルサイズ",
-    "Confidence Interval" : "信頼区間",
-    "Estimation Accuracy" : "推定精度",
-    "Repetition" : "反復数",
-    "Confidence Level" : "信頼水準",
-    "Testing Hypothesis mu_title" : "母平均の推定・検定",
-    "Testing Hypothesis mu_title" : "母平均の推定・検定",
-    "Testing Hypothesis sigma_title" : "母分散の推定・検定",
-    "Testing Hypothesis P_title" : "母比率の推定・検定",
-    "Testing Hypothesis mu12_title" : "２集団 母平均の仮説検定",
-    "Testing Hypothesis sigma12_title" : "２集団母分散仮説検定",
-    "Testing Hypothesis P12_title" : "２集団比率検定",
-    "Testing Hypothesis mu" : "区間推定/仮説検定:母平均&mu;",
-    "Testing Hypothesis sigma" : "区間推定/仮説検定:母分散&sigma;<sup>2</sup>",
-    "Testing Hypothesis P" : "区間推定/仮説検定:母比率 P",
-    "Testing Hypothesis mu12" : "仮説検定 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12" : "仮説検定 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12" : "仮説検定 : P<sub>1</sub>, P<sub>2</sub>",
-    "Testing Hypothesis ANOVA" : "分散分析",
-    "Testing Independence" : "独立性検定",
-    "Correlation Coefficient" : "相関係数",
-    "Regression Experiment" : "回帰シミュレーション",
-    "Hypothesis" : "仮  説",
-    "Test Type" : "検定名",
-    "Z-test" : "Z-検定",
-    "t-test" : "t-検定",
-    "Chi-test" : "&chi;<sup>2</sup>-検定",
-    "F-test" : "F-検定",
-    "Significance Level" : "有意水準",
-    "Sample Data" : "標本データ",
+    "eStat : Stat Education SW" : "eStat: 統計教育SW",
+    "Filename" : "ファイル名",
+    "Selected Variables" : "選択変量",
+    "Cancel" : "キャンセル",
+    "Edit Variables" : "変量編集",
+    "Level" : "レベル",
+    "ElementaryLevel" : "小学",
+    "MiddleLevel" : "中学",
+    "UniversityLevel" : "大学",
+    "Example" : "例題データ読み込み",
+    "New Sheets" : "新規シート",
+    "csv Open" : "csv読み込み",
+    "www Open" : "wwwから読み込み",
+    "json Open" : "json読み込み",
+    "csv Save" : "csv保存",
+    "json Save" : "json保存",
+    "Print Sheet" : "シートPrint",
+    "Bar Graph" : "棒グラフ",
+    "Pie Chart" : "円グラフ",
+    "Band Graph" : "帯グラフ",
+    "Line Graph" : "折れ線グラフ",
+    "Dot Graph" : "点グラフ",
+    "Histogram" : "ヒストグラム",
+    "Stem & Leaf Plot" : "幹葉図",
+    "Box-Whisker Plot" : "箱ひげ図",
+    "Scatterplot" : "散布図",
+    "Frequency Table" : "度数分布表",
+    "Basic Statistics" : "基礎統計量",
+    "Testing Hypothesis &mu;" : "点推定 &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>" : "推・検定 &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "検定 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "検定 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance" : "分散分析",
+    "High School Stat Education" : "高校統計教育",
+    "University Stat Education" : "大学統計教育",
+    "Elem Stat Graph Example" : "小中学グラフの例",
+    "Learning eStat w Example" : "eStat例題学習",
+    "Vertical Separated Bar" : "縦分離型",
+    "Vertical Stacked Bar" : "縦積み重ね型",
+    "Vertical Ratio Bar" : "縦比率型",
+    "Vertical Side by Side Bar" : "縦並び型",
+    "Vertical Two Sided Bar" : "縦両側型",
+    "Horizontal Separated Bar" : "横分離型",
+    "Horizontal Stacked Bar" : "横積み重ね型",
+    "Horizontal Ratio Bar" : "横比率型",
+    "Horizontal Side by Side Bar" : "横並び型",
+    "Horizontal Two Sided Bar" : "横両側型",
+    "Doughnut Graph" : "ドーナツグラフ",
+    "Two Sided Stem & Leaf Plot" : "両側葉図",
+    "Graph Save" : "グラフ保存",
+    "Graph Print" : "グラフ印刷",
+    "Move to Table" : "テーブルへ移動",
+    "Edit Title" : "タイトル編集",
+    "Table Save" : "テーブル保存",
+    "Table Print" : "テーブル印刷",
+    "Frequency" : "度数表示",
+    "(Sorting)" : "(並べ替え)",
+    "Raw Data" : "元データ",
+    "Descending" : "降順",
+    "Ascending" : "昇順",
+    "Mean" : "平均",
+    "Std Deviation" : "標準偏差",
+    "Regression" : "回帰直線",
+    "Frequency Polygon" : "度数分布多角形",
+    "Frequency Table" : "度数分布表",
+    "Execute New Interval" : "区間を変えた実行",
+    "Interval Start" : "区間始点",
+    "Interval Width" : "区間の幅",
+    "t-test" : "t-検定",
+    "Z-test" : "Z-検定",
+    "(if Z-test, enter &sigma;)" : "(Z-検定のとき入力)",
+    "Significance Level" : "有意水準",
+    "Execute" : "実行",
+    "(Confidence Interval)" : "(信頼区間)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(Z-検定のとき, Z<sub>1-&alpha;/2 </sub> 利用)",
+    "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> 検定",
+    "Variance Assumption" : "分散仮定",
+    "F test" : "F 検定",
+    "At least one pair of means is different" : "少なくとも一つ以上のペアの平均が異なる",
+    "F test" : "F 検定",
+    "Main Title : " : "タイトル : ",
+    "y title : " : "y軸タイトル : ",
+    "x title : " : "x軸タイトル : ",
+    "Modify" : "修正",
+    "Confirm" : "確認",
+    "Variable Name" : "変数名",
+    "Variable Value" : "変数値",
+    "Value Label" : "変数ラベル",
+    "* Less than nine value labels allowed." : "* 9個以下の変数名を指定することができます.",
+    "Save" : "保存",
+    "Exit" : "閉じる",
+    "eStatU UnivStatEdu" : "eStatU - 大学統計教育 SW",
+    "eStatH HighStatEdu" : "eStatH - 高校統計教育 SW",
+    "Menu" : "メニュー",
+    "Binomial Experiment" : "二項分布実験",
+    "Binomial Distribution" : "二項分布",
+    "Binomial Prob Table" : "二項分布テーブル",
+    "Poisson Distribution" : "ポアソン分布",
+    "Poisson Prob Table" : "ポアソン分布テーブル",
+    "Geometric Distribution" : "幾何分布",
+    "Geometric Prob Table" : "幾何分布テーブル",
+    "HyperGeometric Distribution" : "超幾何分布",
+    "HyperGeometric Prob Table" : "超幾何分布テーブル",
+    "Exponential Distribution" : "指数分布",
+    "Normal Experiment" : "正規分布実験",
+    "Normal Distribution" : "正規分布",
+    "Normal Approx" : "正規分布近似",
+    "t Distribution" : "t 分布",
+    "ChiSquare Distribution" : "カイ二乗分布",
+    "F Distribution" : "F 分布",
+    "Sampling" : "サンプル抽出",
+    "Population vs Sample" : "母集団とサンプル",
+    "Population" : "母集団",
+    "Sample" : "サンプル",
+    "Exponential" : "指数分布(0.3)",
+    "Uniform" : "一様分布(0,1)",    
+    "Sample05" : "5% 標本抽出",
+    "Sample10" : "10% 標本抽出",
+    "Sample20" : "20% 標本抽出",
+    "Statistics/BoxPlot" : "統計量/箱ひげ図",
+    "Law of Large Number" : "大数の法則",
+    "Dist of Sample Means" : "標本平均の標本分布",
+    "Sample Size" : "サンプルサイズ",
+    "Confidence Interval" : "信頼区間",
+    "Estimation Accuracy" : "推定精度",
+    "Repetition" : "反復数",
+    "Confidence Level" : "信頼水準",
+    "Testing Hypothesis mu_title" : "母平均の推定・検定",
+    "Testing Hypothesis mu_title" : "母平均の推定・検定",
+    "Testing Hypothesis sigma_title" : "母分散の推定・検定",
+    "Testing Hypothesis P_title" : "母比率の推定・検定",
+    "Testing Hypothesis mu12_title" : "２集団 母平均の仮説検定",
+    "Testing Hypothesis sigma12_title" : "２集団母分散仮説検定",
+    "Testing Hypothesis P12_title" : "２集団比率検定",
+    "Testing Hypothesis mu" : "区間推定/仮説検定:母平均&mu;",
+    "Testing Hypothesis sigma" : "区間推定/仮説検定:母分散&sigma;<sup>2</sup>",
+    "Testing Hypothesis P" : "区間推定/仮説検定:母比率 P",
+    "Testing Hypothesis mu12" : "仮説検定 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12" : "仮説検定 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12" : "仮説検定 : P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis ANOVA" : "分散分析",
+    "Testing Independence" : "独立性検定",
+    "Correlation Coefficient" : "相関係数",
+    "Regression Experiment" : "回帰シミュレーション",
+    "Hypothesis" : "仮  説",
+    "Test Type" : "検定名",
+    "Z-test" : "Z-検定",
+    "t-test" : "t-検定",
+    "Chi-test" : "&chi;<sup>2</sup>-検定",
+    "F-test" : "F-検定",
+    "Sample Data" : "標本データ",
     "input either sample data" : "(標本データをここに入力(空白, カンマで区分),又は[標本統計量]欄に直接入力",
-    "Sample Statistics" : "標本統計量",
-    "Sample Mean" : "標本平均",
-    "Sample Variance" : "標本分散",
-    "Sample Proportion" : "標本比率",
-    "Confidence Interval" : "信頼区間",
-    "if Z-test-1" : "(Z-検定の場合, 母分散を入力)",
-    "if Z-test-2" : "(Z-検定の場合, Z<sub>1-&alpha;/2 </sub> 使用)",
-    "Execute" : "実行",
-    "Variance Assumption" : "分散仮定",
-    "At least one pair" : "少なくとも一つのペアーの平均が異なる",
-    "Row-Col-0" : "行変量と列変量は独立である",
-    "Row-Col-1" : "行変量と列変量は独立ではない",
-    "Enter any number of row" : "(左上のセルから行と列の観測度数入力)",
-    "Row" : "行",
-    "Column" : "列",
-    "Show Probability" : "確率表示",
-    "Regression Line" : "回帰直線",
-    "Erase All" : "画面クリア",
-    "Add Point" : "点追加",
-    "Erase Point" : "点クリア",
-    "Reference Site" : "参考サイト",
-    "Lot Size" : "ロットの数",
-    "Defect Size" : "不良品の数",
-    "If typed" : "(数字を入力した場合)",
-    "Stat/BoxPlot" : "統計量/箱ひげ図",
-    "Mean" : "平均",
-    "Std Dev" : "標準偏差",
-}
+    "Sample Statistics" : "標本統計量",
+    "Sample Mean" : "標本平均",
+    "Sample Variance" : "標本分散",
+    "Sample Proportion" : "標本比率",
+    "if Z-test-1" : "(Z-検定の場合, 母分散を入力)",
+    "if Z-test-2" : "(Z-検定の場合, Z<sub>1-&alpha;/2 </sub> 使用)",
+    "Variance Assumption" : "分散仮定",
+    "At least one pair" : "少なくとも一つのペアーの平均が異なる",
+    "Row-Col-0" : "行変量と列変量は独立である",
+    "Row-Col-1" : "行変量と列変量は独立ではない",
+    "Enter any number of row" : "(左上のセルから行と列の観測度数入力)",
+    "Row" : "行",
+    "Column" : "列",
+    "Show Probability" : "確率表示",
+    "Regression Line" : "回帰直線",
+    "Erase All" : "画面クリア",
+    "Add Point" : "点追加",
+    "Erase Point" : "点クリア",
+    "Reference Site" : "参考サイト",
+    "Lot Size" : "ロットの数",
+    "Defect Size" : "不良品の数",
+    "If typed" : "(数字を入力した場合)",
+    "Stat/BoxPlot" : "統計量/箱ひげ図",
+    "Mean" : "平均",
+    "Std Dev" : "標準偏差",
+}
 
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -914,142 +909,142 @@ appStr[3][2] = "../eStatE/index_en.html";
 appStr[4][2] = "../ExLearning/index_en.html";
 appStr[5][2] = "index.html";
 
-alertMsg[1][2]  = "選択した変数の中、欠損値が含まれています!";
-alertMsg[2][2]  = "シートから変数を選んで(変数番号クリック)ボタンを押してください! 変数が2つ以上の場合は1番目の変数がグループ変数と指定されます. ";
-alertMsg[3][2]  = "選択した列に欠損値があります.";
-alertMsg[4][2]  = "各列のデータ数が異なるか欠損値が存在すると処理できません.";
-alertMsg[5][2]  = "グループの数が多すぎると画面の都合によりグラフが被ることがあります.";
-alertMsg[6][2]  = "要約データの変数に文字が入ってうので、グラフの作成と度数分布表の出力ができません.";
-alertMsg[7][2]  = "元データから2以上の変数を選択した場合はグラフや表を作成できません.";
-alertMsg[8][2]  = "点プロットはデータの数が200個以下のとき可能です.";
-alertMsg[9][2]  = "幹葉図はデータ数が100個以下のときのみ可能です.";
-alertMsg[12][2] = "選択変数が文字を含んているためグラフや度数分布表が出力できません.";
-alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
-alertMsg[16][2] = "二つのグループのみに対して仮説検定することができます.";
-alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です."; 
-alertMsg[18][2] = "4つ以上の変数については散布図を描けることができません.";
-alertMsg[19][2] = "X軸データの中に文字が入っているため散布図を描けません";
-alertMsg[20][2] = "Y軸データの中に文字が入っているため散布図を描けません";
-alertMsg[21][2] = "データに欠損値があると保存できません.";
-alertMsg[22][2] = "負の値での棒グラフは描けません."; 
-alertMsg[25][2] = "１つのグループの場合, 積み重ね型棒グラフは描けません."; 
-alertMsg[27][2] = "１つのグループの場合, 比率型グラフは描けません."; 
-alertMsg[29][2] = "１つのグループの場合, 並び型グラフは描けません."; 
-alertMsg[31][2] = "１つのグループの場合, 両側型ラフは描けません."; 
-alertMsg[32][2] = "負の値での円グラフは描けません."; 
-alertMsg[33][2] = "負の値でのドーナツグラフは描けません."; 
-alertMsg[34][2] = "負の値での帯グラフは描けません."; 
-alertMsg[35][2] = "負の値での度数分布表は表示できません."; 
-alertMsg[36][2] = "2グループに対する両側型グラフは描けません.";
-alertMsg[37][2] = "一つの変数のみ仮説検定することが可能です."; 
-alertMsg[38][2] = "mu is NaN . Ener value and then retry!";
-alertMsg[39][2] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][2] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][2] = "2つの変数(グループ変数と解析変数)のみ仮説検定することができます."; 
-alertMsg[42][2] = "仮説検定のタイトルは編集できません! ";
+alertMsg[1][2]  = "選択した変数の中、欠損値が含まれています!";
+alertMsg[2][2]  = "シートから変数を選んで(変数番号クリック)ボタンを押してください! 変数が2つ以上の場合は1番目の変数がグループ変数と指定されます. ";
+alertMsg[3][2]  = "選択した列に欠損値があります.";
+alertMsg[4][2]  = "各列のデータ数が異なるか欠損値が存在すると処理できません.";
+alertMsg[5][2]  = "グループの数が多すぎると画面の都合によりグラフが被ることがあります.";
+alertMsg[6][2]  = "要約データの変数に文字が入ってうので、グラフの作成と度数分布表の出力ができません.";
+alertMsg[7][2]  = "元データから2以上の変数を選択した場合はグラフや表を作成できません.";
+alertMsg[8][2]  = "点プロットはデータの数が200個以下のとき可能です.";
+alertMsg[9][2]  = "幹葉図はデータ数が100個以下のときのみ可能です.";
+alertMsg[12][2] = "選択変数が文字を含んているためグラフや度数分布表が出力できません.";
+alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
+alertMsg[16][2] = "二つのグループのみに対して仮説検定することができます.";
+alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です."; 
+alertMsg[18][2] = "4つ以上の変数については散布図を描けることができません.";
+alertMsg[19][2] = "X軸データの中に文字が入っているため散布図を描けません";
+alertMsg[20][2] = "Y軸データの中に文字が入っているため散布図を描けません";
+alertMsg[21][2] = "データに欠損値があると保存できません.";
+alertMsg[22][2] = "負の値での棒グラフは描けません."; 
+alertMsg[25][2] = "１つのグループの場合, 積み重ね型棒グラフは描けません."; 
+alertMsg[27][2] = "１つのグループの場合, 比率型グラフは描けません."; 
+alertMsg[29][2] = "１つのグループの場合, 並び型グラフは描けません."; 
+alertMsg[31][2] = "１つのグループの場合, 両側型ラフは描けません."; 
+alertMsg[32][2] = "負の値での円グラフは描けません."; 
+alertMsg[33][2] = "負の値でのドーナツグラフは描けません."; 
+alertMsg[34][2] = "負の値での帯グラフは描けません."; 
+alertMsg[35][2] = "負の値での度数分布表は表示できません."; 
+alertMsg[36][2] = "2グループに対する両側型グラフは描けません.";
+alertMsg[37][2] = "一つの変数のみ仮説検定することが可能です."; 
+alertMsg[38][2] = "mu is NaN . Ener value and then retry!";
+alertMsg[39][2] = "Standard deviation is either zero or NaN . Retry!";
+alertMsg[40][2] = "input variance is NaN . Ener value and then retry!";
+alertMsg[41][2] = "2つの変数(グループ変数と解析変数)のみ仮説検定することができます."; 
+alertMsg[42][2] = "仮説検定のタイトルは編集できません! ";
 
-svgStr[1][2]  = " 棒グラフ";        	
-svgStr[2][2]  = " 円グラフ";   		
-svgStr[3][2]  = " ドーナツグラフ";       	
-svgStr[4][2]  = " 帯グラフ";          	
-svgStr[5][2]  = " 折れ線グラフ";       	
-svgStr[6][2]  = " 点グラフ";         	
-svgStr[7][2]  = " 箱ひげ図";         	
-svgStr[8][2]  = " 幹葉図";     	
-svgStr[9][2]  = " ヒストグラム";         	
-svgStr[10][2] = " 散布図";           	
-svgStr[11][2] = " 母平均仮説検定";      
-svgStr[12][2] = " 母分散仮説検定";    	
-svgStr[13][2] = " 2群 母平均仮説検定";   
-svgStr[14][2] = " 2群 母分散仮説検定";   
-svgStr[15][2] = " 分散分析"; 
-svgStr[16][2] = "度数"; 
-svgStr[17][2] = "比率";
-svgStr[18][2] = "グループ";
+svgStr[1][2]  = " 棒グラフ";        	
+svgStr[2][2]  = " 円グラフ";   		
+svgStr[3][2]  = " ドーナツグラフ";       	
+svgStr[4][2]  = " 帯グラフ";          	
+svgStr[5][2]  = " 折れ線グラフ";       	
+svgStr[6][2]  = " 点グラフ";         	
+svgStr[7][2]  = " 箱ひげ図";         	
+svgStr[8][2]  = " 幹葉図";     	
+svgStr[9][2]  = " ヒストグラム";         	
+svgStr[10][2] = " 散布図";           	
+svgStr[11][2] = " 母平均仮説検定";      
+svgStr[12][2] = " 母分散仮説検定";    	
+svgStr[13][2] = " 2群 母平均仮説検定";   
+svgStr[14][2] = " 2群 母分散仮説検定";   
+svgStr[15][2] = " 分散分析"; 
+svgStr[16][2] = "度数"; 
+svgStr[17][2] = "比率";
+svgStr[18][2] = "グループ";
 svgStr[19][2] = "の ";
-svgStr[20][2] = "<h3>要約データ<br>度数分布表</h3>";
-svgStr[21][2] = "グループ変数";
-svgStr[22][2] = "行変数";
-svgStr[23][2] = "合計";   
-svgStr[24][2] = "合計";
-svgStr[25][2] = "<h3>度数分布表</h3>";
-svgStr[26][2] = "分析変数";
-svgStr[27][2] = "変数値";
-svgStr[28][2] = "変数値ラベル";
-svgStr[29][2] = "度数";
-svgStr[30][2] = "百分率(%)"; 
-svgStr[31][2] = "<h3>クロス表</h3>";
-svgStr[32][2] = "列変数";
-svgStr[33][2] = "行変数";
-svgStr[34][2] = "平均"
-svgStr[35][2] = "標準偏差"
-svgStr[36][2] = "<h3> 区間別<br>度数分布表</h3>";
-svgStr[37][2] = "グループ名";
-svgStr[38][2] = "階級区間";
-svgStr[39][2] = "幹";
-svgStr[40][2] = "葉";
-svgStr[41][2] = "グループ1の葉";
-svgStr[42][2] = "グループ2の葉"
-svgStr[43][2] = "<h3>基礎統計量</h3>";
-svgStr[44][2] = "データ数";  
-svgStr[45][2] = "最小値";  
-svgStr[46][2] = "中央値"; 
-svgStr[47][2] = "最大値";  
+svgStr[20][2] = "<h3>要約データ<br>度数分布表</h3>";
+svgStr[21][2] = "グループ変数";
+svgStr[22][2] = "行変数";
+svgStr[23][2] = "合計";   
+svgStr[24][2] = "合計";
+svgStr[25][2] = "<h3>度数分布表</h3>";
+svgStr[26][2] = "分析変数";
+svgStr[27][2] = "変数値";
+svgStr[28][2] = "変数値ラベル";
+svgStr[29][2] = "度数";
+svgStr[30][2] = "百分率(%)"; 
+svgStr[31][2] = "<h3>クロス表</h3>";
+svgStr[32][2] = "列変数";
+svgStr[33][2] = "行変数";
+svgStr[34][2] = "平均"
+svgStr[35][2] = "標準偏差"
+svgStr[36][2] = "<h3> 区間別<br>度数分布表</h3>";
+svgStr[37][2] = "グループ名";
+svgStr[38][2] = "階級区間";
+svgStr[39][2] = "幹";
+svgStr[40][2] = "葉";
+svgStr[41][2] = "グループ1の葉";
+svgStr[42][2] = "グループ2の葉"
+svgStr[43][2] = "<h3>基礎統計量</h3>";
+svgStr[44][2] = "データ数";  
+svgStr[45][2] = "最小値";  
+svgStr[46][2] = "中央値"; 
+svgStr[47][2] = "最大値";  
 svgStr[48][2] = "全体";
 
-svgStrU[1][2]  = "二項分布";        	
-svgStrU[2][2]  = "反復数";   		
-svgStrU[3][2]  = "平均";       	
-svgStrU[4][2]  = "標準偏差";          	
-svgStrU[5][2]  = "ポアソン分布";       	
-svgStrU[6][2]  = "幾何分布";         	
-svgStrU[7][2]  = "超幾何分布";         	
-svgStrU[8][2]  = "母集団";     	
-svgStrU[9][2]  = "標本分布";         	
-svgStrU[10][2] = "大数の法則";           	
-svgStrU[11][2] = "裏";      
-svgStrU[12][2] = "表";    	
-svgStrU[13][2] = "コイン表";   
-svgStrU[14][2] = "  表の数  ";   
-svgStrU[15][2] = "  試行回数  "; 
-svgStrU[16][2] = "標本平均たちの分布"; 
-svgStrU[17][2] = "反復";
-svgStrU[18][2] = "標準誤差";
-svgStrU[19][2] = "母平均";
-svgStrU[20][2] = "信頼区間";
-svgStrU[21][2] = "推定精度";
-svgStrU[22][2] = "標本平均";
-svgStrU[23][2] = "[検定統計量] = ";   
-svgStrU[24][2] = "分布";
-svgStrU[25][2] = "棄却 Ho";
-svgStrU[26][2] = "採択 Ho";
-svgStrU[27][2] = "p-値 = ";
-svgStrU[28][2] = "[意思決定] ";
-svgStrU[29][2] = "[分散分析]";
-svgStrU[30][2] = "相関係数を入力し、実行ボタンをクリックしてください."; 
-svgStrU[31][2] = "回帰直線";
-svgStrU[32][2] = "列変量";
-svgStrU[33][2] = "行変量";
-svgStrU[34][2] = "平均"
-svgStrU[35][2] = "標準偏差"
-svgStrU[36][2] = "<h3> 区間別<br>度数分布表</h3>";
-svgStrU[37][2] = "グループ名";
-svgStrU[38][2] = "階級区間";
-svgStrU[39][2] = "幹";
+svgStrU[1][2]  = "二項分布";        	
+svgStrU[2][2]  = "反復数";   		
+svgStrU[3][2]  = "平均";       	
+svgStrU[4][2]  = "標準偏差";          	
+svgStrU[5][2]  = "ポアソン分布";       	
+svgStrU[6][2]  = "幾何分布";         	
+svgStrU[7][2]  = "超幾何分布";         	
+svgStrU[8][2]  = "母集団";     	
+svgStrU[9][2]  = "標本分布";         	
+svgStrU[10][2] = "大数の法則";           	
+svgStrU[11][2] = "裏";      
+svgStrU[12][2] = "表";    	
+svgStrU[13][2] = "コイン表";   
+svgStrU[14][2] = "  表の数  ";   
+svgStrU[15][2] = "  試行回数  "; 
+svgStrU[16][2] = "標本平均たちの分布"; 
+svgStrU[17][2] = "反復";
+svgStrU[18][2] = "標準誤差";
+svgStrU[19][2] = "母平均";
+svgStrU[20][2] = "信頼区間";
+svgStrU[21][2] = "推定精度";
+svgStrU[22][2] = "標本平均";
+svgStrU[23][2] = "[検定統計量] = ";   
+svgStrU[24][2] = "分布";
+svgStrU[25][2] = "棄却 Ho";
+svgStrU[26][2] = "採択 Ho";
+svgStrU[27][2] = "p-値 = ";
+svgStrU[28][2] = "[意思決定] ";
+svgStrU[29][2] = "[分散分析]";
+svgStrU[30][2] = "相関係数を入力し、実行ボタンをクリックしてください."; 
+svgStrU[31][2] = "回帰直線";
+svgStrU[32][2] = "列変量";
+svgStrU[33][2] = "行変量";
+svgStrU[34][2] = "平均"
+svgStrU[35][2] = "標準偏差"
+svgStrU[36][2] = "<h3> 区間別<br>度数分布表</h3>";
+svgStrU[37][2] = "グループ名";
+svgStrU[38][2] = "階級区間";
+svgStrU[39][2] = "幹";
 svgStrU[40][2] = " 葉";
-svgStrU[41][2] = "グループ 1  葉";
-svgStrU[42][2] = "グループ 2  葉";
-svgStrU[43][2] = "<h3>基本統計量</h3>";
-svgStrU[44][2] = "データの数";  
-svgStrU[45][2] = "最小値";  
-svgStrU[46][2] = "中央値"; 
-svgStrU[47][2] = "最大値";  
-svgStrU[48][2] = "全体";
-svgStrU[49][2] = "指数分布";
-svgStrU[50][2] = "一様分布";
-svgStrU[51][2] = "推定の精度";
-svgStrU[52][2] = "- マウスクリックして3個以上の点を配置すると回帰直線が作成される";
-svgStrU[53][2] = "- マウスクリックして1つの点を移動/削除しながら回帰直線の変動を観察";
+svgStrU[41][2] = "グループ 1  葉";
+svgStrU[42][2] = "グループ 2  葉";
+svgStrU[43][2] = "<h3>基本統計量</h3>";
+svgStrU[44][2] = "データの数";  
+svgStrU[45][2] = "最小値";  
+svgStrU[46][2] = "中央値"; 
+svgStrU[47][2] = "最大値";  
+svgStrU[48][2] = "全体";
+svgStrU[49][2] = "指数分布";
+svgStrU[50][2] = "一様分布";
+svgStrU[51][2] = "推定の精度";
+svgStrU[52][2] = "- マウスクリックして3個以上の点を配置すると回帰直線が作成される";
+svgStrU[53][2] = "- マウスクリックして1つの点を移動/削除しながら回帰直線の変動を観察";
 svgStrU[54][2] = "[標本統計量] ";
 svgStrU[55][2] = "[標本 1 統計量] ";
 svgStrU[56][2] = "[標本 2 統計量] ";
@@ -1207,17 +1202,14 @@ $.message.cn = {
     "t-test" : "t-檢定",
     "Chi-test" : "卡方檢定",
     "F-test" : "F-檢定",
-    "Significance Level" : "顯著水準",
     "Sample Data" : "樣本資料",
     "input either sample data" : "於接下來的對話視窗，使用csv/bsv格式輸入樣本資料或樣本統計量",
     "Sample Statistics" : "樣本統計量",
     "Sample Mean" : "樣本平均",
     "Sample Variance" : "樣本變異數",
     "Sample Proportion" : "樣本比例",
-    "Confidence Interval" : "信頼區間",
     "if Z-test-1" : "(Z-檢定, 母分散入力)",
     "if Z-test-2" : "(Z-檢定, Z<sub>1-&alpha;/2 </sub> 使用)",
-    "Execute" : "執行",
     "Variance Assumption" : "變異數假設",
     "At least one pair" : "至少有一對平均數不相等",
     "Row-Col-0" : "列變數與行變數獨立",
@@ -1358,7 +1350,7 @@ svgStrU[28][3] = "[決策] ";
 svgStrU[29][3] = "[變異數分析]";
 svgStrU[30][3] = "輸入相關係數後按執行"; 
 svgStrU[31][3] = "迴歸分析";
-vgStrU[32][3] = "列變量";
+svgStrU[32][3] = "列變量";
 svgStrU[33][3] = "行變量";
 svgStrU[34][3] = "平均"
 svgStrU[35][3] = "標準差"
@@ -1386,4 +1378,335 @@ svgStrU[56][3] = "[樣本 2 統計量] ";
 svgStrU[57][3] = "信頼水準";
 svgStrU[58][3] = "";
 svgStrU[59][3] = "";
+
+
+// French
+$.message.fr = {
+    "eStat : Stat Education SW" : "eStat : Stat éducation SW",
+    "Filename" : "Nom de fichier",
+    "Selected Variables" : "Var Sélectionnées",
+    "Cancel" : "Annuler",
+    "Edit Variables" : "EditVar",
+    "Level" : "Niveau",
+    "ElementaryLevel" : "E",
+    "MiddleLevel" : "I",
+    "UniversityLevel" : "U",
+    "Example" : "Exemple",
+    "New Sheets" : "Nouvelles feuilles de calcul",
+    "csv Open" : "csv Ouvert",
+    "www Open" : "www Ouvert",
+    "json Open" : "json Ouvert",
+    "csv Save" : "csv Sauvegarder",
+    "json Save" : "json Sauvegarder",
+    "Print Sheet" : "Imprimer la page",
+    "Bar Graph" : "Diagramme en barres",
+    "Pie Chart" : "Camembert",
+    "Band Graph" : "Graphique à bandes",
+    "Line Graph" : "Graphique en courbe",
+    "Dot Graph" : "Graphique à points",
+    "Histogram" : "Histogramme",
+    "Stem & Leaf Plot" : "Diagramme tige-feuille",
+    "Box-Whisker Plot" : "Boîte à moustaches",
+    "Scatterplot" : "Diagramme de dispersion",
+    "Frequency Table" : "Tableau des fréquences",
+    "Basic Statistics" : "Statistiques élémentaires",
+    "Testing Hypothesis &mu;" : "Test d'hypothèse &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>" : "Test d'hypothèse &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance" : "Analyse de la variance",
+    "High School Stat Education" : "L'enseignement de la statistique au lycée",
+    "University Stat Education" : "Enseignement de la statistique à l'université",
+    "Elem Stat Graph Example" : "élémentaire Statistiques graphique Exemple",
+    "Learning eStat w Example" : "Apprendre eStat par l'exemple",
+    "Vertical Separated Bar" : "Barre verticale séparée",
+    "Vertical Stacked Bar" : "Barre verticale empiléer",
+    "Vertical Ratio Bar" : "Barre verticale de ratio",
+    "Vertical Side by Side Bar" : "Barre verticale accolée",
+    "Vertical Two Sided Bar" : "Barre verticale double face",
+    "Horizontal Separated Bar" : "Barre horizontal séparée",
+    "Horizontal Stacked Bar" : "Barre horizontal empiléer",
+    "Horizontal Ratio Bar" : "Barre horizontale de ratio",
+    "Horizontal Side by Side Bar" : "Barre horizontal accolée",
+    "Horizontal Two Sided Bar" : "Barre horizontal double face",
+    "Doughnut Graph" : "Graphique en anneau",
+    "Two Sided Stem & Leaf Plot" : "Diagramme tige-feuille double face",
+    "Graph Save" : "Sauvegarder le graphique",
+    "Graph Print" : "Imprimer le graphique",
+    "Move to Table" : "Aller à la table",
+    "Edit Title" : "éditer le titre",
+    "Table Save" : "Sauvegarder le tableau",
+    "Table Print" : "Imprimer le tableau",
+    "Frequency" : "Fréquence",
+    "(Sorting)" : "(Tri)",
+    "Raw Data" : "Donnée brute",
+    "Descending" : "Descendant",
+    "Ascending" : "Ascendant",
+    "Mean" : "Moyenne",
+    "Std Deviation" : "Ecart-type",
+    "Regression" : "Régression",
+    "Frequency Polygon" : "Polygone des fréquences",
+    "Frequency Table" : "Tableau des fréquences",
+    "Execute New Interval" : "Faire un nouvel intervallel",
+    "Interval Start" : "Début de l'intervalle",
+    "Interval Width" : "Largeur de l'intervalle",
+    "t-test" : "t-test",
+    "Z-test" : "Z-test",
+    "(if Z-test, enter &sigma;)" : "(Pour le Z-test entrez &sigma;)",
+    "Significance Level" : "Niveau de signification",
+    "Execute" : "Exécuter",
+    "(Confidence Interval)" : "(Intervalle de confinace)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(Pour le Z-test, Z<sub>1-&alpha;/2 </sub> utilisé)",
+    "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> test",
+    "Variance Assumption" : "Hypothèse de variance",
+    "F test" : "F test",
+    "At least one pair of means is different" : "Au moins deux moyennes sont différentes",
+    "Main Title : " : "Titre principal : ",
+    "y title : " : "y Titre : ",
+    "x title : " : "x Titre : ",
+    "Modify" : "Modifiez",
+    "Confirm" : "Confirmer",
+    "Variable Name" : "Nom de variable",
+    "Variable Value" : "Valeur de la variable",
+    "Value Label" : "Libellé  d'une valeurl",
+    "* Less than nine value labels allowed." : "* Il faut moins de neuf libellésd.",
+    "Save" : "Sauvegarder",
+    "Exit" : "Terminer",
+
+    "eStatU UnivStatEdu" : "eStatU - Enseignement de la statistique à l'université SW",
+    "eStatH HighStatEdu" : "eStatH - L'enseignement de la statistique au lycée SW",
+    "Menu" : "Menu",
+    "Binomial Experiment" : "Essai binomialt",
+    "Binomial Distribution" : "Loi binomiale",
+    "Binomial Prob Table" : "Table de la loi binomiale",
+    "Poisson Distribution" : "Loi Poisson",
+    "Poisson Prob Table" : "Table de la loi de Poisson",
+    "Geometric Distribution" : "Loi géométrique",
+    "Geometric Prob Table" : "Table de la loi géométrique",
+    "HyperGeometric Distribution" : "Loi hypergéométrique",
+    "HyperGeometric Prob Table" : "Table de la loi hypergéométrique",
+    "Exponential Distribution" : "Loi exponentielle",
+    "Normal Experiment" : "Expérience gaussienne",
+    "Normal Distribution" : "Loi normale",
+    "Normal Approx" : "Approximation normale",
+    "t Distribution" : "t Distribution",
+    "ChiSquare Distribution" : "ChiSquare Distribution",
+    "F Distribution" : "F Distribution",
+    "Sampling" : "Echantillonnage",
+    "Population vs Sample" : "Population vs Echantillon",
+    "Population" : "Population",
+    "Sample" : "Echantillon",
+    "Exponential" : "Exponentiellel(0.3)",
+    "Uniform" : "Uniforme(0,1)",    
+    "Sample05" : "Echantillonnage 5%",
+    "Sample10" : "Echantillonnage 10%",
+    "Sample20" : "Echantillonnage 20%",
+    "Statistics/BoxPlot" : "Statistiques/Boîte à moustaches",
+    "Law of Large Number" : "Loi des grands nombres",
+    "Dist of Sample Means" : "Distribution des moyennes d'échantillon",
+    "Sample Size" : "Taille de l'échantillon",
+    "Confidence Interval" : "Intervalle de confinace",
+    "Estimation Accuracy" : "Précision de l'estimation",
+    "Repetition" : "Répétition",
+    "Confidence Level" : "Niveau de confiance",
+    "Testing Hypothesis mu_title" : "Test moyenne",
+    "Testing Hypothesis sigma_title" : "Test variance",
+    "Testing Hypothesis P_title" : "Test proportion",
+    "Testing Hypothesis mu12_title" : "Test deux moyennes de population",
+    "Testing Hypothesis sigma12_title" : "Test deux variances de population",
+    "Testing Hypothesis P12_title" : "Test deux proportion de population",
+    "Testing Hypothesis mu" : "Test d'hypothèse &mu;",
+    "Testing Hypothesis sigma" : "Test d'hypothèse &sigma;<sup>2</sup>",
+    "Testing Hypothesis P" : "Test d'hypothèse P",
+    "Testing Hypothesis mu12" : "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12" : "Test d'hypothèse &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12" : "Test d'hypothèse P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis ANOVA" : "Test d'hypothèse ANOVA",
+    "Testing Independence" : "Test d'indépendance",
+    "Correlation Coefficient" : "Coefficient de corrélation",
+    "Regression Experiment" : "Essai de régression",
+    "Hypothesis" : "Hypothèse",
+    "Test Type" : "Type de test",
+    "Z-test" : "Z-test",
+    "t-test" : "t-test",
+    "Chi-test" : "&chi;<sup>2</sup>-test",
+    "F-test" : "F-test",
+    "Sample Data" : "Données échantillonnées",
+    "input either sample data" : "Entrez soit la taille de l'échantillon, soit  les statistiques de l'échantillon dans les cases suivantes en séparant par  des virgules ou des blancs",
+    "Sample Statistics" : "Statistiques de l'échantillon",
+    "Sample Mean" : "Moyenne de l'échantillon",
+    "Sample Variance" : "Variance de l'échantillon",
+    "Sample Proportion" : "Pourcentage de l'échantillon",
+    "if Z-test-1" : "(if Z-test, Pour le Z-test, entrez la variance de la population &sigma;<sup>2</sup>)",
+    "if Z-test-2" : "(if Z-test, Z<sub>1-&alpha;/2 </sub> utilisé.)",
+    "Variance Assumption" : "Hypothèse de variance",
+    "At least one pair" : "Au moins deux moyennes sont différentes ",
+    "Row-Col-0" : "Les variables en ligne et en colonne sont indépendantes",
+    "Row-Col-1" : "Les variables en ligne et en colonne ne sont pas indépendantes",
+    "Enter any number of row" : "(Entrez les observations à partir de la case en haut à gauche)",
+    "Row" : "Ligne",
+    "Column" : "Colonne",
+    "Show Probability" : "Montrez la probabilité",
+    "Regression Line" : "Droite de régressione",
+    "Erase All" : "Effacer tout",
+    "Add Point" : "Ajouter un point",
+    "Erase Point" : "Effacer le point",
+    "Reference Site" : "Site de référence",
+    "Lot Size" : "Taille du lot",
+    "Defect Size" : "Taille du défaute",
+    "If typed" : "(Si le numéro est saisi)",
+    "Stat/BoxPlot" : "Statistiques/Boîte à moustaches",
+    "Mean" : "Moyenne",
+    "Std Dev" : "Ecart-type",
+}
+
+// French
+appStr[1][4] = "../eStatH/index.html";
+appStr[2][4] = "../eStatU/index.html";
+appStr[3][4] = "../eStatE/index_en.html";
+appStr[4][4] = "../ExLearning/index_en.html";
+appStr[5][4] = "index.html";
+
+alertMsg[1][4]  = "Une des variables sélectionnées ne contient pas de données.";
+alertMsg[2][4]  = "Selectionnez une par une les variables à analyser en cliquant sur chaque nom de colonne. Pour deux variables, la premiere est la variable de groupe. ";
+alertMsg[3][4]  = "Données manquantes dans la variable sélectionnée.";
+alertMsg[4][4]  = "Les observations correspondants aux variables sélectionnées doivent être identiques.";
+alertMsg[5][4]  = "Trop de groupes! Les graphiques risquent de se superposer à cause de lataille de l'écran.";
+alertMsg[6][4]  = "La variable d'analyse ne doit pas contenir de valeurs non numériques.";
+alertMsg[7][4]  = "On ne peut pas sélectionner plus de trois variables dans les données brutes ou dans des tableaux.";
+alertMsg[8][4]  = "Un graphique à points est traçable si le nombre d'observations ne dépasse pas 200.";
+alertMsg[9][4]  = "Le diagramme tige-feuille n'est autorisé que si le nombre d'observations est inférieur à 100.";
+alertMsg[12][4] = "La variable d'analyse ne doit pas contenir de valeurs non numériques.";
+alertMsg[14][4] = "Les résumés ne sont pas acceptés pour les graphiques continus et les tests.";
+alertMsg[16][4] = "Pour ce test , il faut uniquement deux groupes.";
+alertMsg[17][4] = "Un diagramme de dispersion nécessite au moins une variable x et une variable y."; 
+alertMsg[18][4] = "Plus de trois variables ne sont pas autorisée pour les diagrammes de dispersion.";
+alertMsg[19][4] = "Si X contient une valeur non numérique, le graphique ne peut pas être tracé.";
+alertMsg[20][4] = "Si Y contient une valeur non numérique, le graphique ne peut pas être tracé.";
+alertMsg[21][4] = "La sauvegarde n'est pas autorisée s'il y a une donnée manquante.";
+alertMsg[22][4] = "Diagramme en barres n'est pas autorisée s'il y a une donnée manquante."; 
+alertMsg[25][4] = "S'il n'ya qu'un seul groupe on ne peut pas tracer des diagrammes en barre empilés."; 
+alertMsg[27][4] = "S'il n'y a qu'un seul groupe on ne peut pas tracer un graphique de ratio."; 
+alertMsg[29][4] = "S'il n'y a qu'un seul groupe on ne peut pas tracer des graphiques en barre accolés."; 
+alertMsg[31][4] = "S'il n'y a qu'un seul groupe on ne peut pas tracer des graphiques en barre double face."; 
+alertMsg[32][4] = "Un camembert ne peut pas être tracé si une valeur est négative."; 
+alertMsg[33][4] = "Le graphique en anneau ne peut pas être tracé s'il y a des valeurs négatives."; 
+alertMsg[34][4] = "Le graphique à bandes ne peut pas être tracé si une valeur est négative."; 
+alertMsg[35][4] = "S'il y a une valeur négative, on ne peut pas calculer un tableau de fréquences."; 
+alertMsg[36][4] = "Ce diagramme en barres ne s'utilise que pour deux groupes.";
+alertMsg[37][4] = "Ce test d'hypothese n'est valable que pour une seule variable."; 
+alertMsg[38][4] = "mu n'est pas un nombre. Entrer une valeur et recommencez!!";
+alertMsg[39][4] = "L'écart-type est soit nul ou n'est pas un nombre. Recommencez!!";
+alertMsg[40][4] = "La variance saisie n'est pas un nombre. Entrez une valeur et recommencez!";
+alertMsg[41][4] = "Ce test d'hypothese n'est valable que pour deux variables. La variable de groupe ne doit avoir que deux  modalités";  
+alertMsg[42][4] = "Modifier le titre du test n'est pas autorisé! ";
+
+svgStr[1][4]  = " Diagramme en barres";        	
+svgStr[2][4]  = " Camembert";   		
+svgStr[3][4]  = " Graphique en anneau";       	
+svgStr[4][4]  = " Graphique à bandes";          	
+svgStr[5][4]  = " Graphique en courbe";       	
+svgStr[6][4]  = " Graphique à points";         	
+svgStr[7][4]  = " Boîte à moustaches ";         	
+svgStr[8][4]  = " Diagramme tige-feuille";     	
+svgStr[9][4]  = " Histogramme";         	
+svgStr[10][4] = " Diagramme de dispersion ";           	
+svgStr[11][4] = " Test d'hypothèse: Population moyenne";      
+svgStr[12][4] = " Test d'hypothèse: Population variance";    	
+svgStr[13][4] = " Test d'hypothèses: Deux moyennes de population";   
+svgStr[14][4] = " Test d'hypothèses: Deux variances de population";   
+svgStr[15][4] = " Analyse de la variance"; 
+svgStr[16][4] = "Fréquence"; 
+svgStr[17][4] = "Ratio";
+svgStr[18][4] = "Groupe";
+svgStr[19][4] = " ";
+svgStr[20][4] = "<h3>Les résumés<br>Tableau des fréquences</h3>";
+svgStr[21][4] = "Variable de groupe";
+svgStr[22][4] = "Variable ligne";
+svgStr[23][4] = "Total";   
+svgStr[24][4] = "Total";
+svgStr[25][4] = "<h3>Tableau des fréquences</h3>";
+svgStr[26][4] = "Analysis Variable";
+svgStr[27][4] = "valeur de la variable";
+svgStr[28][4] = "Libellé  d'une valeur";
+svgStr[29][4] = "Fréquence";
+svgStr[30][4] = "Pourcentage(%)"; 
+svgStr[31][4] = "<h3>Tableau croisé</h3>";
+svgStr[32][4] = "Variable colonne";
+svgStr[33][4] = "Ligne Variable";
+svgStr[34][4] = "Moyenne"
+svgStr[35][4] = "Ecart-type"
+svgStr[36][4] = "<h3> Histogramme<br>Tableau des fréquences</h3>";
+svgStr[37][4] = "Nom de groupe";
+svgStr[38][4] = "Intervalle";
+svgStr[39][4] = "Tige";
+svgStr[40][4] = " Feuille";
+svgStr[41][4] = "Group 1  Feuille";
+svgStr[42][4] = "Group 2  Feuille"
+svgStr[43][4] = "<h3>Statistiques élémentairess</h3>";
+svgStr[44][4] = "Observation";  
+svgStr[45][4] = "Minimum";  
+svgStr[46][4] = "Médiane"; 
+svgStr[47][4] = "Maximum";  
+svgStr[48][4] = "Total";
+
+svgStrU[1][4]  = "Loi binomiale";        	
+svgStrU[2][4]  = "Répétition";   		
+svgStrU[3][4]  = "Moyenne";       	
+svgStrU[4][4]  = "Ecart-type";          	
+svgStrU[5][4]  = "Loi de Poisson";       	
+svgStrU[6][4]  = "Loi géométrique";         	
+svgStrU[7][4]  = "Loi hypergéométrique";         	
+svgStrU[8][4]  = "Population";     	
+svgStrU[9][4]  = "Distribution d'échantillonnage";         	
+svgStrU[10][4] = "Loi des grands nombres";           	
+svgStrU[11][4] = "Queue";      
+svgStrU[12][4] = "Face";    	
+svgStrU[13][4] = "Face d'une pièce";   
+svgStrU[14][4] = "Nombre de faces";   
+svgStrU[15][4] = "Nombre d'essais"; 
+svgStrU[16][4] = "Distribution des moyennes d'échantillon"; 
+svgStrU[17][4] = "Répétition";
+svgStrU[18][4] = "Erreur standard";
+svgStrU[19][4] = "Moyenne de la population";
+svgStrU[20][4] = "Intervalle de confinace";
+svgStrU[21][4] = "Précision de l'estimation";
+svgStrU[22][4] = "Moyenne de l'échantillon";
+svgStrU[23][4] = "[TestStat] = ";   
+svgStrU[24][4] = "Distribution";
+svgStrU[25][4] = "Rejeter Ho";
+svgStrU[26][4] = "Accepter Ho";
+svgStrU[27][4] = " p-valeur = ";
+svgStrU[28][4] = "[Décision] ";
+svgStrU[29][4] = "[ANOVA]";
+svgStrU[30][4] = "Entrer le coefficient de corrélation et cliquer sur le bouton Executer"; 
+svgStrU[31][4] = "Régression";
+svgStrU[32][4] = "Ligne Var";
+svgStrU[33][4] = "Colonne Var";
+svgStrU[34][4] = "Moyenne"
+svgStrU[35][4] = "Ecart-type"
+svgStrU[36][4] = "<h3> Histogramme<br>Tableau des fréquences</h3>";
+svgStrU[37][4] = "Nom de groupe";
+svgStrU[38][4] = "Intervalle";
+svgStrU[39][4] = "Tige";
+svgStrU[40][4] = " Feuille";
+svgStrU[41][4] = "Groupe 1 Feuille";
+svgStrU[42][4] = "Groupe 2 Feuille"
+svgStrU[43][4] = "<h3>Statistiques élémentaires</h3>";
+svgStrU[44][4] = "Observation";  
+svgStrU[45][4] = "Minimum";  
+svgStrU[46][4] = "Médiane"; 
+svgStrU[47][4] = "Maximum";  
+svgStrU[48][4] = "Total";
+svgStrU[49][4] = "Exponentielle";
+svgStrU[50][4] = "Uniforme";
+svgStrU[51][4] = "Précision de l'estimation";
+svgStrU[52][4] = "- Ajouter des points en cliquant et eStat trouve la droite de régression.";
+svgStrU[53][4] = "- Déplacez ou enlevez un point. Regardez comment change la droite de régression.";
+svgStrU[54][4] = "[Statistiques de l'échantillon] ";
+svgStrU[55][4] = "[Statistiques de l'échantillon 1] ";
+svgStrU[56][4] = "[Statistiques de l'échantillon 2] ";
+svgStrU[57][4] = "intervalle de confinace";
+svgStrU[58][4] = "";
+svgStrU[59][4] = "";
 

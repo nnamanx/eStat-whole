@@ -1,4 +1,4 @@
-// eStat.js
+﻿// eStat.js
     svgWidth     = 600;
     svgHeight    = 560;
     margin       = {top:80, bottom:80, left:80, right:100};
@@ -3675,7 +3675,7 @@ function drawStemLeaf(ngroup, nobs, dataSet, tstat, graphWidth, buffer) {
           temp = stem[j].toFixed(0);
           len  = temp.length;
           if (temp == 0) { stemStr[j] = "0"; }
-	  else { stemStr[j] = temp.substrr(0, len-1); }
+	  else { stemStr[j] = temp.substr(0, len-1); }
           if (stemStr[j] == null) stemStr[j] = "0";
           dvalueFreq[j] = 0;
           leaf[j] = new Array(100);

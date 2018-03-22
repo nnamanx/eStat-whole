@@ -1,4 +1,4 @@
-$(document).ready(function() {
+﻿$(document).ready(function() {
     if(window.navigator.userAgent.indexOf("MSIE") > 0) {
 	alert("Internet Explorer에서는 제대로 작동하지 않을 수 있습니다. Chrome 웹브라우저를 권장합니다.");
     };
@@ -100,7 +100,8 @@ var dataSet = new Array(ngroupMax);
 var groupFreq = new Array(ngroupMax);
 for (k = 0; k < ngroupMax; k++) {
     dataSet[k] = new Array(rowMax);
-}var nobs = new Array(ngroupMax);
+}
+var nobs = new Array(ngroupMax);
 var mini = new Array(ngroupMax);
 var Q1 = new Array(ngroupMax);
 var median = new Array(ngroupMax);
@@ -179,7 +180,8 @@ if (levelNum == "1") { // 초등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-}// =================================================================
+}
+// =================================================================
 // 시트 컨트롤
 // =================================================================
 // sheet 초기화 및 만들기
@@ -223,7 +225,8 @@ function variableSelectClear() {
         }
     }
     numVar = 0;
-} // 새 시트
+}
+// 새 시트
 d3.select("#new").on("click", function() {
     try {
         datasheet.destroy();
@@ -353,7 +356,8 @@ function initEventControl(datasheet) {
             buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
         }
     });
-} // 데이터시트 이벤트 초기화 함수 끝 --------------------------------------------
+}
+// 데이터시트 이벤트 초기화 함수 끝 --------------------------------------------
 // automatically set alignment and colWidth
 // according to the data types (string, numeric)
 //
@@ -391,7 +395,8 @@ function updateCellMeta() {
     } // endof j
     datasheet.getSettings().colWidths = colWidth;
     datasheet.render();
-} // update global data variables:
+}
+// update global data variables:
 // rvar, rvarName, robs, numRow, numCol, rvalue
 //
 function updateGlobalDataVariables() {
@@ -419,18 +424,13 @@ function updateGlobalDataVariables() {
         }
     }
 }
-
-
 /*
  * open an example
  *
- */
-
+*/
 d3.select("#icon_openExample").on("click", function() {
     $("#exampleFileListing").dialog("open");
-
 });
-
 $(document).ready(function() {
     $("#exampleFileListing").fileTree({
         root: '../Example/'
@@ -443,8 +443,6 @@ $(document).ready(function() {
         $("#exampleFileListing").dialog("close");
     });
 });
-
-
 /*
  *  read data from URL
  *
@@ -462,7 +460,6 @@ $("#button_readFromURLSubmit").click(function() {
         updateDatasheetWithArrayOfRows(data, csvdata.columns);
     });
 });
-
 /*
  * import a CSV file
  *
@@ -483,7 +480,8 @@ function importCSV(evt) {
     }
     fr.readAsText(evt.target.files[0]);
     $("#input_importCSV").val("");
-}function updateDatasheetWithArrayOfRows(data, colHeaders) {
+}
+function updateDatasheetWithArrayOfRows(data, colHeaders) {
     datasheet.destroy();
     datasheet = new Handsontable(container, {
         data: data,
@@ -506,11 +504,12 @@ function importCSV(evt) {
     graphTitle(); // set default graph title
     initEventControl(datasheet);
     updateGlobalDataVariables();
-}/*
+}
+/*
  * open a data file (JSON)
  *
  *
- */
+*/
 $("#icon_openFile").click(function() {
     $("#input_openFile").click();
 })
@@ -525,7 +524,8 @@ function openFile(evt) {
     }
     fr.readAsText(evt.target.files[0]);
     $("#input_openFile").val("");
-}function updateDatasheetWith(dataobj) {
+}
+function updateDatasheetWith(dataobj) {
     datasheet.destroy();
     datasheet = new Handsontable(container, {
         data: dataobj.data,
@@ -559,7 +559,8 @@ function openFile(evt) {
     rvalueLabel = dataobj.rvalueLabel;
     numCol = dataobj.numCol;
     numRow = dataobj.numRow;
-} // crop a sheet data with empty cells to a complete rectangular data
+}
+// crop a sheet data with empty cells to a complete rectangular data
 function cropData(data) {
     var newdata = [];
     data.forEach(function(row) {
@@ -573,7 +574,8 @@ function cropData(data) {
         }
     });
     return newdata;
-} // export datasheet to csv ------------------------------------------
+} 
+// export datasheet to csv ------------------------------------------
 d3.select("#exportCSV").on("click", function() {
     checkDataSave();
     if (checkSave == false) return;
@@ -594,7 +596,8 @@ d3.select("#exportCSV").on("click", function() {
         type: "text/plain;charset=utf-8"
     });
     saveAs(blob, filename);
-}) //----------------------------------------------------------------
+}) 
+//----------------------------------------------------------------
 // save file ---------------------------------------------------------
 d3.select("#save").on("click", function() {
     checkDataSave();
@@ -621,7 +624,8 @@ d3.select("#save").on("click", function() {
         type: "text/plain;charset=utf-8"
     });
     saveAs(blob, filename);
-}) // ------------------------------------------------------------------
+}) 
+// ------------------------------------------------------------------
 // Data Save 가능여부 체크
 function checkDataSave() {
     checkSave = true;
@@ -634,7 +638,8 @@ function checkDataSave() {
             }
         }
     }
-} // From https://milooy.wordpress.com/2017/03/28/javascript-print-page/
+} 
+// From https://milooy.wordpress.com/2017/03/28/javascript-print-page/
 // sheet Print
 d3.select("#printSheet").on("click", function() {
     const html = document.querySelector('html');
@@ -745,7 +750,8 @@ rad1[2].onclick = function() { // 대학
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
-}// 분리형 막대그래프 : 주메뉴
+}
+// 분리형 막대그래프 : 주메뉴
 d3.select("#separate1").on("click", function() {
     graphNum = 1;
     dataClassify();
@@ -860,7 +866,8 @@ rad2[2].onclick = function() { // 올림차순
         drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
             freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
     }
-}// 쌓는형 수직 막대 버튼 클릭
+}
+// 쌓는형 수직 막대 버튼 클릭
 d3.select("#stack2V").on("click", function() {
     graphNum = 2;
     dataClassify();
@@ -1135,7 +1142,8 @@ rad3[2].onclick = function() { // 올림차순
         currentLabel = vlabelA;
         drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMin, freqMax, currentLabel, currentDataSet, dataSet);
     }
-} // 도수분포표 버튼 클릭
+} 
+// 도수분포표 버튼 클릭
 d3.select("#freqTable").on("click", function() {
     dataClassify();
     if (freqMin < 0) {
@@ -1431,15 +1439,18 @@ h8[1].onclick = function() {
 } // 우측검정
 h8[2].onclick = function() {
     h1Type = 3;
-} // 좌측검정
+} 
+// 좌측검정
 // Test type
 var test8 = document.myForm81.type1;
 test8[0].onclick = function() {
     testType = 2;
-} // Z-test
+} 
+// Z-test
 test8[1].onclick = function() {
     testType = 1;
-} // t-test
+} 
+// t-test
 // alpha
 var a8 = document.myForm82.type2;
 a8[0].onclick = function() {
@@ -1609,13 +1620,16 @@ d3.select("#testS1").on("click", function() {
 var h9 = document.myForm90.type0;
 h9[0].onclick = function() {
     h1Type = 1
-} // 양측검정
+} 
+// 양측검정
 h9[1].onclick = function() {
     h1Type = 2
-} // 우측검정
+} 
+// 우측검정
 h9[2].onclick = function() {
     h1Type = 3
-} // 좌측검정
+} 
+// 좌측검정
 // alpha
 var a9 = document.myForm92.type2;
 a9[0].onclick = function() {
@@ -1783,7 +1797,8 @@ h10[1].onclick = function() {
 } // 우측검정
 h10[2].onclick = function() {
     h1Type = 3
-} // 좌측검정
+} 
+// 좌측검정
 // Test type
 var test10 = document.myForm101.type1;
 test10[0].onclick = function() {
@@ -1793,7 +1808,8 @@ test10[0].onclick = function() {
 test10[1].onclick = function() {
     testType = 2;
     hypoType = 42
-} // not same population variances
+} 
+// not same population variances
 // alpha
 var a10 = document.myForm102.type2;
 a10[0].onclick = function() {
@@ -1949,13 +1965,16 @@ d3.select("#testS12").on("click", function() {
 var h11 = document.myForm110.type0;
 h11[0].onclick = function() {
     h1Type = 1
-} // 양측검정
+} 
+// 양측검정
 h11[1].onclick = function() {
     h1Type = 2
-} // 우측검정
+} 
+// 우측검정
 h11[2].onclick = function() {
     h1Type = 3
-} // 좌측검정
+} 
+// 좌측검정
 // alpha
 var a11 = document.myForm112.type2;
 a11[0].onclick = function() {
@@ -2215,13 +2234,16 @@ d3.select("#vcancel").on("click", function() {
     });
     $("#sub14").dialog("close");
 })
-
 // Language Selector
 languageNumber = {
-    'ko': 0,
-    'en': 1,
-    'jp': 2,
+    'ko': 0,
+    'en': 1,
+    'jp': 2,
     'cn': 3,
+    'fr': 4,
+    'de': 5,
+    'es': 6,
+    'pt': 7,
 }
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
