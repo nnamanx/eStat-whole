@@ -18,8 +18,8 @@ for (var j = 0; j < nString; j++) {
 languageNumber = {
     'ko': 0,
     'en': 1,
-    'jp': 2,
-    'cn': 3,
+    'ja': 2,
+    'zh': 3,
     'fr': 4,
     'de': 5,
     'es': 6,
@@ -51,8 +51,8 @@ var lang = localStorage.getItem("lang");
 if (lang == null) lang = "en";
 if (lang == "ko") langNum = 0;
 else if (lang == "en") langNum = 1;
-else if (lang == "jp") langNum = 2;
-else if (lang == "cn") langNum = 3;
+else if (lang == "ja") langNum = 2;
+else if (lang == "zh") langNum = 3;
 else if (lang == "fr") langNum = 4;
 else if (lang == "de") langNum = 5;
 else if (lang == "es") langNum = 6;
@@ -722,7 +722,7 @@ svgStrU[59][1] = "";
 
 
 // Japanese
-$.message.jp = {
+$.message.ja = {
     "eStat : Stat Education SW" : "eStat: 統計教育SW",
     "Filename" : "ファイル名",
     "Selected Variables" : "選択変量",
@@ -1053,7 +1053,7 @@ svgStrU[58][2] = "";
 svgStrU[59][2] = "";
 
 // Chinese
-$.message.cn = {
+$.message.zh = {
     "eStat : Stat Education SW" : "eStat: 統計教育軟體",
     "Filename" : "檔名",
     "Selected Variables" : "選擇變數",

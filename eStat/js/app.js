@@ -2238,8 +2238,8 @@ d3.select("#vcancel").on("click", function() {
 languageNumber = {
     'ko': 0,
     'en': 1,
-    'jp': 2,
-    'cn': 3,
+    'ja': 2,
+    'zh': 3,
     'fr': 4,
     'de': 5,
     'es': 6,
