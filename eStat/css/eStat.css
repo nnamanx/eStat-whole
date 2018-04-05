@@ -421,6 +421,7 @@ section.range-slider input[type=range]::-moz-focus-outer {
 #graph-main-container {
     flex: 1;
     width: 600px;
+    overflow-y: auto;
     // height: 560px;
     // border: 1px solid red;
 }
