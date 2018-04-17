@@ -2044,7 +2044,7 @@ svgStrU[59][5] = "";
 
 // Spanish
 $.message.es = {
-    "eStat : Stat Education SW" : "eStat : Estadísticos Educación SW",
+    "eStat : Stat Education SW" : "eStat : Software para Educación Estadística",
     "Filename" : "Nombre del archivo",
     "Selected Variables" : "Variables seleccionadas",
     "Cancel" : "Cancelar",
@@ -2063,7 +2063,7 @@ $.message.es = {
     "Print Sheet" : "Imprimir hoja",
     "Bar Graph" : "Diagrama de barras",
     "Pie Chart" : "Diagrama de tarta",
-    "Band Graph" : "Diagrama de bandas",
+    "Band Graph" : "Gráfico de partes componentes",
     "Line Graph" : "Gráfico de líneas",
     "Dot Graph" : "Gráfico de puntos",
     "Histogram" : "Histograma",
@@ -2091,7 +2091,7 @@ $.message.es = {
     "Horizontal Ratio Bar" : "Barra horizontal de proporciones",
     "Horizontal Side by Side Bar" : "Barra horizontal lateral",
     "Horizontal Two Sided Bar" : "Barra horizontal bilateral",
-    "Doughnut Graph" : "Gráfico tipo dónut",
+    "Doughnut Graph" : "Gráfico de dónut",
     "Two Sided Stem & Leaf Plot" : "Diagrama de Tallo y Hojas Bilateral",
     "Graph Save" : "Grabar Gráfico",
     "Graph Print" : "Imprimir Gráfico",
@@ -2103,7 +2103,7 @@ $.message.es = {
     "(Sorting)" : "(Ordenar)",
     "Raw Data" : "Datos crudos",
     "Descending" : "Descendiente",
-    "Ascending" : "Ascending",
+    "Ascending" : "Ascendiente",
     "Mean" : "Media",
     "Std Deviation" : "Desviación estándar",
     "Regression" : "Regresión",
@@ -2194,7 +2194,7 @@ $.message.es = {
     "Chi-test" : "Prueba &chi;<sup>2</sup>",
     "F-test" : "Prueba F",
     "Sample Data" : "Datos muestrales",
-    "input either sample data" : "Entrar datos muestrales, estadísticos muestrales con csv/bsv",
+    "input either sample data" : "Introducir datos muestrales o estadísticos muestrales en las siguientes cajas usando csv/bsv",
     "Sample Statistics" : "Estadísticos muestrales",
     "Sample Mean" : "Media muestral",
     "Sample Variance" : "Varianza muestral",
@@ -2213,7 +2213,7 @@ $.message.es = {
     "Erase All" : "Borrar todo",
     "Add Point" : "Añadir punto",
     "Erase Point" : "Borrar punto",
-    "Reference Site" : "Web Site",
+    "Reference Site" : "Enlace de referencia",
     "Lot Size" : "Tamaño del lote",
     "Defect Size" : "Tamaño del defecto",
     "If typed" : "(Si el número está escrito)",
@@ -2234,11 +2234,11 @@ alertMsg[2][6]  = "Seleccionar una a una las  variables para el análisis (clica
 alertMsg[3][6]  = "Datos faltantes en la variable seleccionada";
 alertMsg[4][6]  = "Si observaciones de las variables seleccionadas son diferentes o las observaciones son diferentes el análisis no está permitido";
 alertMsg[5][6]  = "Demasiados grupos! Los gráficos pueden solaparse debido al tamaño de la pantalla";
-alertMsg[6][6]  = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
+alertMsg[6][6]  = "No están permitidos análisis estadísticos o crear tablas si la variable de análisisen el resumen de datos incluye datos de tipo carácter";
 alertMsg[7][6]  = "Si más de tres variables son seleccionadas en el análsisi de datos crudo o crear una tabla no está permitido";
 alertMsg[8][6]  = "Gráfico de puntos permitido si el número de observaciones es menor que 200";
 alertMsg[9][6]  = "Se permite el Diagrama de Tallo y Hojas  si el número de observaciones es menor que 100";
-alertMsg[12][6] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
+alertMsg[12][6] = "No están permitidos análisis o crear tablas si la variable de análisis incluye datos de tipo carácter";
 alertMsg[14][6] = "No están permitidos los datos resumidos  para gráficos continuos y pruebas de hipótesis";
 alertMsg[16][6] = "Solo dos grupos permitidos";
 alertMsg[17][6] = "El diagrama de dispersión requiere al menos la variable x y la variable y"; 
@@ -2246,15 +2246,15 @@ alertMsg[18][6] = "No se permiten más de tres variables en el diagrama de dispe
 alertMsg[19][6] = "Si hay un carácter en la variable X el gráfico de dispersión no se puede dibujar";
 alertMsg[20][6] = "Si hay un carácter en la variable Y el gráfico de dispersión no se puede dibujar";
 alertMsg[21][6] = "Si hay datos no observados grabar no está permitido";
-alertMsg[22][6] = "If there is a negative number, bargraph cannot be drawn."; 
+alertMsg[22][6] = "Si hay un número negativo, no se puede dibujar un Diagrama de barras"; 
 alertMsg[25][6] = "Si hay un solo grupo el diagrama de barras apilado no está permitido"; 
 alertMsg[27][6] = "Si hay un solo grupo el diagrama de barras de proporciones no está permitido"; 
 alertMsg[29][6] = "Si hay un solo grupo el diagrama de barras lateral no está permitido"; 
 alertMsg[31][6] = "Si hay un solo grupo el diagrama de barras bilateral no está permitido"; 
-alertMsg[32][6] = "If there is a negative number, piechart cannot be drawn."; 
-alertMsg[33][6] = "If there is a negative number, donut graph cannot be drawn."; 
-alertMsg[34][6] = "If there is a negative number, band graph cannot be drawn."; 
-alertMsg[35][6] = "If there is a negative number, frequency table cannot be drawn."; 
+alertMsg[32][6] = "Si hay un número negativo, no se puede dibujar un diagrama de tarta"; 
+alertMsg[33][6] = "Si hay un número negativo, no se puede dibujar un diagrama de dónut"; 
+alertMsg[34][6] = "Si hay un número negativo, no se puede dibujar un gráfico de partes componentes"; 
+alertMsg[35][6] = "Si hay un número negativo, no se puede calcular una tabla de frecuencias"; 
 alertMsg[36][6] = "Este diagrama de barras solo se permite para dos grupos";
 alertMsg[37][6] = "Este prueba de hipótesis  solo se permite para una variable"; 
 alertMsg[38][6] = "mu es NaN. Entrar valor y reintentar!";
