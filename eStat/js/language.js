@@ -725,13 +725,13 @@ svgStrU[59][1] = "";
 $.message.ja = {
     "eStat : Stat Education SW" : "eStat: 統計教育SW",
     "Filename" : "ファイル名",
-    "Selected Variables" : "選択変量",
+    "Selected Variables" : "選択変数",
     "Cancel" : "キャンセル",
-    "Edit Variables" : "変量編集",
+    "Edit Variables" : "変数編集",
     "Level" : "レベル",
-    "ElementaryLevel" : "小学",
-    "MiddleLevel" : "中学",
-    "UniversityLevel" : "大学",
+    "ElementaryLevel" : "小学生",
+    "MiddleLevel" : "中高生",
+    "UniversityLevel" : "大学生",
     "Example" : "例題データ読み込み",
     "New Sheets" : "新規シート",
     "csv Open" : "csv読み込み",
@@ -739,22 +739,22 @@ $.message.ja = {
     "json Open" : "json読み込み",
     "csv Save" : "csv保存",
     "json Save" : "json保存",
-    "Print Sheet" : "シートPrint",
+    "Print Sheet" : "シートプリント",
     "Bar Graph" : "棒グラフ",
     "Pie Chart" : "円グラフ",
     "Band Graph" : "帯グラフ",
     "Line Graph" : "折れ線グラフ",
-    "Dot Graph" : "点グラフ",
+    "Dot Graph" : "ドットグラフ",
     "Histogram" : "ヒストグラム",
     "Stem & Leaf Plot" : "幹葉図",
     "Box-Whisker Plot" : "箱ひげ図",
     "Scatterplot" : "散布図",
     "Frequency Table" : "度数分布表",
     "Basic Statistics" : "基礎統計量",
-    "Testing Hypothesis &mu;" : "点推定 &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>" : "推・検定 &sigma;<sup>2</sup>",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "検定 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "検定 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &mu;" : "推定・検定 &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>" : "推定・検定 &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "母平均の仮説検定 (2集団) &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "母分散の仮説検定 (2集団) &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Analysis of Variance" : "分散分析",
     "High School Stat Education" : "高校統計教育",
     "University Stat Education" : "大学統計教育",
@@ -771,14 +771,14 @@ $.message.ja = {
     "Horizontal Side by Side Bar" : "横並び型",
     "Horizontal Two Sided Bar" : "横両側型",
     "Doughnut Graph" : "ドーナツグラフ",
-    "Two Sided Stem & Leaf Plot" : "両側葉図",
+    "Two Sided Stem & Leaf Plot" : "両側幹葉図",
     "Graph Save" : "グラフ保存",
     "Graph Print" : "グラフ印刷",
     "Move to Table" : "テーブルへ移動",
     "Edit Title" : "タイトル編集",
     "Table Save" : "テーブル保存",
     "Table Print" : "テーブル印刷",
-    "Frequency" : "度数表示",
+    "Frequency" : "度数",
     "(Sorting)" : "(並べ替え)",
     "Raw Data" : "元データ",
     "Descending" : "降順",
@@ -788,7 +788,7 @@ $.message.ja = {
     "Regression" : "回帰直線",
     "Frequency Polygon" : "度数分布多角形",
     "Frequency Table" : "度数分布表",
-    "Execute New Interval" : "区間を変えた実行",
+    "Execute New Interval" : "区間を変えて実行",
     "Interval Start" : "区間始点",
     "Interval Width" : "区間の幅",
     "t-test" : "t-検定",
@@ -799,7 +799,7 @@ $.message.ja = {
     "(Confidence Interval)" : "(信頼区間)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(Z-検定のとき, Z<sub>1-&alpha;/2 </sub> 利用)",
     "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> 検定",
-    "Variance Assumption" : "分散仮定",
+    "Variance Assumption" : "分散の仮定",
     "F test" : "F 検定",
     "At least one pair of means is different" : "少なくとも一つ以上のペアの平均が異なる",
     "F test" : "F 検定",
@@ -814,22 +814,22 @@ $.message.ja = {
     "* Less than nine value labels allowed." : "* 9個以下の変数名を指定することができます.",
     "Save" : "保存",
     "Exit" : "閉じる",
-    "eStatU UnivStatEdu" : "eStatU - 大学統計教育 SW",
-    "eStatH HighStatEdu" : "eStatH - 高校統計教育 SW",
+    "eStatU UnivStatEdu" : "eStatU - 大学統計教育",
+    "eStatH HighStatEdu" : "eStatH - 高校統計教育",
     "Menu" : "メニュー",
-    "Binomial Experiment" : "二項分布実験",
+    "Binomial Experiment" : "二項分布シミュレーション",
     "Binomial Distribution" : "二項分布",
-    "Binomial Prob Table" : "二項分布テーブル",
+    "Binomial Prob Table" : "二項分布表",
     "Poisson Distribution" : "ポアソン分布",
-    "Poisson Prob Table" : "ポアソン分布テーブル",
+    "Poisson Prob Table" : "ポアソン分布表",
     "Geometric Distribution" : "幾何分布",
-    "Geometric Prob Table" : "幾何分布テーブル",
+    "Geometric Prob Table" : "幾何分布表",
     "HyperGeometric Distribution" : "超幾何分布",
-    "HyperGeometric Prob Table" : "超幾何分布テーブル",
+    "HyperGeometric Prob Table" : "超幾何分布表",
     "Exponential Distribution" : "指数分布",
-    "Normal Experiment" : "正規分布実験",
+    "Normal Experiment" : "正規分布シミュレーション",
     "Normal Distribution" : "正規分布",
-    "Normal Approx" : "正規分布近似",
+    "Normal Approx" : "正規近似",
     "t Distribution" : "t 分布",
     "ChiSquare Distribution" : "カイ二乗分布",
     "F Distribution" : "F 分布",
@@ -851,40 +851,39 @@ $.message.ja = {
     "Repetition" : "反復数",
     "Confidence Level" : "信頼水準",
     "Testing Hypothesis mu_title" : "母平均の推定・検定",
-    "Testing Hypothesis mu_title" : "母平均の推定・検定",
     "Testing Hypothesis sigma_title" : "母分散の推定・検定",
     "Testing Hypothesis P_title" : "母比率の推定・検定",
-    "Testing Hypothesis mu12_title" : "２集団 母平均の仮説検定",
-    "Testing Hypothesis sigma12_title" : "２集団母分散仮説検定",
-    "Testing Hypothesis P12_title" : "２集団比率検定",
-    "Testing Hypothesis mu" : "区間推定/仮説検定:母平均&mu;",
-    "Testing Hypothesis sigma" : "区間推定/仮説検定:母分散&sigma;<sup>2</sup>",
-    "Testing Hypothesis P" : "区間推定/仮説検定:母比率 P",
-    "Testing Hypothesis mu12" : "仮説検定 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12" : "仮説検定 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12" : "仮説検定 : P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis mu12_title" : "母平均の仮説検定 (2集団)",
+    "Testing Hypothesis sigma12_title" : "母分散の仮説検定 (2集団)",
+    "Testing Hypothesis P12_title" : "母比率の仮説検定 (2集団)",
+    "Testing Hypothesis mu" : "母平均&mu;の推定・検定",
+    "Testing Hypothesis sigma" : "母分散&sigma;<sup>2</sup>の推定・検定",
+    "Testing Hypothesis P" : "母比率Pの推定・検定",
+    "Testing Hypothesis mu12" : "母平均の仮説検定 (2集団) : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12" : "母分散の仮説検定 (2集団) : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12" : "母比率の仮説検定 (2集団) : P<sub>1</sub>, P<sub>2</sub>",
     "Testing Hypothesis ANOVA" : "分散分析",
     "Testing Independence" : "独立性検定",
     "Correlation Coefficient" : "相関係数",
     "Regression Experiment" : "回帰シミュレーション",
-    "Hypothesis" : "仮  説",
-    "Test Type" : "検定名",
+    "Hypothesis" : "仮説",
+    "Test Type" : "検定タイプ",
     "Z-test" : "Z-検定",
     "t-test" : "t-検定",
-    "Chi-test" : "&chi;<sup>2</sup>-検定",
+    "Chi-test" : "カイ2乗検定",
     "F-test" : "F-検定",
     "Sample Data" : "標本データ",
-    "input either sample data" : "(標本データをここに入力(空白, カンマで区分),又は[標本統計量]欄に直接入力",
+    "input either sample data" : "(標本データをここに入力, あるいは 次の標本統計量を入力(空白またはカンマ区切り)", 
     "Sample Statistics" : "標本統計量",
     "Sample Mean" : "標本平均",
     "Sample Variance" : "標本分散",
     "Sample Proportion" : "標本比率",
     "if Z-test-1" : "(Z-検定の場合, 母分散を入力)",
     "if Z-test-2" : "(Z-検定の場合, Z<sub>1-&alpha;/2 </sub> 使用)",
-    "Variance Assumption" : "分散仮定",
-    "At least one pair" : "少なくとも一つのペアーの平均が異なる",
-    "Row-Col-0" : "行変量と列変量は独立である",
-    "Row-Col-1" : "行変量と列変量は独立ではない",
+    "Variance Assumption" : "分散の仮定",
+    "At least one pair" : "少なくとも一つのペアの平均が異なる",
+    "Row-Col-0" : "行変数と列変数は独立である",
+    "Row-Col-1" : "行変数と列変数は独立ではない",
     "Enter any number of row" : "(左上のセルから行と列の観測度数入力)",
     "Row" : "行",
     "Column" : "列",
@@ -909,38 +908,38 @@ appStr[3][2] = "../eStatE/index_en.html";
 appStr[4][2] = "../ExLearning/index_en.html";
 appStr[5][2] = "index.html";
 
-alertMsg[1][2]  = "選択した変数の中、欠損値が含まれています!";
-alertMsg[2][2]  = "シートから変数を選んで(変数番号クリック)ボタンを押してください! 変数が2つ以上の場合は1番目の変数がグループ変数と指定されます. ";
-alertMsg[3][2]  = "選択した列に欠損値があります.";
-alertMsg[4][2]  = "各列のデータ数が異なるか欠損値が存在すると処理できません.";
-alertMsg[5][2]  = "グループの数が多すぎると画面の都合によりグラフが被ることがあります.";
-alertMsg[6][2]  = "要約データの変数に文字が入ってうので、グラフの作成と度数分布表の出力ができません.";
-alertMsg[7][2]  = "元データから2以上の変数を選択した場合はグラフや表を作成できません.";
-alertMsg[8][2]  = "点プロットはデータの数が200個以下のとき可能です.";
+alertMsg[1][2]  = "選択した変数の中に、欠損値が含まれています!";
+alertMsg[2][2]  = "変数の番号をクリックし，シートから変数を選んでください. 変数が2つ以上の場合は，1番目の変数がグループ変数として指定されます. ";
+alertMsg[3][2]  = "選択した列に欠損値があります.";
+alertMsg[4][2]  = "各列のデータ数が異なるか欠損値が存在すると処理できません.";
+alertMsg[5][2]  = "グループの数が多すぎると画面の都合によりグラフが重なることがあります.";
+alertMsg[6][2]  = "要約データの変数に文字が入っているので、グラフの作成と度数分布表の出力ができません."; 
+alertMsg[7][2]  = "元データから2個以上の変数を選択した場合はグラフや表を作成できません.";
+alertMsg[8][2]  = "ドットプロットはデータの数が200個以下のとき可能です.";
 alertMsg[9][2]  = "幹葉図はデータ数が100個以下のときのみ可能です.";
-alertMsg[12][2] = "選択変数が文字を含んているためグラフや度数分布表が出力できません.";
-alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
-alertMsg[16][2] = "二つのグループのみに対して仮説検定することができます.";
-alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です."; 
-alertMsg[18][2] = "4つ以上の変数については散布図を描けることができません.";
-alertMsg[19][2] = "X軸データの中に文字が入っているため散布図を描けません";
-alertMsg[20][2] = "Y軸データの中に文字が入っているため散布図を描けません";
-alertMsg[21][2] = "データに欠損値があると保存できません.";
-alertMsg[22][2] = "負の値での棒グラフは描けません."; 
-alertMsg[25][2] = "１つのグループの場合, 積み重ね型棒グラフは描けません."; 
-alertMsg[27][2] = "１つのグループの場合, 比率型グラフは描けません."; 
-alertMsg[29][2] = "１つのグループの場合, 並び型グラフは描けません."; 
-alertMsg[31][2] = "１つのグループの場合, 両側型ラフは描けません."; 
+alertMsg[12][2] = "選択変数が文字を含んでいるためグラフや度数分布表が出力できません.";
+alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
+alertMsg[16][2] = "仮説検定が可能なのは，グループが2つの場合のみです.";
+alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です.";
+alertMsg[18][2] = "4つ以上の変数については散布図を描くことができません.";
+alertMsg[19][2] = "X軸データの中に文字が入っているため散布図を描けません";
+alertMsg[20][2] = "Y軸データの中に文字が入っているため散布図を描けません";
+alertMsg[21][2] = "データに欠損値があると保存できません.";
+alertMsg[22][2] = "負の値での棒グラフは描けません.";
+alertMsg[25][2] = "１つのグループの場合, 積み重ね型棒グラフは描けません.";
+alertMsg[27][2] = "１つのグループの場合, 比率型グラフは描けません.";
+alertMsg[29][2] = "１つのグループの場合, 並び型グラフは描けません.";
+alertMsg[31][2] = "１つのグループの場合, 両側型グラフは描けません.";
 alertMsg[32][2] = "負の値での円グラフは描けません."; 
 alertMsg[33][2] = "負の値でのドーナツグラフは描けません."; 
 alertMsg[34][2] = "負の値での帯グラフは描けません."; 
 alertMsg[35][2] = "負の値での度数分布表は表示できません."; 
 alertMsg[36][2] = "2グループに対する両側型グラフは描けません.";
 alertMsg[37][2] = "一つの変数のみ仮説検定することが可能です."; 
-alertMsg[38][2] = "mu is NaN . Ener value and then retry!";
-alertMsg[39][2] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][2] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][2] = "2つの変数(グループ変数と解析変数)のみ仮説検定することができます."; 
+alertMsg[38][2] = "mu の値がはいっていません。値を入力してから再度おこなってください.";
+alertMsg[39][2] = "標準偏差が0かはいっていません。再度おこなってください.";
+alertMsg[40][2] = "分散の値がはいっていません。値を入力してから再度おこなってください.";
+alertMsg[41][2] = "仮説検定を行うには，2つの変数(グループ変数と解析する変数)を指定します."; 
 alertMsg[42][2] = "仮説検定のタイトルは編集できません! ";
 
 svgStr[1][2]  = " 棒グラフ";        	
@@ -961,7 +960,7 @@ svgStr[15][2] = " 分散分析";
 svgStr[16][2] = "度数"; 
 svgStr[17][2] = "比率";
 svgStr[18][2] = "グループ";
-svgStr[19][2] = "の ";
+svgStr[19][2] = "の ";
 svgStr[20][2] = "<h3>要約データ<br>度数分布表</h3>";
 svgStr[21][2] = "グループ変数";
 svgStr[22][2] = "行変数";
@@ -976,15 +975,15 @@ svgStr[30][2] = "百分率(%)";
 svgStr[31][2] = "<h3>クロス表</h3>";
 svgStr[32][2] = "列変数";
 svgStr[33][2] = "行変数";
-svgStr[34][2] = "平均"
-svgStr[35][2] = "標準偏差"
+svgStr[34][2] = "平均";
+svgStr[35][2] = "標準偏差";
 svgStr[36][2] = "<h3> 区間別<br>度数分布表</h3>";
 svgStr[37][2] = "グループ名";
 svgStr[38][2] = "階級区間";
 svgStr[39][2] = "幹";
 svgStr[40][2] = "葉";
 svgStr[41][2] = "グループ1の葉";
-svgStr[42][2] = "グループ2の葉"
+svgStr[42][2] = "グループ2の葉";
 svgStr[43][2] = "<h3>基礎統計量</h3>";
 svgStr[44][2] = "データ数";  
 svgStr[45][2] = "最小値";  
@@ -1007,7 +1006,7 @@ svgStrU[12][2] = "表";
 svgStrU[13][2] = "コイン表";   
 svgStrU[14][2] = "  表の数  ";   
 svgStrU[15][2] = "  試行回数  "; 
-svgStrU[16][2] = "標本平均たちの分布"; 
+svgStrU[16][2] = "標本平均の分布"; 
 svgStrU[17][2] = "反復";
 svgStrU[18][2] = "標準誤差";
 svgStrU[19][2] = "母平均";
@@ -1023,15 +1022,15 @@ svgStrU[28][2] = "[意思決定] ";
 svgStrU[29][2] = "[分散分析]";
 svgStrU[30][2] = "相関係数を入力し、実行ボタンをクリックしてください."; 
 svgStrU[31][2] = "回帰直線";
-svgStrU[32][2] = "列変量";
-svgStrU[33][2] = "行変量";
-svgStrU[34][2] = "平均"
-svgStrU[35][2] = "標準偏差"
+svgStrU[32][2] = "列変数";
+svgStrU[33][2] = "行変数";
+svgStrU[34][2] = "平均";
+svgStrU[35][2] = "標準偏差";
 svgStrU[36][2] = "<h3> 区間別<br>度数分布表</h3>";
 svgStrU[37][2] = "グループ名";
 svgStrU[38][2] = "階級区間";
 svgStrU[39][2] = "幹";
-svgStrU[40][2] = " 葉";
+svgStrU[40][2] = " 葉";
 svgStrU[41][2] = "グループ 1  葉";
 svgStrU[42][2] = "グループ 2  葉";
 svgStrU[43][2] = "<h3>基本統計量</h3>";
@@ -1044,13 +1043,14 @@ svgStrU[49][2] = "指数分布";
 svgStrU[50][2] = "一様分布";
 svgStrU[51][2] = "推定の精度";
 svgStrU[52][2] = "- マウスクリックして3個以上の点を配置すると回帰直線が作成される";
-svgStrU[53][2] = "- マウスクリックして1つの点を移動/削除しながら回帰直線の変動を観察";
+svgStrU[53][2] = "- クリックして1つの点を移動/削除しながら回帰直線の変化を観察";
 svgStrU[54][2] = "[標本統計量] ";
 svgStrU[55][2] = "[標本 1 統計量] ";
 svgStrU[56][2] = "[標本 2 統計量] ";
 svgStrU[57][2] = "信頼水準";
 svgStrU[58][2] = "";
 svgStrU[59][2] = "";
+
 
 // Chinese
 $.message.zh = {
