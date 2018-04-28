@@ -45,7 +45,7 @@
       <a href="https://stattrek.com/probability-distributions/poisson.aspx" target="_blank" >StatTrek </a> &nbsp; 
   </div>
 
-  <div width="650" style="position:absolute; left:10px; top:770px"> <p>
+  <div width="650" style="position:absolute; left:10px; top:790px"> <p>
     <table id="poissonTable" cellpadding="2" cellspacing="2" border="2" >  </table>
   </div>
 
@@ -86,7 +86,7 @@
         checkFreq = false;
 	  removeBinomialFreq2();
 
-        lambda = parseFloat(d3.select("#lambda").node().value);    // 성공확률 p
+        lambda = parseFloat(d3.select("#lambda").node().value);   
         if (lambda < 0.1) lambda = 0.1;
         if (lambda > 10)  lambda = 10.0;
         // slider control
@@ -110,7 +110,8 @@
 
       // Poisson분포표 버튼 클릭
       d3.select("#poissonT").on("click",function() {
-          poissonTable(nvalue, lambda, poissonP);
+        lambda = parseFloat(d3.select("#lambda").node().value);   
+        poissonTable(nvalue, lambda, poissonP);
       })
 
   </script>

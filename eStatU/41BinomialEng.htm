@@ -118,11 +118,11 @@
 
         nvalue = nn + 1;
 
-        title  = "Binomial Dist n = "+nn.toString()+", p = "+f2(pp);
+        title  = svgStrU[1][langNum]+" n = "+nn.toString()+", p = "+f2(pp);
         dot.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top/2).text(title)
         avg  = nn * pp;
         std  = Math.sqrt(nn*pp*(1-pp));
-        title  = "Mean = "+f2(avg).toString()+", Std Dev = "+f2(std).toString();
+        title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
         dot.append("text").attr("class","title").attr("x", margin.left+graphWidth -200).attr("y", margin.top/2 ).text(title)
 
         // 확률  계산

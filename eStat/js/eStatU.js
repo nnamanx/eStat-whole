@@ -1280,7 +1280,7 @@ function geometricTable(nvalue, geoP, geometricP) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
           }
-          cell[0].innerHTML = "p = "+f1(geoP);
+          cell[0].innerHTML = "p = "+f2(geoP);
           row  = table.insertRow(2);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {

@@ -48,7 +48,7 @@
       <a href="https://stattrek.com/statistics/dictionary.aspx?definition=geometric_distribution" target="_blank" >StatTrek </a> &nbsp; 
   </div>
 
-  <div width="650" style="position:absolute; left:10px; top:770px"> <p>
+  <div width="650" style="position:absolute; left:10px; top:790px"> <p>
     <table id="geometricTable" cellpadding="2" cellspacing="2" border="2" >  </table>
   </div>
 
@@ -132,7 +132,8 @@
 
       // Geometric분포표 버튼 클릭
       d3.select("#geometricT").on("click",function() {
-          geometricTable(nvalue, geoP, geometricP);
+        geoP = parseFloat(d3.select("#geoP").node().value);
+        geometricTable(nvalue, geoP, geometricP);
       })
 
   </script>

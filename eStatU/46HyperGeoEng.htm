@@ -47,7 +47,7 @@
       <a href="http://stattrek.com/probability-distributions/hypergeometric.aspx" target="_blank" >StatTrek </a> &nbsp; 
   </div>
 
-  <div width="650" style="position:absolute; left:10px; top:810px"> <p>
+  <div width="650" style="position:absolute; left:10px; top:830px"> <p>
     <table id="hyperGeoTable" cellpadding="2" cellspacing="2" border="2" >  </table>
   </div>
 
@@ -87,6 +87,8 @@
 
       // 초기하분포 실행버튼 클릭 =================================================================================
       d3.select("#executeHyperG").on("click",function() {
+        NN = parseFloat(d3.select("#NN").node().value);    // lot 크기 
+        DD = parseFloat(d3.select("#DD").node().value);    // defect 크기 
         nn = parseFloat(d3.select("#nn").node().value);    // sample size
         // slider control
         document.getElementById("rangeHyperG").value  = nn;
