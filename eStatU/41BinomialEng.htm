@@ -23,16 +23,15 @@
     <br>
     <form>
       <svg id="chart" width="600" height="600"> </svg> <br>   
-      <button type="button" id="executeBinomial" >
-        <span data-msgid="Execute">Execute</span>
-      </button>
-      &nbsp;
       n = <input type="text" class="textarea" value="2"   size=3 id="nn">&nbsp;<sup><small> 1 </small></sup> 
       <input type="range" min="1" max="10" value="2" id="range1Binomial" onchange="showValueBinomial1(this.value)"/><sup><small> 10 </small></sup> &nbsp;&nbsp;
       p = <input type="text" class="textarea" value="0.5" size=3 id="pp"><sup><small> 0 </small></sup> 
-      <input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/><sup><small> 1</small></sup>  <p>   
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/><sup><small> 1</small></sup> &nbsp;
       <label><input type="checkbox" value="freq" id=freqBinomial><span data-msgid="Show Probability">show probability</span></label> <p>
+      <button type="button" id="executeBinomial" >
+        <span data-msgid="Execute">Execute</span>
+      </button>
+      <span style="color:red">(Current simulation should be finished before you start the next simulation)</span>
     </form>
   </div>
 
