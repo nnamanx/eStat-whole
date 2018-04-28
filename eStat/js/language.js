@@ -1713,182 +1713,179 @@ svgStrU[59][4] = "";
 
 // German
 $.message.de = {
-    "eStat : Stat Education SW" : "eStat : Stat Education SW",
-    "Filename" : "File Name",
-    "Selected Variables" : "Var Select",
-    "Cancel" : "Cancel",
-    "Edit Variables" : "EditVar",
-    "Level" : "Level",
-    "ElementaryLevel" : "E",
-    "MiddleLevel" : "M",
-    "UniversityLevel" : "U",
-    "Example" : "Example",
-    "New Sheets" : "New Sheets",
-    "csv Open" : "csv Open",
-    "www Open" : "www Open",
-    "json Open" : "json Open",
-    "csv Save" : "csv Save",
-    "json Save" : "json Save",
-    "Print Sheet" : "Print Sheet",
-    "Bar Graph" : "Bar Graph",
-    "Pie Chart" : "Pie Chart",
+    "eStat : Stat Education SW" : "eStat : Statistikausbildung SW",
+    "Filename" : "Dateiname",
+    "Selected Variables" : "Wähle Variablen aus",
+    "Cancel" : "Entfernen",
+    "Edit Variables" : "Editiere Variablen",
+    "Level" : "Niveau",
+    "ElementaryLevel" : "Basis Niveau",
+    "MiddleLevel" : "mittleres Niveau",
+    "UniversityLevel" : "Universitäres Niveau",
+    "Example" : "Beispiel",
+    "New Sheets" : "Neue Blätter",
+    "csv Open" : "csv Offen",
+    "www Open" : "www Offen",
+    "json Open" : "json Offen",
+    "csv Save" : "csv Speichern",
+    "json Save" : "json Speichern",
+    "Print Sheet" : "Blatt drucken",
+    "Bar Graph" : "Balkendiagramm",
+    "Pie Chart" : "Kreisdiagramm",
     "Band Graph" : "Band Graph",
-    "Line Graph" : "Line Graph",
-    "Dot Graph" : "Dot Graph",
-    "Histogram" : "Histogram",
-    "Stem & Leaf Plot" : "Stem & Leaf Plot",
-    "Box-Whisker Plot" : "Box-Whisker Plot",
-    "Scatterplot" : "Scatterplot",
-    "Frequency Table" : "Frequency Table",
-    "Basic Statistics" : "Basic Statistics",
-    "Testing Hypothesis &mu;" : "Testing Hypothesis &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>" : "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Analysis of Variance" : "Analysis of Variance",
-    "High School Stat Education" : "High School Stat Education",
-    "University Stat Education" : "University Stat Education",
-    "Elem Stat Graph Example" : "Elem Stat Graph Example",
-    "Learning eStat w Example" : "Learning eStat w Example",
-    "Vertical Separated Bar" : "Vertical Separated Bar",
-    "Vertical Stacked Bar" : "Vertical Stacked Bar",
-    "Vertical Ratio Bar" : "Vertical Ratio Bar",
-    "Vertical Side by Side Bar" : "Vertical Side by Side Bar",
-    "Vertical Two Sided Bar" : "Vertical Two Sided Bar",
+    "Line Graph" : "Gerade",
+    "Dot Graph" : "eindimensionales Streudiagramm",
+    "Histogram" : "Histogramm",
+    "Stem & Leaf Plot" : "Stamm-Blatt-Diagramm",
+    "Box-Whisker Plot" : "Box-Whisker-Plot",
+    "Scatterplot" : "Streudiagramm",
+    "Frequency Table" : "Häufigkeitstabelle",
+    "Basic Statistics" : "Basisstatistik",
+    "Testing Hypothesis &mu;" : "Hypothesen testen  &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>" : "Hypothesen testen  &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>" : "Hypothesen testen  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>" : "Hypothesen testen &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance" : "Varianzanalyse",
+    "High School Stat Education" : "Statistikausbildung an High Schools",
+    "University Stat Education" : "Statistikausausbildung an Universitäten",
+    "Elem Stat Graph Example" : "Diagramm Beispiel",
+    "Learning eStat w Example" : "eStat lernen mit Beispielen",
+    "Vertical Separated Bar" : "Vertikal Separated Bar",
+    "Vertical Stacked Bar" : "Vertikal Stacked Bar",
+    "Vertical Ratio Bar" : "Vertikal Ratio Bar",
+    "Vertical Side by Side Bar" : "Vertikal Side by Side Bar",
+    "Vertical Two Sided Bar" : "Vertikal Two Sided Bar",
     "Horizontal Separated Bar" : "Horizontal Separated Bar",
     "Horizontal Stacked Bar" : "Horizontal Stacked Bar",
     "Horizontal Ratio Bar" : "Horizontal Ratio Bar",
     "Horizontal Side by Side Bar" : "Horizontal Side by Side Bar",
     "Horizontal Two Sided Bar" : "Horizontal Two Sided Bar",
-    "Doughnut Graph" : "Doughnut Graph",
-    "Two Sided Stem & Leaf Plot" : "Two Sided Stem & Leaf Plot",
-    "Graph Save" : "Graph Save",
-    "Graph Print" : "Graph Print",
-    "Move to Table" : "Move to Table",
-    "Edit Title" : "Edit Title",
-    "Table Save" : "Table Save",
-    "Table Print" : "Table Print",
-    "Frequency" : "Frequency",
-    "(Sorting)" : "(Sorting)",
-    "Raw Data" : "Raw Data",
-    "Descending" : "Descending",
-    "Ascending" : "Ascending",
-    "Mean" : "Mean",
-    "Std Deviation" : "Std Deviation",
+    "Doughnut Graph" : "Ringdiagramm",
+    "Two Sided Stem & Leaf Plot" : "zweiseitiges Stamm-Blatt-Diagramm",
+    "Graph Save" : "Graph speichern",
+    "Graph Print" : "Graph drucken",
+    "Move to Table" : "Bewege zur Tabelle",
+    "Edit Title" : "Titel editieren",
+    "Table Save" : "Tabelle speichern",
+    "Table Print" : "Tabelle drucken",
+    "Frequency" : "Häufigkeit",
+    "(Sorting)" : "(Sortieren)",
+    "Raw Data" : "Rohdaten",
+    "Descending" : "absteigend",
+    "Ascending" : "aufsteigend",
+    "Mean" : "Mittelwert",
+    "Std Deviation" : "Standardabweichung",
     "Regression" : "Regression",
-    "Frequency Polygon" : "Frequency Polygon",
-    "Frequency Table" : "Frequency Table",
-    "Execute New Interval" : "Execute New Interval",
-    "Interval Start" : "Interval Start",
-    "Interval Width" : "Interval Width",
+    "Frequency Polygon" : "Häufigkeitspolygon",
+    "Frequency Table" : "Häufigkeitstabelle",
+    "Execute New Interval" : "Erzeuge ein neues Intervall",
+    "Interval Start" : "linke Intervallgrenze",
+    "Interval Width" : "Intervallbreite",
     "t-test" : "t-test",
     "Z-test" : "Z-test",
-    "(if Z-test, enter &sigma;)" : "(if Z-test, enter &sigma;)",
-    "Significance Level" : "Significance Level",
-    "Execute" : "Execute",
-    "(Confidence Interval)" : "(Confidence Interval)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)",
+    "(if Z-test, enter &sigma;)" : "(Fall Z-Test vorliegt, gib &sigma; ein)",
+    "Significance Level" : "Signifikanzniveau",
+    "Execute" : "Führe aus",
+    "(Confidence Interval)" : "(Konfidenzintervall)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)" : "(Fall Z-Test vorliegt, Z<sub>1-&alpha;/2 </sub>)",
     "&chi;<sup>2</sup> test" : "&chi;<sup>2</sup> test",
-    "Variance Assumption" : "Variance Assumption",
+    "Variance Assumption" : "Annahme für die Varianz",
     "F test" : "F test",
-    "At least one pair of means is different" : "At least one pair of means is different",
-    "Main Title : " : "Main Title : ",
-    "y title : " : "y title : ",
-    "x title : " : "x title : ",
-    "Modify" : "Modify",
-    "Confirm" : "Confirm",
-    "Variable Name" : "Variable Name",
-    "Variable Value" : "Variable Value",
-    "Value Label" : "Value Label",
-    "* Less than nine value labels allowed." : "* Less than nine value labels allowed.",
-    "Save" : "Save",
+    "At least one pair of means is different" : "mindestens ein Paar von Mittelwerten ist verschieden",
+    "Main Title : " : "Hauptüberschrift : ",
+    "y title : " : "y titel : ",
+    "x title : " : "x titel : ",
+    "Modify" : "Verändern",
+    "Confirm" : "Bestätige",
+    "Variable Name" : "Variablenname",
+    "Variable Value" : "Variablenwert",
+    "Value Label" : "Wertname",
+    "* Less than nine value labels allowed." : "* weniger als neun Werte zulässig.",
+    "Save" : "Speichern",
     "Exit" : "Exit",
 
-    "eStatU UnivStatEdu" : "eStatU - University Statistics Education SW",
-    "eStatH HighStatEdu" : "eStatH - High School Statistics Education SW",
-    "Menu" : "Menu",
-    "Binomial Experiment" : "Binomial Experiment",
-    "Binomial Distribution" : "Binomial Distribution",
-    "Binomial Prob Table" : "Binomial Prob Table",
-    "Poisson Distribution" : "Poisson Distribution",
-    "Poisson Prob Table" : "Poisson Prob Table",
-    "Geometric Distribution" : "Geometric Distribution",
-    "Geometric Prob Table" : "Geometric Prob Table",
-    "HyperGeometric Distribution" : "HyperGeometric Distribution",
-    "HyperGeometric Prob Table" : "HyperGeometric Prob Table",
-    "Exponential Distribution" : "Exponential Distribution",
-    "Normal Experiment" : "Normal Experiment",
-    "Normal Distribution" : "Normal Distribution",
-    "Normal Approx" : "Normal Approx",
-    "t Distribution" : "t Distribution",
-    "ChiSquare Distribution" : "ChiSquare Distribution",
-    "F Distribution" : "F Distribution",
-    "Sampling" : "Sampling",
-    "Population vs Sample" : "Population vs Sample",
-    "Population" : "Population",
-    "Sample" : "Sample",
-    "Exponential" : "Exponential(0.3)",
-    "Uniform" : "Uniform(0,1)",    
-    "Sample05" : "Sampling 5%",
-    "Sample10" : "Sampling 10%",
-    "Sample20" : "Sampling 20%",
-    "Statistics/BoxPlot" : "Statistics/BoxPlot",
-    "Law of Large Number" : "Law of Large Number",
-    "Dist of Sample Means" : "Dist of Sample Means",
-    "Sample Size" : "Sample Size",
-    "Confidence Interval" : "Confidence Interval",
-    "Estimation Accuracy" : "Estimation Accuracy",
-    "Repetition" : "Repetition",
-    "Confidence Level" : "Confidence Level",
-    "Testing Hypothesis mu_title" : "Testing Mean",
-    "Testing Hypothesis sigma_title" : "Testing Variance",
-    "Testing Hypothesis P_title" : "Testing Proportion",
-    "Testing Hypothesis mu12_title" : "Testing Two Means",
-    "Testing Hypothesis sigma12_title" : "Testing Two Variances",
-    "Testing Hypothesis P12_title" : "Testing Two Proportions",
-    "Testing Hypothesis mu" : "Testing Hypothesis &mu;",
-    "Testing Hypothesis sigma" : "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P" : "Testing Hypothesis P",
-    "Testing Hypothesis mu12" : "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12" : "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12" : "Testing Hypothesis P<sub>1</sub>, P<sub>2</sub>",
-    "Testing Hypothesis ANOVA" : "Testing Hypothesis ANOVA",
-    "Testing Independence" : "Testing Independence",
-    "Correlation Coefficient" : "Correlation Coeff",
-    "Regression Experiment" : "Regression Experiment",
-    "Hypothesis" : "Hypothesis",
-    "Test Type" : "Test Type",
-    "Z-test" : "Z-test",
-    "t-test" : "t-test",
+    "eStatU UnivStatEdu" : "eStatU - Statistikausausbildung an Universitäten",
+    "eStatH HighStatEdu" : "eStatH - Statistikausbildung an High Schools",
+    "Menu" : "Menü",
+    "Binomial Experiment" : "Binomialexperiment",
+    "Binomial Distribution" : "Binomialverteilung",
+    "Binomial Prob Table" : "Tabelle mit Werten der Wahrscheinlicheitsfunktion der Binomialverteilung",
+    "Poisson Distribution" : "Poisson-Verteilung",
+    "Poisson Prob Table" : "Tabelle mit Werten der Wahrscheinlicheitsfunktion der Poisson-Verteilung",
+    "Geometric Distribution" : "geometrische Verteilung",
+    "Geometric Prob Table" : "Tabelle mit Werten der Wahrscheinlicheitsfunktion der geometrischen Verteilung",
+    "HyperGeometric Distribution" : "Hypergeometrische Verteilung ",
+    "HyperGeometric Prob Table" : "Tabelle mit Werten der Wahrscheinlicheitsfunktion der hypergeometrischen Verteilung",
+    "Exponential Distribution" : "Exponentailverteilung",
+    "Normal Experiment" : "Normalverteilungsexperiment",
+    "Normal Distribution" : "Normalverteilung",
+    "Normal Approx" : "Normalapproximation",
+    "t Distribution" : "t Verteilung",
+    "ChiSquare Distribution" : "&chi;<sup>2</sup> Verteilung",
+    "F Distribution" : "F Verteilung",
+    "Sampling" : "Ziehen von Stichproben",
+    "Population vs Sample" : "Population vs Stichproben",
+    "Population" : "Grundgesamtheit",
+    "Sample" : "Stichproben",
+    "Exponential" : "Exponentail(0.3)",
+    "Uniform" : "Gleichverteilung(0,1)",    
+    "Sample05" : "Stichproben 5%",
+    "Sample10" : "Stichproben 10%",
+    "Sample20" : "Stichproben 20%",
+    "Statistics/BoxPlot" : "Statistik/BoxPlot",
+    "Law of Large Number" : "Gesetz der Großen Zahlen",
+    "Dist of Sample Means" : "Verteilung der Stichprobenmittelwerte",
+    "Sample Size" : "Stichprobenumfang",
+    "Confidence Interval" : "Konfidenzintervall",
+    "Estimation Accuracy" : "Schätzgenauigkeit",
+    "Repetition" : "Wiederholung",
+    "Confidence Level" : "Konfidenzniveau",
+    "Testing Hypothesis mu_title" : "Hypothesen testen &mu;",
+    "Testing Hypothesis sigma_title" : "Hypothesen testen &sigma;<sup>2</sup>",
+    "Testing Hypothesis P_title" : "Hypothesen testen P",
+    "Testing Hypothesis mu12_title" : "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12_title" : "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12_title" : "Hypothesen testen P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis mu" : "Hypothesen testen &mu;",
+    "Testing Hypothesis sigma" : "Hypothesen testen &sigma;<sup>2</sup>",
+    "Testing Hypothesis P" : "Hypothesen testen P",
+    "Testing Hypothesis mu12" : "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12" : "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12" : "Hypothesen testen  P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis ANOVA" : "Hypothesen testen ANOVA",
+    "Testing Independence" : "Hypothesen testen auf Unabhängigkeit",
+    "Correlation Coefficient" : "Korrelationskoeffizient",
+    "Regression Experiment" : "Regressionsexperiment",
+    "Hypothesis" : "Hypothese",
+    "Test Type" : "Testtyp",
     "Chi-test" : "&chi;<sup>2</sup>-test",
-    "F-test" : "F-test",
-    "Sample Data" : "Sample Data",
-    "input either sample data" : "Input either sample data, or sample statistics at the next boxes usign csv/bsv",
-    "Sample Statistics" : "Sample Statistics",
-    "Sample Mean" : "Sample Mean",
-    "Sample Variance" : "Sample Variance",
-    "Sample Proportion" : "Sample Proportion",
-    "if Z-test-1" : "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
-    "if Z-test-2" : "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used.)",
-    "Variance Assumption" : "Variance Assumption",
-    "At least one pair" : "At least one pair of means is different",
-    "Row-Col-0" : "Row and column variables are independent",
-    "Row-Col-1" : "Row and column variables are not independent",
-    "Enter any number of row" : "(Enter observation from upper left cell)",
-    "Row" : "Row",
-    "Column" : "Column",
-    "Show Probability" : "Show Probability",
-    "Regression Line" : "Regression Line",
-    "Erase All" : "Erase Screen",
-    "Add Point" : "Add Point",
-    "Erase Point" : "Erase Point",
-    "Reference Site" : "Reference Site",
-    "Lot Size" : "Lot Size",
+    "Sample Data" : "Stichprobendaten",
+    "input either sample data" : "Gib entweder Stichprobenwerte oder Stichprobenstatistik ein.",
+    "Sample Statistics" : "Stichprobenstatistik",
+    "Sample Mean" : "Stichprobenmittelwert",
+    "Sample Variance" : "Stichprobenvarianz",
+    "Sample Proportion" : "Stichprobenanteil",
+    "if Z-test-1" : "(Falls Z-Text vorliegt, gib Varianz ein)",
+    "if Z-test-2" : "(Falls Z-Text vorliegt,, Z<sub>1-&alpha;/2 </sub>)",
+    "Variance Assumption" : "Annahme für die Varianz",
+    "At least one pair" : "mindestens ein Paar von Mittelwerten ist verschieden",
+    "Row-Col-0" : "Zeilen- und  Spaltenvariablen sind unabhängig",
+    "Row-Col-1" : "Zeilen- und  Spaltenvariablen sind nicht unabhängig",
+    "Enter any number of row" : "(Füge den Wert aus der oberen licnken Zelle ein)",
+    "Row" : "Zeile",
+    "Column" : "Spalte",
+    "Show Probability" : "Zeige Wahrscheinlichkeit an",
+    "Regression Line" : "Regressionsgerade",
+    "Erase All" : "alles löschen",
+    "Add Point" : "Füge einen Punkt hinzu",
+    "Erase Point" : "Punkt löschen",
+    "Reference Site" : "Referenzseite",
+    "Lot Size" : "Losgröße",
     "Defect Size" : "Defect Size",
     "If typed" : "(If number is typed)",
-    "Stat/BoxPlot" : "Stat/BoxPlot",
-    "Mean" : "Mean",
-    "Std Dev" : "Std Dev",
+    "Stat/BoxPlot" : "Statistik/BoxPlot",
+    "Mean" : "Mittelwert",
+    "Std Dev" : "Standardabweichung",
 }
 
 // German
@@ -1898,146 +1895,146 @@ appStr[3][5] = "../eStatE/index_en.html";
 appStr[4][5] = "../ExLearning/index_en.html";
 appStr[5][5] = "index.html";
 
-alertMsg[1][5]  = "One of the selected variables does not have data.";
-alertMsg[2][5]  = "Select variables for analysis (clicking column names) one by one. If two variables, first one is group variable. ";
-alertMsg[3][5]  = "Missing data on the selected variable.";
-alertMsg[4][5]  = "If observations of the selected variables are different or observations are different, analysis is not allowed.";
-alertMsg[5][5]  = "Too many groups! Graphs may be overlapped due to size of the screen.";
+alertMsg[1][5]  = "Zu einer der ausgewählten Variablen fehlen Daten.";
+alertMsg[2][5]  = "Wähle Variablen durch Ankliken für die  Analyse aus.  If two variables, first one is group variable. ";
+alertMsg[3][5]  = "Wähle Variablen durch Ankliken für die  Analyse aus.";
+alertMsg[4][5]  = "Falls die Werte der ausgewählten Variablen oder die Beobachtungen verschieden sind, ist keine Analyse möglich .";
+alertMsg[5][5]  = "Zu viele Gruppen! Grafiken können sich aufgrund der Bildschirmgröße überlappen.";
 alertMsg[6][5]  = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
-alertMsg[7][5]  = "If more than three variables are selected on raw data, analysis or creating table is not allowed.";
-alertMsg[8][5]  = "Dot Graph is allowd if the number of observation is less than 200.";
-alertMsg[9][5]  = "Stem & Leaf Plot is allowd if the number of observation is less than 100.";
+alertMsg[7][5]  = "Falls mehr als drei Variablen aus den Rohdaten ausgewählt sind.";
+alertMsg[8][5]  = "Ein dimensionales Streudiagramm ist  möglich, wenn die Anzahl der  Beobachtungen kleiner als 200 ist.";
+alertMsg[9][5]  = "Stamm-Blatt-Diagramm ist nicht möglich, wenn die Anzahl der Beobachtungen.";
 alertMsg[12][5] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
 alertMsg[14][5] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
-alertMsg[16][5] = "Only two groups are allowed for this tesitng hypothesis.";
-alertMsg[17][5] = "Scatter plot requires at least x variable and y variable."; 
-alertMsg[18][5] = "More than three variables are not allowed for scatter plot.";
-alertMsg[19][5] = "If there is a character on X variable, scatter plot cannot be drawn.";
-alertMsg[20][5] = "If there is a character on Y variable, scatter plot cannot be drawn.";
-alertMsg[21][5] = "If there is a missing data, save is not allowed.";
-alertMsg[22][5] = "If there is a negative number, bargraph cannot be drawn."; 
+alertMsg[16][5] = "Nur zwei Gruppen soind für diesen Hypothesentest zugelassen.";
+alertMsg[17][5] = "Streudiagramm erfordert mindestens Variablen x und y."; 
+alertMsg[18][5] = "mehr als drei Variablen sind nicht zugelassen für ein Streudiagramm.";
+alertMsg[19][5] = "Falls die Variable X ein charakter, kann kein Streudiagramm gezeichnet werden. ";
+alertMsg[20][5] = "Falls die Variable Y ein charakter, kann kein Streudiagramm gezeichnet werden. ";
+alertMsg[21][5] = "Bei fehlenden Daten kann nicht gespeichert werden.";
+alertMsg[22][5] = "Falls der Wert negativ ist, kann kein Balkendiagramm gezeichnet werden."; 
 alertMsg[25][5] = "If there is only one group, stacked bar graph is not allowed."; 
 alertMsg[27][5] = "If there is only one group, ratio bar graph is not allowed."; 
 alertMsg[29][5] = "If there is only one group, side-by-side bar graph is not allowed."; 
 alertMsg[31][5] = "If there is only one group, both-side bar graph is not allowed."; 
-alertMsg[32][5] = "If there is a negative number, piechart cannot be drawn."; 
-alertMsg[33][5] = "If there is a negative number, donut graph cannot be drawn."; 
-alertMsg[34][5] = "If there is a negative number, band graph cannot be drawn."; 
-alertMsg[35][5] = "If there is a negative number, frequency table cannot be drawn."; 
-alertMsg[36][5] = "This bar graph is allowed only for two groups.";
-alertMsg[37][5] = "This testing hypothesis is allowed only for one variable."; 
-alertMsg[38][5] = "mu is NaN . Ener value and then retry!";
-alertMsg[39][5] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][5] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][5] = "This testing hypothesis is allowed only for two variable. Group variable should have only two groups";  
-alertMsg[42][5] = "Title editing of testing hypothesis is not allowed! ";
+alertMsg[32][5] = "Falls Anzahl negativ ist, kann kein Kreisdiagramm gezeicnet werden."; 
+alertMsg[33][5] = "Falls der Wert negativ ist, kann kein Ringdiagramm gezeichnet werden."; 
+alertMsg[34][5] = "Falls der Wert negativ ist, kann kein Bandediagramm gezeichnet werden."; 
+alertMsg[35][5] = "Falls der Wert negativ ist, kann keine Häufigkeitstabelle angegeben werden."; 
+alertMsg[36][5] = "Dieses Balkendiagramm ist nur für zwei Gruppen erklärt.";
+alertMsg[37][5] = "Diese Hypothese bezieht sich auf nur eine Variable."; 
+alertMsg[38][5] = "µ ist nicht-numerisch. Füge Zahlenwert ein und versuche erneut!";
+alertMsg[39][5] = "Standardabweichung ist entweder Null oder  ";
+alertMsg[40][5] = "Eingegebene Varianz ist nicht-numerisch. Gib Zahlenwert ein und versuche erneut!";
+alertMsg[41][5] = "Diese Hypothese kann sich auf zwei Variablen beziehen. Gruppenvariable darf nur zwei Gruppen umfassen.";  
+alertMsg[42][5] = "Editieren der Bezeichnung der zu testenden Hypothesen ist nicht zulässig. ";
 
-svgStr[1][5]  = " Bar Graph";        	
-svgStr[2][5]  = " Pie Chart";   		
+svgStr[1][5]  = " Balkendiagramm";        	
+svgStr[2][5]  = " Kreisdiagramm";   		
 svgStr[3][5]  = " Doughnut Graph";       	
-svgStr[4][5]  = " Band Graph";          	
-svgStr[5][5]  = " Line Graph";       	
-svgStr[6][5]  = " Dot Graph";         	
-svgStr[7][5]  = " Box-Whisker Plot";         	
-svgStr[8][5]  = " Stem and Leaf Plot";     	
-svgStr[9][5]  = " Histogram";         	
-svgStr[10][5] = " Scatter Plot";           	
-svgStr[11][5] = " Testing Hypothesis: Population Mean";      
-svgStr[12][5] = " Testing Hypothesis: Population Variance";    	
-svgStr[13][5] = " Testing Hypothesis: Two Population Means";   
-svgStr[14][5] = " Testing Hypothesis: Two Population Variances";   
-svgStr[15][5] = " Analysis of Variance"; 
-svgStr[16][5] = "Frequency"; 
-svgStr[17][5] = "Ratio";
-svgStr[18][5] = "Group ";
+svgStr[4][5]  = " Bandediagramm";          	
+svgStr[5][5]  = " Gerade";       	
+svgStr[6][5]  = " eindimensionales Streudiagramm";         	
+svgStr[7][5]  = " Box-Whisker-Plot";         	
+svgStr[8][5]  = " Stamm-Blatt-Diagramm";     	
+svgStr[9][5]  = " Histogramm";         	
+svgStr[10][5] = " Streudiagramm";           	
+svgStr[11][5] = " Hypothesen testen : Grundgesamtheit Mittelwert";      
+svgStr[12][5] = " Hypothesen testen : Grundgesamtheit Varianz";    	
+svgStr[13][5] = " Hypothesen testen : Zwei Grundgesamtheit Mittelwert";   
+svgStr[14][5] = " Hypothesen testen : Zwei Grundgesamtheit Varianz";   
+svgStr[15][5] = " Varianzanalyse"; 
+svgStr[16][5] = "Häufigkeit"; 
+svgStr[17][5] = "Verhältnis";
+svgStr[18][5] = "Gruppe ";
 svgStr[19][5] = " ";
-svgStr[20][5] = "<h3>Summary Data<br>Frequency Table</h3>";
-svgStr[21][5] = "Group Variable";
-svgStr[22][5] = "Row Variable";
+svgStr[20][5] = "<h3>Summarischdatan<br>Häufigkeitstabelle</h3>";
+svgStr[21][5] = "Variable gruppieren";
+svgStr[22][5] = "Zeilenvariable";
 svgStr[23][5] = "Total";   
 svgStr[24][5] = "Total";
-svgStr[25][5] = "<h3>Frequency Table</h3>";
+svgStr[25][5] = "<h3>Häufigkeitstabelle</h3>";
 svgStr[26][5] = "Analysis Variable";
-svgStr[27][5] = "Var Value";
-svgStr[28][5] = "Value Label";
-svgStr[29][5] = "Frequency";
-svgStr[30][5] = "Percent(%)"; 
+svgStr[27][5] = "Variablenwert";
+svgStr[28][5] = "Wertname";
+svgStr[29][5] = "Häufigkeit";
+svgStr[30][5] = "Prozent(%)"; 
 svgStr[31][5] = "<h3>Cross Table</h3>";
-svgStr[32][5] = "Col Variable";
-svgStr[33][5] = "Row Variable";
-svgStr[34][5] = "Mean"
-svgStr[35][5] = "Std Dev"
-svgStr[36][5] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStr[37][5] = "Group Name";
-svgStr[38][5] = "Interval";
-svgStr[39][5] = "Stem";
-svgStr[40][5] = " Leaf";
-svgStr[41][5] = "Group 1  Leaf";
-svgStr[42][5] = "Group 2  Leaf"
-svgStr[43][5] = "<h3>Basic Statistics</h3>";
-svgStr[44][5] = "Observation";  
+svgStr[32][5] = "Spaltenvariable";
+svgStr[33][5] = "Zeilenvariable";
+svgStr[34][5] = "Mittelwert"
+svgStr[35][5] = "Standardabweichung"
+svgStr[36][5] = "<h3> Histogramm<br>Häufigkeitstabelle</h3>";
+svgStr[37][5] = "Gruppe benennen";
+svgStr[38][5] = "Intervall";
+svgStr[39][5] = "Stamm";
+svgStr[40][5] = " Blatt";
+svgStr[41][5] = "Gruppe 1  Blatt";
+svgStr[42][5] = "Gruppe 2  Blatt"
+svgStr[43][5] = "<h3>Basisstatistik</h3>";
+svgStr[44][5] = "Beobachtung";  
 svgStr[45][5] = "Minimum";  
 svgStr[46][5] = "Median"; 
 svgStr[47][5] = "Maximum";  
 svgStr[48][5] = "Total";
 
-svgStrU[1][5]  = "Binomial Distribution";        	
-svgStrU[2][5]  = "repetition";   		
-svgStrU[3][5]  = "Mean";       	
-svgStrU[4][5]  = "Std Dev";          	
-svgStrU[5][5]  = "Poissson Distribution";       	
-svgStrU[6][5]  = "Geometric Distribution";         	
-svgStrU[7][5]  = "HyperGeometric Distribution";         	
-svgStrU[8][5]  = "Population";     	
-svgStrU[9][5]  = "Sample Dist";         	
-svgStrU[10][5] = "Law of Large Number";           	
-svgStrU[11][5] = "Tail";      
-svgStrU[12][5] = "Head";    	
-svgStrU[13][5] = "Coin Head";   
-svgStrU[14][5] = "Number of Heads";   
-svgStrU[15][5] = "Number of Trials"; 
-svgStrU[16][5] = "Dist of Sample Means"; 
-svgStrU[17][5] = "repetition";
-svgStrU[18][5] = "std err";
-svgStrU[19][5] = "Population Mean";
-svgStrU[20][5] = "Confidence Interval";
-svgStrU[21][5] = "Estimation Accuracy";
-svgStrU[22][5] = "sample mean";
+svgStrU[1][5]  = "Binomialverteilung";        	
+svgStrU[2][5]  = "Wiederholung";   		
+svgStrU[3][5]  = "Mittelwert";       	
+svgStrU[4][5]  = "Standardabweichung";          	
+svgStrU[5][5]  = "Poisson-Verteilung";       	
+svgStrU[6][5]  = "Geometrische Verteilung";         	
+svgStrU[7][5]  = "Hypergeometrische Verteilung ";         	
+svgStrU[8][5]  = "Grundgesamtheit";     	
+svgStrU[9][5]  = "Stichprobenverteilung";         	
+svgStrU[10][5] = "Gesetz der Großen Zahlen";           	
+svgStrU[11][5] = "Flanke";      
+svgStrU[12][5] = "Kopf";    	
+svgStrU[13][5] = "Kopf einer Münze";   
+svgStrU[14][5] = "Anzahl Kopf";   
+svgStrU[15][5] = "Anzahl der Versuche"; 
+svgStrU[16][5] = "Verteilung der Stichprobenmittelwerte"; 
+svgStrU[17][5] = "Wiederholung";
+svgStrU[18][5] = "Standardfehler";
+svgStrU[19][5] = "Mittelwert der Grundgesamtheit";
+svgStrU[20][5] = "Konfidenzintervall";
+svgStrU[21][5] = "Schätzgenauigkeit";
+svgStrU[22][5] = "Stichprobenmittelwert";
 svgStrU[23][5] = "[TestStat] = ";   
-svgStrU[24][5] = "Distribution";
-svgStrU[25][5] = "Reject Ho";
-svgStrU[26][5] = "Accept Ho";
-svgStrU[27][5] = " p-value  = ";
-svgStrU[28][5] = "[Decision] ";
+svgStrU[24][5] = "Verteilung";
+svgStrU[25][5] = "lehne Ho ab";
+svgStrU[26][5] = "Akzeptiere Ho";
+svgStrU[27][5] = " p-Wert  = ";
+svgStrU[28][5] = "[Entscheidung] ";
 svgStrU[29][5] = "[ANOVA]";
-svgStrU[30][5] = "Enter Correlation Coefficient and click Execute button"; 
+svgStrU[30][5] = "Gib den Korrelationskoeffizienten ein und klicke auf den Button Ausführen"; 
 svgStrU[31][5] = "Regression";
-svgStrU[32][5] = "Row Var";
-svgStrU[33][5] = "Col Var";
-svgStrU[34][5] = "Mean"
-svgStrU[35][5] = "Std Dev"
-svgStrU[36][5] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStrU[37][5] = "Group Name";
-svgStrU[38][5] = "Interval";
-svgStrU[39][5] = "Stem";
-svgStrU[40][5] = " Leaf";
-svgStrU[41][5] = "Group 1  Leaf";
-svgStrU[42][5] = "Group 2  Leaf"
-svgStrU[43][5] = "<h3>Basic Statistics</h3>";
-svgStrU[44][5] = "Observation";  
+svgStrU[32][5] = "Zeilenvariable";
+svgStrU[33][5] = "Spaltenvariable";
+svgStrU[34][5] = "Mittelwert"
+svgStrU[35][5] = "Standardabweichung"
+svgStrU[36][5] = "<h3> Histogramm<br>Häufigkeitstabelle</h3>";
+svgStrU[37][5] = "Gruppe benennen";
+svgStrU[38][5] = "Intervall";
+svgStrU[39][5] = "Stamm";
+svgStrU[40][5] = " Blatt";
+svgStrU[41][5] = "Gruppe 1 Blatt";
+svgStrU[42][5] = "Gruppe 2 Blatt"
+svgStrU[43][5] = "<h3>Basisstatistik</h3>";
+svgStrU[44][5] = "Beobachtung";  
 svgStrU[45][5] = "Minimum";  
 svgStrU[46][5] = "Median"; 
 svgStrU[47][5] = "Maximum";  
 svgStrU[48][5] = "Total";
-svgStrU[49][5] = "Exponential";
-svgStrU[50][5] = "Uniform";
-svgStrU[51][5] = "Estimation Accuracy";
-svgStrU[52][5] = "- Create points by click, then eStat finds a regression line.";
-svgStrU[53][5] = "- Move or erase a point. Watch change of the regression line.";
-svgStrU[54][5] = "[Sample Statistics] ";
-svgStrU[55][5] = "[Sample 1 Statistics] ";
-svgStrU[56][5] = "[Sample 2 Statistics] ";
-svgStrU[57][5] = "confidence level";
+svgStrU[49][5] = "Exponentail";
+svgStrU[50][5] = "Gleichverteilung";
+svgStrU[51][5] = "Schätzgenauigkeit";
+svgStrU[52][5] = "- Erzeuge Punkt per Mausklick. eStat ermittelt dann die Regressiongerade.";
+svgStrU[53][5] = "- Erzeuge Punkt per Mausklick. eStat ermittelt dann die Regressiongerade.";
+svgStrU[54][5] = "[Stichprobenstatistik] ";
+svgStrU[55][5] = "[Stichproben 1 statistik] ";
+svgStrU[56][5] = "[Stichproben 2 statistik] ";
+svgStrU[57][5] = "Konfidenzniveau";
 svgStrU[58][5] = "";
 svgStrU[59][5] = "";
 
