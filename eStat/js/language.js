@@ -238,7 +238,8 @@ $.message.ko = {
     "If typed" : "(숫자입력한 경우)",
     "Stat/BoxPlot" : "통계량/상자그림",
     "Mean" : "평균",
-    "Std Dev" : "표준편차",
+    "Std Dev" : "표준편차",
+    "SimulationWarning" : "(시뮬레이션이 끝나기 전에 다른 실험을 위한 '실행' 버튼을 누르면 에러가 발생함)",
 }
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -384,8 +385,8 @@ svgStrU[51][0] = "추정 정확도";
 svgStrU[52][0] = "- 마우스 클릭으로 점을 세 개 이상 만들면 회귀선이 그려짐";
 svgStrU[53][0] = "- 마우스로 한 점을 이동/지우기 하면서 회귀선 변화를 관측";
 svgStrU[54][0] = "[표본 통계량] ";
-svgStrU[55][0] = "[표본 1 통계량] "
-svgStrU[56][0] = "[표본 2 통계량] "
+svgStrU[55][0] = "[표본 1 통계량] ";
+svgStrU[56][0] = "[표본 2 통계량] ";
 svgStrU[57][0] = "신뢰수준";
 svgStrU[58][0] = "";
 svgStrU[59][0] = "";
@@ -568,6 +569,7 @@ $.message.en = {
     "Stat/BoxPlot" : "Stat/BoxPlot",
     "Mean" : "Mean",
     "Std Dev" : "Std Dev",
+    "SimulationWarning" : "(Current simulation should be finished before you start the next simulation)",
 }
 
 // English
@@ -899,6 +901,7 @@ $.message.ja = {
     "Stat/BoxPlot" : "統計量/箱ひげ図",
     "Mean" : "平均",
     "Std Dev" : "標準偏差",
+    "SimulationWarning" : "(現在シミュレーションが終わるまで、お待ちください。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;シミュレーション途中で設定を変更して実行すると正しく表示されません。)",
 }
 
 // Japanese
@@ -1229,6 +1232,7 @@ $.message.zh = {
     "Stat/BoxPlot" : "統計量/盒形圖",
     "Mean" : "平均",
     "Std Dev" : "標準差",
+    "SimulationWarning" : "(Current simulation should be finished before you start the next simulation.)",
 }
 
 appStr[1][3] = "../eStatH/index.html";
@@ -1558,6 +1562,7 @@ $.message.fr = {
     "Stat/BoxPlot" : "Statistiques/Boîte à moustaches",
     "Mean" : "Moyenne",
     "Std Dev" : "Ecart-type",
+    "SimulationWarning" : "(Current simulation should be finished before you start the next simulation.)",
 }
 
 // French
@@ -1886,6 +1891,7 @@ $.message.de = {
     "Stat/BoxPlot" : "Statistik/BoxPlot",
     "Mean" : "Mittelwert",
     "Std Dev" : "Standardabweichung",
+    "SimulationWarning" : "(Current simulation should be finished before you start the next simulation.)",
 }
 
 // German
@@ -2217,6 +2223,7 @@ $.message.es = {
     "Stat/BoxPlot" : "Estadísticos/Diagrama de Box",
     "Mean" : "Media",
     "Std Dev" : "Desviación estándar",
+    "SimulationWarning" : "(Current simulation should be finished before you start the next simulation.)",
 }
 
 // Spanish
