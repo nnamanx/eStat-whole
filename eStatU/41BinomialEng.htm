@@ -3,13 +3,13 @@
 
 <head>
     <title data-msgid="Binomial Experiment">Binomial Experiment</title>
-    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
-    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
-    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
-    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
-    <script src="/estat/eStat/js/language.js" ></script>
-    <script src="/estat/eStat/js/eStatU.js"></script>
+    <link rel="stylesheet" href="../eStat/css/eStatU.css">
+    <script src="../eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="../eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="../eStat/lib/DistributionsUtil.js" ></script>
+    <script src="../eStat/js/language.js" ></script>
+    <script src="../eStat/js/eStatU.js"></script>
 </head>
 
 <body>
@@ -31,7 +31,6 @@
       <button type="button" id="executeBinomial" >
         <span data-msgid="Execute">Execute</span>
       </button>
-      <span data-msgid="SimulationWarning" style="color:red">(Current simulation should be finished before you start the next simulation)</span>
     </form>
   </div>
 
@@ -92,13 +91,15 @@
       title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
       dot.append("text").attr("class","title").attr("x", margin.left+graphWidth -200).attr("y", margin.top/2 ).text(title)
 
+
       // 확률  계산
       for (i=0; i<nvalue; i++) binomialP1[i] = binomial_pdf(i, nn, pp, info);
-
+			  
       // Draw 이항분포 Triangle and Simulation
       BinomialTriangle(nvalue, pp, tx, ty);
-      BinomialSimulation(nobs,nvalue,tdataY);
+//      BinomialSimulation(nobs,nvalue,tdataY);
 
+			  
       // 시뮬레이션 실행버튼 클릭
       d3.select("#executeBinomial").on("click",function() {
         dot.selectAll("*").remove();
@@ -129,7 +130,7 @@
 
         // Draw 이항분포 Triangle and Simulation
         BinomialTriangle(nvalue, pp, tx, ty);
-        BinomialSimulation(nobs,nvalue,tdataY);
+	BinomialSimulation(nobs,nvalue,tdataY);
         if (checkFreq) showBinomialFreq(nvalue, binomialP1, tdataY, tx);
       })
 

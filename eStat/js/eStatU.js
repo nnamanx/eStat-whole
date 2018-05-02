@@ -630,7 +630,9 @@ function showScatterPlot3(graphWidth, graphHeight) {
     svg.selectAll("text.reglabel3").remove(); 
     svg.selectAll("line.regline").remove();    
     updateRegressionLine();
-}// =====================================================================================
+ }
+
+// =====================================================================================
 // Binomial functions 
 // =====================================================================================
 // Binomial Triangle 그리기 함수 ==================================================================
@@ -718,7 +720,7 @@ function BinomialTriangle(nvalue, pp, tx, ty) {
 } // endof BinomialTriangle()
       
 // 이항분포 시뮬레이션
-function BinomialSimulation(nobs,nvalue,tdataY) {
+async function BinomialSimulation(nobs,nvalue,tdataY) {
          var i, j, k, g;
          var x0, y0, x1, y1, x2, y2, t1, t2;
          var sum;
@@ -740,80 +742,99 @@ function BinomialSimulation(nobs,nvalue,tdataY) {
          } // endof j
   
           // 점 애니메이션 시작
-          for (i=0; i<nvalue; i++) tdataY[i] = 0; // Count frequency
-          // nobs 개수만큼 점 만들고 궤적 그리기
-          for (g=0; g<nobs; g++) {
-            setTimeout(function() {	      
-              sum = 0;
-              t1 = margin.left + graphWidth/2;            // 하늘 좌표
-              t2 = margin.top/2;
-	      x0 = tx[0][0] + rectSizeDiv2;
-	      y0 = ty[0][0] + rectSizeDiv2;
-              var cir = dot.append("circle").style("stroke","black").attr("fill","red") 
-              var currentPath = dot.append("line")
-                                   .attr("stroke-width","3px").style("stroke","red")
-              cir.attr("cx", t1)
-                 .attr("cy", t2)
-                 .attr("r", 10)
-                 .transition()                           // 애니매이션 효과 지정
-                 .delay(100)   // 0.5초마다 그리도록 대기시간 설정
-                 .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
-                 .attr("cx", x2)
-                 .attr("cy", y2)
-              for (i=0; i<nvalue-1; i++) {
-                if (i==0) j=0;
-                x1 = tx[i][j] + rectSizeDiv2;
-                y1 = ty[i][j] + rectSizeDiv2;
-                if (Math.random() < 1-pp) { k = j }  // (1-p) 확률로 왼쪽으로 가면 0점
-                else { k = j+1 ; sum++;};            // p 확률로 오른쪽으로 가면 1점 
-                x2 = tx[i+1][k] + rectSizeDiv2;
-	        y2 = ty[i+1][k] + rectSizeDiv2;
-                cir.transition()
-                   .delay(100*i)
-                   .duration(100)
-                   .attr("cx", x1)
-                   .attr("cy", y1)
-                   .transition()                           // 애니매이션 효과 지정
-                   .attr("cx", x2)
-	           .attr("cy", y2);
-//                currentPath.attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2);
-	        j = k;
-              } // endof i
-		
-              // 각 데이터의 점그림
-              x1 = x2;
-              y1 = y2;
-              x2 = x1;
-              tdataY[sum] ++;
-              if (tdataY[sum] < 36) {
-                y2 = 2*svgHeight - margin.bottom - (tdataY[sum]-1)*2*radiusSize;
-              }
-              else if (tdataY[sum] < 71) {
-                x2 = x2 + radiusSize*2;
-                y2 = 2*svgHeight - margin.bottom - (tdataY[sum]-35-1)*2*radiusSize;
-              }
-              else {
-                x2 = x2 + radiusSize*4;
-                y2 = 2*svgHeight - margin.bottom - (tdataY[sum]-70-1)*2*radiusSize;
-              }
-              cir.transition()                           // 애니매이션 효과 지정
-                 .delay((nn+1)*g)
-                 .duration(100)                         // 1초동안 애니매이션이 진행되도록 설정
-                 .style("fill",myColor[sum])
-                 .attr("r", radiusSize)
-                 .attr("cx", x2)
-                 .attr("cy", y2);
-            }, 300*g); // endof setTimeout
-//              dot.selectAll("line.lineR").remove(); // path 지우기
+    for (i=0; i<nvalue; i++) tdataY[i] = 0; // Count frequency
+
+    
+    // nobs 개수만큼 점 만들고 궤적 그리기
+    $("#executeBinomial").prop("disabled", true);
+    for (g=0; g<nobs; g++) {
+	    await BinomialSimulationOneBall();
           
-          } // endof g 
-          var str = svgStrU[2][langNum]+"="+nobs;
+    }
+    $("#executeBinomial").prop("disabled", false);
+    
+    var str = svgStrU[2][langNum]+"="+nobs;
           dot.append("text")
              .attr("x", margin.left+20)
              .attr("y", svgHeight-margin.bottom/2)
              .text(str)
              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")        
-} // endof BinomialSimulation Function 
+}
+// endof BinomialSimulation Function
+
+
+async function BinomialSimulationOneBall() {
+    var animationDurationTime = 300;   // miliseconds
+    var x0, y0, x1, y1, x2, y2, t1, t2;
+    sum = 0;
+    t1 = margin.left + graphWidth/2;            // 하늘 좌표
+    t2 = margin.top/2;
+    x0 = tx[0][0] + rectSizeDiv2;
+    y0 = ty[0][0] + rectSizeDiv2;
+    var cir = dot.append("circle").style("stroke","black").attr("fill","red") 
+    var currentPath = dot.append("line")
+        .attr("stroke-width","3px").style("stroke","red")
+    cir.attr("cx", t1)
+        .attr("cy", t2)
+        .attr("r", 10)
+        .transition()                           // 애니매이션 효과 지정
+        .delay(1000)   // 0.5초마다 그리도록 대기시간 설정
+        .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+        .attr("cx", x2)
+        .attr("cy", y2)
+
+    for (i=0; i<nvalue-1; i++) {
+	await new Promise(resolve => setTimeout(resolve, animationDurationTime/nvalue));
+        if (i==0) j=0;
+        x1 = tx[i][j] + rectSizeDiv2;
+        y1 = ty[i][j] + rectSizeDiv2;
+        if (Math.random() < 1-pp) { k = j }  // (1-p) 확률로 왼쪽으로 가면 0점
+        else { k = j+1 ; sum++;};            // p 확률로 오른쪽으로 가면 1점 
+        x2 = tx[i+1][k] + rectSizeDiv2;
+	y2 = ty[i+1][k] + rectSizeDiv2;
+        cir.transition()
+	//                   .delay(10)
+            .duration(100)
+            .attr("cx", x1)
+            .attr("cy", y1)
+            .transition()                           // 애니매이션 효과 지정
+            .attr("cx", x2)
+	    .attr("cy", y2);
+	//                currentPath.attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2);
+	j = k;
+    } // endof i
+
+    // 각 데이터의 점그림
+    x1 = x2;
+    y1 = y2;
+    x2 = x1;
+    tdataY[sum] ++;
+    if (tdataY[sum] < 36) {
+        y2 = 2*svgHeight - margin.bottom - (tdataY[sum]-1)*2*radiusSize;
+    }
+    else if (tdataY[sum] < 71) {
+        x2 = x2 + radiusSize*2;
+        y2 = 2*svgHeight - margin.bottom - (tdataY[sum]-35-1)*2*radiusSize;
+    }
+    else {
+        x2 = x2 + radiusSize*4;
+        y2 = 2*svgHeight - margin.bottom - (tdataY[sum]-70-1)*2*radiusSize;
+    }
+    cir.transition()                           // 애니매이션 효과 지정
+        .delay(animationDurationTime)                   // .delay((nn+1)*g)
+        .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+        .style("fill",myColor[sum])
+        .attr("r", radiusSize)
+        .attr("cx", x2)
+        .attr("cy", y2);
+
+}
+// endof BinomialSimulationOneBall Function
+
+
+
+
+
  // 실험된 이항분포 각 값의 확률 표시
 function showBinomialFreq(nvalue, binomialP1, tdataY, tx) {
         var i, j, temp;
