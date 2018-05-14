@@ -10,6 +10,8 @@
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/language.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
 
 <body>
@@ -21,7 +23,7 @@
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <svg id="chart2" width="600" height="600"> </svg>
+    <svg id="chart" width="600" height="600"> </svg>
     <br>
     <button type="button" id="execute2Binomial" >
         <span data-msgid="Execute">Execute</span>
@@ -44,7 +46,11 @@
       <span data-msgid="Normal Approx">Normal Approx<span> (n>=10)
     </label>
     <p>
-    <span data-msgid="Reference Site">Reference</span>   &nbsp; 
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
+    <span data-msgid="Reference Site">Reference</span> :  
       <a href="https://en.wikipedia.org/wiki/Binomial_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/BinomialDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="https://stattrek.com/probability-distributions/binomial.aspx" target="_blank" >StatTrek </a> &nbsp; 
@@ -56,7 +62,7 @@
 
   <script>
 
-      var bar = d3.select("#chart2");
+      var bar = d3.select("#chart");
 
       // 이항분포 시뮬레이션 초기화면 셋팅
       var i, j, k, sum, temp, info;
@@ -161,6 +167,17 @@
           pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
           binomialTable(nn2, pp2, binomialP2);
       })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
 
   </script>
 </body>

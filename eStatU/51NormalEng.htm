@@ -10,6 +10,8 @@
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/language.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
   
 <body>
@@ -20,22 +22,25 @@
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <svg id="DotGraphNormal" width="600" height="510"> </svg>
-
-    <form>
-      <button type="button" id="btn1Normal" >
+    <svg id="chart" width="600" height="510"> </svg>
+    <p>
+    <button type="button" id="btn1Normal" >
         <span data-msgid="Execute">Execute</span>
-      </button>
-      &nbsp; 
-      <label><input type="checkbox" id=meanNormal>
+    </button>
+    &nbsp; 
+    <label><input type="checkbox" id=meanNormal>
         <span data-msgid="Stat/BoxPlot">Stat/BoxPlot</span>
-      </label> <p>
-    </form>
+    </label> 
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
   </div>
 
   <script>
 
-      var dot = d3.select("#DotGraphNormal");
+      var dot = d3.select("#chart");
  
       var svgWidth,  svgHeight,  graphWidth,  graphHeight;
       var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
@@ -78,6 +83,17 @@
 	  removeMeanNormal();
         }
       })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
 
   </script>
 

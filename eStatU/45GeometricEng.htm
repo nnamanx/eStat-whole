@@ -10,6 +10,8 @@
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/language.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
 
 <body>
@@ -24,7 +26,7 @@
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <svg id="chart2" width="600" height="600"> </svg>
+    <svg id="chart" width="600" height="600"> </svg>
     <br>
     <button type="button" id="executeGeometric" >
         <span data-msgid="Execute">Execute</span>
@@ -34,14 +36,19 @@
       <sup><small> 0 </small></sup> 
     <input type="range" min="2" max="99" value="50" id="rangeGeoP" onchange="showValueGeoP(this.value, valueLabel, geometricP)"/>
       <sup><small> 1 </small></sup>  &nbsp;&nbsp;&nbsp;&nbsp;
-    <label><input type="checkbox" value="freq2" id=freqGeometric>
-      <span data-msgid="Show Probability">Show Probability<span>
-    </label>
     <p>
     <button type="button" id="geometricT" >
         <span data-msgid="Geometric Prob Table">Geometric Prob Table</span>
     </button>  
+    &nbsp;
+    <label><input type="checkbox" value="freq2" id=freqGeometric>
+      <span data-msgid="Show Probability">Show Probability<span>
+    </label>
     <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
     <span data-msgid="Reference Site">Reference</span>   &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Geometric_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/GeometricDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
@@ -54,7 +61,7 @@
 
   <script>
 
-      var bar = d3.select("#chart2");
+      var bar = d3.select("#chart");
 
       var i, j, k, sum, temp, info;
       var geoP, avg, std;
@@ -135,6 +142,17 @@
         geoP = parseFloat(d3.select("#geoP").node().value);
         geometricTable(nvalue, geoP, geometricP);
       })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
 
   </script>
 

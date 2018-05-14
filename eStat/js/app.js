@@ -2243,7 +2243,8 @@ languageNumber = {
     'fr': 4,
     'de': 5,
     'es': 6,
-    'pt': 7,
+    'vn': 7,
+    'mn': 8,
 }
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");

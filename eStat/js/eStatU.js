@@ -1562,6 +1562,10 @@ function drawExponentialGraph(lambda, a, b, prob) {
          lambda = parseFloat(d3.select("#explambda").node().value); 
          if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
          else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda)};
+		 var title  = svgStrU[49][langNum]+" lambda = "+f2(lambda).toString();
+         bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
+            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
+
          gxmin   = 0;
          gymin   = 0;
          if (lambda <= 0.2)  { gxmax = 5 ;  ymax = 5 }
@@ -1776,6 +1780,7 @@ function drawStatNormal(stat, start) {
            .attr("y1",ty)
            .attr("x2",avgx)
            .attr("y2",start + margin.top + graphHeight - freqMax*8 - 40) 
+           .style("stroke","#0055FF")
         dot.append("circle")
            .attr("class","mean")
            .attr("cx",avgx)
@@ -1787,12 +1792,14 @@ function drawStatNormal(stat, start) {
            .attr("y1",ty)
            .attr("x2",avgx)
            .attr("y2",ty)
+           .style("stroke","#0055FF")
         dot.append("line")
            .attr("class","mean")
            .attr("x1",stdpx)
            .attr("y1",ty)
            .attr("x2",avgx)
            .attr("y2",ty)
+		   .style("stroke","#0055FF")
         dot.append("circle")
            .attr("class","mean")
            .attr("cx",stdmx)
@@ -1839,6 +1846,7 @@ function drawBoxNormal(stat, start) {
            .attr("y1",y1)
            .attr("x2",x2)
            .attr("y2",y2)
+		   .style("stroke","#0055FF")
         dot.append("text")
            .attr("x", x1)
            .attr("y", y1-3)
@@ -1851,6 +1859,7 @@ function drawBoxNormal(stat, start) {
            .attr("y1",y1+lineHeight/2)
            .attr("x2",x2)
            .attr("y2",y1+lineHeight/2)
+		   .style("stroke","#0055FF")
         x1 = margin.left + graphWidth*(max-gxmin)/xrange;
         x2 = x1;
         dot.append("line")
@@ -1858,7 +1867,8 @@ function drawBoxNormal(stat, start) {
            .attr("x1",x1)
            .attr("y1",y1)
            .attr("x2",x2)
-           .attr("y2",y2) 
+           .attr("y2",y2)
+           .style("stroke","#0055FF")		   
         dot.append("text")
           .attr("x", x1)
           .attr("y", y1-3)
@@ -1874,6 +1884,7 @@ function drawBoxNormal(stat, start) {
            .attr("width",width)
            .attr("height",height)
            .style("fill","yellow")
+		   .style("stroke","#0055FF")
          dot.append("text")
            .attr("x", x1)
            .attr("y", y2+lineHeight/2)
@@ -1892,6 +1903,7 @@ function drawBoxNormal(stat, start) {
            .attr("y1",y1+lineHeight/2)
            .attr("x2",x2)
            .attr("y2",y1+lineHeight/2)
+		   .style("stroke","#0055FF")
         x1 = margin.left + graphWidth*(median-gxmin)/xrange;
         x2 = x1;
         dot.append("line")
@@ -1900,6 +1912,7 @@ function drawBoxNormal(stat, start) {
            .attr("y1",y1)
            .attr("x2",x2)
            .attr("y2",y2)
+		   .style("stroke","#0055FF")
         dot.append("text")
            .attr("x", x1)
            .attr("y", y2+lineHeight/2+10)
@@ -2026,6 +2039,9 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2
+		 var title  = "N("+mu+","+sigma+") "+svgStrU[24][langNum];
+         bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
+
          var gxmin   = mu - 4*sigma;
          var gxmax   = mu + 4*sigma;
          var gxrange = gxmax - gxmin;
@@ -2201,6 +2217,9 @@ function drawTdistGraph(df, a, b, prob) {
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info;
+		 var title  = "t("+df+") "+svgStrU[24][langNum];
+         bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
+		 
          var gxmin   = - 5;
          var gxmax   = 5;
          var gxrange = gxmax - gxmin;
@@ -2330,7 +2349,8 @@ function showValueChisq0(newValue) {
           d3.select("#g").node().value = f4(g);
           drawChisqGraph(df, f, g, h); 
        }
-}function showValueChisq1(newValue) {
+}
+function showValueChisq1(newValue) {
        if (radioType == 1) {
           var a, b, c, info;
           bar.selectAll("*").remove();
@@ -2408,6 +2428,9 @@ function drawChisqGraph(df, a, b, prob) {
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info;
+		 var title  = "ChiSq("+df+") "+svgStrU[24][langNum];
+         bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
+		 
          var ymax;
          df = parseFloat(d3.select("#dfchi").node().value); 
          gxmin   = 0;
@@ -2619,6 +2642,9 @@ function drawFGraph(df1, df2,  a, b, prob) {
      
          df1 = parseFloat(d3.select("#df1").node().value); 
          df2 = parseFloat(d3.select("#df2").node().value); 
+		 var title  = "F("+df1+","+df2+") "+svgStrU[24][langNum];
+         bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
+		 
          gxmin   = 0;
          gymin   = 0;
          gxmax   = 10;  
@@ -3508,8 +3534,11 @@ function drawInterval(nobs, avg, std, gxmin, xrange, clevel, height, niter, star
         if (niter < 6) {
           if (checkMu) dot2.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
                            .style("stroke","green")
+					       .style("font-family","sans-serif").style("font-size","9pt")
           else dot2.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
                    .style("stroke","red")
+				   .style("font-family","sans-serif").style("font-size","9pt")
+
         }
 }// 전체 구간추정 표본그림 제거
 function removeAllSample3() {
@@ -3537,7 +3566,7 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
          var gymax   = ymax + ymax/5; 
          var gyrange = gymax - gymin;
          tx = margin.left + graphWidth2/2;
-         ty = margin.top + 15;
+         ty = margin.top;
          if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - mu) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 41) str = svgStrU[23][langNum]+"(m1 - m2 - D) / ( pooled std * sqrt(1/n1+1/n2) )  ~  t("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 42) str = svgStrU[23][langNum]+"(m1 - m2 - D) / ( sqrt(var1/n1 + var2/n2) )  ~  t'("+df+") "+svgStrU[24][langNum];
@@ -3651,7 +3680,7 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          var gymax   = ymax + ymax/5; 
          var gyrange = gymax - gymin;
          tx = margin.left + graphWidth2/2;
-         ty = margin.top + 15;
+         ty = margin.top;
          if (hypoType == 1)      str = svgStrU[23][langNum]+"(m - mu) / ( s / sqrt(n) )  ~  N(0,1)";
          else if (hypoType == 3) str = svgStrU[23][langNum]+"(p - Po) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
          else if (hypoType == 6) str = svgStrU[23][langNum]+"(p1 - p2 - D) / (sqrt(pbar*(1-pbar)(1/n1 + 1/n2) )  ~  N(0,1)";
@@ -3767,7 +3796,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
          gymax   = ymax + ymax/5; 
          gyrange = gymax - gymin;
          tx = margin.left + graphWidth2/2;
-         ty = margin.top + 15;
+         ty = margin.top;
          if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s^2 / ( sigma_o^2 )  ~  ChiSq("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 8) str = svgStrU[23][langNum]+"Sum( (EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
@@ -3882,7 +3911,7 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
          gymax   = ymax + ymax/5; 
          gyrange = gymax - gymin;
          tx = margin.left + graphWidth2/2;
-         ty = margin.top + 15;
+         ty = margin.top;
          if (hypoType == 5)       str = svgStrU[23][langNum]+"(s1^2 / s2^2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          else if (hypoType == 7)  str = svgStrU[23][langNum]+"(BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)

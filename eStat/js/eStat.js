@@ -780,8 +780,8 @@ function drawAxis(freqMax, height, ngroup) {
 
         if(VerticalBar) {  // 세로형 막대그래프 Y축        
 
-          yScale  = d3.scaleLinear().domain([0,freqMax]).range([height,10]);
-          yScale2 = d3.scaleLinear().domain([freqMax,0]).range([height,10]);
+          yScale  = d3.scaleLinear().domain([0,freqMax]).range([height,0]);
+          yScale2 = d3.scaleLinear().domain([freqMax,0]).range([height,0]);
           for (k=0; k<ngroup; k++) {
             tx = margin.left;
             ty = margin.top + k*height;

@@ -10,6 +10,8 @@
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/language.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
 
 <body>
@@ -118,6 +120,11 @@
     </button> 
     <p>
     <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
   </div> 
 
   <script>
@@ -125,9 +132,9 @@
       var bar = d3.select("#chart");
  
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
-      svgWidth2   = 600;
-      svgHeight2  = 400;
+      var graphWidth2, graphHeight2;
+      var svgWidth2   = 600;
+      var svgHeight2  = 400;
 
       var nobs, avg, std, gxmin, gxmax, gymin, gymax;
       var title;
@@ -251,12 +258,21 @@
             g = 5;    //t_inv(0.9999, df, info);
             pvalue = t_cdf(teststat, df, info);
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
-          }
-    
-          
+          }          
         }
       })
 
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
 
   </script>
 </body>
