@@ -2239,12 +2239,14 @@ languageNumber = {
     'ko': 0,
     'en': 1,
     'ja': 2,
-    'zh': 3,
+    'zh': 10,
+    'zhTW': 3,
     'fr': 4,
     'de': 5,
     'es': 6,
-    'vn': 7,
-    'mn': 8,
+    'vi': 7,
+    'id': 8,
+    'mn': 9,
 }
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
