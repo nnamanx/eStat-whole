@@ -2714,331 +2714,331 @@ svgStrU[59][7] = "";
 // Indonesian
 $.message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
-    "Filename": "Nama File",
-    "Selected Variables": "Pilih Variabel",
-    "Cancel": "Batal",
-    "Edit Variables": "Edit Variabel",
+    "Filename": "File Name",
+    "Selected Variables": "Var Select",
+    "Cancel": "Cancel",
+    "Edit Variables": "EditVar",
     "Level": "Level",
-    "ElementaryLevel": "Level Dasar",
-    "MiddleLevel": "Level Menengah",
-    "UniversityLevel": "Level Universitas",
-    "Example": "Contoh",
-    "New Sheets": "Lembar Baru",
-    "csv Open": "Buka csv",
-    "www Open": "Buka www",
-    "json Open": "Buka json",
-    "csv Save": "Simpan csv",
-    "json Save": "Simpan json",
-    "Print Sheet": "Cetak Lembar",
-    "Bar Graph": "Diagram Batang",
-    "Pie Chart": "Diagram Pai",
-    "Band Graph": "Diagram Band",
-    "Line Graph": " Diagram Garis",
-    "Dot Graph": "Diagram Dot",
+    "ElementaryLevel": "E",
+    "MiddleLevel": "M",
+    "UniversityLevel": "U",
+    "Example": "Example",
+    "New Sheets": "New Sheets",
+    "csv Open": "csv Open",
+    "www Open": "www Open",
+    "json Open": "json Open",
+    "csv Save": "csv Save",
+    "json Save": "json Save",
+    "Print Sheet": "Print Sheet",
+    "Bar Graph": "Bar Graph",
+    "Pie Chart": "Pie Chart",
+    "Band Graph": "Band Graph",
+    "Line Graph": "Line Graph",
+    "Dot Graph": "Dot Graph",
     "Histogram": "Histogram",
-    "Stem & Leaf Plot": " Diagram Dahan dan Daun",
-    "Box-Whisker Plot": "Diagram Box-Whisker",
-    "Scatterplot": "Diagram Pencar",
-    "Frequency Table": "Tabel Frekuensi",
-    "Basic Statistics": "Statistika Dasar",
-    "Testing Hypothesis &mu;": "Pengujian Hipotesis &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": " Pengujian Hipotesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": " Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": " Pengujian Hipotesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Analysis of Variance": "Analisis Varians",
-    "High School Stat Education": "Pelajaran Statistika tingkat Sekolah Menengah Atas",
-    "University Stat Education": "Pelajaran Statistika tingkat Universitas",
-    "Elem Stat Graph Example": "Contoh Diagram Statistik Dasar",
-    "Learning eStat w Example": "Contoh Pelajaran eStat w",
-    "Vertical Separated Bar": "Batang Terpisah Vertikal",
-    "Vertical Stacked Bar": "Batang Bertumpuk Vertikal",
-    "Vertical Ratio Bar": "Batang Rasio Vertikal",
-    "Vertical Side by Side Bar": "Batang Vertikal Besebelahan",
-    "Vertical Two Sided Bar": "Batang Vertikal Dua Arah",
-    "Horizontal Separated Bar": "Batang Terpisah Horisontal",
-    "Horizontal Stacked Bar": "Batang Bertumpuk Horisontal",
-    "Horizontal Ratio Bar": "Batang Rasio Horisontal",
-    "Horizontal Side by Side Bar": "Batang Vertikal Bersebelahan",
-    "Horizontal Two Sided Bar": "Batang Horisontal Dua Arah",
-    "Doughnut Graph": "Diagram Donat",
-    "Two Sided Stem & Leaf Plot": "Diagram Dahan dan Daun Dua Arah",
-    "Graph Save": "Simpan Diagram",
-    "Graph Print": "Cetak Diagram",
-    "Move to Table": "Pindah ke Tabel",
-    "Edit Title": "Edit Judul",
-    "Table Save": "Simpan Tabel",
-    "Table Print": "Cetak Tabel",
-    "Frequency": "Frekuensi",
-    "(Sorting)": "(Mengurutkan)",
-    "Raw Data": "Data Mentah",
-    "Descending": "Mengurutkan dari Besar ke Kecil",
-    "Ascending": "Mengurutkan dari Kecil ke Besar",
-    "Mean": "Rata-rata",
-    "Std Deviation": "Standar Deviasi",
-    "Regression": "Regresi",
-    "Frequency Polygon": "Frekuensi Poligon",
-    "Frequency Table": "Tabel Frekuensi",
-    "Execute New Interval": "Jalankan Interval Baru",
-    "Interval Start": "Mulai Interval",
-    "Interval Width": "Lebar Interval",
-    "t-test": "uji-t",
-    "Z-test": "uji-Z",
-    "(if Z-test, enter &sigma;)": "(if uji-Z, masukkan &sigma;)",
-    "Significance Level": "Taraf Nyata",
-    "Execute": "Jalankan",
-    "(Confidence Interval)": "(Selang Kepercayaan)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if uji-Z, Z<sub>1-&alpha;/2 </sub> digunakan)",
-    "&chi;<sup>2</sup> test": "uji &chi;<sup>2</sup>",
-    "Variance Assumption": "Asumsi Varians",
-    "F test": "Uji F",
-    "At least one pair of means is different": "Setidaknya ada satu pasang Rata-rata yang berbeda",
-    "Main Title : ": "Judul Utama : ",
-    "y title : ": "Judul y : ",
-    "x title : ": "Judul x : ",
-    "Modify": "Modifikasi",
-    "Confirm": "Konfirmasi",
-    "Variable Name": "Nama Variabel",
-    "Variable Value": "Nilai Variabel",
-    "Value Label": "Label Nilai",
-    "* Less than nine value labels allowed.": "* Kurang dari sembilan label nilai diperbolehkan.",
-    "Save": "Simpan",
-    "Exit": "Keluar",
+    "Stem & Leaf Plot": "Stem & Leaf Plot",
+    "Box-Whisker Plot": "Box-Whisker Plot",
+    "Scatterplot": "Scatterplot",
+    "Frequency Table": "Frequency Table",
+    "Basic Statistics": "Basic Statistics",
+    "Testing Hypothesis &mu;": "Testing Hypothesis &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Testing Hypothesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance": "Analysis of Variance",
+    "High School Stat Education": "High School Stat Education",
+    "University Stat Education": "University Stat Education",
+    "Elem Stat Graph Example": "Elem Stat Graph Example",
+    "Learning eStat w Example": "Learning eStat w Example",
+    "Vertical Separated Bar": "Vertical Separated Bar",
+    "Vertical Stacked Bar": "Vertical Stacked Bar",
+    "Vertical Ratio Bar": "Vertical Ratio Bar",
+    "Vertical Side by Side Bar": "Vertical Side by Side Bar",
+    "Vertical Two Sided Bar": "Vertical Two Sided Bar",
+    "Horizontal Separated Bar": "Horizontal Separated Bar",
+    "Horizontal Stacked Bar": "Horizontal Stacked Bar",
+    "Horizontal Ratio Bar": "Horizontal Ratio Bar",
+    "Horizontal Side by Side Bar": "Horizontal Side by Side Bar",
+    "Horizontal Two Sided Bar": "Horizontal Two Sided Bar",
+    "Doughnut Graph": "Doughnut Graph",
+    "Two Sided Stem & Leaf Plot": "Two Sided Stem & Leaf Plot",
+    "Graph Save": "Graph Save",
+    "Graph Print": "Graph Print",
+    "Move to Table": "Move to Table",
+    "Edit Title": "Edit Title",
+    "Table Save": "Table Save",
+    "Table Print": "Table Print",
+    "Frequency": "Frequency",
+    "(Sorting)": "(Sorting)",
+    "Raw Data": "Raw Data",
+    "Descending": "Descending",
+    "Ascending": "Ascending",
+    "Mean": "Mean",
+    "Std Deviation": "Std Deviation",
+    "Regression": "Regression",
+    "Frequency Polygon": "Frequency Polygon",
+    "Frequency Table": "Frequency Table",
+    "Execute New Interval": "Execute New Interval",
+    "Interval Start": "Interval Start",
+    "Interval Width": "Interval Width",
+    "t-test": "t-test",
+    "Z-test": "Z-test",
+    "(if Z-test, enter &sigma;)": "(if Z-test, enter &sigma;)",
+    "Significance Level": "Significance Level",
+    "Execute": "Execute",
+    "(Confidence Interval)": "(Confidence Interval)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)",
+    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
+    "Variance Assumption": "Variance Assumption",
+    "F test": "F test",
+    "At least one pair of means is different": "At least one pair of means is different",
+    "Main Title : ": "Main Title : ",
+    "y title : ": "y title : ",
+    "x title : ": "x title : ",
+    "Modify": "Modify",
+    "Confirm": "Confirm",
+    "Variable Name": "Variable Name",
+    "Variable Value": "Variable Value",
+    "Value Label": "Value Label",
+    "* Less than nine value labels allowed.": "* Less than nine value labels allowed.",
+    "Save": "Save",
+    "Exit": "Exit",
 
-    "eStatU UnivStatEdu": "eStatU ? Pelajaran Statistika Tingkat Universitas SW",
-    "eStatH HighStatEdu": "eStatH ? Pelajaran Statistika Tingkat Sekolah Menengah Atas SW",
+    "eStatU UnivStatEdu": "eStatU - University Statistics Education SW",
+    "eStatH HighStatEdu": "eStatH - High School Statistics Education SW",
     "Menu": "Menu",
-    "Binomial Experiment": "Percobaan Binomial",
-    "Binomial Distribution": "Distribusi Binomial ",
-    "Binomial Prob Table": "Tabel Peluang Binomial ",
-    "Poisson Distribution": "Distribusi Poisson ",
-    "Poisson Prob Table": "Tabel Peluang Poisson",
-    "Geometric Distribution": "Distribusi Geometri",
-    "Geometric Prob Table": "Tabel Peluang Geometri",
-    "HyperGeometric Distribution": "Distribusi Hipergeometri",
-    "HyperGeometric Prob Table": "Tabel Peluang Hipergeometri",
-    "Exponential Distribution": "Distribusi Eksponensial",
-    "Normal Experiment": "Percobaan Normal",
-    "Normal Distribution": "Distribusi Normal",
-    "Normal Approx": "Pendekatan Normal",
-    "t Distribution": "Distribusi t",
-    "ChiSquare Distribution": "Distribusi Khi-Kuadrat",
-    "F Distribution": "Distribusi F",
-    "Sampling": "Pengambilan Sampel",
-    "Population vs Sample": "Populasi vs Sampel",
-    "Population": "Populasi",
-    "Sample": "Sampel",
-    "Exponential": "Eksponensial(0.3)",
-    "Uniform": "Seragam(0,1)",
-    "Sample05": "Pengambilan Sampel 5%",
-    "Sample10": "Pengambilan Sampel 10%",
-    "Sample20": "Pengambilan Sampel 20%",
-    "Statistics/BoxPlot": "Statistik/Diagram Kotak Garis",
-    "Law of Large Number": "Hukum Bilangan Besar",
-    "Dist of Sample Means": "Distribusi dari Rata-rata Sampel",
-    "Sample Size": "Ukuran Sampel",
-    "Confidence Interval": "Selang Kepercayaan",
-    "Estimation Accuracy": "Keakurasian Nilai Estimasi",
-    "Repetition": "Ulangan",
-    "Confidence Level": "Taraf Nyata",
-    "Testing Hypothesis mu_title": "Uji Hipotesis Rata-rata Satu Populasi",
-    "Testing Hypothesis sigma_title": "Uji Hipotesis Varians Satu Populasi",
-    "Testing Hypothesis P_title": "Uji Hipotesis Proporsi Satu Populasi",
-    "Testing Hypothesis mu12_title": "Uji Hipotesis Rata-rata Dua Populasi",
-    "Testing Hypothesis sigma12_title": "Uji Hipotesis Varians Dua Populasi",
-    "Testing Hypothesis P12_title": "Uji Hipotesis Proporsi Dua Populasi",
-    "Testing Hypothesis mu": "Pengujian Hipotesis &mu;",
-    "Testing Hypothesis sigma": "Pengujian Hipotesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Pengujian Hipotesis P",
-    "Testing Hypothesis mu12": "Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Pengujian Hipotesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Pengujian Hipotesis P<sub>1</sub>, P<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Pengujian Hipotesis ANOVA",
-    "Testing Independence": "Uji Independensi",
-    "Correlation Coefficient": "Koefisien Korelasi",
-    "Regression Experiment": "Percobaan Regresi",
-    "Hypothesis": "Hipotesis",
-    "Test Type": "Tipe Uji",
-    "Z-test": "uji-Z ",
-    "t-test": "uji-t",
-    "Chi-test": "uji-&chi;<sup>2</sup>",
-    "F-test": "uji-F",
-    "Sample Data": "Data Sampel",
-    "input either sample data": " Masukan Data Sampel atau Statistik Sampel di Kotak Selanjutnya menggunakan csv/bsv ",
-    "Sample Statistics": "Statistik Sampel",
-    "Sample Mean": "Rata-rata Sampel",
-    "Sample Variance": "Varians Sampel",
-    "Sample Proportion": "Proporsi Sampel",
-    "if Z-test-1": "(if uji-Z, Masukkan Varians Populasi &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if uji-Z, Z<sub>1-&alpha;/2 </sub> digunakan.)",
-    "Variance Assumption": "Asumsi Varians",
-    "At least one pair": " Setidaknya Ada Satu Pasang Rata-rata yang Berbeda",
-    "Row-Col-0": "Baris dan Kolom Variabel saling bebas/independen",
-    "Row-Col-1": " Baris dan Kolom Variabel tidak saling bebas/independen",
-    "Enter any number of row": "( Masukkan amatan dari entri pojok kiri atas)",
-    "Row": "Baris",
-    "Column": "Kolom",
-    "Show Probability": "Tampilkan Peluang",
-    "Regression Line": "Garis Regresi",
-    "Erase All": "Hapus Layar",
-    "Add Point": "Tambahkan Titik",
-    "Erase Point": "Hapus Titik",
-    "Reference Site": "Situs Referensi",
-    "Lot Size": "Jumlah Lot",
-    "Defect Size": "Jumlah Cacat",
-    "If typed": "(Jika Bilangan di Ketik)",
-    "Stat/BoxPlot": "Stat/Diagram Kotak Garis",
-    "Mean": "Rata-rata",
-    "Std Dev": "Standar Deviasi",
-    "SimulationWarning": "( Simulasi yang sekarang harus terlebih dahulu diselesaikan sebelum anda memulai simulasi yang selanjutnya)",
+    "Binomial Experiment": "Binomial Experiment",
+    "Binomial Distribution": "Binomial Distribution",
+    "Binomial Prob Table": "Binomial Prob Table",
+    "Poisson Distribution": "Poisson Distribution",
+    "Poisson Prob Table": "Poisson Prob Table",
+    "Geometric Distribution": "Geometric Distribution",
+    "Geometric Prob Table": "Geometric Prob Table",
+    "HyperGeometric Distribution": "HyperGeometric Distribution",
+    "HyperGeometric Prob Table": "HyperGeometric Prob Table",
+    "Exponential Distribution": "Exponential Distribution",
+    "Normal Experiment": "Normal Experiment",
+    "Normal Distribution": "Normal Distribution",
+    "Normal Approx": "Normal Approx",
+    "t Distribution": "t Distribution",
+    "ChiSquare Distribution": "ChiSquare Distribution",
+    "F Distribution": "F Distribution",
+    "Sampling": "Sampling",
+    "Population vs Sample": "Population vs Sample",
+    "Population": "Population",
+    "Sample": "Sample",
+    "Exponential": "Exponential(0.3)",
+    "Uniform": "Uniform(0,1)",
+    "Sample05": "Sampling 5%",
+    "Sample10": "Sampling 10%",
+    "Sample20": "Sampling 20%",
+    "Statistics/BoxPlot": "Statistics/BoxPlot",
+    "Law of Large Number": "Law of Large Number",
+    "Dist of Sample Means": "Dist of Sample Means",
+    "Sample Size": "Sample Size",
+    "Confidence Interval": "Confidence Interval",
+    "Estimation Accuracy": "Estimation Accuracy",
+    "Repetition": "Repetition",
+    "Confidence Level": "Confidence Level",
+    "Testing Hypothesis mu_title": "Testing Mean",
+    "Testing Hypothesis sigma_title": "Testing Variance",
+    "Testing Hypothesis P_title": "Testing Proportion",
+    "Testing Hypothesis mu12_title": "Testing Two Means",
+    "Testing Hypothesis sigma12_title": "Testing Two Variances",
+    "Testing Hypothesis P12_title": "Testing Two Proportions",
+    "Testing Hypothesis mu": "Testing Hypothesis &mu;",
+    "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "Testing Hypothesis P",
+    "Testing Hypothesis mu12": "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12": "Testing Hypothesis P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
+    "Testing Independence": "Testing Independence",
+    "Correlation Coefficient": "Correlation Coeff",
+    "Regression Experiment": "Regression Experiment",
+    "Hypothesis": "Hypothesis",
+    "Test Type": "Test Type",
+    "Z-test": "Z-test",
+    "t-test": "t-test",
+    "Chi-test": "&chi;<sup>2</sup>-test",
+    "F-test": "F-test",
+    "Sample Data": "Sample Data",
+    "input either sample data": "Input either sample data, or sample statistics at the next boxes usign csv/bsv",
+    "Sample Statistics": "Sample Statistics",
+    "Sample Mean": "Sample Mean",
+    "Sample Variance": "Sample Variance",
+    "Sample Proportion": "Sample Proportion",
+    "if Z-test-1": "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
+    "if Z-test-2": "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used.)",
+    "Variance Assumption": "Variance Assumption",
+    "At least one pair": "At least one pair of means is different",
+    "Row-Col-0": "Row and column variables are independent",
+    "Row-Col-1": "Row and column variables are not independent",
+    "Enter any number of row": "(Enter observation from upper left cell)",
+    "Row": "Row",
+    "Column": "Column",
+    "Show Probability": "Show Probability",
+    "Regression Line": "Regression Line",
+    "Erase All": "Erase Screen",
+    "Add Point": "Add Point",
+    "Erase Point": "Erase Point",
+    "Reference Site": "Reference Site",
+    "Lot Size": "Lot Size",
+    "Defect Size": "Defect Size",
+    "If typed": "(If number is typed)",
+    "Stat/BoxPlot": "Stat/BoxPlot",
+    "Mean": "Mean",
+    "Std Dev": "Std Dev",
+    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
 }
 
-// Indonesian 
+// Indonesian
 appStr[1][8] = "../eStatH/index.html";
 appStr[2][8] = "../eStatU/index.html";
 appStr[3][8] = "../eStatE/index_en.html";
 appStr[4][8] = "../ExLearning/index_en.html";
 appStr[5][8] = "index.html";
 
-alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
-alertMsg[2][8] = " Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
-alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
-alertMsg[4][8] = " Jika amatan dari variabel yang dipilih berbeda atau amatan berbeda, analisis tidak diperbolehkan.";
-alertMsg[5][8] = "Terlalu banyak grup! Grafik mungkin tumpang tindih karena ukuran layar.";
-alertMsg[6][8] = "Jika analisis variabel di data ringkasan mengandung karakter, analisis atau membuat tabel tidak dapat dilakukan.";
-alertMsg[7][8] = "Jika terdapat lebih dari tiga variabel terpilih dari data awal, analisis atau membuat tabel tidak dapat dilakukan.";
-alertMsg[8][8] = "Diagram Dot dapat dibuat jika jumlah amatan kurang dari 200.";
-alertMsg[9][8] = "Diagram Dahan dan Daun dapat dibuat jika banyak amatan kurang dari 100.";
-alertMsg[12][8] = "Jika analisis variabel mengandung karakter, analisis atau membuat tabel tidak dapat dilakukan.";
-alertMsg[14][8] = "Data ringkasan tidak dapat digunakan untuk grafik kontinu dan uji hipotesis.";
-alertMsg[16][8] = "Hanya dua grup yang diperbolehkan untuk uji hipotesis ini.";
-alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel x dan variabel y.";
-alertMsg[18][8] = "Lebih dari tiga variabel tidak dapat dilakukan untuk diagram pencar.";
-alertMsg[19][8] = "Jika terdapat karakter di variabel X, diagram pencar tidak dapat digambar.";
-alertMsg[20][8] = "Jika terdapat karakter di variabel Y, diagram pencar tidak dapat digambar.";
-alertMsg[21][8] = "Jika terdapat data hilang, menyimpan tidak dapat dilakukan.";
-alertMsg[22][8] = " Jika terdapat angka negatif, diagram batang tidak dapat digambar.";
-alertMsg[25][8] = "Jika hanya terdapat satu grup, diagram batang bertumpuk tidak dapat dilakukan.";
-alertMsg[27][8] = "Jika hanya terdapat satu grup, diagram batang rasio tidak dapat dilakukan.";
-alertMsg[29][8] = "Jika hanya terdapat satu grup, diagram batang bersebelahan tidak dapat dilakukan.";
-alertMsg[31][8] = "Jika hanya terdapat satu grup, diagram batang dua arah tidak dapat dilakukan.";
-alertMsg[32][8] = "Jika terdapat angka negatif, diagram pai tidak dapat digambar.";
-alertMsg[33][8] = "Jika terdapat angka negatif, diagram donat tidak dapat digambar.";
-alertMsg[34][8] = "Jika terdapat angka negatif, diagram band tidak dapat digambar.";
-alertMsg[35][8] = "Jika terdapat angka negatif, tabel frekuensi tidak dapat dibangun.";
-alertMsg[36][8] = "Diagram batang ini hanya diperbolehkan untuk dua grup.";
-alertMsg[37][8] = "Uji Hipotesis ini hanya diperbolehkan untuk satu variabel.";
-alertMsg[38][8] = "mu bukan angka. Masukkan angka dan coba lagi!";
-alertMsg[39][8] = "Standar deviasi bernilai nol atau bukan angka. Coba lagi!";
-alertMsg[40][8] = "Varians input bukan angka. Masukkan angka dan coba lagi!";
-alertMsg[41][8] = "Uji Hipotesis ini hanya diperbolehkan untuk dua variabel. Variabel grup harus hanya memiliki dua grup";
-alertMsg[42][8] = "Mengubah judul dari uji hipotesis tidak diperbolehkan!";
+alertMsg[1][8] = "One of the selected variables does not have data.";
+alertMsg[2][8] = "Select variables for analysis (clicking column names) one by one. If two variables, first one is group variable. ";
+alertMsg[3][8] = "Missing data on the selected variable.";
+alertMsg[4][8] = "If observations of the selected variables are different or observations are different, analysis is not allowed.";
+alertMsg[5][8] = "Too many groups! Graphs may be overlapped due to size of the screen.";
+alertMsg[6][8] = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
+alertMsg[7][8] = "If more than three variables are selected on raw data, analysis or creating table is not allowed.";
+alertMsg[8][8] = "Dot Graph is allowd if the number of observation is less than 200.";
+alertMsg[9][8] = "Stem & Leaf Plot is allowd if the number of observation is less than 100.";
+alertMsg[12][8] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
+alertMsg[14][8] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
+alertMsg[16][8] = "Only two groups are allowed for this tesitng hypothesis.";
+alertMsg[17][8] = "Scatter plot requires at least x variable and y variable.";
+alertMsg[18][8] = "More than three variables are not allowed for scatter plot.";
+alertMsg[19][8] = "If there is a character on X variable, scatter plot cannot be drawn.";
+alertMsg[20][8] = "If there is a character on Y variable, scatter plot cannot be drawn.";
+alertMsg[21][8] = "If there is a missing data, save is not allowed.";
+alertMsg[22][8] = "If there is a negative number, bargraph cannot be drawn.";
+alertMsg[25][8] = "If there is only one group, stacked bar graph is not allowed.";
+alertMsg[27][8] = "If there is only one group, ratio bar graph is not allowed.";
+alertMsg[29][8] = "If there is only one group, side-by-side bar graph is not allowed.";
+alertMsg[31][8] = "If there is only one group, both-side bar graph is not allowed.";
+alertMsg[32][8] = "If there is a negative number, piechart cannot be drawn.";
+alertMsg[33][8] = "If there is a negative number, donut graph cannot be drawn.";
+alertMsg[34][8] = "If there is a negative number, band graph cannot be drawn.";
+alertMsg[35][8] = "If there is a negative number, frequency table cannot be drawn.";
+alertMsg[36][8] = "This bar graph is allowed only for two groups.";
+alertMsg[37][8] = "This testing hypothesis is allowed only for one variable.";
+alertMsg[38][8] = "mu is NaN . Ener value and then retry!";
+alertMsg[39][8] = "Standard deviation is either zero or NaN . Retry!";
+alertMsg[40][8] = "input variance is NaN . Ener value and then retry!";
+alertMsg[41][8] = "This testing hypothesis is allowed only for two variable. Group variable should have only two groups";
+alertMsg[42][8] = "Title editing of testing hypothesis is not allowed! ";
 
-svgStr[1][8] = " Diagram Batang";
-svgStr[2][8] = " Diagram Pai";
-svgStr[3][8] = " Diagram Donat";
-svgStr[4][8] = " Diagram Band";
-svgStr[5][8] = " Diagram Garis";
-svgStr[6][8] = " Diagram Dot";
-svgStr[7][8] = " Diagram Box-Whisker";
-svgStr[8][8] = " Diagram Dahan dan Daun";
+svgStr[1][8] = " Bar Graph";
+svgStr[2][8] = " Pie Chart";
+svgStr[3][8] = " Doughnut Graph";
+svgStr[4][8] = " Band Graph";
+svgStr[5][8] = " Line Graph";
+svgStr[6][8] = " Dot Graph";
+svgStr[7][8] = " Box-Whisker Plot";
+svgStr[8][8] = " Stem and Leaf Plot";
 svgStr[9][8] = " Histogram";
-svgStr[10][8] = " Diagram Pencar";
-svgStr[11][8] = " Pengujian hipotesis: Rata-rata Satu Populasi ";
-svgStr[12][8] = " Pengujian Hipotesis: Varians Satu Populasi";
-svgStr[13][8] = " Pengujian Hipotesis: Rata-rata Dua Populasi ";
-svgStr[14][8] = " Pengujian Hipotesis: Varians Dua Populasi ";
-svgStr[15][8] = " Analisis Varians";
-svgStr[16][8] = "Frekuensi";
-svgStr[17][8] = "Rasio";
-svgStr[18][8] = "Grup ";
+svgStr[10][8] = " Scatter Plot";
+svgStr[11][8] = " Testing Hypothesis: Population Mean";
+svgStr[12][8] = " Testing Hypothesis: Population Variance";
+svgStr[13][8] = " Testing Hypothesis: Two Population Means";
+svgStr[14][8] = " Testing Hypothesis: Two Population Variances";
+svgStr[15][8] = " Analysis of Variance";
+svgStr[16][8] = "Frequency";
+svgStr[17][8] = "Ratio";
+svgStr[18][8] = "Group ";
 svgStr[19][8] = " ";
-svgStr[20][8] = "<h3>Data Ringkasan<br>Tabel Frekuensi </h3>";
-svgStr[21][8] = "Variabel Grup";
-svgStr[22][8] = "Variabel Baris";
+svgStr[20][8] = "<h3>Summary Data<br>Frequency Table</h3>";
+svgStr[21][8] = "Group Variable";
+svgStr[22][8] = "Row Variable";
 svgStr[23][8] = "Total";
 svgStr[24][8] = "Total";
-svgStr[25][8] = "<h3>Tabel Frekuensi</h3>";
-svgStr[26][8] = "Variabel Analisis";
-svgStr[27][8] = "Nilai Var";
-svgStr[28][8] = "Label Nilai";
-svgStr[29][8] = "Frekuensi";
-svgStr[30][8] = "Persen(%)";
-svgStr[31][8] = "<h3>Tabel Silang</h3>";
-svgStr[32][8] = "Variabel Kolom";
-svgStr[33][8] = "Variabel Baris";
-svgStr[34][8] = "Rata-rata"
-svgStr[35][8] = "Standar Deviasi"
-svgStr[36][8] = "<h3> Histogram<br>Tabel Frekuensi</h3>";
-svgStr[37][8] = "Nama Grup";
+svgStr[25][8] = "<h3>Frequency Table</h3>";
+svgStr[26][8] = "Analysis Variable";
+svgStr[27][8] = "Var Value";
+svgStr[28][8] = "Value Label";
+svgStr[29][8] = "Frequency";
+svgStr[30][8] = "Percent(%)";
+svgStr[31][8] = "<h3>Cross Table</h3>";
+svgStr[32][8] = "Col Variable";
+svgStr[33][8] = "Row Variable";
+svgStr[34][8] = "Mean"
+svgStr[35][8] = "Std Dev"
+svgStr[36][8] = "<h3> Histogram<br>Frequency Table</h3>";
+svgStr[37][8] = "Group Name";
 svgStr[38][8] = "Interval";
-svgStr[39][8] = "Dahan";
-svgStr[40][8] = " Daun";
-svgStr[41][8] = "Daun Grup 1";
-svgStr[42][8] = "Daun Grup 2"
-svgStr[43][8] = "<h3>Statistika Dasar</h3>";
-svgStr[44][8] = "Amatan";
+svgStr[39][8] = "Stem";
+svgStr[40][8] = " Leaf";
+svgStr[41][8] = "Group 1  Leaf";
+svgStr[42][8] = "Group 2  Leaf"
+svgStr[43][8] = "<h3>Basic Statistics</h3>";
+svgStr[44][8] = "Observation";
 svgStr[45][8] = "Minimum";
 svgStr[46][8] = "Median";
-svgStr[47][8] = "Maksimum";
+svgStr[47][8] = "Maximum";
 svgStr[48][8] = "Total";
 
-svgStrU[1][8] = "Distribusi Binomial";
-svgStrU[2][8] = "Ulangan";
-svgStrU[3][8] = "Rata-rata";
-svgStrU[4][8] = "Standar Deviasi";
-svgStrU[5][8] = "Distribusi Poisson";
-svgStrU[6][8] = "Distribusi Geometri";
-svgStrU[7][8] = "Distribusi Hipergeometri";
-svgStrU[8][8] = "Populasi";
-svgStrU[9][8] = "Distribusi Sampel";
-svgStrU[10][8] = " Hukum Bilangan Besar";
-svgStrU[11][8] = "Angka";
-svgStrU[12][8] = "Gambar";
-svgStrU[13][8] = "Gambar Koin";
-svgStrU[14][8] = "Banyaknya Gambar";
-svgStrU[15][8] = "Banyaknya Ulangan";
-svgStrU[16][8] = "Distribusi dari Rataan Sampel";
-svgStrU[17][8] = "Ulangan";
-svgStrU[18][8] = "Standar Eror";
-svgStrU[19][8] = "Rata-rata Populasi";
-svgStrU[20][8] = "Selang Kepercayaan";
-svgStrU[21][8] = "Keakurasian Nilai Estimasi";
-svgStrU[22][8] = "Rata-rata Sampel";
+svgStrU[1][8] = "Binomial Distribution";
+svgStrU[2][8] = "repetition";
+svgStrU[3][8] = "Mean";
+svgStrU[4][8] = "Std Dev";
+svgStrU[5][8] = "Poissson Distribution";
+svgStrU[6][8] = "Geometric Distribution";
+svgStrU[7][8] = "HyperGeometric Distribution";
+svgStrU[8][8] = "Population";
+svgStrU[9][8] = "Sample Dist";
+svgStrU[10][8] = "Law of Large Number";
+svgStrU[11][8] = "Tail";
+svgStrU[12][8] = "Head";
+svgStrU[13][8] = "Coin Head";
+svgStrU[14][8] = "Number of Heads";
+svgStrU[15][8] = "Number of Trials";
+svgStrU[16][8] = "Dist of Sample Means";
+svgStrU[17][8] = "repetition";
+svgStrU[18][8] = "std err";
+svgStrU[19][8] = "Population Mean";
+svgStrU[20][8] = "Confidence Interval";
+svgStrU[21][8] = "Estimation Accuracy";
+svgStrU[22][8] = "sample mean";
 svgStrU[23][8] = "[TestStat] = ";
-svgStrU[24][8] = "Distribusi";
-svgStrU[25][8] = "Tolak H0";
-svgStrU[26][8] = "Terima H0";
-svgStrU[27][8] = " nilai-p  = ";
-svgStrU[28][8] = "[Keputusan] ";
+svgStrU[24][8] = "Distribution";
+svgStrU[25][8] = "Reject Ho";
+svgStrU[26][8] = "Accept Ho";
+svgStrU[27][8] = " p-value  = ";
+svgStrU[28][8] = "[Decision] ";
 svgStrU[29][8] = "[ANOVA]";
-svgStrU[30][8] = "Masukkan Koefisien Korelasi dan klik Tombol Jalankan";
-svgStrU[31][8] = "Regresi";
-svgStrU[32][8] = "Variabel Baris";
-svgStrU[33][8] = "Variabel Kolom";
-svgStrU[34][8] = "Rata-rata"
-svgStrU[35][8] = "Standar Deviasi"
-svgStrU[36][8] = "<h3> Histogram<br>Tabel Frekuensi</h3>";
-svgStrU[37][8] = "Nama Grup";
+svgStrU[30][8] = "Enter Correlation Coefficient and click Execute button";
+svgStrU[31][8] = "Regression";
+svgStrU[32][8] = "Row Var";
+svgStrU[33][8] = "Col Var";
+svgStrU[34][8] = "Mean"
+svgStrU[35][8] = "Std Dev"
+svgStrU[36][8] = "<h3> Histogram<br>Frequency Table</h3>";
+svgStrU[37][8] = "Group Name";
 svgStrU[38][8] = "Interval";
-svgStrU[39][8] = "Dahan";
-svgStrU[40][8] = " Daun";
-svgStrU[41][8] = "Daun Grup 1";
-svgStrU[42][8] = "Daun Grup 2"
-svgStrU[43][8] = "<h3>Statistika Dasar</h3>";
-svgStrU[44][8] = "Amatan";
+svgStrU[39][8] = "Stem";
+svgStrU[40][8] = " Leaf";
+svgStrU[41][8] = "Group 1  Leaf";
+svgStrU[42][8] = "Group 2  Leaf"
+svgStrU[43][8] = "<h3>Basic Statistics</h3>";
+svgStrU[44][8] = "Observation";
 svgStrU[45][8] = "Minimum";
 svgStrU[46][8] = "Median";
-svgStrU[47][8] = "Maksimum";
+svgStrU[47][8] = "Maximum";
 svgStrU[48][8] = "Total";
-svgStrU[49][8] = "Eksponensial";
-svgStrU[50][8] = "Seragam";
-svgStrU[51][8] = "Keakurasian Nilai Estimasi";
-svgStrU[52][8] = "Buat titik dengan klik, lalu eStat menemukan garis regresi. ";
-svgStrU[53][8] = "Pindahkan atau hapus titik. Perhatikan perubahan pada garis regresi.";
-svgStrU[54][8] = "[Statistik Sampel] ";
-svgStrU[55][8] = "[Sampel 1 Statistik] ";
-svgStrU[56][8] = "[Sampel 2 Statistik] ";
-svgStrU[57][8] = "Selang Kepercayaan";
+svgStrU[49][8] = "Exponential";
+svgStrU[50][8] = "Uniform";
+svgStrU[51][8] = "Estimation Accuracy";
+svgStrU[52][8] = "- Create points by click, then eStat finds a regression line.";
+svgStrU[53][8] = "- Move or erase a point. Watch change of the regression line.";
+svgStrU[54][8] = "[Sample Statistics] ";
+svgStrU[55][8] = "[Sample 1 Statistics] ";
+svgStrU[56][8] = "[Sample 2 Statistics] ";
+svgStrU[57][8] = "confidence level";
 svgStrU[58][8] = "";
 svgStrU[59][8] = "";
 
