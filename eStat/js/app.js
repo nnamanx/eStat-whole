@@ -1,6 +1,6 @@
 ﻿$(document).ready(function() {
-    if(window.navigator.userAgent.indexOf("MSIE") > 0) {
-	alert("Internet Explorer에서는 제대로 작동하지 않을 수 있습니다. Chrome 웹브라우저를 권장합니다.");
+    if(window.navigator.userAgent.indexOf("Chrome") <= 0) {
+	alert("Chrome 웹브라우저 사용을 권장합니다.");
     };
 });
 		  
@@ -695,7 +695,9 @@ d3.select("#moveGraph").on("click", function() {
 });
 // save Table
 d3.select("#saveTable").on("click", function() {
-    saveAs(new Blob([d3.select("#screenTable").html()]), "eStatLog.html");
+    head = '<html><head><meta charset="UTF-8"></head><body>';
+    tail = '</body></html>';
+    saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatLog.html");
 });
 // print Table
 d3.select("#printTable").on("click", function() {
