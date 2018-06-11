@@ -1,6 +1,6 @@
 ﻿$(document).ready(function() {
     if(window.navigator.userAgent.indexOf("MSIE") > 0) {
-	alert("Internet Explorer에서는 제대로 작동하지 않을 수 있습니다. Chrome 웹브라우저를 권장합니다.");
+	alert("Chrome 웹브라우저를 사용하면 100% 기능이 작동됩니다. 다른 웹브라우저에서는 일부 기능이 작동하지 않을 수 있습니다.");
     };
 });
 		  
@@ -8,6 +8,8 @@ var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
 var buttonColorH = "#FF4500";
+// log 스크린 컨트롤
+var screenTablePixelHeight = 0;
 // 메뉴 칼러
 var exampleDataNo = 10
 var menuColor = new Array(exampleDataNo + 1);
@@ -59,7 +61,8 @@ for (j = 0; j < colMax; j++) {
         rvalueLabel[j][i] = null;
         tdvalueLabel[j][i] = null;
     }
-} // Sorting freq and Ascend/Descend Indexing Label
+};
+// Sorting freq and Ascend/Descend Indexing Label
 var dataR = new Array(rowMax);
 var dataA = new Array(rowMax);
 var dataD = new Array(rowMax);
@@ -126,6 +129,12 @@ var alphaR = new Array(ngroupMax);
 var betaR = new Array(ngroupMax);
 var corr = new Array(ngroupMax);
 var rsquare = new Array(ngroupMax);
+var sxx = new Array(ngroupMax);
+var syy = new Array(ngroupMax);
+var sxy = new Array(ngroupMax);
+var ssr = new Array(ngroupMax);
+var sse = new Array(ngroupMax);
+var stderr = new Array(ngroupMax);
 // 히스토그램 변량
 var nint, xstep, freqmax;
 var gxminH, gxmaxH, gyminH, gymaxH;
@@ -687,6 +696,8 @@ d3.select("#moveGraph").on("click", function() {
     var svgString = getSVGString(svg.node());
     $("#loc").append(svgString);
     $("#loc").append(txt, txt);
+    screenTablePixelHeight = svgHeight + 100;
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
     // var imgsrc = 'data:image/svg+xml;utf8,'+svgString;
     //	  $("#screenTable").append(svgString);
     //	$("<img>").attr("src", imgsrc)
@@ -1157,6 +1168,8 @@ d3.select("#freqTable").on("click", function() {
     document.getElementById("freqTable").style.backgroundColor = buttonColorH;
     ngvalue = ngroup;
     freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabel, ngroup, gvarName, gvalueLabel);
+    screenTablePixelHeight = 2000;
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // ==========================================================================================
 // 연속형 변량 그래프 ========================================================================
@@ -1214,6 +1227,7 @@ d3.select("#hist1").on("click", function() {
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     chart.selectAll("*").remove();
+    enableHist();
     nint = 7;
     xstep = (tstat[7] - tstat[3]) / nint; // (전체 최대 - 최소) / 인터발수	: 양쪽 그래프 buffer
     gxminH = tstat[3] - xstep;
@@ -1257,9 +1271,11 @@ d3.select("#HistLine").on("click", function() {
     }
 })
 // 히스토그램 도수분포표 표시
-d3.select("#histTable").on("click", function() {;
+d3.select("#HistTable").on("click", function() {;
     if (Histogram == false) return;
     showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gvalueLabel)
+    screenTablePixelHeight = 1000;
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 새 구간으로 히스토그램 업데이트
 d3.select("#HistRedraw").on("click", function() {
@@ -1278,6 +1294,35 @@ d3.select("#HistRedraw").on("click", function() {
     if (checkHistFreq) showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, gyminH, gymaxH); // 도수 표시
     if (checkHistLine) showHistLine(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, gyminH, gymaxH); // 꺽은선 표시
 })
+// 확률 히스토그램 
+d3.select("#HistNormal").on("click", function() {
+    if (Histogram == false) return;
+    if (ngroup > 1) return;
+    chart.selectAll("*").remove(); // 전화면 제거
+    disableHist();
+    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+})
+// 정규성 카이제곱검정 
+d3.select("#HistChisq").on("click", function() {
+    if (Histogram == false) return;
+    if (ngroup > 1) return;
+    chart.selectAll("*").remove(); // 전화면 제거
+    disableHist();
+    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    showHistNormalTable(nobs, avg, std, nvalueH, freq, dataValueH, dvarName);
+    screenTablePixelHeight = 1000;
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+})
+// 정규성 Q-Q Plot 
+d3.select("#HistNormalQQ").on("click", function() {
+    if (Histogram == false) return;
+    if (ngroup > 1) return;
+    chart.selectAll("*").remove(); // 전화면 제거
+    disableHist();
+    for (i=0; i<nobs[0]; i++) tdata[i] = dataSet[0][i];
+    drawHistQQ(nobs[0], tdata, dvarName)
+})
+
 // 상자그래프 : 주메뉴 -----------------------------------------------------------------------------------------
 d3.select("#box1").on("click", function() {
     graphNum = 16;
@@ -1333,6 +1378,8 @@ d3.select("#statTable").on("click", function() {
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    screenTablePixelHeight = 2000;
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 산점도 버튼 클릭 -------------------------------------------------------------------------------
 d3.select("#scatter1").on("click", function() {
@@ -1341,11 +1388,15 @@ d3.select("#scatter1").on("click", function() {
     if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
     buttonColorChange();
     Scatter = true;
+    document.getElementById("regress").checked = false;
+    document.getElementById("regress").disabled = false;
+    document.getElementById("regressBand").checked = false;
+    document.getElementById("regressBand").disabled = false;
     document.getElementById("scatter1").style.backgroundColor = buttonColorH;
     tobs = xobs;
     SortAscendBasic(tobs, gdata, dataA); // Sorting data in ascending order
     ngroup = DotValueFreq(tobs, dataA, gdataValue, gvalueFreq)
-    bivarStatByGroup(ngroup, tobs, xdata, ydata, gdata, nobs, xavg, yavg, xstd, ystd, alphaR, betaR, corr, rsquare)
+    bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd,alphaR,betaR,corr,rsquare,sxx,syy,sxy,ssr,sse,stderr);
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
     document.getElementById("sub6").style.display = "block"; //회귀선 표시
 })
@@ -1353,17 +1404,53 @@ d3.select("#scatter1").on("click", function() {
 d3.select("#regress").on("click", function() {
     if (Scatter == false) return;
     if (this.checked) {
-        checkRegress = true;
         showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS);
     } else {
-        checkRegress = false;
         removeRegression();
     }
+})
+// 산점도 회귀분석표 그리기
+d3.select("#regressTable").on("click", function() {
+    if (Scatter == false) return;
+    if (ngroup > 1) return;
+    document.getElementById("screenTable").scrollBy(0,500);
+    regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR,corr,rsquare,sxx,ssr,sse,stderr);
+    screenTablePixelHeight = 1000;
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+})
+// 산점도 회귀신뢰대 그리기
+d3.select("#regressBand").on("click", function() {
+    if (Scatter == false) return;
+    if (ngroup > 1) return;
+    if (this.checked) {
+        showRegressionBand(nobs, alphaR, betaR, xavg, sxx, stderr, scatterS);
+    } else {
+        removeRegressionBand();
+    }
+})
+// 회귀분석 잔차 Plot
+d3.select("#regressResidual").on("click", function() {
+    if (Scatter == false) return;
+    if (ngroup > 1) return;
+    document.getElementById("regress").checked = false;
+    document.getElementById("regressBand").checked = false;
+    document.getElementById("regress").disabled = true;
+    document.getElementById("regressBand").disabled = true;
+    regressionResidual(xdata,ydata,nobs,xavg,sxx,stderr,alphaR,betaR);
+})
+// 회귀분석 잔차 Q-Q Plot
+d3.select("#regressQQ").on("click", function() {
+    if (Scatter == false) return;
+    if (ngroup > 1) return;
+    document.getElementById("regress").checked = false;
+    document.getElementById("regressBand").checked = false;
+    document.getElementById("regress").disabled = true;
+    document.getElementById("regressBand").disabled = true;
+    regressionQQ(nobs,xdata,ydata,alphaR,betaR);
 })
 // eStatH 메뉴
 d3.select("#estatH").on("click", function() {
     window.open(appStr[1][langNum]);
-    1
 })
 // eStatU 메뉴
 d3.select("#estatU").on("click", function() {
@@ -1431,34 +1518,17 @@ d3.select("#testM1").on("click", function() {
 // 모평균 가설검정 재실행
 // H1 type
 var h8 = document.myForm80.type0;
-h8[0].onclick = function() {
-    h1Type = 1;
-} // 양측검정
-h8[1].onclick = function() {
-    h1Type = 2;
-} // 우측검정
-h8[2].onclick = function() {
-    h1Type = 3;
-} 
-// 좌측검정
+h8[0].onclick = function() {h1Type = 1;} // 양측검정
+h8[1].onclick = function() {h1Type = 2;} // 우측검정
+h8[2].onclick = function() {h1Type = 3;} // 좌측검정
 // Test type
 var test8 = document.myForm81.type1;
-test8[0].onclick = function() {
-    testType = 2;
-} 
-// Z-test
-test8[1].onclick = function() {
-    testType = 1;
-} 
-// t-test
+test8[0].onclick = function() {testType = 2;} // Z-test
+test8[1].onclick = function() {testType = 1;} // t-test
 // alpha
 var a8 = document.myForm82.type2;
-a8[0].onclick = function() {
-    alpha = 0.05;
-}
-a8[1].onclick = function() {
-    alpha = 0.01;
-}
+a8[0].onclick = function() {alpha = 0.05;}
+a8[1].onclick = function() {alpha = 0.01;}
 d3.select("#executeTH8").on("click", function() {
     graphNum = 21;
     // input value
@@ -1565,18 +1635,15 @@ d3.select("#testS1").on("click", function() {
     nn = tstat[0];
     df = nn - 1;
     stdev = tstat[2];
-    vari = stdev * stdev
-    variS = vari;
-    teststat = (xbar - mu) / (stdev / Math.sqrt(nn));
-    temp = t_inv(1 - alpha / 2, df, info) * stdev / Math.sqrt(nn);
-    left = xbar - temp;
-    right = xbar + temp;
+    variS  = stdev * stdev
+    vari = df * variS / chisq_inv(0.50, df, info);
+
     // confidence interval
     left = df * variS / chisq_inv(1 - alpha / 2, df, info);
     right = df * variS / chisq_inv(alpha / 2, df, info);
     // test statistics
     teststat = df * variS / vari;
-    statT[0] = variS; // 초기 variance
+    statT[0] = vari; // 초기 variance
     statT[2] = alpha;
     statT[3] = tstat[0]; // nn
     statT[4] = tstat[1]; // xbar

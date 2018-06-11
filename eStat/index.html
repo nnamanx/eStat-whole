@@ -302,11 +302,11 @@
 	  </div> <!-- end of graph-toolbars -->
 
 	  <div id="graph-main-container">
-		      <svg id="SVG"></svg>
-		  </div>
+	    <svg id="SVG"></svg>
+	  </div>
 
 	  <div id="graph-option-container">
-	    <div id="sub1" class="option-group">
+	    <div id="sub1" class="option-group"> <!--- 막대그래프 --->
 	      <label>&nbsp;&nbsp;<input type="checkbox" id="freq"><span data-msgid="Frequency">도수표시</span></label>
 	    </div>
 
@@ -338,15 +338,29 @@
 	      <label><input type="checkbox" id="DotStd"><span data-msgid="Std Deviation">표준편차</span></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	    </div>
 
-	    <div id="sub6" class="option-group">
-	      &nbsp;<label><input type="checkbox" id="regress"><span data-msgid="Regression">회귀선</span></label>  <br>
+	    <div id="sub6" class="option-group"> <!--- 산점도 회귀분석 --->
+	      &nbsp;<label><input type="checkbox" id="regress"><span data-msgid="Regression">Regression Line</span></label>  <br> 
+	      <p>&nbsp;<span data-msgid="OneGroup">(한그룹)</span> 
+	      &nbsp;<label><input type="checkbox" id="regressBand"><span data-msgid="RegressionBand">Confidence Band</span></label> 
+              &nbsp;
+	      <button type="button" id="regressTable" >
+		<span data-msgid="RegressionTable">Regression Analysis</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="regressResidual" >
+		<span data-msgid="RegressionResidual">잔차와 예측값 산점도</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="regressQQ" >
+		<span data-msgid="RegressionQQ">잔차 Q-Q 산점도</span>
+	      </button>
 	    </div>
 
-	    <div id="sub7" class="option-group">
+	    <div id="sub7" class="option-group"> <!--- 히스토그램 --->
 	      <label>&nbsp;<input type="checkbox" id="HistMean"><span data-msgid="Mean">평균</span></label>
 	      <label><input type="checkbox" id="HistFreq"><span data-msgid="Frequency">도수</span></label>
 	      <label><input type="checkbox" id="HistLine"><span data-msgid="Frequency Polygon">도수분포다각형</span></label> &nbsp
-	      <button type="button" id="histTable" >
+	      <button type="button" id="HistTable" >
 		<span data-msgid="Frequency Table">도수분포표</span>
 	      </button>
 	      <br>&nbsp
@@ -355,6 +369,19 @@
 	      </button>&nbsp
 	      &nbsp;<span data-msgid="Interval Start">구간시작</span> <input type="text" class="textarea" value="0" size=4  id="HistInit"> &nbsp
 	      &nbsp;<span data-msgid="Interval Width">구간너비</span> <input type="text" class="textarea" value="10" size=4 id="HistStep"> 
+	      <p>&nbsp;<span data-msgid="OneGroup">(한그룹)</span>
+              &nbsp;
+	      <button type="button" id="HistNormal" >
+		<span data-msgid="HistogramNormal">확률 히스토그램</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistChisq" >
+		<span data-msgid="HistogramChisq">정규 적합성검정</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistNormalQQ" >
+		<span data-msgid="HistogramNormalQQ">정규 Q-Q 산점도</span>
+	      </button>
 	    </div>
 
 	    <div id="sub8" class="option-group"> <!-- TH 1 Mean -->
@@ -410,8 +437,8 @@
 		    <td>&plusmn;</td>
 		    <td><span class="fontmath">t<sub>n-1, 1-&alpha;/2</sub></span></td>
 		    <td><span class="fontmath"> (s / &radic; n )</span></td>
-		    <td colspan="4"><span class="fontguide" data-msgid="(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)">(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)</span> </td>
-		    <td>&nbsp;</td>
+		    <td colspan="4"><span class="fontguide" data-msgid="(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)">(Z, &sigma;)</span> </td>
+		    <td>&nbsp;</td>   
 		  </tr>
 		</tbody>
 	      </table>
@@ -437,7 +464,7 @@
 	      </form>
 
 	      <form action="#" name="myForm92" class="option-group">&nbsp;&nbsp;&nbsp;
-		<span class="fontmath" data-msgid="&chi;<sup>2</sup> test">&chi;<sup>2</sup> test </span>
+		<span class="fontmath" data-msgid="Chi-test">&chi;<sup>2</sup> test </span>
 		<br> &nbsp;&nbsp;&nbsp;
 		<span class="fontmath">
 		  <span class="fontmath" data-msgid="Significance Level">significance level</span> &nbsp;

@@ -1,8 +1,7 @@
-// language.js
-
+﻿// language.js
 var langNum;
 var nLanguage = 15;
-var nString = 60;
+var nString = 90;
 var appStr = new Array(nString);
 var svgStr = new Array(nString);
 var svgStrU = new Array(nString);
@@ -13,7 +12,7 @@ for (var j = 0; j < nString; j++) {
     svgStrU[j] = new Array(nLanguage);
     alertMsg[j] = new Array(nLanguage);
 }
-
+// 언어 코드
 languageNumber = {
     'ko': 0,
     'en': 1,
@@ -26,7 +25,7 @@ languageNumber = {
     'vi': 7,
     'id': 8,
     'mn': 9,
-}
+};
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
     if (lang == null) {
@@ -40,7 +39,6 @@ $('#select_language').change(function() {
     var lang = $("#select_language option:selected").val();
     setLanguage(lang);
 });
-
 function setLanguage(lang) {
     langNum = languageNumber[lang];
     localStorage.setItem("lang", lang);
@@ -48,15 +46,15 @@ function setLanguage(lang) {
         var $this = $(this);
         $this.html($.message[lang][$this.data('msgid')]);
     });
-}
+};
 // 언어 컨트롤
 var lang = localStorage.getItem("lang");
 if (lang == null) lang = "en";
 if (lang == "ko") langNum = 0;
 else if (lang == "en") langNum = 1;
 else if (lang == "ja") langNum = 2;
-else if (lang == "zh-CN") langNum = 10;
-else if (lang == "zh-TW") langNum = 3;
+else if (lang == "zh") langNum = 10;
+else if (lang == "zhTW") langNum = 3;
 else if (lang == "fr") langNum = 4;
 else if (lang == "de") langNum = 5;
 else if (lang == "es") langNum = 6;
@@ -64,7 +62,6 @@ else if (lang == "vi") langNum = 7;
 else if (lang == "id") langNum = 8;
 else if (lang == "mn") langNum = 9;
 // console.log("eStatU.js langNum="+langNum);
-
 $.message = {}
 // Korean
 $.message.ko = {
@@ -131,6 +128,7 @@ $.message.ko = {
     "Mean": "평균",
     "Std Deviation": "표준편차",
     "Regression": "회귀선",
+    "RegressionLine": "회귀선",
     "Frequency Polygon": "도수분포다각형",
     "Frequency Table": "도수분포표",
     "Execute New Interval": "새 구간으로 실행",
@@ -138,11 +136,11 @@ $.message.ko = {
     "Interval Width": "구간너비",
     "t-test": "t-검정",
     "Z-test": "Z-검정",
-    "(if Z-test, enter &sigma;)": "(Z-검정이면 입력)",
+    "(if Z-test, enter &sigma;)": "(Z-검정이면 &sigma;입력)",
     "Significance Level": "유의수준",
     "Execute": "실행",
     "(Confidence Interval)": "(신뢰구간)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-검정이면, Z<sub>1-&alpha;/2 </sub> 이용)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-검정이면, Z, &sigma; )",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 검정",
     "Variance Assumption": "분산가정",
     "F test": "F 검정",
@@ -194,13 +192,14 @@ $.message.ko = {
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
     "Confidence Level": "신뢰수준",
-    "Testing Hypothesis mu_title": "추검정 모평균",
+    "Testing Hypothesis mu_titleAB": "가설검정 모평균",
     "Testing Hypothesis mu_title": "추검정 모평균",
     "Testing Hypothesis sigma_title": "추검정 모분산",
     "Testing Hypothesis P_title": "추검정 모비율",
     "Testing Hypothesis mu12_title": "두 모평균 가설검정",
     "Testing Hypothesis sigma12_title": "두 모분산 가설검정",
     "Testing Hypothesis P12_title": "두 모비율 검정",
+    "Testing Hypothesis muAB": "모평균 가설검정 : &alpha;, &beta;",
     "Testing Hypothesis mu": "추정 및 가설검정 : 모평균 &mu;",
     "Testing Hypothesis sigma": "추정 및 가설검정 : 모분산 &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "추정 및 가설검정 : 모비율 P",
@@ -217,8 +216,11 @@ $.message.ko = {
     "t-test": "t-검정",
     "Chi-test": "&chi;<sup>2</sup>-검정",
     "F-test": "F-검정",
+    "Sampling Type": "표본",
+    "Independent Sample": "독립표본",
+    "Paired Sample": "종속표본",
     "Sample Data": "표본자료",
-    "input either sample data": "(표본자료를 여기 입력, 아니면 다음 표본통계량을 입력(공란, 콤마로 구분)",
+    "input either sample data": "(표본자료를 여기 입력, 아니면 다음 표본통계량을 입력(공란 구분)",
     "Sample Statistics": "표본통계량",
     "Sample Mean": "표본평균",
     "Sample Variance": "표본분산",
@@ -245,14 +247,24 @@ $.message.ko = {
     "Mean": "평균",
     "Std Dev": "표준편차",
     "SimulationWarning": "(시뮬레이션이 끝나기 전에 다른 실험을 위한 '실행' 버튼을 누르면 에러가 발생함)",
-}
+    "OneGroup": "(한그룹)",
+    "RegressionBand": "신뢰대",
+    "RegressionTable": "상관 및 회귀분석",
+    "RegressionResidual": "잔차와 예측값 산점도",
+    "RegressionQQ": "잔차 Q-Q 산점도",
+    "HistogramNormal": "확률 히스토그램",
+    "HistogramChisq": "정규 &chi;<sup>2</sup>적합성검정",
+    "HistogramNormalQQ": "정규 Q-Q 산점도",
+    "PopulationStd": "모표준편차",
+    "Type1Error": "1종오류",
+    "Type2Error": "2종오류",
+};
 // Korean
 appStr[1][0] = "../eStatH/index.html";
 appStr[2][0] = "../eStatU/index.html";
 appStr[3][0] = "../eStatE/index.html";
 appStr[4][0] = "../ExLearning/index.html";
 appStr[5][0] = "index_en.html";
-
 alertMsg[1][0] = "선택된 변량중에 자료가 없는 것이 있습니다!";
 alertMsg[2][0] = "시트에서 분석을 원하는 변량를 선택(변량번호 클릭)한 후 버튼을 눌러주세요!  변량이 2개 이상일 경우 첫 선택변량는 그룹변량이 됩니다. ";
 alertMsg[3][0] = "선택된 열에 결측치가 있습니다.";
@@ -286,7 +298,6 @@ alertMsg[39][0] = "Standard deviation is either zero or NaN . Retry!";
 alertMsg[40][0] = "input variance is NaN . Ener value and then retry!";
 alertMsg[41][0] = "두 변량 (그룹변량과 분석변량)에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[42][0] = "가설검정의 제목은 편집할 수 없습니다! ";
-
 svgStr[1][0] = " 막대그래프";
 svgStr[2][0] = " 원그래프";
 svgStr[3][0] = " 도넛그래프";
@@ -320,8 +331,8 @@ svgStr[30][0] = "백분률(%)";
 svgStr[31][0] = "<h3>교차표</h3>";
 svgStr[32][0] = "열변량";
 svgStr[33][0] = "행변량";
-svgStr[34][0] = "평균"
-svgStr[35][0] = "표준편차"
+svgStr[34][0] = "평균";
+svgStr[35][0] = "표준편차";
 svgStr[36][0] = "<h3> 구간별<br>도수분포표</h3>";
 svgStr[37][0] = "그룹명";
 svgStr[38][0] = "계급구간";
@@ -335,6 +346,47 @@ svgStr[45][0] = "최솟값";
 svgStr[46][0] = "중앙값";
 svgStr[47][0] = "최댓값";
 svgStr[48][0] = "전체";
+svgStr[49][0] = "<h3>정규성 검정</h3>";
+svgStr[50][0] = "적합성검정은<br> 기대도수가<br> 5보다 클때 권장";
+svgStr[51][0] = "카이제곱 적합성검정<br>구간 i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][0] = "데이터<br>관찰도수<br>(O<sub>i</sub>)";
+svgStr[53][0] = "정규분포<br>기대확률<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][0] = "정규분포<br>기대도수<br>(E<sub>i</sub>)";
+svgStr[55][0] = "각 구간<br>카이제곱값<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][0] = "카이제곱값 합계";
+svgStr[57][0] = "확률 히스토그램과 정규분포";
+svgStr[58][0] = "정규 Q-Q 산점도";
+svgStr[59][0] = "정규 백분위수";
+svgStr[60][0] = "상관계수";
+svgStr[61][0] = "결정계수";
+svgStr[62][0] = "추정오차";
+svgStr[63][0] = "변량";
+svgStr[64][0] = "변량명";
+svgStr[65][0] = "독립변량";
+svgStr[66][0] = "종속변량";
+svgStr[67][0] = "모수";
+svgStr[68][0] = "추정값";
+svgStr[69][0] = "값";
+svgStr[70][0] = "절편";
+svgStr[71][0] = "기울기";
+svgStr[72][0] = "요인";
+svgStr[73][0] = "제곱합";
+svgStr[74][0] = "자유도";
+svgStr[75][0] = "평균제곱";
+svgStr[76][0] = "회귀";
+svgStr[77][0] = "오차";
+svgStr[78][0] = "전체";
+svgStr[79][0] = "<h3>회귀분석</h3>";
+svgStr[80][0] = "표준화 잔차의 Q-Q Plot";
+svgStr[81][0] = "표준화 잔차";
+svgStr[82][0] = "정규 분위수";
+svgStr[83][0] = "잔차 산점도";
+svgStr[84][0] = "예측값";
+svgStr[85][0] = "";
+svgStr[86][0] = "";
+svgStr[87][0] = "";
+svgStr[88][0] = "";
+svgStr[89][0] = "";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -360,8 +412,8 @@ svgStrU[21][0] = "추정정확도";
 svgStrU[22][0] = "표본평균";
 svgStrU[23][0] = "[검정통계량] = ";
 svgStrU[24][0] = "분포";
-svgStrU[25][0] = "기각 Ho";
-svgStrU[26][0] = "채택 Ho";
+svgStrU[25][0] = "기각 H\u2080";
+svgStrU[26][0] = "채택 H\u2080";
 svgStrU[27][0] = "p-값 = ";
 svgStrU[28][0] = "[의사결정] ";
 svgStrU[29][0] = "[분산분석]";
@@ -393,9 +445,8 @@ svgStrU[54][0] = "[표본 통계량] ";
 svgStrU[55][0] = "[표본 1 통계량] ";
 svgStrU[56][0] = "[표본 2 통계량] ";
 svgStrU[57][0] = "신뢰수준";
-svgStrU[58][0] = "";
-svgStrU[59][0] = "";
-
+svgStrU[58][0] = "행과 열이 독립";
+svgStrU[59][0] = "행과 열이 종속";
 // English
 $.message.en = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
@@ -461,6 +512,9 @@ $.message.en = {
     "Mean": "Mean",
     "Std Deviation": "Std Deviation",
     "Regression": "Regression",
+    "RegressionLine": "Regression Line",
+    "RegressionBand": "Confidence Band",
+    "RegressionTable": "Regression Analysis",	
     "Frequency Polygon": "Frequency Polygon",
     "Frequency Table": "Frequency Table",
     "Execute New Interval": "Execute New Interval",
@@ -472,7 +526,7 @@ $.message.en = {
     "Significance Level": "Significance Level",
     "Execute": "Execute",
     "(Confidence Interval)": "(Confidence Interval)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z-test, Z, &sigma;is used)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
     "Variance Assumption": "Variance Assumption",
     "F test": "F test",
@@ -488,7 +542,6 @@ $.message.en = {
     "* Less than nine value labels allowed.": "* Less than nine value labels allowed.",
     "Save": "Save",
     "Exit": "Exit",
-
     "eStatU UnivStatEdu": "eStatU - University Statistics Education SW",
     "eStatH HighStatEdu": "eStatH - High School Statistics Education SW",
     "Menu": "Menu",
@@ -525,12 +578,14 @@ $.message.en = {
     "Estimation Accuracy": "Estimation Accuracy",
     "Repetition": "Repetition",
     "Confidence Level": "Confidence Level",
+    "Testing Hypothesis mu_titleAB": "Testing Hypothesis Mean",
     "Testing Hypothesis mu_title": "Testing Mean",
     "Testing Hypothesis sigma_title": "Testing Variance",
     "Testing Hypothesis P_title": "Testing Proportion",
     "Testing Hypothesis mu12_title": "Testing Two Means",
     "Testing Hypothesis sigma12_title": "Testing Two Variances",
     "Testing Hypothesis P12_title": "Testing Two Proportions",
+    "Testing Hypothesis muAB": "Testing Hypothesis &mu; with &alpha;, &beta;",
     "Testing Hypothesis mu": "Testing Hypothesis &mu;",
     "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "Testing Hypothesis P",
@@ -547,8 +602,11 @@ $.message.en = {
     "t-test": "t-test",
     "Chi-test": "&chi;<sup>2</sup>-test",
     "F-test": "F-test",
+    "Sampling Type": "Sampling Type",
+    "Independent Sample": "independent",
+    "Paired Sample": "paired",
     "Sample Data": "Sample Data",
-    "input either sample data": "Input either sample data, or sample statistics at the next boxes usign csv/bsv",
+    "input either sample data": "Input either sample data, or sample statistics at the next boxes usign bsv",
     "Sample Statistics": "Sample Statistics",
     "Sample Mean": "Sample Mean",
     "Sample Variance": "Sample Variance",
@@ -575,15 +633,24 @@ $.message.en = {
     "Mean": "Mean",
     "Std Dev": "Std Dev",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
-}
-
+    "OneGroup": "(one group)",
+    "RegressionBand": "Confidence Band",
+    "RegressionTable": "Regression Analysis",
+    "RegressionResidual": "Residual Plot",
+    "RegressionQQ": "Residual Q-Q Plot",
+    "HistogramNormal": "Probabilty Histogram",
+    "HistogramChisq": "Normal &chi;<sup>2</sup> Test",
+    "HistogramNormalQQ": "Normal Q-Q Plot",
+    "PopulationStd": "Population Standard Deviation",
+    "Type1Error": "Type 1 Error",
+    "Type2Error": "Type 2 Error",
+};
 // English
 appStr[1][1] = "../eStatH/index.html";
 appStr[2][1] = "../eStatU/index.html";
 appStr[3][1] = "../eStatE/index_en.html";
 appStr[4][1] = "../ExLearning/index_en.html";
 appStr[5][1] = "index.html";
-
 alertMsg[1][1] = "One of the selected variables does not have data.";
 alertMsg[2][1] = "Select variables for analysis (clicking column names) one by one. If two variables, first one is group variable. ";
 alertMsg[3][1] = "Missing data on the selected variable.";
@@ -617,7 +684,6 @@ alertMsg[39][1] = "Standard deviation is either zero or NaN . Retry!";
 alertMsg[40][1] = "input variance is NaN . Ener value and then retry!";
 alertMsg[41][1] = "This testing hypothesis is allowed only for two variable. Group variable should have only two groups";
 alertMsg[42][1] = "Title editing of testing hypothesis is not allowed! ";
-
 svgStr[1][1] = " Bar Graph";
 svgStr[2][1] = " Pie Chart";
 svgStr[3][1] = " Doughnut Graph";
@@ -666,6 +732,47 @@ svgStr[45][1] = "Minimum";
 svgStr[46][1] = "Median";
 svgStr[47][1] = "Maximum";
 svgStr[48][1] = "Total";
+svgStr[49][1] = "<h3>Normality Test</h3>";
+svgStr[50][1] = "Expected frequency > 5 <br> is recommended";
+svgStr[51][1] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][1] = "Data<br>Observed Frequency<br>(O<sub>i</sub>)";
+svgStr[53][1] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][1] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
+svgStr[55][1] = "Each interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][1] = "Sum of &chi;<sup>2</sup> value";
+svgStr[57][1] = "Probility Hitogram and Normal Distribution";
+svgStr[58][1] = "Normal Q-Q Plot";
+svgStr[59][1] = "Normal Quantile";
+svgStr[60][1] = "Correlation Coefficient";
+svgStr[61][1] = "Coefficient of Determinatio";
+svgStr[62][1] = "Standard Error";
+svgStr[63][1] = "Variable";
+svgStr[64][1] = "Variable Name";
+svgStr[65][1] = "Independent Variable";
+svgStr[66][1] = "Dependent Variable";
+svgStr[67][1] = "Parameter";
+svgStr[68][1] = "Estimated Value";
+svgStr[69][1] = "value";
+svgStr[70][1] = "Intercept";
+svgStr[71][1] = "Slope";
+svgStr[72][1] = "Factor";
+svgStr[73][1] = "Sum of Squares";
+svgStr[74][1] = "deg of freedom";
+svgStr[75][1] = "Mean Squares";
+svgStr[76][1] = "Regression";
+svgStr[77][1] = "Error";
+svgStr[78][1] = "Total";
+svgStr[79][1] = "<h3>Regression Analysis</h3>";
+svgStr[80][1] = "Standardized Residual Q-Q Plot";
+svgStr[81][1] = "Standardized Residual";
+svgStr[82][1] = "Normal Quantile";
+svgStr[83][1] = "Residual Plot";
+svgStr[84][1] = "Predicted Value";
+svgStr[85][1] = "";
+svgStr[86][1] = "";
+svgStr[87][1] = "";
+svgStr[88][1] = "";
+svgStr[89][1] = "";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -691,8 +798,8 @@ svgStrU[21][1] = "Estimation Accuracy";
 svgStrU[22][1] = "sample mean";
 svgStrU[23][1] = "[TestStat] = ";
 svgStrU[24][1] = "Distribution";
-svgStrU[25][1] = "Reject Ho";
-svgStrU[26][1] = "Accept Ho";
+svgStrU[25][1] = "Reject H\u2080";
+svgStrU[26][1] = "Accept H\u2080";
 svgStrU[27][1] = " p-value  = ";
 svgStrU[28][1] = "[Decision] ";
 svgStrU[29][1] = "[ANOVA]";
@@ -724,10 +831,8 @@ svgStrU[54][1] = "[Sample Statistics] ";
 svgStrU[55][1] = "[Sample 1 Statistics] ";
 svgStrU[56][1] = "[Sample 2 Statistics] ";
 svgStrU[57][1] = "confidence level";
-svgStrU[58][1] = "";
-svgStrU[59][1] = "";
-
-
+svgStrU[58][1] = "Row & Col Independent";
+svgStrU[59][1] = "Row & Col Dependent";
 // Japanese
 $.message.ja = {
     "eStat : Stat Education SW": "eStat: 統計教育SW",
@@ -793,6 +898,9 @@ $.message.ja = {
     "Mean": "平均",
     "Std Deviation": "標準偏差",
     "Regression": "回帰直線",
+    "RegressionLine": "回帰直線",
+    "RegressionBand": "Confidence Band",
+    "RegressionTable": "Regression Analysis Table",		
     "Frequency Polygon": "度数分布多角形",
     "Frequency Table": "度数分布表",
     "Execute New Interval": "区間を変えて実行",
@@ -804,7 +912,7 @@ $.message.ja = {
     "Significance Level": "有意水準",
     "Execute": "実行",
     "(Confidence Interval)": "(信頼区間)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-検定のとき, Z<sub>1-&alpha;/2 </sub> 利用)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-検定のとき, Z &sigma;利用)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 検定",
     "Variance Assumption": "分散の仮定",
     "F test": "F 検定",
@@ -857,12 +965,14 @@ $.message.ja = {
     "Estimation Accuracy": "推定精度",
     "Repetition": "反復数",
     "Confidence Level": "信頼水準",
+    "Testing Hypothesis mu_titleAB": "仮説検定母平均",
     "Testing Hypothesis mu_title": "母平均の推定・検定",
     "Testing Hypothesis sigma_title": "母分散の推定・検定",
     "Testing Hypothesis P_title": "母比率の推定・検定",
     "Testing Hypothesis mu12_title": "母平均の仮説検定 (2集団)",
     "Testing Hypothesis sigma12_title": "母分散の仮説検定 (2集団)",
     "Testing Hypothesis P12_title": "母比率の仮説検定 (2集団)",
+    "Testing Hypothesis muAB": "仮説検定 &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "母平均&mu;の推定・検定",
     "Testing Hypothesis sigma": "母分散&sigma;<sup>2</sup>の推定・検定",
     "Testing Hypothesis P": "母比率Pの推定・検定",
@@ -879,6 +989,9 @@ $.message.ja = {
     "t-test": "t-検定",
     "Chi-test": "カイ2乗検定",
     "F-test": "F-検定",
+    "Sampling Type": "標本",
+    "Independent Sample": "獨立標本",
+    "Paired Sample": "從屬標本",
     "Sample Data": "標本データ",
     "input either sample data": "(標本データをここに入力, あるいは 次の標本統計量を入力(空白またはカンマ区切り)",
     "Sample Statistics": "標本統計量",
@@ -907,15 +1020,24 @@ $.message.ja = {
     "Mean": "平均",
     "Std Dev": "標準偏差",
     "SimulationWarning": "(現在シミュレーションが終わるまで、お待ちください。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;シミュレーション途中で設定を変更して実行すると正しく表示されません。)",
-}
-
+    "OneGroup": "(1 グループ)",
+    "RegressionBand": "信頼帯",
+    "RegressionTable": "回帰分析",
+    "RegressionResidual": "殘差プロット",
+    "RegressionQQ": "殘差Q-Qプロット",
+    "HistogramNormal": "確率ヒストグラム",
+    "HistogramChisq": "正規カイ二乗検定",
+    "HistogramNormalQQ": "正規Q-Qプロット",
+    "PopulationStd": "母標準偏差",
+    "Type1Error": "1種誤謬",
+    "Type2Error": "2種誤謬",
+};
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
 appStr[2][2] = "../eStatU/index.html";
 appStr[3][2] = "../eStatE/index_en.html";
 appStr[4][2] = "../ExLearning/index_en.html";
 appStr[5][2] = "index.html";
-
 alertMsg[1][2] = "選択した変数の中に、欠損値が含まれています!";
 alertMsg[2][2] = "変数の番号をクリックし，シートから変数を選んでください. 変数が2つ以上の場合は，1番目の変数がグループ変数として指定されます. ";
 alertMsg[3][2] = "選択した列に欠損値があります.";
@@ -949,7 +1071,6 @@ alertMsg[39][2] = "標準偏差が0かはいっていません。再度おこな
 alertMsg[40][2] = "分散の値がはいっていません。値を入力してから再度おこなってください.";
 alertMsg[41][2] = "仮説検定を行うには，2つの変数(グループ変数と解析する変数)を指定します.";
 alertMsg[42][2] = "仮説検定のタイトルは編集できません! ";
-
 svgStr[1][2] = " 棒グラフ";
 svgStr[2][2] = " 円グラフ";
 svgStr[3][2] = " ドーナツグラフ";
@@ -998,7 +1119,47 @@ svgStr[45][2] = "最小値";
 svgStr[46][2] = "中央値";
 svgStr[47][2] = "最大値";
 svgStr[48][2] = "全体";
-
+svgStr[49][2] = "<h3>正規性檢定</h3>";
+svgStr[50][2] = "期待度数 > 5 <br> 推奨";
+svgStr[51][2] = "&chi;<sup>2</sup> 檢定<br>區間 i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][2] = "データ<br>観測度数<br>(O<sub>i</sub>)";
+svgStr[53][2] = "正規分布<br>期待確率<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][2] = "正規分布<br>期待度数<br>(E<sub>i</sub>)";
+svgStr[55][2] = "&chi;<sup>2</sup> 値<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][2] = "総&chi;<sup>2</sup>値";
+svgStr[57][2] = "確率ヒストグラム, 正規分布";
+svgStr[58][2] = "正規Q-Qプロット";
+svgStr[59][2] = "正規分位数";
+svgStr[60][2] = "相關係数";
+svgStr[61][2] = "決定係数";
+svgStr[62][2] = "標準誤差";
+svgStr[63][2] = "變数";
+svgStr[64][2] = "變数名";
+svgStr[65][2] = "獨立變数";
+svgStr[66][2] = "從屬變数";
+svgStr[67][2] = "母数";
+svgStr[68][2] = "推定値";
+svgStr[69][2] = "値";
+svgStr[70][2] = "切片";
+svgStr[71][2] = "傾き";
+svgStr[72][2] = "要因";
+svgStr[73][2] = "二乗和";
+svgStr[74][2] = "自由度";
+svgStr[75][2] = "偏差二乗和";
+svgStr[76][2] = "回帰";
+svgStr[77][2] = "誤差";
+svgStr[78][2] = "全体";
+svgStr[79][2] = "<h3>回帰分析</h3>";
+svgStr[80][2] = "標準化残差Q-Qプロット";
+svgStr[81][2] = "標準化残差";
+svgStr[82][2] = "正規分位數";
+svgStr[83][2] = "残差プロット";
+svgStr[84][2] = "豫測値";
+svgStr[85][2] = "";
+svgStr[86][2] = "";
+svgStr[87][2] = "";
+svgStr[88][2] = "";
+svgStr[89][2] = "";
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
 svgStrU[3][2] = "平均";
@@ -1023,8 +1184,8 @@ svgStrU[21][2] = "推定精度";
 svgStrU[22][2] = "標本平均";
 svgStrU[23][2] = "[検定統計量] = ";
 svgStrU[24][2] = "分布";
-svgStrU[25][2] = "棄却 Ho";
-svgStrU[26][2] = "採択 Ho";
+svgStrU[25][2] = "棄却 H\u2080";
+svgStrU[26][2] = "採択 H\u2080";
 svgStrU[27][2] = "p-値 = ";
 svgStrU[28][2] = "[意思決定] ";
 svgStrU[29][2] = "[分散分析]";
@@ -1056,10 +1217,8 @@ svgStrU[54][2] = "[標本統計量] ";
 svgStrU[55][2] = "[標本 1 統計量] ";
 svgStrU[56][2] = "[標本 2 統計量] ";
 svgStrU[57][2] = "信頼水準";
-svgStrU[58][2] = "";
-svgStrU[59][2] = "";
-
-
+svgStrU[58][2] = "行列独立";
+svgStrU[59][2] = "行列独立ない";
 // Chinese
 $.message.zhTW = {
     "eStat : Stat Education SW": "eStat: 統計教育軟體",
@@ -1132,11 +1291,11 @@ $.message.zhTW = {
     "Interval Width": "區間間幅",
     "t-test": "t-檢定",
     "Z-test": "Z-檢定",
-    "(if Z-test, enter &sigma;)": "(Z-檢定, enter &sigma)",
+    "(if Z-test, enter &sigma;)": "(Z-檢定, &sigma)",
     "Significance Level": "顯著水準",
     "Execute": "執行",
     "(Confidence Interval)": "(信頼區間)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-檢定, Z<sub>1-&alpha;/2 </sub> 使用)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-檢定, Z, &sigma;使用)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 檢定",
     "Variance Assumption": "變異數假設",
     "F test": "F 檢定",
@@ -1188,12 +1347,14 @@ $.message.zhTW = {
     "Estimation Accuracy": "估計準確率",
     "Repetition": "重覆數",
     "Confidence Level": "信頼水準",
+    "Testing Hypothesis mu_titleAB": "假設檢定平均數",
     "Testing Hypothesis mu_title": "平均數檢定",
     "Testing Hypothesis sigma_title": "變異數檢定",
     "Testing Hypothesis P_title": "比例檢定",
     "Testing Hypothesis mu12_title": "兩母體平均數檢定",
     "Testing Hypothesis sigma12_title": "兩母體變異數檢定",
     "Testing Hypothesis P12_title": "兩母體比例檢定",
+    "Testing Hypothesis muAB": "假設檢定 &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "區間估計/假設檢定: 平均數&mu;",
     "Testing Hypothesis sigma": "區間估計/假設檢定: 變異數&sigma;<sup>2</sup>",
     "Testing Hypothesis P": "區間估計/假設檢定: 比例 P",
@@ -1210,6 +1371,9 @@ $.message.zhTW = {
     "t-test": "t-檢定",
     "Chi-test": "卡方檢定",
     "F-test": "F-檢定",
+    "Sampling Type": "標本",
+    "Independent Sample": "獨立樣本",
+    "Paired Sample": "從屬樣本",
     "Sample Data": "樣本資料",
     "input either sample data": "於接下來的對話視窗，使用csv/bsv格式輸入樣本資料或樣本統計量",
     "Sample Statistics": "樣本統計量",
@@ -1238,14 +1402,23 @@ $.message.zhTW = {
     "Mean": "平均",
     "Std Dev": "標準差",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
-}
-
+    "OneGroup": "(1群)",
+    "RegressionBand": "信頼帯",
+    "RegressionTable": "回帰分析",
+    "RegressionResidual": "殘差図",
+    "RegressionQQ": "殘差Q-Q図",
+    "HistogramNormal": "確率直方圖",
+    "HistogramChisq": "正規卡方検定",
+    "HistogramNormalQQ": "正規Q-Q図",
+    "PopulationStd": "母標準差",
+    "Type1Error": "1種誤謬",
+    "Type2Error": "2種誤謬",
+};
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
 appStr[3][3] = "../eStatE/index_en.html";
 appStr[4][3] = "../ExLearning/index_en.html";
 appStr[5][3] = "index.html";
-
 alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[2][3] = "逐一選取變數進行分析(選按欄位名稱)。若是同時選取兩變數，則第一個視為群組變數。";
 alertMsg[3][3] = "所選的變數有缺失值。";
@@ -1279,7 +1452,6 @@ alertMsg[39][3] = "標準差為0或不是一個數字，請重新執行!";
 alertMsg[40][3] = "輸入的變異數不是一個數字，請輸入一數值並重新執行!";
 alertMsg[41][3] = "此假設檢定僅限於兩變數。群組變數則需包含兩群。";
 alertMsg[42][3] = "假設檢定的標題不可編輯! ";
-
 svgStr[1][3] = " 長條圖";
 svgStr[2][3] = " 圓餅圖";
 svgStr[3][3] = " 圓環圖";
@@ -1328,6 +1500,48 @@ svgStr[45][3] = "最小値";
 svgStr[46][3] = "中位値";
 svgStr[47][3] = "最大値";
 svgStr[48][3] = "全體";
+svgStr[49][3] = "<h3>正規性檢定</h3>";
+svgStr[50][3] = "期待度數 > 5 <br> 勸獎";
+svgStr[51][3] = "&chi;<sup>2</sup> 檢定<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][3] = "資料<br>觀察度數<br>(O<sub>i</sub>)";
+svgStr[53][3] = "正規分布<br>期待確率<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][3] = "正規分布<br>期待度數<br>(E<sub>i</sub>)";
+svgStr[55][3] = "各區間l<br>&chi;<sup>2</sup> 値<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][3] = "合&chi;<sup>2</sup>値";
+svgStr[57][3] = "確率直方圖,正規分布";
+svgStr[58][3] = "正規 Q-Q圖";
+svgStr[59][3] = "正規 分位數";
+svgStr[60][3] = "相關係數";
+svgStr[61][3] = "決定係數";
+svgStr[62][3] = "標準誤差";
+svgStr[63][3] = "變數";
+svgStr[64][3] = "變數名";
+svgStr[65][3] = "獨立變數";
+svgStr[66][3] = "從屬變數";
+svgStr[67][3] = "母數";
+svgStr[68][3] = "推定値";
+svgStr[69][3] = "値";
+svgStr[70][3] = "切片";
+svgStr[71][3] = "斜率";
+svgStr[72][3] = "要因";
+svgStr[73][3] = "平方和";
+svgStr[74][3] = "自由度";
+svgStr[75][3] = "平均和";
+svgStr[76][3] = "回帰";
+svgStr[77][3] = "誤差";
+svgStr[78][3] = "全體";
+svgStr[79][3] = "<h3>回帰分析</h3>";
+svgStr[80][3] = "標準化残差 Q-Q圖";
+svgStr[81][3] = "標準化残差";
+svgStr[82][3] = "正規分位數";
+svgStr[83][3] = "残差圖";
+svgStr[84][3] = "豫測値";
+svgStr[85][3] = "";
+svgStr[86][3] = "";
+svgStr[87][3] = "";
+svgStr[88][3] = "";
+svgStr[89][3] = "";
+
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
 svgStrU[3][3] = "平均";
@@ -1385,10 +1599,8 @@ svgStrU[54][3] = "[樣本統計量] ";
 svgStrU[55][3] = "[樣本 1 統計量] ";
 svgStrU[56][3] = "[樣本 2 統計量] ";
 svgStrU[57][3] = "信頼水準";
-svgStrU[58][3] = "";
-svgStrU[59][3] = "";
-
-
+svgStrU[58][3] = "列行獨立";
+svgStrU[59][3] = "列行不獨立";
 // French
 $.message.fr = {
     "eStat : Stat Education SW": "eStat : Stat éducation SW",
@@ -1465,7 +1677,7 @@ $.message.fr = {
     "Significance Level": "Niveau de signification",
     "Execute": "Exécuter",
     "(Confidence Interval)": "(Intervalle de confinace)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Pour le Z-test, Z<sub>1-&alpha;/2 </sub> utilisé)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Pour le Z-test, Z, &sigma;utilisé)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
     "Variance Assumption": "Hypothèse de variance",
     "F test": "F test",
@@ -1481,7 +1693,6 @@ $.message.fr = {
     "* Less than nine value labels allowed.": "* Il faut moins de neuf libellésd.",
     "Save": "Sauvegarder",
     "Exit": "Terminer",
-
     "eStatU UnivStatEdu": "eStatU - Enseignement de la statistique à l'université SW",
     "eStatH HighStatEdu": "eStatH - L'enseignement de la statistique au lycée SW",
     "Menu": "Menu",
@@ -1518,12 +1729,14 @@ $.message.fr = {
     "Estimation Accuracy": "Précision de l'estimation",
     "Repetition": "Répétition",
     "Confidence Level": "Niveau de confiance",
+    "Testing Hypothesis mu_titleAB": "Test d'hypothèse : &mu;",
     "Testing Hypothesis mu_title": "Test moyenne",
     "Testing Hypothesis sigma_title": "Test variance",
     "Testing Hypothesis P_title": "Test proportion",
     "Testing Hypothesis mu12_title": "Test deux moyennes de population",
     "Testing Hypothesis sigma12_title": "Test deux variances de population",
     "Testing Hypothesis P12_title": "Test deux proportion de population",
+    "Testing Hypothesis muAB": "Test d'hypothèse &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Test d'hypothèse &mu;",
     "Testing Hypothesis sigma": "Test d'hypothèse &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "Test d'hypothèse P",
@@ -1540,6 +1753,9 @@ $.message.fr = {
     "t-test": "t-test",
     "Chi-test": "&chi;<sup>2</sup>-test",
     "F-test": "F-test",
+    "Sampling Type": "Sampling Type",
+    "Independent Sample": "independent",
+    "Paired Sample": "paired",
     "Sample Data": "Données échantillonnées",
     "input either sample data": "Entrez soit la taille de l'échantillon, soit  les statistiques de l'échantillon dans les cases suivantes en séparant par  des virgules ou des blancs",
     "Sample Statistics": "Statistiques de l'échantillon",
@@ -1568,15 +1784,25 @@ $.message.fr = {
     "Mean": "Moyenne",
     "Std Dev": "Ecart-type",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
-}
+    "OneGroup": "(1 groupe)",
+    "RegressionBand": "Confinace Bandes",
+    "RegressionTable": "Régressione Analysis",
+    "RegressionResidual": "Residual Diagramme",
+    "RegressionQQ": "Residual Q-Q Diagramme",
+    "HistogramNormal": "Probabilité Histogramme",
+    "HistogramChisq": "Normale &chi;<sup>2</sup> Test",
+    "HistogramNormalQQ": "Normale Q-Q Diagramme",
+    "PopulationStd": "Population Ecart-type",
+    "Type1Error": "Type 1 Error",
+    "Type2Error": "Type 2 Error",
 
+};
 // French
 appStr[1][4] = "../eStatH/index.html";
 appStr[2][4] = "../eStatU/index.html";
 appStr[3][4] = "../eStatE/index_en.html";
 appStr[4][4] = "../ExLearning/index_en.html";
 appStr[5][4] = "index.html";
-
 alertMsg[1][4] = "Une des variables sélectionnées ne contient pas de données.";
 alertMsg[2][4] = "Selectionnez une par une les variables à analyser en cliquant sur chaque nom de colonne. Pour deux variables, la premiere est la variable de groupe. ";
 alertMsg[3][4] = "Données manquantes dans la variable sélectionnée.";
@@ -1610,7 +1836,6 @@ alertMsg[39][4] = "L'écart-type est soit nul ou n'est pas un nombre. Recommence
 alertMsg[40][4] = "La variance saisie n'est pas un nombre. Entrez une valeur et recommencez!";
 alertMsg[41][4] = "Ce test d'hypothese n'est valable que pour deux variables. La variable de groupe ne doit avoir que deux  modalités";
 alertMsg[42][4] = "Modifier le titre du test n'est pas autorisé! ";
-
 svgStr[1][4] = " Diagramme en barres";
 svgStr[2][4] = " Camembert";
 svgStr[3][4] = " Graphique en anneau";
@@ -1659,6 +1884,47 @@ svgStr[45][4] = "Minimum";
 svgStr[46][4] = "Médiane";
 svgStr[47][4] = "Maximum";
 svgStr[48][4] = "Total";
+svgStr[49][4] = "<h3>Normale Test</h3>";
+svgStr[50][4] = "*** E<sub>i</sub> > 5";
+svgStr[51][4] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][4] = "Données<br>Fréquence<br>(O<sub>i</sub>)";
+svgStr[53][4] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][4] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
+svgStr[55][4] = "&chi;<sup>2</sup> valeur<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][4] = "résumés &chi;<sup>2</sup> value";
+svgStr[57][4] = "Probabilité Histogramme and Loi normale";
+svgStr[58][4] = "Normale Q-Q Plot";
+svgStr[59][4] = "Normale Quantile";
+svgStr[60][4] = "Coefficient de Corrélation";
+svgStr[61][4] = "Coefficient of Determination";
+svgStr[62][4] = "Erreur standard";
+svgStr[63][4] = "Variable";
+svgStr[64][4] = "Nom de variable";
+svgStr[65][4] = "Indépendantes Variable";
+svgStr[66][4] = "Dépendantes Variable";
+svgStr[67][4] = "Parameter";
+svgStr[68][4] = "Estimated Valeur";
+svgStr[69][4] = "valeur";
+svgStr[70][4] = "Intercept";
+svgStr[71][4] = "Slope";
+svgStr[72][4] = "Factor";
+svgStr[73][4] = "Sum of Squares";
+svgStr[74][4] = "deg of freedom";
+svgStr[75][4] = "Mean Squares";
+svgStr[76][4] = "Régression";
+svgStr[77][4] = "Erreur";
+svgStr[78][4] = "Total";
+svgStr[79][4] = "<h3>Régression Analyse</h3>";
+svgStr[80][4] = "Standardized Residual Q-Q Diagramme";
+svgStr[81][4] = "Standardized Residual";
+svgStr[82][4] = "Normal Quantile";
+svgStr[83][4] = "Residual Diagramme";
+svgStr[84][4] = "Predicted Valeur";
+svgStr[85][4] = "";
+svgStr[86][4] = "";
+svgStr[87][4] = "";
+svgStr[88][4] = "";
+svgStr[89][4] = "";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -1684,8 +1950,8 @@ svgStrU[21][4] = "Précision de l'estimation";
 svgStrU[22][4] = "Moyenne de l'échantillon";
 svgStrU[23][4] = "[TestStat] = ";
 svgStrU[24][4] = "Distribution";
-svgStrU[25][4] = "Rejeter Ho";
-svgStrU[26][4] = "Accepter Ho";
+svgStrU[25][4] = "Rejeter H\u2080";
+svgStrU[26][4] = "Accepter H\u2080";
 svgStrU[27][4] = " p-valeur = ";
 svgStrU[28][4] = "[Décision] ";
 svgStrU[29][4] = "[ANOVA]";
@@ -1717,10 +1983,8 @@ svgStrU[54][4] = "[Statistiques de l'échantillon] ";
 svgStrU[55][4] = "[Statistiques de l'échantillon 1] ";
 svgStrU[56][4] = "[Statistiques de l'échantillon 2] ";
 svgStrU[57][4] = "intervalle de confinace";
-svgStrU[58][4] = "";
-svgStrU[59][4] = "";
-
-
+svgStrU[58][4] = "Ligne Colonne indépendantes;";
+svgStrU[59][4] = "Ligne Colonne ne indépendantes";
 // German
 $.message.de = {
     "eStat : Stat Education SW": "eStat : Statistikausbildung SW",
@@ -1797,7 +2061,7 @@ $.message.de = {
     "Significance Level": "Signifikanzniveau",
     "Execute": "Führe aus",
     "(Confidence Interval)": "(Konfidenzintervall)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Fall Z-Test vorliegt, Z<sub>1-&alpha;/2 </sub>)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Fall Z-Test vorliegt, Z, &sigma)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
     "Variance Assumption": "Annahme für die Varianz",
     "F test": "F test",
@@ -1813,7 +2077,6 @@ $.message.de = {
     "* Less than nine value labels allowed.": "* weniger als neun Werte zulässig.",
     "Save": "Speichern",
     "Exit": "Exit",
-
     "eStatU UnivStatEdu": "eStatU - Statistikausausbildung an Universitäten",
     "eStatH HighStatEdu": "eStatH - Statistikausbildung an High Schools",
     "Menu": "Menü",
@@ -1850,12 +2113,14 @@ $.message.de = {
     "Estimation Accuracy": "Schätzgenauigkeit",
     "Repetition": "Wiederholung",
     "Confidence Level": "Konfidenzniveau",
+    "Testing Hypothesis mu_titleAB": "Hypothesen testen &mu",
     "Testing Hypothesis mu_title": "Hypothesen testen &mu;",
     "Testing Hypothesis sigma_title": "Hypothesen testen &sigma;<sup>2</sup>",
     "Testing Hypothesis P_title": "Hypothesen testen P",
     "Testing Hypothesis mu12_title": "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12_title": "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Testing Hypothesis P12_title": "Hypothesen testen P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis muAB": "Hypothesen testen &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Hypothesen testen &mu;",
     "Testing Hypothesis sigma": "Hypothesen testen &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "Hypothesen testen P",
@@ -1869,6 +2134,9 @@ $.message.de = {
     "Hypothesis": "Hypothese",
     "Test Type": "Testtyp",
     "Chi-test": "&chi;<sup>2</sup>-test",
+    "Sampling Type": "Sampling Type",
+    "Independent Sample": "independent",
+    "Paired Sample": "paired",
     "Sample Data": "Stichprobendaten",
     "input either sample data": "Gib entweder Stichprobenwerte oder Stichprobenstatistik ein.",
     "Sample Statistics": "Stichprobenstatistik",
@@ -1897,15 +2165,24 @@ $.message.de = {
     "Mean": "Mittelwert",
     "Std Dev": "Standardabweichung",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
-}
-
+    "OneGroup": "(1 grouppe)",
+    "RegressionBand": "Konfidenzband",
+    "RegressionTable": "Regressionanalyse",
+    "RegressionResidual": "Residualdiagramm",
+    "RegressionQQ": "ResidualQ-Q-diagramm",
+    "HistogramNormal": "Wahrscheinlichkeithistogramm",
+    "HistogramChisq": "Normal-&chi;<sup>2</sup> Test",
+    "HistogramNormalQQ": "Normal-Q-Q-diagramm",
+    "PopulationStd": "Grundgesamtheit Standardabweichung",
+    "Type1Error": "Type 1 Error",
+    "Type2Error": "Type 2 Error",
+};
 // German
 appStr[1][5] = "../eStatH/index.html";
 appStr[2][5] = "../eStatU/index.html";
 appStr[3][5] = "../eStatE/index_en.html";
 appStr[4][5] = "../ExLearning/index_en.html";
 appStr[5][5] = "index.html";
-
 alertMsg[1][5] = "Zu einer der ausgewählten Variablen fehlen Daten.";
 alertMsg[2][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.  If two variables, first one is group variable. ";
 alertMsg[3][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.";
@@ -1924,10 +2201,10 @@ alertMsg[19][5] = "Falls die Variable X ein charakter, kann kein Streudiagramm g
 alertMsg[20][5] = "Falls die Variable Y ein charakter, kann kein Streudiagramm gezeichnet werden. ";
 alertMsg[21][5] = "Bei fehlenden Daten kann nicht gespeichert werden.";
 alertMsg[22][5] = "Falls der Wert negativ ist, kann kein Balkendiagramm gezeichnet werden.";
-alertMsg[25][5] = "If there is only one group, stacked bar graph is not allowed.";
-alertMsg[27][5] = "If there is only one group, ratio bar graph is not allowed.";
-alertMsg[29][5] = "If there is only one group, side-by-side bar graph is not allowed.";
-alertMsg[31][5] = "If there is only one group, both-side bar graph is not allowed.";
+alertMsg[25][5] = "Falls es nur eine Gruppe gibt, kann kein gestapeltes Balkendiagramm gezeichnet werden.";
+alertMsg[27][5] = "Falls es nur eine Gruppe gibt, kann kein Balkendiagramm gezeichnet werden.";
+alertMsg[29][5] = "Falls es nur eine Gruppe gibt, kann kein Balkendiagramm gezeichnet werden.";
+alertMsg[31][5] = "Falls es nur eine Gruppe gibt, kann kein Balkendiagramm gezeichnet werden.";
 alertMsg[32][5] = "Falls Anzahl negativ ist, kann kein Kreisdiagramm gezeicnet werden.";
 alertMsg[33][5] = "Falls der Wert negativ ist, kann kein Ringdiagramm gezeichnet werden.";
 alertMsg[34][5] = "Falls der Wert negativ ist, kann kein Bandediagramm gezeichnet werden.";
@@ -1939,7 +2216,6 @@ alertMsg[39][5] = "Standardabweichung ist entweder Null oder  ";
 alertMsg[40][5] = "Eingegebene Varianz ist nicht-numerisch. Gib Zahlenwert ein und versuche erneut!";
 alertMsg[41][5] = "Diese Hypothese kann sich auf zwei Variablen beziehen. Gruppenvariable darf nur zwei Gruppen umfassen.";
 alertMsg[42][5] = "Editieren der Bezeichnung der zu testenden Hypothesen ist nicht zulässig. ";
-
 svgStr[1][5] = " Balkendiagramm";
 svgStr[2][5] = " Kreisdiagramm";
 svgStr[3][5] = " Doughnut Graph";
@@ -1988,6 +2264,47 @@ svgStr[45][5] = "Minimum";
 svgStr[46][5] = "Median";
 svgStr[47][5] = "Maximum";
 svgStr[48][5] = "Total";
+svgStr[49][5] = "<h3>Normal Test</h3>";
+svgStr[50][5] = "*** E<sub>i</sub> > 5";
+svgStr[51][5] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][5] = "Daten<br>Observed Häufigkeit<br>(O<sub>i</sub>)";
+svgStr[53][5] = "Normalverteilung<br>Expected Wahrscheinlichkeit<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][5] = "Normalverteilung<br>Expected Häufigkeit<br>(E<sub>i</sub>)";
+svgStr[55][5] = "&chi;<sup>2</sup> wert<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][5] = "Total &chi;<sup>2</sup> wert";
+svgStr[57][5] = "Wahrscheinlichkeit Histogramm, Normalverteilung";
+svgStr[58][5] = "Normal Q-Q Diagramm";
+svgStr[59][5] = "Normal Quantile";
+svgStr[60][5] = "Korrelationskoeffizient";
+svgStr[61][5] = "Determinationkoeffizient";
+svgStr[62][5] = "Standardfehler";
+svgStr[63][5] = "Variable";
+svgStr[64][5] = "Variablenname";
+svgStr[65][5] = "Unabhängigvariable";
+svgStr[66][5] = "Abhängigvariable";
+svgStr[67][5] = "Parameter";
+svgStr[68][5] = "Estimated wert";
+svgStr[69][5] = "wert";
+svgStr[70][5] = "Intercept";
+svgStr[71][5] = "Slope";
+svgStr[72][5] = "Factor";
+svgStr[73][5] = "Sum of Squares";
+svgStr[74][5] = "deg of freedom";
+svgStr[75][5] = "Mean Squares";
+svgStr[76][5] = "Regression";
+svgStr[77][5] = "Fehler";
+svgStr[78][5] = "Total";
+svgStr[79][5] = "<h3>Regression Analyse</h3>";
+svgStr[80][5] = "Standardized Residual Q-Q Diagramm";
+svgStr[81][5] = "Standardized Residual";
+svgStr[82][5] = "Normal Quantile";
+svgStr[83][5] = "Residual Diagramm";
+svgStr[84][5] = "Predicted wert";
+svgStr[85][5] = "";
+svgStr[86][5] = "";
+svgStr[87][5] = "";
+svgStr[88][5] = "";
+svgStr[89][5] = "";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -2013,8 +2330,8 @@ svgStrU[21][5] = "Schätzgenauigkeit";
 svgStrU[22][5] = "Stichprobenmittelwert";
 svgStrU[23][5] = "[TestStat] = ";
 svgStrU[24][5] = "Verteilung";
-svgStrU[25][5] = "lehne Ho ab";
-svgStrU[26][5] = "Akzeptiere Ho";
+svgStrU[25][5] = "lehne H\u2080 ab";
+svgStrU[26][5] = "Akzeptiere H\u2080";
 svgStrU[27][5] = " p-Wert  = ";
 svgStrU[28][5] = "[Entscheidung] ";
 svgStrU[29][5] = "[ANOVA]";
@@ -2046,10 +2363,8 @@ svgStrU[54][5] = "[Stichprobenstatistik] ";
 svgStrU[55][5] = "[Stichproben 1 statistik] ";
 svgStrU[56][5] = "[Stichproben 2 statistik] ";
 svgStrU[57][5] = "Konfidenzniveau";
-svgStrU[58][5] = "";
-svgStrU[59][5] = "";
-
-
+svgStrU[58][5] = "Zeilen Spalten unabhängig";
+svgStrU[59][5] = "Zeilen Spalten nicht unabhängig";
 // Spanish
 $.message.es = {
     "eStat : Stat Education SW": "eStat : Software para Educación Estadística",
@@ -2126,7 +2441,7 @@ $.message.es = {
     "Significance Level": "Nivel de significación",
     "Execute": "Ejecutar",
     "(Confidence Interval)": "(Intervalo de confianza)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Si prueba Z  Z<sub>1-&alpha;/2 </sub>)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Si prueba Z  Z, &sigma)",
     "&chi;<sup>2</sup> test": "Prueba &chi;<sup>2</sup>",
     "Variance Assumption": "Premisa sobre la varianza",
     "F test": "Prueba F",
@@ -2142,7 +2457,6 @@ $.message.es = {
     "* Less than nine value labels allowed.": "* Menos de nueve etiquetas permitidas",
     "Save": "Grabar",
     "Exit": "Salir",
-
     "eStatU UnivStatEdu": "eStatU - Educación Estadística Universitaria SW",
     "eStatH HighStatEdu": "eStatH - Educación Estadística de Bachillerato SW",
     "Menu": "Menú",
@@ -2179,12 +2493,14 @@ $.message.es = {
     "Estimation Accuracy": "Precisión de la estimación",
     "Repetition": "Repetición",
     "Confidence Level": "Nivel de confianza",
+    "Testing Hypothesis mu_titleAB": "Prueba de hipótesis media",
     "Testing Hypothesis mu_title": "Prueba de hipótesis media",
     "Testing Hypothesis sigma_title": "Prueba de hipótesis varianza",
     "Testing Hypothesis P_title": "Prueba de hipótesis proporción",
     "Testing Hypothesis mu12_title": "Prueba de hipótesis dos medias",
     "Testing Hypothesis sigma12_title": "Prueba de hipótesis dos varianza",
     "Testing Hypothesis P12_title": "Prueba de hipótesis dos proporción",
+    "Testing Hypothesis muAB": "Prueba de hipótesis &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Prueba de hipótesis &mu;",
     "Testing Hypothesis sigma": "Prueba de hipótesis &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "Prueba de hipótesis P",
@@ -2201,6 +2517,9 @@ $.message.es = {
     "t-test": " Prueba t",
     "Chi-test": "Prueba &chi;<sup>2</sup>",
     "F-test": "Prueba F",
+    "Sampling Type": "Sampling Type",
+    "Independent Sample": "independent",
+    "Paired Sample": "paired",
     "Sample Data": "Datos muestrales",
     "input either sample data": "Introducir datos muestrales o estadísticos muestrales en las siguientes cajas usando csv/bsv",
     "Sample Statistics": "Estadísticos muestrales",
@@ -2229,15 +2548,24 @@ $.message.es = {
     "Mean": "Media",
     "Std Dev": "Desviación estándar",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
-}
-
+    "OneGroup": "(1 groupo)",
+    "RegressionBand": "Confianza Bandes",
+    "RegressionTable": "Regresión Analysis",
+    "RegressionResidual": "Residual Diagrama",
+    "RegressionQQ": "Residual Q-Q Diagrama",
+    "HistogramNormal": "Probabildad Histograma",
+    "HistogramChisq": "Normal &chi;<sup>2</sup> Prueba",
+    "HistogramNormalQQ": "Normal Q-Q Diagrama",
+    "PopulationStd": "Población Desviación estándar",
+    "Type1Error": "Type 1 Error",
+    "Type2Error": "Type 2 Error",
+};
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
 appStr[2][6] = "../eStatU/index.html";
 appStr[3][6] = "../eStatE/index_en.html";
 appStr[4][6] = "../ExLearning/index_en.html";
 appStr[5][6] = "index.html";
-
 alertMsg[1][6] = "Una de las variables seleccionadas no contiene datos";
 alertMsg[2][6] = "Seleccionar una a una las  variables para el análisis (clicando los nombres de las columnas). Si hay dos variables, la primera es la variable grupo";
 alertMsg[3][6] = "Datos faltantes en la variable seleccionada";
@@ -2271,7 +2599,6 @@ alertMsg[39][6] = "Desviación estándar o bien es cero o NaN. Reintentalo!";
 alertMsg[40][6] = "Varianza de entrada es NaN. Entrar valor y reintentar!";
 alertMsg[41][6] = "Esta prueba de hipótesis solo es posible para dos variables. La variable grupo solo debe tenir dos grupos";
 alertMsg[42][6] = "No se permite la edición del titulo de la prueba de hipótesis! ";
-
 svgStr[1][6] = " Diagrama de barras";
 svgStr[2][6] = " Diagrama de tarta";
 svgStr[3][6] = " Gráfico tipo dónut";
@@ -2320,6 +2647,47 @@ svgStr[45][6] = "Mínimo";
 svgStr[46][6] = "Mediana";
 svgStr[47][6] = "Máximo";
 svgStr[48][6] = "Total";
+svgStr[49][6] = "<h3>Normal prueba</h3>";
+svgStr[50][6] = "*** E<sub>i</sub> > 5";
+svgStr[51][6] = "&chi;<sup>2</sup> prueba<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][6] = "Data<br>Observed Frecuencias<br>(O<sub>i</sub>)";
+svgStr[53][6] = "Normal Distribución<br>Expected Probabilidad<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][6] = "Normal Distribución<br>Expected Frecuencias<br>(E<sub>i</sub>)";
+svgStr[55][6] = "&chi;<sup>2</sup> valor<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][6] = "Total &chi;<sup>2</sup> valor";
+svgStr[57][6] = "Probabilidad Hitograma, Normal Distribución";
+svgStr[58][6] = "Normal Q-Q Diagrama";
+svgStr[59][6] = "Normal Quantile";
+svgStr[60][6] = "Coeficiente de correlación";
+svgStr[61][6] = "Coeficiente of Determination";
+svgStr[62][6] = "Error estándar";
+svgStr[63][6] = "Variable";
+svgStr[64][6] = "Nombre de la Variable";
+svgStr[65][6] = "Independientes Variable";
+svgStr[66][6] = "Dependientes Variable";
+svgStr[67][6] = "Parameter";
+svgStr[68][6] = "Estimated valor";
+svgStr[69][6] = "valor";
+svgStr[70][6] = "Intercept";
+svgStr[71][6] = "Slope";
+svgStr[72][6] = "Factor";
+svgStr[73][6] = "Sum of Squares";
+svgStr[74][6] = "deg of freedom";
+svgStr[75][6] = "Mean Squares";
+svgStr[76][6] = "Regresión";
+svgStr[77][6] = "Error";
+svgStr[78][6] = "Total";
+svgStr[79][6] = "<h3>Regresión Análisis</h3>";
+svgStr[80][6] = "Standardized Residual Q-Q Diagrama";
+svgStr[81][6] = "Standardized Residual";
+svgStr[82][6] = "Normal Quantile";
+svgStr[83][6] = "Residual Diagrama";
+svgStr[84][6] = "Predicted valor";
+svgStr[85][6] = "";
+svgStr[86][6] = "";
+svgStr[87][6] = "";
+svgStr[88][6] = "";
+svgStr[89][6] = "";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -2343,10 +2711,10 @@ svgStrU[19][6] = "Media Poblacional";
 svgStrU[20][6] = "Intervalo de confianza";
 svgStrU[21][6] = "Precisión de la estimación";
 svgStrU[22][6] = "Media muestral";
-svgStrU[23][6] = "[TestEstadísticos] = ";
+svgStrU[23][6] = "[Prueba Estadísticos] = ";
 svgStrU[24][6] = "Distribución";
-svgStrU[25][6] = "Rechazar Ho";
-svgStrU[26][6] = "Aceptar Ho";
+svgStrU[25][6] = "Rechazar H\u2080";
+svgStrU[26][6] = "Aceptar H\u2080";
 svgStrU[27][6] = " p-valor  = ";
 svgStrU[28][6] = "[Decisión] ";
 svgStrU[29][6] = "[ANOVA]";
@@ -2378,9 +2746,9 @@ svgStrU[54][6] = "[Estadísticos muestrales] ";
 svgStrU[55][6] = "[Estadísticos muestrales 1] ";
 svgStrU[56][6] = "[Estadísticos muestrales 2] ";
 svgStrU[57][6] = "Nivel de confianza";
-svgStrU[58][6] = "";
-svgStrU[59][6] = "";
-
+svgStrU[58][6] = "Fila y columna independientes";
+svgStrU[59][6] = "Fila y columna no independientes";
+// Vietnamese
 $.message.vi = {
     "eStat : Stat Education SW": "eStat : Phần mềm thống kê học",
     "Filename": "Tên tệp",
@@ -2456,7 +2824,7 @@ $.message.vi = {
     "Significance Level": "Mức ý nghĩa",
     "Execute": "Thực thi",
     "(Confidence Interval)": "(Khoảng tin cậy)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Nếu kiểm định Z, Z<sub>1-&alpha;/2 </sub> )",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Nếu kiểm định Z, Z, &sigma;)",
     "&chi;<sup>2</sup> test": "Kiểm định &chi;<sup>2</sup>",
     "Variance Assumption": "Giả thiết về phương sai",
     "F test": "Kiểm định F",
@@ -2472,7 +2840,6 @@ $.message.vi = {
     "* Less than nine value labels allowed.": "* Chỉ cho phép ít hơn 9 nhãn giá trị.",
     "Save": "Lưu",
     "Exit": "Thoát",
-
     "eStatU UnivStatEdu": "eStatU - T/kê Đại học",
     "eStatH HighStatEdu": "eStatH - T/kê Trung học",
     "Menu": "Menu",
@@ -2509,12 +2876,14 @@ $.message.vi = {
     "Estimation Accuracy": "Độ chính xác của ước lượng",
     "Repetition": "Sự lặp lại",
     "Confidence Level": "Độ tin cậy",
+    "Testing Hypothesis mu_titleAB": "Kiểm định Trung bình",
     "Testing Hypothesis mu_title": "Kiểm định Trung bình",
     "Testing Hypothesis sigma_title": "Kiểm định Phương sai",
     "Testing Hypothesis P_title": "Kiểm định Tỉ lệ ",
     "Testing Hypothesis mu12_title": "Kiểm định Trung bình hai tổng thể",
     "Testing Hypothesis sigma12_title": "Kiểm định Phương sai hai tổng thể",
     "Testing Hypothesis P12_title": "Kiểm định P1, P2",
+    "Testing Hypothesis muAB": "Kiểm định giả thuyết &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Kiểm định giả thuyết &mu;",
     "Testing Hypothesis sigma": "Kiểm định giả thuyết &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "Kiểm định P",
@@ -2531,6 +2900,9 @@ $.message.vi = {
     "t-test": "Kiểm định t",
     "Chi-test": "kiểm định &chi;<sup>2</sup>",
     "F-test": "Kiểm định F",
+    "Sampling Type": "Sampling Type",
+    "Independent Sample": "independent",
+    "Paired Sample": "paired",
     "Sample Data": "Dữ liệu mẫu",
     "input either sample data": "Nhập dữ vào bảng kế tiếp bằng file csv/bsv",
     "Sample Statistics": "Thống kê mẫu",
@@ -2559,15 +2931,25 @@ $.message.vi = {
     "Mean": "Trung bình",
     "Std Dev": "Độ lệch chuẩn",
     "SimulationWarning": "Kết thúc giả lập trước khi tiếp tục",
-}
+    "OneGroup": "(one group)",
+    "RegressionBand": "Confidence Band",
+    "RegressionTable": "Regression Analysis",
+    "RegressionResidual": "Residual Plot",
+    "RegressionQQ": "Residual Q-Q Plot",
+    "HistogramNormal": "Probabilty Histogram",
+    "HistogramChisq": "Normal &chi;<sup>2</sup> Test",
+    "HistogramNormalQQ": "Normal Q-Q Plot",
+    "PopulationStd": "Population Standard Deviation",
+    "Type1Error": "Type 1 Error",
+    "Type2Error": "Type 2 Error",
 
+};
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
 appStr[2][7] = "../eStatU/index.html";
 appStr[3][7] = "../eStatE/index_en.html";
 appStr[4][7] = "../ExLearning/index_en.html";
 appStr[5][7] = "index.html";
-
 alertMsg[1][7] = "Đã chọn biến không chứa dữ liệu";
 alertMsg[2][7] = "Chọn từng biến để phân tích (click tên cột). Nếu chọn 2 biến, biến đầu tiên là biến định tính";
 alertMsg[3][7] = "Biến đã chọn thiếu số liệu";
@@ -2601,7 +2983,6 @@ alertMsg[39][7] = "Độ lệch chuẩn là 0 hoặc NaN. Hãy thử lại!!";
 alertMsg[40][7] = "Phương sai đã nhập là NaN. Hãy nhập giá trị khác và thử lại!!";
 alertMsg[41][7] = "Chỉ có thể kiểm định giả thuyết thống kê cho 2 biến";
 alertMsg[42][7] = "Không thể thay đổi tên của kiểm định! ";
-
 svgStr[1][7] = " B/đồ cột";
 svgStr[2][7] = " B/đồ Pie";
 svgStr[3][7] = " B/đồ Donut";
@@ -2650,6 +3031,47 @@ svgStr[45][7] = "Giá trị nhỏ nhất";
 svgStr[46][7] = "Trung vị";
 svgStr[47][7] = "Lớn nhất";
 svgStr[48][7] = "Tổng cộng";
+svgStr[49][7] = "<h3>Normality Test</h3>";
+svgStr[50][7] = "Expected frequency > 5 <br> is recommended";
+svgStr[51][7] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][7] = "Data<br>Observed Frequency<br>(O<sub>i</sub>)";
+svgStr[53][7] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][7] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
+svgStr[55][7] = "Each interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][7] = "Sum of &chi;<sup>2</sup> value";
+svgStr[57][7] = "Probability Histogram and Normal Distribution";
+svgStr[58][7] = "Normal Q-Q Plot";
+svgStr[59][7] = "Normal Quantile";
+svgStr[60][7] = "Correlation Coefficient";
+svgStr[61][7] = "Coefficient of Determination";
+svgStr[62][7] = "Standard Error";
+svgStr[63][7] = "Variable";
+svgStr[64][7] = "Variable Name";
+svgStr[65][7] = "Independent Variable";
+svgStr[66][7] = "Dependent Variable";
+svgStr[67][7] = "Parameter";
+svgStr[68][7] = "Estimated Value";
+svgStr[69][7] = "value";
+svgStr[70][7] = "Intercept";
+svgStr[71][7] = "Slope";
+svgStr[72][7] = "Factor";
+svgStr[73][7] = "Sum of Squares";
+svgStr[74][7] = "deg of freedom";
+svgStr[75][7] = "Mean Squares";
+svgStr[76][7] = "Regression";
+svgStr[77][7] = "Error";
+svgStr[78][7] = "Total";
+svgStr[79][7] = "<h3>Regression Analysis</h3>";
+svgStr[80][7] = "Standardized Residual Q-Q Plot";
+svgStr[81][7] = "Standardized Residual";
+svgStr[82][7] = "Normal Quantile";
+svgStr[83][7] = "Residual Plot";
+svgStr[84][7] = "Predicted Value";
+svgStr[85][7] = "";
+svgStr[86][7] = "";
+svgStr[87][7] = "";
+svgStr[88][7] = "";
+svgStr[89][7] = "";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -2675,8 +3097,8 @@ svgStrU[21][7] = "Độ chính xác của ước lượng";
 svgStrU[22][7] = "Trung bình mẫu";
 svgStrU[23][7] = "[Thống kê kiểm định] = ";
 svgStrU[24][7] = "Phân phối";
-svgStrU[25][7] = "Bác bỏ Ho";
-svgStrU[26][7] = "Chấp nhận Ho";
+svgStrU[25][7] = "Bác bỏ H\u2080";
+svgStrU[26][7] = "Chấp nhận H\u2080";
 svgStrU[27][7] = " Giá trị p-value = ";
 svgStrU[28][7] = "[Quyết định] ";
 svgStrU[29][7] = "[ANOVA]";
@@ -2708,9 +3130,8 @@ svgStrU[54][7] = "[Thống kê mẫu] ";
 svgStrU[55][7] = "[Thống kê mẫu 1] ";
 svgStrU[56][7] = "[Thống kê mẫu 2] ";
 svgStrU[57][7] = "Độ tin cậy";
-svgStrU[58][7] = "";
-svgStrU[59][7] = "";
-
+svgStrU[58][7] = "Biến cột và biến dòng độc lập";
+svgStrU[59][7] = "Biến cột và biến dòng độc lập";
 // Indonesian
 $.message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
@@ -2719,9 +3140,9 @@ $.message.id = {
     "Cancel": "Batal",
     "Edit Variables": "Edit Variabel",
     "Level": "Level",
-    "ElementaryLevel": "Level Dasar",
-    "MiddleLevel": "Level Menengah",
-    "UniversityLevel": "Level Universitas",
+    "ElementaryLevel": "Dasar",
+    "MiddleLevel": "Menengah",
+    "UniversityLevel": "Universitas",
     "Example": "Contoh",
     "New Sheets": "Lembar Baru",
     "csv Open": "Buka csv",
@@ -2787,7 +3208,7 @@ $.message.id = {
     "Significance Level": "Taraf Nyata",
     "Execute": "Jalankan",
     "(Confidence Interval)": "(Selang Kepercayaan)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if uji-Z, Z<sub>1-&alpha;/2 </sub> digunakan)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if uji-Z, Z, &sigma;digunakan)",
     "&chi;<sup>2</sup> test": "uji &chi;<sup>2</sup>",
     "Variance Assumption": "Asumsi Varians",
     "F test": "Uji F",
@@ -2803,7 +3224,6 @@ $.message.id = {
     "* Less than nine value labels allowed.": "* Kurang dari sembilan label nilai diperbolehkan.",
     "Save": "Simpan",
     "Exit": "Keluar",
-
     "eStatU UnivStatEdu": "eStatU ? Pelajaran Statistika Tingkat Universitas SW",
     "eStatH HighStatEdu": "eStatH ? Pelajaran Statistika Tingkat Sekolah Menengah Atas SW",
     "Menu": "Menu",
@@ -2840,12 +3260,14 @@ $.message.id = {
     "Estimation Accuracy": "Keakurasian Nilai Estimasi",
     "Repetition": "Ulangan",
     "Confidence Level": "Taraf Nyata",
+    "Testing Hypothesis mu_titleAB": "Uji Hipotesis Rata-rata Satu Populasi",
     "Testing Hypothesis mu_title": "Uji Hipotesis Rata-rata Satu Populasi",
     "Testing Hypothesis sigma_title": "Uji Hipotesis Varians Satu Populasi",
     "Testing Hypothesis P_title": "Uji Hipotesis Proporsi Satu Populasi",
     "Testing Hypothesis mu12_title": "Uji Hipotesis Rata-rata Dua Populasi",
     "Testing Hypothesis sigma12_title": "Uji Hipotesis Varians Dua Populasi",
     "Testing Hypothesis P12_title": "Uji Hipotesis Proporsi Dua Populasi",
+    "Testing Hypothesis muAB": "Pengujian Hipotesis &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Pengujian Hipotesis &mu;",
     "Testing Hypothesis sigma": "Pengujian Hipotesis &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "Pengujian Hipotesis P",
@@ -2862,6 +3284,9 @@ $.message.id = {
     "t-test": "uji-t",
     "Chi-test": "uji-&chi;<sup>2</sup>",
     "F-test": "uji-F",
+    "Sampling Type": "Sampling Type",
+    "Independent Sample": "independent",
+    "Paired Sample": "paired",
     "Sample Data": "Data Sampel",
     "input either sample data": " Masukan Data Sampel atau Statistik Sampel di Kotak Selanjutnya menggunakan csv/bsv ",
     "Sample Statistics": "Statistik Sampel",
@@ -2890,15 +3315,25 @@ $.message.id = {
     "Mean": "Rata-rata",
     "Std Dev": "Standar Deviasi",
     "SimulationWarning": "( Simulasi yang sekarang harus terlebih dahulu diselesaikan sebelum anda memulai simulasi yang selanjutnya)",
-}
+    "OneGroup": "(Satu Grup)",
+    "RegressionBand": "Selang Kepercayaan",
+    "RegressionTable": "Analisis Regresi",
+    "RegressionResidual": "Plot Residual",
+    "RegressionQQ": "Q-Q Plot Residual",
+    "HistogramNormal": "Histogram Peluang",
+    "HistogramChisq": "Uji Normal &chi;<sup>2</sup>",
+    "HistogramNormalQQ": "Q-Q Plot Normal",
+    "PopulationStd": "Population Standard Deviation",
+    "Type1Error": "Type 1 Error",
+    "Type2Error": "Type 2 Error",
 
+};
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
 appStr[2][8] = "../eStatU/index.html";
 appStr[3][8] = "../eStatE/index_en.html";
 appStr[4][8] = "../ExLearning/index_en.html";
 appStr[5][8] = "index.html";
-
 alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
 alertMsg[2][8] = " Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
 alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
@@ -2932,7 +3367,6 @@ alertMsg[39][8] = "Standar deviasi bernilai nol atau bukan angka. Coba lagi!";
 alertMsg[40][8] = "Varians input bukan angka. Masukkan angka dan coba lagi!";
 alertMsg[41][8] = "Uji Hipotesis ini hanya diperbolehkan untuk dua variabel. Variabel grup harus hanya memiliki dua grup";
 alertMsg[42][8] = "Mengubah judul dari uji hipotesis tidak diperbolehkan!";
-
 svgStr[1][8] = " Diagram Batang";
 svgStr[2][8] = " Diagram Pai";
 svgStr[3][8] = " Diagram Donat";
@@ -2981,7 +3415,47 @@ svgStr[45][8] = "Minimum";
 svgStr[46][8] = "Median";
 svgStr[47][8] = "Maksimum";
 svgStr[48][8] = "Total";
-
+svgStr[49][8] = "<h3>Uji Kenormalan</h3>";
+svgStr[50][8] = "Frekuensi harapan > 5 <br> disarankan";
+svgStr[51][8] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][8] = "Data<br>Frekuensi Amatan<br>(O<sub>i</sub>)";
+svgStr[53][8] = "Distribusi Normal<br>Peluang Harapan<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][8] = "Distribusi Normal<br>Frekuensi Harapan<br>(E<sub>i</sub>)";
+svgStr[55][8] = "Setiap interval<br>&chi;<sup>2</sup> nilai<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][8] = "Jumlah dari nilai &chi;<sup>2</sup>";
+svgStr[57][8] = "Histogram Peluang dan Distribusi Normal";
+svgStr[58][8] = "Q-Q Plot Normal";
+svgStr[59][8] = "Kuantil Normal";
+svgStr[60][8] = "Koefisien Korelasi";
+svgStr[61][8] = "Koefisien Determinasi";
+svgStr[62][8] = "Standar Eror";
+svgStr[63][8] = "Variabel";
+svgStr[64][8] = "Nama Variabel";
+svgStr[65][8] = "Variable bebas";
+svgStr[66][8] = "Variabel tak bebas";
+svgStr[67][8] = "Parameter";
+svgStr[68][8] = "Nilai Harapan";
+svgStr[69][8] = "Nilai";
+svgStr[70][8] = "Intersep";
+svgStr[71][8] = "Slope";
+svgStr[72][8] = "Faktor";
+svgStr[73][8] = "Jumlah Kuadrat";
+svgStr[74][8] = "Derajat Bebas";
+svgStr[75][8] = "Kuadrat Tengah";
+svgStr[76][8] = "Regresi";
+svgStr[77][8] = "Eror";
+svgStr[78][8] = "Total";
+svgStr[79][8] = "<h3>Analisis Regresi</h3>";
+svgStr[80][8] = "Q-Q Plot Residual terbakukan";
+svgStr[81][8] = "Residual Terbakukan";
+svgStr[82][8] = "Kuantil Normal";
+svgStr[83][8] = "Plot Residual";
+svgStr[84][8] = "Nilai Prediksi";
+svgStr[85][8] = "";
+svgStr[86][8] = "";
+svgStr[87][8] = "";
+svgStr[88][8] = "";
+svgStr[89][8] = "";
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
 svgStrU[3][8] = "Rata-rata";
@@ -3006,8 +3480,8 @@ svgStrU[21][8] = "Keakurasian Nilai Estimasi";
 svgStrU[22][8] = "Rata-rata Sampel";
 svgStrU[23][8] = "[TestStat] = ";
 svgStrU[24][8] = "Distribusi";
-svgStrU[25][8] = "Tolak H0";
-svgStrU[26][8] = "Terima H0";
+svgStrU[25][8] = "Tolak H\u2080";
+svgStrU[26][8] = "Terima H\u2080";
 svgStrU[27][8] = " nilai-p  = ";
 svgStrU[28][8] = "[Keputusan] ";
 svgStrU[29][8] = "[ANOVA]";
@@ -3039,341 +3513,391 @@ svgStrU[54][8] = "[Statistik Sampel] ";
 svgStrU[55][8] = "[Sampel 1 Statistik] ";
 svgStrU[56][8] = "[Sampel 2 Statistik] ";
 svgStrU[57][8] = "Selang Kepercayaan";
-svgStrU[58][8] = "";
+svgStrU[58][8] = "Baris dan Kolom Variabel saling bebas/independen";
 svgStrU[59][8] = "";
-
 // Mongolian
 $.message.mn = {
-    "eStat : Stat Education SW": "eStat : Stat Education SW",
-    "Filename": "File Name",
-    "Selected Variables": "Var Select",
-    "Cancel": "Cancel",
-    "Edit Variables": "EditVar",
-    "Level": "Level",
-    "ElementaryLevel": "E",
-    "MiddleLevel": "M",
-    "UniversityLevel": "U",
-    "Example": "Example",
-    "New Sheets": "New Sheets",
-    "csv Open": "csv Open",
-    "www Open": "www Open",
-    "json Open": "json Open",
-    "csv Save": "csv Save",
-    "json Save": "json Save",
-    "Print Sheet": "Print Sheet",
-    "Bar Graph": "Bar Graph",
-    "Pie Chart": "Pie Chart",
-    "Band Graph": "Band Graph",
-    "Line Graph": "Line Graph",
-    "Dot Graph": "Dot Graph",
-    "Histogram": "Histogram",
+    "eStat : Stat Education SW": "eStat : Статистикийн боловсролын програм хангамж",
+    "Filename": "Файлын нэр",
+    "Selected Variables": "Сонгогдсон хувьсагч",
+    "Cancel": "Цуцлах",
+    "Edit Variables": "Хувьсагчийг засварлах",
+    "Level": "Түвшин",
+    "ElementaryLevel": "Анхан шатны",
+    "MiddleLevel": "Дунд талын",
+    "UniversityLevel": "Их сургуулийн",
+    "Example": "Жишээ",
+    "New Sheets": "Шинэ хуудас",
+    "csv Open": "csv Нээх/ эхлүүлэх",
+    "www Open": "www Нээх/ эхлүүлэх",
+    "json Open": "json Нээх/ эхлүүлэх",
+    "csv Save": "csv Хадаглах",
+    "json Save": "json Хадаглах",
+    "Print Sheet": "Хуудас хэвлэх",
+    "Bar Graph": "Баганан график",
+    "Pie Chart": "Бялуун график",
+    "Band Graph": "Туузан график",
+    "Line Graph": "Шугаман график",
+    "Dot Graph": "Цэгэн график",
+    "Histogram": "Гистограм",
     "Stem & Leaf Plot": "Stem & Leaf Plot",
     "Box-Whisker Plot": "Box-Whisker Plot",
-    "Scatterplot": "Scatterplot",
-    "Frequency Table": "Frequency Table",
-    "Basic Statistics": "Basic Statistics",
-    "Testing Hypothesis &mu;": "Testing Hypothesis &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Analysis of Variance": "Analysis of Variance",
-    "High School Stat Education": "High School Stat Education",
-    "University Stat Education": "University Stat Education",
+    "Scatterplot": "Тархалтын график",
+    "Frequency Table": "Давтамжит хүснэгт",
+    "Basic Statistics": "Суурь, үндсэн статистик",
+    "Testing Hypothesis &mu;": "Тестэн таамаглал &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Тестэн таамаглал &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Тестэн таамаглал &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance": "Дундаж кватрат хазайлтын шинжилгээ",
+    "High School Stat Education": "Ахлах сургуулийн статистикийн боловсрол",
+    "University Stat Education": "Их сургуулийн статистикийн боловсрол ",
     "Elem Stat Graph Example": "Elem Stat Graph Example",
-    "Learning eStat w Example": "Learning eStat w Example",
-    "Vertical Separated Bar": "Vertical Separated Bar",
-    "Vertical Stacked Bar": "Vertical Stacked Bar",
-    "Vertical Ratio Bar": "Vertical Ratio Bar",
-    "Vertical Side by Side Bar": "Vertical Side by Side Bar",
-    "Vertical Two Sided Bar": "Vertical Two Sided Bar",
+    "Learning eStat w Example": "eStat-ийг жишээтэй суралцах",
+    "Vertical Separated Bar": "Босоо тусгаарлагдсан багана",
+    "Vertical Stacked Bar": "Босоо багц багана ",
+    "Vertical Ratio Bar": "Босоо багц багана",
+    "Vertical Side by Side Bar": "Босоо зэрэгцээ багана",
+    "Vertical Two Sided Bar": "Босоо хоёр талт багана",
     "Horizontal Separated Bar": "Horizontal Separated Bar",
     "Horizontal Stacked Bar": "Horizontal Stacked Bar",
     "Horizontal Ratio Bar": "Horizontal Ratio Bar",
     "Horizontal Side by Side Bar": "Horizontal Side by Side Bar",
     "Horizontal Two Sided Bar": "Horizontal Two Sided Bar",
-    "Doughnut Graph": "Doughnut Graph",
-    "Two Sided Stem & Leaf Plot": "Two Sided Stem & Leaf Plot",
-    "Graph Save": "Graph Save",
-    "Graph Print": "Graph Print",
-    "Move to Table": "Move to Table",
-    "Edit Title": "Edit Title",
-    "Table Save": "Table Save",
-    "Table Print": "Table Print",
-    "Frequency": "Frequency",
-    "(Sorting)": "(Sorting)",
-    "Raw Data": "Raw Data",
-    "Descending": "Descending",
-    "Ascending": "Ascending",
-    "Mean": "Mean",
-    "Std Deviation": "Std Deviation",
-    "Regression": "Regression",
-    "Frequency Polygon": "Frequency Polygon",
-    "Frequency Table": "Frequency Table",
-    "Execute New Interval": "Execute New Interval",
-    "Interval Start": "Interval Start",
-    "Interval Width": "Interval Width",
-    "t-test": "t-test",
-    "Z-test": "Z-test",
-    "(if Z-test, enter &sigma;)": "(if Z-test, enter &sigma;)",
-    "Significance Level": "Significance Level",
-    "Execute": "Execute",
-    "(Confidence Interval)": "(Confidence Interval)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)",
+    "Doughnut Graph": "Цагирган график",
+    "Two Sided Stem & Leaf Plot": "Хоёр талт Stem & Leaf Plot график",
+    "Graph Save": "График хадаглалт",
+    "Graph Print": "График хэвлэлт",
+    "Move to Table": "Хүснэгт рүү шилжүүлэх",
+    "Edit Title": "Гарчигийг засварлах",
+    "Table Save": "Хүснэгт хадаглах",
+    "Table Print": "Хүснэгт хэвлэх",
+    "Frequency": "Давтамж",
+    "(Sorting)": "(Эрэмблэх)",
+    "Raw Data": "Бүрэн болоогүй өгөгдөл",
+    "Descending": "Буурч буй",
+    "Ascending": "өгсөж буй, өгсөх хандлага",
+    "Mean": "Дундаж  утга",
+    "Std Deviation": "Стандарт хэлбэлзэл ",
+    "Regression": "Хамаарал",
+    "Frequency Polygon": "давтамжит олон өнцөг",
+    "Frequency Table": "Давтамжит хүснэгт",
+    "Execute New Interval": "Шинэ завсарыг гүйцэтгэх",
+    "Interval Start": "Завсарын эхлэл",
+    "Interval Width": "Завсарын өргөн",
+    "t-test": "t-Тестийн",
+    "Z-test": "Z-Тестийнт",
+    "(if Z-test, enter &sigma;)": "(Хэрэв Z тест байвал сигмаг оруул &sigma;)",
+    "Significance Level": "Утга учиртай түвшин",
+    "Execute": "Гүйцэтгэл",
+    "(Confidence Interval)": "(Найдварт завсар)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z-test, Z, &sigma;",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
-    "Variance Assumption": "Variance Assumption",
-    "F test": "F test",
-    "At least one pair of means is different": "At least one pair of means is different",
-    "Main Title : ": "Main Title : ",
+    "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
+    "F test": "F Тестийн",
+    "At least one pair of means is different": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр. ",
+    "Main Title : ": "Үндсэн гарчиг : ",
     "y title : ": "y title : ",
     "x title : ": "x title : ",
-    "Modify": "Modify",
-    "Confirm": "Confirm",
-    "Variable Name": "Variable Name",
-    "Variable Value": "Variable Value",
-    "Value Label": "Value Label",
-    "* Less than nine value labels allowed.": "* Less than nine value labels allowed.",
-    "Save": "Save",
-    "Exit": "Exit",
-
-    "eStatU UnivStatEdu": "eStatU - University Statistics Education SW",
-    "eStatH HighStatEdu": "eStatH - High School Statistics Education SW",
-    "Menu": "Menu",
-    "Binomial Experiment": "Binomial Experiment",
-    "Binomial Distribution": "Binomial Distribution",
-    "Binomial Prob Table": "Binomial Prob Table",
-    "Poisson Distribution": "Poisson Distribution",
-    "Poisson Prob Table": "Poisson Prob Table",
-    "Geometric Distribution": "Geometric Distribution",
-    "Geometric Prob Table": "Geometric Prob Table",
-    "HyperGeometric Distribution": "HyperGeometric Distribution",
-    "HyperGeometric Prob Table": "HyperGeometric Prob Table",
-    "Exponential Distribution": "Exponential Distribution",
-    "Normal Experiment": "Normal Experiment",
-    "Normal Distribution": "Normal Distribution",
-    "Normal Approx": "Normal Approx",
-    "t Distribution": "t Distribution",
-    "ChiSquare Distribution": "ChiSquare Distribution",
-    "F Distribution": "F Distribution",
-    "Sampling": "Sampling",
-    "Population vs Sample": "Population vs Sample",
-    "Population": "Population",
-    "Sample": "Sample",
+    "Modify": "Өөрчлөн сайжруулах",
+    "Confirm": "Батлах ",
+    "Variable Name": "Хувьсагчийн нэр",
+    "Variable Value": "Хувьсагчийн утга",
+    "Value Label": "Утгын нэр хаяг",
+    "* Less than nine value labels allowed.": "* 9-өөс бага утгын шошго нь зөвшөөрөгдөнө",
+    "Save": "Хадаглах",
+    "Exit": "гарах",
+    "eStatU UnivStatEdu": "eStatU - Их сургуулийн статистикийн боловсрол",
+    "eStatH HighStatEdu": "eStatH - Ахлах сургуулийн статистикийн боловсрол",
+    "Menu": "Цэс",
+    "Binomial Experiment": "Бином туршилт",
+    "Binomial Distribution": "Бином тархалт",
+    "Binomial Prob Table": "Пойсоны магадлалын хүснэгт",
+    "Poisson Distribution": "Пойсоны тархалт ",
+    "Poisson Prob Table": "Пойсоны магадлалын хүснэгт",
+    "Geometric Distribution": "Геометрийн тархалт",
+    "Geometric Prob Table": "Геометрийн магадлалын хүснэгт",
+    "HyperGeometric Distribution": "Хайпер геометрийн тархалт",
+    "HyperGeometric Prob Table": "Хайпер геометрийн магадлалын хүснэгт",
+    "Exponential Distribution": "Илтгэгчийн функцийн тархалт",
+    "Normal Experiment": "Хэвийн туршилт",
+    "Normal Distribution": "Хэвийн тархац",
+    "Normal Approx": "Хэвийн ойролцоо утга",
+    "t Distribution": "t Тархалт",
+    "ChiSquare Distribution": "ChiSquare Тархалт",
+    "F Distribution": "F Тархалт",
+    "Sampling": "Түүвэрлэлт",
+    "Population vs Sample": "Хүн амын тооны эсрэг жишээ ",
+    "Population": "Хүн ам",
+    "Sample": "Жишээ",
     "Exponential": "Exponential(0.3)",
-    "Uniform": "Uniform(0,1)",
-    "Sample05": "Sampling 5%",
-    "Sample10": "Sampling 10%",
-    "Sample20": "Sampling 20%",
-    "Statistics/BoxPlot": "Statistics/BoxPlot",
-    "Law of Large Number": "Law of Large Number",
-    "Dist of Sample Means": "Dist of Sample Means",
-    "Sample Size": "Sample Size",
-    "Confidence Interval": "Confidence Interval",
-    "Estimation Accuracy": "Estimation Accuracy",
-    "Repetition": "Repetition",
-    "Confidence Level": "Confidence Level",
+    "Uniform": "Нэг төрлийн/ байнгын (0,1)",
+    "Sample05": "Түүвэрлэлт 5%",
+    "Sample10": "Түүвэрлэлт 10%",
+    "Sample20": "Түүвэрлэлт 20%",
+    "Statistics/BoxPlot": "Статистик/BoxPlot",
+    "Law of Large Number": "Их тооны хууль",
+    "Dist of Sample Means": "Жишээ дундаж утгуудын тархалт ",
+    "Sample Size": "Жишээ хэмжээ ",
+    "Confidence Interval": "Найдварт завсар ",
+    "Estimation Accuracy": "нарийвчлалыг үнэлэх",
+    "Repetition": "Давтамж",
+    "Confidence Level": "Найдварт түвшинl",
+    "Testing Hypothesis mu_titleAB": "Testing Mean",
     "Testing Hypothesis mu_title": "Testing Mean",
     "Testing Hypothesis sigma_title": "Testing Variance",
     "Testing Hypothesis P_title": "Testing Proportion",
     "Testing Hypothesis mu12_title": "Testing Two Means",
     "Testing Hypothesis sigma12_title": "Testing Two Variances",
     "Testing Hypothesis P12_title": "Testing Two Proportions",
-    "Testing Hypothesis mu": "Testing Hypothesis &mu;",
-    "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Testing Hypothesis P",
-    "Testing Hypothesis mu12": "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Testing Hypothesis P<sub>1</sub>, P<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
-    "Testing Independence": "Testing Independence",
-    "Correlation Coefficient": "Correlation Coeff",
-    "Regression Experiment": "Regression Experiment",
-    "Hypothesis": "Hypothesis",
-    "Test Type": "Test Type",
-    "Z-test": "Z-test",
-    "t-test": "t-test",
-    "Chi-test": "&chi;<sup>2</sup>-test",
-    "F-test": "F-test",
-    "Sample Data": "Sample Data",
-    "input either sample data": "Input either sample data, or sample statistics at the next boxes usign csv/bsv",
-    "Sample Statistics": "Sample Statistics",
-    "Sample Mean": "Sample Mean",
+    "Testing Hypothesis muAB": "Тестэн таамаглал &mu; - &alpha;, &beta;",
+    "Testing Hypothesis mu": "Тестэн таамаглал &mu;",
+    "Testing Hypothesis sigma": "Тестэн таамаглал &sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "Тестэн таамаглал P",
+    "Testing Hypothesis mu12": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "Тестэн таамаглал &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12": "Тестэн таамаглал P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "Тестэн таамаглал ANOVA",
+    "Testing Independence": "Тестэн хамааралгүй байдал",
+    "Correlation Coefficient": "Хамаарлын коэфцеэнт ",
+    "Regression Experiment": "Хамаарлын туршилт",
+    "Hypothesis": "Таамаглал",
+    "Test Type": "Тестийн төрөл",
+    "Z-test": "Z-Тестийн",
+    "t-test": "t-Тестийн",
+    "Chi-test": "&chi;<sup>2</sup>-Тестийн",
+    "F-test": "F-Тестийн",
+    "Sampling Type": "Sampling Type",
+    "Independent Sample": "independent",
+    "Paired Sample": "paired",
+    "Sample Data": "Жишээ өгөгдөл",
+    "input either sample data": "Энгийн өгөгдөл, энгийн статистикийн аль алийг нь cvs/bsv-ийг ашигласан дараагийн хайрцагт нэмж оруулах",
+    "Sample Statistics": "Жишээ статистик",
+    "Sample Mean": "Жишээ дундаж утга",
     "Sample Variance": "Sample Variance",
-    "Sample Proportion": "Sample Proportion",
-    "if Z-test-1": "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used.)",
-    "Variance Assumption": "Variance Assumption",
-    "At least one pair": "At least one pair of means is different",
-    "Row-Col-0": "Row and column variables are independent",
-    "Row-Col-1": "Row and column variables are not independent",
-    "Enter any number of row": "(Enter observation from upper left cell)",
-    "Row": "Row",
-    "Column": "Column",
-    "Show Probability": "Show Probability",
-    "Regression Line": "Regression Line",
-    "Erase All": "Erase Screen",
-    "Add Point": "Add Point",
-    "Erase Point": "Erase Point",
-    "Reference Site": "Reference Site",
-    "Lot Size": "Lot Size",
-    "Defect Size": "Defect Size",
-    "If typed": "(If number is typed)",
+    "Sample Proportion": "жишээ харьцаа",
+    "if Z-test-1": "(Хэрэв Z тест байвал хүн амын дундаж кватрат хазайлтыг оруул &sigma;<sup>2</sup>)",
+    "if Z-test-2": "(Хэрэв Z тест Z<sub>1-&alpha;/2 </sub> ашиглагдсан.)",
+    "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
+    "At least one pair": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр.",
+    "Row-Col-0": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй ",
+    "Row-Col-1": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй биш",
+    "Enter any number of row": "(Зүүнд дээд хэсгээс шинжилгээг оруулах)",
+    "Row": "Мөр",
+    "Column": "Багана",
+    "Show Probability": "Магадлалыг харуулах",
+    "Regression Line": "Хамаарлын шулуун",
+    "Erase All": "Бүгдийг устгах",
+    "Add Point": "санал нэмэх",
+    "Erase Point": "Цэгийг устгах",
+    "Reference Site": "Иш татсан цахим хуудас",
+    "Lot Size": "Их хэмжээ",
+    "Defect Size": "Алдаатай хэмжээ",
+    "If typed": "(Хэрэв тоо бичигдвэл)",
     "Stat/BoxPlot": "Stat/BoxPlot",
-    "Mean": "Mean",
-    "Std Dev": "Std Dev",
-    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
-}
+    "Mean": "Дундаж  утга",
+    "Std Dev": "Стандарт хэлбэлзэл",
+    "OneGroup": "(one group)",
+    "RegressionBand": "Confidence Band",
+    "RegressionTable": "Regression Analysis",
+    "RegressionResidual": "Residual Plot",
+    "RegressionQQ": "Residual Q-Q Plot",
+    "HistogramNormal": "Probabilty Histogram",
+    "HistogramChisq": "Normal &chi;<sup>2</sup> Test",
+    "HistogramNormalQQ": "Normal Q-Q Plot",
+    "PopulationStd": "Population Standard Deviation",
+    "Type1Error": "Type 1 Error",
+    "Type2Error": "Type 2 Error",
 
+};
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
 appStr[2][9] = "../eStatU/index.html";
 appStr[3][9] = "../eStatE/index_en.html";
 appStr[4][9] = "../ExLearning/index_en.html";
 appStr[5][9] = "index.html";
-
-alertMsg[1][9] = "One of the selected variables does not have data.";
-alertMsg[2][9] = "Select variables for analysis (clicking column names) one by one. If two variables, first one is group variable. ";
-alertMsg[3][9] = "Missing data on the selected variable.";
-alertMsg[4][9] = "If observations of the selected variables are different or observations are different, analysis is not allowed.";
-alertMsg[5][9] = "Too many groups! Graphs may be overlapped due to size of the screen.";
-alertMsg[6][9] = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
-alertMsg[7][9] = "If more than three variables are selected on raw data, analysis or creating table is not allowed.";
-alertMsg[8][9] = "Dot Graph is allowd if the number of observation is less than 200.";
-alertMsg[9][9] = "Stem & Leaf Plot is allowd if the number of observation is less than 100.";
-alertMsg[12][9] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
-alertMsg[14][9] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
-alertMsg[16][9] = "Only two groups are allowed for this tesitng hypothesis.";
-alertMsg[17][9] = "Scatter plot requires at least x variable and y variable.";
-alertMsg[18][9] = "More than three variables are not allowed for scatter plot.";
-alertMsg[19][9] = "If there is a character on X variable, scatter plot cannot be drawn.";
-alertMsg[20][9] = "If there is a character on Y variable, scatter plot cannot be drawn.";
-alertMsg[21][9] = "If there is a missing data, save is not allowed.";
+alertMsg[1][9] = "Нэг сонгогдсон хувьсагч нь өгөгдөл байхгүй ";
+alertMsg[2][9] = "Судалгаа шинжилгээнд хувьсагчуудыг нэг нэгээр сонгох. Хэрэв эхнийх нь 2 хувьсагч бол групп хувьсагч болно.";
+alertMsg[3][9] = "Сонгогдсон хувьсагчаас өгөгдөл орхигдсон.";
+alertMsg[4][9] = "Хэрэв сонгогдсон хувьсагчуудын туршилтууд / үр дүнгүүд/ өөр өөр бол шинжилгээ зөвшөөрөгдөхгүй";
+alertMsg[5][9] = "Маш их группууд! Графикууд нь дэлгэцийн хэмжээнд хэт давхцсан байж магадгүй.";
+alertMsg[6][9] = "Хэрэв хураангуйлсан өгөгдлийн шинжилгээний хувьсагч нь тэмдэгт, статистикийн судалгаа, эсвэл байгуулсан хүснэгт агуулсан бол хүлээн зөвшөөрөгдөхгүй";
+alertMsg[7][9] = "Нэг мөрөн дэх өгөгдөлөөс хэрэв гурваас илүү хувьсагч сонгогдвол шинжилгээ болон хүснэгт үүсгэх нь зөвшөөрөгдөхгүй";
+alertMsg[8][9] = "Хэрэв шинжилгээний тоо нь 200 гаас баг үед цэгэн график зөвшөөрөгдөнө ";
+alertMsg[9][9] = "Хэрэв ажиглалтын тоо 100-аас бага болStem & Leaf Plot график нь зөвшөөрөгдөнө";
+alertMsg[12][9] = "Хэрэв судалгааны хувьсагч нь тэмдэгт, судалгаа, хүснэгт агуулсан бол хүлээн зөвшөөрөгдөхгүй";
+alertMsg[14][9] = "Үргэлжилсэн график болон тестийн таамаглалын хувьд хураангуй өгөгдөл нь зөвшөөрөгдөхгүй ";
+alertMsg[16][9] = "Энэ туршилтын таамаглалд зөвхөн 2 групп зөвшөөрөгдөнө";
+alertMsg[17][9] = "Тархалтын график нь хамгийн багадаа х болон у хувьсагч шаардана";
+alertMsg[18][9] = "Гурван хувьсагчаас илүү  байвал тархалтын график зурагдахгүй";
+alertMsg[19][9] = "Хэрэв Х хувьсагч дээр тэмдэгт байвал тархалтын график зурагдаж чадахгүй ";
+alertMsg[20][9] = "Хэрэв Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдахгүй ";
+alertMsg[21][9] = "Хэрэв өгөгдөл орхигдсон бол хадаглах нь зөвшөөрөгдөхгүй ";
 alertMsg[22][9] = "If there is a negative number, bargraph cannot be drawn.";
-alertMsg[25][9] = "If there is only one group, stacked bar graph is not allowed.";
-alertMsg[27][9] = "If there is only one group, ratio bar graph is not allowed.";
-alertMsg[29][9] = "If there is only one group, side-by-side bar graph is not allowed.";
-alertMsg[31][9] = "If there is only one group, both-side bar graph is not allowed.";
-alertMsg[32][9] = "If there is a negative number, piechart cannot be drawn.";
-alertMsg[33][9] = "If there is a negative number, donut graph cannot be drawn.";
-alertMsg[34][9] = "If there is a negative number, band graph cannot be drawn.";
-alertMsg[35][9] = "If there is a negative number, frequency table cannot be drawn.";
-alertMsg[36][9] = "This bar graph is allowed only for two groups.";
-alertMsg[37][9] = "This testing hypothesis is allowed only for one variable.";
-alertMsg[38][9] = "mu is NaN . Ener value and then retry!";
-alertMsg[39][9] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][9] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][9] = "This testing hypothesis is allowed only for two variable. Group variable should have only two groups";
-alertMsg[42][9] = "Title editing of testing hypothesis is not allowed! ";
-
-svgStr[1][9] = " Bar Graph";
-svgStr[2][9] = " Pie Chart";
-svgStr[3][9] = " Doughnut Graph";
-svgStr[4][9] = " Band Graph";
-svgStr[5][9] = " Line Graph";
-svgStr[6][9] = " Dot Graph";
-svgStr[7][9] = " Box-Whisker Plot";
+alertMsg[25][9] = "Хэрэв зөвхөн нэг групп байвал овоорсон /бүгд багтсан/ баганан график зөвшөөрөгдөхгүй";
+alertMsg[27][9] = "Хэрэв зөвхөн нэг групп байвал харьцаатай баганан график зөвшөөрөгдөхгүй ";
+alertMsg[29][9] = "Хэрэв зөвхөн нэг групп байвал зэрэгцээ баганан график зөвшөөрөгдөхгүй";
+alertMsg[31][9] = "Хэрэв зөвхөн нэг групп байвал хоёр талт баганан график зөвшөөрөгдөхгүй ";
+alertMsg[32][9] = "Хэрэв сөрөг тоо байвал бялуу хүснэгт зурагдаж чадахгүй ";
+alertMsg[33][9] = "Хэрэв сөрөг тоо байвал цагирган график зурагдаж чадахгүй";
+alertMsg[34][9] = "Хэрэв сөрөг тоо байвал band график зурагдаж чадахгүй";
+alertMsg[35][9] = "Хэрэв сөрөг тоо байвал давтамжийн хүснэгт зурагдаж чадахгүй ";
+alertMsg[36][9] = "Энэ баганан график нь зөвхөн хоёр группын тухайд зөвшөөрөгдөнө";
+alertMsg[37][9] = "Энэ тестэн таамаглал нь зөвхөн нэг хувьсагчийн тухайд зөвшөөрөгдөнө ";
+alertMsg[38][9] = ".. бол NAN. Утгыг оруулаад дахин оролд.";
+alertMsg[39][9] = "Стандарт хэлбэлзэл нь 0 эсвэл NAN-ийн аль аль нь. Дахин оролд!";
+alertMsg[40][9] = "Дундаж кватратын хазайлтын орц нь NAN. Утгыг оруулаад дахин оролд. ";
+alertMsg[41][9] = "Энэ тестэн таамаглал нь зөвхөн хоёр хувьсагчийн хувьд зөвшөөрөгдөнө. Групп хувьсагч нь зөвхөн хоёр групптэй байсан дээр. ";
+alertMsg[42][9] = "Тестэн таамаглалын гарчигийг засварлах нь зөвшөөрөгдөхгүй";
+svgStr[1][9] = " Баганан график";
+svgStr[2][9] = " Бялуун график";
+svgStr[3][9] = " Цагирган график";
+svgStr[4][9] = " Туузан график";
+svgStr[5][9] = " Шугаман график";
+svgStr[6][9] = " Цэгэн график";
+svgStr[7][9] = " Box Plot";
 svgStr[8][9] = " Stem and Leaf Plot";
-svgStr[9][9] = " Histogram";
-svgStr[10][9] = " Scatter Plot";
-svgStr[11][9] = " Testing Hypothesis: Population Mean";
-svgStr[12][9] = " Testing Hypothesis: Population Variance";
-svgStr[13][9] = " Testing Hypothesis: Two Population Means";
-svgStr[14][9] = " Testing Hypothesis: Two Population Variances";
-svgStr[15][9] = " Analysis of Variance";
-svgStr[16][9] = "Frequency";
-svgStr[17][9] = "Ratio";
-svgStr[18][9] = "Group ";
+svgStr[9][9] = " Гистограм ";
+svgStr[10][9] = " Тархалтын график";
+svgStr[11][9] = " Тестэн таамаглал : Хүн амын дундаж утга ";
+svgStr[12][9] = " Тестэн таамаглал : Хүн амын дундаж кватрат хазайлт";
+svgStr[13][9] = " Тестэн таамаглал : Хоёр хүн амын тооны дундаж";
+svgStr[14][9] = " Тестэн таамаглал : Хоёр хүн амын тооны дундаж кватрат хазайлт";
+svgStr[15][9] = " Дундаж кватрат хазайлтын шинжилгээ";
+svgStr[16][9] = "Давтамж";
+svgStr[17][9] = "Харьцаа";
+svgStr[18][9] = "Групп ";
 svgStr[19][9] = " ";
-svgStr[20][9] = "<h3>Summary Data<br>Frequency Table</h3>";
-svgStr[21][9] = "Group Variable";
-svgStr[22][9] = "Row Variable";
-svgStr[23][9] = "Total";
-svgStr[24][9] = "Total";
-svgStr[25][9] = "<h3>Frequency Table</h3>";
+svgStr[20][9] = "Хураангуй, товч  Өгөгдөл <br> Давтамжит хүснэгт";
+svgStr[21][9] = "Группын хувьсагч";
+svgStr[22][9] = "Мөрийн хувьсагч ";
+svgStr[23][9] = "Нийлбэр ";
+svgStr[24][9] = "Нийлбэр ";
+svgStr[25][9] = "<h3>Давтамжит хүснэгт</h3>";
 svgStr[26][9] = "Analysis Variable";
-svgStr[27][9] = "Var Value";
-svgStr[28][9] = "Value Label";
-svgStr[29][9] = "Frequency";
-svgStr[30][9] = "Percent(%)";
-svgStr[31][9] = "<h3>Cross Table</h3>";
-svgStr[32][9] = "Col Variable";
-svgStr[33][9] = "Row Variable";
-svgStr[34][9] = "Mean"
-svgStr[35][9] = "Std Dev"
-svgStr[36][9] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStr[37][9] = "Group Name";
-svgStr[38][9] = "Interval";
-svgStr[39][9] = "Stem";
-svgStr[40][9] = " Leaf";
-svgStr[41][9] = "Group 1  Leaf";
-svgStr[42][9] = "Group 2  Leaf"
-svgStr[43][9] = "<h3>Basic Statistics</h3>";
-svgStr[44][9] = "Observation";
-svgStr[45][9] = "Minimum";
-svgStr[46][9] = "Median";
-svgStr[47][9] = "Maximum";
-svgStr[48][9] = "Total";
+svgStr[27][9] = "Хувьсагчийн утга ";
+svgStr[28][9] = "Утгын нэр хаяг";
+svgStr[29][9] = "Давтамж ";
+svgStr[30][9] = "Хувь (%)";
+svgStr[31][9] = "<h3>Солбисон хүснэгт</h3>";
+svgStr[32][9] = "Баганан хувьсагч ";
+svgStr[33][9] = "Мөрийн хувьсагч";
+svgStr[34][9] = "Дундаж  утга"
+svgStr[35][9] = "Стандарт хэлбэлзэл "
+svgStr[36][9] = "<h3> Гистограм <br>Давтамжит хүснэгт</h3>";
+svgStr[37][9] = "Группын нэр";
+svgStr[38][9] = "Завсар";
+svgStr[39][9] = "Иш";
+svgStr[40][9] = " Навчист /график/";
+svgStr[41][9] = "Группp 1  Навчист";
+svgStr[42][9] = "Групп 2  Навчист"
+svgStr[43][9] = "<h3>Суурь, үндсэн статистик</h3>";
+svgStr[44][9] = "Ажиглалт";
+svgStr[45][9] = "Хамгийн бага";
+svgStr[46][9] = "Гол нь , голийн утга";
+svgStr[47][9] = "Хамгийн их ";
+svgStr[48][9] = "Нийлбэр ";
+svgStr[49][9] = "<h3>Normality Test</h3>";
+svgStr[50][9] = "Expected frequency > 5 <br> is recommended";
+svgStr[51][9] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][9] = "Data<br>Observed Frequency<br>(O<sub>i</sub>)";
+svgStr[53][9] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][9] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
+svgStr[55][9] = "Each interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][9] = "Sum of &chi;<sup>2</sup> value";
+svgStr[57][9] = "Probability Histogram and Normal Distribution";
+svgStr[58][9] = "Normal Q-Q Plot";
+svgStr[59][9] = "Normal Quantile";
+svgStr[60][9] = "Хамаарлын коэфцеэнт ";
+svgStr[61][9] = "Coefficient of Determination";
+svgStr[62][9] = "Стандарт алдаа ";
+svgStr[63][9] = "Хувьсагчийн";
+svgStr[64][9] = "Хувьсагчийн нэр ";
+svgStr[65][9] = "Independent Variable";
+svgStr[66][9] = "Dependent Variable";
+svgStr[67][9] = "Parameter";
+svgStr[68][9] = "Estimated Value";
+svgStr[69][9] = "value";
+svgStr[70][9] = "Intercept";
+svgStr[71][9] = "Slope";
+svgStr[72][9] = "Factor";
+svgStr[73][9] = "Sum of Squares";
+svgStr[74][9] = "deg of freedom";
+svgStr[75][9] = "Mean Squares";
+svgStr[76][9] = "Хамаарал ";
+svgStr[77][9] = "Error";
+svgStr[78][9] = "Нийлбэр ";
+svgStr[79][9] = "<h3>Regression Analysis</h3>";
+svgStr[80][9] = "Standardized Residual Q-Q Plot";
+svgStr[81][9] = "Standardized Residual";
+svgStr[82][9] = "Normal Quantile";
+svgStr[83][9] = "Residual Plot";
+svgStr[84][9] = "Predicted Value";
+svgStr[85][9] = "";
+svgStr[86][9] = "";
+svgStr[87][9] = "";
+svgStr[88][9] = "";
+svgStr[89][9] = "";
 
-svgStrU[1][9] = "Binomial Distribution";
-svgStrU[2][9] = "repetition";
-svgStrU[3][9] = "Mean";
-svgStrU[4][9] = "Std Dev";
-svgStrU[5][9] = "Poissson Distribution";
-svgStrU[6][9] = "Geometric Distribution";
-svgStrU[7][9] = "HyperGeometric Distribution";
-svgStrU[8][9] = "Population";
-svgStrU[9][9] = "Sample Dist";
-svgStrU[10][9] = "Law of Large Number";
-svgStrU[11][9] = "Tail";
-svgStrU[12][9] = "Head";
-svgStrU[13][9] = "Coin Head";
-svgStrU[14][9] = "Number of Heads";
-svgStrU[15][9] = "Number of Trials";
-svgStrU[16][9] = "Dist of Sample Means";
-svgStrU[17][9] = "repetition";
-svgStrU[18][9] = "std err";
-svgStrU[19][9] = "Population Mean";
-svgStrU[20][9] = "Confidence Interval";
-svgStrU[21][9] = "Estimation Accuracy";
-svgStrU[22][9] = "sample mean";
-svgStrU[23][9] = "[TestStat] = ";
-svgStrU[24][9] = "Distribution";
-svgStrU[25][9] = "Reject Ho";
-svgStrU[26][9] = "Accept Ho";
-svgStrU[27][9] = " p-value  = ";
-svgStrU[28][9] = "[Decision] ";
-svgStrU[29][9] = "[ANOVA]";
-svgStrU[30][9] = "Enter Correlation Coefficient and click Execute button";
-svgStrU[31][9] = "Regression";
-svgStrU[32][9] = "Row Var";
-svgStrU[33][9] = "Col Var";
-svgStrU[34][9] = "Mean"
-svgStrU[35][9] = "Std Dev"
-svgStrU[36][9] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStrU[37][9] = "Group Name";
-svgStrU[38][9] = "Interval";
-svgStrU[39][9] = "Stem";
-svgStrU[40][9] = " Leaf";
-svgStrU[41][9] = "Group 1  Leaf";
-svgStrU[42][9] = "Group 2  Leaf"
-svgStrU[43][9] = "<h3>Basic Statistics</h3>";
-svgStrU[44][9] = "Observation";
-svgStrU[45][9] = "Minimum";
-svgStrU[46][9] = "Median";
-svgStrU[47][9] = "Maximum";
-svgStrU[48][9] = "Total";
-svgStrU[49][9] = "Exponential";
-svgStrU[50][9] = "Uniform";
-svgStrU[51][9] = "Estimation Accuracy";
-svgStrU[52][9] = "- Create points by click, then eStat finds a regression line.";
-svgStrU[53][9] = "- Move or erase a point. Watch change of the regression line.";
-svgStrU[54][9] = "[Sample Statistics] ";
-svgStrU[55][9] = "[Sample 1 Statistics] ";
-svgStrU[56][9] = "[Sample 2 Statistics] ";
-svgStrU[57][9] = "confidence level";
-svgStrU[58][9] = "";
+svgStrU[1][9] = "Бином тархалт ";
+svgStrU[2][9] = "Давтамж";
+svgStrU[3][9] = "Дундаж  утга";
+svgStrU[4][9] = "Стандарт хэлбэлзэл";
+svgStrU[5][9] = "Пойсоны тархалт ";
+svgStrU[6][9] = "Геометрийн тархалт";
+svgStrU[7][9] = "Хайпер геометрийн тархалт";
+svgStrU[8][9] = "Хүнам";
+svgStrU[9][9] = "Жишээ тархалт";
+svgStrU[10][9] = "Их тооны хууль";
+svgStrU[11][9] = "Үзүүр сүүл хэсэг";
+svgStrU[12][9] = "Дээд, толгой хэсэг";
+svgStrU[13][9] = "Зоосны тоо тал";
+svgStrU[14][9] = "Эхний хэсгийн тоо";
+svgStrU[15][9] = "Туршилтын тоо";
+svgStrU[16][9] = "Жишээ дундаж утгуудын тархалт";
+svgStrU[17][9] = "Давтамж";
+svgStrU[18][9] = "Стандарт алдаа";
+svgStrU[19][9] = "Хүн амын дундаж утга";
+svgStrU[20][9] = "Найдварт завсар";
+svgStrU[21][9] = "нарийвчлалыг үнэлэх";
+svgStrU[22][9] = "Жишээ дундаж утга";
+svgStrU[23][9] = "[Тестийн статистик] = ";
+svgStrU[24][9] = "Тархалт";
+svgStrU[25][9] = "Хүчингүй таамаглалаас татгалзах / Null таамаглал/";
+svgStrU[26][9] = "Hull таамаглалыг хүлээн авах ";
+svgStrU[27][9] = " п-утга  = ";
+svgStrU[28][9] = "[шийдвэр ] ";
+svgStrU[29][9] = "[Дундаж кватрат хазайлтын шинжилгээ]";
+svgStrU[30][9] = "Хамааралын коеффициент оруулах болон гүйцэтгэх товчийг дарах";
+svgStrU[31][9] = "Хамаарал";
+svgStrU[32][9] = "Мөрийн хувьсагч ";
+svgStrU[33][9] = "Баганан хувьсагч";
+svgStrU[34][9] = "Дундаж  утга"
+svgStrU[35][9] = "Стандарт хэлбэлзэл"
+svgStrU[36][9] = "<h3> Гистограм <br>Давтамжит хүснэгт</h3>";
+svgStrU[37][9] = "Группын нэр";
+svgStrU[38][9] = "Завсар";
+svgStrU[39][9] = "Иш";
+svgStrU[40][9] = " Навчист /график/";
+svgStrU[41][9] = "Групп 1  Навчист /график/";
+svgStrU[42][9] = "Групп 2  Навчист /график/"
+svgStrU[43][9] = "<h3>Суурь, үндсэн статистик</h3>";
+svgStrU[44][9] = "Ажиглалт";
+svgStrU[45][9] = "Хамгийн бага";
+svgStrU[46][9] = "Гол нь , голийн утга";
+svgStrU[47][9] = "Хамгийн их ";
+svgStrU[48][9] = "Нийлбэр";
+svgStrU[49][9] = "Илтгэгчийн функцийн";
+svgStrU[50][9] = "Нэг төрлийн/ байнгын";
+svgStrU[51][9] = "нарийвчлалыг үнэлэх";
+svgStrU[52][9] = "- Нэг даралтаар цэгүүдийг үүсгээд е-Стат нь хамаарлын шулууныг олно";
+svgStrU[53][9] = "- Цэгийг шилжүүлэх болон устгах. Хамаарлын шулууны өөрчлөлийг ажиглах";
+svgStrU[54][9] = "[Жишээ статистик] ";
+svgStrU[55][9] = "[Жишээ 1 статистик] ";
+svgStrU[56][9] = "[Жишээ 2 статистик] ";
+svgStrU[57][9] = "Найдварт түвшин ";
+svgStrU[58][9] = "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй ";
 svgStrU[59][9] = "";
-
-
 // Chinese - Simplified
 $.message.zh = {
     "eStat : Stat Education SW": "eStat: 统计教育软件",
@@ -3450,7 +3974,7 @@ $.message.zh = {
     "Significance Level": "显著性水平",
     "Execute": "执行",
     "(Confidence Interval)": "(置信区间)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-检验, Z<sub>1-&alpha;/2 </sub> 使用)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-检验, Z, &sigma;使用)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 检验",
     "Variance Assumption": "方差假设",
     "F test": "F 检验",
@@ -3502,12 +4026,14 @@ $.message.zh = {
     "Estimation Accuracy": "估计准确率",
     "Repetition": "重复数",
     "Confidence Level": "置信水平",
+    "Testing Hypothesis mu_titleAB": "均值检验",
     "Testing Hypothesis mu_title": "均值检验",
     "Testing Hypothesis sigma_title": "方差检验",
     "Testing Hypothesis P_title": "比例检验",
     "Testing Hypothesis mu12_title": "两总体均值检验",
     "Testing Hypothesis sigma12_title": "两总体方差检验",
     "Testing Hypothesis P12_title": "两总体比例检验",
+    "Testing Hypothesis muAB": "假设检验 &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "区间估计/假设检验: 均值&mu;",
     "Testing Hypothesis sigma": "区间估计/假设检验: 变异数&sigma;<sup>2</sup>",
     "Testing Hypothesis P": "区间估计/假设检验: 比例 P",
@@ -3524,6 +4050,9 @@ $.message.zh = {
     "t-test": "t-检验",
     "Chi-test": "卡方检验",
     "F-test": "F-检验",
+    "Sampling Type": "样本",
+    "Independent Sample": "獨立样本",
+    "Paired Sample": "從屬样本",
     "Sample Data": "样本数据",
     "input either sample data": "接下来的对话视窗，使用csv/bsv格式输入样本资料或样本统计量",
     "Sample Statistics": "样本统计量",
@@ -3552,14 +4081,24 @@ $.message.zh = {
     "Mean": "均值",
     "Std Dev": "标准差",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
-}
-
+    "OneGroup": "(一组)",
+    "RegressionBand": "置信带",
+    "RegressionTable": "回归分析",
+    "RegressionResidual": "残差图",
+    "RegressionQQ": "残差Q-Q图",
+    "HistogramNormal": "概率直方图",
+    "HistogramChisq": "正态 &卡方;<sup>2</sup> 检验",
+    "HistogramNormalQQ": "正态Q-Q图",
+    "PopulationStd": "母标准差",
+    "Type1Error": "1種誤謬",
+    "Type2Error": "2種誤謬",
+};
+// Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
 appStr[2][10] = "../eStatU/index.html";
 appStr[3][10] = "../eStatE/index_en.html";
 appStr[4][10] = "../ExLearning/index_en.html";
 appStr[5][10] = "index.html";
-
 alertMsg[1][10] = "所选的变量，其中之一没有包含资料。";
 alertMsg[2][10] = "逐一选取变量进行分析（选按栏位名称）。若是同事选取两个变量，则第一个视为群组变量。";
 alertMsg[3][10] = "所选的变量有缺失值。";
@@ -3593,7 +4132,6 @@ alertMsg[39][10] = "标准差为0或不是一个数字，请重新执行!";
 alertMsg[40][10] = "输入的方差不是一个数字，请输入一个数值并重新执行!";
 alertMsg[41][10] = "此假设检验仅限于两个变量，群组变量则需包含两个群组。";
 alertMsg[42][10] = "假设检验的标题不可编辑! ";
-
 svgStr[1][10] = " 条形图";
 svgStr[2][10] = " 饼图";
 svgStr[3][10] = " 圆环图";
@@ -3642,6 +4180,43 @@ svgStr[45][10] = "最小值";
 svgStr[46][10] = "中位数";
 svgStr[47][10] = "最大值";
 svgStr[48][10] = "全体";
+svgStr[49][10] = "<h3>正态性检验</h3>";
+svgStr[50][10] = "期望频数> 5 <br> 建议";
+svgStr[51][10] = "&chi;<sup>2</sup> 检验<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][10] = "资料<br>观察频数<br>(O<sub>i</sub>)";
+svgStr[53][10] = "正态分布<br>期望概率<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][10] = "正态分布<br>期望频数<br>(E<sub>i</sub>)";
+svgStr[55][10] = "各区间l<br>&chi;<sup>2</sup> 值<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][10] = "合&chi;<sup>2</sup>值";
+svgStr[57][10] = "概率直方图, 正态分布";
+svgStr[58][10] = "正态Q-Q图";
+svgStr[59][10] = "正态分位数";
+svgStr[60][10] = "相关系数";
+svgStr[61][10] = "决定系数";
+svgStr[62][10] = "标准误差";
+svgStr[63][10] = "变量";
+svgStr[64][10] = "变量名";
+svgStr[65][10] = "自变量";
+svgStr[66][10] = "应变量";
+svgStr[67][10] = "总数";
+svgStr[68][10] = "推定值";
+svgStr[69][10] = "值";
+svgStr[70][10] = "切片";
+svgStr[71][10] = "斜率";
+svgStr[72][10] = "因素";
+svgStr[73][10] = "平方和";
+svgStr[74][10] = "自由度";
+svgStr[75][10] = "均方";
+svgStr[76][10] = "回归";
+svgStr[77][10] = "误差";
+svgStr[78][10] = "总体";
+svgStr[79][10] = "<h3>回归分析</h3>";
+svgStr[80][10] = "标准残差Q-Q图";
+svgStr[81][10] = "标准残差";
+svgStr[82][10] = "正态分位数";
+svgStr[83][10] = "残差图";
+svgStr[84][10] = "预测值";
+
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
 svgStrU[3][10] = "平均";
@@ -3674,30 +4249,30 @@ svgStrU[29][10] = "[方差分析]";
 svgStrU[30][10] = "输入相关系数后按确认";
 svgStrU[31][10] = "回归分析";
 svgStrU[32][10] = "列变量";
-svgStrU[33][10] = "行变量";
-svgStrU[34][10] = "平均"
-svgStrU[35][10] = "标准差"
-svgStrU[36][10] = "<h3> 直方图<br>频数分布表</h3>";
-svgStrU[37][10] = "群组名称";
-svgStrU[38][10] = "阶级区间";
-svgStrU[39][10] = "叶";
-svgStrU[40][10] = "叶";
-svgStrU[41][10] = "群组1  叶";
-svgStrU[42][10] = "群组2  叶";
-svgStrU[43][10] = "<h3>基本统计量</h3>";
-svgStrU[44][10] = "资料数";
-svgStrU[45][10] = "最小值";
-svgStrU[46][10] = "中位数";
-svgStrU[47][10] = "最大值";
-svgStrU[48][10] = "全体";
-svgStrU[49][10] = "指数分布";
-svgStrU[50][10] = "均匀分布";
-svgStrU[51][10] = "估计准确率";
-svgStrU[52][10] = "- 单击鼠标添加观察点，eStat会计算出回归线。";
-svgStrU[53][10] = "- 移动或者删除一个观察点，观看回归线的变化。";
-svgStrU[54][10] = "[样本统计量] ";
-svgStrU[55][10] = "[样本 1 统计量] ";
-svgStrU[56][10] = "[样本 2 统计量] ";
-svgStrU[57][10] = "显著性水平";
-svgStrU[58][10] = "";
-svgStrU[59][10] = "";
+svgStrU[33][10] = "行变量";
+svgStrU[34][10] = "平均"
+svgStrU[35][10] = "标准差"
+svgStrU[36][10] = "<h3> 直方图<br>频数分布表</h3>";
+svgStrU[37][10] = "群组名称";
+svgStrU[38][10] = "阶级区间";
+svgStrU[39][10] = "叶";
+svgStrU[40][10] = "叶";
+svgStrU[41][10] = "群组1  叶";
+svgStrU[42][10] = "群组2  叶";
+svgStrU[43][10] = "<h3>基本统计量</h3>";
+svgStrU[44][10] = "资料数";  
+svgStrU[45][10] = "最小值";  
+svgStrU[46][10] = "中位数"; 
+svgStrU[47][10] = "最大值";  
+svgStrU[48][10] = "全体";
+svgStrU[49][10] = "指数分布";
+svgStrU[50][10] = "均匀分布";
+svgStrU[51][10] = "估计准确率";
+svgStrU[52][10] = "- 单击鼠标添加观察点，eStat会计算出回归线。";
+svgStrU[53][10] = "- 移动或者删除一个观察点，观看回归线的变化。";
+svgStrU[54][10] = "[样本统计量] ";
+svgStrU[55][10] = "[样本 1 统计量] ";
+svgStrU[56][10] = "[样本 2 统计量] ";
+svgStrU[57][10] = "显著性水平";
+svgStrU[58][10] = "列行独立";
+svgStrU[59][10] = "列行不独立";

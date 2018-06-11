@@ -149,21 +149,21 @@
             g = -f;
             if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
             else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu6);
           }
           else if (h1Type == 2) {
             h = alpha;  
             f = -5
             g = stdnormal_inv(1-h, info);
             pvalue = 1 - stdnormal_cdf(teststat);
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu6);
           }
           else {
             h = alpha;  
             f = stdnormal_inv(h, info);
             g = 5;
             pvalue = stdnormal_cdf(teststat);
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu6);
           }
         }
       })

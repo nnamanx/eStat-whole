@@ -219,21 +219,21 @@
             g = -f;
             if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
             else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
           }
           else if (h1Type == 2) {
             h = alpha;  
             f = -5
             g = stdnormal_inv(1-h, info);
             pvalue = 1 - stdnormal_cdf(teststat);
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
           }
           else {
             h = alpha;  
             f = stdnormal_inv(h, info);
             g = 5;
             pvalue = stdnormal_cdf(teststat);
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
           }
         }
         else { // t-test
@@ -243,21 +243,21 @@
             g = -f;
             if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
             else  pvalue = 2 * (1 - t_cdf(teststat, df, info));
-            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
           }
           else if (h1Type == 2) {
             h = alpha;  
             f = -5;   //t_inv(0.0001, df, info);
             g = t_inv(1-h, df, info);
             pvalue = 1 - t_cdf(teststat, df, info);
-            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
           }
           else {
             h = alpha;  
             f = t_inv(h, df, info);
             g = 5;    //t_inv(0.9999, df, info);
             pvalue = t_cdf(teststat, df, info);
-            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
           }          
         }
       })
