@@ -59,11 +59,17 @@
       <span class="fontmath"> &alpha; </span> =
       <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
       <input type="radio" name = "type2" value="2" > 1%
-    </form>       
+    </form>  
+     
+    <form name="myForm3">&nbsp;&nbsp;&nbsp;
+      <span data-msgid="Sampling Type">Sample Type</span> &nbsp; 
+      <input type="radio" name = "type3" value="1" checked><span data-msgid="Independent Sample">independent</span>  &nbsp;      
+      <input type="radio" name = "type3" value="2" > <span data-msgid="Paired Sample">paired </span> 
+    </form>   
 
     <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
     <span class="fontguide" data-msgid="input either sample data">
-      (input either sample data or sample statistics using csv / bsv)
+      (input either sample data or sample statistics using bsv)
     </span>   
     
     <table class="data">
@@ -114,6 +120,9 @@
 	  <td><span class="fontmath">s<sub>2</sub><sup>2</sup></span></td>
 	  <td>=</td>	
 	  <td><input type="text" class="textarea" size=6 id="var42"></td>
+	  <td><span class="fontmath">s<sub>d</sub><sup>2</sup></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="varDiff"></td>
 	</tr>
       </tbody>
     </table>
@@ -138,22 +147,24 @@
       svgWidth2   = 600;
       svgHeight2  = 400;
 
-      var nobs, avg, std, gxmin, gxmax, gymin, gymax;
+      var k, nobs, avg, std, gxmin, gxmax, gymin, gymax, temp;
       var title;
       var df, df1, df2, info, alpha, pvalue, b, c, d, e, f, g, h, t1, t2;
-      var mu4, nn41,nn42, xbar41, xbar42, var41, var42, teststat, varPooled, varAdd;
-      var hypoType = 41;
+      var mu4, nn41,nn42, xbar41, xbar42, var41, var42, teststat, varPooled, varAdd, varDiff, avgDiff;
+      var x = [];
+      var y = [];
 
       // H1 type
       var h1 = document.myForm0.type0;
-      var h1Type = h1.value; 
-      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
-      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
-      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+      var h1Type = 1; 
+      h1[0].onclick = function() { h1Type = 1 }    // 양측검정
+      h1[1].onclick = function() { h1Type = 2 }    // 우측검정
+      h1[2].onclick = function() { h1Type = 3 }    // 좌측검정
 
       // Test type
       var test = document.myForm1.type1;
-      var testType = test.value;
+      var testType = 1;
+      var hypoType = 41;
       test[0].onclick = function() { testType = 1; hypoType = 41 }  // same population variance
       test[1].onclick = function() { testType = 2; hypoType = 42 }  // not same population variances
 
@@ -161,18 +172,30 @@
       var a = document.myForm2.type2;
       alpha = 0.05;
       a[0].onclick = function() { alpha = 0.05; }  
-      a[1].onclick = function() { alpha = 0.01; }  
+      a[1].onclick = function() { alpha = 0.01; } 
+ 
+      // Sample type
+      var sample = document.myForm3.type3;
+      var sampleType = 1;
+      sample[0].onclick = function() { // independent sample
+        sampleType = 1; 
+        if (testType == 1) hypoType = 41;
+        else if (testType == 2) hypoType = 42;
+      }  
+      sample[1].onclick = function() { sampleType = 2; hypoType = 43;}  // paired sample
 
       // input data control ===================================================
       d3.select("#data1").on("input", function() {
         stat = simplestat("#data1");  
+        x = data;
         document.getElementById("nn41").value   = stat.n;    
         document.getElementById("xbar41").value = f2(stat.xbar);
         document.getElementById("var41").value  = f2(stat.var);    
       });
 
       d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");   
+        stat = simplestat("#data2");  
+        y = data; 
         document.getElementById("nn42").value   = stat.n;    
         document.getElementById("xbar42").value = f2(stat.xbar);
         document.getElementById("var42").value  = f2(stat.var);    
@@ -193,7 +216,6 @@
       // Testing Hypothesis ===========================================================
       d3.select("#executeTH4").on("click",function() {
         bar.selectAll("*").remove();
-
         // input value
         mu4    = parseFloat(d3.select("#mu4").node().value);
         nn41   = parseFloat(d3.select("#nn41").node().value);
@@ -202,25 +224,47 @@
         xbar42 = parseFloat(d3.select("#xbar42").node().value);
         var41  = parseFloat(d3.select("#var41").node().value);
         var42  = parseFloat(d3.select("#var42").node().value);
-
-        // test statistics
-        df  = nn41 + nn42 - 2;
-        df1 = nn41 - 1;
-        df2 = nn42 - 1;
-        varPooled = ( df1*var41 + df2*var42 ) / df;
-        t1 = var41 / nn41;
-        t2 = var42 / nn42;
-        varAdd    = t1 + t2;
-        if (testType == 1) teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varPooled/nn41 + varPooled/nn42); 
-        else teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varAdd);
-        
+        varDiff= parseFloat(d3.select("#varDiff").node().value);
+        // input validataion
         if (isNaN(nn41) || isNaN(nn42) || isNaN(xbar41) || isNaN(xbar42) || isNaN(var41) || isNaN(var42) ||
             nn41 < 2 || nn42 < 2 || var41 <= 0 || var42 <= 0) {  // wrong input
-          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
-             .text("No input or wrong input !!   Try again.")
-             .style("stroke","red")
+          bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
+             .text("입력자료가 없든지 잘못 입력하였습니다.")
+          bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
+             .text("No input or wrong input !!   Try again.")             
+        }
+        else if (sampleType == 2 && (nn41 != nn42)) {  // wrong input
+          bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
+             .text("종속표본은 표본의 크기가 같아야 합니다.")
+          bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
+             .text("Paired sample should have the same sample size.")
         }
         else {    // t-test        
+          // test statistics
+          if (sampleType == 1) { // independent sample
+            df  = nn41 + nn42 - 2;
+            df1 = nn41 - 1;
+            df2 = nn42 - 1;
+            varPooled = ( df1*var41 + df2*var42 ) / df;
+            t1 = var41 / nn41;
+            t2 = var42 / nn42;
+            varAdd    = t1 + t2;
+            if (testType == 1) teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varPooled/nn41 + varPooled/nn42); 
+            else teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varAdd);
+          } else if (sampleType == 2) { // paired sample
+            avgDiff = 0
+            for (k=0; k<x.length; k++) avgDiff += (x[k] - y[k]);
+            avgDiff /= x.length;
+            varDiff = 0;
+            for (k=0; k<x.length; k++) {
+              temp = (x[k] - y[k])-avgDiff;
+              varDiff += temp*temp;
+            }
+            df  = x.length -1;
+            varDiff /= df ;
+            document.getElementById("varDiff").value   = f2(varDiff); 
+            teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varDiff/x.length);
+          }       
           if (h1Type == 1) {
             h = alpha / 2;  
             if (testType == 1) {
@@ -235,7 +279,7 @@
               if (teststat < 0)  pvalue = 2 * (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd;
               else  pvalue = 2 * (1 - (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd );
             }
-            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu4);
           }
           else if (h1Type == 2) {
             h = alpha; 
@@ -249,7 +293,7 @@
               g = (t1*t_inv(1-h, df1, info) + t2*t_inv(1-h, df2, info)) / varAdd;
               pvalue = 1 - ( (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd );
             }
-            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu4);
           }
           else {
             h = alpha; 
@@ -263,7 +307,7 @@
               g = t_inv(0.9999, df, info);
               pvalue = (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd ;
             }
-            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu4);
           }          
         }
       })

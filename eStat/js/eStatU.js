@@ -1,8 +1,9 @@
-var f0 = d3.format(".0f");
+﻿var f0 = d3.format(".0f");
 var f1 = d3.format(".1f");
 var f2 = d3.format(".2f");
 var f3 = d3.format(".3f");
 var f4 = d3.format(".4f");
+var   symbol  = ["≠", ">", "<"];
 var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0000CD","#FFA500","#7CFC00","#87CEEB","#FF1493",
                  "#008000","#6495ED","#FFD700","#BDB76B","#000080","#800000","#778899","#CD853F","#8B008B","#00FFFF","#FFC0CB",
                  "#B0C4DE","#DDA0DD","#A9A9A9","#ADFF2F","#ADD8E6","#FFDAB9","#F0E68C","#E6E6FA","#000099","#00FF99","#009999",
@@ -13,7 +14,6 @@ var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0
                  "#669966","#663366","#999966","#996666","#CCCC66","#CC9966","#CC6666","#CCFF66","#FFFF66","#FFCC66","#FF0066",
                  "#0000CC","#00FFCC","#0033CC","#3333CC","#3300CC","#33CCCC","#3366CC","#6666CC","#6633CC","#66CCCC","#6699CC",
                  "#9999CC","#9966CC","#99CCCC","#CCCCCC","#CCFFCC","#CC33CC","#CC99CC","#FFFFCC","#FFCCCC","#003300","#666600"];
-
 // =====================================================================================
 // dual slider control Functions *******************************************************************
 // =====================================================================================
@@ -41,7 +41,8 @@ function getVals(){
           }
         }
       }
-}// basic statistics function ============================================
+}
+// basic statistics function ============================================
 //
 simplestat = function(dataid) {
         data = d3.select(dataid)
@@ -60,7 +61,8 @@ simplestat = function(dataid) {
         xbar = sum / n;
         v = (sumsq - n*xbar*xbar) / (n-1);
         return {'n' : n, 'xbar' : xbar, 'var' : v};
-}// =====================================================================================
+}
+// =====================================================================================
 // Correlation & Regression Functions *******************************************************************
 // =====================================================================================
 // Sort in Ascending
@@ -76,7 +78,8 @@ function SortAscend(tobs, tdata, dataA) {
             }
           }
         } 
-}// Count Number of dot value and its frequecny
+}
+// Count Number of dot value and its frequecny
 function DotValueFreq(tobs, dataA, dataValue, dataY ) {
         var dvalueFreq = new Array(tobs);
         var i, nvalue;
@@ -100,21 +103,24 @@ function DotValueFreq(tobs, dataA, dataValue, dataY ) {
         }
         nvalue++;
         return nvalue;
-}// Find Maximum   -- ContinuousGraph에 있음
+}
+// Find Maximum   -- ContinuousGraph에 있음
 function gmax(nobs, data) {
       var gxmax = data[0];
       for (var k=1; k<nobs; k++) {
         if (gxmax < data[k]) gxmax = data[k];
       }
       return gxmax;
-}// Find Minimum   -- ContinuousGraph에 있음
+}
+// Find Minimum   -- ContinuousGraph에 있음
 function gmin(nobs, data) {
       var gxmin = data[0];
       for (var k=1; k<nobs; k++) {
         if (gxmin > data[k]) gxmin = data[k];
       }
       return gxmin
-}// Basic Statistics for two variables with group
+}
+// Basic Statistics for two variables with group
 function bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd,alpha,beta,corr,rsquare) {
       var i, j, k, tempx, tempy;
       var xsum = new Array(ngroup+1);
@@ -631,7 +637,6 @@ function showScatterPlot3(graphWidth, graphHeight) {
     svg.selectAll("line.regline").remove();    
     updateRegressionLine();
  }
-
 // =====================================================================================
 // Binomial functions 
 // =====================================================================================
@@ -743,7 +748,6 @@ async function BinomialSimulation(nobs,nvalue,tdataY) {
   
           // 점 애니메이션 시작
     for (i=0; i<nvalue; i++) tdataY[i] = 0; // Count frequency
-
     
     // nobs 개수만큼 점 만들고 궤적 그리기
     $("#executeBinomial").prop("disabled", true);
@@ -759,10 +763,7 @@ async function BinomialSimulation(nobs,nvalue,tdataY) {
              .attr("y", svgHeight-margin.bottom/2)
              .text(str)
              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")        
-}
-// endof BinomialSimulation Function
-
-
+}// endof BinomialSimulation Function
 async function BinomialSimulationOneBall() {
     var animationDurationTime = 300;   // miliseconds
     var x0, y0, x1, y1, x2, y2, t1, t2;
@@ -782,7 +783,6 @@ async function BinomialSimulationOneBall() {
         .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
         .attr("cx", x2)
         .attr("cy", y2)
-
     for (i=0; i<nvalue-1; i++) {
 	await new Promise(resolve => setTimeout(resolve, animationDurationTime/nvalue));
         if (i==0) j=0;
@@ -803,7 +803,6 @@ async function BinomialSimulationOneBall() {
 	//                currentPath.attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2);
 	j = k;
     } // endof i
-
     // 각 데이터의 점그림
     x1 = x2;
     y1 = y2;
@@ -827,14 +826,7 @@ async function BinomialSimulationOneBall() {
         .attr("r", radiusSize)
         .attr("cx", x2)
         .attr("cy", y2);
-
-}
-// endof BinomialSimulationOneBall Function
-
-
-
-
-
+}// endof BinomialSimulationOneBall Function
  // 실험된 이항분포 각 값의 확률 표시
 function showBinomialFreq(nvalue, binomialP1, tdataY, tx) {
         var i, j, temp;
@@ -1017,7 +1009,8 @@ function showValueBinomial3(newValue, valueLabel, binomialP2) {
         var nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
         var pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
         drawBinomialBarGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, valueLabel);
-}function showValueBinomial4(newValue, valueLabel, binomialP2) {
+}// 이항분포 n, p
+function showValueBinomial4(newValue, valueLabel, binomialP2) {
         bar.selectAll("*").remove();
         document.getElementById("freq2Binomial").checked = false;
         document.getElementById("freq3Binomial").checked = false;
@@ -1261,7 +1254,7 @@ function drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP) {
          drawBinomialLabel(nvalue, valueLabel, betweenbarWidth);
          avg  = 1 / geoP;
          std  = Math.sqrt((1-geoP)/(geoP*geoP));
-          var title  = svgStrU[6][langNum]+" p = "+f1(geoP);
+          var title  = svgStrU[6][langNum]+" p = "+f2(geoP);
          bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
             .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
          var str = svgStrU[3][langNum]+" = "+f2(avg)+",  "+svgStrU[4][langNum]+" = "+f2(std);
@@ -1472,7 +1465,8 @@ function showValueExponential0(newValue) {
           d3.select("#g").node().value = f4(g);
           drawExponentialGraph(lambda, f, g, h); 
        }
-}function showValueExponential1(newValue) {
+}//
+function showValueExponential1(newValue) {
        if (radioType == 1) {
           var a, b, c, info;
           bar.selectAll("*").remove();
@@ -1493,7 +1487,8 @@ function showValueExponential0(newValue) {
           d3.select("#c").node().value = f4(c);
           drawExponentialGraph(lambda, a, b, c);
        }          
-}function showValueExponential2(newValue) {
+}// 
+function showValueExponential2(newValue) {
       if (radioType == 1) {
           var a, b, c, info;
           bar.selectAll("*").remove();
@@ -1565,7 +1560,6 @@ function drawExponentialGraph(lambda, a, b, prob) {
 		 var title  = svgStrU[49][langNum]+" lambda = "+f2(lambda).toString();
          bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
             .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
-
          gxmin   = 0;
          gymin   = 0;
          if (lambda <= 0.2)  { gxmax = 5 ;  ymax = 5 }
@@ -1602,7 +1596,7 @@ function drawExponentialGraph(lambda, a, b, prob) {
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -1924,8 +1918,8 @@ function removeMeanNormal() {
 	dot.selectAll("text.mean").remove();
 	dot.selectAll("line.mean").remove();
 	dot.selectAll("rect.mean").remove();
-}// 정규분포 inverse  그리기 - 단측
-   
+}
+// 정규분포 inverse  그리기 - 단측
 function showValueNormal1(newValue) {
        if (radioType == 1) {
           var a, b, c;
@@ -1949,7 +1943,8 @@ function showValueNormal1(newValue) {
           d3.select("#c").node().value = f4(c);
           drawNormalGraph(mu, sigma, a, b, c);
        }       
-}function showValueNormal2(newValue) {
+}//
+function showValueNormal2(newValue) {
       if (radioType == 1) {
           var a, b, c;
           bar.selectAll("*").remove();
@@ -2041,7 +2036,6 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
          var x1, y1, x2, y2
 		 var title  = "N("+mu+","+sigma+") "+svgStrU[24][langNum];
          bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
-
          var gxmin   = mu - 4*sigma;
          var gxmax   = mu + 4*sigma;
          var gxrange = gxmax - gxmin;
@@ -2075,7 +2069,7 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -2138,7 +2132,8 @@ function showValueT0(newValue) {
           d3.select("#g").node().value = f4(g);
           drawTdistGraph(df, f, g, h); 
        }
-}function showValueT1(newValue) {
+}// 
+function showValueT1(newValue) {
        if (radioType == 1) {
           var a, b, c, info;
           bar.selectAll("*").remove();
@@ -2158,7 +2153,8 @@ function showValueT0(newValue) {
           if ( b > 5 ) b = 5;
           drawTdistGraph(df, a, b, c);
        }          
-}function showValueT2(newValue) {
+}//
+function showValueT2(newValue) {
       if (radioType == 1) {
           var a, b, c, info;
           bar.selectAll("*").remove();
@@ -2254,7 +2250,7 @@ function drawTdistGraph(df, a, b, prob) {
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -2349,7 +2345,7 @@ function showValueChisq0(newValue) {
           d3.select("#g").node().value = f4(g);
           drawChisqGraph(df, f, g, h); 
        }
-}
+}//
 function showValueChisq1(newValue) {
        if (radioType == 1) {
           var a, b, c, info;
@@ -2369,7 +2365,8 @@ function showValueChisq1(newValue) {
           d3.select("#c").node().value = f4(c);
           drawChisqGraph(df, a, b, c);
        }          
-}function showValueChisq2(newValue) {
+}//
+function showValueChisq2(newValue) {
       if (radioType == 1) {
           var a, b, c, info;
           bar.selectAll("*").remove();
@@ -2468,7 +2465,7 @@ function drawChisqGraph(df, a, b, prob) {
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -2680,7 +2677,7 @@ function drawFGraph(df1, df2,  a, b, prob) {
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -3538,7 +3535,6 @@ function drawInterval(nobs, avg, std, gxmin, xrange, clevel, height, niter, star
           else dot2.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
                    .style("stroke","red")
 				   .style("font-family","sans-serif").style("font-size","9pt")
-
         }
 }// 전체 구간추정 표본그림 제거
 function removeAllSample3() {
@@ -3553,28 +3549,36 @@ function removeAllSample3() {
 // Testing Hypothesis : mu
 // =============================================================================================================
 // t분포 testing hypothesis 그래프 함수 --------------------------------------------------
-function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
-         var margin  = {top: 40, bottom: 130, left: 80, right: 70};
+function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
+         var margin  = {top: 60, bottom: 130, left: 90, right: 90};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tx, ty, str;
-         var gxmin   = - 5;
+
+         var gxmin   = -5;
          var gxmax   = 5;
          var gxrange = gxmax - gxmin;
          var gymin   = 0;
          var ymax    = 1/(Math.sqrt(2*Math.PI));
          var gymax   = ymax + ymax/5; 
          var gyrange = gymax - gymin;
+
+         // heading
          tx = margin.left + graphWidth2/2;
+         ty = margin.top/2;
+         if (hypoType == 1)       str = "H\u2080: \u03BC = "+ f2(D) + " , H\u2081: \u03BC " + symbol[h1Type-1] +" "+ f2(D);
+         else str = "H\u2080: \u03BC\u2081 - \u03BC\u2082 = "+ f2(D) + " , H\u2081: \u03BC\u2081 - \u03BC\u2082 " + symbol[h1Type-1] + " "+f2(D);
+         bar.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
          ty = margin.top;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - mu) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 41) str = svgStrU[23][langNum]+"(m1 - m2 - D) / ( pooled std * sqrt(1/n1+1/n2) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m1 - m2 - D) / ( sqrt(var1/n1 + var2/n2) )  ~  t'("+df+") "+svgStrU[24][langNum];
-    
+         if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 41) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t'("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 43) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
-         
+         // draw t distribution
          var x = [];
          var y = [];
          var step = (gxmax - gxmin)/graphWidth2;
@@ -3592,6 +3596,10 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
            x1   = x2;
            y1   = y2;    
          }
+
+
+         if (a < gxmin) a = gxmin;
+         if (b > gxmax) b = gxmax;
          var tempx, tempy;
          var tempx = a;
          do { 
@@ -3599,7 +3607,7 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -3642,7 +3650,9 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
-         x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
+         if (stat < gxmin) x1 = margin.left / 2 + 20;
+         else if (stat > gxmax) x1 = margin.left + graphWidth2 + margin.right/2 - 20;
+         else x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
@@ -3655,7 +3665,20 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
             .text(svgStrU[27][langNum]+f3(pvalue))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
-         if (stat > a && stat < b) {
+         var checkAccept;
+         if (h1Type == 1) {
+           if (stat > a && stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else if (h1Type == 2) {
+           if (stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else {
+           if (stat > a) checkAccept = true;
+           else checkAccept = false;
+         }
+         if (checkAccept) {
            bar.append("text").attr("x", tx).attr("y", y2+50)
               .text(svgStrU[28][langNum]+svgStrU[26][langNum])
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
@@ -3666,9 +3689,9 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue) {
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
 }     
-// 정규분포 그래프 함수 --------------------------------------------------
-function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue) {
-         var margin  = {top: 40, bottom: 130, left: 80, right: 70};
+// 정규분포 가설검정 그래프 함수 --------------------------------------------------
+function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue, D) {
+         var margin  = {top: 60, bottom: 130, left: 90, right: 90};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, ta, tb, tx, ty, str;
@@ -3679,15 +3702,24 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          var ymax    = 1/(sigma*Math.sqrt(2*Math.PI));
          var gymax   = ymax + ymax/5; 
          var gyrange = gymax - gymin;
+
+         // heading
          tx = margin.left + graphWidth2/2;
+         ty = margin.top/2;
+         if (hypoType == 1)      str = "H\u2080: \u03BC = "+ f2(D) + " , H\u2081: \u03BC " + symbol[h1Type-1] +" "+ f2(D);
+         else if (hypoType == 3) str = "H\u2080: P = "+ f2(D) + " , H\u2081: P " + symbol[h1Type-1] +" " + f2(D);
+         else if (hypoType == 6) str = "H\u2080: P\u2081 - P\u2082 = " + f2(D) + " , H\u2081: P\u2081 - P\u2082 "+symbol[h1Type-1]+" "+f2(D);
+         bar.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
+
          ty = margin.top;
-         if (hypoType == 1)      str = svgStrU[23][langNum]+"(m - mu) / ( s / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3) str = svgStrU[23][langNum]+"(p - Po) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
-         else if (hypoType == 6) str = svgStrU[23][langNum]+"(p1 - p2 - D) / (sqrt(pbar*(1-pbar)(1/n1 + 1/n2) )  ~  N(0,1)";
+         if (hypoType == 1)      str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3) str = svgStrU[23][langNum]+"(p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6) str = svgStrU[23][langNum]+"(p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
-         
+         // draw normal pdf
          var x = [];
          var y = [];
          var step = (gxmax - gxmin)/graphWidth2;
@@ -3705,6 +3737,9 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
            x1   = x2;
            y1   = y2;    
          }
+         // draw [a, b] region
+         if (a < gxmin) a = gxmin;
+         if (b > gxmax) b = gxmax;
          var tempx, tempy;
          var tempx = a;
          do { 
@@ -3712,7 +3747,7 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -3755,7 +3790,9 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
-         x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
+         if (stat < gxmin) x1 = margin.left / 2 + 20;
+         else if (stat > gxmax) x1 = margin.left + graphWidth2 + margin.right/2 - 20;
+         else x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
@@ -3766,7 +3803,20 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
-         if (stat > a && stat < b) {
+         var checkAccept;
+         if (h1Type == 1) {
+           if (stat > a && stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else if (h1Type == 2) {
+           if (stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else {
+           if (stat > a) checkAccept = true;
+           else checkAccept = false;
+         }
+         if (checkAccept) {
            bar.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[26][langNum])
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
          }
@@ -3779,12 +3829,13 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
 // Testing Hypothesis : sigma
 // =============================================================================================================
 // chisq 분포 가설검정 그래프 함수 --------------------------------------------------
-function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
-         var margin  = {top: 40, bottom: 130, left: 100, right: 100};
+function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue, D) {
+         var margin  = {top: 60, bottom: 130, left: 100, right: 100};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tx, ty, str, temp;
          var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange;
+
          gxmin = 0;
          gymin = 0;
          if (df < 2)  {gxmax = 12;  ymax = 1.5;}
@@ -3795,10 +3846,18 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
          gxrange = gxmax - gxmin;
          gymax   = ymax + ymax/5; 
          gyrange = gymax - gymin;
+
+         // heading
          tx = margin.left + graphWidth2/2;
+         ty = margin.top/2;
+         if (hypoType == 2)      str = "H\u2080: \u03C3\u00B2 = "+ f2(D) + " , H\u2081:\u03C3\u00B2 " + symbol[h1Type-1] +" "+ f2(D);
+         else if (hypoType == 8) str = "H\u2080: "+svgStrU[58][langNum];
+         bar.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
+
          ty = margin.top;
-         if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s^2 / ( sigma_o^2 )  ~  ChiSq("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8) str = svgStrU[23][langNum]+"Sum( (EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8) str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
@@ -3820,6 +3879,10 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
            x1   = x2;
            y1   = y2;    
          }
+
+         // draw [a, b] region
+         if (a < gxmin) a = gxmin;
+         if (b > gxmax) b = gxmax;
          var tempx, tempy;
          var tempx = a;
          do { 
@@ -3827,7 +3890,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -3870,9 +3933,9 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
-         temp = stat;
-         if (temp > gxmax) temp = gxmax+(gxmax-gxmin)/10;
-         x1 = margin.left + graphWidth2*(temp-gxmin)/gxrange;
+         if (stat < gxmin) x1 = margin.left / 2 + 20;
+         else if (stat > gxmax) x1 = margin.left + graphWidth2 + margin.right/2 - 20;
+         else x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 60;
@@ -3883,7 +3946,20 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
          bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
-         if (stat > a && stat < b) {
+         var checkAccept;
+         if (h1Type == 1) {
+           if (stat > a && stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else if (h1Type == 2) {
+           if (stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else {
+           if (stat > a) checkAccept = true;
+           else checkAccept = false;
+         }
+         if (checkAccept) {
            bar.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[26][langNum])
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
          }
@@ -3897,12 +3973,13 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue) {
 // =============================================================================================================
 // F 분포 가설검정 그래프 함수 --------------------------------------------------
 function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) {
-         var margin  = {top: 40, bottom: 130, left: 100, right: 100};
+         var margin  = {top: 60, bottom: 130, left: 100, right: 100};
          if (hypoType == 7) margin.left = 50;
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tc, td, te, t1, t2, t3, tx, ty, str;
          var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange, temp;
+
          gxmin = 0;
          gxmax = 10;
          gymin = 0;
@@ -3910,9 +3987,17 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
          gxrange = gxmax - gxmin;
          gymax   = ymax + ymax/5; 
          gyrange = gymax - gymin;
+
+         // heading
          tx = margin.left + graphWidth2/2;
+         ty = margin.top/2;
+         if (hypoType == 5)      str = "H\u2080: \u03C3\u2081\u00B2 = \u03C3\u2082\u00B2"+ " , H\u2081: \u03C3\u2081\u00B2 " + symbol[h1Type-1] +" \u03C3\u2082\u00B2";
+         else if (hypoType == 7) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BC\u2096";
+         bar.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
+
          ty = margin.top;
-         if (hypoType == 5)       str = svgStrU[23][langNum]+"(s1^2 / s2^2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         if (hypoType == 5)       str = svgStrU[23][langNum]+"( s\u2081\u00B2 / s\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          else if (hypoType == 7)  str = svgStrU[23][langNum]+"(BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
@@ -3935,6 +4020,9 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
            x1   = x2;
            y1   = y2;    
          }
+         // draw [a, b] region
+         if (a < gxmin) a = gxmin;
+         if (b > gxmax) b = gxmax;
          var tempx, tempy;
          var tempx = a;
          do { 
@@ -3942,7 +4030,7 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
            x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
            x2   = x1;
            y1   = margin.top  + graphHeight2;
-           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
            bar.append("line")
               .attr("x1",x1)
               .attr("y1",y1)
@@ -3985,15 +4073,14 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
          // draw test statistics
-         temp = stat[0];
-         if (temp > gxmax) temp = gxmax + (gxmax-gxmin)/10;
-         x1 = margin.left + graphWidth2*(temp-gxmin)/gxrange;
+         if (stat[0] > gxmax) x1 = margin.left + graphWidth2 + margin.right/2 - 20;
+         else x1 = margin.left + graphWidth2*(stat[0]-gxmin)/gxrange;
          x2 = x1;
          y1 = margin.top + graphHeight2;
          y2 = y1 + 45;
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
             .style("stroke","green").attr("stroke-width","2px");
-         bar.append("text").attr("x", x1).attr("y", y2+10).text("Fo = "+f2(stat[0])+", "+svgStrU[27][langNum]+f3(pvalue) )
+         bar.append("text").attr("x", x1).attr("y", y2+10).text("F\u2080 = "+f2(stat[0])+", "+svgStrU[27][langNum]+f3(pvalue) )
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          if (hypoType == 7) { // ANOVA
@@ -4003,8 +4090,8 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
            bar.append("text").attr("class","meanL").attr("x", ta).attr("y", t2).text("BSS="+f2(stat[1]) );
            bar.append("text").attr("class","meanL").attr("x", tb).attr("y", t2).text("df="+df1);
            bar.append("text").attr("class","meanL").attr("x", tc).attr("y", t2).text("MSB="+f2(stat[4]) );
-           bar.append("text").attr("class","meanL").attr("x", td).attr("y", t2).text("Fo="+f2(stat[0]) );
-           if (stat[0] > a && stat[0] < b) {
+           bar.append("text").attr("class","meanL").attr("x", td).attr("y", t2).text("F\u2080="+f2(stat[0]) );
+           if (stat[0] < b) {
              bar.append("text").attr("x", te).attr("y", t2).text(svgStrU[28][langNum]+svgStrU[26][langNum])
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
            }
@@ -4018,7 +4105,20 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
            bar.append("text").attr("class","meanL").attr("x", ta).attr("y", t4).text("TSS="+f2(stat[3]) );
          }
          else if (hypoType == 5){ // sigma1, sigma2
-           if (stat[0] > a && stat[0] < b) {
+           var checkAccept;
+           if (h1Type == 1) {
+             if (stat[0] > a && stat[0] < b) checkAccept = true;
+             else checkAccept = false;
+           }
+           else if (h1Type == 2) {
+             if (stat[0] < b) checkAccept = true;
+             else checkAccept = false;
+           }
+           else {
+             if (stat[0] > a) checkAccept = true;
+             else checkAccept = false;
+           }
+           if (checkAccept) {
              bar.append("text").attr("x", tx).attr("y", y2+40).text(svgStrU[28][langNum]+svgStrU[26][langNum])
                 .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
            }
@@ -4027,4 +4127,267 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            }
          }
+}     
+
+// input value
+function inputValueAB() {
+        bar.selectAll("*").remove();
+        mu0    = parseFloat(d3.select("#mu0AB").node().value);
+        mu1    = parseFloat(d3.select("#mu1AB").node().value);
+        stdP   = parseFloat(d3.select("#stdPAB").node().value);
+        alpha1 = parseFloat(d3.select("#alpha1AB").node().value);
+        nn1    = parseFloat(d3.select("#nn1AB").node().value);
+        alpha2 = parseFloat(d3.select("#alpha2AB").node().value);
+        beta2  = parseFloat(d3.select("#beta2AB").node().value); 
+        if (isNaN(mu0))  {alert("Enter \u03BC\2080"); return}
+        if (isNaN(mu1))  {alert("Enter \u03BC\u2081"); return}
+        if (isNaN(stdP)) {alert("Enter \u03C3"); return}
+        if (mu1 > mu0 + 3*stdP) mu1 = mu0 + 3*stdP;
+        if (mu1 < mu0 - 3*stdP) mu1 = mu0 - 3*stdP;
+        document.getElementById("rangeMu1AB").value = 30 + 10*(mu1 - mu0) / stdP;
+
+        if (testType == "1") {
+          if (isNaN(nn1))  {alert("Enter n"); return}
+          if (alpha1 < 0.01) alpha1 = 0.01;
+          if (alpha1 > 0.50) alpha1 = 0.50;
+          document.getElementById("rangeAlpha1AB").value = alpha1*100;
+          if (nn1 < 0) nn1 = 1;
+          if (nn1 > 100) nn1 = 100;
+          document.getElementById("rangenn1AB").value = nn1;
+        } else if(testType == "2") {
+          if (alpha2 < 0.01) alpha2 = 0.01;
+          if (alpha2 > 0.50) alpha2 = 0.50;
+          document.getElementById("rangeAlpha2AB").value = alpha2*100;
+          if (beta2  < 0.01) beta2  = 0.01;
+          if (beta2  > 0.50) beta2  = 0.50; 
+          document.getElementById("rangeBeta2AB").value = beta2*100;
+        }
+        if (mu0 < mu1) h1Type = 2; // 우측검정: 2
+        else h1Type = 3;          // 좌측검정: 3
+}
+// alpha, beta 가설검정용 mu1
+function showValueMu1AB(newValue) {
+        document.getElementById("mu1AB").value  = mu0 + stdP * (newValue-30)/10;
+        bar.selectAll("*").remove();
+        inputValueAB();
+        drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
+}
+// alpha, beta 가설검정용 alpha1
+function showValueAlpha1AB(newValue) {
+        document.getElementById("alpha1AB").value  = newValue/100;
+        bar.selectAll("*").remove();
+        inputValueAB();
+        drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
+} 
+// alpha, beta 가설검정용 nn1
+function showValuenn1AB(newValue) {
+        document.getElementById("nn1AB").value  = newValue;
+        bar.selectAll("*").remove();
+        inputValueAB();
+        drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
+}
+// alpha, beta 가설검정용 alpha2
+function showValueAlpha2AB(newValue) {
+        document.getElementById("alpha2AB").value  = newValue/100;
+        bar.selectAll("*").remove();
+        inputValueAB();
+        drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
+}
+// alpha, beta 가설검정용 beta2
+function showValueBeta2AB(newValue) {
+        document.getElementById("beta2AB").value  = newValue/100;
+        bar.selectAll("*").remove();
+        inputValueAB();
+        drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
+}
+// alpha beta 가설검정용 정규분포 그래프 함수 --------------------------------------------------
+function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2) {
+         var margin  = {top: 80, bottom: 100, left: 50, right: 70};
+         var graphWidth2   = svgWidth2 - margin.left - margin.right;
+         var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
+         var k, x1, y1, x2, y2, ta, tb, tx, ty, str;
+         var gxmin, gxmax, gxrange, gymin, ymax, gymax, gyrange;
+         var temp, tempx, tempy, step, stderr, tymax;
+         var c1, c2, left0, right0, left1, right2, info, dmax;
+         var x = [];
+         var y = [];
+
+         if (testType == "1") {
+           stderr = stdP / Math.sqrt(nn1);        
+           dmax = 4 * stderr
+         } else if (testType == "2") {
+           if (h1Type == 2) {
+             nn2 = stdP*(stdnormal_inv(1-alpha2,info) - stdnormal_inv(beta2,info))/(mu1 - mu0);
+             nn2 = nn2*nn2;
+           }
+           else if (h1Type == 3) {
+             nn2 = stdP*(stdnormal_inv(alpha2,info) - stdnormal_inv(1-beta2,info))/(mu1 - mu0);
+             nn2 = nn2*nn2;
+           }
+           stderr = stdP / Math.sqrt(nn2);        
+           dmax = 4 * stderr
+         }
+
+         if (h1Type == 2) {
+           gxmin  = mu0 - dmax;
+           gxmax  = mu1 + dmax;
+           left0  = mu0 + stdnormal_inv(1-alpha1, info)*stderr;
+           right0 = mu0 + dmax;
+           left1  = mu1 - dmax;
+           right1 = left0;
+           beta1  = stdnormal_cdf((right1-mu1)/stderr);
+         } else if (h1Type == 3) {
+           gxmin  = mu1 - dmax;
+           gxmax  = mu0 + dmax;
+           left0  = mu0 - dmax;
+           right0 = mu0 + stdnormal_inv(alpha1, info)*stderr;
+           left1  = right0;
+           right1 = mu1 + dmax;
+           beta1  = 1 - stdnormal_cdf((left1-mu1)/stderr);
+         }
+
+         gxrange = gxmax - gxmin;
+         gymin   = 0;
+         tymax   = 1 / (stderr*Math.sqrt(2*Math.PI));
+         ymax    = 10/(stdP*Math.sqrt(2*Math.PI));
+         gymax   = ymax + ymax/5; 
+         gyrange = gymax - gymin;
+
+         // 주제목, x축제목, 축
+         temp = graphWidth2/2;
+         step = 8 * stderr / temp;
+         tx   = margin.left + temp;
+         ty   = margin.top / 2;
+         bar.append("text").attr("x", tx).attr("y", ty).text(svgStr[11][langNum]) // "가설검정"
+            .style("font-family","sans-serif").style("font-size","16pt").style("stroke","black").style("text-anchor","middle")
+         bar.append("text").attr("x", margin.left+graphWidth2+5).attr("y", margin.top+graphHeight2+5).text(svgStrU[22][langNum]) // "표본평균"
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","start")
+         drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);        
+
+         // 기준선 C, alpha, beta write
+         if (h1Type == 2) tempx = left0;
+         else if (h1Type == 3) tempx = right0;
+         if (testType == "2") nn1 = nn2;
+         tempy = normal_pdf(mu0, stderr, tempx );
+         x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+         x2   = x1;
+         y1   = margin.top  + graphHeight2 + 60;
+         y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+         bar.append("line")
+            .attr("x1",x1)
+            .attr("y1",y1)
+            .attr("x2",x2)
+            .attr("y2",y2)
+            .attr("stroke-width","2px").style("stroke","#0055FF")
+         bar.append("text").attr("x", x1).attr("y", y1+15).text("C = "+f2(tempx))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         bar.append("text").attr("x", x1).attr("y", y1+30).text("n = "+f0(nn1))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         y1 = y1 - 30;
+         y2 = y1 + 25;
+         bar.append("text").attr("x", x1-20).attr("y", y2).text(svgStrU[26][langNum]) // "Ho 채택역"
+            .style("font-family","sans-serif").style("font-size","10pt").style("stroke","#0055FF").style("text-anchor","end")
+         bar.append("text").attr("x", x1+20).attr("y", y2).text(svgStrU[25][langNum]) // "Ho 기각역"
+            .style("font-family","sans-serif").style("font-size","10pt").style("stroke","red").style("text-anchor","start")
+         if (h1Type == 2) {
+           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B2 = "+f2(beta1))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B1 = "+f2(alpha1))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","start")
+         } else if (h1Type == 3) {
+           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B1 = "+f2(alpha1))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","end")
+           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B2 = "+f2(beta1))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+
+         // Ho alpha 영역
+         tempx = left0;
+         do { 
+           tempy = normal_pdf(mu0, stderr, tempx );
+           x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+           x2   = x1;
+           y1   = margin.top  + graphHeight2;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+           bar.append("line")
+              .attr("x1",x1)
+              .attr("y1",y1)
+              .attr("x2",x2)
+              .attr("y2",y2)
+              .attr("stroke-width","2px").style("stroke","#0055FF")
+           tempx += step;        
+         } while( tempx <= right0 ) 
+
+
+         // H1 beta 영역
+         tempx = left1;
+         do { 
+           tempy = normal_pdf(mu1, stderr, tempx );
+           x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+           x2   = x1;
+           y1   = margin.top  + graphHeight2;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+           bar.append("line")
+              .attr("x1",x1)
+              .attr("y1",y1)
+              .attr("x2",x2)
+              .attr("y2",y2)
+              .attr("stroke-width","2px").style("stroke","red")
+           tempx += step;        
+         } while( tempx < right1-step ) 
+
+         // H0 graph
+         x1   = margin.left + graphWidth2*(mu0-gxmin)/gxrange;
+         y1   = margin.top;
+         y2   = margin.top + graphHeight2 - graphHeight2*(tymax-gymin)/gyrange - 15;
+         bar.append("text").attr("x", x1).attr("y",y1).text("H\u2080: \u03BC = "+f2(mu0))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         bar.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu0)+" ,"+f2(stderr)+"\u00B2)")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         y1 = margin.top + graphHeight2 - 20;
+         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B1 = "+f2(1-alpha1))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         x[0] = mu0 - dmax;
+         y[0] = normal_pdf(mu0, stderr, x[0] );
+         x1   = margin.left + graphWidth2*(x[0]-gxmin)/gxrange;
+         y1   = margin.top + graphHeight2 - graphHeight2*(y[0]-gymin)/gyrange;
+         for (k=1; k<=temp; k++) {
+           x[k] = x[k-1] + step;
+           y[k] = normal_pdf(mu0, stderr, x[k] );
+           x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
+           y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
+           bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+              .style("stroke","#0055FF").attr("stroke-width","2px");
+           x1   = x2;
+           y1   = y2;    
+         }
+
+         // H1 graph
+         x1   = margin.left + graphWidth2*(mu1-gxmin)/gxrange;
+         y1   = margin.top;
+         y2   = margin.top + graphHeight2 - graphHeight2*(tymax-gymin)/gyrange - 15;
+         bar.append("text").attr("x", x1).attr("y",y1).text("H\u2081: \u03BC = "+f2(mu1))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         bar.append("text").attr("x", margin.left+graphWidth2).attr("y",y1).text("\u03C3 = "+f2(stdP))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","middle")
+         bar.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu1)+" ,"+f2(stderr)+"\u00B2)")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         y1 = margin.top + graphHeight2 - 20;
+         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B2 = "+f2(1-beta1))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         x[0] = mu1 - dmax;
+         y[0] = normal_pdf(mu1, stderr, x[0] );
+         x1   = margin.left + graphWidth2*(x[0]-gxmin)/gxrange;
+         y1   = margin.top + graphHeight2 - graphHeight2*(y[0]-gymin)/gyrange;
+         for (k=1; k<=temp; k++) {
+           x[k] = x[k-1] + step;
+           y[k] = normal_pdf(mu1, stderr, x[k] );
+           x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
+           y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
+           bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+              .style("stroke","red").attr("stroke-width","2px");
+           x1   = x2;
+           y1   = y2;    
+         }
+
 }     

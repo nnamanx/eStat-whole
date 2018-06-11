@@ -152,7 +152,7 @@
       svgHeight2  = 400;
 
       var i, j, k, nobs, nrow, ncol, df, info, stat, pvalue, alpha, f, g, h; 
-      var gxmin, gxmax, gymin, gymax, title;
+      var gxmin, gxmax, gymin, gymax, title, temp;
       var hypoType = 8;
       var h1Type   = 2;
       var nr = 5;
@@ -291,7 +291,7 @@
             else f = chisq_inv(0.0001, df, info);
             g = chisq_inv(1-h, df, info);
             pvalue = 1 - chisq_cdf(stat, df, info)
-            drawChisqGraphTH(hypoType, h1Type, stat, df, f, g, h, pvalue);
+            drawChisqGraphTH(hypoType, h1Type, stat, df, f, g, h, pvalue, temp );
         }  
       })
       // svg Graph Save
