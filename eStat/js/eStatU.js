@@ -3850,7 +3850,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue, D) {
          // heading
          tx = margin.left + graphWidth2/2;
          ty = margin.top/2;
-         if (hypoType == 2)      str = "H\u2080: \u03C3\u00B2 = "+ f2(D) + " , H\u2081:\u03C3\u00B2 " + symbol[h1Type-1] +" "+ f2(D);
+         if (hypoType == 2)      str = "H\u2080: \u03C3\u00B2 = "+ f2(D) + " , H\u2081: \u03C3\u00B2 " + symbol[h1Type-1] +" "+ f2(D);
          else if (hypoType == 8) str = "H\u2080: "+svgStrU[58][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
@@ -4174,28 +4174,28 @@ function showValueMu1AB(newValue) {
 }
 // alpha, beta 가설검정용 alpha1
 function showValueAlpha1AB(newValue) {
-        document.getElementById("alpha1AB").value  = newValue/100;
+        document.getElementById("alpha1AB").value  = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
 } 
 // alpha, beta 가설검정용 nn1
 function showValuenn1AB(newValue) {
-        document.getElementById("nn1AB").value  = newValue;
+        document.getElementById("nn1AB").value  = f0(newValue);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
 }
 // alpha, beta 가설검정용 alpha2
 function showValueAlpha2AB(newValue) {
-        document.getElementById("alpha2AB").value  = newValue/100;
+        document.getElementById("alpha2AB").value  = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
 }
 // alpha, beta 가설검정용 beta2
 function showValueBeta2AB(newValue) {
-        document.getElementById("beta2AB").value  = newValue/100;
+        document.getElementById("beta2AB").value  = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -4290,14 +4290,14 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          bar.append("text").attr("x", x1+20).attr("y", y2).text(svgStrU[25][langNum]) // "Ho 기각역"
             .style("font-family","sans-serif").style("font-size","10pt").style("stroke","red").style("text-anchor","start")
          if (h1Type == 2) {
-           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B2 = "+f2(beta1))
+           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B2 = "+f3(beta1))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","end")
-           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B1 = "+f2(alpha1))
+           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B1 = "+f3(alpha1))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","start")
          } else if (h1Type == 3) {
-           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B1 = "+f2(alpha1))
+           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B1 = "+f3(alpha1))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","end")
-           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B2 = "+f2(beta1))
+           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B2 = "+f3(beta1))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","start")
          }
 
@@ -4345,7 +4345,7 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          bar.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu0)+" ,"+f2(stderr)+"\u00B2)")
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          y1 = margin.top + graphHeight2 - 20;
-         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B1 = "+f2(1-alpha1))
+         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B1 = "+f3(1-alpha1))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          x[0] = mu0 - dmax;
          y[0] = normal_pdf(mu0, stderr, x[0] );
@@ -4373,7 +4373,7 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          bar.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu1)+" ,"+f2(stderr)+"\u00B2)")
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          y1 = margin.top + graphHeight2 - 20;
-         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B2 = "+f2(1-beta1))
+         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B2 = "+f3(1-beta1))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          x[0] = mu1 - dmax;
          y[0] = normal_pdf(mu1, stderr, x[0] );
