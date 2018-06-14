@@ -252,7 +252,7 @@
             if (testType == 1) teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varPooled/nn41 + varPooled/nn42); 
             else teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varAdd);
           } else if (sampleType == 2) { // paired sample
-            avgDiff = 0
+            avgDiff = 0;
             for (k=0; k<x.length; k++) avgDiff += (x[k] - y[k]);
             avgDiff /= x.length;
             varDiff = 0;
@@ -274,10 +274,17 @@
               else  pvalue = 2 * (1 - t_cdf(teststat, df, info));
             }
             else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(h, df, info);
+                g = -f;
+                if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
+                else pvalue = 2 * (1 - t_cdf(teststat, df, info));
+/*
               f = (t1*t_inv(h, df1, info) + t2*t_inv(h, df2, info)) / varAdd;
               g = -f;
               if (teststat < 0)  pvalue = 2 * (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd;
               else  pvalue = 2 * (1 - (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd );
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu4);
           }
@@ -289,9 +296,14 @@
               pvalue = 1 - t_cdf(teststat, df, info);
             }
             else if (testType == 2) {
-              f = t_inv(0.0001, df, info);
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(0.0001, df, info);
+                g = t_inv(1 - h, df, info);
+                pvalue = 1 - t_cdf(teststat, df, info);
+/*
               g = (t1*t_inv(1-h, df1, info) + t2*t_inv(1-h, df2, info)) / varAdd;
               pvalue = 1 - ( (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd );
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu4);
           }
@@ -303,9 +315,15 @@
               pvalue = t_cdf(teststat, df, info);
             }
             else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(h, df, info);
+                g = t_inv(0.9999, df, info);
+                pvalue = t_cdf(teststat, df, info);
+/*
               f = (t1*t_inv(h, df1, info) + t2*t_inv(h, df2, info)) / varAdd;
               g = t_inv(0.9999, df, info);
               pvalue = (t1*t_cdf(teststat, df1, info) + t2*t_cdf(teststat, df2, info)) / varAdd ;
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu4);
           }          

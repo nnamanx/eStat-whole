@@ -149,7 +149,7 @@
       d3.select("#data1").on("input", function() {
         stat = simplestat("#data1");  
         document.getElementById("nn2").value   = stat.n;    
-        document.getElementById("var2S").value  = f2(stat.var);    
+        document.getElementById("var2S").value  = f3(stat.var);    
         left  = (stat.n - 1) * stat.var / chisq_inv(1 - alpha/2, stat.n - 1, info);
         right = (stat.n - 1) * stat.var / chisq_inv(alpha/2, stat.n - 1, info);
         document.getElementById("cleft").value   = f2(left);
@@ -174,10 +174,10 @@
         df = nn2 - 1;
 
         // confidence interval
-        left  = (nn2 - 1) * var2S / chisq_inv(1 - alpha/2, stat.n - 1, info)
-        right = (nn2 - 1) * var2S / chisq_inv(alpha/2, stat.n - 1, info)
-        document.getElementById("cleft").value   = f2(left);
-        document.getElementById("cright").value  = f2(right);
+        left  = (nn2 - 1) * var2S / chisq_inv(1 - alpha/2, df, info)
+        right = (nn2 - 1) * var2S / chisq_inv(alpha/2, df, info)
+        document.getElementById("cleft").value   = f3(left);
+        document.getElementById("cright").value  = f3(right);
 
         // test statistics
         teststat = df *  var2S / var2;
@@ -189,7 +189,7 @@
              .text("No input or wrong input !!   Try again.")
              .style("stroke","red")
         }
-         else { // chisq-test
+        else { // chisq-test
           if (h1Type == 1) {
             h = alpha / 2;  
             f = chisq_inv(h, df, info);
@@ -217,7 +217,9 @@
             drawChisqGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, var2);
           }          
         }
+
       })
+
       // svg Graph Save
       d3.select("#saveGraphU").on("click", function() {
         var svg = d3.select("#chart");

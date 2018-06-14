@@ -1772,7 +1772,19 @@ d3.select("#testM12").on("click", function() {
     buttonColorChange();
     THmean12 = true;
     document.getElementById("testM12").style.backgroundColor = buttonColorH;
-    TotalStat(dobs, dvar, tstat);
+/* paird test 용 그룹변수와 혼동으로 포기 => eStatU에서만 처리
+  if (ngroup > 2) {  // paired t-test 
+    hypoType = 43;
+    h1Type   = 1;
+    testType = 1;
+    alpha    = 0.05;
+    mu       = 0;
+    TotalStat(dobs, tdata, tstat);
+    df = dobs - 1;
+    teststat = (tstat[1] - mu) / (tstat[2] / Math.sqrt(dobs));
+  }
+*/
+  
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     chart.selectAll("*").remove();
     document.getElementById("sub10").style.display = "block"; //가설검정 선택사항표시
@@ -1807,13 +1819,15 @@ d3.select("#testM12").on("click", function() {
     statT[6] = nn2;
     statT[7] = xbar2;
     statT[8] = std[1];
-    chart.selectAll("*").remove();
     if (isNaN(nn1) || isNaN(nn2) || isNaN(xbar1) || isNaN(xbar2) || isNaN(var1) || isNaN(var2) ||
         nn1 < 2 || nn2 < 2 || var1 <= 0 || var2 <= 0) { // wrong input
         chart.append("text").attr("class", "mean").attr("x", 150).attr("y", 100)
             .text("No input or wrong input !!	 Try again.").style("stroke", "red");
         return;
-    } else { // t-test
+    }
+
+    // t-test
+    chart.selectAll("*").remove();
         if (h1Type == 1) {
             h = alpha / 2;
             if (testType == 1) {
@@ -1822,10 +1836,17 @@ d3.select("#testM12").on("click", function() {
                 if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
                 else pvalue = 2 * (1 - t_cdf(teststat, df, info));
             } else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(h, df, info);
+                g = -f;
+                if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
+                else pvalue = 2 * (1 - t_cdf(teststat, df, info));
+/*
                 f = (t1 * t_inv(h, df1, info) + t2 * t_inv(h, df2, info)) / varAdd;
                 g = -f;
                 if (teststat < 0) pvalue = 2 * (t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd;
                 else pvalue = 2 * (1 - (t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd);
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
         } else if (h1Type == 2) {
@@ -1835,9 +1856,14 @@ d3.select("#testM12").on("click", function() {
                 g = t_inv(1 - h, df, info);
                 pvalue = 1 - t_cdf(teststat, df, info);
             } else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
                 f = t_inv(0.0001, df, info);
+                g = t_inv(1 - h, df, info);
+                pvalue = 1 - t_cdf(teststat, df, info);
+/*
                 g = (t1 * t_inv(1 - h, df1, info) + t2 * t_inv(1 - h, df2, info)) / varAdd;
                 pvalue = 1 - ((t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd);
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
         } else {
@@ -1847,13 +1873,20 @@ d3.select("#testM12").on("click", function() {
                 g = t_inv(0.9999, df, info);
                 pvalue = t_cdf(teststat, df, info);
             } else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(h, df, info);
+                g = t_inv(0.9999, df, info);
+                pvalue = t_cdf(teststat, df, info);
+/*
                 f = (t1 * t_inv(h, df1, info) + t2 * t_inv(h, df2, info)) / varAdd;
                 g = t_inv(0.9999, df, info);
                 pvalue = (t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd;
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
         }
-    }
+    
+ 
 })
 // 가설검정 Mu 12 재실행
 // H1 type
@@ -1877,8 +1910,7 @@ test10[0].onclick = function() {
 test10[1].onclick = function() {
     testType = 2;
     hypoType = 42
-} 
-// not same population variances
+} // not same population variances
 // alpha
 var a10 = document.myForm102.type2;
 a10[0].onclick = function() {
@@ -1931,10 +1963,17 @@ d3.select("#executeTH10").on("click", function() {
                 if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
                 else pvalue = 2 * (1 - t_cdf(teststat, df, info));
             } else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(h, df, info);
+                g = -f;
+                if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
+                else pvalue = 2 * (1 - t_cdf(teststat, df, info));
+/*
                 f = (t1 * t_inv(h, df1, info) + t2 * t_inv(h, df2, info)) / varAdd;
                 g = -f;
                 if (teststat < 0) pvalue = 2 * (t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd;
                 else pvalue = 2 * (1 - (t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd);
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
         } else if (h1Type == 2) {
@@ -1944,9 +1983,15 @@ d3.select("#executeTH10").on("click", function() {
                 g = t_inv(1 - h, df, info);
                 pvalue = 1 - t_cdf(teststat, df, info);
             } else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(0.0001, df, info);
+                g = t_inv(1 - h, df, info);
+                pvalue = 1 - t_cdf(teststat, df, info);
+/*
                 f = t_inv(0.0001, df, info);
                 g = (t1 * t_inv(1 - h, df1, info) + t2 * t_inv(1 - h, df2, info)) / varAdd;
                 pvalue = 1 - ((t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd);
+*/
             }
             drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
         } else {
@@ -1956,12 +2001,17 @@ d3.select("#executeTH10").on("click", function() {
                 g = t_inv(0.9999, df, info);
                 pvalue = t_cdf(teststat, df, info);
             } else if (testType == 2) {
+                df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
+                f = t_inv(h, df, info);
+                g = t_inv(0.9999, df, info);
+                pvalue = t_cdf(teststat, df, info);
+/*
                 f = (t1 * t_inv(h, df1, info) + t2 * t_inv(h, df2, info)) / varAdd;
                 g = t_inv(0.9999, df, info);
                 pvalue = (t1 * t_cdf(teststat, df1, info) + t2 * t_cdf(teststat, df2, info)) / varAdd;
+*/
             }
-            drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);
-        }
+            drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, f, g, h, pvalue);        }
     }
 })
 // 두 모분산 가설검정

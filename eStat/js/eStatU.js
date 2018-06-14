@@ -3573,7 +3573,7 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          ty = margin.top;
          if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 41) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t'("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
          else if (hypoType == 43) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
@@ -3620,9 +3620,9 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          ta = margin.left + graphWidth2*(a-gxmin)/gxrange;
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
-         bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
+         bar.append("text").attr("x", ta).attr("y", ty).text(f3(a))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-         bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
+         bar.append("text").attr("x", tb).attr("y", ty).text(f3(b))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
@@ -3760,9 +3760,9 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          ta = margin.left + graphWidth2*(a-gxmin)/gxrange;
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
-         bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
+         bar.append("text").attr("x", ta).attr("y", ty).text(f3(a))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-         bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
+         bar.append("text").attr("x", tb).attr("y", ty).text(f3(b))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
@@ -3903,9 +3903,9 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue, D) {
          ta = margin.left + graphWidth2*(a-gxmin)/gxrange;
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 40;
-         bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
+         bar.append("text").attr("x", ta).attr("y", ty).text(f3(a))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-         bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
+         bar.append("text").attr("x", tb).attr("y", ty).text(f3(b))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
@@ -4043,9 +4043,9 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
          ta = margin.left + graphWidth2*(a-gxmin)/gxrange;
          tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
          ty = svgHeight2 - margin.bottom + 30;
-         bar.append("text").attr("x", ta).attr("y", ty).text(f2(a))
+         bar.append("text").attr("x", ta).attr("y", ty).text(f3(a))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-         bar.append("text").attr("x", tb).attr("y", ty).text(f2(b))
+         bar.append("text").attr("x", tb).attr("y", ty).text(f3(b))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // Accept, Reject regions
          bar.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")

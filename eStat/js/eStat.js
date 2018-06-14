@@ -2561,7 +2561,7 @@ function dataClassifyM() {
         } // endof i
 
       } 
-      else { // 두 개 이상의 변량은 첫째는 그룹변량 둘째는 분석변량
+      else { // 두 개 변량은 첫째는 그룹변량 둘째는 분석변량
         // check missing
         checkMissing = false;
         for (k=1; k<numVar; k++) {
@@ -2612,7 +2612,7 @@ function dataClassifyM() {
           }
         }
  
-        // numeric check 
+        // numeric check of dependent variable
         checkNumeric = true;
         for (i=0; i<dobs; i++) {
             if (isNaN(dvar[i])) {
@@ -2623,14 +2623,24 @@ function dataClassifyM() {
             dvar[i] = parseFloat(dvar[i]);
         } // endof i
 
-      } // endof else
+      } // endof else 두개 변량
 
       // gvar에서 ngroup 게산
       ngroup = ngvalue;
       checkData = true;
-      if (graphNum == 23 || graphNum == 24) {
-        if (ngroup > 2) {
-          alert(alertMsg[16][langNum]);
+/*
+      if (graphNum == 23) { // 그룹변수가 모두 숫자이면 paird test 대비 difference 데이터 저장 => 요약자료와 혼동으로 포기 => eStatU로 처리
+        // numeric check of group variable
+        checkNumeric = true;
+        for (i=0; i<gobs; i++) {
+            if (isNaN(gvar[i])) { checkNumeric = false; break;}
+            else tdata[i] = parseFloat(gvar[i]) - parseFloat(dvar[i]);
+        } // endof i
+      }
+*/
+      if (graphNum == 23 || graphNum == 24) {  // 두 모평균, 두 모분산 가설검정
+        if (ngroup > 2) { 
+          alert(alertMsg[16][langNum]); // 두개의 그룹보다 많은 경우 처리 못함 경고
           checkData = false;
           return;
         }
@@ -2890,7 +2900,7 @@ function TotalStat(tobs, tdata, tstat) {
           temp   = dataA[i] - tavg;
           sqsum += temp*temp;
       } // endof i
-      tstd = Math.sqrt(sqsum/tobs);
+      tstd = Math.sqrt(sqsum/(tobs-1));
       tmini   = dataA[0];
       tmaxi   = dataA[tobs-1];
       tQ1     = d3.quantile(dataA, 0.25);
@@ -2927,7 +2937,7 @@ function GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std) 
           temp   = dataA[i] - avg[k];
           sqsum += temp*temp;
         } // endof i
-        std[k] = Math.sqrt(sqsum/tobs);
+        std[k] = Math.sqrt(sqsum/(tobs-1));
         mini[k]   = dataA[0];
         maxi[k]   = dataA[tobs-1];
         Q1[k]     = d3.quantile(dataA, 0.25);
@@ -5448,7 +5458,7 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
            str += ", \u03BC\u2080 = "+ f2(statT[0]);
            if (testType == 1) str += " , \u03c3 = " + f2(statT[1]);
          }
-         else if (hypoType == 41 || hypoType == 42) {
+         else if (hypoType == 41 || hypoType == 42 || hypoType == 43) {
            str = "H\u2080: \u03BC\u2081 - \u03BC\u2082 = D, ";
            if (h1Type == 1)      str +=" H\u2081: \u03BC\u2081 - \u03BC\u2082 \u2260 D , ";
            else if (h1Type == 2) str +=" H\u2081: \u03BC\u2081 - \u03BC\u2082 > 0 ";  
@@ -5461,7 +5471,8 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
          ty += 20;
          if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s/\u221A n )  ~  t("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 41) str = svgStrU[23][langNum]+"(m\u2081-m\u2082-D) / (pooledStd * \u221A(1/n\u2081+1/n\u2082))  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m\u2081-m\u2082-D) / (sqrt(var1/n\u2081 + var2/n\u2082))  ~  t'("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
+         else if (hypoType == 43) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -5509,9 +5520,9 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
               .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-40).attr("x2",tb).attr("y2",ty-15)
               .style("stroke","#0055FF").style("stroke-width","2px")
-         chart.append("text").attr("x", ta).attr("y", ty+5).text(f2(a))
+         chart.append("text").attr("x", ta).attr("y", ty+5).text(f3(a))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
-         chart.append("text").attr("x", tb).attr("y", ty+5).text(f2(b))
+         chart.append("text").attr("x", tb).attr("y", ty+5).text(f3(b))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
@@ -5711,9 +5722,9 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
               .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-40).attr("x2",tb).attr("y2",ty-15)
               .style("stroke","#0055FF").style("stroke-width","2px")
-         chart.append("text").attr("x", ta).attr("y", ty+5).text(f2(a))
+         chart.append("text").attr("x", ta).attr("y", ty+5).text(f3(a))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
-         chart.append("text").attr("x", tb).attr("y", ty+5).text(f2(b))
+         chart.append("text").attr("x", tb).attr("y", ty+5).text(f3(b))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
@@ -5921,9 +5932,9 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
               .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-40).attr("x2",tb).attr("y2",ty-15)
               .style("stroke","#0055FF").style("stroke-width","2px")
-         chart.append("text").attr("x", ta).attr("y", ty+5).text(f2(a))
+         chart.append("text").attr("x", ta).attr("y", ty+5).text(f3(a))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
-         chart.append("text").attr("x", tb).attr("y", ty+5).text(f2(b))
+         chart.append("text").attr("x", tb).attr("y", ty+5).text(f3(b))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
@@ -6105,9 +6116,9 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
               .style("stroke","#0055FF").style("stroke-width","2px")
          chart.append("line").attr("x1",tb).attr("y1",ty-30).attr("x2",tb).attr("y2",ty-10)
               .style("stroke","#0055FF").style("stroke-width","2px")
-         chart.append("text").attr("x", ta).attr("y", ty+10).text(f2(a))
+         chart.append("text").attr("x", ta).attr("y", ty+10).text(f3(a))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
-         chart.append("text").attr("x", tb).attr("y", ty+10).text(f2(b))
+         chart.append("text").attr("x", tb).attr("y", ty+10).text(f3(b))
               .style("stroke","#0055FF").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Accept, Reject regions
