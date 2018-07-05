@@ -16,11 +16,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-117441368-1');
     </script>
-
-    
 </head>
 
 <body>
@@ -30,7 +27,7 @@
   </h1> 
   </div>
   <p>
-  <div width="360" height="360" style="position:absolute; left:10px; top:130px">
+  <div width="360" height="360" style="position:absolute; left:10px; top:100px">
   <ul>
     <li><a href="41BinomialEng.htm"><span data-msgid="Binomial Experiment">Binomial Experiment</span></a></li>
     <li><a href="42BinomialEng.htm"><span data-msgid="Binomial Distribution">Binomial Distribution</span></a></li>
@@ -43,20 +40,27 @@
     <li><a href="54TdistEng.htm"><span data-msgid="t Distribution">t Distribution</span></a></li>
     <li><a href="56ChisqEng.htm"><span data-msgid="ChiSquare Distribution">ChiSquare Distribution</span></a></li>
     <li><a href="58FdistEng.htm"><span data-msgid="F Distribution">F Distribution</span></a></li>
+    <li><a href="63SampleEng.htm"><span data-msgid="Law of Large Number">Law of Large Number</span></a></li>
+    <li><a href="61SampleEng.htm"><span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
+    <li><a href="62SampleEng.htm"><span data-msgid="Dist of Sample Means">Dist of Sample Means</span></a></li>
+    <li><a href="64SampleEng.htm"><span data-msgid="Confidence Interval">Confidence Interval</span></a></li>
   </ul>
   </div>
 
-  <div width="400" height="400" style="position:absolute; left:270px; top:130px">
-    <svg id="ScatterPlot2" width="400" height="400"> </svg> 
-    <p style="text-align:center">Contact: jjlee@ssu.ac.kr &nbsp;&nbsp;&nbsp; &copy; eStat.org, Korea</p>
+  <div style="position:absolute; left:270px; top:220px">
+    <svg id="ScatterPlot2" width="250" height="300"> </svg> 
+    <p style="text-align:center">Contact: jjlee@ssu.ac.kr <br>&copy; eStat.org, Korea</p>
   </div>
 
-  <div width="360" height="360" style="position:absolute; left:685px; top:80px">
+  <div style="position:absolute; left:270px; top:600px">
   <ul>
-    <li><a href="61SampleEng.htm"><span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
-    <li><a href="63SampleEng.htm"><span data-msgid="Law of Large Number">Law of Large Number</span></a></li>
-    <li><a href="62SampleEng.htm"><span data-msgid="Dist of Sample Means">Dist of Sample Means</span></a></li>
-    <li><a href="64SampleEng.htm"><span data-msgid="Confidence Interval">Confidence Interval</span></a></li>
+    <li><a href="31CorrelationEng.htm"><span data-msgid="Correlation Coefficient">Correlation Coefficient</span></a></li>
+    <li><a href="32RegressionEng.htm"><span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
+  </ul>
+  </div>
+
+  <div style="position:absolute; left:535px; top:80px">
+  <ul>
     <li><a href="70TestingMu.htm"><span data-msgid="Testing Hypothesis mu">Testing Hypothesis &mu;</span></a></li>
     <li><a href="72TestingSigma.htm"><span data-msgid="Testing Hypothesis sigma">Testing Hypothesis &sigma;<sup>2</sup></span></a></li>
     <li><a href="74TestingP.htm"><span data-msgid="Testing Hypothesis P">Testing Hypothesis P</span></a></li>
@@ -65,19 +69,22 @@
     <li><a href="82TestingSigma12.htm"><span data-msgid="Testing Hypothesis sigma12">Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>,&sigma;<sub>2</sub><sup>2</sup></span> </a></li>
     <li><a href="84TestingP12.htm"><span data-msgid="Testing Hypothesis P12">Testing Hypothesis P<sub>1</sub>, P<sub>2</sub> </span> </a></li>
     <li><a href="90TestingANOVA.htm"><span data-msgid="Testing Hypothesis ANOVA">Testing Hypothesis ANOVA </span></a></li>
+    <li><a href="94SignTest.htm"><span data-msgid="SignTest">Sign Test</span></a></li>
+    <li><a href="95SignedRank.htm"><span data-msgid="SignedRankTest">Signed Rank Test</span></a></li>
+    <li><a href="96RankSum.htm"><span data-msgid="WilcoxonTest">Wilcoxon Test</span></a></li>
+    <li><a href="98Kruskal.htm"><span data-msgid="KruskalTest">Kruskal Test</span></a></li>
+    <li><a href="99Friedman.htm"><span data-msgid="FriedmanTest">Friedman Test</span></a></li>
+    <li><a href="91TestingFit.htm"><span data-msgid="TestingFit">Testing Fit</span></a></li>
     <li><a href="92TestingIndependence.htm"><span data-msgid="Testing Independence">Testing Independence</span></a></li>
-    <li><a href="31CorrelationEng.htm"><span data-msgid="Correlation Coefficient">Correlation Coefficient</span></a></li>
-    <li><a href="32RegressionEng.htm"><span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
   </ul>
   </div>
 
   <script>
       var svg = d3.select("#ScatterPlot2"); 
 
-      var svgWidth    = 350;
-      var svgHeight   = 350;
-      var margin      = {top: 20, bottom: 20, left: 20, right: 20};
-      var buffer      = 40;
+      var svgWidth    = 250;
+      var svgHeight   = 300;
+      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
       var graphWidth  = svgWidth - margin.left - margin.right;
       var graphHeight = svgHeight - margin.top - margin.bottom;
 

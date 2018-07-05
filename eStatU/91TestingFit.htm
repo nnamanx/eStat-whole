@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="TestingFit">Goodness of Fit Test</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; 
+          <span data-msgid="TestingFit">
+            Testing Hypothesis : Goodness of Fit Test
+          </span>
+      </b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+    </div>
+    <br>
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>o</sub> : 
+                <span data-msgid="FitTest0">Observed Distritution = Theoretical Distribution</span> 
+              </span>
+          </td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>1</sub> : 
+                <span data-msgid="FitTest1">Observed Distritution &ne; Theoretical Distribution</span> 
+              </span> 
+          </td>
+	</tr>
+      </tbody>
+    </table>
+  
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Test Type">Test Type</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontmath" data-msgid="Chi-test">&chi;<sup>2</sup> test</span></td>
+          <td></td>
+	  <td><span data-msgid="Significance Level">Significance Level</span></td>
+          <td>
+            <form name="myForm2"> 
+              <span class="fontmath">&alpha;</span> = 
+              <input type="radio" name = "type2" value="1" checked> 5%       
+              <input type="radio" name = "type2" value="2" > 1%
+            </form>       
+          </td>
+	</tr>
+      </tbody>
+    </table>
+
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Sample Data">Sample Data</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontguide" data-msgid="InputFitData">(input Observed Frequenc & Expected Probability)</span></td>
+          <td></td>
+	</tr>
+      </tbody>
+    </table>
+   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> &nbsp;</td>
+	  <td>&nbsp;<span data-msgid="ObservedFreq">Observed Frequency</span> </td>
+	  <td>&nbsp;<span data-msgid="ExpectedProb">Expected Probability</span> </td>
+	  <td>&nbsp;<span data-msgid="ExpectedFreq">Expected Probability</span> </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 1 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data11"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data12"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data13"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 2 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data21"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data22"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data23"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 3 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data31"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data32"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data33"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 4 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data41"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data42"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data43"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 5 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data51"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data52"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data53"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 6 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data61"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data62"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data63"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 7 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data71"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data72"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data73"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 8 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data81"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data82"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data83"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 9 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=10 id="data91"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data92"></td>
+	  <td><input type="text" class"textarea"  size=10 id="data93"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> </td>
+	  <td> </td>
+	  <td> &nbsp;&nbsp;&nbsp;합계 </td>
+	  <td><input type="text" class"textarea"  size=10 id="data103"></td>
+	</tr>
+      </tbody>
+    </table>
+
+    <button type="button" id="executeTH8" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var i, j, k, nobs, nrow, df, info, stat, pvalue, alpha, f, g, h; 
+      var gxmin, gxmax, gymin, gymax, title, temp;
+      var hypoType = 9;
+      var h1Type   = 2;
+      var nr = 10;
+      var obsF = new Array(nr);
+      var expP = new Array(nr);
+      var expF = new Array(nr);
+
+      document.getElementById("data13").disabled = true;
+      document.getElementById("data23").disabled = true;
+      document.getElementById("data33").disabled = true;
+      document.getElementById("data43").disabled = true;
+      document.getElementById("data53").disabled = true;
+      document.getElementById("data63").disabled = true;
+      document.getElementById("data73").disabled = true;
+      document.getElementById("data83").disabled = true;
+      document.getElementById("data93").disabled = true;
+      document.getElementById("data103").disabled = true;
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      a[0].onclick = function() { alpha = 0.05; }  
+      a[1].onclick = function() { alpha = 0.01; }  
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH8").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        obsF[1] = parseFloat(d3.select("#data11").node().value);
+        expP[1] = parseFloat(d3.select("#data12").node().value);
+        obsF[2] = parseFloat(d3.select("#data21").node().value);
+        expP[2] = parseFloat(d3.select("#data22").node().value);
+        obsF[3] = parseFloat(d3.select("#data31").node().value);
+        expP[3] = parseFloat(d3.select("#data32").node().value);
+        obsF[4] = parseFloat(d3.select("#data41").node().value);
+        expP[4] = parseFloat(d3.select("#data42").node().value);
+        obsF[5] = parseFloat(d3.select("#data51").node().value);
+        expP[5] = parseFloat(d3.select("#data52").node().value);
+        obsF[6] = parseFloat(d3.select("#data61").node().value);
+        expP[6] = parseFloat(d3.select("#data62").node().value);
+        obsF[7] = parseFloat(d3.select("#data71").node().value);
+        expP[7] = parseFloat(d3.select("#data72").node().value);
+        obsF[8] = parseFloat(d3.select("#data81").node().value);
+        expP[8] = parseFloat(d3.select("#data82").node().value);
+        obsF[9] = parseFloat(d3.select("#data91").node().value);
+        expP[9] = parseFloat(d3.select("#data92").node().value);
+
+        // 관찰도수 입력한 행의 수 카운트
+        nrow = 0;
+        for (i=1; i<nr; i++) {
+          if ( !isNaN(obsF[i]) ) nrow++;
+        }
+        // 입력행은 하나 이상 체크
+        if (nrow < 2 ) {
+          bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+             .text("At least two rows are required !!   Try again.").style("stroke","red");
+          return;
+        }
+        // 최종 입력행 전에 빈칸 있나 체크
+        for (i=1; i<=nrow; i++) {
+            if (isNaN(obsF[i]) || isNaN(expP[i])) {
+              bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+                 .text("No input or wrong input !!   Try again.").style("stroke","red");
+              return;
+            }
+        }
+        // 입력값 합계 => 기대도수 계산
+        obsF[0] = 0;
+        expP[0] = 0;
+        for (i=1; i<=nrow; i++) { 
+            obsF[0] += obsF[i];
+            expP[0] += expP[i];
+        }
+        // 기대확률값이 0.99보다 작으면 경고
+            if (expP[0] < 0.99) {
+              bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+                 .text("Expecte Probability < 0.99!   Try again.").style("stroke","red");
+              return;
+            }
+        // 기대도수 계산
+        expF[0] = 0;
+        for (i=1; i<=nrow; i++) { 
+            expF[i] = obsF[0]*expP[i];
+            expF[0] += expF[i];
+            temp = "data"+(i).toString()+"3";
+            document.getElementById(temp).value = f1(expF[i]);
+        }
+        document.getElementById("data103").value = f1(expF[0]);
+        // test statistics
+        df = (nrow-1);
+        stat = 0;
+        for (i=1; i<=nrow; i++) {
+            temp = obsF[i] - expF[i];
+            stat += temp * temp / expF[i];
+        }
+
+        // chisq-test
+            h = alpha;  
+            if (df < 10) f = 0;
+            else f = chisq_inv(0.0001, df, info);
+            g = chisq_inv(1-h, df, info);
+            pvalue = 1 - chisq_cdf(stat, df, info)
+            drawChisqGraphTH(hypoType, h1Type, stat, df, f, g, h, pvalue, temp );
+         
+
+      })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+  </script>
+</body>
+</html>
