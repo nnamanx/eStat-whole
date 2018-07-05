@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="UTF-8"> 
+<script>
+  function checkUserInterface() { 
+     var browserName =['Opera', 'Chrome', 'Safari', 'Firefox', 'MSIE', 'Edge', 'unkown'];
+     var browseridx; 
+     isIE = /*@cc_on!@*/false || !!document.documentMode;
+     isEdge = !isIE && !!window.StyleMedia;
+     messagekr = 'eStat을 사용하시려면 크롬 브라우저로 바꾸어 주세요\n\n eStat works 100% by using Chrome Browser ';
+     messageen = 'This site is optimized with Google Chrome';
+
+     if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+        browseridx = 0; 
+     } else if(navigator.userAgent.indexOf("Chrome") != -1 && !isEdge) {
+        browseridx = 1; 
+     } else if(navigator.userAgent.indexOf("Safari") != -1 && !isEdge) {
+        browseridx = 2; 
+     } else if(navigator.userAgent.indexOf("Firefox") != -1 ) {
+        browseridx = 3; 
+     } else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true ))  { //IF IE > 10
+        browseridx = 4; 
+     } else if(isEdge) {
+        browseridx = 5; 
+     }  else {
+        browseridx = 6; 
+     }
+    
+     switch (browseridx) {
+      case 0: // opera
+        messagekr = '현재 브라우저(Your current Browser) '+browserName[browseridx]+ '\n' + messagekr;
+	alert(messagekr);
+        break;
+      case 1: // Chrome
+        window.location.href = "index.html"
+        break;
+      case 2: // Safari
+        messagekr = '현재 브라우저(Your current Browser) '+browserName[browseridx] + '\n' + messagekr;
+	alert(messagekr);
+        break;
+      case 3: // Firefox
+        messagekr = '현재 브라우저(Your current Browser) '+browserName[browseridx] + '\n' + messagekr;
+	alert(messagekr);
+        break;
+      case 4: // MSIE
+        messagekr = '현재 브라우저(Your current Browser) '+browserName[browseridx] + '\n' + messagekr;
+	alert(messagekr);
+        break;
+      case 5: // Edge
+        messagekr = '현재 브라우저(Your current Browser) '+browserName[browseridx] + '\n' + messagekr;
+	alert(messagekr);
+        break;
+      default: // others
+        messagekr = '현재 브라우저(Your current Browser) '+browserName[browseridx] + '\n' + messagekr;
+	alert(messagekr);
+     }
+    
+  } // end function
+
+</script>
+
+<body onLoad='checkUserInterface()'>
+</body>
+</html>
+

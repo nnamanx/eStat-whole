@@ -893,29 +893,64 @@ function drawBinomialLabel(nvalue2, label, betweenbarWidth) {
         var barWidth = betweenbarWidth * 2 / 3;  // 막대의 너비
         var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
         var temp = betweenbarWidth/3;
+        var angle, str, tx, ty;
+
+    
         for (var k=0; k<nvalue2; k++) {
-          if (nvalue2 < 40) {
+          tx = margin.left + barMargin + barWidth/2 + k*betweenbarWidth;
+          ty = y1+20;
+          if (nvalue2 < 10)     {angle = 0;  str = "middle";  }
+          else if(nvalue2 < 30) {angle = 30; str = "start"; tx = tx-3;}
+          else                  {angle = 90; str = "start"; tx = tx-3;}
+          if (nvalue2 < 30) {
              bar.append("text")
              .attr("class","barname")
-             .attr("x",margin.left + barMargin + barWidth/2 + k*betweenbarWidth )
-             .attr("y",y1+20)
+             .attr("x",tx)
+             .attr("y",ty)
+             .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
              .text(label[k])
              .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
-          } else if (nvalue2 < 70) {
+          } 
+          else if (nvalue2 < 60) {
              if  (k%2 == 1) {
                bar.append("text")
                   .attr("class","barname")
-                  .attr("x",margin.left + barMargin + barWidth/2 + k*betweenbarWidth )
-                  .attr("y",y1+20)
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
                   .text(label[k])
-                 .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
             }
-          } else {
+          } 
+          else if (nvalue2 < 90) {
              if  (k%3 == 1) {
                bar.append("text")
                   .attr("class","barname")
-                  .attr("x",margin.left + barMargin + barWidth/2 + k*betweenbarWidth )
-                  .attr("y",y1+20)
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
+                  .text(label[k])
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+            }
+          }
+          else if (nvalue2 < 120) {
+             if  (k%4 == 1) {
+               bar.append("text")
+                  .attr("class","barname")
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
+                  .text(label[k])
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+            }
+          }
+          else  {
+             if  (k%5 == 1) {
+               bar.append("text")
+                  .attr("class","barname")
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
                   .text(label[k])
                   .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
             }
@@ -3597,7 +3632,6 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
            y1   = y2;    
          }
 
-
          if (a < gxmin) a = gxmin;
          if (b > gxmax) b = gxmax;
          var tempx, tempy;
@@ -3661,8 +3695,10 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          bar.append("text").attr("x", x1).attr("y", y2+15)
             .text(svgStrU[23][langNum]+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         if (pvalue < 0.0001) str = "< 0.0001";
+         else str = f4(pvalue).toString();  
          bar.append("text").attr("x", x1).attr("y", y2+30)
-            .text(svgStrU[27][langNum]+f3(pvalue))
+            .text(svgStrU[27][langNum]+str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;
@@ -3706,16 +3742,22 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          // heading
          tx = margin.left + graphWidth2/2;
          ty = margin.top/2;
-         if (hypoType == 1)      str = "H\u2080: \u03BC = "+ f2(D) + " , H\u2081: \u03BC " + symbol[h1Type-1] +" "+ f2(D);
-         else if (hypoType == 3) str = "H\u2080: P = "+ f2(D) + " , H\u2081: P " + symbol[h1Type-1] +" " + f2(D);
-         else if (hypoType == 6) str = "H\u2080: P\u2081 - P\u2082 = " + f2(D) + " , H\u2081: P\u2081 - P\u2082 "+symbol[h1Type-1]+" "+f2(D);
+         if (hypoType == 1)       str = "H\u2080: \u03BC = "+ f2(D) + " , H\u2081: \u03BC " + symbol[h1Type-1] +" "+ f2(D);
+         else if (hypoType == 3)  str = "H\u2080: P = "+ f2(D) + " , H\u2081: P " + symbol[h1Type-1] +" " + f2(D);
+         else if (hypoType == 6)  str = "H\u2080: P\u2081 - P\u2082 = " + f2(D) + " , H\u2081: P\u2081 - P\u2082 "+symbol[h1Type-1]+" "+f2(D);
+         else if (hypoType == 94) str = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
+         else if (hypoType == 95) str = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
+         else if (hypoType == 96) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082  " + " , H\u2081: \u03BC\u2081 "+ symbol[h1Type-1] + " \u03BC\u2082" ;
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 1)      str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3) str = svgStrU[23][langNum]+"(p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
-         else if (hypoType == 6) str = svgStrU[23][langNum]+"(p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3)  str = svgStrU[23][langNum]+"(p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6)  str = svgStrU[23][langNum]+"(p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         else if (hypoType == 94) str = svgStrU[23][langNum]+"(+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 95) str = svgStrU[23][langNum]+"R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 96) str = svgStrU[23][langNum]+"R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
@@ -3800,7 +3842,9 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
             .style("stroke","green").attr("stroke-width","2px");
          bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
+         if (pvalue < 0.0001) str = "< 0.0001";
+         else str = f4(pvalue).toString();  
+         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;
@@ -3829,7 +3873,7 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
 // Testing Hypothesis : sigma
 // =============================================================================================================
 // chisq 분포 가설검정 그래프 함수 --------------------------------------------------
-function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue, D) {
+function drawChisqGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          var margin  = {top: 60, bottom: 130, left: 100, right: 100};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
@@ -3850,16 +3894,21 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue, D) {
          // heading
          tx = margin.left + graphWidth2/2;
          ty = margin.top/2;
-         if (hypoType == 2)      str = "H\u2080: \u03C3\u00B2 = "+ f2(D) + " , H\u2081: \u03C3\u00B2 " + symbol[h1Type-1] +" "+ f2(D);
-         else if (hypoType == 8) str = "H\u2080: "+svgStrU[58][langNum];
+         if (hypoType == 2)       str = "H\u2080: \u03C3\u00B2 = "+ f2(D) + " , H\u2081: \u03C3\u00B2 " + symbol[h1Type-1] +" "+ f2(D);
+         else if (hypoType == 8)  str = "H\u2080: "+svgStrU[58][langNum];
+         else if (hypoType == 9)  str = "H\u2080: "+svgStrU[60][langNum]+"="+svgStrU[61][langNum]+" H\u2081: "+svgStrU[60][langNum]+symbol[0]+svgStrU[61][langNum]  ;
+         else if (hypoType == 98) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BCk " ;
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8) str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 2)       str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 9)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 98) str = svgStrU[67][langNum]+" ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
          var x = [];
@@ -3926,7 +3975,7 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue, D) {
            bar.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          }
-         else {
+         else if (h1Type == 3) {
            bar.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
@@ -3943,7 +3992,9 @@ function drawChisqGraphTH(hyphType, h1Type, stat, df, a, b, prob, pvalue, D) {
             .style("stroke","green").attr("stroke-width","2px");
          bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+f3(pvalue))
+         if (pvalue < 0.0001) str = "< 0.0001";
+         else str = f4(pvalue).toString();  
+         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;
@@ -4080,7 +4131,9 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
          y2 = y1 + 45;
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
             .style("stroke","green").attr("stroke-width","2px");
-         bar.append("text").attr("x", x1).attr("y", y2+10).text("F\u2080 = "+f2(stat[0])+", "+svgStrU[27][langNum]+f3(pvalue) )
+         if (pvalue < 0.0001) str = "< 0.0001";
+         else str = f4(pvalue).toString();  
+         bar.append("text").attr("x", x1).attr("y", y2+10).text("F\u2080 = "+f2(stat[0])+", "+svgStrU[27][langNum]+str )
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          if (hypoType == 7) { // ANOVA
@@ -4391,3 +4444,278 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          }
 
 }     
+
+// Calculate Rank Sum of Each Group
+function statRankSum(ngroup, nobs, dataA, ranksum ) {
+      var i,j, temp, tempi, sum, t3;
+      var index = new Array(nobs[0]);
+      var rank  = new Array(nobs[0]);
+      var cumobs = new Array(ngroup+1);
+      // Sorting and indexing data in ascending order
+      for (i=0; i<nobs[0]; i++) {index[i] = i; rank[i] = i+1;}
+      for (i=0; i<nobs[0]-1; i++) {
+        for (j=i; j<nobs[0]; j++) {
+          if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi    = index[i];
+              dataA[i] = dataA[j];  index[i] = index[j];
+              dataA[j] = temp;      index[j] = tempi;  
+          }
+        }
+      } 
+      // Counting the same value, give average rank
+      nvalue = 1;
+      t3 = 0;
+      sum = rank[0];
+      for (i=1; i<nobs[0]; i++) {
+        if (dataA[i] == dataA[i-1]) {
+          nvalue++;
+          sum += rank[i];
+        }
+        else {
+          t3 += nvalue*nvalue*nvalue - nvalue;  // 동점그룹의 가중값
+          temp = sum / nvalue;
+          for (k=i-1; k>= i-nvalue; k--) rank[k] = temp;
+          nvalue = 1;
+          sum = rank[i];
+        }
+      }
+      if (nvalue > 1) {
+          t3 += nvalue*nvalue*nvalue - nvalue;  // 동점그룹의 가중값
+          temp = sum / nvalue;
+          for (k=i-1; k>= i-nvalue; k--) rank[k] = temp;
+      }
+      else { // 마지막 원소가 다르게 끝난 경우 nvalue = 1 rank[k]는 그대로
+          t3 += nvalue*nvalue*nvalue - nvalue;   // 동점그룹의 가중값
+      }
+      // ranksum of each sample
+      for (j=0; j<=ngroup; j++) ranksum[j] = 0;
+      cumobs[1] = nobs[1];
+      for (j=2; j<=ngroup; j++) cumobs[j] = cumobs[j-1] + nobs[j];
+
+      for (i=0; i<nobs[0]; i++) {
+        for (j=1; j<= ngroup; j++) {
+          if (index[i] < cumobs[j]) {ranksum[j] += rank[i]; break;}
+        }
+      }  
+      return t3;   
+}
+
+// Calculate Rank Sum of Sample2  - 동점 처리 안할 때
+function statRankSum2(ngroup, nobs, dataA, ranksum ) {
+      var i,j, temp, tempi, sum;
+      var index = new Array(nobs[0]);
+      var rank  = new Array(nobs[0]);
+      var cumobs = new Array(ngroup+1);
+
+      // Sorting and indexing data in ascending order
+      for (i=0; i<nobs[0]; i++) {index[i] = i; rank[i] = i+1;}
+      for (i=0; i<nobs[0]-1; i++) {
+        for (j=i; j<nobs[0]; j++) {
+          if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi    = index[i];
+              dataA[i] = dataA[j];  index[i] = index[j];
+              dataA[j] = temp;      index[j] = tempi;  
+          }
+        }
+      } 
+
+      // Counting the same value, give average rank
+      nvalue = 1;
+      sum = rank[0];
+      for (i=1; i<nobs[0]; i++) {
+        if (dataA[i] == dataA[i-1]) {
+          nvalue++;
+          sum += rank[i];
+        }
+        else {
+          temp = sum / nvalue;
+          for (k=i-1; k>= i-nvalue; k--) rank[k] = temp;
+          nvalue = 1;
+          sum = rank[i];
+        }
+      }
+      if (nvalue > 1) {
+          temp = sum / nvalue;
+          for (k=i-1; k>= i-nvalue; k--) rank[k] = temp;
+      }
+
+      // ranksum of each sample
+      for (j=0; j<=ngroup; j++) ranksum[j] = 0;
+      cumobs[1] = nobs[1];
+      for (j=2; j<=ngroup; j++) cumobs[j] = cumobs[j-1] + nobs[j];
+
+      for (i=0; i<nobs[0]; i++) {
+        for (j=1; j<= ngroup; j++) {
+          if (index[i] < cumobs[j]) {ranksum[j] += rank[i]; break;}
+        }
+      }
+      return sum;
+}
+// rank sum distribution -- Array를 너무많이 사용 폐기
+function rankSumDist2(m, n, dataValue, dvalueP) {
+      var i, j, k, p, N2, nobs, nvalue, sumB, sumR;
+      var k = m + n;
+      var B = new Array(k+1);  // Binary
+      var R = new Array(k+1);  // Rank
+      var tdata = [];
+
+      N2 = 1;
+      for (j=1; j<=k; j++) {
+        B[j] = 0;
+        R[j] = j;
+        N2 *=2;
+      }
+      // rank sum의 모든 경우의 수
+      for (i=1; i<=N2; i++) {
+        j = k; 
+        B[j] ++;
+        do {
+          if (B[j] > 1) {
+            B[j] = 0;
+            j--
+            B[j]++;
+          }
+          else break;
+        } while (B[j] > 1)
+        // Binary 합계가 n과 일치될때만 rank sum 계산
+        sumB = 0;
+        for (j=1; j<=k; j++) sumB += B[j];
+        if (sumB == n) {
+          sumR = 0;
+          for (j=1; j<=k; j++) {
+            sumR += B[j]*R[j];
+          }
+          tdata.push(sumR);
+        }
+        else sumR = NaN;
+      }
+      // rank sum의 distribution 계산
+      tdata.sort(function(a, b){return a-b});
+      nobs = tdata.length;
+      nvalue = valueFreq(nobs, tdata, dataValue, dvalueP); 
+      for (j=0; j<nvalue; j++) dvalueP[j] = dvalueP[j] / nobs;
+      return nvalue;
+}
+// Wicoxon rank sum distribution   
+function rankSumDist(m, n, dataValue, dvalueP, checkRankSum) {
+      var i, j, k, p, N2, tobs, nvalue, sumB, sumR, checkDuplicate;
+      var k = m + n;
+      var B = new Array(k+1);  // Binary
+      var R = new Array(k+1);  // Rank
+      var tdata = [];
+
+      N2 = 1;
+      for (j=1; j<=k; j++) {
+        B[j] = 0;
+        R[j] = j;
+        N2 *=2;
+      }
+      // rank sum의 모든 경우의 수
+      tobs = 0;
+      nvalue = 0;
+
+      for (i=1; i<=N2; i++) {
+        j = k; 
+        B[j] ++;
+        do {
+          if (B[j] > 1) {
+            B[j] = 0;
+            j--
+            B[j]++;
+          }
+          else break;
+        } while (B[j] > 1)
+
+        if( checkRankSum ) {
+          // RankSum에서는 Binary 합계가 n과 일치될때만 rank sum 계산
+          sumB = 0;
+          for (j=1; j<=k; j++) sumB += B[j];
+          if (sumB == n) {
+            sumR = 0;
+            for (j=1; j<=k; j++) {
+              sumR += B[j]*R[j];
+            }
+            // 값이 있는지 체크
+            checkDuplicate = false;
+            for (j=0; j<nvalue; j++) {
+              if (sumR == dataValue[j]) {
+                dvalueP[j]++;
+                checkDuplicate = true;
+                break;
+              }
+            }
+            if (checkDuplicate == false) {
+              dataValue[nvalue] = sumR;
+              dvalueP[nvalue]++;
+              nvalue++;
+            }
+            tobs++;
+          } // endof if
+        }
+        else {
+            sumR = 0;
+            for (j=1; j<=k; j++) {
+              sumR += B[j]*R[j];
+            }
+            // 값이 있는지 체크
+            checkDuplicate = false;
+            for (j=0; j<nvalue; j++) {
+              if (sumR == dataValue[j]) {
+                dvalueP[j]++;
+                checkDuplicate = true;
+                break;
+              }
+            }
+            if (checkDuplicate == false) {
+              dataValue[nvalue] = sumR;
+              dvalueP[nvalue]++;
+              nvalue++;
+            }
+// console.log(tobs+" "+nvalue+" "+B+" "+sumR)
+            tobs++;
+        }
+
+      } // endof for
+
+// console.log(nvalue+" "+dataValue)
+// console.log(nvalue+" "+dvalueP)
+      // Sorting dataValue[] with dvalueP[] in ascending order
+      for (i=0; i<nvalue-1; i++) {
+          for (j=i; j<nvalue; j++) {
+            if(dataValue[i] > dataValue[j]) {
+                temp         = dataValue[i];  tempi      = dvalueP[i];
+                dataValue[i] = dataValue[j];  dvalueP[i] = dvalueP[j];
+                dataValue[j] = temp;          dvalueP[j] = tempi;  
+            }
+          }
+      } 
+
+
+      for (j=0; j<nvalue; j++) dvalueP[j] /= tobs;
+// console.log(dvalueP)
+      return nvalue;
+}
+
+// Counting value & freq of sorted array dataA
+function valueFreq(tobs, dataA, dataValue, dvalueFreq ) {
+        var i, nvalue;
+        for(i=0; i<tobs; i++) {
+          dvalueFreq[i]=0; 
+        } 
+        nvalue = 0;
+        dataValue[nvalue]  = dataA[0];  
+        dvalueFreq[nvalue] = 1;   
+        for (i=1; i<tobs; i++) {
+          if (dataA[i] == dataA[i-1]) {
+            dvalueFreq[nvalue]++;
+          } 
+          else {
+            nvalue++;
+            dataValue[nvalue] = dataA[i];
+            dvalueFreq[nvalue]++;
+          }
+        }
+        nvalue++;
+        return nvalue;
+}
+
