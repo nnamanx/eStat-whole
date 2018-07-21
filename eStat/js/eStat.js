@@ -1872,7 +1872,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[g] = row.insertCell(g);
             cell[g].style.border = "1px solid black";
           }
-          cell[0].innerHTML = svgStr[24][langNum];
+          cell[0].innerHTML = svgStr[23][langNum];
           cell[0].style.textAlign = "center";
  
           for (g=0; g<ngvalue; g++) {
@@ -1961,7 +1961,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k].style.backgroundColor = "#eee";
             cell[k].style.border = "1px solid black";
           }
-          cell[0].innerHTML = svgStr[24][langNum];
+          cell[0].innerHTML = svgStr[23][langNum];
           cell[1].innerHTML = "";
           cell[2].innerHTML = sum;
           cell[3].innerHTML = "100";
@@ -2031,7 +2031,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k].style.border = "1px solid black";
             cell[k].style.backgroundColor = "#eee";
           }
-          cell[0].innerHTML = svgStr[24][langNum];
+          cell[0].innerHTML = svgStr[23][langNum];
           cell[0].style.textAlign = "center";
           for (k=1; k<ndvalue+1; k++) {
             sum = 0;
@@ -2592,7 +2592,7 @@ function dataClassifyM() {
             return;
           }
         }
-
+        // 그룹변수
         gobs        = tdobs[0];
         gvarNumber  = tdvarNumber[0];
         gvarName    = tdvarName[0];
@@ -2608,8 +2608,11 @@ function dataClassifyM() {
             gvalueLabel[k] = tdvalueLabel[0][k];
           }
         } 
-        for (i = 0; i < gobs; i++) gvar[i] = tdvar[0][i];       
-
+        for (i = 0; i < gobs; i++) {
+          gvar[i] = tdvar[0][i];    
+          gcolor[i] = myColor[gvar[i]];   
+        }
+        // 분석변수
         dobs        = tdobs[1];
         dvarNumber  = tdvarNumber[1];
         dvarName    = tdvarName[1];
@@ -2842,6 +2845,11 @@ function dataClassifyM12() {
 }
 // 산점도 데이터 - 점을 그룹으로 구분
 function dataClassifyS() {
+        var trange, tratio, temp ;
+        var colors = d3.scaleLinear()
+            .domain([0,1])
+            .range(["yellow","red"]);
+		
         // 자료가 없으면 경고
         checkData = true;
         for (k = 0; k < numVar; k++) {
@@ -2863,7 +2871,7 @@ function dataClassifyS() {
           alert(alertMsg[17][langNum]);
           return;
         }
-        else if (numVar > 3) {
+        else if (numVar > 4) {
           checkVarSelect = false;
           alert(alertMsg[18][langNum]);
           return;
@@ -2880,7 +2888,7 @@ function dataClassifyS() {
         }
       
         if (numVar == 2) { // x축 y축 변량만 있는 경우
-
+          // y data
           yobs        = tdobs[0];
           yvarNumber  = 2;
           yvarName    = tdvarName[0];
@@ -2894,7 +2902,7 @@ function dataClassifyS() {
               return;
             } // endof if
           } // endof i
-
+          // x data
           xobs        = tdobs[1];
           xvarNumber  = 3;
           xvarName    = tdvarName[1];
@@ -2919,17 +2927,16 @@ function dataClassifyS() {
           gvarNumber  = 1;
           gvarName    = "";
           gvalueLabel[0] = null;
-          for (j=0; j<xobs; j++) {gdata[j] = 1; gcolor[j] = 0;}
+          for (j=0; j<xobs; j++) {gdata[j] = 1; gcolor[j] = myColor[0]; wdata[j] = 4;}
         }
         else if (numVar == 3) { // group, x축 y축 변량이 있는 경우
-
+          // group data
           gobs        = tdobs[0];
           gvarNumber  = tdvarNumber[0];
           gvarName    = tdvarName[0];
           ngvalue     = tdvalueNum[0]
           for (k=0; k<ngvalue; k++) {
             gdataValue[k]  = tdvalue[0][k];
-
             if ( tdvalueLabel[0][k] == null ) {
               if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
               else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
@@ -2938,13 +2945,28 @@ function dataClassifyS() {
               gvalueLabel[k] = tdvalueLabel[0][k];
             }
           } 
-          for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정
-            gdata[i] = tdvar[0][i]; 
-            for (k=0; k<ngvalue; k++) {
-              if (gdata[i] == gdataValue[k]) {gcolor[i]=k; break;}
+          if (ngvalue < 6) {
+            for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정, 원의 크기 지정
+              gdata[i] = tdvar[0][i]; 
+              for (k=0; k<ngvalue; k++) {
+                if (gdata[i] == gdataValue[k]) {
+                  gcolor[i] = myColor[k];
+                  wdata[i] = 4;
+                }
+              }
             }
           }
-
+          else { // 그룹변수가 아니라 사이즈 변수 
+            trange  = Math.sqrt(parseFloat(gdataValue[ngvalue-1])) - Math.sqrt(parseFloat(gdataValue[0]));
+            for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정, 원의 크기 지정
+              gdata[i]  = tdvar[0][i]; 
+              temp      = Math.sqrt(parseFloat(gdata[i])) - Math.sqrt(parseFloat(gdataValue[0]));
+              tratio    = temp / trange;
+              gcolor[i] = colors(tratio) ; 
+              wdata[i]  = 1 + 10*tratio;
+            }
+          }
+          // y data
           yobs        = tdobs[1];
           yvarNumber  = tdvarNumber[1];
           yvarName    = tdvarName[1];
@@ -2958,7 +2980,7 @@ function dataClassifyS() {
               return;
             } // endof if
           } // endof i
-
+          // x data
           xobs        = tdobs[2];
           xvarNumber  = tdvarNumber[2];
           xvarName    = tdvarName[2];
@@ -2979,12 +3001,92 @@ function dataClassifyS() {
             ydata[i] = parseFloat(ydata[i]);
           }
         }
-        
+        else if (numVar == 4) { // group, y축 x축 size 변량이 있는 경우
+          // group data
+          gobs        = tdobs[0];
+          gvarNumber  = tdvarNumber[0];
+          gvarName    = tdvarName[0];
+          ngvalue     = tdvalueNum[0]
+          for (k=0; k<ngvalue; k++) {
+            gdataValue[k]  = tdvalue[0][k];
+            if ( tdvalueLabel[0][k] == null ) {
+              if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = tdvalueLabel[0][k];
+            }
+          } 
+          for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정
+            gdata[i] = tdvar[0][i]; 
+            for (k=0; k<ngvalue; k++) {
+              if (gdata[i] == gdataValue[k]) {
+                gcolor[i] = myColor[k]; 
+                break;
+              }
+            }
+          }
+          // y data
+          yobs        = tdobs[1];
+          yvarNumber  = tdvarNumber[1];
+          yvarName    = tdvarName[1];
+          // numeric check 
+          for (i=0; i<yobs; i++) {
+            yvalueLabel[i] = null;
+            ydata[i] = tdvar[1][i];
+            if (isNaN(ydata[i])) {
+              checkNumeric = false;
+              alert(alertMsg[20][langNum]);
+              return;
+            } // endof if
+          } // endof i
+          // x data
+          xobs        = tdobs[2];
+          xvarNumber  = tdvarNumber[2];
+          xvarName    = tdvarName[2];
+          // numeric check 
+          checkNumeric = true;
+          for (i=0; i<xobs; i++) {
+            xvalueLabel[i] = null;
+            xdata[i] = tdvar[2][i];
+            if (isNaN(xdata[i])) {
+              checkNumeric = false;
+              alert(alertMsg[19][langNum]);
+              return;
+            } // endof if
+          } // endof i
+          // w data
+          wobs        = tdobs[3];
+          wvarNumber  = tdvarNumber[3];
+          wvarName    = tdvarName[3];
+          // numeric check 
+          checkNumeric = true;
+          for (i=0; i<xobs; i++) {
+            wdata[i] = tdvar[3][i];
+            if (isNaN(wdata[i])) {
+              checkNumeric = false;
+              alert(alertMsg[19][langNum]);
+              return;
+            } // endof if
+          } // endof i
+          nwvalue     = tdvalueNum[3]
+          for (k=0; k<nwvalue; k++) {
+            wdataValue[k]  = tdvalue[3][k];
+          } 
+          trange = Math.sqrt(parseFloat(wdataValue[nwvalue-1])) - Math.sqrt(parseFloat(wdataValue[0]));
+          for (i=0; i<xobs; i++) {
+            xdata[i] = parseFloat(xdata[i]);
+            ydata[i] = parseFloat(ydata[i]);
+            wdata[i] = 1 + 10*(Math.sqrt(parseFloat(wdata[i])) - Math.sqrt(parseFloat(wdataValue[0])))/trange;
+          }
+        } // endof if
+      
         // 시트의 기타 데이터가 null로 되어있어 NaN로 수정
         for (i=xobs; i<rowMax; i++) {
             gdata[i] = NaN;
             xdata[i] = NaN;
             ydata[i] = NaN;
+            wdata[i] = NaN
         }
 
 }
@@ -3512,10 +3614,10 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(dvarName)
         xTitle[graphNum] = dvarName;
+
         // 그룹별 점그래프
         for (k=0; k<ngroup; k++) {
-          // 범례
-          if (ngroup > 1) {
+            // 범례
             str = gvalueLabel[k];  
             chart.append("text")
                  .style("font-size","12px")
@@ -3526,54 +3628,54 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
                  .attr("x",margin.left + graphWidth + 20)
                  .attr("y",margin.top + oneHeight/2 + oneHeight*k)
                  .text(str);
-          }
 
-          tobs = nobs[k];
-          for (i=0; i<tobs; i++) tdata[i] = dataSet[k][i];
+            tobs = nobs[k];
+            for (i=0; i<tobs; i++) tdata[i] = dataSet[k][i];
 
-          for (i=0; i<tobs; i++) dataA[i]=tdata[i];
-          nvalue = sortAscendM(tobs, dataA, dataValue, dvalueFreq, dataY);
+            for (i=0; i<tobs; i++) dataA[i]=tdata[i];
+            nvalue = sortAscendM(tobs, dataA, dataValue, dvalueFreq, dataY);
   
-          freqmax = gmax(nvalue,dataY);         // max of dot frequency
+            freqmax = gmax(nvalue,dataY);         // max of dot frequency
      
-          // x축 선그리기 
-          ty = margin.top + k*oneHeight;
-          chart.append("line").attr("x1",margin.left).attr("x2",margin.left + graphWidth)
-             .attr("y1",ty).attr("y2",ty) 
-             .style("stroke","black") 
-          drawDotXaxis(gxmin, gxmax, graphWidth, graphHeight, buffer)
+            // x축 선그리기 
+            ty = margin.top + k*oneHeight;
+            chart.append("line").attr("x1",margin.left).attr("x2",margin.left + graphWidth)
+                 .attr("y1",ty).attr("y2",ty) 
+                 .style("stroke","black") 
+            drawDotXaxis(gxmin, gxmax, graphWidth, graphHeight, buffer)
 
-          // y축 선그리기 
-          x1 = margin.left;
-          x2 = margin.left;
-          y1 = margin.top;
-          y2 = margin.top + graphHeight;
-          chart.append("line").attr("x1",x1).attr("x2",x2).attr("y1",y1).attr("y2",y2).style("stroke","black") 
-          x1 += graphWidth;
-          chart.append("line").attr("x1",x1).attr("x2",x1).attr("y1",y1).attr("y2",y2).style("stroke","black") 
+            // y축 선그리기 
+            x1 = margin.left;
+            x2 = margin.left;
+            y1 = margin.top;
+            y2 = margin.top + graphHeight;
+            chart.append("line").attr("x1",x1).attr("x2",x2).attr("y1",y1).attr("y2",y2).style("stroke","black") 
+            x1 += graphWidth;
+            chart.append("line").attr("x1",x1).attr("x2",x1).attr("y1",y1).attr("y2",y2).style("stroke","black") 
 
-          // 점그리기
-          sx = margin.left + graphWidth/2;
-          sy = margin.top; 
-          for (j=0; j<tobs; j++) {
-            tx = margin.left + graphWidth*(dataA[j]-gxmin)/gxrange;
-            ty = margin.top  + (k+1)*oneHeight - dataY[j]*2*radius;
-            chart.append("circle")
-               .attr("class","circle")
-               .attr("tooltip","circle")
-               .style("fill",myColor[k])
-               .attr("cx", sx)
-               .attr("cy", sy)
-               .attr("r", radius)
-               .transition()                           // 애니매이션 효과 지정
-               .delay(function(d,i) {return i*200;})   // 0.5초마다 그리도록 대기시간 설정
-               .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
-               .attr("cx", tx)
-               .attr("cy", ty)
-           } // endof j
+            // 점그리기
+            sx = margin.left + graphWidth/2;
+            sy = margin.top; 
+            for (j=0; j<tobs; j++) {
+              tx = margin.left + graphWidth*(dataA[j]-gxmin)/gxrange;
+              ty = margin.top  + (k+1)*oneHeight - dataY[j]*2*radius;
+              chart.append("circle")
+                 .attr("class","circle")
+                 .attr("tooltip","circle")
+                 .style("fill",myColor[k])
+                 .attr("stroke","black")
+                 .attr("cx", sx)
+                 .attr("cy", sy)
+                 .attr("r", radius)
+                 .transition()                           // 애니매이션 효과 지정
+                 .delay(function(d,i) {return i*200;})   // 0.5초마다 그리도록 대기시간 설정
+                 .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
+                 .attr("cx", tx)
+                 .attr("cy", ty)
+            } // endof j
 
         } // endof k
-      
+           
         // return values  
         tstat[11] = gxmin;
         tstat[12] = gxmax;
@@ -4828,7 +4930,7 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gva
             cell[ngroup+1].style.textAlign = "right";
             rowsum = 0;
             for (j=0; j<ngroup; j++) {
-              rowsum += freq[j][i];
+              rowsum += freq[j][i+1];
               cell[j+1].innerHTML = freq[j][i+1].toString()+"<br> ("+f1(100*freq[j][i+1]/colsum[j]).toString()+"%)";
               cell[j+1].style.textAlign = "right";
             }
@@ -5085,7 +5187,7 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
           width = graphWidth*(Q3[k]-Q1[k])/gxrange;
           height = oneHeight/2;
           chart.append("rect").attr("x",x1).attr("y",y1).attr("width",width).attr("height",height)
-             .style("stroke",myColor[k]).style("fill",myColor[k])
+             .style("stroke","black").style("fill",myColor[k])
           
           // Q1
           chart.append("text").attr("class","stat").attr("x", x1+3).attr("y", y2+25).text("Q1="+f2(Q1[k]))
@@ -5602,11 +5704,14 @@ function bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd
 }
 // 산점도 제목 쓰기 함수
 function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarName, xvarName, yvarName) { 
-        var str, gstr;
+        var str, wstr;
         // 주제목
         if (mTitle[graphNum] == "") {
           if (numVar == 2) str = xvarName + " : "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
-          else str = "("+svgStr[18][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
+          else {
+            str = "("+svgStr[18][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
+            if (numVar == 3 && ngroup > 6) str = "("+svgStr[24][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
+          }        
         }
         else str = mTitle[graphNum];
 
@@ -5618,6 +5723,18 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
              .style("stroke","black")
              .style("text-anchor","middle")
              .text(str)
+        if (numVar == 4) {
+          wstr = "- "+svgStr[24][langNum]+" "+wvarName+" -";
+          chart.append("text")
+             .attr("x",margin.left + titleBuffer)
+             .attr("y",margin.top/2 + 20)
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
+             .text(wstr)
+        }
+
         // Y축 제목
         chart.append("text")
              .style("font-size","12px")
@@ -5643,14 +5760,13 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
 
 // 산점도 그리기 ----------------------------------------------------------------------------------------------
 function drawScatter(ngroup, gvalueLabel,tobs,xdata,ydata,gdata,scatterS) {
-
-         // 그래프 화면 정의 
+        // 그래프 화면 정의 
         xmin = gmin(tobs, xdata);
         xmax = gmax(tobs, xdata);
         ymin = gmin(tobs, ydata);
         ymax = gmax(tobs, ydata);
-        xbuffer = (xmax-xmin) / 5;     // 경계점이 보이기위한 완충거리
-        ybuffer = (ymax-ymin) / 3;     // 경계점이 보이기위한 완충거리
+        xbuffer = (xmax-xmin) / 8;     // 경계점이 보이기위한 완충거리
+        ybuffer = (ymax-ymin) / 8;     // 경계점이 보이기위한 완충거리
         gxmin   = xmin-xbuffer;
         gxmax   = xmax+xbuffer;
         gymin   = ymin-ybuffer;
@@ -5660,7 +5776,7 @@ function drawScatter(ngroup, gvalueLabel,tobs,xdata,ydata,gdata,scatterS) {
 
         chart.selectAll("*").remove();
  
-        if (ngroup > 1) margin = {top: 90, bottom: 90, left: 70, right:150};
+        if (ngroup > 1 && ngroup < 6) margin = {top: 90, bottom: 90, left: 70, right:150};
         else            margin = {top: 90, bottom: 90, left: 100, right: 120};
 
         var bufferScatter = 40;
@@ -5688,23 +5804,26 @@ function drawScatter(ngroup, gvalueLabel,tobs,xdata,ydata,gdata,scatterS) {
       for (k=0; k<tobs; k++) {
         str = "("+xdata[k]+","+ydata[k]+")";
         chart.append("circle")
-             .attr("class","circle")
-             .style("fill",myColor[gcolor[k]])
+   	     .attr("data-sheetrowid", k)
+             .attr("class","datapoint")
+             .attr("stroke","black")
+             .style("fill",gcolor[k])
 //             .attr("cx",margin.left+10)
 //             .attr("cy",margin.top+10)
-             .attr("r", 4)
+//             .attr("r", 0)
 //             .transition()                           // 애니매이션 효과 지정
 //             .delay(function(d,i) {return i*200;})   // 0.5초마다 그리도록 대기시간 설정
 //             .duration(1000)          
              .attr("cx", margin.left+graphWidth*(xdata[k]-gxmin)/gxrange)
              .attr("cy", margin.top+graphHeight-graphHeight*(ydata[k]-gymin)/gyrange)
+             .attr("r", wdata[k])
              .append("title")
              .text(str)
-
       }
 
       // 범례 그리기
-      if (ngroup > 1) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
+      if (numVar == 3 && ngroup > 1 && ngroup < 6) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
+      if (numVar == 4 ) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
 }
 // 산점도행렬 그리기 ----------------------------------------------------------------------------------------------
 function drawScatterMatrix(tdvarName,tdobs,tdvar) {
@@ -5883,7 +6002,9 @@ function drawScatterMatrix(tdvarName,tdobs,tdvar) {
         for (k=0; k<tobs; k++) {
           str = "("+xdata[k]+","+ydata[k]+")";
           chart.append("circle")
-               .attr("class","circle")
+               .attr("data-sheetrowid", k)
+               .attr("class","datapoint")
+//               .attr("class","circle")
                .style("fill",myColor[i*numVar+j])
                .attr("r", 3)
                .attr("cx", tx+subWidth*(xdata[k]-gxmin)/gxrange)
@@ -6330,13 +6451,13 @@ function drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter) {
         chart.append("circle")
              .attr("cx",tx)
              .attr("cy",ty)
-             .style("fill",myColor[k])
+             .attr("fill",myColor[k])
+             .attr("stroke","black")
              .attr("r", 4);
         chart.append("text")
-             .style("stroke",myColor[k])
+             .attr("stroke",myColor[k])
              .style("font-size","12px")
              .style("font-family","sans-seirf")
-             .style("stroke","black")
              .style("text-anchor","start")
              .attr("x",tx+8)
              .attr("y",ty+5)
@@ -6353,7 +6474,7 @@ function showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS) {
         else            margin = {top: 90, bottom: 90, left: 100, right: 120};
 
         xmin        = scatterS[0];
-        xma         = scatterS[1];
+        xmax        = scatterS[1];
         gxmin       = scatterS[4];
         gxmax       = scatterS[5];
         gxrange     = gxmax - gxmin;

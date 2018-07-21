@@ -135,28 +135,30 @@ var maxi = new Array(ngroupMax);
 var avg = new Array(ngroupMax);
 var std = new Array(ngroupMax);
 // 산점도 변량 정의
-var xobs, xvarNumber, xvarName, yobs, yvarNumber, yvarName;
+var xobs, xvarNumber, xvarName, yobs, yvarNumber, yvarName, nwvalue, wobs, wvarNumber, wvarName;
 var scatterS = new Array(20);
-var gdata = new Array(rowMax);
+var gdata  = new Array(rowMax);
 var gcolor = new Array(rowMax);
-var xdata = new Array(rowMax);
+var xdata  = new Array(rowMax);
 var xvalueLabel = new Array(rowMax);
-var xavg = new Array(ngroupMax);
-var xstd = new Array(ngroupMax);
-var ydata = new Array(rowMax);
+var xavg   = new Array(ngroupMax);
+var xstd   = new Array(ngroupMax);
+var ydata  = new Array(rowMax);
 var yvalueLabel = new Array(rowMax);
-var yavg = new Array(ngroupMax);
-var ystd = new Array(ngroupMax);
+var yavg   = new Array(ngroupMax);
+var ystd   = new Array(ngroupMax);
 var alphaR = new Array(ngroupMax);
-var betaR = new Array(ngroupMax);
-var corr = new Array(ngroupMax);
-var rsquare = new Array(ngroupMax);
-var sxx = new Array(ngroupMax);
-var syy = new Array(ngroupMax);
-var sxy = new Array(ngroupMax);
-var ssr = new Array(ngroupMax);
-var sse = new Array(ngroupMax);
+var betaR  = new Array(ngroupMax);
+var corr   = new Array(ngroupMax);
+var rsquare= new Array(ngroupMax);
+var sxx    = new Array(ngroupMax);
+var syy    = new Array(ngroupMax);
+var sxy    = new Array(ngroupMax);
+var ssr    = new Array(ngroupMax);
+var sse    = new Array(ngroupMax);
 var stderr = new Array(ngroupMax);
+var wdata  = new Array(rowMax);
+var wdataValue = new Array(rowMax);
 // 히스토그램 변량
 var nint, xstep, freqmax;
 var gxminH, gxmaxH, gyminH, gymaxH;
@@ -391,16 +393,18 @@ function initEventControl(datasheet) {
     datasheet.addHook('afterOnCellMouseDown', function(event, coords) {
         //	  console.log(coords);
         //	  console.log(coords.row+" "+coords.col);
+
         var selected, numOfSelectedColumns;
         if (coords.row == -1) {
             selected = datasheet.getSelected();
-            numOfSelectedColumns = selected[3] - selected[1] + 1;
+
+            numOfSelectedColumns = selected[0][3] - selected[0][1] + 1;
             for (j = 0; j < numOfSelectedColumns; j++) {
-                k = j + parseInt(selected[1]);
+                k = j + parseInt(selected[0][1]);
                 tdvarNumber[numVar + j] = k + 1;
                 tdobs[numVar + j] = robs[k];
                 tdvalueNum[numVar + j] = rvalueNum[k];
-                tdvarName[numVar + j] = datasheet.getColHeader(j + selected[1]);
+                tdvarName[numVar + j] = datasheet.getColHeader(j + selected[0][1]);
                 /*
                 		tdvalue[numVar + j] = rvalue[k];
                                 tdvalueLabel[numVar + j] = rvalueLabel[k];
@@ -410,7 +414,7 @@ function initEventControl(datasheet) {
                     tdvalue[numVar + j][m] = rvalue[k][m];
                     tdvalueLabel[numVar + j][m] = rvalueLabel[k][m];
                 }
-                tdvar[numVar + j] = datasheet.getDataAtCol(j + selected[1]);
+                tdvar[numVar + j] = datasheet.getDataAtCol(j + selected[0][1]);
             }
             numVar += numOfSelectedColumns;
             var str = "";
@@ -1431,7 +1435,6 @@ d3.select("#scatter1").on("click", function() {
     if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
     buttonColorChange();
     Scatter = true;
-
     document.getElementById("regress").checked = false;
     document.getElementById("regress").disabled = false;
     document.getElementById("scatter1").style.backgroundColor = buttonColorH;
@@ -1441,7 +1444,14 @@ d3.select("#scatter1").on("click", function() {
     bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd,alphaR,betaR,corr,rsquare,sxx,syy,sxy,ssr,sse,stderr);
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
     document.getElementById("sub6").style.display = "block"; //회귀선 표시
+    if (ngroup > 5) document.getElementById("regress").disabled = true;
+    // 점과 시트의 연결
+    d3.selectAll(".datapoint").on("click", function() {
+//        console.log($(this).data('sheetrowid'));
+	datasheet.selectRows($(this).data('sheetrowid'));
+    })
 })
+
 // 산점도 회귀선 그리기
 d3.select("#regress").on("click", function() {
     if (Scatter == false) return;
@@ -2155,6 +2165,11 @@ d3.select("#regression").on("click", function() {
     chart.selectAll("*").remove();
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
     showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS);
+    // 점과 시트의 연결
+    d3.selectAll(".datapoint").on("click", function() {
+//        console.log($(this).data('sheetrowid'));
+	datasheet.selectRows($(this).data('sheetrowid'));
+    })
   } 
   else {
     dataClassifyRegression();
@@ -2166,6 +2181,11 @@ d3.select("#regression").on("click", function() {
     chart.selectAll("*").remove();
     tobs = tdobs[0];
     drawScatterMatrix(tdvarName,tdobs,tdvar);
+    // 점과 시트의 연결
+    d3.selectAll(".datapoint").on("click", function() {
+//        console.log($(this).data('sheetrowid'));
+	datasheet.selectRows($(this).data('sheetrowid'));
+    })
   }
   statRegression(numVar, tdobs, tdvar);
   statMultivariate(numVar, tdobs, tdvar);
