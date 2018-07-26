@@ -510,4 +510,47 @@ section.range-slider input[type=range]::-moz-focus-outer {
     padding-right: 5px;
 }
 
+.circleGIS {
+  fill: orange;
+  opacity: .5;
+  stroke: white;
+}
+.circleGIS:hover {
+  fill: red;
+  stroke: #333;
+}
+.textGIS {
+  pointer-events: none;
+}
+/*
+.municipality {
+  fill: #efefef;
+  stroke: #fff;
+}
+*/
+.municipality {
+  fill: GreenYellow;
+  stroke: Grey;
+}
+.municipality-label {
+  fill: #bbb;
+  font-size: 12px;
+  font-weight: 300;
+  text-anchor: middle;
+}
+#map text {
+  color: #333;
+  font-size: 10px;
+  text-anchor: middle;
+}
+#places text {
+  color: #777;
+  font: 10px sans-serif;
+  text-anchor: start;
+}
+
+
+
+
+
 

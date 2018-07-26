@@ -156,8 +156,8 @@
       // Testing Hypothesis ======================================
       d3.select("#executeTH").on("click",function() {
         inputValueAB();
-      if (isNaN(mu0) || isNaN(mu1) || isNaN(stdP)) return;
-      if(testType == "1"|| isNaN(nn1)) return;
+        if (isNaN(mu0) || isNaN(mu1) || isNaN(stdP) ) return;
+        if (testType == "1" && isNaN(nn1)) return;
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
       });
 

@@ -25,6 +25,9 @@ var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0
                  "#669966","#663366","#999966","#996666","#CCCC66","#CC9966","#CC6666","#CCFF66","#FFFF66","#FFCC66","#FF0066",
                  "#0000CC","#00FFCC","#0033CC","#3333CC","#3300CC","#33CCCC","#3366CC","#6666CC","#6633CC","#66CCCC","#6699CC",
                  "#9999CC","#9966CC","#99CCCC","#CCCCCC","#CCFFCC","#CC33CC","#CC99CC","#FFFFCC","#FFCCCC","#003300","#666600"];
+var colors = d3.scaleLinear()
+               .domain([0,1])
+               .range(["yellow","red"]);
 
 // 한글 체크 
 function is_hangul_char(ch) {
@@ -2845,11 +2848,7 @@ function dataClassifyM12() {
 }
 // 산점도 데이터 - 점을 그룹으로 구분
 function dataClassifyS() {
-        var trange, tratio, temp ;
-        var colors = d3.scaleLinear()
-            .domain([0,1])
-            .range(["yellow","red"]);
-		
+        var trange, tratio, temp ;	
         // 자료가 없으면 경고
         checkData = true;
         for (k = 0; k < numVar; k++) {
@@ -2871,9 +2870,173 @@ function dataClassifyS() {
           alert(alertMsg[17][langNum]);
           return;
         }
-        else if (numVar > 4) {
+        else if (numVar > 2) {
           checkVarSelect = false;
           alert(alertMsg[18][langNum]);
+          return;
+        }
+        // check missing
+        checkMissing = false;
+        for (k=1; k<numVar; k++) {
+          if (tdobs[k] != tdobs[0]) {
+            checkMissing = true;
+            alert(alertMsg[4][langNum]);
+            return;
+          }
+        }
+      
+        // y data
+          yobs        = tdobs[0];
+          yvarNumber  = 2;
+          yvarName    = tdvarName[0];
+          yvalueLabel = [];
+          for (i=0; i<yobs; i++) ydata[i] = tdvar[0][i];
+          // numeric check 
+          for (i=0; i<yobs; i++) {
+            if (isNaN(ydata[i])) {
+              checkNumeric = false;
+              alert(alertMsg[19][langNum]);
+              return;
+            } // endof if
+          } // endof i
+        // x data
+          xobs        = tdobs[1];
+          xvarNumber  = 3;
+          xvarName    = tdvarName[1];
+          xvalueLabel = [];
+          for (i=0; i<xobs; i++) xdata[i] = tdvar[1][i];
+          // numeric check 
+          checkNumeric = true;
+          for (i=0; i<xobs; i++) {
+            if (isNaN(xdata[i])) {
+              checkNumeric = false;
+              alert(alertMsg[19][langNum]);
+              return;
+            } // endof if
+          } // endof i
+
+        for (i=0; i<xobs; i++) {
+            xdata[i] = parseFloat(xdata[i]);
+            ydata[i] = parseFloat(ydata[i]);
+        }  
+        // 그룹변량 없는 경우 처리 : 모두 1
+
+        // group 변수
+        if (gvarNumber < 0) { // group 변수가 없으면
+          ngroup = 1;
+          gvarName    = "";
+          gvalueLabel[0] = null;
+          for (j=0; j<xobs; j++) {gdata[j] = 1; gcolor[j] = myColor[0];}
+        }
+        else { // group 변량이 있는 경우
+          // group data
+          gobs        = robs[gvarNumber];
+          gvarName    = rvarName[gvarNumber];
+          ngvalue     = rvalueNum[gvarNumber];
+          ngroup      = ngvalue;
+          // check missing
+          if (gobs != xobs) {
+            checkMissing = true;
+            alert(alertMsg[4][langNum]);
+            return;
+          }
+          for (k=0; k<ngvalue; k++) {
+            gdataValue[k]  = rvalue[gvarNumber][k];
+            if ( rvalueLabel[gvarNumber][k] == null ) {
+              if (isNaN(rvalue[gvarNumber][k])) gvalueLabel[k] = rvalue[gvarNumber][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = rvalueLabel[gvarNumber][k];
+            }
+          } 
+//          if (ngvalue < 10) {
+            for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정, 원의 크기 지정
+              gdata[i] = rvar[gvarNumber][i]; 
+              for (k=0; k<ngvalue; k++) {
+                if (gdata[i] == gdataValue[k]) {
+                  gcolor[i] = myColor[k];
+                }
+              }
+            }
+//          }
+
+        }
+        // size 변수
+        if (wvarNumber < 0) { // size 변수가 없으면
+          for (j=0; j<xobs; j++) {wdata[j] = 4;}      
+        }
+        else { // size 변량이 있는 경우
+          // w data
+          wobs        = robs[wvarNumber];
+          wvarName    = rvarName[wvarNumber];
+          // check missing
+          if (wobs != xobs) {
+            checkMissing = true;
+            alert(alertMsg[4][langNum]);
+            return;
+          }
+          // numeric check 
+          checkNumeric = true;
+          for (i=0; i<xobs; i++) {
+            wdata[i] = rvar[wvarNumber][i];
+            if (isNaN(wdata[i])) {
+              checkNumeric = false;
+              alert(alertMsg[19][langNum]);
+              return;
+            } // endof if
+          } // endof i
+          nwvalue     = rvalueNum[wvarNumber]
+          for (k=0; k<nwvalue; k++) {
+            wdataValue[k]  = rvalue[wvarNumber][k];
+          } 
+          trange = Math.sqrt(parseFloat(wdataValue[nwvalue-1])) - Math.sqrt(parseFloat(wdataValue[0]));
+          for (i=0; i<xobs; i++) {
+            temp     = Math.sqrt(parseFloat(wdata[i])) - Math.sqrt(parseFloat(wdataValue[0]));
+            tratio   = temp / trange;
+            wdata[i] = 1 + 10*tratio;
+            if (gvarNumber < 0) gcolor[i] = colors(tratio);
+          }
+        } // endof if
+      
+        // 시트의 기타 데이터가 null로 되어있어 NaN로 수정
+        for (i=xobs; i<rowMax; i++) {
+            gdata[i] = NaN;
+            xdata[i] = NaN;
+            ydata[i] = NaN;
+            wdata[i] = NaN
+        }
+
+}
+
+// GIS 데이터 
+function dataClassifyGIS() {
+        var trange, tratio, temp ;
+		
+        // 자료가 없으면 경고
+        checkData = true;
+        for (k = 0; k < numVar; k++) {
+          if (tdobs[k] == 0) {
+            checkData = false;
+            alert(alertMsg[1][langNum]);
+            return;
+          }
+        }
+        // 변량 선택 안하면 경고
+        checkVarSelect = true;
+        if (numVar == 0) {
+          checkVarSelect = false;
+          alert(alertMsg[2][langNum]);
+          return;
+        }
+        else if (numVar < 3) {
+          checkVarSelect = false;
+          alert(alertMsg[44][langNum]);
+          return;
+        }
+        else if (numVar > 4) {
+          checkVarSelect = false;
+          alert(alertMsg[45][langNum]);
           return;
         }
 
@@ -2887,86 +3050,17 @@ function dataClassifyS() {
           }
         }
       
-        if (numVar == 2) { // x축 y축 변량만 있는 경우
-          // y data
-          yobs        = tdobs[0];
-          yvarNumber  = 2;
-          yvarName    = tdvarName[0];
-          yvalueLabel = [];
-          ydata       = tdvar[0];
-          // numeric check 
-          for (i=0; i<yobs; i++) {
-            if (isNaN(ydata[i])) {
-              checkNumeric = false;
-              alert(alertMsg[20][langNum]);
-              return;
-            } // endof if
-          } // endof i
-          // x data
-          xobs        = tdobs[1];
-          xvarNumber  = 3;
-          xvarName    = tdvarName[1];
-          xvalueLabel = [];
-          xdata       = tdvar[1];
-          // numeric check 
-          checkNumeric = true;
-          for (i=0; i<xobs; i++) {
-            if (isNaN(xdata[i])) {
-              checkNumeric = false;
-              alert(alertMsg[19][langNum]);
-              return;
-            } // endof if
-          } // endof i
-
-          for (i=0; i<xobs; i++) {
-            xdata[i] = parseFloat(xdata[i]);
-            ydata[i] = parseFloat(ydata[i]);
-          }
-  
-          // 그룹변량 없는것 처리 : 모두 1
-          gvarNumber  = 1;
-          gvarName    = "";
-          gvalueLabel[0] = null;
-          for (j=0; j<xobs; j++) {gdata[j] = 1; gcolor[j] = myColor[0]; wdata[j] = 4;}
-        }
-        else if (numVar == 3) { // group, x축 y축 변량이 있는 경우
-          // group data
+        if (numVar == 3) { // name, latitude(y축), longitude(x축)
+          // name data
           gobs        = tdobs[0];
           gvarNumber  = tdvarNumber[0];
           gvarName    = tdvarName[0];
-          ngvalue     = tdvalueNum[0]
-          for (k=0; k<ngvalue; k++) {
-            gdataValue[k]  = tdvalue[0][k];
-            if ( tdvalueLabel[0][k] == null ) {
-              if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
-              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-            }
-            else {
-              gvalueLabel[k] = tdvalueLabel[0][k];
-            }
-          } 
-          if (ngvalue < 6) {
-            for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정, 원의 크기 지정
+          for (i=0; i<gobs; i++) { // name변량의 컬러지정, 원의 크기 지정
               gdata[i] = tdvar[0][i]; 
-              for (k=0; k<ngvalue; k++) {
-                if (gdata[i] == gdataValue[k]) {
-                  gcolor[i] = myColor[k];
-                  wdata[i] = 4;
-                }
-              }
-            }
+              gcolor[i] = myColor[1];
+              wdata[i] = 4;
           }
-          else { // 그룹변수가 아니라 사이즈 변수 
-            trange  = Math.sqrt(parseFloat(gdataValue[ngvalue-1])) - Math.sqrt(parseFloat(gdataValue[0]));
-            for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정, 원의 크기 지정
-              gdata[i]  = tdvar[0][i]; 
-              temp      = Math.sqrt(parseFloat(gdata[i])) - Math.sqrt(parseFloat(gdataValue[0]));
-              tratio    = temp / trange;
-              gcolor[i] = colors(tratio) ; 
-              wdata[i]  = 1 + 10*tratio;
-            }
-          }
-          // y data
+          // y data : latitude
           yobs        = tdobs[1];
           yvarNumber  = tdvarNumber[1];
           yvarName    = tdvarName[1];
@@ -2976,11 +3070,11 @@ function dataClassifyS() {
             ydata[i] = tdvar[1][i];
             if (isNaN(ydata[i])) {
               checkNumeric = false;
-              alert(alertMsg[20][langNum]);
+              alert(alertMsg[19][langNum]);
               return;
             } // endof if
           } // endof i
-          // x data
+          // x data : longitude
           xobs        = tdobs[2];
           xvarNumber  = tdvarNumber[2];
           xvarName    = tdvarName[2];
@@ -3001,32 +3095,16 @@ function dataClassifyS() {
             ydata[i] = parseFloat(ydata[i]);
           }
         }
-        else if (numVar == 4) { // group, y축 x축 size 변량이 있는 경우
-          // group data
+        else if (numVar == 4) { // name, latitude(y축), longitude(x축), analysisVar 경우
+          // name data
           gobs        = tdobs[0];
           gvarNumber  = tdvarNumber[0];
           gvarName    = tdvarName[0];
-          ngvalue     = tdvalueNum[0]
-          for (k=0; k<ngvalue; k++) {
-            gdataValue[k]  = tdvalue[0][k];
-            if ( tdvalueLabel[0][k] == null ) {
-              if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
-              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-            }
-            else {
-              gvalueLabel[k] = tdvalueLabel[0][k];
-            }
-          } 
           for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정
             gdata[i] = tdvar[0][i]; 
-            for (k=0; k<ngvalue; k++) {
-              if (gdata[i] == gdataValue[k]) {
-                gcolor[i] = myColor[k]; 
-                break;
-              }
-            }
+            gcolor[i] = myColor[1]; 
           }
-          // y data
+          // y data : latitude
           yobs        = tdobs[1];
           yvarNumber  = tdvarNumber[1];
           yvarName    = tdvarName[1];
@@ -3036,11 +3114,11 @@ function dataClassifyS() {
             ydata[i] = tdvar[1][i];
             if (isNaN(ydata[i])) {
               checkNumeric = false;
-              alert(alertMsg[20][langNum]);
+              alert(alertMsg[19][langNum]);
               return;
             } // endof if
           } // endof i
-          // x data
+          // x data : longitude
           xobs        = tdobs[2];
           xvarNumber  = tdvarNumber[2];
           xvarName    = tdvarName[2];
@@ -3055,7 +3133,7 @@ function dataClassifyS() {
               return;
             } // endof if
           } // endof i
-          // w data
+          // w data : size 변수
           wobs        = tdobs[3];
           wvarNumber  = tdvarNumber[3];
           wvarName    = tdvarName[3];
@@ -3088,7 +3166,6 @@ function dataClassifyS() {
             ydata[i] = NaN;
             wdata[i] = NaN
         }
-
 }
 // 이원분산분석 데이터 분류
 function dataClassifyANOVA2() {
@@ -3344,8 +3421,9 @@ function dataClassifyANOVA2() {
       statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
 
 }
-// 산점도 데이터 - 점을 그룹으로 구분
+// 회귀분석 데이터 - 점을 그룹으로 구분
 function dataClassifyRegression() {
+
         // 자료가 없으면 경고
         checkData = true;
         for (k = 0; k < numVar; k++) {
@@ -3362,16 +3440,29 @@ function dataClassifyRegression() {
           alert(alertMsg[2][langNum]);
           return;
         }
+        else if (numVar == 1) {
+          checkVarSelect = false;
+          alert(alertMsg[17][langNum]);
+          return;
+        }
         // check missing
+        checkNumeric = true;
         checkMissing = false;
-        for (k=1; k<numVar; k++) {
+        for (k=0; k<numVar; k++) {
           if (tdobs[k] != tdobs[0]) {
             checkMissing = true;
             alert(alertMsg[4][langNum]);
             return;
           }
+          // numeric check 
+          for (i=0; i<tdobs[0]; i++) {
+            if (isNaN(tdvar[k][i])) {
+              checkNumeric = false;
+              alert(alertMsg[19][langNum]);
+              return;
+            } // endof if
+          } // endof i
         }
-
 }
    
 // Find Maximum
@@ -5723,17 +5814,6 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
              .style("stroke","black")
              .style("text-anchor","middle")
              .text(str)
-        if (numVar == 4) {
-          wstr = "- "+svgStr[24][langNum]+" "+wvarName+" -";
-          chart.append("text")
-             .attr("x",margin.left + titleBuffer)
-             .attr("y",margin.top/2 + 20)
-             .style("font-size","12px")
-             .style("font-family","sans-seirf")
-             .style("stroke","black")
-             .style("text-anchor","middle")
-             .text(wstr)
-        }
 
         // Y축 제목
         chart.append("text")
@@ -5776,8 +5856,8 @@ function drawScatter(ngroup, gvalueLabel,tobs,xdata,ydata,gdata,scatterS) {
 
         chart.selectAll("*").remove();
  
-        if (ngroup > 1 && ngroup < 6) margin = {top: 90, bottom: 90, left: 70, right:150};
-        else            margin = {top: 90, bottom: 90, left: 100, right: 120};
+        if (ngroup > 1 && ngroup < 10) margin = {top: 90, bottom: 70, left: 70, right:150};
+        else            margin = {top: 90, bottom: 70, left: 90, right: 90};
 
         var bufferScatter = 40;
         graphWidth  = svgWidth - margin.left - margin.right;
@@ -5793,7 +5873,6 @@ function drawScatter(ngroup, gvalueLabel,tobs,xdata,ydata,gdata,scatterS) {
         scatterS[7] = gymax;
         scatterS[8] = graphWidth;
         scatterS[9] = graphHeight;
-
 
         drawScatterTitle(mTitle[graphNum], gvarNumber, xvarNumber, yvarNumber, gvarName, xvarName, yvarName);
 
@@ -5821,9 +5900,101 @@ function drawScatter(ngroup, gvalueLabel,tobs,xdata,ydata,gdata,scatterS) {
              .text(str)
       }
 
+      // y축 범례 그리기
+      if (ngroup > 1 && ngroup < 10) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
+      // x축 범례 그리기
+      if (wvarNumber >= 0) {
+        var wstr = "- "+svgStr[24][langNum]+" : "+wvarName+" -";
+        chart.append("text")
+             .attr("x",margin.left + titleBuffer)
+             .attr("y",margin.top/2 + 20)
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
+             .text(wstr)
+      }
+}
+// GIS 그래프 그리기 ----------------------------------------------------------------------------------------------
+function drawGIS(gobs,gdata,xdata,ydata,wdata) {
+
+    var map = chart.append("g").attr("id", "map");
+//        places = chart.append("g").attr("id", "places");
+    var projection = d3.geoMercator()
+        .center([126.9895, 37.5651])
+        .scale(120000)
+        .translate([svgWidth/2, svgHeight/2]);
+ 
+    var path = d3.geoPath().projection(projection);
+ 
+    d3.json("map/seoul_municipalities_topo_simple.json", function(error, data) {
+      var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
+//    d3.json("map/skorea_municipalities_topo_simple.json", function(error, data) {
+//      var features = topojson.feature(data, data.objects.skorea_municipalities_geo).features;
+      map.selectAll("path")
+         .data(features)
+         .enter().append("path")
+         .attr("class", function(d) { return "municipality c" + d.properties.code })
+         .attr("d", path)
+         .attr("stroke","black")
+         .attr("stroke-width","1px")
+      map.selectAll("text")
+         .data(features)
+         .enter().append("text")
+         .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+         .attr("dy", ".35em")
+         .attr("class", "municipality-label")
+         .text(function(d) { return d.properties.name; })
+/*
+      d3.csv("map/places.csv", function(data) {
+        places.selectAll("circle")
+           .data(data)
+           .enter().append("circle")
+           .attr("class","circleGIS")
+           .attr("cx", function(d) { return projection([d.lon, d.lat])[0]; })
+           .attr("cy", function(d) { return projection([d.lon, d.lat])[1]; })
+           .attr("r", 10);
+        places.selectAll("text")
+           .data(data)
+           .enter().append("text")
+           .attr("class","textGIS")
+           .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
+           .attr("y", function(d) { return projection([d.lon, d.lat])[1] + 8; })
+           .text(function(d) { return d.name });
+      });
+*/
+    });
+
+
+//        drawScatterTitle(mTitle[graphNum], gvarNumber, xvarNumber, yvarNumber, gvarName, xvarName, yvarName);
+
+
+      // 점 그리기
+      for (k=0; k<gobs; k++) {
+        str = gdata[k];
+        chart.append("circle")
+   	     .attr("data-sheetrowid", k)
+             .attr("class","datapoint")
+             .attr("stroke","black")
+             .style("fill",gcolor[k])     
+             .attr("cx", function(d) { return projection([xdata[k], ydata[k]])[0]; })
+             .attr("cy", function(d) { return projection([xdata[k], ydata[k]])[1]; })
+             .attr("r", wdata[k])
+             .append("title")
+             .text(str)
+        chart.append("text")
+             .attr("class","textGIS")
+             .attr("stroke","black")
+             .attr("font-size","9px")
+             .attr("text-anchor","middle")
+             .attr("x", function(d) { return projection([xdata[k], ydata[k]])[0]; })
+             .attr("y", function(d) { return projection([xdata[k], ydata[k]])[1] + 13; })
+             .text(str)
+      }
+
       // 범례 그리기
-      if (numVar == 3 && ngroup > 1 && ngroup < 6) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
-      if (numVar == 4 ) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
+//      if (numVar == 3 && ngroup > 1 && ngroup < 6) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
+
 }
 // 산점도행렬 그리기 ----------------------------------------------------------------------------------------------
 function drawScatterMatrix(tdvarName,tdobs,tdvar) {
@@ -6470,8 +6641,8 @@ function showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS) {
         var x1, y1, x2, y2, tx, ty;
         var tx1, ty1, tx2, ty2;
 
-        if (ngroup > 1) margin = {top: 90, bottom: 90, left: 70, right:150};
-        else            margin = {top: 90, bottom: 90, left: 100, right: 120};
+        if (ngroup > 1 && ngroup < 10) margin = {top: 90, bottom: 70, left: 70, right:150};
+        else            margin = {top: 90, bottom: 70, left: 90, right: 90};
 
         xmin        = scatterS[0];
         xmax        = scatterS[1];
@@ -6548,8 +6719,9 @@ function showRegressionBand(nobs, alphaR, betaR, xavg, sxx, stderr, scatterS) {
         var ninterval = 100;
 
         if (ngroup > 1) return;
-        margin = {top: 90, bottom: 90, left: 100, right: 120};
-        xbuffer     = (scatterS[1] - scatterS[0]) / 5;
+        margin = {top: 90, bottom: 70, left: 90, right: 90};
+
+        xbuffer     = (scatterS[1] - scatterS[0]) / 8;
         delta       = (scatterS[1] - scatterS[0]) / ninterval;
         gxmin       = scatterS[4];
         gxmax       = scatterS[5];
@@ -8148,7 +8320,7 @@ function regressionResidual(tobs, yhat, residual, title) {
         }
 
 */
-        // residual 임시저장 sorting때문에 변하기 때문
+        // residual 임시저장 
         for (i=0; i<tobs; i++) tdata[i] = residual[i];
       
         // 그래프 화면 정의 
@@ -8218,7 +8390,9 @@ function regressionResidual(tobs, yhat, residual, title) {
       // 점 그리기
       for (j=0; j<tobs; j++) {
         chart.append("circle")
-             .attr("class","circle")
+             .attr("data-sheetrowid", j)
+             .attr("class","datapoint")
+//             .attr("class","circle")
              .style("fill",myColor[1])
              .attr("r", 4)
              .attr("cx", margin.left+graphWidth*(yhat[j]-gxmin)/gxrange)
@@ -8294,7 +8468,9 @@ function regressionCook(tobs, Cook) {
         y1 = margin.top + graphHeight-graphHeight*(Cook[j]-gymin)/gyrange;
         y2 = margin.top + graphHeight;
         chart.append("circle")
-             .attr("class","circle")
+             .attr("data-sheetrowid", j)
+             .attr("class","datapoint")
+//             .attr("class","circle")
              .style("fill",myColor[1])
              .attr("r", 4)
              .attr("cx",x1)

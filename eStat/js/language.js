@@ -22,6 +22,7 @@ languageNumber = {
     'fr': 4,
     'de': 5,
     'es': 6,
+    'pt': 11,
     'vi': 7,
     'id': 8,
     'mn': 9,
@@ -58,6 +59,7 @@ else if (lang == "zhTW") langNum = 3;
 else if (lang == "fr") langNum = 4;
 else if (lang == "de") langNum = 5;
 else if (lang == "es") langNum = 6;
+else if (lang == "pt") langNum = 11;
 else if (lang == "vi") langNum = 7;
 else if (lang == "id") langNum = 8;
 else if (lang == "mn") langNum = 9;
@@ -135,7 +137,6 @@ $.message.ko = {
     "Regression": "회귀선",
     "RegressionLine": "회귀선",
     "Frequency Polygon": "도수분포다각형",
-    "Frequency Table": "도수분포표",
     "Execute New Interval": "새 구간으로 실행",
     "Interval Start": "구간시작",
     "Interval Width": "구간너비",
@@ -143,7 +144,7 @@ $.message.ko = {
     "Z-test": "Z-검정",
     "(if Z-test, enter &sigma;)": "(Z-검정이면 &sigma;입력)",
     "Significance Level": "유의수준",
-    "Execute": "검정실행",
+    "Execute": "실행",
     "(Confidence Interval)": "(신뢰구간)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-검정이면, Z, &sigma; )",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 검정",
@@ -253,6 +254,8 @@ $.message.ko = {
     "Std Dev": "표준편차",
     "SimulationWarning": "(시뮬레이션이 끝나기 전에 다른 실험을 위한 '실행' 버튼을 누르면 에러가 발생함)",
     "OneGroup": "(한그룹)",
+    "GroupVar": "그룹변량",
+    "SizeVar": "크기변량",
     "RegressionBand": "신뢰대",
     "RegressionTable": "상관 및 회귀분석",
     "RegressionResidual": "잔차와 예측값",
@@ -287,7 +290,7 @@ $.message.ko = {
     "eStatLecture": "eStat 강의",
     "NonParametricMu12_title": "윌콕슨 순위합검정", 
     "NonParametricMu12": "윌콕슨 순위합 가설검정 : 위치모수 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "표본범위",
+    "Sample Range": "표본순위합",
     "DistributionTable": "분포표",
     "SignedRankTest": "윌콕슨 부호순위검정",
     "SignTest": "부호검정",
@@ -326,9 +329,9 @@ alertMsg[12][0] = "분석변량에 문자가 있어 그래프를 그리거나 �
 alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합치 않습니다";
 alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[17][0] = "산점도는 최소 x축변량 y축량이 필요합니다.";
-alertMsg[18][0] = "네 개이상 선택된 변량에 대해서는 산점도를 그릴 수 없습니다.";
-alertMsg[19][0] = "X축데이터에 문자가 있어 산점도를 처리할수 없습니다";
-alertMsg[20][0] = "Y축데이터에 문자가 있어 산점도를 처리할수 없습니다";
+alertMsg[18][0] = "세 개이상 선택된 변량에 대해서는 산점도를 그릴 수 없습니다.";
+alertMsg[19][0] = "X 또는 Y 데이터에 문자가 있어 산점도를 처리할수 없습니다";
+alertMsg[20][0] = "데이터에 문자가 있어 회귀분석을 처리할수 없습니다";
 alertMsg[21][0] = "자료에 결측치가 있으면 저장할 수 없습니다.";
 alertMsg[22][0] = "음수자료의 막대그래프는 그릴 수 없습니다.";
 alertMsg[25][0] = "한그룹의 경우 쌓는형 막대그래프는 그릴 수 없습니다.";
@@ -347,6 +350,8 @@ alertMsg[40][0] = "input variance is NaN . Ener value and then retry!";
 alertMsg[41][0] = "두 변량 (그룹변량과 분석변량)에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[42][0] = "가설검정의 제목은 편집할 수 없습니다! ";
 alertMsg[43][0] = "단순 선형 회귀분석은 그룹이 없는 경우에 분석할 수 있습니다";
+alertMsg[44][0] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][0] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][0] = " 막대그래프";
 svgStr[2][0] = " 원그래프";
 svgStr[3][0] = " 도넛그래프";
@@ -370,7 +375,7 @@ svgStr[20][0] = "<h3>요약자료<br>도수분포표</h3>";
 svgStr[21][0] = "그룹변량";
 svgStr[22][0] = "행변량";
 svgStr[23][0] = "합계";
-svgStr[24][0] = "가중";
+svgStr[24][0] = "크기";
 svgStr[25][0] = "<h3>도수분포표</h3>";
 svgStr[26][0] = "분석변량";
 svgStr[27][0] = "변량값";
@@ -605,7 +610,6 @@ $.message.en = {
     "RegressionBand": "Confidence Band",
     "RegressionTable": "Regression Analysis",	
     "Frequency Polygon": "Frequency Polygon",
-    "Frequency Table": "Frequency Table",
     "Execute New Interval": "Execute New Interval",
     "Interval Start": "Interval Start",
     "Interval Width": "Interval Width",
@@ -723,6 +727,8 @@ $.message.en = {
     "Std Dev": "Std Dev",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
     "OneGroup": "(one group)",
+    "GroupVar": "Group Var",
+    "SizeVar": "Size Var",
     "RegressionBand": "Confidence Band",
     "RegressionTable": "Regression Analysis",
     "RegressionResidual": "Residual Plot",
@@ -797,8 +803,8 @@ alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing
 alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
 alertMsg[17][1] = "Scatter plot requires at least x variable and y variable.";
 alertMsg[18][1] = "More than three variables are not allowed for scatter plot.";
-alertMsg[19][1] = "If there is a character on X variable, scatter plot cannot be drawn.";
-alertMsg[20][1] = "If there is a character on Y variable, scatter plot cannot be drawn.";
+alertMsg[19][1] = "If there is a character on X or Y variable, scatter plot cannot be drawn.";
+alertMsg[20][1] = "If there is a character on data, regression analysis cannot be done.";
 alertMsg[21][1] = "If there is a missing data, save is not allowed.";
 alertMsg[22][1] = "If there is a negative number, bargraph cannot be drawn.";
 alertMsg[25][1] = "If there is only one group, stacked bar graph is not allowed.";
@@ -817,6 +823,8 @@ alertMsg[40][1] = "input variance is NaN . Ener value and then retry!";
 alertMsg[41][1] = "This testing hypothesis is allowed only for two variable. Group variable should have only two groups";
 alertMsg[42][1] = "Title editing of testing hypothesis is not allowed! ";
 alertMsg[43][1] = "Simple Linear Regression is only for one group";
+alertMsg[44][1] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][1] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][1] = " Bar Graph";
 svgStr[2][1] = " Pie Chart";
 svgStr[3][1] = " Doughnut Graph";
@@ -840,7 +848,7 @@ svgStr[20][1] = "<h3>Summary Data<br>Frequency Table</h3>";
 svgStr[21][1] = "Group Variable";
 svgStr[22][1] = "Row Variable";
 svgStr[23][1] = "Total";
-svgStr[24][1] = "Weight";
+svgStr[24][1] = "CircleSize";
 svgStr[25][1] = "<h3>Frequency Table</h3>";
 svgStr[26][1] = "Analysis Variable";
 svgStr[27][1] = "Var Value";
@@ -1069,13 +1077,11 @@ $.message.ja = {
     "95CI": "95%信頼区間",
     "RegressionAnalysis": "回帰分析",
     "ANOVA2": "2元分散分析",
-
     "Regression": "回帰直線",
     "RegressionLine": "回帰直線",
     "RegressionBand": "Confidence Band",
     "RegressionTable": "Regression Analysis Table",		
     "Frequency Polygon": "度数分布多角形",
-    "Frequency Table": "度数分布表",
     "Execute New Interval": "区間を変えて実行",
     "Interval Start": "区間始点",
     "Interval Width": "区間の幅",
@@ -1194,6 +1200,8 @@ $.message.ja = {
     "Std Dev": "標準偏差",
     "SimulationWarning": "(現在シミュレーションが終わるまで、お待ちください。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;シミュレーション途中で設定を変更して実行すると正しく表示されません。)",
     "OneGroup": "(1 グループ)",
+    "GroupVar": "グループ変数",
+    "SizeVar": "大小変数",
     "RegressionBand": "信頼帯",
     "RegressionTable": "回帰分析",
     "RegressionResidual": "殘差プロット",
@@ -1268,9 +1276,9 @@ alertMsg[12][2] = "選択変数が文字を含んでいるためグラフや度�
 alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
 alertMsg[16][2] = "仮説検定が可能なのは，グループが2つの場合のみです.";
 alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です.";
-alertMsg[18][2] = "4つ以上の変数については散布図を描くことができません.";
-alertMsg[19][2] = "X軸データの中に文字が入っているため散布図を描けません";
-alertMsg[20][2] = "Y軸データの中に文字が入っているため散布図を描けません";
+alertMsg[18][2] = "3つ以上の変数については散布図を描くことができません.";
+alertMsg[19][2] = "データの中に文字が入っているため散布図を描けません";
+alertMsg[20][2] = "データの中に文字が入っているため回帰分析ません";
 alertMsg[21][2] = "データに欠損値があると保存できません.";
 alertMsg[22][2] = "負の値での棒グラフは描けません.";
 alertMsg[25][2] = "１つのグループの場合, 積み重ね型棒グラフは描けません.";
@@ -1289,6 +1297,8 @@ alertMsg[40][2] = "分散の値がはいっていません。値を入力して�
 alertMsg[41][2] = "仮説検定を行うには，2つの変数(グループ変数と解析する変数)を指定します.";
 alertMsg[42][2] = "仮説検定のタイトルは編集できません! ";
 alertMsg[43][2] = "Simple Linear Regression is only for one group";
+alertMsg[44][2] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][2] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][2] = " 棒グラフ";
 svgStr[2][2] = " 円グラフ";
 svgStr[3][2] = " ドーナツグラフ";
@@ -1312,7 +1322,7 @@ svgStr[20][2] = "<h3>要約データ<br>度数分布表</h3>";
 svgStr[21][2] = "グループ変数";
 svgStr[22][2] = "行変数";
 svgStr[23][2] = "合計";
-svgStr[24][2] = "加重";
+svgStr[24][2] = "大小";
 svgStr[25][2] = "<h3>度数分布表</h3>";
 svgStr[26][2] = "分析変数";
 svgStr[27][2] = "変数値";
@@ -1540,10 +1550,8 @@ $.message.zhTW = {
     "95CI": "95%信頼区間",
     "RegressionAnalysis": "回歸分析",
     "ANOVA2": "2元分散分析",
-
     "Regression": "回歸",
     "Frequency Polygon": "次數分佈多邊形",
-    "Frequency Table": "次數分佈表",
     "Execute New Interval": "執行新區間",
     "Interval Start": "區間起點",
     "Interval Width": "區間間幅",
@@ -1661,6 +1669,8 @@ $.message.zhTW = {
     "Std Dev": "標準差",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1群)",
+    "GroupVar": "群変数",
+    "SizeVar": "大小変数",
     "RegressionBand": "信頼帯",
     "RegressionTable": "回帰分析",
     "RegressionResidual": "殘差図",
@@ -1735,8 +1745,8 @@ alertMsg[14][3] = "連續型圖形及假設檢定無法進行摘要資料。";
 alertMsg[16][3] = "此假設檢定僅限定於兩群母體。";
 alertMsg[17][3] = "繪製散佈圖至少需要橫軸變數及縱軸變數。";
 alertMsg[18][3] = "繪製散佈圖不得超過3個變數。";
-alertMsg[19][3] = "若X變數包含文字，則散佈圖無法繪製。";
-alertMsg[20][3] = "若Y變數包含文字，則散佈圖無法繪製。";
+alertMsg[19][3] = "變數包含文字，則散佈圖無法繪製。";
+alertMsg[20][3] = "變數包含文字，則回帰分析無法繪製。";
 alertMsg[21][3] = "若資料有缺失值，則無法儲存。";
 alertMsg[22][3] = "若資料有負值，長條圖無法繪製。";
 alertMsg[25][3] = "若資料只有一個群組，則堆壘長條圖無法繪製。";
@@ -1755,6 +1765,8 @@ alertMsg[40][3] = "輸入的變異數不是一個數字，請輸入一數值並�
 alertMsg[41][3] = "此假設檢定僅限於兩變數。群組變數則需包含兩群。";
 alertMsg[42][3] = "假設檢定的標題不可編輯! ";
 alertMsg[43][3] = "Simple Linear Regression is only for one group";
+alertMsg[44][3] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][3] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][3] = " 長條圖";
 svgStr[2][3] = " 圓餅圖";
 svgStr[3][3] = " 圓環圖";
@@ -1778,7 +1790,7 @@ svgStr[20][3] = "<h3>摘要資料<br>次數分配表</h3>";
 svgStr[21][3] = "群組變數";
 svgStr[22][3] = "列變數";
 svgStr[23][3] = "總和";
-svgStr[24][3] = "加重";
+svgStr[24][3] = "大小";
 svgStr[25][3] = "<h3>次數分配表</h3>";
 svgStr[26][3] = "變異數分析";
 svgStr[27][3] = "變數値";
@@ -2009,7 +2021,6 @@ $.message.fr = {
     "ANOVA2": "Two way ANOVA",
     "Regression": "Régression",
     "Frequency Polygon": "Polygone des fréquences",
-    "Frequency Table": "Tableau des fréquences",
     "Execute New Interval": "Faire un nouvel intervallel",
     "Interval Start": "Début de l'intervalle",
     "Interval Width": "Largeur de l'intervalle",
@@ -2127,6 +2138,8 @@ $.message.fr = {
     "Std Dev": "Ecart-type",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 groupe)",
+    "GroupVar": "Groupe Var",
+    "SizeVar": "Size Var",
     "RegressionBand": "Confinace Bandes",
     "RegressionTable": "Régressione Analysis",
     "RegressionResidual": "Residual Diagramme",
@@ -2202,8 +2215,8 @@ alertMsg[14][4] = "Les résumés ne sont pas acceptés pour les graphiques conti
 alertMsg[16][4] = "Pour ce test , il faut uniquement deux groupes.";
 alertMsg[17][4] = "Un diagramme de dispersion nécessite au moins une variable x et une variable y.";
 alertMsg[18][4] = "Plus de trois variables ne sont pas autorisée pour les diagrammes de dispersion.";
-alertMsg[19][4] = "Si X contient une valeur non numérique, le graphique ne peut pas être tracé.";
-alertMsg[20][4] = "Si Y contient une valeur non numérique, le graphique ne peut pas être tracé.";
+alertMsg[19][4] = "Si X/Y contient une valeur non numérique, le graphique ne peut pas être tracé.";
+alertMsg[20][4] = "Si X/Y contient une valeur non numérique, le regression ne peut pas être tracé.";
 alertMsg[21][4] = "La sauvegarde n'est pas autorisée s'il y a une donnée manquante.";
 alertMsg[22][4] = "Diagramme en barres n'est pas autorisée s'il y a une donnée manquante.";
 alertMsg[25][4] = "S'il n'ya qu'un seul groupe on ne peut pas tracer des diagrammes en barre empilés.";
@@ -2222,6 +2235,8 @@ alertMsg[40][4] = "La variance saisie n'est pas un nombre. Entrez une valeur et 
 alertMsg[41][4] = "Ce test d'hypothese n'est valable que pour deux variables. La variable de groupe ne doit avoir que deux  modalités";
 alertMsg[42][4] = "Modifier le titre du test n'est pas autorisé! ";
 alertMsg[43][4] = "Simple Linear Regression is only for one group";
+alertMsg[44][4] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][4] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][4] = " Diagramme en barres";
 svgStr[2][4] = " Camembert";
 svgStr[3][4] = " Graphique en anneau";
@@ -2245,7 +2260,7 @@ svgStr[20][4] = "<h3>Les résumés<br>Tableau des fréquences</h3>";
 svgStr[21][4] = "Variable de groupe";
 svgStr[22][4] = "Variable ligne";
 svgStr[23][4] = "Total";
-svgStr[24][4] = "Weight";
+svgStr[24][4] = "CircleSize";
 svgStr[25][4] = "<h3>Tableau des fréquences</h3>";
 svgStr[26][4] = "Analysis Variable";
 svgStr[27][4] = "valeur de la variable";
@@ -2474,10 +2489,8 @@ $.message.de = {
     "95CI": "95% Konfidenzintervall",
     "RegressionAnalysis": "Regression Analysis",
     "ANOVA2": "2 way ANOVA",
-
     "Regression": "Regression",
     "Frequency Polygon": "Häufigkeitspolygon",
-    "Frequency Table": "Häufigkeitstabelle",
     "Execute New Interval": "Erzeuge ein neues Intervall",
     "Interval Start": "linke Intervallgrenze",
     "Interval Width": "Intervallbreite",
@@ -2592,6 +2605,8 @@ $.message.de = {
     "Std Dev": "Standardabweichung",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 grouppe)",
+    "GroupVar": "Grouppe Var",
+    "SizeVar": "Size Var",
     "RegressionBand": "Konfidenzband",
     "RegressionTable": "Regressionanalyse",
     "RegressionResidual": "Residualdiagramm",
@@ -2667,8 +2682,8 @@ alertMsg[14][5] = "Im Falle zusammengefasster Daten sind weder Dauerdiagramme no
 alertMsg[16][5] = "Nur zwei Gruppen soind für diesen Hypothesentest zugelassen.";
 alertMsg[17][5] = "Streudiagramm erfordert mindestens Variablen x und y.";
 alertMsg[18][5] = "mehr als drei Variablen sind nicht zugelassen für ein Streudiagramm.";
-alertMsg[19][5] = "Falls die Variable X ein charakter, kann kein Streudiagramm gezeichnet werden. ";
-alertMsg[20][5] = "Falls die Variable Y ein charakter, kann kein Streudiagramm gezeichnet werden. ";
+alertMsg[19][5] = "Falls die Variable X/Y ein charakter, kann kein Streudiagramm gezeichnet werden. ";
+alertMsg[20][5] = "Falls die Variable X/Y ein charakter, kann kein Regression gezeichnet werden. ";
 alertMsg[21][5] = "Bei fehlenden Daten kann nicht gespeichert werden.";
 alertMsg[22][5] = "Falls der Wert negativ ist, kann kein Balkendiagramm gezeichnet werden.";
 alertMsg[25][5] = "Falls es nur eine Gruppe gibt, kann kein gestapeltes Balkendiagramm gezeichnet werden.";
@@ -2687,6 +2702,8 @@ alertMsg[40][5] = "Eingegebene Varianz ist nicht-numerisch. Gib Zahlenwert ein u
 alertMsg[41][5] = "Diese Hypothese kann sich auf zwei Variablen beziehen. Gruppenvariable darf nur zwei Gruppen umfassen.";
 alertMsg[42][5] = "Editieren der Bezeichnung der zu testenden Hypothesen ist nicht zulässig. ";
 alertMsg[43][5] = "Simple Linear Regression is only for one group";
+alertMsg[44][5] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][5] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][5] = " Balkendiagramm";
 svgStr[2][5] = " Kreisdiagramm";
 svgStr[3][5] = " Doughnut Graph";
@@ -2710,7 +2727,7 @@ svgStr[20][5] = "<h3>Summarischdatan<br>Häufigkeitstabelle</h3>";
 svgStr[21][5] = "Variable gruppieren";
 svgStr[22][5] = "Zeilenvariable";
 svgStr[23][5] = "Total";
-svgStr[24][5] = "Weight";
+svgStr[24][5] = "CircleSize";
 svgStr[25][5] = "<h3>Häufigkeitstabelle</h3>";
 svgStr[26][5] = "Analysis Variable";
 svgStr[27][5] = "Variablenwert";
@@ -2938,10 +2955,8 @@ $.message.es = {
     "95CI": "95% Nivel de confianza",
     "RegressionAnalysis": "Regresión Análisis",
     "ANOVA2": "Two way ANOVA",
-
     "Regression": "Regresión",
     "Frequency Polygon": "Polígono de frecuencias",
-    "Frequency Table": "Tabla de frecuencias",
     "Execute New Interval": "Ejecutar Nuevo Intervalo",
     "Interval Start": "Origen Intervalo",
     "Interval Width": "Ancho del Intervalo",
@@ -3059,6 +3074,8 @@ $.message.es = {
     "Std Dev": "Desviación estándar",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 groupo)",
+    "GroupVar": "Groupo Var",
+    "SizeVar": "Size Var",
     "RegressionBand": "Confianza Bandes",
     "RegressionTable": "Regresión Analysis",
     "RegressionResidual": "Residual Diagrama",
@@ -3134,8 +3151,8 @@ alertMsg[14][6] = "No están permitidos los datos resumidos  para gráficos cont
 alertMsg[16][6] = "Solo dos grupos permitidos";
 alertMsg[17][6] = "El diagrama de dispersión requiere al menos la variable x y la variable y";
 alertMsg[18][6] = "No se permiten más de tres variables en el diagrama de dispersión";
-alertMsg[19][6] = "Si hay un carácter en la variable X el gráfico de dispersión no se puede dibujar";
-alertMsg[20][6] = "Si hay un carácter en la variable Y el gráfico de dispersión no se puede dibujar";
+alertMsg[19][6] = "Si hay un carácter en la variable X/Y el gráfico de dispersión no se puede dibujar";
+alertMsg[20][6] = "Si hay un carácter en la variable X/Y el gráfico de regression no se puede dibujar";
 alertMsg[21][6] = "Si hay datos no observados grabar no está permitido";
 alertMsg[22][6] = "Si hay un número negativo, no se puede dibujar un Diagrama de barras";
 alertMsg[25][6] = "Si hay un solo grupo el diagrama de barras apilado no está permitido";
@@ -3154,6 +3171,8 @@ alertMsg[40][6] = "Varianza de entrada es NaN. Entrar valor y reintentar!";
 alertMsg[41][6] = "Esta prueba de hipótesis solo es posible para dos variables. La variable grupo solo debe tenir dos grupos";
 alertMsg[42][6] = "No se permite la edición del titulo de la prueba de hipótesis! ";
 alertMsg[43][6] = "Simple Linear Regression is only for one group";
+alertMsg[44][6] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][6] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][6] = " Diagrama de barras";
 svgStr[2][6] = " Diagrama de tarta";
 svgStr[3][6] = " Gráfico tipo dónut";
@@ -3177,7 +3196,7 @@ svgStr[20][6] = "<h3>Datos Resumidos<br>Tabla de frecuencias</h3>";
 svgStr[21][6] = "Variable de Grupo";
 svgStr[22][6] = "Variable Fila";
 svgStr[23][6] = "Total";
-svgStr[24][6] = "Weight";
+svgStr[24][6] = "CircleSize";
 svgStr[25][6] = "<h3>Tabla de frecuencias</h3>";
 svgStr[26][6] = "Análisis Variable";
 svgStr[27][6] = "Valor de la Variable";
@@ -3406,9 +3425,7 @@ $.message.vi = {
     "95CI": "95% Khoảng tin cậy",
     "RegressionAnalysis": "Regression Analysis",
     "ANOVA2": "Two way ANOVA",
-
     "Frequency Polygon": "Miền tần số",
-    "Frequency Table": "Bảng tần số",
     "Execute New Interval": "Thực thi khoảng mới",
     "Interval Start": "Đầu khoảng",
     "Interval Width": "Độ rộng khoảng",
@@ -3526,6 +3543,8 @@ $.message.vi = {
     "Std Dev": "Độ lệch chuẩn",
     "SimulationWarning": "Kết thúc giả lập trước khi tiếp tục",
     "OneGroup": "(Một nhóm)",
+    "GroupVar": "Group Var",
+    "SizeVar": "Size Var",
     "RegressionBand": "Khoảng tin cậy",
     "RegressionTable": "Phân Tích hồi quy",
     "RegressionResidual": "Đồ thị phần dư",
@@ -3601,8 +3620,8 @@ alertMsg[14][7] = "Bảng tóm tắt không thể tạo cho đồ thị liên t�
 alertMsg[16][7] = "Kiểm định này chỉ cho phép 2 nhóm";
 alertMsg[17][7] = "Biểu đồ phân tán cần ít nhất biến x và biến y";
 alertMsg[18][7] = "Biểu đồ phân tán chỉ cho ít hơn 3 biến";
-alertMsg[19][7] = "Nếu biến X chứa chuỗi, không thể vẽ biểu đồ phân tán";
-alertMsg[20][7] = "Không thể vẽ biều đồ phân tán nếu biến Y chứa chuỗi";
+alertMsg[19][7] = "Nếu biến X/Y chứa chuỗi, không thể vẽ biểu đồ phân tán";
+alertMsg[20][7] = "Không thể vẽ biều đồ phân tán nếu biến X/Y chứa chuỗi";
 alertMsg[21][7] = "Nếu dữ liệu bị thiếu, không thể lưu";
 alertMsg[22][7] = "Nếu có giá trị âm, không thể vẽ biểu đồ cột";
 alertMsg[25][7] = "Nếu chỉ có 1 nhóm, không thể vẽ biểu đồ cột chồng ";
@@ -3621,6 +3640,8 @@ alertMsg[40][7] = "Phương sai đã nhập là NaN. Hãy nhập giá trị khá
 alertMsg[41][7] = "Chỉ có thể kiểm định giả thuyết thống kê cho 2 biến";
 alertMsg[42][7] = "Không thể thay đổi tên của kiểm định! ";
 alertMsg[43][7] = "Simple Linear Regression is only for one group";
+alertMsg[44][7] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][7] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][7] = " B/đồ cột";
 svgStr[2][7] = " B/đồ Pie";
 svgStr[3][7] = " B/đồ Donut";
@@ -3644,7 +3665,7 @@ svgStr[20][7] = "<h3>Bảng tóm tắt <br> Bảng tần số</h3>";
 svgStr[21][7] = "Biến nhóm";
 svgStr[22][7] = "Biến dòng";
 svgStr[23][7] = "Tổng cộng";
-svgStr[24][7] = "Weight";
+svgStr[24][7] = "CircleSize";
 svgStr[25][7] = "<h3>Bảng tần số</h3>";
 svgStr[26][7] = "Biến phân tích";
 svgStr[27][7] = "Giá trị biến";
@@ -3873,10 +3894,8 @@ $.message.id = {
     "95CI": "95% Selang Kepercayaan",
     "RegressionAnalysis": "Regression Analysis",
     "ANOVA2": "2 way ANOVA",
-
     "Regression": "Regresi",
     "Frequency Polygon": "Frekuensi Poligon",
-    "Frequency Table": "Tabel Frekuensi",
     "Execute New Interval": "Jalankan Interval Baru",
     "Interval Start": "Mulai Interval",
     "Interval Width": "Lebar Interval",
@@ -3994,6 +4013,8 @@ $.message.id = {
     "Std Dev": "Standar Deviasi",
     "SimulationWarning": "( Simulasi yang sekarang harus terlebih dahulu diselesaikan sebelum anda memulai simulasi yang selanjutnya)",
     "OneGroup": "(Satu Grup)",
+    "GroupVar": "Grup Var",
+    "SizeVar": "Size Var",
     "RegressionBand": "Selang Kepercayaan",
     "RegressionTable": "Analisis Regresi",
     "RegressionResidual": "Plot Residual",
@@ -4056,9 +4077,9 @@ appStr[4][8] = "../ExLearning/index_en.html";
 appStr[5][8] = "index.html";
 appStr[6][8] = "../ExLecture/index_en.html";
 alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
-alertMsg[2][8] = " Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
+alertMsg[2][8] = "Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
 alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
-alertMsg[4][8] = " Jika amatan dari variabel yang dipilih berbeda atau amatan berbeda, analisis tidak diperbolehkan.";
+alertMsg[4][8] = "Jika amatan dari variabel yang dipilih berbeda atau amatan berbeda, analisis tidak diperbolehkan.";
 alertMsg[5][8] = "Terlalu banyak grup! Grafik mungkin tumpang tindih karena ukuran layar.";
 alertMsg[6][8] = "Jika analisis variabel di data ringkasan mengandung karakter, analisis atau membuat tabel tidak dapat dilakukan.";
 alertMsg[7][8] = "Jika terdapat lebih dari tiga variabel terpilih dari data awal, analisis atau membuat tabel tidak dapat dilakukan.";
@@ -4069,10 +4090,10 @@ alertMsg[14][8] = "Data ringkasan tidak dapat digunakan untuk grafik kontinu dan
 alertMsg[16][8] = "Hanya dua grup yang diperbolehkan untuk uji hipotesis ini.";
 alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel x dan variabel y.";
 alertMsg[18][8] = "Lebih dari tiga variabel tidak dapat dilakukan untuk diagram pencar.";
-alertMsg[19][8] = "Jika terdapat karakter di variabel X, diagram pencar tidak dapat digambar.";
-alertMsg[20][8] = "Jika terdapat karakter di variabel Y, diagram pencar tidak dapat digambar.";
+alertMsg[19][8] = "Jika terdapat karakter di variabel X/Y, diagram pencar tidak dapat digambar.";
+alertMsg[20][8] = "Jika terdapat karakter di variabel X/Y, diagram pencar tidak dapat digambar.";
 alertMsg[21][8] = "Jika terdapat data hilang, menyimpan tidak dapat dilakukan.";
-alertMsg[22][8] = " Jika terdapat angka negatif, diagram batang tidak dapat digambar.";
+alertMsg[22][8] = "Jika terdapat angka negatif, diagram batang tidak dapat digambar.";
 alertMsg[25][8] = "Jika hanya terdapat satu grup, diagram batang bertumpuk tidak dapat dilakukan.";
 alertMsg[27][8] = "Jika hanya terdapat satu grup, diagram batang rasio tidak dapat dilakukan.";
 alertMsg[29][8] = "Jika hanya terdapat satu grup, diagram batang bersebelahan tidak dapat dilakukan.";
@@ -4089,6 +4110,8 @@ alertMsg[40][8] = "Varians input bukan angka. Masukkan angka dan coba lagi!";
 alertMsg[41][8] = "Uji Hipotesis ini hanya diperbolehkan untuk dua variabel. Variabel grup harus hanya memiliki dua grup";
 alertMsg[42][8] = "Mengubah judul dari uji hipotesis tidak diperbolehkan!";
 alertMsg[43][8] = "Simple Linear Regression is only for one group";
+alertMsg[44][8] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][8] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][8] = " Diagram Batang";
 svgStr[2][8] = " Diagram Pai";
 svgStr[3][8] = " Diagram Donat";
@@ -4112,7 +4135,7 @@ svgStr[20][8] = "<h3>Data Ringkasan<br>Tabel Frekuensi </h3>";
 svgStr[21][8] = "Variabel Grup";
 svgStr[22][8] = "Variabel Baris";
 svgStr[23][8] = "Total";
-svgStr[24][8] = "Weight";
+svgStr[24][8] = "CircleSize";
 svgStr[25][8] = "<h3>Tabel Frekuensi</h3>";
 svgStr[26][8] = "Variabel Analisis";
 svgStr[27][8] = "Nilai Var";
@@ -4341,10 +4364,8 @@ $.message.mn = {
     "95CI": "95% Найдварт завсар",
     "RegressionAnalysis": "Регрессийн шинжилгээ",
     "ANOVA2": "2 way ANOVA",
-
     "Regression": "Регресси",
     "Frequency Polygon": "давтамжит олон өнцөг",
-    "Frequency Table": "Давтамжит хүснэгт",
     "Execute New Interval": "Шинэ завсарыг гүйцэтгэх",
     "Interval Start": "Завсарын эхлэл",
     "Interval Width": "Завсарын өргөн",
@@ -4461,6 +4482,8 @@ $.message.mn = {
     "Mean": "Дундаж  утга",
     "Std Dev": "Стандарт хэлбэлзэл",
     "OneGroup": "(Нэг бүлэг)",
+    "GroupVar": "Group Var",
+    "SizeVar": "Size Var",
     "RegressionBand": "Итгэх түвшин",
     "RegressionTable": "Регрессийн шинжилгээ",
     "RegressionResidual": "Үлдэгдлийн диаграм/дүрслэл",
@@ -4536,8 +4559,8 @@ alertMsg[14][9] = "Үргэлжилсэн график болон тестийн
 alertMsg[16][9] = "Энэ туршилтын таамаглалд зөвхөн 2 групп зөвшөөрөгдөнө";
 alertMsg[17][9] = "Тархалтын график нь хамгийн багадаа х болон у хувьсагч шаардана";
 alertMsg[18][9] = "Гурван хувьсагчаас илүү  байвал тархалтын график зурагдахгүй";
-alertMsg[19][9] = "Хэрэв Х хувьсагч дээр тэмдэгт байвал тархалтын график зурагдаж чадахгүй ";
-alertMsg[20][9] = "Хэрэв Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдахгүй ";
+alertMsg[19][9] = "Хэрэв Х/Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдаж чадахгүй ";
+alertMsg[20][9] = "Хэрэв X/Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдахгүй ";
 alertMsg[21][9] = "Хэрэв өгөгдөл орхигдсон бол хадаглах нь зөвшөөрөгдөхгүй ";
 alertMsg[22][9] = "If there is a negative number, bargraph cannot be drawn.";
 alertMsg[25][9] = "Хэрэв зөвхөн нэг групп байвал овоорсон /бүгд багтсан/ баганан график зөвшөөрөгдөхгүй";
@@ -4556,6 +4579,8 @@ alertMsg[40][9] = "Дундаж кватратын хазайлтын орц н�
 alertMsg[41][9] = "Энэ тестэн таамаглал нь зөвхөн хоёр хувьсагчийн хувьд зөвшөөрөгдөнө. Групп хувьсагч нь зөвхөн хоёр групптэй байсан дээр. ";
 alertMsg[42][9] = "Тестэн таамаглалын гарчигийг засварлах нь зөвшөөрөгдөхгүй";
 alertMsg[43][9] = "Simple Linear Regression is only for one group";
+alertMsg[44][9] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][9] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][9] = " Баганан график";
 svgStr[2][9] = " Бялуун график";
 svgStr[3][9] = " Цагирган график";
@@ -4579,7 +4604,7 @@ svgStr[20][9] = "Хураангуй, товч  Өгөгдөл <br> Давтам�
 svgStr[21][9] = "Группын хувьсагч";
 svgStr[22][9] = "Мөрийн хувьсагч ";
 svgStr[23][9] = "Нийлбэр ";
-svgStr[24][9] = "Weight";
+svgStr[24][9] = "CircleSize";
 svgStr[25][9] = "<h3>Давтамжит хүснэгт</h3>";
 svgStr[26][9] = "Вариацийн шинжилгээ";
 svgStr[27][9] = "Хувьсагчийн утга ";
@@ -4808,9 +4833,7 @@ $.message.zh = {
     "95CI": "95%置信区间",
     "RegressionAnalysis": "回归分析",
     "ANOVA2": "2元方差分析",
-
     "Frequency Polygon": "频数分布多边形",
-    "Frequency Table": "频数分布表",
     "Execute New Interval": "执行新区间",
     "Interval Start": "区间起点",
     "Interval Width": "区间宽度",
@@ -4928,6 +4951,8 @@ $.message.zh = {
     "Std Dev": "标准差",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(一组)",
+    "GroupVar": "组变量",
+    "SizeVar": "大小变量",
     "RegressionBand": "置信带",
     "RegressionTable": "回归分析",
     "RegressionResidual": "残差图",
@@ -5004,8 +5029,8 @@ alertMsg[14][10] = "连续型图形及假设建议无法进行摘要资料。";
 alertMsg[16][10] = "此假设检验仅限于两个总体。";
 alertMsg[17][10] = "绘制散点图至少需要横轴变量及纵轴变量。";
 alertMsg[18][10] = "绘制散点图不可超过三个变量数。";
-alertMsg[19][10] = "若X变量包含文字，则散点图无法绘制。";
-alertMsg[20][10] = "若Y变量包含文字，则散点图无法绘制。";
+alertMsg[19][10] = "若X/Y变量包含文字，则散点图无法绘制。";
+alertMsg[20][10] = "若X/Y变量包含文字，则回帰分析无法绘制。";
 alertMsg[21][10] = "若资料有缺失值，则无法储存。";
 alertMsg[22][10] = "若资料有负值，条形图无法绘制。";
 alertMsg[25][10] = "若资料只有一个群组，则堆叠条形图无法绘制。";
@@ -5024,6 +5049,8 @@ alertMsg[40][10] = "输入的方差不是一个数字，请输入一个数值并
 alertMsg[41][10] = "此假设检验仅限于两个变量，群组变量则需包含两个群组。";
 alertMsg[42][10] = "假设检验的标题不可编辑! ";
 alertMsg[43][10] = "Simple Linear Regression is only for one group";
+alertMsg[44][10] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][10] = "Cannot draw GIS graph if more than five variables.";
 svgStr[1][10] = " 条形图";
 svgStr[2][10] = " 饼图";
 svgStr[3][10] = " 圆环图";
@@ -5047,7 +5074,7 @@ svgStr[20][10] = "<h3>摘要资料<br>次数分布表</h3>";
 svgStr[21][10] = "群组变量";
 svgStr[22][10] = "列变量";
 svgStr[23][10] = "总和";
-svgStr[24][10] = "加重";
+svgStr[24][10] = "大小";
 svgStr[25][10] = "<h3>次数分布表</h3>";
 svgStr[26][10] = "方差分析";
 svgStr[27][10] = "变量值";
@@ -5207,4 +5234,473 @@ svgStrU[70][10] = "Friedman檢定";
 svgStrU[71][10] = "Friedman S 統計量";
 svgStrU[72][10] = "Friedman檢定分布表";
 
-
+// Portugese
+$.message.pt = {
+    "eStat : Stat Education SW": "eStat : Educação Estatística SW",
+    "Filename": "Nome do Arquivo",
+    "Selected Variables": "Variáveis Selecionadas",
+    "Cancel": "Cancelar",
+    "Edit Variables": "Editar Variáveis",
+    "Level": "Nível",
+    "ElementaryLevel": "E",
+    "MiddleLevel": "M",
+    "HighLevel": "H",
+    "UniversityLevel": "U",
+    "Example": "Exemplo",
+    "New Sheets": "Novas Planilhas",
+    "csv Open": "csv Abrir",
+    "www Open": "www Abrir",
+    "json Open": "json Abrir",
+    "csv Save": "csv Salvar",
+    "json Save": "json Salvar",
+    "Print Sheet": "Imprimir Planilha",
+    "Bar Graph": "Gráfico de Barras",
+    "Pie Chart": "Gráfico de Setores",
+    "Band Graph": "Gráfico de Faixas/Bandas",
+    "Line Graph": "Gráfico de Linha",
+    "Dot Graph": "Gráfico de Pontos",
+    "Histogram": "Histograma",
+    "Stem & Leaf Plot": "Gráfico Ramo-e-Folhas",
+    "Box-Whisker Plot": "Diagrama de Caixas",
+    "Scatterplot": "Diagrama de Dispersão",
+    "Frequency Table": "Tabela de Frequências",
+    "Basic Statistics": "Estatísticas Básicas",
+    "Testing Hypothesis &mu;": "Teste de Hipóteses &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Teste de Hipóteses &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Teste de Hipóteses  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance": "Análise de Variância",
+    "High School Stat Education": "Educação Estatística no Ensino Médio",
+    "University Stat Education": "Educação Estatística Universitária",
+    "Elem Stat Graph Example": "Gráfico Exemplo",
+    "Learning eStat w Example": "Aprendendo eStat com Exemplos",
+    "Vertical Separated Bar": "Barras Verticais Separadas",
+    "Vertical Stacked Bar": "Barras Verticais Empilhadas (frequências absolutas)",
+    "Vertical Ratio Bar": "Barras Verticais Empilhadas (porcentagens)",
+    "Vertical Side by Side Bar": "Barras Verticais Lado a Lado",
+    "Vertical Two Sided Bar": "Barras Verticais Estilo Pirâmide",
+    "Horizontal Separated Bar": "Barras Horizontais Separadas",
+    "Horizontal Stacked Bar": "Barras Horizontais Empilhadas (frequências absolutas)",
+    "Horizontal Ratio Bar": "Barras Horizontais Empilhadas (porcentagens)",
+    "Horizontal Side by Side Bar": "Barras Horizontais Lado a Lado",
+    "Horizontal Two Sided Bar": "Barras Horizontais Estilo Pirâmide",
+    "Doughnut Graph": "Gráfico de Anel/Rosca",
+    "Two Sided Stem & Leaf Plot": "Gráfico Ramo-e-Folhas para Dois Grupos",
+    "Graph Save": "Salvar o Gráfico",
+    "Graph Print": "Imprimir o Gráfico",
+    "Move to Table": "Ir para a Tabela",
+    "Edit Title": "Editar o Título",
+    "Table Save": "Salvar a Tabela",
+    "Table Print": "Imprimir a Tabela",
+    "Frequency": "Frequência",
+    "(Sorting)": "(Ordenando)",
+    "Raw Data": "Dados Brutos",
+    "Descending": "Decrescente",
+    "Ascending": "Crescente",
+    "Mean": "Média",
+    "Std Deviation": "Desvio Padrão",
+    "MeanStd": "Média/Desvio Padrão",
+    "95CI": "95% Intervalo de Confiança",
+    "RegressionAnalysis": "análise de regressão",
+    "ANOVA2": "Two way ANOVA",
+    "Regression": "Regressão",
+    "RegressionLine": "Reta de Regressão",
+    "RegressionBand": "banda de confiança",
+    "RegressionTable": "análise de regressão",
+    "Frequency Polygon": "Polígono de Frequências",
+    "Execute New Interval": "Execute com Novos Intervalos",
+    "Interval Start": "Início do Intervalo",
+    "Interval Width": "Amplitude do Intervalo",
+    "t-test": "t-teste",
+    "Z-test": "Z-teste",
+    "(if Z-test, enter &sigma;)": "(se teste Z, forneça &sigma;)",
+    "Significance Level": "Nível de Significância",
+    "Execute": "Execute",
+    "(Confidence Interval)": "(Confidence Interval)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Se teste Z, use Z<sub>1-&alpha;/2 </sub>)",
+    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> teste",
+    "Variance Assumption": "Suposição sobre as variâncias",
+    "F test": "F teste",
+    "At least one pair of means is different": "Pelo menos um par de médias difere",
+    "Main Title : ": "Título Principal : ",
+    "y title : ": "Título da ordenada (y) : ",
+    "x title : ": "Título da abscissa (x) : ",
+    "Modify": "Modifique",
+    "Confirm": "Confirme",
+    "Variable Name": "Nome da Variável",
+    "Variable Value": "Valor da Variável",
+    "Value Label": "Rótulo do Valor",
+    "* Less than nine value labels allowed.": "* É permitido a entrada de, no máximo, 9 rótulos de valores.",
+    "Save": "Salvar",
+    "Exit": "Sair",
+    "eStatU UnivStatEdu": "eStatU - Educação Estatística Universitária SW",
+    "eStatH HighStatEdu": "eStatH - Educação Estatística no Ensino Médio SW",
+    "Menu": "Menu",
+    "Binomial Experiment": "Experimento Binomial",
+    "Binomial Distribution": "Distribuição Binomial",
+    "Binomial Prob Table": "Tabela de Probabilidade Binomial",
+    "Poisson Distribution": "Distribuição de Poisson",
+    "Poisson Prob Table": "Tabela de Probabilidade Poisson",
+    "Geometric Distribution": "Distribuição Geométrica",
+    "Geometric Prob Table": "Tabela de Probabilidade Geométrica",
+    "HyperGeometric Distribution": "Distribuição Hipergeométrica",
+    "HyperGeometric Prob Table": "Tabela de Probabilidade Hipergeométrica",
+    "Exponential Distribution": "Distribuição Exponencial",
+    "Normal Experiment": "Experimento Normal",
+    "Normal Distribution": "Distribuição Normal",
+    "Normal Approx": "Aproximação Normal",
+    "t Distribution": "Distribuição t",
+    "ChiSquare Distribution": "Distribuição Qui-quadrado",
+    "F Distribution": "Distribuição F",
+    "Sampling": "Amostragem",
+    "Population vs Sample": "População vs Amostra",
+    "Population": "População",
+    "Sample": "Amostra",
+    "Exponential": "Exponencial(0.3)",
+    "Uniform": "Uniforme(0,1)",
+    "Sample05": "Amostragem 5%",
+    "Sample10": "Amostragem 10%",
+    "Sample20": "Amostragem 20%",
+    "Statistics/BoxPlot": "Estatística/BoxPlot",
+    "Law of Large Number": "Lei dos Grandes Números",
+    "Dist of Sample Means": "Distribuição de Médias Amostrais",
+    "Sample Size": "Tamanho da Amostra",
+    "Confidence Interval": "Intervalo de Confiança",
+    "Estimation Accuracy": "Acurácia ",
+    "Repetition": "Repetição",
+    "Confidence Level": "Coeficiente de Confiança",
+    "Testing Hypothesis mu_titleAB": "Teste para uma média",
+    "Testing Hypothesis mu_title": "Teste para uma média",
+    "Testing Hypothesis sigma_title": "Teste para uma variância",
+    "Testing Hypothesis P_title": "Teste para uma proporção",
+    "Testing Hypothesis mu12_title": "Teste para duas médias",
+    "Testing Hypothesis sigma12_title": "Teste para duas variâncias",
+    "Testing Hypothesis P12_title": "Teste para duas proporções",
+    "Testing Hypothesis muAB": "Teste para uma média &alpha;, &beta;",
+    "Testing Hypothesis mu": "Teste Hipótese &mu;",
+    "Testing Hypothesis sigma": "Teste Hipótese &sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "Teste Hipótese P",
+    "Testing Hypothesis mu12": "Teste Hipótese &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "Teste Hipótese &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12": "Teste Hipótese P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "Teste Hipótese ANOVA",
+    "Testing Independence": "Teste de Independência",
+    "Correlation Coefficient": "Coeficiente de Correlação",
+    "Regression Experiment": "Experimento de Regressão",
+    "Hypothesis": "Hipótese",
+    "Test Type": "Tipo do Teste",
+    "Z-test": "Z-teste",
+    "t-test": "t-teste",
+    "Chi-test": "&chi;<sup>2</sup>-teste",
+    "F-test": "F-teste",
+    "Sampling Type": "Tipo de Amostragem",
+    "Independent Sample": "Independência",
+    "Paired Sample": "amostras pareadas",
+    "Sample Data": "Dados Amostrais",
+    "input either sample data": "entre com o tamanho da amostra ou com a estatística amostral nas próximas caixas usando csv/bsv",
+    "Sample Statistics": "Estatísticas Amostrais",
+    "Sample Mean": "Média Amostral",
+    "Sample Variance": "Variância Amostral",
+    "Sample Proportion": "Proporção Amostral",
+    "if Z-test-1": "(se Teste Z, entre com a variância populacional)",
+    "if Z-test-2": "(se Teste Z, Z<sub>1-&alpha;/2 </sub> usado.)",
+    "Variance Assumption": "Suposição sobre as variâncias",
+    "At least one pair": "Pelo menos um par de médias difere",
+    "Row-Col-0": "Variáveis na linha e coluna da tabela são independentes",
+    "Row-Col-1": "Variáveis na linha e coluna da tabela não são independentes",
+    "Enter any number of row": "(Entre com as observações (frequências) a partir da casela superior à esquerda)",
+    "Row": "Linha",
+    "Column": "Coluna",
+    "Show Probability": "Mostre a Probabilidade",
+    "Regression Line": "Reta de Regressão",
+    "Erase All": "Apagar tudo",
+    "Add Point": "Adicionar um ponto",
+    "Erase Point": "Apagar um ponto",
+    "Reference Site": "Local de referência",
+    "Lot Size": "Tamanho do Lote",
+    "Defect Size": "Número com defeitos",
+    "If typed": "(Se o número for digitado)",
+    "Stat/BoxPlot": "Estatística/BoxPlot",
+    "Mean": "Média",
+    "Std Dev": "Desvio Padrão",
+    "OneGroup": "(um grupo)",
+    "GroupVar": "Grupo Variável",
+    "SizeVar": "Size Variável",
+    "RegressionBand": "banda de confiança",
+    "RegressionTable": "Análise de Regressão",
+    "RegressionResidual": "Gráfico de Resíduos",
+    "RegressionResidualLeverage": "Residual vs Leverage",
+    "RegressionCook": "Cook's Distance Gráfico",
+    "RegressionQQ": "Residual Gráfico Q-Q",
+    "HistogramNormal": "Histograma",
+    "HistogramChisq": "Teste de Normalidade",
+    "HistogramNormalQQ": "Normal Gráfico Q-Q",
+    "PopulationStd": "Desvio Padrão Populacional",
+    "Type1Error": "Erro Tipo I",
+    "Type2Error": "Erro Tipo II",
+    "AnovaTable": "Tabela ANOVA",
+    "AnovaMeanGraph": "Intervalo de Confiança para a Média",
+    "MultipleComparison": "Comparações Múltiplas",
+    "AnovaResidual": "gráfico de resíduos",
+    "AnovaQQ": "Residual Gráfico Q-Q",
+    "TestingFit": "Teste de Bondade de Ajuste",
+    "FitTest0": "Distribuições Observadas e Teóricas são diferentes",
+    "FitTest1": "Distribuições Observadas e Teóricas são equivalentes",
+    "ObservedFreq": "Frequência Observada O",
+    "ExpectedProb": "Probabilidade Esperada p",
+    "ExpectedFreq": "Frequência Esperada E(>5)",
+    "InputFitData": "Entre com as observações (frequências) a partir da casela superior à esquerda",
+    "ExecuteTable": "Estatística",
+    "MeanDotGraph": "Gráfico com Intervalos de Confiança",
+    "ScatterRegression": "Diagrama de Dispersão",
+    "Factor": "Fator",
+    "Interaction": "Interação",
+    "NoInteraction": "Sem Interação",
+    "ExistInteraction": "Existe Interação",
+    "eStatLecture": "Aula Intro eStat",
+    "NonParametricMu12_title": "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)", 
+    "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "WilcoxonTest": "Teste da Soma dos Postos",
+    "Sample Range": "Amplitude Amostral",
+    "DistributionTable": "Tabela de Distribuição",
+    "SignedRankTest": "Teste da Soma dos Postos Sinalizados de Wilcoxon",
+    "SignTest": "Teste dos sinais",
+    "SignCount": "Contagem dos sinais",
+    "KruskalTest": "Teste de Kruskal-Wallis",
+    "KruskalTestANOVA": "Teste de Kruskal-Wallis : Parâmetro de Locação &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "Total": "Total",
+    "FriedmanTest": "Teste de Friedman",
+    "FriedmanTestANOVA": "Teste de Friedman : Parâmetro de Locaçãor &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "Block": "Block",
+    "Treatment": "Tratamento",
+    "At least one locations is different": "Pelo menos um par de médias difere",
+    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
+    "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
+    "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
+    "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+};
+// Portugese
+appStr[1][11] = "../eStatH/index.html";
+appStr[2][11] = "../eStatU/index.html";
+appStr[3][11] = "../eStatE/index_en.html";
+appStr[4][11] = "../ExLearning/index_en.html";
+appStr[5][11] = "index.html";
+appStr[6][11] = "../ExLecture/index_en.html";
+alertMsg[1][11] = "Uma das variáveis selecionadas não contém observações.";
+alertMsg[2][11] = "Selecione as variáveis para a análise uma por uma (clique nos nomes das colunas). Se houverem duas variáveis, a primeira deve ser a de agrupamento.";
+alertMsg[3][11] = "Dados faltantes para variável selecionada.";
+alertMsg[4][11] = "A análise não será executada se os números de observações das variáveis selecionadas forem diferentes.";
+alertMsg[5][11] = "Muitos grupos! Os gráficos podem se sobrepor devido ao tamanho da janela gráfica.";
+alertMsg[6][11] = "A análise estatística ou tabela não serão realizadas se os dados resumos da variável em análise incluírem caracteres.";
+alertMsg[7][11] = "A análise estatística ou tabela não serão realizadas se mais de três variáveis forem selecionadas..";
+alertMsg[8][11] = "O gráfico de pontos só é permitido para número de observações inferior a 200..";
+alertMsg[9][11] = "O gráfico Ramo-e-Folhas só é permitido para número de observações inferior a 100.";
+alertMsg[12][11] = "A análise estatística ou tabela não serão realizadas se a variável selecionada incluir observações tipo caractere.";
+alertMsg[14][11] = "Gráficos e testes para variáveis contínuas não podem ser realizados se os dados estiverem na forma resumida.";
+alertMsg[16][11] = "Apenas dois grupos são permitidos neste tipo de teste.";
+alertMsg[17][11] = "Diagrama de dispersão requer duas variáveis (x e y).";
+alertMsg[18][11] = "Não são permitidas mais de três variáveis para o diagrama de dispersão.";
+alertMsg[19][11] = "Se a variável x/y incluir observação tipo caractere, o diagrama de dispersão não pode ser construído.";
+alertMsg[20][11] = "Se a data incluir observação tipo caractere, regression não pode ser construído.";
+alertMsg[21][11] = "Se existirem caselas vazias nos dados não será permitido salvar.";
+alertMsg[22][11] = "Se existirem valores negativos o gráfico de barras não pode ser construído.";
+alertMsg[25][11] = "O gráfico de barras empilhado exige mais de um grupo.";
+alertMsg[27][11] = "If there is only one group, ratio bar graph is not allowed.";
+alertMsg[29][11] = "If there is only one group, side-by-side bar graph is not allowed.";
+alertMsg[31][11] = "If there is only one group, both-side bar graph is not allowed.";
+alertMsg[32][11] = "Se existirem valores negativos o gráfico de setores não pode ser construído.";
+alertMsg[33][11] = "Se existirem valores negativos o gráfico em anel não pode ser construído.";
+alertMsg[34][11] = "Se existirem valores negativos o gráfico de faixas/bandas não pode ser construído.";
+alertMsg[35][11] = "Se existirem valores negativos a tabela de frequências não pode ser construída.";
+alertMsg[36][11] = "Esse gráfico de barras exige dois grupos.";
+alertMsg[37][11] = "Esse teste de hipótese exige uma única variável.";
+alertMsg[38][11] = "mu é NaN. Entre com um valor e repita!";
+alertMsg[39][11] = "O desvio padrão é zero ou NaN. Entre com um valor positivo e repita!";
+alertMsg[40][11] = "A variância fornecida é NaN. Entre com um valor positivo e repita!";
+alertMsg[41][11] = "Esse teste de hipótese exige duas variáveis. A variável de agrupamento deve conter apenas dois grupos.";
+alertMsg[42][11] = "Não é permitido editar o título do teste de hipótese!";
+alertMsg[43][11] = "Simple Linear Regression is only for one group";
+alertMsg[44][11] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][11] = "Cannot draw GIS graph if more than five variables.";
+svgStr[1][11] = " Gráfico de Barras";
+svgStr[2][11] = " Gráfico de Setores";
+svgStr[3][11] = " Gráfico de Anel/Rosca";
+svgStr[4][11] = " Gráfico de Faixas/Bandas";
+svgStr[5][11] = " Gráfico de Linha";
+svgStr[6][11] = " Gráfico de Pontos";
+svgStr[7][11] = " Box Plot";
+svgStr[8][11] = " Gráfico Ramo-e-Folhas";
+svgStr[9][11] = " Histograma";
+svgStr[10][11] = " Diagrama de Dispersão";
+svgStr[11][11] = " Teste de Hipóteses: Média Populacional";
+svgStr[12][11] = " Teste de Hipóteses: Variância Populacional";
+svgStr[13][11] = " Teste de Hipóteses: Médias de Duas Populações";
+svgStr[14][11] = " Teste de Hipóteses: Variâncias de Duas Populações";
+svgStr[15][11] = " Análise de Variância";
+svgStr[16][11] = "Frequência";
+svgStr[17][11] = "Razão";
+svgStr[18][11] = "Grupo ";
+svgStr[19][11] = " ";
+svgStr[20][11] = "<h3>Resumo dos Dados<br>Tabela de Frequência</h3>";
+svgStr[21][11] = "Variável de Agrupamento";
+svgStr[22][11] = "Variável na Linha";
+svgStr[23][11] = "Total";
+svgStr[24][11] = "CircleSize";
+svgStr[25][11] = "<h3>Tabela de Frequências</h3>";
+svgStr[26][11] = "Variável Resposta";
+svgStr[27][11] = "Valor da Variável";
+svgStr[28][11] = "Rótulo do Valor";
+svgStr[29][11] = "Frequência";
+svgStr[30][11] = "Porcentagem(%)";
+svgStr[31][11] = "<h3>Tabela Cruzada</h3>";
+svgStr[32][11] = "Variável na Coluna";
+svgStr[33][11] = "Variável na Linha";
+svgStr[34][11] = "Média"
+svgStr[35][11] = "Desvio Padrão"
+svgStr[36][11] = "<h3> Histograma<br>Tabela de Frequências</h3>";
+svgStr[37][11] = "Nome do Grupo";
+svgStr[38][11] = "Intervalo";
+svgStr[39][11] = "Ramo";
+svgStr[40][11] = " Folha";
+svgStr[41][11] = "Grupo 1  Folha";
+svgStr[42][11] = "Grupo 2  Folha"
+svgStr[43][11] = "<h3>Estatísticas Básicas</h3>";
+svgStr[44][11] = "Observação";
+svgStr[45][11] = "Minimo";
+svgStr[46][11] = "Mediana";
+svgStr[47][11] = "Máximo";
+svgStr[48][11] = "Total";
+svgStr[49][11] = "<h3>Teste de Normalidade</h3>";
+svgStr[50][11] = "Frequência Esperada > 5 <br> recomendado";
+svgStr[51][11] = "&chi;<sup>2</sup> Teste<br>Intervalo i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][11] = "Dados<br>Frequência Observada<br>(O<sub>i</sub>)";
+svgStr[53][11] = "Distribuição Normal<br>Probabilidade Esperada<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][11] = "Distribuição Normal<br>Frequência Esperada<br>(E<sub>i</sub>)";
+svgStr[55][11] = "Intervalo<br>&chi;<sup>2</sup> valor<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][11] = "Soma of &chi;<sup>2</sup> valor";
+svgStr[57][11] = "Hitograma and Distribuição Normal";
+svgStr[58][11] = "Normal Gráfico Q-Q";
+svgStr[59][11] = "Normal Quantil";
+svgStr[60][11] = "Coeficiente de Correlação";
+svgStr[61][11] = "Coeficiente de Determinação";
+svgStr[62][11] = "Erro Padrão";
+svgStr[63][11] = "Variável";
+svgStr[64][11] = "Nome da Variável";
+svgStr[65][11] = "Variável Independente";
+svgStr[66][11] = "Variável Dependente";
+svgStr[67][11] = "parâmetro";
+svgStr[68][11] = "valor estimado";
+svgStr[69][11] = "valor";
+svgStr[70][11] = "Intercepto";
+svgStr[71][11] = "Inclinação";
+svgStr[72][11] = "Factor";
+svgStr[73][11] = "Soma de Quadrados";
+svgStr[74][11] = "graus de liberdade";
+svgStr[75][11] = "Quadrado Médio";
+svgStr[76][11] = "Regressão";
+svgStr[77][11] = "Erro";
+svgStr[78][11] = "Total";
+svgStr[79][11] = "<h3>Análise de Regressão</h3>";
+svgStr[80][11] = "Resíduo padronizado Q-Q gráfico";
+svgStr[81][11] = "Resíduo padronizado";
+svgStr[82][11] = "Quantil Normal";
+svgStr[83][11] = "Gráfico de Resíduos";
+svgStr[84][11] = "valor predito";
+svgStr[85][11] = "ANOVA com dois fatores";
+svgStr[86][11] = "Gráfico com Intervalos de Confiança";
+svgStr[87][11] = "Residual";
+svgStr[88][11] = "Tabela de Médias de Dupla Entrada";
+svgStr[89][11] = "Matriz de Diagramas de Dispersão";
+svgStr[90][11] = "Comparações Múltiplas";
+svgStr[91][11] = "Estatística";
+svgStr[92][11] = "Factor";
+svgStr[93][11] = "Nivel";
+svgStr[94][11] = "Amostras pareadas dados gráfico";
+svgStr[95][11] = "Residual vs predito gráfico";
+svgStr[96][11] = "Residual vs Alavancagem gráfico";
+svgStr[97][11] = "Distância de Cook gráfico";
+svgStr[98][11] = "Distância de Cook";
+svgStr[99][11] = "Ordem dos Dados";
+svgStr[100][11]= "Diferença média";
+svgStr[101][11]= "Teste para uma média";
+svgStr[102][11]= "Tratamento";
+svgStr[103][11]= "Interação";
+svgStr[104][11]= "Total nas Linhas";
+svgStr[105][11]= "Total nas Colunas";
+svgStr[106][11]= "Coeficiente de Correlação Múltipla";
+svgStr[107][11]= "<h3>Análise de Correlação</h3>";
+svgStr[108][11]= "Matriz de Correlação";
+svgStr[109][11]= "Factor1 - Factor2 média gráfico";
+
+svgStrU[1][11] = "Distribuição Binomial";
+svgStrU[2][11] = "Repetição";
+svgStrU[3][11] = "Média";
+svgStrU[4][11] = "Desvio Padrão";
+svgStrU[5][11] = "Distribuição de Poisson";
+svgStrU[6][11] = "Distribuição Geométrica";
+svgStrU[7][11] = "Distribuição Hipergeométrica";
+svgStrU[8][11] = "População";
+svgStrU[9][11] = "Distribuição Amostral";
+svgStrU[10][11] = "Lei dos Grandes Números";
+svgStrU[11][11] = "Cauda";
+svgStrU[12][11] = "Cara";
+svgStrU[13][11] = "Lado Cara da Moeda";
+svgStrU[14][11] = "Número de Caras";
+svgStrU[15][11] = "Número de Ensaios";
+svgStrU[16][11] = "Distribuição de Médias Amostrais";
+svgStrU[17][11] = "Repetição";
+svgStrU[18][11] = "Erro Padrão";
+svgStrU[19][11] = "Média Populacional";
+svgStrU[20][11] = "Intervalo de Confiança";
+svgStrU[21][11] = "Acurácia ";
+svgStrU[22][11] = "Média Amostral";
+svgStrU[23][11] = "[Estatística do Teste] = ";
+svgStrU[24][11] = "Distribuição";
+svgStrU[25][11] = "Rejeita-se H\u2080";
+svgStrU[26][11] = "Não rejeita-se H\u2080";
+svgStrU[27][11] = " valor p = ";
+svgStrU[28][11] = "[Decisão] ";
+svgStrU[29][11] = "[ANOVA]";
+svgStrU[30][11] = "Entre com o Coeficiente de Correlação e clique Executar";
+svgStrU[31][11] = "Regressão";
+svgStrU[32][11] = "Variável na Linha";
+svgStrU[33][11] = "Variável na Coluna";
+svgStrU[34][11] = "Média"
+svgStrU[35][11] = "Desvio Padrão"
+svgStrU[36][11] = "<h3> Histograma<br>Tabela de Frequências</h3>";
+svgStrU[37][11] = "Nome do Grupo";
+svgStrU[38][11] = "Intervalo";
+svgStrU[39][11] = "Ramo";
+svgStrU[40][11] = " Folha";
+svgStrU[41][11] = "Grupo 1 Folha";
+svgStrU[42][11] = "Grupo 2 Folha"
+svgStrU[43][11] = "<h3>Estatísticas Básicas</h3>";
+svgStrU[44][11] = "Observação";
+svgStrU[45][11] = "Minimo";
+svgStrU[46][11] = "Mediana";
+svgStrU[47][11] = "Máximo";
+svgStrU[48][11] = "Total";
+svgStrU[49][11] = "Exponencial";
+svgStrU[50][11] = "Uniforme";
+svgStrU[51][11] = "Acurácia ";
+svgStrU[52][11] = "- Crie pontos clicando nas posições desejadas e então eStat encontrará a reta de regressão.";
+svgStrU[53][11] = "- Arraste um ponto ou apague-o. Observe a mudança na reta de regressão.";
+svgStrU[54][11] = "[Estatísticas Amostrais] ";
+svgStrU[55][11] = "[Estatísticas Amostrais 1] ";
+svgStrU[56][11] = "[Estatísticas Amostrais 2] ";
+svgStrU[57][11] = "Coeficiente de Confiança";
+svgStrU[58][11] = "Variáveis na linha e coluna da tabela são independentes";
+svgStrU[59][11] = "Dependência entre Linhas e Colunas";
+svgStrU[60][11] = "Distribuição Observada";
+svgStrU[61][11] = "Distribuição Teórica";
+svgStrU[62][11] = "Teste de Bondade de Ajuste";
+svgStrU[63][11] = "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)";
+svgStrU[64][11] = "Teste da Soma dos Postos Tabela";
+svgStrU[65][11] = "Kruskal-Wallis Teste";
+svgStrU[66][11] = "Kruskal-Wallis Teste Tabela";
+svgStrU[67][11] = "Kruskal-Wallis H Estatistica";
+svgStrU[68][11] = "Teste da Soma dos Postos Sinalizados de Wilcoxon";
+svgStrU[69][11] = "Teste dos sinais";
+svgStrU[70][11] = "Friedman Teste";
+svgStrU[71][11] = "Friedman S Estatistica";
+svgStrU[72][11] = "Friedman Distribuição Tabela";
