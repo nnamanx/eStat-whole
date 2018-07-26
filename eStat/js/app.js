@@ -1,4 +1,22 @@
-﻿$(document).ready(function() {
+﻿function highlight_datapoint() {
+	console.log("Click Here!");
+        k = $(this).data('sheetrowid');	
+	datasheet.selectCell(k, 0, k, 0, true);
+	datasheet.selectRows(k);
+	d3.selectAll(".highlight_datapoint")
+          .attr("class", "datapoint")
+          .attr("r", wdata[k])
+          .style("stroke", "black")
+          .style("stroke-width", 1) ;
+          
+	d3.select(this)
+          .attr("class", "datapoint highlight_datapoint")
+          .attr("r", wdata[k] + 5)
+          .style("stroke", "orange")
+          .style("stroke-width", 5) ;
+}
+
+$(document).ready(function() {
     if(window.navigator.userAgent.indexOf("Chrome") <= 0) {
 	alert("Chrome 웹브라우저를 사용하면 100% 기능이 작동됩니다. 다른 웹브라우저에서는 일부 기능이 작동하지 않을 수 있습니다.");
     };
@@ -1467,43 +1485,34 @@ d3.select("#scatter1").on("click", function() {
     bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd,alphaR,betaR,corr,rsquare,sxx,syy,sxy,ssr,sse,stderr);
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
     document.getElementById("sub6").style.display = "block"; //회귀선 표시
-    if (firstScatter == true) {
+//    if (firstScatter == true) {
       firstScatter = false;
-      var groupSelect = document.getElementById("groupSelect");
+	var groupSelect = document.getElementById("groupSelect");
+	groupSelect.innerHTML = '<option value="0" selected> --- </option>'
       for (var i=0; i<numCol; i++) {
         var option = document.createElement("option");
         option.text  = "V"+(i+1).toString()+": "+rvarName[i];
         option.value = i+1;
         groupSelect.options.add(option);
       }
-      var groupSelect = document.getElementById("sizeSelect");
+	var sizeSelect = document.getElementById("sizeSelect");
+	sizeSelect.innerHTML = '<option value="0" selected> --- </option>'	
       for (var i=0; i<numCol; i++) {
         var option = document.createElement("option");
         option.text  = "V"+(i+1).toString()+": "+rvarName[i];
         option.value = i+1;
         sizeSelect.options.add(option);
       }
-    }
+//    }
     Scatter = true;
     if (ngroup > 10) document.getElementById("regress").disabled = true;
     // 점과 시트의 연결
-    d3.selectAll(".datapoint").on("click", function() {
-        k = $(this).data('sheetrowid');	
-	datasheet.selectCell(k, 0, k, 0, true);
-	datasheet.selectRows(k);
-	d3.selectAll(".highlight_datapoint")
-          .attr("class", "datapoint")
-          .attr("r", wdata[k])
-          .style("stroke", "black")
-          .style("stroke-width", 1) ;
-          
-	d3.select(this)
-          .attr("class", "datapoint highlight_datapoint")
-          .attr("r", wdata[k] + 5)
-          .style("stroke", "orange")
-          .style("stroke-width", 5) ;
-    })
+    d3.selectAll(".datapoint").on("click", highlight_datapoint)
 })
+
+
+
+
 // 산점도 회귀선 그리기
 d3.select("#regress").on("click", function() {
     if (Scatter == false) return;
