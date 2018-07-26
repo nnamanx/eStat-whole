@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="lib/jqueryFileTree/jqueryFileTree.css"></script>
     <script src="js/language.js" ></script>
     <script src="js/eStat.js" ></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117441368-1"></script>
@@ -24,7 +25,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-117441368-1');
     </script>
     
@@ -111,6 +111,12 @@
 	      <img src="img/eStat_icon17.png" id="scatter1" class="imageBtn1">
 	      <span class="tooltiptext" data-msgid="Scatterplot">산점도</span>
 	    </div>
+<!---
+	    <div class="tooltip">
+	      <img src="img/eStat_icon17.png" id="gis" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="GIS">지리정보그래프</span>
+	    </div>
+--->
 	  </div>
 
 	  <div id="tool-group-summary-stat" class="tool-group">
@@ -198,6 +204,7 @@
 	      <option value="fr">French</option>
 	      <option value="de">German</option>
 	      <option value="es">Spanish</option>
+	      <option value="pt">Portugese</option>
 	      <option value="vi">Vietnamese</option>
 	      <option value="id">Indonesian</option>
 	      <option value="mn">Mongolian</option>
@@ -352,7 +359,20 @@
 	    </div>
 
 	    <div id="sub6" class="option-group"> <!--- 산점도  --->
-	      &nbsp;<label><input type="checkbox" id="regress"><span data-msgid="Regression">Regression Line</span></label>  <br> 
+              <br>
+	      &nbsp;<label><input type="checkbox" id="regress"><span data-msgid="Regression">Regression Line</span></label> 
+              &nbsp;&nbsp; <span data-msgid="GroupVar">그룹변량</span> 
+              <select id="groupSelect" size="1">
+                <option value="0" selected> --- </option>
+              </select>
+              &nbsp;&nbsp; <span data-msgid="SizeVar">크기변량</span> 
+              <select id="sizeSelect" size="1">
+                <option value="0" selected> --- </option>
+              </select>
+	      &nbsp;&nbsp;
+	      <button type="button" id="scatterRedraw" >
+		<span data-msgid="Execute">실행</span>
+	      </button>&nbsp
 	    </div>
 
 	    <div id="sub7" class="option-group"> <!--- 히스토그램 --->

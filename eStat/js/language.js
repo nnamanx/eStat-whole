@@ -5425,7 +5425,7 @@ $.message.pt = {
     "Std Dev": "Desvio Padrão",
     "OneGroup": "(um grupo)",
     "GroupVar": "Grupo Variável",
-    "SizeVar": "Size Variável",
+    "SizeVar": "Tamanho da Variável",
     "RegressionBand": "banda de confiança",
     "RegressionTable": "Análise de Regressão",
     "RegressionResidual": "Gráfico de Resíduos",
@@ -5471,13 +5471,13 @@ $.message.pt = {
     "Total": "Total",
     "FriedmanTest": "Teste de Friedman",
     "FriedmanTestANOVA": "Teste de Friedman : Parâmetro de Locaçãor &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
-    "Block": "Block",
+    "Block": "Bloco",
     "Treatment": "Tratamento",
     "At least one locations is different": "Pelo menos um par de médias difere",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
-    "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "SignCondition": "n ≤ 100 Teste Binomial,  n > 100 Teste Aproximado pela Normal",
+    "WilcoxonSignCondition": "n ≤ 20 Wilcoxon Rank Soma Teste,  n > 20 Teste Aproximado pela Normal",
+    "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Soma Teste,  n>25 Teste Aproximado pela Normal",
+    "KruskalCondition": "n ≤ 10 H Distribuição Teste,  else &chi;<sup>2</sup> approximado teste",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -5519,9 +5519,9 @@ alertMsg[39][11] = "O desvio padrão é zero ou NaN. Entre com um valor positivo
 alertMsg[40][11] = "A variância fornecida é NaN. Entre com um valor positivo e repita!";
 alertMsg[41][11] = "Esse teste de hipótese exige duas variáveis. A variável de agrupamento deve conter apenas dois grupos.";
 alertMsg[42][11] = "Não é permitido editar o título do teste de hipótese!";
-alertMsg[43][11] = "Simple Linear Regression is only for one group";
-alertMsg[44][11] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][11] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[43][11] = "Regressão Linear Simples é para um único grupo.";
+alertMsg[44][11] = "1o: Nome, 2o: latitude, 3o: longitude; 4o: Variável em Análise(opcional)";
+alertMsg[45][11] = "Não é possível desenhar o gráfico GIS para mais de cinco variáveis.";
 svgStr[1][11] = " Gráfico de Barras";
 svgStr[2][11] = " Gráfico de Setores";
 svgStr[3][11] = " Gráfico de Anel/Rosca";
@@ -5545,7 +5545,7 @@ svgStr[20][11] = "<h3>Resumo dos Dados<br>Tabela de Frequência</h3>";
 svgStr[21][11] = "Variável de Agrupamento";
 svgStr[22][11] = "Variável na Linha";
 svgStr[23][11] = "Total";
-svgStr[24][11] = "CircleSize";
+svgStr[24][11] = "Tamanho do círculo";
 svgStr[25][11] = "<h3>Tabela de Frequências</h3>";
 svgStr[26][11] = "Variável Resposta";
 svgStr[27][11] = "Valor da Variável";
