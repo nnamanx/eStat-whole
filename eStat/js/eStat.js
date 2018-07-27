@@ -68,6 +68,8 @@ function buttonColorChange() {
       checkHistLine = false;
       checkRegress  = false;
       checkPairedT  = false;
+      checkRBD      = false;
+      checkScatterMatrix = false;
 
       SeparateBar = false;
       StackBar    = false;
@@ -3463,6 +3465,7 @@ function dataClassifyRegression() {
             } // endof if
           } // endof i
         }
+        for (i=0; i<tdobs[0]; i++) wdata[i] = 3;
 }
    
 // Find Maximum
@@ -6175,9 +6178,9 @@ function drawScatterMatrix(tdvarName,tdobs,tdvar) {
           chart.append("circle")
                .attr("data-sheetrowid", k)
                .attr("class","datapoint")
-//               .attr("class","circle")
                .style("fill",myColor[i*numVar+j])
-               .attr("r", 3)
+               .style("stroke","black")
+               .attr("r", wdata[k])
                .attr("cx", tx+subWidth*(xdata[k]-gxmin)/gxrange)
                .attr("cy", ty+subHeight-subHeight*(ydata[k]-gymin)/gyrange)
                .append("title")
@@ -8392,9 +8395,9 @@ function regressionResidual(tobs, yhat, residual, title) {
         chart.append("circle")
              .attr("data-sheetrowid", j)
              .attr("class","datapoint")
-//             .attr("class","circle")
+             .style("stroke","black")
              .style("fill",myColor[1])
-             .attr("r", 4)
+             .attr("r", wdata[j])
              .attr("cx", margin.left+graphWidth*(yhat[j]-gxmin)/gxrange)
              .attr("cy", margin.top+graphHeight-graphHeight*(tdata[j]-gymin)/gyrange)
       }
@@ -8470,9 +8473,9 @@ function regressionCook(tobs, Cook) {
         chart.append("circle")
              .attr("data-sheetrowid", j)
              .attr("class","datapoint")
-//             .attr("class","circle")
+             .style("stroke","black")
              .style("fill",myColor[1])
-             .attr("r", 4)
+             .attr("r", wdata[j])
              .attr("cx",x1)
              .attr("cy",y1)
         chart.append("line")

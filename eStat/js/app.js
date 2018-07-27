@@ -59,7 +59,10 @@ var rvalueNum = new Array(colMax);
 var rvar = new Array(colMax); // 2차원 배열로 아래에 정의
 var rvalue = new Array(colMax); // 2차원 배열로 아래에 정의
 var rvalueLabel = new Array(colMax); // 2차원 배열로 아래에 정의
+// 그룹변수 크기변수를 위한 변수리스트
+    var groupSelect, sizeSelect, option;
 // selected variable for analysis
+var selected, selected_point, numOfSelectedColumns;
 var tdobs = new Array(colMax);
 var tdvarNumber = new Array(colMax);
 var tdvarName = new Array(colMax);
@@ -154,7 +157,6 @@ var avg = new Array(ngroupMax);
 var std = new Array(ngroupMax);
 // 산점도 변량 정의
 var xobs, xvarNumber, xvarName, yobs, yvarNumber, yvarName, nwvalue, wobs, wvarNumber, wvarName;
-var firstScatter = true;
 var scatterS = new Array(20);
 var gdata  = new Array(rowMax);
 var gcolor = new Array(rowMax);
@@ -224,6 +226,7 @@ var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkPairedT; // Paired T-test
 var checkRegress;
 var checkRBD; // Radomized Block Design
+var checkScatterMatrix;
 buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
 graphTitle(); // 디폴트 그래프 제목
 // 학습수준 컨트롤
@@ -413,10 +416,8 @@ function initEventControl(datasheet) {
         //	  console.log(coords);
         //	  console.log(coords.row+" "+coords.col);
 
-        var selected, numOfSelectedColumns;
-        if (coords.row == -1) {
+        if (coords.row == -1) { // 컬럼번호 클릭
             selected = datasheet.getSelected();
-
             numOfSelectedColumns = selected[0][3] - selected[0][1] + 1;
             for (j = 0; j < numOfSelectedColumns; j++) {
                 k = j + parseInt(selected[0][1]);
@@ -443,27 +444,20 @@ function initEventControl(datasheet) {
             d3.select("#selectedVars").node().value = str;
             buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
         } 
-		if (coords.col == -1) {
-			
-				k = coords.row;
-				
-				d3.selectAll(".highlight_datapoint")
-					  .attr("class", "datapoint")
-					  .attr("r", wdata[k])
-					  .style("stroke", "black")
-					  .style("stroke-width", 1) ;
-					  
-			 var selected_point = $("[data-sheetrowid=" + k + "]")[0];
-			d3.select(selected_point)
-				  .attr("class", "datapoint highlight_datapoint")
-				  .attr("r", wdata[k] + 5)
-				  .style("stroke", "orange")
-			      .style("stroke-width", 5) ;
-				 
-		}
-		
-		
-		
+	if (checkScatterMatrix == false && coords.col == -1) { // 행번호 클릭		
+	    k = coords.row;			
+	    d3.selectAll(".highlight_datapoint")
+	      .attr("class", "datapoint")
+	      .attr("r", wdata[k])
+	      .style("stroke", "black")
+	      .style("stroke-width", 1) 					  
+	    selected_point = $("[data-sheetrowid=" + k + "]")[0];
+	    d3.select(selected_point)
+	      .attr("class", "datapoint highlight_datapoint")
+	      .attr("r", wdata[k] + 5)
+	      .style("stroke", "orange")
+	      .style("stroke-width", 5) 			 
+        }					
     });
 }
 // 데이터시트 이벤트 초기화 함수 끝 --------------------------------------------
@@ -613,6 +607,26 @@ function updateDatasheetWithArrayOfRows(data, colHeaders) {
     graphTitle(); // set default graph title
     initEventControl(datasheet);
     updateGlobalDataVariables();
+/*
+    // 그룹변수 선택리스트
+    groupSelect = document.getElementById("groupSelect");
+    groupSelect.innerHTML = '<option value="0" selected> --- </option>'
+    for (i=0; i<numCol; i++) {
+        var option = document.createElement("option");
+        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        groupSelect.options.add(option);
+    }
+    // 크기변수 선택리스트
+    sizeSelect = document.getElementById("sizeSelect");
+    sizeSelect.innerHTML = '<option value="0" selected> --- </option>'	
+    for (i=0; i<numCol; i++) {
+        option = document.createElement("option");
+        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        sizeSelect.options.add(option);
+    }
+*/
 }
 /*
  * open a data file (JSON)
@@ -1485,34 +1499,43 @@ d3.select("#scatter1").on("click", function() {
     bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd,alphaR,betaR,corr,rsquare,sxx,syy,sxy,ssr,sse,stderr);
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
     document.getElementById("sub6").style.display = "block"; //회귀선 표시
-//    if (firstScatter == true) {
-      firstScatter = false;
-	var groupSelect = document.getElementById("groupSelect");
-	groupSelect.innerHTML = '<option value="0" selected> --- </option>'
-      for (var i=0; i<numCol; i++) {
+    // 그룹변수 선택
+    var groupSelect = document.getElementById("groupSelect");
+    groupSelect.innerHTML = '<option value="0" selected> --- </option>'
+    for (var i=0; i<numCol; i++) {
         var option = document.createElement("option");
         option.text  = "V"+(i+1).toString()+": "+rvarName[i];
         option.value = i+1;
         groupSelect.options.add(option);
-      }
-	var sizeSelect = document.getElementById("sizeSelect");
-	sizeSelect.innerHTML = '<option value="0" selected> --- </option>'	
-      for (var i=0; i<numCol; i++) {
+    }
+    // 크기변수 선택
+    var sizeSelect = document.getElementById("sizeSelect");
+    sizeSelect.innerHTML = '<option value="0" selected> --- </option>'	
+    for (var i=0; i<numCol; i++) {
         var option = document.createElement("option");
         option.text  = "V"+(i+1).toString()+": "+rvarName[i];
         option.value = i+1;
         sizeSelect.options.add(option);
-      }
-//    }
+    }
     Scatter = true;
     if (ngroup > 10) document.getElementById("regress").disabled = true;
     // 점과 시트의 연결
-    d3.selectAll(".datapoint").on("click", highlight_datapoint)
+    d3.selectAll(".datapoint").on("click", function() {
+        k = $(this).data('sheetrowid');	
+	datasheet.selectCell(k, 0, k, 0, true);
+	datasheet.selectRows(k);
+	d3.selectAll(".highlight_datapoint")
+          .attr("class", "datapoint")
+          .attr("r", wdata[k])
+          .style("stroke", "black")
+          .style("stroke-width", 1) ;        
+	d3.select(this)
+          .attr("class", "datapoint highlight_datapoint")
+          .attr("r", wdata[k] + 5)
+          .style("stroke", "orange")
+          .style("stroke-width", 5) ;
+    })
 })
-
-
-
-
 // 산점도 회귀선 그리기
 d3.select("#regress").on("click", function() {
     if (Scatter == false) return;
@@ -1546,8 +1569,7 @@ d3.select("#scatterRedraw").on("click", function() {
           .attr("class", "datapoint")
           .attr("r", wdata[k])
           .style("stroke", "black")
-          .style("stroke-width", 1) ;
-          
+          .style("stroke-width", 1) ;        
 	d3.select(this)
           .attr("class", "datapoint highlight_datapoint")
           .attr("r", wdata[k] + 5)
@@ -2301,13 +2323,12 @@ d3.select("#regression").on("click", function() {
           .attr("class", "datapoint")
           .attr("r", wdata[k])
           .style("stroke", "black")
-          .style("stroke-width", 1) ;
-          
+          .style("stroke-width", 1)           
 	d3.select(this)
           .attr("class", "datapoint highlight_datapoint")
           .attr("r", wdata[k] + 5)
           .style("stroke", "orange")
-          .style("stroke-width", 5) ;
+          .style("stroke-width", 5) 
     })
   } 
   else { // 다중선형회귀
@@ -2319,9 +2340,22 @@ d3.select("#regression").on("click", function() {
     chart.selectAll("*").remove();
     tobs = tdobs[0];
     drawScatterMatrix(tdvarName,tdobs,tdvar);
+    checkScatterMatrix = true;
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
-	datasheet.selectRows($(this).data('sheetrowid'));
+        k = $(this).data('sheetrowid');	
+	datasheet.selectCell(k, 0, k, 0, true);
+	datasheet.selectRows(k);
+	d3.selectAll(".highlight_datapoint")
+          .attr("class", "datapoint")
+          .attr("r", wdata[k])
+          .style("stroke", "black")
+          .style("stroke-width", 1)          
+	d3.select(this)
+          .attr("class", "datapoint highlight_datapoint")
+          .attr("r", wdata[k] + 5)
+          .style("stroke", "orange")
+          .style("stroke-width", 5) 
     })
   }
   statRegression(numVar, tdobs, tdvar);
@@ -2339,7 +2373,7 @@ d3.select("#regressBand").on("click", function() {
 })
 // 회귀산점도 그래프 
 d3.select("#ScatterRegression").on("click", function() {
-  if (numVar == 2) {
+  if (numVar == 2) { // 산점도
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
     showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS);
     // 점과 시트의 연결
@@ -2351,41 +2385,35 @@ d3.select("#ScatterRegression").on("click", function() {
           .attr("class", "datapoint")
           .attr("r", wdata[k])
           .style("stroke", "black")
-          .style("stroke-width", 1) ;
-          
+          .style("stroke-width", 1) ;         
 	d3.select(this)
           .attr("class", "datapoint highlight_datapoint")
           .attr("r", wdata[k] + 5)
           .style("stroke", "orange")
           .style("stroke-width", 5) ;
     })
-/*
-    // 점과 시트의 연결
-    d3.selectAll(".datapoint").on("click", function() {
-	datasheet.selectRows($(this).data('sheetrowid'));
-        k = $(this).data('sheetrowid');
-        str = "("+xdata[k]+","+ydata[k]+")";
-        chart.append("circle")
-   	     .attr("data-sheetrowid", k)
-             .attr("class","datapoint")
-             .attr("stroke","black")
-             .style("fill",myColor[1])
-             .attr("cx", margin.left+graphWidth*(xdata[k]-gxmin)/gxrange)
-             .attr("cy", margin.top+graphHeight-graphHeight*(ydata[k]-gymin)/gyrange)
-             .attr("r", wdata[k]*2)
-             .append("title")
-             .text(str)
-    })
-*/
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = false;
   } 
-  else {
+  else { // 산점도행렬
     chart.selectAll("*").remove();
     drawScatterMatrix(tdvarName,tdobs,tdvar);
+    checkScatterMatrix = true;
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
-	datasheet.selectRows($(this).data('sheetrowid'));
+        k = $(this).data('sheetrowid');	
+	datasheet.selectCell(k, 0, k, 0, true);
+	datasheet.selectRows(k);
+	d3.selectAll(".highlight_datapoint")
+          .attr("class", "datapoint")
+          .attr("r", wdata[k])
+          .style("stroke", "black")
+          .style("stroke-width", 1)         
+	d3.select(this)
+          .attr("class", "datapoint highlight_datapoint")
+          .attr("r", wdata[k] + 5)
+          .style("stroke", "orange")
+          .style("stroke-width", 5)
     })
   }
 })
@@ -2402,6 +2430,7 @@ d3.select("#regressTable").on("click", function() {
 })
 // 회귀분석 잔차와 예측값
 d3.select("#regressResidual").on("click", function() {
+    checkScatterMatrix = false;
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = true;
     title = svgStr[95][langNum]; // "잔차와 예측값의 산점도"
@@ -2415,35 +2444,17 @@ d3.select("#regressResidual").on("click", function() {
           .attr("class", "datapoint")
           .attr("r", wdata[k])
           .style("stroke", "black")
-          .style("stroke-width", 1) ;
-          
+          .style("stroke-width", 1)         
 	d3.select(this)
           .attr("class", "datapoint highlight_datapoint")
           .attr("r", wdata[k] + 5)
           .style("stroke", "orange")
-          .style("stroke-width", 5) ;
+          .style("stroke-width", 5) 
     })
-/*
-    // 점과 시트의 연결
-    d3.selectAll(".datapoint").on("click", function() {
-	datasheet.selectRows($(this).data('sheetrowid'));
-        k = $(this).data('sheetrowid');
-        str = "("+xdata[k]+","+ydata[k]+")";
-        chart.append("circle")
-   	     .attr("data-sheetrowid", k)
-             .attr("class","datapoint")
-             .attr("stroke","black")
-             .style("fill","green")
-             .attr("cx", margin.left+graphWidth*(yhat[k]-gxmin)/gxrange)
-             .attr("cy", margin.top+graphHeight-graphHeight*(stdResidual[k]-gymin)/gyrange)
-             .attr("r", 6)
-             .append("title")
-             .text(str)
-    })
-*/
 })
 // 회귀분석 잔차와 지렛값(leverage)
 d3.select("#regressResidualLeverage").on("click", function() {
+    checkScatterMatrix = false;
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = true;
     title = svgStr[96][langNum]; // "잔차와 지렛값의 산점도"
@@ -2457,35 +2468,17 @@ d3.select("#regressResidualLeverage").on("click", function() {
           .attr("class", "datapoint")
           .attr("r", wdata[k])
           .style("stroke", "black")
-          .style("stroke-width", 1) ;
-          
+          .style("stroke-width", 1)         
 	d3.select(this)
           .attr("class", "datapoint highlight_datapoint")
           .attr("r", wdata[k] + 5)
           .style("stroke", "orange")
-          .style("stroke-width", 5) ;
+          .style("stroke-width", 5) 
     })
-/*
-    // 점과 시트의 연결
-    d3.selectAll(".datapoint").on("click", function() {
-	datasheet.selectRows($(this).data('sheetrowid'));
-        k = $(this).data('sheetrowid');
-        str = "("+xdata[k]+","+ydata[k]+")";
-        chart.append("circle")
-   	     .attr("data-sheetrowid", k)
-             .attr("class","datapoint")
-             .attr("stroke","black")
-             .style("fill","green")
-             .attr("cx", margin.left+graphWidth*(Hii[k]-gxmin)/gxrange)
-             .attr("cy", margin.top+graphHeight-graphHeight*(stdResidual[k]-gymin)/gyrange)
-             .attr("r", 6)
-             .append("title")
-             .text(str)
-    })
-*/
 })
 // 회귀분석 Cook's distance
 d3.select("#regressCook").on("click", function() {
+    checkScatterMatrix = false;
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = true;
     regressionCook(tobs,Cook);
@@ -2498,32 +2491,13 @@ d3.select("#regressCook").on("click", function() {
           .attr("class", "datapoint")
           .attr("r", wdata[k])
           .style("stroke", "black")
-          .style("stroke-width", 1) ;
-          
+          .style("stroke-width", 1)         
 	d3.select(this)
           .attr("class", "datapoint highlight_datapoint")
           .attr("r", wdata[k] + 5)
           .style("stroke", "orange")
-          .style("stroke-width", 5) ;
+          .style("stroke-width", 5) 
     })
-/*
-    // 점과 시트의 연결
-    d3.selectAll(".datapoint").on("click", function() {
-	datasheet.selectRows($(this).data('sheetrowid'));
-        k = $(this).data('sheetrowid');
-        str = "("+xdata[k]+","+ydata[k]+")";
-        chart.append("circle")
-   	     .attr("data-sheetrowid", k)
-             .attr("class","datapoint")
-             .attr("stroke","black")
-             .style("fill","green")
-             .attr("cx", margin.left+graphWidth*(k+1-gxmin)/gxrange)
-             .attr("cy", margin.top+graphHeight-graphHeight*(Cook[k]-gymin)/gyrange)
-             .attr("r", 6)
-             .append("title")
-             .text(str)
-    })
-*/
 })
 // 회귀분석 잔차 Q-Q Plot
 d3.select("#regressQQ").on("click", function() {
