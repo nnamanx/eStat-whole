@@ -1,7 +1,7 @@
 ﻿// language.js
 var langNum;
 var nLanguage = 15;
-var nString = 110;
+var nString = 120;
 var appStr = new Array(nString);
 var svgStr = new Array(nString);
 var svgStrU = new Array(nString);
@@ -254,7 +254,15 @@ $.message.ko = {
     "Std Dev": "표준편차",
     "SimulationWarning": "(시뮬레이션이 끝나기 전에 다른 실험을 위한 '실행' 버튼을 누르면 에러가 발생함)",
     "OneGroup": "(한그룹)",
+    "AnalysisVar": "분석변량",
+    "AnalysisVar2": "Y변량",
     "GroupVar": "그룹변량",
+    "GroupVar2": "X변량",
+    "GroupVar3": "인자1",
+    "GroupVar4": "인자2",
+    "AnalysisVarMu12": "분석(or X1)변량",
+    "GroupVarMu12": "그룹(or X2)변량",
+    "PairedMu12": " X1 or X2는 대응변량",
     "SizeVar": "크기변량",
     "RegressionBand": "신뢰대",
     "RegressionTable": "상관 및 회귀분석",
@@ -308,6 +316,16 @@ $.message.ko = {
     "WilcoxonSignCondition": "n ≤ 20 이면 윌콕슨 순위합 분포 검정,  n > 20 근사 정규분포 검정",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 이면 순위합 분포 검정,  n > 25 근사 정규분포 검정",
     "KruskalCondition": "n ≤ 10 이면 H 분포 검정,  n>10 근사 카이제곱 검정",
+    "VariableSelect":  "* 데이터분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
+    "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
+    "VariableSelect3": "변량선택",
+    "VariableSelect4": "여러 개의 번량은 [Ctrl]키를 누르고 선택. 요약자료는 분석변수에서 변수선택.",
+    "SummaryData": "요약자료",
+    "RawData": "원시자료",
+    "RawData2": "원시자료 변량선택",
+    "SummaryExplain":  "시트에서 변량값변량, 분석변량 클릭 > 아이콘클릭",
+    "RawExplain1": "아이콘클릭 > 변량선택 (변수명클릭 > 아이콘클릭도 가능)",
+    "MultipleSelection": "[Ctrl]키 누르고 여러 변량선택",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -316,8 +334,8 @@ appStr[3][0] = "../eStatE/index.html";
 appStr[4][0] = "../ExLearning/index.html";
 appStr[5][0] = "index_en.html";
 appStr[6][0] = "../ExLecture/index.html";
-alertMsg[1][0] = "선택된 변량중에 자료가 없는 것이 있습니다!";
-alertMsg[2][0] = "시트에서 분석을 원하는 변량를 선택(변량번호 클릭)한 후 버튼을 눌러주세요!  변량이 2개 이상일 경우 첫 선택변량는 그룹변량이 됩니다. ";
+alertMsg[1][0] = "데이터가 없습니다!";
+alertMsg[2][0] = "시트에서 분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
 alertMsg[3][0] = "선택된 열에 결측치가 있습니다.";
 alertMsg[4][0] = "각 열의 자료수가 다르거나 결측치가 있으면 처리를 할 수 없습니다.";
 alertMsg[5][0] = "그룹의 수가 너무 많습니다. ";
@@ -325,10 +343,13 @@ alertMsg[6][0] = "요약자료의 분석변량에 문자가 있어 그래프를 
 alertMsg[7][0] = "원시자료에서 두 개이상 선택된 변량에 대해서는 그래프를 그리거나 표를 만들 수 없습니다.";
 alertMsg[8][0] = "점그림은 데이터 수가 200개 이하일때 가능합니다.";
 alertMsg[9][0] = "줄기와 잎 그림은 데이터 수가 100개 이하일때 가능합니다.";
+alertMsg[10][0] = "분석변수가 선택되지 않았습니다.";
+alertMsg[11][0] = "분석변수/그룹변수가 선택되지 않았습니다.";
 alertMsg[12][0] = "분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
+alertMsg[13][0] = "분석변량이 두개 이상 선택(요약자료)된 경우는 요약자료경우여서 그룹변수를 선택할 수 없습니다.";
 alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합치 않습니다";
 alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
-alertMsg[17][0] = "산점도는 최소 x축변량 y축량이 필요합니다.";
+alertMsg[17][0] = "산점도는 Y축변량과 X축변량을 선택하여야 합니다.";
 alertMsg[18][0] = "세 개이상 선택된 변량에 대해서는 산점도를 그릴 수 없습니다.";
 alertMsg[19][0] = "X 또는 Y 데이터에 문자가 있어 산점도를 처리할수 없습니다";
 alertMsg[20][0] = "데이터에 문자가 있어 회귀분석을 처리할수 없습니다";
@@ -344,14 +365,15 @@ alertMsg[34][0] = "음수자료의 띠그래프는 그릴 수 없습니다.";
 alertMsg[35][0] = "음수자료의 도수분포표는 표시할 수 없습니다.";
 alertMsg[36][0] = "두 그룹에 대해서만 양쪽형 그래프를 그릴 수 있습니다.";
 alertMsg[37][0] = "한 (분석변량)에 대해서만 가설검정을 할 수 있습니다.";
-alertMsg[38][0] = "mu is NaN . Ener value and then retry!";
-alertMsg[39][0] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][0] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][0] = "두 변량 (그룹변량과 분석변량)에 대해서만 가설검정을 할 수 있습니다.";
+alertMsg[38][0] = "mu를 입력하고 다시 실행하세요!";
+alertMsg[39][0] = "표준편차가 0이거나 숫자가 아닙니다. 다시 입력하고 실행하세요!";
+alertMsg[40][0] = "입력된 분산이 숫자가 아닙니다. 다시 입력하고 실행하세요!";
+alertMsg[41][0] = "두 변량 (분석변량과 그룹변량) 데이터에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[42][0] = "가설검정의 제목은 편집할 수 없습니다! ";
 alertMsg[43][0] = "단순 선형 회귀분석은 그룹이 없는 경우에 분석할 수 있습니다";
-alertMsg[44][0] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][0] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[44][0] = "분석변수에서 1st:지역명, 2nd:위도(latitude), 3rd:경도(longitude), 4th:분석값(선택)을 선택";
+alertMsg[45][0] = "GIS그래프를 그릴 수 없습니다. ";
+alertMsg[46][0] = "같은 변수번호를 선택하였습니다.";
 svgStr[1][0] = " 막대그래프";
 svgStr[2][0] = " 원그래프";
 svgStr[3][0] = " 도넛그래프";
@@ -461,6 +483,12 @@ svgStr[106][0]= "중상관계수";
 svgStr[107][0]= "<h3>상관분석</h3>";
 svgStr[108][0]= "상관계수행렬";
 svgStr[109][0]= "인자1 - 인자2 평균 그래프";
+svgStr[110][0]= "지렛값(Leverage)";
+svgStr[111][0]= "지리정보그래프";
+svgStr[112][0]= 
+svgStr[113][0]= 
+svgStr[114][0]= 
+svgStr[115][0]= 
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -540,7 +568,7 @@ svgStrU[72][0] = "프리드만 분포표";
 $.message.en = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
     "Filename": "File Name",
-    "Selected Variables": "Var Select",
+    "Selected Variables": "SelectedVar",
     "Cancel": "Cancel",
     "Edit Variables": "EditVar",
     "Level": "Level",
@@ -727,7 +755,15 @@ $.message.en = {
     "Std Dev": "Std Dev",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
     "OneGroup": "(one group)",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
     "GroupVar": "Group Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": " X1, X2 : Paired Variables",
     "SizeVar": "Size Var",
     "RegressionBand": "Confidence Band",
     "RegressionTable": "Regression Analysis",
@@ -764,7 +800,7 @@ $.message.en = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Rank Sum",
+    "Sample Range": "Sample Range",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -781,6 +817,15 @@ $.message.en = {
     "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -790,18 +835,21 @@ appStr[4][1] = "../ExLearning/index_en.html";
 appStr[5][1] = "index.html";
 appStr[6][1] = "../ExLecture/index_en.html";
 alertMsg[1][1] = "One of the selected variables does not have data.";
-alertMsg[2][1] = "Select variables for analysis (clicking column names) one by one. If two variables, first one is group variable. ";
+alertMsg[2][1] = "Select variables for analysis (click column name or select var at the selection box ) one by one. If two variables for raw data are selected, the first one is analysis(or Y) variable and the 2nd one is group (or X) variable. ";
 alertMsg[3][1] = "Missing data on the selected variable.";
-alertMsg[4][1] = "If observations of the selected variables are different or observations are different, analysis is not allowed.";
+alertMsg[4][1] = "If the number of observations in each column are different, analysis is not allowed.";
 alertMsg[5][1] = "Too many groups! Graphs may be overlapped due to size of the screen.";
 alertMsg[6][1] = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
-alertMsg[7][1] = "If more than three variables are selected on raw data, analysis or creating table is not allowed.";
+alertMsg[7][1] = "If more than three variables are selected for raw data, analysis or creating table is not allowed.";
 alertMsg[8][1] = "Dot Graph is allowd if the number of observation is less than 200.";
 alertMsg[9][1] = "Stem & Leaf Plot is allowd if the number of observation is less than 100.";
+alertMsg[10][1] = "Analysis variable is not selected.";
+alertMsg[11][1] = "Analysis/Group variables are not selected.";
 alertMsg[12][1] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
+alertMsg[13][1] = "If more than two variables are selected for analysis variables, it is considered as summary data and a group variable cannot be selected.";
 alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
 alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
-alertMsg[17][1] = "Scatter plot requires at least x variable and y variable.";
+alertMsg[17][1] = "Scatter plot requires Y variable and X variable.";
 alertMsg[18][1] = "More than three variables are not allowed for scatter plot.";
 alertMsg[19][1] = "If there is a character on X or Y variable, scatter plot cannot be drawn.";
 alertMsg[20][1] = "If there is a character on data, regression analysis cannot be done.";
@@ -820,11 +868,12 @@ alertMsg[37][1] = "This testing hypothesis is allowed only for one variable.";
 alertMsg[38][1] = "mu is NaN . Ener value and then retry!";
 alertMsg[39][1] = "Standard deviation is either zero or NaN . Retry!";
 alertMsg[40][1] = "input variance is NaN . Ener value and then retry!";
-alertMsg[41][1] = "This testing hypothesis is allowed only for two variable. Group variable should have only two groups";
+alertMsg[41][1] = "This testing hypothesis is allowed only for two variables. 1st one is an Analysis Variable and 2nd one is a Group Variable. Group variable should have only two groups";
 alertMsg[42][1] = "Title editing of testing hypothesis is not allowed! ";
 alertMsg[43][1] = "Simple Linear Regression is only for one group";
 alertMsg[44][1] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][1] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][1] = "The same variable number is selected.";
 svgStr[1][1] = " Bar Graph";
 svgStr[2][1] = " Pie Chart";
 svgStr[3][1] = " Doughnut Graph";
@@ -934,6 +983,7 @@ svgStr[106][1]= "Multiple Correlation Coeff";
 svgStr[107][1]= "<h3>Correlation Analysis</h3>";
 svgStr[108][1]= "Correlation Matrix";
 svgStr[109][1]= "Factor1 - Factor2 Mean Graph";
+svgStr[110][1]= "Leverage";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1200,7 +1250,15 @@ $.message.ja = {
     "Std Dev": "標準偏差",
     "SimulationWarning": "(現在シミュレーションが終わるまで、お待ちください。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;シミュレーション途中で設定を変更して実行すると正しく表示されません。)",
     "OneGroup": "(1 グループ)",
+    "AnalysisVar": "分析変数",
+    "AnalysisVar2": "Y変数",
     "GroupVar": "グループ変数",
+    "GroupVar2": "X変数",
+    "GroupVar3": "因子1",
+    "GroupVar4": "因子2",
+    "AnalysisVarMu12": "分析(or X1)変数",
+    "GroupVarMu12": "グループ(or X2)変数",
+    "PairedMu12": " X1,X2 : 対応データ",
     "SizeVar": "大小変数",
     "RegressionBand": "信頼帯",
     "RegressionTable": "回帰分析",
@@ -1236,7 +1294,7 @@ $.message.ja = {
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
     "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "標本順位合",
+    "Sample Range": "標本範圍",
     "DistributionTable": "分布表",
     "SignedRankTest": "Wilcoxon 符號順位檢定",
     "SignTest": "符號檢定",
@@ -1254,7 +1312,15 @@ $.message.ja = {
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 順位合檢定,  n > 20 正規近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
     "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
-
+    "VariableSelect": "* データ分析 : 変数選択 >> クリックアイコン *",
+    "VariableSelect2": "* 変数選択 : クリック変数名 / 右側選択はこ利用 ",
+    "VariableSelect3": "変数選択",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "要約データ",
+    "RawData": "原データ",
+    "RawData2": "原データ変数選択",
+    "SummaryExplain":  "クリック変数値変数,分析変数 > クリックアイコン",
+    "RawExplain1": "アイコン選択 > 変数選択 (or変数選択 > アイコン選択)",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1272,7 +1338,10 @@ alertMsg[6][2] = "要約データの変数に文字が入っているので、�
 alertMsg[7][2] = "元データから2個以上の変数を選択した場合はグラフや表を作成できません.";
 alertMsg[8][2] = "ドットプロットはデータの数が200個以下のとき可能です.";
 alertMsg[9][2] = "幹葉図はデータ数が100個以下のときのみ可能です.";
+alertMsg[10][2] = "Analysis variable is not selected.";
+alertMsg[11][2] = "Analysis/Group variables are not selected.";
 alertMsg[12][2] = "選択変数が文字を含んでいるためグラフや度数分布表が出力できません.";
+alertMsg[13][2] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
 alertMsg[16][2] = "仮説検定が可能なのは，グループが2つの場合のみです.";
 alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です.";
@@ -1296,9 +1365,11 @@ alertMsg[39][2] = "標準偏差が0かはいっていません。再度おこな
 alertMsg[40][2] = "分散の値がはいっていません。値を入力してから再度おこなってください.";
 alertMsg[41][2] = "仮説検定を行うには，2つの変数(グループ変数と解析する変数)を指定します.";
 alertMsg[42][2] = "仮説検定のタイトルは編集できません! ";
-alertMsg[43][2] = "Simple Linear Regression is only for one group";
+alertMsg[43][2] = "單純線形回歸1グループ";
 alertMsg[44][2] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][2] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][2] = "The same variable number is selected.";
+
 svgStr[1][2] = " 棒グラフ";
 svgStr[2][2] = " 円グラフ";
 svgStr[3][2] = " ドーナツグラフ";
@@ -1408,6 +1479,7 @@ svgStr[106][2]= "重相關係數";
 svgStr[107][2]= "<h3>相關分析</h3>";
 svgStr[108][2]= "相關係數行列";
 svgStr[109][2]= "因子1-因子2 平均図";
+svgStr[110][2]= "Leverage";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1541,7 +1613,7 @@ $.message.zhTW = {
     "Table Print": "列印表格",
     "Frequency": "次數",
     "(Sorting)": "(排序)",
-    "Raw Data": "原始資料",
+    "Raw Data": "原資料",
     "Descending": "下降的",
     "Ascending": "上昇的",
     "Mean": "平均數",
@@ -1669,7 +1741,15 @@ $.message.zhTW = {
     "Std Dev": "標準差",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1群)",
+    "AnalysisVar": "分析変数",
+    "AnalysisVar2": "Y変数",
     "GroupVar": "群変数",
+    "GroupVar2": "X変数",
+    "GroupVar3": "因子1",
+    "GroupVar4": "因子2",
+    "AnalysisVarMu12": "分析(or X1)変数",
+    "GroupVarMu12": "群(or X2)変数",
+    "PairedMu12": " X1, X2 : 対応変数",
     "SizeVar": "大小変数",
     "RegressionBand": "信頼帯",
     "RegressionTable": "回帰分析",
@@ -1705,7 +1785,7 @@ $.message.zhTW = {
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
     "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "標本順位合",
+    "Sample Range": "標本範圍",
     "DistributionTable": "分布表",
     "SignedRankTest": "Wilcoxon 符號順位檢定",
     "SignTest": "符號檢定",
@@ -1723,7 +1803,15 @@ $.message.zhTW = {
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 順位合檢定t,  n > 20 正規近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
     "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
-
+    "VariableSelect":  "* 資料分析 : 変数選択 >>  Click Icon",
+    "VariableSelect2": "* 変数選択 : Click 変数名 / 右側選択箱利用 ",
+    "VariableSelect3": "変数選択",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "要約資料",
+    "RawData": "原資料",
+    "RawData2": "原資料変数選択",
+    "SummaryExplain":  "Click 変数値変数, 分析変数 . Click Icon",
+    "RawExplain1": "Icon選択 > 変数選択 (or 変数選択 > Icon選択)",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -1740,7 +1828,10 @@ alertMsg[6][3] = "若摘要資料中要進行分析的變數包含文字，則�
 alertMsg[7][3] = "若原始資料有超過3個變數被選擇，則無法進行分析及製作圖表。";
 alertMsg[8][3] = "點圖可使用於觀察值個數少於200的資料。";
 alertMsg[9][3] = "莖葉圖可使用於觀察值個數少於100的資料。";
+alertMsg[10][3] = "Analysis variable is not selected.";
+alertMsg[11][3] = "Analysis/Group variables are not selected.";
 alertMsg[12][3] = "若分析的變數包含文字，則無法進行分析及製作圖表。";
+alertMsg[13][3] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][3] = "連續型圖形及假設檢定無法進行摘要資料。";
 alertMsg[16][3] = "此假設檢定僅限定於兩群母體。";
 alertMsg[17][3] = "繪製散佈圖至少需要橫軸變數及縱軸變數。";
@@ -1767,6 +1858,8 @@ alertMsg[42][3] = "假設檢定的標題不可編輯! ";
 alertMsg[43][3] = "Simple Linear Regression is only for one group";
 alertMsg[44][3] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][3] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][3] = "The same variable number is selected.";
+
 svgStr[1][3] = " 長條圖";
 svgStr[2][3] = " 圓餅圖";
 svgStr[3][3] = " 圓環圖";
@@ -1876,6 +1969,7 @@ svgStr[106][3]= "重相關係數";
 svgStr[107][3]= "<h3>相關分析</h3>";
 svgStr[108][3]= "相關係數行列";
 svgStr[109][3]= "因子1-因子2 平均図";
+svgStr[110][3]= "Leverage";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2138,7 +2232,15 @@ $.message.fr = {
     "Std Dev": "Ecart-type",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 groupe)",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
     "GroupVar": "Groupe Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": "X1, X2 : Paired Variables",
     "SizeVar": "Size Var",
     "RegressionBand": "Confinace Bandes",
     "RegressionTable": "Régressione Analysis",
@@ -2175,7 +2277,7 @@ $.message.fr = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Rank Sum",
+    "Sample Range": "Sample Range",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -2192,7 +2294,15 @@ $.message.fr = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2210,7 +2320,10 @@ alertMsg[6][4] = "La variable d'analyse ne doit pas contenir de valeurs non num�
 alertMsg[7][4] = "On ne peut pas sélectionner plus de trois variables dans les données brutes ou dans des tableaux.";
 alertMsg[8][4] = "Un graphique à points est traçable si le nombre d'observations ne dépasse pas 200.";
 alertMsg[9][4] = "Le diagramme tige-feuille n'est autorisé que si le nombre d'observations est inférieur à 100.";
+alertMsg[10][4] = "Analysis variable is not selected.";
+alertMsg[11][4] = "Analysis/Group variables are not selected.";
 alertMsg[12][4] = "La variable d'analyse ne doit pas contenir de valeurs non numériques.";
+alertMsg[13][4] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][4] = "Les résumés ne sont pas acceptés pour les graphiques continus et les tests.";
 alertMsg[16][4] = "Pour ce test , il faut uniquement deux groupes.";
 alertMsg[17][4] = "Un diagramme de dispersion nécessite au moins une variable x et une variable y.";
@@ -2237,6 +2350,8 @@ alertMsg[42][4] = "Modifier le titre du test n'est pas autorisé! ";
 alertMsg[43][4] = "Simple Linear Regression is only for one group";
 alertMsg[44][4] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][4] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][4] = "The same variable number is selected.";
+
 svgStr[1][4] = " Diagramme en barres";
 svgStr[2][4] = " Camembert";
 svgStr[3][4] = " Graphique en anneau";
@@ -2346,6 +2461,7 @@ svgStr[106][4]= "Multiple Correlation Coeff";
 svgStr[107][4]= "<h3>Correlation Analysis</h3>";
 svgStr[108][4]= "Correlation Matrix";
 svgStr[109][4]= "Factor1 - Factor2 Mean Graph";
+svgStr[110][4]= "Leverage";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -2605,7 +2721,15 @@ $.message.de = {
     "Std Dev": "Standardabweichung",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 grouppe)",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
     "GroupVar": "Grouppe Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": " X1, X2 : Paired Variables",
     "SizeVar": "Size Var",
     "RegressionBand": "Konfidenzband",
     "RegressionTable": "Regressionanalyse",
@@ -2642,7 +2766,7 @@ $.message.de = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Rank Sum",
+    "Sample Range": "Sample Range",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -2659,7 +2783,15 @@ $.message.de = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -2677,7 +2809,10 @@ alertMsg[6][5] = "Falls die Analysis-Variable in den zusammengefassten Daten Cha
 alertMsg[7][5] = "Falls mehr als drei Variablen aus den Rohdaten ausgewählt sind.";
 alertMsg[8][5] = "Ein dimensionales Streudiagramm ist  möglich, wenn die Anzahl der  Beobachtungen kleiner als 200 ist.";
 alertMsg[9][5] = "Stamm-Blatt-Diagramm ist nicht möglich, wenn die Anzahl der Beobachtungen.";
+alertMsg[10][5] = "Analysis variable is not selected.";
+alertMsg[11][5] = "Analysis/Group variables are not selected.";
 alertMsg[12][5] = "Falls die Analysis-Variable Charaktere einschliesst, ist Analyse, oder Tabelle nicht moeglich.";
+alertMsg[13][5] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][5] = "Im Falle zusammengefasster Daten sind weder Dauerdiagramme noch Hypothesen Testen moeglich.";
 alertMsg[16][5] = "Nur zwei Gruppen soind für diesen Hypothesentest zugelassen.";
 alertMsg[17][5] = "Streudiagramm erfordert mindestens Variablen x und y.";
@@ -2704,6 +2839,8 @@ alertMsg[42][5] = "Editieren der Bezeichnung der zu testenden Hypothesen ist nic
 alertMsg[43][5] = "Simple Linear Regression is only for one group";
 alertMsg[44][5] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][5] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][5] = "The same variable number is selected.";
+
 svgStr[1][5] = " Balkendiagramm";
 svgStr[2][5] = " Kreisdiagramm";
 svgStr[3][5] = " Doughnut Graph";
@@ -2813,6 +2950,7 @@ svgStr[106][5]= "Multiple Correlation Coeff";
 svgStr[107][5]= "<h3>Correlation Analysis</h3>";
 svgStr[108][5]= "Correlation Matrix";
 svgStr[109][5]= "Factor1 - Factor2 Mean Graph";
+svgStr[110][5]= "Leverage";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -2890,7 +3028,7 @@ svgStrU[72][5] = "Friedman Distribution Table";
 $.message.es = {
     "eStat : Stat Education SW": "eStat : Software para Educación Estadística",
     "Filename": "Nombre del archivo",
-    "Selected Variables": "Variables seleccionadas",
+    "Selected Variables": "Var seleccionadas",
     "Cancel": "Cancelar",
     "Edit Variables": "Editar Variables",
     "Level": "Nivel",
@@ -3074,7 +3212,15 @@ $.message.es = {
     "Std Dev": "Desviación estándar",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 groupo)",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
     "GroupVar": "Groupo Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": " X1, X2 : Paired Variables",
     "SizeVar": "Size Var",
     "RegressionBand": "Confianza Bandes",
     "RegressionTable": "Regresión Analysis",
@@ -3111,7 +3257,7 @@ $.message.es = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Rank Sum",
+    "Sample Range": "Sample Range",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -3128,7 +3274,15 @@ $.message.es = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3146,7 +3300,10 @@ alertMsg[6][6] = "No están permitidos análisis estadísticos o crear tablas si
 alertMsg[7][6] = "Si más de tres variables son seleccionadas en el análsisi de datos crudo o crear una tabla no está permitido";
 alertMsg[8][6] = "Gráfico de puntos permitido si el número de observaciones es menor que 200";
 alertMsg[9][6] = "Se permite el Diagrama de Tallo y Hojas  si el número de observaciones es menor que 100";
+alertMsg[10][6] = "Analysis variable is not selected.";
+alertMsg[11][6] = "Analysis/Group variables are not selected.";
 alertMsg[12][6] = "No están permitidos análisis o crear tablas si la variable de análisis incluye datos de tipo carácter";
+alertMsg[13][6] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][6] = "No están permitidos los datos resumidos  para gráficos continuos y pruebas de hipótesis";
 alertMsg[16][6] = "Solo dos grupos permitidos";
 alertMsg[17][6] = "El diagrama de dispersión requiere al menos la variable x y la variable y";
@@ -3173,6 +3330,8 @@ alertMsg[42][6] = "No se permite la edición del titulo de la prueba de hipótes
 alertMsg[43][6] = "Simple Linear Regression is only for one group";
 alertMsg[44][6] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][6] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][6] = "The same variable number is selected.";
+
 svgStr[1][6] = " Diagrama de barras";
 svgStr[2][6] = " Diagrama de tarta";
 svgStr[3][6] = " Gráfico tipo dónut";
@@ -3282,6 +3441,7 @@ svgStr[106][6]= "Multiple Correlation Coeff";
 svgStr[107][6]= "<h3>Correlation Analysis</h3>";
 svgStr[108][6]= "Correlation Matrix";
 svgStr[109][6]= "Factor1 - Factor2 Mean Graph";
+svgStr[110][6]= "Leverage";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -3543,7 +3703,15 @@ $.message.vi = {
     "Std Dev": "Độ lệch chuẩn",
     "SimulationWarning": "Kết thúc giả lập trước khi tiếp tục",
     "OneGroup": "(Một nhóm)",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
     "GroupVar": "Group Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": " X1, X2 : Paired Variables",
     "SizeVar": "Size Var",
     "RegressionBand": "Khoảng tin cậy",
     "RegressionTable": "Phân Tích hồi quy",
@@ -3580,7 +3748,7 @@ $.message.vi = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Rank Sum",
+    "Sample Range": "Sample Range",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -3597,7 +3765,15 @@ $.message.vi = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -3615,7 +3791,10 @@ alertMsg[6][7] = "Nếu biến có chứa chuỗi (chữ cái),không thể phâ
 alertMsg[7][7] = "Nếu chọn hơn 3 biến, việc phân tích hoặc tạo bảng sẽ không thực thi";
 alertMsg[8][7] = "Biểu đồ chấm chỉ cho cỡ mẫu nhỏ hơn 200";
 alertMsg[9][7] = "Đồ thị Stem and Leaf chỉ cho cỡ mẫu nhỏ hơn 100";
+alertMsg[10][7] = "Analysis variable is not selected.";
+alertMsg[11][7] = "Analysis/Group variables are not selected.";
 alertMsg[12][7] = "Nếu biến chứa chuỗi, không thể phân tích hay tạo bảng";
+alertMsg[13][7] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][7] = "Bảng tóm tắt không thể tạo cho đồ thị liên tục và kiểm định giả thuyết";
 alertMsg[16][7] = "Kiểm định này chỉ cho phép 2 nhóm";
 alertMsg[17][7] = "Biểu đồ phân tán cần ít nhất biến x và biến y";
@@ -3642,6 +3821,8 @@ alertMsg[42][7] = "Không thể thay đổi tên của kiểm định! ";
 alertMsg[43][7] = "Simple Linear Regression is only for one group";
 alertMsg[44][7] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][7] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][7] = "The same variable number is selected.";
+
 svgStr[1][7] = " B/đồ cột";
 svgStr[2][7] = " B/đồ Pie";
 svgStr[3][7] = " B/đồ Donut";
@@ -3751,6 +3932,7 @@ svgStr[106][7]= "Multiple Correlation Coeff";
 svgStr[107][7]= "<h3>Correlation Analysis</h3>";
 svgStr[108][7]= "Correlation Matrix";
 svgStr[109][7]= "Factor1 - Factor2 Mean Graph";
+svgStr[110][7]= "Leverage";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -3829,7 +4011,7 @@ svgStrU[72][7] = "Friedman Distribution Table";
 $.message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
     "Filename": "Nama File",
-    "Selected Variables": "Pilih Variabel",
+    "Selected Variables": "Pilih Var",
     "Cancel": "Batal",
     "Edit Variables": "Edit Variabel",
     "Level": "Level",
@@ -4013,7 +4195,15 @@ $.message.id = {
     "Std Dev": "Standar Deviasi",
     "SimulationWarning": "( Simulasi yang sekarang harus terlebih dahulu diselesaikan sebelum anda memulai simulasi yang selanjutnya)",
     "OneGroup": "(Satu Grup)",
-    "GroupVar": "Grup Var",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
+    "GroupVar": "Group Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": " X1, X2 : Paired Variables",
     "SizeVar": "Size Var",
     "RegressionBand": "Selang Kepercayaan",
     "RegressionTable": "Analisis Regresi",
@@ -4050,7 +4240,7 @@ $.message.id = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Rank Sum",
+    "Sample Range": "Sample Range",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -4067,7 +4257,15 @@ $.message.id = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -4085,7 +4283,10 @@ alertMsg[6][8] = "Jika analisis variabel di data ringkasan mengandung karakter, 
 alertMsg[7][8] = "Jika terdapat lebih dari tiga variabel terpilih dari data awal, analisis atau membuat tabel tidak dapat dilakukan.";
 alertMsg[8][8] = "Diagram Dot dapat dibuat jika jumlah amatan kurang dari 200.";
 alertMsg[9][8] = "Diagram Dahan dan Daun dapat dibuat jika banyak amatan kurang dari 100.";
+alertMsg[10][8] = "Analysis variable is not selected.";
+alertMsg[11][8] = "Analysis/Group variables are not selected.";
 alertMsg[12][8] = "Jika analisis variabel mengandung karakter, analisis atau membuat tabel tidak dapat dilakukan.";
+alertMsg[13][8] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][8] = "Data ringkasan tidak dapat digunakan untuk grafik kontinu dan uji hipotesis.";
 alertMsg[16][8] = "Hanya dua grup yang diperbolehkan untuk uji hipotesis ini.";
 alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel x dan variabel y.";
@@ -4112,6 +4313,8 @@ alertMsg[42][8] = "Mengubah judul dari uji hipotesis tidak diperbolehkan!";
 alertMsg[43][8] = "Simple Linear Regression is only for one group";
 alertMsg[44][8] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][8] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][8] = "The same variable number is selected.";
+
 svgStr[1][8] = " Diagram Batang";
 svgStr[2][8] = " Diagram Pai";
 svgStr[3][8] = " Diagram Donat";
@@ -4221,6 +4424,7 @@ svgStr[106][8]= "Multiple Correlation Coeff";
 svgStr[107][8]= "<h3>Correlation Analysis</h3>";
 svgStr[108][8]= "Correlation Matrix";
 svgStr[109][8]= "Factor1 - Factor2 Mean Graph";
+svgStr[110][8]= "Leverage";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -4482,7 +4686,15 @@ $.message.mn = {
     "Mean": "Дундаж  утга",
     "Std Dev": "Стандарт хэлбэлзэл",
     "OneGroup": "(Нэг бүлэг)",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
     "GroupVar": "Group Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": " X1, X2 : Paired Variables",
     "SizeVar": "Size Var",
     "RegressionBand": "Итгэх түвшин",
     "RegressionTable": "Регрессийн шинжилгээ",
@@ -4519,7 +4731,7 @@ $.message.mn = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Rank Sum",
+    "Sample Range": "Sample Range",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -4536,7 +4748,15 @@ $.message.mn = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -4554,7 +4774,10 @@ alertMsg[6][9] = "Хэрэв хураангуйлсан өгөгдлийн ши�
 alertMsg[7][9] = "Нэг мөрөн дэх өгөгдөлөөс хэрэв гурваас илүү хувьсагч сонгогдвол шинжилгээ болон хүснэгт үүсгэх нь зөвшөөрөгдөхгүй";
 alertMsg[8][9] = "Хэрэв шинжилгээний тоо нь 200 гаас баг үед цэгэн график зөвшөөрөгдөнө ";
 alertMsg[9][9] = "Хэрэв ажиглалтын тоо 100-аас бага болStem & Leaf Plot график нь зөвшөөрөгдөнө";
+alertMsg[10][9] = "Analysis variable is not selected.";
+alertMsg[11][9] = "Analysis/Group variables are not selected.";
 alertMsg[12][9] = "Хэрэв судалгааны хувьсагч нь тэмдэгт, судалгаа, хүснэгт агуулсан бол хүлээн зөвшөөрөгдөхгүй";
+alertMsg[13][9] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][9] = "Үргэлжилсэн график болон тестийн таамаглалын хувьд хураангуй өгөгдөл нь зөвшөөрөгдөхгүй ";
 alertMsg[16][9] = "Энэ туршилтын таамаглалд зөвхөн 2 групп зөвшөөрөгдөнө";
 alertMsg[17][9] = "Тархалтын график нь хамгийн багадаа х болон у хувьсагч шаардана";
@@ -4581,6 +4804,8 @@ alertMsg[42][9] = "Тестэн таамаглалын гарчигийг зас
 alertMsg[43][9] = "Simple Linear Regression is only for one group";
 alertMsg[44][9] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][9] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][9] = "The same variable number is selected.";
+
 svgStr[1][9] = " Баганан график";
 svgStr[2][9] = " Бялуун график";
 svgStr[3][9] = " Цагирган график";
@@ -4690,6 +4915,7 @@ svgStr[106][9]= "Multiple Correlation Coeff";
 svgStr[107][9]= "<h3>Correlation Analysis</h3>";
 svgStr[108][9]= "Correlation Matrix";
 svgStr[109][9]= "Factor1 - Factor2 Mean Graph";
+svgStr[110][9]= "Leverage";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -4951,7 +5177,15 @@ $.message.zh = {
     "Std Dev": "标准差",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(一组)",
+    "AnalysisVar": "分析变量",
+    "AnalysisVar2": "Y变量",
     "GroupVar": "组变量",
+    "GroupVar2": "X变量",
+    "GroupVar3": "因子1",
+    "GroupVar4": "因子2",
+    "AnalysisVarMu12": "分析(or X1)変数",
+    "GroupVarMu12": "群(or X2)変数",
+    "PairedMu12": " X1, X2 : 対応変数",
     "SizeVar": "大小变量",
     "RegressionBand": "置信带",
     "RegressionTable": "回归分析",
@@ -4962,7 +5196,6 @@ $.message.zh = {
     "HistogramNormal": "直方图",
     "HistogramChisq": "正态检验",
     "HistogramNormalQQ": "正态Q-Q图",
-
     "PopulationStd": "人口标准差",
     "Type1Error": "第一类错误",
     "Type2Error": "第二类错误",
@@ -4988,7 +5221,7 @@ $.message.zh = {
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
     "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "標本順位合",
+    "Sample Range": "標本範圍",
     "DistributionTable": "分布表",
     "SignedRankTest": "Wilcoxon 符號順位檢定",
     "SignTest": "符號檢定",
@@ -5006,7 +5239,15 @@ $.message.zh = {
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 順位合檢定t,  n > 20 正規近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
     "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
-
+    "VariableSelect":  "* 資料分析 : 变量選択 >>  Click Icon",
+    "VariableSelect2": "* 变量選択 : Click 变量名 / 右側選択箱利用 ",
+    "VariableSelect3": "* 变量選択",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "要約資料",
+    "RawData": "原資料",
+    "RawData2": "原資料变量選択",
+    "SummaryExplain":  "Click 变量値変数, 分析变量 . Click Icon",
+    "RawExplain1": "Icon選択 > 变量選択 (or 变量選択 > Icon選択)",
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -5024,7 +5265,10 @@ alertMsg[6][10] = "若摘要资料中要进行分析的变量包含文字，则�
 alertMsg[7][10] = "若原始资料中有超过3个变量数被选择，则无法进行分析及制作图表。";
 alertMsg[8][10] = "点图可用于观察值少于200的样本。";
 alertMsg[9][10] = "茎叶图可用于观察值少于100的样本。";
+alertMsg[10][10] = "Analysis variable is not selected.";
+alertMsg[11][10] = "Analysis/Group variables are not selected.";
 alertMsg[12][10] = "若分析的变量包含文字，则无法进行分析及制作图表。";
+alertMsg[13][10] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][10] = "连续型图形及假设建议无法进行摘要资料。";
 alertMsg[16][10] = "此假设检验仅限于两个总体。";
 alertMsg[17][10] = "绘制散点图至少需要横轴变量及纵轴变量。";
@@ -5051,6 +5295,8 @@ alertMsg[42][10] = "假设检验的标题不可编辑! ";
 alertMsg[43][10] = "Simple Linear Regression is only for one group";
 alertMsg[44][10] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][10] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][10] = "The same variable number is selected.";
+
 svgStr[1][10] = " 条形图";
 svgStr[2][10] = " 饼图";
 svgStr[3][10] = " 圆环图";
@@ -5160,6 +5406,7 @@ svgStr[106][10]= "重相關係數";
 svgStr[107][10]= "<h3>相關分析</h3>";
 svgStr[108][10]= "相關係數行列";
 svgStr[109][10]= "因子1 - 因子2 平均図";
+svgStr[110][10]= "Leverage";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -5238,7 +5485,7 @@ svgStrU[72][10] = "Friedman檢定分布表";
 $.message.pt = {
     "eStat : Stat Education SW": "eStat : Educação Estatística SW",
     "Filename": "Nome do Arquivo",
-    "Selected Variables": "Variáveis Selecionadas",
+    "Selected Variables": "Var Selecionadas",
     "Cancel": "Cancelar",
     "Edit Variables": "Editar Variáveis",
     "Level": "Nível",
@@ -5424,7 +5671,15 @@ $.message.pt = {
     "Mean": "Média",
     "Std Dev": "Desvio Padrão",
     "OneGroup": "(um grupo)",
-    "GroupVar": "Grupo Variável",
+    "AnalysisVar": "Analysis Var",
+    "AnalysisVar2": "Y Var",
+    "GroupVar": "Group Var",
+    "GroupVar2": "X Var",
+    "GroupVar3": "Factor1",
+    "GroupVar4": "Factor2",
+    "AnalysisVarMu12": "Analysis(or X1) Variable",
+    "GroupVarMu12": "Group(or X2) Variable",
+    "PairedMu12": " X1, X2 : Paired Variables",
     "SizeVar": "Tamanho da Variável",
     "RegressionBand": "banda de confiança",
     "RegressionTable": "Análise de Regressão",
@@ -5461,7 +5716,7 @@ $.message.pt = {
     "NonParametricMu12_title": "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)", 
     "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Teste da Soma dos Postos",
-    "Sample Range": "Amplitude Rank Soma",
+    "Sample Range": "Amplitude Amostral",
     "DistributionTable": "Tabela de Distribuição",
     "SignedRankTest": "Teste da Soma dos Postos Sinalizados de Wilcoxon",
     "SignTest": "Teste dos sinais",
@@ -5478,6 +5733,15 @@ $.message.pt = {
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon Rank Soma Teste,  n > 20 Teste Aproximado pela Normal",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Soma Teste,  n>25 Teste Aproximado pela Normal",
     "KruskalCondition": "n ≤ 10 H Distribuição Teste,  else &chi;<sup>2</sup> approximado teste",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Selection",
+    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "SummaryData": "Summary Data",
+    "RawData": "Raw Data",
+    "RawData2": "Raw Data Variable Selection",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -5495,7 +5759,10 @@ alertMsg[6][11] = "A análise estatística ou tabela não serão realizadas se o
 alertMsg[7][11] = "A análise estatística ou tabela não serão realizadas se mais de três variáveis forem selecionadas..";
 alertMsg[8][11] = "O gráfico de pontos só é permitido para número de observações inferior a 200..";
 alertMsg[9][11] = "O gráfico Ramo-e-Folhas só é permitido para número de observações inferior a 100.";
+alertMsg[10][11] = "Analysis variable is not selected.";
+alertMsg[11][11] = "Analysis/Group variables are not selected.";
 alertMsg[12][11] = "A análise estatística ou tabela não serão realizadas se a variável selecionada incluir observações tipo caractere.";
+alertMsg[13][11] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
 alertMsg[14][11] = "Gráficos e testes para variáveis contínuas não podem ser realizados se os dados estiverem na forma resumida.";
 alertMsg[16][11] = "Apenas dois grupos são permitidos neste tipo de teste.";
 alertMsg[17][11] = "Diagrama de dispersão requer duas variáveis (x e y).";
@@ -5522,6 +5789,8 @@ alertMsg[42][11] = "Não é permitido editar o título do teste de hipótese!";
 alertMsg[43][11] = "Regressão Linear Simples é para um único grupo.";
 alertMsg[44][11] = "1o: Nome, 2o: latitude, 3o: longitude; 4o: Variável em Análise(opcional)";
 alertMsg[45][11] = "Não é possível desenhar o gráfico GIS para mais de cinco variáveis.";
+alertMsg[46][11] = "The same variable number is selected.";
+
 svgStr[1][11] = " Gráfico de Barras";
 svgStr[2][11] = " Gráfico de Setores";
 svgStr[3][11] = " Gráfico de Anel/Rosca";
@@ -5631,6 +5900,7 @@ svgStr[106][11]= "Coeficiente de Correlação Múltipla";
 svgStr[107][11]= "<h3>Análise de Correlação</h3>";
 svgStr[108][11]= "Matriz de Correlação";
 svgStr[109][11]= "Factor1 - Factor2 média gráfico";
+svgStr[110][11]= "Alavancagem";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";

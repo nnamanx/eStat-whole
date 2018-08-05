@@ -25,9 +25,43 @@ var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0
                  "#669966","#663366","#999966","#996666","#CCCC66","#CC9966","#CC6666","#CCFF66","#FFFF66","#FFCC66","#FF0066",
                  "#0000CC","#00FFCC","#0033CC","#3333CC","#3300CC","#33CCCC","#3366CC","#6666CC","#6633CC","#66CCCC","#6699CC",
                  "#9999CC","#9966CC","#99CCCC","#CCCCCC","#CCFFCC","#CC33CC","#CC99CC","#FFFFCC","#FFCCCC","#003300","#666600"];
-var colors = d3.scaleLinear()
-               .domain([0,1])
-               .range(["yellow","red"]);
+var colors = d3.scaleLinear().domain([0,1]).range(["yellow","red"]);
+// 그래프버튼의 string
+var strGraph = new Array(40);
+strGraph[1]  = "separate1";     // 수직 분리형 막대
+strGraph[2]  = "stack2V";       // 수직 쌓는형 막대
+strGraph[3]  = "ratio2V";       // 수직 비율형 막대
+strGraph[4]  = "side2V";        // 수직 나란형 막대
+strGraph[5]  = "bothbar2V";     // 수직 양쪽형 막대
+strGraph[6]  = "separate2H";    // 수평 분리형 막대
+strGraph[7]  = "stack2H";       // 수평 쌓는형 막대
+strGraph[8]  = "ratio2H";       // 수평 비율형 막대
+strGraph[9]  = "side2H";        // 수평 나란형 막대
+strGraph[10] = "bothbar2H";     // 수평 양쪽형 막대
+strGraph[11] = "pie1";          // 파이차트
+strGraph[12] = "donut2";        // 도넛 그래프
+strGraph[13] = "band1";         // 띠그래프
+strGraph[14] = "line1";         // 꺽은선그래프
+strGraph[15] = "dot1";          // 점그래프
+strGraph[16] = "box1";          // 상자그래프
+strGraph[17] = "stem1";         // 줄기잎그래프
+strGraph[18] = "bothstem2";     // 양쪽형 줄기잎그
+strGraph[19] = "hist1";         // 히스토그램
+strGraph[20] = "scatter1";      // 산점도
+strGraph[21] = "scatterRedraw"; // 산점도 Redraw
+strGraph[22] = "gis";           // GIS
+strGraph[23] = "freqTable";     // 도수분포표-꺽은선
+strGraph[24] = "testM1";        // 가설검정 mu
+strGraph[25] = "executeTH8";    // 가설검정 mu 실행
+strGraph[26] = "testS1";        // 가설검정 sigma
+strGraph[27] = "executeTH9";    // 가설검정 sigma 실행
+strGraph[28] = "testM12";       // 가설검정 mu12
+strGraph[29] = "executeTH10";   // 가설검정 mu12
+strGraph[30] = "testS12";       // 가설검정 sigma
+strGraph[31] = "executeTH11";   // 가설검정 sigma
+strGraph[32] = "anova";         // 가설검정 anova 
+strGraph[33] = "executeTH12";   // 가설검정 anova 
+strGraph[34] = "regression";    // 회귀분석
 
 // 한글 체크 
 function is_hangul_char(ch) {
@@ -37,19 +71,92 @@ function is_hangul_char(ch) {
   if( 0xAC00<=c && c<=0xD7A3 ) return true;
   return false;
 }
-
-// Button Color Change
-function buttonColorChange() {
-
-      document.getElementById("SVG").style.width  = svgWidth;
-      document.getElementById("SVG").style.height = svgHeight;
-      svgWidth2    = svgWidth;
-      svgHeight2   = svgHeight;
-      margin       = {top:80, bottom:80, left:80, right:100};
-      graphWidth   = svgWidth - margin.left - margin.right;   // 그래프 영역의 너비
-      graphHeight  = svgHeight - margin.top - margin.bottom;  // 그래프 영역의 높이
-//      tableLoc     = svgHeight + 160;
-
+// 그래프 top 선택 초기화
+function graphTopInitialize() {
+  document.getElementById("analysisSelect").options[0].selected = true
+  document.getElementById("analysisSelectMain").options[0].selected = true
+  document.getElementById("groupSelectMain").options[0].selected = true
+  document.getElementById("selectScatterY").options[0].selected = true
+  document.getElementById("selectScatterX").options[0].selected = true
+  document.getElementById("analysisANOVA").options[0].selected = true
+  document.getElementById("factor1Select").options[0].selected = true
+  document.getElementById("factor2Select").options[0].selected = true
+  document.getElementById("selectRegressionY").options[0].selected = true
+  document.getElementById("selectRegressionX").options[0].selected = true   // 배열
+  document.getElementById("analysisMu12").options[0].selected = true
+  document.getElementById("groupMu12").options[0].selected = true
+  document.getElementById("analysisLine").options[0].selected = true
+  document.getElementById("xaxisLine").options[0].selected = true   // 배열
+}
+// 그래프 top Hide
+function graphTopHide() {
+  checkPastColSelection = false;
+  top0Visited = false;
+  top1Visited = false;
+  top2Visited = false;
+  top3Visited = false;
+  top4Visited = false;
+  top5Visited = false;
+  top6Visited = false;
+  document.getElementById("top0").style.display = "none"; // 분석변수 선택 감추기
+  document.getElementById("top1").style.display = "none";  // 분석-그룹 변수선택 감추기
+  document.getElementById("top2").style.display = "none";  // 산점도 Y변수, X변수 감추기
+  document.getElementById("top3").style.display = "none";  // 분산분석 분석, Factor1, Factor2 감추기
+  document.getElementById("top4").style.display = "none";  // 회귀분석 Y변수, X변수 감추기
+  document.getElementById("top5").style.display = "none";  // TH Mu12 분석-그룹변수 감추기
+  document.getElementById("top6").style.display = "none";  // TH Mu12 분석-그룹변수 감추기
+}
+// 그래프 top0 변수선택 표시 - TH mu, sigma
+function graphTop0Show() {
+   graphTopInitialize();
+   graphTopHide();
+   top0Visited = true;
+   document.getElementById("top0").style.display = "block"; // 분석변수 선택 표시
+}
+// 그래프 top1 변수선택 표시 - 막대/원/띠/   점/히스토/줄기/상자/THSigma12
+function graphTop1Show() { 
+   graphTopInitialize();
+   graphTopHide();
+   top1Visited = true;
+   document.getElementById("top1").style.display = "block"; // 분석-그룹 변수선택 표시
+}
+// 그래프 top2 변수선택 표시 -  산점도
+function graphTop2Show() {
+   graphTopInitialize();
+   graphTopHide();
+   top2Visited = true;
+   document.getElementById("top2").style.display = "block"; // 산점도 Y변수, X변수  표시
+}
+// 그래프 top3 변수선택 표시 - 분산분석
+function graphTop3Show() {
+   graphTopInitialize();
+   graphTopHide();
+   top3Visited = true;
+   document.getElementById("top3").style.display = "block"; // 분산분석 분석, Factor1, Factor2  표시
+}
+// 그래프 top4 변수선택 표시 - 회귀분석
+function graphTop4Show() {
+   graphTopInitialize();
+   graphTopHide();
+   top4Visited = true;
+   document.getElementById("top4").style.display = "block"; // 회귀분석 Y변수, X변수 표시
+}
+// 그래프 top5 변수선택 표시 - TH Mu12
+function graphTop5Show() {
+   graphTopInitialize();
+   graphTopHide();
+   top5Visited = true;
+   document.getElementById("top5").style.display = "block"; // TH Mu12 분석-그룹변수 표시
+}
+// 그래프 top6 변수선택 표시 - 꺽은선
+function graphTop6Show() {
+   graphTopInitialize();
+   graphTopHide();
+   top6Visited = true;
+   document.getElementById("top6").style.display = "block"; // 꺽은선 표시
+}
+// 그래프 sub 선택사항 감추기
+function graphSubHide() {
       document.getElementById("freq").checked     = false;
       document.getElementById("mean").checked     = false;
       document.getElementById("DotMean").checked  = false;
@@ -58,6 +165,34 @@ function buttonColorChange() {
       document.getElementById("HistMean").checked = false;
       document.getElementById("HistFreq").checked = false;
       document.getElementById("HistLine").checked = false;
+      document.getElementById("sub1").style.display  = "none";  //분리형 막대 도수표시 감추기
+      document.getElementById("sub2").style.display  = "none";  //분리형 막대 정렬 감추기
+      document.getElementById("sub3").style.display  = "none";  //띠그래프 도수표시 감추기
+      document.getElementById("sub4").style.display  = "none";  //꺽은선그래프 정렬 감추기
+      document.getElementById("sub5").style.display  = "none";  //점그래프 평균 표준편차 감추기
+      document.getElementById("sub6").style.display  = "none";  //산점도 회귀선 감추기
+      document.getElementById("sub7").style.display  = "none";  //히스토그램 선택사항 감추기
+      document.getElementById("sub8").style.display  = "none";  //가설검정 Mu 1 선택사항 감추기
+      document.getElementById("sub9").style.display  = "none";  //가설검정 Sigma 1 선택사항 감추기
+      document.getElementById("sub10").style.display = "none";  //가설검정 Mu 12 선택사항 감추기
+      document.getElementById("sub11").style.display = "none";  //가설검정 Sigma 12 선택사항 감추기
+      document.getElementById("sub12").style.display = "none";  //가설검정 ANOVA 선택사항 감추기
+      document.getElementById("sub13").style.display = "none";  //그래프 제목편집 선택사항 감추기
+      document.getElementById("sub14").style.display = "none";  //변량편집 선택사항 감추기
+      document.getElementById("sub15").style.display = "none";  //Two way ANOVA
+      document.getElementById("sub16").style.display = "none";  //Simple Linear Regression 감추기
+}
+// Button Color Change
+function buttonColorChange() {
+      graphSubHide(); // 그래프 sub 선택사항 감추기
+      document.getElementById("SVG").style.width  = svgWidth;
+      document.getElementById("SVG").style.height = svgHeight;
+      svgWidth2    = svgWidth;
+      svgHeight2   = svgHeight;
+      margin       = {top:80, bottom:80, left:80, right:100};
+      graphWidth   = svgWidth - margin.left - margin.right;   // 그래프 영역의 너비
+      graphHeight  = svgHeight - margin.top - margin.bottom;  // 그래프 영역의 높이
+//      tableLoc     = svgHeight + 160;
 
       checkFreq     = false;
       checkBandFreq = false;
@@ -95,24 +230,6 @@ function buttonColorChange() {
       THanova     = false;
       EditGraph   = false;
 
-      // 각 그래프 선택사항 컨트롤
-      document.getElementById("sub1").style.display  = "none";  //분리형 막대 도수표시 감추기
-      document.getElementById("sub2").style.display  = "none";  //분리형 막대 정렬 감추기
-      document.getElementById("sub3").style.display  = "none";  //띠그래프 도수표시 감추기
-      document.getElementById("sub4").style.display  = "none";  //꺽은선그래프 정렬 감추기
-      document.getElementById("sub5").style.display  = "none";  //점그래프 평균 표준편차 감추기
-      document.getElementById("sub6").style.display  = "none";  //산점도 회귀선 감추기
-      document.getElementById("sub7").style.display  = "none";  //히스토그램 선택사항 감추기
-      document.getElementById("sub8").style.display  = "none";  //가설검정 Mu 1 선택사항 감추기
-      document.getElementById("sub9").style.display  = "none";  //가설검정 Sigma 1 선택사항 감추기
-      document.getElementById("sub10").style.display = "none";  //가설검정 Mu 12 선택사항 감추기
-      document.getElementById("sub11").style.display = "none";  //가설검정 Sigma 12 선택사항 감추기
-      document.getElementById("sub12").style.display = "none";  //가설검정 ANOVA 선택사항 감추기
-      document.getElementById("sub13").style.display = "none";  //그래프 제목편집 선택사항 감추기
-      document.getElementById("sub14").style.display = "none";  //변량편집 선택사항 감추기
-      document.getElementById("sub15").style.display = "none";  //Two way ANOVA
-      document.getElementById("sub16").style.display = "none";  //Simple Linear Regression 감추기
-
       document.getElementById("separate1").style.backgroundColor  = buttonColorB;
       document.getElementById("pie1").style.backgroundColor       = buttonColorB;
       document.getElementById("band1").style.backgroundColor      = buttonColorB;
@@ -144,9 +261,7 @@ function buttonColorChange() {
       document.getElementById("testM12").style.backgroundColor    = buttonColorB;
       document.getElementById("testS12").style.backgroundColor    = buttonColorB;
       document.getElementById("anova").style.backgroundColor      = buttonColorB;
-//      document.getElementById("anova2").style.backgroundColor     = buttonColorB;
       document.getElementById("regression").style.backgroundColor = buttonColorB;
-
 }
 
 // 초기 그래프 제목
@@ -156,7 +271,7 @@ function graphTitle() {
     for (i = 1; i < graphNumMax; i++) {
       mTitle[i] = "";
       switch (i) {
-        case  1: gstr = svgStr[1][langNum];     break;
+        case  1: gstr = svgStr[1][langNum];     break; // 막대
         case  2: gstr = svgStr[1][langNum];     break;
         case  3: gstr = svgStr[1][langNum];     break;
         case  4: gstr = svgStr[1][langNum];     break;
@@ -166,25 +281,35 @@ function graphTitle() {
         case  8: gstr = svgStr[1][langNum];     break;
         case  9: gstr = svgStr[1][langNum];     break;
         case 10: gstr = svgStr[1][langNum];     break;
-        case 11: gstr = svgStr[2][langNum];     break;
-        case 12: gstr = svgStr[3][langNum];    	break;
-        case 13: gstr = svgStr[4][langNum]; 	break;
-        case 14: gstr = svgStr[5][langNum];    	break;
-        case 15: gstr = svgStr[6][langNum];   	break;
-        case 16: gstr = svgStr[7][langNum];    	break;
-        case 17: gstr = svgStr[8][langNum];   	break;
-        case 18: gstr = svgStr[8][langNum];    	break;
-        case 19: gstr = svgStr[9][langNum];    	break;
-        case 20: gstr = svgStr[10][langNum];   	break;
-        case 21: gstr = svgStr[11][langNum];    break;
-        case 22: gstr = svgStr[12][langNum];  	break;
-        case 23: gstr = svgStr[13][langNum];    break;
-        case 24: gstr = svgStr[14][langNum];    break;
-        case 25: gstr = svgStr[15][langNum];    break;
-        case 26: gstr = svgStr[85][langNum];    break;
-        case 27: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
-        case 28: gstr = svgStr[88][langNum];    break; // 2차원평균표
-        case 29: gstr = svgStr[89][langNum];    break; // 산점도행렬
+        case 11: gstr = svgStr[2][langNum];     break; // 원
+        case 12: gstr = svgStr[3][langNum];    	break; // 도넛
+        case 13: gstr = svgStr[4][langNum]; 	break; // 띠
+        case 14: gstr = svgStr[5][langNum];    	break; // 꺽은선
+        case 15: gstr = svgStr[6][langNum];   	break; // 점
+        case 16: gstr = svgStr[7][langNum];    	break; // 상자
+        case 17: gstr = svgStr[8][langNum];   	break; // 줄기
+        case 18: gstr = svgStr[8][langNum];    	break; 
+        case 19: gstr = svgStr[9][langNum];    	break; // 히스토
+        case 20: gstr = svgStr[10][langNum];   	break; // 산점도
+        case 21: gstr = svgStr[10][langNum];    break; 
+        case 22: gstr = svgStr[111][langNum];  	break; // GIS
+        case 23: gstr = svgStr[5][langNum];     break; // 도수분포표의 꺽은선
+        case 24: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
+        case 25: gstr = svgStr[11][langNum];    break; // TH mu
+        case 26: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
+        case 27: gstr = svgStr[12][langNum];    break; // TH sigma
+        case 28: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
+        case 29: gstr = svgStr[13][langNum];    break; // TH mu12
+        case 30: gstr = svgStr[86][langNum];   	break; // 신뢰구간 그래프
+        case 31: gstr = svgStr[14][langNum];    break; // TH sigma12
+        case 32: gstr = svgStr[86][langNum];  	break; // 신뢰구간 그래프
+        case 33: gstr = svgStr[13][langNum];    break; // ANOVA
+        case 34: gstr = svgStr[89][langNum];    break; // 산점도행렬
+        case 35: gstr = svgStr[83][langNum];    break; // 잔차산점도
+        case 36: gstr = svgStr[80][langNum];    break; // Q-Q plot
+        case 37: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
+        case 38: gstr = svgStr[97][langNum];    break; // Cook Graph
+        case 39: gstr = svgStr[85][langNum];    break; // 이원분산분석
       }
       iTitle[i] = gstr;
     }
@@ -256,43 +381,6 @@ function graphTitle() {
     }
 
 }
-
-
-function redrawGraph(graphNum) {
-  
-    switch (graphNum) {
-      case  1: str = "separate2V";  break;
-      case  2: str = "stack2V";     break;
-      case  3: str = "ration2V";    break;
-      case  4: str = "side2V";      break;
-      case  5: str = "bothbar2V";   break;
-      case  6: str = "separate2H";  break;
-      case  7: str = "stack2H";     break;
-      case  8: str = "ratio2H";     break;
-      case  9: str = "side2H";      break;
-      case 10: str = "bothbar2H";   break;
-      case 11: str = "pie1";        break;
-      case 12: str = "donut2";      break;
-      case 13: str = "band1";       break;
-      case 14: str = "line1";       break;
-      case 15: str = "dot1";        break;
-      case 16: str = "box1";        break;
-      case 17: str = "stem1";       break;
-      case 18: str = "bothstem2";   break;
-      case 19: str = "hist1";       break;
-      case 20: str = "scatter1";    break;
-      case 21: str = "executeTH8";  break;
-      case 22: str = "executeTH9";  break;
-      case 23: str = "executeTH10"; break;
-      case 24: str = "executeTH11"; break;
-      case 25: str = "executeTH12"; break;
-      default: str = "separate2V";
-    }
-
-    document.getElementById(str).click();
-}
-
-
 //  =================================================================================
 //  eStatE.js 이산형그래프 함수 -----------------------------------------------------
 //  =================================================================================
@@ -310,7 +398,7 @@ function dataClassify() {
       checkVarSelect = true;
       if (numVar == 0) {
         checkVarSelect = false;
-        alert(alertMsg[2][langNum]);
+//       alert(alertMsg[2][langNum]);
         return;
       }
 
@@ -374,40 +462,40 @@ function dataClassify() {
           }
         }
 
-        gobs        = tdobs[0];
-        gvarNumber  = tdvarNumber[0];
-        gvarName    = tdvarName[0];
-        ngvalue     = tdvalueNum[0]  
+        gobs        = tdobs[1];
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        ngvalue     = tdvalueNum[1]  
         for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[0][k];
-          if ( tdvalueLabel[0][k] == null ) {
-            if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
+          gdataValue[k]  = tdvalue[1][k];
+          if ( tdvalueLabel[1][k] == null ) {
+            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
             else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
           }
           else {
-            gvalueLabel[k] = tdvalueLabel[0][k];
+            gvalueLabel[k] = tdvalueLabel[1][k];
           }
         } 
-        for (i = 0; i < gobs; i++) gvar[i] = tdvar[0][i];
+        for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];
 
-        dobs        = tdobs[1];
-        dvarNumber  = tdvarNumber[1];
-        dvarName    = tdvarName[1];
-        ndvalue     = tdvalueNum[1];
+        dobs        = tdobs[0];
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        ndvalue     = tdvalueNum[0];
         for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[1][k];
-          if (tdvalueLabel[1][k] == null ) {
-            dvalueLabel[k] = tdvalue[1][k];
+          dataValue[k]   = tdvalue[0][k];
+          if (tdvalueLabel[0][k] == null ) {
+            dvalueLabel[k] = tdvalue[0][k];
           }
           else {
-            dvalueLabel[k] = tdvalueLabel[1][k];
+            dvalueLabel[k] = tdvalueLabel[0][k];
           }
         } 
-        for (i = 0; i < dobs; i++) dvar[i] = tdvar[1][i]; 
+        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i]; 
 
         // check 원시자료
         rawData = true;
-        if (gobs == ngvalue) rawData = false; 
+        if (dobs == ndvalue) rawData = false; 
         if (rawData) ngroup = ngvalue;
         else ngroup = numVar - 1;
 
@@ -518,7 +606,11 @@ function dataClassify() {
         freqMin  = dataA[0];  
         if (freqMin > 0) freqMin = 0;     
         freqMax  = dataA[ndvalue-1];
-        freqMax += Math.floor(freqMax/8+1);      
+        freqMax += Math.floor(freqMax/8+1);  
+        if (freqMin < 0) {
+          alert(alertMsg[22][langNum]); // 음수
+          return;
+        };    
       }
       else {
         freqMin = 0;
@@ -529,16 +621,192 @@ function dataClassify() {
             if (dataSet[k][j] > freqMax) freqMax = dataSet[k][j]; 
           }
         } 
-
-        if (freqMin < 0) freqMin += Math.floor(freqMin/8-1);
+        if (freqMin < 0) freqMin += Math.floor(freqMin/8.-1);
         else { 
-          freqMin -= Math.floor(freqMin/8-1);
+          freqMin -= Math.floor(freqMin/8.-1);
           if (freqMin > 0) freqMin = 0;   
         }
-        freqMax += Math.floor(freqMax/8+1); 
+        freqMax += Math.floor(freqMax/8.+1); 
       }
 }
+function dataClassifyLine() { // 꺽은선 데이터
+      // 자료가 없으면 경고
+      checkData = true;
+      for (k = 0; k < numVar; k++) {
+        if (tdobs[k] == 0) {
+          checkData = false;
+//          alert(alertMsg[1][langNum]);
+          return;
+        }
+      }
+      // 변량선택 안하면 경고
+      checkVarSelect = true;
+      if (numVar == 0) {
+        checkVarSelect = false;
+//       alert(alertMsg[2][langNum]);
+        return;
+      }
 
+      // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
+      for (k = 0; k < rowMax; k++) {
+        gvar[k]        = null;
+        gdataValue[k]  = null;
+        gvalueLabel[k] = null;
+        dvar[k]        = null;
+        dataValue[k]   = null;
+        dvalueLabel[k] = null;
+      } 
+
+      freqMin = 0;
+      if (numVar < 2) { // 꺽은선의 변수 하나는 허용안함
+        checkVarSelect = false;
+        return
+      } 
+      else { // 두 개 이상의 변수는 요약자료
+        // check missing
+        checkMissing = false;
+        for (k=1; k<numVar; k++) {
+          if (tdobs[k] != tdobs[0]) {
+            checkMissing = true;
+            alert(alertMsg[4][langNum]);
+            return;
+          }
+        }
+/*
+        gobs        = tdobs[1];
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        ngvalue     = tdvalueNum[1]  
+        for (k=0; k<ngvalue; k++) {
+          gdataValue[k]  = tdvalue[1][k];
+          if ( tdvalueLabel[1][k] == null ) {
+            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
+            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+          }
+          else {
+            gvalueLabel[k] = tdvalueLabel[1][k];
+          }
+        } 
+        for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];
+*/
+        dobs        = tdobs[0];
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        ndvalue     = tdvalueNum[0];
+        for (k = 0; k < ndvalue; k++) {
+          dataValue[k]   = tdvalue[0][k];
+          if (tdvalueLabel[0][k] == null ) {
+            dvalueLabel[k] = tdvalue[0][k];
+          }
+          else {
+            dvalueLabel[k] = tdvalueLabel[0][k];
+          }
+        } 
+        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i]; 
+
+        ngroup = numVar - 1;
+        if (ngroup > 9)  alert(alertMsg[5][langNum]);
+        // 요약자료의 분석변량들의 Numeric 여부 체크
+        checkNumeric = true;
+        for (k=1; k<numVar; k++) {
+            for (i=0; i<dobs; i++) {
+              if (isNaN(tdvar[k][i])) {
+                checkNumeric = false;
+                alert(alertMsg[6][langNum]);
+                return;
+              } // endof if
+              else {
+                tdvar[k][i] = parseFloat(tdvar[k][i]);   // 숫자화
+              }
+            } // endof i
+        } // endof k
+
+      } // endof else
+
+      // 요약자료 ---------------------------------------
+        if (numVar == 2) gvarName = tdvarName[1];
+        else {
+          gvarName = "";
+          for (j=1; j<numVar; j++) gvarName += "V"+tdvarNumber[j]+" ";
+        }
+ 
+        for (k=0; k<ngroup; k++) {
+          dataSet[k]     = tdvar[k+1];
+          gvalueLabel[k] = tdvarName[k+1];
+        }   
+        ndvalue = dobs;
+        dvarName = tdvarName[0];
+
+        for (i=0; i<dobs; i++) {
+          dataValue[i]   = "";
+          dvalueLabel[i] = tdvar[0][i];
+        }
+    
+
+      // Main Program Logic ================================================
+
+      if (ngroup == 1) { // 분리형 막대와 선그래프에서 작동
+
+        currentDataSet = dataSet[0];
+        currentLabel   = dvalueLabel;
+         
+
+        for (i=0; i<ndvalue; i++) {
+          dataR[i]=dataSet[0][i]
+          dataA[i]=dataSet[0][i];
+          indexA[i] = i;
+          indexR[i] = i;
+          vlabelR[i]= dvalueLabel[i];
+        }
+        
+
+        for (i=0; i<ndvalue-1; i++) {
+          for (j=i; j<ndvalue; j++) {
+            if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi     = indexA[i];
+              dataA[i] = dataA[j];  indexA[i] = indexA[j];
+              dataA[j] = temp;      indexA[j] = tempi;
+            }
+          }
+        } 
+
+        for (i=0; i<ndvalue; i++) {
+          dataD[i]  = dataA[ndvalue-i-1];
+          indexD[i] = indexA[ndvalue-i-1];
+        }
+
+        for (i=0; i<ndvalue; i++) {
+          vlabelA[i] = dvalueLabel[indexA[i]];
+          vlabelD[i] = dvalueLabel[indexD[i]];
+        }
+
+        // 막대 너비/높이 계산
+        freqMin  = dataA[0];  
+        if (freqMin > 0) freqMin = 0;     
+        freqMax  = dataA[ndvalue-1];
+        freqMax += Math.floor(freqMax/8+1);  
+        if (freqMin < 0) {
+          alert(alertMsg[22][langNum]); // 음수
+          return;
+        };    
+      }
+      else {
+        freqMin = 0;
+        freqMax = 0;
+        for (k=0; k<ngroup; k++) {
+          for (j=0; j<=ndvalue+1; j++) {
+            if (dataSet[k][j] < freqMin) freqMin = dataSet[k][j];
+            if (dataSet[k][j] > freqMax) freqMax = dataSet[k][j]; 
+          }
+        } 
+        if (freqMin < 0) freqMin += Math.floor(freqMin/8.-1);
+        else { 
+          freqMin -= Math.floor(freqMin/8.-1);
+          if (freqMin > 0) freqMin = 0;   
+        }
+        freqMax += Math.floor(freqMax/8.+1); 
+      }
+}
 
 // Sorting in ascending and count each value frequency
 function sortAscend(dobs, dataA, dataValue, dvalueFreq) {
@@ -586,7 +854,6 @@ function sortAscendIndex(dobs, dataA, index) {
 }
 // 이산형 그래프 제목 쓰기 함수
 function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarName, dvarNumber, dvarName) { 
-        var str, gstr, xstr, ystr;
         var chekmTitle = false;
 
         // 주제목 값설정
@@ -2523,7 +2790,8 @@ function dataClassifyM() {
       checkVarSelect = true;
       if (numVar == 0) {
         checkVarSelect = false;
-        alert(alertMsg[2][langNum]);
+//        alert(alertMsg[2][langNum]);
+          return;
       }
       else if (numVar > 2) {
         checkVarSelect = false;
@@ -2598,35 +2866,37 @@ function dataClassifyM() {
           }
         }
         // 그룹변수
-        gobs        = tdobs[0];
-        gvarNumber  = tdvarNumber[0];
-        gvarName    = tdvarName[0];
-        ngvalue     = tdvalueNum[0];
+        gobs        = tdobs[1];
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        ngvalue     = tdvalueNum[1];
         for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[0][k];
-
-          if ( tdvalueLabel[0][k] == null ) {
-            if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
-            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+          gdataValue[k]  = tdvalue[1][k];
+          if ( tdvalueLabel[1][k] == null ) {
+            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
+            else {
+              if(graphNum == 32) gvalueLabel[k] = svgStr[92][langNum]+"1 : "+(k+1).toString(); // 인자
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();  // 그룹
+            }
           }
           else {
-            gvalueLabel[k] = tdvalueLabel[0][k];
+            gvalueLabel[k] = tdvalueLabel[1][k];
           }
         } 
         for (i = 0; i < gobs; i++) {
-          gvar[i] = tdvar[0][i];    
+          gvar[i] = tdvar[1][i];    
           gcolor[i] = myColor[gvar[i]];   
         }
         // 분석변수
-        dobs        = tdobs[1];
-        dvarNumber  = tdvarNumber[1];
-        dvarName    = tdvarName[1];
-        ndvalue     = tdvalueNum[1]
+        dobs        = tdobs[0];
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        ndvalue     = tdvalueNum[0]
         for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[1][k];
-          dvalueLabel[k] = tdvalueLabel[1][k];
+          dataValue[k]   = tdvalue[0][k];
+          dvalueLabel[k] = tdvalueLabel[0][k];
         } 
-        for (i = 0; i < dobs; i++) dvar[i] = tdvar[1][i];
+        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i];
 
         // check 요약자료 => 분산분석 자료 검정
         rawData   = true;
@@ -2695,6 +2965,7 @@ function dataClassifyM() {
       }
 
 }
+// 두그룹 평균비교 가설검정
 function dataClassifyM12() {
       // 자료가 없으면 경고
       checkData = true;
@@ -2709,7 +2980,8 @@ function dataClassifyM12() {
       checkVarSelect = true;
       if (numVar < 2) {  // 두 그룹 t-test는 무조건 두 변수 선택하여야 함
         checkVarSelect = false;
-        alert(alertMsg[2][langNum]);
+//        alert(alertMsg[2][langNum]);
+        return;
       }
       else if (numVar > 2) {
         checkVarSelect = false;
@@ -2739,31 +3011,31 @@ function dataClassifyM12() {
           }
       }
 
-      gobs        = tdobs[0];
-      gvarNumber  = tdvarNumber[0];
-      gvarName    = tdvarName[0];
-      ngvalue     = tdvalueNum[0];
+      gobs        = tdobs[1];
+      gvarNumber  = tdvarNumber[1];
+      gvarName    = tdvarName[1];
+      ngvalue     = tdvalueNum[1];
       for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[0][k];
-          if ( tdvalueLabel[0][k] == null ) {
-            if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
+          gdataValue[k]  = tdvalue[1][k];
+          if ( tdvalueLabel[1][k] == null ) {
+            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
             else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
           }
           else {
-            gvalueLabel[k] = tdvalueLabel[0][k];
+            gvalueLabel[k] = tdvalueLabel[1][k];
           }
       } 
-      for (i = 0; i < gobs; i++) gvar[i] = tdvar[0][i];       
+      for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];       
 
-      dobs        = tdobs[1];
-      dvarNumber  = tdvarNumber[1];
-      dvarName    = tdvarName[1];
-      ndvalue     = tdvalueNum[1]
+      dobs        = tdobs[0];
+      dvarNumber  = tdvarNumber[0];
+      dvarName    = tdvarName[0];
+      ndvalue     = tdvalueNum[0]
       for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[1][k];
-          dvalueLabel[k] = tdvalueLabel[1][k];
+          dataValue[k]   = tdvalue[0][k];
+          dvalueLabel[k] = tdvalueLabel[0][k];
       } 
-      for (i = 0; i < dobs; i++) dvar[i] = tdvar[1][i];
+      for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i];
 /*
       // check 요약자료 => 분산분석 자료 검정
       rawData   = true;
@@ -2864,7 +3136,7 @@ function dataClassifyS() {
         checkVarSelect = true;
         if (numVar == 0) {
           checkVarSelect = false;
-          alert(alertMsg[2][langNum]);
+//          alert(alertMsg[2][langNum]);
           return;
         }
         else if (numVar == 1) {
@@ -3028,7 +3300,7 @@ function dataClassifyGIS() {
         checkVarSelect = true;
         if (numVar == 0) {
           checkVarSelect = false;
-          alert(alertMsg[2][langNum]);
+//          alert(alertMsg[2][langNum]);
           return;
         }
         else if (numVar < 3) {
@@ -3184,7 +3456,7 @@ function dataClassifyANOVA2() {
       checkVarSelect = true;
       if (numVar != 3) {
         checkVarSelect = false;
-        alert(alertMsg[44][langNum]);
+//        alert(alertMsg[44][langNum]);
         return;
       }
 
@@ -3212,51 +3484,51 @@ function dataClassifyANOVA2() {
           }
       }
       // 첫째 gvar
-      gobs        = tdobs[0];
-      gvarNumber  = tdvarNumber[0];
-      gvarName    = tdvarName[0];
-      ngvalue     = tdvalueNum[0];
+      gobs        = tdobs[1];
+      gvarNumber  = tdvarNumber[1];
+      gvarName    = tdvarName[1];
+      ngvalue     = tdvalueNum[1];
       ngroup      = ngvalue;
       for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[0][k];
-          if ( tdvalueLabel[0][k] == null ) {
-            if (isNaN(tdvalue[0][k])) gvalueLabel[k] = tdvalue[0][k]; 
+          gdataValue[k]  = tdvalue[1][k];
+          if ( tdvalueLabel[1][k] == null ) {
+            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
             else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
           }
           else {
-            gvalueLabel[k] = tdvalueLabel[0][k];
+            gvalueLabel[k] = tdvalueLabel[1][k];
           }
       } 
-      for (i = 0; i < gobs; i++) gvar[i] = tdvar[0][i];       
+      for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];       
 
       // 둘째 gvar
-      gobs2        = tdobs[1];
-      gvarNumber2  = tdvarNumber[1];
-      gvarName2    = tdvarName[1];
-      ngvalue2     = tdvalueNum[1];
+      gobs2        = tdobs[2];
+      gvarNumber2  = tdvarNumber[2];
+      gvarName2    = tdvarName[2];
+      ngvalue2     = tdvalueNum[2];
       ngroup2      = ngvalue2;
       for (k=0; k<ngvalue2; k++) {
-          gdataValue2[k]  = tdvalue[1][k];
-          if ( tdvalueLabel[1][k] == null ) {
-            if (isNaN(tdvalue[1][k])) gvalueLabel2[k] = tdvalue[1][k]; 
+          gdataValue2[k]  = tdvalue[2][k];
+          if ( tdvalueLabel[2][k] == null ) {
+            if (isNaN(tdvalue[2][k])) gvalueLabel2[k] = tdvalue[2][k]; 
             else gvalueLabel2[k] = svgStr[18][langNum]+(k+1).toString();
           }
           else {
-            gvalueLabel2[k] = tdvalueLabel[1][k];
+            gvalueLabel2[k] = tdvalueLabel[2][k];
           }
       } 
-      for (i = 0; i < gobs; i++) gvar2[i] = tdvar[1][i];       
+      for (i = 0; i < gobs; i++) gvar2[i] = tdvar[2][i];       
 
       // 셋째 dvar
-      dobs        = tdobs[2];
-      dvarNumber  = tdvarNumber[2];
-      dvarName    = tdvarName[2];
-      ndvalue     = tdvalueNum[2]
+      dobs        = tdobs[0];
+      dvarNumber  = tdvarNumber[0];
+      dvarName    = tdvarName[0];
+      ndvalue     = tdvalueNum[0]
       for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[2][k];
-          dvalueLabel[k] = tdvalueLabel[2][k];
+          dataValue[k]   = tdvalue[0][k];
+          dvalueLabel[k] = tdvalueLabel[0][k];
       } 
-      for (i = 0; i < dobs; i++) dvar[i] = tdvar[2][i];
+      for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i];
 
       // check 그룹의 수가 너무 많은지 
       rawData   = true;
@@ -3439,7 +3711,7 @@ function dataClassifyRegression() {
         checkVarSelect = true;
         if (numVar == 0) {
           checkVarSelect = false;
-          alert(alertMsg[2][langNum]);
+//          alert(alertMsg[2][langNum]);
           return;
         }
         else if (numVar == 1) {
@@ -3642,7 +3914,10 @@ function drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNa
         // 주제목
         if (mTitle[graphNum] == "") {
           if (ngroup == 1) str = dvarName+svgStr[19][langNum]+iTitle[graphNum];
-          else str = "("+svgStr[18][langNum]+" "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum];
+          else {
+            if(graphNum == 32) str = "("+svgStr[92][langNum]+"1 : "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum]; // 인자
+            else str = "("+svgStr[18][langNum]+" "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum];
+          }
         }
         else str = mTitle[graphNum];
     
@@ -3825,7 +4100,7 @@ function drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
              .text(dvarName)
         xTitle[graphNum] = dvarName;
         // 인자 2의 범례
-        str = svgStr[92][langNum]+"2 : ";
+        str = svgStr[92][langNum]+"2 : ";  //인자
         chart.append("text")
                  .style("font-size","12px")
                  .style("font-family","sans-seirf")
@@ -3837,7 +4112,7 @@ function drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
                  .text(str);
         for (k=0; k<ngroup2; k++) {
             m  = ngroup + (k+1);
-            str = svgStr[93][langNum]+(k+1).toString()+"("+gdataValue2[k]+")";;  
+            str = svgStr[93][langNum]+(k+1).toString()+"("+gdataValue2[k]+")";;  // 수준 
             chart.append("text")
                  .style("font-size","12px")
                  .style("font-family","sans-seirf")
@@ -3954,7 +4229,7 @@ function showDotMean(ngroup, nobs, avg, std, tstat) {
        gxrange = gxmax - gxmin;
 
        var oneHeight = graphHeight / ngroup;
-       temp = 10;
+       temp = 5;
 
        for (k=0; k<ngroup; k++) {
          avgx  = margin.left + graphWidth*(avg[k]-gxmin)/gxrange;  
@@ -3965,13 +4240,13 @@ function showDotMean(ngroup, nobs, avg, std, tstat) {
             .attr("y1",ty + temp)
             .attr("x2",avgx)
             .attr("y2",ty + oneHeight)
-            .style("stroke","yellowgreen")            
+            .style("stroke",myColor[1])            
          chart.append("text")
               .attr("class","mean")
               .style("text-anchor","start")
               .style("font-size","9px")
               .style("font-family","sans-serif")
-              .style("stroke","#0055FF")
+              .style("stroke",myColor[1])
               .attr("x", avgx+temp)
               .attr("y", ty + oneHeight/2)
               .text("m="+f2(avg[k]))
@@ -4065,6 +4340,15 @@ function showDotStd(nroup, nobs, avg, std, tstat) {
             .attr("cy",ty)
             .attr("r",1)
             .style("fill","yellowgreen")   
+         chart.append("text")
+              .attr("class","std")
+              .style("text-anchor","middle")
+              .style("font-size","9px")
+              .style("font-family","sans-serif")
+              .style("stroke","yellowgreen")          
+              .attr("x", stdmx)
+              .attr("y", ty-5)
+              .text("95% CI")
 /*        
          chart.append("text")   // 표준오차
               .attr("class","std")
@@ -6339,7 +6623,6 @@ function statRegression(numVar, tdobs, tdvar) {
      for (j=0; j<numVar; j++) {
        sum = 0;
        for (k=0; k<numVar; k++) sum += XPX[i][k]*invXPX[k][j];
-   // console.log(sum)
      }
    }
    // residual, multiple correlation
@@ -6574,8 +6857,6 @@ function statMultivariate(numVar, tdobs, tdvar) {
        Cov[i][j] /= (prow - 1);
      }
    }
-
-// console.log(Corr);
 
 /*
 console.log("i=0 "+invXPX[0][0]+" "+invXPX[0][1]+" "+invXPX[0][2]);  
@@ -8376,7 +8657,7 @@ function regressionResidual(tobs, yhat, residual, title) {
            .style("font-family","sans-seirf")
            .style("stroke","black")
            .style("text-anchor","middle")
-           .text(svgStr[84][langNum]) // "예측값"
+           .text(xstr) // "예측값"
       // 축 그리기
       drawScatterAxis(gxmin, gxmax, gymin, gymax, graphWidth, graphHeight);  
       // 가운데 y=0 직선 그리기   

@@ -111,12 +111,10 @@
 	      <img src="img/eStat_icon17.png" id="scatter1" class="imageBtn1">
 	      <span class="tooltiptext" data-msgid="Scatterplot">산점도</span>
 	    </div>
-<!---
 	    <div class="tooltip">
 	      <img src="img/eStat_icon17.png" id="gis" class="imageBtn1">
 	      <span class="tooltiptext" data-msgid="GIS">지리정보그래프</span>
 	    </div>
---->
 	  </div>
 
 	  <div id="tool-group-summary-stat" class="tool-group">
@@ -219,20 +217,29 @@
 	    </form>
 	  </div>
 	</div>
-            </div>
+      </div>
 
       <div class="splitter-horizontal-1"></div>
       
       <main id="estat-main-container">
 	  
-	  <div id="screenLeft" style="font-size: 12px;">
-	      
-	      <div id="datasheet-option-container">
-		  <div class="form-group">
+        <div id="screenLeft" style="font-size: 12px;">    
+            <div id="datasheet-option-container">
+		<div class="form-group">
 		      <label for='loadFileName' data-msgid="Filename">파일이름</label>
 		      <input type="text" value="" id="loadFileName">
-		  </div>
-		  <div class="form-group">
+		</div >
+                <div style="color:blue; font-size:11px">
+<!---
+                  &nbsp;<span data-msgid="VariableSelect">데이터분석은 변수선택 후 아이콘 클릭</span> <br> 
+                  &nbsp;<span data-msgid="VariableSelect2">변수선택</span> <br>
+--->
+                  &nbsp;&nbsp;(<span data-msgid="SummaryData">요약자료</span>)
+                        <span data-msgid="SummaryExplain">변수값변량, 분석변량 클릭</span><br>
+                  &nbsp;&nbsp;(<span data-msgid="RawData">원시자료</span>)
+                        <span data-msgid="RawExplain1">분석변량 클릭 또는 그룹변량과 분석변량 클릭</span> <br>
+                </div>
+                <div class="form-group">
 		      <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
 		      <input type="text" value="" id="selectedVars">
 		      <button type="button" id="debugBtn" style='height: 20px; padding: 0 10px; margin-right: 2px;'>
@@ -241,10 +248,10 @@
 		      <button type="button" id='variableBtn' style='height: 20px; padding: 0 10px; margin-right: 2px;'>
 			  <span data-msgid='Edit Variables'>변량편집</span>
 		      </button>
-		  </div>
-	      </div>
-	  <div id="datasheet"> </div>
-	</div>
+                </div>
+            </div>
+            <div id="datasheet"> </div>
+        </div>
 
 	<div class="splitter-vertical-1"></div>
 	
@@ -300,9 +307,9 @@
 	      <img src="img/eStat_icon46.png" id="bothstem2" class="imageBtn2">
 	      <span class="tooltiptext" data-msgid="Two Sided Stem & Leaf Plot">양쪽형 줄기</span>
 	    </div>
-	    </div>
+	  </div>
 
-	    <div class="tool-group">
+	  <div class="tool-group">
 	    <div class="tooltip">
 	      <img src="img/eStat_icon47.png" id="saveGraph" class="imageBtn2">
 	      <span class="tooltiptext" data-msgid="Graph Save">그래프 저장</span>
@@ -319,14 +326,108 @@
 	      <img src="img/eStat_icon50.png" id="editGraph" class="imageBtn2">
 		      <span class="tooltiptext" data-msgid="Edit Title">제목편집</span>
 	    </div>
-	    </div>
+	  </div>
 	  </div> <!-- end of graph-toolbars -->
+          <div id="top0" class="option-group"> <!--- THmu/THsigma 변수선택 --->
+              <div style="font-size:12px">  
+                (<span data-msgid="RawData">원시자료</span>)
+                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
+                <select id="analysisSelect" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+              </div>
+          </div>
+          <div id="top1" class="option-group"> <!--- 막대/원/띠/   점/히스토/상자/줄기/THmu12/THs12 변수선택 --->
+              <div style="font-size:12px">  
+                (<span data-msgid="RawData">원시자료</span>)
+                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
+                <select id="analysisSelectMain" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="GroupVar">그룹변량</span> 
+                <select id="groupSelectMain" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+              </div>
+          </div>
+          <div id="top2" class="option-group"> <!--- 산점도 --->
+              <div style="font-size:12px">  
+                (<span data-msgid="RawData">원시자료</span>)
+                &nbsp;<span data-msgid="AnalysisVar2">Y변량</span> 
+                <select id="selectScatterY" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="GroupVar2">X변량</span> 
+                <select id="selectScatterX" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+              </div>
+          </div>
+          <div id="top3" class="option-group"> <!--- ANOVA --->
+              <div style="font-size:12px">  
+                (<span data-msgid="RawData">원시자료</span>)
+                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
+                <select id="analysisANOVA" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="GroupVar3">인자1</span> 
+                <select id="factor1Select" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="GroupVar4">인자2</span> 
+                <select id="factor2Select" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+              </div>
+          </div>
+          <div id="top4" class="option-group"> <!--- 회귀 --->
+              <div style="font-size:12px">  
+                (<span data-msgid="RawData">원시자료</span>)
+                &nbsp;<span data-msgid="AnalysisVar2">Y변량</span> 
+                <select id="selectRegressionY" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="GroupVar2">X변량</span> 
+                <select id="selectRegressionX" size="3" multiple style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;(<span data-msgid="MultipleSelection"> [Ctrl]키 누르고 다중선택가능</span>)
+              </div>
+          </div>
+          <div id="top5" class="option-group"> <!--- THmu12 변수선택 --->
+              <div style="font-size:12px">  
+                (<span data-msgid="RawData">원시자료</span>)
+                &nbsp;<span data-msgid="AnalysisVarMu12">분석(or X1)변량</span> 
+                <select id="analysisMu12" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="GroupVarMu12">그룹(or X2)변량</span> 
+                <select id="groupMu12" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;(<span data-msgid="PairedMu12">X1 or X2는 대응비교</span>)
+              </div>
+          </div>
+          <div id="top6" class="option-group"> <!--- 꺽은선 변수선택 --->
+              <div style="font-size:12px">  
+                &nbsp;<span data-msgid="GroupVar2">X변량</span> 
+                <select id="xaxisLine" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="AnalysisLine">분석변량</span> 
+                <select id="analysisLine" size="3" multiple style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;(<span data-msgid="MultipleSelection"> [Ctrl]키 누르고 다중선택가능</span>)
+              </div>
+          </div>
 
 	  <div id="graph-main-container">
 	    <svg id="SVG"></svg>
 	  </div>
 
 	  <div id="graph-option-container">
+
 	    <div id="sub1" class="option-group"> <!--- 막대그래프 --->
 	      <label>&nbsp;&nbsp;<input type="checkbox" id="freq"><span data-msgid="Frequency">도수표시</span></label>
 	    </div>
@@ -641,27 +742,24 @@
 	    </div>
 
 	    <div id="sub12" class="option-group"> <!-- 1 way Analysis of Variance -->
-
-	      <div class="fontmath">&nbsp;
-		H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub> &nbsp;&nbsp;
-		H<sub>1</sub> : <span data-msgid="At least one pair of means is different">at least one pair of population means is not equal</span>
-	      </div>
-
+	      <div class="fontmath">
+		&nbsp;H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub> 
+                <br>
+		&nbsp;H<sub>1</sub> : <span data-msgid="At least one pair of means is different">at least one pair of population means is not equal</span>
+	      </div>   
 	      <form action="#" name="myForm122">&nbsp;&nbsp;&nbsp;
 		<span class="fontmath" data-msgid="F test" >F  test </span>
-		<br>
 		&nbsp;&nbsp;&nbsp;
 		<span class="fontmath" data-msgid="Significance Level"> significance level &nbsp; &alpha; </span>
 		<span>
 		  <input type="radio" name = "type2" value="1" checked> 5%
 		  <input type="radio" name = "type2" value="2" > 1%
 		</span>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="button" size=12 id="executeTH12" >
 		  <span data-msgid="Execute">실행</span>
 		</button>
 	      </form>
-              <br>
               &nbsp;
 	      <button type="button" id="DotANOVA" >
 		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
