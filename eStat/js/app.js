@@ -1137,7 +1137,6 @@ document.getElementById("selectScatterY").onchange = function() {
 // 산점도 X변량 선택
 document.getElementById("selectScatterX").onchange = function() {
     if (numVar < 1) {alert(alertMsg[10][langNum]); return;}
-    if (numVar > 1) {alert(alertMsg[13][langNum]); return;}
     numVar = 1;
     k = parseInt(document.getElementById("selectScatterX").value) - 1;
     if (k < 0) return;
@@ -1270,7 +1269,6 @@ document.getElementById("selectRegressionY").onchange = function() {
 // 회귀분석 X변량 선택
 document.getElementById("selectRegressionX").onchange = function() {
 //    if (numVar < 1) {alert(alertMsg[10][langNum]); return;}
-//    if (numVar > 1) {alert(alertMsg[13][langNum]); return;}
     numVar = 1;
 //    str = "V"+tdvarNumber[0].toString()+","
     j = document.getElementById("selectRegressionX").options.length;
@@ -1321,7 +1319,6 @@ document.getElementById("analysisMu12").onchange = function() {
 // Mu12 그룹변량 선택
 document.getElementById("groupMu12").onchange = function() {
     if (numVar < 1) {alert(alertMsg[10][langNum]); return;}
-//    if (numVar > 1) {alert(alertMsg[13][langNum]); return;}
     numVar = 1;
     k = parseInt(document.getElementById("groupMu12").value) - 1;
     if (k < 0) return;

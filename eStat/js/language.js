@@ -319,13 +319,12 @@ $.message.ko = {
     "VariableSelect":  "* 데이터분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
     "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
     "VariableSelect3": "변량선택",
-    "VariableSelect4": "여러 개의 번량은 [Ctrl]키를 누르고 선택. 요약자료는 분석변수에서 변수선택.",
+    "VariableSelect4": "[Ctrl]키 누르고 여러 변량선택",
     "SummaryData": "요약자료",
     "RawData": "원시자료",
     "RawData2": "원시자료 변량선택",
     "SummaryExplain":  "시트에서 변량값변량, 분석변량 클릭 > 아이콘클릭",
     "RawExplain1": "아이콘클릭 > 변량선택 (변수명클릭 > 아이콘클릭도 가능)",
-    "MultipleSelection": "[Ctrl]키 누르고 여러 변량선택",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -346,7 +345,7 @@ alertMsg[9][0] = "줄기와 잎 그림은 데이터 수가 100개 이하일때 �
 alertMsg[10][0] = "분석변수가 선택되지 않았습니다.";
 alertMsg[11][0] = "분석변수/그룹변수가 선택되지 않았습니다.";
 alertMsg[12][0] = "분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
-alertMsg[13][0] = "분석변량이 두개 이상 선택(요약자료)된 경우는 요약자료경우여서 그룹변수를 선택할 수 없습니다.";
+alertMsg[13][0] = "";
 alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합치 않습니다";
 alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[17][0] = "산점도는 Y축변량과 X축변량을 선택하여야 합니다.";
@@ -800,7 +799,7 @@ $.message.en = {
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Range",
+    "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
@@ -820,11 +819,11 @@ $.message.en = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "VariableSelect4": "Hold [Ctrl] key to select multiple variables.",
     "SummaryData": "Summary Data",
     "RawData": "Raw Data",
     "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Click Icon",
     "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // English
@@ -846,7 +845,7 @@ alertMsg[9][1] = "Stem & Leaf Plot is allowd if the number of observation is les
 alertMsg[10][1] = "Analysis variable is not selected.";
 alertMsg[11][1] = "Analysis/Group variables are not selected.";
 alertMsg[12][1] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
-alertMsg[13][1] = "If more than two variables are selected for analysis variables, it is considered as summary data and a group variable cannot be selected.";
+alertMsg[13][1] = "";
 alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
 alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
 alertMsg[17][1] = "Scatter plot requires Y variable and X variable.";
@@ -1129,8 +1128,8 @@ $.message.ja = {
     "ANOVA2": "2元分散分析",
     "Regression": "回帰直線",
     "RegressionLine": "回帰直線",
-    "RegressionBand": "Confidence Band",
-    "RegressionTable": "Regression Analysis Table",		
+    "RegressionBand": "信賴帶",
+    "RegressionTable": "回帰分析表",		
     "Frequency Polygon": "度数分布多角形",
     "Execute New Interval": "区間を変えて実行",
     "Interval Start": "区間始点",
@@ -1263,7 +1262,7 @@ $.message.ja = {
     "RegressionBand": "信頼帯",
     "RegressionTable": "回帰分析",
     "RegressionResidual": "殘差プロット",
-    "RegressionResidualLeverage": "殘差 - Leverage",
+    "RegressionResidualLeverage": "殘差-レバレッジ",
     "RegressionCook": "Cook 距離グラフ",
     "RegressionQQ": "殘差Q-Qプロット",
     "HistogramNormal": "ヒストグラム",
@@ -1292,35 +1291,35 @@ $.message.ja = {
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat 入門講義",
-    "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
-    "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "標本範圍",
+    "NonParametricMu12_title": "ウィルコクソン順位合檢定", 
+    "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
-    "SignedRankTest": "Wilcoxon 符號順位檢定",
+    "SignedRankTest": "ウィルコクソン符號順位檢定",
     "SignTest": "符號檢定",
     "SignCount": "符號數",
-    "WilcoxonTest": "Wilcoxon 順位合檢定",
-    "KruskalTest": "Kruskal-Wallis 檢定",
-    "KruskalTestANOVA": "Kruskal-Wallis 檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "WilcoxonTest": "ウィルコクソン順位合檢定",
+    "KruskalTest": "クルスカル-ウォリス檢定",
+    "KruskalTestANOVA": "クルスカル-ウォリス檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
     "Total": "全体",
-    "FriedmanTest": "Friedman檢定",
-    "FriedmanTestANOVA": "Friedman檢定 : 位置母数 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTest": "フリードマン檢定",
+    "FriedmanTestANOVA": "フリードマン檢定 : 位置母数 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
     "Block": "Block",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
-    "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 順位合檢定,  n > 20 正規近似檢定",
+    "WilcoxonSignCondition": "n ≤ 20 ウィルコクソン順位合檢定,  n > 20 正規近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
     "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
     "VariableSelect": "* データ分析 : 変数選択 >> クリックアイコン *",
     "VariableSelect2": "* 変数選択 : クリック変数名 / 右側選択はこ利用 ",
     "VariableSelect3": "変数選択",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "VariableSelect4": "[Ctrl]キーを押しながら複数の変数を選択します。",
     "SummaryData": "要約データ",
     "RawData": "原データ",
     "RawData2": "原データ変数選択",
     "SummaryExplain":  "クリック変数値変数,分析変数 > クリックアイコン",
-    "RawExplain1": "アイコン選択 > 変数選択 (or変数選択 > アイコン選択)",
+    "RawExplain1": "アイコン選択>変数選択(または変数選択>アイコン選択)",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1338,10 +1337,10 @@ alertMsg[6][2] = "要約データの変数に文字が入っているので、�
 alertMsg[7][2] = "元データから2個以上の変数を選択した場合はグラフや表を作成できません.";
 alertMsg[8][2] = "ドットプロットはデータの数が200個以下のとき可能です.";
 alertMsg[9][2] = "幹葉図はデータ数が100個以下のときのみ可能です.";
-alertMsg[10][2] = "Analysis variable is not selected.";
-alertMsg[11][2] = "Analysis/Group variables are not selected.";
+alertMsg[10][2] = "分析変数選択選択ならなかった";
+alertMsg[11][2] = "分析/グループ変数選択選択ならなかった";
 alertMsg[12][2] = "選択変数が文字を含んでいるためグラフや度数分布表が出力できません.";
-alertMsg[13][2] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][2] = "";
 alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
 alertMsg[16][2] = "仮説検定が可能なのは，グループが2つの場合のみです.";
 alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です.";
@@ -1368,7 +1367,7 @@ alertMsg[42][2] = "仮説検定のタイトルは編集できません! ";
 alertMsg[43][2] = "單純線形回歸1グループ";
 alertMsg[44][2] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][2] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][2] = "The same variable number is selected.";
+alertMsg[46][2] = "同一変数名選擇";
 
 svgStr[1][2] = " 棒グラフ";
 svgStr[2][2] = " 円グラフ";
@@ -1465,9 +1464,9 @@ svgStr[92][2] = "因子";
 svgStr[93][2] = "水準";
 svgStr[94][2] = "対応標本差プロット";
 svgStr[95][2] = "残差-豫測";
-svgStr[96][2] = "残差-Leverage";
-svgStr[97][2] = "Cook距離図";
-svgStr[98][2] = "Cook距離";
+svgStr[96][2] = "残差-レバレッジ";
+svgStr[97][2] = "クック距離図";
+svgStr[98][2] = "クック距離";
 svgStr[99][2] = "資料順序";
 svgStr[100][2]= "平均差";
 svgStr[101][2]= "平均差檢定";
@@ -1479,7 +1478,7 @@ svgStr[106][2]= "重相關係數";
 svgStr[107][2]= "<h3>相關分析</h3>";
 svgStr[108][2]= "相關係數行列";
 svgStr[109][2]= "因子1-因子2 平均図";
-svgStr[110][2]= "Leverage";
+svgStr[110][2]= "レバレッジ";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1543,16 +1542,16 @@ svgStrU[59][2] = "行列独立ない";
 svgStrU[60][2] = "観測分布";
 svgStrU[61][2] = "理論分布";
 svgStrU[62][2] = "観測分布適合性檢定";
-svgStrU[63][2] = "Wilcoxon順位合檢定";
-svgStrU[64][2] = "Wilcoxon順位合檢定分布表";
-svgStrU[65][2] = "Kruskal-Wallis檢定";
-svgStrU[66][2] = "Kruskal-Wallis檢定 分布表";
-svgStrU[67][2] = "Kruskal-Wallis H統計量";
-svgStrU[68][2] = "Wilcoxon 符號順位檢定";
+svgStrU[63][2] = "ウィルコクソン順位合檢定";
+svgStrU[64][2] = "ウィルコクソン順位合檢定分布表";
+svgStrU[65][2] = "クルスカル-ウォリス檢定";
+svgStrU[66][2] = "クルスカル-ウォリス檢定 分布表";
+svgStrU[67][2] = "クルスカルl-ウォリス H統計量";
+svgStrU[68][2] = "ウィルコクソン符號順位檢定";
 svgStrU[69][2] = "符號檢定";
-svgStrU[70][2] = "Friedman檢定";
-svgStrU[71][2] = "Friedman S 統計量";
-svgStrU[72][2] = "Friedman檢定分布表";
+svgStrU[70][2] = "フリードマン檢定";
+svgStrU[71][2] = "フリードマン S 統計量";
+svgStrU[72][2] = "フリードマン檢定分布表";
 // Chinese
 $.message.zhTW = {
     "eStat : Stat Education SW": "eStat: 統計教育軟體",
@@ -1785,7 +1784,7 @@ $.message.zhTW = {
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
     "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "標本範圍",
+    "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
     "SignedRankTest": "Wilcoxon 符號順位檢定",
     "SignTest": "符號檢定",
@@ -1806,12 +1805,12 @@ $.message.zhTW = {
     "VariableSelect":  "* 資料分析 : 変数選択 >>  Click Icon",
     "VariableSelect2": "* 変数選択 : Click 変数名 / 右側選択箱利用 ",
     "VariableSelect3": "変数選択",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "VariableSelect4": "按住[Ctrl]鍵選擇多個變量",
     "SummaryData": "要約資料",
     "RawData": "原資料",
     "RawData2": "原資料変数選択",
-    "SummaryExplain":  "Click 変数値変数, 分析変数 . Click Icon",
-    "RawExplain1": "Icon選択 > 変数選択 (or 変数選択 > Icon選択)",
+    "SummaryExplain":  "點擊変数値変数, 分析変数 > 點擊圖標",
+    "RawExplain1": "圖標選択 > 変数選択 (or 変数選択 > 圖標選択)",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -1828,10 +1827,10 @@ alertMsg[6][3] = "若摘要資料中要進行分析的變數包含文字，則�
 alertMsg[7][3] = "若原始資料有超過3個變數被選擇，則無法進行分析及製作圖表。";
 alertMsg[8][3] = "點圖可使用於觀察值個數少於200的資料。";
 alertMsg[9][3] = "莖葉圖可使用於觀察值個數少於100的資料。";
-alertMsg[10][3] = "Analysis variable is not selected.";
-alertMsg[11][3] = "Analysis/Group variables are not selected.";
+alertMsg[10][3] = "未選擇分析變數";
+alertMsg[11][3] = "未選擇分析/群變數";
 alertMsg[12][3] = "若分析的變數包含文字，則無法進行分析及製作圖表。";
-alertMsg[13][3] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][3] = "";
 alertMsg[14][3] = "連續型圖形及假設檢定無法進行摘要資料。";
 alertMsg[16][3] = "此假設檢定僅限定於兩群母體。";
 alertMsg[17][3] = "繪製散佈圖至少需要橫軸變數及縱軸變數。";
@@ -1855,10 +1854,10 @@ alertMsg[39][3] = "標準差為0或不是一個數字，請重新執行!";
 alertMsg[40][3] = "輸入的變異數不是一個數字，請輸入一數值並重新執行!";
 alertMsg[41][3] = "此假設檢定僅限於兩變數。群組變數則需包含兩群。";
 alertMsg[42][3] = "假設檢定的標題不可編輯! ";
-alertMsg[43][3] = "Simple Linear Regression is only for one group";
+alertMsg[43][3] = "簡單線性回歸僅適用於一組";
 alertMsg[44][3] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][3] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][3] = "The same variable number is selected.";
+alertMsg[46][3] = "同一変数名選擇";
 
 svgStr[1][3] = " 長條圖";
 svgStr[2][3] = " 圓餅圖";
@@ -1955,7 +1954,7 @@ svgStr[92][3] = "因子";
 svgStr[93][3] = "水準";
 svgStr[94][3] = "対応標本差圖";
 svgStr[95][3] = "残差-豫測";
-svgStr[96][3] = "残差-Leverage";
+svgStr[96][3] = "残差-槓桿作用";
 svgStr[97][3] = "Cook距離図";
 svgStr[98][3] = "Cook距離";
 svgStr[99][3] = "資料順序";
@@ -1969,7 +1968,7 @@ svgStr[106][3]= "重相關係數";
 svgStr[107][3]= "<h3>相關分析</h3>";
 svgStr[108][3]= "相關係數行列";
 svgStr[109][3]= "因子1-因子2 平均図";
-svgStr[110][3]= "Leverage";
+svgStr[110][3]= "槓桿作用";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2232,77 +2231,77 @@ $.message.fr = {
     "Std Dev": "Ecart-type",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 groupe)",
-    "AnalysisVar": "Analysis Var",
+    "AnalysisVar": "Analyse Var",
     "AnalysisVar2": "Y Var",
     "GroupVar": "Groupe Var",
     "GroupVar2": "X Var",
-    "GroupVar3": "Factor1",
-    "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": "X1, X2 : Paired Variables",
-    "SizeVar": "Size Var",
+    "GroupVar3": "Facteur1",
+    "GroupVar4": "Facteur2",
+    "AnalysisVarMu12": "Analyse(or X1) Var",
+    "GroupVarMu12": "Groupe(or X2) Var",
+    "PairedMu12": "X1, X2 : données appariées",
+    "SizeVar": "Taille Var",
     "RegressionBand": "Confinace Bandes",
-    "RegressionTable": "Régressione Analysis",
-    "RegressionResidual": "Residual Diagramme",
-    "RegressionResidualLeverage": "Residual vs Leverage",
+    "RegressionTable": "Régressione Analyse",
+    "RegressionResidual": "Résiduel Diagramme",
+    "RegressionResidualLeverage": "Résiduel vs Leverage",
     "RegressionCook": "Cook's Distance Graph",
-    "RegressionQQ": "Residual Q-Q Diagramme",
+    "RegressionQQ": "Résiduel Q-Q Diagramme",
     "HistogramNormal": "Histogramme",
     "HistogramChisq": "Normale Test",
     "HistogramNormalQQ": "Normale Q-Q Diagramme",
     "PopulationStd": "Population Ecart-type",
-    "Type1Error": "Type 1 Error",
-    "Type2Error": "Type 2 Error",
+    "Type1Error": "Type 1 Erreur",
+    "Type2Error": "Type 2 Erreur",
     "AnovaTable": "ANOVA Table",
-    "AnovaMeanGraph": "Mean Confidence Interval",
+    "AnovaMeanGraph": "MoyenneIntervalle de confiance",
     "MultipleComparison": "Multiple Comparison",
-    "AnovaResidual": "Residual Plot",
-    "AnovaQQ": "Residual Q-Q Plot",
-    "TestingFit": "Goodness of Fit Test",
-    "FitTest0": "Observed & theoretical Distributions are the same",
-    "FitTest1": "Observed & theoretical Distributions are different",
-    "ObservedFreq": "Observed Frequency O",
-    "ExpectedProb": "Expected Probability p",
-    "ExpectedFreq": "Expected Frequency E(>5)",
-    "InputFitData": "Enter cell from upper left cell",
-    "ExecuteTable": "Statistics",
-    "MeanDotGraph": "Confidence Interval Graph",
+    "AnovaResidual": "Résiduel Diagramme",
+    "AnovaQQ": "Résiduel Q-Q Diagramme",
+    "TestingFit": "Qualité de l'ajustement Test",
+    "FitTest0": "Les distributions observées et théoriques sont les mêmes",
+    "FitTest1": "Les distributions observées et théoriques sont différentes",
+    "ObservedFreq": "Fréquence observée O",
+    "ExpectedProb": "Probabilité attendue p",
+    "ExpectedFreq": "Fréquence attendue E(>5)",
+    "InputFitData": "Entrez la cellule de la cellule supérieure gauche",
+    "ExecuteTable": "Statistiquess",
+    "MeanDotGraph": "Graphique d'intervalle de confiance",
     "ScatterRegression": "Scatter Plot",
-    "Factor": "Factor",
+    "Factor": "Facteur",
     "Interaction": "Interaction",
-    "NoInteraction": "No Interaction",
-    "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Range",
+    "NoInteraction": "Aucune Interaction",
+    "ExistInteraction": "Exister Interaction",
+    "eStatLecture": "eStat Intro Conférence",
+    "NonParametricMu12_title": "Wilcoxon Rang Sum Tester", 
+    "NonParametricMu12": "Wilcoxon Rang Sum Tester : Paramètre d'emplacement &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "WilcoxonTest": "Wilcoxon Rang Sum Tester",
+    "Sample Range": "Rang Sum",
     "DistributionTable": "Distribution Table",
-    "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
-    "SignTest": "Sign Test",
-    "SignCount": "Sign Count",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "SignedRankTest": "Wilcoxon Signed Rang Sum Tester",
+    "SignTest": "Test Signé",
+    "SignCount": "Signe Compter",
+    "KruskalTest": "Kruskal-Wallis Tester",
+    "KruskalTestANOVA": "Kruskal-Wallis Tester : Paramètre d'emplacement &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
     "Total": "Total",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
-    "Block": "Block",
-    "Treatment": "Treatment",
-    "At least one locations is different": "At least one pair of locations is different",
+    "FriedmanTest": "Friedman Tester",
+    "FriedmanTestANOVA": "Friedman Tester : Paramètre d'emplacement &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "Block": "Bloc",
+    "Treatment": "Traitement",
+    "At least one locations is different": "Au moins une paire d'emplacements est différente",
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
+    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rang Sum Test,  n > 20 Nomal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "VariableSelect3": "Sélection de variables",
+    "VariableSelect4": "Maintenez la touche [Ctrl] enfoncée pour sélectionner plusieurs variables.",
+    "SummaryData": "Données récapitulatives",
+    "RawData": "Données brutes",
+    "RawData2": "Données brutes Sélection de variables",
+    "SummaryExplain":  "Clic Valeur Var, Analyse Var > Clic Icône",
+    "RawExplain1": "Clic Icône > Sélectionner Var (or Clic Var > Clic Icône)",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2320,10 +2319,10 @@ alertMsg[6][4] = "La variable d'analyse ne doit pas contenir de valeurs non num�
 alertMsg[7][4] = "On ne peut pas sélectionner plus de trois variables dans les données brutes ou dans des tableaux.";
 alertMsg[8][4] = "Un graphique à points est traçable si le nombre d'observations ne dépasse pas 200.";
 alertMsg[9][4] = "Le diagramme tige-feuille n'est autorisé que si le nombre d'observations est inférieur à 100.";
-alertMsg[10][4] = "Analysis variable is not selected.";
-alertMsg[11][4] = "Analysis/Group variables are not selected.";
+alertMsg[10][4] = "La variable d'analyse n'est pas sélectionnée.";
+alertMsg[11][4] = "La variable d'analyse/groupe n'est pas sélectionnée.";
 alertMsg[12][4] = "La variable d'analyse ne doit pas contenir de valeurs non numériques.";
-alertMsg[13][4] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][4] = "";
 alertMsg[14][4] = "Les résumés ne sont pas acceptés pour les graphiques continus et les tests.";
 alertMsg[16][4] = "Pour ce test , il faut uniquement deux groupes.";
 alertMsg[17][4] = "Un diagramme de dispersion nécessite au moins une variable x et une variable y.";
@@ -2347,10 +2346,10 @@ alertMsg[39][4] = "L'écart-type est soit nul ou n'est pas un nombre. Recommence
 alertMsg[40][4] = "La variance saisie n'est pas un nombre. Entrez une valeur et recommencez!";
 alertMsg[41][4] = "Ce test d'hypothese n'est valable que pour deux variables. La variable de groupe ne doit avoir que deux  modalités";
 alertMsg[42][4] = "Modifier le titre du test n'est pas autorisé! ";
-alertMsg[43][4] = "Simple Linear Regression is only for one group";
+alertMsg[43][4] = "La régression linéaire simple est seulement pour un groupe";
 alertMsg[44][4] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][4] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][4] = "The same variable number is selected.";
+alertMsg[46][4] = "Le même numéro de variable est sélectionné.";
 
 svgStr[1][4] = " Diagramme en barres";
 svgStr[2][4] = " Camembert";
@@ -2377,7 +2376,7 @@ svgStr[22][4] = "Variable ligne";
 svgStr[23][4] = "Total";
 svgStr[24][4] = "CircleSize";
 svgStr[25][4] = "<h3>Tableau des fréquences</h3>";
-svgStr[26][4] = "Analysis Variable";
+svgStr[26][4] = "Analyse Variable";
 svgStr[27][4] = "valeur de la variable";
 svgStr[28][4] = "Libellé  d'une valeur";
 svgStr[29][4] = "Fréquence";
@@ -2392,8 +2391,8 @@ svgStr[37][4] = "Nom de groupe";
 svgStr[38][4] = "Intervalle";
 svgStr[39][4] = "Tige";
 svgStr[40][4] = " Feuille";
-svgStr[41][4] = "Group 1  Feuille";
-svgStr[42][4] = "Group 2  Feuille"
+svgStr[41][4] = "Groupe 1  Feuille";
+svgStr[42][4] = "Groupe 2  Feuille"
 svgStr[43][4] = "<h3>Statistiques élémentairess</h3>";
 svgStr[44][4] = "Observation";
 svgStr[45][4] = "Minimum";
@@ -2421,47 +2420,47 @@ svgStr[66][4] = "Dépendantes Variable";
 svgStr[67][4] = "Parameter";
 svgStr[68][4] = "Estimated Valeur";
 svgStr[69][4] = "valeur";
-svgStr[70][4] = "Intercept";
-svgStr[71][4] = "Slope";
-svgStr[72][4] = "Factor";
-svgStr[73][4] = "Sum of Squares";
-svgStr[74][4] = "deg of freedom";
-svgStr[75][4] = "Mean Squares";
+svgStr[70][4] = "Intercepter";
+svgStr[71][4] = "Pente";
+svgStr[72][4] = "Facteur";
+svgStr[73][4] = "Somme des carrés";
+svgStr[74][4] = "deg de liberté";
+svgStr[75][4] = "Carrés moyens";
 svgStr[76][4] = "Régression";
 svgStr[77][4] = "Erreur";
 svgStr[78][4] = "Total";
 svgStr[79][4] = "<h3>Régression Analyse</h3>";
-svgStr[80][4] = "Standardized Residual Q-Q Diagramme";
-svgStr[81][4] = "Standardized Residual";
+svgStr[80][4] = "Standardized Résiduel Q-Q Diagramme";
+svgStr[81][4] = "Standardized Résiduel";
 svgStr[82][4] = "Normal Quantile";
-svgStr[83][4] = "Residual Diagramme";
+svgStr[83][4] = "Résiduel Diagramme";
 svgStr[84][4] = "Predicted Valeur";
-svgStr[85][4] = "Two way ANOVA";
-svgStr[86][4] = "Confidence Interval Graph";
-svgStr[87][4] = "Residual";
-svgStr[88][4] = "Two way Mean Table";
-svgStr[89][4] = "Scatter Plot Matrix";
-svgStr[90][4] = "Multiple Comparison";
-svgStr[91][4] = "Statistics";
-svgStr[92][4] = "Factor";
-svgStr[93][4] = "Level";
-svgStr[94][4] = "Paired Sample Data Graph";
-svgStr[95][4] = "Residual vs Forecasting Plot";
-svgStr[96][4] = "Residual vs Leverage Plot";
-svgStr[97][4] = "Cook's Distance Graph";
+svgStr[85][4] = "Deux voies ANOVA";
+svgStr[86][4] = "Graphique d'intervalle de confiance";
+svgStr[87][4] = "Résiduel";
+svgStr[88][4] = "Deux voies Moyenne Table";
+svgStr[89][4] = "Scatter Plot Matrice";
+svgStr[90][4] = "Comparaison multiple";
+svgStr[91][4] = "Statistiques";
+svgStr[92][4] = "Facteur";
+svgStr[93][4] = "Niveau";
+svgStr[94][4] = "Diagramme de données d'échantillons appariés";
+svgStr[95][4] = "Résiduel vs Prévision Diagramme";
+svgStr[96][4] = "Résiduel vs Influence Diagramme";
+svgStr[97][4] = "Cook's Distance Diagramme";
 svgStr[98][4] = "Cook's Distance";
-svgStr[99][4] = "Data Order";
-svgStr[100][4]= "Mean Difference";
-svgStr[101][4]= "Testing Means";
-svgStr[102][4]= "Treatment";
+svgStr[99][4] = "Ordre des données";
+svgStr[100][4]= "Différence moyenne";
+svgStr[101][4]= "Moyens de test";
+svgStr[102][4]= "Traitement";
 svgStr[103][4]= "Interaction";
-svgStr[104][4]= "Row Total";
-svgStr[105][4]= "Column Total";
-svgStr[106][4]= "Multiple Correlation Coeff";
-svgStr[107][4]= "<h3>Correlation Analysis</h3>";
-svgStr[108][4]= "Correlation Matrix";
-svgStr[109][4]= "Factor1 - Factor2 Mean Graph";
-svgStr[110][4]= "Leverage";
+svgStr[104][4]= "Total de ligne";
+svgStr[105][4]= "Total de colonne";
+svgStr[106][4]= "Coefficient de corrélation multiple";
+svgStr[107][4]= "<h3>Analyse de corrélation</h3>";
+svgStr[108][4]= "Matrice de corrélation";
+svgStr[109][4]= "Facteur1 - Facteur2 Graphique moyen";
+svgStr[110][4]= "Influence";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -2522,16 +2521,16 @@ svgStrU[56][4] = "[Statistiques de l'échantillon 2] ";
 svgStrU[57][4] = "intervalle de confinace";
 svgStrU[58][4] = "Ligne Colonne indépendantes;";
 svgStrU[59][4] = "Ligne Colonne ne indépendantes";
-svgStrU[60][4] = "Observed Distribution";
-svgStrU[61][4] = "Theoretical Distribution";
-svgStrU[62][4] = "Goodness of Fit Test for Observed Frequency";
-svgStrU[63][4] = "Wilcoxon Rank Sum Test";
-svgStrU[64][4] = "Wilcoxon Rank Sum Test Table";
+svgStrU[60][4] = "Distribution observée";
+svgStrU[61][4] = "Distribution théorique";
+svgStrU[62][4] = "Test de validité de l'ajustement pour la fréquence observée";
+svgStrU[63][4] = "Wilcoxon Test de somme de classement";
+svgStrU[64][4] = "Wilcoxon Test de somme de classementTable";
 svgStrU[65][4] = "Kruskal-Wallis Test";
 svgStrU[66][4] = "Kruskal-Wallis Test Table";
 svgStrU[67][4] = "Kruskal-Wallis H Statistics";
-svgStrU[68][4] = "Wilcoxon Signed Rank Test";
-svgStrU[69][4] = "Sign Test";
+svgStrU[68][4] = "Wilcoxon Test de rang signé";
+svgStrU[69][4] = "Test signé";
 svgStrU[70][4] = "Friedman Test";
 svgStrU[71][4] = "Friedman S Statistic";
 svgStrU[72][4] = "Friedman Distribution Table";
@@ -2603,8 +2602,8 @@ $.message.de = {
     "Std Deviation": "Standardabweichung",
     "MeanStd": "Mittelwert/Standardabweichung",
     "95CI": "95% Konfidenzintervall",
-    "RegressionAnalysis": "Regression Analysis",
-    "ANOVA2": "2 way ANOVA",
+    "RegressionAnalysis": "Regressionanalyse",
+    "ANOVA2": "Zweiweg ANOVA",
     "Regression": "Regression",
     "Frequency Polygon": "Häufigkeitspolygon",
     "Execute New Interval": "Erzeuge ein neues Intervall",
@@ -2698,8 +2697,8 @@ $.message.de = {
     "Sample Mean": "Stichprobenmittelwert",
     "Sample Variance": "Stichprobenvarianz",
     "Sample Proportion": "Stichprobenanteil",
-    "if Z-test-1": "(Falls Z-Text vorliegt, gib Varianz ein)",
-    "if Z-test-2": "(Falls Z-Text vorliegt, Z<sub>1-&alpha;/2 </sub>)",
+    "if Z-test-1": "(Falls Z-Test vorliegt, gib Varianz ein)",
+    "if Z-test-2": "(Falls Z-Test vorliegt, Z<sub>1-&alpha;/2 </sub>)",
     "Variance Assumption": "Annahme für die Varianz",
     "At least one pair": "mindestens ein Paar von Mittelwerten ist verschieden",
     "Row-Col-0": "Zeilen- und  Spaltenvariablen sind unabhängig",
@@ -2721,77 +2720,77 @@ $.message.de = {
     "Std Dev": "Standardabweichung",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 grouppe)",
-    "AnalysisVar": "Analysis Var",
+    "AnalysisVar": "Analyse Var",
     "AnalysisVar2": "Y Var",
     "GroupVar": "Grouppe Var",
     "GroupVar2": "X Var",
-    "GroupVar3": "Factor1",
-    "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": " X1, X2 : Paired Variables",
-    "SizeVar": "Size Var",
+    "GroupVar3": "Faktor1",
+    "GroupVar4": "Faktor2",
+    "AnalysisVarMu12": "Analyse(or X1) Var",
+    "GroupVarMu12": "Grouppe(or X2) Var",
+    "PairedMu12": " X1, X2 : gepaarte Daten",
+    "SizeVar": "Größe Var",
     "RegressionBand": "Konfidenzband",
     "RegressionTable": "Regressionanalyse",
-    "RegressionResidual": "Residualdiagramm",
-    "RegressionResidualLeverage": "Residual vs Leverage",
-    "RegressionCook": "Cook's Distance Graph",
-    "RegressionQQ": "ResidualQ-Q-diagramm",
+    "RegressionResidual": "Restwertdiagramm",
+    "RegressionResidualLeverage": "Restwert vs Hebelwirkung",
+    "RegressionCook": "Cook's Entfernungdiagramm",
+    "RegressionQQ": "Restwert Q-Q-diagramm",
     "HistogramNormal": "Histogramm",
     "HistogramChisq": "Normal Test",
     "HistogramNormalQQ": "Normal-Q-Q-diagramm",
     "PopulationStd": "Grundgesamtheit Standardabweichung",
-    "Type1Error": "Type 1 Error",
-    "Type2Error": "Type 2 Error",
+    "Type1Error": "Typ 1 Error",
+    "Type2Error": "Typ 2 Error",
     "AnovaTable": "ANOVA Table",
-    "AnovaMeanGraph": "Mean Confidence Interval",
-    "MultipleComparison": "Multiple Comparison",
-    "AnovaResidual": "Residual Plot",
-    "AnovaQQ": "Residual Q-Q Plot",
-    "TestingFit": "Goodness of Fit Test",
-    "FitTest0": "Observed & theoretical Distributions are the same",
-    "FitTest1": "Observed & theoretical Distributions are different",
-    "ObservedFreq": "Observed Frequency O",
-    "ExpectedProb": "Expected Probability p",
-    "ExpectedFreq": "Expected Frequency E(>5)",
-    "InputFitData": "Enter cell from upper left cell",
-    "ExecuteTable": "Statistics",
-    "MeanDotGraph": "Confidence Interval Graph",
-    "ScatterRegression": "Scatter Plot",
-    "Factor": "Factor",
-    "Interaction": "Interaction",
-    "NoInteraction": "No Interaction",
-    "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
+    "AnovaMeanGraph": "Mittleres Konfidenzintervall",
+    "MultipleComparison": "Mehrfacher Vergleich",
+    "AnovaResidual": "Restwertdiagramm",
+    "AnovaQQ": "Restwert Q-Q Diagramm",
+    "TestingFit": "Anpassungsgüte-Test",
+    "FitTest0": "Beobachtete und theoretische Verteilungen sind gleich",
+    "FitTest1": "Beobachtete und theoretische Verteilungen sind unterschiedlich",
+    "ObservedFreq": "Beobachtete Häufigkeit O",
+    "ExpectedProb": "Erwartete Wahrscheinlichkeit p",
+    "ExpectedFreq": "Erwartete Häufigkeit E(>5)",
+    "InputFitData": "Geben Sie die Zelle von der oberen linken Zelle ein",
+    "ExecuteTable": "Statistiken",
+    "MeanDotGraph": "Konfidenzintervall Graph",
+    "ScatterRegression": "Streudiagramm",
+    "Factor": "Faktor",
+    "Interaction": "Interaktion",
+    "NoInteraction": "Keine Interaktion",
+    "ExistInteraction": "Interaction existiert",
+    "eStatLecture": "eStat Einführung Vorlesung",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Range",
-    "DistributionTable": "Distribution Table",
-    "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
-    "SignTest": "Sign Test",
-    "SignCount": "Sign Count",
+    "WilcoxonTest": "Wilcoxon Rangsum Test",
+    "Sample Range": "Rangsum",
+    "DistributionTable": "Verteilungstabelle",
+    "SignedRankTest": "Wilcoxon Signed Rangsummetest",
+    "SignTest": "Zeichentest",
+    "SignCount": "Anzahl der Zeichen",
     "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis Test : Standortparameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
     "Total": "Total",
     "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman Test : Standortparameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
     "Block": "Block",
-    "Treatment": "Treatment",
-    "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
-    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "Treatment": "Behandlung",
+    "At least one locations is different": "Mindestens ein Standortpaar ist unterschiedlich",
+    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Annäherung Test",
+    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Annäherung Test",
+    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rangsum Test,  n>25 Nomal Approximation Test",
+    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> Annäherung test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "VariableSelect2": "* Variable Auswahl : Click var name or use RHS selection box ",
+    "VariableSelect3": "Variable Auswahl",
+    "VariableSelect4": "Halten Sie die [Strg]-Taste gedrückt, um mehrere Variablen auszuwählen.",
+    "SummaryData": "Zusammenfassungsdaten",
+    "RawData": "Rohdaten",
+    "RawData2": "Rohdaten Variable Auswahl",
+    "SummaryExplain":  "Klicken Sie auf Value Var, Analysis Var> Click Icon",
+    "RawExplain1": "Click Icon > Auswählen Var (oder Click Var > Click Icon)",
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -2809,10 +2808,10 @@ alertMsg[6][5] = "Falls die Analysis-Variable in den zusammengefassten Daten Cha
 alertMsg[7][5] = "Falls mehr als drei Variablen aus den Rohdaten ausgewählt sind.";
 alertMsg[8][5] = "Ein dimensionales Streudiagramm ist  möglich, wenn die Anzahl der  Beobachtungen kleiner als 200 ist.";
 alertMsg[9][5] = "Stamm-Blatt-Diagramm ist nicht möglich, wenn die Anzahl der Beobachtungen.";
-alertMsg[10][5] = "Analysis variable is not selected.";
-alertMsg[11][5] = "Analysis/Group variables are not selected.";
+alertMsg[10][5] = "Analysevariable ist nicht ausgewählt";
+alertMsg[11][5] = "Analyse/gruppe variable ist nicht ausgewählt";
 alertMsg[12][5] = "Falls die Analysis-Variable Charaktere einschliesst, ist Analyse, oder Tabelle nicht moeglich.";
-alertMsg[13][5] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][5] = "";
 alertMsg[14][5] = "Im Falle zusammengefasster Daten sind weder Dauerdiagramme noch Hypothesen Testen moeglich.";
 alertMsg[16][5] = "Nur zwei Gruppen soind für diesen Hypothesentest zugelassen.";
 alertMsg[17][5] = "Streudiagramm erfordert mindestens Variablen x und y.";
@@ -2836,10 +2835,10 @@ alertMsg[39][5] = "Standardabweichung ist entweder Null oder  ";
 alertMsg[40][5] = "Eingegebene Varianz ist nicht-numerisch. Gib Zahlenwert ein und versuche erneut!";
 alertMsg[41][5] = "Diese Hypothese kann sich auf zwei Variablen beziehen. Gruppenvariable darf nur zwei Gruppen umfassen.";
 alertMsg[42][5] = "Editieren der Bezeichnung der zu testenden Hypothesen ist nicht zulässig. ";
-alertMsg[43][5] = "Simple Linear Regression is only for one group";
+alertMsg[43][5] = "Einfache lineare Regression ist nur für eine Gruppe";
 alertMsg[44][5] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][5] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][5] = "The same variable number is selected.";
+alertMsg[46][5] = "Die gleiche Variablennummer ist ausgewählt.";
 
 svgStr[1][5] = " Balkendiagramm";
 svgStr[2][5] = " Kreisdiagramm";
@@ -2847,7 +2846,7 @@ svgStr[3][5] = " Doughnut Graph";
 svgStr[4][5] = " Bandediagramm";
 svgStr[5][5] = " Gerade";
 svgStr[6][5] = " eindimensionales Streudiagramm";
-svgStr[7][5] = " Box-Whisker-Plot";
+svgStr[7][5] = " Boxdiagramm";
 svgStr[8][5] = " Stamm-Blatt-Diagramm";
 svgStr[9][5] = " Histogramm";
 svgStr[10][5] = " Streudiagramm";
@@ -2866,7 +2865,7 @@ svgStr[22][5] = "Zeilenvariable";
 svgStr[23][5] = "Total";
 svgStr[24][5] = "CircleSize";
 svgStr[25][5] = "<h3>Häufigkeitstabelle</h3>";
-svgStr[26][5] = "Analysis Variable";
+svgStr[26][5] = "Analysevariable";
 svgStr[27][5] = "Variablenwert";
 svgStr[28][5] = "Wertname";
 svgStr[29][5] = "Häufigkeit";
@@ -2910,47 +2909,47 @@ svgStr[66][5] = "Abhängigvariable";
 svgStr[67][5] = "Parameter";
 svgStr[68][5] = "Estimated wert";
 svgStr[69][5] = "wert";
-svgStr[70][5] = "Intercept";
-svgStr[71][5] = "Slope";
-svgStr[72][5] = "Factor";
-svgStr[73][5] = "Sum of Squares";
-svgStr[74][5] = "deg of freedom";
-svgStr[75][5] = "Mean Squares";
+svgStr[70][5] = "Abschneiden";
+svgStr[71][5] = "Steigung";
+svgStr[72][5] = "Faktor";
+svgStr[73][5] = "Quadratsumme";
+svgStr[74][5] = "Grad der Freiheit";
+svgStr[75][5] = "Mittlere Quadrate";
 svgStr[76][5] = "Regression";
 svgStr[77][5] = "Fehler";
 svgStr[78][5] = "Total";
-svgStr[79][5] = "<h3>Regression Analysis</h3>";
-svgStr[80][5] = "Standardized Residual Q-Q Diagramm";
-svgStr[81][5] = "Standardized Residual";
-svgStr[82][5] = "Normal Quantile";
-svgStr[83][5] = "Residual Diagramm";
+svgStr[79][5] = "<h3>Regressionanalyse</h3>";
+svgStr[80][5] = "Standardisiert Residual Q-Q Diagramm";
+svgStr[81][5] = "Standardisiert Residual";
+svgStr[82][5] = "Normal Quantil";
+svgStr[83][5] = "Residual diagramm";
 svgStr[84][5] = "Predicted wert";
-svgStr[85][5] = "Two way ANOVA";
-svgStr[86][5] = "Confidence Interval Graph";
+svgStr[85][5] = "Zweiweg ANOVA";
+svgStr[86][5] = "Konfidenzintervall Graph";
 svgStr[87][5] = "Residual";
-svgStr[88][5] = "Two way Mean Table";
-svgStr[89][5] = "Scatter Plot Matrix";
-svgStr[90][5] = "Multiple Comparison";
-svgStr[91][5] = "Statistics";
-svgStr[92][5] = "Factor";
-svgStr[93][5] = "Level";
-svgStr[94][5] = "Paired Sample Data Graph";
-svgStr[95][5] = "Residual vs Forecasting Plot";
-svgStr[96][5] = "Residual vs Leverage Plot";
-svgStr[97][5] = "Cook's Distance Graph";
-svgStr[98][5] = "Cook's Distance";
-svgStr[99][5] = "Data Order";
-svgStr[100][5]= "Mean Difference";
-svgStr[101][5]= "Testing Means";
-svgStr[102][5]= "Treatment";
-svgStr[103][5]= "Interaction";
-svgStr[104][5]= "Row Total";
-svgStr[105][5]= "Column Total";
-svgStr[106][5]= "Multiple Correlation Coeff";
-svgStr[107][5]= "<h3>Correlation Analysis</h3>";
-svgStr[108][5]= "Correlation Matrix";
-svgStr[109][5]= "Factor1 - Factor2 Mean Graph";
-svgStr[110][5]= "Leverage";
+svgStr[88][5] = "Zweiweg Mittlere Tabelle";
+svgStr[89][5] = "Streudiagramm-Matrix";
+svgStr[90][5] = "Mehrfacher Vergleich";
+svgStr[91][5] = "Statistiken";
+svgStr[92][5] = "Faktor";
+svgStr[93][5] = "Niveau";
+svgStr[94][5] = "Gepaarte Beispieldatengrafik";
+svgStr[95][5] = "Residual vs Prognoseplot";
+svgStr[96][5] = "Residual vs Hebelwirkungplot";
+svgStr[97][5] = "Cook's Entfernungdiagramm";
+svgStr[98][5] = "Cook's Entfernung";
+svgStr[99][5] = "Datenreihenfolge";
+svgStr[100][5]= "Mittlere Differenz";
+svgStr[101][5]= "Testmittel";
+svgStr[102][5]= "Behandlung";
+svgStr[103][5]= "Interaktion";
+svgStr[104][5]= "Zeilensumme";
+svgStr[105][5]= "Spalte Gesamt";
+svgStr[106][5]= "Mehrfacher Korrelationskoeffizient";
+svgStr[107][5]= "<h3>Korrelationsanalyse</h3>";
+svgStr[108][5]= "Korrelationsmatrix";
+svgStr[109][5]= "Faktor1 - Faktor2 Mittlerer Graph";
+svgStr[110][5]= "Hebelwirkung";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3011,19 +3010,19 @@ svgStrU[56][5] = "[Stichproben 2 statistik] ";
 svgStrU[57][5] = "Konfidenzniveau";
 svgStrU[58][5] = "Zeilen Spalten unabhängig";
 svgStrU[59][5] = "Zeilen Spalten nicht unabhängig";
-svgStrU[60][5] = "Observed Distribution";
-svgStrU[61][5] = "Theoretical Distribution";
-svgStrU[62][5] = "Goodness of Fit Test for Observed Frequency";
-svgStrU[63][5] = "Wilcoxon Rank Sum Test";
-svgStrU[64][5] = "Wilcoxon Rank Sum Test Table";
+svgStrU[60][5] = "Beobachtete Verteilung";
+svgStrU[61][5] = "Theoretische Verteilung";
+svgStrU[62][5] = "Anpassungsgüte-Test für beobachtete Häufigkeit";
+svgStrU[63][5] = "Wilcoxon Rangsummetest";
+svgStrU[64][5] = "Wilcoxon Rangsummetesttabelle";
 svgStrU[65][5] = "Kruskal-Wallis Test";
-svgStrU[66][5] = "Kruskal-Wallis Test Table";
-svgStrU[67][5] = "Kruskal-Wallis H Statistics";
-svgStrU[68][5] = "Wilcoxon Signed Rank Test";
+svgStrU[66][5] = "Kruskal-Wallis Test Tabelle";
+svgStrU[67][5] = "Kruskal-Wallis H Statistik";
+svgStrU[68][5] = "Wilcoxon Vorzeichenhafter Rang-Test";
 svgStrU[69][5] = "Sign Test";
 svgStrU[70][5] = "Friedman Test";
-svgStrU[71][5] = "Friedman S Statistic";
-svgStrU[72][5] = "Friedman Distribution Table";
+svgStrU[71][5] = "Friedman S Statistik";
+svgStrU[72][5] = "Friedman Distributiontabelle";
 // Spanish
 $.message.es = {
     "eStat : Stat Education SW": "eStat : Software para Educación Estadística",
@@ -3092,7 +3091,7 @@ $.message.es = {
     "MeanStd": "Media/Desviación estándar",
     "95CI": "95% Nivel de confianza",
     "RegressionAnalysis": "Regresión Análisis",
-    "ANOVA2": "Two way ANOVA",
+    "ANOVA2": "Bidireccional ANOVA",
     "Regression": "Regresión",
     "Frequency Polygon": "Polígono de frecuencias",
     "Execute New Interval": "Ejecutar Nuevo Intervalo",
@@ -3180,9 +3179,9 @@ $.message.es = {
     "t-test": " Prueba t",
     "Chi-test": "Prueba &chi;<sup>2</sup>",
     "F-test": "Prueba F",
-    "Sampling Type": "Sampling Type",
-    "Independent Sample": "independent",
-    "Paired Sample": "paired",
+    "Sampling Type": "Tipo de muestreo",
+    "Independent Sample": "independiente",
+    "Paired Sample": "emparejado",
     "Sample Data": "Datos muestrales",
     "input either sample data": "Introducir datos muestrales o estadísticos muestrales en las siguientes cajas usando csv/bsv",
     "Sample Statistics": "Estadísticos muestrales",
@@ -3212,77 +3211,77 @@ $.message.es = {
     "Std Dev": "Desviación estándar",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
     "OneGroup": "(1 groupo)",
-    "AnalysisVar": "Analysis Var",
+    "AnalysisVar": "Análisis Var",
     "AnalysisVar2": "Y Var",
     "GroupVar": "Groupo Var",
     "GroupVar2": "X Var",
     "GroupVar3": "Factor1",
     "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": " X1, X2 : Paired Variables",
-    "SizeVar": "Size Var",
+    "AnalysisVarMu12": "Análisis(o X1) Var",
+    "GroupVarMu12": "Grupo(o X2) Var",
+    "PairedMu12": " X1, X2 : Datos vinculados",
+    "SizeVar": "tamaño del círculo Var",
     "RegressionBand": "Confianza Bandes",
-    "RegressionTable": "Regresión Analysis",
+    "RegressionTable": "Regresión Análisis",
     "RegressionResidual": "Residual Diagrama",
-    "RegressionResidualLeverage": "Residual vs Leverage",
-    "RegressionCook": "Cook's Distance Graph",
+    "RegressionResidualLeverage": "Residual vs Apalancamiento",
+    "RegressionCook": "Cook's Gráfico de distancia",
     "RegressionQQ": "Residual Q-Q Diagrama",
     "HistogramNormal": "Histograma",
     "HistogramChisq": "Normal Prueba",
     "HistogramNormalQQ": "Normal Q-Q Diagrama",
     "PopulationStd": "Población Desviación estándar",
-    "Type1Error": "Type 1 Error",
-    "Type2Error": "Type 2 Error",
-    "AnovaTable": "ANOVA Table",
-    "AnovaMeanGraph": "Mean Confidence Interval",
-    "MultipleComparison": "Multiple Comparison",
-    "AnovaResidual": "Residual Plot",
-    "AnovaQQ": "Residual Q-Q Plot",
-    "TestingFit": "Goodness of Fit Test",
-    "FitTest0": "Observed & theoretical Distributions are the same",
-    "FitTest1": "Observed & theoretical Distributions are different",
-    "ObservedFreq": "Observed Frequency O",
-    "ExpectedProb": "Expected Probability p",
-    "ExpectedFreq": "Expected Frequency E(>5)",
-    "InputFitData": "Enter cell from upper left cell",
-    "ExecuteTable": "Statistics",
-    "MeanDotGraph": "Confidence Interval Graph",
-    "ScatterRegression": "Scatter Plot",
+    "Type1Error": "Tipo 1 Error",
+    "Type2Error": "Tipo 2 Error",
+    "AnovaTable": "ANOVA Tabla",
+    "AnovaMeanGraph": "Intervalo de confianza promedio",
+    "MultipleComparison": "Comparación múltiple",
+    "AnovaResidual": "Residual Trama",
+    "AnovaQQ": "Residual Q-Q Trama",
+    "TestingFit": "Prueba de bondad de ajuste",
+    "FitTest0": "Distribuciones observadas y teóricas son las mismas",
+    "FitTest1": "Las distribuciones observadas y teóricas son diferentes",
+    "ObservedFreq": "Frecuencia observada O",
+    "ExpectedProb": "Probabilidad esperada p",
+    "ExpectedFreq": "Frecuencia esperada E(>5)",
+    "InputFitData": "Ingrese la celda de la celda superior izquierda",
+    "ExecuteTable": "estadística",
+    "MeanDotGraph": "Gráfico de intervalo de confianza",
+    "ScatterRegression": "gráfico de dispersión",
     "Factor": "Factor",
-    "Interaction": "Interaction",
-    "NoInteraction": "No Interaction",
-    "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
+    "Interaction": "Interacción",
+    "NoInteraction": "Sin Interaction",
+    "ExistInteraction": "Interacción existente",
+    "eStatLecture": "eStat conferencia introductoria",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Range",
-    "DistributionTable": "Distribution Table",
-    "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
-    "SignTest": "Sign Test",
-    "SignCount": "Sign Count",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "WilcoxonTest": "Wilcoxon prueba de suma de rango",
+    "Sample Range": "suma de rango",
+    "DistributionTable": "Mesa de Distribución",
+    "SignedRankTest": "Wilcoxon prueba de suma de rango firmada",
+    "SignTest": "El signo prueba",
+    "SignCount": "Recuento de signos",
+    "KruskalTest": "Kruskal-Wallis prueba",
+    "KruskalTestANOVA": "Kruskal-Wallis prueba : Parámetro de ubicación &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
     "Total": "Total",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
-    "Block": "Block",
-    "Treatment": "Treatment",
-    "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
-    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "FriedmanTest": "Friedman prueba",
+    "FriedmanTestANOVA": "Friedman prueba : Parámetro de ubicación &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "Block": "Bloquear",
+    "Treatment": "Tratamiento",
+    "At least one locations is different": "Al menos un par de ubicaciones es diferente",
+    "SignCondition": "Si n ≤ 100 Binomial prueba,  n > 100 Normal prueba de aproximación",
+    "WilcoxonSignCondition": "Si n≤ 20 Wilcoxon prueba de suma de rango,  n > 20 Normal prueba de aproximación",
+    "WilcoxonRankCondition": "Si n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon prueba de suma de rango,  n>25 Nomal prueba de aproximación",
+    "KruskalCondition": "Si n≤ 10 H prueba de distribución,  no &chi;<sup>2</sup> prueba de aproximación",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "VariableSelect2": "* Selección de Variables : Click var name or use RHS selection box ",
+    "VariableSelect3": "Selección de Variables",
+    "VariableSelect4": "Mantenga presionada la tecla [Ctrl] para seleccionar múltiples variables.",
+    "SummaryData": "Datos resumidos",
+    "RawData": "Datos brutos",
+    "RawData2": "Datos brutos Selección de Variables",
+    "SummaryExplain":  "Haga clic en Value Var, Analysis Var> Clic Icon",
+    "RawExplain1": "Clic Icon > Seleccionar Var (o Clic Var > Clic Icon)",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3303,7 +3302,7 @@ alertMsg[9][6] = "Se permite el Diagrama de Tallo y Hojas  si el número de obse
 alertMsg[10][6] = "Analysis variable is not selected.";
 alertMsg[11][6] = "Analysis/Group variables are not selected.";
 alertMsg[12][6] = "No están permitidos análisis o crear tablas si la variable de análisis incluye datos de tipo carácter";
-alertMsg[13][6] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][6] = "";
 alertMsg[14][6] = "No están permitidos los datos resumidos  para gráficos continuos y pruebas de hipótesis";
 alertMsg[16][6] = "Solo dos grupos permitidos";
 alertMsg[17][6] = "El diagrama de dispersión requiere al menos la variable x y la variable y";
@@ -3327,10 +3326,10 @@ alertMsg[39][6] = "Desviación estándar o bien es cero o NaN. Reintentalo!";
 alertMsg[40][6] = "Varianza de entrada es NaN. Entrar valor y reintentar!";
 alertMsg[41][6] = "Esta prueba de hipótesis solo es posible para dos variables. La variable grupo solo debe tenir dos grupos";
 alertMsg[42][6] = "No se permite la edición del titulo de la prueba de hipótesis! ";
-alertMsg[43][6] = "Simple Linear Regression is only for one group";
+alertMsg[43][6] = "La regresión lineal simple es solo para un grupo";
 alertMsg[44][6] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][6] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][6] = "The same variable number is selected.";
+alertMsg[46][6] = "Se selecciona el mismo número de variable.";
 
 svgStr[1][6] = " Diagrama de barras";
 svgStr[2][6] = " Diagrama de tarta";
@@ -3401,47 +3400,47 @@ svgStr[66][6] = "Dependientes Variable";
 svgStr[67][6] = "Parameter";
 svgStr[68][6] = "Estimated valor";
 svgStr[69][6] = "valor";
-svgStr[70][6] = "Intercept";
-svgStr[71][6] = "Slope";
+svgStr[70][6] = "Interceptar";
+svgStr[71][6] = "cuesta abajo";
 svgStr[72][6] = "Factor";
-svgStr[73][6] = "Sum of Squares";
-svgStr[74][6] = "deg of freedom";
-svgStr[75][6] = "Mean Squares";
+svgStr[73][6] = "suma de cuadrados";
+svgStr[74][6] = "grado de libertad";
+svgStr[75][6] = "cuadrados medios";
 svgStr[76][6] = "Regresión";
 svgStr[77][6] = "Error";
 svgStr[78][6] = "Total";
 svgStr[79][6] = "<h3>Regresión Análisis</h3>";
-svgStr[80][6] = "Standardized Residual Q-Q Diagrama";
-svgStr[81][6] = "Standardized Residual";
-svgStr[82][6] = "Normal Quantile";
+svgStr[80][6] = "estandarizado Residual Q-Q Diagrama";
+svgStr[81][6] = "estandarizado Residual";
+svgStr[82][6] = "Normal cuantil";
 svgStr[83][6] = "Residual Diagrama";
 svgStr[84][6] = "Predicted valor";
-svgStr[85][6] = "Two way ANOVA";
-svgStr[86][6] = "Confidence Interval Graph";
+svgStr[85][6] = "bidireccional ANOVA";
+svgStr[86][6] = "Gráfico de intervalo de confianza";
 svgStr[87][6] = "Residual";
-svgStr[88][6] = "Two way Mean Table";
-svgStr[89][6] = "Scatter Plot Matrix";
-svgStr[90][6] = "Multiple Comparison";
-svgStr[91][6] = "Statistics";
+svgStr[88][6] = "bidireccional tabla media";
+svgStr[89][6] = "Matriz de trazado de dispersión";
+svgStr[90][6] = "Comparación múltiple";
+svgStr[91][6] = "estadística";
 svgStr[92][6] = "Factor";
-svgStr[93][6] = "Level";
-svgStr[94][6] = "Paired Sample Data Graph";
-svgStr[95][6] = "Residual vs Forecasting Plot";
-svgStr[96][6] = "Residual vs Leverage Plot";
-svgStr[97][6] = "Cook's Distance Graph";
-svgStr[98][6] = "Cook's Distance";
-svgStr[99][6] = "Data Order";
-svgStr[100][6]= "Mean Difference";
-svgStr[101][6]= "Testing Means";
-svgStr[102][6]= "Treatment";
-svgStr[103][6]= "Interaction";
-svgStr[104][6]= "Row Total";
-svgStr[105][6]= "Column Total";
-svgStr[106][6]= "Multiple Correlation Coeff";
+svgStr[93][6] = "Nivel";
+svgStr[94][6] = "Gráfico de datos de muestra apareados";
+svgStr[95][6] = "Residual vs Predicción Parcela";
+svgStr[96][6] = "Residual vs Parcela de apalancamiento";
+svgStr[97][6] = "Cook's Distancia el gráfico";
+svgStr[98][6] = "Cook's Distancia";
+svgStr[99][6] = "orden de datos";
+svgStr[100][6]= "Diferencia significativa";
+svgStr[101][6]= "Medios de prueba";
+svgStr[102][6]= "Tratamiento";
+svgStr[103][6]= "Interacción";
+svgStr[104][6]= "Total de la fila";
+svgStr[105][6]= "Columna total";
+svgStr[106][6]= "Correlación múltiple Coeff";
 svgStr[107][6]= "<h3>Correlation Analysis</h3>";
-svgStr[108][6]= "Correlation Matrix";
-svgStr[109][6]= "Factor1 - Factor2 Mean Graph";
-svgStr[110][6]= "Leverage";
+svgStr[108][6]= "Análisis de correlación";
+svgStr[109][6]= "Factor1 - Factor2 Gráfico medio";
+svgStr[110][6]= "apalancamiento";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -3502,19 +3501,19 @@ svgStrU[56][6] = "[Estadísticos muestrales 2] ";
 svgStrU[57][6] = "Nivel de confianza";
 svgStrU[58][6] = "Fila y columna independientes";
 svgStrU[59][6] = "Fila y columna no independientes";
-svgStrU[60][6] = "Observed Distribution";
-svgStrU[61][6] = "Theoretical Distribution";
-svgStrU[62][6] = "Goodness of Fit Test for Observed Frequency";
-svgStrU[63][6] = "Wilcoxon Rank Sum Test";
-svgStrU[64][6] = "Wilcoxon Rank Sum Test Table";
-svgStrU[65][6] = "Kruskal-Wallis Test";
-svgStrU[66][6] = "Kruskal-Wallis Test Table";
-svgStrU[67][6] = "Kruskal-Wallis H Statistics";
-svgStrU[68][6] = "Wilcoxon Signed Rank Test";
-svgStrU[69][6] = "Sign Test";
-svgStrU[70][6] = "Friedman Test";
-svgStrU[71][6] = "Friedman S Statistic";
-svgStrU[72][6] = "Friedman Distribution Table";
+svgStrU[60][6] = "Distribución observada";
+svgStrU[61][6] = "Distribución Teórica";
+svgStrU[62][6] = "Prueba de bondad de ajuste para la frecuencia observada";
+svgStrU[63][6] = "Wilcoxon Prueba de suma de rango";
+svgStrU[64][6] = "Wilcoxon Tabla de prueba de suma de rango";
+svgStrU[65][6] = "Kruskal-Wallis Prueba";
+svgStrU[66][6] = "Kruskal-Wallis Tabla de prueba";
+svgStrU[67][6] = "Kruskal-Wallis H Estadística ";
+svgStrU[68][6] = "Wilcoxon Prueba de Rango Firmado";
+svgStrU[69][6] = "Prueba firmada";
+svgStrU[70][6] = "Friedman Prueba";
+svgStrU[71][6] = "Friedman S Estadística ";
+svgStrU[72][6] = "Friedman Tabla de distribución";
 // Vietnamese
 $.message.vi = {
     "eStat : Stat Education SW": "eStat : Phần mềm thống kê học",
@@ -3583,8 +3582,8 @@ $.message.vi = {
     "Regression": "Hồi quy",
     "MeanStd": "Trung bình/Độ lệch chuẩn",
     "95CI": "95% Khoảng tin cậy",
-    "RegressionAnalysis": "Regression Analysis",
-    "ANOVA2": "Two way ANOVA",
+    "RegressionAnalysis": "Phân tích hồi quy",
+    "ANOVA2": "Hai chiều ANOVA",
     "Frequency Polygon": "Miền tần số",
     "Execute New Interval": "Thực thi khoảng mới",
     "Interval Start": "Đầu khoảng",
@@ -3671,9 +3670,9 @@ $.message.vi = {
     "t-test": "Kiểm định t",
     "Chi-test": "kiểm định &chi;<sup>2</sup>",
     "F-test": "Kiểm định F",
-    "Sampling Type": "Sampling Type",
-    "Independent Sample": "independent",
-    "Paired Sample": "paired",
+    "Sampling Type": "Loại lấy mẫu",
+    "Independent Sample": "độc lập",
+    "Paired Sample": "Mẫu được ghép nối",
     "Sample Data": "Dữ liệu mẫu",
     "input either sample data": "Nhập dữ vào bảng kế tiếp bằng file csv/bsv",
     "Sample Statistics": "Thống kê mẫu",
@@ -3703,23 +3702,23 @@ $.message.vi = {
     "Std Dev": "Độ lệch chuẩn",
     "SimulationWarning": "Kết thúc giả lập trước khi tiếp tục",
     "OneGroup": "(Một nhóm)",
-    "AnalysisVar": "Analysis Var",
-    "AnalysisVar2": "Y Var",
-    "GroupVar": "Group Var",
-    "GroupVar2": "X Var",
-    "GroupVar3": "Factor1",
-    "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": " X1, X2 : Paired Variables",
-    "SizeVar": "Size Var",
+    "AnalysisVar": "Phân tích Biến",
+    "AnalysisVar2": "Y Biến",
+    "GroupVar": "Nhóm Biến",
+    "GroupVar2": "X Biến",
+    "GroupVar3": "Hệ số1",
+    "GroupVar4": "Hệ số2",
+    "AnalysisVarMu12": "Phân tích(hoặc là X1) Biến",
+    "GroupVarMu12": "Nhóm(hoặc là X2) Biến",
+    "PairedMu12": " X1, X2 : Đã ghép nối Biến",
+    "SizeVar": "Biến kích thước vòng kết nối",
     "RegressionBand": "Khoảng tin cậy",
     "RegressionTable": "Phân Tích hồi quy",
     "RegressionResidual": "Đồ thị phần dư",
-    "RegressionResidualLeverage": "Residual vs Leverage",
-    "RegressionCook": "Cook's Distance Graph",
+    "RegressionResidualLeverage": "Dư so với Đòn bẩy",
+    "RegressionCook": "Cook Biểu đồ khoảng cách",
     "RegressionQQ": "Đồ thị Q-Q lot cho phần dư",
-    "HistogramNormal": "Histogram",
+    "HistogramNormal": "Biểu đồ",
     "HistogramChisq": "Kiểm định chuẩn và phương",
     "HistogramNormalQQ": "Đồ thị Q-Q Plot pp chuẩn",
     "PopulationStd": "Độ lệch chuẩn tổng thể",
@@ -3740,40 +3739,40 @@ $.message.vi = {
     "ExecuteTable": "Thống kê",
     "MeanDotGraph": "Đồ thị khoảng tin cậy",
     "ScatterRegression": "Ma trận đồ thị phân tán",
-    "Factor": "Factor",
-    "Interaction": "Interaction",
-    "NoInteraction": "No Interaction",
-    "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Range",
-    "DistributionTable": "Distribution Table",
-    "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
-    "SignTest": "Sign Test",
-    "SignCount": "Sign Count",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
-    "Total": "Total",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
-    "Block": "Block",
-    "Treatment": "Treatment",
-    "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
-    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "Factor": "Hệ số",
+    "Interaction": "Sự tương tác",
+    "NoInteraction": "Không tương tác",
+    "ExistInteraction": "Tương tác hiện tại",
+    "eStatLecture": "eStat Giới thiệu bài giảng",
+    "NonParametricMu12_title": "Wilcoxon Xếp hạng Tổng kiểm tra", 
+    "NonParametricMu12": "Wilcoxon Xếp hạng Tổng kiểm tra : Thông số vị trí &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "WilcoxonTest": "Wilcoxon Xếp hạng Tổng kiểm tra",
+    "Sample Range": "Xếp hạng tổng",
+    "DistributionTable": "Bảng phân phối",
+    "SignedRankTest": "Wilcoxon Bài kiểm tra xếp hạng đã ký",
+    "SignTest": "Đăng ký kiểm tra",
+    "SignCount": "Số lượng dấu",
+    "KruskalTest": "Kruskal-Wallis Kiểm tra",
+    "KruskalTestANOVA": "Kruskal-Wallis Kiểm tra : Thông số vị trí &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "Total": "Toàn bộ",
+    "FriedmanTest": "Friedman Kiểm tra",
+    "FriedmanTestANOVA": "Friedman Kiểm tra : Thông số vị trír &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "Block": "Khối",
+    "Treatment": "Điều trị",
+    "At least one locations is different": "Ít nhất một cặp vị trí khác nhau",
+    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Kiểm tra xấp xỉ",
+    "WilcoxonSignCondition": "Nếu n≤ 20 Wilcoxon Xếp hạng Tổng kiểm tra,  n > 20 Kiểm tra xấp xỉ",
+    "WilcoxonRankCondition": "Nếu n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Kiểm tra xấp xỉt",
+    "KruskalCondition": "Nếu n≤ 10 H Kiểm tra phân phối,  else &chi;<sup>2</sup> Kiểm tra xấp xỉt",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "VariableSelect3": "Lựa chọn biến",
+    "VariableSelect4": "Giữ phím [Ctrl] để chọn nhiều biến.",
+    "SummaryData": "Dữ liệu tóm tắt",
+    "RawData": "Dữ liệu thôa",
+    "RawData2": "Dữ liệu thô Lựa chọn biến",
+    "SummaryExplain":  "Nhấp vào Giá trị Var, Phân tích Var> Biểu tượng Clik",
+    "RawExplain1": "Nhấp vào Biểu tượng> Chọn Biến (hoặc Nhấp vào Biến> Nhấp vào Biểu tượng))",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -3791,10 +3790,10 @@ alertMsg[6][7] = "Nếu biến có chứa chuỗi (chữ cái),không thể phâ
 alertMsg[7][7] = "Nếu chọn hơn 3 biến, việc phân tích hoặc tạo bảng sẽ không thực thi";
 alertMsg[8][7] = "Biểu đồ chấm chỉ cho cỡ mẫu nhỏ hơn 200";
 alertMsg[9][7] = "Đồ thị Stem and Leaf chỉ cho cỡ mẫu nhỏ hơn 100";
-alertMsg[10][7] = "Analysis variable is not selected.";
-alertMsg[11][7] = "Analysis/Group variables are not selected.";
+alertMsg[10][7] = "Biến phân tích không được chọn.";
+alertMsg[11][7] = "Các biến Phân tích / Nhóm không được chọn.";
 alertMsg[12][7] = "Nếu biến chứa chuỗi, không thể phân tích hay tạo bảng";
-alertMsg[13][7] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][7] = "";
 alertMsg[14][7] = "Bảng tóm tắt không thể tạo cho đồ thị liên tục và kiểm định giả thuyết";
 alertMsg[16][7] = "Kiểm định này chỉ cho phép 2 nhóm";
 alertMsg[17][7] = "Biểu đồ phân tán cần ít nhất biến x và biến y";
@@ -3818,10 +3817,10 @@ alertMsg[39][7] = "Độ lệch chuẩn là 0 hoặc NaN. Hãy thử lại!!";
 alertMsg[40][7] = "Phương sai đã nhập là NaN. Hãy nhập giá trị khác và thử lại!!";
 alertMsg[41][7] = "Chỉ có thể kiểm định giả thuyết thống kê cho 2 biến";
 alertMsg[42][7] = "Không thể thay đổi tên của kiểm định! ";
-alertMsg[43][7] = "Simple Linear Regression is only for one group";
+alertMsg[43][7] = "Hồi quy tuyến tính đơn giản chỉ dành cho một nhóm";
 alertMsg[44][7] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][7] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][7] = "The same variable number is selected.";
+alertMsg[46][7] = "Cùng một số biến được chọn";
 
 svgStr[1][7] = " B/đồ cột";
 svgStr[2][7] = " B/đồ Pie";
@@ -3846,7 +3845,7 @@ svgStr[20][7] = "<h3>Bảng tóm tắt <br> Bảng tần số</h3>";
 svgStr[21][7] = "Biến nhóm";
 svgStr[22][7] = "Biến dòng";
 svgStr[23][7] = "Tổng cộng";
-svgStr[24][7] = "CircleSize";
+svgStr[24][7] = "Kích thước vòng tròn";
 svgStr[25][7] = "<h3>Bảng tần số</h3>";
 svgStr[26][7] = "Biến phân tích";
 svgStr[27][7] = "Giá trị biến";
@@ -3861,10 +3860,10 @@ svgStr[35][7] = "Độ lệch chuẩn"
 svgStr[36][7] = "<h3> Histogram<br>Bảng tần số</h3>";
 svgStr[37][7] = "Tên nhóm";
 svgStr[38][7] = "Khoảng";
-svgStr[39][7] = "Stem";
+svgStr[39][7] = "Thân cây";
 svgStr[40][7] = " Leaf";
-svgStr[41][7] = "Nhóm 1  Leaf";
-svgStr[42][7] = "Nhóm 2  Leaf"
+svgStr[41][7] = "Nhóm 1  Lá";
+svgStr[42][7] = "Nhóm 2  Lá"
 svgStr[43][7] = "<h3>Thống kê cơ bản</h3>";
 svgStr[44][7] = "Quan trắc";
 svgStr[45][7] = "Giá trị nhỏ nhất";
@@ -3873,13 +3872,13 @@ svgStr[47][7] = "Lớn nhất";
 svgStr[48][7] = "Tổng cộng";
 svgStr[49][7] = "<h3>Kiểm định chuẩn</h3>";
 svgStr[50][7] = "Tần số kì vọng nên > 5 <br>";
-svgStr[51][7] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][7] = "&chi;<sup>2</sup> Kiểm tra<br>Khoảng thời gian i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][7] = "Dữ liệu<br>Tần số quan sát<br>(O<sub>i</sub>)";
 svgStr[53][7] = "P/p Chuẩn<br>Xác suất kì vọng<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][7] = "P/p Chuẩn<br>Tần số kì vọng<br>(E<sub>i</sub>)";
-svgStr[55][7] = "Each interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][7] = "Sum of &chi;<sup>2</sup> value";
-svgStr[57][7] = "Histogram x/suất và p/p chuẩn";
+svgStr[55][7] = "Khoảng thời gian<br>&chi;<sup>2</sup> giá trị<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][7] = "Tổng của &chi;<sup>2</sup> giá trị";
+svgStr[57][7] = "Biểu đồ x/suất và p/p chuẩn";
 svgStr[58][7] = "Đồ thị Q-Q Plot p/p chuẩn";
 svgStr[59][7] = "Phân vị chuẩn";
 svgStr[60][7] = "Hệ số tương quan";
@@ -3892,17 +3891,17 @@ svgStr[66][7] = "Biến phụ thuộc";
 svgStr[67][7] = "Tham số";
 svgStr[68][7] = "Giá trị ước lượng";
 svgStr[69][7] = "Giá trị";
-svgStr[70][7] = "Intercept";
-svgStr[71][7] = "Slope";
-svgStr[72][7] = "Factor";
-svgStr[73][7] = "Sum of Squares";
+svgStr[70][7] = "Chặn";
+svgStr[71][7] = "Độ dốc";
+svgStr[72][7] = "Hệ số";
+svgStr[73][7] = "Tổng bình phươngs";
 svgStr[74][7] = "Bậc tự do";
-svgStr[75][7] = "Mean Squares";
+svgStr[75][7] = "Hình vuông trung bìnhs";
 svgStr[76][7] = "Hồi quy";
 svgStr[77][7] = "Lỗi";
 svgStr[78][7] = "Tổng cộng";
 svgStr[79][7] = "<h3>Phân tích hồi quy</h3>";
-svgStr[80][7] = "Đồ thị Q-Q Plot phần dư chuẩn hóa";
+svgStr[80][7] = "Đồ thị Q-Q Âm mưu phần dư chuẩn hóa";
 svgStr[81][7] = "Phần dư chuẩn hóa";
 svgStr[82][7] = "Phân vị chuẩn";
 svgStr[83][7] = "Đồ thị phần dư";
@@ -3915,24 +3914,24 @@ svgStr[89][7] = "Ma trận đồ thị phân tán";
 svgStr[90][7] = "So sánh kép";
 svgStr[91][7] = "Thống kê";
 svgStr[92][7] = "Nhân tố";
-svgStr[93][7] = "Level";
+svgStr[93][7] = "Cấp độ";
 svgStr[94][7] = "Đồ thị cho dữ liệu mẫu cặp";
-svgStr[95][7] = "Residual vs Forecasting Plot";
-svgStr[96][7] = "Residual vs Leverage Plot";
-svgStr[97][7] = "Cook's Distance Graph";
-svgStr[98][7] = "Cook's Distance";
-svgStr[99][7] = "Data Order";
-svgStr[100][7]= "Mean Difference";
-svgStr[101][7]= "Testing Means";
-svgStr[102][7]= "Treatment";
-svgStr[103][7]= "Interaction";
-svgStr[104][7]= "Row Total";
-svgStr[105][7]= "Column Total";
-svgStr[106][7]= "Multiple Correlation Coeff";
-svgStr[107][7]= "<h3>Correlation Analysis</h3>";
-svgStr[108][7]= "Correlation Matrix";
-svgStr[109][7]= "Factor1 - Factor2 Mean Graph";
-svgStr[110][7]= "Leverage";
+svgStr[95][7] = "Dư so với Dự báo Lô đất";
+svgStr[96][7] = "Dư so với Đòn bẩy Lô đất";
+svgStr[97][7] = "Cook Khoảng cách đất";
+svgStr[98][7] = "Cook Khoảng cách";
+svgStr[99][7] = "Thứ tự dữ liệu";
+svgStr[100][7]= "Nghĩa khác";
+svgStr[101][7]= "Phương tiện kiểm tra";
+svgStr[102][7]= "Điều trị";
+svgStr[103][7]= "Sự tương tác";
+svgStr[104][7]= "Tổng số hàng";
+svgStr[105][7]= "Tổng số cột";
+svgStr[106][7]= "Hệ số tương quan nhiều";
+svgStr[107][7]= "<h3>Phân tích tương quan</h3>";
+svgStr[108][7]= "Ma trận tương quan";
+svgStr[109][7]= "Hệ số1 - Hệ số2 Đồ thị trung bình";
+svgStr[110][7]= "Đòn bẩy";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -3972,10 +3971,10 @@ svgStrU[35][7] = "Độ lệch chuẩn"
 svgStrU[36][7] = "<h3> Histogram<br>Bảng tần số</h3>";
 svgStrU[37][7] = "Tên nhóm";
 svgStrU[38][7] = "Khoảng";
-svgStrU[39][7] = "Stem";
-svgStrU[40][7] = " Leaf";
-svgStrU[41][7] = "Nhóm 1  Leaf";
-svgStrU[42][7] = "Nhóm 2  Leaf"
+svgStrU[39][7] = "Thân cây";
+svgStrU[40][7] = " Lá";
+svgStrU[41][7] = "Nhóm 1  Lá";
+svgStrU[42][7] = "Nhóm 2  Lá"
 svgStrU[43][7] = "<h3>Thống kê cơ bản</h3>";
 svgStrU[44][7] = "Quan trắc";
 svgStrU[45][7] = "Giá trị nhỏ nhất";
@@ -3985,7 +3984,7 @@ svgStrU[48][7] = "Tổng cộng";
 svgStrU[49][7] = "Phân phối mũ";
 svgStrU[50][7] = "Phân phối đều";
 svgStrU[51][7] = "Độ chính xác của ước lượng";
-svgStrU[52][7] = "- Click chuột trên hệ tọa độ, eStat sẽ tìm đường hồi quy.";
+svgStrU[52][7] = "- đi đôi chuột trên hệ tọa độ, eStat sẽ tìm đường hồi quy.";
 svgStrU[53][7] = "- Di chuyển/xóa bớt số liệu, đường hồi quy sẽ thay đổi .";
 svgStrU[54][7] = "[Thống kê mẫu] ";
 svgStrU[55][7] = "[Thống kê mẫu 1] ";
@@ -3996,16 +3995,16 @@ svgStrU[59][7] = "Biến cột và biến dòng độc lập";
 svgStrU[60][7] = "Phân phối thực";
 svgStrU[61][7] = "Phân phối lý thuyết";
 svgStrU[62][7] = "Kiểm định độ phù hợp cho tần số quan sát";
-svgStrU[63][7] = "Wilcoxon Rank Sum Test";
-svgStrU[64][7] = "Wilcoxon Rank Sum Test Table";
-svgStrU[65][7] = "Kruskal-Wallis Test";
-svgStrU[66][7] = "Kruskal-Wallis Test Table";
-svgStrU[67][7] = "Kruskal-Wallis H Statistics";
-svgStrU[68][7] = "Wilcoxon Signed Rank Test";
-svgStrU[69][7] = "Sign Test";
-svgStrU[70][7] = "Friedman Test";
-svgStrU[71][7] = "Friedman S Statistic";
-svgStrU[72][7] = "Friedman Distribution Table";
+svgStrU[63][7] = "Wilcoxon Xếp hạng Tổng kiểm tra";
+svgStrU[64][7] = "Wilcoxon Bảng xếp hạng tổng kiểm tra";
+svgStrU[65][7] = "Kruskal-Wallis Kiểm tra";
+svgStrU[66][7] = "Kruskal-Wallis Bảng kiểm tra";
+svgStrU[67][7] = "Kruskal-Wallis H Thống kê";
+svgStrU[68][7] = "Wilcoxon Kiểm tra xếp hạng đã ký";
+svgStrU[69][7] = "Đăng ký kiểm tra";
+svgStrU[70][7] = "Friedman Kiểm tra";
+svgStrU[71][7] = "Friedman S Thống kê";
+svgStrU[72][7] = "Friedman Bảng phân phối";
 
 // Indonesian
 $.message.id = {
@@ -4074,8 +4073,8 @@ $.message.id = {
     "Std Deviation": "Standar Deviasi",
     "MeanStd": "Rata-rata/Standar Deviasi",
     "95CI": "95% Selang Kepercayaan",
-    "RegressionAnalysis": "Regression Analysis",
-    "ANOVA2": "2 way ANOVA",
+    "RegressionAnalysis": "Analisis regresi",
+    "ANOVA2": "dua arah ANOVA",
     "Regression": "Regresi",
     "Frequency Polygon": "Frekuensi Poligon",
     "Execute New Interval": "Jalankan Interval Baru",
@@ -4083,11 +4082,11 @@ $.message.id = {
     "Interval Width": "Lebar Interval",
     "t-test": "uji-t",
     "Z-test": "uji-Z",
-    "(if Z-test, enter &sigma;)": "(if uji-Z, masukkan &sigma;)",
+    "(if Z-test, enter &sigma;)": "(jika uji-Z, masukkan &sigma;)",
     "Significance Level": "Taraf Nyata",
     "Execute": "Jalankan",
     "(Confidence Interval)": "(Selang Kepercayaan)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if uji-Z, Z, &sigma;digunakan)",
+    "(jika Z-uji, Z<sub>1-&alpha;/2 </sub> digunakan)": "(jika uji-Z, Z, &sigma;digunakan)",
     "&chi;<sup>2</sup> test": "uji &chi;<sup>2</sup>",
     "Variance Assumption": "Asumsi Varians",
     "F test": "Uji F",
@@ -4163,9 +4162,9 @@ $.message.id = {
     "t-test": "uji-t",
     "Chi-test": "uji-&chi;<sup>2</sup>",
     "F-test": "uji-F",
-    "Sampling Type": "Sampling Type",
-    "Independent Sample": "independent",
-    "Paired Sample": "paired",
+    "Sampling Type": "Jenis Sampling",
+    "Independent Sample": "independen",
+    "Paired Sample": "data yang dipasangkan",
     "Sample Data": "Data Sampel",
     "input either sample data": " Masukan Data Sampel atau Statistik Sampel di Kotak Selanjutnya menggunakan csv/bsv ",
     "Sample Statistics": "Statistik Sampel",
@@ -4195,33 +4194,33 @@ $.message.id = {
     "Std Dev": "Standar Deviasi",
     "SimulationWarning": "( Simulasi yang sekarang harus terlebih dahulu diselesaikan sebelum anda memulai simulasi yang selanjutnya)",
     "OneGroup": "(Satu Grup)",
-    "AnalysisVar": "Analysis Var",
+    "AnalysisVar": "Analisis Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Group Var",
+    "GroupVar": "Grup Var",
     "GroupVar2": "X Var",
-    "GroupVar3": "Factor1",
-    "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": " X1, X2 : Paired Variables",
-    "SizeVar": "Size Var",
+    "GroupVar3": "Faktor1",
+    "GroupVar4": "Faktor2",
+    "AnalysisVarMu12": "Analisis(or X1) Var",
+    "GroupVarMu12": "Grup(or X2) Var",
+    "PairedMu12": " X1, X2 : Dipasangkan Var",
+    "SizeVar": "Ukuran Lingkaran Var",
     "RegressionBand": "Selang Kepercayaan",
     "RegressionTable": "Analisis Regresi",
-    "RegressionResidual": "Plot Residual",
-    "RegressionResidualLeverage": "Residual vs Leverage",
-    "RegressionCook": "Cook's Distance Graph",
-    "RegressionQQ": "Q-Q Plot Residual",
+    "RegressionResidual": "Sisa Merencanakan",
+    "RegressionResidualLeverage": "Sisa vs Pengaruh",
+    "RegressionCook": "Cook's Jarak Merencanakan",
+    "RegressionQQ": "Sisa Q-Q Merencanakan",
     "HistogramNormal": "Histogram",
     "HistogramChisq": "Uji Normal",
-    "HistogramNormalQQ": "Q-Q Plot Normal",
+    "HistogramNormalQQ": "Q-Q Merencanakan Normal",
     "PopulationStd": "Standar Deviasi dari Populasi",
     "Type1Error": "Eror Tipe 1",
     "Type2Error": "Eror Tipe 2",
     "AnovaTable": "Tabel ANOVA",
     "AnovaMeanGraph": "Selang kepercayaan dari Rata-rata",
     "MultipleComparison": "Perbandingan Berganda",
-    "AnovaResidual": "Plot Residual",
-    "AnovaQQ": "Q-Q Plot dari Residual",
+    "AnovaResidual": "Sisa Merencanaka",
+    "AnovaQQ": "Q-Q dari Sisa Merencanaka",
     "TestingFit": "Uji Kebaikan/kelayakan Model",
     "FitTest0": "Distribusi empirik sama dengan distribusi teoritik",
     "FitTest1": " Distribusi empirik berbeda dengan distribusi teoritik",
@@ -4232,40 +4231,40 @@ $.message.id = {
     "ExecuteTable": "Statistik",
     "MeanDotGraph": "Grafik Selang Kepercayaan",
     "ScatterRegression": "Diagram Pencar",
-    "Factor": "Factor",
-    "Interaction": "Interaction",
-    "NoInteraction": "No Interaction",
-    "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Range",
-    "DistributionTable": "Distribution Table",
-    "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
-    "SignTest": "Sign Test",
-    "SignCount": "Sign Count",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "Factor": "Faktor",
+    "Interaction": "Interaksi",
+    "NoInteraction": "Tanpa Interaction",
+    "ExistInteraction": "Ada Interaction",
+    "eStatLecture": "eStat Pengantar Kuliahe",
+    "NonParametricMu12_title": "Wilcoxon Tes Jumlah Peringkat", 
+    "NonParametricMu12": "Wilcoxon Tes Jumlah Peringkatt : Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "WilcoxonTest": "Wilcoxon Tes Jumlah Peringkat",
+    "Sample Range": "Jumlah Pangkat",
+    "DistributionTable": "Tabel Distribusi",
+    "SignedRankTest": "Wilcoxon Signed Tes Jumlah Peringkat",
+    "SignTest": "Uji Masuk",
+    "SignCount": "Masuk Hitungan",
+    "KruskalTest": "Kruskal-Wallis Tes",
+    "KruskalTestANOVA": "Kruskal-Wallis Tes : Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
     "Total": "Total",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
-    "Block": "Block",
-    "Treatment": "Treatment",
-    "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
-    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "FriedmanTest": "Friedman Tes",
+    "FriedmanTestANOVA": "Friedman Tes : Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "Block": "Blok",
+    "Treatment": "Pengobatan",
+    "At least one locations is different": "Setidaknya satu pasang lokasi berbeda",
+    "SignCondition": "If n ≤ 100 Binomial Tes,  n > 100 Normal Uji Approximation",
+    "WilcoxonSignCondition": "jika n≤ 20 Wilcoxon Tes Jumlah Peringkat,  n > 20 Nomal Uji Approximation",
+    "WilcoxonRankCondition": "jika n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Uji Approximation",
+    "KruskalCondition": "jika n≤ 10 H Tes distribusi,  else &chi;<sup>2</sup> Uji Approximation",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "VariableSelect3": "Seleksi Variabel",
+    "VariableSelect4": "Tahan tombol [Ctrl] untuk memilih beberapa variabel",
+    "SummaryData": "Data Ringkasan",
+    "RawData": "Data mentah",
+    "RawData2": "Data mentaha Seleksi Variabe",
+    "SummaryExplain":  "Klik Nilai Var, Analisis Var> Ikon Klik",
+    "RawExplain1": "Klik Icon> Pilih Var (atau Klik Var> Klik Ikon)",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -4286,7 +4285,7 @@ alertMsg[9][8] = "Diagram Dahan dan Daun dapat dibuat jika banyak amatan kurang 
 alertMsg[10][8] = "Analysis variable is not selected.";
 alertMsg[11][8] = "Analysis/Group variables are not selected.";
 alertMsg[12][8] = "Jika analisis variabel mengandung karakter, analisis atau membuat tabel tidak dapat dilakukan.";
-alertMsg[13][8] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][8] = "";
 alertMsg[14][8] = "Data ringkasan tidak dapat digunakan untuk grafik kontinu dan uji hipotesis.";
 alertMsg[16][8] = "Hanya dua grup yang diperbolehkan untuk uji hipotesis ini.";
 alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel x dan variabel y.";
@@ -4310,10 +4309,10 @@ alertMsg[39][8] = "Standar deviasi bernilai nol atau bukan angka. Coba lagi!";
 alertMsg[40][8] = "Varians input bukan angka. Masukkan angka dan coba lagi!";
 alertMsg[41][8] = "Uji Hipotesis ini hanya diperbolehkan untuk dua variabel. Variabel grup harus hanya memiliki dua grup";
 alertMsg[42][8] = "Mengubah judul dari uji hipotesis tidak diperbolehkan!";
-alertMsg[43][8] = "Simple Linear Regression is only for one group";
+alertMsg[43][8] = "Regresi Linear Sederhana hanya untuk satu grup";
 alertMsg[44][8] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][8] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][8] = "The same variable number is selected.";
+alertMsg[46][8] = "Nomor variabel yang sama dipilih.";
 
 svgStr[1][8] = " Diagram Batang";
 svgStr[2][8] = " Diagram Pai";
@@ -4352,7 +4351,7 @@ svgStr[34][8] = "Rata-rata"
 svgStr[35][8] = "Standar Deviasi"
 svgStr[36][8] = "<h3> Histogram<br>Tabel Frekuensi</h3>";
 svgStr[37][8] = "Nama Grup";
-svgStr[38][8] = "Interval";
+svgStr[38][8] = "Selang";
 svgStr[39][8] = "Dahan";
 svgStr[40][8] = " Daun";
 svgStr[41][8] = "Daun Grup 1";
@@ -4365,7 +4364,7 @@ svgStr[47][8] = "Maksimum";
 svgStr[48][8] = "Total";
 svgStr[49][8] = "<h3>Uji Kenormalan</h3>";
 svgStr[50][8] = "Frekuensi harapan > 5 <br> disarankan";
-svgStr[51][8] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][8] = "&chi;<sup>2</sup> Tes<br>Selang i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][8] = "Data<br>Frekuensi Amatan<br>(O<sub>i</sub>)";
 svgStr[53][8] = "Distribusi Normal<br>Peluang Harapan<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][8] = "Distribusi Normal<br>Frekuensi Harapan<br>(E<sub>i</sub>)";
@@ -4409,22 +4408,22 @@ svgStr[91][8] = "Statistik";
 svgStr[92][8] = "Faktor";
 svgStr[93][8] = "Level";
 svgStr[94][8] = "Grafik Data Sampel Berpasangan";
-svgStr[95][8] = "Residual vs Forecasting Plot";
-svgStr[96][8] = "Residual vs Leverage Plot";
-svgStr[97][8] = "Cook's Distance Graph";
-svgStr[98][8] = "Cook's Distance";
-svgStr[99][8] = "Data Order";
-svgStr[100][8]= "Mean Difference";
-svgStr[101][8]= "Testing Means";
-svgStr[102][8]= "Treatment";
-svgStr[103][8]= "Interaction";
-svgStr[104][8]= "Row Total";
-svgStr[105][8]= "Column Total";
-svgStr[106][8]= "Multiple Correlation Coeff";
-svgStr[107][8]= "<h3>Correlation Analysis</h3>";
-svgStr[108][8]= "Correlation Matrix";
-svgStr[109][8]= "Factor1 - Factor2 Mean Graph";
-svgStr[110][8]= "Leverage";
+svgStr[95][8] = "Residual vs Merintis Merencanakan";
+svgStr[96][8] = "Residual vs Pengaruh Merencanakan";
+svgStr[97][8] = "Cook Jarak Merencanakan";
+svgStr[98][8] = "Cook Jarak";
+svgStr[99][8] = "Pesanan Data";
+svgStr[100][8]= "Berarti Perbedaane";
+svgStr[101][8]= "Sarana Pengujian";
+svgStr[102][8]= "Pengobatan";
+svgStr[103][8]= "Interaksi";
+svgStr[104][8]= "Total Baris";
+svgStr[105][8]= "Total Kolom";
+svgStr[106][8]= "Koefisien Korelasi Berganda";
+svgStr[107][8]= "<h3>Analisis korelasi</h3>";
+svgStr[108][8]= "Matriks Korelasi";
+svgStr[109][8]= "Faktor1 - Faktor2 Grafik Berartih";
+svgStr[110][8]= "Pengaruh";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -4488,16 +4487,16 @@ svgStrU[59][8] = "Row & Col Dependent";
 svgStrU[60][8] = "Distribusi Empirik";
 svgStrU[61][8] = "Distribusi Teoritik";
 svgStrU[62][8] = "Uji Kebaikan Model untuk Frekuensi Amatan";
-svgStrU[63][8] = "Wilcoxon Rank Sum Test";
-svgStrU[64][8] = "Wilcoxon Rank Sum Test Table";
-svgStrU[65][8] = "Kruskal-Wallis Test";
-svgStrU[66][8] = "Kruskal-Wallis Test Table";
-svgStrU[67][8] = "Kruskal-Wallis H Statistics";
-svgStrU[68][8] = "Wilcoxon Signed Rank Test";
-svgStrU[69][8] = "Sign Test";
-svgStrU[70][8] = "Friedman Test";
-svgStrU[71][8] = "Friedman S Statistic";
-svgStrU[72][8] = "Friedman Distribution Table";
+svgStrU[63][8] = "Wilcoxon Tes Jumlah Peringkat";
+svgStrU[64][8] = "Wilcoxon Tabel Jumlah Jumlah Tes";
+svgStrU[65][8] = "Kruskal-Wallis Tes";
+svgStrU[66][8] = "Kruskal-Wallis Tes Tabel";
+svgStrU[67][8] = "Kruskal-Wallis H Statistik";
+svgStrU[68][8] = "Wilcoxon Uji Peringkat Masukt";
+svgStrU[69][8] = "Uji Masuk";
+svgStrU[70][8] = "Friedman Tes";
+svgStrU[71][8] = "Friedman S Statistik";
+svgStrU[72][8] = "Friedman Tabel Distribusi";
 
 // Mongolian
 $.message.mn = {
@@ -4537,7 +4536,7 @@ $.message.mn = {
     "Analysis of Variance": "Дундаж кватрат хазайлтын шинжилгээ",
     "High School Stat Education": "Ахлах сургуулийн статистикийн боловсрол",
     "University Stat Education": "Их сургуулийн статистикийн боловсрол ",
-    "Elem Stat Graph Example": "Elem Stat Graph Example",
+    "Elem Stat Graph Example": "График жишээ",
     "Learning eStat w Example": "eStat-ийг жишээтэй суралцах",
     "Vertical Separated Bar": "Босоо тусгаарлагдсан багана",
     "Vertical Stacked Bar": "Босоо багц багана ",
@@ -4550,7 +4549,7 @@ $.message.mn = {
     "Horizontal Side by Side Bar": "Нийлсэн туузан диаграм",
     "Horizontal Two Sided Bar": "Хоёр талт туузан  диаграм",
     "Doughnut Graph": "Цагирган график",
-    "Two Sided Stem & Leaf Plot": "Хоёр талт Stem & Leaf Plot график",
+    "Two Sided Stem & Leaf Plot": "Хоёр талт Үүдэл ба навчит газар график",
     "Graph Save": "График хадаглалт",
     "Graph Print": "График хэвлэлт",
     "Move to Table": "Хүснэгт рүү шилжүүлэх",
@@ -4567,7 +4566,7 @@ $.message.mn = {
     "MeanStd": "Дундаж  утга/Стандарт хэлбэлзэл",
     "95CI": "95% Найдварт завсар",
     "RegressionAnalysis": "Регрессийн шинжилгээ",
-    "ANOVA2": "2 way ANOVA",
+    "ANOVA2": "2 арга зам ANOVA",
     "Regression": "Регресси",
     "Frequency Polygon": "давтамжит олон өнцөг",
     "Execute New Interval": "Шинэ завсарыг гүйцэтгэх",
@@ -4682,80 +4681,79 @@ $.message.mn = {
     "Lot Size": "Их хэмжээ",
     "Defect Size": "Алдаатай хэмжээ",
     "If typed": "(Хэрэв тоо бичигдвэл)",
-    "Stat/BoxPlot": "Stat/BoxPlot",
+    "Stat/BoxPlot": "Статистик/Шигтгээ зураг",
     "Mean": "Дундаж  утга",
     "Std Dev": "Стандарт хэлбэлзэл",
     "OneGroup": "(Нэг бүлэг)",
-    "AnalysisVar": "Analysis Var",
-    "AnalysisVar2": "Y Var",
-    "GroupVar": "Group Var",
-    "GroupVar2": "X Var",
-    "GroupVar3": "Factor1",
-    "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": " X1, X2 : Paired Variables",
-    "SizeVar": "Size Var",
+    "AnalysisVar": "Шинжилгээ Хувьсагч",
+    "AnalysisVar2": "Y Хувьсагч",
+    "GroupVar": "Групп Хувьсагч",
+    "GroupVar2": "X Хувьсагчr",
+    "GroupVar3": "Фактор1",
+    "GroupVar4": "Фактор2",
+    "AnalysisVarMu12": "Шинжилгээ(X1) Хувьсагч",
+    "GroupVarMu12": "Группp(X2Хосолсон Хувьсагчs",
+    "SizeVar": "Хүрээлэн буй орчин Хувьсагч",
     "RegressionBand": "Итгэх түвшин",
     "RegressionTable": "Регрессийн шинжилгээ",
     "RegressionResidual": "Үлдэгдлийн диаграм/дүрслэл",
-    "RegressionResidualLeverage": "Residual vs Leverage",
-    "RegressionCook": "Cook's Distance Graph",
+    "RegressionResidualLeverage": "Үлдсэн -  Хөшүүрэг",
+    "RegressionCook": "Cook Зай",
     "RegressionQQ": "Үлдэгдлийн диаграм/дүрслэл Q-Q",
     "HistogramNormal": "Магадлал Гистограм ",
     "HistogramChisq": "Нормал Тест",
     "HistogramNormalQQ": "Нормал Q-Q диаграм",
     "PopulationStd": "Эх олонлого Стандарт хэлбэлзэл ",
-    "Type1Error": "Type 1 Error",
-    "Type2Error": "Type 2 Error",
+    "Type1Error": "1-р төрлийн алдаа",
+    "Type2Error": "2-р төрлийн алдаа",
     "AnovaTable": "ANOVA Хүснэг",
     "AnovaMeanGraph": "Дундаж  утга Итгэх интервалl",
-    "MultipleComparison": "Multiple Comparison",
+    "MultipleComparison": "Олон харьцуулалт",
     "AnovaResidual": "Үлдэгдлийн диаграм/дүрслэл",
     "AnovaQQ": "Үлдэгдлийн диаграм/дүрслэл Q-Q ",
-    "TestingFit": "Goodness of Fit Test",
-    "FitTest0": "Observed & theoretical Distributions are the same",
-    "FitTest1": "Observed & theoretical Distributions are different",
-    "ObservedFreq": "Observed Frequency O",
-    "ExpectedProb": "Expected Probability p",
-    "ExpectedFreq": "Expected Frequency E(>5)",
-    "InputFitData": "Enter cell from upper left cell",
-    "ExecuteTable": "Statistics",
-    "MeanDotGraph": "Confidence Interval Graph",
+    "TestingFit": "Fit Test-ийн сайн сайхан байдал",
+    "FitTest0": "Ажиглагдсан & онолын тархалт нь адил байна",
+    "FitTest1": "Ажиглагдсан & онолын тархалт нь өөр өөр байдагt",
+    "ObservedFreq": "Ажиглагдсан давтамж O",
+    "ExpectedProb": "Хүлээгдэж буй магадлал p",
+    "ExpectedFreq": "Хүлээгдэж буй давтамж E(>5)",
+    "InputFitData": "Зүүн дээд нүднээс эсийг оруулна уу",
+    "ExecuteTable": "Статистик",
+    "MeanDotGraph": "Итгэмжлэлийн интервалын график",
     "ScatterRegression": "Scatter Plot",
-    "Factor": "Factor",
-    "Interaction": "Interaction",
-    "NoInteraction": "No Interaction",
-    "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "WilcoxonTest": "Wilcoxon Rank Sum Test",
-    "Sample Range": "Sample Range",
-    "DistributionTable": "Distribution Table",
-    "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
-    "SignTest": "Sign Test",
-    "SignCount": "Sign Count",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
-    "Total": "Total",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
-    "Block": "Block",
-    "Treatment": "Treatment",
-    "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
-    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "Factor": "Фактор",
+    "Interaction": "Харилцаа холбоо",
+    "NoInteraction": "Харилцан яриа үгүй",
+    "ExistInteraction": "Харилцан холбоо үүсгэх",
+    "eStatLecture": "eStat Лекцийн танилцуулга",
+    "NonParametricMu12_title": "Wilcoxon Дундаж дүн шинжилгээt", 
+    "NonParametricMu12": "Wilcoxon Дундаж дүн шинжилгээ : Байршлын параметрr &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "WilcoxonTest": "Wilcoxon Дундаж дүн шинжилгээ",
+    "Sample Range": "Дугаар Сар",
+    "DistributionTable": "Түгээлт Хүснэгтe",
+    "SignedRankTest": "Wilcoxon Нэвтрэв Дундаж дүн шинжилгээ",
+    "SignTest": "Тестийн тэмдэгt",
+    "SignCount": "Дугаар тэмдэгt",
+    "KruskalTest": "Kruskal-Wallis Туршилт",
+    "KruskalTestANOVA": "Kruskal-Wallis Туршилт : Байршлын параметр &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "Total": "Нийт",
+    "FriedmanTest": "Friedman Туршилт",
+    "FriedmanTestANOVA": "Friedman Туршилт : Байршлын параметр &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "Block": "Блок",
+    "Treatment": "Эмчилгээ",
+    "At least one locations is different": "Наад зах нь нэг хос байршил өөр байна",
+    "SignCondition": "хэрэв n ≤ 100 Binomial Туршилт,  n > 100 Normal Тооцоолол",
+    "WilcoxonSignCondition": "хэрэв n≤ 20 Wilcoxon Дундаж дүн шинжилгээ,  n > 20 Nomal Тооцоолол",
+    "WilcoxonRankCondition": "v n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Дундаж дүн шинжилгээ,  n>25 Nomal Тооцоолол",
+    "KruskalCondition": "хэрэв n≤ 10 H Түгээлт Тест,  else &chi;<sup>2</sup> Тооцоолол",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
+    "VariableSelect3": "Хувьсах сонголт",
+    "VariableSelect4": "Олон хувьсагчийг сонгохын тулд [Ctrl] товчийг дар",
+    "SummaryData": "Хураангуй мэдээлэл",
+    "RawData": "Түүхий мэдээлэл",
+    "RawData2": "Түүхий мэдээлэл Хувьсах сонголт",
+    "SummaryExplain":  "Click Value Var, Analysis Var > Click Icon",
     "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
 };
 // Mongolian
@@ -4774,10 +4772,10 @@ alertMsg[6][9] = "Хэрэв хураангуйлсан өгөгдлийн ши�
 alertMsg[7][9] = "Нэг мөрөн дэх өгөгдөлөөс хэрэв гурваас илүү хувьсагч сонгогдвол шинжилгээ болон хүснэгт үүсгэх нь зөвшөөрөгдөхгүй";
 alertMsg[8][9] = "Хэрэв шинжилгээний тоо нь 200 гаас баг үед цэгэн график зөвшөөрөгдөнө ";
 alertMsg[9][9] = "Хэрэв ажиглалтын тоо 100-аас бага болStem & Leaf Plot график нь зөвшөөрөгдөнө";
-alertMsg[10][9] = "Analysis variable is not selected.";
-alertMsg[11][9] = "Analysis/Group variables are not selected.";
+alertMsg[10][9] = "Шинжилгээний хувьсагч сонгогдоогүй байна..";
+alertMsg[11][9] = "Шинжилгээ / Бүлгийн хувьсагч сонгогдоогүй байна.";
 alertMsg[12][9] = "Хэрэв судалгааны хувьсагч нь тэмдэгт, судалгаа, хүснэгт агуулсан бол хүлээн зөвшөөрөгдөхгүй";
-alertMsg[13][9] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][9] = "";
 alertMsg[14][9] = "Үргэлжилсэн график болон тестийн таамаглалын хувьд хураангуй өгөгдөл нь зөвшөөрөгдөхгүй ";
 alertMsg[16][9] = "Энэ туршилтын таамаглалд зөвхөн 2 групп зөвшөөрөгдөнө";
 alertMsg[17][9] = "Тархалтын график нь хамгийн багадаа х болон у хувьсагч шаардана";
@@ -4785,7 +4783,7 @@ alertMsg[18][9] = "Гурван хувьсагчаас илүү  байвал т
 alertMsg[19][9] = "Хэрэв Х/Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдаж чадахгүй ";
 alertMsg[20][9] = "Хэрэв X/Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдахгүй ";
 alertMsg[21][9] = "Хэрэв өгөгдөл орхигдсон бол хадаглах нь зөвшөөрөгдөхгүй ";
-alertMsg[22][9] = "If there is a negative number, bargraph cannot be drawn.";
+alertMsg[22][9] = "Хэрэв сөрөг тоо байвал bargraph зурж болохгүй.";
 alertMsg[25][9] = "Хэрэв зөвхөн нэг групп байвал овоорсон /бүгд багтсан/ баганан график зөвшөөрөгдөхгүй";
 alertMsg[27][9] = "Хэрэв зөвхөн нэг групп байвал харьцаатай баганан график зөвшөөрөгдөхгүй ";
 alertMsg[29][9] = "Хэрэв зөвхөн нэг групп байвал зэрэгцээ баганан график зөвшөөрөгдөхгүй";
@@ -4801,10 +4799,10 @@ alertMsg[39][9] = "Стандарт хэлбэлзэл нь 0 эсвэл NAN-и�
 alertMsg[40][9] = "Дундаж кватратын хазайлтын орц нь NAN. Утгыг оруулаад дахин оролд. ";
 alertMsg[41][9] = "Энэ тестэн таамаглал нь зөвхөн хоёр хувьсагчийн хувьд зөвшөөрөгдөнө. Групп хувьсагч нь зөвхөн хоёр групптэй байсан дээр. ";
 alertMsg[42][9] = "Тестэн таамаглалын гарчигийг засварлах нь зөвшөөрөгдөхгүй";
-alertMsg[43][9] = "Simple Linear Regression is only for one group";
+alertMsg[43][9] = "Энгийн шугаман регресс нь зөвхөн нэг гуйлт юм";
 alertMsg[44][9] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][9] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][9] = "The same variable number is selected.";
+alertMsg[46][9] = "Ижил хувьсагчийн дугаар сонгогдсон байна..";
 
 svgStr[1][9] = " Баганан график";
 svgStr[2][9] = " Бялуун график";
@@ -4812,8 +4810,8 @@ svgStr[3][9] = " Цагирган график";
 svgStr[4][9] = " Туузан график";
 svgStr[5][9] = " Шугаман график";
 svgStr[6][9] = " Цэгэн график";
-svgStr[7][9] = " Box Plot";
-svgStr[8][9] = " Stem and Leaf Plot";
+svgStr[7][9] = " Шигтгээ зураг";
+svgStr[8][9] = " Иш болон навчит газар";
 svgStr[9][9] = " Гистограм ";
 svgStr[10][9] = " Тархалтын график";
 svgStr[11][9] = " Тестэн таамаглал : Хүн амын дундаж утга ";
@@ -4829,7 +4827,7 @@ svgStr[20][9] = "Хураангуй, товч  Өгөгдөл <br> Давтам�
 svgStr[21][9] = "Группын хувьсагч";
 svgStr[22][9] = "Мөрийн хувьсагч ";
 svgStr[23][9] = "Нийлбэр ";
-svgStr[24][9] = "CircleSize";
+svgStr[24][9] = "Хүрээлэн буй орчин";
 svgStr[25][9] = "<h3>Давтамжит хүснэгт</h3>";
 svgStr[26][9] = "Вариацийн шинжилгээ";
 svgStr[27][9] = "Хувьсагчийн утга ";
@@ -4893,29 +4891,29 @@ svgStr[84][9] = "Хүлээгдэж/таамаглаж буй утга";
 svgStr[85][9] = "Two way ANOVA";
 svgStr[86][9] = "Итгэх интервал График";
 svgStr[87][9] = "Үлдэгдэл";
-svgStr[88][9] = "Two way Mean Table";
+svgStr[88][9] = "Хоёр талын дундаж хүснэгт";
 svgStr[89][9] = "Scatter Plot Matrix";
-svgStr[90][9] = "Multiple Comparison";
-svgStr[91][9] = "Statistics";
-svgStr[92][9] = "Factor";
-svgStr[93][9] = "Level";
-svgStr[94][9] = "Paired Sample Data Graph";
-svgStr[95][9] = "Residual vs Forecasting Plot";
-svgStr[96][9] = "Residual vs Leverage Plot";
-svgStr[97][9] = "Cook's Distance Graph";
-svgStr[98][9] = "Cook's Distance";
-svgStr[99][9] = "Data Order";
-svgStr[100][9]= "Mean Difference";
-svgStr[101][9]= "Testing Means";
-svgStr[102][9]= "Treatment";
-svgStr[103][9]= "Interaction";
-svgStr[104][9]= "Row Total";
-svgStr[105][9]= "Column Total";
-svgStr[106][9]= "Multiple Correlation Coeff";
-svgStr[107][9]= "<h3>Correlation Analysis</h3>";
-svgStr[108][9]= "Correlation Matrix";
-svgStr[109][9]= "Factor1 - Factor2 Mean Graph";
-svgStr[110][9]= "Leverage";
+svgStr[90][9] = "Олон харьцуулалт";
+svgStr[91][9] = "Статистикf";
+svgStr[92][9] = "Фактор";
+svgStr[93][9] = "Түвшин";
+svgStr[94][9] = "Хосолсон өгөгдлийн график";
+svgStr[95][9] = "Үлдсэн vs Plot таамаглал";
+svgStr[96][9] = "Үлдсэн vs Хөшүүрэг plot";
+svgStr[97][9] = "Cook Зайн график";
+svgStr[98][9] = "Cook Зай";
+svgStr[99][9] = "Өгөгдлийн дараалал";
+svgStr[100][9]= "Дундаж ялгаа";
+svgStr[101][9]= "Тест хийх";
+svgStr[102][9]= "Эмчилгээ";
+svgStr[103][9]= "Харилцаа холбоо";
+svgStr[104][9]= "Бүгд";
+svgStr[105][9]= "Багана Нийт";
+svgStr[106][9]= "Олон харилцан хамаарлын коэффициент";
+svgStr[107][9]= "<h3>Корреляцийн шинжилгээ</h3>";
+svgStr[108][9]= "Корреляцийн матриц";
+svgStr[109][9]= "Фактор1 - Фактор2 Mean Graph";
+svgStr[110][9]= "Хөшүүрэг";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -4975,20 +4973,20 @@ svgStrU[55][9] = "[Жишээ 1 статистик] ";
 svgStrU[56][9] = "[Жишээ 2 статистик] ";
 svgStrU[57][9] = "Найдварт түвшин ";
 svgStrU[58][9] = "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй ";
-svgStrU[59][9] = "Row & Col Dependent";
-svgStrU[60][9] = "Observed Distribution";
-svgStrU[61][9] = "Theoretical Distribution";
-svgStrU[62][9] = "Goodness of Fit Test for Observed Frequency";
-svgStrU[63][9] = "Wilcoxon Rank Sum Test";
-svgStrU[64][9] = "Wilcoxon Rank Sum Test Table";
-svgStrU[65][9] = "Kruskal-Wallis Test";
-svgStrU[66][9] = "Kruskal-Wallis Test Table";
-svgStrU[67][9] = "Kruskal-Wallis H Statistics";
-svgStrU[68][9] = "Wilcoxon Signed Rank Test";
-svgStrU[69][9] = "Sign Test";
-svgStrU[70][9] = "Friedman Test";
-svgStrU[71][9] = "Friedman S Statistic";
-svgStrU[72][9] = "Friedman Distribution Table";
+svgStrU[59][9] = "Мөр ба Кол хамааралтай";
+svgStrU[60][9] = "Ажиглагдсан хуваарилалт";
+svgStrU[61][9] = "Онолын тархалт";
+svgStrU[62][9] = "Ажиглагдсан давтамжийн шалгуурт нийцсэн байдал";
+svgStrU[63][9] = "Wilcoxon Дундаж дүн шинжилгээ";
+svgStrU[64][9] = "Wilcoxon Дундаж сумын тестийн хүснэгт";
+svgStrU[65][9] = "Kruskal-Wallis Туршилт";
+svgStrU[66][9] = "Kruskal-Wallis Туршилтын хүснэгт";
+svgStrU[67][9] = "Kruskal-Wallis H Статистик";
+svgStrU[68][9] = "Wilcoxon Гарын үсэг зурах шалгуур";
+svgStrU[69][9] = "Sign Туршилт";
+svgStrU[70][9] = "Friedman Туршилт";
+svgStrU[71][9] = "Friedman S Статистик";
+svgStrU[72][9] = "Friedman Түгээлт Хүснэгт";
 // Chinese - Simplified
 $.message.zh = {
     "eStat : Stat Education SW": "eStat: 统计教育软件",
@@ -5065,7 +5063,7 @@ $.message.zh = {
     "Interval Width": "区间宽度",
     "t-test": "t-检验",
     "Z-test": "Z-检验",
-    "(if Z-test, enter &sigma;)": "(Z-检验, enter &sigma)",
+    "(if Z-test, enter &sigma;)": "(Z-检验, 输入 &sigma)",
     "Significance Level": "显著性水平",
     "Execute": "执行",
     "(Confidence Interval)": "(置信区间)",
@@ -5190,7 +5188,7 @@ $.message.zh = {
     "RegressionBand": "置信带",
     "RegressionTable": "回归分析",
     "RegressionResidual": "残差图",
-    "RegressionResidualLeverage": "残差 - Leverage",
+    "RegressionResidualLeverage": "残差 - 杠杆作用",
     "RegressionCook": "Cook距離图",
     "RegressionQQ": "残差Q-Q图",
     "HistogramNormal": "直方图",
@@ -5221,7 +5219,7 @@ $.message.zh = {
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
     "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "標本範圍",
+    "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
     "SignedRankTest": "Wilcoxon 符號順位檢定",
     "SignTest": "符號檢定",
@@ -5242,7 +5240,7 @@ $.message.zh = {
     "VariableSelect":  "* 資料分析 : 变量選択 >>  Click Icon",
     "VariableSelect2": "* 变量選択 : Click 变量名 / 右側選択箱利用 ",
     "VariableSelect3": "* 变量選択",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
+    "VariableSelect4": "按住[Ctrl]键选择多个变量",
     "SummaryData": "要約資料",
     "RawData": "原資料",
     "RawData2": "原資料变量選択",
@@ -5265,10 +5263,10 @@ alertMsg[6][10] = "若摘要资料中要进行分析的变量包含文字，则�
 alertMsg[7][10] = "若原始资料中有超过3个变量数被选择，则无法进行分析及制作图表。";
 alertMsg[8][10] = "点图可用于观察值少于200的样本。";
 alertMsg[9][10] = "茎叶图可用于观察值少于100的样本。";
-alertMsg[10][10] = "Analysis variable is not selected.";
-alertMsg[11][10] = "Analysis/Group variables are not selected.";
+alertMsg[10][10] = "未选择分析变量";
+alertMsg[11][10] = "未选择分析/群变量。";
 alertMsg[12][10] = "若分析的变量包含文字，则无法进行分析及制作图表。";
-alertMsg[13][10] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][10] = "";
 alertMsg[14][10] = "连续型图形及假设建议无法进行摘要资料。";
 alertMsg[16][10] = "此假设检验仅限于两个总体。";
 alertMsg[17][10] = "绘制散点图至少需要横轴变量及纵轴变量。";
@@ -5292,10 +5290,10 @@ alertMsg[39][10] = "标准差为0或不是一个数字，请重新执行!";
 alertMsg[40][10] = "输入的方差不是一个数字，请输入一个数值并重新执行!";
 alertMsg[41][10] = "此假设检验仅限于两个变量，群组变量则需包含两个群组。";
 alertMsg[42][10] = "假设检验的标题不可编辑! ";
-alertMsg[43][10] = "Simple Linear Regression is only for one group";
+alertMsg[43][10] = "简单线性回归仅适用于一组";
 alertMsg[44][10] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][10] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][10] = "The same variable number is selected.";
+alertMsg[46][10] = "同一变量名選擇";
 
 svgStr[1][10] = " 条形图";
 svgStr[2][10] = " 饼图";
@@ -5406,7 +5404,7 @@ svgStr[106][10]= "重相關係數";
 svgStr[107][10]= "<h3>相關分析</h3>";
 svgStr[108][10]= "相關係數行列";
 svgStr[109][10]= "因子1 - 因子2 平均図";
-svgStr[110][10]= "Leverage";
+svgStr[110][10]= "杠杆作用";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -5549,7 +5547,7 @@ $.message.pt = {
     "MeanStd": "Média/Desvio Padrão",
     "95CI": "95% Intervalo de Confiança",
     "RegressionAnalysis": "análise de regressão",
-    "ANOVA2": "Two way ANOVA",
+    "ANOVA2": "Dois sentidos ANOVA",
     "Regression": "Regressão",
     "RegressionLine": "Reta de Regressão",
     "RegressionBand": "banda de confiança",
@@ -5671,15 +5669,15 @@ $.message.pt = {
     "Mean": "Média",
     "Std Dev": "Desvio Padrão",
     "OneGroup": "(um grupo)",
-    "AnalysisVar": "Analysis Var",
+    "AnalysisVar": "Análise Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Group Var",
+    "GroupVar": "Grupo Var",
     "GroupVar2": "X Var",
-    "GroupVar3": "Factor1",
-    "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": " X1, X2 : Paired Variables",
+    "GroupVar3": "Fator1",
+    "GroupVar4": "Fator2",
+    "AnalysisVarMu12": "Análise(or X1) Var",
+    "GroupVarMu12": "Grupo(or X2) Var",
+    "PairedMu12": " X1, X2 : Paired Var",
     "SizeVar": "Tamanho da Variável",
     "RegressionBand": "banda de confiança",
     "RegressionTable": "Análise de Regressão",
@@ -5734,14 +5732,14 @@ $.message.pt = {
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Soma Teste,  n>25 Teste Aproximado pela Normal",
     "KruskalCondition": "n ≤ 10 H Distribuição Teste,  else &chi;<sup>2</sup> approximado teste",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Select multiple variables by holding [Ctrl] key. Use Analysis Var Selection for summary data.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Clik Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "VariableSelect2": "* seleção de variáveis : Click var name or use RHS selection box ",
+    "VariableSelect3": "seleção de variáveis",
+    "VariableSelect4": "Segure a tecla [Ctrl] para selecionar múltiplas variáveis.",
+    "SummaryData": "Dados resumidos",
+    "RawData": "Dados não tratados",
+    "RawData2": "Dados não tratados seleção de variáveis",
+    "SummaryExplain":  "Clique Valor Var, Análise Var > Clique no ícone",
+    "RawExplain1": "Clique no ícone > Selecione Var (or Clique Var > Clique Icon)",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -5759,10 +5757,10 @@ alertMsg[6][11] = "A análise estatística ou tabela não serão realizadas se o
 alertMsg[7][11] = "A análise estatística ou tabela não serão realizadas se mais de três variáveis forem selecionadas..";
 alertMsg[8][11] = "O gráfico de pontos só é permitido para número de observações inferior a 200..";
 alertMsg[9][11] = "O gráfico Ramo-e-Folhas só é permitido para número de observações inferior a 100.";
-alertMsg[10][11] = "Analysis variable is not selected.";
-alertMsg[11][11] = "Analysis/Group variables are not selected.";
+alertMsg[10][11] = "Variável de análise não selecionada.";
+alertMsg[11][11] = "Variável de análise/grupo não selecionada.";
 alertMsg[12][11] = "A análise estatística ou tabela não serão realizadas se a variável selecionada incluir observações tipo caractere.";
-alertMsg[13][11] = "If there are more than two analysis variables(summary data), group variable cannot be selected.";
+alertMsg[13][11] = "";
 alertMsg[14][11] = "Gráficos e testes para variáveis contínuas não podem ser realizados se os dados estiverem na forma resumida.";
 alertMsg[16][11] = "Apenas dois grupos são permitidos neste tipo de teste.";
 alertMsg[17][11] = "Diagrama de dispersão requer duas variáveis (x e y).";
@@ -5772,9 +5770,9 @@ alertMsg[20][11] = "Se a data incluir observação tipo caractere, regression n�
 alertMsg[21][11] = "Se existirem caselas vazias nos dados não será permitido salvar.";
 alertMsg[22][11] = "Se existirem valores negativos o gráfico de barras não pode ser construído.";
 alertMsg[25][11] = "O gráfico de barras empilhado exige mais de um grupo.";
-alertMsg[27][11] = "If there is only one group, ratio bar graph is not allowed.";
-alertMsg[29][11] = "If there is only one group, side-by-side bar graph is not allowed.";
-alertMsg[31][11] = "If there is only one group, both-side bar graph is not allowed.";
+alertMsg[27][11] = "Se houver apenas um grupo, o gráfico de barras não será permitido.";
+alertMsg[29][11] = "Se houver apenas um grupo, o gráfico de barras não será permitido.";
+alertMsg[31][11] = "Se houver apenas um grupo, o gráfico de barras não será permitido.";
 alertMsg[32][11] = "Se existirem valores negativos o gráfico de setores não pode ser construído.";
 alertMsg[33][11] = "Se existirem valores negativos o gráfico em anel não pode ser construído.";
 alertMsg[34][11] = "Se existirem valores negativos o gráfico de faixas/bandas não pode ser construído.";
@@ -5789,7 +5787,7 @@ alertMsg[42][11] = "Não é permitido editar o título do teste de hipótese!";
 alertMsg[43][11] = "Regressão Linear Simples é para um único grupo.";
 alertMsg[44][11] = "1o: Nome, 2o: latitude, 3o: longitude; 4o: Variável em Análise(opcional)";
 alertMsg[45][11] = "Não é possível desenhar o gráfico GIS para mais de cinco variáveis.";
-alertMsg[46][11] = "The same variable number is selected.";
+alertMsg[46][11] = "O mesmo número variável é selecionado.";
 
 svgStr[1][11] = " Gráfico de Barras";
 svgStr[2][11] = " Gráfico de Setores";
@@ -5862,7 +5860,7 @@ svgStr[68][11] = "valor estimado";
 svgStr[69][11] = "valor";
 svgStr[70][11] = "Intercepto";
 svgStr[71][11] = "Inclinação";
-svgStr[72][11] = "Factor";
+svgStr[72][11] = "Fator";
 svgStr[73][11] = "Soma de Quadrados";
 svgStr[74][11] = "graus de liberdade";
 svgStr[75][11] = "Quadrado Médio";
@@ -5882,7 +5880,7 @@ svgStr[88][11] = "Tabela de Médias de Dupla Entrada";
 svgStr[89][11] = "Matriz de Diagramas de Dispersão";
 svgStr[90][11] = "Comparações Múltiplas";
 svgStr[91][11] = "Estatística";
-svgStr[92][11] = "Factor";
+svgStr[92][11] = "Fator";
 svgStr[93][11] = "Nivel";
 svgStr[94][11] = "Amostras pareadas dados gráfico";
 svgStr[95][11] = "Residual vs predito gráfico";
@@ -5899,7 +5897,7 @@ svgStr[105][11]= "Total nas Colunas";
 svgStr[106][11]= "Coeficiente de Correlação Múltipla";
 svgStr[107][11]= "<h3>Análise de Correlação</h3>";
 svgStr[108][11]= "Matriz de Correlação";
-svgStr[109][11]= "Factor1 - Factor2 média gráfico";
+svgStr[109][11]= "Fator1 - Fator2 média gráfico";
 svgStr[110][11]= "Alavancagem";
 
 svgStrU[1][11] = "Distribuição Binomial";
