@@ -231,6 +231,7 @@ var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkPairedT; // Paired T-test
 var checkRegress;
 var checkPastColSelection = false;
+var checkVarSame; // 같은 변수 선택했는지 check
 var checkRBD; // Radomized Block Design
 var checkScatterMatrix;
 var top0Visited,top1Visited,top2Visited,top3Visited,top4Visited,top5Visited,top6Visited;
@@ -457,6 +458,19 @@ function initEventControl(datasheet) {
             for (i = 0; i < numVar; i++) {
                 str += "V" + tdvarNumber[i].toString() + ",";
             }
+/*
+            // 같은 번호 선택했는지 체크
+            checkVarSame = false;
+            for (i = 0; i < numVar-1; i++) {
+              for (j = i+1; j < numVar; j++) {
+                if (tdvarNumber[i] == tdvarNumber[j]) {
+                  checkVarSame = true;
+                  alert(alertMsg[46][langNum]);  // 같은 변수 선택
+                  return;
+                }
+              }
+            }
+*/
             d3.select("#selectedVars").node().value = str;
             buttonColorChange(); // svg 크기, 모든 버튼 체크 초기화
         } 
@@ -774,6 +788,24 @@ function updateVarList() {
         option.value = i+1;
         analysisLine.options.add(option);
     }
+    // top7 분석변수 선택리스트
+    analysisSigma12 = document.getElementById("analysisSigma12");
+    analysisSigma12.innerHTML = '<option value="0" selected> --- </option>'	
+    for (i=0; i<numCol; i++) {
+        option = document.createElement("option");
+        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        analysisSigma12.options.add(option);
+    }
+    // top7 그룹변수 선택리스트
+    groupSigma12 = document.getElementById("groupSigma12");
+    groupSigma12.innerHTML = '<option value="0" selected> --- </option>'
+    for (i=0; i<numCol; i++) {
+        option = document.createElement("option");
+        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        groupSigma12.options.add(option);
+    }
 }
 
 /*
@@ -988,9 +1020,18 @@ d3.select("#printTable").on("click", function() {
 // 분석변량 선택 - TH Mu, TH Simga
 document.getElementById("analysisSelect").onchange = function() {
     numVar = 0;
-    k = parseInt(document.getElementById("analysisSelect").value) - 1;
+    j = parseInt(document.getElementById("analysisSelect").value);
+    k = j - 1;
     if (k < 0) return;
-    tdvarNumber[numVar] = k+1;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<robs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+    tdvarNumber[numVar] = j;
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
@@ -1008,6 +1049,7 @@ document.getElementById("analysisSelect").onchange = function() {
 // 분석변량 선택 - 막대/원/띠/ 점/히스토/상자/줄기/  
 document.getElementById("analysisSelectMain").onchange = function() {
     numVar = 0;
+    document.getElementById("groupSelectMain").options[0].selected = true
     k = parseInt(document.getElementById("analysisSelectMain").value) - 1;
     if (k < 0) return;
     tdvarNumber[numVar] = k+1;
@@ -1027,12 +1069,17 @@ document.getElementById("analysisSelectMain").onchange = function() {
 }
 // 그룹변량 선택 - 막대/원/띠 점/히스토/상자/줄기
 document.getElementById("groupSelectMain").onchange = function() {
+    j = parseInt(document.getElementById("groupSelectMain").value);
+    // 같은 변수 입력 체크
+    if (tdvarNumber[0] == j) {
+      document.getElementById("groupSelectMain").options[0].selected = true
+      alert(alertMsg[46][langNum]);  // 같은 변수 선택
+      return;
+    }
     numVar = 1;
-    k = parseInt(document.getElementById("groupSelectMain").value) - 1;
+    k = j - 1;
     if (k < 0) {
       numVar = 1;
-//      str = "V"+tdvarNumber[0].toString()+",";
-      d3.select("#selectedVars").node().value = str;
       document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
       return;
     }
@@ -1040,11 +1087,6 @@ document.getElementById("groupSelectMain").onchange = function() {
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
-    // 같은 변수 입력 체크
-    if (tdvarNumber[0] == tdvarNumber[1]) {
-      alert(alertMsg[46][langNum]);  // 같은 변수 선택
-      return;
-    }
     // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
     for (m = 0; m < robs[k]; m++) {
         tdvalue[numVar][m] = rvalue[k][m];
@@ -1052,7 +1094,7 @@ document.getElementById("groupSelectMain").onchange = function() {
     }
     tdvar[numVar] = rvar[k];
     numVar = 2;
-   // 선택변수 리스트
+    // 선택변수 리스트
 //    str = "V"+tdvarNumber[0].toString()+",V" + tdvarNumber[1].toString()+",";
 //    d3.select("#selectedVars").node().value = str;
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
@@ -1060,6 +1102,7 @@ document.getElementById("groupSelectMain").onchange = function() {
 // 꺽은선 X축변량 선택 
 document.getElementById("xaxisLine").onchange = function() {
     numVar = 0;
+    document.getElementById("analysisLine").options[0].selected = true
     k = parseInt(document.getElementById("xaxisLine").value) - 1;
     if (k < 0) {
       return;
@@ -1068,13 +1111,6 @@ document.getElementById("xaxisLine").onchange = function() {
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
-    // 같은 변수 입력 체크
-    for (i=0; i<numVar; i++) {
-      if (tdvarNumber[i] == tdvarNumber[numVar]) {
-        alert(alertMsg[46][langNum]);  // 같은 변수 선택
-        return;
-      }
-    }
     // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
     for (m = 0; m < robs[k]; m++) {
         tdvalue[numVar][m] = rvalue[k][m];
@@ -1088,8 +1124,41 @@ document.getElementById("xaxisLine").onchange = function() {
 }
 // 꺽은선 분석변량 선택 
 document.getElementById("analysisLine").onchange = function() {
-    numVar = 1;
-//    str = "V"+tdvarNumber[0].toString()+","
+    j = parseInt(document.getElementById("analysisLine").value);
+    k = j - 1;
+    if (k < 0 ) {numVar = 1; return;}
+    // 같은 변수 입력 체크
+    for (i=0; i <numVar; i++) {
+      if (tdvarNumber[i] == j) {
+        document.getElementById("analysisLine").options[0].selected = true
+        alert(alertMsg[46][langNum]);  // 같은 변수 선택
+        return;
+      }
+    }
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<robs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+    tdvarNumber[numVar] = j;
+    tdobs[numVar]       = robs[k];
+    tdvalueNum[numVar]  = rvalueNum[k];
+    tdvarName[numVar]   = rvarName[k];
+    // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+    for (m = 0; m < robs[k]; m++) {
+        tdvalue[numVar][m] = rvalue[k][m];
+        tdvalueLabel[numVar][m] = rvalueLabel[k][m];
+    }
+    tdvar[numVar] = rvar[k];
+    // 선택변수 리스트
+//    str += "V"+tdvarNumber[numVar].toString()+",";
+//    d3.select("#selectedVars").node().value = str;
+    numVar++;
+    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+/*
     j = document.getElementById("analysisLine").options.length;
     for (i=1; i<j; i++) {
       if (document.getElementById("analysisLine").options[i].selected == false) continue;
@@ -1109,18 +1178,27 @@ document.getElementById("analysisLine").onchange = function() {
         tdvalueLabel[numVar][m] = rvalueLabel[k][m];
       }
       tdvar[numVar] = rvar[k];
-//      str += "V"+tdvarNumber[numVar]+",";
       numVar++;
     }
-//    d3.select("#selectedVars").node().value = str;
-    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+*/
+
 }
 // 산점도 Y변량 선택
 document.getElementById("selectScatterY").onchange = function() {
     numVar = 0;
-    k = parseInt(document.getElementById("selectScatterY").value) - 1;
-    if (k < 0) return;
-    tdvarNumber[numVar] = k+1;
+    document.getElementById("selectScatterX").options[0].selected = true
+    j = parseInt(document.getElementById("selectScatterY").value);
+    k = j - 1;
+    if (k < 0 ) return;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<tdobs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+    tdvarNumber[numVar] = j;
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
@@ -1137,36 +1215,92 @@ document.getElementById("selectScatterY").onchange = function() {
 // 산점도 X변량 선택
 document.getElementById("selectScatterX").onchange = function() {
     if (numVar < 1) {alert(alertMsg[10][langNum]); return;}
-    numVar = 1;
-    k = parseInt(document.getElementById("selectScatterX").value) - 1;
-    if (k < 0) return;
-    tdvarNumber[numVar] = k+1;
-    tdobs[numVar] = robs[k];
-    tdvalueNum[numVar] = rvalueNum[k];
-    tdvarName[numVar] = rvarName[k];
+    j = parseInt(document.getElementById("selectScatterX").value)
     // 같은 변수 입력 체크
-    if (tdvarNumber[0] == tdvarNumber[1]) {
+    if (tdvarNumber[0] == j) {
+      document.getElementById("selectScatterX").options[0].selected = true
       alert(alertMsg[46][langNum]);  // 같은 변수 선택
       return;
     }
+    k = j - 1;
+    if (k < 0 ) return;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<tdobs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+
+    numVar = 1;
+    tdvarNumber[numVar] = j;
+    tdobs[numVar] = robs[k];
+    tdvalueNum[numVar] = rvalueNum[k];
+    tdvarName[numVar] = rvarName[k];
     // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
     for (m = 0; m < robs[k]; m++) {
         tdvalue[numVar][m] = rvalue[k][m];
         tdvalueLabel[numVar][m] = rvalueLabel[k][m];
     }
     tdvar[numVar] = rvar[k];
-    numVar = 2;
     // 선택변수 리스트
-//    str = "V"+tdvarNumber[0].toString()+",V" + tdvarNumber[1].toString()+",";
+//    str += "V"+tdvarNumber[numVar].toString()+",";
 //    d3.select("#selectedVars").node().value = str;
+    numVar = 2;
     // Redraw Graph
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
 }
+// 산점도 그룹변량 선택 
+document.getElementById("groupSelect").onchange = function() {
+    j = parseInt(document.getElementById("groupSelect").value);
+    gvarNumber = j - 1; 
+    wvarNumber = parseInt(document.getElementById("sizeSelect").value) - 1;
+    k = j - 1;
+    if (k < 0) return;
+    // 같은 변수 입력 체크
+    if (tdvarNumber[0] == j || tdvarNumber[1] == j) {
+      document.getElementById("groupSelect").options[0].selected = true
+      alert(alertMsg[46][langNum]);  // 같은 변수 선택
+      return;
+    }
+    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+
+}
+// 산점도 원크기변량 선택 
+document.getElementById("sizeSelect").onchange = function() {
+    j = parseInt(document.getElementById("sizeSelect").value);
+    gvarNumber = parseInt(document.getElementById("groupSelect").value) - 1; 
+    wvarNumber = j - 1;
+    k = j - 1;
+    if (k < 0) return;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<robs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+}
+
 // 분산분석 : 분석변량 선택
 document.getElementById("analysisANOVA").onchange = function() {
     numVar = 0;
-    k = parseInt(document.getElementById("analysisANOVA").value) - 1;
-    if (k < 0) return;
+    document.getElementById("factor1Select").options[0].selected = true
+    document.getElementById("factor2Select").options[0].selected = true
+    j = parseInt(document.getElementById("analysisANOVA").value);
+    k = j - 1;
+    if (k < 0 ) return;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<tdobs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i   
     tdvarNumber[numVar] = k+1;
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
@@ -1184,39 +1318,48 @@ document.getElementById("analysisANOVA").onchange = function() {
 // 분산분석 : 인자1변량 선택
 document.getElementById("factor1Select").onchange = function() {
     if (numVar < 1) {alert(alertMsg[11][langNum]); return;}
+    document.getElementById("factor2Select").options[0].selected = true
+    j = parseInt(document.getElementById("factor1Select").value);
+    // 같은 변수 입력 체크
+    if (tdvarNumber[0] == j) {
+      document.getElementById("factor1Select").options[0].selected = true
+      alert(alertMsg[46][langNum]);  // 같은 변수 선택
+      return;
+    }
     // 인자1변량
     numVar = 1;
-    k = parseInt(document.getElementById("factor1Select").value) - 1;
+    k = j - 1;
     if (k < 0) return;
     tdvarNumber[numVar] = k+1;
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
-    // 같은 변수 입력 체크
-    if (tdvarNumber[0] == tdvarNumber[1]) {
-      alert(alertMsg[46][langNum]);  // 같은 변수 선택
-      return;
-    }
     // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
     for (m = 0; m < robs[k]; m++) {
         tdvalue[numVar][m] = rvalue[k][m];
         tdvalueLabel[numVar][m] = rvalueLabel[k][m];
     }
     tdvar[numVar] = rvar[k];
-    numVar = 2;
     // 선택변수 리스트
-//    str = "V"+tdvarNumber[0].toString()+",V" + tdvarNumber[1].toString()+",";
+//    str += "V"+tdvarNumber[numVar].toString()+",";
 //    d3.select("#selectedVars").node().value = str;
+    numVar = 2;
     // Redraw Graph
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
 }
 // 분산분석 : 인자2변량 선택
 document.getElementById("factor2Select").onchange = function() {
     if (numVar < 2) {alert(alertMsg[11][langNum]); return;}
+    j = parseInt(document.getElementById("factor2Select").value);
+    // 같은 변수 입력 체크
+    if (tdvarNumber[0] == j || tdvarNumber[1] == j) {
+      document.getElementById("factor2Select").options[0].selected = true
+      alert(alertMsg[46][langNum]);  // 같은 변수 선택
+      return;
+    }
     // 인자2변량
     numVar = 2;
-    k = parseInt(document.getElementById("factor2Select").value) - 1;
-console.log(k)
+    k = j - 1;
     if (k < 0) {
       numVar = 2;
       top3Visited == false;
@@ -1229,11 +1372,6 @@ console.log(k)
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
-    // 같은 변수 입력 체크
-    if (tdvarNumber[0] == tdvarNumber[2] || tdvarNumber[1] == tdvarNumber[2]) {
-      alert(alertMsg[46][langNum]);  // 같은 변수 선택
-      return;
-    }
     // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
     for (m = 0; m < robs[k]; m++) {
         tdvalue[numVar][m] = rvalue[k][m];
@@ -1250,9 +1388,20 @@ console.log(k)
 // 회귀분석 Y변량 선택
 document.getElementById("selectRegressionY").onchange = function() {
     numVar = 0;
-    k = parseInt(document.getElementById("selectRegressionY").value) - 1;
-    if (k < 0) return;
-    tdvarNumber[numVar] = k+1;
+    document.getElementById("selectRegressionX").options[0].selected = true
+    j = parseInt(document.getElementById("selectRegressionY").value);
+    k = j - 1;
+    if (k < 0 ) return;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<tdobs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+
+    tdvarNumber[numVar] = j;
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
@@ -1268,41 +1417,84 @@ document.getElementById("selectRegressionY").onchange = function() {
 }
 // 회귀분석 X변량 선택
 document.getElementById("selectRegressionX").onchange = function() {
-//    if (numVar < 1) {alert(alertMsg[10][langNum]); return;}
-    numVar = 1;
-//    str = "V"+tdvarNumber[0].toString()+","
+    j = parseInt(document.getElementById("selectRegressionX").value);
+    k = j - 1;
+    if (k < 0 ) {numVar = 1; return;}
+    // 같은 변수 입력 체크
+    for (i=0; i <numVar; i++) {
+      if (tdvarNumber[i] == j) {
+        document.getElementById("selectRegressionX").options[0].selected = true
+        alert(alertMsg[46][langNum]);  // 같은 변수 선택
+        return;
+      }
+    }
+    // numeric check 
+    for (i=0; i<tdobs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+    tdvarNumber[numVar] = j;
+    tdobs[numVar]       = robs[k];
+    tdvalueNum[numVar]  = rvalueNum[k];
+    tdvarName[numVar]   = rvarName[k];
+    // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+    for (m = 0; m < robs[k]; m++) {
+        tdvalue[numVar][m] = rvalue[k][m];
+        tdvalueLabel[numVar][m] = rvalueLabel[k][m];
+    }
+    tdvar[numVar] = rvar[k];
+    // 선택변수 리스트
+//    str += "V"+tdvarNumber[numVar].toString()+",";
+//    d3.select("#selectedVars").node().value = str;
+    numVar++;
+    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+
+/*
     j = document.getElementById("selectRegressionX").options.length;
     for (i=1; i<j; i++) {
       if (document.getElementById("selectRegressionX").options[i].selected == false) continue;
+      // 같은 변수 입력 체크
+      for (m = 0; m < i-1; m++) {
+        if (tdvarNumber[m] == i) {
+          alert(alertMsg[46][langNum]);  // 같은 변수 선택
+          return;
+        }
+      }
       tdvarNumber[numVar] = i;
       k = i-1;
       tdobs[numVar]       = robs[k];
       tdvalueNum[numVar]  = rvalueNum[k];
       tdvarName[numVar]   = rvarName[k];
-      // 같은 변수 입력 체크
-      if (tdvarNumber[0] == tdvarNumber[i]) {
-        alert(alertMsg[46][langNum]);  // 같은 변수 선택
-        return;
-      }
       // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
       for (m = 0; m < robs[k]; m++) {
         tdvalue[numVar][m] = rvalue[k][m];
         tdvalueLabel[numVar][m] = rvalueLabel[k][m];
       }
       tdvar[numVar] = rvar[k];
-//      str += "V"+tdvarNumber[numVar]+",";
       numVar++;
     }
-    // 선택변수 리스트
-//    d3.select("#selectedVars").node().value = str;
-    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+*/
 }
 // Mu12 분석변량 선택  THSigma12
 document.getElementById("analysisMu12").onchange = function() {
     numVar = 0;
-    k = parseInt(document.getElementById("analysisMu12").value) - 1;
-    if (k < 0) return;
-    tdvarNumber[numVar] = k+1;
+    document.getElementById("groupMu12").options[0].selected = true
+    j = parseInt(document.getElementById("analysisMu12").value);
+    k = j - 1;
+    if (k < 0 ) return;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<tdobs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+
+    tdvarNumber[numVar] = j;
     tdobs[numVar] = robs[k];
     tdvalueNum[numVar] = rvalueNum[k];
     tdvarName[numVar] = rvarName[k];
@@ -1319,18 +1511,80 @@ document.getElementById("analysisMu12").onchange = function() {
 // Mu12 그룹변량 선택
 document.getElementById("groupMu12").onchange = function() {
     if (numVar < 1) {alert(alertMsg[10][langNum]); return;}
-    numVar = 1;
-    k = parseInt(document.getElementById("groupMu12").value) - 1;
-    if (k < 0) return;
-    tdvarNumber[numVar] = k+1;
-    tdobs[numVar] = robs[k];
-    tdvalueNum[numVar] = rvalueNum[k];
-    tdvarName[numVar] = rvarName[k];
+    j = parseInt(document.getElementById("groupMu12").value);
+    k = j - 1;
+    if (k < 0 ) return;
     // 같은 변수 입력 체크
-    if (tdvarNumber[0] == tdvarNumber[1]) {
+    if (tdvarNumber[0] == j) {
+      document.getElementById("groupMu12").options[0].selected = true
       alert(alertMsg[46][langNum]);  // 같은 변수 선택
       return;
     }
+
+    tdvarNumber[numVar] = j;
+    tdobs[numVar] = robs[k];
+    tdvalueNum[numVar] = rvalueNum[k];
+    tdvarName[numVar] = rvarName[k];
+    // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+    for (m = 0; m < robs[k]; m++) {
+        tdvalue[numVar][m] = rvalue[k][m];
+        tdvalueLabel[numVar][m] = rvalueLabel[k][m];
+    }
+    tdvar[numVar] = rvar[k];
+    numVar = 2;
+    // 선택변수 리스트
+//    str = "V"+tdvarNumber[0].toString()+",V" + tdvarNumber[1].toString()+",";
+//    d3.select("#selectedVars").node().value = str;
+    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+}
+// Sigma12 분석변량 선택  THSigma12
+document.getElementById("analysisSigma12").onchange = function() {
+    numVar = 0;
+    document.getElementById("groupSigma12").options[0].selected = true
+    j = parseInt(document.getElementById("analysisSigma12").value);
+    k = j - 1;
+    if (k < 0 ) return;
+    // numeric check : 문자 데이터 방지
+    for (i=0; i<tdobs[0]; i++) {
+      if (isNaN(rvar[k][i])) {
+        checkNumeric = false;
+        alert(alertMsg[19][langNum]);
+        return;
+      } // endof if
+    } // endof i
+
+    tdvarNumber[numVar] = j;
+    tdobs[numVar] = robs[k];
+    tdvalueNum[numVar] = rvalueNum[k];
+    tdvarName[numVar] = rvarName[k];
+    // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+    for (m = 0; m < robs[k]; m++) {
+        tdvalue[numVar][m] = rvalue[k][m];
+        tdvalueLabel[numVar][m] = rvalueLabel[k][m];
+    }
+    tdvar[numVar] = rvar[k];
+    numVar = 1;
+
+//    str = "V"+tdvarNumber[0].toString()+","
+//    d3.select("#selectedVars").node().value = str;
+}
+// Sigma12 그룹변량 선택
+document.getElementById("groupSigma12").onchange = function() {
+    if (numVar < 1) {alert(alertMsg[10][langNum]); return;}
+    j = parseInt(document.getElementById("groupSigma12").value);
+    k = j - 1;
+    if (k < 0 ) return;
+    // 같은 변수 입력 체크
+    if (tdvarNumber[0] == j) {
+      alert(alertMsg[46][langNum]);  // 같은 변수 선택
+      document.getElementById("groupSigma12").options[0].selected = true
+      return;
+    }
+
+    tdvarNumber[numVar] = j;
+    tdobs[numVar] = robs[k];
+    tdvalueNum[numVar] = rvalueNum[k];
+    tdvarName[numVar] = rvarName[k];
     // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
     for (m = 0; m < robs[k]; m++) {
         tdvalue[numVar][m] = rvalue[k][m];
@@ -1423,7 +1677,7 @@ d3.select("#separate1").on("click", function() {
        alert(alertMsg[22][langNum]); // 음수
        return;
     }
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     SeparateBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1458,7 +1712,7 @@ d3.select("#separate2V").on("click", function() {
         alert(alertMsg[22][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     SeparateBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1493,7 +1747,7 @@ d3.select("#separate2H").on("click", function() {
         alert(alertMsg[23][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     SeparateBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1573,7 +1827,7 @@ d3.select("#stack2V").on("click", function() {
         alert(alertMsg[25][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     StackBar = true
     VerticalBar = true;
     HorizontalBar = false;
@@ -1604,7 +1858,7 @@ d3.select("#stack2H").on("click", function() {
         alert(alertMsg[25][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     StackBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1635,7 +1889,7 @@ d3.select("#ratio2V").on("click", function() {
         alert(alertMsg[27][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     RatioBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1666,7 +1920,7 @@ d3.select("#ratio2H").on("click", function() {
         alert(alertMsg[27][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     RatioBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1697,7 +1951,7 @@ d3.select("#side2V").on("click", function() {
         alert(alertMsg[29][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     SideBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1728,7 +1982,7 @@ d3.select("#side2H").on("click", function() {
         alert(alertMsg[29][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     SideBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1760,7 +2014,7 @@ d3.select("#bothbar2V").on("click", function() {
         return;
     };
     if (ngroup == 2) {
-        if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+        if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
         BothBar = true;
         VerticalBar = true;
         HorizontalBar = false;
@@ -1793,7 +2047,7 @@ d3.select("#bothbar2H").on("click", function() {
         return;
     };
     if (ngroup == 2) {
-        if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+        if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
         BothBar = true;
         VerticalBar = false;
         HorizontalBar = true;
@@ -1821,7 +2075,7 @@ d3.select("#pie1").on("click", function() {
         alert(alertMsg[32][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     PieChart = true;
     chart.selectAll("*").remove();
     drawPieChart(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
@@ -1846,7 +2100,7 @@ d3.select("#donut2").on("click", function() {
         alert(alertMsg[33][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("mean").checked = false;
     DonutGraph = true;
     chart.selectAll("*").remove();
@@ -1873,7 +2127,7 @@ d3.select("#band1").on("click", function() {
         alert(alertMsg[34][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("mean").checked = false;
     BandGraph = true;
     chart.selectAll("*").remove();
@@ -1909,7 +2163,7 @@ d3.select("#line1").on("click", function() {
     }
     if (robs[0] == null) return;  // 데이터가 없는 경우
     dataClassifyLine();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     LineGraph = true;
     chart.selectAll("*").remove();
     currentLabel = dvalueLabel;
@@ -1965,7 +2219,7 @@ d3.select("#freqTable").on("click", function() {
         alert(alertMsg[35][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("mean").checked = false;
     FreqTable = true;
     ngvalue = ngroup;
@@ -1994,7 +2248,7 @@ d3.select("#dot1").on("click", function() {
     document.getElementById("sub5").style.display = "block"; //점그래프 평균, 표준편차표시
     if (robs[0] == null) return;  // 데이터가 없는 경우
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     DotGraph = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -2047,7 +2301,7 @@ d3.select("#hist1").on("click", function() {
     document.getElementById("sub7").style.display = "block"; //히스토그램 선택사항 표시
     if (robs[0] == null) return;  // 데이터가 없는 경우
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     Histogram = true;
     chart.selectAll("*").remove();
 //    enableHist();
@@ -2133,7 +2387,7 @@ d3.select("#box1").on("click", function() {
     }
     if (robs[0] == null) return;  // 데이터가 없는 경우
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     BoxGraph = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -2157,7 +2411,7 @@ d3.select("#stem1").on("click", function() {
     }
     if (robs[0] == null) return;  // 데이터가 없는 경우
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     StemLeaf = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -2184,7 +2438,7 @@ d3.select("#bothstem2").on("click", function() {
         alert(alertMsg[36][langNum]);
         return;
     }
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     StemBoth = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -2207,7 +2461,7 @@ d3.select("#statTable").on("click", function() {
     if (robs[0] == null) return;  // 데이터가 없는 경우
     dataClassifyM();
     if (rawData == false) return;
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     StatTable = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -2223,6 +2477,7 @@ d3.select("#scatter1").on("click", function() {
     if (selectedVars != "") graphTopHide()
     else if (top2Visited == false) {    // 초기화
       graphTop2Show(); // 분석-그룹 변수선택 표시
+      document.getElementById("sub6").style.display = "block"; //회귀선 표시
       str = "";
       d3.select("#selectedVars").node().value = str;
       chart.selectAll("*").remove();
@@ -2230,10 +2485,10 @@ d3.select("#scatter1").on("click", function() {
     }
     document.getElementById("sub6").style.display = "block"; //회귀선 표시
     if (robs[0] == null) return;  // 데이터가 없는 경우
-    gvarNumber = -1;
-    wvarNumber = -1;
+    gvarNumber = parseInt(document.getElementById("groupSelect").value) - 1; 
+    wvarNumber = parseInt(document.getElementById("sizeSelect").value) - 1;
     dataClassifyS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("regress").checked = false;
     document.getElementById("regress").disabled = false;
     tobs = xobs;
@@ -2271,10 +2526,11 @@ d3.select("#regress").on("click", function() {
 })
 // 산점도 Redraw
 d3.select("#scatterRedraw").on("click", function() {
+    graphNum = 21;
     gvarNumber = parseInt(document.getElementById("groupSelect").value) - 1; 
     wvarNumber = parseInt(document.getElementById("sizeSelect").value) - 1;
     dataClassifyS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     chart.selectAll("*").remove();
     document.getElementById("regress").checked = false;
     document.getElementById("regress").disabled = false;
@@ -2307,7 +2563,7 @@ d3.select("#gis").on("click", function() {
     buttonColorChange();
     document.getElementById("gis").style.backgroundColor = buttonColorH;
     dataClassifyGIS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     chart.selectAll("*").remove();
     drawGIS(gobs,gdata,xdata,ydata,wdata)    
     // 점과 시트의 연결
@@ -2358,7 +2614,7 @@ d3.select("#testM1").on("click", function() {
       return; 
     }
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     chart.selectAll("*").remove();
     THmean1 = true;
     TotalStat(dobs, dvar, tstat);
@@ -2522,7 +2778,7 @@ d3.select("#testS1").on("click", function() {
       return; 
     }
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     chart.selectAll("*").remove();
     THsigma1 = true;
     TotalStat(dobs, dvar, tstat);
@@ -2641,6 +2897,7 @@ d3.select("#testM12").on("click", function() {
     if (selectedVars != "") graphTopHide()
     else if (top5Visited == false) {    // 초기화
       graphTop5Show(); // 분석-그룹 변수선택 표시
+//      document.getElementById("top5Msg").style.display = "block"; 
       str = "";
       d3.select("#selectedVars").node().value = str;
       chart.selectAll("*").remove();
@@ -2656,7 +2913,7 @@ d3.select("#testM12").on("click", function() {
       return;
     };
     dataClassifyM12();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     chart.selectAll("*").remove();
     THmean12 = true;
     if (checkPairedT == false) {
@@ -2852,8 +3109,8 @@ d3.select("#testS12").on("click", function() {
     document.getElementById("testS12").style.backgroundColor = buttonColorH;
     selectedVars = document.getElementById("selectedVars").value;
     if (selectedVars != "") graphTopHide()
-    else if (top5Visited == false) {    // 초기화
-      graphTop5Show(); // 분석-그룹 변수선택 표시
+    else if (top7Visited == false) {    // 초기화
+      graphTop7Show(); // 분석-그룹 변수선택 표시
       str = "";
       d3.select("#selectedVars").node().value = str;
       chart.selectAll("*").remove();
@@ -2869,7 +3126,7 @@ d3.select("#testS12").on("click", function() {
         return;
     };
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     chart.selectAll("*").remove();
     THsigma12 = true;
     TotalStat(dobs, dvar, tstat);
@@ -2982,7 +3239,7 @@ d3.select("#anova").on("click", function() {
   else if (numVar == 2) { // 1원 분산분석
     dataClassifyM();
     document.getElementById("sub12").style.display = "block"; // ANOVA 선택사항표시
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     chart.selectAll("*").remove();
@@ -2993,7 +3250,7 @@ d3.select("#anova").on("click", function() {
   }
   else { // 2원 분산분석
     dataClassifyANOVA2();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     chart.selectAll("*").remove();
@@ -3104,7 +3361,7 @@ d3.select("#regression").on("click", function() {
     gvarNumber = -1;
     wvarNumber = -1;
     dataClassifyS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = false;
     tobs = xobs;
@@ -3133,7 +3390,7 @@ d3.select("#regression").on("click", function() {
   } 
   else { // 다중선형회귀
     dataClassifyRegression();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true) return;
+    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = true;
     document.getElementById("regression").style.backgroundColor = buttonColorH;

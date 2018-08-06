@@ -111,12 +111,12 @@
 	      <img src="img/eStat_icon17.png" id="scatter1" class="imageBtn1">
 	      <span class="tooltiptext" data-msgid="Scatterplot">산점도</span>
 	    </div>
-<!----
+<!---
 	    <div class="tooltip">
 	      <img src="img/eStat_icon17.png" id="gis" class="imageBtn1">
 	      <span class="tooltiptext" data-msgid="GIS">지리정보그래프</span>
 	    </div>
---->
+---->
 	  </div>
 
 	  <div id="tool-group-summary-stat" class="tool-group">
@@ -390,10 +390,10 @@
                   <option value="0"> --- </option>
                 </select>
                 &nbsp;<span data-msgid="GroupVar2">X변량</span> 
-                <select id="selectRegressionX" size="3" multiple style="font-size:12px">
+                <select id="selectRegressionX" size="1" style="font-size:12px">
                   <option value="0"> --- </option>
                 </select>
-                &nbsp;(<span data-msgid="VariableSelect4"> [Ctrl]키 누르고 다중선택가능</span>)
+                &nbsp;(<span style="color:blue; font-size:11px" data-msgid="VariableSelect5"> [Ctrl]키 누르고 다중선택가능</span>)
               </div>
           </div>
           <div id="top5" class="option-group"> <!--- THmu12 변수선택 --->
@@ -407,9 +407,23 @@
                 <select id="groupMu12" size="1" style="font-size:12px">
                   <option value="0"> --- </option>
                 </select>
-                &nbsp;(<span data-msgid="PairedMu12">X1 or X2는 대응비교</span>)
+                &nbsp;(<span style="color:blue; font-size:11px" data-msgid="PairedMu12">X1 or X2는 대응비교</span>)
               </div>
           </div>
+          <div id="top7" class="option-group"> <!--- THsigma12 변수선택 --->
+              <div style="font-size:12px">  
+                (<span data-msgid="RawData">원시자료</span>)
+                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
+                <select id="analysisSigma12" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+                &nbsp;<span data-msgid="GroupVar">그룹변량</span> 
+                <select id="groupSigma12" size="1" style="font-size:12px">
+                  <option value="0"> --- </option>
+                </select>
+              </div>
+          </div>
+
           <div id="top6" class="option-group"> <!--- 꺽은선 변수선택 --->
               <div style="font-size:12px">  
                 &nbsp;<span data-msgid="GroupVar2">X변량</span> 
@@ -417,10 +431,10 @@
                   <option value="0"> --- </option>
                 </select>
                 &nbsp;<span data-msgid="AnalysisLine">분석변량</span> 
-                <select id="analysisLine" size="3" multiple style="font-size:12px">
+                <select id="analysisLine" size="1" style="font-size:12px">
                   <option value="0"> --- </option>
                 </select>
-                &nbsp;(<span data-msgid="VariableSelect4"> [Ctrl]키 누르고 다중선택가능</span>)
+                &nbsp;(<span style="color:blue; font-size:11px" data-msgid="VariableSelect4"> [Ctrl]키 누르고 다중선택가능</span>)
               </div>
           </div>
 
@@ -472,10 +486,12 @@
               <select id="sizeSelect" size="1">
                 <option value="0" selected> --- </option>
               </select>
+<!---
 	      &nbsp;&nbsp;
 	      <button type="button" id="scatterRedraw" >
 		<span data-msgid="Execute">실행</span>
 	      </button>&nbsp
+--->
 	    </div>
 
 	    <div id="sub7" class="option-group"> <!--- 히스토그램 --->

@@ -262,7 +262,7 @@ $.message.ko = {
     "GroupVar4": "인자2",
     "AnalysisVarMu12": "분석(or X1)변량",
     "GroupVarMu12": "그룹(or X2)변량",
-    "PairedMu12": " X1 or X2는 대응변량",
+    "PairedMu12": " X1 or X2는 대응데이터 경우",
     "SizeVar": "크기변량",
     "RegressionBand": "신뢰대",
     "RegressionTable": "상관 및 회귀분석",
@@ -319,7 +319,8 @@ $.message.ko = {
     "VariableSelect":  "* 데이터분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
     "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
     "VariableSelect3": "변량선택",
-    "VariableSelect4": "[Ctrl]키 누르고 여러 변량선택",
+    "VariableSelect4": "분석변량 추가 선택 가능",
+    "VariableSelect5": "X변량 추가 선택 가능",
     "SummaryData": "요약자료",
     "RawData": "원시자료",
     "RawData2": "원시자료 변량선택",
@@ -350,7 +351,7 @@ alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합
 alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[17][0] = "산점도는 Y축변량과 X축변량을 선택하여야 합니다.";
 alertMsg[18][0] = "세 개이상 선택된 변량에 대해서는 산점도를 그릴 수 없습니다.";
-alertMsg[19][0] = "X 또는 Y 데이터에 문자가 있어 산점도를 처리할수 없습니다";
+alertMsg[19][0] = "데이터에 문자가 있어 처리할수 없습니다";
 alertMsg[20][0] = "데이터에 문자가 있어 회귀분석을 처리할수 없습니다";
 alertMsg[21][0] = "자료에 결측치가 있으면 저장할 수 없습니다.";
 alertMsg[22][0] = "음수자료의 막대그래프는 그릴 수 없습니다.";
@@ -819,7 +820,8 @@ $.message.en = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "Hold [Ctrl] key to select multiple variables.",
+    "VariableSelect4": "More Analysis Variable can be selected.",
+    "VariableSelect5": "More X Variable can be selected.",
     "SummaryData": "Summary Data",
     "RawData": "Raw Data",
     "RawData2": "Raw Data Variable Selection",
@@ -850,7 +852,7 @@ alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing
 alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
 alertMsg[17][1] = "Scatter plot requires Y variable and X variable.";
 alertMsg[18][1] = "More than three variables are not allowed for scatter plot.";
-alertMsg[19][1] = "If there is a character on X or Y variable, scatter plot cannot be drawn.";
+alertMsg[19][1] = "If there is a character on data, analyis cannot be done.";
 alertMsg[20][1] = "If there is a character on data, regression analysis cannot be done.";
 alertMsg[21][1] = "If there is a missing data, save is not allowed.";
 alertMsg[22][1] = "If there is a negative number, bargraph cannot be drawn.";
@@ -1314,7 +1316,8 @@ $.message.ja = {
     "VariableSelect": "* データ分析 : 変数選択 >> クリックアイコン *",
     "VariableSelect2": "* 変数選択 : クリック変数名 / 右側選択はこ利用 ",
     "VariableSelect3": "変数選択",
-    "VariableSelect4": "[Ctrl]キーを押しながら複数の変数を選択します。",
+    "VariableSelect4": "より多くの分析変数を選択できます",
+    "VariableSelect5": "より多くのX変数を選択できます",
     "SummaryData": "要約データ",
     "RawData": "原データ",
     "RawData2": "原データ変数選択",
@@ -1345,7 +1348,7 @@ alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説�
 alertMsg[16][2] = "仮説検定が可能なのは，グループが2つの場合のみです.";
 alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です.";
 alertMsg[18][2] = "3つ以上の変数については散布図を描くことができません.";
-alertMsg[19][2] = "データの中に文字が入っているため散布図を描けません";
+alertMsg[19][2] = "データに文字がある場合、分析はできません";
 alertMsg[20][2] = "データの中に文字が入っているため回帰分析ません";
 alertMsg[21][2] = "データに欠損値があると保存できません.";
 alertMsg[22][2] = "負の値での棒グラフは描けません.";
@@ -1805,7 +1808,8 @@ $.message.zhTW = {
     "VariableSelect":  "* 資料分析 : 変数選択 >>  Click Icon",
     "VariableSelect2": "* 変数選択 : Click 変数名 / 右側選択箱利用 ",
     "VariableSelect3": "変数選択",
-    "VariableSelect4": "按住[Ctrl]鍵選擇多個變量",
+    "VariableSelect4": "可以選擇更多分析變量",
+    "VariableSelect5": "可以選擇更多X變量",
     "SummaryData": "要約資料",
     "RawData": "原資料",
     "RawData2": "原資料変数選択",
@@ -1835,7 +1839,7 @@ alertMsg[14][3] = "連續型圖形及假設檢定無法進行摘要資料。";
 alertMsg[16][3] = "此假設檢定僅限定於兩群母體。";
 alertMsg[17][3] = "繪製散佈圖至少需要橫軸變數及縱軸變數。";
 alertMsg[18][3] = "繪製散佈圖不得超過3個變數。";
-alertMsg[19][3] = "變數包含文字，則散佈圖無法繪製。";
+alertMsg[19][3] = "如果數據中存在字符，則無法進行分析。";
 alertMsg[20][3] = "變數包含文字，則回帰分析無法繪製。";
 alertMsg[21][3] = "若資料有缺失值，則無法儲存。";
 alertMsg[22][3] = "若資料有負值，長條圖無法繪製。";
@@ -2296,7 +2300,8 @@ $.message.fr = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Sélection de variables",
-    "VariableSelect4": "Maintenez la touche [Ctrl] enfoncée pour sélectionner plusieurs variables.",
+    "VariableSelect4": "Plus de variables d'analyse peuvent être sélectionnées",
+    "VariableSelect5": "Plus de variables X peuvent être sélectionnées",
     "SummaryData": "Données récapitulatives",
     "RawData": "Données brutes",
     "RawData2": "Données brutes Sélection de variables",
@@ -2327,7 +2332,7 @@ alertMsg[14][4] = "Les résumés ne sont pas acceptés pour les graphiques conti
 alertMsg[16][4] = "Pour ce test , il faut uniquement deux groupes.";
 alertMsg[17][4] = "Un diagramme de dispersion nécessite au moins une variable x et une variable y.";
 alertMsg[18][4] = "Plus de trois variables ne sont pas autorisée pour les diagrammes de dispersion.";
-alertMsg[19][4] = "Si X/Y contient une valeur non numérique, le graphique ne peut pas être tracé.";
+alertMsg[19][4] = "S'il y a un caractère sur les données, l'analyse ne peut pas être faite.";
 alertMsg[20][4] = "Si X/Y contient une valeur non numérique, le regression ne peut pas être tracé.";
 alertMsg[21][4] = "La sauvegarde n'est pas autorisée s'il y a une donnée manquante.";
 alertMsg[22][4] = "Diagramme en barres n'est pas autorisée s'il y a une donnée manquante.";
@@ -2785,12 +2790,13 @@ $.message.de = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Auswahl : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Auswahl",
-    "VariableSelect4": "Halten Sie die [Strg]-Taste gedrückt, um mehrere Variablen auszuwählen.",
+    "VariableSelect4": "Weitere Analysevariablen können ausgewählt werden",
+    "VariableSelect5": "Weitere X variablen können ausgewählt werden",
     "SummaryData": "Zusammenfassungsdaten",
     "RawData": "Rohdaten",
     "RawData2": "Rohdaten Variable Auswahl",
-    "SummaryExplain":  "Klicken Sie auf Value Var, Analysis Var> Click Icon",
-    "RawExplain1": "Click Icon > Auswählen Var (oder Click Var > Click Icon)",
+    "SummaryExplain":  "Klicken Value Var, Analysis Var> Klicken Icon",
+    "RawExplain1": "Klicken Icon > Auswählen Var (oder Klicken Var > Klicken Icon)",
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -2816,7 +2822,7 @@ alertMsg[14][5] = "Im Falle zusammengefasster Daten sind weder Dauerdiagramme no
 alertMsg[16][5] = "Nur zwei Gruppen soind für diesen Hypothesentest zugelassen.";
 alertMsg[17][5] = "Streudiagramm erfordert mindestens Variablen x und y.";
 alertMsg[18][5] = "mehr als drei Variablen sind nicht zugelassen für ein Streudiagramm.";
-alertMsg[19][5] = "Falls die Variable X/Y ein charakter, kann kein Streudiagramm gezeichnet werden. ";
+alertMsg[19][5] = "Wenn Daten ein Zeichen enthalten, kann keine Analyse durchgeführt werden. ";
 alertMsg[20][5] = "Falls die Variable X/Y ein charakter, kann kein Regression gezeichnet werden. ";
 alertMsg[21][5] = "Bei fehlenden Daten kann nicht gespeichert werden.";
 alertMsg[22][5] = "Falls der Wert negativ ist, kann kein Balkendiagramm gezeichnet werden.";
@@ -3276,7 +3282,8 @@ $.message.es = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Selección de Variables : Click var name or use RHS selection box ",
     "VariableSelect3": "Selección de Variables",
-    "VariableSelect4": "Mantenga presionada la tecla [Ctrl] para seleccionar múltiples variables.",
+    "VariableSelect4": "Se pueden seleccionar más variables de análisis",
+    "VariableSelect5": "Se pueden seleccionar más variables X",
     "SummaryData": "Datos resumidos",
     "RawData": "Datos brutos",
     "RawData2": "Datos brutos Selección de Variables",
@@ -3307,7 +3314,7 @@ alertMsg[14][6] = "No están permitidos los datos resumidos  para gráficos cont
 alertMsg[16][6] = "Solo dos grupos permitidos";
 alertMsg[17][6] = "El diagrama de dispersión requiere al menos la variable x y la variable y";
 alertMsg[18][6] = "No se permiten más de tres variables en el diagrama de dispersión";
-alertMsg[19][6] = "Si hay un carácter en la variable X/Y el gráfico de dispersión no se puede dibujar";
+alertMsg[19][6] = "Si hay un personaje en los datos, el análisis no se puede hacer";
 alertMsg[20][6] = "Si hay un carácter en la variable X/Y el gráfico de regression no se puede dibujar";
 alertMsg[21][6] = "Si hay datos no observados grabar no está permitido";
 alertMsg[22][6] = "Si hay un número negativo, no se puede dibujar un Diagrama de barras";
@@ -3767,7 +3774,8 @@ $.message.vi = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Lựa chọn biến",
-    "VariableSelect4": "Giữ phím [Ctrl] để chọn nhiều biến.",
+    "VariableSelect4": "Có thể chọn các biến phân tích khác",
+    "VariableSelect5": "Có thể chọn nhiều biến X hơn",
     "SummaryData": "Dữ liệu tóm tắt",
     "RawData": "Dữ liệu thôa",
     "RawData2": "Dữ liệu thô Lựa chọn biến",
@@ -3798,7 +3806,7 @@ alertMsg[14][7] = "Bảng tóm tắt không thể tạo cho đồ thị liên t�
 alertMsg[16][7] = "Kiểm định này chỉ cho phép 2 nhóm";
 alertMsg[17][7] = "Biểu đồ phân tán cần ít nhất biến x và biến y";
 alertMsg[18][7] = "Biểu đồ phân tán chỉ cho ít hơn 3 biến";
-alertMsg[19][7] = "Nếu biến X/Y chứa chuỗi, không thể vẽ biểu đồ phân tán";
+alertMsg[19][7] = "Nếu có một nhân vật trên dữ liệu, không thể thực hiện phân tích";
 alertMsg[20][7] = "Không thể vẽ biều đồ phân tán nếu biến X/Y chứa chuỗi";
 alertMsg[21][7] = "Nếu dữ liệu bị thiếu, không thể lưu";
 alertMsg[22][7] = "Nếu có giá trị âm, không thể vẽ biểu đồ cột";
@@ -4259,7 +4267,8 @@ $.message.id = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Seleksi Variabel",
-    "VariableSelect4": "Tahan tombol [Ctrl] untuk memilih beberapa variabel",
+    "VariableSelect4": "Lebih banyak variabel analisis dapat dipilih",
+    "VariableSelect5": "Lebih banyak variabel X dapat dipilih",
     "SummaryData": "Data Ringkasan",
     "RawData": "Data mentah",
     "RawData2": "Data mentaha Seleksi Variabe",
@@ -4290,7 +4299,7 @@ alertMsg[14][8] = "Data ringkasan tidak dapat digunakan untuk grafik kontinu dan
 alertMsg[16][8] = "Hanya dua grup yang diperbolehkan untuk uji hipotesis ini.";
 alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel x dan variabel y.";
 alertMsg[18][8] = "Lebih dari tiga variabel tidak dapat dilakukan untuk diagram pencar.";
-alertMsg[19][8] = "Jika terdapat karakter di variabel X/Y, diagram pencar tidak dapat digambar.";
+alertMsg[19][8] = "Jika ada karakter pada data, analisa tidak bisa dilakukan.";
 alertMsg[20][8] = "Jika terdapat karakter di variabel X/Y, diagram pencar tidak dapat digambar.";
 alertMsg[21][8] = "Jika terdapat data hilang, menyimpan tidak dapat dilakukan.";
 alertMsg[22][8] = "Jika terdapat angka negatif, diagram batang tidak dapat digambar.";
@@ -4749,7 +4758,8 @@ $.message.mn = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Хувьсах сонголт",
-    "VariableSelect4": "Олон хувьсагчийг сонгохын тулд [Ctrl] товчийг дар",
+    "VariableSelect4": "Илүү их дүн шинжилгээ хийх хувьсагчдыг сонгож болно",
+    "VariableSelect5": "Илүү олон X хувьсагчийг сонгож болно",
     "SummaryData": "Хураангуй мэдээлэл",
     "RawData": "Түүхий мэдээлэл",
     "RawData2": "Түүхий мэдээлэл Хувьсах сонголт",
@@ -4780,7 +4790,7 @@ alertMsg[14][9] = "Үргэлжилсэн график болон тестийн
 alertMsg[16][9] = "Энэ туршилтын таамаглалд зөвхөн 2 групп зөвшөөрөгдөнө";
 alertMsg[17][9] = "Тархалтын график нь хамгийн багадаа х болон у хувьсагч шаардана";
 alertMsg[18][9] = "Гурван хувьсагчаас илүү  байвал тархалтын график зурагдахгүй";
-alertMsg[19][9] = "Хэрэв Х/Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдаж чадахгүй ";
+alertMsg[19][9] = "Хэрэв өгөгдөлд шинж чанар байгаа бол шинжилгээг хийх боломжгүй ";
 alertMsg[20][9] = "Хэрэв X/Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдахгүй ";
 alertMsg[21][9] = "Хэрэв өгөгдөл орхигдсон бол хадаглах нь зөвшөөрөгдөхгүй ";
 alertMsg[22][9] = "Хэрэв сөрөг тоо байвал bargraph зурж болохгүй.";
@@ -5240,7 +5250,7 @@ $.message.zh = {
     "VariableSelect":  "* 資料分析 : 变量選択 >>  Click Icon",
     "VariableSelect2": "* 变量選択 : Click 变量名 / 右側選択箱利用 ",
     "VariableSelect3": "* 变量選択",
-    "VariableSelect4": "按住[Ctrl]键选择多个变量",
+    "VariableSelect4": "可以选择更多X变量",
     "SummaryData": "要約資料",
     "RawData": "原資料",
     "RawData2": "原資料变量選択",
@@ -5271,7 +5281,7 @@ alertMsg[14][10] = "连续型图形及假设建议无法进行摘要资料。";
 alertMsg[16][10] = "此假设检验仅限于两个总体。";
 alertMsg[17][10] = "绘制散点图至少需要横轴变量及纵轴变量。";
 alertMsg[18][10] = "绘制散点图不可超过三个变量数。";
-alertMsg[19][10] = "若X/Y变量包含文字，则散点图无法绘制。";
+alertMsg[19][10] = "如果数据中存在字符，则无法进行分析。";
 alertMsg[20][10] = "若X/Y变量包含文字，则回帰分析无法绘制。";
 alertMsg[21][10] = "若资料有缺失值，则无法储存。";
 alertMsg[22][10] = "若资料有负值，条形图无法绘制。";
@@ -5734,7 +5744,8 @@ $.message.pt = {
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* seleção de variáveis : Click var name or use RHS selection box ",
     "VariableSelect3": "seleção de variáveis",
-    "VariableSelect4": "Segure a tecla [Ctrl] para selecionar múltiplas variáveis.",
+    "VariableSelect4": "Mais variáveis ​​de análise podem ser selecionadas",
+    "VariableSelect5": "Mais variáveis X podem ser selecionadas",
     "SummaryData": "Dados resumidos",
     "RawData": "Dados não tratados",
     "RawData2": "Dados não tratados seleção de variáveis",
@@ -5765,7 +5776,7 @@ alertMsg[14][11] = "Gráficos e testes para variáveis contínuas não podem ser
 alertMsg[16][11] = "Apenas dois grupos são permitidos neste tipo de teste.";
 alertMsg[17][11] = "Diagrama de dispersão requer duas variáveis (x e y).";
 alertMsg[18][11] = "Não são permitidas mais de três variáveis para o diagrama de dispersão.";
-alertMsg[19][11] = "Se a variável x/y incluir observação tipo caractere, o diagrama de dispersão não pode ser construído.";
+alertMsg[19][11] = "Se houver um caractere nos dados, as análises não podem ser feitas.";
 alertMsg[20][11] = "Se a data incluir observação tipo caractere, regression não pode ser construído.";
 alertMsg[21][11] = "Se existirem caselas vazias nos dados não será permitido salvar.";
 alertMsg[22][11] = "Se existirem valores negativos o gráfico de barras não pode ser construído.";

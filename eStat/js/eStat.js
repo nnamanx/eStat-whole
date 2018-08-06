@@ -73,6 +73,7 @@ function is_hangul_char(ch) {
 }
 // 그래프 top 선택 초기화
 function graphTopInitialize() {
+  numVar = 0;
   document.getElementById("analysisSelect").options[0].selected = true
   document.getElementById("analysisSelectMain").options[0].selected = true
   document.getElementById("groupSelectMain").options[0].selected = true
@@ -82,11 +83,15 @@ function graphTopInitialize() {
   document.getElementById("factor1Select").options[0].selected = true
   document.getElementById("factor2Select").options[0].selected = true
   document.getElementById("selectRegressionY").options[0].selected = true
-  document.getElementById("selectRegressionX").options[0].selected = true   // 배열
+  document.getElementById("selectRegressionX").options[0].selected = true
   document.getElementById("analysisMu12").options[0].selected = true
   document.getElementById("groupMu12").options[0].selected = true
+  document.getElementById("analysisSigma12").options[0].selected = true
+  document.getElementById("groupSigma12").options[0].selected = true
   document.getElementById("analysisLine").options[0].selected = true
-  document.getElementById("xaxisLine").options[0].selected = true   // 배열
+  document.getElementById("xaxisLine").options[0].selected = true 
+  document.getElementById("groupSelect").options[0].selected = true
+  document.getElementById("sizeSelect").options[0].selected = true 
 }
 // 그래프 top Hide
 function graphTopHide() {
@@ -98,13 +103,15 @@ function graphTopHide() {
   top4Visited = false;
   top5Visited = false;
   top6Visited = false;
-  document.getElementById("top0").style.display = "none"; // 분석변수 선택 감추기
+  top7Visited= false;
+  document.getElementById("top0").style.display = "none";  // 분석변수 선택 감추기
   document.getElementById("top1").style.display = "none";  // 분석-그룹 변수선택 감추기
   document.getElementById("top2").style.display = "none";  // 산점도 Y변수, X변수 감추기
   document.getElementById("top3").style.display = "none";  // 분산분석 분석, Factor1, Factor2 감추기
   document.getElementById("top4").style.display = "none";  // 회귀분석 Y변수, X변수 감추기
   document.getElementById("top5").style.display = "none";  // TH Mu12 분석-그룹변수 감추기
-  document.getElementById("top6").style.display = "none";  // TH Mu12 분석-그룹변수 감추기
+  document.getElementById("top6").style.display = "none";  // 꺽은선 감추기
+  document.getElementById("top7").style.display = "none"; // TH Sigma 분석-그룹변수 감추기
 }
 // 그래프 top0 변수선택 표시 - TH mu, sigma
 function graphTop0Show() {
@@ -119,6 +126,12 @@ function graphTop1Show() {
    graphTopHide();
    top1Visited = true;
    document.getElementById("top1").style.display = "block"; // 분석-그룹 변수선택 표시
+/*
+   j = parseInt(document.getElementById("analysisSelectMain").value)
+   k = parseInt(document.getElementById("groupSelectMain").value)
+   document.getElementById("analysisSelectMain").options[j].selected = true
+   document.getElementById("groupSelectMain").options[k].selected = true
+*/
 }
 // 그래프 top2 변수선택 표시 -  산점도
 function graphTop2Show() {
@@ -154,6 +167,13 @@ function graphTop6Show() {
    graphTopHide();
    top6Visited = true;
    document.getElementById("top6").style.display = "block"; // 꺽은선 표시
+}
+// 그래프 top7 변수선택 표시 - TH Sigma12
+function graphTop7Show() {
+   graphTopInitialize();
+   graphTopHide();
+   top7Visited = true;
+   document.getElementById("top7").style.display = "block"; // TH Sigma12 분석-그룹변수 표시
 }
 // 그래프 sub 선택사항 감추기
 function graphSubHide() {
@@ -461,6 +481,15 @@ function dataClassify() {
             return;
           }
         }
+        // 같은 번호 선택했는지 체크
+        checkVarSame = false;
+        for (i = 1; i < numVar; i++) {
+           if (tdvarNumber[0] == tdvarNumber[i]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+           }
+        }
 
         gobs        = tdobs[1];
         gvarNumber  = tdvarNumber[1];
@@ -672,23 +701,19 @@ function dataClassifyLine() { // 꺽은선 데이터
             return;
           }
         }
-/*
-        gobs        = tdobs[1];
-        gvarNumber  = tdvarNumber[1];
-        gvarName    = tdvarName[1];
-        ngvalue     = tdvalueNum[1]  
-        for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[1][k];
-          if ( tdvalueLabel[1][k] == null ) {
-            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
-            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+        // 같은 번호 선택했는지 체크
+        checkVarSame = false;
+        for (i = 0; i < numVar-1; i++) {
+          for (j = i+1; j<numVar; j++) {
+            if (tdvarNumber[i] == tdvarNumber[j]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+            }
           }
-          else {
-            gvalueLabel[k] = tdvalueLabel[1][k];
-          }
-        } 
-        for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];
-*/
+        }
+
+
         dobs        = tdobs[0];
         dvarNumber  = tdvarNumber[0];
         dvarName    = tdvarName[0];
@@ -2865,6 +2890,16 @@ function dataClassifyM() {
             return;
           }
         }
+        // 같은 번호 선택했는지 체크
+        checkVarSame = false;
+        for (i = 1; i < numVar; i++) {
+           if (tdvarNumber[0] == tdvarNumber[i]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+           }
+        }
+
         // 그룹변수
         gobs        = tdobs[1];
         gvarNumber  = tdvarNumber[1];
@@ -2928,7 +2963,7 @@ function dataClassifyM() {
       ngroup = ngvalue;
       checkData = true;
 /*
-      if (graphNum == 23) { // 그룹변수가 모두 숫자이면 paird test 대비 difference 데이터 저장 => 요약자료와 혼동으로 포기 => eStatU로 처리
+      if (graphNum == 28) { // 그룹변수가 모두 숫자이면 paird test 대비 difference 데이터 저장 => 요약자료와 혼동으로 포기 => eStatU로 처리
         // numeric check of group variable
         checkNumeric = true;
         for (i=0; i<gobs; i++) {
@@ -2937,7 +2972,7 @@ function dataClassifyM() {
         } // endof i
       }
 */
-      if (graphNum == 23 || graphNum == 24) {  // 두 모평균, 두 모분산 가설검정
+      if (graphNum == 28 || graphNum == 30) {  // 두 모평균, 두 모분산 가설검정
         if (ngroup > 2) { 
           alert(alertMsg[16][langNum]); // 두개의 그룹보다 많은 경우 처리 못함 경고
           checkData = false;
@@ -3010,6 +3045,15 @@ function dataClassifyM12() {
             return;
           }
       }
+      // 같은 번호 선택했는지 체크
+        checkVarSame = false;
+        for (i = 1; i < numVar; i++) {
+           if (tdvarNumber[0] == tdvarNumber[i]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+           }
+        }
 
       gobs        = tdobs[1];
       gvarNumber  = tdvarNumber[1];
@@ -3090,7 +3134,12 @@ function dataClassifyM12() {
         // numeric check of group variable
         checkNumeric = true;
         for (i=0; i<gobs; i++) { // paird t에서는 모두 숫자
-            if (isNaN(gvar[i])) { checkNumeric = false; break;}
+            if (isNaN(gvar[i])) { 
+               checkNumeric = false; 
+               numVar--;
+               alert(alertMsg[19][langNum]);
+               return;
+            }
             else tdata[i] = parseFloat(gvar[i]) - parseFloat(dvar[i]);
         } // endof i
 
@@ -3157,6 +3206,15 @@ function dataClassifyS() {
             alert(alertMsg[4][langNum]);
             return;
           }
+        }
+        // 같은 번호 선택했는지 체크
+        checkVarSame = false;
+        for (i = 1; i < numVar; i++) {
+           if (tdvarNumber[0] == tdvarNumber[i]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+           }
         }
       
         // y data
@@ -3323,6 +3381,15 @@ function dataClassifyGIS() {
             return;
           }
         }
+        // 같은 번호 선택했는지 체크
+        checkVarSame = false;
+        for (i = 1; i < numVar; i++) {
+           if (tdvarNumber[0] == tdvarNumber[i]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+           }
+        }
       
         if (numVar == 3) { // name, latitude(y축), longitude(x축)
           // name data
@@ -3458,6 +3525,17 @@ function dataClassifyANOVA2() {
         checkVarSelect = false;
 //        alert(alertMsg[44][langNum]);
         return;
+      }
+      // 같은 번호 선택했는지 체크
+      checkVarSame = false;
+      for (i = 0; i < numVar-1; i++) {
+        for (j = i+1; j <numVar; j++) {
+           if (tdvarNumber[i] == tdvarNumber[j]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+           }
+        }
       }
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
@@ -3737,6 +3815,18 @@ function dataClassifyRegression() {
             } // endof if
           } // endof i
         }
+        // 같은 번호 선택했는지 체크
+        checkVarSame = false;
+        for (i = 0; i < numVar-1; i++) {
+          for (j = i+1; j<numVar; j++) {
+            if (tdvarNumber[i] == tdvarNumber[j]) {
+              checkVarSame = true;
+              alert(alertMsg[46][langNum]);  // 같은 변수 선택
+              return;
+            }
+          }
+        }
+
         for (i=0; i<tdobs[0]; i++) wdata[i] = 3;
 }
    
@@ -4301,6 +4391,7 @@ function showDotStd(nroup, nobs, avg, std, tstat) {
        gxrange = gxmax - gxmin;
 
        for (k=0; k<ngroup; k++) {
+         if ( isNaN(avg[k]) || isNaN(std[k]) ) continue;
          avgx  = margin.left + graphWidth*(avg[k]-gxmin)/gxrange;
          ty    = margin.top + (k+1)*oneHeight - oneHeight/2 + 5;
          df    = nobs[k] - 1;
@@ -4432,6 +4523,7 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
        tx1 = margin.left + graphWidth*(meanTwoWay[0][m]-gxmin)/gxrange;
        ty1 = margin.top + oneHeight - oneHeight/2 ;
        for (k=1; k<ngroup; k++) {
+         if (isNaN(meanTwoWay[k][m])) continue;
          tx2 = margin.left + graphWidth*(meanTwoWay[k][m]-gxmin)/gxrange;
          ty2 = margin.top + (k+1)*oneHeight - oneHeight/2;
          p = ngroup + m + 1;
