@@ -49,7 +49,7 @@ strGraph[18] = "bothstem2";     // 양쪽형 줄기잎그
 strGraph[19] = "hist1";         // 히스토그램
 strGraph[20] = "scatter1";      // 산점도
 strGraph[21] = "scatterRedraw"; // 산점도 Redraw
-strGraph[22] = "gis";           // GIS
+strGraph[22] = "statTable";     // 기초통계량
 strGraph[23] = "freqTable";     // 도수분포표-꺽은선
 strGraph[24] = "testM1";        // 가설검정 mu
 strGraph[25] = "executeTH8";    // 가설검정 mu 실행
@@ -810,10 +810,6 @@ function dataClassifyLine() { // 꺽은선 데이터
         if (freqMin > 0) freqMin = 0;     
         freqMax  = dataA[ndvalue-1];
         freqMax += Math.floor(freqMax/8+1);  
-        if (freqMin < 0) {
-          alert(alertMsg[22][langNum]); // 음수
-          return;
-        };    
       }
       else {
         freqMin = 0;
@@ -3699,21 +3695,24 @@ function dataClassifyANOVA2() {
 
       for (k=0; k<ngroup; k++) {
         for (m=0; m<ngroup2; m++) {
-          meanTwoWay[k][m] /= nobsTwoWay[k][m];
-          if (nobsTwoWay[k][m] < 2) stdTwoWay[k][m] = 0;
+          if (nobsTwoWay[k][m] == 0) meanTwoWay[k][m] = NaN;
+          else meanTwoWay[k][m] /= nobsTwoWay[k][m];
+          if (nobsTwoWay[k][m] < 2) stdTwoWay[k][m] = NaN;
           else stdTwoWay[k][m]  = Math.sqrt( (stdTwoWay[k][m] - nobsTwoWay[k][m]*meanTwoWay[k][m]*meanTwoWay[k][m]) / (nobsTwoWay[k][m] - 1) );
         }
       }
 
       for (k=0; k<ngroup; k++) {
-          rmeanTwoWay[k] /= robsTwoWay[k];
-          if (robsTwoWay[k] < 2) rstdTwoWay[k] = 0;
+          if (robsTwoWay[k] == 0) rmeanTwoWay[k] = NaN;
+          else rmeanTwoWay[k] /= robsTwoWay[k];
+          if (robsTwoWay[k] < 2) rstdTwoWay[k] = NaN;
           else rstdTwoWay[k]  = Math.sqrt( (rstdTwoWay[k] - robsTwoWay[k]*rmeanTwoWay[k]*rmeanTwoWay[k]) / (robsTwoWay[k] - 1) );
       }
 
       for (m=0; m<ngroup2; m++) {
-          cmeanTwoWay[m] /= cobsTwoWay[m];
-          if (cobsTwoWay[m] < 2) cstdTwoWay[m] = 0;
+          if (cobsTwoWay[m] == 0) cmeanTwoWay[m] = NaN;
+          else cmeanTwoWay[m] /= cobsTwoWay[m];
+          if (cobsTwoWay[m] < 2) cstdTwoWay[m] = NaN;
           else cstdTwoWay[m]  = Math.sqrt( (cstdTwoWay[m] - cobsTwoWay[m]*cmeanTwoWay[m]*cmeanTwoWay[m]) / (cobsTwoWay[m] - 1) );
       }
 
@@ -3941,13 +3940,14 @@ function TotalStat(tobs, tdata, tstat) {
 
       sum     = dataA[0];
       for (i=1; i<tobs; i++) {sum += dataA[i];}
-      tavg = sum/tobs;
+      if (tobs == 0) tavg = NaN;
+      else tavg = sum/tobs;
       sqsum  = 0;
       for (i=0; i<tobs; i++) {
           temp   = dataA[i] - tavg;
           sqsum += temp*temp;
       } // endof i
-      if (tobs == 1) tstd = 0;
+      if (tobs < 2) tstd = NaN;
       else tstd = Math.sqrt(sqsum/(tobs-1));
       tmini   = dataA[0];
       tmaxi   = dataA[tobs-1];
@@ -3979,13 +3979,14 @@ function GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std) 
 
         sum     = dataA[0];
         for (i=1; i<tobs; i++) {sum += dataA[i];}
-        avg[k] = sum/tobs;
+        if (tobs == 0) avg[k] = NaN; 
+        else avg[k] = sum/tobs;
         sqsum  = 0;
         for (i=0; i<tobs; i++) {
           temp   = dataA[i] - avg[k];
           sqsum += temp*temp;
         } // endof i
-        if (tobs == 1) std[k] = 0;
+        if (tobs <= 1) std[k] = NaN;
         else std[k] = Math.sqrt(sqsum/(tobs-1));
         mini[k]   = dataA[0];
         maxi[k]   = dataA[tobs-1];
@@ -4322,6 +4323,7 @@ function showDotMean(ngroup, nobs, avg, std, tstat) {
        temp = 5;
 
        for (k=0; k<ngroup; k++) {
+         if (isNaN(avg[k])) continue;
          avgx  = margin.left + graphWidth*(avg[k]-gxmin)/gxrange;  
          ty    = margin.top + k*oneHeight;    
          chart.append("line")
@@ -4453,7 +4455,7 @@ function showDotStd(nroup, nobs, avg, std, tstat) {
 */
        }
 }
-// 점그래프 표준편차 표시 함수
+// 2원분산분석 평균 표시 함수
 function showDotMean2(nroup, ngroup2, graphWidth, graphHeight) {
        var k, m, p, avgx, ty, tx1, tx2, ty1, ty2;
        var df, info, MSE, stdErr, stdmx, stdpx, temp2;
@@ -4471,6 +4473,7 @@ function showDotMean2(nroup, ngroup2, graphWidth, graphHeight) {
        gxrange = gxmax - gxmin;
    
      for (m=0; m<ngroup2; m++) {
+       if (isNaN(meanTwoWay[0][m])) continue;
        tx1 = margin.left + graphWidth*(meanTwoWay[0][m]-gxmin)/gxrange;
        ty1 = margin.top + oneHeight - oneHeight/2 ;
        for (k=1; k<ngroup; k++) {
@@ -4520,6 +4523,7 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
        gxrange = gxmax - gxmin;
    
      for (m=0; m<ngroup2; m++) {
+       if (isNaN(meanTwoWay[0][m])) continue;
        tx1 = margin.left + graphWidth*(meanTwoWay[0][m]-gxmin)/gxrange;
        ty1 = margin.top + oneHeight - oneHeight/2 ;
        for (k=1; k<ngroup; k++) {
@@ -4554,13 +4558,14 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
 /*
      for (k=0; k<ngroup; k++) {
        for (m=0; m<ngroup2; m++) {
-         avgx  = margin.left + graphWidth*(meanTwoWay[k][m]-gxmin)/gxrange;
+         if (isNaN(cmeanTwoWay[m]) || isNaN(stdErr)) continue;
+         avgx  = margin.left + graphWidth*(cmeanTwoWay[m] -gxmin)/gxrange;
          ty    = margin.top + (k+1)*oneHeight - 0.7*oneHeight + (m+1)*0.3*oneHeight/(ngroup2+1) + 5;
          df    = nobsTwoWay[k][m] - 1;
-         if (nobsTwoWay[k][m] > 1) temp = t_inv(0.975, df, info) * stdErr/Math.sqrt(nobsTwoWay[k][m]);
+         if (nobsTwoWay[k][m] > 1) temp = t_inv(0.975, df, info) * stdErr/Math.sqrt(nobsTwoWay[k][m]);  //  check formula
          else temp = 0;
-         stdmx = margin.left + graphWidth*(meanTwoWay[k][m]-temp-gxmin)/gxrange;
-         stdpx = margin.left + graphWidth*(meanTwoWay[k][m]+temp-gxmin)/gxrange;
+         stdmx = margin.left + graphWidth*(cmeanTwoWay[m]-temp-gxmin)/gxrange;
+         stdpx = margin.left + graphWidth*(cmeanTwoWay[m]+temp-gxmin)/gxrange;
          p = ngroup + m + 1;
          chart.append("circle")
             .attr("class","std")
@@ -4863,6 +4868,7 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
 
       // 구간별 도수구하기
       freqmax = 0;
+      gymaxH  = 0;
       for (k=0; k<ngroup; k++) {
           tobs = nobs[k];
           for (j=1; j<nvalueH; j++) freq[k][j] = 0;
@@ -4877,12 +4883,18 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
           } // endof i
           for (j=1; j<nvalueH; j++) {
             if (freq[k][j] > freqmax) freqmax = freq[k][j]; 
+            temp = freq[k][j] / (nobs[k] * xstep) 
+            if (temp > gymaxH) gymaxH = temp;  // 히스토그램 막대의 최대 높이
           }
       } // endof k
 
       gyminH    = 0;
-      gymaxH    = freqmax / (tobs * xstep) ;
-      maxNormal = 1 / (tstat[2] * Math.sqrt(2*Math.PI))
+      temp = 10000000000;
+      for (k = 0; k <ngroup; k++) { // std[k]의 최소값
+         if (isNaN(std[k])) continue;
+         else if (std[k] < temp) temp = std[k];
+      }
+      maxNormal = 1 / (temp * Math.sqrt(2*Math.PI))
       if (maxNormal > gymaxH) gymaxH = maxNormal;
       gymaxH    = gymaxH + (gymaxH/8);
       gyrangeH  = gymaxH - gyminH; 
@@ -4911,13 +4923,6 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
            .text(dvarName)
       // 정규성 검정을 위한 그룹별 히스토그램
       for (k=0; k<ngroup; k++) {
-        gyminH    = 0;
-        gymaxH    = freqmax / (tobs * xstep) ;
-        maxNormal = 1 / (std[k] * Math.sqrt(2*Math.PI))
-        if (maxNormal > gymaxH) gymaxH = maxNormal;
-        gymaxH    = gymaxH + (gymaxH/8);
-        gyrangeH  = gymaxH - gyminH; 
-
         // 범례
         if (ngroup > 1) {
           str = gvalueLabel[k];  
@@ -4933,7 +4938,7 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
         }
         // 히스토그램
         for (i=0; i<nvalueH-1; i++) {
-            temp  = freq[k][i+1] / (tobs*xstep);
+            temp  = freq[k][i+1] / (nobs[k]*xstep);
             tempx = margin.left + graphWidth*(dataValueH[i]-gxminH)/gxrangeH;
             tempy = margin.top + (k+1)*oneHeight - oneHeight*(temp-gyminH)/gyrangeH;
             tempw = graphWidth*xstep/gxrangeH;
@@ -4953,6 +4958,33 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
                 .attr("y",tempy)
                 .attr("height",temph)
         } // endof i
+        // 평균 표준편차표시
+        if (isNaN(avg[k])) continue;
+        tempx = margin.left + graphWidth*(avg[k]-gxminH)/gxrangeH;
+        tempy = margin.top  + (k+1)*oneHeight - oneHeight*(maxNormal-gyminH)/gyrangeH;
+        chart.append("line")
+           .style("stroke","red")
+           .attr("x1",tempx)
+           .attr("y1",tempy)
+           .attr("x2",tempx)
+           .attr("y2",margin.top + (k+1)*oneHeight + 5)
+        chart.append("text")
+           .style("stroke","red")
+           .style("text-anchor","middle")
+           .style("font-family","sans-serif")
+           .style("font-size","7pt")
+           .attr("x", tempx)
+           .attr("y", margin.top + (k+1)*oneHeight + 12)
+           .text(svgStr[34][langNum]+"="+f2(avg[k]))
+        if (isNaN(std[k])) continue;
+        chart.append("text")
+           .style("stroke","red")
+           .style("text-anchor","middle")
+           .style("font-family","sans-serif")
+           .style("font-size","7pt")
+           .attr("x", tempx + 80)
+           .attr("y", margin.top + (k+1)*oneHeight + 12)
+           .text(svgStr[35][langNum]+"="+f2(std[k]))
         // Normal curve
         tx1 = dataValueH[0];
         ty1 = normal_pdf(avg[k],std[k],tx1);
@@ -4974,83 +5006,8 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
           gx1 = gx2;
           gy1 = gy2;
         }
-        // 평균 표준편차표시
-        tempx = margin.left + graphWidth*(avg[k]-gxminH)/gxrangeH;
-        tempy = margin.top  + (k+1)*oneHeight - oneHeight*(maxNormal-gyminH)/gyrangeH;
-        chart.append("line")
-           .style("stroke","red")
-           .attr("x1",tempx)
-           .attr("y1",tempy)
-           .attr("x2",tempx)
-           .attr("y2",margin.top + (k+1)*oneHeight + 5)
-        chart.append("text")
-           .style("stroke","red")
-           .style("text-anchor","middle")
-           .style("font-family","sans-serif")
-           .style("font-size","7pt")
-           .attr("x", tempx)
-           .attr("y", margin.top + (k+1)*oneHeight + 12)
-           .text(svgStr[34][langNum]+"="+f2(avg[k]))
-        chart.append("text")
-           .style("stroke","red")
-           .style("text-anchor","middle")
-           .style("font-family","sans-serif")
-           .style("font-size","7pt")
-           .attr("x", tempx + 80)
-           .attr("y", margin.top + (k+1)*oneHeight + 12)
-           .text(svgStr[35][langNum]+"="+f2(std[k]))
+      } // endof k
 
-      }
-/*
-      // Normal curve
-      var ninterval = 101;
-      var step = (dataValueH[nvalueH-1]-dataValueH[0]) / ninterval;
-      tx1 = dataValueH[0];
-      ty1 = normal_pdf(avg[0],std[0],tx1);
-      gx1 = margin.left + graphWidth*(tx1-gxminH)/gxrangeH;
-      gy1 = margin.top + graphHeight - graphHeight*(ty1-gyminH)/gyrangeH;
-      for (i=1; i<ninterval; i++) {
-        tx2 = tx1 + step;
-        ty2 = normal_pdf(avg[0],std[0],tx2);
-        gx2 = margin.left + graphWidth*(tx2-gxminH)/gxrangeH;
-        gy2 = margin.top + graphHeight - graphHeight*(ty2-gyminH)/gyrangeH;
-        chart.append("line")
-            .attr("x1",gx1)
-            .attr("x2",gx2)
-            .attr("y1",gy1)
-            .attr("y2",gy2) 
-            .style("stroke","red")
-        tx1 = tx2;
-        ty1 = ty2;
-        gx1 = gx2;
-        gy1 = gy2;
-      }
-      // 평균 표준편차표시
-      tempx = margin.left + graphWidth*(avg[0]-gxminH)/gxrangeH;
-      tempy = margin.top  + graphHeight - graphHeight*(maxNormal-gyminH)/gyrangeH;
-      chart.append("line")
-           .style("stroke","red")
-           .attr("x1",tempx)
-           .attr("y1",tempy)
-           .attr("x2",tempx)
-           .attr("y2",margin.top + graphHeight+5)
-      chart.append("text")
-           .style("stroke","red")
-           .style("text-anchor","middle")
-           .style("font-family","sans-serif")
-           .style("font-size","7pt")
-           .attr("x", tempx)
-           .attr("y", margin.top + graphHeight+12)
-           .text(svgStr[34][langNum]+"="+f2(avg[0]))
-      chart.append("text")
-           .style("stroke","red")
-           .style("text-anchor","middle")
-           .style("font-family","sans-serif")
-           .style("font-size","7pt")
-           .attr("x", tempx + 80)
-           .attr("y", margin.top + graphHeight+12)
-           .text(svgStr[35][langNum]+"="+f2(std[0]))
-*/
 }
 // 히스토그램 정규성검정 Q-Q Plot 그리기 ----------------------------------------------------------------------------------------------
 function drawHistQQ(tobs,tdata,dvarName,option) {
@@ -5225,6 +5182,7 @@ function showHistMean(ngroup, avg, gxminH, gxmaxH) {
         var gxrangeH    = gxmaxH - gxminH;
 
         for (var k=0; k<ngroup; k++) {
+          if (isNaN(avg[k])) continue;
           tempx = margin.left + graphWidth*(avg[k]-gxminH)/gxrangeH;
           tempy = margin.top + k*oneHeight + 5;
           chart.append("line")
@@ -6121,6 +6079,11 @@ function bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd
       }
       nobs[ngroup] = tobs;
       for (k=0; k<ngroup; k++) {
+        if (nobs[k] == 0) {
+          xavg[k] = NaN;
+          yavg[k] = NaN;
+          continue;
+        }
         xavg[k] = xsum[k] / nobs[k];
         yavg[k] = ysum[k] / nobs[k];
       }
@@ -6145,21 +6108,35 @@ function bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd
         sxy[ngroup] += tempx*tempy; 
       }
       for (k=0; k<ngroup; k++) {
-        xstd[k]    = Math.sqrt(sxx[k] / nobs[k]);
-        ystd[k]    = Math.sqrt(syy[k] / nobs[k]);
-        betaR[k]   = sxy[k] / sxx[k];
+        if (nobs[k] == 1) {
+          xstd[k] = NaN;
+          ystd[k] = NaN;
+          betaR[k] = NaN;
+          alphaR[k] = NaN;
+          corr[k]   = NaN;
+          rsquare[k]= NaN;
+          continue;
+        }
+        xstd[k]    = Math.sqrt(sxx[k] / (nobs[k]-1));
+        ystd[k]    = Math.sqrt(syy[k] / (nobs[k]-1));
+        if (sxx[k] == 0) betaR[k] = NaN;
+        else betaR[k]   = sxy[k] / sxx[k];
         alphaR[k]  = yavg[k] - betaR[k]*xavg[k];
-        corr[k]    = sxy[k] / Math.sqrt(sxx[k] * syy[k]);
+        if (sxx[k] == 0 || syy[k] == 0) corr[k] = NaN;
+        else corr[k]    = sxy[k] / Math.sqrt(sxx[k] * syy[k]);
         rsquare[k] = corr[k] * corr[k];
         ssr[k]     = betaR[k] * betaR[k] * sxx[k];
         sse[k]     = syy[k] - ssr[k];
-        stderr[k]  = Math.sqrt(sse[k]/(nobs[k]-2));
+        if (nobs[k] == 2) stderr[k] = NaN;
+        else stderr[k]  = Math.sqrt(sse[k]/(nobs[k]-2));
       }
       xstd[ngroup]    = Math.sqrt(sxx[ngroup] / tobs);
       ystd[ngroup]    = Math.sqrt(syy[ngroup] / tobs);
-      betaR[ngroup]   = sxy[ngroup] / sxx[ngroup];
+      if (sxx[ngroup] == 0) betaR[ngroup] = NaN;
+      else betaR[ngroup]   = sxy[ngroup] / sxx[ngroup];
       alphaR[ngroup]  = yavg[ngroup] - betaR[ngroup]*xavg[ngroup];
-      corr[ngroup]    = sxy[ngroup] / Math.sqrt(sxx[ngroup] * syy[ngroup]);
+      if (sxx[ngroup] == 0 || syy[ngroup] == 0) corr[ngroup] = NaN;
+      else corr[ngroup]    = sxy[ngroup] / Math.sqrt(sxx[ngroup] * syy[ngroup]);
       rsquare[ngroup] = corr[ngroup] * corr[ngroup];
 
     if (ngroup < 2) {
@@ -6923,6 +6900,10 @@ function statMultivariate(numVar, tdobs, tdvar) {
    }
    // Mean Vector
    for (j=0; j<numVar; j++) {
+     if (prow == 0) {
+       avgX[j] = NaN;
+       continue;
+     }
      avgX[j] = 0;
      for (i=0; i<prow; i++) {
        avgX[j] += X[i][j];
@@ -6941,12 +6922,14 @@ function statMultivariate(numVar, tdobs, tdvar) {
    // Correlation Matrix
    for (i=0; i<numVar; i++) {
      for (j=0; j<numVar; j++) {
-       Corr[i][j] = Cov[i][j] / Math.sqrt(Cov[i][i] * Cov[j][j]);
+       if(Cov[i][i] == 0 || Cov[j][j] == 0) Corr[i][j] = NaN;
+       else Corr[i][j] = Cov[i][j] / Math.sqrt(Cov[i][i] * Cov[j][j]);
      }
    }
    for (i=0; i<numVar; i++) {
      for (j=0; j<numVar; j++) {
-       Cov[i][j] /= (prow - 1);
+       if (prow == 1) Cov[i][j] = NaN;
+       else Cov[i][j] /= (prow - 1);
      }
    }
 
@@ -7035,38 +7018,39 @@ function showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS) {
           // 그래프 영역을 벗어났을때의 처리
           tx1 = xmin;
           ty1 = alphaR[k]+betaR[k]*tx1;
-          if (ty1 > gymax) {
-            tx1 = (gymax - alphaR[k]) / betaR[k];
-            ty1 = alphaR[k] + betaR[k]*tx1; 
-          }
-          if (ty1 < gymin) {
-            tx1 = (gymin - alphaR[k]) / betaR[k];
-            ty1 = alphaR[k] + betaR[k]*tx1; 
-          }
-          tx2 = xmax;
-          ty2 = alphaR[k]+betaR[k]*tx2;
-          if (ty2 > gymax) {
-            tx2 = (gymax - alphaR[k]) / betaR[k];
-            ty2 = alphaR[k] + betaR[k]*tx2; 
-          }
-          if (ty2 < gymin) {
-            tx2 = (gymin - alphaR[k]) / betaR[k];
-            ty2 = alphaR[k] + betaR[k]*tx2; 
-          }
+          if (!isNaN(alphaR[k]) && !isNaN(betaR[k])) {
+            if (ty1 > gymax) {
+              tx1 = (gymax - alphaR[k]) / betaR[k];
+              ty1 = alphaR[k] + betaR[k]*tx1; 
+            }
+            if (ty1 < gymin) {
+              tx1 = (gymin - alphaR[k]) / betaR[k];
+              ty1 = alphaR[k] + betaR[k]*tx1; 
+            }
+            tx2 = xmax;
+            ty2 = alphaR[k]+betaR[k]*tx2;
+            if (ty2 > gymax) {
+              tx2 = (gymax - alphaR[k]) / betaR[k];
+              ty2 = alphaR[k] + betaR[k]*tx2; 
+            }
+            if (ty2 < gymin) {
+              tx2 = (gymin - alphaR[k]) / betaR[k];
+              ty2 = alphaR[k] + betaR[k]*tx2; 
+            }
 
-          x1  = margin.left + graphWidth*(tx1-gxmin)/gxrange;
-          y1  = margin.top  + graphHeight - graphHeight*(ty1-gymin)/gyrange;
-          x2  = margin.left + graphWidth*(tx2-gxmin)/gxrange;
-          y2  = margin.top  + graphHeight - graphHeight*(ty2-gymin)/gyrange;
+            x1  = margin.left + graphWidth*(tx1-gxmin)/gxrange;
+            y1  = margin.top  + graphHeight - graphHeight*(ty1-gymin)/gyrange;
+            x2  = margin.left + graphWidth*(tx2-gxmin)/gxrange;
+            y2  = margin.top  + graphHeight - graphHeight*(ty2-gymin)/gyrange;
           
-          chart.append("line")
+            chart.append("line")
                  .attr("class","reglabel")
                  .attr("x1",x1)
                  .attr("y1",y1)
                  .attr("x2",x2)
                  .attr("y2",y2)
                  .style("stroke",myColor[k]) 
-
+          }
           if (ngroup > 1) {          
             tx = margin.left + graphWidth +30;
             ty = margin.top +  (ngroup+1)*20 + k*35;
@@ -7195,7 +7179,7 @@ function anovaStat(ngroup,tobs,nobs,avg,std,statF,gvar,dvar,yhat,residual) {
     for (i = 0; i < ngroup; i++) {
         temp = (avg[i] - mtot);
         ssb += nobs[i] * temp * temp;
-        ssw += (nobs[i] - 1) * std[i] * std[i];
+        if (!isNaN(std[i])) ssw += (nobs[i] - 1) * std[i] * std[i];
     }
     msb = ssb / df1;
     msw = ssw / df2;
@@ -8219,7 +8203,7 @@ function regressionTable2(numVar, tdobs, tdvar) {
         var i, j, k, stderr, tobs, pvalue, temp, df, info, tleft, tright, str;
         var row;
         var num  = 0;
-        var ncol = numVar + 2;
+        var ncol = numVar + 1;
         if (ncol < 6) ncol = 6;
 
           var cell = new Array(ncol);
@@ -8237,20 +8221,18 @@ function regressionTable2(numVar, tdobs, tdvar) {
           row  = table.insertRow(++num);
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
-            cell[j].style.width ="80px";
+            cell[j].style.width ="90px";
           }
           cell[0].style.width ="120px";
-          cell[0].innerHTML = svgStrU[31][langNum]; // "회귀선";
+          cell[0].innerHTML = svgStrU[31][langNum] + " y ="; // "회귀선";
           cell[0].style.backgroundColor = "#eee";
           cell[0].style.textAlign = "center";
           cell[0].style.border = "1px solid black";
-          cell[1].innerHTML = "y = ";
+          cell[1].innerHTML = "("+f3(Beta[0]).toString()+")";
           cell[1].style.textAlign = "right";
-          cell[2].innerHTML = "("+f3(Beta[0]).toString()+")";
-          cell[2].style.textAlign = "right";
           for (k=1; k<numVar; k++) {
-            cell[k+2].innerHTML = "+ &nbsp; ("+f3(Beta[k]).toString()+")" + " X<sub>"+k+"</sub>";   
-            cell[k+2].style.textAlign = "center";
+            cell[k+1].innerHTML = "+ &nbsp; ("+f3(Beta[k]).toString()+")" + " X<sub>"+k+"</sub>";   
+            cell[k+1].style.textAlign = "center";
           }
 
           row  = table.insertRow(++num);
@@ -8289,9 +8271,10 @@ function regressionTable2(numVar, tdobs, tdvar) {
 
         for (k=0; k<numVar; k++) {
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = "&beta;<sub>"+k+"</sub>"; 
-          cell[0].style.textAlign = "center";
+          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);  
+          if (k == 0) cell[0].innerHTML = "&beta;<sub>"+k+"</sub>";         
+          else cell[0].innerHTML = "&beta;<sub>"+k+"</sub> "+" "+tdvarName[k]; 
+          cell[0].style.textAlign = "left";
           cell[0].style.backgroundColor = "#eee"; 
           cell[1].innerHTML = f3(Beta[k]).toString(); 
           stderr = Math.sqrt(Cii[k]*statF[8]);

@@ -1345,6 +1345,7 @@ document.getElementById("factor1Select").onchange = function() {
 //    d3.select("#selectedVars").node().value = str;
     numVar = 2;
     // Redraw Graph
+    graphNum = 32;
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
 }
 // 분산분석 : 인자2변량 선택
@@ -1383,6 +1384,7 @@ document.getElementById("factor2Select").onchange = function() {
 //    str = "V"+tdvarNumber[0].toString()+",V" + tdvarNumber[1].toString()+",V" + tdvarNumber[2].toString();
 //    d3.select("#selectedVars").node().value = str;
     // Redraw Graph
+    graphNum = 32;
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
 }
 // 회귀분석 Y변량 선택
@@ -2447,6 +2449,7 @@ d3.select("#bothstem2").on("click", function() {
 })
 // 기초통계량 버튼 클릭 -------------------------------------------------------------------------------
 d3.select("#statTable").on("click", function() {
+    graphNum = 22;
     buttonColorChange();
     document.getElementById("statTable").style.backgroundColor = buttonColorH;
     selectedVars = document.getElementById("selectedVars").value;
@@ -2559,7 +2562,6 @@ d3.select("#scatterRedraw").on("click", function() {
 })
 // GIS 버튼 클릭 -------------------------------------------------------------------------------
 d3.select("#gis").on("click", function() {
-    graphNum = 22;
     buttonColorChange();
     document.getElementById("gis").style.backgroundColor = buttonColorH;
     dataClassifyGIS();
@@ -3227,7 +3229,7 @@ d3.select("#anova").on("click", function() {
       return;
   }
   chart.selectAll("*").remove();
-  if (numVar <= 2) document.getElementById("sub12").style.display = "block"; // ANOVA 선택사항표시
+  if (numVar == 2) document.getElementById("sub12").style.display = "block"; // ANOVA 선택사항표시
   else document.getElementById("sub15").style.display = "block"; // ANOVA2 선택사항표시
   if (robs[0] == null) return;  // 데이터가 없는 경우
   if (numVar < 2 || numVar > 3) {
@@ -3238,11 +3240,9 @@ d3.select("#anova").on("click", function() {
   }
   else if (numVar == 2) { // 1원 분산분석
     dataClassifyM();
-    document.getElementById("sub12").style.display = "block"; // ANOVA 선택사항표시
     if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-    chart.selectAll("*").remove();
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
     showDotMean(ngroup, nobs, avg, std, tstat);
     showDotStd(ngroup, nobs, avg, std, tstat);
