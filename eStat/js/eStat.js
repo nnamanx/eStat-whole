@@ -3719,8 +3719,15 @@ function dataClassifyANOVA2() {
       // ANOVA 2 Statistics
       TotalStat(dobs, dvar, tstat);
       var SSR, SSC, SSRC, SSE, SST, temp, gmean;
+      
       checkRBD = false;
-      if (ngroup*ngroup2 == dobs) checkRBD = true;
+      var temp = 1;
+      for (k=0; k<ngroup; k++) {
+        for (m=0; m<ngroup2; m++) {
+          temp *= nobsTwoWay[k][m];
+        }
+      }
+      if (temp == 1) checkRBD = true;
       gmean = tstat[1];
       SSR  = 0;
       SSC  = 0;
@@ -4162,10 +4169,7 @@ function drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
         var radius      = 3;
 
         // 점그래프 전체 데이터 최소 최대 계산
-        stdErr  = tstat[2] / Math.sqrt(tstat[0]);
-        temp2 = 1.5 * stdErr;
         temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
-        if (temp2 > temp) temp = temp2;
         gxmin   = parseFloat(tstat[3]) - temp;
         gxmax   = parseFloat(tstat[7]) + temp;
         gxrange = gxmax - gxmin;
@@ -4512,22 +4516,18 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
        var gxmin, gxma, gxrange;
        var oneHeight = graphHeight / ngroup;
 
-       MSE    = statF[14];
-       stdErr = Math.sqrt(MSE);
        // 점그래프 전체 데이터 최소 최대 계산
-       temp2 = 1.5 * stdErr;
        temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
-       if (temp2 > temp) temp = temp2;
        gxmin   = parseFloat(tstat[3]) - temp;
        gxmax   = parseFloat(tstat[7]) + temp;
        gxrange = gxmax - gxmin;
    
      for (m=0; m<ngroup2; m++) {
-       if (isNaN(meanTwoWay[0][m])) continue;
-       tx1 = margin.left + graphWidth*(meanTwoWay[0][m]-gxmin)/gxrange;
-       ty1 = margin.top + oneHeight - oneHeight/2 ;
        for (k=1; k<ngroup; k++) {
-         if (isNaN(meanTwoWay[k][m])) continue;
+      console.log(meanTwoWay[k-1][m]+" "+meanTwoWay[k][m])
+         if (isNaN(meanTwoWay[k-1][m]) || isNaN(meanTwoWay[k][m])) continue;
+         tx1 = margin.left + graphWidth*(meanTwoWay[k-1][m]-gxmin)/gxrange;
+         ty1 = margin.top + k*oneHeight - oneHeight/2 ;
          tx2 = margin.left + graphWidth*(meanTwoWay[k][m]-gxmin)/gxrange;
          ty2 = margin.top + (k+1)*oneHeight - oneHeight/2;
          p = ngroup + m + 1;
@@ -4551,8 +4551,8 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
             .attr("cy",ty2)
             .attr("r",5)
             .style("fill",myColor[p])           
-         tx1 = tx2;
-         ty1 = ty2;
+//         tx1 = tx2;
+//         ty1 = ty2;
        }
      }
 /*
