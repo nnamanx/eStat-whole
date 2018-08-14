@@ -485,10 +485,10 @@ svgStr[108][0]= "상관계수행렬";
 svgStr[109][0]= "인자1 - 인자2 평균 그래프";
 svgStr[110][0]= "지렛값(Leverage)";
 svgStr[111][0]= "지리정보그래프";
-svgStr[112][0]= 
-svgStr[113][0]= 
-svgStr[114][0]= 
-svgStr[115][0]= 
+svgStr[112][0]= "";
+svgStr[113][0]= "";
+svgStr[114][0]= "";
+svgStr[115][0]= "";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";

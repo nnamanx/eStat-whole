@@ -333,9 +333,13 @@ function graphTitle() {
       }
       iTitle[i] = gstr;
     }
-
-    // y축제목
-    for (i = 1; i <= 25; i++) {
+ 
+    initYTitle(); // y제목 초기화
+    initXTitle(); // x제목 초기화
+}
+// y축제목 초기화
+function initYTitle() {
+    for (var i = 1; i <= 25; i++) {
       yTitle[i] = "";
       switch (i) {
         case  1: str = svgStr[16][langNum];     break;
@@ -356,19 +360,34 @@ function graphTitle() {
         case 16: str = "";        		break;
         case 17: str = "";        		break;
         case 18: str = "";        		break;
-        case 19: str = svgStr[16][langNum];    	break;
+        case 19: str = "";    	                break;
         case 20: str = "";        		break;
         case 21: str = "";        		break;
         case 22: str = "";        		break;
         case 23: str = "";        		break;
         case 24: str = "";        		break;
         case 25: str = "";        		break;
+        case 26: str = "";        		break;
+        case 27: str = "";        		break;
+        case 28: str = "";        		break;
+        case 29: str = "";    	                break;
+        case 30: str = "";        		break;
+        case 31: str = "";        		break;
+        case 32: str = "";        		break;
+        case 33: str = "";        		break;
+        case 34: str = "";        		break;
+        case 35: str = "";        		break;
+        case 36: str = "";        		break;
+        case 37: str = "";        		break;
+        case 38: str = "";        		break;
+        case 39: str = "";    	                break;
       }
       yTitle[i] = str;
     }
-
-    // x축제목
-    for (i = 1; i <= 25; i++) {
+}
+// x축제목 초기화
+function initXTitle() {
+    for (var i = 1; i <= 25; i++) {
       xTitle[i] = "";
       switch (i) {
         case  1: str = "";       		break;
@@ -389,17 +408,30 @@ function graphTitle() {
         case 16: str = "";        		break;
         case 17: str = "";        		break;
         case 18: str = "";        		break;
-        case 19: str = svgStr[16][langNum];    	break;
+        case 19: str = "";    	                break;
         case 20: str = "";        		break;
         case 21: str = "";        		break;
         case 22: str = "";        		break;
         case 23: str = "";        		break;
         case 24: str = "";        		break;
         case 25: str = "";        		break;
+        case 26: str = "";        		break;
+        case 27: str = "";        		break;
+        case 28: str = "";        		break;
+        case 29: str = "";    	                break;
+        case 30: str = "";        		break;
+        case 31: str = "";        		break;
+        case 32: str = "";        		break;
+        case 33: str = "";        		break;
+        case 34: str = "";        		break;
+        case 35: str = "";        		break;
+        case 36: str = "";        		break;
+        case 37: str = "";        		break;
+        case 38: str = "";        		break;
+        case 39: str = "";    	                break;
       }
       xTitle[i] = str;
     }
-
 }
 //  =================================================================================
 //  eStatE.js 이산형그래프 함수 -----------------------------------------------------
@@ -575,6 +607,7 @@ function dataClassify() {
         }
 
       } else { // 요약자료 ---------------------------------------
+        ngvalue = ngroup;
         if (numVar == 2) gvarName = tdvarName[1];
         else {
           gvarName = "";
@@ -2634,24 +2667,28 @@ function drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarN
 
         // 축 그리기
         drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarName, dvarNumber, dvarName);
-        if (ngroup == 1) drawXaxis(ndvalue, currentLabel, betweenbarWidth, barWidth, gapWidth)
-        else drawXaxis(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth)
+//        if (ngroup == 1) drawXaxis(ndvalue, currentLabel, betweenbarWidth, barWidth, gapWidth)
+//        else 
+        drawXaxis(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth)
         drawYaxis(freqMin, freqMax);
 
         // 점 그리기
+/*
         if (ngroup == 1) {
           for (i=0; i<ndvalue; i++) ydata[i] = currentDataSet[i];
           drawLine(0, freqMin, freqMax, ydata, betweenbarWidth, barWidth, gapWidth ) 
         }
         else {
+*/
           for (k=0; k<ngroup; k++ ) {
             for (i=0; i<ndvalue; i++) ydata[i] = dataSet[k][i];
             drawLine(k, freqMin, freqMax, ydata, betweenbarWidth, barWidth, gapWidth ) 
           }
-        }
+
+//        }
 
         // 범례 그리기
-        if (ngroup > 1) drawLegend(gvalueLabel);
+        drawLegend(gvalueLabel);
 
 }
 
@@ -2932,7 +2969,7 @@ function dataClassifyM() {
         // check 요약자료 => 분산분석 자료 검정
         rawData   = true;
         checkData = true;    
-        if (gobs == ngvalue) { // 요약자료
+        if (dobs == ndvalue) { // 요약자료
           rawData = false;
           ngroup  = ngvalue;
           if (graphNum > 14) { 
@@ -3080,7 +3117,7 @@ function dataClassifyM12() {
       // check 요약자료 => 분산분석 자료 검정
       rawData   = true;
       checkData = true;    
-      if (gobs == ngvalue) { // 요약자료
+      if (dobs == ndvalue) { // 요약자료
           rawData = false;
           ngroup  = ngvalue;
           if (graphNum > 14) { 
@@ -3547,7 +3584,7 @@ function dataClassifyANOVA2() {
         dvalueLabel[k] = null;
       } 
 
-      // 세변수 중 첫째 gvar, 둘째 gvar2, 셋째 dvar 변량값, 도수 계산  -- 도수분포표 -------------------------  
+      // 세변수 중 첫째 dvar, 둘째 gvar, 셋째 gvar2 변량값, 도수 계산  -- 도수분포표 -------------------------  
       // check missing
       checkMissing = false;
       for (k=1; k<numVar; k++) {
@@ -3557,7 +3594,7 @@ function dataClassifyANOVA2() {
             return;
           }
       }
-      // 첫째 gvar
+      // 둘째 gvar
       gobs        = tdobs[1];
       gvarNumber  = tdvarNumber[1];
       gvarName    = tdvarName[1];
@@ -3575,7 +3612,7 @@ function dataClassifyANOVA2() {
       } 
       for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];       
 
-      // 둘째 gvar
+      // 셋째 gvar
       gobs2        = tdobs[2];
       gvarNumber2  = tdvarNumber[2];
       gvarName2    = tdvarName[2];
@@ -3593,7 +3630,7 @@ function dataClassifyANOVA2() {
       } 
       for (i = 0; i < gobs; i++) gvar2[i] = tdvar[2][i];       
 
-      // 셋째 dvar
+      // 첫째 dvar
       dobs        = tdobs[0];
       dvarNumber  = tdvarNumber[0];
       dvarName    = tdvarName[0];
@@ -3803,7 +3840,7 @@ function dataClassifyRegression() {
           alert(alertMsg[17][langNum]);
           return;
         }
-        // check missing
+        // check missing & numeric
         checkNumeric = true;
         checkMissing = false;
         for (k=0; k<numVar; k++) {
@@ -4524,7 +4561,6 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
    
      for (m=0; m<ngroup2; m++) {
        for (k=1; k<ngroup; k++) {
-      console.log(meanTwoWay[k-1][m]+" "+meanTwoWay[k][m])
          if (isNaN(meanTwoWay[k-1][m]) || isNaN(meanTwoWay[k][m])) continue;
          tx1 = margin.left + graphWidth*(meanTwoWay[k-1][m]-gxmin)/gxrange;
          ty1 = margin.top + k*oneHeight - oneHeight/2 ;
@@ -6154,10 +6190,13 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
         var str, wstr;
         // 주제목
         if (mTitle[graphNum] == "") {
-          if (numVar == 2) str = xvarName + " : "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
+          if (numVar == 2) {
+            if (graphNum == 34)  str = yvarName + "(y) : "+xvarName+"(x)"+svgStr[19][langNum]+iTitle[20];
+            else str = yvarName + "(y) : "+xvarName+"(x)"+svgStr[19][langNum]+iTitle[graphNum];
+          }
           else {
-            str = "("+svgStr[18][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
-            if (numVar == 3 && ngroup > 6) str = "("+svgStr[24][langNum]+" "+gvarName+") " + xvarName + ", "+yvarName+svgStr[19][langNum]+iTitle[graphNum];
+            str = "("+svgStr[18][langNum]+" "+gvarName+") " + yvarName + ", "+xvarName+svgStr[19][langNum]+iTitle[graphNum];
+            if (numVar == 3 && ngroup > 6) str = "("+svgStr[24][langNum]+" "+gvarName+") " + yvarName + ", "+xvarName+svgStr[19][langNum]+iTitle[graphNum];
           }        
         }
         else str = mTitle[graphNum];
