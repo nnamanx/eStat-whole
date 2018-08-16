@@ -21,7 +21,8 @@ $(document).ready(function() {
 	alert("Chrome 웹브라우저를 사용하면 100% 기능이 작동됩니다. 다른 웹브라우저에서는 일부 기능이 작동하지 않을 수 있습니다.");
     };
 });
-		  
+
+
 var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
@@ -780,14 +781,20 @@ function updateVarList() {
         xaxisLine.options.add(option);
     }
     // top6 분석변수 선택리스트
+
+    analysisLineContainer = document.getElementById("analysisLineContainer");
+    //    analysisLine.innerHTML = '<option value="0" selected> --- </option>'
+    analysisLineContainer.innerHTML = '<select id="analysisLine" multiple>';
     analysisLine = document.getElementById("analysisLine");
-    analysisLine.innerHTML = '<option value="0" selected> --- </option>'	
     for (i=0; i<numCol; i++) {
         option = document.createElement("option");
         option.text  = "V"+(i+1).toString()+": "+rvarName[i];
         option.value = i+1;
         analysisLine.options.add(option);
     }
+    $('#analysisLine').multiSelect();
+    
+    
     // top7 분석변수 선택리스트
     analysisSigma12 = document.getElementById("analysisSigma12");
     analysisSigma12.innerHTML = '<option value="0" selected> --- </option>'	
@@ -1108,7 +1115,7 @@ document.getElementById("xaxisLine").onchange = function() {
     numVar = 0;
     chart.selectAll("*").remove();
     graphTitle();
-    document.getElementById("analysisLine").options[0].selected = true
+//    document.getElementById("analysisLine").options[0].selected = true
     k = parseInt(document.getElementById("xaxisLine").value) - 1;
     if (k < 0) {
       return;
@@ -1129,15 +1136,15 @@ document.getElementById("xaxisLine").onchange = function() {
 //    d3.select("#selectedVars").node().value = str;
 }
 // 꺽은선 분석변량 선택 
-document.getElementById("analysisLine").onchange = function() {
-    j = parseInt(document.getElementById("analysisLine").value);
-    k = j - 1;
-    if (k < 0 ) {
+$("#analysisLineContainer").change(function() {
       numVar = 1; 
       chart.selectAll("*").remove();
       graphTitle();
-      return;
-    }
+    $("#analysisLine").val().forEach(function(v) {
+	j = parseInt(v);
+	k = j - 1;
+	
+/*	
     // 같은 변수 입력 체크
     for (i=0; i <numVar; i++) {
       if (tdvarNumber[i] == j) {
@@ -1146,6 +1153,8 @@ document.getElementById("analysisLine").onchange = function() {
         return;
       }
     }
+*/
+	
     // numeric check : 문자 데이터 방지
     for (i=0; i<robs[0]; i++) {
       if (isNaN(rvar[k][i])) {
@@ -1168,7 +1177,8 @@ document.getElementById("analysisLine").onchange = function() {
 //    str += "V"+tdvarNumber[numVar].toString()+",";
 //    d3.select("#selectedVars").node().value = str;
     numVar++;
-    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph 
+	//document.getElementById(strGraph[graphNum]).click();  // Redraw Graph
+	clickOnLineGraph();
 /*
     j = document.getElementById("analysisLine").options.length;
     for (i=1; i<j; i++) {
@@ -1192,8 +1202,9 @@ document.getElementById("analysisLine").onchange = function() {
       numVar++;
     }
 */
+    })
+});
 
-}
 // 산점도 Y변량 선택
 document.getElementById("selectScatterY").onchange = function() {
     numVar = 0;
@@ -2193,7 +2204,7 @@ d3.select("#mean").on("click", function() {
     }
 })
 // 꺽은선그래프 클릭 : 주메뉴
-d3.select("#line1").on("click", function() {
+clickOnLineGraph = function() {
     graphNum = 14;
     buttonColorChange();
     document.getElementById("line1").style.backgroundColor = buttonColorH;
@@ -2219,7 +2230,13 @@ d3.select("#line1").on("click", function() {
         document.myForm3.type3.value = 1;
     }
 */
-})
+}
+
+d3.select("#line1").on("click", clickOnLineGraph);
+
+
+
+
 // 그룹이 없을 경우 꺽은선그래프 내림차순, 올림차순 버튼
 var rad3 = document.myForm3.type3;
 rad3[0].onclick = function() { // 원자료

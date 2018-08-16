@@ -1,14 +1,16 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
   <head>
     <title data-msgid="eStat : Stat Education SW">eStat: 통계교육SW</title>
     <meta charset='utf-8'>
     <link rel="stylesheet" href="css/eStat.css">
     <link rel="stylesheet" href="lib/handsontable/handsontable.full.min.css">
-    <link rel="stylesheet" href="lib/jquery/jquery-ui.min.css">
     <script src="lib/d3/d3.v4.min.js"></script>
     <script src="lib/jquery/jquery-3.2.1.min.js"></script>
-    <script src="lib/jquery/jquery-ui.min.js"></script>
+    <script src="lib/jquery.multi-select.min.js"></script>
+    <link rel="stylesheet" href="lib/jquery/jquery-ui.css">
+<script src="lib/jquery/jquery-ui.min.js"></script>
+
     <script src="lib/handsontable/handsontable.full.min.js"></script>
     <script src="lib/FileSaver.min.js" ></script>
     <script src="lib/DistributionsUtil.js" ></script>
@@ -18,6 +20,7 @@
     <script src="js/language.js" ></script>
     <script src="js/eStat.js" ></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117441368-1"></script>
@@ -430,10 +433,9 @@
                 <select id="xaxisLine" size="1" style="font-size:12px">
                   <option value="0"> --- </option>
                 </select>
-                &nbsp;<span data-msgid="AnalysisLine">분석변량</span> 
-                <select id="analysisLine" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
+                &nbsp;<span data-msgid="AnalysisLine">분석변량</span>
+                <div id="analysisLineContainer" style="display: inline">
+                </div>
                 &nbsp;(<span style="color:blue; font-size:11px" data-msgid="VariableSelect4"> [Ctrl]키 누르고 다중선택가능</span>)
               </div>
           </div>

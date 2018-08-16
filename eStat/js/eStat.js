@@ -88,7 +88,7 @@ function graphTopInitialize() {
   document.getElementById("groupMu12").options[0].selected = true
   document.getElementById("analysisSigma12").options[0].selected = true
   document.getElementById("groupSigma12").options[0].selected = true
-  document.getElementById("analysisLine").options[0].selected = true
+//  document.getElementById("analysisLine").options[0].selected = true
   document.getElementById("xaxisLine").options[0].selected = true 
   document.getElementById("groupSelect").options[0].selected = true
   document.getElementById("sizeSelect").options[0].selected = true 
