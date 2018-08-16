@@ -1471,7 +1471,6 @@ $("#selectRegressionXContainer").change(function() {
     graphTitle();
     
     $("#selectRegressionX").val().forEach(function(v) {
-	console.log(v);
     j = parseInt(v);
     k = j - 1;
 
