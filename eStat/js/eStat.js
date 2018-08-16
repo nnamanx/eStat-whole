@@ -719,7 +719,6 @@ function dataClassifyLine() { // 꺽은선 데이터
         dvalueLabel[k] = null;
       } 
 
-      freqMin = 0;
       if (numVar < 2) { // 꺽은선의 변수 하나는 허용안함
         checkVarSelect = false;
         return
@@ -802,7 +801,7 @@ function dataClassifyLine() { // 꺽은선 데이터
     
 
       // Main Program Logic ================================================
-
+/*
       if (ngroup == 1) { // 분리형 막대와 선그래프에서 작동
 
         currentDataSet = dataSet[0];
@@ -845,6 +844,7 @@ function dataClassifyLine() { // 꺽은선 데이터
         freqMax += Math.floor(freqMax/8+1);  
       }
       else {
+*/
         freqMin = 0;
         freqMax = 0;
         for (k=0; k<ngroup; k++) {
@@ -853,13 +853,17 @@ function dataClassifyLine() { // 꺽은선 데이터
             if (dataSet[k][j] > freqMax) freqMax = dataSet[k][j]; 
           }
         } 
-        if (freqMin < 0) freqMin += Math.floor(freqMin/8.-1);
-        else { 
-          freqMin -= Math.floor(freqMin/8.-1);
-          if (freqMin > 0) freqMin = 0;   
-        }
-        freqMax += Math.floor(freqMax/8.+1); 
-      }
+        // 그래프 잘 보이기위한 최소값 보정
+        if (freqMin >= 0) freqMin = 0;   
+        else if (freqMin > -5)  freqMin += freqMin/20.;
+        else if (freqMin > -10) freqMin += freqMin/10.;
+        else freqMin += Math.floor(freqMin/10. -1);
+        // 그래프 잘 보이기위한 최대값 보정
+        if (freqMax < 5) freqMax += freqMax/20.; 
+        else if (freqMax < 10) freqMax += freqMax/10.; 
+        else freqMax += Math.floor(freqMax/10.+1); 
+
+//      }
 }
 
 // Sorting in ascending and count each value frequency
@@ -2678,14 +2682,11 @@ function drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarN
           for (i=0; i<ndvalue; i++) ydata[i] = currentDataSet[i];
           drawLine(0, freqMin, freqMax, ydata, betweenbarWidth, barWidth, gapWidth ) 
         }
-        else {
 */
-          for (k=0; k<ngroup; k++ ) {
+        for (k=0; k<ngroup; k++ ) {
             for (i=0; i<ndvalue; i++) ydata[i] = dataSet[k][i];
             drawLine(k, freqMin, freqMax, ydata, betweenbarWidth, barWidth, gapWidth ) 
-          }
-
-//        }
+        }
 
         // 범례 그리기
         drawLegend(gvalueLabel);
