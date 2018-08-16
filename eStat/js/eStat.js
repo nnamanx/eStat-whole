@@ -83,7 +83,7 @@ function graphTopInitialize() {
   document.getElementById("factor1Select").options[0].selected = true
   document.getElementById("factor2Select").options[0].selected = true
   document.getElementById("selectRegressionY").options[0].selected = true
-  document.getElementById("selectRegressionX").options[0].selected = true
+//  document.getElementById("selectRegressionX").options[0].selected = true
   document.getElementById("analysisMu12").options[0].selected = true
   document.getElementById("groupMu12").options[0].selected = true
   document.getElementById("analysisSigma12").options[0].selected = true

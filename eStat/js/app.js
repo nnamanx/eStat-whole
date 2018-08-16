@@ -745,14 +745,17 @@ function updateVarList() {
         selectRegressionY.options.add(option);
     }
     // top4 회귀 X변수 선택리스트
+    selectRegressionXContainer = document.getElementById("selectRegressionXContainer");
+    selectRegressionXContainer.innerHTML = '<select id="selectRegressionX" multiple>';
     selectRegressionX = document.getElementById("selectRegressionX");
-    selectRegressionX.innerHTML = '<option value="0" selected> --- </option>'	
     for (i=0; i<numCol; i++) {
         option = document.createElement("option");
         option.text  = "V"+(i+1).toString()+": "+rvarName[i];
         option.value = i+1;
         selectRegressionX.options.add(option);
     }
+    $('#selectRegressionX').multiSelect();
+    
     // top5 분석변수 선택리스트
     analysisMu12 = document.getElementById("analysisMu12");
     analysisMu12.innerHTML = '<option value="0" selected> --- </option>'	
@@ -1433,7 +1436,7 @@ document.getElementById("selectRegressionY").onchange = function() {
     numVar = 0;
     chart.selectAll("*").remove();
     graphTitle();
-    document.getElementById("selectRegressionX").options[0].selected = true
+//    document.getElementById("selectRegressionX").options[0].selected = true
     j = parseInt(document.getElementById("selectRegressionY").value);
     k = j - 1;
     if (k < 0 ) return;
@@ -1461,19 +1464,21 @@ document.getElementById("selectRegressionY").onchange = function() {
 //    d3.select("#selectedVars").node().value = str;
 }
 // 회귀분석 X변량 선택
-document.getElementById("selectRegressionX").onchange = function() {
-    j = parseInt(document.getElementById("selectRegressionX").value);
+
+$("#selectRegressionXContainer").change(function() {
+    numVar = 1;
+    chart.selectAll("*").remove();
+    graphTitle();
+    
+    $("#selectRegressionX").val().forEach(function(v) {
+	console.log(v);
+    j = parseInt(v);
     k = j - 1;
-    if (k < 0 ) {
-      numVar = 1; 
-      chart.selectAll("*").remove();
-      graphTitle();
-      return;
-    }
+
     // 같은 변수 입력 체크
     for (i=0; i <numVar; i++) {
       if (tdvarNumber[i] == j) {
-        document.getElementById("selectRegressionX").options[0].selected = true;
+   //     document.getElementById("selectRegressionX").options[0].selected = true;
         alert(alertMsg[46][langNum]);  // 같은 변수 선택
         return;
       }
@@ -1483,7 +1488,7 @@ document.getElementById("selectRegressionX").onchange = function() {
     for (i=0; i<tdobs[0]; i++) {
       if (isNaN(rvar[k][i])) {
         checkNumeric = false;
-        document.getElementById("selectRegressionX").options[0].selected = true;
+     //   document.getElementById("selectRegressionX").options[0].selected = true;
         alert(alertMsg[19][langNum]);
         return;
       } // endof if
@@ -1502,7 +1507,8 @@ document.getElementById("selectRegressionX").onchange = function() {
 //    str += "V"+tdvarNumber[numVar].toString()+",";
 //    d3.select("#selectedVars").node().value = str;
     numVar++;
-    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+	//document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+	clickOnRegression();
 
 /*
     j = document.getElementById("selectRegressionX").options.length;
@@ -1529,7 +1535,9 @@ document.getElementById("selectRegressionX").onchange = function() {
       numVar++;
     }
 */
-}
+});
+});
+			       
 // Mu12 분석변량 선택  THSigma12
 document.getElementById("analysisMu12").onchange = function() {
     numVar = 0;
@@ -3400,7 +3408,8 @@ d3.select("#anova2QQ").on("click", function() {
     drawHistQQ(gobs,tdata,svgStr[87][langNum],1)
 })
 // 회귀분석 버튼 클릭 -------------------------------------------------------------------------------
-d3.select("#regression").on("click", function() {
+
+clickOnRegression = function() {
   graphNum = 34;
   buttonColorChange();
   document.getElementById("regression").style.backgroundColor = buttonColorH;
@@ -3483,7 +3492,10 @@ d3.select("#regression").on("click", function() {
   }
   statRegression(numVar, tdobs, tdvar);
   statMultivariate(numVar, tdobs, tdvar);
-})
+}
+d3.select("#regression").on("click", clickOnRegression);
+
+
 // 회귀신뢰대 그리기
 d3.select("#regressBand").on("click", function() {
     if (ngroup > 1) return;
