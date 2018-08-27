@@ -226,12 +226,13 @@ var VerticalBar, HorizontalBar;
 var SeparateBar, StackBar, RatioBar, SideBar, BothBar;
 var PieChart, DonutGraph, BandGraph, LineGraph, FreqTable;
 var DotGraph, Histogram, BoxGraph, StemLeaf, StemBoth, StatTable, Scatter;
-var THmean1, THmean12, THsigma1, THsigma12, THanova, EditGraph;
+var THmean1, THmean12, THsigma1, THsigma12, THanova;
 var checkFreq, checkBandFreq, checkMissing, checkData, checkSave;
 var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkPairedT; // Paired T-test
 var checkRegress;
 var checkPastColSelection = false;
+var EditGraph = false;
 var checkVarSame; // 같은 변수 선택했는지 check
 var checkRBD; // Radomized Block Design
 var checkScatterMatrix;
@@ -331,6 +332,7 @@ function variableSelectClear() {
         }
     }
     numVar = 0;
+    graphTitle(); // 그래프제목 초기화
 }
 // 새 시트
 d3.select("#new").on("click", function() {
@@ -428,6 +430,7 @@ function initEventControl(datasheet) {
         document.getElementById("selectedVars").value = "";
         numVar = 0;
         checkPastColSelection = false;
+        updateVarList();
     });
     // 시트 컬럼 및 행 이벤트 컨트롤
     datasheet.addHook('afterOnCellMouseDown', function(event, coords) {
@@ -2242,8 +2245,6 @@ clickOnLineGraph = function() {
 d3.select("#line1").on("click", clickOnLineGraph);
 
 
-
-
 // 그룹이 없을 경우 꺽은선그래프 내림차순, 올림차순 버튼
 var rad3 = document.myForm3.type3;
 rad3[0].onclick = function() { // 원자료
@@ -2689,10 +2690,14 @@ d3.select("#testM1").on("click", function() {
     THmean1 = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-    drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd(ngroup, nobs, avg, std, tstat);
+    if (dobs <= 200) {
+      drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
+      showDotMean(ngroup, nobs, avg, std, tstat);
+      showDotStd(ngroup, nobs, avg, std, tstat);
+    }
+    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
     document.getElementById("sub8").style.display = "block"; //가설검정 선택사항표시
+    if (dobs > 200)  document.getElementById("DotMu1").disabled = true;
 })
 // 모평균 가설검정 실행
 d3.select("#executeTH8").on("click", function() {
@@ -2853,10 +2858,15 @@ d3.select("#testS1").on("click", function() {
     THsigma1 = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-    drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd(ngroup, nobs, avg, std, tstat);
+    if (dobs <= 200) {
+      drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
+      showDotMean(ngroup, nobs, avg, std, tstat);
+      showDotStd(ngroup, nobs, avg, std, tstat);
+    }
+    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
     document.getElementById("sub9").style.display = "block"; //가설검정 선택사항표시
+    if (dobs > 200)  document.getElementById("DotSigma1").disabled = true;
+
 })
 
 // 모분산 가설검정 실행
@@ -2989,21 +2999,33 @@ d3.select("#testM12").on("click", function() {
     if (checkPairedT == false) {
       TotalStat(dobs, dvar, tstat);
       GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+/*
       drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
       gxmin = tstat[11];
       gxmax = tstat[12];
       showDotMean(ngroup, nobs, avg, std, tstat);
       showDotStd(ngroup, nobs, avg, std, tstat);
+*/
+      if (dobs <= 200) {
+        drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
+        showDotMean(ngroup, nobs, avg, std, tstat);
+        showDotStd(ngroup, nobs, avg, std, tstat);
+      }
+      else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
     }
     else {  // paired t-test 
       TotalStat(dobs, tdata, tstat);
       GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
       str = "d = ("+tdvarName[0] + " - " + tdvarName[1]+")";
-      drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, str);
-      showDotMean(ngroup, nobs, avg, std, tstat);
-      showDotStd(ngroup, nobs, avg, std, tstat);
+      if (dobs <= 200) {
+        drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, str);
+        showDotMean(ngroup, nobs, avg, std, tstat);
+        showDotStd(ngroup, nobs, avg, std, tstat);
+      }
+      else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);      
     } 
     document.getElementById("sub10").style.display = "block"; //가설검정 선택사항표시 
+    if (dobs > 200)  document.getElementById("DotMu12").disabled = true;
 })
 // 가설검정 Mu 12 재실행
 d3.select("#executeTH10").on("click", function() {
@@ -3201,10 +3223,14 @@ d3.select("#testS12").on("click", function() {
     THsigma12 = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-    drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd(ngroup, nobs, avg, std, tstat);
+    if (dobs <= 200) {
+      drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
+      showDotMean(ngroup, nobs, avg, std, tstat);
+      showDotStd(ngroup, nobs, avg, std, tstat);
+    }
+    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
     document.getElementById("sub11").style.display = "block"; //가설검정 선택사항표시
+    if (dobs > 200)  document.getElementById("DotSigma12").disabled = true;
 })
 // 두 모분산 가설검정 실행
 d3.select("#executeTH11").on("click", function() {
@@ -3314,11 +3340,15 @@ d3.select("#anova").on("click", function() {
     }
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-    drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd(ngroup, nobs, avg, std, tstat);
+    if (dobs <= 200) {
+      drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
+      showDotMean(ngroup, nobs, avg, std, tstat);
+      showDotStd(ngroup, nobs, avg, std, tstat);
+    }
+    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
     anovaStat(ngroup,gobs,nobs,avg,std,statF,gvar,dvar,yhat,residual);
     document.getElementById("sub12").style.display = "block"; // ANOVA 선택사항표시
+    if (dobs > 200)  document.getElementById("DotANOVA").disabled = true;
   }
   else { // 2원 분산분석
     dataClassifyANOVA2();
@@ -3678,7 +3708,6 @@ d3.select("#editGraph").on("click", function() {
         return;
     }
     buttonColorChange();
-    EditGraph = true;
     document.getElementById("editGraph").style.backgroundColor = buttonColorH;
     document.getElementById("sub13").style.display = "block"; //그래프 제목편집 선택사항표시
     // 현재 제목 쓰기
@@ -3688,11 +3717,12 @@ d3.select("#editGraph").on("click", function() {
 })
 // 그래프 제목편집 실행
 d3.select("#executeTH13").on("click", function() {
+    EditGraph = true;
     mTitle[graphNum] = d3.select("#titleMain").node().value;
     yTitle[graphNum] = d3.select("#titleY").node().value;
     xTitle[graphNum] = d3.select("#titleX").node().value;
-    str = getGraphStr(graphNum); // Graph string
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+    EditGraph = false;
 })
 // jQuery 대화상자 초기화?
 $(".dialog").dialog({

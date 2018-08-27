@@ -248,7 +248,6 @@ function buttonColorChange() {
       THsigma1    = false;
       THsigma12   = false;
       THanova     = false;
-      EditGraph   = false;
 
       document.getElementById("separate1").style.backgroundColor  = buttonColorB;
       document.getElementById("pie1").style.backgroundColor       = buttonColorB;
@@ -291,16 +290,16 @@ function graphTitle() {
     for (i = 1; i < graphNumMax; i++) {
       mTitle[i] = "";
       switch (i) {
-        case  1: gstr = svgStr[1][langNum];     break; // 막대
-        case  2: gstr = svgStr[1][langNum];     break;
-        case  3: gstr = svgStr[1][langNum];     break;
-        case  4: gstr = svgStr[1][langNum];     break;
-        case  5: gstr = svgStr[1][langNum];     break;
-        case  6: gstr = svgStr[1][langNum];     break;
-        case  7: gstr = svgStr[1][langNum];     break;
-        case  8: gstr = svgStr[1][langNum];     break;
-        case  9: gstr = svgStr[1][langNum];     break;
-        case 10: gstr = svgStr[1][langNum];     break;
+        case  1: gstr = svgStr[1][langNum];     break; // 수직 막대 - 분리형
+        case  2: gstr = svgStr[1][langNum];     break; // 수직 막대 - 쌓는형
+        case  3: gstr = svgStr[1][langNum];     break; // 수직 막대 - 비율형
+        case  4: gstr = svgStr[1][langNum];     break; // 수직 막대 - 나란형
+        case  5: gstr = svgStr[1][langNum];     break; // 수직 막대 - 양쪽형
+        case  6: gstr = svgStr[1][langNum];     break; // 수평 막대 - 분리형
+        case  7: gstr = svgStr[1][langNum];     break; // 수평 막대 - 쌓는형
+        case  8: gstr = svgStr[1][langNum];     break; // 수평 막대 - 비율형
+        case  9: gstr = svgStr[1][langNum];     break; // 수평 막대 - 나란형
+        case 10: gstr = svgStr[1][langNum];     break; // 수평 막대 - 양쪽형
         case 11: gstr = svgStr[2][langNum];     break; // 원
         case 12: gstr = svgStr[3][langNum];    	break; // 도넛
         case 13: gstr = svgStr[4][langNum]; 	break; // 띠
@@ -342,11 +341,11 @@ function initYTitle() {
     for (var i = 1; i <= 25; i++) {
       yTitle[i] = "";
       switch (i) {
-        case  1: str = svgStr[16][langNum];     break;
-        case  2: str = svgStr[16][langNum];     break;
-        case  3: str = svgStr[17][langNum];     break;
-        case  4: str = svgStr[16][langNum];     break;
-        case  5: str = svgStr[16][langNum];     break;
+        case  1: str = svgStr[16][langNum];     break; // 도수
+        case  2: str = svgStr[16][langNum];     break; // 도수
+        case  3: str = svgStr[17][langNum];     break; // 비율
+        case  4: str = svgStr[16][langNum];     break; // 도수
+        case  5: str = svgStr[16][langNum];     break; // 도수
         case  6: str = "";        		break;
         case  7: str = "";        		break;
         case  8: str = "";        		break;
@@ -915,23 +914,27 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
         var chekmTitle = false;
 
         // 주제목 값설정
-        if (mTitle[graphNum] == "") {
-          if (rawData) {
+        if (EditGraph) str = mTitle[graphNum];
+        else if (rawData) {
             if (ngroup == 1) str = dvarName+svgStr[19][langNum]+iTitle[graphNum];
             else str = "("+svgStr[18][langNum]+" "+gvarName+") " + " "+dvarName+svgStr[19][langNum]+ iTitle[graphNum];
-          } 
-          else str = iTitle[graphNum];  
-        } else {
-          str = mTitle[graphNum];
-        }     
+        } 
+        else str = iTitle[graphNum];  
+        mTitle[graphNum] = str;   
 
         // y축제목 값설정
-        ystr = "";
-        if (yTitle[graphNum] != "") ystr = yTitle[graphNum]; 
+        if (EditGraph) ystr = yTitle[graphNum];
+        else if (graphNum <= 5)  ystr = yTitle[graphNum]; 
+        else if (graphNum <= 10) ystr = dvarName;
+        else ystr = yTitle[graphNum]
+        yTitle[graphNum] = ystr;
 
         // x축제목 값설정
-        xstr = dvarName;
-        if (xTitle[graphNum] != "") xstr = xTitle[graphNum];
+        if (EditGraph) xstr = xTitle[graphNum];
+        else if (graphNum <= 5)  xstr = dvarName;
+        else if (graphNum <= 10) xstr = xTitle[graphNum];
+        else if (graphNum == 14) xstr = dvarName;   // 꺽은선
+        else xstr = xTitle[graphNum];
         xTitle[graphNum] = xstr;
 
         // 주제목
@@ -970,7 +973,6 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
           // Y축 제목
           var tx = margin.left/2 - 30;
           var ty = margin.top + 15;
-
           chart.append("text")
                .style("font-size","12px")
                .style("font-family","sans-seirf")
@@ -994,7 +996,6 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
           // Y축 제목
           var tx = margin.left/2 - 30;
           var ty = margin.top + 15;
-
           chart.append("text")
                .style("font-size","12px")
                .style("font-family","sans-seirf")
@@ -1004,7 +1005,6 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
                .attr("y",ty)
                .text(ystr)
                .attr("transform", "rotate(-90 30 100)")
-
         }
         else {   // 가로형 막대그래프
           // X축 제목
@@ -1018,6 +1018,18 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
              .attr("x",margin.left + graphWidth/2)
              .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
              .text(xstr)
+          // Y축 제목
+          var tx = margin.left/2 - 30;
+          var ty = margin.top + 15;
+          chart.append("text")
+               .style("font-size","12px")
+               .style("font-family","sans-seirf")
+               .style("stroke","black")
+               .style("text-anchor","end")
+               .attr("x",tx)
+               .attr("y",ty)
+               .text(ystr)
+               .attr("transform", "rotate(-90 30 100)")
         } // endof else
 
 }
@@ -1032,20 +1044,20 @@ function drawLabel(ngroup, ndvalue, label, betweenbarWidth, barWidth, gapWidth, 
  
           if (BothBar) {
             ty = margin.top + graphHeight/2;
-            if (ndvalue < 10)     {angle = 0;  str = "middle";  y1 =  ty + 15;}
+            if (ndvalue <= 15)     {angle = 0;  str = "middle";  y1 =  ty + 15;}
             else if(ndvalue < 30) {angle = 30; str = "start";   y1 =  ty + 10;}
             else                  {angle = 90; str = "start";   y1 =  ty + 5;}
           }
           else {   
             ty = margin.top + graphHeight;        
-            if (ndvalue < 10)     {angle = 0;  str = "middle";  y1 =  ty + 15; }
+            if (ndvalue <= 15)     {angle = 0;  str = "middle";  y1 =  ty + 15; }
             else if(ndvalue < 30) {angle = 30; str = "start";   y1 =  ty + 10;}
             else                  {angle = 90; str = "start";   y1 =  ty + 5;}
           }
 
           for (j=0; j<ndvalue; j++) {
              tx = margin.left + gapWidth + barWidth/2 + j*betweenbarWidth;
-             if (ndvalue < 10)     {x1 = margin.left + gapWidth + barWidth/2 + j*betweenbarWidth;}
+             if (ndvalue <= 15)     {x1 = margin.left + gapWidth + barWidth/2 + j*betweenbarWidth;}
              else if(ndvalue < 30) {x1 = margin.left + gapWidth + j*betweenbarWidth;}
              else                  {x1 = margin.left + gapWidth + j*betweenbarWidth;}
 
@@ -2715,13 +2727,13 @@ function drawXaxis(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth) {
         // draw x축 레이블
         var angle, str;
         ty = margin.top + graphHeight;        
-        if (ndvalue < 10)     {angle = 0;  str = "middle";  y1 =  ty + 15; }
+        if (ndvalue <= 15)    {angle = 0;  str = "middle";  y1 =  ty + 15; }
         else if(ndvalue < 30) {angle = 30; str = "start";   y1 =  ty + 10;}
         else                  {angle = 90; str = "start";   y1 =  ty + 5;}
 
         for (var i=0; i<ndvalue; i++) {
           tx = margin.left + gapWidth + barWidth/2 + i*betweenbarWidth;
-          if (ndvalue < 10)     {x1 = margin.left + gapWidth + barWidth/2 + i*betweenbarWidth;}
+          if (ndvalue <= 15)    {x1 = margin.left + gapWidth + barWidth/2 + i*betweenbarWidth;}
           else if(ndvalue < 30) {x1 = margin.left + gapWidth + i*betweenbarWidth;}
           else                  {x1 = margin.left + gapWidth + i*betweenbarWidth;}
 
@@ -4072,7 +4084,7 @@ function drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNa
 // 점그래프 함수 ----------------------------------------------------------------------------------
 function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName) {
 
-        var i, j, k, tobs, temp, temp2, stdErr, tlabel;
+        var i, j, k, tobs, temp, temp2, stdErr, tlabel, df, info;
         var sx, sy, tx, ty, x1, x2, y1, y2;
         var nvalue, freqmax;
         var gxmin, gxmax, gxrange, height
@@ -4087,12 +4099,18 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
         var radius      = 4;
 
         // 점그래프 전체 데이터 최소 최대 계산
-        stdErr  = tstat[2] / Math.sqrt(tstat[0]);
-        temp2 = 1.5 * stdErr;
-        temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
-        if (temp2 > temp) temp = temp2;
-        gxmin   = parseFloat(tstat[3]) - temp;
-        gxmax   = parseFloat(tstat[7]) + temp;
+        temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+        gxmin  = parseFloat(tstat[3]) - temp;
+        gxmax  = parseFloat(tstat[7]) + temp;
+        for (k=0; k<ngroup; k++) {
+          df    = nobs[k] - 1;
+          if (nobs[k] > 0) stdErr = t_inv(0.975, df, info) * std[k] / Math.sqrt(nobs[k]);
+          else stdErr = 0;
+          temp2 = avg[k] - stdErr;
+          if (temp2 < gxmin) gxmin = temp2;  
+          temp2 = avg[k] + stdErr;
+          if (temp2 > gxmax) gxmax = temp2;
+        }
         gxrange = gxmax - gxmin;
 
         // 전체 제목
@@ -4192,7 +4210,7 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
 // 이원분산분석 점그래프 함수 ----------------------------------------------------------------------------------
 function drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat) {
 
-        var i, j, k, m, p, tobs, temp, tlabel;
+        var i, j, k, m, p, tobs, temp, tlabel, df, info;
         var sx, sy, tx, ty, x1, x2, y1, y2;
         var nvalue, freqmax;
         var gxmin, gxmax, gxrange, height;
@@ -4207,9 +4225,18 @@ function drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
         var radius      = 3;
 
         // 점그래프 전체 데이터 최소 최대 계산
-        temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
-        gxmin   = parseFloat(tstat[3]) - temp;
-        gxmax   = parseFloat(tstat[7]) + temp;
+        temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+        gxmin  = parseFloat(tstat[3]) - temp;
+        gxmax  = parseFloat(tstat[7]) + temp;
+        for (k=0; k<ngroup; k++) {
+          df    = nobs[k] - 1;
+          if (nobs[k] > 0) stdErr = t_inv(0.975, df, info) * std[k] / Math.sqrt(nobs[k]);
+          else stdErr = 0;
+          temp2 = avg[k] - stdErr;
+          if (temp2 < gxmin) gxmin = temp2;  
+          temp2 = avg[k] + stdErr;
+          if (temp2 > gxmax) gxmax = temp2;
+        }
         gxrange = gxmax - gxmin;
 
         // 전체 제목
@@ -4506,13 +4533,20 @@ function showDotMean2(nroup, ngroup2, graphWidth, graphHeight) {
 
        MSE    = statF[14];
        stdErr = Math.sqrt(MSE);
-       // 점그래프 전체 데이터 최소 최대 계산
-       temp2 = 1.5 * stdErr;
-       temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
-       if (temp2 > temp) temp = temp2;
-       gxmin   = parseFloat(tstat[3]) - temp;
-       gxmax   = parseFloat(tstat[7]) + temp;
-       gxrange = gxmax - gxmin;
+        // 점그래프 전체 데이터 최소 최대 계산
+        temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+        gxmin  = parseFloat(tstat[3]) - temp;
+        gxmax  = parseFloat(tstat[7]) + temp;
+        for (k=0; k<ngroup; k++) {
+          df    = nobs[k] - 1;
+          if (nobs[k] > 0) stdErr = t_inv(0.975, df, info) * std[k] / Math.sqrt(nobs[k]);
+          else stdErr = 0;
+          temp2 = avg[k] - stdErr;
+          if (temp2 < gxmin) gxmin = temp2;  
+          temp2 = avg[k] + stdErr;
+          if (temp2 > gxmax) gxmax = temp2;
+        }
+        gxrange = gxmax - gxmin;
    
      for (m=0; m<ngroup2; m++) {
        if (isNaN(meanTwoWay[0][m])) continue;
@@ -4549,16 +4583,26 @@ function showDotMean2(nroup, ngroup2, graphWidth, graphHeight) {
 }
 // 점그래프 표준편차 표시 함수
 function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
-       var k, m, p, avgx, ty, tx1, tx2, ty1, ty2;
+       var k, m, p, avgx, ty, tx1, tx2, ty1, ty2, df, info;
        var df, info, MSE, stdErr, stdmx, stdpx, temp2;
        var gxmin, gxma, gxrange;
        var oneHeight = graphHeight / ngroup;
 
-       // 점그래프 전체 데이터 최소 최대 계산
-       temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
-       gxmin   = parseFloat(tstat[3]) - temp;
-       gxmax   = parseFloat(tstat[7]) + temp;
-       gxrange = gxmax - gxmin;
+        // 점그래프 전체 데이터 최소 최대 계산
+        temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+        gxmin  = parseFloat(tstat[3]) - temp;
+        gxmax  = parseFloat(tstat[7]) + temp;
+        for (k=0; k<ngroup; k++) {
+          df    = nobs[k] - 1;
+          if (nobs[k] > 0) stdErr = t_inv(0.975, df, info) * std[k] / Math.sqrt(nobs[k]);
+          else stdErr = 0;
+          temp2 = avg[k] - stdErr;
+          if (temp2 < gxmin) gxmin = temp2;  
+          temp2 = avg[k] + stdErr;
+          if (temp2 > gxmax) gxmax = temp2;
+        }
+        gxrange = gxmax - gxmin;
+
    
      for (m=0; m<ngroup2; m++) {
        for (k=1; k<ngroup; k++) {
@@ -4648,7 +4692,7 @@ function removeDotStd() {
 	 chart.selectAll("text.std").remove();
 }
 
-// 점그래프 함수 ----------------------------------------------------------------------------------
+// 점그래프- 평균 함수 ----------------------------------------------------------------------------------
 function drawMeanGraph(ngroup, gvalueLabel, nobs, avg, std, graphWidth, graphHeight, buffer, tstat, dvarName) {
 
       var i, j, k, tobs, temp, tlabel;
@@ -4680,9 +4724,18 @@ function drawMeanGraph(ngroup, gvalueLabel, nobs, avg, std, graphWidth, graphHei
       temp   = t_inv(0.975, df, info) * stdErr;
 
         // 점그래프 전체 데이터 최소 최대 계산
-        temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
-        gxmin   = parseFloat(tstat[3]) - temp;
-        gxmax   = parseFloat(tstat[7]) + temp;
+        temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+        gxmin  = parseFloat(tstat[3]) - temp;
+        gxmax  = parseFloat(tstat[7]) + temp;
+        for (k=0; k<ngroup; k++) {
+          df    = nobs[k] - 1;
+          if (nobs[k] > 0) stdErr = t_inv(0.975, df, info) * std[k] / Math.sqrt(nobs[k]);
+          else stdErr = 0;
+          temp2 = avg[k] - stdErr;
+          if (temp2 < gxmin) gxmin = temp2;  
+          temp2 = avg[k] + stdErr;
+          if (temp2 > gxmax) gxmax = temp2;
+        }
         gxrange = gxmax - gxmin;
 
         // 전체 제목
@@ -4928,14 +4981,13 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
       gyminH    = 0;
       temp = 10000000000;
       for (k = 0; k <ngroup; k++) { // std[k]의 최소값
-         if (isNaN(std[k])) continue;
+         if (isNaN(std[k]) || std[k] == 0) continue;
          else if (std[k] < temp) temp = std[k];
       }
       maxNormal = 1 / (temp * Math.sqrt(2*Math.PI))
       if (maxNormal > gymaxH) gymaxH = maxNormal;
       gymaxH    = gymaxH + (gymaxH/8);
       gyrangeH  = gymaxH - gyminH; 
-
       // 전체 제목
       if (checkPairedT == false) str = svgStr[57][langNum]; // "확률 히스토그램과 정규분포"
       else str = "대응비교 데이터 히스토그램";
@@ -4973,6 +5025,7 @@ function drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName) {
                .attr("y",margin.top + oneHeight/2 + oneHeight*k)
                .text(str);
         }
+        if (nobs[k] == 0) continue;
         // 히스토그램
         for (i=0; i<nvalueH-1; i++) {
             temp  = freq[k][i+1] / (nobs[k]*xstep);
