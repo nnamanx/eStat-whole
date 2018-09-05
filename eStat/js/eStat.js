@@ -553,12 +553,34 @@ function dataClassify() {
         } 
         for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i]; 
 
-        // check 원시자료
-        rawData = true;
-        if (dobs == ndvalue) rawData = false; 
-        if (rawData) ngroup = ngvalue;
-        else ngroup = numVar - 1;
-
+        // check 요약 또는 원시자료
+        checkNumeric = true;
+        for (i=0; i<dobs; i++) {
+          if (isNaN(tdvar[0][i])) {
+                checkNumeric = false;
+                break;
+          } // endof if
+        }
+        if (numVar > 2) { // 요약자료
+          rawData = false; 
+          ngroup = numVar - 1;
+        }
+        else {  // numVar == 2인 경우
+          if (dobs == ndvalue) { 
+            if (checkNumeric) { // 첫변수가 숫자면 원시자료
+              rawData = true;
+              ngroup = ngvalue;
+            }
+            else { // 첫변수가 문자면 요약자료
+              rawData = false; 
+              ngroup = numVar - 1;
+            }
+          }
+          else { // 원시자료
+            rawData = true;
+            ngroup = ngvalue;
+          }
+        }
         if (ngroup > 9)  alert(alertMsg[5][langNum]);
         // 요약자료는 분석변량들의 Numeric 여부 체크
         if (rawData == false) {
@@ -2926,7 +2948,7 @@ function dataClassifyM() {
         } // endof i
 
       } 
-      else { // 두 개 변량일 경우 첫째는 그룹변량 둘째는 분석변량
+      else { // 두 개 변량일 경우 첫째는 분석변량 둘째는 그룹변량
         // check missing
         checkMissing = false;
         for (k=1; k<numVar; k++) {
@@ -2982,7 +3004,7 @@ function dataClassifyM() {
         // check 요약자료 => 분산분석 자료 검정
         rawData   = true;
         checkData = true;    
-        if (dobs == ndvalue) { // 요약자료
+        if (gobs == ngvalue) { // 요약자료
           rawData = false;
           ngroup  = ngvalue;
           if (graphNum > 14) { 
