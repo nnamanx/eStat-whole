@@ -747,17 +747,6 @@ function updateVarList() {
         option.value = i+1;
         selectRegressionY.options.add(option);
     }
-    // top4 회귀 X변수 선택리스트
-    selectRegressionXContainer = document.getElementById("selectRegressionXContainer");
-    selectRegressionXContainer.innerHTML = '<select id="selectRegressionX" multiple>';
-    selectRegressionX = document.getElementById("selectRegressionX");
-    for (i=0; i<numCol; i++) {
-        option = document.createElement("option");
-        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
-        option.value = i+1;
-        selectRegressionX.options.add(option);
-    }
-    $('#selectRegressionX').multiSelect();
     
     // top5 분석변수 선택리스트
     analysisMu12 = document.getElementById("analysisMu12");
@@ -786,19 +775,6 @@ function updateVarList() {
         option.value = i+1;
         xaxisLine.options.add(option);
     }
-    // top6 분석변수 선택리스트
-
-    analysisLineContainer = document.getElementById("analysisLineContainer");
-    //    analysisLine.innerHTML = '<option value="0" selected> --- </option>'
-    analysisLineContainer.innerHTML = '<select id="analysisLine" multiple>';
-    analysisLine = document.getElementById("analysisLine");
-    for (i=0; i<numCol; i++) {
-        option = document.createElement("option");
-        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
-        option.value = i+1;
-        analysisLine.options.add(option);
-    }
-    $('#analysisLine').multiSelect();
     
     
     // top7 분석변수 선택리스트
@@ -1147,6 +1123,7 @@ $("#analysisLineContainer").change(function() {
       chart.selectAll("*").remove();
       graphTitle();
     $("#analysisLine").val().forEach(function(v) {
+	
 	j = parseInt(v);
 	k = j - 1;
 	
@@ -1184,7 +1161,7 @@ $("#analysisLineContainer").change(function() {
 //    d3.select("#selectedVars").node().value = str;
     numVar++;
 	//document.getElementById(strGraph[graphNum]).click();  // Redraw Graph
-	clickOnLineGraph();
+	callDrawLineGraph();
 /*
     j = document.getElementById("analysisLine").options.length;
     for (i=1; i<j; i++) {
@@ -1510,7 +1487,7 @@ $("#selectRegressionXContainer").change(function() {
 //    d3.select("#selectedVars").node().value = str;
     numVar++;
 	//document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
-	clickOnRegression();
+	callDrawRegression();
 
 /*
     j = document.getElementById("selectRegressionX").options.length;
@@ -2226,7 +2203,12 @@ clickOnLineGraph = function() {
       d3.select("#selectedVars").node().value = str;
       chart.selectAll("*").remove();
       return;
+    } else {
+	graphTop6Show();
     }
+    callDrawLineGraph();
+}
+function callDrawLineGraph() {
     if (robs[0] == null) return;  // 데이터가 없는 경우
     dataClassifyLine();
     if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
@@ -2240,6 +2222,7 @@ clickOnLineGraph = function() {
         document.myForm3.type3.value = 1;
     }
 */
+    
 }
 
 d3.select("#line1").on("click", clickOnLineGraph);
@@ -3450,8 +3433,13 @@ clickOnRegression = function() {
       d3.select("#selectedVars").node().value = str;
       chart.selectAll("*").remove();
       return;
+  } else {
+      graphTop4Show();
   }
-  if (robs[0] == null) return;  // 데이터가 없는 경우
+    callDrawRegression();
+}
+function callDrawRegression() {
+      if (robs[0] == null) return;  // 데이터가 없는 경우
   if (numVar < 2) {
         numVar = 0;
         chart.selectAll("*").remove();

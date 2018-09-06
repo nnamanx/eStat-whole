@@ -153,6 +153,24 @@ function graphTop4Show() {
    graphTopHide();
    top4Visited = true;
    document.getElementById("top4").style.display = "block"; // 회귀분석 Y변수, X변수 표시
+
+    analysisLineContainer = document.getElementById("analysisLineContainer");
+    analysisLineContainer.innerHTML = '';
+
+    // top4 회귀 X변수 선택리스트
+    selectRegressionXContainer = document.getElementById("selectRegressionXContainer");
+    selectRegressionXContainer.innerHTML = '<select id="selectRegressionX" multiple>';
+    selectRegressionX = document.getElementById("selectRegressionX");
+    for (i=0; i<numCol; i++) {
+        option = document.createElement("option");
+        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        selectRegressionX.options.add(option);
+    }
+    $('#selectRegressionX').multiSelect();
+
+
+    
 }
 // 그래프 top5 변수선택 표시 - TH Mu12
 function graphTop5Show() {
@@ -167,6 +185,24 @@ function graphTop6Show() {
    graphTopHide();
    top6Visited = true;
    document.getElementById("top6").style.display = "block"; // 꺽은선 표시
+
+    selectRegressionXContainer = document.getElementById("selectRegressionXContainer");
+    selectRegressionXContainer.innerHTML = '';
+
+    
+    // top6 분석변수 선택리스트
+    analysisLineContainer = document.getElementById("analysisLineContainer");
+    //    analysisLine.innerHTML = '<option value="0" selected> --- </option>'
+    analysisLineContainer.innerHTML = '<select id="analysisLine" multiple></select>';
+    analysisLine = document.getElementById("analysisLine");
+    for (i=0; i<numCol; i++) {
+        option = document.createElement("option");
+        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        analysisLine.options.add(option);
+    }
+    $('#analysisLine').multiSelect();
+    
 }
 // 그래프 top7 변수선택 표시 - TH Sigma12
 function graphTop7Show() {
