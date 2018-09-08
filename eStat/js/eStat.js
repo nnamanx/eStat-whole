@@ -6147,8 +6147,12 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             }
             cell[0].innerHTML = svgStr[48][langNum]
             cell[0].style.backgroundColor = "#eee";
-            cell[1].innerHTML = tstat[0].toString(); 
-            for (j=2; j<ncol; j++) cell[j].innerHTML = f2(tstat[j-1]).toString();  
+            cell[1].innerHTML = tstat[0].toString();     // obs
+            cell[2].innerHTML = f2(tstat[1]).toString(); // avg
+            cell[3].innerHTML = f2(tstat[2]).toString(); // std
+            cell[4].innerHTML = f2(tstat[3]).toString(); // min
+            cell[5].innerHTML = f2(tstat[5]).toString(); // med
+            cell[6].innerHTML = f2(tstat[7]).toString(); // max
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) {
               cell[j].style.textAlign = "right";          
