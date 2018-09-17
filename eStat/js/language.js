@@ -324,7 +324,7 @@ $.message.ko = {
     "VariableSelect5": "X변량 추가 선택 가능",
     "SummaryData": "요약자료",
     "RawData": "원시자료",
-    "RawData2": "원시자료 변량선택",
+    "MultiSelect": "",
     "DataType": "(변량명 클릭으로 변량선택 가능)",
     "by": "by",
 };
@@ -842,7 +842,7 @@ $.message.en = {
     "VariableSelect5": "More X Variable can be selected.",
     "SummaryData": "Summary Data",
     "RawData": "Raw Data",
-    "RawData2": "Raw Data Variable Selection",
+    "MultiSelect": "",
     "DataType": "(Select variables by click var name)",
     "by": "by",
 };
@@ -1361,7 +1361,7 @@ $.message.ja = {
     "VariableSelect5": "より多くのX変数を選択できます",
     "SummaryData": "要約データ",
     "RawData": "原データ",
-    "RawData2": "原データ変数選択",
+    "MultiSelect": "",
     "DataType": "(変数名をクリックして変数を選択)",
     "by": "by",
 };
@@ -1877,7 +1877,7 @@ $.message.zhTW = {
     "VariableSelect5": "可以選擇更多X變量",
     "SummaryData": "要約資料",
     "RawData": "原資料",
-    "RawData2": "原資料変数選択",
+    "MultiSelect": "",
     "DataType": "(通過單擊變量名稱選擇變量)",
     "by": "by",
 };
@@ -2392,7 +2392,7 @@ $.message.fr = {
     "VariableSelect5": "Plus de variables X peuvent être sélectionnées",
     "SummaryData": "Données récapitulatives",
     "RawData": "Données brutes",
-    "RawData2": "Données brutes Sélection de variables",
+    "MultiSelect": "",
     "DataType": "(Sélectionnez variable par clic nom de variable)",
     "by": "par",
 };
@@ -2905,7 +2905,7 @@ $.message.de = {
     "VariableSelect5": "Weitere X variablen können ausgewählt werden",
     "SummaryData": "Zusammenfassungsdaten",
     "RawData": "Rohdaten",
-    "RawData2": "Rohdaten Variable Auswahl",
+    "MultiSelect": "",
     "DataType": "(Wählen Sie die Variable anhand des Variablennamens aus)",
     "by": "durch",
 };
@@ -3421,7 +3421,7 @@ $.message.es = {
     "VariableSelect5": "Se pueden seleccionar más variables X",
     "SummaryData": "Datos resumidos",
     "RawData": "Datos brutos",
-    "RawData2": "Datos brutos Selección de Variables",
+    "MultiSelect": "",
     "DataType": "(Seleccione la variable haciendo clic en el nombre de la variable)",
     "by": "por",
 };
@@ -3937,7 +3937,7 @@ $.message.vi = {
     "VariableSelect5": "Có thể chọn nhiều biến X hơn",
     "SummaryData": "Dữ liệu tóm tắt",
     "RawData": "Dữ liệu thôa",
-    "RawData2": "Dữ liệu thô Lựa chọn biến",
+    "MultiSelect": "",
     "DataType": "(Chọn biến theo tên biến lần nhấp)",
     "by": "bởi",
 };
@@ -4453,7 +4453,7 @@ $.message.id = {
     "VariableSelect5": "Lebih banyak variabel X dapat dipilih",
     "SummaryData": "Data Ringkasan",
     "RawData": "Data mentah",
-    "RawData2": "Data mentaha Seleksi Variabe",
+    "MultiSelect": "",
     "DataType": "(Pilih variabel dengan mengklik nama variabel)",
     "by": "oleh",
 };
@@ -4967,7 +4967,7 @@ $.message.mn = {
     "VariableSelect5": "Илүү олон X хувьсагчийг сонгож болно",
     "SummaryData": "Хураангуй мэдээлэл",
     "RawData": "Түүхий мэдээлэл",
-    "RawData2": "Түүхий мэдээлэл Хувьсах сонголт",
+    "MultiSelect": "",
     "DataType": "(Хувьсагчийн нэр дээр дарж хувьсагч сонго)",
     "by": "by",
 };
@@ -5482,7 +5482,7 @@ $.message.zh = {
     "VariableSelect4": "可以选择更多X变量",
     "SummaryData": "要約資料",
     "RawData": "原資料",
-    "RawData2": "原資料变量選択",
+    "MultiSelect": "",
     "DataType": "(通过单击变量名称选择变量)",
     "by": "by",
 };
@@ -6000,7 +6000,7 @@ $.message.pt = {
     "VariableSelect5": "Mais variáveis X podem ser selecionadas",
     "SummaryData": "Dados resumidos",
     "RawData": "Dados não tratados",
-    "RawData2": "Dados não tratados seleção de variáveis",
+    "MultiSelect": "",
     "DataType": "(Selecionar variável por nome da variável de clique)",
     "by": "de",
 };
