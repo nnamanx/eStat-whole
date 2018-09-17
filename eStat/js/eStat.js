@@ -26,6 +26,7 @@ var   myColor = ["#0055FF","#FF4500","#00AA00","#FFE400","#FF00DD","#808000","#0
                  "#0000CC","#00FFCC","#0033CC","#3333CC","#3300CC","#33CCCC","#3366CC","#6666CC","#6633CC","#66CCCC","#6699CC",
                  "#9999CC","#9966CC","#99CCCC","#CCCCCC","#CCFFCC","#CC33CC","#CC99CC","#FFFFCC","#FFCCCC","#003300","#666600"];
 var colors = d3.scaleLinear().domain([0,1]).range(["yellow","red"]);
+var h1sign = ["&ne;",">","<"];
 // 그래프버튼의 string
 var strGraph = new Array(40);
 strGraph[1]  = "separate1";     // 수직 분리형 막대
@@ -74,143 +75,14 @@ function is_hangul_char(ch) {
 // 그래프 top 선택 초기화
 function graphTopInitialize() {
   numVar = 0;
-  document.getElementById("analysisSelect").options[0].selected = true
-  document.getElementById("analysisSelectMain").options[0].selected = true
-  document.getElementById("groupSelectMain").options[0].selected = true
-  document.getElementById("selectScatterY").options[0].selected = true
-  document.getElementById("selectScatterX").options[0].selected = true
-  document.getElementById("analysisANOVA").options[0].selected = true
-  document.getElementById("factor1Select").options[0].selected = true
-  document.getElementById("factor2Select").options[0].selected = true
-  document.getElementById("selectRegressionY").options[0].selected = true
-  //document.getElementById("selectRegressionX").options[0].selected = true
-  document.getElementById("analysisMu12").options[0].selected = true
-  document.getElementById("groupMu12").options[0].selected = true
-  document.getElementById("analysisSigma12").options[0].selected = true
-  document.getElementById("groupSigma12").options[0].selected = true
-//  document.getElementById("analysisLine").options[0].selected = true
-  document.getElementById("xaxisLine").options[0].selected = true 
-  document.getElementById("groupSelect").options[0].selected = true
-  document.getElementById("sizeSelect").options[0].selected = true 
-}
-// 그래프 top Hide
-function graphTopHide() {
+  checkMouseSelection = false;
   checkPastColSelection = false;
-  top0Visited = false;
-  top1Visited = false;
-  top2Visited = false;
-  top3Visited = false;
-  top4Visited = false;
-  top5Visited = false;
-  top6Visited = false;
-  top7Visited= false;
-  document.getElementById("top0").style.display = "none";  // 분석변수 선택 감추기
-  document.getElementById("top1").style.display = "none";  // 분석-그룹 변수선택 감추기
-  document.getElementById("top2").style.display = "none";  // 산점도 Y변수, X변수 감추기
-  document.getElementById("top3").style.display = "none";  // 분산분석 분석, Factor1, Factor2 감추기
-  document.getElementById("top4").style.display = "none";  // 회귀분석 Y변수, X변수 감추기
-  document.getElementById("top5").style.display = "none";  // TH Mu12 분석-그룹변수 감추기
-  document.getElementById("top6").style.display = "none";  // 꺽은선 감추기
-  document.getElementById("top7").style.display = "none"; // TH Sigma 분석-그룹변수 감추기
+  document.getElementById("analysisSelectMain").options[0].selected = true; // top1
+  document.getElementById("groupSelectMain").options[0].selected = true;    // top1
+  document.getElementById("groupSelect").options[0].selected = true;        // 산점도 그룹
+  document.getElementById("sizeSelect").options[0].selected = true;         // 산점도 크기
 }
-// 그래프 top0 변수선택 표시 - TH mu, sigma
-function graphTop0Show() {
-   graphTopInitialize();
-   graphTopHide();
-   top0Visited = true;
-   document.getElementById("top0").style.display = "block"; // 분석변수 선택 표시
-}
-// 그래프 top1 변수선택 표시 - 막대/원/띠/   점/히스토/줄기/상자/THSigma12
-function graphTop1Show() { 
-   graphTopInitialize();
-   graphTopHide();
-   top1Visited = true;
-   document.getElementById("top1").style.display = "block"; // 분석-그룹 변수선택 표시
-/*
-   j = parseInt(document.getElementById("analysisSelectMain").value)
-   k = parseInt(document.getElementById("groupSelectMain").value)
-   document.getElementById("analysisSelectMain").options[j].selected = true
-   document.getElementById("groupSelectMain").options[k].selected = true
-*/
-}
-// 그래프 top2 변수선택 표시 -  산점도
-function graphTop2Show() {
-   graphTopInitialize();
-   graphTopHide();
-   top2Visited = true;
-   document.getElementById("top2").style.display = "block"; // 산점도 Y변수, X변수  표시
-}
-// 그래프 top3 변수선택 표시 - 분산분석
-function graphTop3Show() {
-   graphTopInitialize();
-   graphTopHide();
-   top3Visited = true;
-   document.getElementById("top3").style.display = "block"; // 분산분석 분석, Factor1, Factor2  표시
-}
-// 그래프 top4 변수선택 표시 - 회귀분석
-function graphTop4Show() {
-   graphTopInitialize();
-   graphTopHide();
-   top4Visited = true;
-   document.getElementById("top4").style.display = "block"; // 회귀분석 Y변수, X변수 표시
 
-    analysisLineContainer = document.getElementById("analysisLineContainer");
-    analysisLineContainer.innerHTML = '';
-
-    // top4 회귀 X변수 선택리스트
-    selectRegressionXContainer = document.getElementById("selectRegressionXContainer");
-    selectRegressionXContainer.innerHTML = '<select id="selectRegressionX" multiple>';
-    selectRegressionX = document.getElementById("selectRegressionX");
-    for (i=0; i<numCol; i++) {
-        option = document.createElement("option");
-        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
-        option.value = i+1;
-        selectRegressionX.options.add(option);
-    }
-    $('#selectRegressionX').multiSelect();
-
-
-    
-}
-// 그래프 top5 변수선택 표시 - TH Mu12
-function graphTop5Show() {
-   graphTopInitialize();
-   graphTopHide();
-   top5Visited = true;
-   document.getElementById("top5").style.display = "block"; // TH Mu12 분석-그룹변수 표시
-}
-// 그래프 top6 변수선택 표시 - 꺽은선
-function graphTop6Show() {
-   graphTopInitialize();
-   graphTopHide();
-   top6Visited = true;
-   document.getElementById("top6").style.display = "block"; // 꺽은선 표시
-
-    selectRegressionXContainer = document.getElementById("selectRegressionXContainer");
-    selectRegressionXContainer.innerHTML = '';
-
-    
-    // top6 분석변수 선택리스트
-    analysisLineContainer = document.getElementById("analysisLineContainer");
-    //    analysisLine.innerHTML = '<option value="0" selected> --- </option>'
-    analysisLineContainer.innerHTML = '<select id="analysisLine" multiple></select>';
-    analysisLine = document.getElementById("analysisLine");
-    for (i=0; i<numCol; i++) {
-        option = document.createElement("option");
-        option.text  = "V"+(i+1).toString()+": "+rvarName[i];
-        option.value = i+1;
-        analysisLine.options.add(option);
-    }
-    $('#analysisLine').multiSelect();
-    
-}
-// 그래프 top7 변수선택 표시 - TH Sigma12
-function graphTop7Show() {
-   graphTopInitialize();
-   graphTopHide();
-   top7Visited = true;
-   document.getElementById("top7").style.display = "block"; // TH Sigma12 분석-그룹변수 표시
-}
 // 그래프 sub 선택사항 감추기
 function graphSubHide() {
       document.getElementById("freq").checked     = false;
@@ -226,6 +98,7 @@ function graphSubHide() {
       document.getElementById("sub3").style.display  = "none";  //띠그래프 도수표시 감추기
       document.getElementById("sub4").style.display  = "none";  //꺽은선그래프 정렬 감추기
       document.getElementById("sub5").style.display  = "none";  //점그래프 평균 표준편차 감추기
+      document.getElementById("sub52").style.display = "none";  //상자그래프 감추기
       document.getElementById("sub6").style.display  = "none";  //산점도 회귀선 감추기
       document.getElementById("sub7").style.display  = "none";  //히스토그램 선택사항 감추기
       document.getElementById("sub8").style.display  = "none";  //가설검정 Mu 1 선택사항 감추기
@@ -349,16 +222,16 @@ function graphTitle() {
         case 21: gstr = svgStr[10][langNum];    break; 
         case 22: gstr = svgStr[111][langNum];  	break; // GIS
         case 23: gstr = svgStr[5][langNum];     break; // 도수분포표의 꺽은선
-        case 24: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
-        case 25: gstr = svgStr[11][langNum];    break; // TH mu
-        case 26: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
-        case 27: gstr = svgStr[12][langNum];    break; // TH sigma
-        case 28: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
-        case 29: gstr = svgStr[13][langNum];    break; // TH mu12
-        case 30: gstr = svgStr[86][langNum];   	break; // 신뢰구간 그래프
-        case 31: gstr = svgStr[14][langNum];    break; // TH sigma12
+        case 24: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
+        case 25: gstr = svgStr[11][langNum];    break; // 모평균 가설검정
+        case 26: gstr = svgStr[113][langNum];   break; // TH sigma 평균-표준편차 그래프
+        case 27: gstr = svgStr[12][langNum];    break; // 모분산 가설검정
+        case 28: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
+        case 29: gstr = svgStr[13][langNum];    break; // 두 모평균 가설검정
+        case 30: gstr = svgStr[113][langNum];   break; // TH sigma12 평균-표준편차 그래프
+        case 31: gstr = svgStr[14][langNum];    break; // 두 모분산 가설검정
         case 32: gstr = svgStr[86][langNum];  	break; // 신뢰구간 그래프
-        case 33: gstr = svgStr[13][langNum];    break; // ANOVA
+        case 33: gstr = svgStr[15][langNum];    break; // 분산분석
         case 34: gstr = svgStr[89][langNum];    break; // 산점도행렬
         case 35: gstr = svgStr[83][langNum];    break; // 잔차산점도
         case 36: gstr = svgStr[80][langNum];    break; // Q-Q plot
@@ -508,7 +381,9 @@ function dataClassify() {
               checkMissing = true;
               return; 
             }
-        }  
+        } 
+        // 원시자료 표시 
+        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
 
         dobs        = tdobs[0];
         dvarNumber  = tdvarNumber[0];
@@ -616,6 +491,13 @@ function dataClassify() {
             rawData = true;
             ngroup = ngvalue;
           }
+        }
+        // 원시-요약자료 표시
+        if (rawData) { // 원시자료 
+          document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
+        }
+        else { // 요약자료
+          document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[79][langNum]+")";
         }
         if (ngroup > 9)  alert(alertMsg[5][langNum]);
         // 요약자료는 분석변량들의 Numeric 여부 체크
@@ -802,6 +684,8 @@ function dataClassifyLine() { // 꺽은선 데이터
           }
         }
 
+        // 꺽은선 데이터는 요약자료 표시
+        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[79][langNum]+")";
 
         dobs        = tdobs[0];
         dvarNumber  = tdvarNumber[0];
@@ -927,6 +811,18 @@ function dataClassifyLine() { // 꺽은선 데이터
 function sortAscend(dobs, dataA, dataValue, dvalueFreq) {
         var i, j, temp;
         var nvalue = 0;
+        // Check Numeric
+        var checkAlphabetic = false;
+        for (i=0; i<dobs; i++) {
+          if ( isNaN(dataA[i]) ) {
+            checkAlphabetic = true;
+            break;
+          }
+        }
+        if (checkAlphabetic == false ) { // numeric sorting을 위해
+          for (i=0; i<dobs; i++) dataA[i] = parseFloat(dataA[i]);
+        }
+        // sorting
         for (i=0; i<dobs-1; i++) {
           for (j=i; j<dobs; j++) {
             if(dataA[i] > dataA[j]) {
@@ -1295,7 +1191,6 @@ function drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue
                .attr("y1",y1)
                .attr("y2",y1) 
                .style("stroke","black") 
-
           for (k=0; k<ngroup; k++) {
             // x축 선
             y1 = margin.top + (k+1)*oneHeight;
@@ -2927,6 +2822,8 @@ function dataClassifyM() {
         alert(alertMsg[7][langNum]);
         return;
       }
+      // 원시자료 표시
+      document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -3127,6 +3024,8 @@ function dataClassifyM12() {
         alert(alertMsg[7][langNum]);
         return;
       }
+      // 원시자료 표시
+      document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -3320,6 +3219,8 @@ function dataClassifyS() {
               return;
            }
         }
+        // 원시자료 표시
+        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
       
         // y data
           yobs        = tdobs[0];
@@ -3328,6 +3229,7 @@ function dataClassifyS() {
           yvalueLabel = [];
           for (i=0; i<yobs; i++) ydata[i] = tdvar[0][i];
           // numeric check 
+          checkNumeric = true;
           for (i=0; i<yobs; i++) {
             if (isNaN(ydata[i])) {
               checkNumeric = false;
@@ -3641,6 +3543,8 @@ function dataClassifyANOVA2() {
            }
         }
       }
+      // 원시자료 표시
+      document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -3929,6 +3833,7 @@ function dataClassifyRegression() {
             } // endof if
           } // endof i
         }
+/*
         // 같은 번호 선택했는지 체크
         checkVarSame = false;
         for (i = 0; i < numVar-1; i++) {
@@ -3940,6 +3845,9 @@ function dataClassifyRegression() {
             }
           }
         }
+*/
+        // 원시자료 표시
+        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
 
         for (i=0; i<tdobs[0]; i++) wdata[i] = 3;
 }
@@ -4238,6 +4146,7 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
             sx = margin.left + graphWidth/2;
             sy = margin.top; 
             for (j=0; j<tobs; j++) {
+              str = ""+dataA[j];
               tx = margin.left + graphWidth*(dataA[j]-gxmin)/gxrange;
               ty = margin.top  + (k+1)*oneHeight - dataY[j]*2*radius;
               chart.append("circle")
@@ -4253,6 +4162,8 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
                  .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
                  .attr("cx", tx)
                  .attr("cy", ty)
+//                 .append("title")
+//                 .text(str)
             } // endof j
 
         } // endof k
@@ -4262,7 +4173,7 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
         tstat[12] = gxmax;
         tstat[13] = graphWidth;
         tstat[14] = graphHeight;
- 
+
 }
 
 // 이원분산분석 점그래프 함수 ----------------------------------------------------------------------------------
@@ -4496,7 +4407,7 @@ function removeDotMean() {
 	 chart.selectAll("text.mean").remove();
 }
 
-// 점그래프 표준편차 표시 함수
+// 점그래프 - 95%/99% CI 표시 함수
 function showDotStd(nroup, nobs, avg, std, tstat) {
        var k, avgx, ty;
        var df, info, MSE, stdErr, stdmx, stdpx, temp, temp2;
@@ -4519,12 +4430,15 @@ function showDotStd(nroup, nobs, avg, std, tstat) {
        gxmax = tstat[12];
        gxrange = gxmax - gxmin;
 
+       var mconfidence = 1 - confidence;
+       var confStr = confidence*100 + "% CI";
+
        for (k=0; k<ngroup; k++) {
          if ( isNaN(avg[k]) || isNaN(std[k]) ) continue;
          avgx  = margin.left + graphWidth*(avg[k]-gxmin)/gxrange;
          ty    = margin.top + (k+1)*oneHeight - oneHeight/2 + 5;
          df    = nobs[k] - 1;
-         if (nobs[k] > 1) temp  = t_inv(0.975, df, info) * std[k] / Math.sqrt(nobs[k]);
+         if (nobs[k] > 1) temp  = t_inv(1-(mconfidence/2), df, info) * std[k] / Math.sqrt(nobs[k]);
          else temp = 0;
          stdmx = margin.left + graphWidth*(avg[k]-temp-gxmin)/gxrange;
          stdpx = margin.left + graphWidth*(avg[k]+temp-gxmin)/gxrange;
@@ -4565,10 +4479,10 @@ function showDotStd(nroup, nobs, avg, std, tstat) {
               .style("text-anchor","middle")
               .style("font-size","9px")
               .style("font-family","sans-serif")
-              .style("stroke","yellowgreen")          
+              .style("stroke","green")          
               .attr("x", stdmx)
-              .attr("y", ty-5)
-              .text("95% CI")
+              .attr("y", ty+10)
+              .text(confStr)
 /*        
          chart.append("text")   // 표준오차
               .attr("class","std")
@@ -4582,6 +4496,78 @@ function showDotStd(nroup, nobs, avg, std, tstat) {
 */
        }
 }
+// 점그래프- 표준편차 표시 함수
+function showDotStd3(nroup, nobs, avg, std, tstat) {
+       var k, avgx, ty;
+       var df, info, MSE, stdErr, stdmx, stdpx, temp, temp2;
+       var gxmin, gxmax, gxrange;
+       var oneHeight = graphHeight / ngroup;
+
+       gxmin = tstat[11];
+       gxmax = tstat[12];
+       gxrange = gxmax - gxmin;
+
+       for (k=0; k<ngroup; k++) {
+         if ( isNaN(avg[k]) || isNaN(std[k]) ) continue;
+         avgx  = margin.left + graphWidth*(avg[k]-gxmin)/gxrange;
+         ty    = margin.top + (k+1)*oneHeight - oneHeight/2 + 5;
+         if ( isNaN(std[k]) ) temp = 0;
+         else temp = std[k];
+         stdmx = margin.left + graphWidth*(avg[k]-temp-gxmin)/gxrange;
+         stdpx = margin.left + graphWidth*(avg[k]+temp-gxmin)/gxrange;
+         chart.append("circle")
+            .attr("class","std")
+            .attr("cx",avgx)
+            .attr("cy",ty)
+            .attr("r",1)
+            .style("fill","green")    
+         chart.append("line")
+            .attr("class","std")
+            .attr("x1",stdmx)
+            .attr("y1",ty)
+            .attr("x2",avgx)
+            .attr("y2",ty)
+            .style("stroke","yellowgreen")            
+         chart.append("line")
+            .attr("class","std")
+            .attr("x1",stdpx)
+            .attr("y1",ty)
+            .attr("x2",avgx)
+            .attr("y2",ty)
+            .style("stroke","yellowgreen")          
+          chart.append("circle")
+            .attr("class","std")
+            .attr("cx",stdmx)
+            .attr("cy",ty)
+            .attr("r",1)
+            .style("fill","yellowgreen")           
+         chart.append("text")
+              .attr("class","std")
+              .style("text-anchor","middle")
+              .style("font-size","9px")
+              .style("font-family","sans-serif")
+              .style("stroke","green")          
+              .attr("x", stdmx)
+              .attr("y", ty+10)
+              .text("m - s")
+         chart.append("circle")
+            .attr("class","std")
+            .attr("cx",stdpx)
+            .attr("cy",ty)
+            .attr("r",1)
+            .style("fill","yellowgreen")   
+         chart.append("text")
+              .attr("class","std")
+              .style("text-anchor","middle")
+              .style("font-size","9px")
+              .style("font-family","sans-serif")
+              .style("stroke","green")          
+              .attr("x", stdpx)
+              .attr("y", ty+10)
+              .text("m + s")
+       }
+}
+
 // 2원분산분석 평균 표시 함수
 function showDotMean2(nroup, ngroup2, graphWidth, graphHeight) {
        var k, m, p, avgx, ty, tx1, tx2, ty1, ty2;
@@ -5698,14 +5684,14 @@ function showHistNormalTable(nobs, avg, std, nvalueH, freq, dataValueH, dvarName
           row.style.height = "20px";  
 }
 
-// 상자그래프 함수 ---------------------------------------------------------------------------------------------
-function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidth, oneHeight, tstat) {
-       var x1, x2, y1, y2;
-       var width, height, tlabel, temp;
-
-//       graphHeight = svgHeight - margin.top - margin.bottom;
-
-
+// 상자그래프 함수 : 수평형 ---------------------------------------------------------------------------------------------
+function drawBoxGraphH(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidth, oneHeight, tstat) {
+       var i, j, k, x1, x2, y1, y2, ty1, ty2, tz1, tz2;
+       var width, height, tlabel, temp, IQR, minBound, maxBound;
+       var buffer = 0;
+       var radius = 4;
+       var tdata  = new Array(rowMax);
+   
        // 전체 제목
        drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarName, dvarNumber, dvarName);
 
@@ -5715,8 +5701,22 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
        gxmax   = parseFloat(tstat[7]) + temp;
        gxrange = gxmax - gxmin;
 
-       for (var k=0; k<ngroup; k++) {
+       // 전체 사각형
+       chart.append("rect").attr("x",margin.left).attr("y",margin.top)
+            .attr("width",graphWidth).attr("height",graphHeight) 
+            .style("stroke","black").style("fill","white") 
+       // x축 그리기 
+       drawDotXaxis(gxmin, gxmax, graphWidth, graphHeight, buffer)
 
+       for (k=0; k<ngroup; k++) {
+          tobs = nobs[k];
+          for (i=0; i<tobs; i++) tdata[i] = dataSet[k][i];
+          IQR = Q3[k] - Q1[k];
+          y1 = margin.top + k*oneHeight + oneHeight/2;
+          ty1 = y1 - oneHeight/8;
+          ty2 = y1 + oneHeight/8;
+          tz1 = y1 - oneHeight/4;
+          tz2 = y1 + oneHeight/4;
           // 범례
           if (ngroup > 1) {
             str = gvalueLabel[k];  
@@ -5724,77 +5724,208 @@ function drawBoxGraph(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidt
                  .style("font-size","12px")
                  .style("font-family","sans-seirf")
                  .style("stroke","black")
-                 .style("text-anchor","start")               .style("stroke",myColor[k])
+                 .style("text-anchor","start")
+                 .style("stroke",myColor[k])
                  .attr("x",margin.left + graphWidth + 10)
-                 .attr("y",margin.top + oneHeight/4 + oneHeight*k + 20)
+                 .attr("y",y1+5)
                  .text(str);
           }
           // 최소
-          x1 = margin.left + graphWidth*(mini[k]-gxmin)/gxrange;
-          y1 = margin.top + k*oneHeight +20;
+          tempmin  = mini[k];
+          minBound = Q1[k] - 1.5*IQR;
+          if (mini[k] < minBound) tempmin = minBound; 
+          x1 = margin.left + graphWidth*(tempmin-gxmin)/gxrange;
           x2 = x1;
-          y2 = y1 + oneHeight/2;
-          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-             .style("stroke",myColor[k]).style("stroke-width","2px")       
-          chart.attr("class","stat").append("text").attr("x", x2-3).attr("y", y2+13).text("min="+mini[k])
+          chart.append("line").attr("x1",x1).attr("y1",ty1).attr("x2",x2).attr("y2",ty2)
+             .style("stroke",myColor[k]).style("stroke-width","2px")   
+/*    
+          chart.attr("class","stat").append("text").attr("x", x2-3).attr("y", ty2+13).text("min="+mini[k])
                .style("font-size","9px")
                .style("font-family","sans-seirf")
                .style("stroke","black")
                .style("text-anchor","middle")
-
+*/
           // 최소 => Q1
-          x2 = x1 + graphWidth*(Q1[k]-mini[k])/gxrange;
-          chart.append("line").attr("x1",x1).attr("y1",y1+oneHeight/4).attr("x2",x2).attr("y2",y1+oneHeight/4)
+          x2 = x1 + graphWidth*(Q1[k]-tempmin)/gxrange;
+          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y1)
              .style("stroke",myColor[k]).style("stroke-width","2px")
-
           // 최대
-          x1 = margin.left + graphWidth*(maxi[k]-gxmin)/gxrange;
+          tempmax = maxi[k];
+          maxBound = Q3[k] + 1.5*IQR;
+          if (maxi[k] > maxBound) tempmax = maxBound;
+          x1 = margin.left + graphWidth*(tempmax-gxmin)/gxrange;
           x2 = x1;
-          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+          chart.append("line").attr("x1",x1).attr("y1",ty1).attr("x2",x2).attr("y2",ty2)
              .style("stroke",myColor[k]).style("stroke-width","2px")
-          chart.attr("class","stat").append("text").attr("x", x2-3).attr("y", y2+13).text("max="+maxi[k])
+/*
+          chart.attr("class","stat").append("text").attr("x", x2-3).attr("y", ty2+13).text("max="+maxi[k])
                .style("font-size","9px")
                .style("font-family","sans-seirf")
                .style("stroke","black")
                .style("text-anchor","middle")
-
+*/
           // 상자
           x1 = margin.left + graphWidth*(Q1[k]-gxmin)/gxrange;
           width = graphWidth*(Q3[k]-Q1[k])/gxrange;
           height = oneHeight/2;
-          chart.append("rect").attr("x",x1).attr("y",y1).attr("width",width).attr("height",height)
-             .style("stroke","black").style("fill",myColor[k])
-          
+          chart.append("rect").attr("x",x1).attr("y",tz1).attr("width",width).attr("height",height)
+             .style("stroke","black").style("fill",myColor[k])    
+/*      
           // Q1
-          chart.append("text").attr("class","stat").attr("x", x1+3).attr("y", y2+25).text("Q1="+f2(Q1[k]))
+          chart.append("text").attr("class","stat").attr("x", x1+3).attr("y", tz2+25).text("Q1="+f2(Q1[k]))
                .style("font-size","9px")
                .style("font-family","sans-seirf")
                .style("stroke","black")
                .style("text-anchor","middle")
-
           // Q3
-          chart.append("text").attr("class","stat").attr("x", x1+width+6).attr("y", y2+25).text("Q3="+f2(Q3[k]))
+          chart.append("text").attr("class","stat").attr("x", x1+width+6).attr("y", tz2+25).text("Q3="+f2(Q3[k]))
                .style("font-size","9px")
                .style("font-family","sans-seirf")
                .style("stroke","black")
                .style("text-anchor","middle")
-
+*/
           // Q3 => max
           x1 = margin.left + graphWidth*(Q3[k]-gxmin)/gxrange;
-          x2 = x1 + graphWidth*(maxi[k]-Q3[k])/gxrange;
-          chart.append("line").attr("x1",x1).attr("y1",y1+oneHeight/4).attr("x2",x2).attr("y2",y1+oneHeight/4)
+          x2 = x1 + graphWidth*(tempmax-Q3[k])/gxrange;
+          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y1)
              .style("stroke",myColor[k]).style("stroke-width","2px")
-
           // median
           x1 = margin.left + graphWidth*(median[k]-gxmin)/gxrange;
           x2 = x1;
-          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+          chart.append("line").attr("x1",x1).attr("y1",tz1).attr("x2",x2).attr("y2",tz2)
              .style("stroke","lime").style("stroke-width","2px")
-          chart.append("text").attr("class","stat").attr("x", x1+6).attr("y", y2+13).text("m="+f2(median[k]))
+/*
+          chart.append("text").attr("class","stat").attr("x", x1+6).attr("y", tz2+13).text("m="+f2(median[k]))
                .style("font-size","9px")
                .style("font-family","sans-seirf")
                .style("stroke","black")
                .style("text-anchor","middle")
+*/
+          // 점그리기
+          for (j=0; j<tobs; j++) {
+            if (tdata[j] < minBound || tdata[j] > maxBound) {
+              str = ""+tdata[j];
+              x1 = margin.left + graphWidth*(tdata[j]-gxmin)/gxrange;
+              chart.append("circle")
+                 .attr("class","circle")
+                 .attr("tooltip","circle")
+                 .style("fill",myColor[k])
+                 .attr("stroke","black")
+                 .attr("r", radius)
+                 .attr("cx", x1)
+                 .attr("cy", y1)
+                 .append("title")
+                 .text(str)
+            }
+          } // endof j
+
+       }
+}
+// 상자그래프 함수 : 수직형 ---------------------------------------------------------------------------------------------
+function drawBoxGraphV(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidth, oneHeight, tstat) {
+       var i, j, k, x1, x2, y1, y2, tx, ty, tx1, tx2, tz1, tz2;
+       var width, height, tlabel, temp, IQR, minBound, maxBound;
+       var buffer = 0;
+       var radius = 4;
+       var oneWidth = graphWidth / ngroup;
+       var tdata  = new Array(rowMax);
+   
+       // 전체 제목
+       drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarName, dvarNumber, dvarName);
+
+       // 전체 데이터 최소 최대 계산
+       temp    = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+       gymin   = parseFloat(tstat[3]) - temp;
+       gymax   = parseFloat(tstat[7]) + temp;
+       gyrange = gymax - gymin;
+
+       // 전체 사각형
+       chart.append("rect").attr("x",margin.left).attr("y",margin.top)
+            .attr("width",graphWidth).attr("height",graphHeight) 
+            .style("stroke","black").style("fill","white") 
+       // y축 그리기 
+       var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeight,0])
+       tx = margin.left;
+       ty = margin.top;
+       chart.append("g")
+            .attr("transform","translate("+tx+","+ty+")")
+            .call(d3.axisLeft(yScale))             
+
+       for (k=0; k<ngroup; k++) {
+          tobs = nobs[k];
+          for (i=0; i<tobs; i++) tdata[i] = dataSet[k][i];
+          IQR = Q3[k] - Q1[k];
+          x1 = margin.left + k*oneWidth + oneWidth/2;
+          tx1 = x1 - oneWidth/8;
+          tx2 = x1 + oneWidth/8;
+          tz1 = x1 - oneWidth/4;
+          tz2 = x1 + oneWidth/4;
+          // 범례
+          if (ngroup > 1) {
+            str = gvalueLabel[k];  
+            chart.append("text")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","middle")
+                 .style("stroke",myColor[k])
+                 .attr("x",x1)
+                 .attr("y",margin.top + graphHeight + 20)
+                 .text(str);
+          }
+          // 최소
+          tempmin  = mini[k];
+          minBound = Q1[k] - 1.5*IQR;
+          if (mini[k] < minBound) tempmin = minBound; 
+          y1 = margin.top + graphHeight - graphHeight*(tempmin-gymin)/gyrange;
+          y2 = y1;
+          chart.append("line").attr("x1",tx1).attr("y1",y1).attr("x2",tx2).attr("y2",y2)
+             .style("stroke",myColor[k]).style("stroke-width","2px")       
+          // 최소 => Q1
+          y2 = margin.top + graphHeight - graphHeight*(Q1[k]-gymin)/gyrange;
+          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x1).attr("y2",y2)
+             .style("stroke",myColor[k]).style("stroke-width","2px")
+          // 최대
+          tempmax = maxi[k];
+          maxBound = Q3[k] + 1.5*IQR;
+          if (maxi[k] > maxBound) tempmax = maxBound;
+          y1 = margin.top + graphHeight - graphHeight*(tempmax-gymin)/gyrange;
+          y2 = y1;
+          chart.append("line").attr("x1",tx1).attr("y1",y1).attr("x2",tx2).attr("y2",y2)
+             .style("stroke",myColor[k]).style("stroke-width","2px")
+          // 상자
+          y1 = margin.top + graphHeight - graphHeight*(Q3[k]-gymin)/gyrange;
+          width  = oneWidth/2;
+          height = graphHeight*(Q3[k]-Q1[k])/gyrange;
+          chart.append("rect").attr("x",tz1).attr("y",y1).attr("width",width).attr("height",height)
+             .style("stroke","black").style("fill",myColor[k])          
+          // Q3 => max
+          y1 = margin.top + graphHeight - graphHeight*(Q3[k]-gymin)/gyrange;
+          y2 = margin.top + graphHeight - graphHeight*(tempmax-gymin)/gyrange;
+          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x1).attr("y2",y2)
+             .style("stroke",myColor[k]).style("stroke-width","2px")
+          // median
+          y1 = margin.top + graphHeight - graphHeight*(median[k]-gxmin)/gxrange;
+          y2 = y1;
+          chart.append("line").attr("x1",tz1).attr("y1",y1).attr("x2",tz2).attr("y2",y2)
+             .style("stroke","lime").style("stroke-width","2px")
+          // 점그리기
+          for (j=0; j<tobs; j++) {
+            if (tdata[j] < minBound || tdata[j] > maxBound) {
+              str = ""+tdata[j];
+              y1 = margin.top + graphHeight - graphHeight*(tdata[j]-gymin)/gyrange;
+              chart.append("circle")
+                 .attr("class","circle")
+                 .attr("tooltip","circle")
+                 .style("fill",myColor[k])
+                 .attr("stroke","black")
+                 .attr("r", radius)
+                 .attr("cx", x1)
+                 .attr("cy", y1)
+                 .append("title")
+                 .text(str)
+            }
+          } // endof j
 
        }
 }
@@ -6072,8 +6203,8 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
     loc.appendChild(table);
 
         var row, nrow, str;
-        var ncol = 7;
-        var cell = new Array(7);
+        var ncol = 11;
+        var cell = new Array(ncol);
 
           table.style.fontSize = "13px";
  
@@ -6106,12 +6237,16 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             cell[0].innerHTML = svgStr[21][langNum]+"<br> ("+gvarName+")";
           }
           else cell[0].innerHTML = svgStr[21][langNum]+" ("+gvarName+")";
-          cell[1].innerHTML = svgStr[44][langNum] 
-          cell[2].innerHTML = svgStr[34][langNum];  
-          cell[3].innerHTML = svgStr[35][langNum]  
-          cell[4].innerHTML = svgStr[45][langNum]
-          cell[5].innerHTML = svgStr[46][langNum]
-          cell[6].innerHTML = svgStr[47][langNum] 
+          cell[1].innerHTML = svgStr[44][langNum]; // n
+          cell[2].innerHTML = svgStr[34][langNum]; // avg
+          cell[3].innerHTML = svgStr[35][langNum]; // std
+          cell[4].innerHTML = svgStr[45][langNum]; // 최솟값
+          cell[5].innerHTML = "Q1";
+          cell[6].innerHTML = svgStr[46][langNum]; // 중앙값
+          cell[7].innerHTML = "Q3"; 
+          cell[8].innerHTML = svgStr[47][langNum]; // 최댓값
+          cell[9].innerHTML = "IQR"; 
+          cell[10].innerHTML= svgStr[112][langNum]; // 범위
           for (j=0; j<ncol; j++) {
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
@@ -6132,8 +6267,12 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             cell[2].innerHTML = f2(avg[g]).toString();  
             cell[3].innerHTML = f2(std[g]).toString();   
             cell[4].innerHTML = f2(mini[g]).toString();   
-            cell[5].innerHTML = f2(median[g]).toString();   
-            cell[6].innerHTML = f2(maxi[g]).toString();   
+            cell[5].innerHTML = f2(Q1[g]).toString();
+            cell[6].innerHTML = f2(median[g]).toString();   
+            cell[7].innerHTML = f2(Q3[g]).toString();   
+            cell[8].innerHTML = f2(maxi[g]).toString();   
+            cell[9].innerHTML = f2(Q3[g]-Q1[g]).toString();   
+            cell[10].innerHTML = f2(maxi[g]-mini[g]).toString();   
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";         
           }
@@ -6151,8 +6290,12 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             cell[2].innerHTML = f2(tstat[1]).toString(); // avg
             cell[3].innerHTML = f2(tstat[2]).toString(); // std
             cell[4].innerHTML = f2(tstat[3]).toString(); // min
-            cell[5].innerHTML = f2(tstat[5]).toString(); // med
-            cell[6].innerHTML = f2(tstat[7]).toString(); // max
+            cell[5].innerHTML = f2(tstat[4]).toString(); // q1
+            cell[6].innerHTML = f2(tstat[5]).toString(); // med
+            cell[7].innerHTML = f2(tstat[6]).toString(); // q3
+            cell[8].innerHTML = f2(tstat[7]).toString(); // max
+            cell[9].innerHTML = f2(tstat[6]-tstat[4]).toString(); // iqr
+            cell[10].innerHTML = f2(tstat[7]-tstat[3]).toString(); // range
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) {
               cell[j].style.textAlign = "right";          
@@ -7359,15 +7502,17 @@ function anovaStat(ngroup,tobs,nobs,avg,std,statF,gvar,dvar,yhat,residual) {
     }
 }
 
-// 가설검정용 그룹통계량표 --------------------------------------------------------------------------------------------------
-function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
+// Mu 가설검정용 그룹통계량표 --------------------------------------------------------------------------------------------------
+function statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
     loc.appendChild(table);
 
         var row, nrow, str, df, info, stderr, temp, left, right;
         var ncol = 6;
-        var cell = new Array(7);
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
         
           table.style.fontSize = "13px";
  
@@ -7375,23 +7520,19 @@ function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, min
           nrow = 0;
           row  = table.insertRow(nrow);
           row.style.height ="40px";
-          for (j=0; j<5; j++) {
+          for (j=0; j<3; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.width ="70px";
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].style.width ="100px";
-          cell[0].innerHTML = "<h3>"+svgStr[91][langNum]+"</h3>"; //통계량
+          cell[0].style.width ="130px";
+          cell[0].innerHTML = "<h3>"+svgStr[11][langNum]+"</h3>"; 
           cell[1].innerHTML = svgStr[26][langNum];
           if (checkPairedT == false) str = dvarName;
           else str = "("+tdvarName[0] + " - " + tdvarName[1]+")";
           cell[2].innerHTML = str;
-          if (ngroup > 1) {
-            cell[3].innerHTML = svgStr[37][langNum];
-            cell[4].innerHTML = "("+gvarName+")";
-          }
 
           row  = table.insertRow(++nrow);
           row.style.height ="40px";
@@ -7399,21 +7540,18 @@ function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, min
             cell[j] = row.insertCell(j);
             cell[j].style.border = "1px solid black";
           }
-          if (ngroup > 1) {
-            cell[0].innerHTML = svgStr[21][langNum]+"<br> ("+gvarName+")";
-          }
-          else cell[0].innerHTML = "";
+          cell[0].innerHTML = svgStr[91][langNum];  // 통계량
           cell[1].innerHTML = svgStr[44][langNum];  // 자료수 
           cell[2].innerHTML = svgStr[34][langNum];  // 평균 
           cell[3].innerHTML = svgStr[35][langNum];  // 표준편차  
           cell[4].innerHTML = svgStrU[18][langNum]; // 표준오차
-          cell[5].innerHTML = "95% "+svgStrU[20][langNum]; // 신뢰구간
+          cell[5].innerHTML = svgStrU[19][langNum]+"<br>"+confstr+svgStrU[20][langNum]; // 모평균신뢰구간
           for (j=0; j<ncol; j++) {
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.width ="80px";
           }
-          cell[5].style.width = "120px";
+          cell[5].style.width = "130px";
 
           for (g=0; g<ngroup; g++) {
             row = table.insertRow(++nrow);
@@ -7430,14 +7568,549 @@ function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, min
             cell[3].innerHTML = f3(std[g]).toString();  
             stderr = std[g] / Math.sqrt(nobs[g]);
             df     = nobs[g] - 1;
-            temp   = t_inv(0.975,df,info)*stderr;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
+            left   = avg[g] - temp;
+            right  = avg[g] + temp;
+            cell[4].innerHTML = f3(stderr).toString();   
+            cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";  
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
+            cell[5].style.textAlign = "center";
+          } // endof g
+
+          row = table.insertRow(++nrow);
+          cell[0] = row.insertCell(0);          
+          cell[0].style.border = "1px solid black";
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<5; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+          }
+          cell[0].innerHTML = "H<sub>0</sub> : &mu; = &mu;<sub>0</sub>"; 
+          cell[1].innerHTML = "&mu;<sub>0</sub>"; 
+          cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+          if (statT[12] == 1)  cell[3].innerHTML = "Z-"+svgStr[69][langNum]; // Z값
+          else  cell[3].innerHTML = "t-"+svgStr[69][langNum]; // t값
+          cell[4].innerHTML = svgStrU[27][langNum]; // p값
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<5; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";          
+          }
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].style.textAlign = "center";          
+          cell[2].style.textAlign = "center";          
+          cell[0].innerHTML = "H<sub>1</sub> : &mu; "+h1sign[statT[11]-1]+" &mu;<sub>0</sub>"; 
+          cell[1].innerHTML = f2(statT[0]);  // mu0
+          cell[2].innerHTML = svgStrU[22][langNum]; // 표본평균
+          cell[3].innerHTML = f3(statT[9]);  // teststat
+          cell[4].innerHTML = f4(statT[10]); // pvalue 
+
+          row = table.insertRow(++nrow);
+          row.style.height ="20px";
+}
+// Sigma 가설검정용 그룹통계량표 --------------------------------------------------------------------------------------------------
+function statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, nrow, str, df, info, stderr, temp, left, right;
+        var ncol = 6;
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
+        
+          table.style.fontSize = "13px";
+ 
+          var header = table.createTHead()
+          nrow = 0;
+          row  = table.insertRow(nrow);
+          row.style.height ="40px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.width ="70px";
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.width ="130px";
+          cell[0].innerHTML = "<h3>"+svgStr[12][langNum]+"</h3>"; 
+          cell[1].innerHTML = svgStr[26][langNum];
+          if (checkPairedT == false) str = dvarName;
+          else str = "("+tdvarName[0] + " - " + tdvarName[1]+")";
+          cell[2].innerHTML = str;
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="40px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStr[91][langNum];  // 통계량
+          cell[1].innerHTML = svgStr[44][langNum];  // 자료수 
+          cell[2].innerHTML = svgStr[34][langNum];  // 평균 
+          cell[3].innerHTML = svgStr[35][langNum];  // 표준편차  
+          cell[4].innerHTML = svgStrU[18][langNum]; // 표준오차
+          cell[5].innerHTML = svgStr[114][langNum]+"<br>"+confstr+svgStrU[20][langNum]; // 모표준편차신뢰구간
+          for (j=0; j<ncol; j++) {
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.width ="80px";
+          }
+          cell[5].style.width = "130px";
+
+          for (g=0; g<ngroup; g++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);  
+              cell[j].style.border = "1px solid black";
+            }
+            str ="";
+            if (ngroup > 1) str = (g+1).toString()+" ("+gvalueLabel[g]+")";        
+            cell[0].innerHTML = str;
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = nobs[g].toString();  
+            cell[2].innerHTML = f3(avg[g]).toString();  
+            cell[3].innerHTML = f3(std[g]).toString();  
+            stderr = std[g] / Math.sqrt(nobs[g]);
+            df     = nobs[g] - 1;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
+            left   = avg[g] - temp;
+            right  = avg[g] + temp;
+            cell[4].innerHTML = f3(stderr).toString();   
+            temp   = (nobs[g] - 1) * std[g] * std[g]; 
+            left   = temp / chisq_inv(1-mconfidence/2,df,info);
+            right  = temp / chisq_inv(mconfidence/2,df,info);
+            cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";
+   
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
+            cell[5].style.textAlign = "center";
+          } // endof g
+
+          row = table.insertRow(++nrow);
+          cell[0] = row.insertCell(0);          
+          cell[0].style.border = "1px solid black";
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<5; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+          }
+          cell[0].innerHTML = "H<sub>0</sub> : &sigma;<sup>2</sup> = &sigma;<sub>0</sub><sup>2</sup>"; 
+          cell[1].innerHTML = "&sigma;<sub>0</sub><sup>2</sup>"; 
+          cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+          cell[3].innerHTML = svgStrU[74][langNum]; // Chisq값
+          cell[4].innerHTML = svgStrU[27][langNum]; // p값
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<5; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";     
+          }
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].style.textAlign = "center";     
+          cell[2].style.textAlign = "center";     
+          cell[0].innerHTML = "H<sub>1</sub> : &sigma;<sup>2</sup> "+h1sign[statT[11]-1]+" &sigma;<sub>0</sub><sup>2</sup>"; 
+          cell[1].innerHTML = f2(statT[0]);  // teststat
+          cell[2].innerHTML = svgStrU[75][langNum]; // 표본분산
+          cell[3].innerHTML = f3(statT[9]);  // teststat
+          cell[4].innerHTML = f4(statT[10]); // pvalue
+
+          row = table.insertRow(++nrow);
+          row.style.height ="20px";
+}
+// Mu12 가설검정용 그룹통계량표 --------------------------------------------------------------------------------------------------
+function statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, nrow, str, df, info, stderr, temp, left, right;
+        var ncol = 6;
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
+        
+          table.style.fontSize = "13px";
+ 
+          var header = table.createTHead()
+          nrow = 0;
+          row  = table.insertRow(nrow);
+          row.style.height ="40px";
+          for (j=0; j<5; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.width ="70px";
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.width ="130px";
+          cell[0].innerHTML = "<h3>"+svgStr[13][langNum]+"</h3>"; 
+          cell[1].innerHTML = svgStr[26][langNum];
+          if (checkPairedT == false) str = dvarName;
+          else str = "("+tdvarName[0] + " - " + tdvarName[1]+")";
+          cell[2].innerHTML = str;
+          if (ngroup > 1) {
+            cell[3].innerHTML = svgStr[37][langNum];
+            cell[4].innerHTML = gvarName;
+          }
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="40px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStr[91][langNum];  // 통계량
+          cell[1].innerHTML = svgStr[44][langNum];  // 자료수 
+          cell[2].innerHTML = svgStr[34][langNum];  // 평균 
+          cell[3].innerHTML = svgStr[35][langNum];  // 표준편차  
+          cell[4].innerHTML = svgStrU[18][langNum]; // 표준오차
+          cell[5].innerHTML = svgStrU[19][langNum]+"<br>"+confstr+svgStrU[20][langNum]; // 모평균신뢰구간
+          for (j=0; j<ncol; j++) {
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.width ="80px";
+          }
+          cell[5].style.width = "130px";
+
+          for (g=0; g<ngroup; g++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);  
+              cell[j].style.border = "1px solid black";
+            }
+            str ="";
+            if (ngroup > 1) str = (g+1).toString()+" ("+gvalueLabel[g]+")";        
+            cell[0].innerHTML = str;
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = nobs[g].toString();  
+            cell[2].innerHTML = f3(avg[g]).toString();  
+            cell[3].innerHTML = f3(std[g]).toString();  
+            stderr = std[g] / Math.sqrt(nobs[g]);
+            df     = nobs[g] - 1;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
+            left   = avg[g] - temp;
+            right  = avg[g] + temp;
+            cell[4].innerHTML = f3(stderr).toString();   
+            cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";  
+
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
+            cell[5].style.textAlign = "center";
+          } // endof g
+
+          if (ngroup > 1) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].innerHTML = svgStr[48][langNum]
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = tstat[0].toString(); 
+            cell[2].innerHTML = f3(tstat[1]).toString();  
+            cell[3].innerHTML = f3(tstat[2]).toString();  
+            stderr = tstat[2] / Math.sqrt(tstat[0]);
+            df     = tstat[0] - 1;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
+            left   = tstat[1] - temp;
+            right  = tstat[1] + temp;
+            cell[4].innerHTML = f3(stderr).toString();   
+            cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";   
+
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol; j++) {
+              cell[j].style.textAlign = "right";          
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[5].style.textAlign = "center";
+          }
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<3; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+          }
+          cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
+          cell[1].innerHTML = svgStrU[78][langNum]; // 분산가정
+          if (statT[12] == 1) cell[2].innerHTML = "&sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup>";
+          else cell[2].innerHTML = "&sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup>";
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<6; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+          }
+          cell[0].innerHTML = "H<sub>0</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D";
+          cell[1].innerHTML = "D"; 
+          cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+          cell[3].innerHTML = "t-"+svgStr[69][langNum]; // t값
+          cell[4].innerHTML = svgStrU[27][langNum]; // p값
+          cell[5].innerHTML = "&mu;<sub>1</sub>-&mu;<sub>2</sub><br>"+confstr+svgStrU[20][langNum]; // 모평균차신뢰구간
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<6; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.backgroundColor = "#eee";
+          cell[1].style.textAlign = "right";          
+          cell[3].style.textAlign = "right";          
+          cell[4].style.textAlign = "right";          
+          cell[0].innerHTML = "H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> "+h1sign[statT[11]-1]+" D";
+          cell[1].innerHTML = f2(statT[0]);  // D
+          cell[2].innerHTML = svgStrU[76][langNum]; // 표본평균차
+          cell[3].innerHTML = f3(statT[9]);  // teststat
+          cell[4].innerHTML = f4(statT[10]); // pvalue
+          cell[5].innerHTML = "("+f3(statT[14])+", "+f3(statT[15])+")";  
+
+          row = table.insertRow(++nrow);
+          row.style.height ="20px";
+}
+// Sigma12 가설검정용 그룹통계량표 --------------------------------------------------------------------------------------------------
+function statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, nrow, str, df, info, stderr, temp, left, right;
+        var ncol = 6;
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
+        
+          table.style.fontSize = "13px";
+ 
+          var header = table.createTHead()
+          nrow = 0;
+          row  = table.insertRow(nrow);
+          row.style.height ="40px";
+          for (j=0; j<5; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.width ="70px";
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.width ="130px";
+          cell[0].innerHTML = "<h3>"+svgStr[14][langNum]+"</h3>"; 
+          cell[1].innerHTML = svgStr[26][langNum];
+          cell[2].innerHTML = dvarName;
+          cell[3].innerHTML = svgStr[37][langNum];
+          cell[4].innerHTML = gvarName;
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="40px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStr[91][langNum];  // 통계량
+          cell[1].innerHTML = svgStr[44][langNum];  // 자료수 
+          cell[2].innerHTML = svgStr[34][langNum];  // 평균 
+          cell[3].innerHTML = svgStr[35][langNum];  // 표준편차  
+          cell[4].innerHTML = svgStrU[18][langNum]; // 표준오차
+          cell[5].innerHTML = svgStr[114][langNum]+"<br>"+confstr+svgStrU[20][langNum]; // 모표준편차신뢰구간
+          for (j=0; j<ncol; j++) {
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.width ="80px";
+          }
+          cell[5].style.width = "130px";
+
+          for (g=0; g<ngroup; g++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);  
+              cell[j].style.border = "1px solid black";
+            }
+            str ="";
+            if (ngroup > 1) str = (g+1).toString()+" ("+gvalueLabel[g]+")";        
+            cell[0].innerHTML = str;
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = nobs[g].toString();  
+            cell[2].innerHTML = f3(avg[g]).toString();  
+            cell[3].innerHTML = f3(std[g]).toString();  
+            stderr = std[g] / Math.sqrt(nobs[g]);
+            df     = nobs[g] - 1;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
+            left   = avg[g] - temp;
+            right  = avg[g] + temp;
+            cell[4].innerHTML = f3(stderr).toString();   
+            temp   = (nobs[g] - 1) * std[g] * std[g]; 
+            left   = temp / chisq_inv(1-mconfidence/2,df,info);
+            right  = temp / chisq_inv(mconfidence/2,df,info);
+            cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";
+   
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
+            cell[5].style.textAlign = "center";
+          } // endof g
+
+          if (ngroup > 1) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].innerHTML = svgStr[48][langNum]
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = tstat[0].toString(); 
+            cell[2].innerHTML = f3(tstat[1]).toString();  
+            cell[3].innerHTML = f3(tstat[2]).toString();  
+            stderr = tstat[2] / Math.sqrt(tstat[0]);
+            df     = tstat[0] - 1;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
+            left   = tstat[1] - temp;
+            right  = tstat[1] + temp;
+            cell[4].innerHTML = f3(stderr).toString();   
+            temp   = (tstat[0] - 1) * tstat[2] * tstat[2];
+            left   = temp / chisq_inv(1-mconfidence/2,df,info);
+            right  = temp / chisq_inv(mconfidence/2,df,info);
+            cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";   
+
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol; j++) {
+              cell[j].style.textAlign = "right";          
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[5].style.textAlign = "center";
+          }
+
+          row = table.insertRow(++nrow);
+          cell[0] = row.insertCell(0);          
+          cell[0].style.border = "1px solid black";
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<6; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+          }
+          cell[0].innerHTML = "H<sub>0</sub> : &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup>";
+          cell[1].innerHTML = ""
+          cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+          cell[3].innerHTML = "F-"+svgStr[69][langNum]; // ChiSquare값
+          cell[4].innerHTML = svgStrU[27][langNum]; // p값
+          cell[5].innerHTML = "&sigma;<sub>1</sub><sup>2</sup> / &sigma;<sub>2</sub><sup>2</sup><br>"+confstr+svgStrU[20][langNum]; // 모분산비신뢰구간
+
+          row = table.insertRow(++nrow);
+          for (j=0; j<6; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.backgroundColor = "#eee";
+          cell[1].style.backgroundColor = "#eee";
+          cell[3].style.textAlign = "right";          
+          cell[4].style.textAlign = "right";          
+          cell[0].innerHTML = "H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup> "+h1sign[statF[11]-1]+" &sigma;<sub>2</sub><sup>2</sup>";
+          cell[1].innerHTML = "";
+          cell[2].innerHTML = "s<sub>1</sub><sup>2</sup> / s<sub>2</sub><sup>2</sup>"; // 표본분산비
+          cell[3].innerHTML = f3(statF[9]);  // teststat
+          cell[4].innerHTML = f4(statF[10]); // pvalue
+          cell[5].innerHTML = "("+f3(statF[14])+", "+f3(statF[15])+")";  
+
+          row = table.insertRow(++nrow);
+          row.style.height ="20px";
+}
+// 분산분석용 그룹통계량표 --------------------------------------------------------------------------------------------------
+function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, nrow, str, df, info, stderr, temp, left, right;
+        var ncol = 7;
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
+        
+          table.style.fontSize = "13px";
+ 
+          var header = table.createTHead()
+          nrow = 0;
+          row  = table.insertRow(nrow);
+          row.style.height ="40px";
+          for (j=0; j<5; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.width ="70px";
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.width ="130px";
+          cell[0].innerHTML = "<h3>"+svgStr[91][langNum]+"</h3>"; //통계량
+          cell[1].innerHTML = svgStr[26][langNum];
+          cell[2].innerHTML = dvarName;
+          cell[3].innerHTML = svgStr[37][langNum];
+          cell[4].innerHTML = gvarName;
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="40px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStr[21][langNum]+"<br> ("+gvarName+")";
+          cell[1].innerHTML = svgStr[44][langNum];  // 자료수 
+          cell[2].innerHTML = svgStr[34][langNum];  // 평균 
+          cell[3].innerHTML = svgStr[35][langNum];  // 표준편차  
+          cell[4].innerHTML = svgStrU[18][langNum]; // 표준오차
+          cell[5].innerHTML = svgStrU[19][langNum]+"<br>"+confstr+svgStrU[20][langNum]; // 모평균신뢰구간
+          cell[6].innerHTML = svgStr[114][langNum]+"<br>"+confstr+svgStrU[20][langNum]; // 모표준편차신뢰구간
+          for (j=0; j<ncol; j++) {
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.width ="80px";
+          }
+          cell[5].style.width = "120px";
+          cell[6].style.width = "120px";
+
+          for (g=0; g<ngroup; g++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);  
+              cell[j].style.border = "1px solid black";
+            }
+            str ="";
+            if (ngroup > 1) str = (g+1).toString()+" ("+gvalueLabel[g]+")";        
+            cell[0].innerHTML = str;
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = nobs[g].toString();  
+            cell[2].innerHTML = f3(avg[g]).toString();  
+            cell[3].innerHTML = f3(std[g]).toString();  
+            stderr = std[g] / Math.sqrt(nobs[g]);
+            df     = nobs[g] - 1;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
             left   = avg[g] - temp;
             right  = avg[g] + temp;
             cell[4].innerHTML = f3(stderr).toString();   
             cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";   
+            temp   = (nobs[g] - 1) * std[g] * std[g]; 
+            left   = temp / chisq_inv(1-mconfidence/2,df,info);
+            right  = temp / chisq_inv(mconfidence/2,df,info);
+            cell[6].innerHTML = "("+f3(left)+", "+f3(right)+")";   
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
             cell[5].style.textAlign = "center";
+            cell[6].style.textAlign = "center";
           }
 
           if (ngroup > 1) {
@@ -7453,11 +8126,15 @@ function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, min
             cell[3].innerHTML = f3(tstat[2]).toString();  
             stderr = tstat[2] / Math.sqrt(tstat[0]);
             df     = tstat[0] - 1;
-            temp   = t_inv(0.975,df,info)*stderr;
+            temp   = t_inv(1-mconfidence/2,df,info)*stderr;
             left   = tstat[1] - temp;
             right  = tstat[1] + temp;
             cell[4].innerHTML = f3(stderr).toString();   
             cell[5].innerHTML = "("+f3(left)+", "+f3(right)+")";   
+            temp   = (tstat[0] - 1) * tstat[2] * tstat[2];
+            left   = temp / chisq_inv(1-mconfidence/2,df,info);
+            right  = temp / chisq_inv(mconfidence/2,df,info);
+            cell[6].innerHTML = "("+f3(left)+", "+f3(right)+")";   
 
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) {
@@ -7465,6 +8142,7 @@ function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, min
               cell[j].style.backgroundColor = "#eee";
             }
             cell[5].style.textAlign = "center";
+            cell[6].style.textAlign = "center";
           }
 
           row = table.insertRow(++nrow);
@@ -7496,27 +8174,32 @@ function AnovaTable(gvarName,dvarName,nobs,avg,std,statF) {
           cell[0].style.backgroundColor = "#eee";
           cell[0].style.border = "1px solid black";
 //          row.style.height ="40px";
-          cell[0].style.width ="100px";
+          cell[0].style.width ="130px";
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j); 
+            cell[j].style.textAlign = "center";   
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
           cell[0].innerHTML = svgStr[72][langNum]; // "요인";
           cell[1].innerHTML = svgStr[73][langNum]; // "제곱합";  
           cell[2].innerHTML = svgStr[74][langNum]; // "자유도";  
           cell[3].innerHTML = svgStr[75][langNum]; // "평균제곱";  
           cell[4].innerHTML = "F "+svgStr[69][langNum]; // "F관찰값";   
           cell[5].innerHTML = "p "+svgStr[69][langNum]; // "p-값 =";    
-          for (j=0; j<ncol; j++) {
-            cell[j].style.textAlign = "center";   
-            cell[j].style.backgroundColor = "#eee";
-            cell[j].style.border = "1px solid black";
-            cell[j].style.width ="70px";
-          }
    
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[102][langNum]; // "처리";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j); 
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.backgroundColor = "#eee";
           cell[0].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[102][langNum]; // "처리";
           cell[1].innerHTML = f3(statF[1]).toString();  
           cell[2].innerHTML = f0(statF[6]).toString();  
           cell[3].innerHTML = f3(statF[4]).toString();  
@@ -7524,33 +8207,31 @@ function AnovaTable(gvarName,dvarName,nobs,avg,std,statF) {
           if(statF[9] < 0.0001) str = " < 0.0001";
           else str = f4(statF[9]).toString();  
           cell[5].innerHTML = str;
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[77][langNum]; // "오차";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j); 
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.backgroundColor = "#eee";
           cell[0].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[77][langNum]; // "오차";
           cell[1].innerHTML = f3(statF[2]).toString();  
           cell[2].innerHTML = f0(statF[7]).toString();  
           cell[3].innerHTML = f3(statF[5]).toString();  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
 
           row  = table.insertRow(++num);
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);          
             cell[j].style.border = "1px solid black";
-          }
-          cell[0].innerHTML = svgStr[78][langNum]; // "전체";
-          cell[0].style.textAlign = "center";
-          cell[0].style.backgroundColor = "#eee";   
-          cell[1].innerHTML = f3(statF[3]).toString();  
-          cell[2].innerHTML = f0(statF[8]).toString();
-          for (j=1; j<ncol; j++) {
             cell[j].style.textAlign = "right";   
             cell[j].style.backgroundColor = "#eee"; 
           }
+          cell[0].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[78][langNum]; // "전체";
+          cell[1].innerHTML = f3(statF[3]).toString();  
+          cell[2].innerHTML = f0(statF[8]).toString();
 
           // 다음 표와의 공백을 위한 것
           row = table.insertRow(++num);
@@ -7592,7 +8273,7 @@ function stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2,
           cell[0].innerHTML = svgStr[44][langNum]+"<br>"+svgStr[34][langNum]+"<br>"+svgStr[35][langNum]; // "자료수<br>"+"평균<br>"+"표준편차";
           cell[0].style.textAlign = "center";
           for (j=0; j<ngroup2; j++) {
-            cell[j+1].innerHTML = svgStr[21][langNum]+" ("+gvarName2+")<br>"+(j+1).toString()+" ("+gvalueLabel2[j]+")"
+            cell[j+1].innerHTML = svgStr[21][langNum]+"<br>("+gvarName2+")<br>"+(j+1).toString()+" ("+gvalueLabel2[j]+")"
           }
           cell[ngroup2+1].innerHTML = svgStr[104][langNum]; // "행의 합";
 
@@ -7657,27 +8338,33 @@ function Anova2Table(gvarName,dvarName,nobs,avg,std,statF) {
           cell[0].style.backgroundColor = "#eee";
           cell[0].style.border = "1px solid black";
 //          row.style.height ="40px";
-          cell[0].style.width ="100px";
+          cell[0].style.width ="130px";
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j); 
+            cell[j].style.textAlign = "center";   
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
           cell[0].innerHTML = svgStr[72][langNum]; // "요인";
           cell[1].innerHTML = svgStr[73][langNum]; // "제곱합";  
           cell[2].innerHTML = svgStr[74][langNum]; // "자유도";  
           cell[3].innerHTML = svgStr[75][langNum]; // "평균제곱";  
           cell[4].innerHTML = "F "+svgStr[69][langNum]; // "F관찰값";   
           cell[5].innerHTML = "p "+svgStr[69][langNum]; // "p-값 =";    
-          for (j=0; j<ncol; j++) {
-            cell[j].style.textAlign = "center";   
-            cell[j].style.backgroundColor = "#eee";
-            cell[j].style.border = "1px solid black";
-            cell[j].style.width ="70px";
-          }
    
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[92][langNum]+" 1"; // "인자";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j); 
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          cell[0].style.backgroundColor = "#eee"; 
           cell[0].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[92][langNum]+" 1"; // "인자 1";
           cell[1].innerHTML = f3(statF[1]).toString();  
           cell[2].innerHTML = f0(statF[6]).toString();  
           cell[3].innerHTML = f3(statF[11]).toString();  
@@ -7685,13 +8372,17 @@ function Anova2Table(gvarName,dvarName,nobs,avg,std,statF) {
           if(statF[18] < 0.0001) str = " < 0.0001";
           else str = f4(statF[18]).toString();  
           cell[5].innerHTML = str;  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[92][langNum]+" 2"; // "인자";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j); 
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          cell[0].style.backgroundColor = "#eee"; 
           cell[0].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[92][langNum]+" 2"; // "인자 2";
           cell[1].innerHTML = f3(statF[2]).toString();  
           cell[2].innerHTML = f0(statF[7]).toString();  
           cell[3].innerHTML = f3(statF[12]).toString();  
@@ -7699,47 +8390,51 @@ function Anova2Table(gvarName,dvarName,nobs,avg,std,statF) {
           if(statF[19] < 0.0001) str = " < 0.0001";
           else str = f4(statF[19]).toString();  
           cell[5].innerHTML = str;  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
-       if (!checkRBD) {
+          if (!checkRBD) {
+            row  = table.insertRow(++num);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j); 
+              cell[j].style.textAlign = "right";   
+              cell[j].style.border = "1px solid black";
+              cell[j].style.width ="80px";
+            }
+            cell[0].style.backgroundColor = "#eee"; 
+            cell[0].style.textAlign = "center";
+            cell[0].innerHTML = svgStr[103][langNum]; // "교호작용"
+            cell[1].innerHTML = f3(statF[3]).toString();  
+            cell[2].innerHTML = f0(statF[8]).toString();  
+            cell[3].innerHTML = f3(statF[13]).toString();  
+            cell[4].innerHTML = f3(statF[17]).toString();  
+            if(statF[18] < 0.0001) str = " < 0.0001";
+            else str = f4(statF[20]).toString();  
+            cell[5].innerHTML = str;  
+          }
+
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[103][langNum]; // "교호작용"
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j); 
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          cell[0].style.backgroundColor = "#eee"; 
           cell[0].style.textAlign = "center";
-          cell[1].innerHTML = f3(statF[3]).toString();  
-          cell[2].innerHTML = f0(statF[8]).toString();  
-          cell[3].innerHTML = f3(statF[13]).toString();  
-          cell[4].innerHTML = f3(statF[17]).toString();  
-          if(statF[18] < 0.0001) str = " < 0.0001";
-          else str = f4(statF[20]).toString();  
-          cell[5].innerHTML = str;  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
-       }
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
           cell[0].innerHTML = svgStr[77][langNum]; // "오차";
-          cell[0].style.textAlign = "center";
           cell[1].innerHTML = f3(statF[4]).toString();  
           cell[2].innerHTML = f0(statF[9]).toString();  
           cell[3].innerHTML = f3(statF[14]).toString();  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
 
           row  = table.insertRow(++num);
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);          
             cell[j].style.border = "1px solid black";
-          }
-          cell[0].innerHTML = svgStr[78][langNum]; // "전체";
-          cell[0].style.textAlign = "center";
-          cell[0].style.backgroundColor = "#eee";   
-          cell[1].innerHTML = f3(statF[5]).toString();  
-          cell[2].innerHTML = f0(statF[10]).toString();
-          for (j=1; j<ncol; j++) {
             cell[j].style.textAlign = "right";   
             cell[j].style.backgroundColor = "#eee"; 
           }
+          cell[0].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[78][langNum]; // "전체";
+          cell[1].innerHTML = f3(statF[5]).toString();  
+          cell[2].innerHTML = f0(statF[10]).toString();
 
           // 다음 표와의 공백을 위한 것
           row = table.insertRow(++num);
@@ -7786,7 +8481,9 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             cell[g].style.backgroundColor = "#eee";
           }
           if (ngroup > 1) {
-            cell[0].innerHTML = svgStr[100][langNum]+"<br> (95%HSD)";  // "평균차"
+            if (confidence == 0.95) str = "(95%HSD)";
+            else str = "(99%HSD)";
+            cell[0].innerHTML = svgStr[100][langNum]+"<br> "+str;  // "평균차"
           }
           else cell[0].innerHTML = svgStr[21][langNum]+" ("+gvarName+")";
           for (g=1; g<ngroup+1; g++) {
@@ -7810,8 +8507,9 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             for (k=0; k<ngroup; k++) {
               if (g == k) continue;
               avgDiff = Math.abs(avg[g]-avg[k]);
-              HSD95   = q_inv(0.95,ngroup,dobs-ngroup,info)*Math.sqrt(0.5*(1/nobs[g] + 1/nobs[k])*statF[5] );
-              cell[k+1].innerHTML = f2(avgDiff).toString()+"<br>("+f2(HSD95)+")";  
+              if (confidence == 0.95) temp  = q_inv(0.95,ngroup,dobs-ngroup,info)*Math.sqrt(0.5*(1/nobs[g] + 1/nobs[k])*statF[5] );
+              else temp = q_inv(0.99,ngroup,dobs-ngroup,info)*Math.sqrt(0.5*(1/nobs[g] + 1/nobs[k])*statF[5] );
+              cell[k+1].innerHTML = f2(avgDiff).toString()+"<br>("+f2(temp)+")";  
               cell[k+1].style.textAlign = "right";   
               cell[k+1].style.width ="80px";      
             }
@@ -8131,7 +8829,7 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
             cell[j] = row.insertCell(j);
             cell[j].style.width ="80px";
           }
-          cell[0].style.width ="120px";
+          cell[0].style.width ="130px";
           cell[0].innerHTML = svgStrU[31][langNum]; // "회귀선";
           cell[0].style.backgroundColor = "#eee";
           cell[0].style.textAlign = "center";
@@ -8151,7 +8849,7 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
           for (j=0; j<5; j++) cell[j] = row.insertCell(j);
           cell[0].innerHTML = svgStr[60][langNum]; // "상관계수";
           cell[1].innerHTML = "r = "+f3(corr[k]).toString();    
-          cell[2].innerHTML = "H<sub>0</sub>: &rho;=0 ";   
+          cell[2].innerHTML = "H<sub>0</sub>: &rho; = 0<br>H<sub>1</sub>: &rho; &ne; 0";   
           cell[3].innerHTML = "t "+svgStr[69][langNum]+" = "+f3(tobs); // "t관찰값";    
           if (pvalue < 0.0001) str = "p "+svgStr[69][langNum]+" < 0.0001";
           else str = "p "+svgStr[69][langNum]+" = "+f4(pvalue).toString(); 
@@ -8173,75 +8871,77 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
           }
 
           row  = table.insertRow(++num);
-          for (j=0; j<2; j++) cell[j] = row.insertCell(j);
-          cell[0].innerHTML = svgStr[62][langNum]; // "추정오차";  
-          cell[1].innerHTML = "s = "+f3(stderr[k]).toString();    
           for (j=0; j<2; j++) {
+            cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
           }
+          cell[0].innerHTML = svgStr[62][langNum]; // "추정오차";  
+          cell[1].innerHTML = "s = "+f3(stderr[k]).toString();    
 
           row  = table.insertRow(++num);
           for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) {
+          for (j=0; j<ncol-1; j++) {
             cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
           }
           cell[0].innerHTML = svgStr[63][langNum]; // "변량";
           cell[1].innerHTML = svgStr[64][langNum]; // "변량명";
           cell[2].innerHTML = svgStr[44][langNum]; // "자료수";  
           cell[3].innerHTML = svgStr[34][langNum]; // "평균";  
           cell[4].innerHTML = svgStr[35][langNum]; // "표준편차";       
-          for (j=0; j<ncol-1; j++) {
-            cell[j].style.textAlign = "center";
-            cell[j].style.backgroundColor = "#eee";
-            cell[j].style.border = "1px solid black";
-          }
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[65][langNum]+" x"; // "독립변량 x";
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);  
+            cell[j].style.border = "1px solid black";        
+            cell[j].style.textAlign = "right";         
+          }
+          cell[0].style.textAlign = "center";
           cell[0].style.backgroundColor = "#eee";
+          cell[1].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[65][langNum]+" x"; // "독립변량 x";
           cell[1].innerHTML = xvarName;            
           cell[2].innerHTML = nobs[k].toString();  
           cell[3].innerHTML = f3(xavg[k]).toString();  
           cell[4].innerHTML = f3(xstd[k]).toString();  
-          cell[0].style.textAlign = "center";
-          cell[1].style.textAlign = "center";
-          for (j=2; j<ncol; j++) cell[j].style.textAlign = "right";         
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);                
-          cell[0].innerHTML = svgStr[66][langNum]+" y"; // "종속변량 y";
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);  
+            cell[j].style.border = "1px solid black";        
+            cell[j].style.textAlign = "right";         
+          }
+          cell[0].style.textAlign = "center";
           cell[0].style.backgroundColor = "#eee";
+          cell[1].style.textAlign = "center";
+          cell[0].innerHTML = svgStr[66][langNum]+" y"; // "종속변량 y";
           cell[1].innerHTML = yvarName;            
           cell[2].innerHTML = nobs[k].toString();  
           cell[3].innerHTML = f3(yavg[k]).toString();  
           cell[4].innerHTML = f3(ystd[k]).toString();  
-          cell[0].style.textAlign = "center";
-          cell[1].style.textAlign = "center";
-          for (j=2; j<ncol; j++) cell[j].style.textAlign = "right";          
 
           row  = table.insertRow(++num);
           for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
           for (j=0; j<ncol; j++) cell[j].style.textAlign = "right";         
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) {
+          for (j=0; j<ncol-1; j++) {
             cell[j] = row.insertCell(j);          
+            cell[j].style.textAlign = "center";   
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
           }
           cell[0].innerHTML = svgStr[67][langNum]; // "모수";
           cell[1].innerHTML = svgStr[68][langNum]; // "추정치";  
           cell[2].innerHTML = svgStrU[18][langNum]; // "표준오차";  
           cell[3].innerHTML = "t "+svgStr[69][langNum]; // "t관찰값";  
           cell[4].innerHTML = "p "+svgStr[69][langNum]; // "p-값 ";   
-          for (j=0; j<ncol-1; j++) {
-            cell[j].style.textAlign = "center";   
-            cell[j].style.backgroundColor = "#eee";
-            cell[j].style.border = "1px solid black";
-          }
 
           temp = stderr[k]*Math.sqrt(1./nobs[k] + xavg[k]*xavg[k]/sxx[k]);
           tobs = alphaR[k]/temp;
@@ -8249,17 +8949,20 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
           if (pvalue < 0.5) pvalue = 2*pvalue;
           else pvalue = 2*(1-pvalue);
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[70][langNum]; // "절편";
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);          
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+          }
           cell[0].style.textAlign = "center";
+          cell[0].style.backgroundColor = "#eee"; 
+          cell[0].innerHTML = svgStr[70][langNum]; // "절편";
           cell[1].innerHTML = f3(alphaR[k]).toString();  
           cell[2].innerHTML = f3(temp).toString();  
           cell[3].innerHTML = f3(tobs).toString();  
           if (pvalue < 0.0001) str = "< 0.0001";
           else str = f4(pvalue).toString();  
           cell[4].innerHTML = str;
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
 
           temp = stderr[k]/Math.sqrt(sxx[k]);
           tobs = betaR[k]/temp;
@@ -8267,50 +8970,57 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
           if (pvalue < 0.5) pvalue = 2*pvalue;
           else pvalue = 2*(1-pvalue);
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[71][langNum]; // "기울기";
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);          
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+          }
           cell[0].style.textAlign = "center";
+          cell[0].style.backgroundColor = "#eee"; 
+          cell[0].innerHTML = svgStr[71][langNum]; // "기울기";
           cell[1].innerHTML = f3(betaR[k]).toString();  
           cell[2].innerHTML = f3(temp).toString();  
           cell[3].innerHTML = f3(tobs).toString();  
           if (pvalue < 0.0001) str = "< 0.0001";
           else str = f4(pvalue).toString();  
           cell[4].innerHTML = str;  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";  
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          for (j=0; j<ncol; j++) cell[j].style.textAlign = "right";         
+          cell[0] = row.insertCell(0);          
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
+          cell[0] = row.insertCell(0);          
           cell[0].innerHTML = svgStrU[29][langNum]; // "분산분석표";
           cell[0].style.textAlign = "center";   
           cell[0].style.backgroundColor = "#eee";
           cell[0].style.border = "1px solid black";
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);          
+            cell[j].style.textAlign = "center";   
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
           cell[0].innerHTML = svgStr[72][langNum]; // "요인";
           cell[1].innerHTML = svgStr[73][langNum]; // "제곱합";  
           cell[2].innerHTML = svgStr[74][langNum]; // "자유도";  
           cell[3].innerHTML = svgStr[75][langNum]; // "평균제곱";  
           cell[4].innerHTML = "F "+svgStr[69][langNum]; // "F관찰값";   
           cell[5].innerHTML = "p "+svgStr[69][langNum]; // "p-값 =";    
-          for (j=0; j<ncol; j++) {
-            cell[j].style.textAlign = "center";   
-            cell[j].style.backgroundColor = "#eee";
-            cell[j].style.border = "1px solid black";
-          }
    
           mse  = sse[k]/(nobs[k]-2);
           fobs = ssr[k]/mse;
           pvalue = 1 - f_cdf(fobs,1,nobs[k]-2,info);
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[76][langNum]; // "회귀";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);  
+            cell[j].style.border = "1px solid black";        
+            cell[j].style.textAlign = "right";         
+          }
           cell[0].style.textAlign = "center";
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].innerHTML = svgStr[76][langNum]; // "회귀";
           cell[1].innerHTML = f3(ssr[k]).toString();  
           cell[2].innerHTML = "1";  
           cell[3].innerHTML = f3(ssr[k]).toString();  
@@ -8318,33 +9028,34 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
           if (pvalue < 0.0001) str = "< 0.0001";
           else str = f4(pvalue).toString();  
           cell[5].innerHTML = str; 
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
 
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);  
+            cell[j].style.border = "1px solid black";        
+            cell[j].style.textAlign = "right";         
+          }
+          cell[0].style.textAlign = "center";
+          cell[0].style.backgroundColor = "#eee";
           cell[0].innerHTML = svgStr[77][langNum]; // "오차";
           cell[0].style.textAlign = "center";
           cell[1].innerHTML = f3(sse[k]).toString();  
           cell[2].innerHTML = nobs[k]-2;  
           cell[3].innerHTML = f3(mse).toString();  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
 
           row  = table.insertRow(++num);
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);          
             cell[j].style.border = "1px solid black";
-          }
-          cell[0].innerHTML = svgStr[78][langNum]; // "전체";
-          cell[0].style.textAlign = "center";
-          cell[0].style.backgroundColor = "#eee";   
-          cell[1].innerHTML = f3(ssr[k]+sse[k]).toString();  
-          cell[2].innerHTML = nobs[k]-1;
-          for (j=1; j<ncol; j++) {
             cell[j].style.textAlign = "right";   
             cell[j].style.backgroundColor = "#eee"; 
           }
+          cell[0].style.textAlign = "center";
+          cell[0].style.backgroundColor = "#eee";   
+          cell[0].innerHTML = svgStr[78][langNum]; // "전체";
+          cell[1].innerHTML = f3(ssr[k]+sse[k]).toString();  
+          cell[2].innerHTML = nobs[k]-1;
+
           // 다음 표와의 공백을 위한 것
           row = table.insertRow(++num);
           row.style.height = "20px";
@@ -8361,76 +9072,81 @@ function regressionTable2(numVar, tdobs, tdvar) {
         var ncol = numVar + 1;
         if (ncol < 6) ncol = 6;
 
-          var cell = new Array(ncol);
+        var cell = new Array(ncol);
 
-          table.style.fontSize = "13px";
-          table.style.cellPadding = "10";
+        table.style.fontSize = "13px";
+        table.style.cellPadding = "10";
 
-          row = table.insertRow(num);
-          cell[0] = row.insertCell(0);
-          cell[0].innerHTML = svgStr[79][langNum]; // "<h3>회귀분석</h3>";
-          cell[0].style.textAlign = "center";
-          cell[0].style.backgroundColor = "#eee";
-          cell[0].style.border = "1px solid black";
+        row = table.insertRow(num);
+        cell[0] = row.insertCell(0);
+        cell[0].innerHTML = svgStr[79][langNum]; // "<h3>회귀분석</h3>";
+        cell[0].style.textAlign = "center";
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.border = "1px solid black";
+        cell[0].style.width ="130px";
     
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) {
+        row  = table.insertRow(++num);
+        for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.width ="90px";
-          }
-          cell[0].style.width ="120px";
-          cell[0].innerHTML = svgStrU[31][langNum] + " y ="; // "회귀선";
-          cell[0].style.backgroundColor = "#eee";
-          cell[0].style.textAlign = "center";
-          cell[0].style.border = "1px solid black";
-          cell[1].innerHTML = "("+f3(Beta[0]).toString()+")";
-          cell[1].style.textAlign = "right";
-          for (k=1; k<numVar; k++) {
+        }
+        cell[0].innerHTML = svgStrU[31][langNum] + " y ="; // "회귀선";
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        cell[0].style.border = "1px solid black";
+        cell[1].innerHTML = "("+f3(Beta[0]).toString()+")";
+        cell[1].style.textAlign = "right";
+        for (k=1; k<numVar; k++) {
             cell[k+1].innerHTML = "+ &nbsp; ("+f3(Beta[k]).toString()+")" + " X<sub>"+k+"</sub>";   
             cell[k+1].style.textAlign = "center";
-          }
+        }
 
-          row  = table.insertRow(++num);
-          for (j=0; j<6; j++) cell[j] = row.insertCell(j);
-          cell[0].innerHTML = svgStr[106][langNum]; // "중상관계수"
-          cell[1].innerHTML = f3(statF[12]);    
-          cell[2].innerHTML = svgStr[61][langNum]; // "결정계수";  
-          cell[3].innerHTML = f3(statF[12]*statF[12]); 
-          cell[4].innerHTML = svgStr[62][langNum]; // "추정오차"   
-          cell[5].innerHTML = f3(statF[11]); 
-          for (j=0; j<6; j++) {
+        row  = table.insertRow(++num);
+        for (j=0; j<6; j++) {
+            cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
-          }
+        }
+        cell[0].innerHTML = svgStr[106][langNum]; // "중상관계수"
+        cell[1].innerHTML = f3(statF[12]);    
+        cell[2].innerHTML = svgStr[61][langNum]; // "결정계수";  
+        cell[3].innerHTML = f3(statF[12]*statF[12]); 
+        cell[4].innerHTML = svgStr[62][langNum]; // "추정오차"   
+        cell[5].innerHTML = f3(statF[11]); 
         // 공백
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
+        row  = table.insertRow(++num);
+        cell[0] = row.insertCell(0);          
         // 회귀 추정 모수
-          row  = table.insertRow(++num);
-          for (j=0; j<6; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[67][langNum]; // "모수";
-          cell[1].innerHTML = svgStr[68][langNum]; // "추정치";  
-          cell[2].innerHTML = svgStrU[18][langNum]; // "표준오차";  
-          cell[3].innerHTML = "t "+svgStr[69][langNum]; // "t관찰값";  
-          cell[4].innerHTML = "p "+svgStr[69][langNum]; // "p-값 =";   
-          cell[5].innerHTML = "95% "+svgStrU[20][langNum]; // 신뢰구간
-          for (j=0; j<6; j++) {
+        row  = table.insertRow(++num);
+        for (j=0; j<6; j++) {
+            cell[j] = row.insertCell(j);          
             cell[j].style.textAlign = "center";   
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
-          }
-          cell[5].style.width ="100px";
-          df = statF[5];
-          temp = t_inv(0.95,df,info);
+        }
+        cell[0].innerHTML = svgStr[67][langNum]; // "모수";
+        cell[1].innerHTML = svgStr[68][langNum]; // "추정치";  
+        cell[2].innerHTML = svgStrU[18][langNum]; // "표준오차";  
+        cell[3].innerHTML = "t "+svgStr[69][langNum]; // "t관찰값";  
+        cell[4].innerHTML = "p "+svgStr[69][langNum]; // "p-값 =";   
+        cell[5].innerHTML = "95% "+svgStrU[20][langNum]; // 신뢰구간
+        cell[5].style.width ="130px";
+        df = statF[5];
+        temp = t_inv(0.95,df,info);
 
         for (k=0; k<numVar; k++) {
           row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);  
-          if (k == 0) cell[0].innerHTML = "&beta;<sub>"+k+"</sub>";         
-          else cell[0].innerHTML = "&beta;<sub>"+k+"</sub> "+" "+tdvarName[k]; 
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);  
+            cell[j].style.border = "1px solid black";
+            cell[j].style.textAlign = "right";   
+          }
           cell[0].style.textAlign = "left";
           cell[0].style.backgroundColor = "#eee"; 
+          cell[5].style.textAlign = "center";            
+          if (k == 0) cell[0].innerHTML = "&beta;<sub>"+k+"</sub>";         
+          else cell[0].innerHTML = "&beta;<sub>"+k+"</sub> "+" "+tdvarName[k]; 
           cell[1].innerHTML = f3(Beta[k]).toString(); 
           stderr = Math.sqrt(Cii[k]*statF[8]);
           tobs   = Beta[k] / stderr; 
@@ -8445,76 +9161,79 @@ function regressionTable2(numVar, tdobs, tdvar) {
           else str = f4(pvalue).toString();  
           cell[4].innerHTML = str;  
           cell[5].innerHTML = "("+f3(tleft)+" ,"+f3(tright)+")";  
-
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
         }
         // 공백
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          for (j=0; j<ncol; j++) cell[j].style.textAlign = "right";         
+        row  = table.insertRow(++num);
+        cell[0] = row.insertCell(0);          
         // 분산분석표
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStrU[29][langNum]; // "분산분석표";
-          cell[0].style.textAlign = "center";   
-          cell[0].style.backgroundColor = "#eee";
-          cell[0].style.border = "1px solid black";
+        row  = table.insertRow(++num);
+        cell[0] = row.insertCell(0);          
+        cell[0].innerHTML = svgStrU[29][langNum]; // "분산분석표";
+        cell[0].style.textAlign = "center";   
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.border = "1px solid black";
 
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[72][langNum]; // "요인";
-          cell[1].innerHTML = svgStr[73][langNum]; // "제곱합";  
-          cell[2].innerHTML = svgStr[74][langNum]; // "자유도";  
-          cell[3].innerHTML = svgStr[75][langNum]; // "평균제곱";  
-          cell[4].innerHTML = "F "+svgStr[69][langNum]; // "F관찰값";   
-          cell[5].innerHTML = "p "+svgStr[69][langNum]; // "p-값 =";    
-          for (j=0; j<ncol; j++) {
+        row  = table.insertRow(++num);
+        for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);          
             cell[j].style.textAlign = "center";   
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
-          }
+        }
+        cell[0].innerHTML = svgStr[72][langNum]; // "요인";
+        cell[1].innerHTML = svgStr[73][langNum]; // "제곱합";  
+        cell[2].innerHTML = svgStr[74][langNum]; // "자유도";  
+        cell[3].innerHTML = svgStr[75][langNum]; // "평균제곱";  
+        cell[4].innerHTML = "F "+svgStr[69][langNum]; // "F관찰값";   
+        cell[5].innerHTML = "p "+svgStr[69][langNum]; // "p-값 =";    
    
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[76][langNum]; // "회귀";
-          cell[0].style.textAlign = "center";
-          cell[1].innerHTML = f4(statF[1]).toString();  
-          cell[2].innerHTML = f0(statF[4]).toString();  
-          cell[3].innerHTML = f4(statF[7]).toString();  
-          cell[4].innerHTML = f4(statF[9]).toString(); 
-          if (statF[10] < 0.0001)  str ="< 0.0001"
-          else str = f4(statF[10]).toString();
-          cell[5].innerHTML = str ;  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
-
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[77][langNum]; // "오차";
-          cell[0].style.textAlign = "center";
-          cell[1].innerHTML = f4(statF[2]).toString();  
-          cell[2].innerHTML = f0(statF[5]).toString();  
-          cell[3].innerHTML = f4(statF[8]).toString();  
-          cell[0].style.backgroundColor = "#eee"; 
-          for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";   
-
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) {
+        row  = table.insertRow(++num);
+        for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);          
-            cell[j].style.border = "1px solid black";
-          }
-          cell[0].innerHTML = svgStr[78][langNum]; // "전체";
-          cell[0].style.textAlign = "center";
-          cell[0].style.backgroundColor = "#eee";   
-          cell[1].innerHTML = f4(statF[3]).toString();  
-          cell[2].innerHTML = f0(statF[6]).toString();
-          for (j=1; j<ncol; j++) {
             cell[j].style.textAlign = "right";   
-            cell[j].style.backgroundColor = "#eee"; 
-          }
-          // 다음 표와의 공백을 위한 것
-          row = table.insertRow(++num);
-          row.style.height = "20px";
+            cell[j].style.border = "1px solid black";
+        }
+        cell[0].style.backgroundColor = "#eee"; 
+        cell[0].style.textAlign = "center";
+        cell[0].innerHTML = svgStr[76][langNum]; // "회귀";
+        cell[1].innerHTML = f4(statF[1]).toString();  
+        cell[2].innerHTML = f0(statF[4]).toString();  
+        cell[3].innerHTML = f4(statF[7]).toString();  
+        cell[4].innerHTML = f4(statF[9]).toString(); 
+        if (statF[10] < 0.0001)  str ="< 0.0001"
+        else str = f4(statF[10]).toString();
+        cell[5].innerHTML = str ;  
+
+        row  = table.insertRow(++num);
+        for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);          
+            cell[j].style.textAlign = "right";   
+            cell[j].style.border = "1px solid black";
+        }
+        cell[0].style.backgroundColor = "#eee"; 
+        cell[0].style.textAlign = "center";
+        cell[0].innerHTML = svgStr[77][langNum]; // "오차";
+        cell[1].innerHTML = f4(statF[2]).toString();  
+        cell[2].innerHTML = f0(statF[5]).toString();  
+        cell[3].innerHTML = f4(statF[8]).toString();  
+        cell[0].style.backgroundColor = "#eee"; 
+
+        row  = table.insertRow(++num);
+        for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);          
+            cell[j].style.textAlign = "right";   
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+        }
+        cell[0].style.backgroundColor = "#eee"; 
+        cell[0].style.textAlign = "center";
+        cell[0].innerHTML = svgStr[78][langNum]; // "전체";
+        cell[1].innerHTML = f4(statF[3]).toString();  
+        cell[2].innerHTML = f0(statF[6]).toString();
+
+        // 다음 표와의 공백을 위한 것
+        row = table.insertRow(++num);
+        row.style.height = "20px";
 
 } 
 // 다변량 통계표 --------------------------------------------------------------------------------------------------
@@ -8536,39 +9255,44 @@ function multivariateTable(numVar, tdobs, tdvar) {
         table.style.fontSize = "13px";
         table.style.cellPadding = "10";
         // 헤더
-          row = table.insertRow(num);
-          cell[0] = row.insertCell(0);
-          cell[0].innerHTML = svgStr[43][langNum]; // "<h3>기초통계량</h3>"; 
-          cell[0].style.textAlign = "center";
-          cell[0].style.backgroundColor = "#eee";
-          cell[0].style.border = "1px solid black";
-          cell[0].style.width ="110px";
+        row = table.insertRow(num);
+        cell[0] = row.insertCell(0);
+        cell[0].innerHTML = svgStr[43][langNum]; // "<h3>기초통계량</h3>"; 
+        cell[0].style.textAlign = "center";
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.border = "1px solid black";
+        cell[0].style.width ="130px";
         // 변량별 평균 및 분산
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol2; j++) {
+        row  = table.insertRow(++num);
+        for (j=0; j<ncol2; j++) {
             cell[j] = row.insertCell(j);
-          }
-          cell[0].innerHTML = svgStr[63][langNum]; // "변량";
-          cell[1].innerHTML = svgStr[64][langNum]; // "변량명";
-          cell[2].innerHTML = svgStr[44][langNum]; // "자료수";  
-          cell[3].innerHTML = svgStr[34][langNum]; // "평균";  
-          cell[4].innerHTML = svgStr[35][langNum]; // "표준편차";  
-          cell[5].innerHTML = svgStrU[18][langNum];// "표준오차";  
-          cell[6].innerHTML = "95% "+svgStrU[20][langNum]; // 95% 신뢰구간  
-                
-          for (j=0; j<ncol2; j++) {
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
             cell[j].style.width ="80px";  
-          }
-          cell[6].style.width ="150px"; 
+        }
+        cell[6].style.width ="150px"; 
+        cell[0].innerHTML = svgStr[63][langNum]; // "변량";
+        cell[1].innerHTML = svgStr[64][langNum]; // "변량명";
+        cell[2].innerHTML = svgStr[44][langNum]; // "자료수";  
+        cell[3].innerHTML = svgStr[34][langNum]; // "평균";  
+        cell[4].innerHTML = svgStr[35][langNum]; // "표준편차";  
+        cell[5].innerHTML = svgStrU[18][langNum];// "표준오차";  
+        cell[6].innerHTML = "95% "+svgStrU[20][langNum]; // 95% 신뢰구간  
+                
 
         for (k=0; k<numVar; k++) {
           row  = table.insertRow(++num);
-          for (j=0; j<ncol2; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = svgStr[63][langNum]+" "+(k+1).toString(); // "변량";
+          for (j=0; j<ncol2; j++) {
+            cell[j] = row.insertCell(j);          
+            cell[j].style.textAlign = "right"; 
+            cell[j].style.border = "1px solid black";
+          }
           cell[0].style.backgroundColor = "#eee";
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "center";
+          cell[6].style.textAlign = "center";        
+          cell[0].innerHTML = svgStr[63][langNum]+" "+(k+1).toString(); // "변량";
           cell[1].innerHTML = tdvarName[k];            
           cell[2].innerHTML = tdobs[0];  
           cell[3].innerHTML = f3(avgX[k]).toString();  
@@ -8579,52 +9303,44 @@ function multivariateTable(numVar, tdobs, tdvar) {
           cell[4].innerHTML = f3(temp).toString();  
           cell[5].innerHTML = f3(stderr).toString(); 
           cell[6].innerHTML = "("+f3(tleft)+", "+f3(tright)+")";  
-          cell[0].style.textAlign = "center";
-          cell[1].style.textAlign = "center";
-          for (j=2; j<ncol2; j++) cell[j].style.textAlign = "right"; 
-          cell[6].style.textAlign = "center";        
         }
 
-          row  = table.insertRow(++num);
-          for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          for (j=0; j<ncol; j++) cell[j].style.textAlign = "right";         
+        row  = table.insertRow(++num);
+        cell[0] = row.insertCell(0);          
 
         // 상관계수 행렬
-          row = table.insertRow(++num);
-          cell[0] = row.insertCell(0);
-          cell[0].innerHTML = svgStr[107][langNum]; // "<h3>상관분석</h3>"
-          cell[0].style.textAlign = "center";
-          cell[0].style.backgroundColor = "#eee";
-          cell[0].style.border = "1px solid black";
-          cell[0].style.width ="120px";
+        row = table.insertRow(++num);
+        cell[0] = row.insertCell(0);
+        cell[0].innerHTML = "<h3>"+svgStr[108][langNum]+"</h3>"; // "<h3>상관계수행렬</h3>"
+        cell[0].style.textAlign = "center";
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.border = "1px solid black";
+        cell[0].style.width ="130px";
 
-          row  = table.insertRow(++num);
-          for (j=0; j<numVar+2; j++) {
+        row  = table.insertRow(++num);
+        for (j=0; j<numVar+2; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";  
-          }
-          cell[0].innerHTML = svgStr[108][langNum]+"<br>H<sub>0</sub>: &rho;=0 &nbsp; t-"+svgStr[69][langNum]+"<br>(p-"+svgStr[69][langNum]+")"; // "상관계수행렬"
-          cell[1].innerHTML = svgStr[64][langNum]; // "변량명";              
-          for (k=0; k<numVar; k++) {
+            cell[j].style.width ="90px";  
+        }
+        cell[0].innerHTML = svgStr[107][langNum]+"<br>H<sub>0</sub>: &rho;=0 &rho;&ne;0 &nbsp;t-"+svgStr[69][langNum]+"<br>p-"+svgStr[69][langNum]; // "상관계수"
+        cell[1].innerHTML = svgStr[64][langNum]; // "변량명";              
+        for (k=0; k<numVar; k++) {
             cell[k+2].innerHTML = svgStr[63][langNum]+" "+(k+1); // "변수 "
-          }
+        }
      
-          for (i=0; i<numVar; i++) {
-
+        for (i=0; i<numVar; i++) {
             row  = table.insertRow(++num);
             for (j=0; j<numVar+2; j++) cell[j] = row.insertCell(j);          
-            cell[0].innerHTML = svgStr[63][langNum]+" "+(i+1).toString(); // "변량";
-            cell[0].style.backgroundColor = "#eee";
-            cell[1].innerHTML = tdvarName[i];            
             for (j=0; j<2; j++) {
               cell[j].style.textAlign = "center";
               cell[j].style.backgroundColor = "#eee";
               cell[j].style.border = "1px solid black";
             }
-
+            cell[0].innerHTML = svgStr[63][langNum]+" "+(i+1).toString(); // "변량";
+            cell[1].innerHTML = tdvarName[i];            
             for (k=0; k<numVar; k++) {
               if (i == k || Corr[i][k] == 1) str = "1";
               else {
@@ -8634,18 +9350,17 @@ function multivariateTable(numVar, tdobs, tdvar) {
                  else pvalue = 2*(1-pvalue);
                  if (pvalue < 0.0001) str = "< 0.0001";
                  else str = f4(pvalue).toString();  
-                 str = f3(Corr[i][k]).toString()+"<br>"+f3(tobs)+"<br>("+str+")"; 
+                 str = f3(Corr[i][k]).toString()+"<br>t-"+svgStr[69][langNum]+" = "+f3(tobs)+"<br>p-"+svgStr[69][langNum]+" "+str; 
               }
               cell[k+2].innerHTML = str;   
               cell[k+2].style.textAlign = "right";
               cell[k+2].style.border = "1px solid black";
             }
+        }
 
-          }
-
-          // 다음 표와의 공백을 위한 것
-          row = table.insertRow(++num);
-          row.style.height = "20px";
+        // 다음 표와의 공백을 위한 것
+        row = table.insertRow(++num);
+        row.style.height = "20px";
 
 } 
 
@@ -9191,10 +9906,10 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s/\u221A n )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 41) str = svgStrU[23][langNum]+"(m\u2081-m\u2082-D) / (pooledStd * \u221A(1/n\u2081+1/n\u2082))  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
-         else if (hypoType == 43) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s/\u221A n )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (m\u2081-m\u2082-D) / (pooledStd * \u221A(1/n\u2081+1/n\u2082))  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
+         else if (hypoType == 43) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -9285,12 +10000,12 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
               .style("stroke","green").style("stroke-width","2px");
          chart.append("text").attr("x", x1).attr("y", y2+15)
-              .text(svgStrU[23][langNum]+f3(teststat))
+              .text(svgStrU[23][langNum]+" = "+f3(teststat))
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
          chart.append("text").attr("x", x1).attr("y", y2+30)
-              .text(svgStrU[27][langNum]+str)
+              .text(svgStrU[27][langNum]+" = "+str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Decision
@@ -9330,7 +10045,7 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            str  = "["+svgStrU[20][langNum]+"] ";
-           str += " "+(100*(1-alpha)).toString()+"% "+svgStrU[57][langNum]+" ";
+           str += " "+(100*confidence).toString()+"% "+svgStrU[57][langNum]+" ";
            str += " ( "+ f2(statT[6]) +" , " + f2(statT[7]) + " )";
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
@@ -9347,14 +10062,14 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
          }
-         else if (hypoType == 43) {
+         else if (hypoType == 43) { // paired t
            str  = svgStrU[54][langNum]+" "+svgStrU[44][langNum]+" n = "  + statT[3] + ", ";
            str += svgStrU[34][langNum]+" m = " + f2(statT[4]) + ", ";
            str += svgStrU[35][langNum]+" s = "  + f2(statT[5]) ;
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            str  = "["+svgStrU[20][langNum]+"] ";
-           str += " "+(100*(1-alpha)).toString()+"% "+svgStrU[57][langNum]+" ";
+           str += " "+(100*confidence).toString()+"% "+svgStrU[57][langNum]+" ";
            str += " ( "+ f2(statT[6]) +" , " + f2(statT[7]) + " )";
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
@@ -9406,9 +10121,9 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 1)      str = svgStrU[23][langNum]+"(m - mu) / ( \u03C3 / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3) str = svgStrU[23][langNum]+"(p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
-         else if (hypoType == 6) str = svgStrU[23][langNum]+"(p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         if (hypoType == 1)      str = svgStrU[23][langNum]+" = (m - mu) / ( \u03C3 / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3) str = svgStrU[23][langNum]+" = (p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6) str = svgStrU[23][langNum]+" = (p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -9499,11 +10214,11 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
          y2 = y1 + 60;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
               .style("stroke-width","2px").style("stroke","green");
-         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(teststat))
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" = "+f3(teststat))
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
-         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" = "+str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Decision
@@ -9541,7 +10256,7 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            str  = "["+svgStrU[20][langNum]+"] ";
-           str += " "+(100*(1-alpha)).toString()+"% "+svgStrU[57][langNum]+" ";
+           str += " "+(100*confidence).toString()+"% "+svgStrU[57][langNum]+" ";
            str += " ( "+ f2(statT[6]) +" , " + f2(statT[7]) + " )";
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
@@ -9619,8 +10334,8 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 2)      str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3\u2080\u00B2 ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8) str = svgStrU[23][langNum]+"Sum( EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 2)      str = svgStrU[23][langNum]+" = (n - 1) s\u00B2 / \u03C3\u2080\u00B2 ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8) str = svgStrU[23][langNum]+" = Sum( EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -9711,11 +10426,11 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
          y2 = y1 + 60;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
               .style("stroke-width","2px").style("stroke","green");
-         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(teststat))
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" = "+f3(teststat))
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
-         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" = "+str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          // Decision
@@ -9753,7 +10468,7 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
            chart.append("text").attr("x", tx).attr("y", ty).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
            str  = "["+svgStrU[20][langNum]+"] ";
-           str += " "+(100*(1-alpha)).toString()+"% "+svgStrU[57][langNum]+" ";
+           str += " "+(100*confidence).toString()+"% "+svgStrU[57][langNum]+" ";
            str += " ( "+ f2(statT[6]) +" , " + f2(statT[7]) + " )";
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")  
@@ -9805,8 +10520,8 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
 
          // 통계량 
          ty += 20;
-         if (hypoType == 5)       str = svgStrU[23][langNum]+"( s\u2081\u00B2 / s\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
-         else if (hypoType == 7)  str = svgStrU[23][langNum]+"(BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         if (hypoType == 5)       str = svgStrU[23][langNum]+" = ( s\u2081\u00B2 / s\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         else if (hypoType == 7)  str = svgStrU[23][langNum]+" = (BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -9899,7 +10614,7 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
          chart.append("text").attr("x", x1).attr("y", y2+10)
-              .text("Fo = "+f2(statF[0])+", "+svgStrU[27][langNum]+str )
+              .text("Fo = "+f2(statF[0])+", "+svgStrU[27][langNum]+" = "+str )
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          // decision
          if (statF[0] > a && statF[0] < b) {

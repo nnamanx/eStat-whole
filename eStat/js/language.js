@@ -68,7 +68,7 @@ $.message = {}
 // Korean
 $.message.ko = {
     "eStat : Stat Education SW": "eStat: 통계교육SW",
-    "Filename": "파일이름",
+    "Filename": "파일",
     "Selected Variables": "선택변량",
     "Cancel": "취소",
     "Edit Variables": "변량편집",
@@ -105,6 +105,8 @@ $.message.ko = {
     "University Stat Education": "대학 통계교육",
     "Elem Stat Graph Example": "초중그래프 예",
     "Learning eStat w Example": "eStat 예제학습",
+    "Vertical": "수직형",
+    "Horizontal": "수평형",
     "Vertical Separated Bar": "수직 분리형",
     "Vertical Stacked Bar": "수직 쌓는형",
     "Vertical Ratio Bar": "수직 비율형",
@@ -233,7 +235,6 @@ $.message.ko = {
     "Sample Proportion": "표본비율",
     "if Z-test-1": "(Z-검정이면, 모분산 입력)",
     "if Z-test-2": "(Z-검정이면, Z<sub>1-&alpha;/2 </sub> 이용)",
-    "Variance Assumption": "분산가정",
     "At least one pair": "적어도 한쌍 이상의 평균이 다름",
     "Row-Col-0": "행변량과 열변량이 독립",
     "Row-Col-1": "행변량과 열변량이 독립 아님",
@@ -256,7 +257,7 @@ $.message.ko = {
     "OneGroup": "(한그룹)",
     "AnalysisVar": "분석변량",
     "AnalysisVar2": "Y변량",
-    "GroupVar": "그룹변량",
+    "GroupVar": "그룹",
     "GroupVar2": "X변량",
     "GroupVar3": "인자1",
     "GroupVar4": "인자2",
@@ -324,8 +325,8 @@ $.message.ko = {
     "SummaryData": "요약자료",
     "RawData": "원시자료",
     "RawData2": "원시자료 변량선택",
-    "SummaryExplain":  "시트에서 변량값변량, 분석변량 클릭 > 아이콘클릭",
-    "RawExplain1": "아이콘클릭 > 변량선택 (변수명클릭 > 아이콘클릭도 가능)",
+    "DataType": "(변량명 클릭으로 변량선택 가능)",
+    "by": "by",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -461,7 +462,7 @@ svgStr[84][0] = "예측값";
 svgStr[85][0] = "2원 분산분석";
 svgStr[86][0] = "평균-신뢰구간 그래프";
 svgStr[87][0] = "잔차";
-svgStr[88][0] = "2차원 평균표";
+svgStr[88][0] = "2차원 통계량";
 svgStr[89][0] = "산점도 행렬";
 svgStr[90][0] = "다중비교";
 svgStr[91][0] = "통계량";
@@ -480,15 +481,15 @@ svgStr[103][0]= "교호작용";
 svgStr[104][0]= "행 합";
 svgStr[105][0]= "열 합";
 svgStr[106][0]= "중상관계수";
-svgStr[107][0]= "<h3>상관분석</h3>";
+svgStr[107][0]= "상관계수";
 svgStr[108][0]= "상관계수행렬";
 svgStr[109][0]= "인자1 - 인자2 평균 그래프";
 svgStr[110][0]= "지렛값(Leverage)";
 svgStr[111][0]= "지리정보그래프";
-svgStr[112][0]= "";
-svgStr[113][0]= "";
-svgStr[114][0]= "";
-svgStr[115][0]= "";
+svgStr[112][0]= "범위";
+svgStr[113][0]= "평균-표준편차 그래프";
+svgStr[114][0]= "모분산";
+svgStr[115][0]= "가설";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -512,12 +513,12 @@ svgStrU[19][0] = "모평균";
 svgStrU[20][0] = "신뢰구간";
 svgStrU[21][0] = "추정정확도";
 svgStrU[22][0] = "표본평균";
-svgStrU[23][0] = "[검정통계량] = ";
+svgStrU[23][0] = "[검정통계량]";
 svgStrU[24][0] = "분포";
 svgStrU[25][0] = "기각 H\u2080";
 svgStrU[26][0] = "채택 H\u2080";
-svgStrU[27][0] = "p-값 = ";
-svgStrU[28][0] = "[의사결정] ";
+svgStrU[27][0] = "p-값";
+svgStrU[28][0] = "[의사결정]";
 svgStrU[29][0] = "[분산분석]";
 svgStrU[30][0] = "상관계수를 입력하고 실행버튼을 누르세요.";
 svgStrU[31][0] = "회귀선";
@@ -562,12 +563,28 @@ svgStrU[69][0] = "부호검정";
 svgStrU[70][0] = "프리드만 검정";
 svgStrU[71][0] = "프리드만 S 통계량";
 svgStrU[72][0] = "프리드만 분포표";
-
+svgStrU[73][0] = "t-값(or Z)";
+svgStrU[74][0] = "ChiSq-값";
+svgStrU[75][0] = "표본분산";
+svgStrU[76][0] = "표본평균차";
+svgStrU[77][0] = "표본분산비";
+svgStrU[78][0] = "분산가정";
+svgStrU[79][0] = "요약자료";
+svgStrU[80][0] = "여러 변량 선택";
+svgStrU[81][0] = "두 그룹까지 선택";
+svgStrU[82][0] = "X변량";
+svgStrU[83][0] = "Y변량";
+svgStrU[84][0] = "by";
+svgStrU[85][0] = "그룹 없음";
+svgStrU[86][0] = "선택된 자료는";
+svgStrU[87][0] = "원시자료";
+svgStrU[88][0] = "변량명 클릭으로 변량선택 가능";
+svgStrU[89][0] = "";
 
 // English
 $.message.en = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
-    "Filename": "File Name",
+    "Filename": "File",
     "Selected Variables": "SelectedVar",
     "Cancel": "Cancel",
     "Edit Variables": "EditVar",
@@ -604,6 +621,8 @@ $.message.en = {
     "University Stat Education": "University Stat Education",
     "Elem Stat Graph Example": "Elem Stat Graph Example",
     "Learning eStat w Example": "Learning eStat w Example",
+    "Vertical": "Vertical",
+    "Horizontal": "Horizontal",
     "Vertical Separated Bar": "Vertical Separated Bar",
     "Vertical Stacked Bar": "Vertical Stacked Bar",
     "Vertical Ratio Bar": "Vertical Ratio Bar",
@@ -734,7 +753,6 @@ $.message.en = {
     "Sample Proportion": "Sample Proportion",
     "if Z-test-1": "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
     "if Z-test-2": "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used.)",
-    "Variance Assumption": "Variance Assumption",
     "At least one pair": "At least one pair of means is different",
     "Row-Col-0": "Row and column variables are independent",
     "Row-Col-1": "Row and column variables are not independent",
@@ -757,7 +775,7 @@ $.message.en = {
     "OneGroup": "(one group)",
     "AnalysisVar": "Analysis Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Group Var",
+    "GroupVar": "Group",
     "GroupVar2": "X Var",
     "GroupVar3": "Factor1",
     "GroupVar4": "Factor2",
@@ -825,8 +843,8 @@ $.message.en = {
     "SummaryData": "Summary Data",
     "RawData": "Raw Data",
     "RawData2": "Raw Data Variable Selection",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Click Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "DataType": "(Select variables by click var name)",
+    "by": "by",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -900,7 +918,7 @@ svgStr[22][1] = "Row Variable";
 svgStr[23][1] = "Total";
 svgStr[24][1] = "CircleSize";
 svgStr[25][1] = "<h3>Frequency Table</h3>";
-svgStr[26][1] = "Analysis Variable";
+svgStr[26][1] = "Analysis Var";
 svgStr[27][1] = "Var Value";
 svgStr[28][1] = "Value Label";
 svgStr[29][1] = "Frequency";
@@ -962,7 +980,7 @@ svgStr[84][1] = "Predicted Value";
 svgStr[85][1] = "Two way ANOVA";
 svgStr[86][1] = "Confidence Interval Graph";
 svgStr[87][1] = "Residual";
-svgStr[88][1] = "Two way Mean Table";
+svgStr[88][1] = "Two-dimension Statistics";
 svgStr[89][1] = "Scatter Plot Matrix";
 svgStr[90][1] = "Multiple Comparison";
 svgStr[91][1] = "Statistics";
@@ -985,6 +1003,11 @@ svgStr[107][1]= "<h3>Correlation Analysis</h3>";
 svgStr[108][1]= "Correlation Matrix";
 svgStr[109][1]= "Factor1 - Factor2 Mean Graph";
 svgStr[110][1]= "Leverage";
+svgStr[111][1]= "GIS Graph";
+svgStr[112][1]= "Range";
+svgStr[113][1]= "Mean - Standard Devivation Graph";
+svgStr[114][1]= "Population Variance";
+svgStr[115][1]= "Hypothesis";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1008,12 +1031,12 @@ svgStrU[19][1] = "Population Mean";
 svgStrU[20][1] = "Confidence Interval";
 svgStrU[21][1] = "Estimation Accuracy";
 svgStrU[22][1] = "sample mean";
-svgStrU[23][1] = "[TestStat] = ";
+svgStrU[23][1] = "[TestStat]";
 svgStrU[24][1] = "Distribution";
 svgStrU[25][1] = "Reject H\u2080";
 svgStrU[26][1] = "Accept H\u2080";
-svgStrU[27][1] = " p-value  = ";
-svgStrU[28][1] = "[Decision] ";
+svgStrU[27][1] = "p-value";
+svgStrU[28][1] = "[Decision]";
 svgStrU[29][1] = "[ANOVA]";
 svgStrU[30][1] = "Enter Correlation Coefficient and click Execute button";
 svgStrU[31][1] = "Regression";
@@ -1058,11 +1081,28 @@ svgStrU[69][1] = "Sign Test";
 svgStrU[70][1] = "Friedman Test";
 svgStrU[71][1] = "Friedman S Statistic";
 svgStrU[72][1] = "Friedman Distribution Table";
+svgStrU[73][1] = "t-value (or Z)";
+svgStrU[74][1] = "ChiSq-value";
+svgStrU[75][1] = "Sample Variance";
+svgStrU[76][1] = "Difference of Sample Means";
+svgStrU[77][1] = "Ratio of Sample Variances";
+svgStrU[78][1] = "Variance Assumption";
+svgStrU[79][1] = "Summary Data";
+svgStrU[80][1] = "Multiple Selection";
+svgStrU[81][1] = "Select up to two groups";
+svgStrU[82][1] = "X Var";
+svgStrU[83][1] = "Y Var";
+svgStrU[84][1] = "by";
+svgStrU[85][1] = "No Group Variable";
+svgStrU[86][1] = "Selected data: ";
+svgStrU[87][1] = "Raw Data";
+svgStrU[88][1] = "Select variables by click var name";
+svgStrU[89][1] = "";
 
 // Japanese
 $.message.ja = {
     "eStat : Stat Education SW": "eStat: 統計教育SW",
-    "Filename": "ファイル名",
+    "Filename": "ファイル",
     "Selected Variables": "選択変数",
     "Cancel": "キャンセル",
     "Edit Variables": "変数編集",
@@ -1099,6 +1139,8 @@ $.message.ja = {
     "University Stat Education": "大学統計教育",
     "Elem Stat Graph Example": "小中学グラフの例",
     "Learning eStat w Example": "eStat例題学習",
+    "Vertical": "縦型",
+    "Horizontal": "横型",
     "Vertical Separated Bar": "縦分離型",
     "Vertical Stacked Bar": "縦積み重ね型",
     "Vertical Ratio Bar": "縦比率型",
@@ -1230,7 +1272,6 @@ $.message.ja = {
     "Sample Proportion": "標本比率",
     "if Z-test-1": "(Z-検定の場合, 母分散を入力)",
     "if Z-test-2": "(Z-検定の場合, Z<sub>1-&alpha;/2 </sub> 使用)",
-    "Variance Assumption": "分散の仮定",
     "At least one pair": "少なくとも一つのペアの平均が異なる",
     "Row-Col-0": "行変数と列変数は独立である",
     "Row-Col-1": "行変数と列変数は独立ではない",
@@ -1253,7 +1294,7 @@ $.message.ja = {
     "OneGroup": "(1 グループ)",
     "AnalysisVar": "分析変数",
     "AnalysisVar2": "Y変数",
-    "GroupVar": "グループ変数",
+    "GroupVar": "グループ",
     "GroupVar2": "X変数",
     "GroupVar3": "因子1",
     "GroupVar4": "因子2",
@@ -1321,8 +1362,8 @@ $.message.ja = {
     "SummaryData": "要約データ",
     "RawData": "原データ",
     "RawData2": "原データ変数選択",
-    "SummaryExplain":  "クリック変数値変数,分析変数 > クリックアイコン",
-    "RawExplain1": "アイコン選択>変数選択(または変数選択>アイコン選択)",
+    "DataType": "(変数名をクリックして変数を選択)",
+    "by": "by",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1459,7 +1500,7 @@ svgStr[84][2] = "豫測値";
 svgStr[85][2] = "二元分散分析";
 svgStr[86][2] = "信頼区間プロット";
 svgStr[87][2] = "残差";
-svgStr[88][2] = "二元平均表";
+svgStr[88][2] = "二元統計量";
 svgStr[89][2] = "散布図行列";
 svgStr[90][2] = "多重比較";
 svgStr[91][2] = "統計量";
@@ -1482,6 +1523,11 @@ svgStr[107][2]= "<h3>相關分析</h3>";
 svgStr[108][2]= "相關係數行列";
 svgStr[109][2]= "因子1-因子2 平均図";
 svgStr[110][2]= "レバレッジ";
+svgStr[111][2]= "GIS Graph";
+svgStr[112][2]= "範囲";
+svgStr[113][2]= "平均 - 標準偏差図";
+svgStr[114][2]= "母分散";
+svgStr[115][2]= "仮説";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1505,12 +1551,12 @@ svgStrU[19][2] = "母平均";
 svgStrU[20][2] = "信頼区間";
 svgStrU[21][2] = "推定精度";
 svgStrU[22][2] = "標本平均";
-svgStrU[23][2] = "[検定統計量] = ";
+svgStrU[23][2] = "[検定統計量]";
 svgStrU[24][2] = "分布";
 svgStrU[25][2] = "棄却 H\u2080";
 svgStrU[26][2] = "採択 H\u2080";
-svgStrU[27][2] = "p-値 = ";
-svgStrU[28][2] = "[意思決定] ";
+svgStrU[27][2] = "p-値";
+svgStrU[28][2] = "[意思決定]";
 svgStrU[29][2] = "[分散分析]";
 svgStrU[30][2] = "相関係数を入力し、実行ボタンをクリックしてください.";
 svgStrU[31][2] = "回帰直線";
@@ -1555,6 +1601,24 @@ svgStrU[69][2] = "符號檢定";
 svgStrU[70][2] = "フリードマン檢定";
 svgStrU[71][2] = "フリードマン S 統計量";
 svgStrU[72][2] = "フリードマン檢定分布表";
+svgStrU[73][2] = "t-値 (Z)";
+svgStrU[74][2] = "ChiSq-値";
+svgStrU[75][2] = "標本分散";
+svgStrU[76][2] = "標本平均差";
+svgStrU[77][2] = "標本分散比";
+svgStrU[78][2] = "分散の仮定";
+svgStrU[79][2] = "要約データ";
+svgStrU[80][2] = "複数選択";
+svgStrU[81][2] = "最大2つのグループを選択";
+svgStrU[82][2] = "X変数";
+svgStrU[83][2] = "Y変数";
+svgStrU[84][2] = "by";
+svgStrU[85][2] = "グループ変数なし";
+svgStrU[86][2] = "選択したデータ: ";
+svgStrU[87][2] = "生データ";
+svgStrU[88][2] = "変数名をクリックして変数を選択";
+svgStrU[89][2] = "";
+
 // Chinese
 $.message.zhTW = {
     "eStat : Stat Education SW": "eStat: 統計教育軟體",
@@ -1595,6 +1659,8 @@ $.message.zhTW = {
     "University Stat Education": "大學統計教育",
     "Elem Stat Graph Example": "小中學圖表例題",
     "Learning eStat w Example": "eStat例題學習",
+    "Vertical": "縦向",
+    "Horizontal": "横向",
     "Vertical Separated Bar": "縱向分離長條圖",
     "Vertical Stacked Bar": "縱向堆壘長條圖",
     "Vertical Ratio Bar": "縱向比率長條圖",
@@ -1722,7 +1788,6 @@ $.message.zhTW = {
     "Sample Proportion": "樣本比例",
     "if Z-test-1": "(Z-檢定, 母分散入力)",
     "if Z-test-2": "(Z-檢定, Z<sub>1-&alpha;/2 </sub> 使用)",
-    "Variance Assumption": "變異數假設",
     "At least one pair": "至少有一對平均數不相等",
     "Row-Col-0": "列變數與行變數獨立",
     "Row-Col-1": "列變數與行變數不獨立",
@@ -1745,7 +1810,7 @@ $.message.zhTW = {
     "OneGroup": "(1群)",
     "AnalysisVar": "分析変数",
     "AnalysisVar2": "Y変数",
-    "GroupVar": "群変数",
+    "GroupVar": "群",
     "GroupVar2": "X変数",
     "GroupVar3": "因子1",
     "GroupVar4": "因子2",
@@ -1813,8 +1878,8 @@ $.message.zhTW = {
     "SummaryData": "要約資料",
     "RawData": "原資料",
     "RawData2": "原資料変数選択",
-    "SummaryExplain":  "點擊変数値変数, 分析変数 > 點擊圖標",
-    "RawExplain1": "圖標選択 > 変数選択 (or 変数選択 > 圖標選択)",
+    "DataType": "(通過單擊變量名稱選擇變量)",
+    "by": "by",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -1888,7 +1953,7 @@ svgStr[22][3] = "列變數";
 svgStr[23][3] = "總和";
 svgStr[24][3] = "大小";
 svgStr[25][3] = "<h3>次數分配表</h3>";
-svgStr[26][3] = "變異數分析";
+svgStr[26][3] = "分析變數";
 svgStr[27][3] = "變數値";
 svgStr[28][3] = "變數值標號";
 svgStr[29][3] = "次數";
@@ -1950,7 +2015,7 @@ svgStr[84][3] = "豫測値";
 svgStr[85][3] = "二元分散分析";
 svgStr[86][3] = "信頼区間圖";
 svgStr[87][3] = "残差";
-svgStr[88][3] = "二元平均表";
+svgStr[88][3] = "二元統計量";
 svgStr[89][3] = "散佈圖行列";
 svgStr[90][3] = "多重比較";
 svgStr[91][3] = "統計量";
@@ -1959,7 +2024,7 @@ svgStr[93][3] = "水準";
 svgStr[94][3] = "対応標本差圖";
 svgStr[95][3] = "残差-豫測";
 svgStr[96][3] = "残差-槓桿作用";
-svgStr[97][3] = "Cook距離図";
+svgStr[97][3] = "Cook距離圖";
 svgStr[98][3] = "Cook距離";
 svgStr[99][3] = "資料順序";
 svgStr[100][3]= "平均差";
@@ -1971,8 +2036,13 @@ svgStr[105][3]= "列合";
 svgStr[106][3]= "重相關係數";
 svgStr[107][3]= "<h3>相關分析</h3>";
 svgStr[108][3]= "相關係數行列";
-svgStr[109][3]= "因子1-因子2 平均図";
+svgStr[109][3]= "因子1-因子2 平均圖";
 svgStr[110][3]= "槓桿作用";
+svgStr[111][3]= "GIS Graph";
+svgStr[112][3]= "範圍";
+svgStr[113][3]= "平均 - 標準偏差圖";
+svgStr[114][3]= "母體變異數";
+svgStr[115][3]= "假設";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -1996,11 +2066,11 @@ svgStrU[19][3] = "母體平均";
 svgStrU[20][3] = "信頼區間";
 svgStrU[21][3] = "估計準確率";
 svgStrU[22][3] = "樣本平均";
-svgStrU[23][3] = "[檢定統計量] = ";
+svgStrU[23][3] = "[檢定統計量]";
 svgStrU[24][3] = "分佈";
 svgStrU[25][3] = "拒絕虛無假設";
 svgStrU[26][3] = "接受虛無假設";
-svgStrU[27][3] = "p-値 = ";
+svgStrU[27][3] = "p-値";
 svgStrU[28][3] = "[決策] ";
 svgStrU[29][3] = "[變異數分析]";
 svgStrU[30][3] = "輸入相關係數後按執行";
@@ -2046,11 +2116,28 @@ svgStrU[69][3] = "符號檢定";
 svgStrU[70][3] = "Friedman檢定";
 svgStrU[71][3] = "Friedman S 統計量";
 svgStrU[72][3] = "Friedman檢定分布表";
+svgStrU[73][3] = "t-値 (Z)";
+svgStrU[74][3] = "ChiSq-値";
+svgStrU[75][3] = "樣本變異數";
+svgStrU[76][3] = "標本平均差";
+svgStrU[77][3] = "樣本變異數比";
+svgStrU[78][3] = "變異數假設";
+svgStrU[79][3] = "摘要數據";
+svgStrU[80][3] = "多項選擇";
+svgStrU[81][3] = "最多選擇兩個組";
+svgStrU[82][3] = "X變量";
+svgStrU[83][3] = "Y變量";
+svgStrU[84][3] = "by";
+svgStrU[85][3] = "沒有組變量";
+svgStrU[86][3] = "選定的數據: ";
+svgStrU[87][3] = "原始數據";
+svgStrU[88][3] = "通過單擊變量名稱選擇變量";
+svgStrU[89][3] = "";
 
 // French
 $.message.fr = {
     "eStat : Stat Education SW": "eStat : Stat éducation SW",
-    "Filename": "Nom de fichier",
+    "Filename": "Fichier",
     "Selected Variables": "Var Sélectionnées",
     "Cancel": "Annuler",
     "Edit Variables": "EditVar",
@@ -2081,12 +2168,14 @@ $.message.fr = {
     "Testing Hypothesis &mu;": "Test d'hypothèse &mu;",
     "Testing Hypothesis &sigma;<sup>2</sup>": "Test d'hypothèse &sigma;<sup>2</sup>",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Test d'hypothèse &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Analysis of Variance": "Analyse de la variance",
     "High School Stat Education": "L'enseignement de la statistique au lycée",
     "University Stat Education": "Enseignement de la statistique à l'université",
     "Elem Stat Graph Example": "élémentaire Statistiques graphique Exemple",
     "Learning eStat w Example": "Apprendre eStat par l'exemple",
+    "Vertical": "Verticale",
+    "Horizontal": "Horizontal",
     "Vertical Separated Bar": "Barre verticale séparée",
     "Vertical Stacked Bar": "Barre verticale empiléer",
     "Vertical Ratio Bar": "Barre verticale de ratio",
@@ -2214,7 +2303,6 @@ $.message.fr = {
     "Sample Proportion": "Pourcentage de l'échantillon",
     "if Z-test-1": "(if Z-test, Pour le Z-test, entrez la variance de la population &sigma;<sup>2</sup>)",
     "if Z-test-2": "(if Z-test, Z<sub>1-&alpha;/2 </sub> utilisé.)",
-    "Variance Assumption": "Hypothèse de variance",
     "At least one pair": "Au moins deux moyennes sont différentes ",
     "Row-Col-0": "Les variables en ligne et en colonne sont indépendantes",
     "Row-Col-1": "Les variables en ligne et en colonne ne sont pas indépendantes",
@@ -2237,7 +2325,7 @@ $.message.fr = {
     "OneGroup": "(1 groupe)",
     "AnalysisVar": "Analyse Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Groupe Var",
+    "GroupVar": "Groupe",
     "GroupVar2": "X Var",
     "GroupVar3": "Facteur1",
     "GroupVar4": "Facteur2",
@@ -2305,8 +2393,8 @@ $.message.fr = {
     "SummaryData": "Données récapitulatives",
     "RawData": "Données brutes",
     "RawData2": "Données brutes Sélection de variables",
-    "SummaryExplain":  "Clic Valeur Var, Analyse Var > Clic Icône",
-    "RawExplain1": "Clic Icône > Sélectionner Var (or Clic Var > Clic Icône)",
+    "DataType": "(Sélectionnez variable par clic nom de variable)",
+    "by": "par",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2381,7 +2469,7 @@ svgStr[22][4] = "Variable ligne";
 svgStr[23][4] = "Total";
 svgStr[24][4] = "CircleSize";
 svgStr[25][4] = "<h3>Tableau des fréquences</h3>";
-svgStr[26][4] = "Analyse Variable";
+svgStr[26][4] = "Analyse Var";
 svgStr[27][4] = "valeur de la variable";
 svgStr[28][4] = "Libellé  d'une valeur";
 svgStr[29][4] = "Fréquence";
@@ -2443,7 +2531,7 @@ svgStr[84][4] = "Predicted Valeur";
 svgStr[85][4] = "Deux voies ANOVA";
 svgStr[86][4] = "Graphique d'intervalle de confiance";
 svgStr[87][4] = "Résiduel";
-svgStr[88][4] = "Deux voies Moyenne Table";
+svgStr[88][4] = "Statistiques à deux dimensions";
 svgStr[89][4] = "Scatter Plot Matrice";
 svgStr[90][4] = "Comparaison multiple";
 svgStr[91][4] = "Statistiques";
@@ -2466,6 +2554,11 @@ svgStr[107][4]= "<h3>Analyse de corrélation</h3>";
 svgStr[108][4]= "Matrice de corrélation";
 svgStr[109][4]= "Facteur1 - Facteur2 Graphique moyen";
 svgStr[110][4]= "Influence";
+svgStr[111][4]= "GIS Graph";
+svgStr[112][4]= "Gamme";
+svgStr[113][4]= "Moyenne - Ecart-type Diagramme";
+svgStr[114][4]= "Population variance";
+svgStr[115][4]= "d'hypothèse";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -2489,12 +2582,12 @@ svgStrU[19][4] = "Moyenne de la population";
 svgStrU[20][4] = "Intervalle de confinace";
 svgStrU[21][4] = "Précision de l'estimation";
 svgStrU[22][4] = "Moyenne de l'échantillon";
-svgStrU[23][4] = "[TestStat] = ";
+svgStrU[23][4] = "[TestStat]";
 svgStrU[24][4] = "Distribution";
 svgStrU[25][4] = "Rejeter H\u2080";
 svgStrU[26][4] = "Accepter H\u2080";
-svgStrU[27][4] = " p-valeur = ";
-svgStrU[28][4] = "[Décision] ";
+svgStrU[27][4] = "p-valeur";
+svgStrU[28][4] = "[Décision]";
 svgStrU[29][4] = "[ANOVA]";
 svgStrU[30][4] = "Entrer le coefficient de corrélation et cliquer sur le bouton Executer";
 svgStrU[31][4] = "Régression";
@@ -2539,11 +2632,28 @@ svgStrU[69][4] = "Test signé";
 svgStrU[70][4] = "Friedman Test";
 svgStrU[71][4] = "Friedman S Statistic";
 svgStrU[72][4] = "Friedman Distribution Table";
+svgStrU[73][4] = "t-valeur (Z)";
+svgStrU[74][4] = "ChiSq-valeur";
+svgStrU[75][4] = "Variance de l'échantillon";
+svgStrU[76][4] = "Diferença de médias amostrais";
+svgStrU[77][4] = "Rapport de variance de l'échantillon";
+svgStrU[78][4] = "Hypothèse de variance";
+svgStrU[79][4] = "Données récapitulatives";
+svgStrU[80][4] = "Sélection multiple";
+svgStrU[81][4] = "Sélectionnez jusqu'à deux groupes";
+svgStrU[82][4] = "Var X";
+svgStrU[83][4] = "Var Y";
+svgStrU[84][4] = "par";
+svgStrU[85][4] = "Pas de variable de groupe";
+svgStrU[86][4] = "Données sélectionnées: ";
+svgStrU[87][4] = "Données brutes";
+svgStrU[88][4] = "Sélectionnez variable par clic nom de variable";
+svgStrU[89][4] = "";
 
 // German
 $.message.de = {
     "eStat : Stat Education SW": "eStat : Statistikausbildung SW",
-    "Filename": "Dateiname",
+    "Filename": "Datei",
     "Selected Variables": "Wähle Variablen aus",
     "Cancel": "Entfernen",
     "Edit Variables": "Editiere Variablen",
@@ -2580,6 +2690,8 @@ $.message.de = {
     "University Stat Education": "Statistikausausbildung an Universitäten",
     "Elem Stat Graph Example": "Diagramm Beispiel",
     "Learning eStat w Example": "eStat lernen mit Beispielen",
+    "Vertical": "Vertikal",
+    "Horizontal": "Horizontal",
     "Vertical Separated Bar": "getrennte Balkendiagramme",
     "Vertical Stacked Bar": "Diagramm mit vertikal gestapelten Balken",
     "Vertical Ratio Bar": "Verhaeltniss-Balkendiagramm",
@@ -2704,7 +2816,6 @@ $.message.de = {
     "Sample Proportion": "Stichprobenanteil",
     "if Z-test-1": "(Falls Z-Test vorliegt, gib Varianz ein)",
     "if Z-test-2": "(Falls Z-Test vorliegt, Z<sub>1-&alpha;/2 </sub>)",
-    "Variance Assumption": "Annahme für die Varianz",
     "At least one pair": "mindestens ein Paar von Mittelwerten ist verschieden",
     "Row-Col-0": "Zeilen- und  Spaltenvariablen sind unabhängig",
     "Row-Col-1": "Zeilen- und  Spaltenvariablen sind nicht unabhängig",
@@ -2727,7 +2838,7 @@ $.message.de = {
     "OneGroup": "(1 grouppe)",
     "AnalysisVar": "Analyse Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Grouppe Var",
+    "GroupVar": "Grouppe",
     "GroupVar2": "X Var",
     "GroupVar3": "Faktor1",
     "GroupVar4": "Faktor2",
@@ -2795,8 +2906,8 @@ $.message.de = {
     "SummaryData": "Zusammenfassungsdaten",
     "RawData": "Rohdaten",
     "RawData2": "Rohdaten Variable Auswahl",
-    "SummaryExplain":  "Klicken Value Var, Analysis Var> Klicken Icon",
-    "RawExplain1": "Klicken Icon > Auswählen Var (oder Klicken Var > Klicken Icon)",
+    "DataType": "(Wählen Sie die Variable anhand des Variablennamens aus)",
+    "by": "durch",
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -2871,7 +2982,7 @@ svgStr[22][5] = "Zeilenvariable";
 svgStr[23][5] = "Total";
 svgStr[24][5] = "CircleSize";
 svgStr[25][5] = "<h3>Häufigkeitstabelle</h3>";
-svgStr[26][5] = "Analysevariable";
+svgStr[26][5] = "Analyse Var";
 svgStr[27][5] = "Variablenwert";
 svgStr[28][5] = "Wertname";
 svgStr[29][5] = "Häufigkeit";
@@ -2933,7 +3044,7 @@ svgStr[84][5] = "Predicted wert";
 svgStr[85][5] = "Zweiweg ANOVA";
 svgStr[86][5] = "Konfidenzintervall Graph";
 svgStr[87][5] = "Residual";
-svgStr[88][5] = "Zweiweg Mittlere Tabelle";
+svgStr[88][5] = "Zweidimensionale Statistik";
 svgStr[89][5] = "Streudiagramm-Matrix";
 svgStr[90][5] = "Mehrfacher Vergleich";
 svgStr[91][5] = "Statistiken";
@@ -2956,6 +3067,11 @@ svgStr[107][5]= "<h3>Korrelationsanalyse</h3>";
 svgStr[108][5]= "Korrelationsmatrix";
 svgStr[109][5]= "Faktor1 - Faktor2 Mittlerer Graph";
 svgStr[110][5]= "Hebelwirkung";
+svgStr[111][5]= "GIS Graph";
+svgStr[112][5]= "Angebot";
+svgStr[113][5]= "Mittelwert - Standardabweichung Diagramm";
+svgStr[114][5]= "Grundgesamtheit Varianz";
+svgStr[115][5]= "Hypothesen";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -2979,12 +3095,12 @@ svgStrU[19][5] = "Mittelwert der Grundgesamtheit";
 svgStrU[20][5] = "Konfidenzintervall";
 svgStrU[21][5] = "Schätzgenauigkeit";
 svgStrU[22][5] = "Stichprobenmittelwert";
-svgStrU[23][5] = "[TestStat] = ";
+svgStrU[23][5] = "[TestStat]";
 svgStrU[24][5] = "Verteilung";
 svgStrU[25][5] = "lehne H\u2080 ab";
 svgStrU[26][5] = "Akzeptiere H\u2080";
-svgStrU[27][5] = " p-Wert  = ";
-svgStrU[28][5] = "[Entscheidung] ";
+svgStrU[27][5] = "p-Wert";
+svgStrU[28][5] = "[Entscheidung]";
 svgStrU[29][5] = "[ANOVA]";
 svgStrU[30][5] = "Gib den Korrelationskoeffizienten ein und klicke auf den Button Ausführen";
 svgStrU[31][5] = "Regression";
@@ -3029,10 +3145,28 @@ svgStrU[69][5] = "Sign Test";
 svgStrU[70][5] = "Friedman Test";
 svgStrU[71][5] = "Friedman S Statistik";
 svgStrU[72][5] = "Friedman Distributiontabelle";
+svgStrU[73][5] = "t-Wert (Z)";
+svgStrU[74][5] = "ChiSq-Wert";
+svgStrU[75][5] = "Stichprobenvarianz";
+svgStrU[76][5] = "Unterschied der Stichprobe bedeutet";
+svgStrU[77][5] = "Verhältnis der Stichprobenvarianz";
+svgStrU[78][5] = "Annahme für die Varianz";
+svgStrU[79][5] = "Zusammenfassungsdaten";
+svgStrU[80][5] = "Mehrfachauswahl";
+svgStrU[81][5] = "Wählen Sie bis zu zwei Gruppen";
+svgStrU[82][5] = "X variable";
+svgStrU[83][5] = "Y variable";
+svgStrU[84][5] = "durch";
+svgStrU[85][5] = "Keine Gruppenvariable";
+svgStrU[86][5] = "Ausgewählte Daten: ";
+svgStrU[87][5] = "Rohdaten";
+svgStrU[88][5] = "Wählen Sie die Variable anhand des Variablennamens aus";
+svgStrU[89][5] = "";
+
 // Spanish
 $.message.es = {
     "eStat : Stat Education SW": "eStat : Software para Educación Estadística",
-    "Filename": "Nombre del archivo",
+    "Filename": "Archivo",
     "Selected Variables": "Var seleccionadas",
     "Cancel": "Cancelar",
     "Edit Variables": "Editar Variables",
@@ -3069,6 +3203,8 @@ $.message.es = {
     "University Stat Education": "Educación Estadística Universitaria",
     "Elem Stat Graph Example": "Estadística Gráfico Ejemplo",
     "Learning eStat w Example": "Aprendiendo eStat con Ejemplo",
+    "Vertical": "Vertical",
+    "Horizontal": "Horizontal",
     "Vertical Separated Bar": "Barra vertical separada",
     "Vertical Stacked Bar": "Barra vertical apilada",
     "Vertical Ratio Bar": "Barra vertical de proporciones",
@@ -3196,7 +3332,6 @@ $.message.es = {
     "Sample Proportion": "Proporción muestral",
     "if Z-test-1": "(Si test Z entrar la varianza de la población &sigma;<sup>2</sup>)",
     "if Z-test-2": "(Si test Z Z<sub>1-&alpha;/2 </sub> )",
-    "Variance Assumption": "Premisa sobre la varianza",
     "At least one pair": "Al menos un par de medias es diferente",
     "Row-Col-0": "La variables fila y columna son independientes",
     "Row-Col-1": "La variables fila y columna no  son independientes",
@@ -3219,7 +3354,7 @@ $.message.es = {
     "OneGroup": "(1 groupo)",
     "AnalysisVar": "Análisis Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Groupo Var",
+    "GroupVar": "Groupo",
     "GroupVar2": "X Var",
     "GroupVar3": "Factor1",
     "GroupVar4": "Factor2",
@@ -3287,8 +3422,8 @@ $.message.es = {
     "SummaryData": "Datos resumidos",
     "RawData": "Datos brutos",
     "RawData2": "Datos brutos Selección de Variables",
-    "SummaryExplain":  "Haga clic en Value Var, Analysis Var> Clic Icon",
-    "RawExplain1": "Clic Icon > Seleccionar Var (o Clic Var > Clic Icon)",
+    "DataType": "(Seleccione la variable haciendo clic en el nombre de la variable)",
+    "by": "por",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3363,7 +3498,7 @@ svgStr[22][6] = "Variable Fila";
 svgStr[23][6] = "Total";
 svgStr[24][6] = "CircleSize";
 svgStr[25][6] = "<h3>Tabla de frecuencias</h3>";
-svgStr[26][6] = "Análisis Variable";
+svgStr[26][6] = "Análisis Var";
 svgStr[27][6] = "Valor de la Variable";
 svgStr[28][6] = "Valor de la etiqueta";
 svgStr[29][6] = "Frecuencia";
@@ -3425,7 +3560,7 @@ svgStr[84][6] = "Predicted valor";
 svgStr[85][6] = "bidireccional ANOVA";
 svgStr[86][6] = "Gráfico de intervalo de confianza";
 svgStr[87][6] = "Residual";
-svgStr[88][6] = "bidireccional tabla media";
+svgStr[88][6] = "dos dimensiones estadísticas";
 svgStr[89][6] = "Matriz de trazado de dispersión";
 svgStr[90][6] = "Comparación múltiple";
 svgStr[91][6] = "estadística";
@@ -3448,6 +3583,11 @@ svgStr[107][6]= "<h3>Correlation Analysis</h3>";
 svgStr[108][6]= "Análisis de correlación";
 svgStr[109][6]= "Factor1 - Factor2 Gráfico medio";
 svgStr[110][6]= "apalancamiento";
+svgStr[111][6]= "GIS Graph";
+svgStr[112][6]= "Distancia";
+svgStr[113][6]= "Media - Desviación estándar Grafico";
+svgStr[114][6]= "Varianza Poblacional";
+svgStr[115][6]= "hipótesis";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -3471,11 +3611,11 @@ svgStrU[19][6] = "Media Poblacional";
 svgStrU[20][6] = "Intervalo de confianza";
 svgStrU[21][6] = "Precisión de la estimación";
 svgStrU[22][6] = "Media muestral";
-svgStrU[23][6] = "[Prueba Estadísticos] = ";
+svgStrU[23][6] = "[Prueba Estadísticos]";
 svgStrU[24][6] = "Distribución";
 svgStrU[25][6] = "Rechazar H\u2080";
 svgStrU[26][6] = "Aceptar H\u2080";
-svgStrU[27][6] = " p-valor  = ";
+svgStrU[27][6] = "p-valor";
 svgStrU[28][6] = "[Decisión] ";
 svgStrU[29][6] = "[ANOVA]";
 svgStrU[30][6] = "Entrar el coeficiente de correlación y clicar el botón ejecutar";
@@ -3521,6 +3661,24 @@ svgStrU[69][6] = "Prueba firmada";
 svgStrU[70][6] = "Friedman Prueba";
 svgStrU[71][6] = "Friedman S Estadística ";
 svgStrU[72][6] = "Friedman Tabla de distribución";
+svgStrU[73][6] = "t-valor (Z)";
+svgStrU[74][6] = "ChiSq-valor";
+svgStrU[75][6] = "Varianza de la muestra";
+svgStrU[76][6] = "Diferencia de la muestra significa";
+svgStrU[77][6] = "Relación de la varianza de la muestra";
+svgStrU[78][6] = "Premisa sobre la varianza";
+svgStrU[79][6] = "Datos resumidos";
+svgStrU[80][6] = "selección múltiple";
+svgStrU[81][6] = "Seleccione hasta dos grupos";
+svgStrU[82][6] = "Var X";
+svgStrU[83][6] = "Var Y";
+svgStrU[84][6] = "por";
+svgStrU[85][6] = "Sin grupo variable";
+svgStrU[86][6] = "Datos seleccionados: ";
+svgStrU[87][6] = "Datos brutos";
+svgStrU[88][6] = "Seleccione la variable haciendo clic en el nombre de la variable";
+svgStrU[89][6] = "";
+
 // Vietnamese
 $.message.vi = {
     "eStat : Stat Education SW": "eStat : Phần mềm thống kê học",
@@ -3561,6 +3719,8 @@ $.message.vi = {
     "University Stat Education": "Thống kê Đại học",
     "Elem Stat Graph Example": "biểu đồ Ví dụ",
     "Learning eStat w Example": "Học eStat bằng ví dụ",
+    "Vertical": "theo chiều dọc",
+    "Horizontal": "ngang",
     "Vertical Separated Bar": "Biểu đồ cột",
     "Vertical Stacked Bar": "Biểu đồ cột chồng",
     "Vertical Ratio Bar": "Thanh tỉ số dọc",
@@ -3688,7 +3848,6 @@ $.message.vi = {
     "Sample Proportion": "Tỉ lệ mẫu",
     "if Z-test-1": "(Nếu kiểm định Z, nhập phương sai tổng thể &sigma;<sup>2</sup>)",
     "if Z-test-2": "(Nếu kiểm định Z, Z<sub>1-&alpha;/2 </sub>.)",
-    "Variance Assumption": "Giả thiết về phương sai",
     "At least one pair": "Có ít nhất một cặp trung bình khác nhau",
     "Row-Col-0": "Biến cột và biến dòng độc lập ",
     "Row-Col-1": "Biến cột và biến dòng độc lập ",
@@ -3711,7 +3870,7 @@ $.message.vi = {
     "OneGroup": "(Một nhóm)",
     "AnalysisVar": "Phân tích Biến",
     "AnalysisVar2": "Y Biến",
-    "GroupVar": "Nhóm Biến",
+    "GroupVar": "Nhóm",
     "GroupVar2": "X Biến",
     "GroupVar3": "Hệ số1",
     "GroupVar4": "Hệ số2",
@@ -3779,8 +3938,8 @@ $.message.vi = {
     "SummaryData": "Dữ liệu tóm tắt",
     "RawData": "Dữ liệu thôa",
     "RawData2": "Dữ liệu thô Lựa chọn biến",
-    "SummaryExplain":  "Nhấp vào Giá trị Var, Phân tích Var> Biểu tượng Clik",
-    "RawExplain1": "Nhấp vào Biểu tượng> Chọn Biến (hoặc Nhấp vào Biến> Nhấp vào Biểu tượng))",
+    "DataType": "(Chọn biến theo tên biến lần nhấp)",
+    "by": "bởi",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -3917,7 +4076,7 @@ svgStr[84][7] = "Giá trị dự báo";
 svgStr[85][7] = "ANOVA 2 chiều";
 svgStr[86][7] = "Đồ thị khoảng tin cậy";
 svgStr[87][7] = "Phần dư";
-svgStr[88][7] = "Bảng giá trị trung bình 2 chiều";
+svgStr[88][7] = "hai thống kê thứ nguyên";
 svgStr[89][7] = "Ma trận đồ thị phân tán";
 svgStr[90][7] = "So sánh kép";
 svgStr[91][7] = "Thống kê";
@@ -3940,6 +4099,11 @@ svgStr[107][7]= "<h3>Phân tích tương quan</h3>";
 svgStr[108][7]= "Ma trận tương quan";
 svgStr[109][7]= "Hệ số1 - Hệ số2 Đồ thị trung bình";
 svgStr[110][7]= "Đòn bẩy";
+svgStr[111][7]= "GIS Graph";
+svgStr[112][7]= "Phạm vi";
+svgStr[113][7]= "Trung bình - Độ lệch chuẩn đồ thị";
+svgStr[114][7]= "Phương sai tổng thể";
+svgStr[115][7]= "giả thuyết";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -3963,12 +4127,12 @@ svgStrU[19][7] = "Trung bình tổng thể";
 svgStrU[20][7] = "Khoảng tin cậy";
 svgStrU[21][7] = "Độ chính xác của ước lượng";
 svgStrU[22][7] = "Trung bình mẫu";
-svgStrU[23][7] = "[Thống kê kiểm định] = ";
+svgStrU[23][7] = "[Thống kê kiểm định]";
 svgStrU[24][7] = "Phân phối";
 svgStrU[25][7] = "Bác bỏ H\u2080";
 svgStrU[26][7] = "Chấp nhận H\u2080";
-svgStrU[27][7] = " Giá trị p-value = ";
-svgStrU[28][7] = "[Quyết định] ";
+svgStrU[27][7] = "Giá trị p-value";
+svgStrU[28][7] = "[Quyết định]";
 svgStrU[29][7] = "[ANOVA]";
 svgStrU[30][7] = "Nhập hệ số tương quan và nhấn Thực thi";
 svgStrU[31][7] = "Hồi quy";
@@ -4013,11 +4177,28 @@ svgStrU[69][7] = "Đăng ký kiểm tra";
 svgStrU[70][7] = "Friedman Kiểm tra";
 svgStrU[71][7] = "Friedman S Thống kê";
 svgStrU[72][7] = "Friedman Bảng phân phối";
+svgStrU[73][7] = "t-value (Z)";
+svgStrU[74][7] = "ChiSq-value";
+svgStrU[75][7] = "phương sai mẫu";
+svgStrU[76][7] = "sự khác biệt của phương tiện mẫu";
+svgStrU[77][7] = "tỷ số của phương sai mẫu";
+svgStrU[78][7] = "Giả thiết về phương sai";
+svgStrU[79][7] = "Dữ liệu tóm tắt";
+svgStrU[80][7] = "Nhiều lựa chọn";
+svgStrU[81][7] = "Chọn tối đa hai nhóm";
+svgStrU[82][7] = "Biến X";
+svgStrU[83][7] = "Biến Y";
+svgStrU[84][7] = "bởi";
+svgStrU[85][7] = "Không có biến nhóm";
+svgStrU[86][7] = "Dữ liệu đã chọn: ";
+svgStrU[87][7] = "Dữ liệu thô";
+svgStrU[88][7] = "Chọn biến theo tên biến lần nhấp";
+svgStrU[89][7] = "";
 
 // Indonesian
 $.message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
-    "Filename": "Nama File",
+    "Filename": "File",
     "Selected Variables": "Pilih Var",
     "Cancel": "Batal",
     "Edit Variables": "Edit Variabel",
@@ -4054,6 +4235,8 @@ $.message.id = {
     "University Stat Education": "Pelajaran Statistika tingkat Universitas",
     "Elem Stat Graph Example": "Contoh Diagram Statistik Dasar",
     "Learning eStat w Example": "Contoh Pelajaran eStat w",
+    "Vertical": "Vertikal",
+    "Horizontal": "Horisontal",
     "Vertical Separated Bar": "Batang Terpisah Vertikal",
     "Vertical Stacked Bar": "Batang Bertumpuk Vertikal",
     "Vertical Ratio Bar": "Batang Rasio Vertikal",
@@ -4181,7 +4364,6 @@ $.message.id = {
     "Sample Proportion": "Proporsi Sampel",
     "if Z-test-1": "(if uji-Z, Masukkan Varians Populasi &sigma;<sup>2</sup>)",
     "if Z-test-2": "(if uji-Z, Z<sub>1-&alpha;/2 </sub> digunakan.)",
-    "Variance Assumption": "Asumsi Varians",
     "At least one pair": " Setidaknya Ada Satu Pasang Rata-rata yang Berbeda",
     "Row-Col-0": "Baris dan Kolom Variabel saling bebas/independen",
     "Row-Col-1": " Baris dan Kolom Variabel tidak saling bebas/independen",
@@ -4204,7 +4386,7 @@ $.message.id = {
     "OneGroup": "(Satu Grup)",
     "AnalysisVar": "Analisis Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Grup Var",
+    "GroupVar": "Grup",
     "GroupVar2": "X Var",
     "GroupVar3": "Faktor1",
     "GroupVar4": "Faktor2",
@@ -4272,8 +4454,8 @@ $.message.id = {
     "SummaryData": "Data Ringkasan",
     "RawData": "Data mentah",
     "RawData2": "Data mentaha Seleksi Variabe",
-    "SummaryExplain":  "Klik Nilai Var, Analisis Var> Ikon Klik",
-    "RawExplain1": "Klik Icon> Pilih Var (atau Klik Var> Klik Ikon)",
+    "DataType": "(Pilih variabel dengan mengklik nama variabel)",
+    "by": "oleh",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -4348,7 +4530,7 @@ svgStr[22][8] = "Variabel Baris";
 svgStr[23][8] = "Total";
 svgStr[24][8] = "CircleSize";
 svgStr[25][8] = "<h3>Tabel Frekuensi</h3>";
-svgStr[26][8] = "Variabel Analisis";
+svgStr[26][8] = "Var Analisis";
 svgStr[27][8] = "Nilai Var";
 svgStr[28][8] = "Label Nilai";
 svgStr[29][8] = "Frekuensi";
@@ -4410,7 +4592,7 @@ svgStr[84][8] = "Nilai Prediksi";
 svgStr[85][8] = "ANOVA dua arah";
 svgStr[86][8] = "Grafik Selang Kepercayaan";
 svgStr[87][8] = "Residual";
-svgStr[88][8] = "Tabel rata-rata dua arah";
+svgStr[88][8] = "statistik dua dimensi";
 svgStr[89][8] = "Matriks Diagram Pencar";
 svgStr[90][8] = "Perbandingan Berganda";
 svgStr[91][8] = "Statistik";
@@ -4433,6 +4615,11 @@ svgStr[107][8]= "<h3>Analisis korelasi</h3>";
 svgStr[108][8]= "Matriks Korelasi";
 svgStr[109][8]= "Faktor1 - Faktor2 Grafik Berartih";
 svgStr[110][8]= "Pengaruh";
+svgStr[111][8]= "GIS Graph";
+svgStr[112][8]= "Jarak";
+svgStr[113][8]= "Rata-rata Standar Deviasi Grafik";
+svgStr[114][8]= "Varians Satu Populasi";
+svgStr[115][8]= "Hipotesa";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -4456,12 +4643,12 @@ svgStrU[19][8] = "Rata-rata Populasi";
 svgStrU[20][8] = "Selang Kepercayaan";
 svgStrU[21][8] = "Keakurasian Nilai Estimasi";
 svgStrU[22][8] = "Rata-rata Sampel";
-svgStrU[23][8] = "[TestStat] = ";
+svgStrU[23][8] = "[TestStat]";
 svgStrU[24][8] = "Distribusi";
 svgStrU[25][8] = "Tolak H\u2080";
 svgStrU[26][8] = "Terima H\u2080";
-svgStrU[27][8] = " nilai-p  = ";
-svgStrU[28][8] = "[Keputusan] ";
+svgStrU[27][8] = "nilai-p";
+svgStrU[28][8] = "[Keputusan]";
 svgStrU[29][8] = "[ANOVA]";
 svgStrU[30][8] = "Masukkan Koefisien Korelasi dan klik Tombol Jalankan";
 svgStrU[31][8] = "Regresi";
@@ -4506,11 +4693,28 @@ svgStrU[69][8] = "Uji Masuk";
 svgStrU[70][8] = "Friedman Tes";
 svgStrU[71][8] = "Friedman S Statistik";
 svgStrU[72][8] = "Friedman Tabel Distribusi";
+svgStrU[73][8] = "t-nilai (Z)";
+svgStrU[74][8] = "ChiSq-nilai";
+svgStrU[75][8] = "varians sampel";
+svgStrU[76][8] = "perbedaan sarana sampel";
+svgStrU[77][8] = "rasio varians sampel";
+svgStrU[78][8] = "Asumsi Varians";
+svgStrU[79][8] = "Data Ringkasan";
+svgStrU[80][8] = "Pilihan Berganda";
+svgStrU[81][8] = "Pilih hingga dua grup";
+svgStrU[82][8] = "Var X";
+svgStrU[83][8] = "Var Y";
+svgStrU[84][8] = "oleh";
+svgStrU[85][8] = "Tidak ada variabel grup";
+svgStrU[86][8] = "Data yang dipilih: ";
+svgStrU[87][8] = "Data mentah";
+svgStrU[88][8] = "Pilih variabel dengan mengklik nama variabel";
+svgStrU[89][8] = "";
 
 // Mongolian
 $.message.mn = {
     "eStat : Stat Education SW": "eStat : Статистикийн боловсролын програм хангамж",
-    "Filename": "Файлын нэр",
+    "Filename": "Файл",
     "Selected Variables": "Сонгогдсон хувьсагч",
     "Cancel": "Цуцлах",
     "Edit Variables": "Хувьсагчийг засварлах",
@@ -4547,6 +4751,8 @@ $.message.mn = {
     "University Stat Education": "Их сургуулийн статистикийн боловсрол ",
     "Elem Stat Graph Example": "График жишээ",
     "Learning eStat w Example": "eStat-ийг жишээтэй суралцах",
+    "Vertical": "босоо",
+    "Horizontal": "хэвтээ",
     "Vertical Separated Bar": "Босоо тусгаарлагдсан багана",
     "Vertical Stacked Bar": "Босоо багц багана ",
     "Vertical Ratio Bar": "Босоо багц багана",
@@ -4674,7 +4880,6 @@ $.message.mn = {
     "Sample Proportion": "жишээ харьцаа",
     "if Z-test-1": "(Хэрэв Z тест байвал хүн амын дундаж кватрат хазайлтыг оруул &sigma;<sup>2</sup>)",
     "if Z-test-2": "(Хэрэв Z тест Z<sub>1-&alpha;/2 </sub> ашиглагдсан.)",
-    "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
     "At least one pair": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр.",
     "Row-Col-0": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй ",
     "Row-Col-1": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй биш",
@@ -4696,7 +4901,7 @@ $.message.mn = {
     "OneGroup": "(Нэг бүлэг)",
     "AnalysisVar": "Шинжилгээ Хувьсагч",
     "AnalysisVar2": "Y Хувьсагч",
-    "GroupVar": "Групп Хувьсагч",
+    "GroupVar": "Груп",
     "GroupVar2": "X Хувьсагчr",
     "GroupVar3": "Фактор1",
     "GroupVar4": "Фактор2",
@@ -4763,8 +4968,8 @@ $.message.mn = {
     "SummaryData": "Хураангуй мэдээлэл",
     "RawData": "Түүхий мэдээлэл",
     "RawData2": "Түүхий мэдээлэл Хувьсах сонголт",
-    "SummaryExplain":  "Click Value Var, Analysis Var > Click Icon",
-    "RawExplain1": "Click Icon > Select Var (or Click Var > Click Icon)",
+    "DataType": "(Хувьсагчийн нэр дээр дарж хувьсагч сонго)",
+    "by": "by",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -4812,7 +5017,7 @@ alertMsg[42][9] = "Тестэн таамаглалын гарчигийг зас
 alertMsg[43][9] = "Энгийн шугаман регресс нь зөвхөн нэг гуйлт юм";
 alertMsg[44][9] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][9] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][9] = "Ижил хувьсагчийн дугаар сонгогдсон байна..";
+alertMsg[46][9] = "Ижил хувьсагчийн дугаар сонгогдсон байна.";
 
 svgStr[1][9] = " Баганан график";
 svgStr[2][9] = " Бялуун график";
@@ -4901,7 +5106,7 @@ svgStr[84][9] = "Хүлээгдэж/таамаглаж буй утга";
 svgStr[85][9] = "Two way ANOVA";
 svgStr[86][9] = "Итгэх интервал График";
 svgStr[87][9] = "Үлдэгдэл";
-svgStr[88][9] = "Хоёр талын дундаж хүснэгт";
+svgStr[88][9] = "хоёр хэмжээст статистик";
 svgStr[89][9] = "Scatter Plot Matrix";
 svgStr[90][9] = "Олон харьцуулалт";
 svgStr[91][9] = "Статистикf";
@@ -4924,6 +5129,11 @@ svgStr[107][9]= "<h3>Корреляцийн шинжилгээ</h3>";
 svgStr[108][9]= "Корреляцийн матриц";
 svgStr[109][9]= "Фактор1 - Фактор2 Mean Graph";
 svgStr[110][9]= "Хөшүүрэг";
+svgStr[111][9]= "GIS Graph";
+svgStr[112][9]= "Хүрээ";
+svgStr[113][9]= "Дундаж  утга - Стандарт хэлбэлзэл график";
+svgStr[114][9]= "Хүн амын дундаж кватрат хазайлт";
+svgStr[115][9]= "таамаглал";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -4947,12 +5157,12 @@ svgStrU[19][9] = "Хүн амын дундаж утга";
 svgStrU[20][9] = "Найдварт завсар";
 svgStrU[21][9] = "нарийвчлалыг үнэлэх";
 svgStrU[22][9] = "Жишээ дундаж утга";
-svgStrU[23][9] = "[Тестийн статистик] = ";
+svgStrU[23][9] = "[Тестийн статистик]";
 svgStrU[24][9] = "Тархалт";
 svgStrU[25][9] = "Хүчингүй таамаглалаас татгалзах / Null таамаглал/";
 svgStrU[26][9] = "Hull таамаглалыг хүлээн авах ";
-svgStrU[27][9] = " п-утга  = ";
-svgStrU[28][9] = "[шийдвэр ] ";
+svgStrU[27][9] = "п-утга";
+svgStrU[28][9] = "[шийдвэр]";
 svgStrU[29][9] = "[Дундаж кватрат хазайлтын шинжилгээ]";
 svgStrU[30][9] = "Хамааралын коеффициент оруулах болон гүйцэтгэх товчийг дарах";
 svgStrU[31][9] = "Хамаарал";
@@ -4997,10 +5207,28 @@ svgStrU[69][9] = "Sign Туршилт";
 svgStrU[70][9] = "Friedman Туршилт";
 svgStrU[71][9] = "Friedman S Статистик";
 svgStrU[72][9] = "Friedman Түгээлт Хүснэгт";
+svgStrU[73][9] = "t-утга (Z)";
+svgStrU[74][9] = "ChiSq-утга";
+svgStrU[75][9] = "Түүврийн вариаци";
+svgStrU[76][9] = "түүврийн аргын ялгаа";
+svgStrU[77][9] = "дээжийн хэлбэлзлийн харьцаа";
+svgStrU[78][9] = "Дундаж кватратын хазайлтын таамаглал";
+svgStrU[79][9] = "Хураангуй мэдээлэл";
+svgStrU[80][9] = "Олон сонголт";
+svgStrU[81][9] = "Хоёр бүлэг сонгох";
+svgStrU[82][9] = "X хувьсагч";
+svgStrU[83][9] = "Y хувьсагч";
+svgStrU[84][9] = "by";
+svgStrU[85][9] = "Бүлгэм хувьсагч байхгүй";
+svgStrU[86][9] = "Сонгосон мэдээлэл: ";
+svgStrU[87][9] = "Түүхий мэдээлэл";
+svgStrU[88][9] = "Хувьсагчийн нэр дээр дарж хувьсагч сонго";
+svgStrU[89][9] = "";
+
 // Chinese - Simplified
 $.message.zh = {
     "eStat : Stat Education SW": "eStat: 统计教育软件",
-    "Filename": "文件名",
+    "Filename": "文件",
     "Selected Variables": "选择变量",
     "Cancel": "取消",
     "Edit Variables": "编辑变量",
@@ -5037,6 +5265,8 @@ $.message.zh = {
     "University Stat Education": "大学统计",
     "Elem Stat Graph Example": "小学统计图表示例",
     "Learning eStat w Example": "eStat例题学习",
+    "Vertical": "纵向",
+    "Horizontal": "横向",
     "Vertical Separated Bar": "纵向分离条形图",
     "Vertical Stacked Bar": "纵向堆叠条形图",
     "Vertical Ratio Bar": "纵向比率条形图",
@@ -5164,7 +5394,6 @@ $.message.zh = {
     "Sample Proportion": "样本比例",
     "if Z-test-1": "(Z-检验, 母分散入力)",
     "if Z-test-2": "(Z-检验, Z<sub>1-&alpha;/2 </sub> 使用)",
-    "Variance Assumption": "方差假设",
     "At least one pair": "至少有一对平均数不相等",
     "Row-Col-0": "列变量与行变量独立",
     "Row-Col-1": "列变量与行变量不独立",
@@ -5187,7 +5416,7 @@ $.message.zh = {
     "OneGroup": "(一组)",
     "AnalysisVar": "分析变量",
     "AnalysisVar2": "Y变量",
-    "GroupVar": "组变量",
+    "GroupVar": "组",
     "GroupVar2": "X变量",
     "GroupVar3": "因子1",
     "GroupVar4": "因子2",
@@ -5254,8 +5483,8 @@ $.message.zh = {
     "SummaryData": "要約資料",
     "RawData": "原資料",
     "RawData2": "原資料变量選択",
-    "SummaryExplain":  "Click 变量値変数, 分析变量 . Click Icon",
-    "RawExplain1": "Icon選択 > 变量選択 (or 变量選択 > Icon選択)",
+    "DataType": "(通过单击变量名称选择变量)",
+    "by": "by",
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -5330,7 +5559,7 @@ svgStr[22][10] = "列变量";
 svgStr[23][10] = "总和";
 svgStr[24][10] = "大小";
 svgStr[25][10] = "<h3>次数分布表</h3>";
-svgStr[26][10] = "方差分析";
+svgStr[26][10] = "分析变量";
 svgStr[27][10] = "变量值";
 svgStr[28][10] = "变量值标号";
 svgStr[29][10] = "次数";
@@ -5392,7 +5621,7 @@ svgStr[84][10] = "预测值";
 svgStr[85][10] = "双向方差分析表";
 svgStr[86][10] = "置信区间图";
 svgStr[87][10] = "残差";
-svgStr[88][10] = "双向均值表";
+svgStr[88][10] = "二维统计";
 svgStr[89][10] = "矩阵散点图";
 svgStr[90][10] = "分组统计量";
 svgStr[91][10] = "统计量";
@@ -5401,7 +5630,7 @@ svgStr[93][10] = "水平";
 svgStr[94][10] = "成对样本数据图";
 svgStr[95][10] = "残差-豫測";
 svgStr[96][10] = "残差-Leverage";
-svgStr[97][10] = "Cook距離図";
+svgStr[97][10] = "Cook距離图";
 svgStr[98][10] = "Cook距離";
 svgStr[99][10] = "資料順序";
 svgStr[100][10]= "平均差";
@@ -5413,8 +5642,13 @@ svgStr[105][10]= "列合";
 svgStr[106][10]= "重相關係數";
 svgStr[107][10]= "<h3>相關分析</h3>";
 svgStr[108][10]= "相關係數行列";
-svgStr[109][10]= "因子1 - 因子2 平均図";
+svgStr[109][10]= "因子1 - 因子2 平均图";
 svgStr[110][10]= "杠杆作用";
+svgStr[111][10]= "GIS Graph";
+svgStr[112][10]= "范围";
+svgStr[113][10]= "平均 - 标准差图";
+svgStr[114][10]= "总体方差";
+svgStr[115][10]= "假设";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -5438,12 +5672,12 @@ svgStrU[19][10] = "总体均值";
 svgStrU[20][10] = "置信区间";
 svgStrU[21][10] = "估计准确率";
 svgStrU[22][10] = "样本平均";
-svgStrU[23][10] = "[检验统计量] = ";
+svgStrU[23][10] = "[检验统计量]";
 svgStrU[24][10] = "分布";
 svgStrU[25][10] = "拒绝原假设";
 svgStrU[26][10] = "接受原假设";
-svgStrU[27][10] = "p-值 = ";
-svgStrU[28][10] = "[决策] ";
+svgStrU[27][10] = "p-值";
+svgStrU[28][10] = "[决策]";
 svgStrU[29][10] = "[方差分析]";
 svgStrU[30][10] = "输入相关系数后按确认";
 svgStrU[31][10] = "回归分析";
@@ -5488,11 +5722,28 @@ svgStrU[69][10] = "符號檢定";
 svgStrU[70][10] = "Friedman檢定";
 svgStrU[71][10] = "Friedman S 統計量";
 svgStrU[72][10] = "Friedman檢定分布表";
+svgStrU[73][10] = "t-值 (Z)";
+svgStrU[74][10] = "ChiSq-值";
+svgStrU[75][10] = "样本方差";
+svgStrU[76][10] = "样本平均差";
+svgStrU[77][10] = "样本方差比";
+svgStrU[78][10] = "方差假设";
+svgStrU[79][10] = "要数据";
+svgStrU[80][10] = "多项选择";
+svgStrU[81][10] = "最多选择两个组";
+svgStrU[82][10] = "X变量";
+svgStrU[83][10] = "Y变量";
+svgStrU[84][10] = "by";
+svgStrU[85][10] = "没有组变量";
+svgStrU[86][10] = "选定数据: ";
+svgStrU[87][10] = "原始数据";
+svgStrU[88][10] = "通过单击变量名称选择变量";
+svgStrU[89][10] = "";
 
 // Portugese
 $.message.pt = {
     "eStat : Stat Education SW": "eStat : Educação Estatística SW",
-    "Filename": "Nome do Arquivo",
+    "Filename": "Arquivo",
     "Selected Variables": "Var Selecionadas",
     "Cancel": "Cancelar",
     "Edit Variables": "Editar Variáveis",
@@ -5529,6 +5780,8 @@ $.message.pt = {
     "University Stat Education": "Educação Estatística Universitária",
     "Elem Stat Graph Example": "Gráfico Exemplo",
     "Learning eStat w Example": "Aprendendo eStat com Exemplos",
+    "Vertical": "Verticais",
+    "Horizontal": "Horizontais",
     "Vertical Separated Bar": "Barras Verticais Separadas",
     "Vertical Stacked Bar": "Barras Verticais Empilhadas (frequências absolutas)",
     "Vertical Ratio Bar": "Barras Verticais Empilhadas (porcentagens)",
@@ -5659,7 +5912,6 @@ $.message.pt = {
     "Sample Proportion": "Proporção Amostral",
     "if Z-test-1": "(se Teste Z, entre com a variância populacional)",
     "if Z-test-2": "(se Teste Z, Z<sub>1-&alpha;/2 </sub> usado.)",
-    "Variance Assumption": "Suposição sobre as variâncias",
     "At least one pair": "Pelo menos um par de médias difere",
     "Row-Col-0": "Variáveis na linha e coluna da tabela são independentes",
     "Row-Col-1": "Variáveis na linha e coluna da tabela não são independentes",
@@ -5681,7 +5933,7 @@ $.message.pt = {
     "OneGroup": "(um grupo)",
     "AnalysisVar": "Análise Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Grupo Var",
+    "GroupVar": "Grupo",
     "GroupVar2": "X Var",
     "GroupVar3": "Fator1",
     "GroupVar4": "Fator2",
@@ -5749,8 +6001,8 @@ $.message.pt = {
     "SummaryData": "Dados resumidos",
     "RawData": "Dados não tratados",
     "RawData2": "Dados não tratados seleção de variáveis",
-    "SummaryExplain":  "Clique Valor Var, Análise Var > Clique no ícone",
-    "RawExplain1": "Clique no ícone > Selecione Var (or Clique Var > Clique Icon)",
+    "DataType": "(Selecionar variável por nome da variável de clique)",
+    "by": "de",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -5825,7 +6077,7 @@ svgStr[22][11] = "Variável na Linha";
 svgStr[23][11] = "Total";
 svgStr[24][11] = "Tamanho do círculo";
 svgStr[25][11] = "<h3>Tabela de Frequências</h3>";
-svgStr[26][11] = "Variável Resposta";
+svgStr[26][11] = "Var Resposta";
 svgStr[27][11] = "Valor da Variável";
 svgStr[28][11] = "Rótulo do Valor";
 svgStr[29][11] = "Frequência";
@@ -5887,7 +6139,7 @@ svgStr[84][11] = "valor predito";
 svgStr[85][11] = "ANOVA com dois fatores";
 svgStr[86][11] = "Gráfico com Intervalos de Confiança";
 svgStr[87][11] = "Residual";
-svgStr[88][11] = "Tabela de Médias de Dupla Entrada";
+svgStr[88][11] = "Estatísticas de duas dimensões";
 svgStr[89][11] = "Matriz de Diagramas de Dispersão";
 svgStr[90][11] = "Comparações Múltiplas";
 svgStr[91][11] = "Estatística";
@@ -5910,6 +6162,11 @@ svgStr[107][11]= "<h3>Análise de Correlação</h3>";
 svgStr[108][11]= "Matriz de Correlação";
 svgStr[109][11]= "Fator1 - Fator2 média gráfico";
 svgStr[110][11]= "Alavancagem";
+svgStr[111][11]= "GIS Graph";
+svgStr[112][11]= "Alcance";
+svgStr[113][11]= "Média - Desvio Padrão Gráfico";
+svgStr[114][11]= "Variância Populacional";
+svgStr[115][11]= "Hipótese";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -5933,12 +6190,12 @@ svgStrU[19][11] = "Média Populacional";
 svgStrU[20][11] = "Intervalo de Confiança";
 svgStrU[21][11] = "Acurácia ";
 svgStrU[22][11] = "Média Amostral";
-svgStrU[23][11] = "[Estatística do Teste] = ";
+svgStrU[23][11] = "[Estatística do Teste]";
 svgStrU[24][11] = "Distribuição";
 svgStrU[25][11] = "Rejeita-se H\u2080";
 svgStrU[26][11] = "Não rejeita-se H\u2080";
-svgStrU[27][11] = " valor p = ";
-svgStrU[28][11] = "[Decisão] ";
+svgStrU[27][11] = "valor p";
+svgStrU[28][11] = "[Decisão]";
 svgStrU[29][11] = "[ANOVA]";
 svgStrU[30][11] = "Entre com o Coeficiente de Correlação e clique Executar";
 svgStrU[31][11] = "Regressão";
@@ -5983,3 +6240,20 @@ svgStrU[69][11] = "Teste dos sinais";
 svgStrU[70][11] = "Friedman Teste";
 svgStrU[71][11] = "Friedman S Estatistica";
 svgStrU[72][11] = "Friedman Distribuição Tabela";
+svgStrU[73][11] = "valor t (Z)";
+svgStrU[74][11] = "valor ChiSq";
+svgStrU[75][11] = "Variância Amostral";
+svgStrU[76][11] = "diferença de médias amostrais";
+svgStrU[77][11] = "proporção de variância da amostra";
+svgStrU[78][11] = "Suposição sobre as variâncias";
+svgStrU[79][11] = "Dados resumidos";
+svgStrU[80][11] = "seleção múltipla";
+svgStrU[81][11] = "Selecione até dois grupos";
+svgStrU[82][11] = "Var X";
+svgStrU[83][11] = "Var Y";
+svgStrU[84][11] = "de";
+svgStrU[85][11] = "Nenhuma variável de grupo";
+svgStrU[86][11] = "Dados selecionados: ";
+svgStrU[87][11] = "Dados não tratados";
+svgStrU[88][11] = "Selecionar variável por nome da variável de clique";
+svgStrU[89][11] = "";

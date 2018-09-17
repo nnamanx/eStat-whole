@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
   <head>
     <title data-msgid="eStat : Stat Education SW">eStat: 통계교육SW</title>
@@ -9,8 +9,7 @@
     <script src="lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="lib/jquery.multi-select.min.js"></script>
     <link rel="stylesheet" href="lib/jquery/jquery-ui.css">
-<script src="lib/jquery/jquery-ui.min.js"></script>
-
+    <script src="lib/jquery/jquery-ui.min.js"></script>
     <script src="lib/handsontable/handsontable.full.min.js"></script>
     <script src="lib/FileSaver.min.js" ></script>
     <script src="lib/DistributionsUtil.js" ></script>
@@ -20,7 +19,6 @@
     <script src="js/language.js" ></script>
     <script src="js/eStat.js" ></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117441368-1"></script>
@@ -229,33 +227,49 @@
       <main id="estat-main-container">
 	  
         <div id="screenLeft" style="font-size: 12px;">    
-            <div id="datasheet-option-container">
-		<div class="form-group">
-		      <label for='loadFileName' data-msgid="Filename">파일이름</label>
-		      <input type="text" value="" id="loadFileName">
-		</div >
-                <div style="color:blue; font-size:11px">
-<!---
-                  &nbsp;<span data-msgid="VariableSelect">데이터분석은 변수선택 후 아이콘 클릭</span> <br> 
-                  &nbsp;<span data-msgid="VariableSelect2">변수선택</span> <br>
---->
-                  &nbsp;&nbsp;(<span data-msgid="SummaryData">요약자료</span>)
-                        <span data-msgid="SummaryExplain">변수값변량, 분석변량 클릭</span><br>
-                  &nbsp;&nbsp;(<span data-msgid="RawData">원시자료</span>)
-                        <span data-msgid="RawExplain1">분석변량 클릭 또는 그룹변량과 분석변량 클릭</span> <br>
-                </div>
-                <div class="form-group">
-		      <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
-		      <input type="text" value="" id="selectedVars">
-		      <button type="button" id="debugBtn" style='height: 20px; padding: 0 10px; margin-right: 2px;'>
-			  <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
-		      </button>
-		      <button type="button" id='variableBtn' style='height: 20px; padding: 0 10px; margin-right: 2px;'>
-			  <span data-msgid='Edit Variables'>변량편집</span>
-		      </button>
-                </div>
+          <div id="datasheet-option-container">
+            <div class="form-group">
+		<label for='loadFileName' data-msgid="Filename">파일</label>
+		<input type="text" value="" id="loadFileName">
             </div>
-            <div id="datasheet"> </div>
+            <div id="top1" class="option-group"> 
+              <div style="font-size:12px">  
+                <table cellspacing="0" cellpading="0">
+                  <tr>
+                    <td width=65 align=center><span id="analysisVar" data-msgid="AnalysisVar">Analysis Var</span>  </td>
+                    <td width=100 align=center>
+                      <select id="analysisSelectMain" size="1" style="font-size:12px">
+                      <option value="0"> --- </option>
+                      </select>
+                    </td>
+                    <td width=5 align=center><span data-msgid="by" >by</span> </td>
+                    <td width=65 align=center><span id="groupVar" data-msgid="GroupVar" >Group Var</span> </td>
+                    <td width=100 align=center>
+                      <select id="groupSelectMain" size="1" style="font-size:12px"> 
+                        <option value="0"> --- </option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr >
+                    <td width=40 align=center colspan="2"> <span id="dataType" data-msgid="DataType"style="color:green ; font-size:9px"></span> </td>
+                    <td width=5 align=center> </td>
+                    <td width=30 align=center colspan="2"> <span id="groupVarMsg" style="color:red ; font-size:9px"></span> </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
+		<input type="text" value="" id="selectedVars">
+		<button type="button" id="debugBtn" style='height: 20px; padding: 0 10px; margin-right: 2px;'>
+		  <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
+		</button>
+		<button type="button" id='variableBtn' style='height: 20px; padding: 0 10px; margin-right: 2px;'>
+		  <span data-msgid='Edit Variables'>변량편집</span>
+		</button>
+            </div>
+          </div>
+          <div id="datasheet"> </div>
         </div>
 
 	<div class="splitter-vertical-1"></div>
@@ -333,109 +347,7 @@
 	    </div>
 	  </div>
 	  </div> <!-- end of graph-toolbars -->
-          <div id="top0" class="option-group"> <!--- THmu/THsigma 변수선택 --->
-              <div style="font-size:12px">  
-                (<span data-msgid="RawData">원시자료</span>)
-                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
-                <select id="analysisSelect" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-              </div>
-          </div>
-          <div id="top1" class="option-group"> <!--- 막대/원/띠/   점/히스토/상자/줄기/THmu12/THs12 변수선택 --->
-              <div style="font-size:12px">  
-                (<span data-msgid="RawData">원시자료</span>)
-                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
-                <select id="analysisSelectMain" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="GroupVar">그룹변량</span> 
-                <select id="groupSelectMain" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-              </div>
-          </div>
-          <div id="top2" class="option-group"> <!--- 산점도 --->
-              <div style="font-size:12px">  
-                (<span data-msgid="RawData">원시자료</span>)
-                &nbsp;<span data-msgid="AnalysisVar2">Y변량</span> 
-                <select id="selectScatterY" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="GroupVar2">X변량</span> 
-                <select id="selectScatterX" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-              </div>
-          </div>
-          <div id="top3" class="option-group"> <!--- ANOVA --->
-              <div style="font-size:12px">  
-                (<span data-msgid="RawData">원시자료</span>)
-                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
-                <select id="analysisANOVA" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="GroupVar3">인자1</span> 
-                <select id="factor1Select" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="GroupVar4">인자2</span> 
-                <select id="factor2Select" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-              </div>
-          </div>
-          <div id="top4" class="option-group"> <!--- 회귀 --->
-              <div style="font-size:12px">  
-                (<span data-msgid="RawData">원시자료</span>)
-                &nbsp;<span data-msgid="AnalysisVar2">Y변량</span> 
-                <select id="selectRegressionY" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="GroupVar2">X변량</span>
-                <div id="selectRegressionXContainer" style="display: inline">
-                </div>
-              </div>
-          </div>
-          <div id="top5" class="option-group"> <!--- THmu12 변수선택 --->
-              <div style="font-size:12px">  
-                (<span data-msgid="RawData">원시자료</span>)
-                &nbsp;<span data-msgid="AnalysisVarMu12">분석(or X1)변량</span> 
-                <select id="analysisMu12" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="GroupVarMu12">그룹(or X2)변량</span> 
-                <select id="groupMu12" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;(<span style="color:blue; font-size:11px" data-msgid="PairedMu12">X1 or X2는 대응비교</span>)
-              </div>
-          </div>
-          <div id="top7" class="option-group"> <!--- THsigma12 변수선택 --->
-              <div style="font-size:12px">  
-                (<span data-msgid="RawData">원시자료</span>)
-                &nbsp;<span data-msgid="AnalysisVar">분석변량</span> 
-                <select id="analysisSigma12" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="GroupVar">그룹변량</span> 
-                <select id="groupSigma12" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-              </div>
-          </div>
 
-          <div id="top6" class="option-group"> <!--- 꺽은선 변수선택 --->
-              <div style="font-size:12px">  
-                &nbsp;<span data-msgid="GroupVar2">X변량</span> 
-                <select id="xaxisLine" size="1" style="font-size:12px">
-                  <option value="0"> --- </option>
-                </select>
-                &nbsp;<span data-msgid="AnalysisLine">분석변량</span>
-                <div id="analysisLineContainer" style="display: inline">
-                </div>
-              </div>
-          </div>
 
 	  <div id="graph-main-container">
 	    <svg id="SVG"></svg>
@@ -472,6 +384,17 @@
 
 	    <div id="sub5" class="option-group"> <!--- 점그래프 ---->
 	      &nbsp;<label><input type="checkbox" id="DotMean"><span data-msgid="MeanStd"> 평균</span></label>
+	    </div>
+	    <div id="sub52" class="option-group"> <!--- 상자그래프 ---->
+	      <form action="#" name="myForm52" class="option-group">
+		&nbsp;
+                <label><input type="radio" name = "type2" value="1" checked><span data-msgid="Horizontal">Horizontal</span></label>
+                <label><input type="radio" name = "type2" value="2" > <span data-msgid="Vertical">Vertical</span></label>
+                &nbsp;
+		<button type="button" size=12 id="statBox" >
+		  <span data-msgid="Basic Statistics">Basic Statistics</span>
+		</button>&nbsp
+	      </form>
 	    </div>
 
 	    <div id="sub6" class="option-group"> <!--- 산점도  --->
@@ -517,18 +440,18 @@
 		<input type="text" class="textarea" size=6 id="mu8">
 		&nbsp;&nbsp;
 		<span class="fontmath">
-		  <input type="radio" name = "type0" value="1" checked>
-		  H<sub>1</sub> : &mu; &ne;  &mu;<sub>o</sub> &nbsp;&nbsp;
-		  <input type="radio" name = "type0" value="2" >
-		  H<sub>1</sub> : &mu; > &mu;<sub>o</sub> &nbsp;&nbsp;
-		  <input type="radio" name = "type0" value="3" >
-		  H<sub>1</sub> : &mu; < &mu;<sub>o</sub>
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &mu; &ne;  &mu;<sub>o</sub></label> &nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &mu; > &mu;<sub>o</sub> </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &mu; < &mu;<sub>o</sub> </label>
 		</span>
 	      </form>
 	      <form action="#" name="myForm81" class="option-group">&nbsp; &nbsp;
 		<span class="fontmath">
-		  <input type="radio" name = "type1" value="2" checked> <span class="fontmath" data-msgid="t-test">t</span>
-		  <input type="radio" name = "type1" value="1" > <span class="fontmath" data-msgid="Z-test">Z</span>
+		  <label><input type="radio" name = "type1" value="2" checked> <span data-msgid="t-test">t</span></label>
+		  <label><input type="radio" name = "type1" value="1" > <span data-msgid="Z-test">Z</span></label>
 		</span>
 		&nbsp;&nbsp;&nbsp;
 		<span class="fontmath">&sigma;</span> =
@@ -537,12 +460,13 @@
 	      </form>
 	      <form action="#" name="myForm82" class="option-group">&nbsp; &nbsp;
 		<span class="fontmath">
-		  <span data-msgid="Significance Level">significance level</span> &nbsp;
-		  <span class="fontmath">&alpha;</span> =
-		  <span>
-		    <input type="radio" name = "type2" value="1" checked> 5%
-		    <input type="radio" name = "type2" value="2" > 1%
-		  </span>
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+                  <label><input type="radio" name = "type2" value="1" checked> 5%</label>
+                  <label><input type="radio" name = "type2" value="2" > 1%</label>
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
 		</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="button" size=12 id="executeTH8" >
@@ -598,12 +522,12 @@
 		<input type="text" class="textarea" size=6 id="vari9">
 		&nbsp;&nbsp;
 		<span class="fontmath">
-		  <input type="radio" name = "type0" value="1" checked>
-		  H<sub>1</sub> : &sigma;<sup>2</sup> &ne;  &sigma;<sub>o</sub><sup>2</sup> &nbsp;&nbsp;
-		  <input type="radio" name = "type0" value="2" >
-		  H<sub>1</sub> : &sigma;<sup>2</sup> > &sigma;<sub>o</sub><sup>2</sup> &nbsp;&nbsp;
-		  <input type="radio" name = "type0" value="3" >
-		  H<sub>1</sub> : &sigma;<sup>2</sup> < &sigma;<sub>o</sub><sup>2</sup>
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &sigma;<sup>2</sup> &ne;  &sigma;<sub>o</sub><sup>2</sup> </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &sigma;<sup>2</sup> > &sigma;<sub>o</sub><sup>2</sup> </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &sigma;<sup>2</sup> < &sigma;<sub>o</sub><sup>2</sup></label>
 		</span>
 	      </form>
 
@@ -611,10 +535,13 @@
 		<span class="fontmath" data-msgid="Chi-test">&chi;<sup>2</sup> test </span>
 		&nbsp;&nbsp;&nbsp;
 		<span class="fontmath">
-		  <span class="fontmath" data-msgid="Significance Level">significance level</span> &nbsp;
-		  <span class="fontmath">&alpha;</span> =
-		  <input type="radio" name = "type2" value="1" checked> 5%
-		  <input type="radio" name = "type2" value="2" > 1%
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+		  <label><input type="radio" name = "type2" value="1" checked> 5%</label>
+		  <label><input type="radio" name = "type2" value="2" > 1%</label>
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
 		</span>
 		&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 		<button type="button" size=12 id="executeTH9" >
@@ -665,12 +592,12 @@
 		</span>
 		<input type="text" class="textarea" value=0 size=6 id="mu10">&nbsp;
 		<span class="fontmath">
-		  <input type="radio" name = "type0" value="1" checked>
-		  H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> &ne; D &nbsp;&nbsp;
-		  <input type="radio" name = "type0" value="2" >
-		  H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> > D &nbsp;&nbsp;
-		  <input type="radio" name = "type0" value="3" >
-		  H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> < D
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> &ne; D </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> > D </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> < D </label>
 		</span>
 	      </form>
 
@@ -678,19 +605,24 @@
 		&nbsp; &nbsp; &nbsp;
 		<span class="fontmath" data-msgid="Variance Assumption"> Assume </span>
 		<span>
-		  <input type="radio" name = "type1" value="1" checked>
-		  &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> &nbsp;&nbsp;
-		  <input type="radio" name = "type1" value="2" >
-		  &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup>  </span>
+		  <label><input type="radio" name = "type1" value="1" checked>
+		  &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> </label> &nbsp;&nbsp;
+		  <label><input type="radio" name = "type1" value="2" >
+		  &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup> </label>
+                </span>
 	      </span>
 	      </form>
 
 	      <form action="#" name="myForm102">
 		&nbsp; &nbsp; &nbsp;
-		<span class="fontmath" data-msgid="Significance Level">significance level  &nbsp;  &alpha; </span>
-		<span>
-		  <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;
-		  <input type="radio" name = "type2" value="2" > 1%
+		<span class="fontmath">
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+		  <label><input type="radio" name = "type2" value="1" checked> 5%  </label>&nbsp;
+		  <label><input type="radio" name = "type2" value="2" > 1% </label>
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
 		</span>
 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<button type="button" size=12 id="executeTH10" >
@@ -721,12 +653,12 @@
 		</span>
 		&nbsp;&nbsp;
 		<span class="fontmath" >
-		  <input type="radio" name = "type0" value="1" checked>
-		  H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup> &nbsp; &nbsp;
-		  <input type="radio" name = "type0" value="2" >
-		  H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  >   &sigma;<sub>2</sub><sup>2</sup> &nbsp; &nbsp;
-		  <input type="radio" name = "type0" value="3" >
-		  H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  <   &sigma;<sub>2</sub><sup>2</sup>
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup> </label>&nbsp; &nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  >   &sigma;<sub>2</sub><sup>2</sup> </label>&nbsp; &nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  <   &sigma;<sub>2</sub><sup>2</sup> </label>
 		</span>
 	      </form>
 
@@ -734,10 +666,14 @@
 		<span class="fontmath" data-msgid="F test">F  test </span>
 		<br>
 		&nbsp;&nbsp;&nbsp;
-		<span class="fontmath" data-msgid="Significance Level"> significance level &nbsp; &alpha; </span>
-		<span>
-		  <input type="radio" name = "type2" value="1" checked> 5%
-		  <input type="radio" name = "type2" value="2" > 1%
+		<span class="fontmath"> 
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+		  <label><input type="radio" name = "type2" value="1" checked> 5% </label>
+		  <label><input type="radio" name = "type2" value="2" > 1% </label>
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
 		</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="button" size=12 id="executeTH11" >
@@ -761,23 +697,27 @@
 	    <div id="sub12" class="option-group"> <!-- 1 way Analysis of Variance -->
 	      <div class="fontmath">
 		&nbsp;H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub> 
-                <br>
+                &nbsp;&nbsp;&nbsp;
 		&nbsp;H<sub>1</sub> : <span data-msgid="At least one pair of means is different">at least one pair of population means is not equal</span>
 	      </div>   
 	      <form action="#" name="myForm122">&nbsp;&nbsp;&nbsp;
 		<span class="fontmath" data-msgid="F test" >F  test </span>
 		&nbsp;&nbsp;&nbsp;
-		<span class="fontmath" data-msgid="Significance Level"> significance level &nbsp; &alpha; </span>
-		<span>
-		  <input type="radio" name = "type2" value="1" checked> 5%
-		  <input type="radio" name = "type2" value="2" > 1%
+		<span class="fontmath"> 
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+		  <label><input type="radio" name = "type2" value="1" checked> 5% </label>
+		  <label><input type="radio" name = "type2" value="2" > 1% </label>
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
 		</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="button" size=12 id="executeTH12" >
 		  <span data-msgid="Execute">실행</span>
 		</button>
 	      </form>
-              &nbsp;
+              <br>&nbsp;
 	      <button type="button" id="DotANOVA" >
 		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
 	      </button>
