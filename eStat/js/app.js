@@ -744,6 +744,7 @@ d3.select("#exportCSV").on("click", function() {
     });
     var text = csvhead + "\n" + csvbody;
     var filename = $("#loadFileName").val().replace(/\.json$/, ".csv");
+    if (!filename.endsWith(".csv")) { filename = filename + ".csv"; }
     $("#loadFileName").val(filename);
     var blob = new Blob([text], {
         type: "text/plain;charset=utf-8"
@@ -772,6 +773,7 @@ d3.select("#save").on("click", function() {
     }
     var jsonstr = JSON.stringify(dataobj);
     var filename = $("#loadFileName").val().replace(/\.csv$/, ".json");
+    if(!filename.endsWith(".json")) { filename = filename + ".json"; }
     $("#loadFileName").val(filename);
     var blob = new Blob([jsonstr], {
         type: "text/plain;charset=utf-8"
