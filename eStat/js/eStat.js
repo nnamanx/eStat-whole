@@ -554,7 +554,9 @@ function dataClassify() {
         }
  
         for (k=0; k<ngroup; k++) {
-          dataSet[k]     = tdvar[k+1];
+          for (i=0; i<dobs; i++) {
+            dataSet[k][i] = tdvar[k+1][i];    // !!! dataSet[k] = tdvar[k+1]memory 공유 조심
+          }
           gvalueLabel[k] = tdvarName[k+1];
         }   
         ndvalue = dobs;
@@ -729,7 +731,9 @@ function dataClassifyLine() { // 꺽은선 데이터
         }
  
         for (k=0; k<ngroup; k++) {
-          dataSet[k]     = tdvar[k+1];
+          for (i=0; i<dobs; i++) {
+            dataSet[k][i]     = tdvar[k+1][i];    // !!! memory 공유 조심
+          }
           gvalueLabel[k] = tdvarName[k+1];
         }   
         ndvalue = dobs;

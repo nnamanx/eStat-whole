@@ -289,8 +289,8 @@ if (levelNum == "1") { // 초등
 // graphTopInitialize();
 // graphTitle(); // 디폴트 그래프 제목
 graphNum = 1;
-document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
 // document.getElementById("dataType").innerHTML    = "("+svgStrU[88][langNum]+")";
 
 // =================================================================
@@ -645,7 +645,7 @@ function updateVarList() {
     analysisSelectMain.innerHTML = '<option value="0" selected> --- </option>'	
     for (i=0; i<numCol; i++) {
         option = document.createElement("option");
-        option.text  = rvarName[i];
+        option.text  = (i+1).toString() + ": "+ rvarName[i];
         option.value = i+1;
         analysisSelectMain.options.add(option);
     }
@@ -654,7 +654,7 @@ function updateVarList() {
     groupSelectMain.innerHTML = '<option value="0" selected> --- </option>'
     for (i=0; i<numCol; i++) {
         option = document.createElement("option");
-        option.text  = rvarName[i];
+        option.text  = (i+1).toString() + ": "+ rvarName[i];
         option.value = i+1;
         groupSelectMain.options.add(option);
     }
@@ -1056,8 +1056,8 @@ d3.select("#separate1").on("click", function() {
     graphNum = 1;
     buttonColorChange();
     document.getElementById("separate1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1087,8 +1087,8 @@ d3.select("#separate2V").on("click", function() {
     graphNum = 1;
     buttonColorChange();    // graphSubHide 포함
     document.getElementById("separate2V").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
@@ -1116,8 +1116,8 @@ d3.select("#separate2H").on("click", function() {
     graphNum = 6;
     buttonColorChange();
     document.getElementById("separate2H").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
@@ -1187,8 +1187,8 @@ d3.select("#stack2V").on("click", function() {
     graphNum = 2;
     buttonColorChange();
     document.getElementById("stack2V").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1212,8 +1212,8 @@ d3.select("#stack2H").on("click", function() {
     graphNum = 7;
     buttonColorChange();
     document.getElementById("stack2H").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1237,8 +1237,8 @@ d3.select("#ratio2V").on("click", function() {
     graphNum = 3;
     buttonColorChange();
     document.getElementById("ratio2V").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1262,8 +1262,8 @@ d3.select("#ratio2H").on("click", function() {
     graphNum = 8;
     buttonColorChange();
     document.getElementById("ratio2H").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1287,8 +1287,8 @@ d3.select("#side2V").on("click", function() {
     graphNum = 4;
     buttonColorChange();
     document.getElementById("side2V").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1312,11 +1312,11 @@ d3.select("#side2H").on("click", function() {
     graphNum = 9;
     buttonColorChange();
     document.getElementById("side2H").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1340,8 +1340,8 @@ d3.select("#bothbar2V").on("click", function() {
     graphNum = 5;
     buttonColorChange();
     document.getElementById("bothbar2V").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1367,8 +1367,8 @@ d3.select("#bothbar2H").on("click", function() {
     graphNum = 10;
     buttonColorChange();
     document.getElementById("bothbar2H").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1394,8 +1394,8 @@ d3.select("#pie1").on("click", function() {
     graphNum = 11;
     buttonColorChange();
     document.getElementById("pie1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1413,8 +1413,8 @@ d3.select("#donut2").on("click", function() {
     graphNum = 12;
     buttonColorChange();
     document.getElementById("donut2").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1433,8 +1433,8 @@ d3.select("#band1").on("click", function() {
     graphNum = 13;
     buttonColorChange();
     document.getElementById("band1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     document.getElementById("sub3").style.display = "block"; //띠그래프 도수표시
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
@@ -1468,8 +1468,8 @@ d3.select("#line1").on("click", function() {
     graphNum = 14;
     buttonColorChange();
     document.getElementById("line1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[82][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStrU[82][langNum]; // X변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar < 2) return;  // 데이터가 없는 경우
     dataClassifyLine();
@@ -1511,8 +1511,8 @@ d3.select("#freqTable").on("click", function() {
     graphNum = 23;
     buttonColorChange();
     document.getElementById("freqTable").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassify();
@@ -1537,8 +1537,8 @@ d3.select("#dot1").on("click", function() {
     graphNum = 15;
     buttonColorChange();
     document.getElementById("dot1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassifyM();
@@ -1584,8 +1584,8 @@ d3.select("#hist1").on("click", function() {
     graphNum = 19;
     buttonColorChange();
     document.getElementById("hist1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassifyM();
@@ -1665,8 +1665,8 @@ d3.select("#box1").on("click", function() {
     graphNum = 16;
     buttonColorChange();
     document.getElementById("box1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassifyM();
@@ -1678,6 +1678,7 @@ d3.select("#box1").on("click", function() {
     //	  chart.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top/2).text(title);
     drawBoxGraphH(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidth, oneHeight, tstat);
     document.getElementById("sub52").style.display = "block"; //상자그래프 선택사항
+    rad52[0].click(); // 상자그래프 수평형 선택
 })
 // 상자그래프 수평/수직형 선택 버튼
 var rad52 = document.myForm52.type2;
@@ -1698,8 +1699,8 @@ d3.select("#stem1").on("click", function() {
     graphNum = 17;
     buttonColorChange();
     document.getElementById("stem1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassifyM();
@@ -1715,8 +1716,8 @@ d3.select("#bothstem2").on("click", function() {
     graphNum = 18;
     buttonColorChange();
     document.getElementById("bothstem2").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     dataClassifyM();
@@ -1736,8 +1737,8 @@ d3.select("#statTable").on("click", function() {
     graphNum = 22;
     buttonColorChange();
     document.getElementById("statTable").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[81][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     if (numVar <= 2) {
@@ -1877,8 +1878,8 @@ d3.select("#testM1").on("click", function() {
     graphNum = 24;
     buttonColorChange();
     document.getElementById("testM1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[85][langNum]+")";
  
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
@@ -2052,8 +2053,8 @@ d3.select("#testS1").on("click", function() {
     graphNum = 26;
     buttonColorChange();
     document.getElementById("testS1").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
-    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량 
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹 // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[85][langNum]+")";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
     if (numVar > 1) { // 초기화
@@ -2199,7 +2200,7 @@ d3.select("#testM12").on("click", function() {
     graphNum = 28;
     buttonColorChange();
     document.getElementById("testM12").style.backgroundColor = buttonColorH;
-    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량 
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
     if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
@@ -2555,8 +2556,8 @@ d3.select("#anova").on("click", function() {
   graphNum = 32;
   buttonColorChange();
   document.getElementById("anova").style.backgroundColor = buttonColorH;
-  document.getElementById("analysisVar").innerHTML = svgStr[26][langNum];
-  document.getElementById("groupVar").innerHTML    = svgStr[18][langNum];
+  document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
   document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[81][langNum]+")";
   if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
   chart.selectAll("*").remove();
@@ -3034,6 +3035,7 @@ d3.select("#vcancel").on("click", function() {
          tdvalueLabel[j][m] = rvalueLabel[k][m];
       }
     }
+    updateVarList();
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
     $("#sub14").dialog("close");
 })
