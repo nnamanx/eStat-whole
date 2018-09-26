@@ -313,6 +313,8 @@ document.getElementById("loadFileName").value = "Untitled.csv";
 container = document.getElementById('datasheet');
 datasheet = new Handsontable(container, {
     data: data,
+    autoWrapRow: false,
+    autoWrapCol: false,
     minRows: rowMax,
     minCols: colMax,
     minSpareRows: 1,
@@ -345,6 +347,8 @@ d3.select("#new").on("click", function() {
         minRows: rowMax,
         minCols: colMax,
         minSpareRows: 1,
+	autoWrapRow: false,
+	autoWrapCol: false,
         colWidths: colWidth,
         colHeaders: rvarName,
         className: "htRight",
@@ -687,6 +691,8 @@ function updateDatasheetWithArrayOfRows(data, colHeaders) {
         minRows: rowMax, // 파일 읽을때는 데이터 개수만큼만 되어야
         minCols: colMax,
         minSpareRows: 0,
+	autoWrapRow: false,
+	autoWrapCol: false,
         colWidths: colWidth,
         colHeaders: colHeaders.concat(defaultColHeaders.slice(colHeaders.length)),
         rowHeaders: true,
@@ -768,7 +774,9 @@ function updateDatasheetWith(dataobj) {
         data: dataobj.data,
         minRows: rowMax,
         minCols: colMax,
-        minSpareRows: 1,
+        minSpareRows: 1,	
+	autoWrapRow: false,
+	autoWrapCol: false,
         colWidths: colWidth,
         colHeaders: dataobj.colHeaders.concat(defaultColHeaders.slice(dataobj.colHeaders.length)),
         rowHeaders: true,
