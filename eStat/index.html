@@ -231,42 +231,46 @@
             <div class="form-group">
 		<label for='loadFileName' data-msgid="Filename">파일</label>
 		<input type="text" value="" id="loadFileName">
+                <button type="button" id='variableBtn' style='height: 20px; padding: 0 10px; margin-right: 2px;'>
+                   <span data-msgid='Edit Variables'>변량편집</span>
+                </button>
             </div>
+
             <div id="top1" class="option-group"> 
-              <div style="font-size:12px">  
-                <table cellspacing="0" cellpading="0">
-                  <tr>
-                    <td width=65 align=center><span id="analysisVar" data-msgid="AnalysisVar">Analysis Var</span>  </td>
-                    <td width=100 align=center>
-                      <select id="analysisSelectMain" size="1" style="font-size:12px">
+		<div>
+		  <span id="analysisVar" data-msgid="AnalysisVar" style="float: left; width: 50%; padding: 0 0 0 5px;">Analysis Var</span> 
+		  <span style="float: left; width: 45%; padding: 0 0 0 5px;">
+		    <span data-msgid="by" >by</span>
+                    <span id="groupVar" data-msgid="GroupVar">Group Var</span>
+		  </span>
+		</div>
+		<div>
+                  &nbsp;
+                  <select id="analysisSelectMain" size="1" style="width:45%; margin: 0 0 0 5px;">
                       <option value="0"> --- </option>
-                      </select>
-                    </td>
-                    <td width=75 align=center><span data-msgid="by" >by</span> <span id="groupVar" data-msgid="GroupVar" >Group Var</span> </td>
-                    <td width=100 align=center>
-                      <select id="groupSelectMain" size="1" style="font-size:12px"> 
-                        <option value="0"> --- </option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr >
-                    <td width=40 align=center colspan="2"> <span id="dataType" data-msgid="DataType" style="color:green ; font-size:9px"></span> </td>
-                    <td width=30 align=center colspan="2"> <span id="groupVarMsg" data-msgid="MultiSelect" style="color:red ; font-size:9px"></span> </td>
-                  </tr>
-                </table>
-              </div>
+                  </select>
+                  &nbsp;
+                  <select id="groupSelectMain" size="1" style="width:45%;"> 
+                      <option value="0"> --- </option>
+                  </select>
+                </div>
+                <div>
+                  &nbsp; 
+                  <span id="dataType" data-msgid="DataType" style="color:green ; font-size:9px; width:50%;"></span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span id="groupVarMsg" data-msgid="MultiSelect" style="color:red ; font-size:9px; width:50%;"></span>
+                </div>
             </div>
+           
             <div class="form-group">
-                <label for='selectedVars' data-msgid="Selected Variables">선택변량</label>
+                &nbsp;<span data-msgid="Selected Variables">선택변량</span>
 		<input type="text" value="" id="selectedVars">
 		<button type="button" id="debugBtn" style='height: 20px; padding: 0 10px; margin-right: 2px;'>
 		  <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
 		</button>
-		<button type="button" id='variableBtn' style='height: 20px; padding: 0 10px; margin-right: 2px;'>
-		  <span data-msgid='Edit Variables'>변량편집</span>
-		</button>
-            </div>
-          </div>
+             </div>
+           </div>
+  
           <div id="datasheet"> </div>
         </div>
 
@@ -406,12 +410,6 @@
               <select id="sizeSelect" size="1">
                 <option value="0" selected> --- </option>
               </select>
-<!---
-	      &nbsp;&nbsp;
-	      <button type="button" id="scatterRedraw" >
-		<span data-msgid="Execute">실행</span>
-	      </button>&nbsp
---->
 	    </div>
 
 	    <div id="sub7" class="option-group"> <!--- 히스토그램 --->

@@ -34,13 +34,13 @@ var screenTablePixelHeight = 10000;
 var exampleDataNo = 10
 var menuColor = new Array(exampleDataNo + 1);
 var i, j, k, m, temp, tempi;
-var freqMin, freqMax, numVar, numVarY, numVarX, rawData, checkNumeric, checkVarSelect;
+var freqMin, freqMax, numVar, numVarY, numVarX, rawData, checkNumeric;
 var svgWidth, svgHeight, margin, graphWidth, graphHeight;
 var svgWidth2, svgHeight2;
 var title, graphNum;
 var str, gstr, xstr, ystr, varListStr;
 var langNum = 0;
-var rowMax = 1000; // 시트행 최대
+var rowMax = 9999; // 시트행 최대
 var colMax = 20; // 시트열 최대
 var buffer = 20; // 우측 y선과 범례와  간격
 var bothBarGap = 35; // 양쪽막대의 갭
@@ -63,33 +63,34 @@ var rvar = new Array(colMax); // 2차원 배열로 아래에 정의
 var rvalue = new Array(colMax); // 2차원 배열로 아래에 정의
 var rvalueLabel = new Array(colMax); // 2차원 배열로 아래에 정의
 // 분석-그룹변수 변수리스트
-var analysisSelect;                                           // top0
-var analysisSelectMain, groupSelectMain, option;              // top1
-var selectScatterY, selectScatterX, groupSelect, sizeSelect;  // top2
-var analysisANOVA, factor1Select, factor2Select;              // top3
-var selectRegressionY, selectRegressionXContainer;            // top4
-var analysisMu12, groupMu12;                                  // top5
-var xaxisLine, analysisLineContainer;                         // top6
-var analysisSigma12, groupSigma12;                            // top7
-var analysisBaseStat, group1Select, group2Select;             // top8
-
+var analysisSelectMain, groupSelectMain, option;    // top1
+var groupSelect, sizeSelect;                        // scatter plot
 // selected variable for analysis
 var selected, selected_point, numOfSelectedColumns, selectedVars;
-var tdobs = new Array(colMax);
-var tdvarNumber = new Array(colMax);
-var tdvarName = new Array(colMax);
-var tdvalueNum = new Array(colMax);
-var tdvar = new Array(colMax); // 2차원 배열로 아래에 정의
-var tdvalue = new Array(colMax); // 2차원 배열로 아래에 정의
+var tdobs   = new Array(colMax);
+var missing = new Array(colMax); // missing data
+var mdobs   = new Array(colMax); // missing data 제거후 obs
+var tdvarNumber  = new Array(colMax);
+var tdvarName    = new Array(colMax);
+var tdvalueNum   = new Array(colMax);
+var tdvar        = new Array(colMax); // 2차원 배열로 아래에 정의
+var tdvalue      = new Array(colMax); // 2차원 배열로 아래에 정의
 var tdvalueLabel = new Array(colMax); // 2차원 배열로 아래에 정의
+var mdvalueNum   = new Array(colMax);
+var mdvar        = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+var mdvalue      = new Array(colMax); // 2차원 배열로 아래에 정의
+var mdvalueLabel = new Array(colMax); // 2차원 배열로 아래에 정의
 for (j = 0; j < colMax; j++) {
     rvarName[j] = "V" + (j + 1).toString();
-    rvar[j] = new Array(rowMax);
-    rvalue[j] = new Array(rowMax);
-    rvalueLabel[j] = new Array(rowMax);
-    tdvar[j] = new Array(rowMax);
-    tdvalue[j] = new Array(rowMax);
+    rvar[j]         = new Array(rowMax);
+    rvalue[j]       = new Array(rowMax);
+    rvalueLabel[j]  = new Array(rowMax);
+    tdvar[j]        = new Array(rowMax);
+    tdvalue[j]      = new Array(rowMax);
     tdvalueLabel[j] = new Array(rowMax);
+    mdvar[j]        = new Array(rowMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    mdvalue[j]      = new Array(rowMax);
+    mdvalueLabel[j] = new Array(rowMax);
     for (i = 0; i < rowMax; i++) {
         rvalueLabel[j][i] = null;
         tdvalueLabel[j][i] = null;
@@ -131,6 +132,7 @@ var gvalueLabel2 = new Array(rowMax);
 var gvalueFreq2 = new Array(rowMax);
 // 연속형 그래프 변량 정의
 var tobs;
+var mobs; // missing observation
 var tdata = new Array(rowMax);
 var tdataG2 = new Array(rowMax);
 var tstat = new Array(20);
@@ -234,7 +236,7 @@ var SeparateBar, StackBar, RatioBar, SideBar, BothBar;
 var PieChart, DonutGraph, BandGraph, LineGraph, FreqTable;
 var DotGraph, Histogram, BoxGraph, StemLeaf, StemBoth, StatTable, Scatter;
 var THmean1, THmean12, THsigma1, THsigma12, THanova;
-var checkFreq, checkBandFreq, checkMissing, checkData, checkSave;
+var checkFreq, checkBandFreq, checkMissing, checkSave;
 var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkPairedT; // Paired T-test
 var checkRegress;
@@ -242,8 +244,19 @@ var checkMouseSelection = false;
 var checkPastColSelection = false;
 var EditGraph = false;
 var checkVarSame; // 같은 변수 선택했는지 check
-var checkRBD; // Radomized Block Design
+var checkNumVar;
+var checkAlphabetic;
+var checkRBD, checkDataRBD; // Radomized Block Design
 var checkScatterMatrix;
+
+// 그래프 초기화
+graphNum = 1;
+document.getElementById("separate1").click();
+/*
+variableSelectClear();
+document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
+*/
 // 학습수준 컨트롤
 var levelNum = localStorage.getItem("level");
 if (levelNum == null) levelNum = "4";
@@ -285,13 +298,6 @@ if (levelNum == "1") { // 초등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-// 그래프 초기화
-// graphTopInitialize();
-// graphTitle(); // 디폴트 그래프 제목
-graphNum = 1;
-document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
-document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
-// document.getElementById("dataType").innerHTML    = "("+svgStrU[88][langNum]+")";
 
 // =================================================================
 // 시트 컨트롤
@@ -365,8 +371,13 @@ d3.select("#new").on("click", function() {
         tdvalueLabel[j] = [];
         tdvar[j] = [];
     }
+    graphNum = 1;
+    document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
+    document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
+    document.getElementById(strGraph[graphNum]).click();  
     initEventControl(datasheet);
 }) // endof new sheet
+
 /*
  *  Common functions for initializing the handsontable
  *  when the datasheet is updated
@@ -388,14 +399,23 @@ function initEventControl(datasheet) {
         }
         // update raw data & obs
         for (j = 0; j < colMax; j++) {
-            rvar[j] = datasheet.getDataAtCol(j);
-            robs[j] = 0;
+            rvar[j]  = datasheet.getDataAtCol(j);
+            robs[j]  = 0;
+            missing[j] = 0;
             for (i = 0; i < rowMax; i++) {
-                if (rvar[j][i] == null || rvar[j][i] == "") {} else robs[j]++;
+                if (rvar[j][i] != null) {
+                  robs[j]++;
+                  //***** missing
+                  if ( rvar[j][i] == "" ) {
+                    rvar[j][i] = "99999999"; 
+                    missing[j]++;  // missing count
+                  }
+                }
             }
             // 소수점이하 자리수 체크
             rvarDeci[j] = 0;
             for (i = 0; i < robs[j]; i++) {
+                if (rvar[j][i] == null) continue;
                 m = rvar[j][i].indexOf(".");
                 if (m > -1) {
                     k = rvar[j][i].length - (m + 1);
@@ -403,16 +423,54 @@ function initEventControl(datasheet) {
                 }
             } // endof i
         }
-        // 각 변량별 변량값 계산
+        // 각 변량별 최대 관찰값
         numRow = robs[0];
-        numCol = 0;
+        for (j = 1; j < colMax; j++) { // numRow는 각행의 최대
+          if (numRow < robs[j]) numRow = robs[j];
+        }
+        // 한 열의 모든 값이 missing이나 null이면 null 처리
         for (j = 0; j < colMax; j++) {
-            if (robs[j] != 0) {
-                numCol++;
-                for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
-                rvalueNum[j] = sortAscend(robs[j], dataA, dataValue, dvalueFreq);
-                for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
+            k = 0
+            for (i = 0; i < numRow; i++) {
+              if (rvar[j][i] == "99999999" || rvar[j][i] == null) k++;
             }
+            if (numRow == k) {
+              for (i=0; i < numRow; i++) rvar[j][i] = null;
+            }
+        }
+        // Recalculate 행의 수
+        for (j = 0; j < colMax; j++) {
+            robs[j] = 0;
+            for (i = 0; i < numRow; i++) {
+              if (rvar[j][i] != null) robs[j]++;
+            }
+        }
+        // 사각형 열의 수 계산 : 
+        for (j = 0; j < colMax; j++) {
+            if (robs[j] > 0) numCol = j+1;  
+        }
+        for (j = 0; j < numCol; j++) { // empty column check
+            if (robs[j] == 0) {
+                alert("Empty columns is not allowed !!!");
+                return;
+            }
+        }
+        // 최대 행보다 작은 행의 수를 갖는 열의 셀들 missing 처리
+        for (j = 0; j < numCol; j++) {
+          if (robs[j] < numRow) {
+            for (i = 0; i < numRow; i++) 
+              if (rvar[j][i] == null) rvar[j][i] = "99999999";
+          }
+          robs[j] = numRow;
+          missing[j] = 0;
+          for (i = 0; i < numRow; i++) 
+              if (rvar[j][i] == "99999999") missing[j]++;
+        }
+        // 각 변량별 값 계산
+        for (j = 0; j < numCol; j++) {
+            for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
+            rvalueNum[j] = sortAscendAlpha(robs[j], dataA, dataValue, dvalueFreq);
+            for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
         }
         datasheet.render();
         // 선택된 변수 초기화
@@ -422,7 +480,7 @@ function initEventControl(datasheet) {
         updateVarList();
     });
     // 시트 컬럼 및 행 이벤트 컨트롤
-    datasheet.addHook('afterOnCellMouseDown', function(event, coords) {
+    datasheet.addHook('afterOnCellMouseUp', function(event, coords) {
         //	  console.log(coords);
         //	  console.log(coords.row+" "+coords.col);
 
@@ -438,43 +496,51 @@ function initEventControl(datasheet) {
                 k = j + parseInt(selected[0][1]);
                 tdvarNumber[numVar + j] = k + 1;
                 // 그룹과 분석이 같은 변수가 선택되었는지 체크
+                checkVarSame = false;
                 if (numVar > 0) {
-                  for (var i=0; i < numVar; i++) {
+                  for (i=0; i < numVar; i++) {
                     if ( tdvarNumber[i] == (k+1) ) {
                       alert(alertMsg[46][langNum]);  // 같은 변수 선택
-                      return;
+                      checkVarSame = true;
+                      break;
                     }
                   }
                 }
+                if (checkVarSame) break;
+                // 변수수 제한 체크
+                validateNumVar(graphNum, numVar+1);
+                if (checkNumVar == false) break;
                 tdobs[numVar + j] = robs[k];
                 tdvalueNum[numVar + j] = rvalueNum[k];
-                tdvarName[numVar + j] = datasheet.getColHeader(j + selected[0][1]);
+                tdvarName[numVar + j]  = rvarName[k];
                 // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
                 for (m = 0; m < robs[k]; m++) {
                     tdvalue[numVar + j][m] = rvalue[k][m];
                     tdvalueLabel[numVar + j][m] = rvalueLabel[k][m];
+                    tdvar[numVar + j][m] = rvar[k][m];
                 }
-                tdvar[numVar + j] = datasheet.getDataAtCol(j + selected[0][1]);
             }
-            numVar += numOfSelectedColumns;
-            // Select box에 표시
-            if (numVar == 1) {
-                // 분석변량
-                document.getElementById("analysisSelectMain").value = tdvarNumber[0];
-                // 선택변수 리스트
-                varListStr = "V" + tdvarNumber[numVar-1].toString();
-                d3.select("#selectedVars").node().value = varListStr;
+            if (checkVarSame == false && checkNumVar == true) {
+              numVar += numOfSelectedColumns;
+              // Select box에 표시
+              if (numVar == 1) {
+                  // 분석변량
+                  document.getElementById("analysisSelectMain").value = tdvarNumber[0];
+                  // 선택변수 리스트
+                  varListStr = "V" + tdvarNumber[numVar-1].toString();
+                  d3.select("#selectedVars").node().value = varListStr;
+              }
+              else {
+                  // 그룹변량
+                  document.getElementById("groupSelectMain").value = tdvarNumber[numVar-1];
+                  // 선택변수 리스트
+                  if (numVar == 2) varListStr += "  "+svgStrU[84][langNum]+"  ";
+                  varListStr += "V" + tdvarNumber[numVar-1].toString() + ",";
+                  d3.select("#selectedVars").node().value = varListStr;
+              }
+              // Redraw Graph
+              document.getElementById(strGraph[graphNum]).click();  
             }
-            else {
-                // 그룹변량
-                document.getElementById("groupSelectMain").value    = tdvarNumber[numVar-1];
-                // 선택변수 리스트
-                if (numVar == 2) varListStr += "  "+svgStrU[84][langNum]+"  ";
-                varListStr += "V" + tdvarNumber[numVar-1].toString() + ",";
-                d3.select("#selectedVars").node().value = varListStr;
-            }
-            // Redraw Graph
-            document.getElementById(strGraph[graphNum]).click();  
         } 
 	if (checkScatterMatrix == false && coords.col == -1) { // 행번호 클릭		
 	    k = coords.row;			
@@ -551,7 +617,7 @@ function updateGlobalDataVariables() {
         if (robs[j] != 0) {
             numCol++;
             for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
-            rvalueNum[j] = sortAscend(robs[j], dataA, dataValue, dvalueFreq);
+            rvalueNum[j] = sortAscendAlpha(robs[j], dataA, dataValue, dvalueFreq);
             for (k = 0; k < rvalueNum[j]; k++) {
                 rvalue[j][k] = dataValue[k];
                 rvalueLabel[j][k] = null; // 시스템 파일 읽으면 정정 요
@@ -657,6 +723,24 @@ function updateVarList() {
         option.text  = (i+1).toString() + ": "+ rvarName[i];
         option.value = i+1;
         groupSelectMain.options.add(option);
+    }
+    // 산점도 그룹변수 선택리스트
+    groupSelect = document.getElementById("groupSelect");
+    groupSelect.innerHTML = '<option value="0" selected> --- </option>'
+    for (i=0; i<numCol; i++) {
+        option = document.createElement("option");
+        option.text  = (i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        groupSelect.options.add(option);
+    }
+    // 산점도 크기변수 선택리스트
+    sizeSelect = document.getElementById("sizeSelect");
+    sizeSelect.innerHTML = '<option value="0" selected> --- </option>'	
+    for (var i=0; i<numCol; i++) {
+        var option = document.createElement("option");
+        option.text  = (i+1).toString()+": "+rvarName[i];
+        option.value = i+1;
+        sizeSelect.options.add(option);
     }
 }
 
@@ -888,6 +972,7 @@ document.getElementById("analysisSelectMain").onchange = function() {
         tdvalue[numVar][m] = rvalue[k][m];
         tdvalueLabel[numVar][m] = rvalueLabel[k][m];
         tdvar[numVar][m] = rvar[k][m];
+        if (tdvar[numVar][m] == "") tdvar[numVar][m] = "99999999";  // missing
       }
       numVar = 1;
       // 변수선택 표시
@@ -917,49 +1002,32 @@ document.getElementById("groupSelectMain").onchange = function() {
         d3.select("#selectedVars").node().value = varListStr;
         return;
       }
-      tdvarNumber[numVar] = k+1;
-      tdobs[numVar] = robs[k];
-      tdvalueNum[numVar] = rvalueNum[k];
-      tdvarName[numVar] = rvarName[k];
-      // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
-      for (m = 0; m < robs[k]; m++) {
-        tdvalue[numVar][m] = rvalue[k][m];
-        tdvalueLabel[numVar][m] = rvalueLabel[k][m];
-        tdvar[numVar][m] = rvar[k][m];
-      }
-      // 선택변수 리스트
-      if (numVar == 1) varListStr += "  "+svgStrU[84][langNum]+"  ";
-      varListStr += "V" + tdvarNumber[numVar].toString()+",";
-      d3.select("#selectedVars").node().value = varListStr;
-      numVar++;
-      document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
-}
-// 변량 선택 취소
-d3.select("#debugBtn").on("click", function() {
-    variableSelectClear();
-})
-// 변량 선택 초기화 함수
-function variableSelectClear() {
-    document.getElementById("selectedVars").value = "";
-    for (j = 0; j < numVar; j++) {
-        tdvarNumber[j] = null;
-        tdvarName[j] = null;
-        for (k = 0; k < rowMax; k++) {
-            tdvalueLabel[j][k] = null;
-            tdvar[j][k] = null;
+      validateNumVar(graphNum, numVar+1);
+      if (checkNumVar) {
+        tdvarNumber[numVar] = k+1;
+        tdobs[numVar] = robs[k];
+        tdvalueNum[numVar] = rvalueNum[k];
+        tdvarName[numVar] = rvarName[k];
+        // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+        for (m = 0; m < robs[k]; m++) {
+          tdvalue[numVar][m] = rvalue[k][m];
+          tdvalueLabel[numVar][m] = rvalueLabel[k][m];
+          tdvar[numVar][m] = rvar[k][m];
+          if (tdvar[numVar][m] == "") tdvar[numVar][m] = "99999999";  // missing
         }
-    }
-    numVar = 0;
-    graphTopInitialize();
-    graphTitle(); // 그래프제목 초기화
-    // 데이터 Type
-//    document.getElementById("dataType").innerHTML = "";
+        // 선택변수 리스트
+        if (numVar == 1) varListStr += "  "+svgStrU[84][langNum]+"  ";
+        varListStr += "V" + tdvarNumber[numVar].toString()+",";
+        d3.select("#selectedVars").node().value = varListStr;
+        numVar++;
+        document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+      }
 }
 // 산점도 그룹변량 선택 
 document.getElementById("groupSelect").onchange = function() {
     j = parseInt(document.getElementById("groupSelect").value);
-    gvarNumber = j - 1; 
-    wvarNumber = parseInt(document.getElementById("sizeSelect").value) - 1;
+    gvarNumber = j; 
+    wvarNumber = parseInt(document.getElementById("sizeSelect").value);
     k = j - 1;
     if (k < 0) {
       document.getElementById(strGraph[graphNum]).click();  // Redraw Graph 
@@ -971,13 +1039,25 @@ document.getElementById("groupSelect").onchange = function() {
       alert(alertMsg[46][langNum]);  // 같은 변수 선택
       return;
     }
+    // 그룹변수 복사
+    tdvarNumber[2] = gvarNumber;
+    tdobs[2]       = robs[k];
+    tdvalueNum[2]  = rvalueNum[k];
+    tdvarName[2]   = rvarName[k];
+    // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+    for (m = 0; m < robs[k]; m++) {
+        tdvalue[2][m]      = rvalue[k][m];
+        tdvalueLabel[2][m] = rvalueLabel[k][m];
+        tdvar[2][m]        = rvar[k][m];
+        if (tdvar[2][m] == "") tdvar[2][m] = "99999999";  // missing
+    }
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph 
 }
 // 산점도 원크기변량 선택 
 document.getElementById("sizeSelect").onchange = function() {
     j = parseInt(document.getElementById("sizeSelect").value);
-    gvarNumber = parseInt(document.getElementById("groupSelect").value) - 1; 
-    wvarNumber = j - 1;
+    gvarNumber = parseInt(document.getElementById("groupSelect").value); 
+    wvarNumber = j;
     k = j - 1;
     if (k < 0) {
       document.getElementById(strGraph[graphNum]).click();  // Redraw Graph 
@@ -991,9 +1071,26 @@ document.getElementById("sizeSelect").onchange = function() {
         return;
       } // endof if
     } // endof i
+
+    // 사이즈변수 복사
+    tdvarNumber[3] = wvarNumber;
+    tdobs[3]       = robs[k];
+    tdvalueNum[3]  = rvalueNum[k];
+    tdvarName[3]   = rvarName[k];
+    // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
+    for (m = 0; m < robs[k]; m++) {
+        tdvalue[3][m]      = rvalue[k][m];
+        tdvalueLabel[3][m] = rvalueLabel[k][m];
+        tdvar[3][m]        = rvar[k][m];
+        if (tdvar[3][m] == "") tdvar[3][m] = "99999999";  // missing
+    }
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph 
 }
 
+// 변량 선택 취소
+d3.select("#debugBtn").on("click", function() {
+    variableSelectClear();
+})
 // =================================================================
 // 버튼, 라디오버튼, 체크박스 클릭
 // =================================================================
@@ -1059,13 +1156,14 @@ d3.select("#separate1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) { // 데이터에 음수가 있는 경우
        alert(alertMsg[22][langNum]); // 음수
        return;
     }
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     SeparateBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1091,13 +1189,14 @@ d3.select("#separate2V").on("click", function() {
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0 && SeparateBar) {
         alert(alertMsg[22][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     SeparateBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1120,13 +1219,14 @@ d3.select("#separate2H").on("click", function() {
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0 && HorizontalBar) {
         alert(alertMsg[23][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     SeparateBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1190,7 +1290,9 @@ d3.select("#stack2V").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[24][langNum]);
@@ -1200,7 +1302,6 @@ d3.select("#stack2V").on("click", function() {
         alert(alertMsg[25][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     StackBar = true
     VerticalBar = true;
     HorizontalBar = false;
@@ -1215,7 +1316,9 @@ d3.select("#stack2H").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[24][langNum]);
@@ -1225,7 +1328,6 @@ d3.select("#stack2H").on("click", function() {
         alert(alertMsg[25][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     StackBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1240,7 +1342,9 @@ d3.select("#ratio2V").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[26][langNum]);
@@ -1250,7 +1354,6 @@ d3.select("#ratio2V").on("click", function() {
         alert(alertMsg[27][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     RatioBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1265,7 +1368,9 @@ d3.select("#ratio2H").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[26][langNum]);
@@ -1275,7 +1380,6 @@ d3.select("#ratio2H").on("click", function() {
         alert(alertMsg[27][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     RatioBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1290,7 +1394,9 @@ d3.select("#side2V").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[28][langNum]);
@@ -1300,7 +1406,6 @@ d3.select("#side2V").on("click", function() {
         alert(alertMsg[29][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     SideBar = true;
     VerticalBar = true;
     HorizontalBar = false;
@@ -1318,7 +1423,9 @@ d3.select("#side2H").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[28][langNum]);
@@ -1328,7 +1435,6 @@ d3.select("#side2H").on("click", function() {
         alert(alertMsg[29][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     SideBar = true;
     VerticalBar = false;
     HorizontalBar = true;
@@ -1343,7 +1449,9 @@ d3.select("#bothbar2V").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[30][langNum]);
@@ -1354,7 +1462,6 @@ d3.select("#bothbar2V").on("click", function() {
         return;
     };
     if (ngroup == 2) {
-        if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
         BothBar = true;
         VerticalBar = true;
         HorizontalBar = false;
@@ -1370,7 +1477,9 @@ d3.select("#bothbar2H").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[30][langNum]);
@@ -1381,7 +1490,6 @@ d3.select("#bothbar2H").on("click", function() {
         return;
     };
     if (ngroup == 2) {
-        if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
         BothBar = true;
         VerticalBar = false;
         HorizontalBar = true;
@@ -1397,13 +1505,14 @@ d3.select("#pie1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[32][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     PieChart = true;
     chart.selectAll("*").remove();
     drawPieChart(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMax, dataSet);
@@ -1416,13 +1525,14 @@ d3.select("#donut2").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[33][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("mean").checked = false;
     DonutGraph = true;
     chart.selectAll("*").remove();
@@ -1437,13 +1547,14 @@ d3.select("#band1").on("click", function() {
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
     document.getElementById("sub3").style.display = "block"; //띠그래프 도수표시
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[34][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("mean").checked = false;
     BandGraph = true;
     chart.selectAll("*").remove();
@@ -1471,9 +1582,11 @@ d3.select("#line1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStrU[82][langNum]; // X변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar < 2) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassifyLine();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     LineGraph = true;
     chart.selectAll("*").remove();
     currentLabel = dvalueLabel;
@@ -1508,19 +1621,20 @@ rad3[2].onclick = function() { // 올림차순
 } 
 // 도수분포표 버튼 클릭
 d3.select("#freqTable").on("click", function() {
-    graphNum = 23;
+    graphNum = 22;
     buttonColorChange();
     document.getElementById("freqTable").style.backgroundColor = buttonColorH;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassify();
     if (freqMin < 0) {
         alert(alertMsg[35][langNum]);
         return;
     };
-    if (checkData == false || checkVarSelect == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("mean").checked = false;
     FreqTable = true;
 //    ngvalue = ngroup;
@@ -1540,9 +1654,11 @@ d3.select("#dot1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     DotGraph = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -1587,9 +1703,11 @@ d3.select("#hist1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     Histogram = true;
     chart.selectAll("*").remove();
 //    enableHist();
@@ -1668,9 +1786,11 @@ d3.select("#box1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     BoxGraph = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -1702,9 +1822,11 @@ d3.select("#stem1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     StemLeaf = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -1719,13 +1841,15 @@ d3.select("#bothstem2").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassifyM();
     if (ngroup != 2) {
         alert(alertMsg[36][langNum]);
         return;
     }
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     StemBoth = true;
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -1734,17 +1858,19 @@ d3.select("#bothstem2").on("click", function() {
 })
 // 기초통계량 버튼 클릭 -------------------------------------------------------------------------------
 d3.select("#statTable").on("click", function() {
-    graphNum = 22;
+    graphNum = 23;
     buttonColorChange();
     document.getElementById("statTable").style.backgroundColor = buttonColorH;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[81][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     if (numVar <= 2) {
       dataClassifyM();
       if (rawData == false) return;
-      if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+      if (checkNumeric == false) return;
       StatTable = true;
       TotalStat(dobs, dvar, tstat);
       GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
@@ -1752,7 +1878,7 @@ d3.select("#statTable").on("click", function() {
     }
     else if (numVar == 3) {
       dataClassifyANOVA2();
-      if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+      if (checkNumeric == false) return;
       TotalStat(dobs, dvar, tstat);
       GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
       stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2, gvalueLabel2);
@@ -1767,11 +1893,14 @@ d3.select("#scatter1").on("click", function() {
     document.getElementById("analysisVar").innerHTML = svgStrU[83][langNum]; // Y변량
     document.getElementById("groupVar").innerHTML    = svgStrU[82][langNum]; // X변량
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar < 2) return;  // 데이터가 없는 경우
-    gvarNumber = parseInt(document.getElementById("groupSelect").value) - 1; 
-    wvarNumber = parseInt(document.getElementById("sizeSelect").value) - 1;
+    // check numVar   
+    if (numVar < 2) return;
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
+    gvarNumber = parseInt(document.getElementById("groupSelect").value); 
+    wvarNumber = parseInt(document.getElementById("sizeSelect").value);
     dataClassifyS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     document.getElementById("regress").checked = false;
     document.getElementById("regress").disabled = false;
     tobs = xobs;
@@ -1784,6 +1913,7 @@ d3.select("#scatter1").on("click", function() {
     if (ngroup > 10) document.getElementById("regress").disabled = true;
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+      if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -1814,7 +1944,7 @@ d3.select("#scatterRedraw").on("click", function() {
     gvarNumber = parseInt(document.getElementById("groupSelect").value) - 1; 
     wvarNumber = parseInt(document.getElementById("sizeSelect").value) - 1;
     dataClassifyS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     chart.selectAll("*").remove();
     document.getElementById("regress").checked = false;
     document.getElementById("regress").disabled = false;
@@ -1826,6 +1956,7 @@ d3.select("#scatterRedraw").on("click", function() {
     if (ngroup > 10) document.getElementById("regress").disabled = true;
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -1846,7 +1977,7 @@ d3.select("#gis").on("click", function() {
     buttonColorChange();
     document.getElementById("gis").style.backgroundColor = buttonColorH;
     dataClassifyGIS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     chart.selectAll("*").remove();
     drawGIS(gobs,gdata,xdata,ydata,wdata)    
     // 점과 시트의 연결
@@ -1875,20 +2006,18 @@ d3.select("#gis").on("click", function() {
 
 // 모평균 가설검정
 d3.select("#testM1").on("click", function() {
-    graphNum = 24;
+    graphNum = 25;
     buttonColorChange();
     document.getElementById("testM1").style.backgroundColor = buttonColorH;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[85][langNum]+")";
- 
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
-    if (numVar > 1) { // 초기화
-      alert(alertMsg[37][langNum]);
-      return; 
-    }
+    document.getElementById("groupSelectMain").disabled = true;
+    // check numVar > 1   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     chart.selectAll("*").remove();
     THmean1 = true;
     document.myForm82.type3.value = 1;
@@ -2050,19 +2179,18 @@ d3.select("#HistNormalQQ").on("click", function() {
 
 // 모분산 가설검정
 d3.select("#testS1").on("click", function() {
-    graphNum = 26;
+    graphNum = 27;
     buttonColorChange();
     document.getElementById("testS1").style.backgroundColor = buttonColorH;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량 
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹 // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[85][langNum]+")";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
-    if (numVar > 1) { // 초기화
-      alert(alertMsg[37][langNum]);
-      return; 
-    }
+    document.getElementById("groupSelectMain").disabled = true;
+    // check numVar > 1   
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     chart.selectAll("*").remove();
     THsigma1 = true;
     document.myForm92.type3.value = 1;
@@ -2197,15 +2325,19 @@ d3.select("#HistNormalQQS").on("click", function() {
 
 // 두 모평균 가설검정
 d3.select("#testM12").on("click", function() {
-    graphNum = 28;
+    graphNum = 29;
     buttonColorChange();
     document.getElementById("testM12").style.backgroundColor = buttonColorH;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량 
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+    // check numVar <= 1 && numVar > 2    
+    if (numVar <= 1) return;
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
+
     dataClassifyM12();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     chart.selectAll("*").remove();
     THmean12 = true;
     document.myForm102.type3.value = 1;
@@ -2213,13 +2345,6 @@ d3.select("#testM12").on("click", function() {
     if (checkPairedT == false) {
       TotalStat(dobs, dvar, tstat);
       GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-/*
-      drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-      gxmin = tstat[11];
-      gxmax = tstat[12];
-      showDotMean(ngroup, nobs, avg, std, tstat);
-      showDotStd(ngroup, nobs, avg, std, tstat);
-*/
       if (dobs <= 200) {
         drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
         showDotMean(ngroup, nobs, avg, std, tstat);
@@ -2435,15 +2560,18 @@ d3.select("#HistNormalMu12").on("click", function() {
 })
 // 두 모분산 가설검정
 d3.select("#testS12").on("click", function() {
-    graphNum = 30;
+    graphNum = 31;
     buttonColorChange();
     document.getElementById("testS12").style.backgroundColor = buttonColorH;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
-    if (robs[0] == null || numVar < 2) return;  // 데이터가 없는 경우
+    // check numVar <= 1 && numVar > 2    
+    if (numVar <= 1) return;
+    validateNumVar(graphNum, numVar);
+    if (checkNumVar == false) return;  
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     chart.selectAll("*").remove();
     THsigma12 = true;
     document.myForm112.type3.value = 1;
@@ -2553,19 +2681,22 @@ d3.select("#HistNormalSigma12").on("click", function() {
 })
 // 분산분석
 d3.select("#anova").on("click", function() {
-  graphNum = 32;
+  graphNum = 33;
   buttonColorChange();
   document.getElementById("anova").style.backgroundColor = buttonColorH;
   document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
   document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
   document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[81][langNum]+")";
-  if (robs[0] == null || numVar == 0) return;  // 데이터가 없는 경우
+  // check numVar <= 1 && numVar > 3    
+  if (numVar <= 1) return;
+  validateNumVar(graphNum, numVar);
+  if (checkNumVar == false) return;  
   chart.selectAll("*").remove();
   document.myForm122.type3.value = 1;
   confidence = 0.95;
   if (numVar == 2) { // 1원 분산분석
     dataClassifyM();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     if (ngroup > 9) { 
        alert(alertMsg[5][langNum]);
        return;
@@ -2584,7 +2715,11 @@ d3.select("#anova").on("click", function() {
   }
   else { // 2원 분산분석
     dataClassifyANOVA2();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
+    if (checkDataRBD == false) {
+      variableSelectClear();
+      return;
+    }
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     chart.selectAll("*").remove();
@@ -2678,19 +2813,20 @@ d3.select("#anova2QQ").on("click", function() {
 })
 // 회귀분석 버튼 클릭 -------------------------------------------------------------------------------
 d3.select("#regression").on("click", function() {
-  graphNum = 34;
+  graphNum = 35;
   buttonColorChange();
   document.getElementById("regression").style.backgroundColor = buttonColorH;
   document.getElementById("analysisVar").innerHTML = svgStrU[83][langNum]; // Y변량
   document.getElementById("groupVar").innerHTML    = svgStrU[82][langNum]; // X변량
   document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
-  if (robs[0] == null || numVar < 2) return;  // 데이터가 없는 경우
+  // check numVar <= 1 && numVar > 2    
+  if (numVar <= 1) return;
   document.getElementById("sub16").style.display = "block"; // 회귀선 옵션 표시
   if (numVar == 2) { // 단순선형회귀
-    gvarNumber = -1;
-    wvarNumber = -1;
+    gvarNumber = 0;
+    wvarNumber = 0;
     dataClassifyS();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
+    if (checkNumeric == false) return;
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = false;
     tobs = xobs;
@@ -2698,11 +2834,11 @@ d3.select("#regression").on("click", function() {
     ngroup = DotValueFreq(tobs, dataA, gdataValue, gvalueFreq)
     bivarStatByGroup(ngroup,tobs,xdata,ydata,gdata,nobs,xavg,yavg,xstd,ystd,alphaR,betaR,corr,rsquare,sxx,syy,sxy,ssr,sse,stderr);
     chart.selectAll("*").remove();
-//    graphNum = 20;
     drawScatter(ngroup, gvalueLabel, tobs, xdata, ydata, gdata, scatterS);
     showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS);
-    // 점과 시트의 연결
+    // missing이 없을때 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -2720,16 +2856,16 @@ d3.select("#regression").on("click", function() {
   } 
   else { // 다중선형회귀
     dataClassifyRegression();
-    if (checkData == false || checkVarSelect == false || checkNumeric == false || checkMissing == true || checkVarSame == true) return;
     document.getElementById("regressBand").checked = false;
     document.getElementById("regressBand").disabled = true;
     document.getElementById("regression").style.backgroundColor = buttonColorH;
     chart.selectAll("*").remove();
-    tobs = tdobs[0];
-    drawScatterMatrix(tdvarName,tdobs,tdvar);
+    tobs = mdobs[0];
+    drawScatterMatrix(tdvarName,mdobs,mdvar);
     checkScatterMatrix = true;
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -2745,8 +2881,8 @@ d3.select("#regression").on("click", function() {
           .style("stroke-width", 5) 
     })
   }
-  statRegression(numVar, tdobs, tdvar);
-  statMultivariate(numVar, tdobs, tdvar);
+  statRegression(numVar, mdobs, mdvar);
+  statMultivariate(numVar, mdobs, mdvar);
 })
 
 // 회귀신뢰대 그리기
@@ -2765,6 +2901,7 @@ d3.select("#ScatterRegression").on("click", function() {
     showRegression(ngroup, alphaR, betaR, corr, rsquare, scatterS);
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -2788,6 +2925,7 @@ d3.select("#ScatterRegression").on("click", function() {
     checkScatterMatrix = true;
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -2825,6 +2963,7 @@ d3.select("#regressResidual").on("click", function() {
     regressionResidual(tobs,yhat,stdResidual,title);
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -2850,6 +2989,7 @@ d3.select("#regressResidualLeverage").on("click", function() {
     regressionResidual(tobs,Hii,stdResidual,title);
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -2873,6 +3013,7 @@ d3.select("#regressCook").on("click", function() {
     regressionCook(tobs,Cook);
     // 점과 시트의 연결
     d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -2954,43 +3095,29 @@ $(".dialog").dialog({
 });
 // 시트 변량편집 버튼 : V1 (jj=0) 만 해당
 d3.select("#variableBtn").on("click", function() {
-//    variableSelectClear();
     jj = 0;
     document.getElementById("varlist").value = 1;
-//    buttonColorChange();
     $("#sub14").dialog("open");
     selectVarInit();
 })
 // 편집창 varlist에 이벤트 발생시 update 처리 함수 --------------------------
 $("#varlist").change(selectVarUpdate);
 function selectVarUpdate() {
-    // 변량명을 rvarName에 입력
-    rvarName[jj] = d3.select("#vname").node().value;
     // 변량값명을 rvaluelabel에 입력  : rvalueNum[jj]가 증가할 수도 있음
     if (rvalueNum[jj] <= maxNumEdit ) { 
-      rvalueNum[jj] = 0;
-      for (k = 0; k < maxNumEdit; k++) {
-        str1 = "#cell" + (k + 1).toString() + (1).toString();
+      for (k = 0; k < rvalueNum[jj]; k++) {
         str2 = "#cell" + (k + 1).toString() + (2).toString();
-        temp = d3.select(str1).node().value;
-        if (temp == "") {
-            break;
-        } else {
-            rvalueNum[jj]++;
-            rvalue[jj][k] = temp;
-            rvalueLabel[jj][k] = d3.select(str2).node().value;
-        }
+        rvalueLabel[jj][k] = d3.select(str2).node().value;
       }
     }
     else { 
       for (k = 0; k < maxNumEdit; k++) {
-        str1 = "#cell" + (k + 1).toString() + (1).toString();
         str2 = "#cell" + (k + 1).toString() + (2).toString();
-        temp = d3.select(str1).node().value;
-        rvalue[jj][k] = temp;
         rvalueLabel[jj][k] = d3.select(str2).node().value;
       }
     }
+    // 변량명을 rvarName에 입력
+    rvarName[jj] = d3.select("#vname").node().value;
     jj = parseInt(document.getElementById("varlist").value) - 1;
     selectVarInit();
 } // endof selectVarUpdate()  ---------------------------------------------
@@ -3002,6 +3129,11 @@ function selectVarInit() {
     for (k = 0; k < maxNumEdit; k++) {
         str1 = "#cell" + (k + 1).toString() + (1).toString();
         str2 = "#cell" + (k + 1).toString() + (2).toString();
+        if (rvalue[jj][k] == "99999999") { // missing
+            d3.select(str1).node().value = null;           
+            d3.select(str2).node().value = null;           
+            continue; 
+        }
         if (k < rvalueNum[jj]) {
             d3.select(str1).node().value = rvalue[jj][k];
             d3.select(str2).node().value = rvalueLabel[jj][k];

@@ -325,7 +325,7 @@ $.message.ko = {
     "SummaryData": "요약자료",
     "RawData": "원시자료",
     "MultiSelect": "",
-    "DataType": "(변량명 클릭으로 변량선택 가능)",
+    "DataType": "(시트의 변량명 클릭으로 선택 가능)",
     "by": "by",
 };
 // Korean
@@ -336,7 +336,7 @@ appStr[4][0] = "../ExLearning/index.html";
 appStr[5][0] = "index_en.html";
 appStr[6][0] = "../ExLecture/index.html";
 alertMsg[1][0] = "데이터가 없습니다!";
-alertMsg[2][0] = "시트에서 분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
+alertMsg[2][0] = "분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
 alertMsg[3][0] = "선택된 열에 결측치가 있습니다.";
 alertMsg[4][0] = "각 열의 자료수가 다르거나 결측치가 있으면 처리를 할 수 없습니다.";
 alertMsg[5][0] = "그룹의 수가 너무 많습니다. ";
@@ -351,7 +351,7 @@ alertMsg[13][0] = "";
 alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합치 않습니다";
 alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[17][0] = "산점도는 Y축변량과 X축변량을 선택하여야 합니다.";
-alertMsg[18][0] = "세 개이상 선택된 변량에 대해서는 산점도를 그릴 수 없습니다.";
+alertMsg[18][0] = "세 개 이상 선택된 변량에 대해서는 처리를 할 수 없습니다.";
 alertMsg[19][0] = "데이터에 문자가 있어 처리할수 없습니다";
 alertMsg[20][0] = "데이터에 문자가 있어 회귀분석을 처리할수 없습니다";
 alertMsg[21][0] = "자료에 결측치가 있으면 저장할 수 없습니다.";
@@ -485,7 +485,7 @@ svgStr[107][0]= "상관계수";
 svgStr[108][0]= "상관계수행렬";
 svgStr[109][0]= "인자1 - 인자2 평균 그래프";
 svgStr[110][0]= "지렛값(Leverage)";
-svgStr[111][0]= "지리정보그래프";
+svgStr[111][0]= "기초통계량";
 svgStr[112][0]= "범위";
 svgStr[113][0]= "평균-표준편차 그래프";
 svgStr[114][0]= "모분산";
@@ -570,16 +570,16 @@ svgStrU[76][0] = "표본평균차";
 svgStrU[77][0] = "표본분산비";
 svgStrU[78][0] = "분산가정";
 svgStrU[79][0] = "요약자료";
-svgStrU[80][0] = "여러 변량 선택";
-svgStrU[81][0] = "두 그룹까지 선택";
+svgStrU[80][0] = "여러 변량 선택 가능";
+svgStrU[81][0] = "두 그룹까지 선택 가능";
 svgStrU[82][0] = "X변량";
 svgStrU[83][0] = "Y변량";
 svgStrU[84][0] = "by";
-svgStrU[85][0] = "그룹 없음";
-svgStrU[86][0] = "선택된 자료는";
-svgStrU[87][0] = "원시자료";
-svgStrU[88][0] = "변량명 클릭으로 변량선택 가능";
-svgStrU[89][0] = "";
+svgStrU[85][0] = "그룹 선택 없음";
+svgStrU[86][0] = "선택된 자료는 ";
+svgStrU[87][0] = "원시자료 ";
+svgStrU[88][0] = "시트의 변량명 클릭으로 선택 가능";
+svgStrU[89][0] = "결측수";
 
 // English
 $.message.en = {
@@ -869,7 +869,7 @@ alertMsg[13][1] = "";
 alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
 alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
 alertMsg[17][1] = "Scatter plot requires Y variable and X variable.";
-alertMsg[18][1] = "More than three variables are not allowed for scatter plot.";
+alertMsg[18][1] = "More than three variables are not allowed.";
 alertMsg[19][1] = "If there is a character on data, analyis cannot be done.";
 alertMsg[20][1] = "If there is a character on data, regression analysis cannot be done.";
 alertMsg[21][1] = "If there is a missing data, save is not allowed.";
@@ -1097,7 +1097,7 @@ svgStrU[85][1] = "No Group Variable";
 svgStrU[86][1] = "Selected data: ";
 svgStrU[87][1] = "Raw Data";
 svgStrU[88][1] = "Select variables by click var name";
-svgStrU[89][1] = "";
+svgStrU[89][1] = "Missing Observations";
 
 // Japanese
 $.message.ja = {
@@ -1388,7 +1388,7 @@ alertMsg[13][2] = "";
 alertMsg[14][2] = "要約データの形式は連続型グラフおよび仮説検定に適用できません";
 alertMsg[16][2] = "仮説検定が可能なのは，グループが2つの場合のみです.";
 alertMsg[17][2] = "散布図を作成するためにはx軸変数とy軸変数が必要です.";
-alertMsg[18][2] = "3つ以上の変数については散布図を描くことができません.";
+alertMsg[18][2] = "3つ以上の変数は許可されません.";
 alertMsg[19][2] = "データに文字がある場合、分析はできません";
 alertMsg[20][2] = "データの中に文字が入っているため回帰分析ません";
 alertMsg[21][2] = "データに欠損値があると保存できません.";
@@ -1617,7 +1617,7 @@ svgStrU[85][2] = "グループ変数なし";
 svgStrU[86][2] = "選択したデータ: ";
 svgStrU[87][2] = "生データ";
 svgStrU[88][2] = "変数名をクリックして変数を選択";
-svgStrU[89][2] = "";
+svgStrU[89][2] = "缺測數";
 
 // Chinese
 $.message.zhTW = {
@@ -1903,7 +1903,7 @@ alertMsg[13][3] = "";
 alertMsg[14][3] = "連續型圖形及假設檢定無法進行摘要資料。";
 alertMsg[16][3] = "此假設檢定僅限定於兩群母體。";
 alertMsg[17][3] = "繪製散佈圖至少需要橫軸變數及縱軸變數。";
-alertMsg[18][3] = "繪製散佈圖不得超過3個變數。";
+alertMsg[18][3] = "不允許使用三個以上的變量。";
 alertMsg[19][3] = "如果數據中存在字符，則無法進行分析。";
 alertMsg[20][3] = "變數包含文字，則回帰分析無法繪製。";
 alertMsg[21][3] = "若資料有缺失值，則無法儲存。";
@@ -2132,7 +2132,7 @@ svgStrU[85][3] = "沒有組變量";
 svgStrU[86][3] = "選定的數據: ";
 svgStrU[87][3] = "原始數據";
 svgStrU[88][3] = "通過單擊變量名稱選擇變量";
-svgStrU[89][3] = "";
+svgStrU[89][3] = "缺測數";
 
 // French
 $.message.fr = {
@@ -2419,7 +2419,7 @@ alertMsg[13][4] = "";
 alertMsg[14][4] = "Les résumés ne sont pas acceptés pour les graphiques continus et les tests.";
 alertMsg[16][4] = "Pour ce test , il faut uniquement deux groupes.";
 alertMsg[17][4] = "Un diagramme de dispersion nécessite au moins une variable x et une variable y.";
-alertMsg[18][4] = "Plus de trois variables ne sont pas autorisée pour les diagrammes de dispersion.";
+alertMsg[18][4] = "Plus de trois variables ne sont pas autorisées.";
 alertMsg[19][4] = "S'il y a un caractère sur les données, l'analyse ne peut pas être faite.";
 alertMsg[20][4] = "Si X/Y contient une valeur non numérique, le regression ne peut pas être tracé.";
 alertMsg[21][4] = "La sauvegarde n'est pas autorisée s'il y a une donnée manquante.";
@@ -2648,7 +2648,7 @@ svgStrU[85][4] = "Pas de variable de groupe";
 svgStrU[86][4] = "Données sélectionnées: ";
 svgStrU[87][4] = "Données brutes";
 svgStrU[88][4] = "Sélectionnez variable par clic nom de variable";
-svgStrU[89][4] = "";
+svgStrU[89][4] = "Valeurs manquantes";
 
 // German
 $.message.de = {
@@ -2932,7 +2932,7 @@ alertMsg[13][5] = "";
 alertMsg[14][5] = "Im Falle zusammengefasster Daten sind weder Dauerdiagramme noch Hypothesen Testen moeglich.";
 alertMsg[16][5] = "Nur zwei Gruppen soind für diesen Hypothesentest zugelassen.";
 alertMsg[17][5] = "Streudiagramm erfordert mindestens Variablen x und y.";
-alertMsg[18][5] = "mehr als drei Variablen sind nicht zugelassen für ein Streudiagramm.";
+alertMsg[18][5] = "Mehr als drei Variablen sind nicht erlaubt.";
 alertMsg[19][5] = "Wenn Daten ein Zeichen enthalten, kann keine Analyse durchgeführt werden. ";
 alertMsg[20][5] = "Falls die Variable X/Y ein charakter, kann kein Regression gezeichnet werden. ";
 alertMsg[21][5] = "Bei fehlenden Daten kann nicht gespeichert werden.";
@@ -3161,7 +3161,7 @@ svgStrU[85][5] = "Keine Gruppenvariable";
 svgStrU[86][5] = "Ausgewählte Daten: ";
 svgStrU[87][5] = "Rohdaten";
 svgStrU[88][5] = "Wählen Sie die Variable anhand des Variablennamens aus";
-svgStrU[89][5] = "";
+svgStrU[89][5] = "Fehlende Werte";
 
 // Spanish
 $.message.es = {
@@ -3450,7 +3450,7 @@ alertMsg[16][6] = "Solo dos grupos permitidos";
 alertMsg[17][6] = "El diagrama de dispersión requiere al menos la variable x y la variable y";
 alertMsg[18][6] = "No se permiten más de tres variables en el diagrama de dispersión";
 alertMsg[19][6] = "Si hay un personaje en los datos, el análisis no se puede hacer";
-alertMsg[20][6] = "Si hay un carácter en la variable X/Y el gráfico de regression no se puede dibujar";
+alertMsg[20][6] = "No se permiten más de tres variables";
 alertMsg[21][6] = "Si hay datos no observados grabar no está permitido";
 alertMsg[22][6] = "Si hay un número negativo, no se puede dibujar un Diagrama de barras";
 alertMsg[25][6] = "Si hay un solo grupo el diagrama de barras apilado no está permitido";
@@ -3677,7 +3677,7 @@ svgStrU[85][6] = "Sin grupo variable";
 svgStrU[86][6] = "Datos seleccionados: ";
 svgStrU[87][6] = "Datos brutos";
 svgStrU[88][6] = "Seleccione la variable haciendo clic en el nombre de la variable";
-svgStrU[89][6] = "";
+svgStrU[89][6] = "Valores faltantes";
 
 // Vietnamese
 $.message.vi = {
@@ -3964,7 +3964,7 @@ alertMsg[13][7] = "";
 alertMsg[14][7] = "Bảng tóm tắt không thể tạo cho đồ thị liên tục và kiểm định giả thuyết";
 alertMsg[16][7] = "Kiểm định này chỉ cho phép 2 nhóm";
 alertMsg[17][7] = "Biểu đồ phân tán cần ít nhất biến x và biến y";
-alertMsg[18][7] = "Biểu đồ phân tán chỉ cho ít hơn 3 biến";
+alertMsg[18][7] = "Không cho phép nhiều hơn ba biến";
 alertMsg[19][7] = "Nếu có một nhân vật trên dữ liệu, không thể thực hiện phân tích";
 alertMsg[20][7] = "Không thể vẽ biều đồ phân tán nếu biến X/Y chứa chuỗi";
 alertMsg[21][7] = "Nếu dữ liệu bị thiếu, không thể lưu";
@@ -4193,7 +4193,7 @@ svgStrU[85][7] = "Không có biến nhóm";
 svgStrU[86][7] = "Dữ liệu đã chọn: ";
 svgStrU[87][7] = "Dữ liệu thô";
 svgStrU[88][7] = "Chọn biến theo tên biến lần nhấp";
-svgStrU[89][7] = "";
+svgStrU[89][7] = "Giá trị bị mất";
 
 // Indonesian
 $.message.id = {
@@ -4480,7 +4480,7 @@ alertMsg[13][8] = "";
 alertMsg[14][8] = "Data ringkasan tidak dapat digunakan untuk grafik kontinu dan uji hipotesis.";
 alertMsg[16][8] = "Hanya dua grup yang diperbolehkan untuk uji hipotesis ini.";
 alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel x dan variabel y.";
-alertMsg[18][8] = "Lebih dari tiga variabel tidak dapat dilakukan untuk diagram pencar.";
+alertMsg[18][8] = "Lebih dari tiga variabel tidak diizinkan.";
 alertMsg[19][8] = "Jika ada karakter pada data, analisa tidak bisa dilakukan.";
 alertMsg[20][8] = "Jika terdapat karakter di variabel X/Y, diagram pencar tidak dapat digambar.";
 alertMsg[21][8] = "Jika terdapat data hilang, menyimpan tidak dapat dilakukan.";
@@ -4709,7 +4709,7 @@ svgStrU[85][8] = "Tidak ada variabel grup";
 svgStrU[86][8] = "Data yang dipilih: ";
 svgStrU[87][8] = "Data mentah";
 svgStrU[88][8] = "Pilih variabel dengan mengklik nama variabel";
-svgStrU[89][8] = "";
+svgStrU[89][8] = "Nilai yang hilang";
 
 // Mongolian
 $.message.mn = {
@@ -4994,7 +4994,7 @@ alertMsg[13][9] = "";
 alertMsg[14][9] = "Үргэлжилсэн график болон тестийн таамаглалын хувьд хураангуй өгөгдөл нь зөвшөөрөгдөхгүй ";
 alertMsg[16][9] = "Энэ туршилтын таамаглалд зөвхөн 2 групп зөвшөөрөгдөнө";
 alertMsg[17][9] = "Тархалтын график нь хамгийн багадаа х болон у хувьсагч шаардана";
-alertMsg[18][9] = "Гурван хувьсагчаас илүү  байвал тархалтын график зурагдахгүй";
+alertMsg[18][9] = "Гурван хувьсагчийг зөвшөөрөхгүй";
 alertMsg[19][9] = "Хэрэв өгөгдөлд шинж чанар байгаа бол шинжилгээг хийх боломжгүй ";
 alertMsg[20][9] = "Хэрэв X/Y хувьсагч дээр тэмдэгт байвал тархалтын график зурагдахгүй ";
 alertMsg[21][9] = "Хэрэв өгөгдөл орхигдсон бол хадаглах нь зөвшөөрөгдөхгүй ";
@@ -5223,7 +5223,7 @@ svgStrU[85][9] = "Бүлгэм хувьсагч байхгүй";
 svgStrU[86][9] = "Сонгосон мэдээлэл: ";
 svgStrU[87][9] = "Түүхий мэдээлэл";
 svgStrU[88][9] = "Хувьсагчийн нэр дээр дарж хувьсагч сонго";
-svgStrU[89][9] = "";
+svgStrU[89][9] = "Үнэ цэнэ байхгүй байна";
 
 // Chinese - Simplified
 $.message.zh = {
@@ -5509,7 +5509,7 @@ alertMsg[13][10] = "";
 alertMsg[14][10] = "连续型图形及假设建议无法进行摘要资料。";
 alertMsg[16][10] = "此假设检验仅限于两个总体。";
 alertMsg[17][10] = "绘制散点图至少需要横轴变量及纵轴变量。";
-alertMsg[18][10] = "绘制散点图不可超过三个变量数。";
+alertMsg[18][10] = "不允许使用三个以上的变量。";
 alertMsg[19][10] = "如果数据中存在字符，则无法进行分析。";
 alertMsg[20][10] = "若X/Y变量包含文字，则回帰分析无法绘制。";
 alertMsg[21][10] = "若资料有缺失值，则无法储存。";
@@ -5738,7 +5738,7 @@ svgStrU[85][10] = "没有组变量";
 svgStrU[86][10] = "选定数据: ";
 svgStrU[87][10] = "原始数据";
 svgStrU[88][10] = "通过单击变量名称选择变量";
-svgStrU[89][10] = "";
+svgStrU[89][10] = "缺少观察";
 
 // Portugese
 $.message.pt = {
@@ -6027,7 +6027,7 @@ alertMsg[13][11] = "";
 alertMsg[14][11] = "Gráficos e testes para variáveis contínuas não podem ser realizados se os dados estiverem na forma resumida.";
 alertMsg[16][11] = "Apenas dois grupos são permitidos neste tipo de teste.";
 alertMsg[17][11] = "Diagrama de dispersão requer duas variáveis (x e y).";
-alertMsg[18][11] = "Não são permitidas mais de três variáveis para o diagrama de dispersão.";
+alertMsg[18][11] = "Mais de três variáveis ​​não são permitidas.";
 alertMsg[19][11] = "Se houver um caractere nos dados, as análises não podem ser feitas.";
 alertMsg[20][11] = "Se a data incluir observação tipo caractere, regression não pode ser construído.";
 alertMsg[21][11] = "Se existirem caselas vazias nos dados não será permitido salvar.";
@@ -6256,4 +6256,4 @@ svgStrU[85][11] = "Nenhuma variável de grupo";
 svgStrU[86][11] = "Dados selecionados: ";
 svgStrU[87][11] = "Dados não tratados";
 svgStrU[88][11] = "Selecionar variável por nome da variável de clique";
-svgStrU[89][11] = "";
+svgStrU[89][11] = "Observações em falta";

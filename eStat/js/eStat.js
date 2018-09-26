@@ -50,19 +50,19 @@ strGraph[18] = "bothstem2";     // 양쪽형 줄기잎그
 strGraph[19] = "hist1";         // 히스토그램
 strGraph[20] = "scatter1";      // 산점도
 strGraph[21] = "scatterRedraw"; // 산점도 Redraw
-strGraph[22] = "statTable";     // 기초통계량
-strGraph[23] = "freqTable";     // 도수분포표-꺽은선
-strGraph[24] = "testM1";        // 가설검정 mu
-strGraph[25] = "executeTH8";    // 가설검정 mu 실행
-strGraph[26] = "testS1";        // 가설검정 sigma
-strGraph[27] = "executeTH9";    // 가설검정 sigma 실행
-strGraph[28] = "testM12";       // 가설검정 mu12
-strGraph[29] = "executeTH10";   // 가설검정 mu12
-strGraph[30] = "testS12";       // 가설검정 sigma
-strGraph[31] = "executeTH11";   // 가설검정 sigma
-strGraph[32] = "anova";         // 가설검정 anova 
-strGraph[33] = "executeTH12";   // 가설검정 anova 
-strGraph[34] = "regression";    // 회귀분석
+strGraph[22] = "freqTable";     // 도수분포표-꺽은선
+strGraph[23] = "statTable";     // 기초통계량
+strGraph[25] = "testM1";        // 가설검정 mu
+strGraph[26] = "executeTH8";    // 가설검정 mu 실행
+strGraph[27] = "testS1";        // 가설검정 sigma
+strGraph[28] = "executeTH9";    // 가설검정 sigma 실행
+strGraph[29] = "testM12";       // 가설검정 mu12
+strGraph[30] = "executeTH10";   // 가설검정 mu12
+strGraph[31] = "testS12";       // 가설검정 sigma
+strGraph[32] = "executeTH11";   // 가설검정 sigma
+strGraph[33] = "anova";         // 가설검정 anova 
+strGraph[34] = "executeTH12";   // 가설검정 anova 
+strGraph[35] = "regression";    // 회귀분석
 
 // 한글 체크 
 function is_hangul_char(ch) {
@@ -116,6 +116,8 @@ function buttonColorChange() {
       graphSubHide(); // 그래프 sub 선택사항 감추기
       document.getElementById("SVG").style.width  = svgWidth;
       document.getElementById("SVG").style.height = svgHeight;
+      document.getElementById("groupSelectMain").disabled = false;
+
       svgWidth2    = svgWidth;
       svgHeight2   = svgHeight;
       margin       = {top:80, bottom:80, left:80, right:100};
@@ -219,25 +221,26 @@ function graphTitle() {
         case 18: gstr = svgStr[8][langNum];    	break; 
         case 19: gstr = svgStr[9][langNum];    	break; // 히스토
         case 20: gstr = svgStr[10][langNum];   	break; // 산점도
-        case 21: gstr = svgStr[10][langNum];    break; 
-        case 22: gstr = svgStr[111][langNum];  	break; // GIS
-        case 23: gstr = svgStr[5][langNum];     break; // 도수분포표의 꺽은선
-        case 24: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
-        case 25: gstr = svgStr[11][langNum];    break; // 모평균 가설검정
-        case 26: gstr = svgStr[113][langNum];   break; // TH sigma 평균-표준편차 그래프
-        case 27: gstr = svgStr[12][langNum];    break; // 모분산 가설검정
-        case 28: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
-        case 29: gstr = svgStr[13][langNum];    break; // 두 모평균 가설검정
-        case 30: gstr = svgStr[113][langNum];   break; // TH sigma12 평균-표준편차 그래프
-        case 31: gstr = svgStr[14][langNum];    break; // 두 모분산 가설검정
-        case 32: gstr = svgStr[86][langNum];  	break; // 신뢰구간 그래프
-        case 33: gstr = svgStr[15][langNum];    break; // 분산분석
-        case 34: gstr = svgStr[89][langNum];    break; // 산점도행렬
-        case 35: gstr = svgStr[83][langNum];    break; // 잔차산점도
-        case 36: gstr = svgStr[80][langNum];    break; // Q-Q plot
-        case 37: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
-        case 38: gstr = svgStr[97][langNum];    break; // Cook Graph
-        case 39: gstr = svgStr[85][langNum];    break; // 이원분산분석
+        case 21: gstr = svgStr[10][langNum];    break; // 산점도
+        case 22: gstr = svgStr[25][langNum];  	break; // 도수분포표
+        case 23: gstr = svgStr[111][langNum];   break; // 기초통계량
+        case 24: gstr = svgStr[5][langNum];     break; // 꺽은선
+        case 25: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
+        case 26: gstr = svgStr[11][langNum];    break; // 모평균 가설검정
+        case 27: gstr = svgStr[113][langNum];   break; // TH sigma 평균-표준편차 그래프
+        case 28: gstr = svgStr[12][langNum];    break; // 모분산 가설검정
+        case 29: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
+        case 30: gstr = svgStr[13][langNum];    break; // 두 모평균 가설검정
+        case 31: gstr = svgStr[113][langNum];   break; // TH sigma 평균-표준편차 그래프
+        case 32: gstr = svgStr[14][langNum];  	break; // 두 모분산 가설검정
+        case 33: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
+        case 34: gstr = svgStr[15][langNum];    break; // 분산분석 // 산점도행렬
+        case 35: gstr = svgStr[89][langNum];    break; // 잔차산점도
+        case 36: gstr = svgStr[83][langNum];    break; // 잔차산점도
+        case 37: gstr = svgStr[80][langNum];    break; // Q-Q plot
+        case 38: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
+        case 39: gstr = svgStr[97][langNum];    break; // Cook Graph
+        case 40: gstr = svgStr[85][langNum];    break; // 이원분산분석
       }
       iTitle[i] = gstr;
     }
@@ -341,26 +344,66 @@ function initXTitle() {
       xTitle[i] = str;
     }
 }
+// 변량 선택 초기화 함수
+function variableSelectClear() {
+    document.getElementById("selectedVars").value = "";
+    document.getElementById("dataType").innerHTML = "("+svgStrU[88][langNum]+")";
+    graphTopInitialize();
+//    graphTitle(); // 그래프제목 초기화
+}
+// 변량 선택 개수 체크 함수
+function validateNumVar(graphNum, numVar) {
+    checkNumVar = true;
+    if (numVar == 0) {
+          checkNumVar = false;
+          variableSelectClear();
+          return;
+    }
+    if (graphNum < 15 || graphNum == 22) {  // 이산형 그래프, 도수분포표
+       return;
+    }
+    else if (graphNum >= 15 && graphNum <= 21) { // 연속형 그래프
+       if (numVar > 2) {
+          checkNumVar = false;
+          alert(alertMsg[7][langNum]);
+          variableSelectClear();
+          return;
+       }
+    } else if (graphNum <= 23) { // 기초통계량
+       if (numVar > 3) {
+          checkNumVar = false;
+          alert(alertMsg[18][langNum]);
+          variableSelectClear();
+          return;
+       }
+    } else if (graphNum >=25 && graphNum <= 28) { // TH1
+       if (numVar > 1) {
+          checkNumVar = false;
+          alert(alertMsg[37][langNum]);
+          variableSelectClear();
+          return;
+       }
+    } else if (graphNum <= 32) { // TH2
+       if (numVar> 2) {
+          checkNumVar = false;
+          alert(alertMsg[7][langNum]);
+          variableSelectClear();
+          return;
+       }
+    } else if (graphNum == 33) { // ANOVA
+       if (numVar > 3) {
+          checkNumVar = false;
+          alert(alertMsg[18][langNum]);
+          variableSelectClear();
+          return;
+       }
+    }
+
+}
 //  =================================================================================
 //  eStatE.js 이산형그래프 함수 -----------------------------------------------------
 //  =================================================================================
 function dataClassify() {
-      // 자료가 없으면 경고
-      checkData = true;
-      for (k = 0; k < numVar; k++) {
-        if (tdobs[k] == 0) {
-          checkData = false;
-          alert(alertMsg[1][langNum]);
-          return;
-        }
-      }
-      // 변량선택 안하면 경고
-      checkVarSelect = true;
-      if (numVar == 0) {
-        checkVarSelect = false;
-//       alert(alertMsg[2][langNum]);
-        return;
-      }
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -372,33 +415,66 @@ function dataClassify() {
         dvalueLabel[k] = null;
       } 
 
+      //***** Check Missing ***** 
+      dobs = 0;  // 데이터수
+      mobs = 0;  // Missing수
+      for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < numVar; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
+          }
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            dvar[dobs] = tdvar[0][i];
+            if (numVar < 2) gvar[dobs] = 1;
+            else gvar[dobs] = tdvar[1][i];
+            for (k = 0; k < numVar; k++) {           
+              mdvar[k][dobs] = tdvar[k][i]
+            }
+            dobs++;          
+          }
+      } 
+      gobs = dobs;
+      // 결측이 없는 행의 수 입력
+      for (k = 0; k < numCol; k++) mdobs[k] = dobs; 
+      // 결측행 제외 각 변량별 값 계산
+      for (k = 0; k < numVar; k++) {
+        for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+        mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+        for (j = 0; j < mdvalueNum[k]; j++) {
+          mdvalue[k][j] = dataValue[j];
+          for (m = 0; m < tdvalueNum[k]; m++) {
+            if (mdvalue[k][j] == tdvalue[k][m]) {
+               mdvalueLabel[k][j] = tdvalueLabel[k][m];
+               break;
+            }
+          }
+        }
+      }
+
+
+
       freqMin = 0;
       if (numVar < 2) { // 변수 하나는 원시자료
-        checkMissing = false;
-        for (i = 0; i < tdobs[0]; i++) {
-            if( tdvar[0][i] == null || tdvar[0][i] == "" || tdvar[0][i] == NaN) {  
-              alert(alertMsg[3][langNum]);
-              checkMissing = true;
-              return; 
+        // 원시자료 표시 
+        document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
+        // 분석변수 복사
+        dvarNumber = tdvarNumber[0];
+        dvarName   = tdvarName[0];
+        ndvalue    = mdvalueNum[0];
+        //***** missing 빼고 dataValue, dvalueLabel복사
+        for (k = 0; k < mdvalueNum[0]; k++) {
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
             }
         } 
-        // 원시자료 표시 
-        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
-
-        dobs        = tdobs[0];
-        dvarNumber  = tdvarNumber[0];
-        dvarName    = tdvarName[0];
-        ndvalue     = tdvalueNum[0];
-        for (k = 0; k < ndvalue; k++) {
-          dataValue[k] = tdvalue[0][k];
-          if (tdvalueLabel[0][k] == null ) {
-            dvalueLabel[k] = tdvalue[0][k];
-          }
-          else {
-            dvalueLabel[k] = tdvalueLabel[0][k];
-          }
-        } 
-        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i]; 
 
         ngroup      = 1;
         gobs        = dobs;
@@ -406,7 +482,6 @@ function dataClassify() {
         gvarName    = "";
         for (k=0; k<ngroup; k++) gvalueLabel[k] = null;
         for (i=0; i<gobs; i++) {
-          gvar[i] = 1;
           dataA[i] = gvar[i];
         }  
         ngvalue = sortAscend(dobs, dataA, gdataValue, gvalueFreq);
@@ -414,55 +489,37 @@ function dataClassify() {
         rawData = true;
       } 
       else { // 두 개 이상의 변수는 원시자료 또는 요약자료
-        // check missing
-        checkMissing = false;
-        for (k=1; k<numVar; k++) {
-          if (tdobs[k] != tdobs[0]) {
-            checkMissing = true;
-            alert(alertMsg[4][langNum]);
-            return;
-          }
-        }
-        // 같은 번호 선택했는지 체크
-        checkVarSame = false;
-        for (i = 1; i < numVar; i++) {
-           if (tdvarNumber[0] == tdvarNumber[i]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
-           }
-        }
 
-        gobs        = tdobs[1];
+        // 그룹변수
         gvarNumber  = tdvarNumber[1];
         gvarName    = tdvarName[1];
-        ngvalue     = tdvalueNum[1]  
-        for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[1][k];
-          if ( tdvalueLabel[1][k] == null ) {
-            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
-            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-          }
-          else {
-            gvalueLabel[k] = tdvalueLabel[1][k];
-          }
+        //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        ngvalue = mdvalueNum[1];
+        for (k = 0; k < ngvalue; k++) {
+            gdataValue[k] = mdvalue[1][k];
+            if (mdvalueLabel[1][k] == null ) {
+              if (isNaN(mdvalue[1][k])) gvalueLabel[k] = mdvalue[1][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = mdvalueLabel[1][k];
+            }
         } 
-        for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];
 
-        dobs        = tdobs[0];
+        // 분석변수 복사
         dvarNumber  = tdvarNumber[0];
         dvarName    = tdvarName[0];
-        ndvalue     = tdvalueNum[0];
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        ndvalue    = mdvalueNum[0];
         for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[0][k];
-          if (tdvalueLabel[0][k] == null ) {
-            dvalueLabel[k] = tdvalue[0][k];
-          }
-          else {
-            dvalueLabel[k] = tdvalueLabel[0][k];
-          }
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
+            }
         } 
-        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i]; 
 
         // check 요약 또는 원시자료
         checkNumeric = true;
@@ -494,10 +551,10 @@ function dataClassify() {
         }
         // 원시-요약자료 표시
         if (rawData) { // 원시자료 
-          document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
+          document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
         }
         else { // 요약자료
-          document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[79][langNum]+")";
+          document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[79][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
         }
         if (ngroup > 9)  alert(alertMsg[5][langNum]);
         // 요약자료는 분석변량들의 Numeric 여부 체크
@@ -505,13 +562,13 @@ function dataClassify() {
           checkNumeric = true;
           for (k=1; k<numVar; k++) {
             for (i=0; i<dobs; i++) {
-              if (isNaN(tdvar[k][i])) {
+              if (isNaN(mdvar[k][i])) {  //*****
                 checkNumeric = false;
                 alert(alertMsg[6][langNum]);
                 return;
               } // endof if
               else {
-                tdvar[k][i] = parseFloat(tdvar[k][i]);   // 숫자화
+                mdvar[k][i] = parseFloat(mdvar[k][i]);   //***** 숫자화
               }
             } // endof i
           } // endof k
@@ -555,7 +612,7 @@ function dataClassify() {
  
         for (k=0; k<ngroup; k++) {
           for (i=0; i<dobs; i++) {
-            dataSet[k][i] = tdvar[k+1][i];    // !!! dataSet[k] = tdvar[k+1]memory 공유 조심
+            dataSet[k][i] = mdvar[k+1][i];    // !!! dataSet[k] = tdvar[k+1]memory 공유 조심
           }
           gvalueLabel[k] = tdvarName[k+1];
         }   
@@ -564,7 +621,7 @@ function dataClassify() {
 
         for (i=0; i<dobs; i++) {
           dataValue[i]   = "";
-          dvalueLabel[i] = tdvar[0][i];
+          dvalueLabel[i] = mdvar[0][i];
         }
       }
 
@@ -633,22 +690,6 @@ function dataClassify() {
       }
 }
 function dataClassifyLine() { // 꺽은선 데이터
-      // 자료가 없으면 경고
-      checkData = true;
-      for (k = 0; k < numVar; k++) {
-        if (tdobs[k] == 0) {
-          checkData = false;
-//          alert(alertMsg[1][langNum]);
-          return;
-        }
-      }
-      // 변량선택 안하면 경고
-      checkVarSelect = true;
-      if (numVar == 0) {
-        checkVarSelect = false;
-//       alert(alertMsg[2][langNum]);
-        return;
-      }
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -665,58 +706,94 @@ function dataClassifyLine() { // 꺽은선 데이터
         return
       } 
       else { // 두 개 이상의 변수는 요약자료
-        // check missing
-        checkMissing = false;
-        for (k=1; k<numVar; k++) {
-          if (tdobs[k] != tdobs[0]) {
-            checkMissing = true;
-            alert(alertMsg[4][langNum]);
-            return;
+        // 꺽은선 데이터는 요약자료 표시
+        document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[79][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
+
+        //***** Check Missing ***** 
+        dobs = 0;  // 데이터수
+        mobs = 0;  // Missing수
+        for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < numVar; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
           }
-        }
-        // 같은 번호 선택했는지 체크
-        checkVarSame = false;
-        for (i = 0; i < numVar-1; i++) {
-          for (j = i+1; j<numVar; j++) {
-            if (tdvarNumber[i] == tdvarNumber[j]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            dvar[dobs] = tdvar[0][i];
+            for (k = 0; k < numVar; k++) {           
+              mdvar[k][dobs] = tdvar[k][i]
+            }
+            dobs++;          
+          }
+        } 
+        gobs = dobs;
+        // 결측이 없는 행의 수 입력
+        for (k = 0; k < numCol; k++) mdobs[k] = dobs; 
+        // 결측행 제외 각 변량별 값 계산
+        for (k = 0; k < numVar; k++) {
+          for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+          mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+          for (j = 0; j < mdvalueNum[k]; j++) {
+            mdvalue[k][j] = dataValue[j];
+            for (m = 0; m < tdvalueNum[k]; m++) {
+              if (mdvalue[k][j] == tdvalue[k][m]) {
+                 mdvalueLabel[k][j] = tdvalueLabel[k][m];
+                 break;
+              }
             }
           }
         }
 
-        // 꺽은선 데이터는 요약자료 표시
-        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[79][langNum]+")";
-
-        dobs        = tdobs[0];
+        // 분석변수 복사
         dvarNumber  = tdvarNumber[0];
         dvarName    = tdvarName[0];
-        ndvalue     = tdvalueNum[0];
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        ndvalue    = mdvalueNum[0];
         for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[0][k];
-          if (tdvalueLabel[0][k] == null ) {
-            dvalueLabel[k] = tdvalue[0][k];
-          }
-          else {
-            dvalueLabel[k] = tdvalueLabel[0][k];
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
+            }
+        } 
+/*
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
+        else ndvalue = tdvalueNum[0];
+        k = 0;
+        for (j = 0; j < tdvalueNum[0]; j++) {
+          if (tdvalue[0][j] != "99999999") { //***** missing 체크
+            dataValue[k] = tdvalue[0][j];
+            if (tdvalueLabel[0][j] == null ) {
+              dvalueLabel[k] = tdvalue[0][j];
+            }
+            else {
+              dvalueLabel[k] = tdvalueLabel[0][j];
+            }
+            k++
           }
         } 
-        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i]; 
-
+*/
         ngroup = numVar - 1;
         if (ngroup > 9)  alert(alertMsg[5][langNum]);
         // 요약자료의 분석변량들의 Numeric 여부 체크
         checkNumeric = true;
         for (k=1; k<numVar; k++) {
             for (i=0; i<dobs; i++) {
-              if (isNaN(tdvar[k][i])) {
+              if (isNaN(mdvar[k][i])) {
                 checkNumeric = false;
                 alert(alertMsg[6][langNum]);
                 return;
               } // endof if
               else {
-                tdvar[k][i] = parseFloat(tdvar[k][i]);   // 숫자화
+                mdvar[k][i] = parseFloat(mdvar[k][i]);   // 숫자화
               }
             } // endof i
         } // endof k
@@ -732,7 +809,7 @@ function dataClassifyLine() { // 꺽은선 데이터
  
         for (k=0; k<ngroup; k++) {
           for (i=0; i<dobs; i++) {
-            dataSet[k][i]     = tdvar[k+1][i];    // !!! memory 공유 조심
+            dataSet[k][i]     = mdvar[k+1][i];    // !!! memory 공유 조심
           }
           gvalueLabel[k] = tdvarName[k+1];
         }   
@@ -741,7 +818,7 @@ function dataClassifyLine() { // 꺽은선 데이터
 
         for (i=0; i<dobs; i++) {
           dataValue[i]   = "";
-          dvalueLabel[i] = tdvar[0][i];
+          dvalueLabel[i] = mdvar[0][i];
         }
     
 
@@ -812,18 +889,48 @@ function dataClassifyLine() { // 꺽은선 데이터
 }
 
 // Sorting in ascending and count each value frequency
+function sortAscendAlpha(dobs, dataA, dataValue, dvalueFreq) {
+        var i, j, temp;
+        var nvalue = 0;
+        // sorting
+        for (i=0; i<dobs-1; i++) {
+          for (j=i; j<dobs; j++) {
+            if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  
+              dataA[i] = dataA[j];  
+              dataA[j] = temp;     
+            }
+          }
+        } 
+        for(i=0; i<dobs; i++) {dvalueFreq[i]=0;} 
+        dataValue[nvalue]  = dataA[0];  
+        dvalueFreq[nvalue] = 1;   
+        for (i=1; i<dobs; i++) {
+          if (dataA[i] == dataA[i-1]) {
+            dvalueFreq[nvalue]++;
+          } 
+          else {
+            nvalue++;
+            dataValue[nvalue] = dataA[i];
+            dvalueFreq[nvalue]++;
+          }
+        }
+        nvalue++;
+        return nvalue;
+}
+// Sorting in ascending depending on data and count each value frequency
 function sortAscend(dobs, dataA, dataValue, dvalueFreq) {
         var i, j, temp;
         var nvalue = 0;
         // Check Numeric
-        var checkAlphabetic = false;
+        checkAlphabetic = false;
         for (i=0; i<dobs; i++) {
-          if ( isNaN(dataA[i]) ) {
-            checkAlphabetic = true;
-            break;
-          }
+            if ( isNaN(dataA[i]) ) {
+              checkAlphabetic = true;
+              break;
+            }
         }
-        if (checkAlphabetic == false ) { // numeric sorting을 위해
+        if (checkAlphabetic == false) {
           for (i=0; i<dobs; i++) dataA[i] = parseFloat(dataA[i]);
         }
         // sorting
@@ -852,6 +959,7 @@ function sortAscend(dobs, dataA, dataValue, dvalueFreq) {
         nvalue++;
         return nvalue;
 }
+
 // Sorting in ascending and find index
 function sortAscendIndex(dobs, dataA, index) {
         var i, j, temp, tempi;
@@ -2197,7 +2305,21 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           cell[ngvalue+1].style.textAlign = "right";
           for (g=0; g<ngvalue+2; g++) cell[g].style.backgroundColor = "#eee";
 
-          row = table.insertRow(ndvalue+3);   // 공란
+          // missing
+          row = table.insertRow(ndvalue+3);
+          for (k=0; k<3; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = "";
+          cell[1].innerHTML = svgStrU[89][langNum];
+          cell[2].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "center";
+          cell[2].style.textAlign = "right";
+
+          row = table.insertRow(ndvalue+4);   // 공란
           row.style.height ="20px";
 
         } else if (ngroup < 2) { // ngroup=1일때는 도수분포표
@@ -2269,7 +2391,21 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           cell[2].style.textAlign = "right";
           cell[3].style.textAlign = "right";
 
+          // missing
           row = table.insertRow(ndvalue+3);
+          for (k=0; k<ncol-1; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = "";
+          cell[1].innerHTML = svgStrU[89][langNum];
+          cell[2].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "center";
+          cell[2].style.textAlign = "right";
+
+          row = table.insertRow(ndvalue+4);
           row.style.height ="20px";
         }
         else { // ngroup>=2 일때는 교차표 원시자료 경우
@@ -2342,6 +2478,20 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           cell[ndvalue+1].innerHTML = f0(totsum).toString()+"<br>"+(100).toString()+"%";
           cell[ndvalue+1].style.textAlign = "right";
 
+          // missing
+          row = table.insertRow(ngroup+3);
+          for (k=0; k<3; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = "";
+          cell[1].innerHTML = svgStrU[89][langNum];
+          cell[2].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "center";
+          cell[2].style.textAlign = "right";
+
           // Chisqure test of independence
           sum = 0;
           for (g=0; g<ngroup; g++) {
@@ -2354,7 +2504,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           df = (ngroup-1)*(ndvalue-1);
           pvalue = 1 - chisq_cdf(sum, df, info)
 
-          row = table.insertRow(ngroup+3);
+          row = table.insertRow(ngroup+4);
           for (k=0; k<1; k++) {
             cell[k] = row.insertCell(k)
             cell[k].style.border = "1px solid black";
@@ -2363,7 +2513,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           cell[0].innerHTML = "독립성검정";
           cell[0].style.textAlign = "center";
  
-          row = table.insertRow(ngroup+4);
+          row = table.insertRow(ngroup+5);
           for (k=0; k<6; k++) {
             cell[k] = row.insertCell(k)
             cell[k].style.border = "1px solid black";
@@ -2383,8 +2533,9 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           else str = f4(pvalue).toString();  
           cell[5].innerHTML = str;
           cell[5].style.textAlign = "right";
+
           // 다음 표를 위한 빈 행
-          row = table.insertRow(ngroup+5);
+          row = table.insertRow(ngroup+6);
           row.style.height ="20px";
         } 
 
@@ -2793,14 +2944,8 @@ function drawLegend(gvalueLabel) {
 // 연속형 그래프 함수 모음 **************************************************************
 // =====================================================================================
 function dataClassifyM() {
-      // 자료가 없으면 경고
-      checkData = true;
+
       for (k = 0; k < numVar; k++) {
-        if (tdobs[k] == 0) {
-          checkData = false;
-          alert(alertMsg[1][langNum]);
-          return;
-        }
         if (graphNum == 15 && tdobs[k] > 200) { // 점그림 데이터수 제한
           checkData = false;
           alert(alertMsg[8][langNum]);
@@ -2814,20 +2959,9 @@ function dataClassifyM() {
           }
         }
       }
-      // 변량 선택 안하면 경고
-      checkVarSelect = true;
-      if (numVar == 0) {
-        checkVarSelect = false;
-//        alert(alertMsg[2][langNum]);
-          return;
-      }
-      else if (numVar > 2) {
-        checkVarSelect = false;
-        alert(alertMsg[7][langNum]);
-        return;
-      }
+
       // 원시자료 표시
-      document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
+      document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -2839,34 +2973,88 @@ function dataClassifyM() {
         dvalueLabel[k] = null;
       } 
 
+      //***** Check Missing ***** 
+      dobs = 0;  // 데이터수
+      mobs = 0;  // Missing수
+      for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < numVar; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
+          }
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            dvar[dobs] = tdvar[0][i];
+            if (numVar == 1) gvar[dobs] = 1;
+            else gvar[dobs] = tdvar[1][i];
+            for (k = 0; k < numVar; k++) {           
+              mdvar[k][dobs] = tdvar[k][i]
+            }
+            dobs++;          
+          }
+      } 
+      gobs = dobs;
+      // 결측이 없는 행의 수 입력
+      for (k = 0; k < numCol; k++) mdobs[k] = dobs; 
+      // 결측행 제외 각 변량별 값 계산
+      for (k = 0; k < numVar; k++) {
+        for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+        mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+        for (j = 0; j < mdvalueNum[k]; j++) {
+          mdvalue[k][j] = dataValue[j];
+          for (m = 0; m < tdvalueNum[k]; m++) {
+            if (mdvalue[k][j] == tdvalue[k][m]) {
+               mdvalueLabel[k][j] = tdvalueLabel[k][m];
+               break;
+            }
+          }
+        }
+      }
       // gvar, dvar 변량값, 도수 계산  -- 도수분포표 -------------------------  
       if (numVar < 2) { // 변량 하나는 원시자료
-        checkMissing = false;
-        for (i = 0; i < tdobs[0]; i++) {
-            if( tdvar[0][i] == null || tdvar[0][i] == "" || tdvar[0][i] == NaN) {  
-              alert(alertMsg[3][langNum]);
-              checkMissing = true;
-              return; 
-            }
-        }  
 
-        dobs        = tdobs[0];
+        // 분석변수 복사
         dvarNumber  = tdvarNumber[0];
         dvarName    = tdvarName[0];
-        ndvalue     = tdvalueNum[0]
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        ndvalue    = mdvalueNum[0];
         for (k = 0; k < ndvalue; k++) {
-          dataValue[k] = tdvalue[0][k];
-          dvalueLabel[k] = tdvalueLabel[0][k];
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
+            }
         } 
-        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i];
-
+/*
+        // 분석변수 복사
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
+        else ndvalue = tdvalueNum[0];
+        //***** missing 빼고 dataValue, dvalueLabel복사
+        k = 0;
+        for (j = 0; j < tdvalueNum[0]; j++) {
+          if (tdvalue[0][j] != "99999999") { //***** missing 체크
+            dataValue[k] = tdvalue[0][j];
+            if (tdvalueLabel[0][j] == null ) {
+              dvalueLabel[k] = tdvalue[0][j];
+            }
+            else {
+              dvalueLabel[k] = tdvalueLabel[0][j];
+            }
+            k++
+          }
+        } 
+*/
         ngroup      = 1;
-        gobs        = dobs;
         gvarNumber  = "";
         gvarName    = "";
         for (k=0; k<ngroup; k++) gvalueLabel[k] = null;
         for (i=0; i<gobs; i++) {
-          gvar[i]  = 1;
           dataA[i] = gvar[i];
         }  
         ngvalue = sortAscendM(dobs, dataA, gdataValue, gvalueFreq, dataY);
@@ -2886,71 +3074,80 @@ function dataClassifyM() {
 
       } 
       else { // 두 개 변량일 경우 첫째는 분석변량 둘째는 그룹변량
-        // check missing
-        checkMissing = false;
-        for (k=1; k<numVar; k++) {
-          if (tdobs[k] != tdobs[0]) {
-            checkMissing = true;
-            alert(alertMsg[13][langNum]);
-            return;
-          }
-        }
-        // 같은 번호 선택했는지 체크
-        checkVarSame = false;
-        for (i = 1; i < numVar; i++) {
-           if (tdvarNumber[0] == tdvarNumber[i]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
-           }
-        }
 
         // 그룹변수
-        gobs        = tdobs[1];
         gvarNumber  = tdvarNumber[1];
         gvarName    = tdvarName[1];
-        ngvalue     = tdvalueNum[1];
-        for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[1][k];
-          if ( tdvalueLabel[1][k] == null ) {
-            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
-            else {
-              if(graphNum == 32) gvalueLabel[k] = svgStr[92][langNum]+"1 : "+(k+1).toString(); // 인자
-              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();  // 그룹
+        //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        ngvalue = mdvalueNum[1];
+        for (k = 0; k < ngvalue; k++) {
+            gdataValue[k] = mdvalue[1][k];
+            if (mdvalueLabel[1][k] == null ) {
+              if (isNaN(mdvalue[1][k])) gvalueLabel[k] = mdvalue[1][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
             }
-          }
-          else {
-            gvalueLabel[k] = tdvalueLabel[1][k];
+            else {
+              gvalueLabel[k] = mdvalueLabel[1][k];
+            }
+        } 
+/*
+        // 그룹변수 복사
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        if ( missing[gvarNumber-1] > 0 ) ngvalue = tdvalueNum[1] - 1; //***** missing 제거 
+        else ngvalue = tdvalueNum[1];
+        k = 0;
+        for (j = 0; j < tdvalueNum[1]; j++) {
+          if (tdvalue[1][j] != "99999999") { //***** missing 체크
+            gdataValue[k] = tdvalue[1][j];
+            if (tdvalueLabel[1][j] == null ) {
+              if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][j]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = tdvalueLabel[1][j];
+            }
+            k++
           }
         } 
-        for (i = 0; i < gobs; i++) {
-          gvar[i] = tdvar[1][i];    
-          gcolor[i] = myColor[gvar[i]];   
-        }
-        // 분석변수
-        dobs        = tdobs[0];
+*/
+        // 분석변수 복사
         dvarNumber  = tdvarNumber[0];
         dvarName    = tdvarName[0];
-        ndvalue     = tdvalueNum[0]
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        ndvalue    = mdvalueNum[0];
         for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[0][k];
-          dvalueLabel[k] = tdvalueLabel[0][k];
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
+            }
         } 
-        for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i];
+/*
 
-        // check 요약자료 => 분산분석 자료 검정
-        rawData   = true;
-        checkData = true;    
-        if (gobs == ngvalue) { // 요약자료
-          rawData = false;
-          ngroup  = ngvalue;
-          if (graphNum > 14) { 
-            checkData = false;
-            alert(alertMsg[14][langNum]);
-            return;
+        // 분석변수 복사
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        //***** 분석변수 missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
+        else ndvalue = tdvalueNum[0];
+        k = 0;
+        for (j = 0; j < tdvalueNum[0]; j++) {
+          if (tdvalue[0][j] != "99999999") { //***** missing 체크
+            dataValue[k] = tdvalue[0][j];
+            if (tdvalueLabel[0][j] == null ) {
+              dvalueLabel[k] = tdvalue[0][j];
+            }
+            else {
+              dvalueLabel[k] = tdvalueLabel[0][j];
+            }
+            k++
           }
-        }
- 
+        } 
+*/
         // numeric check of dependent variable
         checkNumeric = true;
         for (i=0; i<dobs; i++) {
@@ -2967,16 +3164,7 @@ function dataClassifyM() {
       // gvar에서 ngroup 게산
       ngroup = ngvalue;
       checkData = true;
-/*
-      if (graphNum == 28) { // 그룹변수가 모두 숫자이면 paird test 대비 difference 데이터 저장 => 요약자료와 혼동으로 포기 => eStatU로 처리
-        // numeric check of group variable
-        checkNumeric = true;
-        for (i=0; i<gobs; i++) {
-            if (isNaN(gvar[i])) { checkNumeric = false; break;}
-            else tdata[i] = parseFloat(gvar[i]) - parseFloat(dvar[i]);
-        } // endof i
-      }
-*/
+
       if (graphNum == 28 || graphNum == 30) {  // 두 모평균, 두 모분산 가설검정
         if (ngroup > 2) { 
           alert(alertMsg[16][langNum]); // 두개의 그룹보다 많은 경우 처리 못함 경고
@@ -3007,29 +3195,9 @@ function dataClassifyM() {
 }
 // 두그룹 평균비교 가설검정
 function dataClassifyM12() {
-      // 자료가 없으면 경고
-      checkData = true;
-      for (k = 0; k < numVar; k++) {
-        if (tdobs[k] == 0) {
-          checkData = false;
-          alert(alertMsg[1][langNum]);
-          return;
-        }
-      }
-      // 변량 선택 안하면 경고
-      checkVarSelect = true;
-      if (numVar < 2) {  // 두 그룹 t-test는 무조건 두 변수 선택하여야 함
-        checkVarSelect = false;
-//        alert(alertMsg[2][langNum]);
-        return;
-      }
-      else if (numVar > 2) {
-        checkVarSelect = false;
-        alert(alertMsg[7][langNum]);
-        return;
-      }
+
       // 원시자료 표시
-      document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
+      document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -3041,65 +3209,118 @@ function dataClassifyM12() {
         dvalueLabel[k] = null;
       } 
 
-
-      // 두그룹 t-test는 (경우1) 첫째는 그룹변량 둘째는 분석변량 (경우2) paired t-test
-      // check missing
-      checkMissing = false;
-      for (k=1; k<numVar; k++) {
-          if (tdobs[k] != tdobs[0]) {
-            checkMissing = true;
-            alert(alertMsg[13][langNum]);
-            return;
+      //***** Check Missing ***** 
+      dobs = 0;  // 데이터수
+      mobs = 0;  // Missing수
+      for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < numVar; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
           }
-      }
-      // 같은 번호 선택했는지 체크
-        checkVarSame = false;
-        for (i = 1; i < numVar; i++) {
-           if (tdvarNumber[0] == tdvarNumber[i]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
-           }
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            dvar[dobs] = tdvar[0][i];
+            for (k = 0; k < numVar; k++) {           
+              mdvar[k][dobs] = tdvar[k][i]
+            }
+            dobs++;          
+          }
+      } 
+      gobs = dobs;
+      // 결측이 없는 행의 수 입력
+      for (k = 0; k < numCol; k++) mdobs[k] = dobs; 
+      // 결측행 제외 각 변량별 값 계산
+      for (k = 0; k < numVar; k++) {
+        for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+        mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+        for (j = 0; j < mdvalueNum[k]; j++) {
+          mdvalue[k][j] = dataValue[j];
+          for (m = 0; m < tdvalueNum[k]; m++) {
+            if (mdvalue[k][j] == tdvalue[k][m]) {
+               mdvalueLabel[k][j] = tdvalueLabel[k][m];
+               break;
+            }
+          }
         }
-
-      gobs        = tdobs[1];
-      gvarNumber  = tdvarNumber[1];
-      gvarName    = tdvarName[1];
-      ngvalue     = tdvalueNum[1];
-      for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[1][k];
-          if ( tdvalueLabel[1][k] == null ) {
-            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
-            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-          }
-          else {
-            gvalueLabel[k] = tdvalueLabel[1][k];
-          }
-      } 
-      for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];       
-
-      dobs        = tdobs[0];
-      dvarNumber  = tdvarNumber[0];
-      dvarName    = tdvarName[0];
-      ndvalue     = tdvalueNum[0]
-      for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[0][k];
-          dvalueLabel[k] = tdvalueLabel[0][k];
-      } 
-      for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i];
-/*
-      // check 요약자료 => 분산분석 자료 검정
-      rawData   = true;
-      checkData = true;    
-      if (dobs == ndvalue) { // 요약자료
-          rawData = false;
-          ngroup  = ngvalue;
-          if (graphNum > 14) { 
-            checkData = false;
-            alert(alertMsg[14][langNum]);
-            return;
-          }
       }
+      // 두그룹 t-test는 (경우1) 첫째는 그룹변량 둘째는 분석변량 (경우2) paired t-test
+
+        // 그룹변수
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        ngvalue = mdvalueNum[1];
+        for (k = 0; k < ngvalue; k++) {
+            gdataValue[k] = mdvalue[1][k];
+            if (mdvalueLabel[1][k] == null ) {
+              if (isNaN(mdvalue[1][k])) gvalueLabel[k] = mdvalue[1][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = mdvalueLabel[1][k];
+            }
+        } 
+/*
+        // 그룹변수 복사
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        if ( missing[gvarNumber-1] > 0) ngvalue = tdvalueNum[1] - 1; //***** missing 제거 
+        else ngvalue = tdvalueNum[1];
+        k = 0;
+        for (j = 0; j < tdvalueNum[1]; j++) {
+          if (tdvalue[1][j] != "99999999") { //***** missing 체크
+            gdataValue[k] = tdvalue[1][j];
+            if (tdvalueLabel[1][j] == null ) {
+              if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][j]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = tdvalueLabel[1][j];
+            }
+            k++
+          }
+        } 
+*/
+        for (i = 0; i < gobs; i++) gvar[i] = mdvar[1][i];
+
+        // 분석변수 복사
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        ndvalue    = mdvalueNum[0];
+        for (k = 0; k < ndvalue; k++) {
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
+            }
+        } 
+/*
+        // 분석변수 복사
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        //***** 분석변수 missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
+        else ndvalue = tdvalueNum[0];
+        k = 0;
+        for (j = 0; j < tdvalueNum[0]; j++) {
+          if (tdvalue[0][j] != "99999999") { //***** missing 체크
+            dataValue[k] = tdvalue[0][j];
+            if (tdvalueLabel[0][j] == null ) {
+              dvalueLabel[k] = tdvalue[0][j];
+            }
+            else {
+              dvalueLabel[k] = tdvalueLabel[0][j];
+            }
+            k++
+          }
+        } 
 */
       // independent Two Group t-test 인지 Paired T-test인지 체크
       ngroup = ngvalue;
@@ -3150,15 +3371,6 @@ function dataClassifyM12() {
             else tdata[i] = parseFloat(gvar[i]) - parseFloat(dvar[i]);
         } // endof i
 
-/*
-        dvarNumber  = tdvarNumber[0];
-        dvarName    = tdvarName[0];
-        ndvalue     = tdvalueNum[0]
-        for (k = 0; k < ndvalue; k++) {
-          dataValue[k] = tdvalue[0][k];
-          dvalueLabel[k] = tdvalueLabel[0][k];
-        } 
-*/
         for (i = 0; i < dobs; i++) dvar[i] = tdata[i];
         ngroup      = 1;
         gobs        = dobs;
@@ -3179,59 +3391,62 @@ function dataClassifyM12() {
 // 산점도 데이터 - 점을 그룹으로 구분
 function dataClassifyS() {
         var trange, tratio, temp ;	
-        // 자료가 없으면 경고
-        checkData = true;
+
+        if (gvarNumber < 1) {
+          for (m = 0; m < tdobs[0]; m++) tdvar[2][m] = null;
+        }
+        if (wvarNumber < 1) {
+          for (m = 0; m < tdobs[0]; m++) tdvar[3][m] = null;
+        } 
+
+        //***** Check Missing ***** 
+        yobs = 0;  // 데이터수
+        mobs = 0;  // Missing수
+        for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < 4; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
+          }
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            ydata[yobs] = tdvar[0][i];
+            xdata[yobs] = tdvar[1][i];
+            gdata[yobs] = tdvar[2][i];
+            wdata[yobs] = tdvar[3][i];
+            for (k = 0; k < 4; k++) {           
+              mdvar[k][yobs] = tdvar[k][i]
+            }
+            yobs++;          
+          }
+        } 
+        xobs = yobs;
+        gobs = yobs;
+        // 결측이 없는 행의 수 입력
+        for (k = 0; k < numCol; k++) mdobs[k] = yobs; 
+        // 결측행 제외 각 변량별 값 계산
         for (k = 0; k < numVar; k++) {
-          if (tdobs[k] == 0) {
-            checkData = false;
-            alert(alertMsg[1][langNum]);
-            return;
+          for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+          mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+          for (j = 0; j < mdvalueNum[k]; j++) {
+            mdvalue[k][j] = dataValue[j];
+            for (m = 0; m < tdvalueNum[k]; m++) {
+              if (mdvalue[k][j] == tdvalue[k][m]) {
+                 mdvalueLabel[k][j] = tdvalueLabel[k][m];
+                 break;
+              }
+            }
           }
-        }
-        // 변량 선택 안하면 경고
-        checkVarSelect = true;
-        if (numVar == 0) {
-          checkVarSelect = false;
-//          alert(alertMsg[2][langNum]);
-          return;
-        }
-        else if (numVar == 1) {
-          checkVarSelect = false;
-          alert(alertMsg[17][langNum]);
-          return;
-        }
-        else if (numVar > 2) {
-          checkVarSelect = false;
-          alert(alertMsg[18][langNum]);
-          return;
-        }
-        // check missing
-        checkMissing = false;
-        for (k=1; k<numVar; k++) {
-          if (tdobs[k] != tdobs[0]) {
-            checkMissing = true;
-            alert(alertMsg[4][langNum]);
-            return;
-          }
-        }
-        // 같은 번호 선택했는지 체크
-        checkVarSame = false;
-        for (i = 1; i < numVar; i++) {
-           if (tdvarNumber[0] == tdvarNumber[i]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
-           }
         }
         // 원시자료 표시
-        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
-      
+        document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
+     
         // y data
-          yobs        = tdobs[0];
-          yvarNumber  = 2;
+          yvarNumber  = tdvarNumber[0];
           yvarName    = tdvarName[0];
           yvalueLabel = [];
-          for (i=0; i<yobs; i++) ydata[i] = tdvar[0][i];
           // numeric check 
           checkNumeric = true;
           for (i=0; i<yobs; i++) {
@@ -3242,11 +3457,9 @@ function dataClassifyS() {
             } // endof if
           } // endof i
         // x data
-          xobs        = tdobs[1];
-          xvarNumber  = 3;
+          xvarNumber  = tdvarNumber[1];
           xvarName    = tdvarName[1];
           xvalueLabel = [];
-          for (i=0; i<xobs; i++) xdata[i] = tdvar[1][i];
           // numeric check 
           checkNumeric = true;
           for (i=0; i<xobs; i++) {
@@ -3256,7 +3469,6 @@ function dataClassifyS() {
               return;
             } // endof if
           } // endof i
-
         for (i=0; i<xobs; i++) {
             xdata[i] = parseFloat(xdata[i]);
             ydata[i] = parseFloat(ydata[i]);
@@ -3264,90 +3476,113 @@ function dataClassifyS() {
         // 그룹변량 없는 경우 처리 : 모두 1
 
         // group 변수
-        if (gvarNumber < 0) { // group 변수가 없으면
+        if (gvarNumber < 1) { // group 변수가 없으면
           ngroup = 1;
           gvarName    = "";
           gvalueLabel[0] = null;
-          for (j=0; j<xobs; j++) {gdata[j] = 1; gcolor[j] = myColor[0];}
+          for (j=0; j<yobs; j++) {
+            gdata[j] = 1; 
+            gcolor[j] = myColor[0];
+          }
         }
         else { // group 변량이 있는 경우
-          // group data
-          gobs        = robs[gvarNumber];
-          gvarName    = rvarName[gvarNumber];
-          ngvalue     = rvalueNum[gvarNumber];
-          ngroup      = ngvalue;
-          // check missing
-          if (gobs != xobs) {
-            checkMissing = true;
-            alert(alertMsg[4][langNum]);
-            return;
-          }
-          for (k=0; k<ngvalue; k++) {
-            gdataValue[k]  = rvalue[gvarNumber][k];
-            if ( rvalueLabel[gvarNumber][k] == null ) {
-              if (isNaN(rvalue[gvarNumber][k])) gvalueLabel[k] = rvalue[gvarNumber][k]; 
+
+          // 그룹변수
+          gvarNumber  = tdvarNumber[2];
+          gvarName    = tdvarName[2];
+          //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+          ngvalue = mdvalueNum[2];
+          for (k = 0; k < ngvalue; k++) {
+            gdataValue[k] = mdvalue[2][k];
+            if (mdvalueLabel[2][k] == null ) {
+              if (isNaN(mdvalue[2][k])) gvalueLabel[k] = mdvalue[2][k]; 
               else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
             }
             else {
-              gvalueLabel[k] = rvalueLabel[gvarNumber][k];
+              gvalueLabel[k] = mdvalueLabel[1][k];
             }
           } 
-//          if (ngvalue < 10) {
+/*
+
+          // 그룹변수 복사
+          gvarName    = rvarName[gvarNumber-1];
+          //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+          if ( missing[gvarNumber-1] > 0 ) ngvalue = rvalueNum[gvarNumber-1] - 1; //***** missing 제거 
+          else ngvalue = rvalueNum[gvarNumber-1];
+          ngroup = ngvalue;
+          k = 0;
+          for (j = 0; j < rvalueNum[gvarNumber-1]; j++) {
+            if (rvalue[gvarNumber-1][j] != "99999999") { //***** missing 체크
+              gdataValue[k] = rvalue[gvarNumber][j];
+              if (rvalueLabel[gvarNumber-1][j] == null ) {
+                if (isNaN(rvalue[gvarNumber-1][k])) gvalueLabel[k] = rvalue[gvarNumber-1][j]; 
+                else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+              }
+              else {
+                gvalueLabel[k] = rvalueLabel[gvarNumber-1][j];
+              }
+              k++
+            }
+          } 
+*/
+          if (ngvalue < 10) {
             for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정, 원의 크기 지정
-              gdata[i] = rvar[gvarNumber][i]; 
               for (k=0; k<ngvalue; k++) {
                 if (gdata[i] == gdataValue[k]) {
                   gcolor[i] = myColor[k];
+                  break;
                 }
               }
             }
-//          }
-
+          }
         }
         // size 변수
-        if (wvarNumber < 0) { // size 변수가 없으면
-          for (j=0; j<xobs; j++) {wdata[j] = 4;}      
+        if (wvarNumber < 1) { // size 변수가 없으면
+          for (j=0; j<yobs; j++) {wdata[j] = 4;}      
         }
         else { // size 변량이 있는 경우
           // w data
-          wobs        = robs[wvarNumber];
-          wvarName    = rvarName[wvarNumber];
-          // check missing
-          if (wobs != xobs) {
-            checkMissing = true;
-            alert(alertMsg[4][langNum]);
-            return;
-          }
+          wobs        = gobs;
+          wvarName    = mdvarName[3];
           // numeric check 
           checkNumeric = true;
-          for (i=0; i<xobs; i++) {
-            wdata[i] = rvar[wvarNumber][i];
+          for (i=0; i<yobs; i++) { 
             if (isNaN(wdata[i])) {
               checkNumeric = false;
               alert(alertMsg[19][langNum]);
               return;
             } // endof if
+            wdata[i] = parseFloat(wdata[i]);
           } // endof i
-          nwvalue     = rvalueNum[wvarNumber]
-          for (k=0; k<nwvalue; k++) {
-            wdataValue[k]  = rvalue[wvarNumber][k];
+
+
+          //***** missing 빼고 nwvalue, gdataValue, gvalueLabel복사
+          nwvalue = mdvalueNum[3];
+          for (k = 0; k < nwvalue; k++) {
+            wdataValue[k] = mdvalue[3][k];
           } 
+
+/*
+          //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+          if ( missing[wvarNumber-1] > 0 ) nwvalue = rvalueNum[wvarNumber-1] - 1; //***** missing 제거 
+          else nwvalue = rvalueNum[wvarNumber-1];
+          k = 0;
+          for (j = 0; j < rvalueNum[wvarNumber-1]; j++) {
+            if (rvalue[wvarNumber-1][j] != "99999999") { //***** missing 체크
+              wdataValue[k] = rvalue[wvarNumber-1][j];
+              k++
+            }
+          } 
+*/
           trange = Math.sqrt(parseFloat(wdataValue[nwvalue-1])) - Math.sqrt(parseFloat(wdataValue[0]));
           for (i=0; i<xobs; i++) {
-            temp     = Math.sqrt(parseFloat(wdata[i])) - Math.sqrt(parseFloat(wdataValue[0]));
+            temp     = Math.sqrt(wdata[i]) - Math.sqrt(parseFloat(wdataValue[0]));
             tratio   = temp / trange;
             wdata[i] = 1 + 10*tratio;
-            if (gvarNumber < 0) gcolor[i] = colors(tratio);
+            if (gvarNumber < 1) gcolor[i] = colors(tratio);
           }
-        } // endof if
-      
-        // 시트의 기타 데이터가 null로 되어있어 NaN로 수정
-        for (i=xobs; i<rowMax; i++) {
-            gdata[i] = NaN;
-            xdata[i] = NaN;
-            ydata[i] = NaN;
-            wdata[i] = NaN
-        }
+
+        } // endof ifelse
 
 }
 
@@ -3355,33 +3590,6 @@ function dataClassifyS() {
 function dataClassifyGIS() {
         var trange, tratio, temp ;
 		
-        // 자료가 없으면 경고
-        checkData = true;
-        for (k = 0; k < numVar; k++) {
-          if (tdobs[k] == 0) {
-            checkData = false;
-            alert(alertMsg[1][langNum]);
-            return;
-          }
-        }
-        // 변량 선택 안하면 경고
-        checkVarSelect = true;
-        if (numVar == 0) {
-          checkVarSelect = false;
-//          alert(alertMsg[2][langNum]);
-          return;
-        }
-        else if (numVar < 3) {
-          checkVarSelect = false;
-          alert(alertMsg[44][langNum]);
-          return;
-        }
-        else if (numVar > 4) {
-          checkVarSelect = false;
-          alert(alertMsg[45][langNum]);
-          return;
-        }
-
         // check missing
         checkMissing = false;
         for (k=1; k<numVar; k++) {
@@ -3391,16 +3599,7 @@ function dataClassifyGIS() {
             return;
           }
         }
-        // 같은 번호 선택했는지 체크
-        checkVarSame = false;
-        for (i = 1; i < numVar; i++) {
-           if (tdvarNumber[0] == tdvarNumber[i]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
-           }
-        }
-      
+
         if (numVar == 3) { // name, latitude(y축), longitude(x축)
           // name data
           gobs        = tdobs[0];
@@ -3510,115 +3709,115 @@ function dataClassifyGIS() {
           }
         } // endof if
       
-        // 시트의 기타 데이터가 null로 되어있어 NaN로 수정
-        for (i=xobs; i<rowMax; i++) {
-            gdata[i] = NaN;
-            xdata[i] = NaN;
-            ydata[i] = NaN;
-            wdata[i] = NaN
-        }
+
 }
 // 이원분산분석 데이터 분류
 function dataClassifyANOVA2() {
-      // 자료가 없으면 경고
-      checkData = true;
-      for (k = 0; k < numVar; k++) {
-        if (tdobs[k] == 0) {
-          checkData = false;
-          alert(alertMsg[1][langNum]);
-          return;
-        }
-      }
-      // 변량 선택 안하면 경고
-      checkVarSelect = true;
-      if (numVar != 3) {
-        checkVarSelect = false;
-//        alert(alertMsg[44][langNum]);
-        return;
-      }
-      // 같은 번호 선택했는지 체크
-      checkVarSame = false;
-      for (i = 0; i < numVar-1; i++) {
-        for (j = i+1; j <numVar; j++) {
-           if (tdvarNumber[i] == tdvarNumber[j]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
-           }
-        }
-      }
-      // 원시자료 표시
-      document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
+        dvar[k]        = null;
+        dataValue[k]   = null;
+        dvalueLabel[k] = null;
         gvar[k]        = null;
         gdataValue[k]  = null;
         gvalueLabel[k] = null;
         gvar2[k]        = null;
         gdataValue2[k]  = null;
         gvalueLabel2[k] = null;
-        dvar[k]        = null;
-        dataValue[k]   = null;
-        dvalueLabel[k] = null;
       } 
+
+      //***** Check Missing ***** 
+      dobs = 0;  // 데이터수
+      mobs = 0;  // Missing수
+      for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < numVar; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
+          }
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            dvar[dobs]  = tdvar[0][i];
+            gvar[dobs]  = tdvar[1][i];
+            gvar2[dobs] = tdvar[2][i];
+            for (k = 0; k < numVar; k++) {           
+              mdvar[k][dobs] = tdvar[k][i]
+            }
+            dobs++;          
+          }
+      } 
+      gobs  = dobs;
+      gobs2 = dobs;
+      // 결측이 없는 행의 수 입력
+      for (k = 0; k < numCol; k++) mdobs[k] = dobs; 
+      // 결측행 제외 각 변량별 값 계산
+      for (k = 0; k < numVar; k++) {
+        for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+        mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+        for (j = 0; j < mdvalueNum[k]; j++) {
+          mdvalue[k][j] = dataValue[j];
+          for (m = 0; m < tdvalueNum[k]; m++) {
+            if (mdvalue[k][j] == tdvalue[k][m]) {
+               mdvalueLabel[k][j] = tdvalueLabel[k][m];
+               break;
+            }
+          }
+        }
+      }
+      // 원시자료 표시
+      document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
 
       // 세변수 중 첫째 dvar, 둘째 gvar, 셋째 gvar2 변량값, 도수 계산  -- 도수분포표 -------------------------  
-      // check missing
-      checkMissing = false;
-      for (k=1; k<numVar; k++) {
-          if (tdobs[k] != tdobs[0]) {
-            checkMissing = true;
-            alert(alertMsg[13][langNum]);
-            return;
-          }
-      }
-      // 둘째 gvar
-      gobs        = tdobs[1];
-      gvarNumber  = tdvarNumber[1];
-      gvarName    = tdvarName[1];
-      ngvalue     = tdvalueNum[1];
-      ngroup      = ngvalue;
-      for (k=0; k<ngvalue; k++) {
-          gdataValue[k]  = tdvalue[1][k];
-          if ( tdvalueLabel[1][k] == null ) {
-            if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][k]; 
-            else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-          }
-          else {
-            gvalueLabel[k] = tdvalueLabel[1][k];
-          }
-      } 
-      for (i = 0; i < gobs; i++) gvar[i] = tdvar[1][i];       
 
-      // 셋째 gvar
-      gobs2        = tdobs[2];
-      gvarNumber2  = tdvarNumber[2];
-      gvarName2    = tdvarName[2];
-      ngvalue2     = tdvalueNum[2];
-      ngroup2      = ngvalue2;
-      for (k=0; k<ngvalue2; k++) {
-          gdataValue2[k]  = tdvalue[2][k];
-          if ( tdvalueLabel[2][k] == null ) {
-            if (isNaN(tdvalue[2][k])) gvalueLabel2[k] = tdvalue[2][k]; 
-            else gvalueLabel2[k] = svgStr[18][langNum]+(k+1).toString();
-          }
-          else {
-            gvalueLabel2[k] = tdvalueLabel[2][k];
-          }
-      } 
-      for (i = 0; i < gobs; i++) gvar2[i] = tdvar[2][i];       
+        // 분석변수 복사
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        ndvalue    = mdvalueNum[0];
+        for (k = 0; k < ndvalue; k++) {
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
+            }
+        } 
 
-      // 첫째 dvar
-      dobs        = tdobs[0];
-      dvarNumber  = tdvarNumber[0];
-      dvarName    = tdvarName[0];
-      ndvalue     = tdvalueNum[0]
-      for (k = 0; k < ndvalue; k++) {
-          dataValue[k]   = tdvalue[0][k];
-          dvalueLabel[k] = tdvalueLabel[0][k];
-      } 
-      for (i = 0; i < dobs; i++) dvar[i] = tdvar[0][i];
+      // 둘째 gvar 복사
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        ngvalue = mdvalueNum[1];
+        for (k = 0; k < ngvalue; k++) {
+            gdataValue[k] = mdvalue[1][k];
+            if (mdvalueLabel[1][k] == null ) {
+              if (isNaN(mdvalue[1][k])) gvalueLabel[k] = mdvalue[1][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = mdvalueLabel[1][k];
+            }
+        } 
+
+      // 셋째 gvar 복사
+        gvarNumber2  = tdvarNumber[2];
+        gvarName2    = tdvarName[2];
+        //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        ngvalue2 = mdvalueNum[2];
+        for (k = 0; k < ngvalue2; k++) {
+            gdataValue2[k] = mdvalue[2][k];
+            if (mdvalueLabel[2][k] == null ) {
+              if (isNaN(mdvalue[2][k])) gvalueLabel2[k] = mdvalue[2][k]; 
+              else gvalueLabel2[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel2[k] = mdvalueLabel[2][k];
+            }
+        } 
 
       // check 그룹의 수가 너무 많은지 
       rawData   = true;
@@ -3640,7 +3839,8 @@ function dataClassifyANOVA2() {
       } // endof i
 
       // gvar에서 ngroup 게산
-
+      ngroup    = ngvalue;
+      ngroup2   = ngvalue2;
       oneHeight = graphHeight / ngroup;
 
       // gvar 변량값별 dvar 각 값 rearrange ----------------   
@@ -3736,14 +3936,15 @@ function dataClassifyANOVA2() {
       TotalStat(dobs, dvar, tstat);
       var SSR, SSC, SSRC, SSE, SST, temp, gmean;
       
-      checkRBD = false;
-      var temp = 1;
-      for (k=0; k<ngroup; k++) {
-        for (m=0; m<ngroup2; m++) {
-          temp *= nobsTwoWay[k][m];
-        }
+      checkDataRBD = true;
+      checkRBD  = false;
+      if (dobs == ngroup*ngroup2) checkRBD = true;
+      else if (dobs < ngroup*ngroup2) {
+        checkDataRBD = false
+        alert("Missing data for Randomized Block Design")
+        return;
       }
-      if (temp == 1) checkRBD = true;
+        
       gmean = tstat[1];
       SSR  = 0;
       SSC  = 0;
@@ -3798,37 +3999,44 @@ function dataClassifyANOVA2() {
 // 회귀분석 데이터 - 점을 그룹으로 구분
 function dataClassifyRegression() {
 
-        // 자료가 없으면 경고
-        checkData = true;
-        for (k = 0; k < numVar; k++) {
-          if (tdobs[k] == 0) {
-            checkData = false;
-            alert(alertMsg[1][langNum]);
-            return;
+      //***** Check Missing ***** 
+      dobs = 0;  // 데이터수
+      mobs = 0;  // Missing수
+      for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < numVar; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
+          }
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            for (k = 0; k < numVar; k++) {           
+              mdvar[k][dobs] = tdvar[k][i]
+            }
+            dobs++;          
+          }
+      } 
+      // 결측이 없는 행의 수 입력
+      for (k = 0; k < numCol; k++) mdobs[k] = dobs; 
+      // 결측행 제외 각 변량별 값 계산
+      for (k = 0; k < numVar; k++) {
+        for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+        mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+        for (j = 0; j < mdvalueNum[k]; j++) {
+          mdvalue[k][j] = dataValue[j];
+          for (m = 0; m < tdvalueNum[k]; m++) {
+            if (mdvalue[k][j] == tdvalue[k][m]) {
+               mdvalueLabel[k][j] = tdvalueLabel[k][m];
+               break;
+            }
           }
         }
-        // 변량 선택 안하면 경고
-        checkVarSelect = true;
-        if (numVar == 0) {
-          checkVarSelect = false;
-//          alert(alertMsg[2][langNum]);
-          return;
-        }
-        else if (numVar == 1) {
-          checkVarSelect = false;
-          alert(alertMsg[17][langNum]);
-          return;
-        }
-        // check missing & numeric
+      }
+        // check numeric
         checkNumeric = true;
-        checkMissing = false;
         for (k=0; k<numVar; k++) {
-          if (tdobs[k] != tdobs[0]) {
-            checkMissing = true;
-            alert(alertMsg[4][langNum]);
-            return;
-          }
-          // numeric check 
           for (i=0; i<tdobs[0]; i++) {
             if (isNaN(tdvar[k][i])) {
               checkNumeric = false;
@@ -3837,21 +4045,9 @@ function dataClassifyRegression() {
             } // endof if
           } // endof i
         }
-/*
-        // 같은 번호 선택했는지 체크
-        checkVarSame = false;
-        for (i = 0; i < numVar-1; i++) {
-          for (j = i+1; j<numVar; j++) {
-            if (tdvarNumber[i] == tdvarNumber[j]) {
-              checkVarSame = true;
-              alert(alertMsg[46][langNum]);  // 같은 변수 선택
-              return;
-            }
-          }
-        }
-*/
+
         // 원시자료 표시
-        document.getElementById("dataType").innerHTML = "("+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+")";
+        document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
 
         for (i=0; i<tdobs[0]; i++) wdata[i] = 3;
 }
@@ -6306,6 +6502,20 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
               cell[j].style.backgroundColor = "#eee";
             }
           }
+
+          // missing
+          nrow++
+          row = table.insertRow(nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
+
           nrow++;
           row = table.insertRow(nrow);
           row.style.height ="20px";
@@ -6560,8 +6770,8 @@ function drawScatter(ngroup, gvalueLabel,tobs,xdata,ydata,gdata,scatterS) {
 
       // y축 범례 그리기
       if (ngroup > 1 && ngroup < 10) drawLegendS(ngroup, gvalueLabel,graphWidth, bufferScatter);
-      // x축 범례 그리기
-      if (wvarNumber >= 0) {
+      // 크기변수 설명
+      if (wvarNumber > 0) {
         var wstr = "- "+svgStr[24][langNum]+" : "+wvarName+" -";
         chart.append("text")
              .attr("x",margin.left + titleBuffer)
@@ -7582,6 +7792,18 @@ function statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mi
             cell[5].style.textAlign = "center";
           } // endof g
 
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
+
           row = table.insertRow(++nrow);
           cell[0] = row.insertCell(0);          
           cell[0].style.border = "1px solid black";
@@ -7698,6 +7920,18 @@ function statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std,
             for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
             cell[5].style.textAlign = "center";
           } // endof g
+
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
 
           row = table.insertRow(++nrow);
           cell[0] = row.insertCell(0);          
@@ -7842,6 +8076,18 @@ function statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, 
             }
             cell[5].style.textAlign = "center";
           }
+
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
 
           row = table.insertRow(++nrow);
           for (j=0; j<3; j++) {
@@ -7996,6 +8242,18 @@ function statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, st
             cell[5].style.textAlign = "center";
           }
 
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
+
           row = table.insertRow(++nrow);
           cell[0] = row.insertCell(0);          
           cell[0].style.border = "1px solid black";
@@ -8148,6 +8406,18 @@ function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, min
             cell[5].style.textAlign = "center";
             cell[6].style.textAlign = "center";
           }
+
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
 
           row = table.insertRow(++nrow);
           row.style.height ="20px";
@@ -8311,6 +8581,19 @@ function stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2,
             cell[j+1].innerHTML = cobsTwoWay[j]+"<br>"+f2(cmeanTwoWay[j])+"<br>"+f2(cstdTwoWay[j]);  
           }
           cell[ngroup2+1].innerHTML = tstat[0]+"<br>"+f2(tstat[1])+"<br>"+f2(tstat[2]);
+
+          // missing
+          nrow++
+          row = table.insertRow(nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
 
           row = table.insertRow(++nrow);
           row.style.height ="20px";
@@ -8930,6 +9213,18 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
           cell[3].innerHTML = f3(yavg[k]).toString();  
           cell[4].innerHTML = f3(ystd[k]).toString();  
 
+          // missing
+          row = table.insertRow(++num);
+          for (j=0; j<2; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
+
           row  = table.insertRow(++num);
           for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
           for (j=0; j<ncol; j++) cell[j].style.textAlign = "right";         
@@ -9282,8 +9577,7 @@ function multivariateTable(numVar, tdobs, tdvar) {
         cell[3].innerHTML = svgStr[34][langNum]; // "평균";  
         cell[4].innerHTML = svgStr[35][langNum]; // "표준편차";  
         cell[5].innerHTML = svgStrU[18][langNum];// "표준오차";  
-        cell[6].innerHTML = "95% "+svgStrU[20][langNum]; // 95% 신뢰구간  
-                
+        cell[6].innerHTML = "95% "+svgStrU[20][langNum]; // 95% 신뢰구간                 
 
         for (k=0; k<numVar; k++) {
           row  = table.insertRow(++num);
@@ -9308,6 +9602,17 @@ function multivariateTable(numVar, tdobs, tdvar) {
           cell[5].innerHTML = f3(stderr).toString(); 
           cell[6].innerHTML = "("+f3(tleft)+", "+f3(tright)+")";  
         }
+          // missing
+          row = table.insertRow(++num);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
 
         row  = table.insertRow(++num);
         cell[0] = row.insertCell(0);          
