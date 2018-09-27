@@ -26,8 +26,12 @@ $(document).ready(function() {
 var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
-// var buttonColorH = "#FF4500";
-var buttonColorH = "blue";
+var buttonColorH = "#FF4500";
+//var buttonColorH = "blue";
+var iconB1   = "40px"
+var iconB2   = "25px"
+var iconH1   = "50px"
+var iconH2   = "30px"
 // log 스크린 컨트롤
 var screenTablePixelHeight = 10000;
 // 메뉴 칼러
@@ -1161,6 +1165,8 @@ d3.select("#separate1").on("click", function() {
     graphNum = 1;
     buttonColorChange();
     document.getElementById("separate1").style.backgroundColor = buttonColorH;
+    document.getElementById("separate1").style.width  = iconH1;
+    document.getElementById("separate1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1193,6 +1199,8 @@ d3.select("#separate2V").on("click", function() {
     graphNum = 1;
     buttonColorChange();    // graphSubHide 포함
     document.getElementById("separate2V").style.backgroundColor = buttonColorH;
+    document.getElementById("separate2V").style.width  = iconH2;
+    document.getElementById("separate2V").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1223,6 +1231,8 @@ d3.select("#separate2H").on("click", function() {
     graphNum = 6;
     buttonColorChange();
     document.getElementById("separate2H").style.backgroundColor = buttonColorH;
+    document.getElementById("separate2H").style.width  = iconH2;
+    document.getElementById("separate2H").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1295,6 +1305,8 @@ d3.select("#stack2V").on("click", function() {
     graphNum = 2;
     buttonColorChange();
     document.getElementById("stack2V").style.backgroundColor = buttonColorH;
+    document.getElementById("stack2V").style.width  = iconH2;
+    document.getElementById("stack2V").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1321,6 +1333,8 @@ d3.select("#stack2H").on("click", function() {
     graphNum = 7;
     buttonColorChange();
     document.getElementById("stack2H").style.backgroundColor = buttonColorH;
+    document.getElementById("stack2H").style.width  = iconH2;
+    document.getElementById("stack2H").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1347,6 +1361,8 @@ d3.select("#ratio2V").on("click", function() {
     graphNum = 3;
     buttonColorChange();
     document.getElementById("ratio2V").style.backgroundColor = buttonColorH;
+    document.getElementById("ratio2V").style.width  = iconH2;
+    document.getElementById("ratio2V").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1373,6 +1389,8 @@ d3.select("#ratio2H").on("click", function() {
     graphNum = 8;
     buttonColorChange();
     document.getElementById("ratio2H").style.backgroundColor = buttonColorH;
+    document.getElementById("ratio2H").style.width  = iconH2;
+    document.getElementById("ratio2H").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1399,6 +1417,8 @@ d3.select("#side2V").on("click", function() {
     graphNum = 4;
     buttonColorChange();
     document.getElementById("side2V").style.backgroundColor = buttonColorH;
+    document.getElementById("side2V").style.width  = iconH2;
+    document.getElementById("side2V").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1425,6 +1445,8 @@ d3.select("#side2H").on("click", function() {
     graphNum = 9;
     buttonColorChange();
     document.getElementById("side2H").style.backgroundColor = buttonColorH;
+    document.getElementById("side2H").style.width  = iconH2;
+    document.getElementById("side2H").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1454,6 +1476,8 @@ d3.select("#bothbar2V").on("click", function() {
     graphNum = 5;
     buttonColorChange();
     document.getElementById("bothbar2V").style.backgroundColor = buttonColorH;
+    document.getElementById("bothbar2V").style.width  = iconH2;
+    document.getElementById("bothbar2V").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1482,6 +1506,8 @@ d3.select("#bothbar2H").on("click", function() {
     graphNum = 10;
     buttonColorChange();
     document.getElementById("bothbar2H").style.backgroundColor = buttonColorH;
+    document.getElementById("bothbar2H").style.width  = iconH2;
+    document.getElementById("bothbar2H").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1510,6 +1536,8 @@ d3.select("#pie1").on("click", function() {
     graphNum = 11;
     buttonColorChange();
     document.getElementById("pie1").style.backgroundColor = buttonColorH;
+    document.getElementById("pie1").style.width  = iconH1;
+    document.getElementById("pie1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1530,6 +1558,8 @@ d3.select("#donut2").on("click", function() {
     graphNum = 12;
     buttonColorChange();
     document.getElementById("donut2").style.backgroundColor = buttonColorH;
+    document.getElementById("donut2").style.width  = iconH2;
+    document.getElementById("donut2").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1551,6 +1581,8 @@ d3.select("#band1").on("click", function() {
     graphNum = 13;
     buttonColorChange();
     document.getElementById("band1").style.backgroundColor = buttonColorH;
+    document.getElementById("band1").style.width  = iconH1;
+    document.getElementById("band1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1587,6 +1619,8 @@ d3.select("#line1").on("click", function() {
     graphNum = 14;
     buttonColorChange();
     document.getElementById("line1").style.backgroundColor = buttonColorH;
+    document.getElementById("line1").style.width  = iconH1;
+    document.getElementById("line1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStrU[82][langNum]; // X변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1632,6 +1666,8 @@ d3.select("#freqTable").on("click", function() {
     graphNum = 22;
     buttonColorChange();
     document.getElementById("freqTable").style.backgroundColor = buttonColorH;
+    document.getElementById("freqTable").style.width  = iconH1;
+    document.getElementById("freqTable").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[79][langNum]+": "+svgStrU[80][langNum]+")";
@@ -1659,6 +1695,8 @@ d3.select("#dot1").on("click", function() {
     graphNum = 15;
     buttonColorChange();
     document.getElementById("dot1").style.backgroundColor = buttonColorH;
+    document.getElementById("dot1").style.width  = iconH1;
+    document.getElementById("dot1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -1708,6 +1746,8 @@ d3.select("#hist1").on("click", function() {
     graphNum = 19;
     buttonColorChange();
     document.getElementById("hist1").style.backgroundColor = buttonColorH;
+    document.getElementById("hist1").style.width  = iconH1;
+    document.getElementById("hist1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -1791,6 +1831,8 @@ d3.select("#box1").on("click", function() {
     graphNum = 16;
     buttonColorChange();
     document.getElementById("box1").style.backgroundColor = buttonColorH;
+    document.getElementById("box1").style.width  = iconH1;
+    document.getElementById("box1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -1827,6 +1869,8 @@ d3.select("#stem1").on("click", function() {
     graphNum = 17;
     buttonColorChange();
     document.getElementById("stem1").style.backgroundColor = buttonColorH;
+    document.getElementById("stem1").style.width  = iconH1;
+    document.getElementById("stem1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -1846,6 +1890,8 @@ d3.select("#bothstem2").on("click", function() {
     graphNum = 18;
     buttonColorChange();
     document.getElementById("bothstem2").style.backgroundColor = buttonColorH;
+    document.getElementById("bothstem2").style.width  = iconH2;
+    document.getElementById("bothstem2").style.height = iconH2;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -1869,6 +1915,8 @@ d3.select("#statTable").on("click", function() {
     graphNum = 23;
     buttonColorChange();
     document.getElementById("statTable").style.backgroundColor = buttonColorH;
+    document.getElementById("statTable").style.width  = iconH1;
+    document.getElementById("statTable").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[81][langNum]+")";
@@ -1898,6 +1946,8 @@ d3.select("#scatter1").on("click", function() {
     graphNum = 20;
     buttonColorChange();
     document.getElementById("scatter1").style.backgroundColor = buttonColorH;
+    document.getElementById("scatter1").style.width  = iconH1;
+    document.getElementById("scatter1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStrU[83][langNum]; // Y변량
     document.getElementById("groupVar").innerHTML    = svgStrU[82][langNum]; // X변량
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -2017,6 +2067,8 @@ d3.select("#testM1").on("click", function() {
     graphNum = 25;
     buttonColorChange();
     document.getElementById("testM1").style.backgroundColor = buttonColorH;
+    document.getElementById("testM1").style.width  = iconH1;
+    document.getElementById("testM1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[85][langNum]+")";
@@ -2190,6 +2242,8 @@ d3.select("#testS1").on("click", function() {
     graphNum = 27;
     buttonColorChange();
     document.getElementById("testS1").style.backgroundColor = buttonColorH;
+    document.getElementById("testS1").style.width  = iconH1;
+    document.getElementById("testS1").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량 
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹 // 그룹
     document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[85][langNum]+")";
@@ -2336,6 +2390,8 @@ d3.select("#testM12").on("click", function() {
     graphNum = 29;
     buttonColorChange();
     document.getElementById("testM12").style.backgroundColor = buttonColorH;
+    document.getElementById("testM12").style.width  = iconH1;
+    document.getElementById("testM12").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량 
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -2571,6 +2627,8 @@ d3.select("#testS12").on("click", function() {
     graphNum = 31;
     buttonColorChange();
     document.getElementById("testS12").style.backgroundColor = buttonColorH;
+    document.getElementById("testS12").style.width  = iconH1;
+    document.getElementById("testS12").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
     document.getElementById("groupVarMsg").innerHTML = "";
@@ -2692,6 +2750,8 @@ d3.select("#anova").on("click", function() {
   graphNum = 33;
   buttonColorChange();
   document.getElementById("anova").style.backgroundColor = buttonColorH;
+  document.getElementById("anova").style.width  = iconH1;
+  document.getElementById("anova").style.height = iconH1;
   document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
   document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
   document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[81][langNum]+")";
@@ -2824,6 +2884,8 @@ d3.select("#regression").on("click", function() {
   graphNum = 35;
   buttonColorChange();
   document.getElementById("regression").style.backgroundColor = buttonColorH;
+  document.getElementById("regression").style.width  = iconH1;
+  document.getElementById("regression").style.height = iconH1;
   document.getElementById("analysisVar").innerHTML = svgStrU[83][langNum]; // Y변량
   document.getElementById("groupVar").innerHTML    = svgStrU[82][langNum]; // X변량
   document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";

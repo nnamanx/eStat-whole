@@ -159,20 +159,25 @@ function buttonColorChange() {
       THsigma1    = false;
       THsigma12   = false;
       THanova     = false;
-
+      // top icon menu background
       document.getElementById("separate1").style.backgroundColor  = buttonColorB;
       document.getElementById("pie1").style.backgroundColor       = buttonColorB;
       document.getElementById("band1").style.backgroundColor      = buttonColorB;
       document.getElementById("line1").style.backgroundColor      = buttonColorB;
       document.getElementById("freqTable").style.backgroundColor  = buttonColorB;
-
       document.getElementById("dot1").style.backgroundColor       = buttonColorB;
       document.getElementById("box1").style.backgroundColor       = buttonColorB;
       document.getElementById("stem1").style.backgroundColor      = buttonColorB;
       document.getElementById("hist1").style.backgroundColor      = buttonColorB;
       document.getElementById("scatter1").style.backgroundColor   = buttonColorB;
       document.getElementById("statTable").style.backgroundColor  = buttonColorB;
-
+      document.getElementById("testM1").style.backgroundColor     = buttonColorB;
+      document.getElementById("testS1").style.backgroundColor     = buttonColorB;
+      document.getElementById("testM12").style.backgroundColor    = buttonColorB;
+      document.getElementById("testS12").style.backgroundColor    = buttonColorB;
+      document.getElementById("anova").style.backgroundColor      = buttonColorB;
+      document.getElementById("regression").style.backgroundColor = buttonColorB;
+      // sub icon menu background
       document.getElementById("separate2V").style.backgroundColor = buttonColorB;
       document.getElementById("stack2V").style.backgroundColor    = buttonColorB;
       document.getElementById("ratio2V").style.backgroundColor    = buttonColorB;
@@ -186,12 +191,68 @@ function buttonColorChange() {
       document.getElementById("donut2").style.backgroundColor     = buttonColorB;
       document.getElementById("bothstem2").style.backgroundColor  = buttonColorB;
 
-      document.getElementById("testM1").style.backgroundColor     = buttonColorB;
-      document.getElementById("testS1").style.backgroundColor     = buttonColorB;
-      document.getElementById("testM12").style.backgroundColor    = buttonColorB;
-      document.getElementById("testS12").style.backgroundColor    = buttonColorB;
-      document.getElementById("anova").style.backgroundColor      = buttonColorB;
-      document.getElementById("regression").style.backgroundColor = buttonColorB;
+      // top icon menu width
+      document.getElementById("separate1").style.width  = iconB1;
+      document.getElementById("pie1").style.width       = iconB1;
+      document.getElementById("band1").style.width      = iconB1;
+      document.getElementById("line1").style.width      = iconB1;
+      document.getElementById("freqTable").style.width  = iconB1;
+      document.getElementById("dot1").style.width       = iconB1;
+      document.getElementById("box1").style.width       = iconB1;
+      document.getElementById("stem1").style.width      = iconB1;
+      document.getElementById("hist1").style.width      = iconB1;
+      document.getElementById("scatter1").style.width   = iconB1;
+      document.getElementById("statTable").style.width  = iconB1;
+      document.getElementById("testM1").style.width     = iconB1;
+      document.getElementById("testS1").style.width     = iconB1;
+      document.getElementById("testM12").style.width    = iconB1;
+      document.getElementById("testS12").style.width    = iconB1;
+      document.getElementById("anova").style.width      = iconB1;
+      document.getElementById("regression").style.width = iconB1;
+      // sub icon menu width
+      document.getElementById("separate2V").style.width = iconB2;
+      document.getElementById("stack2V").style.width    = iconB2;
+      document.getElementById("ratio2V").style.width    = iconB2;
+      document.getElementById("side2V").style.width     = iconB2;
+      document.getElementById("bothbar2V").style.width  = iconB2;
+      document.getElementById("separate2H").style.width = iconB2;
+      document.getElementById("stack2H").style.width    = iconB2;
+      document.getElementById("ratio2H").style.width    = iconB2;
+      document.getElementById("side2H").style.width     = iconB2;
+      document.getElementById("bothbar2H").style.width  = iconB2;
+      document.getElementById("donut2").style.width     = iconB2;
+      document.getElementById("bothstem2").style.width  = iconB2;
+      // top icon menu height
+      document.getElementById("separate1").style.height  = iconB1;
+      document.getElementById("pie1").style.height       = iconB1;
+      document.getElementById("band1").style.height      = iconB1;
+      document.getElementById("line1").style.height      = iconB1;
+      document.getElementById("freqTable").style.height  = iconB1;
+      document.getElementById("dot1").style.height       = iconB1;
+      document.getElementById("box1").style.height       = iconB1;
+      document.getElementById("stem1").style.height      = iconB1;
+      document.getElementById("hist1").style.height      = iconB1;
+      document.getElementById("scatter1").style.height   = iconB1;
+      document.getElementById("statTable").style.height  = iconB1;
+      document.getElementById("testM1").style.height     = iconB1;
+      document.getElementById("testS1").style.height     = iconB1;
+      document.getElementById("testM12").style.height    = iconB1;
+      document.getElementById("testS12").style.height    = iconB1;
+      document.getElementById("anova").style.height      = iconB1;
+      document.getElementById("regression").style.height = iconB1;
+      // sub icon menu height
+      document.getElementById("separate2V").style.height = iconB2;
+      document.getElementById("stack2V").style.height    = iconB2;
+      document.getElementById("ratio2V").style.height    = iconB2;
+      document.getElementById("side2V").style.height     = iconB2;
+      document.getElementById("bothbar2V").style.height  = iconB2;
+      document.getElementById("separate2H").style.height = iconB2;
+      document.getElementById("stack2H").style.height    = iconB2;
+      document.getElementById("ratio2H").style.height    = iconB2;
+      document.getElementById("side2H").style.height     = iconB2;
+      document.getElementById("bothbar2H").style.height  = iconB2;
+      document.getElementById("donut2").style.height     = iconB2;
+      document.getElementById("bothstem2").style.height  = iconB2;
 }
 
 // 초기 그래프 제목
