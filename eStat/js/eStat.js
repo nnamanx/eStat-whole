@@ -822,26 +822,7 @@ function dataClassifyLine() { // 꺽은선 데이터
               dvalueLabel[k] = mdvalueLabel[0][k];
             }
         } 
-/*
-        dvarNumber  = tdvarNumber[0];
-        dvarName    = tdvarName[0];
-        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
-        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
-        else ndvalue = tdvalueNum[0];
-        k = 0;
-        for (j = 0; j < tdvalueNum[0]; j++) {
-          if (tdvalue[0][j] != "99999999") { //***** missing 체크
-            dataValue[k] = tdvalue[0][j];
-            if (tdvalueLabel[0][j] == null ) {
-              dvalueLabel[k] = tdvalue[0][j];
-            }
-            else {
-              dvalueLabel[k] = tdvalueLabel[0][j];
-            }
-            k++
-          }
-        } 
-*/
+
         ngroup = numVar - 1;
         if (ngroup > 9)  alert(alertMsg[5][langNum]);
         // 요약자료의 분석변량들의 Numeric 여부 체크
@@ -3090,27 +3071,7 @@ function dataClassifyM() {
               dvalueLabel[k] = mdvalueLabel[0][k];
             }
         } 
-/*
-        // 분석변수 복사
-        dvarNumber  = tdvarNumber[0];
-        dvarName    = tdvarName[0];
-        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
-        else ndvalue = tdvalueNum[0];
-        //***** missing 빼고 dataValue, dvalueLabel복사
-        k = 0;
-        for (j = 0; j < tdvalueNum[0]; j++) {
-          if (tdvalue[0][j] != "99999999") { //***** missing 체크
-            dataValue[k] = tdvalue[0][j];
-            if (tdvalueLabel[0][j] == null ) {
-              dvalueLabel[k] = tdvalue[0][j];
-            }
-            else {
-              dvalueLabel[k] = tdvalueLabel[0][j];
-            }
-            k++
-          }
-        } 
-*/
+
         ngroup      = 1;
         gvarNumber  = "";
         gvarName    = "";
@@ -3151,28 +3112,7 @@ function dataClassifyM() {
               gvalueLabel[k] = mdvalueLabel[1][k];
             }
         } 
-/*
-        // 그룹변수 복사
-        gvarNumber  = tdvarNumber[1];
-        gvarName    = tdvarName[1];
-        //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
-        if ( missing[gvarNumber-1] > 0 ) ngvalue = tdvalueNum[1] - 1; //***** missing 제거 
-        else ngvalue = tdvalueNum[1];
-        k = 0;
-        for (j = 0; j < tdvalueNum[1]; j++) {
-          if (tdvalue[1][j] != "99999999") { //***** missing 체크
-            gdataValue[k] = tdvalue[1][j];
-            if (tdvalueLabel[1][j] == null ) {
-              if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][j]; 
-              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-            }
-            else {
-              gvalueLabel[k] = tdvalueLabel[1][j];
-            }
-            k++
-          }
-        } 
-*/
+
         // 분석변수 복사
         dvarNumber  = tdvarNumber[0];
         dvarName    = tdvarName[0];
@@ -3187,28 +3127,7 @@ function dataClassifyM() {
               dvalueLabel[k] = mdvalueLabel[0][k];
             }
         } 
-/*
 
-        // 분석변수 복사
-        dvarNumber  = tdvarNumber[0];
-        dvarName    = tdvarName[0];
-        //***** 분석변수 missing 빼고 ndvalue, dataValue, dvalueLabel복사
-        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
-        else ndvalue = tdvalueNum[0];
-        k = 0;
-        for (j = 0; j < tdvalueNum[0]; j++) {
-          if (tdvalue[0][j] != "99999999") { //***** missing 체크
-            dataValue[k] = tdvalue[0][j];
-            if (tdvalueLabel[0][j] == null ) {
-              dvalueLabel[k] = tdvalue[0][j];
-            }
-            else {
-              dvalueLabel[k] = tdvalueLabel[0][j];
-            }
-            k++
-          }
-        } 
-*/
         // numeric check of dependent variable
         checkNumeric = true;
         for (i=0; i<dobs; i++) {
@@ -3324,28 +3243,6 @@ function dataClassifyM12() {
               gvalueLabel[k] = mdvalueLabel[1][k];
             }
         } 
-/*
-        // 그룹변수 복사
-        gvarNumber  = tdvarNumber[1];
-        gvarName    = tdvarName[1];
-        //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
-        if ( missing[gvarNumber-1] > 0) ngvalue = tdvalueNum[1] - 1; //***** missing 제거 
-        else ngvalue = tdvalueNum[1];
-        k = 0;
-        for (j = 0; j < tdvalueNum[1]; j++) {
-          if (tdvalue[1][j] != "99999999") { //***** missing 체크
-            gdataValue[k] = tdvalue[1][j];
-            if (tdvalueLabel[1][j] == null ) {
-              if (isNaN(tdvalue[1][k])) gvalueLabel[k] = tdvalue[1][j]; 
-              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-            }
-            else {
-              gvalueLabel[k] = tdvalueLabel[1][j];
-            }
-            k++
-          }
-        } 
-*/
         for (i = 0; i < gobs; i++) gvar[i] = mdvar[1][i];
 
         // 분석변수 복사
@@ -3362,27 +3259,7 @@ function dataClassifyM12() {
               dvalueLabel[k] = mdvalueLabel[0][k];
             }
         } 
-/*
-        // 분석변수 복사
-        dvarNumber  = tdvarNumber[0];
-        dvarName    = tdvarName[0];
-        //***** 분석변수 missing 빼고 ndvalue, dataValue, dvalueLabel복사
-        if ( missing[dvarNumber-1] > 0 ) ndvalue = tdvalueNum[0] - 1; //***** missing 제거 
-        else ndvalue = tdvalueNum[0];
-        k = 0;
-        for (j = 0; j < tdvalueNum[0]; j++) {
-          if (tdvalue[0][j] != "99999999") { //***** missing 체크
-            dataValue[k] = tdvalue[0][j];
-            if (tdvalueLabel[0][j] == null ) {
-              dvalueLabel[k] = tdvalue[0][j];
-            }
-            else {
-              dvalueLabel[k] = tdvalueLabel[0][j];
-            }
-            k++
-          }
-        } 
-*/
+
       // independent Two Group t-test 인지 Paired T-test인지 체크
       ngroup = ngvalue;
       checkPairedT = false;
@@ -3485,12 +3362,13 @@ function dataClassifyS() {
         } 
         xobs = yobs;
         gobs = yobs;
+        wobs = yobs;
         // 결측이 없는 행의 수 입력
         for (k = 0; k < numCol; k++) mdobs[k] = yobs; 
         // 결측행 제외 각 변량별 값 계산
-        for (k = 0; k < numVar; k++) {
-          for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
-          mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+        for (k = 0; k < 4; k++) {
+          for (i = 0; i < yobs; i++) dataA[i] = mdvar[k][i];
+          mdvalueNum[k] = sortAscend(yobs, dataA, dataValue, dvalueFreq);
           for (j = 0; j < mdvalueNum[k]; j++) {
             mdvalue[k][j] = dataValue[j];
             for (m = 0; m < tdvalueNum[k]; m++) {
@@ -3547,12 +3425,12 @@ function dataClassifyS() {
           }
         }
         else { // group 변량이 있는 경우
-
           // 그룹변수
           gvarNumber  = tdvarNumber[2];
           gvarName    = tdvarName[2];
           //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
           ngvalue = mdvalueNum[2];
+          ngroup  = ngvalue;
           for (k = 0; k < ngvalue; k++) {
             gdataValue[k] = mdvalue[2][k];
             if (mdvalueLabel[2][k] == null ) {
@@ -3563,29 +3441,6 @@ function dataClassifyS() {
               gvalueLabel[k] = mdvalueLabel[1][k];
             }
           } 
-/*
-
-          // 그룹변수 복사
-          gvarName    = rvarName[gvarNumber-1];
-          //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
-          if ( missing[gvarNumber-1] > 0 ) ngvalue = rvalueNum[gvarNumber-1] - 1; //***** missing 제거 
-          else ngvalue = rvalueNum[gvarNumber-1];
-          ngroup = ngvalue;
-          k = 0;
-          for (j = 0; j < rvalueNum[gvarNumber-1]; j++) {
-            if (rvalue[gvarNumber-1][j] != "99999999") { //***** missing 체크
-              gdataValue[k] = rvalue[gvarNumber][j];
-              if (rvalueLabel[gvarNumber-1][j] == null ) {
-                if (isNaN(rvalue[gvarNumber-1][k])) gvalueLabel[k] = rvalue[gvarNumber-1][j]; 
-                else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
-              }
-              else {
-                gvalueLabel[k] = rvalueLabel[gvarNumber-1][j];
-              }
-              k++
-            }
-          } 
-*/
           if (ngvalue < 10) {
             for (i=0; i<gobs; i++) { // 그룹변량의 컬러지정, 원의 크기 지정
               for (k=0; k<ngvalue; k++) {
@@ -3603,8 +3458,7 @@ function dataClassifyS() {
         }
         else { // size 변량이 있는 경우
           // w data
-          wobs        = gobs;
-          wvarName    = mdvarName[3];
+          wvarName    = tdvarName[3];
           // numeric check 
           checkNumeric = true;
           for (i=0; i<yobs; i++) { 
@@ -3615,26 +3469,11 @@ function dataClassifyS() {
             } // endof if
             wdata[i] = parseFloat(wdata[i]);
           } // endof i
-
-
           //***** missing 빼고 nwvalue, gdataValue, gvalueLabel복사
           nwvalue = mdvalueNum[3];
           for (k = 0; k < nwvalue; k++) {
             wdataValue[k] = mdvalue[3][k];
           } 
-
-/*
-          //***** 그룹변수 missing 빼고 ngvalue, gdataValue, gvalueLabel복사
-          if ( missing[wvarNumber-1] > 0 ) nwvalue = rvalueNum[wvarNumber-1] - 1; //***** missing 제거 
-          else nwvalue = rvalueNum[wvarNumber-1];
-          k = 0;
-          for (j = 0; j < rvalueNum[wvarNumber-1]; j++) {
-            if (rvalue[wvarNumber-1][j] != "99999999") { //***** missing 체크
-              wdataValue[k] = rvalue[wvarNumber-1][j];
-              k++
-            }
-          } 
-*/
           trange = Math.sqrt(parseFloat(wdataValue[nwvalue-1])) - Math.sqrt(parseFloat(wdataValue[0]));
           for (i=0; i<xobs; i++) {
             temp     = Math.sqrt(wdata[i]) - Math.sqrt(parseFloat(wdataValue[0]));
@@ -3644,7 +3483,6 @@ function dataClassifyS() {
           }
 
         } // endof ifelse
-
 }
 
 // GIS 데이터 
