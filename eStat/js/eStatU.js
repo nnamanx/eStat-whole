@@ -2757,7 +2757,7 @@ function expGenerator(nobs, dataSet) {
          var generator = d3.randomExponential(0.3)
          for (var i=0; i<nobs; i++) {
            dataSet[i] = generator();
-           if (dataSet[i] > 18)  dataSet[i] = 18;
+           if (dataSet[i] > 30)  dataSet[i] = 30;
          }
 }// 모집단의 Dot Graph ================================================================
 function showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue) {
@@ -2954,10 +2954,14 @@ function drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, sta
         statS[8]  = freqMaxS;
         statS[9]  = gxmin;
         statS[10] = gxmax;
-}// CLT
+}
+// CLT
 function CLT() {      
-        dot.append("text").attr("x", margin.left).attr("y", svgHeight - margin.bottom/2 + 20)
-           .text(svgStrU[16][langNum]+" (100 "+svgStrU[17][1]+")" )
+        var kiter = 500; // sample 반복 추출 회수
+        dot.append("text")
+           .attr("class","titleS")
+           .attr("x", margin.left).attr("y", svgHeight - margin.bottom/2 + 20)
+           .text(svgStrU[16][langNum]+" ("+svgStrU[17][langNum]+"="+kiter+")" )
            .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
         var niter = 3;  
         var n = new Array(30)
@@ -2968,13 +2972,13 @@ function CLT() {
         gxmax  = statP[10];
         xrange = gxmax - gxmin;
         oneHeight   = (totalHeight - svgHeight) / niter; 
-        var kiter = 100; // sample 반복 추출 회수
         for (var gg = 0; gg < niter; gg++) {  // 세 표본크기에 대한 표집분포
-        dot.append("text")
-           .attr("x", margin.left)
-           .attr("y", svgHeight + gg*oneHeight)
-           .text("n = "+n[gg])
-           .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
+          dot.append("text")
+             .attr("class","titleS")
+             .attr("x", margin.left)
+             .attr("y", svgHeight + gg*oneHeight)
+             .text("n = "+n[gg])
+             .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
           var sdata  = [];
           var sdataY = [];
           var avg = 0;
@@ -3018,7 +3022,8 @@ function CLT() {
           start = svgHeight - margin.bottom/2 + gg*oneHeight;
           var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
           var ty = start + oneHeight;
-          dot.append("line")            
+          dot.append("line")  
+             .attr("class","lineS")          
              .attr("x1",margin.left)
              .attr("y1",ty)
              .attr("x2",margin.left+graphWidth)
@@ -3027,6 +3032,7 @@ function CLT() {
            
           for (k=0; k<kiter; k++) {
             dot.append("circle")
+               .attr("class","circleS")
                .attr("fill","#FF3500").style("stroke","black")
                .transition()                           // 애니매이션 효과 지정
                .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
@@ -3538,15 +3544,15 @@ function lawLargeDemo(nobs) {
         
         } // endof k 
 }// 구간추정 표시 함수
-function drawInterval(nobs, avg, std, gxmin, xrange, clevel, height, niter, start) {
+function drawInterval(nobs, avg, statP, gxmin, xrange, clevel, height, niter, start) {
         var ty    = start + height;
-        var temp  = clevel*std/Math.sqrt(nobs);
+        var temp  = clevel*statP[2]/Math.sqrt(nobs);
         var avgx  = margin.left + graphWidth*(avg-gxmin)/xrange;
         var stdmx = margin.left + graphWidth*(avg-temp-gxmin)/xrange;
         var stdpx = margin.left + graphWidth*(avg+temp-gxmin)/xrange;
         var checkMu = true;
-        if (avg - temp > 0) checkMu = false;
-        if (avg + temp < 0) checkMu = false;
+        if (avg - temp > statP[1]) checkMu = false;
+        if (avg + temp < statP[1]) checkMu = false;
         if (checkMu) {
           dot2.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
               .style("stroke","green")
@@ -3563,13 +3569,13 @@ function drawInterval(nobs, avg, std, gxmin, xrange, clevel, height, niter, star
           dot2.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
               .style("stroke","red")
         }
-        if (niter < 6) {
+        if (niter < 11) {
           if (checkMu) dot2.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
                            .style("stroke","green")
-					       .style("font-family","sans-serif").style("font-size","9pt")
+		           .style("font-family","sans-serif").style("font-size","9pt")
           else dot2.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
                    .style("stroke","red")
-				   .style("font-family","sans-serif").style("font-size","9pt")
+		   .style("font-family","sans-serif").style("font-size","9pt")
         }
 }// 전체 구간추정 표본그림 제거
 function removeAllSample3() {

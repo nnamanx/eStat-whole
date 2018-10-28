@@ -58,8 +58,8 @@
       var i, j, k; // 
       var nint, step, buffer, nvalue, gxmin, gxmax; 
  
-      var nobs   = 1000;
-      var radius = 2;
+      var nobs   = 10000;
+      var radius = 1;
       
       var checkSampling = true;
       var checkInterval = false;
@@ -68,7 +68,7 @@
 
       var statP      = new Array(20);
       var statS      = new Array(20);
-      var bins       = new Array(200);
+      var bins       = new Array(1001);
       var dataSet    = new Array(nobs);
       var dataA      = new Array(nobs);
       var dataValue  = new Array(nobs);
@@ -87,7 +87,7 @@
       title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
       dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
       normalGenerator(nobs, dataSet);
-      nint    = 80;
+      nint    = 400;
       step    = 8/nint;
       bins[0] = -4;
       showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
@@ -101,7 +101,7 @@
          title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
          normalGenerator(nobs, dataSet);
-         nint    = 80;
+         nint    = 400;
          step    = 8/nint;
          bins[0] = -4;
          showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
@@ -111,8 +111,8 @@
          title  = svgStrU[49][langNum]+"(0.3) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
          expGenerator(nobs, dataSet);
-         nint    = 100;
-         step    = 18/nint;
+         nint    = 900;
+         step    = 30/nint;
          bins[0] = 0;
          showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
       }
@@ -121,7 +121,7 @@
          title  = svgStrU[50][langNum] + "(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
          for (i=0; i<nobs; i++) dataSet[i] = Math.random();
-         nint    = 50;
+         nint    = 250;
          step    = 1/nint;
          bins[0] = 0;
          showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
