@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title data-msgid="FriedmanTest">Friedman Test</title>
+    <title data-msgid="FriedmanTestDist">Friedman Test</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
     <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
@@ -19,7 +19,7 @@
     <br>
     <div class="title">
       <b>&nbsp; &nbsp; 
-         <span data-msgid="FriedmanTestANOVA">
+         <span data-msgid="FriedmanTestDist">
            Testing Hypothesis : 4 Population Means (ANOVA)
          </span>
       </b>
@@ -28,101 +28,34 @@
     <br>
     <table class="stat">
       <tbody>
-	<tr>  
-	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
-	  <td></span></td>
-	  <td><span class="fontmath">
-                H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub>
-              </span>
-          </td>
-	</tr>
 	<tr>
-	  <td></td>
-	  <td></td>
-	  <td><span class="fontmath">
-                H<sub>1</sub> : 
-                <span data-msgid="At least one locations is different">At least one pair of locations is not equal</span>
-              </span> 
+	  <td><span data-msgid="Treatment">Treatment</span></td>         
+	  <td><span class="fontmath">k</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" value="3" size=3 id="nn41"></td>
+          <td>
+            <sup><small> 3 </small></sup>              
+            <input type="range" min="3" max="4" value="3" id="range1" onchange="showValueRangeN1(this.value)"/>  
+            <sup><small>4</small></sup>
+          </td>
+ 	</tr>
+	<tr>
+	  <td><span data-msgid="Block">Block</span></td>         
+	  <td><span class="fontmath">n</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" value="5" size=3 id="nn42"></td>        
+          <td>
+            <sup><small> 2 </small></sup>              
+            <input type="range" min="2" max="8" value="5" id="range2" onchange="showValueRangeN2(this.value)"/>  
+            <sup><small>8</small></sup>
+          </td>
+          <td><span class="fontguide" > (k=3, n<=8) (k=4, n<=6) </span></td>
+          <td>
+            <button type="button" id="executeTH4" > <span data-msgid="Execute">Execute</span></button>
           </td>
 	</tr>
       </tbody>
     </table>
-    
-    <form name="myForm1"> 
-      <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
-       <span data-msgid="FriedmanTest">Friedman Test</span>
-    </form>
-
-    <form name="myForm2">&nbsp;&nbsp;&nbsp;
-      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
-      <span class="fontmath"> &alpha; </span> =
-      <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>  
-     
-    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
-    <span class="fontguide" >
-      (<span data-msgid="Treatment">Treatment </span> k = 3 or 4 )
-    </span>   
-    
-    <table class="data">
-      <tbody>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><span data-msgid="Block">Block</span> 1</td>
-	  <td><input type="text" size=50 id="data1"></td>
-	</tr>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><span data-msgid="Block">Block</span> 2</td>
-	  <td><input type="text" size=50 id="data2"></td>
-	</tr>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><span data-msgid="Block">Block</span> 3</td>
-	  <td><input type="text" size=50 id="data3"></td>
-	</tr>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><span data-msgid="Block">Block</span> 4</td>
-	  <td><input type="text" size=50 id="data4"></td>
-	</tr>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><span data-msgid="Block">Block</span> 5</td>
-	  <td><input type="text" size=50 id="data5"></td>
-	</tr>
-      </tbody>
-    </table>   
-    
-    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
-    
-    <table class="stat">
-      <tbody>
-	<tr>
-	  <td><span class="fontmath">&nbsp; R<sub>1</sub> =</span></td>
-	  <td><input type="text" class="textarea" size=5 id="xbar71"></td>
-	  <td><span class="fontmath">&nbsp; R<sub>2</sub> =</span></td>	
-	  <td><input type="text" class="textarea" size=5 id="xbar72"></td>
-	  <td><span class="fontmath">&nbsp; R<sub>3</sub> =</span></td>	
-	  <td><input type="text" class="textarea" size=5 id="xbar73"></td>
-	  <td><span class="fontmath">&nbsp; R<sub>4</sub> =</span></td>	
-	  <td><input type="text" class="textarea" size=5 id="xbar74"></td>
-	</tr>
-	<tr>
-	  <td><span class="fontmath">&nbsp; k =</span></td>
-	  <td><input type="text" class="textarea" size=5 id="nn71"></td>
-	  <td><span class="fontmath">&nbsp; n =</span></td>
-	  <td><input type="text" class="textarea" size=5 id="nn72"></td>        
-	  <td><span class="fontmath">&nbsp; S =</span></td>
-	  <td><input type="text" class="textarea" size=5 id="friedmanS"></td>
-	</tr>
-      </tbody>
-    </table>
-    
-    <button type="button" id="executeTH4" >
-        <span data-msgid="Execute">Execute</span>
-    </button> 
     <p>
     <svg id="chart" width="600" height="400"> </svg>
     <br>
@@ -137,7 +70,7 @@
 
   </div> 
 
-  <div width="650" style="position:absolute; left:10px; top:870px"> <p>
+  <div width="650" style="position:absolute; left:10px; top:580px"> <p>
     <table id="ranksumTable" cellpadding="2" cellspacing="2" border="2" >  </table>
   </div>
 
@@ -145,19 +78,19 @@
       var bar = d3.select("#chart");
 
       var svgWidth, svgHeight, margin, graphWidth, graphHeight; 
-      var margin = {top: 90, bottom: 90, left: 100, right: 120};
+      var margin = {top: 90, bottom: 50, left: 60, right: 40};
       svgWidth   = 600;
       svgHeight  = 400;
       graphWidth  = svgWidth - margin.left - margin.right;
       graphHeight = svgHeight - margin.top - margin.bottom;   
 
       var i,j,k,m, jj, nblock, nkk, kfact, sum, sumT, sqsumR, S, SP;
-      var i1, i2, i3, i4, i5, nvalue;      
+      var i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, nvalue;      
       var maxk     = 4;
-      var maxblock = 5;
-      var maxfact  = 4*3*2*1;
+      var maxblock = 10;
+      var maxfact  = 1*2*3*4*5*6*7*8*9*10;
       var tobs, nvalue, checkData;
-      var hypoType, h1Type, df, info, f, g, h, pvalue, stat;
+      var hypoType, h1Type, df, info, f, g, h, pvalue, stat, alpha;
       hypoType = 99;
       h1Type = 2; 
       var kobs    = new Array(maxblock+1);
@@ -169,118 +102,62 @@
       var tdata     = [];
       var dataValue = [];
       var dvalueP   = [];
-
-      var y = new Array(maxblock);
-      var w = new Array(maxblock);
-      for (i=0; i<maxblock; i++) {
-         y[i] = new Array(maxk);
-         w[i] = new Array(maxk);
-      }
+      var title  = svgStrU[72][langNum] ;
+      var sub1 = "";
       var x = new Array(maxk);
       for (i=0; i<maxfact; i++) {
          x[i] = new Array(maxk);
       }
+      // initial graph
+      bar.selectAll("*").remove();
+      nkk    = parseInt(document.getElementById("nn41").value);
+      nblock = parseInt(document.getElementById("nn42").value);
+        kfact = 1;
+        for(i=0; i<nkk; i++) kfact *=(i+1);
+        jj = 0; // factorial id num 초기치  메인으로 덤프 x[jj][]
+        for (i=0; i<nkk; i++) R[i] = i+1;
+        perm(R, 0, nkk, nkk) ;  // Permutation
+        // nblock = 5인 경우
+           m =0;
+           for (i1=0; i1<kfact; i1++) {
+             for (i2=0; i2<kfact; i2++) {
+               for (i3=0; i3<kfact; i3++) {
+                 for (i4=0; i4<kfact; i4++) {
+                   for (i5=0; i5<kfact; i5++) {
+                     sqsumR = 0;
+                     for (k=0; k<nkk; k++) {
+                       sumR[k] = x[i1][k] + x[i2][k] + x[i3][k] + x[i4][k] + x[i5][k];
+                       sqsumR += sumR[k]*sumR[k];
+                     }
+                     tdata[m] = 12*sqsumR/(nblock*nkk*(nkk+1)) - 3*nblock*(nkk+1);
+                     m++;
+                   }
+                 }
+               }
+             }
+           }
 
-      var checkExecute = false;  // 시간이 너무 걸려 체크
-      document.getElementById("xbar71").disabled = true;
-      document.getElementById("xbar72").disabled = true;
-      document.getElementById("xbar73").disabled = true;
-      document.getElementById("xbar74").disabled = true;
-      document.getElementById("nn71").disabled = true;
-      document.getElementById("nn72").disabled = true;
-      document.getElementById("friedmanS").disabled = true;
-      // alpha
-      var a = document.myForm2.type2;
-      alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; }  
-      a[1].onclick = function() { alpha = 0.01; } 
 
-      // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
-        y[0] = data;
-        if (document.getElementById("data1").value == "") kobs[1] = 0;
-        else kobs[1] = y[0].length;
-        updateData();
-      });
-      d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");  
-        y[1] = data; 
-        if (document.getElementById("data2").value == "") kobs[2] = 0;
-        else kobs[2] = y[1].length;
-        updateData();
-      });
-      d3.select("#data3").on("input", function() {
-        stat = simplestat("#data3");  
-        y[2] = data;
-        if (document.getElementById("data3").value == "") kobs[3] = 0;
-        else kobs[3] = y[2].length;
-        updateData();
-      });
-      d3.select("#data4").on("input", function() {
-        stat = simplestat("#data4");  
-        y[3] = data;
-        if (document.getElementById("data4").value == "") kobs[4] = 0;
-        else kobs[4] = y[3].length;
-        updateData();
-      });
-      d3.select("#data5").on("input", function() {
-        stat = simplestat("#data5");  
-        y[4] = data;
-        if (document.getElementById("data5").value == "") kobs[5] = 0;
-        else kobs[5] = y[4].length;
-        updateData();
-      });
-      function updateData() {
-        document.getElementById("xbar71").value = "";
-        document.getElementById("xbar72").value = "";
-        document.getElementById("xbar73").value = "";
-        document.getElementById("xbar74").value = "";
-        document.getElementById("nn71").value = "";
-        document.getElementById("nn72").value = "";
-        document.getElementById("friedmanS").value = "";
-      }
+        // Friedman distribution 계산
+        tdata.sort(function(a, b){return a-b});
+        tobs = tdata.length;
+        nvalue = valueFreq(tobs, tdata, dataValue, dvalueP); 
+        for (j=0; j<nvalue; j++) {
+          dvalueP[j] = dvalueP[j] / tobs;
+          dataValue[j] = f3(dataValue[j]);
+        }
+
+        // draw graph
+        var sub2 = "k = "+ nkk + ", n = " + nblock;
+        drawFriedmanBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, SP, alpha, h1Type, checkData) 
+
     // Testing Hypothesis ===========================================================
     d3.select("#executeTH4").on("click",function() {
-      bar.selectAll("*").remove();
-
-      nblock = 0;
-      for (i=1; i<=5; i++) {
-        if(kobs[i] > 4) {alert("k is too big!!!"); return}
-        if(kobs[i] > 0) nblock++;
-      }
-      for (i=2; i<=nblock; i++) if (kobs[i] != kobs[i-1]) {alert("k should be equal"); return;}
-      nkk = kobs[1];
+      nkk    = parseInt(document.getElementById("nn41").value);
+      nblock = parseInt(document.getElementById("nn42").value);
     
-      // calculate sample ranksum
-      sumT = 0;
-      for (i=0; i<nblock; i++) {
-        for (k=0; k<nkk; k++) tdata[k] = y[i][k];
-        T[i] = rankFriedman(nkk, tdata, tempR);  //duplication weight
-// console.log(T[i])
-        sumT += T[i];
-        for (k=0; k<nkk; k++) w[i][k] = tempR[k];
-      }  
-
-      // calculate Friedman Stat
-      sqsumR = 0;
-      for (k=0; k<nkk; k++) {
-        sum = 0;
-        for (i=0; i<nblock; i++) {
-          sum += w[i][k];
-        }
-        ranksum[k] = sum;
-        str = "xbar7"+(k+1).toString();
-        document.getElementById(str).value = ranksum[k];
-        sqsumR += ranksum[k]*ranksum[k];
-      }
-      S  = 12*sqsumR/(nblock*nkk*(nkk+1)) - 3*nblock*(nkk+1);
-      SP = S / (1 - sumT/(nblock*nkk*(nkk*nkk-1)) );
-      document.getElementById("nn71").value = nkk;
-      document.getElementById("nn72").value = nblock;
-      document.getElementById("friedmanS").value = f2(SP);
-
-     if (nkk < 5) { // exact Friedman Distribution
+      if ( (nkk == 3 && nblock <= 8) || (nkk == 4 && nblock <= 6) ) { // exact Friedman Distribution
+        bar.selectAll("*").remove();
         // All possible factorial of Rank -팩토리얼 함수에서 메인으로 덤프 x[][] 하여 통계량 계산
         kfact = 1;
         for(i=0; i<nkk; i++) kfact *=(i+1);
@@ -357,6 +234,140 @@
              }
            }
          }
+         else if (nblock == 6) {
+           m =0;
+           for (i1=0; i1<kfact; i1++) {
+             for (i2=0; i2<kfact; i2++) {
+               for (i3=0; i3<kfact; i3++) {
+                 for (i4=0; i4<kfact; i4++) {
+                   for (i5=0; i5<kfact; i5++) {
+                   for (i6=0; i6<kfact; i6++) {
+                     sqsumR = 0;
+                     for (k=0; k<nkk; k++) {
+                       sumR[k] = x[i1][k] + x[i2][k] + x[i3][k] + x[i4][k] + x[i5][k]+ x[i6][k];
+                       sqsumR += sumR[k]*sumR[k];
+                     }
+                     tdata[m] = 12*sqsumR/(nblock*nkk*(nkk+1)) - 3*nblock*(nkk+1);
+                     m++;
+                   }
+                   }
+                 }
+               }
+             }
+           }
+         }
+         else if (nblock == 7) {
+           m =0;
+           for (i1=0; i1<kfact; i1++) {
+             for (i2=0; i2<kfact; i2++) {
+               for (i3=0; i3<kfact; i3++) {
+                 for (i4=0; i4<kfact; i4++) {
+                   for (i5=0; i5<kfact; i5++) {
+                   for (i6=0; i6<kfact; i6++) {
+                   for (i7=0; i7<kfact; i7++) {
+                     sqsumR = 0;
+                     for (k=0; k<nkk; k++) {
+                       sumR[k] = x[i1][k] + x[i2][k] + x[i3][k] + x[i4][k] + x[i5][k] + x[i6][k]
+                                +x[i7][k];
+                       sqsumR += sumR[k]*sumR[k];
+                     }
+                     tdata[m] = 12*sqsumR/(nblock*nkk*(nkk+1)) - 3*nblock*(nkk+1);
+                     m++;
+                   }
+                   }
+                   }
+                 }
+               }
+             }
+           }
+         }
+         else if (nblock == 8) {
+           m =0;
+           for (i1=0; i1<kfact; i1++) {
+             for (i2=0; i2<kfact; i2++) {
+               for (i3=0; i3<kfact; i3++) {
+                 for (i4=0; i4<kfact; i4++) {
+                   for (i5=0; i5<kfact; i5++) {
+                   for (i6=0; i6<kfact; i6++) {
+                   for (i7=0; i7<kfact; i7++) {
+                   for (i8=0; i8<kfact; i8++) {
+                     sqsumR = 0;
+                     for (k=0; k<nkk; k++) {
+                       sumR[k] = x[i1][k] + x[i2][k] + x[i3][k] + x[i4][k] + x[i5][k]
+                                +x[i6][k] + x[i7][k] + x[i8][k];
+                       sqsumR += sumR[k]*sumR[k];
+                     }
+                     tdata[m] = 12*sqsumR/(nblock*nkk*(nkk+1)) - 3*nblock*(nkk+1);
+                     m++;
+                   }
+                   }
+                   }
+                   }
+                 }
+               }
+             }
+           }
+         }
+         else if (nblock == 9) {
+           m =0;
+           for (i1=0; i1<kfact; i1++) {
+             for (i2=0; i2<kfact; i2++) {
+               for (i3=0; i3<kfact; i3++) {
+                 for (i4=0; i4<kfact; i4++) {
+                   for (i5=0; i5<kfact; i5++) {
+                   for (i6=0; i6<kfact; i6++) {
+                   for (i7=0; i7<kfact; i7++) {
+                   for (i8=0; i8<kfact; i8++) {
+                   for (i9=0; i9<kfact; i9++) {
+                     sqsumR = 0;
+                     for (k=0; k<nkk; k++) {
+                       sumR[k] = x[i1][k] + x[i2][k] + x[i3][k] + x[i4][k] + x[i5][k];
+                                +x[i6][k] + x[i7][k] + x[i8][k] + x[i9][k];
+                       sqsumR += sumR[k]*sumR[k];
+                     }
+                     tdata[m] = 12*sqsumR/(nblock*nkk*(nkk+1)) - 3*nblock*(nkk+1);
+                     m++;
+                   }
+                   }
+                   }
+                   }
+                   }
+                 }
+               }
+             }
+           }
+         }
+         else if (nblock == 10) {
+           m =0;
+           for (i1=0; i1<kfact; i1++) {
+             for (i2=0; i2<kfact; i2++) {
+               for (i3=0; i3<kfact; i3++) {
+                 for (i4=0; i4<kfact; i4++) {
+                   for (i5=0; i5<kfact; i5++) {
+                   for (i6=0; i6<kfact; i6++) {
+                   for (i7=0; i7<kfact; i7++) {
+                   for (i8=0; i8<kfact; i8++) {
+                   for (i9=0; i9<kfact; i9++) {
+                   for (i10=0; i10<kfact; i10++) {
+                     sqsumR = 0;
+                     for (k=0; k<nkk; k++) {
+                       sumR[k] = x[i1][k] + x[i2][k] + x[i3][k] + x[i4][k] + x[i5][k];
+                                +x[i6][k] + x[i7][k] + x[i8][k] + x[i9][k] + x[i10][k];
+                       sqsumR += sumR[k]*sumR[k];
+                     }
+                     tdata[m] = 12*sqsumR/(nblock*nkk*(nkk+1)) - 3*nblock*(nkk+1);
+                     m++;
+                   }
+                   }
+                   }
+                   }
+                   }
+                   }
+                 }
+               }
+             }
+           }
+         }
 
         // Friedman distribution 계산
         tdata.sort(function(a, b){return a-b});
@@ -368,22 +379,14 @@
         }
 
         // draw graph
-        var title  = svgStrU[70][langNum] ;
-        var sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BCk " ;
-        var sub2 = svgStrU[71][langNum];
+        var sub2 = "k = "+ nkk + ", n = " + nblock;
         drawFriedmanBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, SP, alpha, h1Type, checkData) 
-     }
-     else {    // chisq-test
-        df = nkk - 1;
-        h = alpha;  
-        if (df < 10) f = 0;
-        else f = chisq_inv(0.0001, df, info);
-        g = chisq_inv(1-h, df, info);
-        pvalue = 1 - chisq_cdf(SP, df, info)
-        drawChisqGraphTH(hypoType, h1Type, SP, df, f, g, h, pvalue, temp );
-     }  
-
-   })
+      }
+      else {
+        alert("k=3 n<=8 ???  or k=4 n<=6 ???");
+        return;
+      }
+    })
 
     // svg Graph Save
     d3.select("#saveGraphU").on("click", function() {
@@ -401,7 +404,17 @@
     d3.select("#ranksumBtn").on("click",function() {
         FriedmanDistTable(nvalue, nkk, nblock, dataValue, dvalueP);
     })
-
+//******************************************************************
+function showValueRangeN1(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("nn41").value = newValue;
+        document.getElementById("executeTH4").click();
+}
+function showValueRangeN2(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("nn42").value = newValue;
+        document.getElementById("executeTH4").click();
+}
 // swap ith and jth of arr[]
 function swap(arr, i, j) {
   var temp = arr[i];
@@ -547,6 +560,7 @@ function drawFriedmanBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranks
             .attr("y", svgHeight - margin.bottom - dvalueP[k]*yRatio)
             .attr("height", dvalueP[k]*yRatio)
          }
+/*
          if (checkData == false) return; 
          // 표본통계량 위치 표시
          sum1 = 0;
@@ -602,7 +616,7 @@ function drawFriedmanBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranks
             .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          bar.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum32))
             .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
-
+*/
 }
 
 // 프리드만분포표
@@ -618,17 +632,14 @@ function FriedmanDistTable(nvalue, nkk, nobs, dataValue, dvalueP) {
     
           row = table.insertRow(nrow);
           row.style.height ="40px";
-          row.innerHTML = "<h3>"+svgStrU[72][langNum]+"</h3>";
-          row.style.textAlign = "center";
-
-          row  = table.insertRow(++nrow);
-          row.style.height ="30px";
-          for (j=0; j<2; j++) {
+          for (j=0; j<3; j++) {
             cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
           }
-          cell[0].innerHTML = "k = "+nkk;
-          cell[1].innerHTML = "n = "+nobs;
+          cell[0].innerHTML = "<h3>"+svgStrU[72][langNum]+"</h3>";
+          cell[1].innerHTML = "k = "+nkk;
+          cell[2].innerHTML = "n = "+nobs;
 
           row  = table.insertRow(++nrow);
           row.style.height ="30px";
@@ -636,9 +647,7 @@ function FriedmanDistTable(nvalue, nkk, nobs, dataValue, dvalueP) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
-          }
-          for (j=0; j<ncol; j++) {
-            cell[j].style.width ="80px";
+            cell[j].style.width ="80px";          
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";

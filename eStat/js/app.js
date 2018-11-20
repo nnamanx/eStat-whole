@@ -27,7 +27,6 @@ var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
 var buttonColorH = "#FF4500";
-//var buttonColorH = "blue";
 var iconB1   = "40px"
 var iconB2   = "25px"
 var iconH1   = "50px"
@@ -118,6 +117,7 @@ var dataValue = new Array(rowMax);
 var dvalueLabel = new Array(rowMax);
 var dvalueFreq = new Array(rowMax);
 var dataY = new Array(rowMax);
+var dvalueP = new Array(rowMax);
 // group variable
 var gobs, gvarNumber, gvarName, ngvalue, ngroup, ngroup1;
 var gvar = new Array(rowMax);
@@ -135,7 +135,7 @@ var gdataValue2 = new Array(rowMax);
 var gvalueLabel2 = new Array(rowMax);
 var gvalueFreq2 = new Array(rowMax);
 // 연속형 그래프 변량 정의
-var tobs;
+var tobs, ttobs, ttnvalue; // Kruskal-Wallis 에서 사용
 var mobs; // missing observation
 var tdata = new Array(rowMax);
 var tdataG2 = new Array(rowMax);
@@ -166,13 +166,14 @@ for (k = 0; k < ngroupMax; k++) {
     dataSet[k]    = new Array(rowMax);
     dataSetG2[k]  = new Array(rowMax);
 }
-var mini = new Array(ngroupMax);
-var Q1 = new Array(ngroupMax);
+var mini   = new Array(ngroupMax);
+var Q1     = new Array(ngroupMax);
 var median = new Array(ngroupMax);
-var Q3 = new Array(ngroupMax);
-var maxi = new Array(ngroupMax);
-var avg = new Array(ngroupMax);
-var std = new Array(ngroupMax);
+var Q3     = new Array(ngroupMax);
+var maxi   = new Array(ngroupMax);
+var avg    = new Array(ngroupMax);
+var std    = new Array(ngroupMax);
+var ranksum = new Array(ngroupMax);
 // 산점도 변량 정의
 var xobs, xvarNumber, xvarName, yobs, yvarNumber, yvarName, nwvalue, wobs, wvarNumber, wvarName;
 var scatterS = new Array(20);
@@ -2202,21 +2203,118 @@ d3.select("#executeTH8").on("click", function() {
     statT[13] = hypoType;
     statT[14] = left;
     statT[15] = right;
+    // 모수적 검정결과표
+    statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
+// 윌콕슨 부호순위 가설검정 실행
+d3.select("#executeTH8NP").on("click", function() {
+    graphNum = 25;
+    // input value mu0
+    mu = parseFloat(d3.select("#mu8").node().value);
+    if (isNaN(mu)) {
+        alert(alertMsg[38][langNum]);
+        return;
+    }
+    chart.selectAll("*").remove();
+    hypoType = 95;
+    // 대립가설 Type
+    if (document.myForm80.type0.value == "1")      h1Type = 1;
+    else if (document.myForm80.type0.value == "2") h1Type = 2;
+    else if (document.myForm80.type0.value == "3") h1Type = 3;
+    // alpha
+    if (document.myForm82.type2.value == "1") alpha = 0.05;
+    else alpha = 0.01;
+    // confidence
+    if (document.myForm82.type3.value == "1") confidence = 0.95;
+    else confidence = 0.99;
+    var mconfidence = 1 - confidence;
+    var ngroupNP = 2;
+    var ranksum   = new Array(5);
+    var dataValue = new Array(rowMax);
+    var dvalueP   = new Array(rowMax);
+    var w = [];
+    var x = [];
+    var y = [];
+    var z = [];
+    var checkData = true;
+    var T, mean, std, info;
+
+    for (i = 0; i < dobs; i++) w[i] = dvar[i];
+    nobs[1] = 0;
+    nobs[2] = 0;
+    for (i=0; i<w.length; i++) {
+    if (w[i] < mu) {
+          x[nobs[1]] = Math.abs(w[i]-mu); 
+          nobs[1]++;
+    }
+    else if (w[i] > mu) {
+          y[nobs[2]] = Math.abs(w[i] - mu);
+          nobs[2]++;
+        }
+    }
+    nobs[0] = nobs[1] + nobs[2]; 
+    z = x.concat(y);        
+    // Calculate signed rank sum
+    T = statRankSum(ngroupNP, nobs, z, ranksum);
+    // check exact or approximation
+    if (nobs[0] < 21) { // Wilcoxon Signed Rank Test
+        // Wilcoxon Rank Sum Distribution
+        var checkRankSum = false;
+        nvalue = rankSumDist(0, nobs[0], dataValue, dvalueP, checkRankSum);
+        // draw graph
+        var title  = svgStrU[68][langNum]; // "Wilcoxon Rank Sum Test" 
+        var sub1 = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
+        var sub2 = svgStrU[23][langNum]+ " R+ ~ Wilcoxson Sign (n = "+nobs[0]+") "+svgStrU[24][langNum];
+        drawSignedRankGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, statT) 
+    }
+    else {  // Z-test
+        mean  = nobs[0]*(nobs[0]+1)/4;
+        std   = Math.sqrt( (nobs[0]*(nobs[0]+1)*(2*nobs[0]+1) - 0.5*T) / 24 ); 
+        teststat = ranksum[2];
+        zobs = (ranksum[2] - mean) / std;
+        
+        if (h1Type == 1) {
+            h = alpha / 2;  
+            f = mean + stdnormal_inv(h, info)*std;
+            g = mean + stdnormal_inv(1-h, info)*std;
+            if (zobs < 0) pvalue = 2 * stdnormal_cdf(zobs);
+            else  pvalue = 2 * (1 - stdnormal_cdf(zobs));
+            drawNormalGraphTHNP(hypoType, h1Type, teststat, mean, std, f, g, h, pvalue, mu);
+        }
+        else if (h1Type == 2) {
+            h = alpha;  
+            f = mean - 5*std
+            g = mean + stdnormal_inv(1-h, info)*std;
+            pvalue = 1 - stdnormal_cdf(zobs);
+            drawNormalGraphTHNP(hypoType, h1Type, teststat, mean, std, f, g, h, pvalue, mu);
+        }
+        else {
+            h = alpha;  
+            f = mean + stdnormal_inv(h, info)*std;
+            g = mean + 5*std;
+            pvalue = stdnormal_cdf(zobs);
+            drawNormalGraphTHNP(hypoType, h1Type, teststat, mean, std, f, g, h, pvalue, mu);
+        }
+    }  
+    statT[0] = mu; // 초기 mu
+    statT[9]  = ranksum[2];
+    statT[10] = pvalue;
+    statT[11] = h1Type;
+    statT[13] = hypoType;
+    statT[14] = left;
+    statT[15] = right;
+    // 윌콕슨 부호순위검정 결과표
+    statTableMuNP(ngroupNP, dvarName, statT);
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+})
+
 // 평균점그래프 
 d3.select("#DotMu1").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
     showDotMean(ngroup, nobs, avg, std, tstat);
     showDotStd(ngroup, nobs, avg, std, tstat);
-})
-// 평균 검정결과표 그리기
-d3.select("#executeTH8Table").on("click", function() {
-    // confidence
-    if (document.myForm82.type3.value == "1") confidence = 0.95;
-    else confidence = 0.99;
-    statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
-    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 확률 히스토그램 
 d3.select("#HistNormal").on("click", function() {
@@ -2348,8 +2446,9 @@ d3.select("#executeTH9").on("click", function() {
     statT[13] = hypoType;
     statT[14] = left;
     statT[15] = right;
-
-
+    // 분산 검정결과표 그리기
+    statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight)
 })
 // 평균점그래프 
 d3.select("#DotSigma1").on("click", function() {
@@ -2600,6 +2699,9 @@ d3.select("#executeTH10").on("click", function() {
     statT[14] = left;
     statT[15] = right;
   }
+  // 두모평균 검정결과표 그리기
+    statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 
 })
 // 그룹별 평균점그래프 
@@ -2609,19 +2711,103 @@ d3.select("#DotMu12").on("click", function() {
     showDotMean(ngroup, nobs, avg, std, tstat);
     showDotStd(ngroup, nobs, avg, std, tstat);
 })
-// 두모평균 검정결과표 그리기
-d3.select("#executeTH10Table").on("click", function() {
-    // confidence
-    if (document.myForm102.type3.value == "1") confidence = 0.95;
-    else confidence = 0.99;
-    statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
-    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
-})
 // 확률 히스토그램 
 d3.select("#HistNormalMu12").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
 })
+// 윌콕슨 순위합 가설검정 실행
+d3.select("#executeTH10NP").on("click", function() {
+    graphNum = 29;
+    // input value mu0
+    mu = parseFloat(d3.select("#mu10").node().value);
+    chart.selectAll("*").remove();
+    hypoType = 96;
+    // 대립가설 Type
+    if (document.myForm100.type0.value == "1")      h1Type = 1;
+    else if (document.myForm100.type0.value == "2") h1Type = 2;
+    else if (document.myForm100.type0.value == "3") h1Type = 3;
+    // alpha
+    if (document.myForm102.type2.value == "1") alpha = 0.05;
+    else alpha = 0.01;
+    // confidence
+    if (document.myForm102.type3.value == "1") confidence = 0.95;
+    else confidence = 0.99;
+    var mconfidence = 1 - confidence;
+    var ranksum   = new Array(5);
+    var dataValue = new Array(rowMax);
+    var dvalueP   = new Array(rowMax);
+    var x = [];
+    var y = [];
+    var z = [];
+    var checkData = true;
+    var checkRankSum = true;  // rank sum인 경우 true, signed rank sum인 경우 false
+    var T, mean, std, zobs, info;
+    var nn1 = nobs[0];
+    var nn2 = nobs[1];
+    var tobs = new Array(3);
+    tobs[0] = dobs;
+    tobs[1] = nobs[0];
+    tobs[2] = nobs[1];
+
+    for (i = 0; i < nn1; i++) x[i] = dataSet[0][i];
+    for (i = 0; i < nn2; i++) y[i] = dataSet[1][i];
+    z = x.concat(y);        
+    // Calculate rank sum
+    T = statRankSum(ngroup, tobs, z, ranksum);
+    // check exact or approximation
+    if (dobs < 25) { // exact distribution
+        // Wilcoxon Rank Sum Distribution
+        nvalue = rankSumDist(nn1, nn2, dataValue, dvalueP, checkRankSum);
+        // draw graph
+        var title= svgStrU[63][langNum] ;
+        var sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082  " + " , H\u2081: \u03BC\u2081 "+ symbol[h1Type-1] + " \u03BC\u2082" ;
+        var sub2 = svgStrU[23][langNum]+" R\u2082 ~ Wilcoxson (n\u2081 = "+nn1+", n\u2082 = "+nn2+") "+svgStrU[24][langNum];
+        drawBarGraphNP(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, statT) 
+    }
+    else {  // Z-test
+        if (checkData == false) return;
+        mean     = nn2*(dobs+1)/2;
+        std      = Math.sqrt(nn1*nn2*(dobs+1 - T/(dobs*(dobs+1)) ) / 12); 
+        teststat = ranksum[2];
+        zobs     = (ranksum[2] - mean) / std;
+        
+        if (h1Type == 1) {
+            h = alpha / 2;  
+            f = mean + stdnormal_inv(h, info)*std;
+            g = mean + stdnormal_inv(1-h, info)*std;
+            if (zobs < 0) pvalue = 2 * stdnormal_cdf(zobs);
+            else  pvalue = 2 * (1 - stdnormal_cdf(zobs));
+            drawNormalGraphTHNP(hypoType, h1Type, teststat, mean, std, f, g, h, pvalue, mu);
+        }
+        else if (h1Type == 2) {
+            h = alpha;  
+            f = mean - 5*std
+            g = mean + stdnormal_inv(1-h, info)*std;
+            pvalue = 1 - stdnormal_cdf(zobs);
+            drawNormalGraphTHNP(hypoType, h1Type, teststat, mean, std, f, g, h, pvalue, mu);
+        }
+        else {
+            h = alpha;  
+            f = mean + stdnormal_inv(h, info)*std;
+            g = mean + 5*std;
+            pvalue = stdnormal_cdf(zobs);
+            drawNormalGraphTHNP(hypoType, h1Type, teststat, mean, std, f, g, h, pvalue, mu);
+        }
+    }  
+
+    statT[0]  = mu;
+    statT[9]  = ranksum[2];
+    statT[10] = pvalue;
+    statT[11] = h1Type;
+    statT[13] = hypoType;
+    statT[14] = left;
+    statT[15] = right;
+    // 윌콕슨 순위합검정 결과표
+    statTableMu12NP(ngroup, dvarName, statT);
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+})
+
 // 두 모분산 가설검정
 d3.select("#testS12").on("click", function() {
     graphNum = 31;
@@ -2723,7 +2909,9 @@ d3.select("#executeTH11").on("click", function() {
     statF[13] = hypoType;
     statF[14] = left;
     statF[15] = right;
-
+    // 두그룹 분산 검정결과표 그리기
+    statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 그룹별 평균점그래프 
 d3.select("#DotSigma12").on("click", function() {
@@ -2816,27 +3004,109 @@ d3.select("#executeTH12").on("click", function() {
     f = 0;
     g = f_inv(1 - h, df1, df2, info);
     drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
+    // 1원분산분석표 그리기
+    statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    AnovaTable(gvarName,dvarName,nobs,avg,std,statF);
+    multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
-// 1원분산분석표 그리기
-d3.select("#anovaTable").on("click", function() {
+// Kruskal-Wallis 1원분산분석 실행
+d3.select("#executeTH12NP").on("click", function() {
+    graphNum = 33;
+    chart.selectAll("*").remove();
+    hypoType  = 98;  // 크루스칼검정
+    h1Type    = 2;   // 우측검정
+    // siginificancelevel
+    if (document.myForm122.type2.value == "1") alpha = 0.05;
+    else alpha = 0.01;
     // confidence
     if (document.myForm122.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
-    statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
-    AnovaTable(gvarName,dvarName,nobs,avg,std,statF);
+    var T, H, nvalue, mean, std, zobs, df, info, sum, temp ;
+    var ranksumT = new Array(ngroup+1);
+    var tobs    = new Array(ngroup+1);
+    var R       = new Array(rowMax);
+    var z = new Array(dobs);
+    for (i=0; i<rowMax; i++) {
+        dataValue[i] = 0;
+        dvalueP[i]   = 0;
+    }
+    // 데이터 재조정 z에 그룹 순서대로 넣기
+    tobs[0] = dobs;
+    j = 0;
+    for (k=0; k<ngroup; k++) {
+      tobs[k+1] = nobs[k];
+      for (i = 0; i < nobs[k]; i++) {
+        z[j] = dataSet[k][i];
+        j++;
+      }
+    } 
+    // Calculate rank sum
+    T = statRankSum(ngroup, tobs, z, ranksumT);
+    ranksumT[0] = dobs * (dobs+1) / 2;   // 전체 순위합
+    // Calculate Kruskal H statitic
+    sum = 0;
+    for (j=1; j<=ngroup; j++) sum += ranksumT[j]*ranksumT[j]/tobs[j]
+    sum = 12*sum/(dobs*(dobs+1)) - 3*(dobs+1);
+    H = sum / (1 - T/(dobs*dobs*dobs - dobs) )
+    statF[9] = H;
+    // check n <= 10 for exact distribution
+    if (dobs < 11) {      // KruskalDistribution
+        ttobs = 0;
+        tnvalue = 0;
+        for (i=0; i<dobs; i++) R[i] = i+1;
+        // All possible permutation and H statistics
+        permKruskal(R, 0, dobs, dobs) ;  
+        // Sorting and indexing data in ascending order
+        for (i=0; i<tnvalue-1; i++) {
+          for (j=i; j<tnvalue; j++) {
+            if(dataValue[i] > dataValue[j]) {
+                temp         = dataValue[i];  tempi      = dvalueP[i];
+                dataValue[i] = dataValue[j];  dvalueP[i] = dvalueP[j];
+                dataValue[j] = temp;          dvalueP[j] = tempi;  
+            }
+          }
+        } 
+        // rank sum의 distribution 계산
+        for (j=0; j<tnvalue; j++) {
+          dvalueP[j] = dvalueP[j] / ttobs;
+          dataValue[j] = f3(dataValue[j]);
+        }
+        // draw graph
+        var title  = svgStrU[65][langNum] ;
+        var sub1, sub2;
+        if (ngroup == 2) sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082";
+        else if (ngroup == 3) sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = \u03BC\u2083" ;
+        else sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BC"+ngroup ;
+        sub2 = svgStrU[67][langNum];
+        drawKruskalBarGraph(title, sub1, sub2, tnvalue, dataValue, dvalueP, H, alpha, h1Type, checkData) 
+    }
+    else {    // chisq-test
+        df = ngroup - 1;
+        h = alpha;  
+        if (df < 10) f = 0;
+        else f = chisq_inv(0.0001, df, info);
+        g = chisq_inv(1-h, df, info);
+        pvalue = 1 - chisq_cdf(sum, df, info)
+        drawChisqGraphTHNP(hypoType, h1Type, H, df, f, g, h, pvalue, temp );
+    }  
+
+    statF[10] = pvalue;
+    statF[11] = h1Type;
+    statF[13] = hypoType;
+    statF[14] = left;
+    statF[15] = right;
+    // 윌콕슨 순위합검정 결과표
+    statTableANOVANP(gvarName,dvarName, ranksumT, statF);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
+
 // 그룹별 평균점그래프 
 d3.select("#DotANOVA").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
     showDotMean(ngroup, nobs, avg, std, tstat);
     showDotStd(ngroup, nobs, avg, std, tstat);
-})
-// 1원분산분석 다중비교표
-d3.select("#multipleComparison").on("click", function() {
-    multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
-    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 확률 히스토그램 
 d3.select("#HistNormalANOVA").on("click", function() {
@@ -2851,7 +3121,7 @@ d3.select("#anovaResidual").on("click", function() {
 d3.select("#anovaQQ").on("click", function() {
     drawHistQQ(gobs,residual,svgStr[87][langNum],1)
 })
-// 그룹별 평균점그래프 
+// 2원 그룹별 평균점그래프 
 d3.select("#DotANOVA2").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);

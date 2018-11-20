@@ -882,11 +882,13 @@ function showBinomialFreq(nvalue, binomialP1, tdataY, tx) {
         dot.append("text").attr("class","mean9")
            .attr("x", margin.left + graphWidth/2)
            .attr("y", 2*svgHeight - margin.bottom/3 -2).text(str);
-}// 실험된 이항분포 각 값의 확률 제거
+}
+// 실험된 이항분포 각 값의 확률 제거
 function removeBinomialFreq() {
         dot.selectAll("text.mean9").remove();
         dot.selectAll("text.scorefont").remove();  
-}// 이항분포함수 변수값명 쓰기 함수--------------------------------------------------------------------
+}
+// 이항분포함수 변수값명 쓰기 함수--------------------------------------------------------------------
 function drawBinomialLabel(nvalue2, label, betweenbarWidth) { 
         var x1 = margin.left;
         var y1 = svgHeight - margin.bottom; 
@@ -957,7 +959,8 @@ function drawBinomialLabel(nvalue2, label, betweenbarWidth) {
           }
           
         } // endof k
-}// 이항분포 축
+}
+// 이항분포 축
 function drawBinomialAxis(gymin, gymax) {
         // y축
         var yScale = d3.scaleLinear().domain([gymax,0]).range([0,graphHeight])
@@ -968,7 +971,8 @@ function drawBinomialAxis(gymin, gymax) {
         var x1 = margin.left;
         var y1 = margin.top + graphHeight; 
         bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x1+graphWidth).attr("y2",y1).style("stroke","black");
-}// 이항분포 막대그래프 함수 --------------------------------------------------
+}
+// 이항분포 막대그래프 함수 --------------------------------------------------
 function drawBinomialBarGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, label) {
          var info;
          var nvalue2   = nn2 + 1;
@@ -4619,7 +4623,7 @@ function rankSumDist(m, n, dataValue, dvalueP, checkRankSum) {
       // rank sum의 모든 경우의 수
       tobs = 0;
       nvalue = 0;
-
+      dvalueP[nvalue] = 0;
       for (i=1; i<=N2; i++) {
         j = k; 
         B[j] ++;
@@ -4654,11 +4658,12 @@ function rankSumDist(m, n, dataValue, dvalueP, checkRankSum) {
               dataValue[nvalue] = sumR;
               dvalueP[nvalue]++;
               nvalue++;
+              dvalueP[nvalue] = 0;
             }
             tobs++;
           } // endof if
         }
-        else {
+        else { // signed rank sum은 k=m+n 모든 경우의 rank sum 계산
             sumR = 0;
             for (j=1; j<=k; j++) {
               sumR += B[j]*R[j];
@@ -4676,6 +4681,7 @@ function rankSumDist(m, n, dataValue, dvalueP, checkRankSum) {
               dataValue[nvalue] = sumR;
               dvalueP[nvalue]++;
               nvalue++;
+              dvalueP[nvalue] = 0;
             }
 // console.log(tobs+" "+nvalue+" "+B+" "+sumR)
             tobs++;

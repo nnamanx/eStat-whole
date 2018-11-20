@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title data-msgid="NonParametricMu12_title">Nonparmetric Test &mu;<sub>1</sub>, &mu;<sub>2</sub></title>
+    <title data-msgid="SignedRankTestDist">Nonparmetric Test &mu</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
     <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
@@ -19,91 +19,30 @@
     <br>
     <div class="title">
       <b>&nbsp; 
-         <span data-msgid="NonParametricMu12">
-           Testing Hypothesis : Two Population Means &mu;<sub>1</sub>,  &mu;<sub>2</sub> 
-         </span>
+         <span data-msgid="SignedRankTestDist"> </span>
       </b>
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <form name="myForm0"> 
-      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
-      <span class="fontmath"> &nbsp;&nbsp; 
-        H<sub>o</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub>  
-      </span>
-      <br> &nbsp;&nbsp;
-      <span class="fontmath">
-	    <input type="radio" name = "type0" value="1" checked>
-	    H<sub>1</sub> : &mu;<sub>1</sub> &ne; &mu;<sub>2</sub> &nbsp;&nbsp;
-	    <input type="radio" name = "type0" value="2" >
-	    H<sub>1</sub> : &mu;<sub>1</sub> > &mu;<sub>2</sub>  &nbsp;&nbsp;      
-	    <input type="radio" name = "type0" value="3" >
-            H<sub>1</sub> : &mu;<sub>1</sub> < &mu;<sub>2</sub>      
-       </span>
-    </form>
-    
-    <form name="myForm1"> 
-      <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
-       <span data-msgid="WilcoxonTest">Wilcoxon Test</span>
-    </form>
-
-    <form name="myForm2">&nbsp;&nbsp;&nbsp;
-      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
-      <span class="fontmath"> &alpha; </span> =
-      <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>  
-     
-    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
-    <span class="fontguide" >
-      <span data-msgid="WilcoxonRankCondition">Wilcoxon Rank Condition</span> 
-    </span>   
-    
-    <table class="data">
-      <tbody>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><span data-msgid="Sample">Sample</span> 1</td>
-	  <td><input type="text" size=60 id="data1"></td>
-	</tr>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><span data-msgid="Sample">Sample</span> 2</td>
-	  <td><input type="text" size=60 id="data2"></td>
-	</tr>
-      </tbody>
-    </table>
-    
-    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
-    
     <table class="stat">
       <tbody>
 	<tr>
           <td></td>
 	  <td><span data-msgid="Sample Size">Sample Size</span></td>         
-	  <td><span class="fontmath">n<sub>1</sub></span></td>
+	  <td><span class="fontmath">n</span></td>
 	  <td>=</td>
-	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
-	  <td><span class="fontmath">n<sub>2</sub></span></td>
-	  <td>=</td>
-	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
-	</tr>
-	<tr>
-          <td></td>
-	  <td><span data-msgid="Sample Range">Sample Range</span></td>
-	  <td><span class="fontmath">R<sub>1</sub></span></td>
-	  <td>=</td>
-	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
-	  <td><span class="fontmath">R<sub>2</sub></span></td>
-	  <td>=</td>	
-	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
+	  <td><input type="text" class="textarea" value="10" size=3 id="nn"> </td>
+          <td>
+            <sup><small> 3 </small></sup>              
+            <input type="range" min="3" max="22" value="10" id="range1" onchange="showValueRangeN(this.value)"/>  
+            <sup><small>22</small></sup>
+          </td>
+          <td>
+            <button type="button" id="executeTH4" > <span data-msgid="Execute">Execute</span></button>
+          </td>
 	</tr>
       </tbody>
-    </table>
-    
-    <button type="button" id="executeTH4" >
-        <span data-msgid="Execute">Execute</span>
-    </button> 
+    </table> 
     <p>
     <svg id="chart" width="600" height="400"> </svg>
     <br>
@@ -115,10 +54,9 @@
     <button type="button" id="ranksumBtn" >
 	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
     </button>
-
   </div> 
 
-  <div width="650" style="position:absolute; left:10px; top:790px"> <p>
+  <div width="650" style="position:absolute; left:10px; top:550px"> <p>
     <table id="ranksumTable" cellpadding="2" cellspacing="2" border="2" >  </table>
   </div>
 
@@ -126,122 +64,46 @@
       var bar = d3.select("#chart");
 
       var svgWidth, svgHeight, svgWidth2, svgHeight2, margin, graphWidth, graphHeight; 
-      var margin = {top: 90, bottom: 90, left: 100, right: 120};
-      svgWidth   = 600; svgWidth2 = svgWidth;
+      var margin = {top: 90, bottom: 50, left: 60, right: 40};
+      svgWidth   = 600; svgWidth2  = svgWidth;
       svgHeight  = 400; svgHeight2 = svgHeight;
       graphWidth  = svgWidth - margin.left - margin.right;
       graphHeight = svgHeight - margin.top - margin.bottom;   
 
-      var nvalue, checkData, mu, std, alpha;
-      var hypoType, h1Type, df, info, f, g, h, pvalue, stat, T;
-      hypoType = 96;
-      var ngroup  = 2;
+      var nvalue, checkData, mu0, mu, std, alpha;
+      var hypoType, h1Type, df, info, f, g, h, pvalue, stat, T, zobs;
+      hypoType      = 95;
+      var ngroup    = 2;
       var maxCell   = 1000;
+      var nmax      = 22;
       var nobs      = new Array(5);
       var ranksum   = new Array(5);
       var dataValue = new Array(maxCell);
       var dvalueP   = new Array(maxCell);
-      var x = [];
-      var y = [];
-      var z = [];
       var i,j,k;
-      var checkRankSum = true;  // rank sum인 경우 true, signed rank sum인 경우 false
-
-      document.getElementById("xbar41").disabled = true;
-      document.getElementById("xbar42").disabled = true;
-      // H1 type
-      var h1 = document.myForm0.type0;
-      var h1Type = 1; 
-      h1[0].onclick = function() { h1Type = 1 }    // 양측검정
-      h1[1].onclick = function() { h1Type = 2 }    // 우측검정
-      h1[2].onclick = function() { h1Type = 3 }    // 좌측검정
-      // alpha
-      var a = document.myForm2.type2;
-      alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; }  
-      a[1].onclick = function() { alpha = 0.01; } 
-
-      // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
-        x = data;
-        document.getElementById("nn41").value   = stat.n;    
-      });
-
-      d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");  
-        y = data; 
-        document.getElementById("nn42").value   = stat.n;    
-      });
-
-      updateData = function() {
-        document.getElementById("data1").value = '';
-        document.getElementById("data2").value = '';    
-      }
-
+      var checkRankSum = false;
+      var title  = svgStrU[94][langNum]; // "Wilcoxon SignedRank Sum Dist" 
+      var sub1 = "";
+      // initial graph
+      bar.selectAll("*").remove();
+      nobs[0] = parseInt(document.getElementById("nn").value); 
+      if (nobs[0] < 3)  {nobs[0] = 3;  document.getElementById("nn").value = "3";}
+      if (nobs[0] > nmax) {nobs[0] = nmax; document.getElementById("nn").value = "20";}
+      nvalue = rankSumDist(0, nobs[0], dataValue, dvalueP, checkRankSum);
+      // draw graph
+      var sub2 = "n = " + nobs[0];
+      drawSignedRankGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData);
     // Testing Hypothesis ===========================================================
     d3.select("#executeTH4").on("click",function() {
       bar.selectAll("*").remove();
-      if (x.length == 0 || y.length == 0) {
-        checkData = false
-        nobs[1] = parseInt(document.getElementById("nn41").value);
-        nobs[2] = parseInt(document.getElementById("nn42").value);
-      }
-      else {
-        checkData = true;
-        nobs[1] = x.length;
-        nobs[2] = y.length;
-      }  
-      nobs[0] = nobs[1] + nobs[2];         
-      if (checkData == true) {
-        document.getElementById("nn41").disabled = true;
-        document.getElementById("nn42").disabled = true;
-        z = x.concat(y);
-        // Calculate sample 2 rank sum
-        T = statRankSum(ngroup, nobs, z, ranksum);
-        document.getElementById("xbar41").value = ranksum[1];
-        document.getElementById("xbar42").value = ranksum[2];
-      }
-      // check exact or approximation
-      if (nobs[0] < 25) { // exact distribution
-        // Wilcoxon Rank Sum Distribution
-        nvalue = rankSumDist(nobs[1], nobs[2], dataValue, dvalueP, checkRankSum);
-        // draw graph
-        var title = svgStrU[63][langNum] ;
-        var sub1  = "H\u2080: \u03BC\u2081 = \u03BC\u2082  " + " , H\u2081: \u03BC\u2081 "+ symbol[h1Type-1] + " \u03BC\u2082" ;
-        var sub2  = svgStrU[23][langNum]+" R\u2082 ~ Wilcoxson (n\u2081 = "+nobs[1]+", n\u2082 = "+nobs[2]+") "+svgStrU[24][langNum];
-        drawBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData) 
-      }
-      else {  // Z-test
-        if (checkData == false) return;
-        mu  = nobs[2]*(nobs[0]+1)/2;
-        std = Math.sqrt(nobs[1]*nobs[2]*(nobs[0]+1 - T/(nobs[0]*(nobs[0]+1)) ) / 12); 
-        teststat = ranksum[2];
-        var zobs = (ranksum[2] - mu) / std;
-        
-        if (h1Type == 1) {
-            h = alpha / 2;  
-            f = mu + stdnormal_inv(h, info)*std;
-            g = mu + stdnormal_inv(1-h, info)*std;
-            if (zobs < 0) pvalue = 2 * stdnormal_cdf(zobs);
-            else  pvalue = 2 * (1 - stdnormal_cdf(zobs));
-            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu);
-        }
-        else if (h1Type == 2) {
-            h = alpha;  
-            f = mu - 5*std
-            g = mu + stdnormal_inv(1-h, info)*std;
-            pvalue = 1 - stdnormal_cdf(zobs);
-            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu);
-        }
-        else {
-            h = alpha;  
-            f = mu + stdnormal_inv(h, info)*std;
-            g = mu + 5*std;
-            pvalue = stdnormal_cdf(zobs);
-            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu);
-        }
-      }  
+      nobs[0] = parseInt(document.getElementById("nn").value); 
+      document.getElementById("range1").value = nobs[0]; 
+      if (nobs[0] < 3)  {nobs[0] = 3;  document.getElementById("nn").value = "3";}
+      if (nobs[0] > 23) {nobs[0] = 23; document.getElementById("nn").value = "20";}
+      nvalue = rankSumDist(0, nobs[0], dataValue, dvalueP, checkRankSum);
+      // draw graph
+      var sub2 = "n = " + nobs[0];
+      drawSignedRankGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData);
     })
 
     // svg Graph Save
@@ -255,24 +117,21 @@
           saveAs(dataBlob, 'eStatGraphU.png');
         }
     });
-
     // 순위합통계표 버튼 클릭
     d3.select("#ranksumBtn").on("click",function() {
-      if (nobs[0] < 25) {
-        nobs[1] = parseInt(document.getElementById("nn41").value);
-        nobs[2] = parseInt(document.getElementById("nn42").value);
-        nobs[0] = nobs[1] + nobs[2];
-//        for (j=0; j<maxCell; j++) dvalueP[j] = 0;
-        nvalue = rankSumDist(nobs[1], nobs[2], dataValue, dvalueP, checkRankSum);
-        WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP);
-      }
-      else alert("No Exact Distribution if n > 25")
-    })
+      if (nobs[0] <= nmax) WilcoxonSignedRankSumTable(nvalue, nobs, dataValue, dvalueP);
+      else alert("No Exact Distribution if n > "+nmax)
 
-//******************************************************************
-function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, checkData) {
+    })
+//********************************************************************
+function showValueRangeN(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("nn").value = newValue;
+        document.getElementById("executeTH4").click();
+}
+function drawSignedRankGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, checkData) {
          var i, k, sum1, sum2, str, x1, y1, x2, y2;
-         var sum11, sum12, sum21, sum32, loc11, loc12, loc21, loc32;
+         var sum11, sum12, sum22, sum31, loc11, loc12, loc22, loc31;
          var xmin      = dataValue[0];
          var xmax      = dataValue[nvalue-1];
          var ymin      = d3.min(dvalueP);
@@ -311,6 +170,7 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
             .attr("y", svgHeight - margin.bottom - dvalueP[k]*yRatio)
             .attr("height", dvalueP[k]*yRatio)
          }
+/*
          if (checkData == false) return; 
          // 표본통계량 위치 표시
          sum1 = 0;
@@ -326,16 +186,16 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
          x1 = margin.left +barMargin + (ranksum-dataValue[0])*betweenbarWidth + barWidth/2;
          x2 = x1;
          y1 = margin.top + 20;
-         y2 = margin.top + graphHeight + 45;
+         y2 = margin.top + graphHeight + 30;
          bar.append("line").style("stroke","green").style("stroke-width","2px")
             .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-         str = "R\u2082 = "+ranksum;
+         str = "R+ = "+ranksum;
          bar.append("text").attr("x", x2).attr("y", y2+15).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         str = "P(X <= R\u2082) = "+f4(sum1);
+         str = "P(X <= R+) = "+f4(sum1);
          bar.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
-         str = "P(X >= R\u2082) = "+f4(sum2);
+         str = "P(X >= R+) = "+f4(sum2);
          bar.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
 
@@ -350,18 +210,18 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
            sum12 += dvalueP[i];
            if (sum12 > alpha/2) {loc12 = dataValue[i]; break;}
          } 
-         sum21 = 0;
-         for (i=0; i<nvalue; i++) {
-           sum21 += dvalueP[i];
-           if (sum21 > alpha) {loc21 = dataValue[i]; break;}
-         }
-         sum32 = 0;
+         sum22 = 0;
          for (i=nvalue-1; i>=0; i--) {
-           sum32 += dvalueP[i];
-           if (sum32 > alpha) {loc32 = dataValue[i]; break;}
+           sum22 += dvalueP[i];
+           if (sum22 > alpha) {loc22 = dataValue[i]; break;}
          } 
+         sum31 = 0;
+         for (i=0; i<nvalue; i++) {
+           sum31 += dvalueP[i];
+           if (sum31 > alpha) {loc31 = dataValue[i]; break;}
+         }
          y1 = margin.top + graphHeight/2 + 20;
-         y2 = margin.top + graphHeight + 30 ;
+         y2 = margin.top + graphHeight + 20 ;
          if (h1Type == 1) {
            x1 = margin.left +barMargin + (loc11-dataValue[0])*betweenbarWidth + barWidth/2;
            x2 = x1;
@@ -381,30 +241,30 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
               .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
          }
          else if (h1Type == 2) {
-           x1 = margin.left +barMargin + (loc21-dataValue[0])*betweenbarWidth + barWidth/2;
+           x1 = margin.left +barMargin + (loc22-dataValue[0])*betweenbarWidth + barWidth/2;
            x2 = x1;
            bar.append("line").style("stroke","red").style("stroke-width","1px")
               .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc21)
+           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc22)
               .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
-           bar.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum21))
-              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
-         }
-         else {
-           x1 = margin.left +barMargin + (loc32-dataValue[0])*betweenbarWidth + barWidth/2;
-           x2 = x1;
-           bar.append("line").style("stroke","red").style("stroke-width","1px")
-              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc32)
-              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
-           bar.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum32))
+           bar.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum22))
               .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
          }
-
+         else {
+           x1 = margin.left +barMargin + (loc31-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           bar.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc31)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           bar.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum31))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+         }
+*/
 }
 
 // 윌콕슨분포표
-function WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP) {
+function WilcoxonSignedRankSumTable(nvalue, nobs, dataValue, dvalueP) {
         var table = document.getElementById("ranksumTable");
         var row, header;
         var i, j, sum;
@@ -415,18 +275,15 @@ function WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP) {
          table.style.fontSize = "13px";
     
           row = table.insertRow(nrow);
-          row.style.height ="40px";
-          row.innerHTML = "<h3>"+svgStrU[63][langNum]+"</h3>";
-          row.style.textAlign = "center";
-
-          row  = table.insertRow(++nrow);
-          row.style.height ="30px";
+          row.style.height ="35px";
           for (j=0; j<2; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
           }
-          cell[0].innerHTML = "n<sub>1</sub> = "+nobs[1];
-          cell[1].innerHTML = "n<sub>2</sub> = "+nobs[2];
+          cell[0].innerHTML = "<h3>"+svgStrU[94][langNum]+"</h3>";
+          cell[0].style.width ="100px";
+          cell[1].innerHTML = "n = "+nobs[0];
 
           row  = table.insertRow(++nrow);
           row.style.height ="30px";
@@ -456,6 +313,75 @@ function WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP) {
             for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
 }
+/*
+// rank sum distribution for Ranksum1 : Signed Rank  
+function rankSumDist(m, n, dataValue, dvalueP) {
+      var i, j, k, p, N2, nobs, nvalue, sumB, sumR;
+      var k = m + n;
+      var B = new Array(k+1);  // Binary
+      var R = new Array(k+1);  // Rank
+      var tdata = [];
+      N2 = 1;
+      for (j=1; j<=k; j++) {
+        B[j] = 0;
+        R[j] = j;
+        N2 *=2;
+      }
+      // rank sum의 모든 경우의 수
+      for (i=1; i<=N2; i++) {
+        j = k; 
+        B[j] ++;
+        do {
+          if (B[j] > 1) {
+            B[j] = 0;
+            j--
+            B[j]++;
+          }
+          else break;
+        } while (B[j] > 1)
+        // Binary 합계가 n과 일치될때만 rank sum 계산
+//        sumB = 0;
+//        for (j=1; j<=k; j++) sumB += B[j];
+//        if (sumB == n) {
+          sumR = 0;
+          for (j=1; j<=k; j++) {
+            sumR += B[j]*R[j];
+          }
+          tdata.push(sumR);
+//        }
+//        else sumR = NaN;
+      }
+      // rank sum의 distribution 계산
+      tdata.sort(function(a, b){return a-b});
+      nobs = tdata.length;
+      nvalue = valueFreq(nobs, tdata, dataValue, dvalueP); 
+      for (j=0; j<nvalue; j++) dvalueP[j] = dvalueP[j] / nobs;
+      return nvalue;
+}
+
+// Counting value & freq of sorted array dataA
+function valueFreq(tobs, dataA, dataValue, dvalueFreq ) {
+        var i, nvalue;
+        for(i=0; i<tobs; i++) {
+          dvalueFreq[i]=0; 
+        } 
+        nvalue = 0;
+        dataValue[nvalue]  = dataA[0];  
+        dvalueFreq[nvalue] = 1;   
+        for (i=1; i<tobs; i++) {
+          if (dataA[i] == dataA[i-1]) {
+            dvalueFreq[nvalue]++;
+          } 
+          else {
+            nvalue++;
+            dataValue[nvalue] = dataA[i];
+            dvalueFreq[nvalue]++;
+          }
+        }
+        nvalue++;
+        return nvalue;
+}
+*/
 
   </script>
 </body>

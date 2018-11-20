@@ -8,7 +8,7 @@
 var bufferLegend = 20;   // 우측 y선과 범례와  간격
 var bothBarGap   = 35;   // 양쪽막대의 갭
 var titleBuffer  = graphWidth / 2 ;   // 주제목 margin.left 다음 간격
-
+var symbol  = ["≠", ">", "<"];
 var f0   = d3.format(".0f");
 var f1   = d3.format(".1f");
 var f2   = d3.format(".2f");
@@ -7698,7 +7698,7 @@ function statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mi
             cell[k].style.backgroundColor = "#eee";
             cell[k].style.border = "1px solid black";
           }
-          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[0].innerHTML = svgStrU[89][langNum];  // 결측수
           cell[1].innerHTML = mobs;
           cell[0].style.textAlign = "center";
           cell[1].style.textAlign = "right";
@@ -7735,7 +7735,154 @@ function statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mi
           cell[1].innerHTML = f2(statT[0]);  // mu0
           cell[2].innerHTML = svgStrU[22][langNum]; // 표본평균
           cell[3].innerHTML = f3(statT[9]);  // teststat
-          cell[4].innerHTML = f4(statT[10]); // pvalue 
+          if (statT[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
+          else cell[4].innerHTML = f4(statT[10]); // pvalue 
+
+          row = table.insertRow(++nrow);
+          row.style.height ="20px";
+}
+// Mu 부호순위 가설검정용 그룹통계량표 --------------------------------------------------------------------------------------------------
+function statTableMuNP(ngroup, dvarName, statT) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, nrow, str1, str2, temp, left, right;
+        var ncol = 6;
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
+        
+          table.style.fontSize = "13px";
+ 
+          var header = table.createTHead()
+          nrow = 0;
+          row  = table.insertRow(nrow);
+          row.style.height ="40px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.width ="70px";
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.width ="140px";
+          cell[0].innerHTML = "<h3>"+svgStrU[68][langNum]+"</h3>"; // 부호순위검정
+          cell[1].innerHTML = svgStr[26][langNum];
+          if (checkPairedT == false) str = dvarName;
+          else str = "("+tdvarName[0] + " - " + tdvarName[1]+")";
+          cell[2].innerHTML = str;
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="40px";
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStr[91][langNum];  // 통계량
+          cell[1].innerHTML = svgStr[48][langNum] +" "+svgStr[44][langNum];  // 전체 자료수
+          cell[2].innerHTML = svgStr[116][langNum]+" "+svgStr[44][langNum];  // 검정 자료수 
+          cell[3].innerHTML = "-"+svgStr[18][langNum]+" "+svgStr[44][langNum];  // -그룹 자료수 
+          cell[4].innerHTML = "+"+svgStr[18][langNum]+" "+svgStr[44][langNum];  // +그룹 자료수
+          for (j=0; j<ncol-1; j++) {
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.width ="80px";
+          }
+
+          row  = table.insertRow(++nrow);
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = "";       
+          cell[1].innerHTML = f0(dobs);        // 전체 자료수
+          cell[2].innerHTML = f0(nobs[0]);     // 검정 자료수 
+          cell[3].innerHTML = f0(nobs[1]);     // -그룹 자료수 
+          cell[4].innerHTML = f0(nobs[2]);     // +그룹 순위합(R+)
+          for (j=0; j<ncol-1; j++) {
+            cell[j].style.textAlign = "right";
+            cell[j].style.width ="80px";
+          }
+          cell[0].style.backgroundColor = "#eee";
+
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
+
+
+          row = table.insertRow(++nrow);
+          cell[0] = row.insertCell(0);          
+          cell[0].style.border = "1px solid black";
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
+
+          row = table.insertRow(++nrow);
+          if (nobs[0] < 21) {
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[0].innerHTML = "H<sub>0</sub> : &mu; = &mu;<sub>0</sub>"; 
+            cell[1].innerHTML = "&mu;<sub>0</sub>"; 
+            cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+            cell[3].innerHTML = svgStrU[90][langNum]+" R+"; // 순위합 R+
+            cell[4].innerHTML = "P(X <= R+)";
+            cell[5].innerHTML = "P(X >= R+)";
+          } else {
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[0].innerHTML = "H<sub>0</sub> : &mu; = &mu;<sub>0</sub>"; 
+            cell[1].innerHTML = "&mu;<sub>0</sub>"; 
+            cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+            cell[3].innerHTML = svgStrU[90][langNum]+" R+"; // 순위합 R+
+            cell[4].innerHTML = svgStrU[27][langNum]; // p-value
+          }
+
+          row = table.insertRow(++nrow);
+          if (nobs[0] < 21) {
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";          
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].style.textAlign = "center";          
+            cell[2].style.textAlign = "center";          
+            cell[0].innerHTML = "H<sub>1</sub> : &mu; "+h1sign[statT[11]-1]+" &mu;<sub>0</sub>"; 
+            cell[1].innerHTML = f2(statT[0]);  // mu0
+            cell[2].innerHTML = "+"+svgStr[18][langNum]+" "+svgStrU[90][langNum]+"(R+)";  // +그룹 순위합(R+)
+            cell[3].innerHTML = f2(statT[9]);    // +그룹 순위합(R+)
+            cell[4].innerHTML = f4(statT[16]);   // P(X <= R+)
+            cell[5].innerHTML = f4(statT[17]);   // P(X >= R+)
+          } else {
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";          
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].style.textAlign = "center";          
+            cell[2].style.textAlign = "center";          
+            cell[0].innerHTML = "H<sub>1</sub> : &mu; "+h1sign[statT[11]-1]+" &mu;<sub>0</sub>"; 
+            cell[1].innerHTML = f2(statT[0]);  // mu0
+            cell[2].innerHTML = "+"+svgStr[18][langNum]+" "+svgStrU[90][langNum]+"(R+)";  // +그룹 순위합(R+)
+            cell[3].innerHTML = f2(statT[9]);    // +그룹 순위합(R+)
+            if (statT[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
+            else cell[4].innerHTML = f4(statT[10]); // pvalue 
+          }
 
           row = table.insertRow(++nrow);
           row.style.height ="20px";
@@ -7863,7 +8010,8 @@ function statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std,
           cell[1].innerHTML = f2(statT[0]);  // teststat
           cell[2].innerHTML = svgStrU[75][langNum]; // 표본분산
           cell[3].innerHTML = f3(statT[9]);  // teststat
-          cell[4].innerHTML = f4(statT[10]); // pvalue
+          if (statT[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
+          else cell[4].innerHTML = f4(statT[10]); // pvalue 
 
           row = table.insertRow(++nrow);
           row.style.height ="20px";
@@ -8025,8 +8173,177 @@ function statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, 
           cell[1].innerHTML = f2(statT[0]);  // D
           cell[2].innerHTML = svgStrU[76][langNum]; // 표본평균차
           cell[3].innerHTML = f3(statT[9]);  // teststat
-          cell[4].innerHTML = f4(statT[10]); // pvalue
+          if (statT[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
+          else cell[4].innerHTML = f4(statT[10]); // pvalue 
           cell[5].innerHTML = "("+f3(statT[14])+", "+f3(statT[15])+")";  
+
+          row = table.insertRow(++nrow);
+          row.style.height ="20px";
+}
+// Mu12 윌콕슨 순위합검정 결과표 --------------------------------------------------------------------------------------------------
+function statTableMu12NP(ngroup, dvarName, statT) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, nrow, str1, str2, temp, left, right;
+        var ncol = 6;
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
+        var ranksum = new Array(3);
+        temp = dobs * (dobs+1) / 2;   // 전체 순위합
+        ranksum[0] = temp - statT[9]; // 그룹1 순위합
+        ranksum[1] = statT[9];        // 그룹2 순위합
+        
+          table.style.fontSize = "13px";
+ 
+          var header = table.createTHead()
+          nrow = 0;
+          row  = table.insertRow(nrow);
+          row.style.height ="40px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.width ="70px";
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.width ="140px";
+          cell[0].innerHTML = "<h3>"+svgStrU[63][langNum]+"</h3>"; // 윌콕슨순위합검정
+          cell[1].innerHTML = svgStr[26][langNum];
+          cell[2].innerHTML = dvarName;
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="40px";
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStr[91][langNum];  // 통계량
+          cell[1].innerHTML = svgStr[44][langNum];  // 자료수 
+          cell[2].innerHTML = svgStr[34][langNum];  // 평균 
+          cell[3].innerHTML = svgStr[35][langNum];  // 표준편차  
+          cell[4].innerHTML = svgStrU[90][langNum]; // 순위합
+          for (j=0; j<ncol-1; j++) {
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.width ="80px";
+          }
+
+          for (g=0; g<ngroup; g++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);  
+              cell[j].style.border = "1px solid black";
+            }
+            str ="";
+            if (ngroup > 1) str = (g+1).toString()+" ("+gvalueLabel[g]+")";        
+            cell[0].innerHTML = str;
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = nobs[g].toString();  
+            cell[2].innerHTML = f3(avg[g]).toString();  
+            cell[3].innerHTML = f3(std[g]).toString(); 
+            cell[4].innerHTML = f2(ranksum[g]).toString(); 
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
+          } // endof g
+
+          if (ngroup > 1) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].innerHTML = svgStr[48][langNum]
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = tstat[0].toString(); 
+            cell[2].innerHTML = f3(tstat[1]).toString();  
+            cell[3].innerHTML = f3(tstat[2]).toString();  
+            cell[4].innerHTML = f2(temp).toString(); 
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) {
+              cell[j].style.textAlign = "right";          
+              cell[j].style.backgroundColor = "#eee";
+            }
+          }
+
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
+
+          row = table.insertRow(++nrow);
+          cell[0] = row.insertCell(0);          
+          cell[0].style.border = "1px solid black";
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
+
+          row = table.insertRow(++nrow);
+          if (dobs < 25) {
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[0].innerHTML = "H<sub>0</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D";
+            cell[1].innerHTML = "D"; 
+            cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+            cell[3].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+" R<sub>2</sub>"; // 그룹2 순위합 R2
+            cell[4].innerHTML = "P(X <= R<sub>2</sub>)";
+            cell[5].innerHTML = "P(X >= R<sub>2</sub>)";
+          } else {
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[0].innerHTML = "H<sub>0</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D";
+            cell[1].innerHTML = "D"; 
+            cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
+            cell[3].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+" R<sub>2</sub>"; // 그룹2 순위합 R2
+            cell[4].innerHTML = svgStrU[27][langNum]; // p-value
+          }
+
+          row = table.insertRow(++nrow);
+          if (dobs < 25) {
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";          
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].style.textAlign = "center";          
+            cell[2].style.textAlign = "center";          
+            cell[0].innerHTML = "H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> "+h1sign[statT[11]-1]+" D";
+            cell[1].innerHTML = f2(statT[0]);  // D
+            cell[2].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+"(R<sub>2</sub>)";  // 그룹2 순위합(R2)
+            cell[3].innerHTML = f2(statT[9]);    // 그룹2 순위합(R2)
+            cell[4].innerHTML = f4(statT[16]);   // P(X <= R2)
+            cell[5].innerHTML = f4(statT[17]);   // P(X >= R2)
+          } else {
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";          
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].style.textAlign = "center";          
+            cell[2].style.textAlign = "center";          
+            cell[0].innerHTML = "H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> "+h1sign[statT[11]-1]+" D";
+            cell[1].innerHTML = f2(statT[0]);  // D
+            cell[2].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+"(R<sub>2</sub>)";  // 그룹2 순위합(R2)
+            cell[3].innerHTML = f2(statT[9]);    // 그룹2 순위합(R2)
+            if (statT[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
+            else cell[4].innerHTML = f4(statT[10]); // pvalue 
+          }
 
           row = table.insertRow(++nrow);
           row.style.height ="20px";
@@ -8185,7 +8502,8 @@ function statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, st
           cell[1].innerHTML = "";
           cell[2].innerHTML = "s<sub>1</sub><sup>2</sup> / s<sub>2</sub><sup>2</sup>"; // 표본분산비
           cell[3].innerHTML = f3(statF[9]);  // teststat
-          cell[4].innerHTML = f4(statF[10]); // pvalue
+          if (statF[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
+          else cell[4].innerHTML = f4(statF[10]); // pvalue 
           cell[5].innerHTML = "("+f3(statF[14])+", "+f3(statF[15])+")";  
 
           row = table.insertRow(++nrow);
@@ -8411,6 +8729,171 @@ function AnovaTable(gvarName,dvarName,nobs,avg,std,statF) {
           row.style.height = "20px";
 
 }    
+// Kruskal-Wallis 검정 결과표 --------------------------------------------------------------------------------------------------
+function statTableANOVANP(gvarName,dvarName,ranksum, statF) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, nrow, str1, str2, temp, left, right;
+        var ncol = 6;
+        var cell = new Array(ncol);
+        var mconfidence = 1 - confidence;
+        var confstr = (confidence*100).toString()+"% ";
+        
+          table.style.fontSize = "13px";
+ 
+          var header = table.createTHead()
+          nrow = 0;
+          row  = table.insertRow(nrow);
+          row.style.height ="40px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.width ="70px";
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.width ="140px";
+          cell[0].innerHTML = "<h3>"+svgStrU[65][langNum]+"</h3>"; // Kruskal-Wallis 검정
+          cell[1].innerHTML = svgStr[26][langNum]; // 분석변량
+          cell[2].innerHTML = dvarName;
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="40px";
+          for (j=0; j<ncol-1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStr[91][langNum];  // 통계량
+          cell[1].innerHTML = svgStr[44][langNum];  // 자료수 
+          cell[2].innerHTML = svgStr[34][langNum];  // 평균 
+          cell[3].innerHTML = svgStr[35][langNum];  // 표준편차  
+          cell[4].innerHTML = svgStrU[90][langNum]; // 순위합
+          for (j=0; j<ncol-1; j++) {
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.width ="80px";
+          }
+
+          for (g=0; g<ngroup; g++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);  
+              cell[j].style.border = "1px solid black";
+            }
+            str ="";
+            if (ngroup > 1) str = (g+1).toString()+" ("+gvalueLabel[g]+")";        
+            cell[0].innerHTML = str;
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = nobs[g].toString();  
+            cell[2].innerHTML = f3(avg[g]).toString(); 
+ 
+            cell[3].innerHTML = f3(std[g]).toString(); 
+            cell[4].innerHTML = f2(ranksum[g+1]).toString(); 
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) cell[j].style.textAlign = "right";         
+          } // endof g
+
+          if (ngroup > 1) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].innerHTML = svgStr[48][langNum]
+            cell[0].style.backgroundColor = "#eee";
+            cell[1].innerHTML = tstat[0].toString(); 
+            cell[2].innerHTML = f3(tstat[1]).toString();  
+            cell[3].innerHTML = f3(tstat[2]).toString();  
+            cell[4].innerHTML = f2(ranksum[0]).toString(); 
+            cell[0].style.textAlign = "center";
+            for (j=1; j<ncol-1; j++) {
+              cell[j].style.textAlign = "right";          
+              cell[j].style.backgroundColor = "#eee";
+            }
+          }
+
+          // missing
+          row = table.insertRow(++nrow);
+          for (k=0; k<2; k++) {
+            cell[k] = row.insertCell(k);
+            cell[k].style.backgroundColor = "#eee";
+            cell[k].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = svgStrU[89][langNum];
+          cell[1].innerHTML = mobs;
+          cell[0].style.textAlign = "center";
+          cell[1].style.textAlign = "right";
+
+          row = table.insertRow(++nrow);
+          cell[0] = row.insertCell(0);          
+          cell[0].style.border = "1px solid black";
+          cell[0].style.backgroundColor = "#eee";
+          cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
+
+          row = table.insertRow(++nrow);
+          if (ngroup == 2) str1 = "H<sub>0</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub>";
+          else if (ngroup == 3) str1 = "H<sub>0</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub> = &mu;<sub>3</sub>";
+          else str1 = "H<sub>0</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>"+ngroup+"</sub>";
+          if (dobs < 11) {
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[0].innerHTML = str1;
+            cell[1].innerHTML = svgStrU[23][langNum]; // 검정통계량
+            cell[2].innerHTML = "H";   
+            cell[3].innerHTML = "P(X <= H)";
+            cell[4].innerHTML = "P(X >= H)";
+          } else {
+            for (j=0; j<ncol-2; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.backgroundColor = "#eee";
+            }
+            cell[0].innerHTML = str1;
+            cell[1].innerHTML = svgStrU[23][langNum]; // 검정통계량
+            cell[2].innerHTML = "H"; 
+            cell[3].innerHTML = svgStrU[27][langNum]; // p-value
+          }
+
+          row = table.insertRow(++nrow);
+          if (dobs < 11) {
+            for (j=0; j<ncol-1; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";          
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].style.textAlign = "center";          
+            cell[1].style.textAlign = "center";          
+            cell[0].innerHTML = svgStrU[93][langNum]; // 적어도 한쌍 이상의 위치모수가 다름
+            cell[1].innerHTML = "H";
+            cell[2].innerHTML = f3(statF[9]);    // H 통계량
+            cell[3].innerHTML = f4(statF[16]);   // P(X <= H)
+            cell[4].innerHTML = f4(statF[17]);   // P(X >= H)
+          } else {
+            for (j=0; j<ncol-2; j++) {
+              cell[j] = row.insertCell(j);          
+              cell[j].style.border = "1px solid black";
+              cell[j].style.textAlign = "right";          
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].style.textAlign = "center";          
+            cell[1].style.textAlign = "center";          
+            cell[0].innerHTML = svgStrU[93][langNum]; // 적어도 한쌍 이상의 위치모수가 다름
+            cell[1].innerHTML = "H"
+            cell[2].innerHTML = f3(statF[9]);    // H 통계량
+            if (statF[10] < 0.0001) cell[3].innerHTML = "< 0.0001"; // pvalue 
+            else cell[3].innerHTML = f4(statF[10]); // pvalue 
+          }
+
+          row = table.insertRow(++nrow);
+          row.style.height ="20px";
+}
+
 // 2 way 평균/표준편차표 --------------------------------------------------------------------------------------------------
 function stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2, gvalueLabel2) {
     var screenTable = document.getElementById("screenTable");
@@ -10077,7 +10560,7 @@ function basicStat(nobs, xdata, ydata, stat) {
 // t분포 testing hypothesis 그래프 함수 --------------------------------------------------
 function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b, prob, pvalue) {
 
-         var margin  = {top: 100, bottom: 190, left: 80, right: 80};
+         var margin  = {top: 100, bottom: 100, left: 80, right: 80};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tx, ty, str;
@@ -10242,7 +10725,7 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
          }
          chart.append("line").attr("class","line2")
               .attr("x1",0).attr("y1",y2+60).attr("x2",svgWidth2).attr("y2",y2+60);
-
+/*
          // print sample stat & confidence interval
          tx = 20;
          ty = margin.top + graphHeight2 + 140;
@@ -10282,12 +10765,13 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
          }
+*/
 }     
 
 // 정규분포 그래프 함수 --------------------------------------------------
 function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigma, a, b, prob, pvalue) {
 
-         var margin  = {top: 100, bottom: 190, left: 80, right: 80};
+         var margin  = {top: 100, bottom: 100, left: 80, right: 80};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, ta, tb, tx, ty, str;
@@ -10453,7 +10937,7 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
          }
          chart.append("line").attr("x1",0).attr("y1",y2+60).attr("x2",svgWidth2).attr("y2",y2+60)
               .style("stroke-width","0.7px").style("stroke","black");
-
+/*
          // print sample stat & confidence interval
          tx = 20;
          ty = margin.top + graphHeight2 + 140;
@@ -10469,7 +10953,7 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")
          }
-
+*/
 }     
 
 // 축 그리기
@@ -10495,6 +10979,150 @@ function drawAxisNormal(top, bottom, left, right, gxmin, gxmax, gymin, gymax) {
           .attr("transform","translate("+margin.left+","+margin.top+")")
           .call(d3.axisLeft(yScale))                  // 눈금을 표시할 함수 호출
 }
+// 비모수근사 정규분포 가설검정 그래프 함수 --------------------------------------------------
+function drawNormalGraphTHNP(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue, D) {
+         var margin  = {top: 60, bottom: 130, left: 90, right: 90};
+         var graphWidth2   = svgWidth2 - margin.left - margin.right;
+         var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
+         var x1, y1, x2, y2, ta, tb, tx, ty, str;
+         var gxmin   = mu - 5*sigma;
+         var gxmax   = mu + 5*sigma;
+         var gxrange = gxmax - gxmin;
+         var gymin   = 0;
+         var ymax    = 1/(sigma*Math.sqrt(2*Math.PI));
+         var gymax   = ymax + ymax/5; 
+         var gyrange = gymax - gymin;
+
+         // heading
+         tx = margin.left + graphWidth2/2;
+         ty = margin.top/2;
+         if (hypoType == 1)       str = "H\u2080: \u03BC = "+ f2(D) + " , H\u2081: \u03BC " + symbol[h1Type-1] +" "+ f2(D);
+         else if (hypoType == 3)  str = "H\u2080: P = "+ f2(D) + " , H\u2081: P " + symbol[h1Type-1] +" " + f2(D);
+         else if (hypoType == 6)  str = "H\u2080: P\u2081 - P\u2082 = " + f2(D) + " , H\u2081: P\u2081 - P\u2082 "+symbol[h1Type-1]+" "+f2(D);
+         else if (hypoType == 94) str = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
+         else if (hypoType == 95) str = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
+         else if (hypoType == 96) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082  " + " , H\u2081: \u03BC\u2081 "+ symbol[h1Type-1] + " \u03BC\u2082" ;
+         chart.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
+
+         ty = margin.top;
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3)  str = svgStrU[23][langNum]+" (p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6)  str = svgStrU[23][langNum]+" (p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         else if (hypoType == 94) str = svgStrU[23][langNum]+" (+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 95) str = svgStrU[23][langNum]+" R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 96) str = svgStrU[23][langNum]+" R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         chart.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
+         // draw normal pdf
+         var x = [];
+         var y = [];
+         var step = (gxmax - gxmin)/graphWidth2;
+         x[0] = gxmin;
+         y[0] = normal_pdf(mu, sigma, x[0] );
+         x1   = margin.left + graphWidth2*(x[0]-gxmin)/gxrange;
+         y1   = margin.top + graphHeight2 - graphHeight2*(y[0]-gymin)/gyrange;
+         for (var k=1; k<=graphWidth2; k++) {
+           x[k] = x[k-1] + step;
+           y[k] = normal_pdf(mu, sigma, x[k] );
+           x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
+           y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
+           chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+              .style("stroke","black").attr("stroke-width","2px");
+           x1   = x2;
+           y1   = y2;    
+         }
+         // draw [a, b] region
+         if (a < gxmin) a = gxmin;
+         if (b > gxmax) b = gxmax;
+         var tempx, tempy;
+         var tempx = a;
+         do { 
+           tempy = normal_pdf(mu, sigma, tempx );
+           x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+           x2   = x1;
+           y1   = margin.top  + graphHeight2;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+           chart.append("line")
+              .attr("x1",x1)
+              .attr("y1",y1)
+              .attr("x2",x2)
+              .attr("y2",y2)
+              .attr("stroke-width","2px").style("stroke","#0055FF")
+           tempx += step;        
+         } while( tempx <= b ) 
+         // a, b, prob 표시
+         ta = margin.left + graphWidth2*(a-gxmin)/gxrange;
+         tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
+         ty = svgHeight2 - margin.bottom + 40;
+         chart.append("text").attr("x", ta).attr("y", ty).text(f3(a))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         chart.append("text").attr("x", tb).attr("y", ty).text(f3(b))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         // Accept, Reject regions
+         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         if (h1Type == 1) {  
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
+         else if (h1Type == 2) {
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
+         else {
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
+         // draw test statistics
+         if (stat < gxmin) x1 = margin.left / 2 + 20;
+         else if (stat > gxmax) x1 = margin.left + graphWidth2 + margin.right/2 - 20;
+         else x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
+         x2 = x1;
+         y1 = margin.top + graphHeight2;
+         y2 = y1 + 60;
+         chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+            .style("stroke","green").attr("stroke-width","2px");
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" "+f3(stat))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         if (pvalue < 0.0001) str = "< 0.0001";
+         else str = f4(pvalue).toString();  
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" "+str)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         // Decision
+         var checkAccept;
+         if (h1Type == 1) {
+           if (stat > a && stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else if (h1Type == 2) {
+           if (stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else {
+           if (stat > a) checkAccept = true;
+           else checkAccept = false;
+         }
+         if (checkAccept) {
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+" "+svgStrU[26][langNum])
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
+         }
+         else {
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+" "+svgStrU[25][langNum])
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
+}     
 
 
 // =============================================================================================================
@@ -10502,9 +11130,8 @@ function drawAxisNormal(top, bottom, left, right, gxmin, gxmax, gymin, gymax) {
 // =============================================================================================================
 
 // chisq 분포 가설검정 그래프 함수 --------------------------------------------------
-function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pvalue) {
-
-         var margin  = {top: 100, bottom: 190, left: 100, right: 100};
+function drawChisqGraphTH(hypoType, h1Type, statT, teststat, df, a, b, prob, pvalue) {
+         var margin  = {top: 100, bottom: 100, left: 80, right: 80};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tx, ty, str;
@@ -10665,7 +11292,7 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
          }
          chart.append("line").attr("x1",0).attr("y1",y2+60).attr("x2",svgWidth2).attr("y2",y2+60)
               .style("stroke-width","0.7px").style("stroke","black");
-
+/*
          // print sample stat & confidence interval
          tx = 20;
          ty = margin.top + graphHeight2 + 140;
@@ -10681,7 +11308,158 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")  
          }
+*/
+}     
+// chisq 분포 가설검정 그래프 함수 --------------------------------------------------
+function drawChisqGraphTHNP(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
+         var margin  = {top: 60, bottom: 130, left: 100, right: 100};
+         var graphWidth2   = svgWidth2 - margin.left - margin.right;
+         var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
+         var x1, y1, x2, y2, info, ta, tb, tx, ty, str, temp;
+         var ymax, gxmin, gxmax, gymin, gymax, gxrange, gyrange;
 
+         gxmin = 0;
+         gymin = 0;
+         if (df < 2)  {gxmax = 12;  ymax = 1.5;}
+         else if (df < 5)       {gxmax = 12;  ymax = 0.6;}
+         else if (df < 10) {gxmax = 30;  ymax = 0.15;}
+         else {gxmin = chisq_inv(0.0001, df, info), gxmax = chisq_inv(0.9999, df, info);  ymax = 0.1;}
+  
+         gxrange = gxmax - gxmin;
+         gymax   = ymax + ymax/5; 
+         gyrange = gymax - gymin;
+
+         // heading
+         tx = margin.left + graphWidth2/2;
+         ty = margin.top/2;
+         if (hypoType == 2)       str = "H\u2080: \u03C3\u00B2 = "+ f2(D) + " , H\u2081: \u03C3\u00B2 " + symbol[h1Type-1] +" "+ f2(D);
+         else if (hypoType == 8)  str = "H\u2080: "+svgStrU[58][langNum];
+         else if (hypoType == 9)  str = "H\u2080: "+svgStrU[60][langNum]+"="+svgStrU[61][langNum]+" H\u2081: "+svgStrU[60][langNum]+symbol[0]+svgStrU[61][langNum]  ;
+         else if (hypoType == 98) {
+           if (ngroup == 2) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082";
+           else if (ngroup == 3) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = \u03BC\u2083" ;
+           else str = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BC"+ngroup ;
+         }
+         chart.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
+
+         ty = margin.top;
+         if (hypoType == 2)       str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 9)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 98) str = svgStrU[67][langNum]+" ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         chart.append("text").attr("x", tx).attr("y", ty).text(str)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+
+         drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
+         
+         var x = [];
+         var y = [];
+         var step = (gxmax - gxmin)/graphWidth2;
+         x[0] = gxmin;
+         y[0] = chisq_pdf(x[0], df, info);
+         x1   = margin.left + graphWidth2*(x[0]-gxmin)/gxrange;
+         y1   = margin.top + graphHeight2 - graphHeight2*(y[0]-gymin)/gyrange;
+         for (var k=1; k<=graphWidth2; k++) {
+           x[k] = x[k-1] + step;
+           y[k] = chisq_pdf(x[k], df, info);
+           x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
+           y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
+           chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+              .style("stroke","black").attr("stroke-width","2px");
+           x1   = x2;
+           y1   = y2;    
+         }
+
+         // draw [a, b] region
+         if (a < gxmin) a = gxmin;
+         if (b > gxmax) b = gxmax;
+         var tempx, tempy;
+         var tempx = a;
+         do { 
+           tempy = chisq_pdf(tempx, df, info);
+           x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+           x2   = x1;
+           y1   = margin.top  + graphHeight2;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+           chart.append("line")
+              .attr("x1",x1)
+              .attr("y1",y1)
+              .attr("x2",x2)
+              .attr("y2",y2)
+              .attr("stroke-width","2px").style("stroke","#0055FF")
+           tempx += step;        
+         } while( tempx <= b ) 
+         // a, b, prob 표시
+         ta = margin.left + graphWidth2*(a-gxmin)/gxrange;
+         tb = margin.left + graphWidth2*(b-gxmin)/gxrange;
+         ty = svgHeight2 - margin.bottom + 40;
+         chart.append("text").attr("x", ta).attr("y", ty).text(f3(a))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         chart.append("text").attr("x", tb).attr("y", ty).text(f3(b))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         // Accept, Reject regions
+         chart.append("text").attr("x", (ta+tb)/2).attr("y", ty).text("<- "+svgStrU[26][langNum]+" ->")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         if (h1Type == 1) {  
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+60).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", ta-40).attr("y", ty-60).text(f3(prob))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+45).attr("y", ty-60).text(f3(prob))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
+         else if (h1Type == 2) {
+           chart.append("text").attr("x", tb+50).attr("y", ty).text("<- "+svgStrU[25][langNum])
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", tb+50).attr("y", ty-60).text(f3(prob))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
+         else if (h1Type == 3) {
+           chart.append("text").attr("x", ta-60).attr("y", ty).text(svgStrU[25][langNum]+" ->")
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", ta-50).attr("y", ty-60).text(f3(prob))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
+         // draw test statistics
+         if (stat < gxmin) x1 = margin.left / 2 + 20;
+         else if (stat > gxmax) x1 = margin.left + graphWidth2 + margin.right/2 - 20;
+         else x1 = margin.left + graphWidth2*(stat-gxmin)/gxrange;
+         x2 = x1;
+         y1 = margin.top + graphHeight2;
+         y2 = y1 + 60;
+         chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+            .style("stroke","green").attr("stroke-width","2px");
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         if (pvalue < 0.0001) str = "< 0.0001";
+         else str = f4(pvalue).toString();  
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         // Decision
+         var checkAccept;
+         if (h1Type == 1) {
+           if (stat > a && stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else if (h1Type == 2) {
+           if (stat < b) checkAccept = true;
+           else checkAccept = false;
+         }
+         else {
+           if (stat > a) checkAccept = true;
+           else checkAccept = false;
+         }
+         if (checkAccept) {
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[26][langNum])
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
+         }
+         else {
+           chart.append("text").attr("x", tx).attr("y", y2+50).text(svgStrU[28][langNum]+svgStrU[25][langNum])
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         }
 }     
 
 // =============================================================================================================
@@ -10692,7 +11470,8 @@ function drawChisqGraphTH(hyphType, h1Type, statT, teststat, df, a, b, prob, pva
 function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue, ngroup, nobs, avg, std) {
 
          var k;
-         var margin  = {top: 90, bottom: 200, left: 100, right: 100};
+         var margin  = {top: 100, bottom: 100, left: 100, right: 100};
+//         var margin  = {top: 90, bottom: 200, left: 100, right: 100};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info, ta, tb, tc, td, te, t1, t2, t3, tx, ty, str;
@@ -10833,7 +11612,8 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
            chart.append("text").attr("x", tx).attr("y", y2+25).text(svgStrU[28][langNum]+svgStrU[25][langNum])
                 .style("stroke","red").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
          }
-
+/*
+         // print 통계량
          if (hypoType == 5) ty = y2 + 45;
          else if (hypoType == 7) ty = y2 +35;
          chart.append("line").attr("x1",0).attr("y1",ty).attr("x2",svgWidth2).attr("y2",ty)
@@ -10913,6 +11693,741 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
            chart.append("text").attr("x", tx).attr("y", ty+20).text(str)
                 .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","start")  
          }
-
+*/
 }     
+// Calculate Rank Sum of Each Group
+function statRankSum(ngroup, tobs, dataA, ranksum ) {
+      var i,j, temp, tempi, sum, t3;
+      var index = new Array(tobs[0]);
+      var rank  = new Array(tobs[0]);
+      var cumobs = new Array(ngroup+1);
+      // Sorting and indexing data in ascending order
+      for (i=0; i<tobs[0]; i++) {index[i] = i; rank[i] = i+1;}
+      for (i=0; i<tobs[0]-1; i++) {
+        for (j=i; j<tobs[0]; j++) {
+          if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi    = index[i];
+              dataA[i] = dataA[j];  index[i] = index[j];
+              dataA[j] = temp;      index[j] = tempi;  
+          }
+        }
+      } 
+      // Counting the same value, give average rank
+      var nvalue = 1;
+      t3 = 0;
+      sum = rank[0];
+      for (i=1; i<tobs[0]; i++) {
+        if (dataA[i] == dataA[i-1]) {
+          nvalue++;
+          sum += rank[i];
+        }
+        else {
+          t3 += nvalue*nvalue*nvalue - nvalue;  // 동점그룹의 가중값
+          temp = sum / nvalue;
+          for (k=i-1; k>= i-nvalue; k--) rank[k] = temp;
+          nvalue = 1;
+          sum = rank[i];
+        }
+      }
+      if (nvalue > 1) {
+          t3 += nvalue*nvalue*nvalue - nvalue;  // 동점그룹의 가중값
+          temp = sum / nvalue;
+          for (k=i-1; k>= i-nvalue; k--) rank[k] = temp;
+      }
+      else { // 마지막 원소가 다르게 끝난 경우 nvalue = 1 rank[k]는 그대로
+          t3 += nvalue*nvalue*nvalue - nvalue;   // 동점그룹의 가중값
+      }
+      // ranksum of each sample
+      for (j=0; j<=ngroup; j++) ranksum[j] = 0;
+      cumobs[1] = tobs[1];
+      for (j=2; j<=ngroup; j++) cumobs[j] = cumobs[j-1] + tobs[j];
 
+      for (i=0; i<tobs[0]; i++) {
+        for (j=1; j<= ngroup; j++) {
+          if (index[i] < cumobs[j]) {ranksum[j] += rank[i]; break;}
+        }
+      }  
+      return t3;   
+}
+
+// Wicoxon rank sum distribution   
+function rankSumDist(m, n, dataValue, dvalueP, checkRankSum) {
+      var i, j, k, p, N2, tobs, nvalue, sumB, sumR, checkDuplicate;
+      var k = m + n;
+      var B = new Array(k+1);  // Binary
+      var R = new Array(k+1);  // Rank
+      var tdata = [];
+
+      N2 = 1;
+      for (j=1; j<=k; j++) {
+        B[j] = 0;
+        R[j] = j;
+        N2 *=2;
+      }
+      // rank sum의 모든 경우의 수
+      tobs = 0;
+      nvalue = 0;
+      dvalueP[nvalue] = 0;
+      for (i=1; i<=N2; i++) {
+        j = k; 
+        B[j] ++;
+        do {
+          if (B[j] > 1) {
+            B[j] = 0;
+            j--
+            B[j]++;
+          }
+          else break;
+        } while (B[j] > 1)
+
+        if( checkRankSum ) {
+          // RankSum에서는 Binary 합계가 n과 일치될때만 rank sum 계산
+          sumB = 0;
+          for (j=1; j<=k; j++) sumB += B[j];
+          if (sumB == n) {
+            sumR = 0;
+            for (j=1; j<=k; j++) {
+              sumR += B[j]*R[j];
+            }
+            // 값이 있는지 체크
+            checkDuplicate = false;
+            for (j=0; j<nvalue; j++) {
+              if (sumR == dataValue[j]) {
+                dvalueP[j]++;
+                checkDuplicate = true;
+                break;
+              }
+            }
+            if (checkDuplicate == false) {
+              dataValue[nvalue] = sumR;
+              dvalueP[nvalue]++;
+              nvalue++;
+              dvalueP[nvalue] = 0;
+            }
+            tobs++;
+          } // endof if
+        }
+        else { // signed rank sum은 k=m+n 모든 경우의 rank sum 계산
+            sumR = 0;
+            for (j=1; j<=k; j++) {
+              sumR += B[j]*R[j];
+            }
+            // 값이 있는지 체크
+            checkDuplicate = false;
+            for (j=0; j<nvalue; j++) {
+              if (sumR == dataValue[j]) {
+                dvalueP[j]++;
+                checkDuplicate = true;
+                break;
+              }
+            }
+            if (checkDuplicate == false) {
+              dataValue[nvalue] = sumR;
+              dvalueP[nvalue]++;
+              nvalue++;
+              dvalueP[nvalue] = 0;
+            }
+// console.log(tobs+" "+nvalue+" "+B+" "+sumR)
+            tobs++;
+        }
+
+      } // endof for
+
+// console.log(nvalue+" "+dataValue)
+// console.log(nvalue+" "+dvalueP)
+      // Sorting dataValue[] with dvalueP[] in ascending order
+      for (i=0; i<nvalue-1; i++) {
+          for (j=i; j<nvalue; j++) {
+            if(dataValue[i] > dataValue[j]) {
+                temp         = dataValue[i];  tempi      = dvalueP[i];
+                dataValue[i] = dataValue[j];  dvalueP[i] = dvalueP[j];
+                dataValue[j] = temp;          dvalueP[j] = tempi;  
+            }
+          }
+      } 
+
+
+      for (j=0; j<nvalue; j++) dvalueP[j] /= tobs;
+// console.log(dvalueP)
+      return nvalue;
+}
+
+// Counting value & freq of sorted array dataA
+function valueFreq(tobs, dataA, dataValue, dvalueFreq ) {
+        var i, nvalue;
+        for(i=0; i<tobs; i++) {
+          dvalueFreq[i]=0; 
+        } 
+        nvalue = 0;
+        dataValue[nvalue]  = dataA[0];  
+        dvalueFreq[nvalue] = 1;   
+        for (i=1; i<tobs; i++) {
+          if (dataA[i] == dataA[i-1]) {
+            dvalueFreq[nvalue]++;
+          } 
+          else {
+            nvalue++;
+            dataValue[nvalue] = dataA[i];
+            dvalueFreq[nvalue]++;
+          }
+        }
+        nvalue++;
+        return nvalue;
+}
+//********************************************************************
+function drawSignedRankGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, statT) {
+         var i, k, sum1, sum2, str, x1, y1, x2, y2;
+         var sum11, sum12, sum22, sum31, loc11, loc12, loc22, loc31;
+         var xmin      = dataValue[0];
+         var xmax      = dataValue[nvalue-1];
+         var ymin      = d3.min(dvalueP);
+         var ymax      = d3.max(dvalueP);
+         var gymin     = ymin;
+         var gymax     = ymax + ymax/5;  
+         var yRatio    = graphHeight / gymax;          // 그래프 영역과 데이터 영역의 비율
+         var betweenbarWidth = graphWidth / nvalue;   // 막대와 막대 사이의 너비
+         var barWidth  = betweenbarWidth * 2 / 3;    // 막대의 너비
+         var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
+
+         // draw title
+         x1 = margin.left + graphWidth/2;
+         y1 = margin.top/2;
+         chart.append("text").attr("x",x1).attr("y",y1).text(title)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")         
+         chart.append("text").attr("x",x1).attr("y",y1+15).text(sub1)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","middle")
+         chart.append("text").attr("x",x1).attr("y",y1+30).text(sub2)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+
+         // draw Y and X axis
+         drawBinomialAxis(gymin, gymax);
+         drawBinomialLabel(nvalue, dataValue, betweenbarWidth);
+         // 분포함수 막대그래프
+         for (var k=0; k<nvalue; k++) {
+           chart.append("rect")
+            .style("fill",myColor[0])
+            .attr("height",0)
+            .attr("width",barWidth)
+            .attr("x", margin.left +barMargin + k*betweenbarWidth)
+            .attr("y",svgHeight - margin.bottom)
+            .transition()                           // 애니매이션 효과 지정
+            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+            .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
+            .attr("y", svgHeight - margin.bottom - dvalueP[k]*yRatio)
+            .attr("height", dvalueP[k]*yRatio)
+         }
+         if (checkData == false) return; 
+         // 표본통계량 위치 표시
+         sum1 = 0;
+         sum2 = 0;
+         for (i=0; i<nvalue; i++) {
+           if (dataValue[i] < ranksum) sum1 += dvalueP[i];
+           else if (dataValue[i] == ranksum) {
+             sum1 += dvalueP[i];
+             sum2 += dvalueP[i];
+           }
+           else sum2 += dvalueP[i];
+         }
+         statT[16] = sum1; // P(X <= R+);
+         statT[17] = sum2; // P(X >= R+);
+
+         x1 = margin.left +barMargin + (ranksum-dataValue[0])*betweenbarWidth + barWidth/2;
+         x2 = x1;
+         y1 = margin.top + 20;
+         y2 = margin.top + graphHeight + 30;
+         chart.append("line").style("stroke","green").style("stroke-width","2px")
+            .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+         str = "R+ = "+ranksum;
+         chart.append("text").attr("x", x2).attr("y", y2+15).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         str = "P(X <= R+) = "+f4(sum1);
+         chart.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
+         str = "P(X >= R+) = "+f4(sum2);
+         chart.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
+
+         // 기준선 표시            
+         sum11 = 0;
+         for (i=0; i<nvalue; i++) {
+           sum11 += dvalueP[i];
+           if (sum11 > alpha/2) {loc11 = dataValue[i]; break;}
+         }
+         sum12 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum12 += dvalueP[i];
+           if (sum12 > alpha/2) {loc12 = dataValue[i]; break;}
+         } 
+         sum22 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum22 += dvalueP[i];
+           if (sum22 > alpha) {loc22 = dataValue[i]; break;}
+         } 
+         sum31 = 0;
+         for (i=0; i<nvalue; i++) {
+           sum31 += dvalueP[i];
+           if (sum31 > alpha) {loc31 = dataValue[i]; break;}
+         }
+         y1 = margin.top + graphHeight/2 + 20;
+         y2 = margin.top + graphHeight + 20 ;
+         if (h1Type == 1) {
+           x1 = margin.left +barMargin + (loc11-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc11)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum11))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+           x1 = margin.left +barMargin + (loc12-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc12)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum12))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+         else if (h1Type == 2) {
+           x1 = margin.left +barMargin + (loc22-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc22)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum22))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+         else {
+           x1 = margin.left +barMargin + (loc31-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc31)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum31))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+         }
+
+}
+// 윌콕슨 순위합검정용 분포함수 그래프
+function drawBarGraphNP(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, statT) {
+         var i, k, sum1, sum2, str, x1, y1, x2, y2;
+         var sum11, sum12, sum21, sum32, loc11, loc12, loc21, loc32;
+         var xmin      = dataValue[0];
+         var xmax      = dataValue[nvalue-1];
+         var ymin      = d3.min(dvalueP);
+         var ymax      = d3.max(dvalueP);
+         var gymin     = ymin;
+         var gymax     = ymax + ymax/5;  
+         var yRatio    = graphHeight / gymax;          // 그래프 영역과 데이터 영역의 비율
+         var betweenbarWidth = graphWidth / nvalue;   // 막대와 막대 사이의 너비
+         var barWidth  = betweenbarWidth * 2 / 3;    // 막대의 너비
+         var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
+
+         // draw title
+         x1 = margin.left + graphWidth/2;
+         y1 = margin.top/2;
+         chart.append("text").attr("x",x1).attr("y",y1).text(title)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")         
+         chart.append("text").attr("x",x1).attr("y",y1+15).text(sub1)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","middle")
+         chart.append("text").attr("x",x1).attr("y",y1+30).text(sub2)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+
+         // draw Y and X axis
+         drawBinomialAxis(gymin, gymax);
+         drawBinomialLabel(nvalue, dataValue, betweenbarWidth);
+         // 분포함수 막대그래프
+         for (var k=0; k<nvalue; k++) {
+           chart.append("rect")
+            .style("fill",myColor[0])
+            .attr("height",0)
+            .attr("width",barWidth)
+            .attr("x", margin.left +barMargin + k*betweenbarWidth)
+            .attr("y",svgHeight - margin.bottom)
+            .transition()                           // 애니매이션 효과 지정
+            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+            .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
+            .attr("y", svgHeight - margin.bottom - dvalueP[k]*yRatio)
+            .attr("height", dvalueP[k]*yRatio)
+         }
+         // 표본통계량 위치 표시
+         sum1 = 0;
+         sum2 = 0;
+         for (i=0; i<nvalue; i++) {
+           if (dataValue[i] < ranksum) sum1 += dvalueP[i];
+           else if (dataValue[i] == ranksum) {
+             sum1 += dvalueP[i];
+             sum2 += dvalueP[i];
+           }
+           else sum2 += dvalueP[i];
+         }
+         statT[16] = sum1; // P(X <= R2);
+         statT[17] = sum2; // P(X >= R2);
+
+         x1 = margin.left +barMargin + (ranksum-dataValue[0])*betweenbarWidth + barWidth/2;
+         x2 = x1;
+         y1 = margin.top + 20;
+         y2 = margin.top + graphHeight + 45;
+         chart.append("line").style("stroke","green").style("stroke-width","2px")
+            .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+         str = "R\u2082 = "+ranksum;
+         chart.append("text").attr("x", x2).attr("y", y2+15).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         str = "P(X <= R\u2082) = "+f4(sum1);
+         chart.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
+         str = "P(X >= R\u2082) = "+f4(sum2);
+         chart.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
+
+         // 기준선 표시            
+         sum11 = 0;
+         for (i=0; i<nvalue; i++) {
+           sum11 += dvalueP[i];
+           if (sum11 > alpha/2) {loc11 = dataValue[i]; break;}
+         }
+         sum12 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum12 += dvalueP[i];
+           if (sum12 > alpha/2) {loc12 = dataValue[i]; break;}
+         } 
+         sum21 = 0;
+         for (i=0; i<nvalue; i++) {
+           sum21 += dvalueP[i];
+           if (sum21 > alpha) {loc21 = dataValue[i]; break;}
+         }
+         sum32 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum32 += dvalueP[i];
+           if (sum32 > alpha) {loc32 = dataValue[i]; break;}
+         } 
+         y1 = margin.top + graphHeight/2 + 20;
+         y2 = margin.top + graphHeight + 30 ;
+         if (h1Type == 1) {
+           x1 = margin.left +barMargin + (loc11-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc11)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum11))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+           x1 = margin.left +barMargin + (loc12-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc12)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum12))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+         else if (h1Type == 2) {
+           x1 = margin.left +barMargin + (loc21-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc21)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum21))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+         }
+         else {
+           x1 = margin.left +barMargin + (loc32-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           chart.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           chart.append("text").attr("x", x2).attr("y", y2+10).text(loc32)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           chart.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum32))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+
+}
+// 이항분포함수 변수값명 쓰기 함수--------------------------------------------------------------------
+function drawBinomialLabel(nvalue2, label, betweenbarWidth) { 
+        var x1 = margin.left;
+        var y1 = svgHeight - margin.bottom; 
+        var barWidth = betweenbarWidth * 2 / 3;  // 막대의 너비
+        var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
+        var temp = betweenbarWidth/3;
+        var angle, str, tx, ty;
+
+    
+        for (var k=0; k<nvalue2; k++) {
+          tx = margin.left + barMargin + barWidth/2 + k*betweenbarWidth;
+          ty = y1+20;
+          if (nvalue2 < 10)     {angle = 0;  str = "middle";  }
+          else if(nvalue2 < 30) {angle = 30; str = "start"; tx = tx-3;}
+          else                  {angle = 90; str = "start"; tx = tx-3;}
+          if (nvalue2 < 30) {
+             chart.append("text")
+             .attr("class","barname")
+             .attr("x",tx)
+             .attr("y",ty)
+             .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
+             .text(label[k])
+             .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+          } 
+          else if (nvalue2 < 60) {
+             if  (k%2 == 1) {
+               chart.append("text")
+                  .attr("class","barname")
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
+                  .text(label[k])
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+            }
+          } 
+          else if (nvalue2 < 90) {
+             if  (k%3 == 1) {
+               chart.append("text")
+                  .attr("class","barname")
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
+                  .text(label[k])
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+            }
+          }
+          else if (nvalue2 < 120) {
+             if  (k%4 == 1) {
+               chart.append("text")
+                  .attr("class","barname")
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
+                  .text(label[k])
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+            }
+          }
+          else  {
+             if  (k%5 == 1) {
+               chart.append("text")
+                  .attr("class","barname")
+                  .attr("x",tx)
+                  .attr("y",ty)
+                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
+                  .text(label[k])
+                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
+            }
+          }
+          
+        } // endof k
+}
+// 이항분포 축
+function drawBinomialAxis(gymin, gymax) {
+        // y축
+        var yScale = d3.scaleLinear().domain([gymax,0]).range([0,graphHeight])
+        chart.append("g")
+          .attr("transform","translate("+margin.left+","+margin.top+")")
+          .call(d3.axisLeft(yScale))                  // 눈금을 표시할 함수 호출
+        // x축
+        var x1 = margin.left;
+        var y1 = margin.top + graphHeight; 
+        chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x1+graphWidth).attr("y2",y1).style("stroke","black");
+}
+
+// 윌콕슨분포표
+function WilcoxonSignedRankSumTable(nvalue, nobs, dataValue, dvalueP) {
+        var table = document.getElementById("ranksumTable");
+        var row, header;
+        var i, j, sum;
+        var nrow = 0;
+        var ncol = 4;
+        var cell = new Array(4);
+
+         table.style.fontSize = "13px";
+    
+          row = table.insertRow(nrow);
+          row.style.height ="40px";
+          row.innerHTML = "<h3>"+svgStrU[68][langNum]+"</h3>";
+          row.style.textAlign = "center";
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="30px";
+          for (j=0; j<1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+          }
+          cell[0].innerHTML = "n = "+nobs[0];
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+          }
+          for (j=0; j<ncol; j++) {
+            cell[j].style.width ="80px";
+          }
+          cell[0].innerHTML = "x";
+          cell[1].innerHTML = "P(X = x)";
+          cell[2].innerHTML = "P(X <= x)";
+          cell[3].innerHTML = "P(X >= x)";
+          sum = 0;
+          for (i=0; i<nvalue; i++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            cell[0].innerHTML = dataValue[i];
+            cell[1].innerHTML = f4(dvalueP[i]);
+            sum += dvalueP[i];
+            cell[2].innerHTML = f4(sum);
+            cell[3].innerHTML = f4(1 - sum + dvalueP[i]);
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].style.textAlign = "center";
+            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
+          }
+}
+//*******************************************************************
+function swap(arr, i, j) {
+  var temp = arr[i];
+  arr[i] = arr[j];	
+  arr[j] = temp;
+}
+
+function permKruskal(arr, depth, n, k) { 
+  if (depth == k) { // 한번 depth 가 k로 도달하면 사이클이 돌았음. 출력함. 
+    var i,j,k, sum;
+    var bound = new Array(ngroup+1);
+    bound[0] = 0; 
+    for (j=1; j<=ngroup; j++) {
+      ranksum[j] = 0;
+      bound[j] = bound[j-1] + nobs[j-1];
+    }
+    
+    for (i=0; i<n; i++) { 
+      for (j=1; j<=ngroup; j++) {
+        if (i < bound[j]) {ranksum[j] += arr[i]; break;}
+      }
+    }
+    // Calculate Kruskal H statitic
+    sum = 0;
+    for (j=1; j<=ngroup; j++) sum += ranksum[j]*ranksum[j]/nobs[j-1]
+    sum = 12*sum/(dobs*(dobs+1)) - 3*(dobs+1);
+    var checkDuplicate = false;
+    for (j=0; j<tnvalue; j++) {
+        if (sum == dataValue[j]) {
+          dvalueP[j]++;
+          checkDuplicate = true;
+          break;
+        }
+    }
+    if (checkDuplicate == false) {
+        dataValue[tnvalue] = sum;
+        dvalueP[tnvalue]++;
+// console.log (sum+" "+tnvalue+" "+dataValue[tnvalue]+" "+dvalueP[tnvalue])
+        tnvalue++;
+    }
+    ttobs++; 
+  } 
+  for (i = depth; i < n; i++) {
+    swap(arr, i, depth); 
+    permKruskal(arr, depth + 1, n, k); 
+    swap(arr, i, depth); 
+  } 
+}
+// draw Kruskal Bar Graph
+function drawKruskalBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, checkData) {
+         var i, k, sum1, sum2, str, x1, y1, x2, y2;
+         var sum32, loc32, loc;
+         var xmin      = dataValue[0];
+         var xmax      = dataValue[nvalue-1];
+         var ymin      = d3.min(dvalueP);
+         var ymax      = d3.max(dvalueP);
+         var gymin     = ymin;
+         var gymax     = ymax + ymax/5;  
+         var yRatio    = graphHeight / gymax;          // 그래프 영역과 데이터 영역의 비율
+         var betweenbarWidth = graphWidth / nvalue;   // 막대와 막대 사이의 너비
+         var barWidth  = betweenbarWidth * 2 / 3;    // 막대의 너비
+         var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
+
+         // draw title
+         x1 = margin.left + graphWidth/2;
+         y1 = margin.top/2;
+         chart.append("text").attr("x",x1).attr("y",y1).text(title)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")         
+         chart.append("text").attr("x",x1).attr("y",y1+15).text(sub1)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","middle")
+         chart.append("text").attr("x",x1).attr("y",y1+30).text(sub2)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+
+         // draw Y and X axis
+         drawBinomialAxis(gymin, gymax);
+         drawBinomialLabel(nvalue, dataValue, betweenbarWidth);
+         // 분포함수 막대그래프
+         for (var k=0; k<nvalue; k++) {
+           chart.append("rect")
+            .style("fill",myColor[0])
+            .attr("height",0)
+            .attr("width",barWidth)
+            .attr("x", margin.left +barMargin + k*betweenbarWidth)
+            .attr("y",svgHeight - margin.bottom)
+            .transition()                           // 애니매이션 효과 지정
+            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+            .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
+            .attr("y", svgHeight - margin.bottom - dvalueP[k]*yRatio)
+            .attr("height", dvalueP[k]*yRatio)
+         }
+         if (checkData == false) return; 
+         // 표본통계량 위치 표시
+         sum1 = 0;
+         sum2 = 0;
+         for (i=0; i<nvalue; i++) {
+           if (dataValue[i] < ranksum) sum1 += dvalueP[i];
+           else if (Math.abs(dataValue[i] - ranksum) < 0.001 ) {
+             loc = i;
+             sum1 += dvalueP[i]; 
+             break;
+           }
+           else {
+             loc = i - 0.5;
+             break;
+           }
+         }
+         for (i=0; i<nvalue; i++) {
+           if (dataValue[i] == ranksum) {
+             sum2 += dvalueP[i];
+           }
+           else if (dataValue[i] > ranksum)  sum2 += dvalueP[i];
+         }
+         if (dataValue[nvalue-1] < ranksum) loc = nvalue-1;
+         statF[16] = sum1;
+         statF[17] = sum2;
+         x1 = margin.left +barMargin + loc*betweenbarWidth + barWidth/2;
+         x2 = x1;
+         y1 = margin.top + 20;
+         y2 = margin.top + graphHeight + 45;
+         chart.append("line").style("stroke","green").style("stroke-width","2px")
+            .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+         str = "H = "+f3(ranksum);
+         chart.append("text").attr("x", x2).attr("y", y2+15).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         str = "P(X <= H) = "+f4(sum1);
+         chart.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
+         str = "P(X >= H) = "+f4(sum2);
+         chart.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
+
+         // 기준선 표시            
+         sum32 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum32 += dvalueP[i];
+           if (sum32 > alpha) {loc32 = i; break;}
+         } 
+         y1 = margin.top + graphHeight/2 + 20;
+         y2 = margin.top + graphHeight + 30 ;
+         x1 = margin.left + barMargin + loc32*betweenbarWidth + barWidth/2;
+         x2 = x1;
+         chart.append("line").style("stroke","red").style("stroke-width","1px")
+            .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+         chart.append("text").attr("x", x2).attr("y", y2+15).text(f3(dataValue[loc32]))
+            .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         chart.append("text").attr("x", x2+5).attr("y", y1+25).text(f4(sum32))
+            .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+
+}

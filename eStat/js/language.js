@@ -301,7 +301,11 @@ $.message.ko = {
     "NonParametricMu12": "윌콕슨 순위합 가설검정 : 위치모수 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "Sample Range": "표본순위합",
     "DistributionTable": "분포표",
-    "SignedRankTest": "윌콕슨 부호순위검정",
+    "SignedRankTestDist": "윌콕슨 부호순위합 분포",
+    "WilcoxonTestDist": "윌콕슨 순위합 분포",
+    "KruskalTestDist": "크루스칼-월리스 H 분포",
+    "FriedmanTestDist": "프리드만 S 분포",
+    "SignedRankTest": "윌콕슨 부호순위합 검정",
     "SignTest": "부호검정",
     "SignCount": "부호 수",
     "WilcoxonTest": "윌콕슨 순위합 검정",
@@ -327,6 +331,7 @@ $.message.ko = {
     "MultiSelect": "",
     "DataType": "(시트의 변량명 클릭으로 선택 가능)",
     "by": "by",
+    "NameVar": "이름변량",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -485,11 +490,12 @@ svgStr[107][0]= "상관계수";
 svgStr[108][0]= "상관계수행렬";
 svgStr[109][0]= "인자1 - 인자2 평균 그래프";
 svgStr[110][0]= "지렛값(Leverage)";
-svgStr[111][0]= "기초통계량";
+svgStr[111][0]= "지리정보그래프";
 svgStr[112][0]= "범위";
 svgStr[113][0]= "평균-표준편차 그래프";
 svgStr[114][0]= "모분산";
 svgStr[115][0]= "가설";
+svgStr[116][0]= "검정";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -554,15 +560,15 @@ svgStrU[60][0] = "관찰분포";
 svgStrU[61][0] = "이론분포";
 svgStrU[62][0] = "관찰분포 적합성검정";
 svgStrU[63][0] = "윌콕슨 순위합 검정";
-svgStrU[64][0] = "윌콕슨 순위합 분포표";
+svgStrU[64][0] = "윌콕슨 순위합 분포";
 svgStrU[65][0] = "크루스칼-왈리스 검정";
-svgStrU[66][0] = "크루스칼-왈리스 분포표";
+svgStrU[66][0] = "크루스칼-왈리스 H 분포";
 svgStrU[67][0] = "크루스칼-왈리스 H 통계량";
-svgStrU[68][0] = "윌콕슨 부호순위 검정";
+svgStrU[68][0] = "윌콕슨 부호순위합 검정";
 svgStrU[69][0] = "부호검정";
 svgStrU[70][0] = "프리드만 검정";
 svgStrU[71][0] = "프리드만 S 통계량";
-svgStrU[72][0] = "프리드만 분포표";
+svgStrU[72][0] = "프리드만 S 분포";
 svgStrU[73][0] = "t-값(or Z)";
 svgStrU[74][0] = "ChiSq-값";
 svgStrU[75][0] = "표본분산";
@@ -580,6 +586,13 @@ svgStrU[86][0] = "선택된 자료는 ";
 svgStrU[87][0] = "원시자료 ";
 svgStrU[88][0] = "시트의 변량명 클릭으로 선택 가능";
 svgStrU[89][0] = "결측수";
+svgStrU[90][0] = "순위합";
+svgStrU[91][0] = "경도";
+svgStrU[92][0] = "위도";
+svgStrU[93][0] = "적어도 한쌍 이상의 위치모수가 다름";
+svgStrU[94][0] = "윌콕슨 부호순위합 분포";
+svgStrU[95][0] = "";
+
 
 // English
 $.message.en = {
@@ -820,6 +833,10 @@ $.message.en = {
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
     "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
+    "SignedRankTestDist": "Wilcoxon Signed Rank Sum Distribution",
+    "WilcoxonTestDist": "Wilcoxon Rank Sum Distribution",
+    "KruskalTestDist": "Kruskal-Wallis H Distribution",
+    "FriedmanTestDist": "Friedman S Distribution",
     "SignedRankTest": "Wilcoxon Signed Rank Sum Test",
     "SignTest": "Sign Test",
     "SignCount": "Sign Count",
@@ -845,6 +862,7 @@ $.message.en = {
     "MultiSelect": "",
     "DataType": "(Select variables by click var name)",
     "by": "by",
+    "NameVar": "Name Var",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -860,33 +878,33 @@ alertMsg[4][1] = "If the number of observations in each column are different, an
 alertMsg[5][1] = "Too many groups! Graphs may be overlapped due to size of the screen.";
 alertMsg[6][1] = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
 alertMsg[7][1] = "If more than three variables are selected for raw data, analysis or creating table is not allowed.";
-alertMsg[8][1] = "Dot Graph is allowd if the number of observation is less than 200.";
-alertMsg[9][1] = "Stem & Leaf Plot is allowd if the number of observation is less than 100.";
+alertMsg[8][1] = "Dot Graph is allowed if the number of observation is less than 200.";
+alertMsg[9][1] = "Stem & Leaf Plot is allowed if the number of observation is less than 100.";
 alertMsg[10][1] = "Analysis variable is not selected.";
 alertMsg[11][1] = "Analysis/Group variables are not selected.";
 alertMsg[12][1] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
 alertMsg[13][1] = "";
 alertMsg[14][1] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
-alertMsg[16][1] = "Only two groups are allowed for this tesitng hypothesis.";
+alertMsg[16][1] = "Only two groups are allowed for this testing hypothesis.";
 alertMsg[17][1] = "Scatter plot requires Y variable and X variable.";
 alertMsg[18][1] = "More than three variables are not allowed.";
-alertMsg[19][1] = "If there is a character on data, analyis cannot be done.";
+alertMsg[19][1] = "If there is a character on data, analysis cannot be done.";
 alertMsg[20][1] = "If there is a character on data, regression analysis cannot be done.";
 alertMsg[21][1] = "If there is a missing data, save is not allowed.";
-alertMsg[22][1] = "If there is a negative number, bargraph cannot be drawn.";
+alertMsg[22][1] = "If there is a negative number, bar graph cannot be drawn.";
 alertMsg[25][1] = "If there is only one group, stacked bar graph is not allowed.";
 alertMsg[27][1] = "If there is only one group, ratio bar graph is not allowed.";
 alertMsg[29][1] = "If there is only one group, side-by-side bar graph is not allowed.";
 alertMsg[31][1] = "If there is only one group, both-side bar graph is not allowed.";
-alertMsg[32][1] = "If there is a negative number, piechart cannot be drawn.";
+alertMsg[32][1] = "If there is a negative number, pie chart cannot be drawn.";
 alertMsg[33][1] = "If there is a negative number, donut graph cannot be drawn.";
 alertMsg[34][1] = "If there is a negative number, band graph cannot be drawn.";
 alertMsg[35][1] = "If there is a negative number, frequency table cannot be drawn.";
 alertMsg[36][1] = "This bar graph is allowed only for two groups.";
 alertMsg[37][1] = "This testing hypothesis is allowed only for one variable.";
-alertMsg[38][1] = "mu is NaN . Ener value and then retry!";
+alertMsg[38][1] = "mu is NaN . Enter value and then retry!";
 alertMsg[39][1] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][1] = "input variance is NaN . Ener value and then retry!";
+alertMsg[40][1] = "input variance is NaN . Enter value and then retry!";
 alertMsg[41][1] = "This testing hypothesis is allowed only for two variables. 1st one is an Analysis Variable and 2nd one is a Group Variable. Group variable should have only two groups";
 alertMsg[42][1] = "Title editing of testing hypothesis is not allowed! ";
 alertMsg[43][1] = "Simple Linear Regression is only for one group";
@@ -1003,11 +1021,12 @@ svgStr[107][1]= "<h3>Correlation Analysis</h3>";
 svgStr[108][1]= "Correlation Matrix";
 svgStr[109][1]= "Factor1 - Factor2 Mean Graph";
 svgStr[110][1]= "Leverage";
-svgStr[111][1]= "GIS Graph";
+svgStr[111][1]= "Geographic Information Graph";
 svgStr[112][1]= "Range";
-svgStr[113][1]= "Mean - Standard Devivation Graph";
+svgStr[113][1]= "Mean - Standard Deviation Graph";
 svgStr[114][1]= "Population Variance";
 svgStr[115][1]= "Hypothesis";
+svgStr[116][1]= "Test";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1074,13 +1093,13 @@ svgStrU[62][1] = "Goodness of Fit Test for Observed Frequency";
 svgStrU[63][1] = "Wilcoxon Rank Sum Test";
 svgStrU[64][1] = "Wilcoxon Rank Sum Test Table";
 svgStrU[65][1] = "Kruskal-Wallis Test";
-svgStrU[66][1] = "Kruskal-Wallis Test Table";
-svgStrU[67][1] = "Kruskal-Wallis H Statistics";
-svgStrU[68][1] = "Wilcoxon Signed Rank Test";
+svgStrU[66][1] = "Kruskal-Wallis H Distribution";
+svgStrU[67][1] = "Kruskal-Wallis H Statistic";
+svgStrU[68][1] = "Wilcoxon Signed Rank Sum Test";
 svgStrU[69][1] = "Sign Test";
 svgStrU[70][1] = "Friedman Test";
 svgStrU[71][1] = "Friedman S Statistic";
-svgStrU[72][1] = "Friedman Distribution Table";
+svgStrU[72][1] = "Friedman S Distribution";
 svgStrU[73][1] = "t-value (or Z)";
 svgStrU[74][1] = "ChiSq-value";
 svgStrU[75][1] = "Sample Variance";
@@ -1098,6 +1117,12 @@ svgStrU[86][1] = "Selected data: ";
 svgStrU[87][1] = "Raw Data";
 svgStrU[88][1] = "Select variables by click var name";
 svgStrU[89][1] = "Missing Observations";
+svgStrU[90][1] = "Rank Sum";
+svgStrU[91][1] = "Longitude";
+svgStrU[92][1] = "Latitude";
+svgStrU[93][1] = "At least one pair of locations is different";
+svgStrU[94][1] = "Wilcoxon Signed Rank Sum Distribution";
+svgStrU[95][1] = "";
 
 // Japanese
 $.message.ja = {
@@ -1338,7 +1363,11 @@ $.message.ja = {
     "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
-    "SignedRankTest": "ウィルコクソン符號順位檢定",
+    "SignedRankTestDist": "ウィルコクソン符號順位合分布",
+    "WilcoxonTestDist": "ウィルコクソン順位合分布",
+    "KruskalTestDist": "クルスカル-ウォリス H分布",
+    "FriedmanTestDist": "フリードマン S分布",
+    "SignedRankTest": "ウィルコクソン符號順位合檢定",
     "SignTest": "符號檢定",
     "SignCount": "符號數",
     "WilcoxonTest": "ウィルコクソン順位合檢定",
@@ -1364,6 +1393,7 @@ $.message.ja = {
     "MultiSelect": "",
     "DataType": "(変数名をクリックして変数を選択)",
     "by": "by",
+    "NameVar": "名前変数",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1523,11 +1553,12 @@ svgStr[107][2]= "<h3>相關分析</h3>";
 svgStr[108][2]= "相關係數行列";
 svgStr[109][2]= "因子1-因子2 平均図";
 svgStr[110][2]= "レバレッジ";
-svgStr[111][2]= "GIS Graph";
+svgStr[111][2]= "地理情報グラフ";
 svgStr[112][2]= "範囲";
 svgStr[113][2]= "平均 - 標準偏差図";
 svgStr[114][2]= "母分散";
 svgStr[115][2]= "仮説";
+svgStr[116][2]= "檢定";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1592,15 +1623,15 @@ svgStrU[60][2] = "観測分布";
 svgStrU[61][2] = "理論分布";
 svgStrU[62][2] = "観測分布適合性檢定";
 svgStrU[63][2] = "ウィルコクソン順位合檢定";
-svgStrU[64][2] = "ウィルコクソン順位合檢定分布表";
+svgStrU[64][2] = "ウィルコクソン順位合檢定分布";
 svgStrU[65][2] = "クルスカル-ウォリス檢定";
-svgStrU[66][2] = "クルスカル-ウォリス檢定 分布表";
+svgStrU[66][2] = "クルスカル-ウォリス H分布";
 svgStrU[67][2] = "クルスカルl-ウォリス H統計量";
-svgStrU[68][2] = "ウィルコクソン符號順位檢定";
+svgStrU[68][2] = "ウィルコクソン符號順位合檢定";
 svgStrU[69][2] = "符號檢定";
 svgStrU[70][2] = "フリードマン檢定";
-svgStrU[71][2] = "フリードマン S 統計量";
-svgStrU[72][2] = "フリードマン檢定分布表";
+svgStrU[71][2] = "フリードマン S統計量";
+svgStrU[72][2] = "フリードマン S分布";
 svgStrU[73][2] = "t-値 (Z)";
 svgStrU[74][2] = "ChiSq-値";
 svgStrU[75][2] = "標本分散";
@@ -1618,6 +1649,12 @@ svgStrU[86][2] = "選択したデータ: ";
 svgStrU[87][2] = "生データ";
 svgStrU[88][2] = "変数名をクリックして変数を選択";
 svgStrU[89][2] = "缺測數";
+svgStrU[90][2] = "順位合";
+svgStrU[91][2] = "経度";
+svgStrU[92][2] = "緯度";
+svgStrU[93][2] = "位置母数 !=";
+svgStrU[94][2] = "ウィルコクソン符號順位合分布";
+svgStrU[95][2] = "";
 
 // Chinese
 $.message.zhTW = {
@@ -1629,7 +1666,7 @@ $.message.zhTW = {
     "Level": "級別",
     "ElementaryLevel": "小學",
     "MiddleLevel": "中學",
-    "HighLevel": "高學",
+    "HighLevel": "高中",
     "UniversityLevel": "大學",
     "Example": "例題",
     "New Sheets": "新工作表",
@@ -1657,7 +1694,7 @@ $.message.zhTW = {
     "Analysis of Variance": "變異數分析",
     "High School Stat Education": "高級中學統計教育",
     "University Stat Education": "大學統計教育",
-    "Elem Stat Graph Example": "小中學圖表例題",
+    "Elem Stat Graph Example": "中小學圖表例題",
     "Learning eStat w Example": "eStat例題學習",
     "Vertical": "縦向",
     "Horizontal": "横向",
@@ -1689,7 +1726,7 @@ $.message.zhTW = {
     "MeanStd": "平均/標準差",
     "95CI": "95%信頼区間",
     "RegressionAnalysis": "回歸分析",
-    "ANOVA2": "2元分散分析",
+    "ANOVA2": "二因子變異數分析",
     "Regression": "回歸",
     "Frequency Polygon": "次數分佈多邊形",
     "Execute New Interval": "執行新區間",
@@ -1770,16 +1807,16 @@ $.message.zhTW = {
     "Testing Hypothesis ANOVA": "變異數分析",
     "Testing Independence": "獨立性檢定",
     "Correlation Coefficient": "相關係數",
-    "Regression Experiment": "迴歸實驗",
+    "Regression Experiment": "回歸實驗",
     "Hypothesis": "假設",
     "Test Type": "檢定型式",
     "Z-test": "Z-檢定",
     "t-test": "t-檢定",
     "Chi-test": "卡方檢定",
     "F-test": "F-檢定",
-    "Sampling Type": "標本",
-    "Independent Sample": "独立２標本",
-    "Paired Sample": "対応のある２標本",
+    "Sampling Type": "樣本型式",
+    "Independent Sample": "獨立雙樣本",
+    "Paired Sample": "配對樣本",
     "Sample Data": "樣本資料",
     "input either sample data": "於接下來的對話視窗，使用csv/bsv格式輸入樣本資料或樣本統計量",
     "Sample Statistics": "樣本統計量",
@@ -1795,91 +1832,96 @@ $.message.zhTW = {
     "Row": "列",
     "Column": "行",
     "Show Probability": "顯示機率",
-    "Regression Line": "迴歸線",
+    "Regression Line": "回歸線",
     "Erase All": "清除營幕",
     "Add Point": "增加點",
     "Erase Point": "刪除點",
     "Reference Site": "参考站",
-    "Lot Size": "Lot數",
+    "Lot Size": "批量數",
     "Defect Size": "不良品數",
     "If typed": "(若數字已輸入)",
     "Stat/BoxPlot": "統計量/盒形圖",
     "Mean": "平均",
     "Std Dev": "標準差",
-    "SimulationWarning": "(Current simulation should be finished before you start the next simulation.)",
+    "SimulationWarning": "(在開始下一次模擬之前，應完成當前模擬)",
     "OneGroup": "(1群)",
-    "AnalysisVar": "分析変数",
-    "AnalysisVar2": "Y変数",
+    "AnalysisVar": "分析變數",
+    "AnalysisVar2": "Y變數",
     "GroupVar": "群",
-    "GroupVar2": "X変数",
+    "GroupVar2": "X變數",
     "GroupVar3": "因子1",
     "GroupVar4": "因子2",
-    "AnalysisVarMu12": "分析(or X1)変数",
-    "GroupVarMu12": "群(or X2)変数",
-    "PairedMu12": " X1, X2 : 対応変数",
-    "SizeVar": "大小変数",
+    "AnalysisVarMu12": "分析(or X1)變數",
+    "GroupVarMu12": "群(or X2)變數",
+    "PairedMu12": " X1, X2 : 對應變數",
+    "SizeVar": "變數大小",
     "RegressionBand": "信頼帯",
-    "RegressionTable": "回帰分析",
+    "RegressionTable": "回歸分析",
     "RegressionResidual": "殘差図",
-    "RegressionResidualLeverage": "殘差 - Leverage",
+    "RegressionResidualLeverage": "殘差 - 槓桿量",
     "RegressionCook": "Cook距離図",
     "RegressionQQ": "殘差Q-Q図",
     "HistogramNormal": "直方圖",
-    "HistogramChisq": "正規性検定",
-    "HistogramNormalQQ": "正規Q-Q図",
-    "PopulationStd": "母標準差",
-    "Type1Error": "1種誤謬",
-    "Type2Error": "2種誤謬",
-    "AnovaTable": "分散分析表",
+    "HistogramChisq": "常態分佈檢定",
+    "HistogramNormalQQ": "常態Q-Q図",
+    "PopulationStd": "母體標準差",
+    "Type1Error": "型一誤差",
+    "Type2Error": "型二誤差",
+    "AnovaTable": "變異數分析表",
     "AnovaMeanGraph": "信賴區間圖",
     "MultipleComparison": "多重比較",
     "AnovaResidual": "殘差図",
     "AnovaQQ": "殘差Q-Q図",
     "TestingFit": "適合性檢定",
-    "FitTest0": "觀察分布 = 理論分布",
-    "FitTest1": "觀察分布 = 理論分布",
-    "ObservedFreq": "觀察度數 O",
-    "ExpectedProb": "期待確率 p",
-    "ExpectedFreq": "期待度數 E(>5)",
-    "InputFitData": "左上入力始作",
+    "FitTest0": "觀察分布與理論分布相同",
+    "FitTest1": "觀察分布與理論分布不同",
+    "ObservedFreq": "觀察次數 O",
+    "ExpectedProb": "期望機率 p",
+    "ExpectedFreq": "期望次數 E(>5)",
+    "InputFitData": "從左上角儲存格輸",
     "ExecuteTable": "統計量",
     "MeanDotGraph": "信賴區間圖",
     "ScatterRegression": "散布図",
     "Factor": "因子",
     "Interaction": "交互作用",
-    "NoInteraction": "交互作用無",
-    "ExistInteraction": "交互作用有",
+    "NoInteraction": "無交互作用",
+    "ExistInteraction": "有交互作用",
     "eStatLecture": "eStat 入門講義",
-    "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
-    "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "Sample Range": "標本順位合",
+    "NonParametricMu12_title": "Wilcoxon 等級和檢定", 
+    "NonParametricMu12": "Wilcoxon 等級和檢定 : 位置參數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "Sample Range": "秩和",
     "DistributionTable": "分布表",
-    "SignedRankTest": "Wilcoxon 符號順位檢定",
+    "SignedRankTestDist": "Wilcoxon 符號等級和分布",
+    "WilcoxonTestDist": "Wilcoxon 等級和分布",
+    "KruskalTestDist": "Kruskal-Wallis H分布",
+    "FriedmanTestDist": "Friedman S分布",
+    "SignedRankTest": "Wilcoxon 符號等級和檢定",
     "SignTest": "符號檢定",
     "SignCount": "符號數",
-    "WilcoxonTest": "Wilcoxon 順位合檢定",
+    "WilcoxonTest": "Wilcoxon 等級和檢定",
     "KruskalTest": "Kruskal-Wallis 檢定",
-    "KruskalTestANOVA": "Kruskal-Wallis 檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
-    "Total": "全体",
+    "KruskalTestANOVA": "Kruskal-Wallis 檢定 : 位置參數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "Total": "全體",
     "FriedmanTest": "Friedman檢定",
-    "FriedmanTestANOVA": "Friedman檢定 : 位置母数 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
-    "Block": "Block",
+    "FriedmanTestANOVA": "Friedman檢定 : 位置參數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "Block": "塊",
     "Treatment": "處理",
-    "At least one locations is different": "位置母数 !=",
-    "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
-    "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 順位合檢定t,  n > 20 正規近似檢定",
-    "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
+    "At least one locations is different": "至少一個位置參數不相同",
+    "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 常態近似檢定",
+    "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 等級和檢定,  n > 20 常態近似檢定",
+    "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  等級和檢定,  n>25 常態近似檢定",
     "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
-    "VariableSelect":  "* 資料分析 : 変数選択 >>  Click Icon",
-    "VariableSelect2": "* 変数選択 : Click 変数名 / 右側選択箱利用 ",
+    "VariableSelect":  "* 資料分析 : 変数選択 >>  點擊圖示",
+    "VariableSelect2": "* 変数選択 : 點擊變數名或利用右側選択箱",
     "VariableSelect3": "変数選択",
     "VariableSelect4": "可以選擇更多分析變量",
     "VariableSelect5": "可以選擇更多X變量",
-    "SummaryData": "要約資料",
-    "RawData": "原資料",
+    "SummaryData": "摘要資料",
+    "RawData": "原始資料",
     "MultiSelect": "",
-    "DataType": "(通過單擊變量名稱選擇變量)",
+    "DataType": "(通過單擊變數名稱選擇變數)",
     "by": "by",
+    "NameVar": "名稱變數",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -1924,8 +1966,8 @@ alertMsg[40][3] = "輸入的變異數不是一個數字，請輸入一數值並�
 alertMsg[41][3] = "此假設檢定僅限於兩變數。群組變數則需包含兩群。";
 alertMsg[42][3] = "假設檢定的標題不可編輯! ";
 alertMsg[43][3] = "簡單線性回歸僅適用於一組";
-alertMsg[44][3] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][3] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[44][3] = "輸入1st:名稱, 2nd:緯度, 3rd:經度, 4th:分析變數(選項)";
+alertMsg[45][3] = "超過5個變數，不能繪製GIS圖。";
 alertMsg[46][3] = "同一変数名選擇";
 
 svgStr[1][3] = " 長條圖";
@@ -1984,46 +2026,46 @@ svgStr[53][3] = "正規分布<br>期待確率<br>P([a<sub>i</sub> , b<sub>i</sub
 svgStr[54][3] = "正規分布<br>期待度數<br>(E<sub>i</sub>)";
 svgStr[55][3] = "各區間l<br>&chi;<sup>2</sup> 値<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
 svgStr[56][3] = "合&chi;<sup>2</sup>値";
-svgStr[57][3] = "確率直方圖,正規分布";
-svgStr[58][3] = "正規 Q-Q圖";
-svgStr[59][3] = "正規 分位數";
+svgStr[57][3] = "確率直方圖,常態分布";
+svgStr[58][3] = "常態Q-Q圖";
+svgStr[59][3] = "常態分位數";
 svgStr[60][3] = "相関係数";
 svgStr[61][3] = "決定係數";
 svgStr[62][3] = "標準誤差";
-svgStr[63][3] = "変数";
-svgStr[64][3] = "変数名";
-svgStr[65][3] = "独立変数";
-svgStr[66][3] = "従属変数";
-svgStr[67][3] = "母數";
-svgStr[68][3] = "推定値";
+svgStr[63][3] = "變數";
+svgStr[64][3] = "變數名";
+svgStr[65][3] = "独立變數";
+svgStr[66][3] = "従属變數";
+svgStr[67][3] = "參數";
+svgStr[68][3] = "推計値";
 svgStr[69][3] = "値";
-svgStr[70][3] = "切片";
+svgStr[70][3] = "截距";
 svgStr[71][3] = "斜率";
-svgStr[72][3] = "要因";
+svgStr[72][3] = "因子";
 svgStr[73][3] = "平方和";
 svgStr[74][3] = "自由度";
-svgStr[75][3] = "平均和";
-svgStr[76][3] = "回帰";
+svgStr[75][3] = "均方";
+svgStr[76][3] = "回歸";
 svgStr[77][3] = "誤差";
 svgStr[78][3] = "全體";
-svgStr[79][3] = "<h3>回帰分析</h3>";
+svgStr[79][3] = "<h3>回歸分析</h3>";
 svgStr[80][3] = "標準化残差 Q-Q圖";
 svgStr[81][3] = "標準化残差";
-svgStr[82][3] = "正規分位數";
+svgStr[82][3] = "常態分位數";
 svgStr[83][3] = "残差圖";
-svgStr[84][3] = "豫測値";
-svgStr[85][3] = "二元分散分析";
-svgStr[86][3] = "信頼区間圖";
+svgStr[84][3] = "預測値";
+svgStr[85][3] = "二因子變異數分析";
+svgStr[86][3] = "信頼區間圖";
 svgStr[87][3] = "残差";
 svgStr[88][3] = "二元統計量";
-svgStr[89][3] = "散佈圖行列";
+svgStr[89][3] = "散佈圖矩陣";
 svgStr[90][3] = "多重比較";
 svgStr[91][3] = "統計量";
 svgStr[92][3] = "因子";
 svgStr[93][3] = "水準";
-svgStr[94][3] = "対応標本差圖";
-svgStr[95][3] = "残差-豫測";
-svgStr[96][3] = "残差-槓桿作用";
+svgStr[94][3] = "配對樣本資料圖";
+svgStr[95][3] = "残差-預測圖";
+svgStr[96][3] = "残差-槓桿圖";
 svgStr[97][3] = "Cook距離圖";
 svgStr[98][3] = "Cook距離";
 svgStr[99][3] = "資料順序";
@@ -2031,18 +2073,19 @@ svgStr[100][3]= "平均差";
 svgStr[101][3]= "平均差檢定";
 svgStr[102][3]= "處理";
 svgStr[103][3]= "交互作用";
-svgStr[104][3]= "行合";
-svgStr[105][3]= "列合";
-svgStr[106][3]= "重相關係數";
+svgStr[104][3]= "行和";
+svgStr[105][3]= "列和";
+svgStr[106][3]= "多重相關係數";
 svgStr[107][3]= "<h3>相關分析</h3>";
-svgStr[108][3]= "相關係數行列";
+svgStr[108][3]= "相關係數矩陣";
 svgStr[109][3]= "因子1-因子2 平均圖";
-svgStr[110][3]= "槓桿作用";
-svgStr[111][3]= "GIS Graph";
+svgStr[110][3]= "槓桿量";
+svgStr[111][3]= "地理訊息圖";
 svgStr[112][3]= "範圍";
-svgStr[113][3]= "平均 - 標準偏差圖";
+svgStr[113][3]= "平均 - 標準誤差圖";
 svgStr[114][3]= "母體變異數";
 svgStr[115][3]= "假設";
+svgStr[116][3]= "檢定";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2074,9 +2117,9 @@ svgStrU[27][3] = "p-値";
 svgStrU[28][3] = "[決策] ";
 svgStrU[29][3] = "[變異數分析]";
 svgStrU[30][3] = "輸入相關係數後按執行";
-svgStrU[31][3] = "迴歸分析";
-svgStrU[32][3] = "列變量";
-svgStrU[33][3] = "行變量";
+svgStrU[31][3] = "回歸分析";
+svgStrU[32][3] = "列變數";
+svgStrU[33][3] = "行變數";
 svgStrU[34][3] = "平均"
 svgStrU[35][3] = "標準差"
 svgStrU[36][3] = "<h3> 直方圖<br>次數分佈表</h3>";
@@ -2096,7 +2139,7 @@ svgStrU[49][3] = "指數分佈";
 svgStrU[50][3] = "均勻分佈";
 svgStrU[51][3] = "估計準確率";
 svgStrU[52][3] = "- 按一下滑鼠來制造觀察點，eStat會計算出回歸線。";
-svgStrU[53][3] = "- 移動或刪除一個觀察點，觀看迴歸線的變化。";
+svgStrU[53][3] = "- 移動或刪除一個觀察點，觀看回歸線的變化。";
 svgStrU[54][3] = "[樣本統計量] ";
 svgStrU[55][3] = "[樣本 1 統計量] ";
 svgStrU[56][3] = "[樣本 2 統計量] ";
@@ -2106,16 +2149,16 @@ svgStrU[59][3] = "列行不獨立";
 svgStrU[60][3] = "觀察分布";
 svgStrU[61][3] = "理論分布";
 svgStrU[62][3] = "觀察分布 適合性檢定";
-svgStrU[63][3] = "Wilcoxon 順位合檢定";
-svgStrU[64][3] = "Wilcoxon 順位合檢定 分布表";
+svgStrU[63][3] = "Wilcoxon 等級和檢定";
+svgStrU[64][3] = "Wilcoxon 等級和檢定 分布";
 svgStrU[65][3] = "Kruskal-Wallis 檢定";
-svgStrU[66][3] = "Kruskal-Wallis 檢定 分布表";
+svgStrU[66][3] = "Kruskal-Wallis H 分布";
 svgStrU[67][3] = "Kruskal-Wallis H 統計量";
-svgStrU[68][3] = "Wilcoxon 符號順位檢定";
+svgStrU[68][3] = "Wilcoxon 符號等級檢定";
 svgStrU[69][3] = "符號檢定";
 svgStrU[70][3] = "Friedman檢定";
 svgStrU[71][3] = "Friedman S 統計量";
-svgStrU[72][3] = "Friedman檢定分布表";
+svgStrU[72][3] = "Friedman S 分布";
 svgStrU[73][3] = "t-値 (Z)";
 svgStrU[74][3] = "ChiSq-値";
 svgStrU[75][3] = "樣本變異數";
@@ -2125,14 +2168,20 @@ svgStrU[78][3] = "變異數假設";
 svgStrU[79][3] = "摘要數據";
 svgStrU[80][3] = "多項選擇";
 svgStrU[81][3] = "最多選擇兩個組";
-svgStrU[82][3] = "X變量";
-svgStrU[83][3] = "Y變量";
+svgStrU[82][3] = "X變數";
+svgStrU[83][3] = "Y變數";
 svgStrU[84][3] = "by";
-svgStrU[85][3] = "沒有組變量";
-svgStrU[86][3] = "選定的數據: ";
-svgStrU[87][3] = "原始數據";
-svgStrU[88][3] = "通過單擊變量名稱選擇變量";
-svgStrU[89][3] = "缺測數";
+svgStrU[85][3] = "沒有組變數";
+svgStrU[86][3] = "選定的資料: ";
+svgStrU[87][3] = "原始資料";
+svgStrU[88][3] = "通過單擊變數名稱選擇變數";
+svgStrU[89][3] = "缺失觀察數";
+svgStrU[90][3] = "順位合";
+svgStrU[91][3] = "經度";
+svgStrU[92][3] = "緯度";
+svgStrU[93][3] = "至少一個位置參數不相同";
+svgStrU[94][3] = "Wilcoxon 符號等級分布";
+svgStrU[95][3] = "";
 
 // French
 $.message.fr = {
@@ -2370,6 +2419,10 @@ $.message.fr = {
     "WilcoxonTest": "Wilcoxon Rang Sum Tester",
     "Sample Range": "Rang Sum",
     "DistributionTable": "Distribution Table",
+    "SignedRankTestDist": "Wilcoxon Signed Rang Sum Distribution",
+    "WilcoxonTestDist": "Wilcoxon Rang Sum Distribution",
+    "KruskalTestDist": "Kruskal-Wallis H Distribution",
+    "FriedmanTestDist": "Friedman S Distribution",
     "SignedRankTest": "Wilcoxon Signed Rang Sum Tester",
     "SignTest": "Test Signé",
     "SignCount": "Signe Compter",
@@ -2395,6 +2448,7 @@ $.message.fr = {
     "MultiSelect": "",
     "DataType": "(Sélectionnez variable par clic nom de variable)",
     "by": "par",
+    "NameVar": "Nom Var",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2554,11 +2608,12 @@ svgStr[107][4]= "<h3>Analyse de corrélation</h3>";
 svgStr[108][4]= "Matrice de corrélation";
 svgStr[109][4]= "Facteur1 - Facteur2 Graphique moyen";
 svgStr[110][4]= "Influence";
-svgStr[111][4]= "GIS Graph";
+svgStr[111][4]= "Graphique d'information géographique";
 svgStr[112][4]= "Gamme";
 svgStr[113][4]= "Moyenne - Ecart-type Diagramme";
 svgStr[114][4]= "Population variance";
 svgStr[115][4]= "d'hypothèse";
+svgStr[116][4]= "test";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -2625,13 +2680,13 @@ svgStrU[62][4] = "Test de validité de l'ajustement pour la fréquence observée
 svgStrU[63][4] = "Wilcoxon Test de somme de classement";
 svgStrU[64][4] = "Wilcoxon Test de somme de classementTable";
 svgStrU[65][4] = "Kruskal-Wallis Test";
-svgStrU[66][4] = "Kruskal-Wallis Test Table";
-svgStrU[67][4] = "Kruskal-Wallis H Statistics";
+svgStrU[66][4] = "Kruskal-Wallis H Distribution";
+svgStrU[67][4] = "Kruskal-Wallis H Statistic";
 svgStrU[68][4] = "Wilcoxon Test de rang signé";
 svgStrU[69][4] = "Test signé";
 svgStrU[70][4] = "Friedman Test";
 svgStrU[71][4] = "Friedman S Statistic";
-svgStrU[72][4] = "Friedman Distribution Table";
+svgStrU[72][4] = "Friedman S Distribution";
 svgStrU[73][4] = "t-valeur (Z)";
 svgStrU[74][4] = "ChiSq-valeur";
 svgStrU[75][4] = "Variance de l'échantillon";
@@ -2649,6 +2704,12 @@ svgStrU[86][4] = "Données sélectionnées: ";
 svgStrU[87][4] = "Données brutes";
 svgStrU[88][4] = "Sélectionnez variable par clic nom de variable";
 svgStrU[89][4] = "Valeurs manquantes";
+svgStrU[90][4] = "somme de classement";
+svgStrU[91][4] = "Longitude";
+svgStrU[92][4] = "Latitude";
+svgStrU[93][4] = "Au moins une paire d'emplacements est différente";
+svgStrU[94][4] = "Wilcoxon Test de rang signé";
+svgStrU[95][4] = "";
 
 // German
 $.message.de = {
@@ -2883,6 +2944,10 @@ $.message.de = {
     "WilcoxonTest": "Wilcoxon Rangsum Test",
     "Sample Range": "Rangsum",
     "DistributionTable": "Verteilungstabelle",
+    "SignedRankTestDist": "Wilcoxon Signed Rangsumme Verteilung",
+    "WilcoxonTestDist": "Wilcoxon Rangsumme Verteilung",
+    "KruskalTestDist": "Kruskal-Wallis H Verteilung",
+    "FriedmanTestDist": "Friedman S Verteilung",
     "SignedRankTest": "Wilcoxon Signed Rangsummetest",
     "SignTest": "Zeichentest",
     "SignCount": "Anzahl der Zeichen",
@@ -2908,6 +2973,7 @@ $.message.de = {
     "MultiSelect": "",
     "DataType": "(Wählen Sie die Variable anhand des Variablennamens aus)",
     "by": "durch",
+    "NameVar": "Name Var",
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -3067,11 +3133,12 @@ svgStr[107][5]= "<h3>Korrelationsanalyse</h3>";
 svgStr[108][5]= "Korrelationsmatrix";
 svgStr[109][5]= "Faktor1 - Faktor2 Mittlerer Graph";
 svgStr[110][5]= "Hebelwirkung";
-svgStr[111][5]= "GIS Graph";
+svgStr[111][5]= "Geografisches Informationsdiagramm";
 svgStr[112][5]= "Angebot";
 svgStr[113][5]= "Mittelwert - Standardabweichung Diagramm";
 svgStr[114][5]= "Grundgesamtheit Varianz";
 svgStr[115][5]= "Hypothesen";
+svgStr[116][5]= "test";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3138,13 +3205,13 @@ svgStrU[62][5] = "Anpassungsgüte-Test für beobachtete Häufigkeit";
 svgStrU[63][5] = "Wilcoxon Rangsummetest";
 svgStrU[64][5] = "Wilcoxon Rangsummetesttabelle";
 svgStrU[65][5] = "Kruskal-Wallis Test";
-svgStrU[66][5] = "Kruskal-Wallis Test Tabelle";
+svgStrU[66][5] = "Kruskal-Wallis H Distribution";
 svgStrU[67][5] = "Kruskal-Wallis H Statistik";
 svgStrU[68][5] = "Wilcoxon Vorzeichenhafter Rang-Test";
 svgStrU[69][5] = "Sign Test";
 svgStrU[70][5] = "Friedman Test";
 svgStrU[71][5] = "Friedman S Statistik";
-svgStrU[72][5] = "Friedman Distributiontabelle";
+svgStrU[72][5] = "Friedman S Distribution";
 svgStrU[73][5] = "t-Wert (Z)";
 svgStrU[74][5] = "ChiSq-Wert";
 svgStrU[75][5] = "Stichprobenvarianz";
@@ -3162,6 +3229,12 @@ svgStrU[86][5] = "Ausgewählte Daten: ";
 svgStrU[87][5] = "Rohdaten";
 svgStrU[88][5] = "Wählen Sie die Variable anhand des Variablennamens aus";
 svgStrU[89][5] = "Fehlende Werte";
+svgStrU[90][5] = "Rangesomme";
+svgStrU[91][5] = "Längengrad";
+svgStrU[92][5] = "Breite";
+svgStrU[93][5] = "Mindestens ein Standortpaar ist unterschiedlich";
+svgStrU[94][5] = "Wilcoxon Vorzeichenhafter Rang Distribution";
+svgStrU[95][5] = "";
 
 // Spanish
 $.message.es = {
@@ -3399,6 +3472,10 @@ $.message.es = {
     "WilcoxonTest": "Wilcoxon prueba de suma de rango",
     "Sample Range": "suma de rango",
     "DistributionTable": "Mesa de Distribución",
+    "SignedRankTestDist": "Wilcoxon de suma de rango firmadao Distribución",
+    "WilcoxonTestDist": "Wilcoxon de suma de rango Distribución",
+    "KruskalTestDist": "Kruskal-Wallis H Distribución",
+    "FriedmanTestDist": "Friedman S Distribución",
     "SignedRankTest": "Wilcoxon prueba de suma de rango firmada",
     "SignTest": "El signo prueba",
     "SignCount": "Recuento de signos",
@@ -3424,6 +3501,7 @@ $.message.es = {
     "MultiSelect": "",
     "DataType": "(Seleccione la variable haciendo clic en el nombre de la variable)",
     "by": "por",
+    "NameVar": "Nombre Var",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3583,11 +3661,12 @@ svgStr[107][6]= "<h3>Correlation Analysis</h3>";
 svgStr[108][6]= "Análisis de correlación";
 svgStr[109][6]= "Factor1 - Factor2 Gráfico medio";
 svgStr[110][6]= "apalancamiento";
-svgStr[111][6]= "GIS Graph";
+svgStr[111][6]= "Gráfico de información geográfica";
 svgStr[112][6]= "Distancia";
 svgStr[113][6]= "Media - Desviación estándar Grafico";
 svgStr[114][6]= "Varianza Poblacional";
 svgStr[115][6]= "hipótesis";
+svgStr[116][6]= "prueba";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -3654,13 +3733,13 @@ svgStrU[62][6] = "Prueba de bondad de ajuste para la frecuencia observada";
 svgStrU[63][6] = "Wilcoxon Prueba de suma de rango";
 svgStrU[64][6] = "Wilcoxon Tabla de prueba de suma de rango";
 svgStrU[65][6] = "Kruskal-Wallis Prueba";
-svgStrU[66][6] = "Kruskal-Wallis Tabla de prueba";
+svgStrU[66][6] = "Kruskal-Wallis H Distribución";
 svgStrU[67][6] = "Kruskal-Wallis H Estadística ";
 svgStrU[68][6] = "Wilcoxon Prueba de Rango Firmado";
 svgStrU[69][6] = "Prueba firmada";
 svgStrU[70][6] = "Friedman Prueba";
 svgStrU[71][6] = "Friedman S Estadística ";
-svgStrU[72][6] = "Friedman Tabla de distribución";
+svgStrU[72][6] = "Friedman S Distribución";
 svgStrU[73][6] = "t-valor (Z)";
 svgStrU[74][6] = "ChiSq-valor";
 svgStrU[75][6] = "Varianza de la muestra";
@@ -3678,6 +3757,12 @@ svgStrU[86][6] = "Datos seleccionados: ";
 svgStrU[87][6] = "Datos brutos";
 svgStrU[88][6] = "Seleccione la variable haciendo clic en el nombre de la variable";
 svgStrU[89][6] = "Valores faltantes";
+svgStrU[90][6] = "Suma de Rango";
+svgStrU[91][6] = "Longitud";
+svgStrU[92][6] = "Latitud";
+svgStrU[93][6] = "Al menos un par de ubicaciones es diferente";
+svgStrU[94][6] = "Wilcoxon Distribución de Rango Firmado";
+svgStrU[95][6] = "";
 
 // Vietnamese
 $.message.vi = {
@@ -3915,6 +4000,10 @@ $.message.vi = {
     "WilcoxonTest": "Wilcoxon Xếp hạng Tổng kiểm tra",
     "Sample Range": "Xếp hạng tổng",
     "DistributionTable": "Bảng phân phối",
+    "SignedRankTestDist": "Wilcoxon Phân phối Tổng số thứ hạng đã ký",
+    "WilcoxonTestDist": "Wilcoxon Phân phối Xếp hạng tổng",
+    "KruskalTestDist": "Kruskal-Wallis H Phân phối",
+    "FriedmanTestDist": "Friedman S Phân phối",
     "SignedRankTest": "Wilcoxon Bài kiểm tra xếp hạng đã ký",
     "SignTest": "Đăng ký kiểm tra",
     "SignCount": "Số lượng dấu",
@@ -3940,6 +4029,7 @@ $.message.vi = {
     "MultiSelect": "",
     "DataType": "(Chọn biến theo tên biến lần nhấp)",
     "by": "bởi",
+    "NameVar": "Biến tên",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4099,11 +4189,12 @@ svgStr[107][7]= "<h3>Phân tích tương quan</h3>";
 svgStr[108][7]= "Ma trận tương quan";
 svgStr[109][7]= "Hệ số1 - Hệ số2 Đồ thị trung bình";
 svgStr[110][7]= "Đòn bẩy";
-svgStr[111][7]= "GIS Graph";
+svgStr[111][7]= "Biểu đồ thông tin địa lý";
 svgStr[112][7]= "Phạm vi";
 svgStr[113][7]= "Trung bình - Độ lệch chuẩn đồ thị";
 svgStr[114][7]= "Phương sai tổng thể";
 svgStr[115][7]= "giả thuyết";
+svgStr[116][7]= "kiểm tra";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -4170,13 +4261,13 @@ svgStrU[62][7] = "Kiểm định độ phù hợp cho tần số quan sát";
 svgStrU[63][7] = "Wilcoxon Xếp hạng Tổng kiểm tra";
 svgStrU[64][7] = "Wilcoxon Bảng xếp hạng tổng kiểm tra";
 svgStrU[65][7] = "Kruskal-Wallis Kiểm tra";
-svgStrU[66][7] = "Kruskal-Wallis Bảng kiểm tra";
+svgStrU[66][7] = "Kruskal-Wallis H Bảng kiểm tra";
 svgStrU[67][7] = "Kruskal-Wallis H Thống kê";
 svgStrU[68][7] = "Wilcoxon Kiểm tra xếp hạng đã ký";
 svgStrU[69][7] = "Đăng ký kiểm tra";
 svgStrU[70][7] = "Friedman Kiểm tra";
 svgStrU[71][7] = "Friedman S Thống kê";
-svgStrU[72][7] = "Friedman Bảng phân phối";
+svgStrU[72][7] = "Friedman S Bảng phân phối";
 svgStrU[73][7] = "t-value (Z)";
 svgStrU[74][7] = "ChiSq-value";
 svgStrU[75][7] = "phương sai mẫu";
@@ -4194,18 +4285,24 @@ svgStrU[86][7] = "Dữ liệu đã chọn: ";
 svgStrU[87][7] = "Dữ liệu thô";
 svgStrU[88][7] = "Chọn biến theo tên biến lần nhấp";
 svgStrU[89][7] = "Giá trị bị mất";
+svgStrU[90][7] = "Xếp hạng tổng";
+svgStrU[91][7] = "Kinh độ";
+svgStrU[92][7] = "Vĩ độ";
+svgStrU[93][7] = "Ít nhất một cặp vị trí khác nhau";
+svgStrU[94][7] = "Wilcoxon Kiểm tra xếp hạng đã ký";
+svgStrU[95][7] = "";
 
 // Indonesian
 $.message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
     "Filename": "File",
-    "Selected Variables": "Pilih Var",
+    "Selected Variables": "Variabel terpilih",
     "Cancel": "Batal",
     "Edit Variables": "Edit Variabel",
     "Level": "Level",
     "ElementaryLevel": "Dasar",
     "MiddleLevel": "Menengah",
-    "HighLevel": "H",
+    "HighLevel": "Tinggi",
     "UniversityLevel": "Universitas",
     "Example": "Contoh",
     "New Sheets": "Lembar Baru",
@@ -4222,7 +4319,7 @@ $.message.id = {
     "Dot Graph": "Diagram Dot",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": " Diagram Dahan dan Daun",
-    "Box-Whisker Plot": "Diagram Box-Whisker",
+    "Box-Whisker Plot": "Diagram Kotak Garis",
     "Scatterplot": "Diagram Pencar",
     "Frequency Table": "Tabel Frekuensi",
     "Basic Statistics": "Statistika Dasar",
@@ -4393,11 +4490,11 @@ $.message.id = {
     "AnalysisVarMu12": "Analisis(or X1) Var",
     "GroupVarMu12": "Grup(or X2) Var",
     "PairedMu12": " X1, X2 : Dipasangkan Var",
-    "SizeVar": "Ukuran Lingkaran Var",
+    "SizeVar": "Ukuran Var",
     "RegressionBand": "Selang Kepercayaan",
     "RegressionTable": "Analisis Regresi",
     "RegressionResidual": "Sisa Merencanakan",
-    "RegressionResidualLeverage": "Sisa vs Pengaruh",
+    "RegressionResidualLeverage": "Residual vs Pengaruh",
     "RegressionCook": "Cook's Jarak Merencanakan",
     "RegressionQQ": "Sisa Q-Q Merencanakan",
     "HistogramNormal": "Histogram",
@@ -4428,26 +4525,30 @@ $.message.id = {
     "eStatLecture": "eStat Pengantar Kuliahe",
     "NonParametricMu12_title": "Wilcoxon Tes Jumlah Peringkat", 
     "NonParametricMu12": "Wilcoxon Tes Jumlah Peringkatt : Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
-    "WilcoxonTest": "Wilcoxon Tes Jumlah Peringkat",
+    "WilcoxonTest": "Uji Jumlah Peringkat Wilcoxon",
     "Sample Range": "Jumlah Pangkat",
     "DistributionTable": "Tabel Distribusi",
-    "SignedRankTest": "Wilcoxon Signed Tes Jumlah Peringkat",
-    "SignTest": "Uji Masuk",
-    "SignCount": "Masuk Hitungan",
-    "KruskalTest": "Kruskal-Wallis Tes",
-    "KruskalTestANOVA": "Kruskal-Wallis Tes : Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "SignedRankTestDist": "Wilcoxon Distribusi Jumlah Peringkat Ditandatangani",
+    "WilcoxonTestDist": "Wilcoxon Distribusi Jumlah Taruhan",
+    "KruskalTestDist": "Kruskal-Wallis H Distribusi ",
+    "FriedmanTestDist": "Friedman S Distribusi ",
+    "SignedRankTest": "Uji Jumlah Peringkat Bertanda Wilcoxon",
+    "SignTest": "Uji Tanda",
+    "SignCount": "Hitung Tanda",
+    "KruskalTest": "Uji Kruskal-Wallis",
+    "KruskalTestANOVA": "Uji Kruskal-Wallis: Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
     "Total": "Total",
-    "FriedmanTest": "Friedman Tes",
-    "FriedmanTestANOVA": "Friedman Tes : Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTest": "Uji Friedman",
+    "FriedmanTestANOVA": "Uji Friedman: Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
     "Block": "Blok",
     "Treatment": "Pengobatan",
-    "At least one locations is different": "Setidaknya satu pasang lokasi berbeda",
-    "SignCondition": "If n ≤ 100 Binomial Tes,  n > 100 Normal Uji Approximation",
+    "At least one locations is different": "Setidaknya terdapat satu pasang lokasi yang berbeda",
+    "SignCondition": "Jika n ≤ 100 Uji Binomial,  n > 100 Pendekatan Normal",
     "WilcoxonSignCondition": "jika n≤ 20 Wilcoxon Tes Jumlah Peringkat,  n > 20 Nomal Uji Approximation",
-    "WilcoxonRankCondition": "jika n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Uji Approximation",
-    "KruskalCondition": "jika n≤ 10 H Tes distribusi,  else &chi;<sup>2</sup> Uji Approximation",
-    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "WilcoxonRankCondition": "jika n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Uji Jumlah Peringkat Wilcoxon, n>25 Pendekatan Normal",
+    "KruskalCondition": "jika n≤ 10 Uji Distribusi H,  else &chi;<sup>2</sup> Uji Aproksimasi",
+    "VariableSelect":  "* Analisis Data : Muat File >> Pilih Variabel >>  Klik Ikon",
+    "VariableSelect2": "* Pemilihan Variabel : Klik nama variabel atau gunakan kotak pemilihan RHS",
     "VariableSelect3": "Seleksi Variabel",
     "VariableSelect4": "Lebih banyak variabel analisis dapat dipilih",
     "VariableSelect5": "Lebih banyak variabel X dapat dipilih",
@@ -4456,6 +4557,7 @@ $.message.id = {
     "MultiSelect": "",
     "DataType": "(Pilih variabel dengan mengklik nama variabel)",
     "by": "oleh",
+    "NameVar": "Var Nama",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -4473,13 +4575,13 @@ alertMsg[6][8] = "Jika analisis variabel di data ringkasan mengandung karakter, 
 alertMsg[7][8] = "Jika terdapat lebih dari tiga variabel terpilih dari data awal, analisis atau membuat tabel tidak dapat dilakukan.";
 alertMsg[8][8] = "Diagram Dot dapat dibuat jika jumlah amatan kurang dari 200.";
 alertMsg[9][8] = "Diagram Dahan dan Daun dapat dibuat jika banyak amatan kurang dari 100.";
-alertMsg[10][8] = "Analysis variable is not selected.";
-alertMsg[11][8] = "Analysis/Group variables are not selected.";
+alertMsg[10][8] = "Variabel analisis tidak dipilih";
+alertMsg[11][8] = "Analisis/Variabel Grup tidak dipilih.";
 alertMsg[12][8] = "Jika analisis variabel mengandung karakter, analisis atau membuat tabel tidak dapat dilakukan.";
 alertMsg[13][8] = "";
 alertMsg[14][8] = "Data ringkasan tidak dapat digunakan untuk grafik kontinu dan uji hipotesis.";
 alertMsg[16][8] = "Hanya dua grup yang diperbolehkan untuk uji hipotesis ini.";
-alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel x dan variabel y.";
+alertMsg[17][8] = "Diagram pencar membutuhkan setidaknya variabel X dan variabel Y.";
 alertMsg[18][8] = "Lebih dari tiga variabel tidak diizinkan.";
 alertMsg[19][8] = "Jika ada karakter pada data, analisa tidak bisa dilakukan.";
 alertMsg[20][8] = "Jika terdapat karakter di variabel X/Y, diagram pencar tidak dapat digambar.";
@@ -4497,12 +4599,12 @@ alertMsg[36][8] = "Diagram batang ini hanya diperbolehkan untuk dua grup.";
 alertMsg[37][8] = "Uji Hipotesis ini hanya diperbolehkan untuk satu variabel.";
 alertMsg[38][8] = "mu bukan angka. Masukkan angka dan coba lagi!";
 alertMsg[39][8] = "Standar deviasi bernilai nol atau bukan angka. Coba lagi!";
-alertMsg[40][8] = "Varians input bukan angka. Masukkan angka dan coba lagi!";
+alertMsg[40][8] = "Input varians bukan angka. Masukkan angka dan coba lagi!";
 alertMsg[41][8] = "Uji Hipotesis ini hanya diperbolehkan untuk dua variabel. Variabel grup harus hanya memiliki dua grup";
 alertMsg[42][8] = "Mengubah judul dari uji hipotesis tidak diperbolehkan!";
 alertMsg[43][8] = "Regresi Linear Sederhana hanya untuk satu grup";
 alertMsg[44][8] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][8] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[45][8] = "Tidak dapat menggambar Grafik GIS jika terdapat lebih dari lima variabel.";
 alertMsg[46][8] = "Nomor variabel yang sama dipilih.";
 
 svgStr[1][8] = " Diagram Batang";
@@ -4528,7 +4630,7 @@ svgStr[20][8] = "<h3>Data Ringkasan<br>Tabel Frekuensi </h3>";
 svgStr[21][8] = "Variabel Grup";
 svgStr[22][8] = "Variabel Baris";
 svgStr[23][8] = "Total";
-svgStr[24][8] = "CircleSize";
+svgStr[24][8] = "Ukuran Lingkaran";
 svgStr[25][8] = "<h3>Tabel Frekuensi</h3>";
 svgStr[26][8] = "Var Analisis";
 svgStr[27][8] = "Nilai Var";
@@ -4599,14 +4701,14 @@ svgStr[91][8] = "Statistik";
 svgStr[92][8] = "Faktor";
 svgStr[93][8] = "Level";
 svgStr[94][8] = "Grafik Data Sampel Berpasangan";
-svgStr[95][8] = "Residual vs Merintis Merencanakan";
-svgStr[96][8] = "Residual vs Pengaruh Merencanakan";
-svgStr[97][8] = "Cook Jarak Merencanakan";
-svgStr[98][8] = "Cook Jarak";
-svgStr[99][8] = "Pesanan Data";
-svgStr[100][8]= "Berarti Perbedaane";
-svgStr[101][8]= "Sarana Pengujian";
-svgStr[102][8]= "Pengobatan";
+svgStr[95][8] = "Plot Residual vs Ramalan";
+svgStr[96][8] = "Plot Residual vs Pengaruh";
+svgStr[97][8] = "Grafik Jarak Cook";
+svgStr[98][8] = "Jarak Cook";
+svgStr[99][8] = "Urutan Data";
+svgStr[100][8]= "Beda rata-rata";
+svgStr[101][8]= "Pengujian Rata-rata";
+svgStr[102][8]= "Perlakuan";
 svgStr[103][8]= "Interaksi";
 svgStr[104][8]= "Total Baris";
 svgStr[105][8]= "Total Kolom";
@@ -4615,11 +4717,12 @@ svgStr[107][8]= "<h3>Analisis korelasi</h3>";
 svgStr[108][8]= "Matriks Korelasi";
 svgStr[109][8]= "Faktor1 - Faktor2 Grafik Berartih";
 svgStr[110][8]= "Pengaruh";
-svgStr[111][8]= "GIS Graph";
+svgStr[111][8]= "Grafik Informasi Geografis";
 svgStr[112][8]= "Jarak";
 svgStr[113][8]= "Rata-rata Standar Deviasi Grafik";
 svgStr[114][8]= "Varians Satu Populasi";
-svgStr[115][8]= "Hipotesa";
+svgStr[115][8]= "Hipotesis";
+svgStr[116][8]= "Uji";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -4678,26 +4781,26 @@ svgStrU[54][8] = "[Statistik Sampel] ";
 svgStrU[55][8] = "[Sampel 1 Statistik] ";
 svgStrU[56][8] = "[Sampel 2 Statistik] ";
 svgStrU[57][8] = "Selang Kepercayaan";
-svgStrU[58][8] = "Baris dan Kolom Variabel saling bebas/independen";
-svgStrU[59][8] = "Row & Col Dependent";
+svgStrU[58][8] = "Baris dan Kolom saling bebas/independen";
+svgStrU[59][8] = "Baris dan Kolom tidak saling bebas/tidak independen";
 svgStrU[60][8] = "Distribusi Empirik";
 svgStrU[61][8] = "Distribusi Teoritik";
 svgStrU[62][8] = "Uji Kebaikan Model untuk Frekuensi Amatan";
-svgStrU[63][8] = "Wilcoxon Tes Jumlah Peringkat";
-svgStrU[64][8] = "Wilcoxon Tabel Jumlah Jumlah Tes";
-svgStrU[65][8] = "Kruskal-Wallis Tes";
-svgStrU[66][8] = "Kruskal-Wallis Tes Tabel";
-svgStrU[67][8] = "Kruskal-Wallis H Statistik";
-svgStrU[68][8] = "Wilcoxon Uji Peringkat Masukt";
-svgStrU[69][8] = "Uji Masuk";
-svgStrU[70][8] = "Friedman Tes";
-svgStrU[71][8] = "Friedman S Statistik";
-svgStrU[72][8] = "Friedman Tabel Distribusi";
-svgStrU[73][8] = "t-nilai (Z)";
-svgStrU[74][8] = "ChiSq-nilai";
+svgStrU[63][8] = "Uji Jumlah Peringkat Wilcoxon";
+svgStrU[64][8] = "Tabel Uji Jumlah Peringkat Wilcoxon";
+svgStrU[65][8] = "Uji Kruskal-Wallis";
+svgStrU[66][8] = "Tabel Uji H Kruskal-Wallis";
+svgStrU[67][8] = "Statistik H Kruskal-Wallis";
+svgStrU[68][8] = "Uji Peringkat Bertanda Wilcoxon";
+svgStrU[69][8] = "Uji Tanda";
+svgStrU[70][8] = "Uji Friedman";
+svgStrU[71][8] = "Statistik S Friedman";
+svgStrU[72][8] = "Tabel Distribusi S Friedman";
+svgStrU[73][8] = "nilai-t (atau Z)";
+svgStrU[74][8] = "nilai-ChiSq";
 svgStrU[75][8] = "varians sampel";
-svgStrU[76][8] = "perbedaan sarana sampel";
-svgStrU[77][8] = "rasio varians sampel";
+svgStrU[76][8] = "Selisih sampel rata-rata";
+svgStrU[77][8] = "Rasio varians sampel";
 svgStrU[78][8] = "Asumsi Varians";
 svgStrU[79][8] = "Data Ringkasan";
 svgStrU[80][8] = "Pilihan Berganda";
@@ -4710,6 +4813,12 @@ svgStrU[86][8] = "Data yang dipilih: ";
 svgStrU[87][8] = "Data mentah";
 svgStrU[88][8] = "Pilih variabel dengan mengklik nama variabel";
 svgStrU[89][8] = "Nilai yang hilang";
+svgStrU[90][8] = "Jumlah Pangkat";
+svgStrU[91][8] = "Garis bujur";
+svgStrU[92][8] = "Garis lintang";
+svgStrU[93][8] = "Setidaknya terdapat satu pasang lokasi yang berbeda";
+svgStrU[94][8] = "Peringkat Bertanda Wilcoxon";
+svgStrU[95][8] = "";
 
 // Mongolian
 $.message.mn = {
@@ -4945,6 +5054,10 @@ $.message.mn = {
     "WilcoxonTest": "Wilcoxon Дундаж дүн шинжилгээ",
     "Sample Range": "Дугаар Сар",
     "DistributionTable": "Түгээлт Хүснэгтe",
+    "SignedRankTestDist": "Wilcoxon Гарын үсгийн нийт дүнгийн жагсаалт",
+    "WilcoxonTestDist": "Wilcoxon Сумын түгээлтийн зэрэглэл",
+    "KruskalTestDist": "Kruskal-Wallis H Түгээлт",
+    "FriedmanTestDist": "Friedman S Түгээлт",
     "SignedRankTest": "Wilcoxon Нэвтрэв Дундаж дүн шинжилгээ",
     "SignTest": "Тестийн тэмдэгt",
     "SignCount": "Дугаар тэмдэгt",
@@ -4970,6 +5083,7 @@ $.message.mn = {
     "MultiSelect": "",
     "DataType": "(Хувьсагчийн нэр дээр дарж хувьсагч сонго)",
     "by": "by",
+    "NameVar": "Хувьсах нэр",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -5129,11 +5243,12 @@ svgStr[107][9]= "<h3>Корреляцийн шинжилгээ</h3>";
 svgStr[108][9]= "Корреляцийн матриц";
 svgStr[109][9]= "Фактор1 - Фактор2 Mean Graph";
 svgStr[110][9]= "Хөшүүрэг";
-svgStr[111][9]= "GIS Graph";
+svgStr[111][9]= "Газар зүйн мэдээллийн график";
 svgStr[112][9]= "Хүрээ";
 svgStr[113][9]= "Дундаж  утга - Стандарт хэлбэлзэл график";
 svgStr[114][9]= "Хүн амын дундаж кватрат хазайлт";
 svgStr[115][9]= "таамаглал";
+svgStr[116][9]= "Туршилт";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -5200,13 +5315,13 @@ svgStrU[62][9] = "Ажиглагдсан давтамжийн шалгуурт �
 svgStrU[63][9] = "Wilcoxon Дундаж дүн шинжилгээ";
 svgStrU[64][9] = "Wilcoxon Дундаж сумын тестийн хүснэгт";
 svgStrU[65][9] = "Kruskal-Wallis Туршилт";
-svgStrU[66][9] = "Kruskal-Wallis Туршилтын хүснэгт";
+svgStrU[66][9] = "Kruskal-Wallis H Туршилтын хүснэгт";
 svgStrU[67][9] = "Kruskal-Wallis H Статистик";
 svgStrU[68][9] = "Wilcoxon Гарын үсэг зурах шалгуур";
 svgStrU[69][9] = "Sign Туршилт";
 svgStrU[70][9] = "Friedman Туршилт";
 svgStrU[71][9] = "Friedman S Статистик";
-svgStrU[72][9] = "Friedman Түгээлт Хүснэгт";
+svgStrU[72][9] = "Friedman S Түгээлт Хүснэгт";
 svgStrU[73][9] = "t-утга (Z)";
 svgStrU[74][9] = "ChiSq-утга";
 svgStrU[75][9] = "Түүврийн вариаци";
@@ -5224,6 +5339,12 @@ svgStrU[86][9] = "Сонгосон мэдээлэл: ";
 svgStrU[87][9] = "Түүхий мэдээлэл";
 svgStrU[88][9] = "Хувьсагчийн нэр дээр дарж хувьсагч сонго";
 svgStrU[89][9] = "Үнэ цэнэ байхгүй байна";
+svgStrU[90][9] = "Дугаар Сар";
+svgStrU[91][9] = "Урттай";
+svgStrU[92][9] = "өргөрөг";
+svgStrU[93][9] = "Наад зах нь нэг хос байршил өөр байна";
+svgStrU[94][9] = "Wilcoxon Гарын үсэг зурах шалгуур";
+svgStrU[95][9] = "";
 
 // Chinese - Simplified
 $.message.zh = {
@@ -5460,6 +5581,10 @@ $.message.zh = {
     "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
     "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
+    "SignedRankTestDist": "Wilcoxon 符號順位合分布",
+    "WilcoxonTestDist": "Wilcoxon 順位合分布",
+    "KruskalTestDist": "Kruskal-Wallis H 分布",
+    "FriedmanTestDist": "Friedman S 分布",
     "SignedRankTest": "Wilcoxon 符號順位檢定",
     "SignTest": "符號檢定",
     "SignCount": "符號數",
@@ -5485,6 +5610,7 @@ $.message.zh = {
     "MultiSelect": "",
     "DataType": "(通过单击变量名称选择变量)",
     "by": "by",
+    "NameVar": "名称变量",
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -5644,11 +5770,12 @@ svgStr[107][10]= "<h3>相關分析</h3>";
 svgStr[108][10]= "相關係數行列";
 svgStr[109][10]= "因子1 - 因子2 平均图";
 svgStr[110][10]= "杠杆作用";
-svgStr[111][10]= "GIS Graph";
+svgStr[111][10]= "地理信息图";
 svgStr[112][10]= "范围";
 svgStr[113][10]= "平均 - 标准差图";
 svgStr[114][10]= "总体方差";
 svgStr[115][10]= "假设";
+svgStr[116][10]= "檢定";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -5715,13 +5842,13 @@ svgStrU[62][10] = "观测频率的拟合优度检验";
 svgStrU[63][10] = "Wilcoxon 順位合檢定";
 svgStrU[64][10] = "Wilcoxon 順位合檢定 分布表";
 svgStrU[65][10] = "Kruskal-Wallis 檢定";
-svgStrU[66][10] = "Kruskal-Wallis 檢定 分布表";
+svgStrU[66][10] = "Kruskal-Wallis H 分布";
 svgStrU[67][10] = "Kruskal-Wallis H 統計量";
-svgStrU[68][10] = "Wilcoxon 符號順位檢定";
+svgStrU[68][10] = "Wilcoxon 符號順位合檢定";
 svgStrU[69][10] = "符號檢定";
 svgStrU[70][10] = "Friedman檢定";
 svgStrU[71][10] = "Friedman S 統計量";
-svgStrU[72][10] = "Friedman檢定分布表";
+svgStrU[72][10] = "Friedman S 分布";
 svgStrU[73][10] = "t-值 (Z)";
 svgStrU[74][10] = "ChiSq-值";
 svgStrU[75][10] = "样本方差";
@@ -5739,6 +5866,12 @@ svgStrU[86][10] = "选定数据: ";
 svgStrU[87][10] = "原始数据";
 svgStrU[88][10] = "通过单击变量名称选择变量";
 svgStrU[89][10] = "缺少观察";
+svgStrU[90][10] = "順位合";
+svgStrU[91][10] = "经度";
+svgStrU[92][10] = "纬度";
+svgStrU[93][10] = "位置母数 !=";
+svgStrU[94][10] = "Wilcoxon 符號順位合分布";
+svgStrU[95][10] = "";
 
 // Portugese
 $.message.pt = {
@@ -5978,6 +6111,10 @@ $.message.pt = {
     "WilcoxonTest": "Teste da Soma dos Postos",
     "Sample Range": "Amplitude Amostral",
     "DistributionTable": "Tabela de Distribuição",
+    "SignedRankTestDist": "Wilcoxon Distribuição da Soma da Classificação Assinada",
+    "WilcoxonTestDist": "Wilcoxon Distribuição de soma de posição",
+    "KruskalTestDist": "Kruskal-Wallis H Distribuição",
+    "FriedmanTestDist": "Friedman S Distribuição",
     "SignedRankTest": "Teste da Soma dos Postos Sinalizados de Wilcoxon",
     "SignTest": "Teste dos sinais",
     "SignCount": "Contagem dos sinais",
@@ -6003,6 +6140,7 @@ $.message.pt = {
     "MultiSelect": "",
     "DataType": "(Selecionar variável por nome da variável de clique)",
     "by": "de",
+    "NameVar": "Var de nome",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -6162,11 +6300,12 @@ svgStr[107][11]= "<h3>Análise de Correlação</h3>";
 svgStr[108][11]= "Matriz de Correlação";
 svgStr[109][11]= "Fator1 - Fator2 média gráfico";
 svgStr[110][11]= "Alavancagem";
-svgStr[111][11]= "GIS Graph";
+svgStr[111][11]= "Gráfico de Informação Geográfica";
 svgStr[112][11]= "Alcance";
 svgStr[113][11]= "Média - Desvio Padrão Gráfico";
 svgStr[114][11]= "Variância Populacional";
 svgStr[115][11]= "Hipótese";
+svgStr[116][11]= "Teste";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -6233,13 +6372,13 @@ svgStrU[62][11] = "Teste de Bondade de Ajuste";
 svgStrU[63][11] = "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)";
 svgStrU[64][11] = "Teste da Soma dos Postos Tabela";
 svgStrU[65][11] = "Kruskal-Wallis Teste";
-svgStrU[66][11] = "Kruskal-Wallis Teste Tabela";
+svgStrU[66][11] = "Kruskal-Wallis H Distribuição";
 svgStrU[67][11] = "Kruskal-Wallis H Estatistica";
 svgStrU[68][11] = "Teste da Soma dos Postos Sinalizados de Wilcoxon";
 svgStrU[69][11] = "Teste dos sinais";
 svgStrU[70][11] = "Friedman Teste";
 svgStrU[71][11] = "Friedman S Estatistica";
-svgStrU[72][11] = "Friedman Distribuição Tabela";
+svgStrU[72][11] = "Friedman S Distribuição";
 svgStrU[73][11] = "valor t (Z)";
 svgStrU[74][11] = "valor ChiSq";
 svgStrU[75][11] = "Variância Amostral";
@@ -6257,3 +6396,9 @@ svgStrU[86][11] = "Dados selecionados: ";
 svgStrU[87][11] = "Dados não tratados";
 svgStrU[88][11] = "Selecionar variável por nome da variável de clique";
 svgStrU[89][11] = "Observações em falta";
+svgStrU[90][11] = "Soma dos Postos";
+svgStrU[91][11] = "Longitude";
+svgStrU[92][11] = "Latitude";
+svgStrU[93][11] = "Pelo menos um par de médias difere";
+svgStrU[94][11] = "Distribuição da Soma dos Postos Sinalizados de Wilcoxon";
+svgStrU[95][11] = "";
