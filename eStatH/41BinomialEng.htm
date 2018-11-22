@@ -3,13 +3,15 @@
 
 <head>
     <title data-msgid="Binomial Experiment">Binomial Experiment</title>
-    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
-    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
-    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
-    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
-    <script src="/estat/eStat/js/language.js" ></script>
-    <script src="/estat/eStat/js/eStatU.js"></script>
+    <link rel="stylesheet" href="../eStat/css/eStatU.css">
+    <script src="../eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="../eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="../eStat/lib/DistributionsUtil.js" ></script>
+    <script src="../eStat/js/language.js" ></script>
+    <script src="../eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
 
 <body>
@@ -21,19 +23,19 @@
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
-    <form>
-      <svg id="chart" width="600" height="600"> </svg> <br>   
-      <button type="button" id="executeBinomial" >
-        <span data-msgid="Execute">Execute</span>
-      </button>
-      &nbsp;
+    <svg id="chart" width="600" height="600"> </svg> <br>   
+    <button type="button" id="executeBinomial" >
+      <span data-msgid="Execute">Execute</span>
+    </button> &nbsp;
       n = <input type="text" class="textarea" value="2"   size=3 id="nn">&nbsp;<sup><small> 1 </small></sup> 
       <input type="range" min="1" max="10" value="2" id="range1Binomial" onchange="showValueBinomial1(this.value)"/><sup><small> 10 </small></sup> &nbsp;&nbsp;
       p = <input type="text" class="textarea" value="0.5" size=3 id="pp"><sup><small> 0 </small></sup> 
-      <input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/><sup><small> 1</small></sup>  <p>   
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label><input type="checkbox" value="freq" id=freqBinomial><span data-msgid="Show Probability">show probability</span></label> <p>
-    </form>
+      <input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/><sup><small> 1</small></sup> &nbsp;
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    <label><input type="checkbox" value="freq" id=freqBinomial><span data-msgid="Show Probability">show probability</span></label> <p>
   </div>
 
   <script type="text/javascript">
@@ -93,13 +95,15 @@
       title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
       dot.append("text").attr("class","title").attr("x", margin.left+graphWidth -200).attr("y", margin.top/2 ).text(title)
 
+
       // 확률  계산
       for (i=0; i<nvalue; i++) binomialP1[i] = binomial_pdf(i, nn, pp, info);
-
+			  
       // Draw 이항분포 Triangle and Simulation
       BinomialTriangle(nvalue, pp, tx, ty);
-      BinomialSimulation(nobs,nvalue,tdataY);
+//      BinomialSimulation(nobs,nvalue,tdataY);
 
+			  
       // 시뮬레이션 실행버튼 클릭
       d3.select("#executeBinomial").on("click",function() {
         dot.selectAll("*").remove();
@@ -118,11 +122,11 @@
 
         nvalue = nn + 1;
 
-        title  = "Binomial Dist n = "+nn.toString()+", p = "+f2(pp);
+        title  = svgStrU[1][langNum]+" n = "+nn.toString()+", p = "+f2(pp);
         dot.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top/2).text(title)
         avg  = nn * pp;
         std  = Math.sqrt(nn*pp*(1-pp));
-        title  = "Mean = "+f2(avg).toString()+", Std Dev = "+f2(std).toString();
+        title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
         dot.append("text").attr("class","title").attr("x", margin.left+graphWidth -200).attr("y", margin.top/2 ).text(title)
 
         // 확률  계산
@@ -130,7 +134,7 @@
 
         // Draw 이항분포 Triangle and Simulation
         BinomialTriangle(nvalue, pp, tx, ty);
-        BinomialSimulation(nobs,nvalue,tdataY);
+	BinomialSimulation(nobs,nvalue,tdataY);
         if (checkFreq) showBinomialFreq(nvalue, binomialP1, tdataY, tx);
       })
 
@@ -144,6 +148,17 @@
 	  removeBinomialFreq();
         }
       })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = 600;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
 
   </script>
 </body>

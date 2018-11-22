@@ -10,6 +10,8 @@
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/language.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
 
 <body>
@@ -26,10 +28,10 @@
     &sigma;= <input type="text" class="textarea" value="1"  size=6 id="sigma"> 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span data-msgid="If typed">If typed</span>  &nbsp; 
-      <button type="button" id="btn2Normal" >
-        <span data-msgid="Execute">Execute</span>
-      </button>
-    <p>
+    <button type="button" id="btn2Normal" >
+      <span data-msgid="Execute">Execute</span>
+    </button>
+    <br>
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
@@ -68,7 +70,11 @@
          <sup><small>0 </small></sup>
          <input type="range" min="0" max="100" value="95" id="range4N" onchange="showValueNormal4(this.value)"/>
          <sup><small>1</small> </sup> <br>
-    <span data-msgid="Reference Site">Reference Site</span>   &nbsp; 
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
+    <span data-msgid="Reference Site">Reference Site</span> :&nbsp;
       <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/NormalDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 
@@ -199,6 +205,18 @@
           drawNormalGraph(mu, sigma, f, g, h); 
        }
       })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
 
   </script>
 </body>

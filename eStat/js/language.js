@@ -197,6 +197,7 @@ $.message.ko = {
     "Dist of Sample Means": "표본평균의 표집분포",
     "Sample Size": "표본크기",
     "Confidence Interval": "신뢰구간",
+    "Confidence Interval Simulation": "신뢰구간실험",
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
     "Confidence Level": "신뢰수준",
@@ -228,7 +229,7 @@ $.message.ko = {
     "Independent Sample": "독립표본",
     "Paired Sample": "종속표본",
     "Sample Data": "표본자료",
-    "input either sample data": "(표본자료를 여기 입력, 아니면 다음 표본통계량을 입력(공란 구분)",
+    "input either sample data": "(자료를 공란으로 구분), ([표본통계량]만 입력도 가능)",
     "Sample Statistics": "표본통계량",
     "Sample Mean": "표본평균",
     "Sample Variance": "표본분산",
@@ -332,6 +333,7 @@ $.message.ko = {
     "DataType": "(시트의 변량명 클릭으로 선택 가능)",
     "by": "by",
     "NameVar": "이름변량",
+    "n_variance": "n-1 공식",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -728,6 +730,7 @@ $.message.en = {
     "Dist of Sample Means": "Dist of Sample Means",
     "Sample Size": "Sample Size",
     "Confidence Interval": "Confidence Interval",
+    "Confidence Interval Simulation": "Confidence Interval Simulation",
     "Estimation Accuracy": "Estimation Accuracy",
     "Repetition": "Repetition",
     "Confidence Level": "Confidence Level",
@@ -759,7 +762,7 @@ $.message.en = {
     "Independent Sample": "independent",
     "Paired Sample": "paired",
     "Sample Data": "Sample Data",
-    "input either sample data": "Input either sample data, or sample statistics at the next boxes usign bsv",
+    "input either sample data": "Input either sample data using BSV or sample statistics at the next boxes",
     "Sample Statistics": "Sample Statistics",
     "Sample Mean": "Sample Mean",
     "Sample Variance": "Sample Variance",
@@ -863,6 +866,7 @@ $.message.en = {
     "DataType": "(Select variables by click var name)",
     "by": "by",
     "NameVar": "Name Var",
+    "n_variance": "n-1 formula",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1259,6 +1263,7 @@ $.message.ja = {
     "Dist of Sample Means": "標本平均の標本分布",
     "Sample Size": "サンプルサイズ",
     "Confidence Interval": "信頼区間",
+    "Confidence Interval Simulation": "信頼区間シミュレーション",
     "Estimation Accuracy": "推定精度",
     "Repetition": "反復数",
     "Confidence Level": "信頼水準",
@@ -1394,6 +1399,7 @@ $.message.ja = {
     "DataType": "(変数名をクリックして変数を選択)",
     "by": "by",
     "NameVar": "名前変数",
+    "n_variance": "n式",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1787,6 +1793,7 @@ $.message.zhTW = {
     "Dist of Sample Means": "樣本平均的分佈",
     "Sample Size": "樣本數",
     "Confidence Interval": "信頼區間",
+    "Confidence Interval Simulation": "信頼区間實驗",
     "Estimation Accuracy": "估計準確率",
     "Repetition": "重覆數",
     "Confidence Level": "信頼水準",
@@ -1922,6 +1929,7 @@ $.message.zhTW = {
     "DataType": "(通過單擊變數名稱選擇變數)",
     "by": "by",
     "NameVar": "名稱變數",
+    "n_variance": "n-1 式",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -2314,6 +2322,7 @@ $.message.fr = {
     "Dist of Sample Means": "Distribution des moyennes d'échantillon",
     "Sample Size": "Taille de l'échantillon",
     "Confidence Interval": "Intervalle de confinace",
+    "Confidence Interval Simulation": "Essai Intervalle de confinace",
     "Estimation Accuracy": "Précision de l'estimation",
     "Repetition": "Répétition",
     "Confidence Level": "Niveau de confiance",
@@ -2449,6 +2458,7 @@ $.message.fr = {
     "DataType": "(Sélectionnez variable par clic nom de variable)",
     "by": "par",
     "NameVar": "Nom Var",
+    "n_variance": "n-1 formule",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2842,6 +2852,7 @@ $.message.de = {
     "Dist of Sample Means": "Verteilung der Stichprobenmittelwerte",
     "Sample Size": "Stichprobenumfang",
     "Confidence Interval": "Konfidenzintervall",
+    "Confidence Interval Simulation": "Konfidenzintervallexperiment",
     "Estimation Accuracy": "Schätzgenauigkeit",
     "Repetition": "Wiederholung",
     "Confidence Level": "Konfidenzniveau",
@@ -2974,6 +2985,7 @@ $.message.de = {
     "DataType": "(Wählen Sie die Variable anhand des Variablennamens aus)",
     "by": "durch",
     "NameVar": "Name Var",
+    "n_variance": "n-1 formel",
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -3367,6 +3379,7 @@ $.message.es = {
     "Dist of Sample Means": "Distribución de Medias Muestrales",
     "Sample Size": "Tamaño muestral",
     "Confidence Interval": "Nivel de confianza",
+    "Confidence Interval Simulation": "Experimento Nivel de confianza",
     "Estimation Accuracy": "Precisión de la estimación",
     "Repetition": "Repetición",
     "Confidence Level": "Nivel de confianza",
@@ -3502,6 +3515,7 @@ $.message.es = {
     "DataType": "(Seleccione la variable haciendo clic en el nombre de la variable)",
     "by": "por",
     "NameVar": "Nombre Var",
+    "n_variance": "n-1 fórmula",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3895,6 +3909,7 @@ $.message.vi = {
     "Dist of Sample Means": "P/p của trung bình mẫu",
     "Sample Size": "Cỡ mẫu",
     "Confidence Interval": "Khoảng tin cậy",
+    "Confidence Interval Simulation": "Thí Khoảng tin cậy",
     "Estimation Accuracy": "Độ chính xác của ước lượng",
     "Repetition": "Sự lặp lại",
     "Confidence Level": "Độ tin cậy",
@@ -4030,6 +4045,7 @@ $.message.vi = {
     "DataType": "(Chọn biến theo tên biến lần nhấp)",
     "by": "bởi",
     "NameVar": "Biến tên",
+    "n_variance": "n-1 công thức",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4423,6 +4439,7 @@ $.message.id = {
     "Dist of Sample Means": "Distribusi dari Rata-rata Sampel",
     "Sample Size": "Ukuran Sampel",
     "Confidence Interval": "Selang Kepercayaan",
+    "Confidence Interval Simulation": "Percobaan Selang Kepercayaan",
     "Estimation Accuracy": "Keakurasian Nilai Estimasi",
     "Repetition": "Ulangan",
     "Confidence Level": "Taraf Nyata",
@@ -4558,6 +4575,7 @@ $.message.id = {
     "DataType": "(Pilih variabel dengan mengklik nama variabel)",
     "by": "oleh",
     "NameVar": "Var Nama",
+    "n_variance": "n-1 rumus",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -4951,6 +4969,7 @@ $.message.mn = {
     "Dist of Sample Means": "Жишээ дундаж утгуудын тархалт ",
     "Sample Size": "Жишээ хэмжээ ",
     "Confidence Interval": "Найдварт завсар ",
+    "Confidence Interval Simulation": "Найдварт завсар туршилт",
     "Estimation Accuracy": "нарийвчлалыг үнэлэх",
     "Repetition": "Давтамж",
     "Confidence Level": "Найдварт түвшинl",
@@ -5084,6 +5103,7 @@ $.message.mn = {
     "DataType": "(Хувьсагчийн нэр дээр дарж хувьсагч сонго)",
     "by": "by",
     "NameVar": "Хувьсах нэр",
+    "n_variance": "n-1 томъёо",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -5477,6 +5497,7 @@ $.message.zh = {
     "Dist of Sample Means": "样本均值",
     "Sample Size": "样本数",
     "Confidence Interval": "置信区间",
+    "Confidence Interval Simulation": "置信区间试验",
     "Estimation Accuracy": "估计准确率",
     "Repetition": "重复数",
     "Confidence Level": "置信水平",
@@ -5611,6 +5632,7 @@ $.message.zh = {
     "DataType": "(通过单击变量名称选择变量)",
     "by": "by",
     "NameVar": "名称变量",
+    "n_variance": "n-1 式",
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -6007,6 +6029,7 @@ $.message.pt = {
     "Dist of Sample Means": "Distribuição de Médias Amostrais",
     "Sample Size": "Tamanho da Amostra",
     "Confidence Interval": "Intervalo de Confiança",
+    "Confidence Interval Simulation": "Intervalo de Confiança Experimento",
     "Estimation Accuracy": "Acurácia ",
     "Repetition": "Repetição",
     "Confidence Level": "Coeficiente de Confiança",
@@ -6141,6 +6164,7 @@ $.message.pt = {
     "DataType": "(Selecionar variável por nome da variável de clique)",
     "by": "de",
     "NameVar": "Var de nome",
+    "n_variance": "n-1 Fórmula",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";

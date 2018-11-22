@@ -10,6 +10,8 @@
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/language.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
 
 <body>
@@ -21,7 +23,7 @@
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>   
     </div>
     <br>
-    <svg id="DotGraphEst" width="600" height="630"> </svg>
+    <svg id="chart" width="600" height="630"> </svg>
     <form> 
       <button type="button" id="intervalEst" >
         <span data-msgid="Execute">Execute</span>
@@ -30,10 +32,14 @@
       <span data-msgid="Sample Size">Sample Size</span>
       n = <input type="text" class="textarea" value="20" size=4 id="initEst"> &nbsp; &nbsp;
       <span data-msgid="Repetition">Repetition</span>
-      <input type="text" class="textarea" value="5"  size=4 id="iterEst"> <br>
+      <input type="text" class="textarea" value="10"  size=4 id="iterEst"> <br>
     </form>
+      <br>
     <form name="myFormEst">  
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      &nbsp;
       <span data-msgid="Confidence Level">Confidence Level</span>  
       &nbsp; <input type="radio" name = "type1" value="1" > 0.90  &nbsp; 
       <input type="radio" name = "type1" value="2" checked> 0.95  &nbsp; 
@@ -43,7 +49,7 @@
 
   <script>
 
-      var dot2 = d3.select("#DotGraphEst")
+      var dot2 = d3.select("#chart")
 
       var totalHeight = 640;
       var svgWidth    = 600;
@@ -51,15 +57,15 @@
       var margin, graphWidht, graphHeight;
 
       var i, j, k; // 
-      var nint, step, buffer, nvalue, gxmin, gxmax; 
+      var nint, step, buffer, nvalue, gxmin, gxmax, error; 
  
-      var nobs   = 1000;
-      var radius = 2;
+      var nobs   = 10000;
+      var radius = 1;
       var samplePercent;
 
       var statP      = new Array(20);
       var statS      = new Array(20);
-      var bins       = new Array(200);
+      var bins       = new Array(1000);
       var dataSet    = new Array(nobs);
       var dataA      = new Array(nobs);
       var dataValue  = new Array(nobs);
@@ -82,8 +88,8 @@
          title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
          dot2.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
 
-         normalGenerator(nobs, dataSet);
-         nint    = 80;
+         normalGenerator(nobs, dataSet);       
+         nint    = 400;
          step    = 8/nint;
          bins[0] = -4;
          showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
@@ -127,7 +133,7 @@
         if (niter > 300) niter = 300;
         var oneHeight = (totalHeight - svgHeight) / niter; 
 
-        var error = 0;
+        error = 0;
         for (var gg = 0; gg < niter; gg++) {
 
           var sdata  = [];
@@ -153,7 +159,7 @@
 
           // draw dot graph using sample
           start = svgHeight - margin.bottom/3 + gg*oneHeight;
-          if(niter <6) {
+          if(niter < 11) {
             for (k=0; k<sobs; k++) {
               dot2.append("circle")
                  .attr("class","circleS")
@@ -180,10 +186,10 @@
           }
           sstd = Math.sqrt(sqsum / sobs);
 
-          temp = zvalue*sstd/Math.sqrt(sobs);
-          if ( savg - temp > 0 || savg + temp < 0 ) error++;
+          temp = zvalue*statP[2]/Math.sqrt(sobs);
+          if ( savg - temp > statP[1] || savg + temp < statP[1] ) error++;
  
-          drawInterval(sobs, savg, sstd, gxmin, xrange, zvalue, oneHeight, niter, start);
+          drawInterval(sobs, savg, statP, gxmin, xrange, zvalue, oneHeight, niter, start);
   
         } // endof gg
 
@@ -196,6 +202,17 @@
            .attr("y", svgHeight)
            .text(str)
       }) 
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = 600;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
 
   </script>
 

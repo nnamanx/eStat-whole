@@ -51,6 +51,7 @@ simplestat = function(dataid) {
 	         .trim()
 	         .split(new RegExp("[ ]*[, \t][ ]*"))   // ['8', '8', '9']
 	         .map(parseFloat);                      // [8.0, 8.0, 9.0]
+	if(isNaN(data[0])) data = [];
         n = data.length;
         sum = 0;
         sumsq = 0;
