@@ -2970,7 +2970,8 @@ d3.select("#anova").on("click", function() {
     if (dobs > 200)  document.getElementById("DotANOVA").disabled = true;
   }
   else { // 2원 분산분석
-    dataClassifyANOVA2();
+//    dataClassifyANOVA2(); //행기준 
+    dataClassifyANOVA3();   // 열기준
     if (checkNumeric == false) return;
     if (checkDataRBD == false) {
       variableSelectClear();
@@ -2978,9 +2979,10 @@ d3.select("#anova").on("click", function() {
     }
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-    chart.selectAll("*").remove();
-    drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);
-    if (!checkRBD) showDotStd2(ngroup, ngroup2, graphWidth, graphHeight);
+    chart.selectAll("*").remove();   
+//    drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat); // 행기준
+    drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);   // 열기준
+    showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
     document.getElementById("sub15").style.display = "block"; // ANOVA2 선택사항표시
   }
 })

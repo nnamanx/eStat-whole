@@ -3702,7 +3702,7 @@ function dataClassifyANOVA2() {
             }
         } 
 
-      // 셋째 gvar 복사
+      // 셋째 gvar2 복사
         gvarNumber2  = tdvarNumber[2];
         gvarName2    = tdvarName[2];
         //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
@@ -3758,7 +3758,7 @@ function dataClassifyANOVA2() {
         for (i=0; i<dobs; i++) {
           for (j=0; j<ngroup; j++) {
             if (gvar[i] == gdataValue[j]) {k=j; break;}  // gvar[i]의 gdataValue에서 위치파악
-          }        
+          }   
           dataSet[k][nobs[k]] = dvar[i];
           dataSetG2[k][nobs[k]] = gvar2[i];
           nobs[k]++;
@@ -3893,8 +3893,295 @@ function dataClassifyANOVA2() {
       statF[18] = 1 - f_cdf(statF[15], statF[6], statF[9], info);
       statF[19] = 1 - f_cdf(statF[16], statF[7], statF[9], info);
       statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
+}
+// 이원분산분석 데이터 분류 -- 열 점그래프 그리기 위한 것
+function dataClassifyANOVA3() {
+
+      // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
+      for (k = 0; k < rowMax; k++) {
+        dvar[k]        = null;
+        dataValue[k]   = null;
+        dvalueLabel[k] = null;
+        gvar[k]        = null;
+        gdataValue[k]  = null;
+        gvalueLabel[k] = null;
+        gvar2[k]        = null;
+        gdataValue2[k]  = null;
+        gvalueLabel2[k] = null;
+      } 
+
+      //***** Check Missing ***** 
+      dobs = 0;  // 데이터수
+      mobs = 0;  // Missing수
+      for (i = 0; i < tdobs[0]; i++) {
+          checkMissing = false;
+          for (k = 0; k < numVar; k++) {
+            if( tdvar[k][i] == "99999999"  ) {  
+              checkMissing = true;
+              break;  
+            }
+          }
+          if ( checkMissing ) mobs++;  //***** missing 수 증가
+          else { //***** 데이터 수 증가
+            dvar[dobs]  = tdvar[0][i];
+            gvar[dobs]  = tdvar[1][i];
+            gvar2[dobs] = tdvar[2][i];
+            for (k = 0; k < numVar; k++) {           
+              mdvar[k][dobs] = tdvar[k][i]
+            }
+            dobs++;          
+          }
+      } 
+      gobs  = dobs;
+      gobs2 = dobs;
+      // 결측이 없는 행의 수 입력
+      for (k = 0; k < numCol; k++) mdobs[k] = dobs; 
+      // 결측행 제외 각 변량별 값 계산
+      for (k = 0; k < numVar; k++) {
+        for (i = 0; i < dobs; i++) dataA[i] = mdvar[k][i];
+        mdvalueNum[k] = sortAscend(dobs, dataA, dataValue, dvalueFreq);
+        for (j = 0; j < mdvalueNum[k]; j++) {
+          mdvalue[k][j] = dataValue[j];
+          for (m = 0; m < tdvalueNum[k]; m++) {
+            if (mdvalue[k][j] == tdvalue[k][m]) {
+               mdvalueLabel[k][j] = tdvalueLabel[k][m];
+               break;
+            }
+          }
+        }
+      }
+      // 원시자료 표시
+      document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[87][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
+
+      // 세변수 중 첫째 dvar, 둘째 gvar, 셋째 gvar2 변량값, 도수 계산  -- 도수분포표 -------------------------  
+
+        // 분석변수 복사
+        dvarNumber  = tdvarNumber[0];
+        dvarName    = tdvarName[0];
+        //***** missing 빼고 ndvalue, dataValue, dvalueLabel복사
+        ndvalue    = mdvalueNum[0];
+        for (k = 0; k < ndvalue; k++) {
+            dataValue[k] = mdvalue[0][k];           
+            if (mdvalueLabel[0][k] == null ) {
+              dvalueLabel[k] = mdvalue[0][k];
+            }
+            else {
+              dvalueLabel[k] = mdvalueLabel[0][k];
+            }
+        } 
+
+      // 둘째 gvar 복사
+        gvarNumber  = tdvarNumber[1];
+        gvarName    = tdvarName[1];
+        //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        ngvalue = mdvalueNum[1];
+        for (k = 0; k < ngvalue; k++) {
+            gdataValue[k] = mdvalue[1][k];
+            if (mdvalueLabel[1][k] == null ) {
+              if (isNaN(mdvalue[1][k])) gvalueLabel[k] = mdvalue[1][k]; 
+              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel[k] = mdvalueLabel[1][k];
+            }
+        } 
+
+      // 셋째 gvar2 복사
+        gvarNumber2  = tdvarNumber[2];
+        gvarName2    = tdvarName[2];
+        //***** missing 빼고 ngvalue, gdataValue, gvalueLabel복사
+        ngvalue2 = mdvalueNum[2];
+        for (k = 0; k < ngvalue2; k++) {
+            gdataValue2[k] = mdvalue[2][k];
+            if (mdvalueLabel[2][k] == null ) {
+              if (isNaN(mdvalue[2][k])) gvalueLabel2[k] = mdvalue[2][k]; 
+              else gvalueLabel2[k] = svgStr[18][langNum]+(k+1).toString();
+            }
+            else {
+              gvalueLabel2[k] = mdvalueLabel[2][k];
+            }
+        } 
+
+      // check 그룹의 수가 너무 많은지 
+      rawData   = true;
+      if (ngvalue > 9 || ngvalue2 > 9) { 
+         checkData = false;
+         alert(alertMsg[5][langNum]);
+         return;
+      }
+ 
+      // numeric check of dependent variable
+      checkNumeric = true;
+      for (i=0; i<dobs; i++) {
+            if (isNaN(dvar[i])) {
+              checkNumeric = false;
+              alert(alertMsg[15][langNum]);
+              return;
+            } // endof if
+            dvar[i] = parseFloat(dvar[i]);
+      } // endof i
+
+      // gvar에서 ngroup 게산
+      ngroup    = ngvalue;
+      ngroup2   = ngvalue2;
+      oneHeight = graphHeight / ngroup;
+
+      // gvar 변량값별 dvar 각 값 rearrange ----------------   
+      if (ngroup == 1) {
+        nobs[0] = dobs;
+        for (i=0; i<dobs; i++) {
+          dataSet[0][i] = dvar[i];
+          dataSetG2[0][i] = dvar[i];
+        }
+      }
+      else { // 그룹이 있을 경우
+        for (k=0; k<ngroup; k++) {
+          nobs[k] = 0; 
+          nobs2[k] = 0;
+        }  
+        for (i=0; i<dobs; i++) {
+          for (j=0; j<ngroup2; j++) {
+            if (gvar2[i] == gdataValue2[j]) {m=j; break;}  // gvar2[i]의 gdataValue2에서 위치파악
+          }   
+          dataSet[m][nobs[m]] = dvar[i];
+          dataSetG2[m][nobs[m]] = gvar[i];
+          nobs[m]++;
+        }
+      }
+
+      // Two way 평균, 분산 테이블 ----------------   
+      for (k=0; k<ngroup; k++) {
+        for (m=0; m<ngroup2; m++) {
+          nobsTwoWay[k][m] = 0;
+          meanTwoWay[k][m] = 0;
+          stdTwoWay[k][m]  = 0;
+        }
+      }
+      for (i=0; i<dobs; i++) {
+          for (j=0; j<ngroup; j++) {
+            if (gvar[i] == gdataValue[j]) {k=j; break;}  // gvar[i]의 gdataValue에서 위치파악
+          }        
+          for (j=0; j<ngroup2; j++) {
+            if (gvar2[i] == gdataValue2[j]) {m=j; break;}  // gvar2[i]의 gdataValue에서 위치파악
+          }        
+          nobsTwoWay[k][m]++;
+          meanTwoWay[k][m] += dvar[i];
+          stdTwoWay[k][m]  += dvar[i]*dvar[i];
+      }
+
+      // row mean, std
+      for (k=0; k<ngroup; k++) {
+        robsTwoWay[k]  = 0;  
+        rmeanTwoWay[k] = 0; 
+        rstdTwoWay[k]  = 0;
+        for (m=0; m<ngroup2; m++) {
+          robsTwoWay[k]  += nobsTwoWay[k][m];
+          rmeanTwoWay[k] += meanTwoWay[k][m];
+          rstdTwoWay[k]  += stdTwoWay[k][m];
+        }
+      }
+      // col mean std
+      for (m=0; m<ngroup2; m++) {
+        cobsTwoWay[m]  = 0;  
+        cmeanTwoWay[m] = 0; 
+        cstdTwoWay[m]  = 0;
+        for (k=0; k<ngroup; k++) {
+          cobsTwoWay[m]  += nobsTwoWay[k][m];
+          cmeanTwoWay[m] += meanTwoWay[k][m];
+          cstdTwoWay[m]  += stdTwoWay[k][m];
+        }
+      }
+
+      for (k=0; k<ngroup; k++) {
+        for (m=0; m<ngroup2; m++) {
+          if (nobsTwoWay[k][m] == 0) meanTwoWay[k][m] = NaN;
+          else meanTwoWay[k][m] /= nobsTwoWay[k][m];
+          if (nobsTwoWay[k][m] < 2) stdTwoWay[k][m] = NaN;
+          else stdTwoWay[k][m]  = Math.sqrt( (stdTwoWay[k][m] - nobsTwoWay[k][m]*meanTwoWay[k][m]*meanTwoWay[k][m]) / (nobsTwoWay[k][m] - 1) );
+        }
+      }
+
+      for (k=0; k<ngroup; k++) {
+          if (robsTwoWay[k] == 0) rmeanTwoWay[k] = NaN;
+          else rmeanTwoWay[k] /= robsTwoWay[k];
+          if (robsTwoWay[k] < 2) rstdTwoWay[k] = NaN;
+          else rstdTwoWay[k]  = Math.sqrt( (rstdTwoWay[k] - robsTwoWay[k]*rmeanTwoWay[k]*rmeanTwoWay[k]) / (robsTwoWay[k] - 1) );
+      }
+
+      for (m=0; m<ngroup2; m++) {
+          if (cobsTwoWay[m] == 0) cmeanTwoWay[m] = NaN;
+          else cmeanTwoWay[m] /= cobsTwoWay[m];
+          if (cobsTwoWay[m] < 2) cstdTwoWay[m] = NaN;
+          else cstdTwoWay[m]  = Math.sqrt( (cstdTwoWay[m] - cobsTwoWay[m]*cmeanTwoWay[m]*cmeanTwoWay[m]) / (cobsTwoWay[m] - 1) );
+      }
+
+      // ANOVA 2 Statistics
+      TotalStat(dobs, dvar, tstat);
+      var SSR, SSC, SSRC, SSE, SST, temp, gmean;
+      
+      checkDataRBD = true;
+      checkRBD  = false;
+      if (dobs == ngroup*ngroup2) checkRBD = true;
+      else if (dobs < ngroup*ngroup2) {
+        checkDataRBD = false
+        alert("Missing data for Randomized Block Design")
+        return;
+      }
+        
+      gmean = tstat[1];
+      SSR  = 0;
+      SSC  = 0;
+      SSRC = 0;
+      SSE  = 0;
+      SST  = 0;
+      for (i=0; i<dobs; i++) {
+          for (j=0; j<ngroup; j++) {
+            if (gvar[i] == gdataValue[j]) {k=j; break;}  // gvar[i]의 gdataValue에서 위치파악
+          }        
+          for (j=0; j<ngroup2; j++) {
+            if (gvar2[i] == gdataValue2[j]) {m=j; break;}  // gvar2[i]의 gdataValue에서 위치파악
+          }   
+          temp  = dvar[i] - gmean;
+          SST  += temp * temp;
+          temp  = rmeanTwoWay[k] - gmean;
+          SSR  += temp * temp;
+          temp  = cmeanTwoWay[m] - gmean;
+          SSC  += temp * temp;
+          temp  = meanTwoWay[k][m] - rmeanTwoWay[k] - cmeanTwoWay[m] + gmean;
+          SSRC += temp * temp;
+          temp  = dvar[i] - meanTwoWay[k][m];
+          SSE  += temp * temp;
+          if (checkRBD) yhat[i] = gmean;
+          else yhat[i] = meanTwoWay[k][m];
+          residual[i] = dvar[i] - yhat[i];
+      }
+      if (checkRBD) SSE = SSRC;
+      statF[1]  = SSR;
+      statF[2]  = SSC;
+      statF[3]  = SSRC;
+      statF[4]  = SSE;
+      statF[5]  = SST;
+      statF[6]  = ngroup - 1;
+      statF[7]  = ngroup2 - 1;
+      statF[8]  = statF[6]*statF[7];
+      statF[10] = dobs - 1;
+      statF[9]  = statF[10] - statF[6] - statF[7] - statF[8];
+      if (checkRBD) statF[9] = statF[8];
+      statF[11] = SSR  / statF[6];
+      statF[12] = SSC  / statF[7];
+      statF[13] = SSRC / statF[8];
+      statF[14] = SSE  / statF[9];
+      statF[15] = statF[11] / statF[14];
+      statF[16] = statF[12] / statF[14];
+      statF[17] = statF[13] / statF[14];
+      statF[18] = 1 - f_cdf(statF[15], statF[6], statF[9], info);
+      statF[19] = 1 - f_cdf(statF[16], statF[7], statF[9], info);
+      statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
 
 }
+
+
+
 // 회귀분석 데이터 - 점을 그룹으로 구분
 function dataClassifyRegression() {
 
@@ -4275,7 +4562,7 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
 
 }
 
-// 이원분산분석 점그래프 함수 ----------------------------------------------------------------------------------
+// 이원분산분석 점그래프 함수 - 행기준 ----------------------------------------------------------------------------------
 function drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat) {
 
         var i, j, k, m, p, tobs, temp, tlabel, df, info;
@@ -4438,6 +4725,149 @@ function drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
  
 }
 
+// 이원분산분석 점그래프 함수 - 열기준 ----------------------------------------------------------------------------------
+function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat) {
+
+        var i, j, k, m, p, tobs, temp, tlabel, df, info;
+        var sx, sy, tx, ty, x1, x2, y1, y2;
+        var nvalue, freqmax;
+        var gxmin, gxmax, gxrange, height;
+        var oneHeight = graphHeight / ngroup;
+        var oneWidth  = graphWidth / ngroup2;
+        var tdata     = new Array(rowMax);
+        var dataA     = new Array(rowMax);
+        var dataValue = new Array(rowMax);
+        var dvalueFreq= new Array(rowMax);
+        var dataY     = new Array(rowMax);
+
+        var buffer      = 0;
+        var radius      = 3;
+
+        // 점그래프 전체 데이터 최소 최대 계산
+        temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+        gymin  = parseFloat(tstat[3]) - temp;
+        gymax  = parseFloat(tstat[7]) + temp;
+        gyrange = gymax - gymin;
+
+        // 전체 제목
+        chart.append("text")
+             .attr("x",margin.left + titleBuffer)
+             .attr("y",margin.top/2)
+             .style("font-size","17px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","middle")
+             .text(svgStr[109][langNum]) // "인자1 및 인자2 각 수준별 평균 그래프") 
+
+        // Y축 제목
+        chart.append("text")
+             .style("font-size","12px")
+             .style("font-family","sans-seirf")
+             .style("stroke","black")
+             .style("text-anchor","end")
+             .attr("x",margin.left - 25 )
+             .attr("y",margin.top + graphHeight/2)
+             .text(dvarName)
+        yTitle[graphNum] = dvarName;
+        // 그림 캔버스
+        chart.append("rect")
+             .style("fill","white")
+             .style("stroke","black")
+             .attr("x",margin.left )
+             .attr("y",margin.top)
+             .attr("width",graphWidth)
+             .attr("height",graphHeight)
+        // Y축
+        var yScale = d3.scaleLinear().domain([gymin, gymax]).range([graphHeight, 0]);
+        chart.append("g")
+             .attr("class","axis")
+             .attr("transform","translate("+margin.left+", "+margin.top+") ")
+             .call(d3.axisLeft(yScale))
+        // 인자 1의 범례
+        str = svgStr[92][langNum]+"1 : ";  //인자
+        chart.append("text")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
+                 .style("stroke","black")
+                 .attr("x",margin.left + graphWidth + 10)
+                 .attr("y",margin.top)
+                 .text(str);
+        for (k=0; k<ngroup; k++) {
+            m  = k+1;
+            str = svgStr[93][langNum]+(k+1).toString()+"("+gdataValue[k]+")";;  // 수준 
+            chart.append("text")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","start")
+                 .style("stroke",myColor[m])
+                 .attr("x",margin.left + graphWidth +  10)
+                 .attr("y",margin.top + (k+1)*20)
+                 .text(str);
+        }
+
+        // 인자2 범례 헤딩
+        str = svgStr[92][langNum]+"2 : ";   // 인자
+        chart.append("text")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","middle")
+                 .style("stroke","black")
+                 .attr("x",margin.left - 10 )
+                 .attr("y",margin.top + graphHeight + 20)
+                 .text(str);
+
+        // 그룹별 점그래프
+        for (k=0; k<ngroup2; k++) { 
+            str = svgStr[93][langNum]+(k+1).toString()+"("+gdataValue2[k]+")";  
+            chart.append("text")
+                 .style("font-size","12px")
+                 .style("font-family","sans-seirf")
+                 .style("stroke","black")
+                 .style("text-anchor","middle")
+                 .attr("x",margin.left + (k+0.5)*oneWidth)
+                 .attr("y",margin.top + graphHeight + 20)
+                 .text(str);
+
+          tobs = nobs[k];
+          for (i=0; i<tobs; i++) {
+            tdata[i] = dataSet[k][i];
+            tdataG2[i] = dataSetG2[k][i];
+          }
+
+          // 점그리기
+          sx = margin.left + graphWidth/2;
+          sy = margin.top; 
+          for (j=0; j<tobs; j++) {
+            for (p=0; p<ngvalue; p++) { // 인자1의 수준의 위치 
+              if (tdataG2[j] == gdataValue[p]) {
+                m = p+1;
+                break;
+              }
+            }
+            tx = margin.left + (k+0.5)*oneWidth;
+            ty = margin.top + graphHeight - graphHeight*(tdata[j]-gymin)/gyrange;
+            chart.append("circle")
+               .attr("class","circle")
+               .attr("tooltip","circle")
+               .style("fill",myColor[m])
+               .attr("cx", sx)
+               .attr("cy", sy)
+               .attr("r", radius)
+               .transition()                           // 애니매이션 효과 지정
+               .delay(function(d,i) {return i*200;})   // 0.5초마다 그리도록 대기시간 설정
+               .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
+               .attr("cx", tx)
+               .attr("cy", ty)
+           } // endof j
+
+        } // endof k
+      
+ 
+}
 
 // 점그래프 x축 눈금 표시
 function drawDotXaxis(gxmin, gxmax, graphWidth, graphHeight, buffer) {
@@ -4826,6 +5256,49 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
        }
      }
 */
+}
+// 점그래프 표준편차 표시 함수
+function showDotStd4(nroup, ngroup2, graphWidth, graphHeight) {
+       var k, m, p, avgx, ty, tx1, tx2, ty1, ty2, df, info;
+       var gymin, gymax, gyrange;
+       var oneWidth  = graphWidth / ngroup2;
+
+        // 점그래프 전체 데이터 최소 최대 계산
+        temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
+        gymin  = parseFloat(tstat[3]) - temp;
+        gymax  = parseFloat(tstat[7]) + temp;
+        gyrange = gymax - gymin;
+
+     for (k=0; k<ngroup; k++) {   
+       for (m=1; m<ngroup2; m++) {
+         if (isNaN(meanTwoWay[k][m-1]) || isNaN(meanTwoWay[k][m])) continue;
+         tx1 = margin.left + (m-0.5)*oneWidth;
+         ty1 = margin.top + graphHeight - graphHeight*(meanTwoWay[k][m-1]-gymin)/gyrange;  ;
+         tx2 = margin.left + (m+0.5)*oneWidth;
+         ty2 = margin.top + graphHeight - graphHeight*(meanTwoWay[k][m]-gymin)/gyrange;
+         p = k + 1;
+         chart.append("circle")
+            .attr("class","std")
+            .attr("cx",tx1)
+            .attr("cy",ty1)
+            .attr("r",5)
+            .style("fill",myColor[p])    
+         chart.append("line")
+            .attr("class","std")
+            .attr("x1",tx1)
+            .attr("y1",ty1)
+            .attr("x2",tx2)
+            .attr("y2",ty2)
+            .style("stroke-width","3px")
+            .style("stroke",myColor[p])                    
+         chart.append("circle")
+            .attr("class","std")
+            .attr("cx",tx2)
+            .attr("cy",ty2)
+            .attr("r",5)
+            .style("fill",myColor[p])           
+       }
+     }
 }
      
 // 점그래프 표준편차 제거 함수
