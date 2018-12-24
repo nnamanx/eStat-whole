@@ -58,10 +58,10 @@ strGraph[27] = "testS1";        // 가설검정 sigma
 strGraph[28] = "executeTH9";    // 가설검정 sigma 실행
 strGraph[29] = "testM12";       // 가설검정 mu12
 strGraph[30] = "executeTH10";   // 가설검정 mu12
-strGraph[31] = "testS12";       // 가설검정 sigma
-strGraph[32] = "executeTH11";   // 가설검정 sigma
+strGraph[31] = "testS12";       // 가설검정 sigma12
+strGraph[32] = "executeTH11";   // 가설검정 sigma12 실행
 strGraph[33] = "anova";         // 가설검정 anova 
-strGraph[34] = "executeTH12";   // 가설검정 anova 
+strGraph[34] = "executeTH12";   // 가설검정 anova 실행
 strGraph[35] = "regression";    // 회귀분석
 
 // 한글 체크 
@@ -295,8 +295,8 @@ function graphTitle() {
         case 31: gstr = svgStr[113][langNum];   break; // TH sigma 평균-표준편차 그래프
         case 32: gstr = svgStr[14][langNum];  	break; // 두 모분산 가설검정
         case 33: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
-        case 34: gstr = svgStr[15][langNum];    break; // 분산분석 // 산점도행렬
-        case 35: gstr = svgStr[89][langNum];    break; // 잔차산점도
+        case 34: gstr = svgStr[15][langNum];    break; // 분산분석 
+        case 35: gstr = svgStr[89][langNum];    break; // 산점도행렬
         case 36: gstr = svgStr[83][langNum];    break; // 잔차산점도
         case 37: gstr = svgStr[80][langNum];    break; // Q-Q plot
         case 38: gstr = svgStr[86][langNum];    break; // 신뢰구간 그래프
@@ -3226,7 +3226,7 @@ function dataClassifyM12() {
           }
         }
       }
-      // 두그룹 t-test는 (경우1) 첫째는 그룹변량 둘째는 분석변량 (경우2) paired t-test
+      // 두그룹 t-test는 (경우1) 분석 - 그룹변량 (경우2) paired t-test
 
         // 그룹변수
         gvarNumber  = tdvarNumber[1];
@@ -3306,14 +3306,14 @@ function dataClassifyM12() {
                alert(alertMsg[19][langNum]);
                return;
             }
-            else tdata[i] = parseFloat(gvar[i]) - parseFloat(dvar[i]);
+            else tdata[i] = parseFloat(dvar[i]) - parseFloat(gvar[i]);
         } // endof i
 
         for (i = 0; i < dobs; i++) dvar[i] = tdata[i];
         ngroup      = 1;
         gobs        = dobs;
-        gvarNumber  = "";
-        gvarName    = "";
+//        gvarNumber  = "";
+//        gvarName    = "";
         for (k=0; k<ngroup; k++) gvalueLabel[k] = null;
         for (i=0; i<gobs; i++) {
           gvar[i]  = 1;
@@ -4413,10 +4413,21 @@ function drawTitleM(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNa
 
         // 주제목
         if (mTitle[graphNum] == "") {
-          if (ngroup == 1) str = dvarName+svgStr[19][langNum]+iTitle[graphNum];
+          if (ngroup == 1) {
+            if (checkPairedT == false) { // independent T-test
+              str = dvarName+svgStr[19][langNum]+iTitle[graphNum];
+            }
+            else { // paired T-test
+              str = "("+dvarName+" - "+gvarName+" "+svgStrU[96][langNum]+") "+iTitle[graphNum];
+            }
+          }
           else {
-            if(graphNum == 32) str = "("+svgStr[92][langNum]+"1 : "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum]; // 인자
-            else str = "("+svgStr[18][langNum]+" "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum];
+            if(graphNum == 34) { // anova 인자
+              str = "("+svgStr[92][langNum]+"1 : "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum]; 
+            }
+            else { // 그룹
+              str = "("+svgStr[18][langNum]+" "+gvarName+ ") " + " "+dvarName+svgStr[19][langNum]+iTitle[graphNum];
+            }
           }
         }
         else str = mTitle[graphNum];
@@ -5258,7 +5269,7 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
 */
 }
 // 점그래프 표준편차 표시 함수
-function showDotStd4(nroup, ngroup2, graphWidth, graphHeight) {
+function showDotStd4(nroup, ngroup2, graphWidth, graphHeight) { // 행기준
        var k, m, p, avgx, ty, tx1, tx2, ty1, ty2, df, info;
        var gymin, gymax, gyrange;
        var oneWidth  = graphWidth / ngroup2;
@@ -7036,7 +7047,7 @@ function drawScatterTitle(mainTitle, gvarNumber, xvarNumber, yvarNumber, gvarNam
         // 주제목
         if (mTitle[graphNum] == "") {
           if (numVar == 2) {
-            if (graphNum == 34)  str = yvarName + "(y) : "+xvarName+"(x)"+svgStr[19][langNum]+iTitle[20];
+            if (graphNum == 35)  str = yvarName + "(y) : "+xvarName+"(x)"+svgStr[19][langNum]+iTitle[20];
             else str = yvarName + "(y) : "+xvarName+"(x)"+svgStr[19][langNum]+iTitle[graphNum];
           }
           else {
@@ -11479,12 +11490,12 @@ function drawNormalGraphTHNP(hypoType, h1Type, stat, mu, sigma, a, b, prob, pval
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+" (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3)  str = svgStrU[23][langNum]+" (p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
-         else if (hypoType == 6)  str = svgStrU[23][langNum]+" (p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
-         else if (hypoType == 94) str = svgStrU[23][langNum]+" (+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
-         else if (hypoType == 95) str = svgStrU[23][langNum]+" R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
-         else if (hypoType == 96) str = svgStrU[23][langNum]+" R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3)  str = svgStrU[23][langNum]+" = (p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6)  str = svgStrU[23][langNum]+" = (p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         else if (hypoType == 94) str = svgStrU[23][langNum]+" = (+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 95) str = svgStrU[23][langNum]+" = R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 96) str = svgStrU[23][langNum]+" = R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
@@ -11567,11 +11578,11 @@ function drawNormalGraphTHNP(hypoType, h1Type, stat, mu, sigma, a, b, prob, pval
          y2 = y1 + 60;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
             .style("stroke","green").attr("stroke-width","2px");
-         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" "+f3(stat))
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" = "+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
-         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" "+str)
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" = "+str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;
@@ -11817,9 +11828,9 @@ function drawChisqGraphTHNP(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 2)       str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 9)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 2)       str = svgStrU[23][langNum]+" = (n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8)  str = svgStrU[23][langNum]+" = \u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 9)  str = svgStrU[23][langNum]+" = \u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 98) str = svgStrU[67][langNum]+" ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
@@ -11905,11 +11916,11 @@ function drawChisqGraphTHNP(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          y2 = y1 + 60;
          chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
             .style("stroke","green").attr("stroke-width","2px");
-         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
+         chart.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" = "+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
-         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
+         chart.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" = "+str)
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;

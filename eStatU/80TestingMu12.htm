@@ -110,6 +110,9 @@
 	  <td><span class="fontmath">m<sub>2</sub></span></td>
 	  <td>=</td>	
 	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
+	  <td><span class="fontmath">m<sub>d</sub></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="xbarDiff"></td>
 	</tr>
 	<tr>
           <td></td>
@@ -175,6 +178,8 @@
       a[1].onclick = function() { alpha = 0.01; } 
  
       // Sample type
+      document.getElementById("xbarDiff").disabled = true;    
+      document.getElementById("varDiff").disabled = true;    
       var sample = document.myForm3.type3;
       var sampleType = 1;
       sample[0].onclick = function() { // independent sample
@@ -182,7 +187,11 @@
         if (testType == 1) hypoType = 41;
         else if (testType == 2) hypoType = 42;
       }  
-      sample[1].onclick = function() { sampleType = 2; hypoType = 43;}  // paired sample
+      sample[1].onclick = function() { // paired sample
+        sampleType = 2; 
+        hypoType = 43;
+      }
+      
 
       // input data control ===================================================
       d3.select("#data1").on("input", function() {
@@ -262,7 +271,8 @@
             }
             df  = x.length -1;
             varDiff /= df ;
-            document.getElementById("varDiff").value   = f2(varDiff); 
+            document.getElementById("xbarDiff").value  = f3(avgDiff); 
+            document.getElementById("varDiff").value   = f3(varDiff); 
             teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varDiff/x.length);
           }       
           if (h1Type == 1) {

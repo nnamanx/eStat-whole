@@ -1188,6 +1188,7 @@ d3.select("#separate1").on("click", function() {
     drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
         freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
     if (ngroup == 1) {
+        document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
         document.getElementById("sub2").style.display = "block"; //분리형 막대 정렬 표시
         document.myForm2.type2.value = 1;
     }
@@ -1222,9 +1223,13 @@ d3.select("#separate2V").on("click", function() {
     currentLabel = dvalueLabel;
     drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
         freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
-    if (numVar == 1) {
+    if (ngroup == 1) {
+        document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
         document.getElementById("sub2").style.display = "block"; //분리형 막대 정렬 표시
         document.myForm2.type2.value = 1;
+    }
+    else {
+        document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
     }
 })
 // 분리형 수평 막대그래프 : 부메뉴
@@ -1255,8 +1260,12 @@ d3.select("#separate2H").on("click", function() {
     drawSeparateBarGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel,
         freqMax, currentLabel, currentDataSet, dataSet, checkFreq);
     if (ngroup == 1) {
+        document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
         document.getElementById("sub2").style.display = "block"; //분리형 막대 정렬 표시
         document.myForm2.type2.value = 1;
+    }
+    else {
+        document.getElementById("sub1").style.display = "block"; //분리형 막대 도수표시
     }
 })
 // 막대그래프 도수표시 버튼 클릭
@@ -1719,9 +1728,11 @@ d3.select("#DotMean").on("click", function() {
         if (this.checked) {
             checkDotMean = true;
             showDotMean(ngroup, nobs, avg, std, tstat);
+            showDotStd3(ngroup, nobs, avg, std, tstat);
         } else {
             checkDotMean = false;
             removeDotMean();
+            removeDotStd();
         }
     }
 })
@@ -2096,7 +2107,7 @@ d3.select("#testM1").on("click", function() {
 })
 // 모평균 가설검정 실행
 d3.select("#executeTH8").on("click", function() {
-    graphNum = 25;
+    graphNum = 26;
     // input value mu0
     mu = parseFloat(d3.select("#mu8").node().value);
     if (isNaN(mu)) {
@@ -2369,7 +2380,7 @@ d3.select("#testS1").on("click", function() {
 
 // 모분산 가설검정 실행
 d3.select("#executeTH9").on("click", function() {
-    graphNum = 27;
+    graphNum = 28;
     // input value sigma0
     vari = parseFloat(d3.select("#vari9").node().value);
     if (isNaN(vari)) {
@@ -2493,7 +2504,8 @@ d3.select("#testM12").on("click", function() {
     document.getElementById("testM12").style.height = iconH1;
     document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량 
     document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
-    document.getElementById("groupVarMsg").innerHTML = "";
+    document.getElementById("groupVarMsg").innerHTML = "(or "+svgStrU[95][langNum]+")";
+    document.getElementById("executeTH10NP").disabled = false;
     // check numVar <= 1 && numVar > 2    
     if (numVar <= 1) return;
     validateNumVar(graphNum, numVar);
@@ -2516,6 +2528,7 @@ d3.select("#testM12").on("click", function() {
       else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
     }
     else {  // paired t-test 
+      document.getElementById("executeTH10NP").disabled = true;
       TotalStat(dobs, tdata, tstat);
       GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
       str = "d = ("+tdvarName[0] + " - " + tdvarName[1]+")";
@@ -2531,7 +2544,7 @@ d3.select("#testM12").on("click", function() {
 })
 // 가설검정 Mu 12 재실행
 d3.select("#executeTH10").on("click", function() {
-    graphNum = 29;
+    graphNum = 30;
     // mu0 입력
     mu = parseFloat(d3.select("#mu10").node().value);
     // 대립가설
@@ -2841,7 +2854,7 @@ d3.select("#testS12").on("click", function() {
 })
 // 두 모분산 가설검정 실행
 d3.select("#executeTH11").on("click", function() {
-    graphNum = 31;
+    graphNum = 32;
     hypoType = 5;
 
     // 대립가설
@@ -2970,8 +2983,7 @@ d3.select("#anova").on("click", function() {
     if (dobs > 200)  document.getElementById("DotANOVA").disabled = true;
   }
   else { // 2원 분산분석
-//    dataClassifyANOVA2(); //행기준 
-    dataClassifyANOVA3();   // 열기준
+    dataClassifyANOVA2();
     if (checkNumeric == false) return;
     if (checkDataRBD == false) {
       variableSelectClear();
@@ -2979,16 +2991,15 @@ d3.select("#anova").on("click", function() {
     }
     TotalStat(dobs, dvar, tstat);
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-    chart.selectAll("*").remove();   
-//    drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat); // 행기준
-    drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);   // 열기준
-    showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
+    chart.selectAll("*").remove();
+    drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);
+    if (!checkRBD) showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
     document.getElementById("sub15").style.display = "block"; // ANOVA2 선택사항표시
   }
 })
 // 1원분산분석 실행
 d3.select("#executeTH12").on("click", function() {
-    graphNum = 33;
+    graphNum = 34;
     chart.selectAll("*").remove();
     // siginificancelevel
     if (document.myForm122.type2.value == "1") alpha = 0.05;
@@ -3014,7 +3025,7 @@ d3.select("#executeTH12").on("click", function() {
 })
 // Kruskal-Wallis 1원분산분석 실행
 d3.select("#executeTH12NP").on("click", function() {
-    graphNum = 33;
+    graphNum = 34;
     chart.selectAll("*").remove();
     hypoType  = 98;  // 크루스칼검정
     h1Type    = 2;   // 우측검정

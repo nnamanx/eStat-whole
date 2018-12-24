@@ -227,7 +227,7 @@ $.message.ko = {
     "F-test": "F-검정",
     "Sampling Type": "표본",
     "Independent Sample": "독립표본",
-    "Paired Sample": "종속표본",
+    "Paired Sample": "대응표본",
     "Sample Data": "표본자료",
     "input either sample data": "(자료를 공란으로 구분), ([표본통계량]만 입력도 가능)",
     "Sample Statistics": "표본통계량",
@@ -235,7 +235,7 @@ $.message.ko = {
     "Sample Variance": "표본분산",
     "Sample Proportion": "표본비율",
     "if Z-test-1": "(Z-검정이면, 모분산 입력)",
-    "if Z-test-2": "(Z-검정이면, Z<sub>1-&alpha;/2 </sub> 이용)",
+    "if Z-test-2": "(Z-검정이면, Z<sub>&alpha;/2 </sub> 이용)",
     "At least one pair": "적어도 한쌍 이상의 평균이 다름",
     "Row-Col-0": "행변량과 열변량이 독립",
     "Row-Col-1": "행변량과 열변량이 독립 아님",
@@ -526,7 +526,7 @@ svgStrU[24][0] = "분포";
 svgStrU[25][0] = "기각 H\u2080";
 svgStrU[26][0] = "채택 H\u2080";
 svgStrU[27][0] = "p-값";
-svgStrU[28][0] = "[의사결정]";
+svgStrU[28][0] = "[의사결정] ";
 svgStrU[29][0] = "[분산분석]";
 svgStrU[30][0] = "상관계수를 입력하고 실행버튼을 누르세요.";
 svgStrU[31][0] = "회귀선";
@@ -593,8 +593,8 @@ svgStrU[91][0] = "경도";
 svgStrU[92][0] = "위도";
 svgStrU[93][0] = "적어도 한쌍 이상의 위치모수가 다름";
 svgStrU[94][0] = "윌콕슨 부호순위합 분포";
-svgStrU[95][0] = "";
-
+svgStrU[95][0] = "대응변량";
+svgStrU[96][0] = "대응비교";
 
 // English
 $.message.en = {
@@ -759,8 +759,8 @@ $.message.en = {
     "Chi-test": "&chi;<sup>2</sup>-test",
     "F-test": "F-test",
     "Sampling Type": "Sampling Type",
-    "Independent Sample": "independent",
-    "Paired Sample": "paired",
+    "Independent Sample": "independent sample",
+    "Paired Sample": "paired sample",
     "Sample Data": "Sample Data",
     "input either sample data": "Input either sample data using BSV or sample statistics at the next boxes",
     "Sample Statistics": "Sample Statistics",
@@ -768,7 +768,7 @@ $.message.en = {
     "Sample Variance": "Sample Variance",
     "Sample Proportion": "Sample Proportion",
     "if Z-test-1": "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used.)",
+    "if Z-test-2": "(if Z-test, Z<sub>&alpha;/2 </sub> is used.)",
     "At least one pair": "At least one pair of means is different",
     "Row-Col-0": "Row and column variables are independent",
     "Row-Col-1": "Row and column variables are not independent",
@@ -1059,7 +1059,7 @@ svgStrU[24][1] = "Distribution";
 svgStrU[25][1] = "Reject H\u2080";
 svgStrU[26][1] = "Accept H\u2080";
 svgStrU[27][1] = "p-value";
-svgStrU[28][1] = "[Decision]";
+svgStrU[28][1] = "[Decision] ";
 svgStrU[29][1] = "[ANOVA]";
 svgStrU[30][1] = "Enter Correlation Coefficient and click Execute button";
 svgStrU[31][1] = "Regression";
@@ -1126,7 +1126,8 @@ svgStrU[91][1] = "Longitude";
 svgStrU[92][1] = "Latitude";
 svgStrU[93][1] = "At least one pair of locations is different";
 svgStrU[94][1] = "Wilcoxon Signed Rank Sum Distribution";
-svgStrU[95][1] = "";
+svgStrU[95][1] = "Paired Var";
+svgStrU[96][1] = "Paired Data";
 
 // Japanese
 $.message.ja = {
@@ -1213,7 +1214,7 @@ $.message.ja = {
     "Significance Level": "有意水準",
     "Execute": "実行",
     "(Confidence Interval)": "(信頼区間)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-検定のとき, Z &sigma;利用)",
+    "(if Z-test, Z<sub>&alpha;/2 </sub> is used)": "(Z-検定のとき, Z &sigma;利用)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 検定",
     "Variance Assumption": "分散の仮定",
     "F test": "F 検定",
@@ -1301,7 +1302,7 @@ $.message.ja = {
     "Sample Variance": "標本分散",
     "Sample Proportion": "標本比率",
     "if Z-test-1": "(Z-検定の場合, 母分散を入力)",
-    "if Z-test-2": "(Z-検定の場合, Z<sub>1-&alpha;/2 </sub> 使用)",
+    "if Z-test-2": "(Z-検定の場合, Z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "少なくとも一つのペアの平均が異なる",
     "Row-Col-0": "行変数と列変数は独立である",
     "Row-Col-1": "行変数と列変数は独立ではない",
@@ -1593,7 +1594,7 @@ svgStrU[24][2] = "分布";
 svgStrU[25][2] = "棄却 H\u2080";
 svgStrU[26][2] = "採択 H\u2080";
 svgStrU[27][2] = "p-値";
-svgStrU[28][2] = "[意思決定]";
+svgStrU[28][2] = "[意思決定] ";
 svgStrU[29][2] = "[分散分析]";
 svgStrU[30][2] = "相関係数を入力し、実行ボタンをクリックしてください.";
 svgStrU[31][2] = "回帰直線";
@@ -1660,7 +1661,8 @@ svgStrU[91][2] = "経度";
 svgStrU[92][2] = "緯度";
 svgStrU[93][2] = "位置母数 !=";
 svgStrU[94][2] = "ウィルコクソン符號順位合分布";
-svgStrU[95][2] = "";
+svgStrU[95][2] = "対応変数";
+svgStrU[96][2] = "対応データ";
 
 // Chinese
 $.message.zhTW = {
@@ -1831,7 +1833,7 @@ $.message.zhTW = {
     "Sample Variance": "樣本變異數",
     "Sample Proportion": "樣本比例",
     "if Z-test-1": "(Z-檢定, 母分散入力)",
-    "if Z-test-2": "(Z-檢定, Z<sub>1-&alpha;/2 </sub> 使用)",
+    "if Z-test-2": "(Z-檢定, Z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "至少有一對平均數不相等",
     "Row-Col-0": "列變數與行變數獨立",
     "Row-Col-1": "列變數與行變數不獨立",
@@ -1860,7 +1862,7 @@ $.message.zhTW = {
     "GroupVar4": "因子2",
     "AnalysisVarMu12": "分析(or X1)變數",
     "GroupVarMu12": "群(or X2)變數",
-    "PairedMu12": " X1, X2 : 對應變數",
+    "PairedMu12": " X1, X2 : 配對變數",
     "SizeVar": "變數大小",
     "RegressionBand": "信頼帯",
     "RegressionTable": "回歸分析",
@@ -2189,7 +2191,8 @@ svgStrU[91][3] = "經度";
 svgStrU[92][3] = "緯度";
 svgStrU[93][3] = "至少一個位置參數不相同";
 svgStrU[94][3] = "Wilcoxon 符號等級分布";
-svgStrU[95][3] = "";
+svgStrU[95][3] = "配對變數";
+svgStrU[96][3] = "配對資料";
 
 // French
 $.message.fr = {
@@ -2350,9 +2353,9 @@ $.message.fr = {
     "t-test": "t-test",
     "Chi-test": "&chi;<sup>2</sup>-test",
     "F-test": "F-test",
-    "Sampling Type": "Sampling Type",
-    "Independent Sample": "independent",
-    "Paired Sample": "paired",
+    "Sampling Type": "type d'échantillonnage",
+    "Independent Sample": "indépendant",
+    "Paired Sample": "jumelé",
     "Sample Data": "Données échantillonnées",
     "input either sample data": "Entrez soit la taille de l'échantillon, soit  les statistiques de l'échantillon dans les cases suivantes en séparant par  des virgules ou des blancs",
     "Sample Statistics": "Statistiques de l'échantillon",
@@ -2360,7 +2363,7 @@ $.message.fr = {
     "Sample Variance": "Variance de l'échantillon",
     "Sample Proportion": "Pourcentage de l'échantillon",
     "if Z-test-1": "(if Z-test, Pour le Z-test, entrez la variance de la population &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if Z-test, Z<sub>1-&alpha;/2 </sub> utilisé.)",
+    "if Z-test-2": "(if Z-test, Z<sub>&alpha;/2 </sub> utilisé.)",
     "At least one pair": "Au moins deux moyennes sont différentes ",
     "Row-Col-0": "Les variables en ligne et en colonne sont indépendantes",
     "Row-Col-1": "Les variables en ligne et en colonne ne sont pas indépendantes",
@@ -2652,7 +2655,7 @@ svgStrU[24][4] = "Distribution";
 svgStrU[25][4] = "Rejeter H\u2080";
 svgStrU[26][4] = "Accepter H\u2080";
 svgStrU[27][4] = "p-valeur";
-svgStrU[28][4] = "[Décision]";
+svgStrU[28][4] = "[Décision] ";
 svgStrU[29][4] = "[ANOVA]";
 svgStrU[30][4] = "Entrer le coefficient de corrélation et cliquer sur le bouton Executer";
 svgStrU[31][4] = "Régression";
@@ -2719,7 +2722,8 @@ svgStrU[91][4] = "Longitude";
 svgStrU[92][4] = "Latitude";
 svgStrU[93][4] = "Au moins une paire d'emplacements est différente";
 svgStrU[94][4] = "Wilcoxon Test de rang signé";
-svgStrU[95][4] = "";
+svgStrU[95][4] = "Variable appariée";
+svgStrU[96][4] = "Données Appariées";
 
 // German
 $.message.de = {
@@ -2877,9 +2881,9 @@ $.message.de = {
     "Hypothesis": "Hypothese",
     "Test Type": "Testtyp",
     "Chi-test": "&chi;<sup>2</sup>-test",
-    "Sampling Type": "Sampling Type",
-    "Independent Sample": "independent",
-    "Paired Sample": "paired",
+    "Sampling Type": "Beispielstyp",
+    "Independent Sample": "unabhängig",
+    "Paired Sample": "gepaart",
     "Sample Data": "Stichprobendaten",
     "input either sample data": "Gib entweder Stichprobenwerte oder Stichprobenstatistik ein.",
     "Sample Statistics": "Stichprobenstatistik",
@@ -2887,7 +2891,7 @@ $.message.de = {
     "Sample Variance": "Stichprobenvarianz",
     "Sample Proportion": "Stichprobenanteil",
     "if Z-test-1": "(Falls Z-Test vorliegt, gib Varianz ein)",
-    "if Z-test-2": "(Falls Z-Test vorliegt, Z<sub>1-&alpha;/2 </sub>)",
+    "if Z-test-2": "(Falls Z-Test vorliegt, Z<sub>&alpha;/2 </sub>)",
     "At least one pair": "mindestens ein Paar von Mittelwerten ist verschieden",
     "Row-Col-0": "Zeilen- und  Spaltenvariablen sind unabhängig",
     "Row-Col-1": "Zeilen- und  Spaltenvariablen sind nicht unabhängig",
@@ -3179,7 +3183,7 @@ svgStrU[24][5] = "Verteilung";
 svgStrU[25][5] = "lehne H\u2080 ab";
 svgStrU[26][5] = "Akzeptiere H\u2080";
 svgStrU[27][5] = "p-Wert";
-svgStrU[28][5] = "[Entscheidung]";
+svgStrU[28][5] = "[Entscheidung] ";
 svgStrU[29][5] = "[ANOVA]";
 svgStrU[30][5] = "Gib den Korrelationskoeffizienten ein und klicke auf den Button Ausführen";
 svgStrU[31][5] = "Regression";
@@ -3246,7 +3250,8 @@ svgStrU[91][5] = "Längengrad";
 svgStrU[92][5] = "Breite";
 svgStrU[93][5] = "Mindestens ein Standortpaar ist unterschiedlich";
 svgStrU[94][5] = "Wilcoxon Vorzeichenhafter Rang Distribution";
-svgStrU[95][5] = "";
+svgStrU[95][5] = "Gepaarte Variable";
+svgStrU[96][5] = "Gepaarte Daten";
 
 // Spanish
 $.message.es = {
@@ -3417,7 +3422,7 @@ $.message.es = {
     "Sample Variance": "Varianza muestral",
     "Sample Proportion": "Proporción muestral",
     "if Z-test-1": "(Si test Z entrar la varianza de la población &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(Si test Z Z<sub>1-&alpha;/2 </sub> )",
+    "if Z-test-2": "(Si test Z Z<sub>&alpha;/2 </sub> )",
     "At least one pair": "Al menos un par de medias es diferente",
     "Row-Col-0": "La variables fila y columna son independientes",
     "Row-Col-1": "La variables fila y columna no  son independientes",
@@ -3776,7 +3781,8 @@ svgStrU[91][6] = "Longitud";
 svgStrU[92][6] = "Latitud";
 svgStrU[93][6] = "Al menos un par de ubicaciones es diferente";
 svgStrU[94][6] = "Wilcoxon Distribución de Rango Firmado";
-svgStrU[95][6] = "";
+svgStrU[95][6] = "Variable emparejada";
+svgStrU[96][6] = "Datos emparejada";
 
 // Vietnamese
 $.message.vi = {
@@ -3939,7 +3945,7 @@ $.message.vi = {
     "F-test": "Kiểm định F",
     "Sampling Type": "Kiểu lấy mẫu",
     "Independent Sample": "độc lập",
-    "Paired Sample": "Mẫu paired",
+    "Paired Sample": "mẫu ghép",
     "Sample Data": "Dữ liệu mẫu",
     "input either sample data": "Nhập dữ vào bảng kế tiếp bằng file csv/bsv",
     "Sample Statistics": "Thống kê mẫu",
@@ -3947,7 +3953,7 @@ $.message.vi = {
     "Sample Variance": " Phương sai mẫu",
     "Sample Proportion": "Tỉ lệ mẫu",
     "if Z-test-1": "(Nếu kiểm định Z, nhập phương sai tổng thể &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(Nếu kiểm định Z, Z<sub>1-&alpha;/2 </sub>.)",
+    "if Z-test-2": "(Nếu kiểm định Z, Z<sub>&alpha;/2 </sub>.)",
     "At least one pair": "Có ít nhất một cặp trung bình khác nhau",
     "Row-Col-0": "Biến cột và biến dòng độc lập ",
     "Row-Col-1": "Biến cột và biến dòng độc lập ",
@@ -4234,8 +4240,8 @@ svgStrU[23][7] = "[Thống kê kiểm định]";
 svgStrU[24][7] = "Phân phối";
 svgStrU[25][7] = "Bác bỏ H\u2080";
 svgStrU[26][7] = "Chấp nhận H\u2080";
-svgStrU[27][7] = "Giá trị p-value";
-svgStrU[28][7] = "[Quyết định]";
+svgStrU[27][7] = "Giá trị p";
+svgStrU[28][7] = "[Quyết định] ";
 svgStrU[29][7] = "[ANOVA]";
 svgStrU[30][7] = "Nhập hệ số tương quan và nhấn Thực thi";
 svgStrU[31][7] = "Hồi quy";
@@ -4302,7 +4308,8 @@ svgStrU[91][7] = "Kinh độ";
 svgStrU[92][7] = "Vĩ độ";
 svgStrU[93][7] = "Ít nhất một cặp vị trí khác nhau";
 svgStrU[94][7] = "Wilcoxon Kiểm tra xếp hạng đã ký";
-svgStrU[95][7] = "";
+svgStrU[95][7] = "Biến cặp";
+svgStrU[96][7] = "dữ liệu được ghép nối";
 
 // Indonesian
 $.message.id = {
@@ -4473,7 +4480,7 @@ $.message.id = {
     "Sample Variance": "Varians Sampel",
     "Sample Proportion": "Proporsi Sampel",
     "if Z-test-1": "(if uji-Z, Masukkan Varians Populasi &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if uji-Z, Z<sub>1-&alpha;/2 </sub> digunakan.)",
+    "if Z-test-2": "(if uji-Z, Z<sub>&alpha;/2 </sub> digunakan.)",
     "At least one pair": " Setidaknya Ada Satu Pasang Rata-rata yang Berbeda",
     "Row-Col-0": "Baris dan Kolom Variabel saling bebas/independen",
     "Row-Col-1": " Baris dan Kolom Variabel tidak saling bebas/independen",
@@ -4765,7 +4772,7 @@ svgStrU[24][8] = "Distribusi";
 svgStrU[25][8] = "Tolak H\u2080";
 svgStrU[26][8] = "Terima H\u2080";
 svgStrU[27][8] = "nilai-p";
-svgStrU[28][8] = "[Keputusan]";
+svgStrU[28][8] = "[Keputusan] ";
 svgStrU[29][8] = "[ANOVA]";
 svgStrU[30][8] = "Masukkan Koefisien Korelasi dan klik Tombol Jalankan";
 svgStrU[31][8] = "Regresi";
@@ -4832,7 +4839,8 @@ svgStrU[91][8] = "Garis bujur";
 svgStrU[92][8] = "Garis lintang";
 svgStrU[93][8] = "Setidaknya terdapat satu pasang lokasi yang berbeda";
 svgStrU[94][8] = "Peringkat Bertanda Wilcoxon";
-svgStrU[95][8] = "";
+svgStrU[95][8] = "Dipasangkan Var";
+svgStrU[96][8] = "Data berpasangan";
 
 // Mongolian
 $.message.mn = {
@@ -4916,7 +4924,7 @@ $.message.mn = {
     "Significance Level": "Утга учиртай түвшин",
     "Execute": "Гүйцэтгэл",
     "(Confidence Interval)": "(Найдварт завсар)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Хэрэв Z тест байвал Z<sub>1-&alpha;/2</sub>)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Хэрэв Z тест байвал Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> Тест",
     "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
     "F test": "F Тестийн",
@@ -4995,7 +5003,7 @@ $.message.mn = {
     "F-test": "F-Тестийн",
     "Sampling Type": "Түүвэрлэлт",
     "Independent Sample": "Үл хамааран",
-    "Paired Sample": "paired",
+    "Paired Sample": "хосолсон",
     "Sample Data": "Жишээ өгөгдөл",
     "input either sample data": "Энгийн өгөгдөл, энгийн статистикийн аль алийг нь cvs/bsv-ийг ашигласан дараагийн хайрцагт нэмж оруулах",
     "Sample Statistics": "Жишээ статистик",
@@ -5003,7 +5011,7 @@ $.message.mn = {
     "Sample Variance": "Түүврийн вариаци",
     "Sample Proportion": "жишээ харьцаа",
     "if Z-test-1": "(Хэрэв Z тест байвал хүн амын дундаж кватрат хазайлтыг оруул &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(Хэрэв Z тест Z<sub>1-&alpha;/2 </sub> ашиглагдсан.)",
+    "if Z-test-2": "(Хэрэв Z тест Z<sub>&alpha;/2 </sub> ашиглагдсан.)",
     "At least one pair": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр.",
     "Row-Col-0": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй ",
     "Row-Col-1": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй биш",
@@ -5293,7 +5301,7 @@ svgStrU[24][9] = "Тархалт";
 svgStrU[25][9] = "Хүчингүй таамаглалаас татгалзах / Null таамаглал/";
 svgStrU[26][9] = "Hull таамаглалыг хүлээн авах ";
 svgStrU[27][9] = "п-утга";
-svgStrU[28][9] = "[шийдвэр]";
+svgStrU[28][9] = "[шийдвэр] ";
 svgStrU[29][9] = "[Дундаж кватрат хазайлтын шинжилгээ]";
 svgStrU[30][9] = "Хамааралын коеффициент оруулах болон гүйцэтгэх товчийг дарах";
 svgStrU[31][9] = "Хамаарал";
@@ -5360,7 +5368,8 @@ svgStrU[91][9] = "Урттай";
 svgStrU[92][9] = "өргөрөг";
 svgStrU[93][9] = "Наад зах нь нэг хос байршил өөр байна";
 svgStrU[94][9] = "Wilcoxon Гарын үсэг зурах шалгуур";
-svgStrU[95][9] = "";
+svgStrU[95][9] = "хосолсон";
+svgStrU[96][9] = "хосолсон өгөгдөл";
 
 // Chinese - Simplified
 $.message.zh = {
@@ -5523,7 +5532,7 @@ $.message.zh = {
     "F-test": "F-检验",
     "Sampling Type": "样本",
     "Independent Sample": "獨立样本",
-    "Paired Sample": "從屬样本",
+    "Paired Sample": "対応样本",
     "Sample Data": "样本数据",
     "input either sample data": "接下来的对话视窗，使用csv/bsv格式输入样本资料或样本统计量",
     "Sample Statistics": "样本统计量",
@@ -5531,7 +5540,7 @@ $.message.zh = {
     "Sample Variance": "样本方差",
     "Sample Proportion": "样本比例",
     "if Z-test-1": "(Z-检验, 母分散入力)",
-    "if Z-test-2": "(Z-检验, Z<sub>1-&alpha;/2 </sub> 使用)",
+    "if Z-test-2": "(Z-检验, Z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "至少有一对平均数不相等",
     "Row-Col-0": "列变量与行变量独立",
     "Row-Col-1": "列变量与行变量不独立",
@@ -5822,7 +5831,7 @@ svgStrU[24][10] = "分布";
 svgStrU[25][10] = "拒绝原假设";
 svgStrU[26][10] = "接受原假设";
 svgStrU[27][10] = "p-值";
-svgStrU[28][10] = "[决策]";
+svgStrU[28][10] = "[决策] ";
 svgStrU[29][10] = "[方差分析]";
 svgStrU[30][10] = "输入相关系数后按确认";
 svgStrU[31][10] = "回归分析";
@@ -5889,7 +5898,8 @@ svgStrU[91][10] = "经度";
 svgStrU[92][10] = "纬度";
 svgStrU[93][10] = "位置母数 !=";
 svgStrU[94][10] = "Wilcoxon 符號順位合分布";
-svgStrU[95][10] = "";
+svgStrU[95][10] = "配对变量";
+svgStrU[96][10] = "配对数据";
 
 // Portugese
 $.message.pt = {
@@ -5976,7 +5986,7 @@ $.message.pt = {
     "Significance Level": "Nível de Significância",
     "Execute": "Execute",
     "(Confidence Interval)": "(Confidence Interval)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Se teste Z, use Z<sub>1-&alpha;/2 </sub>)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Se teste Z, use Z<sub>&alpha;/2 </sub>)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> teste",
     "Variance Assumption": "Suposição sobre as variâncias",
     "F test": "F teste",
@@ -6063,7 +6073,7 @@ $.message.pt = {
     "Sample Variance": "Variância Amostral",
     "Sample Proportion": "Proporção Amostral",
     "if Z-test-1": "(se Teste Z, entre com a variância populacional)",
-    "if Z-test-2": "(se Teste Z, Z<sub>1-&alpha;/2 </sub> usado.)",
+    "if Z-test-2": "(se Teste Z, Z<sub>&alpha;/2 </sub> usado.)",
     "At least one pair": "Pelo menos um par de médias difere",
     "Row-Col-0": "Variáveis na linha e coluna da tabela são independentes",
     "Row-Col-1": "Variáveis na linha e coluna da tabela não são independentes",
@@ -6091,7 +6101,7 @@ $.message.pt = {
     "GroupVar4": "Fator2",
     "AnalysisVarMu12": "Análise(or X1) Var",
     "GroupVarMu12": "Grupo(or X2) Var",
-    "PairedMu12": " X1, X2 : Paired Var",
+    "PairedMu12": " X1, X2 : Emparelhado Var",
     "SizeVar": "Tamanho da Variável",
     "RegressionBand": "banda de confiança",
     "RegressionTable": "Análise de Regressão",
@@ -6354,7 +6364,7 @@ svgStrU[24][11] = "Distribuição";
 svgStrU[25][11] = "Rejeita-se H\u2080";
 svgStrU[26][11] = "Não rejeita-se H\u2080";
 svgStrU[27][11] = "valor p";
-svgStrU[28][11] = "[Decisão]";
+svgStrU[28][11] = "[Decisão] ";
 svgStrU[29][11] = "[ANOVA]";
 svgStrU[30][11] = "Entre com o Coeficiente de Correlação e clique Executar";
 svgStrU[31][11] = "Regressão";
@@ -6421,4 +6431,5 @@ svgStrU[91][11] = "Longitude";
 svgStrU[92][11] = "Latitude";
 svgStrU[93][11] = "Pelo menos um par de médias difere";
 svgStrU[94][11] = "Distribuição da Soma dos Postos Sinalizados de Wilcoxon";
-svgStrU[95][11] = "";
+svgStrU[95][11] = "Emparelhado Var";
+svgStrU[96][11] = "Dados Emparelhado";

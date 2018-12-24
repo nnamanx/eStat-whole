@@ -3617,10 +3617,10 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
          ty = margin.top;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 41) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
-         else if (hypoType == 43) str = svgStrU[23][langNum]+"(m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
+         else if (hypoType == 43) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
@@ -3704,12 +3704,12 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
             .style("stroke","green").attr("stroke-width","2px");
          bar.append("text").attr("x", x1).attr("y", y2+15)
-            .text(svgStrU[23][langNum]+f3(stat))
+            .text(svgStrU[23][langNum]+" = "+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
          bar.append("text").attr("x", x1).attr("y", y2+30)
-            .text(svgStrU[27][langNum]+str)
+            .text(svgStrU[27][langNum]+" = "+str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;
@@ -3763,12 +3763,12 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+"(m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3)  str = svgStrU[23][langNum]+"(p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
-         else if (hypoType == 6)  str = svgStrU[23][langNum]+"(p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
-         else if (hypoType == 94) str = svgStrU[23][langNum]+"(+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
-         else if (hypoType == 95) str = svgStrU[23][langNum]+"R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
-         else if (hypoType == 96) str = svgStrU[23][langNum]+"R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3)  str = svgStrU[23][langNum]+" = (p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6)  str = svgStrU[23][langNum]+" = (p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         else if (hypoType == 94) str = svgStrU[23][langNum]+" = (+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 95) str = svgStrU[23][langNum]+" = R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
+         else if (hypoType == 96) str = svgStrU[23][langNum]+" = R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
@@ -3851,11 +3851,11 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          y2 = y1 + 60;
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
             .style("stroke","green").attr("stroke-width","2px");
-         bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
+         bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" = "+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
-         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
+         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" = "+str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;
@@ -3913,9 +3913,9 @@ function drawChisqGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 2)       str = svgStrU[23][langNum]+"(n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 9)  str = svgStrU[23][langNum]+"\u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 2)       str = svgStrU[23][langNum]+" = (n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8)  str = svgStrU[23][langNum]+" = \u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 9)  str = svgStrU[23][langNum]+" = \u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 98) str = svgStrU[67][langNum]+" ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
@@ -4001,11 +4001,11 @@ function drawChisqGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          y2 = y1 + 60;
          bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
             .style("stroke","green").attr("stroke-width","2px");
-         bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+f3(stat))
+         bar.append("text").attr("x", x1).attr("y", y2+15).text(svgStrU[23][langNum]+" = "+f3(stat))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
-         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+str)
+         bar.append("text").attr("x", x1).attr("y", y2+30).text(svgStrU[27][langNum]+" = "+str)
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          var checkAccept;
@@ -4059,8 +4059,8 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 5)       str = svgStrU[23][langNum]+"( s\u2081\u00B2 / s\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
-         else if (hypoType == 7)  str = svgStrU[23][langNum]+"(BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         if (hypoType == 5)       str = svgStrU[23][langNum]+" = ( s\u2081\u00B2 / s\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         else if (hypoType == 7)  str = svgStrU[23][langNum]+" = (BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
@@ -4144,7 +4144,7 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
             .style("stroke","green").attr("stroke-width","2px");
          if (pvalue < 0.0001) str = "< 0.0001";
          else str = f4(pvalue).toString();  
-         bar.append("text").attr("x", x1).attr("y", y2+10).text("F\u2080 = "+f2(stat[0])+", "+svgStrU[27][langNum]+str )
+         bar.append("text").attr("x", x1).attr("y", y2+10).text("F\u2080 = "+f2(stat[0])+", "+svgStrU[27][langNum]+" = "+str )
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          // Decision
          if (hypoType == 7) { // ANOVA
