@@ -1098,47 +1098,55 @@ function showBinomialNormal(nn2, pp2, xmin, xmax, ymin, ymax) {
 }// 이항-정규분포 제거 함수
 function removeBinomialNormal() {
 	 bar.selectAll("line.lineNormal").remove();
-}// 이항분포표
+}
+// 이항분포표
 function binomialTable(nn, pp, binomialP2) {
-        var table = document.getElementById("binomTable");
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+//        var table = document.getElementById("binomTable");
         var row, header;
-        var i, j, sum;
+        var i, j, k, um;
         var nvalue = nn + 1;
         var ncol = 4;
         var cell = new Array(4);
-         table.style.fontSize = "13px";
-//        table.style.cellPadding = "10";
+        table.style.fontSize = "13px";
+        k = 0;
     
-          row = table.insertRow(0);
-          row.style.height ="40px";
-          row.innerHTML = "<h3>"+svgStrU[1][langNum]+"</h3>";
-          row.style.textAlign = "center";
-          row  = table.insertRow(1);
+          row = table.insertRow(k++);
           row.style.height ="30px";
-          for (j=0; j<2; j++) {
+          for (j=0; j<3; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "n = "+nn;
-          cell[1].innerHTML = "p = "+f3(pp);
-          row  = table.insertRow(2);
+          cell[0].innerHTML = "<h3>"+svgStrU[1][langNum]+"</h3>";
+          cell[1].innerHTML = "n = "+nn;
+          cell[2].innerHTML = "p = "+f3(pp);
+
+          row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           for (j=0; j<ncol; j++) {
-            cell[j].style.width ="80px";
+            cell[j].style.width ="85px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X &le; x)";
+          cell[3].innerHTML = "P(X &ge; x)";
           sum = 0;
           for (i=0; i<nvalue; i++) {
-            row = table.insertRow(i+3);
-            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
             cell[0].innerHTML = i;
             cell[1].innerHTML = f4(binomialP2[i]);
             sum += binomialP2[i];
@@ -1146,9 +1154,9 @@ function binomialTable(nn, pp, binomialP2) {
             cell[3].innerHTML = f4(1 - sum + binomialP2[i]);
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
-}// =====================================================================================
+}
+// =====================================================================================
 // Poisson functions 
 // =====================================================================================
 //*********************************************************************************** 
@@ -1161,7 +1169,8 @@ function showValueLambda(newValue, valueLabel, poissonP) {
         removeBinomialFreq2();
         var lambda = parseFloat(d3.select("#lambda").node().value);    // 성공 rate
         drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax);
-}// Poisson분포 막대그래프 함수 --------------------------------------------------
+}
+// Poisson분포 막대그래프 함수 --------------------------------------------------
 function drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax) {
          var i, avg, std, info;
          var gymin, gymax, yRatio, betweenbarWidth, barWidth, barMargin
@@ -1204,45 +1213,53 @@ function drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, y
             .attr("y", svgHeight - margin.bottom - poissonP[k]*yRatio)
             .attr("height", poissonP[k]*yRatio)
          }
-}// Poisson분포표
+}
+// Poisson분포표
 function poissonTable(nvalue, lambda, poissonP) {
-        var table = document.getElementById("poissonTable");
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+//        var table = document.getElementById("poissonTable");
         var row, header;
-        var i, j, sum;
+        var i, j, k, sum;
         var ncol = 4;
         var cell = new Array(4);
-         table.style.fontSize = "13px";
-//        table.style.cellPadding = "10";
-    
-          row = table.insertRow(0);
+        table.style.fontSize = "13px";
+        k = 0;    
+
+          row = table.insertRow(k++);
           row.style.height ="40px";
-          row.innerHTML = "<h3>"+svgStrU[5][langNum]+"</h3>";
-          row.style.textAlign = "center";
-          row  = table.insertRow(1);
-          row.style.height ="30px";
-          for (j=0; j<1; j++) {
+          for (j=0; j<2; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "m = "+f1(lambda);
-          row  = table.insertRow(2);
+          cell[0].innerHTML = "<h3>"+svgStrU[5][langNum]+"</h3>";
+          cell[1].innerHTML = "m = "+f1(lambda);
+
+          row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           for (j=0; j<ncol; j++) {
             cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X &le; x)";
+          cell[3].innerHTML = "P(X &ge; x)";
           sum = 0;
           for (i=0; i<nvalue; i++) {
-            row = table.insertRow(i+3);
-            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
             cell[0].innerHTML = i;
             cell[1].innerHTML = f4(poissonP[i]);
             sum += poissonP[i];
@@ -1250,7 +1267,6 @@ function poissonTable(nvalue, lambda, poissonP) {
             cell[3].innerHTML = f4(1 - sum + poissonP[i]);
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
 }// =====================================================================================
 // Geometric functions 
@@ -1317,42 +1333,49 @@ function drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP) {
          }
 }// Geometric 분포표
 function geometricTable(nvalue, geoP, geometricP) {
-        var table = document.getElementById("geometricTable");
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+//        var table = document.getElementById("geometricTable");
         var row, header;
-        var i, j, sum;
+        var i, j, k, sum;
         var ncol = 4;
         var cell = new Array(4);
         table.style.fontSize = "13px";
+        k = 0;
     
-          row = table.insertRow(0);
+          row = table.insertRow(k++);
           row.style.height ="40px";
-          row.innerHTML = "<h3>"+svgStrU[6][langNum]+" </h3>";
-          row.style.textAlign = "center";
-          row  = table.insertRow(1);
-          row.style.height ="30px";
-          for (j=0; j<1; j++) {
+          for (j=0; j<2; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "p = "+f2(geoP);
-          row  = table.insertRow(2);
+          cell[0].innerHTML = "<h3>"+svgStrU[6][langNum]+" </h3>";
+          cell[1].innerHTML = "p = "+f2(geoP);
+
+          row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
-          }
-          for (j=0; j<ncol; j++) {
+            cell[j].style.border = "1px solid black";
             cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X &le; x)";
+          cell[3].innerHTML = "P(X &ge; x)";
+
           sum = 0;
           for (i=0; i<nvalue; i++) {
-            row = table.insertRow(i+3);
-            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
             cell[0].innerHTML = i;
             cell[1].innerHTML = f4(geometricP[i]);
             sum += geometricP[i];
@@ -1360,7 +1383,6 @@ function geometricTable(nvalue, geoP, geometricP) {
             cell[3].innerHTML = f4(1 - sum + geometricP[i]);
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
 }// =====================================================================================
 // HyperGeometric functions 
@@ -1425,46 +1447,53 @@ function drawHyperGeoBarGraph(label, hyperGeoP, xmin, xmax, ymin, ymax) {
          }
 }// 초기하분포표
 function hyperGeoTable(NN, DD, nn, hyperGeoP) {
-        var table = document.getElementById("hyperGeoTable");
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+//        var table = document.getElementById("hyperGeoTable");
         var row, header;
-        var i, j, sum;
+        var i, j, k, sum;
         var nvalue = nn + 1;
         var ncol = 4;
         var cell = new Array(4);
-         table.style.fontSize = "13px";
-//        table.style.cellPadding = "10";
+        table.style.fontSize = "13px";
+        k = 0;
     
-          row = table.insertRow(0);
+          row = table.insertRow(k++);
           row.style.height ="40px";
-          row.innerHTML = "<h3>"+svgStrU[7][langNum]+" </h3>";
-          row.style.textAlign = "center";
-          row  = table.insertRow(1);
-          row.style.height ="30px";
-          for (j=0; j<3; j++) {
+          for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "N = "+NN;
-          cell[1].innerHTML = "D = "+DD;
-          cell[2].innerHTML = "n = "+nn;
-          row  = table.insertRow(2);
+          cell[0].innerHTML = "<h3>"+svgStrU[7][langNum]+" </h3>";
+          cell[1].innerHTML = "N = "+NN;
+          cell[2].innerHTML = "D = "+DD;
+          cell[3].innerHTML = "n = "+nn;
+
+          row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           for (j=0; j<ncol; j++) {
             cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X &le; x)";
+          cell[3].innerHTML = "P(X &ge; x)";
           sum = 0;
           for (i=0; i<nvalue; i++) {
-            row = table.insertRow(i+3);
-            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
             cell[0].innerHTML = i;
             cell[1].innerHTML = f4(hyperGeoP[i]);
             sum += hyperGeoP[i];
@@ -1472,7 +1501,6 @@ function hyperGeoTable(NN, DD, nn, hyperGeoP) {
             cell[3].innerHTML = f4(1 - sum + hyperGeoP[i]);
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
 }// ===============================================================================
 // Exponential-distribution function
@@ -2074,7 +2102,10 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2
-		 var title  = "N("+mu+","+sigma+") "+svgStrU[24][langNum];
+         var title;
+//	 var title  = "N("+mu+","+sigma+") "+svgStrU[24][langNum];
+         if (sigma == 1) title  = "N("+mu+","+sigma+")";
+         else title  = "N("+mu+","+sigma+"^2)";
          bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
          var gxmin   = mu - 4*sigma;
          var gxmax   = mu + 4*sigma;
@@ -2138,6 +2169,137 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
             .text(f4(prob))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
+// 정규분포표
+function normalTable(mu, sigma) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, k, rowValue, colValue, delta, temp;
+        var nrow  = 100
+        var ncol  = 16;
+        var delta = 0.1
+        var cell = new Array(ncol);
+        table.style.fontSize = "13px";
+        k = 0;
+    
+          row = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="70px";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[100][langNum]+"</h3>";
+          cell[1].innerHTML = "&mu; = "+mu;
+          cell[2].innerHTML = "&sigma; = "+f3(sigma);
+
+          // 1st Half
+          row  = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="70px";
+          }
+          for (j=0; j<ncol; j++) {
+            if ((j % 2) == 0) {
+              cell[j].innerHTML = "x";
+            }
+            else {
+              cell[j].innerHTML = "P(X &leq; x)";
+            }
+          }
+
+          rowValue = mu - 3.99*sigma;        
+          for (i=0; i<nrow; i++) {
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+              cell[j].style.width ="70px";
+              if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
+            }
+            temp = rowValue;
+            for (j=0; j<8; j++) {
+              cell[2*j].innerHTML   = f2(temp); 
+              cell[2*j+1].innerHTML = f4(stdnormal_cdf( (temp-mu)/sigma ));
+              temp += 1.0;
+            }                   
+            rowValue += 0.01
+          }
+}
+// 정규분포 백분위수표
+function normalPercentileTable(mu, sigma) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, k, rowValue, colValue, delta, temp, info;
+        var nrow  = 40
+        var ncol  = 10;
+        var delta = 0.005;
+        var cell = new Array(ncol);
+        table.style.fontSize = "13px";
+        k = 0;
+    
+          row = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[100][langNum]+"</h3>";
+          cell[1].innerHTML = "&mu; = "+mu;
+          cell[2].innerHTML = "&sigma; = "+f3(sigma);
+
+          // 1st Half
+          row  = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          for (j=0; j<ncol; j++) {
+            if ((j % 2) == 0) {
+              cell[j].innerHTML = "p";
+            }
+            else {
+              cell[j].innerHTML = "P(X &leq; x) = p";
+            }
+          }
+
+          rowValue = 0.005;        
+          for (i=0; i<nrow; i++) {
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+              cell[j].style.width ="70px";
+              if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
+            }
+            temp = rowValue;
+            for (j=0; j<5; j++) {
+              if (i == (nrow-1) && j == 4) continue;
+              cell[2*j].innerHTML   = f3(temp); 
+              cell[2*j+1].innerHTML = f3(mu + stdnormal_inv(temp,info)*sigma);
+              temp += 0.2;
+            }                   
+            rowValue += 0.005;
+          }
+}
 // ==========================================================================
 // t-distribution function
 // ==========================================================================
@@ -2319,6 +2481,71 @@ function drawTdistGraph(df, a, b, prob) {
             .text(f4(prob))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
+// t분포 백분위수표
+function tPercentileTable(df) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, k, rowValue, colValue, delta, temp, info;
+        var nrow  = 40
+        var ncol  = 10;
+        var delta = 0.005;
+        var cell = new Array(ncol);
+        table.style.fontSize = "13px";
+        k = 0;
+    
+          row = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<2; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[101][langNum]+"</h3>";
+          cell[1].innerHTML = "df = "+df;
+
+          // 1st Half
+          row  = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          for (j=0; j<ncol; j++) {
+            if ((j % 2) == 0) {
+              cell[j].innerHTML = "p";
+            }
+            else {
+              cell[j].innerHTML = "P(X &leq; x) = p";
+            }
+          }
+
+          rowValue = 0.005;        
+          for (i=0; i<nrow; i++) {
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+              cell[j].style.width ="70px";
+              if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
+            }
+            temp = rowValue;
+            for (j=0; j<5; j++) {
+              if (i == (nrow-1) && j == 4) continue;
+              cell[2*j].innerHTML   = f3(temp); 
+              cell[2*j+1].innerHTML = f3(t_inv(temp,df,info));
+              temp += 0.2;
+            }                   
+            rowValue += 0.005;
+          }
+}
 // N(0,1) 그래프 함수 --------------------------------------------------
 function drawStdNormalGraph() {
          var margin  = {top: 50, bottom: 50, left: 50, right: 20};
@@ -2534,6 +2761,72 @@ function drawChisqGraph(df, a, b, prob) {
             .text(f4(prob))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
+// chisq분포 백분위수표
+function chisqPercentileTable(df) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, k, rowValue, colValue, delta, temp, info;
+        var nrow  = 40
+        var ncol  = 10;
+        var delta = 0.005;
+        var cell = new Array(ncol);
+        table.style.fontSize = "13px";
+        k = 0;
+    
+          row = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<2; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[102][langNum]+"</h3>";
+          cell[1].innerHTML = "df = "+df;
+
+
+          // 1st Half
+          row  = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          for (j=0; j<ncol; j++) {
+            if ((j % 2) == 0) {
+              cell[j].innerHTML = "p";
+            }
+            else {
+              cell[j].innerHTML = "P(X &leq; x) = p";
+            }
+          }
+
+          rowValue = 0.005;        
+          for (i=0; i<nrow; i++) {
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+              cell[j].style.width ="70px";
+              if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
+            }
+            temp = rowValue;
+            for (j=0; j<5; j++) {
+              if (i == (nrow-1) && j == 4) continue;
+              cell[2*j].innerHTML   = f3(temp); 
+              cell[2*j+1].innerHTML = f3(chisq_inv(temp,df,info));
+              temp += 0.2;
+            }                   
+            rowValue += 0.005;
+          }
+}
 //===========================================================================
 // F-distribution function
 //===========================================================================
@@ -2746,6 +3039,72 @@ function drawFGraph(df1, df2,  a, b, prob) {
             .text(f4(prob))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
 }     
+// F분포 백분위수표
+function fPercentileTable(df1,df2) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, k, rowValue, colValue, delta, temp, info;
+        var nrow  = 40
+        var ncol  = 10;
+        var delta = 0.005;
+        var cell = new Array(ncol);
+        table.style.fontSize = "13px";
+        k = 0;
+    
+          row = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[103][langNum]+"</h3>";
+          cell[1].innerHTML = "df1 = "+df1;
+          cell[2].innerHTML = "df2 = "+df2;
+
+          // 1st Half
+          row  = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="80px";
+          }
+          for (j=0; j<ncol; j++) {
+            if ((j % 2) == 0) {
+              cell[j].innerHTML = "p";
+            }
+            else {
+              cell[j].innerHTML = "P(X &leq; x) = p";
+            }
+          }
+
+          rowValue = 0.005;        
+          for (i=0; i<nrow; i++) {
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+              cell[j].style.width ="70px";
+              if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
+            }
+            temp = rowValue;
+            for (j=0; j<5; j++) {
+              if (i == (nrow-1) && j == 4) continue;
+              cell[2*j].innerHTML   = f3(temp); 
+              cell[2*j+1].innerHTML = f3(f_inv(temp,df1,df2,info));
+              temp += 0.2;
+            }                   
+            rowValue += 0.005;
+          }
+}
 // =====================================================================================
 // sampling functions 
 // =====================================================================================
@@ -3617,10 +3976,10 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
          ty = margin.top;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
-         else if (hypoType == 43) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (X\u0304 - \u03BC\u2080) / ( S / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (X\u0304\u2081 - X\u0304\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (X\u0304\u2081 - X\u0304\u2082 - D) / ( \u221a(S\u2081\u00B2/n\u2081 + S\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
+         else if (hypoType == 43) str = svgStrU[23][langNum]+" = (d\u0304 - D) / ( Sd/\u221an) )  ~  t("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
@@ -3754,8 +4113,8 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
          tx = margin.left + graphWidth2/2;
          ty = margin.top/2;
          if (hypoType == 1)       str = "H\u2080: \u03BC = "+ f2(D) + " , H\u2081: \u03BC " + symbol[h1Type-1] +" "+ f2(D);
-         else if (hypoType == 3)  str = "H\u2080: P = "+ f2(D) + " , H\u2081: P " + symbol[h1Type-1] +" " + f2(D);
-         else if (hypoType == 6)  str = "H\u2080: P\u2081 - P\u2082 = " + f2(D) + " , H\u2081: P\u2081 - P\u2082 "+symbol[h1Type-1]+" "+f2(D);
+         else if (hypoType == 3)  str = "H\u2080: p = "+ f2(D) + " , H\u2081: p " + symbol[h1Type-1] +" " + f2(D);
+         else if (hypoType == 6)  str = "H\u2080: p\u2081 - p\u2082 = " + f2(D) + " , H\u2081: p\u2081 - p\u2082 "+symbol[h1Type-1]+" "+f2(D);
          else if (hypoType == 94) str = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
          else if (hypoType == 95) str = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
          else if (hypoType == 96) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082  " + " , H\u2081: \u03BC\u2081 "+ symbol[h1Type-1] + " \u03BC\u2082" ;
@@ -3764,8 +4123,8 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
 
          ty = margin.top;
          if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3)  str = svgStrU[23][langNum]+" = (p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
-         else if (hypoType == 6)  str = svgStrU[23][langNum]+" = (p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         else if (hypoType == 3)  str = svgStrU[23][langNum]+" = (p\u0302 - p\u2080) / (  \u221a ( p\u0302(1-p\u0302)/n ) )  ~  N(0,1)";
+         else if (hypoType == 6)  str = svgStrU[23][langNum]+" = (p\u0302\u2081 - p\u0302\u2082 - D) / \u221a ( p\u0304(1-p\u0304)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
          else if (hypoType == 94) str = svgStrU[23][langNum]+" = (+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
          else if (hypoType == 95) str = svgStrU[23][langNum]+" = R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
          else if (hypoType == 96) str = svgStrU[23][langNum]+" = R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
@@ -3907,15 +4266,15 @@ function drawChisqGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          ty = margin.top/2;
          if (hypoType == 2)       str = "H\u2080: \u03C3\u00B2 = "+ f2(D) + " , H\u2081: \u03C3\u00B2 " + symbol[h1Type-1] +" "+ f2(D);
          else if (hypoType == 8)  str = "H\u2080: "+svgStrU[58][langNum];
-         else if (hypoType == 9)  str = "H\u2080: "+svgStrU[60][langNum]+"="+svgStrU[61][langNum]+" H\u2081: "+svgStrU[60][langNum]+symbol[0]+svgStrU[61][langNum]  ;
+         else if (hypoType == 9)  str = "H\u2080: "+svgStrU[60][langNum]+"~"+svgStrU[61][langNum]+" H\u2081: "+svgStrU[60][langNum]+symbol[0]+svgStrU[61][langNum]  ;
          else if (hypoType == 98) str = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BCk " ;
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 2)       str = svgStrU[23][langNum]+" = (n - 1) s\u00B2 / \u03C3\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8)  str = svgStrU[23][langNum]+" = \u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 9)  str = svgStrU[23][langNum]+" = \u03A3 (E - O)\u00B2 / E  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 2)       str = svgStrU[23][langNum]+" = (n - 1) S\u00B2 / \u03C3\u2080\u00B2  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8)  str = svgStrU[23][langNum]+" =  \u03A3\u03A3 (Oij - Eij)\u00B2 / Eij  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 9)  str = svgStrU[23][langNum]+" = \u03A3 (Oi - Ei)\u00B2 / Ei  ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          else if (hypoType == 98) str = svgStrU[67][langNum]+" ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
@@ -4059,8 +4418,8 @@ function drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, a, b, prob, pvalue) 
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 5)       str = svgStrU[23][langNum]+" = ( s\u2081\u00B2 / s\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
-         else if (hypoType == 7)  str = svgStrU[23][langNum]+" = (BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         if (hypoType == 5)       str = svgStrU[23][langNum]+" = ( S\u2081\u00B2 / S\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         else if (hypoType == 7)  str = svgStrU[23][langNum]+" = (SSTr/(k-1)) / (SSE/(n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);

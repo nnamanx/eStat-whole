@@ -88,7 +88,7 @@ $.message.ko = {
     "Bar Graph": "막대그래프",
     "Pie Chart": "원그래프",
     "Band Graph": "띠그래프",
-    "Line Graph": "꺽은선그래프",
+    "Line Graph": "꺾은선그래프",
     "Dot Graph": "점그래프",
     "Histogram": "히스토그램",
     "Stem & Leaf Plot": "줄기와 잎그림",
@@ -142,13 +142,13 @@ $.message.ko = {
     "Execute New Interval": "새 구간으로 실행",
     "Interval Start": "구간시작",
     "Interval Width": "구간너비",
-    "t-test": "t-검정",
-    "Z-test": "Z-검정",
-    "(if Z-test, enter &sigma;)": "(Z-검정이면 &sigma;입력)",
+    "t-test": "t 검정",
+    "Z-test": "Z 검정",
+    "(if Z-test, enter &sigma;)": "(Z 검정이면 &sigma;입력)",
     "Significance Level": "유의수준",
     "Execute": "실행",
     "(Confidence Interval)": "(신뢰구간)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-검정이면, Z, &sigma; )",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 검정이면, Z, &sigma; )",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 검정",
     "Variance Assumption": "분산가정",
     "F test": "F 검정",
@@ -189,6 +189,7 @@ $.message.ko = {
     "Sample": "표본",
     "Exponential": "지수분포(0.3)",
     "Uniform": "균등분포(0,1)",
+    "UniformDist": "균등분포",
     "Sample05": "5% 표본추출",
     "Sample10": "10% 표본추출",
     "Sample20": "20% 표본추출",
@@ -197,7 +198,7 @@ $.message.ko = {
     "Dist of Sample Means": "표본평균의 표집분포",
     "Sample Size": "표본크기",
     "Confidence Interval": "신뢰구간",
-    "Confidence Interval Simulation": "신뢰구간실험",
+    "Confidence Interval Simulation": "신뢰구간 시뮬레이션",
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
     "Confidence Level": "신뢰수준",
@@ -211,20 +212,20 @@ $.message.ko = {
     "Testing Hypothesis muAB": "모평균 가설검정 : &alpha;, &beta;",
     "Testing Hypothesis mu": "추정 및 가설검정 : 모평균 &mu;",
     "Testing Hypothesis sigma": "추정 및 가설검정 : 모분산 &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "추정 및 가설검정 : 모비율 P",
+    "Testing Hypothesis P": "추정 및 가설검정 : 모비율 p",
     "Testing Hypothesis mu12": "가설검정 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "가설검정 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "가설검정 : P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "가설검정 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "분산분석",
-    "Testing Independence": "독립성 검정",
+    "Testing Independence": "독립성검정",
     "Correlation Coefficient": "상관계수",
     "Regression Experiment": "회귀실험",
     "Hypothesis": "가  설",
     "Test Type": "검정형태",
-    "Z-test": "Z-검정",
-    "t-test": "t-검정",
-    "Chi-test": "&chi;<sup>2</sup>-검정",
-    "F-test": "F-검정",
+    "Z-test": "Z 검정",
+    "t-test": "t 검정",
+    "Chi-test": "&chi;<sup>2</sup> 검정",
+    "F-test": "F 검정",
     "Sampling Type": "표본",
     "Independent Sample": "독립표본",
     "Paired Sample": "대응표본",
@@ -234,8 +235,8 @@ $.message.ko = {
     "Sample Mean": "표본평균",
     "Sample Variance": "표본분산",
     "Sample Proportion": "표본비율",
-    "if Z-test-1": "(Z-검정이면, 모분산 입력)",
-    "if Z-test-2": "(Z-검정이면, Z<sub>&alpha;/2 </sub> 이용)",
+    "if Z-test-1": "(Z 검정이면, 모분산 입력)",
+    "if Z-test-2": "(Z 검정이면, z<sub>&alpha;/2 </sub> 이용)",
     "At least one pair": "적어도 한쌍 이상의 평균이 다름",
     "Row-Col-0": "행변량과 열변량이 독립",
     "Row-Col-1": "행변량과 열변량이 독립 아님",
@@ -281,14 +282,14 @@ $.message.ko = {
     "AnovaTable": "분산분석표",
     "AnovaMeanGraph": "평균신뢰구간도",
     "MultipleComparison": "다중비교",
-    "AnovaResidual": "잔차와 예측값 산점도",
+    "AnovaResidual": "표준화 잔차와 예측값 산점도",
     "AnovaQQ": "잔차 Q-Q 산점도",
-    "TestingFit": "적합성 검정",
-    "FitTest0": "관찰분포와 이론분포가 같음",
-    "FitTest1": "관찰분포와 이론분포가 다름",
-    "ObservedFreq": "관찰도수 O",
-    "ExpectedProb": "기대확률 p",
-    "ExpectedFreq": "기대도수 E(>5)",
+    "TestingFit": "적합성검정",
+    "FitTest0": "표본분포가 이론분포를 따름",
+    "FitTest1": "표본분포와 이론분포가 다름",
+    "ObservedFreq": "관찰도수 O<sub>i</sub>",
+    "ExpectedProb": "기대확률 p<sub>i</sub>",
+    "ExpectedFreq": "기대도수 E<sub>i</sub> (>5)",
     "InputFitData": "왼쪽 위부터 관찰도수, 기대확률 입력",
     "ExecuteTable": "통계량",
     "MeanDotGraph": "평균점그래프",
@@ -299,29 +300,29 @@ $.message.ko = {
     "ExistInteraction": "교호작용 있음",
     "eStatLecture": "eStat 강의",
     "NonParametricMu12_title": "윌콕슨 순위합검정", 
-    "NonParametricMu12": "윌콕슨 순위합 가설검정 : 위치모수 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "윌콕슨 순위합검정 : 위치모수 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "표본순위합",
     "DistributionTable": "분포표",
-    "SignedRankTestDist": "윌콕슨 부호순위합 분포",
-    "WilcoxonTestDist": "윌콕슨 순위합 분포",
-    "KruskalTestDist": "크루스칼-월리스 H 분포",
-    "FriedmanTestDist": "프리드만 S 분포",
-    "SignedRankTest": "윌콕슨 부호순위합 검정",
+    "SignedRankTestDist": "윌콕슨 부호순위합분포",
+    "WilcoxonTestDist": "윌콕슨 순위합분포",
+    "KruskalTestDist": "크루스칼-왈리스 H분포",
+    "FriedmanTestDist": "프리드만 S분포",
+    "SignedRankTest": "윌콕슨 부호순위합검정",
     "SignTest": "부호검정",
     "SignCount": "부호 수",
-    "WilcoxonTest": "윌콕슨 순위합 검정",
-    "KruskalTest": "크루스칼-월리스 검정",
-    "KruskalTestANOVA": "크루스칼-월리스 검정 : 위치모수 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ...,  &mu;<sub>k</sub> ",
+    "WilcoxonTest": "윌콕슨 순위합검정",
+    "KruskalTest": "크루스칼-왈리스 검정",
+    "KruskalTestANOVA": "크루스칼-왈리스 검정",
     "Total": "합계",
     "FriedmanTest": "프리드만 검정",
-    "FriedmanTestANOVA": "프리드만 검정 : 위치모수 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "프리드만 검정",
     "Block": "블록",
     "Treatment": "처리",
     "At least one locations is different": "적어도 한쌍 이상의 위치모수가 다름",
     "SignCondition": "n ≤ 100 이면 이항분포 검정,  n > 100 근사 정규분포 검정",
     "WilcoxonSignCondition": "n ≤ 20 이면 윌콕슨 순위합 분포 검정,  n > 20 근사 정규분포 검정",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 이면 순위합 분포 검정,  n > 25 근사 정규분포 검정",
-    "KruskalCondition": "n ≤ 10 이면 H 분포 검정,  n>10 근사 카이제곱 검정",
+    "KruskalCondition": "n ≤ 10 이면 H 분포 검정,  n>10 이면 근사 카이제곱 검정",
     "VariableSelect":  "* 데이터분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
     "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
     "VariableSelect3": "변량선택",
@@ -334,6 +335,14 @@ $.message.ko = {
     "by": "by",
     "NameVar": "이름변량",
     "n_variance": "n-1 공식",
+    "RandomNumber":   "확률난수",
+    "RealNumber":     "실수형",
+    "IntegerNumber":  "정수형",
+    "NumberData":     "데이터수",
+    "NumberDigit":    "소수 자릿수",
+    "NormalTable":    "정규분포표",
+    "Percentile":     "백분위수표",
+    "StudentRangeDist": "HSD 표준화범위분포",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -386,7 +395,7 @@ svgStr[1][0] = " 막대그래프";
 svgStr[2][0] = " 원그래프";
 svgStr[3][0] = " 도넛그래프";
 svgStr[4][0] = " 띠그래프";
-svgStr[5][0] = " 꺽은선그래프";
+svgStr[5][0] = " 꺾은선그래프";
 svgStr[6][0] = " 점그래프";
 svgStr[7][0] = " 상자그래프";
 svgStr[8][0] = " 줄기와 잎 그림";
@@ -437,7 +446,7 @@ svgStr[52][0] = "데이터<br>관찰도수<br>(O<sub>i</sub>)";
 svgStr[53][0] = "정규분포<br>기대확률<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][0] = "정규분포<br>기대도수<br>(E<sub>i</sub>)";
 svgStr[55][0] = "각 구간<br>카이제곱값<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][0] = "카이제곱값 합계";
+svgStr[56][0] = "카이제곱값";
 svgStr[57][0] = "확률 히스토그램과 정규분포";
 svgStr[58][0] = "정규 Q-Q 산점도";
 svgStr[59][0] = "정규 백분위수";
@@ -476,8 +485,8 @@ svgStr[91][0] = "통계량";
 svgStr[92][0] = "인자";
 svgStr[93][0] = "수준";
 svgStr[94][0] = "대응비교 데이터 점그래프";
-svgStr[95][0] = "잔차와 예측값 산점도";
-svgStr[96][0] = "잔차와 지렛값 산점도";
+svgStr[95][0] = "표준화 잔차와 예측값 산점도";
+svgStr[96][0] = "표준화 잔차와 지렛값 산점도";
 svgStr[97][0] = "Cook 거리 그래프";
 svgStr[98][0] = "Cook 거리";
 svgStr[99][0] = "데이터 순서";
@@ -490,7 +499,7 @@ svgStr[105][0]= "열 합";
 svgStr[106][0]= "중상관계수";
 svgStr[107][0]= "상관계수";
 svgStr[108][0]= "상관계수행렬";
-svgStr[109][0]= "인자1 - 인자2 평균 그래프";
+svgStr[109][0]= "인자A - 인자B 평균 그래프";
 svgStr[110][0]= "지렛값(Leverage)";
 svgStr[111][0]= "지리정보그래프";
 svgStr[112][0]= "범위";
@@ -556,9 +565,9 @@ svgStrU[54][0] = "[표본 통계량] ";
 svgStrU[55][0] = "[표본 1 통계량] ";
 svgStrU[56][0] = "[표본 2 통계량] ";
 svgStrU[57][0] = "신뢰수준";
-svgStrU[58][0] = "행과 열이 독립";
-svgStrU[59][0] = "행과 열이 종속";
-svgStrU[60][0] = "관찰분포";
+svgStrU[58][0] = "행변량과 열변량이 독립";
+svgStrU[59][0] = "행변량과 열변량이 독립 아님";
+svgStrU[60][0] = "표본분포";
 svgStrU[61][0] = "이론분포";
 svgStrU[62][0] = "관찰분포 적합성검정";
 svgStrU[63][0] = "윌콕슨 순위합 검정";
@@ -571,7 +580,7 @@ svgStrU[69][0] = "부호검정";
 svgStrU[70][0] = "프리드만 검정";
 svgStrU[71][0] = "프리드만 S 통계량";
 svgStrU[72][0] = "프리드만 S 분포";
-svgStrU[73][0] = "t-값(or Z)";
+svgStrU[73][0] = "t 값(or Z)";
 svgStrU[74][0] = "ChiSq-값";
 svgStrU[75][0] = "표본분산";
 svgStrU[76][0] = "표본평균차";
@@ -595,6 +604,19 @@ svgStrU[93][0] = "적어도 한쌍 이상의 위치모수가 다름";
 svgStrU[94][0] = "윌콕슨 부호순위합 분포";
 svgStrU[95][0] = "대응변량";
 svgStrU[96][0] = "대응비교";
+svgStrU[97][0] = "독립성검정";
+svgStrU[98][0] = "시뮬레이션";
+svgStrU[99][0] = "확률난수";
+svgStrU[100][0] = "정규분포";
+svgStrU[101][0] = "t 분포";
+svgStrU[102][0] = "&chi;<sup>2</sup> 분포";
+svgStrU[103][0] = "F 분포";
+svgStrU[104][0] = "HSD 표준화범위분포";
+svgStrU[105][0] = "";
+svgStrU[106][0] = "";
+svgStrU[107][0] = "";
+svgStrU[108][0] = "";
+svgStrU[109][0] = "";
 
 // English
 $.message.en = {
@@ -675,13 +697,13 @@ $.message.en = {
     "Execute New Interval": "Execute New Interval",
     "Interval Start": "Interval Start",
     "Interval Width": "Interval Width",
-    "t-test": "t-test",
-    "Z-test": "Z-test",
-    "(if Z-test, enter &sigma;)": "(if Z-test, enter &sigma;)",
+    "t-test": "t test",
+    "Z-test": "Z test",
+    "(if Z-test, enter &sigma;)": "(if Z test, enter &sigma;)",
     "Significance Level": "Significance Level",
     "Execute": "Execute",
     "(Confidence Interval)": "(Confidence Interval)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z-test, Z, &sigma;is used)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z test, Z, &sigma;is used)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
     "Variance Assumption": "Variance Assumption",
     "F test": "F test",
@@ -722,6 +744,7 @@ $.message.en = {
     "Sample": "Sample",
     "Exponential": "Exponential(0.3)",
     "Uniform": "Uniform(0,1)",
+    "UniformDist": "Uniform Distribution",
     "Sample05": "Sampling 5%",
     "Sample10": "Sampling 10%",
     "Sample20": "Sampling 20%",
@@ -744,20 +767,20 @@ $.message.en = {
     "Testing Hypothesis muAB": "Testing &mu; with &alpha;, &beta;",
     "Testing Hypothesis mu": "Testing Hypothesis &mu;",
     "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Testing Hypothesis P",
+    "Testing Hypothesis P": "Testing Hypothesis p",
     "Testing Hypothesis mu12": "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Testing Hypothesis P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
     "Testing Independence": "Testing Independence",
     "Correlation Coefficient": "Correlation Coeff",
     "Regression Experiment": "Regression Experiment",
     "Hypothesis": "Hypothesis",
     "Test Type": "Test Type",
-    "Z-test": "Z-test",
-    "t-test": "t-test",
-    "Chi-test": "&chi;<sup>2</sup>-test",
-    "F-test": "F-test",
+    "Z-test": "Z test",
+    "t-test": "t test",
+    "Chi-test": "&chi;<sup>2</sup> test",
+    "F-test": "F test",
     "Sampling Type": "Sampling Type",
     "Independent Sample": "independent sample",
     "Paired Sample": "paired sample",
@@ -767,8 +790,8 @@ $.message.en = {
     "Sample Mean": "Sample Mean",
     "Sample Variance": "Sample Variance",
     "Sample Proportion": "Sample Proportion",
-    "if Z-test-1": "(if Z-test, enter population variance &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if Z-test, Z<sub>&alpha;/2 </sub> is used.)",
+    "if Z-test-1": "(if Z test, enter population variance &sigma;<sup>2</sup>)",
+    "if Z-test-2": "(if Z test, z<sub>&alpha;/2 </sub> is used.)",
     "At least one pair": "At least one pair of means is different",
     "Row-Col-0": "Row and column variables are independent",
     "Row-Col-1": "Row and column variables are not independent",
@@ -814,7 +837,7 @@ $.message.en = {
     "AnovaTable": "ANOVA Table",
     "AnovaMeanGraph": "Mean Confidence Interval",
     "MultipleComparison": "Multiple Comparison",
-    "AnovaResidual": "Residual Plot",
+    "AnovaResidual": "Standardized Residual Plot",
     "AnovaQQ": "Residual Q-Q Plot",
     "TestingFit": "Goodness of Fit Test",
     "FitTest0": "Observed & theoretical Distributions are the same",
@@ -832,7 +855,7 @@ $.message.en = {
     "ExistInteraction": "Exist Interaction",
     "eStatLecture": "eStat Intro Lecture",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
     "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
@@ -844,10 +867,10 @@ $.message.en = {
     "SignTest": "Sign Test",
     "SignCount": "Sign Count",
     "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis Test",
     "Total": "Total",
     "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman Test",
     "Block": "Block",
     "Treatment": "Treatment",
     "At least one locations is different": "At least one pair of locations is different",
@@ -867,6 +890,14 @@ $.message.en = {
     "by": "by",
     "NameVar": "Name Var",
     "n_variance": "n-1 formula",
+    "RandomNumber": "Random Number",
+    "RealNumber":     "Real",
+    "IntegerNumber":  "Integer",
+    "NumberData":     "Number of Data",
+    "NumberDigit":    "Decimal Digit",
+    "NormalTable":    "Normal Distribution Table",
+    "Percentile":     "Percentile Table",
+    "StudentRangeDist": "HSD Studentized Range Distribution",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1009,8 +1040,8 @@ svgStr[91][1] = "Statistics";
 svgStr[92][1] = "Factor";
 svgStr[93][1] = "Level";
 svgStr[94][1] = "Paired Sample Data Graph";
-svgStr[95][1] = "Residual vs Forecasting Plot";
-svgStr[96][1] = "Residual vs Leverage Plot";
+svgStr[95][1] = "Standardized Residual vs Forecasting Plot";
+svgStr[96][1] = "Standardized Residual vs Leverage Plot";
 svgStr[97][1] = "Cook's Distance Graph";
 svgStr[98][1] = "Cook's Distance";
 svgStr[99][1] = "Data Order";
@@ -1023,7 +1054,7 @@ svgStr[105][1]= "Column Total";
 svgStr[106][1]= "Multiple Correlation Coeff";
 svgStr[107][1]= "<h3>Correlation Analysis</h3>";
 svgStr[108][1]= "Correlation Matrix";
-svgStr[109][1]= "Factor1 - Factor2 Mean Graph";
+svgStr[109][1]= "Factor A - Factor B Mean Graph";
 svgStr[110][1]= "Leverage";
 svgStr[111][1]= "Geographic Information Graph";
 svgStr[112][1]= "Range";
@@ -1104,8 +1135,8 @@ svgStrU[69][1] = "Sign Test";
 svgStrU[70][1] = "Friedman Test";
 svgStrU[71][1] = "Friedman S Statistic";
 svgStrU[72][1] = "Friedman S Distribution";
-svgStrU[73][1] = "t-value (or Z)";
-svgStrU[74][1] = "ChiSq-value";
+svgStrU[73][1] = "t value (or Z)";
+svgStrU[74][1] = "ChiSq value";
 svgStrU[75][1] = "Sample Variance";
 svgStrU[76][1] = "Difference of Sample Means";
 svgStrU[77][1] = "Ratio of Sample Variances";
@@ -1128,6 +1159,19 @@ svgStrU[93][1] = "At least one pair of locations is different";
 svgStrU[94][1] = "Wilcoxon Signed Rank Sum Distribution";
 svgStrU[95][1] = "Paired Var";
 svgStrU[96][1] = "Paired Data";
+svgStrU[97][1] = "Independence Test";
+svgStrU[98][1] = "Simulation";
+svgStrU[99][1] = "Random Number";
+svgStrU[100][1] = "Normal Distribution";
+svgStrU[101][1] = "t Distribution";
+svgStrU[102][1] = "&chi;<sup>2</sup> Distribution";
+svgStrU[103][1] = "F Distribution";
+svgStrU[104][1] = "HSD Studentized Range Distribution";
+svgStrU[105][1] = "";
+svgStrU[106][1] = "";
+svgStrU[107][1] = "";
+svgStrU[108][1] = "";
+svgStrU[109][1] = "";
 
 // Japanese
 $.message.ja = {
@@ -1208,13 +1252,13 @@ $.message.ja = {
     "Execute New Interval": "区間を変えて実行",
     "Interval Start": "区間始点",
     "Interval Width": "区間の幅",
-    "t-test": "t-検定",
-    "Z-test": "Z-検定",
-    "(if Z-test, enter &sigma;)": "(Z-検定のとき入力)",
+    "t-test": "t 検定",
+    "Z-test": "Z 検定",
+    "(if Z-test, enter &sigma;)": "(Z 検定のとき入力)",
     "Significance Level": "有意水準",
     "Execute": "実行",
     "(Confidence Interval)": "(信頼区間)",
-    "(if Z-test, Z<sub>&alpha;/2 </sub> is used)": "(Z-検定のとき, Z &sigma;利用)",
+    "(if Z-test, Z<sub>&alpha;/2 </sub> is used)": "(Z 検定のとき, Z &sigma;利用)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 検定",
     "Variance Assumption": "分散の仮定",
     "F test": "F 検定",
@@ -1256,6 +1300,7 @@ $.message.ja = {
     "Sample": "サンプル",
     "Exponential": "指数分布(0.3)",
     "Uniform": "一様分布(0,1)",
+    "UniformDist": "一様分布",
     "Sample05": "5% 標本抽出",
     "Sample10": "10% 標本抽出",
     "Sample20": "20% 標本抽出",
@@ -1278,20 +1323,20 @@ $.message.ja = {
     "Testing Hypothesis muAB": "仮説検定 &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "母平均&mu;の推定・検定",
     "Testing Hypothesis sigma": "母分散&sigma;<sup>2</sup>の推定・検定",
-    "Testing Hypothesis P": "母比率Pの推定・検定",
+    "Testing Hypothesis P": "母比率pの推定・検定",
     "Testing Hypothesis mu12": "母平均の仮説検定 (2集団) : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "母分散の仮説検定 (2集団) : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "母比率の仮説検定 (2集団) : P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "母比率の仮説検定 (2集団) : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "分散分析",
     "Testing Independence": "独立性検定",
     "Correlation Coefficient": "相関係数",
     "Regression Experiment": "回帰シミュレーション",
     "Hypothesis": "仮説",
     "Test Type": "検定タイプ",
-    "Z-test": "Z-検定",
-    "t-test": "t-検定",
+    "Z-test": "Z 検定",
+    "t-test": "t 検定",
     "Chi-test": "カイ2乗検定",
-    "F-test": "F-検定",
+    "F-test": "F 検定",
     "Sampling Type": "標本",
     "Independent Sample": "獨立標本",
     "Paired Sample": "対応のある２標本",
@@ -1301,8 +1346,8 @@ $.message.ja = {
     "Sample Mean": "標本平均",
     "Sample Variance": "標本分散",
     "Sample Proportion": "標本比率",
-    "if Z-test-1": "(Z-検定の場合, 母分散を入力)",
-    "if Z-test-2": "(Z-検定の場合, Z<sub>&alpha;/2 </sub> 使用)",
+    "if Z-test-1": "(Z 検定の場合, 母分散を入力)",
+    "if Z-test-2": "(Z 検定の場合, z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "少なくとも一つのペアの平均が異なる",
     "Row-Col-0": "行変数と列変数は独立である",
     "Row-Col-1": "行変数と列変数は独立ではない",
@@ -1366,7 +1411,7 @@ $.message.ja = {
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "ウィルコクソン順位合檢定", 
-    "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "ウィルコクソン符號順位合分布",
@@ -1378,10 +1423,10 @@ $.message.ja = {
     "SignCount": "符號數",
     "WilcoxonTest": "ウィルコクソン順位合檢定",
     "KruskalTest": "クルスカル-ウォリス檢定",
-    "KruskalTestANOVA": "クルスカル-ウォリス檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "クルスカル-ウォリス檢定",
     "Total": "全体",
     "FriedmanTest": "フリードマン檢定",
-    "FriedmanTestANOVA": "フリードマン檢定 : 位置母数 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "フリードマン檢定",
     "Block": "Block",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
@@ -1401,6 +1446,14 @@ $.message.ja = {
     "by": "by",
     "NameVar": "名前変数",
     "n_variance": "n式",
+    "RandomNumber": "乱数",
+    "RealNumber":     "実数",
+    "IntegerNumber":  "整数",
+    "NumberData":     "データ数",
+    "NumberDigit":    "小数桁数",
+    "NormalTable":    "正規分布表",
+    "Percentile":     "百分位数表",
+    "StudentRangeDist": "HSDスチューデント化範囲分布",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1558,7 +1611,7 @@ svgStr[105][2]= "列合";
 svgStr[106][2]= "重相關係數";
 svgStr[107][2]= "<h3>相關分析</h3>";
 svgStr[108][2]= "相關係數行列";
-svgStr[109][2]= "因子1-因子2 平均図";
+svgStr[109][2]= "因子A-因子B 平均図";
 svgStr[110][2]= "レバレッジ";
 svgStr[111][2]= "地理情報グラフ";
 svgStr[112][2]= "範囲";
@@ -1639,7 +1692,7 @@ svgStrU[69][2] = "符號檢定";
 svgStrU[70][2] = "フリードマン檢定";
 svgStrU[71][2] = "フリードマン S統計量";
 svgStrU[72][2] = "フリードマン S分布";
-svgStrU[73][2] = "t-値 (Z)";
+svgStrU[73][2] = "t 値 (Z)";
 svgStrU[74][2] = "ChiSq-値";
 svgStrU[75][2] = "標本分散";
 svgStrU[76][2] = "標本平均差";
@@ -1663,6 +1716,19 @@ svgStrU[93][2] = "位置母数 !=";
 svgStrU[94][2] = "ウィルコクソン符號順位合分布";
 svgStrU[95][2] = "対応変数";
 svgStrU[96][2] = "対応データ";
+svgStrU[97][2] = "独立性検定";
+svgStrU[98][2] = "シミュレーション";
+svgStrU[99][2] = "乱数";
+svgStrU[100][2] = "正規分布";
+svgStrU[101][2] = "t 分布";
+svgStrU[102][2] = "&chi;<sup>2</sup> 分布";
+svgStrU[103][2] = "F 分布";
+svgStrU[104][2] = "HSD 分布";
+svgStrU[105][2] = "";
+svgStrU[106][2] = "";
+svgStrU[107][2] = "";
+svgStrU[108][2] = "";
+svgStrU[109][2] = "";
 
 // Chinese
 $.message.zhTW = {
@@ -1740,13 +1806,13 @@ $.message.zhTW = {
     "Execute New Interval": "執行新區間",
     "Interval Start": "區間起點",
     "Interval Width": "區間間幅",
-    "t-test": "t-檢定",
-    "Z-test": "Z-檢定",
-    "(if Z-test, enter &sigma;)": "(Z-檢定, &sigma)",
+    "t-test": "t 檢定",
+    "Z-test": "Z 檢定",
+    "(if Z-test, enter &sigma;)": "(Z 檢定, &sigma)",
     "Significance Level": "顯著水準",
     "Execute": "執行",
     "(Confidence Interval)": "(信頼區間)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-檢定, Z, &sigma;使用)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 檢定, Z, &sigma;使用)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 檢定",
     "Variance Assumption": "變異數假設",
     "F test": "F 檢定",
@@ -1787,6 +1853,7 @@ $.message.zhTW = {
     "Sample": "樣本",
     "Exponential": "指數分佈(0.3)",
     "Uniform": "均勻分佈(0,1)",
+    "UniformDist": "均勻分佈",
     "Sample05": "5% 樣本抽出",
     "Sample10": "10% 樣本抽出",
     "Sample20": "20% 樣本抽出",
@@ -1809,20 +1876,20 @@ $.message.zhTW = {
     "Testing Hypothesis muAB": "假設檢定 &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "區間估計/假設檢定: 平均數&mu;",
     "Testing Hypothesis sigma": "區間估計/假設檢定: 變異數&sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "區間估計/假設檢定: 比例 P",
+    "Testing Hypothesis P": "區間估計/假設檢定: 比例 p",
     "Testing Hypothesis mu12": "假設檢定 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "假設檢定 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "假設檢定 : P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "假設檢定 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "變異數分析",
     "Testing Independence": "獨立性檢定",
     "Correlation Coefficient": "相關係數",
     "Regression Experiment": "回歸實驗",
     "Hypothesis": "假設",
     "Test Type": "檢定型式",
-    "Z-test": "Z-檢定",
-    "t-test": "t-檢定",
+    "Z-test": "Z 檢定",
+    "t-test": "t 檢定",
     "Chi-test": "卡方檢定",
-    "F-test": "F-檢定",
+    "F-test": "F 檢定",
     "Sampling Type": "樣本型式",
     "Independent Sample": "獨立雙樣本",
     "Paired Sample": "配對樣本",
@@ -1832,8 +1899,8 @@ $.message.zhTW = {
     "Sample Mean": "樣本平均",
     "Sample Variance": "樣本變異數",
     "Sample Proportion": "樣本比例",
-    "if Z-test-1": "(Z-檢定, 母分散入力)",
-    "if Z-test-2": "(Z-檢定, Z<sub>&alpha;/2 </sub> 使用)",
+    "if Z-test-1": "(Z 檢定, 母分散入力)",
+    "if Z-test-2": "(Z 檢定, z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "至少有一對平均數不相等",
     "Row-Col-0": "列變數與行變數獨立",
     "Row-Col-1": "列變數與行變數不獨立",
@@ -1897,7 +1964,7 @@ $.message.zhTW = {
     "ExistInteraction": "有交互作用",
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "Wilcoxon 等級和檢定", 
-    "NonParametricMu12": "Wilcoxon 等級和檢定 : 位置參數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon 等級和檢定 : 位置參數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "秩和",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "Wilcoxon 符號等級和分布",
@@ -1909,10 +1976,10 @@ $.message.zhTW = {
     "SignCount": "符號數",
     "WilcoxonTest": "Wilcoxon 等級和檢定",
     "KruskalTest": "Kruskal-Wallis 檢定",
-    "KruskalTestANOVA": "Kruskal-Wallis 檢定 : 位置參數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis 檢定",
     "Total": "全體",
     "FriedmanTest": "Friedman檢定",
-    "FriedmanTestANOVA": "Friedman檢定 : 位置參數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman檢定",
     "Block": "塊",
     "Treatment": "處理",
     "At least one locations is different": "至少一個位置參數不相同",
@@ -1932,6 +1999,14 @@ $.message.zhTW = {
     "by": "by",
     "NameVar": "名稱變數",
     "n_variance": "n-1 式",
+    "RandomNumber": "隨機數",
+    "RealNumber":     "實數",
+    "IntegerNumber":  "整数",
+    "NumberData":     "數據數量",
+    "NumberDigit":    "小數位數",
+    "NormalTable":    "常態分佈表",
+    "Percentile":     "百分表",
+    "StudentRangeDist": "HSD範圍分佈",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -2088,7 +2163,7 @@ svgStr[105][3]= "列和";
 svgStr[106][3]= "多重相關係數";
 svgStr[107][3]= "<h3>相關分析</h3>";
 svgStr[108][3]= "相關係數矩陣";
-svgStr[109][3]= "因子1-因子2 平均圖";
+svgStr[109][3]= "因子A-因子B 平均圖";
 svgStr[110][3]= "槓桿量";
 svgStr[111][3]= "地理訊息圖";
 svgStr[112][3]= "範圍";
@@ -2169,7 +2244,7 @@ svgStrU[69][3] = "符號檢定";
 svgStrU[70][3] = "Friedman檢定";
 svgStrU[71][3] = "Friedman S 統計量";
 svgStrU[72][3] = "Friedman S 分布";
-svgStrU[73][3] = "t-値 (Z)";
+svgStrU[73][3] = "t 値 (Z)";
 svgStrU[74][3] = "ChiSq-値";
 svgStrU[75][3] = "樣本變異數";
 svgStrU[76][3] = "標本平均差";
@@ -2193,6 +2268,19 @@ svgStrU[93][3] = "至少一個位置參數不相同";
 svgStrU[94][3] = "Wilcoxon 符號等級分布";
 svgStrU[95][3] = "配對變數";
 svgStrU[96][3] = "配對資料";
+svgStrU[97][3] = "獨立性檢定";
+svgStrU[98][3] = "模擬";
+svgStrU[99][3] = "隨機數";
+svgStrU[100][3] = "正態分佈";
+svgStrU[101][3] = "t 分布";
+svgStrU[102][3] = "&chi;<sup>2</sup> 分布";
+svgStrU[103][3] = "F 分布";
+svgStrU[104][3] = "HSD 分布";
+svgStrU[105][3] = "";
+svgStrU[106][3] = "";
+svgStrU[107][3] = "";
+svgStrU[108][3] = "";
+svgStrU[109][3] = "";
 
 // French
 $.message.fr = {
@@ -2270,13 +2358,13 @@ $.message.fr = {
     "Execute New Interval": "Faire un nouvel intervallel",
     "Interval Start": "Début de l'intervalle",
     "Interval Width": "Largeur de l'intervalle",
-    "t-test": "t-test",
-    "Z-test": "Z-test",
-    "(if Z-test, enter &sigma;)": "(Pour le Z-test entrez &sigma;)",
+    "t-test": "t test",
+    "Z-test": "Z test",
+    "(if Z-test, enter &sigma;)": "(Pour le Z test entrez &sigma;)",
     "Significance Level": "Niveau de signification",
     "Execute": "Exécuter",
     "(Confidence Interval)": "(Intervalle de confinace)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Pour le Z-test, Z, &sigma;utilisé)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Pour le Z test, Z, &sigma;utilisé)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
     "Variance Assumption": "Hypothèse de variance",
     "F test": "F test",
@@ -2317,6 +2405,7 @@ $.message.fr = {
     "Sample": "Echantillon",
     "Exponential": "Exponentiellel(0.3)",
     "Uniform": "Uniforme(0,1)",
+    "UniformDist": "Uniforme Distribution",
     "Sample05": "Echantillonnage 5%",
     "Sample10": "Echantillonnage 10%",
     "Sample20": "Echantillonnage 20%",
@@ -2339,20 +2428,20 @@ $.message.fr = {
     "Testing Hypothesis muAB": "Test d'hypothèse &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Test d'hypothèse &mu;",
     "Testing Hypothesis sigma": "Test d'hypothèse &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Test d'hypothèse P",
+    "Testing Hypothesis P": "Test d'hypothèse p",
     "Testing Hypothesis mu12": "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Test d'hypothèse &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Test d'hypothèse P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Test d'hypothèse p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Test d'hypothèse ANOVA",
     "Testing Independence": "Test d'indépendance",
     "Correlation Coefficient": "Coefficient de corrélation",
     "Regression Experiment": "Essai de régression",
     "Hypothesis": "Hypothèse",
     "Test Type": "Type de test",
-    "Z-test": "Z-test",
-    "t-test": "t-test",
-    "Chi-test": "&chi;<sup>2</sup>-test",
-    "F-test": "F-test",
+    "Z-test": "Z test",
+    "t-test": "t test",
+    "Chi-test": "&chi;<sup>2</sup> test",
+    "F-test": "F test",
     "Sampling Type": "type d'échantillonnage",
     "Independent Sample": "indépendant",
     "Paired Sample": "jumelé",
@@ -2362,8 +2451,8 @@ $.message.fr = {
     "Sample Mean": "Moyenne de l'échantillon",
     "Sample Variance": "Variance de l'échantillon",
     "Sample Proportion": "Pourcentage de l'échantillon",
-    "if Z-test-1": "(if Z-test, Pour le Z-test, entrez la variance de la population &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if Z-test, Z<sub>&alpha;/2 </sub> utilisé.)",
+    "if Z-test-1": "(if Z test, Pour le Z test, entrez la variance de la population &sigma;<sup>2</sup>)",
+    "if Z-test-2": "(if Z test, z<sub>&alpha;/2 </sub> utilisé.)",
     "At least one pair": "Au moins deux moyennes sont différentes ",
     "Row-Col-0": "Les variables en ligne et en colonne sont indépendantes",
     "Row-Col-1": "Les variables en ligne et en colonne ne sont pas indépendantes",
@@ -2427,7 +2516,7 @@ $.message.fr = {
     "ExistInteraction": "Exister Interaction",
     "eStatLecture": "eStat Intro Conférence",
     "NonParametricMu12_title": "Wilcoxon Rang Sum Tester", 
-    "NonParametricMu12": "Wilcoxon Rang Sum Tester : Paramètre d'emplacement &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon Rang Sum Tester : Paramètre d'emplacement M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rang Sum Tester",
     "Sample Range": "Rang Sum",
     "DistributionTable": "Distribution Table",
@@ -2439,10 +2528,10 @@ $.message.fr = {
     "SignTest": "Test Signé",
     "SignCount": "Signe Compter",
     "KruskalTest": "Kruskal-Wallis Tester",
-    "KruskalTestANOVA": "Kruskal-Wallis Tester : Paramètre d'emplacement &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis Tester",
     "Total": "Total",
     "FriedmanTest": "Friedman Tester",
-    "FriedmanTestANOVA": "Friedman Tester : Paramètre d'emplacement &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman Tester",
     "Block": "Bloc",
     "Treatment": "Traitement",
     "At least one locations is different": "Au moins une paire d'emplacements est différente",
@@ -2462,6 +2551,15 @@ $.message.fr = {
     "by": "par",
     "NameVar": "Nom Var",
     "n_variance": "n-1 formule",
+    "RandomNumber": "Nombre aléatoire",
+    "RealNumber":     "Nombre réel",
+    "IntegerNumber":  "Nombre entier",
+    "NumberData":     "Nombre de données",
+    "NumberDigit":    "Chiffre décimal",
+    "NormalTable":    "Table de distribution normale",
+    "Percentile":     "Tableau des centiles",
+    "StudentRangeDist": "HSD Répartition de la gamme",
+
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2619,7 +2717,7 @@ svgStr[105][4]= "Total de colonne";
 svgStr[106][4]= "Coefficient de corrélation multiple";
 svgStr[107][4]= "<h3>Analyse de corrélation</h3>";
 svgStr[108][4]= "Matrice de corrélation";
-svgStr[109][4]= "Facteur1 - Facteur2 Graphique moyen";
+svgStr[109][4]= "Facteur A - Facteur B Graphique moyen";
 svgStr[110][4]= "Influence";
 svgStr[111][4]= "Graphique d'information géographique";
 svgStr[112][4]= "Gamme";
@@ -2724,6 +2822,19 @@ svgStrU[93][4] = "Au moins une paire d'emplacements est différente";
 svgStrU[94][4] = "Wilcoxon Test de rang signé";
 svgStrU[95][4] = "Variable appariée";
 svgStrU[96][4] = "Données Appariées";
+svgStrU[97][4] = "Test d'indépendance";
+svgStrU[98][4] = "Simulation";
+svgStrU[99][4] = "Nombre aléatoire";
+svgStrU[100][4] = "Distribution normale";
+svgStrU[101][4] = "Distribution t";
+svgStrU[102][4] = "Distribution &chi;<sup>2</sup>";
+svgStrU[103][4] = "Distribution F";
+svgStrU[104][4] = "Distribution HSD";
+svgStrU[105][4] = "";
+svgStrU[106][4] = "";
+svgStrU[107][4] = "";
+svgStrU[108][4] = "";
+svgStrU[109][4] = "";
 
 // German
 $.message.de = {
@@ -2801,13 +2912,13 @@ $.message.de = {
     "Execute New Interval": "Erzeuge ein neues Intervall",
     "Interval Start": "linke Intervallgrenze",
     "Interval Width": "Intervallbreite",
-    "t-test": "t-test",
-    "Z-test": "Z-test",
-    "(if Z-test, enter &sigma;)": "(Fall Z-Test vorliegt, gib &sigma; ein)",
+    "t-test": "t test",
+    "Z-test": "Z test",
+    "(if Z-test, enter &sigma;)": "(Fall Z Test vorliegt, gib &sigma; ein)",
     "Significance Level": "Signifikanzniveau",
     "Execute": "Führe aus",
     "(Confidence Interval)": "(Konfidenzintervall)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Fall Z-Test vorliegt, Z, &sigma)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Fall Z Test vorliegt, Z, &sigma)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
     "Variance Assumption": "Annahme für die Varianz",
     "F test": "F test",
@@ -2848,6 +2959,7 @@ $.message.de = {
     "Sample": "Stichproben",
     "Exponential": "Exponentail(0.3)",
     "Uniform": "Gleichverteilung(0,1)",
+    "UniformDist": "Gleichverteilung Verteilung",
     "Sample05": "Stichproben 5%",
     "Sample10": "Stichproben 10%",
     "Sample20": "Stichproben 20%",
@@ -2863,24 +2975,24 @@ $.message.de = {
     "Testing Hypothesis mu_titleAB": "Hypothesen testen &mu",
     "Testing Hypothesis mu_title": "Hypothesen testen &mu;",
     "Testing Hypothesis sigma_title": "Hypothesen testen &sigma;<sup>2</sup>",
-    "Testing Hypothesis P_title": "Hypothesen testen P",
+    "Testing Hypothesis P_title": "Hypothesen testen p",
     "Testing Hypothesis mu12_title": "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12_title": "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12_title": "Hypothesen testen P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12_title": "Hypothesen testen p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis muAB": "Hypothesen testen &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Hypothesen testen &mu;",
     "Testing Hypothesis sigma": "Hypothesen testen &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Hypothesen testen P",
+    "Testing Hypothesis P": "Hypothesen testen p",
     "Testing Hypothesis mu12": "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Hypothesen testen  P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Hypothesen testen  p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Hypothesen testen ANOVA",
     "Testing Independence": "Hypothesen testen auf Unabhängigkeit",
     "Correlation Coefficient": "Korrelationskoeffizient",
     "Regression Experiment": "Regressionsexperiment",
     "Hypothesis": "Hypothese",
     "Test Type": "Testtyp",
-    "Chi-test": "&chi;<sup>2</sup>-test",
+    "Chi-test": "&chi;<sup>2</sup> test",
     "Sampling Type": "Beispielstyp",
     "Independent Sample": "unabhängig",
     "Paired Sample": "gepaart",
@@ -2890,8 +3002,8 @@ $.message.de = {
     "Sample Mean": "Stichprobenmittelwert",
     "Sample Variance": "Stichprobenvarianz",
     "Sample Proportion": "Stichprobenanteil",
-    "if Z-test-1": "(Falls Z-Test vorliegt, gib Varianz ein)",
-    "if Z-test-2": "(Falls Z-Test vorliegt, Z<sub>&alpha;/2 </sub>)",
+    "if Z-test-1": "(Falls Z Test vorliegt, gib Varianz ein)",
+    "if Z-test-2": "(Falls Z Test vorliegt, z<sub>&alpha;/2 </sub>)",
     "At least one pair": "mindestens ein Paar von Mittelwerten ist verschieden",
     "Row-Col-0": "Zeilen- und  Spaltenvariablen sind unabhängig",
     "Row-Col-1": "Zeilen- und  Spaltenvariablen sind nicht unabhängig",
@@ -2939,7 +3051,7 @@ $.message.de = {
     "MultipleComparison": "Mehrfacher Vergleich",
     "AnovaResidual": "Restwertdiagramm",
     "AnovaQQ": "Restwert Q-Q Diagramm",
-    "TestingFit": "Anpassungsgüte-Test",
+    "TestingFit": "Anpassungsgüte Test",
     "FitTest0": "Beobachtete und theoretische Verteilungen sind gleich",
     "FitTest1": "Beobachtete und theoretische Verteilungen sind unterschiedlich",
     "ObservedFreq": "Beobachtete Häufigkeit O",
@@ -2955,7 +3067,7 @@ $.message.de = {
     "ExistInteraction": "Interaction existiert",
     "eStatLecture": "eStat Einführung Vorlesung",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Rangsum Test",
     "Sample Range": "Rangsum",
     "DistributionTable": "Verteilungstabelle",
@@ -2967,10 +3079,10 @@ $.message.de = {
     "SignTest": "Zeichentest",
     "SignCount": "Anzahl der Zeichen",
     "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test : Standortparameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis Test",
     "Total": "Total",
     "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test : Standortparameter &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman Test",
     "Block": "Block",
     "Treatment": "Behandlung",
     "At least one locations is different": "Mindestens ein Standortpaar ist unterschiedlich",
@@ -2990,6 +3102,15 @@ $.message.de = {
     "by": "durch",
     "NameVar": "Name Var",
     "n_variance": "n-1 formel",
+    "RandomNumber": "Zufallszahl",
+    "RealNumber":     "Reelle Zahl",
+    "IntegerNumber":  "Ganzzahl",
+    "NumberData":     "Anzahl der Daten",
+    "NumberDigit":    "Dezimalstelle",
+    "NormalTable":    "Normal Distribution Table",
+    "Percentile":     "Perzentil-Tabellee",
+    "StudentRangeDist": "HSD Bereichsverteilung",
+
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -3147,7 +3268,7 @@ svgStr[105][5]= "Spalte Gesamt";
 svgStr[106][5]= "Mehrfacher Korrelationskoeffizient";
 svgStr[107][5]= "<h3>Korrelationsanalyse</h3>";
 svgStr[108][5]= "Korrelationsmatrix";
-svgStr[109][5]= "Faktor1 - Faktor2 Mittlerer Graph";
+svgStr[109][5]= "Faktor A - Faktor B Mittlerer Graph";
 svgStr[110][5]= "Hebelwirkung";
 svgStr[111][5]= "Geografisches Informationsdiagramm";
 svgStr[112][5]= "Angebot";
@@ -3217,13 +3338,13 @@ svgStrU[58][5] = "Zeilen Spalten unabhängig";
 svgStrU[59][5] = "Zeilen Spalten nicht unabhängig";
 svgStrU[60][5] = "Beobachtete Verteilung";
 svgStrU[61][5] = "Theoretische Verteilung";
-svgStrU[62][5] = "Anpassungsgüte-Test für beobachtete Häufigkeit";
+svgStrU[62][5] = "Anpassungsgüte Test für beobachtete Häufigkeit";
 svgStrU[63][5] = "Wilcoxon Rangsummetest";
 svgStrU[64][5] = "Wilcoxon Rangsummetesttabelle";
 svgStrU[65][5] = "Kruskal-Wallis Test";
 svgStrU[66][5] = "Kruskal-Wallis H Distribution";
 svgStrU[67][5] = "Kruskal-Wallis H Statistik";
-svgStrU[68][5] = "Wilcoxon Vorzeichenhafter Rang-Test";
+svgStrU[68][5] = "Wilcoxon Vorzeichenhafter Rang Test";
 svgStrU[69][5] = "Sign Test";
 svgStrU[70][5] = "Friedman Test";
 svgStrU[71][5] = "Friedman S Statistik";
@@ -3252,6 +3373,19 @@ svgStrU[93][5] = "Mindestens ein Standortpaar ist unterschiedlich";
 svgStrU[94][5] = "Wilcoxon Vorzeichenhafter Rang Distribution";
 svgStrU[95][5] = "Gepaarte Variable";
 svgStrU[96][5] = "Gepaarte Daten";
+svgStrU[97][5] = "Hypothesen testen auf Unabhängigkeit";
+svgStrU[98][5] = "Simulation";
+svgStrU[99][5] = "Zufallszahl";
+svgStrU[100][5] = "Normalverteilung";
+svgStrU[101][5] = "t Verteilung";
+svgStrU[102][5] = "&chi;<sup>2</sup> Verteilung";
+svgStrU[103][5] = "F Verteilung";
+svgStrU[104][5] = "HSD Verteilung";
+svgStrU[105][5] = "";
+svgStrU[106][5] = "";
+svgStrU[107][5] = "";
+svgStrU[108][5] = "";
+svgStrU[109][5] = "";
 
 // Spanish
 $.message.es = {
@@ -3376,6 +3510,7 @@ $.message.es = {
     "Sample": "Muestra",
     "Exponential": "Exponencial(0.3)",
     "Uniform": "Uniforme(0,1)",
+    "UniformDist": "Distribución Uniforme",
     "Sample05": "Muestreo 5%",
     "Sample10": "Muestreo 10%",
     "Sample20": "Muestreo 20%",
@@ -3398,10 +3533,10 @@ $.message.es = {
     "Testing Hypothesis muAB": "Prueba de hipótesis &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Prueba de hipótesis &mu;",
     "Testing Hypothesis sigma": "Prueba de hipótesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Prueba de hipótesis P",
+    "Testing Hypothesis P": "Prueba de hipótesis p",
     "Testing Hypothesis mu12": "Prueba de hipótesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Prueba de hipótesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Prueba de hipótesis P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Prueba de hipótesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Prueba de hipótesis ANOVA",
     "Testing Independence": "Prueba de independencia",
     "Correlation Coefficient": "Coeficiente de correlación",
@@ -3422,7 +3557,7 @@ $.message.es = {
     "Sample Variance": "Varianza muestral",
     "Sample Proportion": "Proporción muestral",
     "if Z-test-1": "(Si test Z entrar la varianza de la población &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(Si test Z Z<sub>&alpha;/2 </sub> )",
+    "if Z-test-2": "(Si test Z z<sub>&alpha;/2 </sub> )",
     "At least one pair": "Al menos un par de medias es diferente",
     "Row-Col-0": "La variables fila y columna son independientes",
     "Row-Col-1": "La variables fila y columna no  son independientes",
@@ -3486,7 +3621,7 @@ $.message.es = {
     "ExistInteraction": "Interacción existente",
     "eStatLecture": "eStat conferencia introductoria",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon prueba de suma de rango",
     "Sample Range": "suma de rango",
     "DistributionTable": "Mesa de Distribución",
@@ -3498,10 +3633,10 @@ $.message.es = {
     "SignTest": "El signo prueba",
     "SignCount": "Recuento de signos",
     "KruskalTest": "Kruskal-Wallis prueba",
-    "KruskalTestANOVA": "Kruskal-Wallis prueba : Parámetro de ubicación &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis prueba",
     "Total": "Total",
     "FriedmanTest": "Friedman prueba",
-    "FriedmanTestANOVA": "Friedman prueba : Parámetro de ubicación &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman prueba",
     "Block": "Bloquear",
     "Treatment": "Tratamiento",
     "At least one locations is different": "Al menos un par de ubicaciones es diferente",
@@ -3521,6 +3656,15 @@ $.message.es = {
     "by": "por",
     "NameVar": "Nombre Var",
     "n_variance": "n-1 fórmula",
+    "RandomNumber": "Número aleatorio",
+    "RealNumber":     "Número Real",
+    "IntegerNumber":  "Número entero",
+    "NumberData":     "Numero de datos",
+    "NumberDigit":    "Dígito decimal",
+    "NormalTable":    "Tabla de distribución normal",
+    "Percentile":     "Tabla percentil",
+    "StudentRangeDist": "HSD Distribución de rango",
+
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3678,7 +3822,7 @@ svgStr[105][6]= "Columna total";
 svgStr[106][6]= "Correlación múltiple Coeff";
 svgStr[107][6]= "<h3>Correlation Analysis</h3>";
 svgStr[108][6]= "Análisis de correlación";
-svgStr[109][6]= "Factor1 - Factor2 Gráfico medio";
+svgStr[109][6]= "Factor A - Factor B Gráfico medio";
 svgStr[110][6]= "apalancamiento";
 svgStr[111][6]= "Gráfico de información geográfica";
 svgStr[112][6]= "Distancia";
@@ -3783,6 +3927,19 @@ svgStrU[93][6] = "Al menos un par de ubicaciones es diferente";
 svgStrU[94][6] = "Wilcoxon Distribución de Rango Firmado";
 svgStrU[95][6] = "Variable emparejada";
 svgStrU[96][6] = "Datos emparejada";
+svgStrU[97][6] = "Prueba de independencia";
+svgStrU[98][6] = "Simulación";
+svgStrU[99][6] = "Número aleatorio";
+svgStrU[100][6] = "Distribución normal";
+svgStrU[101][6] = "Distribución t";
+svgStrU[102][6] = "Distribución &chi;<sup>2</sup>";
+svgStrU[103][6] = "Distribución F";
+svgStrU[104][6] = "Distribución HSD";
+svgStrU[105][6] = "";
+svgStrU[106][6] = "";
+svgStrU[107][6] = "";
+svgStrU[108][6] = "";
+svgStrU[109][6] = "";
 
 // Vietnamese
 $.message.vi = {
@@ -3907,6 +4064,7 @@ $.message.vi = {
     "Sample": "mẫu",
     "Exponential": "Thí nghiệm p/p chuẩn(0.3)",
     "Uniform": "P/p Đều(0,1)",
+    "UniformDist": "P/p Đều",
     "Sample05": "Lấy mẫu 5%",
     "Sample10": "Lấy mẫu 10%",
     "Sample20": "Lấy mẫu 20%",
@@ -3925,14 +4083,14 @@ $.message.vi = {
     "Testing Hypothesis P_title": "Kiểm định Tỉ lệ ",
     "Testing Hypothesis mu12_title": "Kiểm định Trung bình hai tổng thể",
     "Testing Hypothesis sigma12_title": "Kiểm định Phương sai hai tổng thể",
-    "Testing Hypothesis P12_title": "Kiểm định P1, P2",
+    "Testing Hypothesis P12_title": "Kiểm định p1, p2",
     "Testing Hypothesis muAB": "Kiểm định giả thuyết &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Kiểm định giả thuyết &mu;",
     "Testing Hypothesis sigma": "Kiểm định giả thuyết &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Kiểm định P",
+    "Testing Hypothesis P": "Kiểm định p",
     "Testing Hypothesis mu12": "Kiểm định giả thuyết &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Kiểm định giả thuyết &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Kiểm định giả thuyết P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Kiểm định giả thuyết p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Kiểm định ANOVA",
     "Testing Independence": "Kiểm định độc lập",
     "Correlation Coefficient": "Hệ số tương quan",
@@ -3953,7 +4111,7 @@ $.message.vi = {
     "Sample Variance": " Phương sai mẫu",
     "Sample Proportion": "Tỉ lệ mẫu",
     "if Z-test-1": "(Nếu kiểm định Z, nhập phương sai tổng thể &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(Nếu kiểm định Z, Z<sub>&alpha;/2 </sub>.)",
+    "if Z-test-2": "(Nếu kiểm định Z, z<sub>&alpha;/2 </sub>.)",
     "At least one pair": "Có ít nhất một cặp trung bình khác nhau",
     "Row-Col-0": "Biến cột và biến dòng độc lập ",
     "Row-Col-1": "Biến cột và biến dòng độc lập ",
@@ -4017,7 +4175,7 @@ $.message.vi = {
     "ExistInteraction": "Tương tác hiện tại",
     "eStatLecture": "Bài giảng eStat ",
     "NonParametricMu12_title": " Kiểm định hạng Wilconxon ", 
-    "NonParametricMu12": "Wilcoxon Xếp hạng Tổng kiểm tra : Thông số thống kê &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon Xếp hạng Tổng kiểm tra : Thông số thống kê M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Kiểm định hạng Wilconxon",
     "Sample Range": "Phạm vi mẫu",
     "DistributionTable": "Bảng phân phối",
@@ -4025,10 +4183,10 @@ $.message.vi = {
     "SignTest": "Kiểm định dấu",
     "SignCount": "Số lượng dấu",
     "KruskalTest": "Kiểm định Kruskal-Wallis",
-    "KruskalTestANOVA": "Kiểm định Kruskal-Wallis: Thông số thống kê &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kiểm định Kruskal-Wallis",
     "Total": "Toàn bộ",
     "FriedmanTest": "Kiểm định Friedman",
-    "FriedmanTestANOVA": "Kiểm định Friedman: Thông số thống kê &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Kiểm định Friedman",
     "Block": "Khối",
     "Treatment": "Điều trị",
     "At least one locations is different": "Ít nhất một cặp vị trí khác nhau",
@@ -4048,6 +4206,15 @@ $.message.vi = {
     "by": "bởi",
     "NameVar": "Biến tên",
     "n_variance": "n-1 công thức",
+    "RandomNumber": "Số ngẫu nhiên",
+    "RealNumber":     "Số thực",
+    "IntegerNumber":  "Số nguyên",
+    "NumberData":     "Số lượng dữ liệu",
+    "NumberDigit":    "Chữ số thập phân",
+    "NormalTable":    "Bảng phân phối bình thường",
+    "Percentile":     "Bảng tỷ lệ phần trăm",
+    "StudentRangeDist": "HSD Phân phối phạm vi",
+
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4205,7 +4372,7 @@ svgStr[105][7]= "Tổng số cột";
 svgStr[106][7]= "Hệ số tương quan nhiều";
 svgStr[107][7]= "<h3>Phân tích tương quan</h3>";
 svgStr[108][7]= "Ma trận tương quan";
-svgStr[109][7]= "Hệ số1 - Hệ số2 Đồ thị trung bình";
+svgStr[109][7]= "Hệ số A - Hệ số B Đồ thị trung bình";
 svgStr[110][7]= "Đòn bẩy";
 svgStr[111][7]= "Biểu đồ thông tin địa lý";
 svgStr[112][7]= "Phạm vi";
@@ -4286,8 +4453,8 @@ svgStrU[69][7] = "Đăng ký kiểm tra";
 svgStrU[70][7] = "Friedman Kiểm tra";
 svgStrU[71][7] = "Friedman S Thống kê";
 svgStrU[72][7] = "Friedman S Bảng phân phối";
-svgStrU[73][7] = "t-value (Z)";
-svgStrU[74][7] = "ChiSq-value";
+svgStrU[73][7] = "t value (Z)";
+svgStrU[74][7] = "ChiSq value";
 svgStrU[75][7] = "phương sai mẫu";
 svgStrU[76][7] = "sự khác biệt của phương tiện mẫu";
 svgStrU[77][7] = "tỷ số của phương sai mẫu";
@@ -4310,6 +4477,19 @@ svgStrU[93][7] = "Ít nhất một cặp vị trí khác nhau";
 svgStrU[94][7] = "Wilcoxon Kiểm tra xếp hạng đã ký";
 svgStrU[95][7] = "Biến cặp";
 svgStrU[96][7] = "dữ liệu được ghép nối";
+svgStrU[97][7] = "Kiểm định độc lậ";
+svgStrU[98][7] = "Mô phỏng";
+svgStrU[99][7] = "Số ngẫu nhiên";
+svgStrU[100][7] = "Phân phối bình thường";
+svgStrU[101][7] = "Phân phối t";
+svgStrU[102][7] = "Phân phối &chi;<sup>2</sup>";
+svgStrU[103][7] = "Phân phối F";
+svgStrU[104][7] = "Phân phối HSD";
+svgStrU[105][7] = "";
+svgStrU[106][7] = "";
+svgStrU[107][7] = "";
+svgStrU[108][7] = "";
+svgStrU[109][7] = "";
 
 // Indonesian
 $.message.id = {
@@ -4387,9 +4567,9 @@ $.message.id = {
     "Execute New Interval": "Jalankan Interval Baru",
     "Interval Start": "Mulai Interval",
     "Interval Width": "Lebar Interval",
-    "t-test": "uji-t",
-    "Z-test": "uji-Z",
-    "(if Z-test, enter &sigma;)": "(jika uji-Z, masukkan &sigma;)",
+    "t-test": "uji t",
+    "Z-test": "uji Z",
+    "(if Z-test, enter &sigma;)": "(jika uji Z, masukkan &sigma;)",
     "Significance Level": "Taraf Nyata",
     "Execute": "Jalankan",
     "(Confidence Interval)": "(Selang Kepercayaan)",
@@ -4434,6 +4614,7 @@ $.message.id = {
     "Sample": "Sampel",
     "Exponential": "Eksponensial(0.3)",
     "Uniform": "Seragam(0,1)",
+    "UniformDist": "Distribusi Seragam",
     "Sample05": "Pengambilan Sampel 5%",
     "Sample10": "Pengambilan Sampel 10%",
     "Sample20": "Pengambilan Sampel 20%",
@@ -4456,20 +4637,20 @@ $.message.id = {
     "Testing Hypothesis muAB": "Pengujian Hipotesis &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Pengujian Hipotesis &mu;",
     "Testing Hypothesis sigma": "Pengujian Hipotesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Pengujian Hipotesis P",
+    "Testing Hypothesis P": "Pengujian Hipotesis p",
     "Testing Hypothesis mu12": "Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Pengujian Hipotesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Pengujian Hipotesis P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Pengujian Hipotesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Pengujian Hipotesis ANOVA",
     "Testing Independence": "Uji Independensi",
     "Correlation Coefficient": "Koefisien Korelasi",
     "Regression Experiment": "Percobaan Regresi",
     "Hypothesis": "Hipotesis",
     "Test Type": "Tipe Uji",
-    "Z-test": "uji-Z ",
-    "t-test": "uji-t",
-    "Chi-test": "uji-&chi;<sup>2</sup>",
-    "F-test": "uji-F",
+    "Z-test": "uji Z ",
+    "t-test": "uji t",
+    "Chi-test": "uji &chi;<sup>2</sup>",
+    "F-test": "uji F",
     "Sampling Type": "Jenis Sampling",
     "Independent Sample": "independen",
     "Paired Sample": "data yang dipasangkan",
@@ -4479,8 +4660,8 @@ $.message.id = {
     "Sample Mean": "Rata-rata Sampel",
     "Sample Variance": "Varians Sampel",
     "Sample Proportion": "Proporsi Sampel",
-    "if Z-test-1": "(if uji-Z, Masukkan Varians Populasi &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if uji-Z, Z<sub>&alpha;/2 </sub> digunakan.)",
+    "if Z-test-1": "(if uji Z, Masukkan Varians Populasi &sigma;<sup>2</sup>)",
+    "if Z-test-2": "(if uji Z, z<sub>&alpha;/2 </sub> digunakan.)",
     "At least one pair": " Setidaknya Ada Satu Pasang Rata-rata yang Berbeda",
     "Row-Col-0": "Baris dan Kolom Variabel saling bebas/independen",
     "Row-Col-1": " Baris dan Kolom Variabel tidak saling bebas/independen",
@@ -4544,7 +4725,7 @@ $.message.id = {
     "ExistInteraction": "Ada Interaction",
     "eStatLecture": "eStat Pengantar Kuliahe",
     "NonParametricMu12_title": "Wilcoxon Tes Jumlah Peringkat", 
-    "NonParametricMu12": "Wilcoxon Tes Jumlah Peringkatt : Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon Tes Jumlah Peringkatt : Parameter Lokasi M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Uji Jumlah Peringkat Wilcoxon",
     "Sample Range": "Jumlah Pangkat",
     "DistributionTable": "Tabel Distribusi",
@@ -4556,10 +4737,10 @@ $.message.id = {
     "SignTest": "Uji Tanda",
     "SignCount": "Hitung Tanda",
     "KruskalTest": "Uji Kruskal-Wallis",
-    "KruskalTestANOVA": "Uji Kruskal-Wallis: Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Uji Kruskal-Wallis",
     "Total": "Total",
     "FriedmanTest": "Uji Friedman",
-    "FriedmanTestANOVA": "Uji Friedman: Parameter Lokasi &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Uji Friedman",
     "Block": "Blok",
     "Treatment": "Pengobatan",
     "At least one locations is different": "Setidaknya terdapat satu pasang lokasi yang berbeda",
@@ -4579,6 +4760,15 @@ $.message.id = {
     "by": "oleh",
     "NameVar": "Var Nama",
     "n_variance": "n-1 rumus",
+    "RandomNumber": "Angka acak",
+    "RealNumber":     "Bilangan asli",
+    "IntegerNumber":  "Nomor Integer",
+    "NumberData":     "Jumlah Data",
+    "NumberDigit":    "Digit desimal",
+    "NormalTable":    "Tabel Distribusi Normal",
+    "Percentile":     "Tabel Persentil",
+    "StudentRangeDist": "HSD Distribusi Rentang",
+
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -4736,7 +4926,7 @@ svgStr[105][8]= "Total Kolom";
 svgStr[106][8]= "Koefisien Korelasi Berganda";
 svgStr[107][8]= "<h3>Analisis korelasi</h3>";
 svgStr[108][8]= "Matriks Korelasi";
-svgStr[109][8]= "Faktor1 - Faktor2 Grafik Berartih";
+svgStr[109][8]= "Faktor A - Faktor B Grafik Berartih";
 svgStr[110][8]= "Pengaruh";
 svgStr[111][8]= "Grafik Informasi Geografis";
 svgStr[112][8]= "Jarak";
@@ -4841,6 +5031,20 @@ svgStrU[93][8] = "Setidaknya terdapat satu pasang lokasi yang berbeda";
 svgStrU[94][8] = "Peringkat Bertanda Wilcoxon";
 svgStrU[95][8] = "Dipasangkan Var";
 svgStrU[96][8] = "Data berpasangan";
+svgStrU[97][8] = "Uji Independensi";
+svgStrU[98][8] = "Simulasi";
+svgStrU[99][8] = "Angka acak";
+svgStrU[100][8] = "Distribusi normal";
+svgStrU[101][8] = "Distribusi t";
+svgStrU[102][8] = "Distribusi &chi;<sup>2</sup>";
+svgStrU[103][8] = "Distribusi F";
+svgStrU[104][8] = "Distribusi HSD";
+svgStrU[105][8] = "";
+svgStrU[106][8] = "";
+svgStrU[107][8] = "";
+svgStrU[108][8] = "";
+svgStrU[109][8] = "";
+
 
 // Mongolian
 $.message.mn = {
@@ -4918,13 +5122,13 @@ $.message.mn = {
     "Execute New Interval": "Шинэ завсарыг гүйцэтгэх",
     "Interval Start": "Завсарын эхлэл",
     "Interval Width": "Завсарын өргөн",
-    "t-test": "t-Тестийн",
-    "Z-test": "Z-Тестийнт",
+    "t-test": "t Тестийн",
+    "Z-test": "Z Тестийнт",
     "(if Z-test, enter &sigma;)": "(Хэрэв Z тест байвал сигмаг оруул &sigma;)",
     "Significance Level": "Утга учиртай түвшин",
     "Execute": "Гүйцэтгэл",
     "(Confidence Interval)": "(Найдварт завсар)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Хэрэв Z тест байвал Z<sub>&alpha;/2</sub>)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Хэрэв Z тест байвал z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> Тест",
     "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
     "F test": "F Тестийн",
@@ -4965,6 +5169,7 @@ $.message.mn = {
     "Sample": "Жишээ",
     "Exponential": "Экспоненциал(0.3)",
     "Uniform": "Нэг төрлийн/ байнгын (0,1)",
+    "UniformDist": "Нэг төрлийн/ байнгын",
     "Sample05": "Түүвэрлэлт 5%",
     "Sample10": "Түүвэрлэлт 10%",
     "Sample20": "Түүвэрлэлт 20%",
@@ -4987,20 +5192,20 @@ $.message.mn = {
     "Testing Hypothesis muAB": "Тестэн таамаглал &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "Тестэн таамаглал &mu;",
     "Testing Hypothesis sigma": "Тестэн таамаглал &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Тестэн таамаглал P",
+    "Testing Hypothesis P": "Тестэн таамаглал p",
     "Testing Hypothesis mu12": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Тестэн таамаглал &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Тестэн таамаглал P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Тестэн таамаглал p<sub>1</sub>, <sub>2</sub>",
     "Testing Hypothesis ANOVA": "Тестэн таамаглал ANOVA",
     "Testing Independence": "Тестэн хамааралгүй байдал",
     "Correlation Coefficient": "Хамаарлын коэфцеэнт ",
     "Regression Experiment": "Хамаарлын туршилт",
     "Hypothesis": "Таамаглал",
     "Test Type": "Тестийн төрөл",
-    "Z-test": "Z-Тестийн",
-    "t-test": "t-Тестийн",
-    "Chi-test": "&chi;<sup>2</sup>-Тестийн",
-    "F-test": "F-Тестийн",
+    "Z-test": "Z Тестийн",
+    "t-test": "t Тестийн",
+    "Chi-test": "&chi;<sup>2</sup> Тестийн",
+    "F-test": "F Тестийн",
     "Sampling Type": "Түүвэрлэлт",
     "Independent Sample": "Үл хамааран",
     "Paired Sample": "хосолсон",
@@ -5011,7 +5216,7 @@ $.message.mn = {
     "Sample Variance": "Түүврийн вариаци",
     "Sample Proportion": "жишээ харьцаа",
     "if Z-test-1": "(Хэрэв Z тест байвал хүн амын дундаж кватрат хазайлтыг оруул &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(Хэрэв Z тест Z<sub>&alpha;/2 </sub> ашиглагдсан.)",
+    "if Z-test-2": "(Хэрэв Z тест z<sub>&alpha;/2 </sub> ашиглагдсан.)",
     "At least one pair": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр.",
     "Row-Col-0": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй ",
     "Row-Col-1": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй биш",
@@ -5073,7 +5278,7 @@ $.message.mn = {
     "ExistInteraction": "Харилцан холбоо үүсгэх",
     "eStatLecture": "eStat Лекцийн танилцуулга",
     "NonParametricMu12_title": "Wilcoxon Дундаж дүн шинжилгээt", 
-    "NonParametricMu12": "Wilcoxon Дундаж дүн шинжилгээ : Байршлын параметрr &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon Дундаж дүн шинжилгээ : Байршлын параметрr M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Wilcoxon Дундаж дүн шинжилгээ",
     "Sample Range": "Дугаар Сар",
     "DistributionTable": "Түгээлт Хүснэгтe",
@@ -5085,10 +5290,10 @@ $.message.mn = {
     "SignTest": "Тестийн тэмдэгt",
     "SignCount": "Дугаар тэмдэгt",
     "KruskalTest": "Kruskal-Wallis Туршилт",
-    "KruskalTestANOVA": "Kruskal-Wallis Туршилт : Байршлын параметр &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis Туршилт",
     "Total": "Нийт",
     "FriedmanTest": "Friedman Туршилт",
-    "FriedmanTestANOVA": "Friedman Туршилт : Байршлын параметр &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman Туршилт",
     "Block": "Блок",
     "Treatment": "Эмчилгээ",
     "At least one locations is different": "Наад зах нь нэг хос байршил өөр байна",
@@ -5108,6 +5313,15 @@ $.message.mn = {
     "by": "by",
     "NameVar": "Хувьсах нэр",
     "n_variance": "n-1 томъёо",
+    "RandomNumber": "санамсаргүй тоо",
+    "RealNumber":     "Бодит тоо",
+    "IntegerNumber":  "Бүхэл тоо",
+    "NumberData":     "Өгөгдлийн тоо",
+    "NumberDigit":    "Дижитал тоо",
+    "NormalTable":    "Хэвийн хуваарилах хүснэгт",
+    "Percentile":     "Хувь Хүснэгт",
+    "StudentRangeDist": "HSD Range тархац",
+
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -5265,7 +5479,7 @@ svgStr[105][9]= "Багана Нийт";
 svgStr[106][9]= "Олон харилцан хамаарлын коэффициент";
 svgStr[107][9]= "<h3>Корреляцийн шинжилгээ</h3>";
 svgStr[108][9]= "Корреляцийн матриц";
-svgStr[109][9]= "Фактор1 - Фактор2 Mean Graph";
+svgStr[109][9]= "Фактор A - Фактор B Mean Graph";
 svgStr[110][9]= "Хөшүүрэг";
 svgStr[111][9]= "Газар зүйн мэдээллийн график";
 svgStr[112][9]= "Хүрээ";
@@ -5370,6 +5584,19 @@ svgStrU[93][9] = "Наад зах нь нэг хос байршил өөр ба�
 svgStrU[94][9] = "Wilcoxon Гарын үсэг зурах шалгуур";
 svgStrU[95][9] = "хосолсон";
 svgStrU[96][9] = "хосолсон өгөгдөл";
+svgStrU[97][9] = "Тестэн хамааралгүй байдал";
+svgStrU[98][9] = "Загварчлал";
+svgStrU[99][9] = "Санамсаргүй тоо";
+svgStrU[100][9] = "Хэвийн тархалт";
+svgStrU[101][9] = "t Түгээлт";
+svgStrU[102][9] = "&chi;<sup>2</sup> Түгээлт";
+svgStrU[103][9] = "F Түгээлт";
+svgStrU[104][9] = "HSD Түгээлт";
+svgStrU[105][9] = "";
+svgStrU[106][9] = "";
+svgStrU[107][9] = "";
+svgStrU[108][9] = "";
+svgStrU[109][9] = "";
 
 // Chinese - Simplified
 $.message.zh = {
@@ -5447,13 +5674,13 @@ $.message.zh = {
     "Execute New Interval": "执行新区间",
     "Interval Start": "区间起点",
     "Interval Width": "区间宽度",
-    "t-test": "t-检验",
-    "Z-test": "Z-检验",
-    "(if Z-test, enter &sigma;)": "(Z-检验, 输入 &sigma)",
+    "t-test": "t 检验",
+    "Z-test": "Z 检验",
+    "(if Z-test, enter &sigma;)": "(Z 检验, 输入 &sigma)",
     "Significance Level": "显著性水平",
     "Execute": "执行",
     "(Confidence Interval)": "(置信区间)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-检验, Z, &sigma;使用)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 检验, Z, &sigma;使用)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 检验",
     "Variance Assumption": "方差假设",
     "F test": "F 检验",
@@ -5494,6 +5721,7 @@ $.message.zh = {
     "Sample": "样本",
     "Exponential": "指数分布(0.3)",
     "Uniform": "均匀分布(0,1)",
+    "UniformDist": "均匀分布",
     "Sample05": "5% 样本抽出",
     "Sample10": "10% 样本抽出",
     "Sample20": "20% 样本抽出",
@@ -5516,20 +5744,20 @@ $.message.zh = {
     "Testing Hypothesis muAB": "假设检验 &mu; - &alpha;, &beta;",
     "Testing Hypothesis mu": "区间估计/假设检验: 均值&mu;",
     "Testing Hypothesis sigma": "区间估计/假设检验: 变异数&sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "区间估计/假设检验: 比例 P",
+    "Testing Hypothesis P": "区间估计/假设检验: 比例 p",
     "Testing Hypothesis mu12": "假设检验 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "假设检验 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "假设检验 : P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "假设检验 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "方差分析",
     "Testing Independence": "独立性检验",
     "Correlation Coefficient": "相关系数",
     "Regression Experiment": "回归实验",
     "Hypothesis": "假设",
     "Test Type": "检验类型",
-    "Z-test": "Z-检验",
-    "t-test": "t-检验",
+    "Z-test": "Z 检验",
+    "t-test": "t 检验",
     "Chi-test": "卡方检验",
-    "F-test": "F-检验",
+    "F-test": "F 检验",
     "Sampling Type": "样本",
     "Independent Sample": "獨立样本",
     "Paired Sample": "対応样本",
@@ -5539,8 +5767,8 @@ $.message.zh = {
     "Sample Mean": "样本均值",
     "Sample Variance": "样本方差",
     "Sample Proportion": "样本比例",
-    "if Z-test-1": "(Z-检验, 母分散入力)",
-    "if Z-test-2": "(Z-检验, Z<sub>&alpha;/2 </sub> 使用)",
+    "if Z-test-1": "(Z 检验, 母分散入力)",
+    "if Z-test-2": "(Z 检验, z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "至少有一对平均数不相等",
     "Row-Col-0": "列变量与行变量独立",
     "Row-Col-1": "列变量与行变量不独立",
@@ -5604,7 +5832,7 @@ $.message.zh = {
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat 入門講義",
     "NonParametricMu12_title": "Wilcoxon 順位合檢定", 
-    "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "Wilcoxon 符號順位合分布",
@@ -5616,10 +5844,10 @@ $.message.zh = {
     "SignCount": "符號數",
     "WilcoxonTest": "Wilcoxon 順位檢定",
     "KruskalTest": "Kruskal-Wallis 檢定",
-    "KruskalTestANOVA": "Kruskal-Wallis 檢定 : 位置母數 &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Kruskal-Wallis 檢定",
     "Total": "全体",
     "FriedmanTest": "Friedman檢定",
-    "FriedmanTestANOVA": "Friedman檢定 : 位置母数 &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Friedman 檢定",
     "Block": "Block",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
@@ -5638,6 +5866,15 @@ $.message.zh = {
     "by": "by",
     "NameVar": "名称变量",
     "n_variance": "n-1 式",
+    "RandomNumber": "随机数",
+    "RealNumber":     "实数",
+    "IntegerNumber":  "整数",
+    "NumberData":     "数据数量",
+    "NumberDigit":    "小数位数",
+    "NormalTable":    "正态分布表",
+    "Percentile":     "百分表",
+    "StudentRangeDist": "HSD 范围分布",
+
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -5795,7 +6032,7 @@ svgStr[105][10]= "列合";
 svgStr[106][10]= "重相關係數";
 svgStr[107][10]= "<h3>相關分析</h3>";
 svgStr[108][10]= "相關係數行列";
-svgStr[109][10]= "因子1 - 因子2 平均图";
+svgStr[109][10]= "因子A - 因子B 平均图";
 svgStr[110][10]= "杠杆作用";
 svgStr[111][10]= "地理信息图";
 svgStr[112][10]= "范围";
@@ -5900,6 +6137,19 @@ svgStrU[93][10] = "位置母数 !=";
 svgStrU[94][10] = "Wilcoxon 符號順位合分布";
 svgStrU[95][10] = "配对变量";
 svgStrU[96][10] = "配对数据";
+svgStrU[97][10] = "独立性检验";
+svgStrU[98][10] = "模拟";
+svgStrU[99][10] = "随机数";
+svgStrU[100][10] = "正态分布";
+svgStrU[101][10] = "t 分布";
+svgStrU[102][10] = "&chi;<sup>2</sup> 分布";
+svgStrU[103][10] = "F 分布";
+svgStrU[104][10] = "HSD 分布";
+svgStrU[105][10] = "";
+svgStrU[106][10] = "";
+svgStrU[107][10] = "";
+svgStrU[108][10] = "";
+svgStrU[109][10] = "";
 
 // Portugese
 $.message.pt = {
@@ -5980,13 +6230,13 @@ $.message.pt = {
     "Execute New Interval": "Execute com Novos Intervalos",
     "Interval Start": "Início do Intervalo",
     "Interval Width": "Amplitude do Intervalo",
-    "t-test": "t-teste",
-    "Z-test": "Z-teste",
+    "t-test": "t teste",
+    "Z-test": "Z teste",
     "(if Z-test, enter &sigma;)": "(se teste Z, forneça &sigma;)",
     "Significance Level": "Nível de Significância",
     "Execute": "Execute",
     "(Confidence Interval)": "(Confidence Interval)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Se teste Z, use Z<sub>&alpha;/2 </sub>)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Se teste Z, use z<sub>&alpha;/2 </sub>)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> teste",
     "Variance Assumption": "Suposição sobre as variâncias",
     "F test": "F teste",
@@ -6027,6 +6277,7 @@ $.message.pt = {
     "Sample": "Amostra",
     "Exponential": "Exponencial(0.3)",
     "Uniform": "Uniforme(0,1)",
+    "UniformDist": "Distribuição Uniforme",
     "Sample05": "Amostragem 5%",
     "Sample10": "Amostragem 10%",
     "Sample20": "Amostragem 20%",
@@ -6049,20 +6300,20 @@ $.message.pt = {
     "Testing Hypothesis muAB": "Teste para uma média &alpha;, &beta;",
     "Testing Hypothesis mu": "Teste Hipótese &mu;",
     "Testing Hypothesis sigma": "Teste Hipótese &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Teste Hipótese P",
+    "Testing Hypothesis P": "Teste Hipótese p",
     "Testing Hypothesis mu12": "Teste Hipótese &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Teste Hipótese &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Teste Hipótese P<sub>1</sub>, P<sub>2</sub>",
+    "Testing Hypothesis P12": "Teste Hipótese p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Teste Hipótese ANOVA",
     "Testing Independence": "Teste de Independência",
     "Correlation Coefficient": "Coeficiente de Correlação",
     "Regression Experiment": "Experimento de Regressão",
     "Hypothesis": "Hipótese",
     "Test Type": "Tipo do Teste",
-    "Z-test": "Z-teste",
-    "t-test": "t-teste",
-    "Chi-test": "&chi;<sup>2</sup>-teste",
-    "F-test": "F-teste",
+    "Z-test": "Z teste",
+    "t-test": "t teste",
+    "Chi-test": "&chi;<sup>2</sup> teste",
+    "F-test": "F teste",
     "Sampling Type": "Tipo de Amostragem",
     "Independent Sample": "Independência",
     "Paired Sample": "amostras pareadas",
@@ -6073,7 +6324,7 @@ $.message.pt = {
     "Sample Variance": "Variância Amostral",
     "Sample Proportion": "Proporção Amostral",
     "if Z-test-1": "(se Teste Z, entre com a variância populacional)",
-    "if Z-test-2": "(se Teste Z, Z<sub>&alpha;/2 </sub> usado.)",
+    "if Z-test-2": "(se Teste Z, z<sub>&alpha;/2 </sub> usado.)",
     "At least one pair": "Pelo menos um par de médias difere",
     "Row-Col-0": "Variáveis na linha e coluna da tabela são independentes",
     "Row-Col-1": "Variáveis na linha e coluna da tabela não são independentes",
@@ -6136,7 +6387,7 @@ $.message.pt = {
     "ExistInteraction": "Existe Interação",
     "eStatLecture": "Aula Intro eStat",
     "NonParametricMu12_title": "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)", 
-    "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação &mu;<sub>1</sub>, &mu;<sub>2</sub>", 
+    "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Teste da Soma dos Postos",
     "Sample Range": "Amplitude Amostral",
     "DistributionTable": "Tabela de Distribuição",
@@ -6148,10 +6399,10 @@ $.message.pt = {
     "SignTest": "Teste dos sinais",
     "SignCount": "Contagem dos sinais",
     "KruskalTest": "Teste de Kruskal-Wallis",
-    "KruskalTestANOVA": "Teste de Kruskal-Wallis : Parâmetro de Locação &mu;<sub>1</sub>, &mu;<sub>2</sub>, &mu;<sub>3</sub> ",
+    "KruskalTestANOVA": "Teste de Kruskal-Wallis",
     "Total": "Total",
     "FriedmanTest": "Teste de Friedman",
-    "FriedmanTestANOVA": "Teste de Friedman : Parâmetro de Locaçãor &mu;<sub>1</sub>, &mu;<sub>2</sub>, ... , &mu;<sub>k</sub> ",
+    "FriedmanTestANOVA": "Teste de Friedman",
     "Block": "Bloco",
     "Treatment": "Tratamento",
     "At least one locations is different": "Pelo menos um par de médias difere",
@@ -6171,6 +6422,15 @@ $.message.pt = {
     "by": "de",
     "NameVar": "Var de nome",
     "n_variance": "n-1 Fórmula",
+    "RandomNumber": "Número aleatório",
+    "RealNumber":     "Número real",
+    "IntegerNumber":  "Número inteiro",
+    "NumberData":     "Número de dados",
+    "NumberDigit":    "Dígito Decimal",
+    "NormalTable":    "Tabela de Distribuição Normal",
+    "Percentile":     "Tabela percentual",
+    "StudentRangeDist": "Distribuição de Faixa",
+
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -6328,7 +6588,7 @@ svgStr[105][11]= "Total nas Colunas";
 svgStr[106][11]= "Coeficiente de Correlação Múltipla";
 svgStr[107][11]= "<h3>Análise de Correlação</h3>";
 svgStr[108][11]= "Matriz de Correlação";
-svgStr[109][11]= "Fator1 - Fator2 média gráfico";
+svgStr[109][11]= "Fator A - Fator B média gráfico";
 svgStr[110][11]= "Alavancagem";
 svgStr[111][11]= "Gráfico de Informação Geográfica";
 svgStr[112][11]= "Alcance";
@@ -6433,3 +6693,16 @@ svgStrU[93][11] = "Pelo menos um par de médias difere";
 svgStrU[94][11] = "Distribuição da Soma dos Postos Sinalizados de Wilcoxon";
 svgStrU[95][11] = "Emparelhado Var";
 svgStrU[96][11] = "Dados Emparelhado";
+svgStrU[97][11] = "Teste de Independência";
+svgStrU[98][11] = "Simulação";
+svgStrU[99][11] = "Número aleatório";
+svgStrU[100][11] = "Distribuição normal";
+svgStrU[101][11] = "Distribuição t";
+svgStrU[102][11] = "Distribuição &chi;<sup>2</sup>";
+svgStrU[103][11] = "Distribuição F";
+svgStrU[104][11] = "Distribuição HSD";
+svgStrU[105][11] = "";
+svgStrU[106][11] = "";
+svgStrU[107][11] = "";
+svgStrU[108][11] = "";
+svgStrU[109][11] = "";

@@ -2275,8 +2275,8 @@ d3.select("#executeTH8NP").on("click", function() {
         nvalue = rankSumDist(0, nobs[0], dataValue, dvalueP, checkRankSum);
         // draw graph
         var title  = svgStrU[68][langNum]; // "Wilcoxon Rank Sum Test" 
-        var sub1 = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
-        var sub2 = svgStrU[23][langNum]+ " R+ ~ Wilcoxson Sign (n = "+nobs[0]+") "+svgStrU[24][langNum];
+        var sub1 = "H\u2080: M = M\u2080  " + " , H\u2081: M "+ symbol[h1Type-1] + " M\u2080" ;
+        var sub2 = svgStrU[23][langNum]+ " (R+) ~ Wilcoxson Sign (n = "+nobs[0]+") "+svgStrU[24][langNum];
         drawSignedRankGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, statT) 
     }
     else {  // Z-test
@@ -2389,6 +2389,7 @@ d3.select("#executeTH9").on("click", function() {
     }
     chart.selectAll("*").remove();
     THsigma1 = true;
+    testType =1
     hypoType = 2;
     // 대립가설 Type
     if (document.myForm90.type0.value == "1")      h1Type = 1;
@@ -2774,7 +2775,7 @@ d3.select("#executeTH10NP").on("click", function() {
         nvalue = rankSumDist(nn1, nn2, dataValue, dvalueP, checkRankSum);
         // draw graph
         var title= svgStrU[63][langNum] ;
-        var sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082  " + " , H\u2081: \u03BC\u2081 "+ symbol[h1Type-1] + " \u03BC\u2082" ;
+        var sub1 = "H\u2080: M\u2081 = M\u2082  " + " , H\u2081: M\u2081 "+ symbol[h1Type-1] + " M\u2082" ;
         var sub2 = svgStrU[23][langNum]+" R\u2082 ~ Wilcoxson (n\u2081 = "+nn1+", n\u2082 = "+nn2+") "+svgStrU[24][langNum];
         drawBarGraphNP(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, statT) 
     }
@@ -2993,7 +2994,8 @@ d3.select("#anova").on("click", function() {
     GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
     chart.selectAll("*").remove();
     drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);
-    if (!checkRBD) showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
+    showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
+//    if (!checkRBD) showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
     document.getElementById("sub15").style.display = "block"; // ANOVA2 선택사항표시
   }
 })
@@ -3022,6 +3024,7 @@ d3.select("#executeTH12").on("click", function() {
     AnovaTable(gvarName,dvarName,nobs,avg,std,statF);
     multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+    graphNum = 33;
 })
 // Kruskal-Wallis 1원분산분석 실행
 d3.select("#executeTH12NP").on("click", function() {
@@ -3088,9 +3091,9 @@ d3.select("#executeTH12NP").on("click", function() {
         // draw graph
         var title  = svgStrU[65][langNum] ;
         var sub1, sub2;
-        if (ngroup == 2) sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082";
-        else if (ngroup == 3) sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = \u03BC\u2083" ;
-        else sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BC"+ngroup ;
+        if (ngroup == 2) sub1 = "H\u2080: M\u2081 = M\u2082";
+        else if (ngroup == 3) sub1 = "H\u2080: M\u2081 = M\u2082 = M\u2083" ;
+        else sub1 = "H\u2080: M\u2081 = M\u2082 = ... = M\u2096" ;
         sub2 = svgStrU[67][langNum];
         drawKruskalBarGraph(title, sub1, sub2, tnvalue, dataValue, dvalueP, H, alpha, h1Type, checkData) 
     }

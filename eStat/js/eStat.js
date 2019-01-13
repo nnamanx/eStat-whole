@@ -42,7 +42,7 @@ strGraph[10] = "bothbar2H";     // 수평 양쪽형 막대
 strGraph[11] = "pie1";          // 파이차트
 strGraph[12] = "donut2";        // 도넛 그래프
 strGraph[13] = "band1";         // 띠그래프
-strGraph[14] = "line1";         // 꺽은선그래프
+strGraph[14] = "line1";         // 꺾은선그래프
 strGraph[15] = "dot1";          // 점그래프
 strGraph[16] = "box1";          // 상자그래프
 strGraph[17] = "stem1";         // 줄기잎그래프
@@ -50,7 +50,7 @@ strGraph[18] = "bothstem2";     // 양쪽형 줄기잎그
 strGraph[19] = "hist1";         // 히스토그램
 strGraph[20] = "scatter1";      // 산점도
 strGraph[21] = "scatterRedraw"; // 산점도 Redraw
-strGraph[22] = "freqTable";     // 도수분포표-꺽은선
+strGraph[22] = "freqTable";     // 도수분포표-꺾은선
 strGraph[23] = "statTable";     // 기초통계량
 strGraph[25] = "testM1";        // 가설검정 mu
 strGraph[26] = "executeTH8";    // 가설검정 mu 실행
@@ -96,7 +96,7 @@ function graphSubHide() {
       document.getElementById("sub1").style.display  = "none";  //분리형 막대 도수표시 감추기
       document.getElementById("sub2").style.display  = "none";  //분리형 막대 정렬 감추기
       document.getElementById("sub3").style.display  = "none";  //띠그래프 도수표시 감추기
-      document.getElementById("sub4").style.display  = "none";  //꺽은선그래프 정렬 감추기
+      document.getElementById("sub4").style.display  = "none";  //꺾은선그래프 정렬 감추기
       document.getElementById("sub5").style.display  = "none";  //점그래프 평균 표준편차 감추기
       document.getElementById("sub52").style.display = "none";  //상자그래프 감추기
       document.getElementById("sub6").style.display  = "none";  //산점도 회귀선 감추기
@@ -275,7 +275,7 @@ function graphTitle() {
         case 11: gstr = svgStr[2][langNum];     break; // 원
         case 12: gstr = svgStr[3][langNum];    	break; // 도넛
         case 13: gstr = svgStr[4][langNum]; 	break; // 띠
-        case 14: gstr = svgStr[5][langNum];    	break; // 꺽은선
+        case 14: gstr = svgStr[5][langNum];    	break; // 꺾은선
         case 15: gstr = svgStr[6][langNum];   	break; // 점
         case 16: gstr = svgStr[7][langNum];    	break; // 상자
         case 17: gstr = svgStr[8][langNum];   	break; // 줄기
@@ -285,7 +285,7 @@ function graphTitle() {
         case 21: gstr = svgStr[10][langNum];    break; // 산점도
         case 22: gstr = svgStr[25][langNum];  	break; // 도수분포표
         case 23: gstr = svgStr[111][langNum];   break; // 기초통계량
-        case 24: gstr = svgStr[5][langNum];     break; // 꺽은선
+        case 24: gstr = svgStr[5][langNum];     break; // 꺾은선
         case 25: gstr = svgStr[86][langNum];    break; // 평균신뢰구간 그래프
         case 26: gstr = svgStr[11][langNum];    break; // 모평균 가설검정
         case 27: gstr = svgStr[113][langNum];   break; // TH sigma 평균-표준편차 그래프
@@ -750,7 +750,7 @@ function dataClassify() {
         freqMax += Math.floor(freqMax/8.+1); 
       }
 }
-function dataClassifyLine() { // 꺽은선 데이터
+function dataClassifyLine() { // 꺾은선 데이터
 
       // 초기화 - 그래프를 여러 번 그리거나 변수를 추가할때 필요
       for (k = 0; k < rowMax; k++) {
@@ -762,12 +762,12 @@ function dataClassifyLine() { // 꺽은선 데이터
         dvalueLabel[k] = null;
       } 
 
-      if (numVar < 2) { // 꺽은선의 변수 하나는 허용안함
+      if (numVar < 2) { // 꺾은선의 변수 하나는 허용안함
         checkVarSelect = false;
         return
       } 
       else { // 두 개 이상의 변수는 요약자료
-        // 꺽은선 데이터는 요약자료 표시
+        // 꺾은선 데이터는 요약자료 표시
         document.getElementById("dataType").innerHTML = "&nbsp;&nbsp; ( "+svgStrU[86][langNum]+" "+svgStrU[79][langNum]+" ) &nbsp;&nbsp;&nbsp;&nbsp;";
 
         //***** Check Missing ***** 
@@ -1041,7 +1041,7 @@ function drawTitle(graphNum, mTitle, yTitle, xTitle, ngroup, gvarNumber, gvarNam
         if (EditGraph) xstr = xTitle[graphNum];
         else if (graphNum <= 5)  xstr = dvarName;
         else if (graphNum <= 10) xstr = xTitle[graphNum];
-        else if (graphNum == 14) xstr = dvarName;   // 꺽은선
+        else if (graphNum == 14) xstr = dvarName;   // 꺾은선
         else xstr = xTitle[graphNum];
         xTitle[graphNum] = xstr;
 
@@ -2552,7 +2552,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k].style.border = "1px solid black";
             cell[k].style.backgroundColor = "#eee";
           }
-          cell[0].innerHTML = "독립성검정";
+          cell[0].innerHTML = svgStrU[97][langNum]; // 독립성검정
           cell[0].style.textAlign = "center";
  
           row = table.insertRow(ngroup+5);
@@ -2561,15 +2561,15 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k].style.border = "1px solid black";
             cell[k].style.backgroundColor = "#eee";
           }
-          cell[0].innerHTML = "카이제곱값";
+          cell[0].innerHTML = svgStr[56][langNum]; //"카이제곱값";
           cell[0].style.textAlign = "center"; 
           cell[1].innerHTML = f3(sum).toString();
           cell[1].style.textAlign = "right";
-          cell[2].innerHTML = "자유도";
+          cell[2].innerHTML = svgStr[74][langNum]; //"자유도";
           cell[2].style.textAlign = "center"; 
           cell[3].innerHTML = f0(df).toString();
           cell[3].style.textAlign = "right";
-          cell[4].innerHTML = "p값";
+          cell[4].innerHTML = svgStrU[27][langNum]; //"p-값";
           cell[4].style.textAlign = "center"; 
           if (pvalue < 0.0001) str = "< 0.0001";
           else str = f4(pvalue).toString();  
@@ -2814,7 +2814,7 @@ function drawBandGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarN
 }
 
 
-// 꺽은선 그래프 함수
+// 꺾은선 그래프 함수
 function drawLineGraph(ngroup, gvarNumber, gvarName, gvalueLabel, ndvalue, dvarNumber, dvarName, dvalueLabel, freqMin, freqMax, currentLabel, currentDataSet, dataSet) {
 
         var i, j, k;
@@ -3694,8 +3694,7 @@ function dataClassifyANOVA2() {
         for (k = 0; k < ngvalue; k++) {
             gdataValue[k] = mdvalue[1][k];
             if (mdvalueLabel[1][k] == null ) {
-              if (isNaN(mdvalue[1][k])) gvalueLabel[k] = mdvalue[1][k]; 
-              else gvalueLabel[k] = svgStr[18][langNum]+(k+1).toString();
+              gvalueLabel[k] = svgStr[93][langNum]+(k+1).toString()+" ("+mdvalue[1][k]+")"; // 수준 k+1
             }
             else {
               gvalueLabel[k] = mdvalueLabel[1][k];
@@ -3710,8 +3709,7 @@ function dataClassifyANOVA2() {
         for (k = 0; k < ngvalue2; k++) {
             gdataValue2[k] = mdvalue[2][k];
             if (mdvalueLabel[2][k] == null ) {
-              if (isNaN(mdvalue[2][k])) gvalueLabel2[k] = mdvalue[2][k]; 
-              else gvalueLabel2[k] = svgStr[18][langNum]+(k+1).toString();
+              gvalueLabel2[k] = svgStr[93][langNum]+(k+1).toString()+" ("+mdvalue[2][k]+")"; // 수준 k+1
             }
             else {
               gvalueLabel2[k] = mdvalueLabel[2][k];
@@ -4743,8 +4741,8 @@ function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
         var sx, sy, tx, ty, x1, x2, y1, y2;
         var nvalue, freqmax;
         var gxmin, gxmax, gxrange, height;
-        var oneHeight = graphHeight / ngroup;
-        var oneWidth  = graphWidth / ngroup2;
+        var oneHeight = graphHeight / ngroup2;
+        var oneWidth  = graphWidth / ngroup;
         var tdata     = new Array(rowMax);
         var dataA     = new Array(rowMax);
         var dataValue = new Array(rowMax);
@@ -4768,7 +4766,7 @@ function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
              .style("font-family","sans-seirf")
              .style("stroke","black")
              .style("text-anchor","middle")
-             .text(svgStr[109][langNum]) // "인자1 및 인자2 각 수준별 평균 그래프") 
+             .text(svgStr[109][langNum]) // "인자1 및 인자2 각 수준별 평균 그래프"
 
         // Y축 제목
         chart.append("text")
@@ -4794,8 +4792,8 @@ function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
              .attr("class","axis")
              .attr("transform","translate("+margin.left+", "+margin.top+") ")
              .call(d3.axisLeft(yScale))
-        // 인자 1의 범례
-        str = svgStr[92][langNum]+"1 : ";  //인자
+        // 인자 B의 범례
+        str = svgStr[92][langNum]+"B : "+gvarName2;  //인자
         chart.append("text")
                  .style("font-size","12px")
                  .style("font-family","sans-seirf")
@@ -4805,9 +4803,9 @@ function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
                  .attr("x",margin.left + graphWidth + 10)
                  .attr("y",margin.top)
                  .text(str);
-        for (k=0; k<ngroup; k++) {
+        for (k=0; k<ngroup2; k++) {
             m  = k+1;
-            str = svgStr[93][langNum]+(k+1).toString()+"("+gdataValue[k]+")";;  // 수준 
+            str = svgStr[93][langNum]+(k+1).toString()+" ("+gdataValue2[k]+")";;  // 수준 
             chart.append("text")
                  .style("font-size","12px")
                  .style("font-family","sans-seirf")
@@ -4819,8 +4817,8 @@ function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
                  .text(str);
         }
 
-        // 인자2 범례 헤딩
-        str = svgStr[92][langNum]+"2 : ";   // 인자
+        // 인자 A 범례 헤딩
+        str = svgStr[92][langNum]+"A : "+gvarName;   // 인자
         chart.append("text")
                  .style("font-size","12px")
                  .style("font-family","sans-seirf")
@@ -4832,8 +4830,8 @@ function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
                  .text(str);
 
         // 그룹별 점그래프
-        for (k=0; k<ngroup2; k++) { 
-            str = svgStr[93][langNum]+(k+1).toString()+"("+gdataValue2[k]+")";  
+        for (k=0; k<ngroup; k++) { 
+            str = svgStr[93][langNum]+(k+1).toString()+" ("+gdataValue[k]+")";  // 수준
             chart.append("text")
                  .style("font-size","12px")
                  .style("font-family","sans-seirf")
@@ -4854,7 +4852,7 @@ function drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nob
           sy = margin.top; 
           for (j=0; j<tobs; j++) {
             for (p=0; p<ngvalue; p++) { // 인자1의 수준의 위치 
-              if (tdataG2[j] == gdataValue[p]) {
+              if (tdataG2[j] == gdataValue2[p]) {
                 m = p+1;
                 break;
               }
@@ -4919,7 +4917,7 @@ function showDotMean(ngroup, nobs, avg, std, tstat) {
               .style("stroke",myColor[1])
               .attr("x", avgx+temp)
               .attr("y", ty + oneHeight/2)
-              .text("m="+f2(avg[k]))
+              .text("x\u0304="+f2(avg[k]))
          chart.append("text")
               .attr("class","mean")
               .style("text-anchor","end")
@@ -5089,7 +5087,7 @@ function showDotStd3(nroup, nobs, avg, std, tstat) {
               .style("stroke","green")          
               .attr("x", stdmx)
               .attr("y", ty+10)
-              .text("m - s")
+              .text("x\u0304 - s")
          chart.append("circle")
             .attr("class","std")
             .attr("cx",stdpx)
@@ -5104,7 +5102,7 @@ function showDotStd3(nroup, nobs, avg, std, tstat) {
               .style("stroke","green")          
               .attr("x", stdpx)
               .attr("y", ty+10)
-              .text("m + s")
+              .text("x\u0304 + s")
        }
 }
 
@@ -5272,7 +5270,7 @@ function showDotStd2(nroup, ngroup2, graphWidth, graphHeight) {
 function showDotStd4(nroup, ngroup2, graphWidth, graphHeight) { // 행기준
        var k, m, p, avgx, ty, tx1, tx2, ty1, ty2, df, info;
        var gymin, gymax, gyrange;
-       var oneWidth  = graphWidth / ngroup2;
+       var oneWidth  = graphWidth / ngroup;
 
         // 점그래프 전체 데이터 최소 최대 계산
         temp  = (parseFloat(tstat[7]) - parseFloat(tstat[3])) / 10;  // (전체 최대 - 최소) / 10  : 그래프 양 끝쪽 buffer 
@@ -5280,14 +5278,14 @@ function showDotStd4(nroup, ngroup2, graphWidth, graphHeight) { // 행기준
         gymax  = parseFloat(tstat[7]) + temp;
         gyrange = gymax - gymin;
 
-     for (k=0; k<ngroup; k++) {   
-       for (m=1; m<ngroup2; m++) {
-         if (isNaN(meanTwoWay[k][m-1]) || isNaN(meanTwoWay[k][m])) continue;
-         tx1 = margin.left + (m-0.5)*oneWidth;
-         ty1 = margin.top + graphHeight - graphHeight*(meanTwoWay[k][m-1]-gymin)/gyrange;  ;
-         tx2 = margin.left + (m+0.5)*oneWidth;
+     for (m=0; m<ngroup2; m++) {
+       p = m + 1;
+       for (k=1; k<ngroup; k++) {  
+         if (isNaN(meanTwoWay[k-1][m]) || isNaN(meanTwoWay[k][m])) continue;
+         tx1 = margin.left + (k-0.5)*oneWidth;
+         ty1 = margin.top + graphHeight - graphHeight*(meanTwoWay[k-1][m]-gymin)/gyrange;  
+         tx2 = margin.left + (k+0.5)*oneWidth;
          ty2 = margin.top + graphHeight - graphHeight*(meanTwoWay[k][m]-gymin)/gyrange;
-         p = k + 1;
          chart.append("circle")
             .attr("class","std")
             .attr("cx",tx1)
@@ -6061,14 +6059,14 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gva
           }
           cell[ngroup+1].innerHTML = svgStr[23][langNum];
 
-          for (i=0; i<nvalueH; i++) {
+          for (i=1; i<nvalueH-1; i++) {
             k++;
             row = table.insertRow(k);
             for (j=0; j<ngroup+2; j++) {
               cell[j] = row.insertCell(j);
               cell[j].style.width ="90px";
             }          
-            cell[0].innerHTML = (i+1).toString()+"<br> ["+f2(dataValueH[i])+", "+f2(dataValueH[i+1])+")";
+            cell[0].innerHTML = (i).toString()+"<br> ["+f2(dataValueH[i])+", "+f2(dataValueH[i+1])+")";
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";
             cell[ngroup+1].style.backgroundColor = "#eee";
@@ -6260,7 +6258,7 @@ function showHistNormalTable(nobs, avg, std, nvalueH, freq, dataValueH, dvarName
           cell[3].innerHTML = svgStr[56][langNum]; // "카이제곱값 합계";
           if (pvalue < 0.0001) str = "< 0.0001";
           else str = f4(pvalue).toString();  
-          cell[4].innerHTML = f3(chiobs)+"<br>(p값 = "+str+")";
+          cell[4].innerHTML = f3(chiobs)+"<br>("+svgStrU[27][langNum]+" = "+str+")"; // p-값
           // 다음 표와의 공백을 위한 것
           k++;
           row = table.insertRow(k);
@@ -6847,15 +6845,15 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             cell[0].innerHTML = str;
             cell[0].style.backgroundColor = "#eee";
             cell[1].innerHTML = nobs[g].toString();  
-            cell[2].innerHTML = f2(avg[g]).toString();  
-            cell[3].innerHTML = f2(std[g]).toString();   
-            cell[4].innerHTML = f2(mini[g]).toString();   
-            cell[5].innerHTML = f2(Q1[g]).toString();
-            cell[6].innerHTML = f2(median[g]).toString();   
-            cell[7].innerHTML = f2(Q3[g]).toString();   
-            cell[8].innerHTML = f2(maxi[g]).toString();   
-            cell[9].innerHTML = f2(Q3[g]-Q1[g]).toString();   
-            cell[10].innerHTML = f2(maxi[g]-mini[g]).toString();   
+            cell[2].innerHTML = f3(avg[g]).toString();  
+            cell[3].innerHTML = f3(std[g]).toString();   
+            cell[4].innerHTML = f3(mini[g]).toString();   
+            cell[5].innerHTML = f3(Q1[g]).toString();
+            cell[6].innerHTML = f3(median[g]).toString();   
+            cell[7].innerHTML = f3(Q3[g]).toString();   
+            cell[8].innerHTML = f3(maxi[g]).toString();   
+            cell[9].innerHTML = f3(Q3[g]-Q1[g]).toString();   
+            cell[10].innerHTML = f3(maxi[g]-mini[g]).toString();   
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";         
           }
@@ -6870,15 +6868,15 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             cell[0].innerHTML = svgStr[48][langNum]
             cell[0].style.backgroundColor = "#eee";
             cell[1].innerHTML = tstat[0].toString();     // obs
-            cell[2].innerHTML = f2(tstat[1]).toString(); // avg
-            cell[3].innerHTML = f2(tstat[2]).toString(); // std
-            cell[4].innerHTML = f2(tstat[3]).toString(); // min
-            cell[5].innerHTML = f2(tstat[4]).toString(); // q1
-            cell[6].innerHTML = f2(tstat[5]).toString(); // med
-            cell[7].innerHTML = f2(tstat[6]).toString(); // q3
-            cell[8].innerHTML = f2(tstat[7]).toString(); // max
-            cell[9].innerHTML = f2(tstat[6]-tstat[4]).toString(); // iqr
-            cell[10].innerHTML = f2(tstat[7]-tstat[3]).toString(); // range
+            cell[2].innerHTML = f3(tstat[1]).toString(); // avg
+            cell[3].innerHTML = f3(tstat[2]).toString(); // std
+            cell[4].innerHTML = f3(tstat[3]).toString(); // min
+            cell[5].innerHTML = f3(tstat[4]).toString(); // q1
+            cell[6].innerHTML = f3(tstat[5]).toString(); // med
+            cell[7].innerHTML = f3(tstat[6]).toString(); // q3
+            cell[8].innerHTML = f3(tstat[7]).toString(); // max
+            cell[9].innerHTML = f3(tstat[6]-tstat[4]).toString(); // iqr
+            cell[10].innerHTML = f3(tstat[7]-tstat[3]).toString(); // range
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) {
               cell[j].style.textAlign = "right";          
@@ -8093,9 +8091,15 @@ function anovaStat(ngroup,tobs,nobs,avg,std,statF,gvar,dvar,yhat,residual) {
     // residual calculation 
     tobs = gobs;
     for (j=0; j<tobs; j++) {
-          k = parseInt(gvar[j])-1;
-          yhat[j]     = avg[k];
-          residual[j] = dvar[j] - yhat[j];
+        for (i = 0; i < ngroup; i++) {
+          if (gvar[j] == gdataValue[i]) {
+            k = i;
+            break;
+          }
+        }
+//        k = parseInt(gvar[j])-1;
+        yhat[j]     = avg[k];
+        residual[j] = dvar[j] - yhat[j];
     }
 }
 
@@ -8203,7 +8207,7 @@ function statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mi
           cell[1].innerHTML = "&mu;<sub>0</sub>"; 
           cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
           if (statT[12] == 1)  cell[3].innerHTML = "Z-"+svgStr[69][langNum]; // Z값
-          else  cell[3].innerHTML = "t-"+svgStr[69][langNum]; // t값
+          else  cell[3].innerHTML = "t "+svgStr[69][langNum]; // t값
           cell[4].innerHTML = svgStrU[27][langNum]; // p값
 
           row = table.insertRow(++nrow);
@@ -8250,7 +8254,7 @@ function statTableMuNP(ngroup, dvarName, statT) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].style.width ="140px";
+          cell[0].style.width ="155px";
           cell[0].innerHTML = "<h3>"+svgStrU[68][langNum]+"</h3>"; // 부호순위검정
           cell[1].innerHTML = svgStr[26][langNum];
           if (checkPairedT == false) str = dvarName;
@@ -8316,20 +8320,20 @@ function statTableMuNP(ngroup, dvarName, statT) {
               cell[j].style.border = "1px solid black";
               cell[j].style.backgroundColor = "#eee";
             }
-            cell[0].innerHTML = "H<sub>0</sub> : &mu; = &mu;<sub>0</sub>"; 
+            cell[0].innerHTML = "H<sub>0</sub> : M = M<sub>0</sub>"; 
             cell[1].innerHTML = "&mu;<sub>0</sub>"; 
             cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
             cell[3].innerHTML = svgStrU[90][langNum]+" R+"; // 순위합 R+
-            cell[4].innerHTML = "P(X <= R+)";
-            cell[5].innerHTML = "P(X >= R+)";
+            cell[4].innerHTML = "P(X \u2264 R+)";
+            cell[5].innerHTML = "P(X \u2265 R+)";
           } else {
             for (j=0; j<ncol-1; j++) {
               cell[j] = row.insertCell(j);          
               cell[j].style.border = "1px solid black";
               cell[j].style.backgroundColor = "#eee";
             }
-            cell[0].innerHTML = "H<sub>0</sub> : &mu; = &mu;<sub>0</sub>"; 
-            cell[1].innerHTML = "&mu;<sub>0</sub>"; 
+            cell[0].innerHTML = "H<sub>0</sub> : M = M<sub>0</sub>"; 
+            cell[1].innerHTML = "M<sub>0</sub>"; 
             cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
             cell[3].innerHTML = svgStrU[90][langNum]+" R+"; // 순위합 R+
             cell[4].innerHTML = svgStrU[27][langNum]; // p-value
@@ -8345,7 +8349,7 @@ function statTableMuNP(ngroup, dvarName, statT) {
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";          
             cell[2].style.textAlign = "center";          
-            cell[0].innerHTML = "H<sub>1</sub> : &mu; "+h1sign[statT[11]-1]+" &mu;<sub>0</sub>"; 
+            cell[0].innerHTML = "H<sub>1</sub> : M "+h1sign[statT[11]-1]+" M<sub>0</sub>"; 
             cell[1].innerHTML = f2(statT[0]);  // mu0
             cell[2].innerHTML = "+"+svgStr[18][langNum]+" "+svgStrU[90][langNum]+"(R+)";  // +그룹 순위합(R+)
             cell[3].innerHTML = f2(statT[9]);    // +그룹 순위합(R+)
@@ -8492,7 +8496,7 @@ function statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std,
           cell[2].style.textAlign = "center";     
           cell[0].innerHTML = "H<sub>1</sub> : &sigma;<sup>2</sup> "+h1sign[statT[11]-1]+" &sigma;<sub>0</sub><sup>2</sup>"; 
           cell[1].innerHTML = f2(statT[0]);  // teststat
-          cell[2].innerHTML = svgStrU[75][langNum]; // 표본분산
+          cell[2].innerHTML = "(n-1) S<sup>2</sup> / &sigma;<sub>0</sub><sup>2</sup>"  // svgStrU[75][langNum];  표본분산
           cell[3].innerHTML = f3(statT[9]);  // teststat
           if (statT[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
           else cell[4].innerHTML = f4(statT[10]); // pvalue 
@@ -8640,7 +8644,7 @@ function statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, 
           cell[0].innerHTML = "H<sub>0</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D";
           cell[1].innerHTML = "D"; 
           cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
-          cell[3].innerHTML = "t-"+svgStr[69][langNum]; // t값
+          cell[3].innerHTML = "t "+svgStr[69][langNum]; // t값
           cell[4].innerHTML = svgStrU[27][langNum]; // p값
           cell[5].innerHTML = "&mu;<sub>1</sub>-&mu;<sub>2</sub><br>"+confstr+svgStrU[20][langNum]; // 모평균차신뢰구간
 
@@ -8693,7 +8697,7 @@ function statTableMu12NP(ngroup, dvarName, statT) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].style.width ="140px";
+          cell[0].style.width ="155px";
           cell[0].innerHTML = "<h3>"+svgStrU[63][langNum]+"</h3>"; // 윌콕슨순위합검정
           cell[1].innerHTML = svgStr[26][langNum];
           cell[2].innerHTML = dvarName;
@@ -8777,19 +8781,19 @@ function statTableMu12NP(ngroup, dvarName, statT) {
               cell[j].style.border = "1px solid black";
               cell[j].style.backgroundColor = "#eee";
             }
-            cell[0].innerHTML = "H<sub>0</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D";
+            cell[0].innerHTML = "H<sub>0</sub> : M<sub>1</sub> - M<sub>2</sub> = D";
             cell[1].innerHTML = "D"; 
             cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
             cell[3].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+" R<sub>2</sub>"; // 그룹2 순위합 R2
-            cell[4].innerHTML = "P(X <= R<sub>2</sub>)";
-            cell[5].innerHTML = "P(X >= R<sub>2</sub>)";
+            cell[4].innerHTML = "P(X \u2264 R<sub>2</sub>)";
+            cell[5].innerHTML = "P(X \u2265 R<sub>2</sub>)";
           } else {
             for (j=0; j<ncol-1; j++) {
               cell[j] = row.insertCell(j);          
               cell[j].style.border = "1px solid black";
               cell[j].style.backgroundColor = "#eee";
             }
-            cell[0].innerHTML = "H<sub>0</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D";
+            cell[0].innerHTML = "H<sub>0</sub> : M<sub>1</sub> - M<sub>2</sub> = D";
             cell[1].innerHTML = "D"; 
             cell[2].innerHTML = svgStrU[23][langNum]; // 검정통계량
             cell[3].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+" R<sub>2</sub>"; // 그룹2 순위합 R2
@@ -8806,7 +8810,7 @@ function statTableMu12NP(ngroup, dvarName, statT) {
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";          
             cell[2].style.textAlign = "center";          
-            cell[0].innerHTML = "H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> "+h1sign[statT[11]-1]+" D";
+            cell[0].innerHTML = "H<sub>1</sub> : M<sub>1</sub> - M<sub>2</sub> "+h1sign[statT[11]-1]+" D";
             cell[1].innerHTML = f2(statT[0]);  // D
             cell[2].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+"(R<sub>2</sub>)";  // 그룹2 순위합(R2)
             cell[3].innerHTML = f2(statT[9]);    // 그룹2 순위합(R2)
@@ -8821,7 +8825,7 @@ function statTableMu12NP(ngroup, dvarName, statT) {
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.textAlign = "center";          
             cell[2].style.textAlign = "center";          
-            cell[0].innerHTML = "H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> "+h1sign[statT[11]-1]+" D";
+            cell[0].innerHTML = "H<sub>1</sub> : M<sub>1</sub> - M<sub>2</sub> "+h1sign[statT[11]-1]+" D";
             cell[1].innerHTML = f2(statT[0]);  // D
             cell[2].innerHTML = svgStr[18][langNum]+"2 "+svgStrU[90][langNum]+"(R<sub>2</sub>)";  // 그룹2 순위합(R2)
             cell[3].innerHTML = f2(statT[9]);    // 그룹2 순위합(R2)
@@ -8984,7 +8988,7 @@ function statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, st
           cell[4].style.textAlign = "right";          
           cell[0].innerHTML = "H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup> "+h1sign[statF[11]-1]+" &sigma;<sub>2</sub><sup>2</sup>";
           cell[1].innerHTML = "";
-          cell[2].innerHTML = "s<sub>1</sub><sup>2</sup> / s<sub>2</sub><sup>2</sup>"; // 표본분산비
+          cell[2].innerHTML = "S<sub>1</sub><sup>2</sup> / S<sub>2</sub><sup>2</sup>"; // 표본분산비
           cell[3].innerHTML = f3(statF[9]);  // teststat
           if (statF[10] < 0.0001) cell[4].innerHTML = "< 0.0001"; // pvalue 
           else cell[4].innerHTML = f4(statF[10]); // pvalue 
@@ -9317,9 +9321,9 @@ function statTableANOVANP(gvarName,dvarName,ranksum, statF) {
           cell[0].innerHTML = "<b>"+svgStr[115][langNum]+"</b>"; // 가설
 
           row = table.insertRow(++nrow);
-          if (ngroup == 2) str1 = "H<sub>0</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub>";
-          else if (ngroup == 3) str1 = "H<sub>0</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub> = &mu;<sub>3</sub>";
-          else str1 = "H<sub>0</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>"+ngroup+"</sub>";
+          if (ngroup == 2) str1 = "H<sub>0</sub> : M<sub>1</sub> = M<sub>2</sub>";
+          else if (ngroup == 3) str1 = "H<sub>0</sub> : M<sub>1</sub> = M<sub>2</sub> = M<sub>3</sub>";
+          else str1 = "H<sub>0</sub> : M<sub>1</sub> = M<sub>2</sub> = ... = M<sub>"+ngroup+"</sub>";
           if (dobs < 11) {
             for (j=0; j<ncol-1; j++) {
               cell[j] = row.insertCell(j);          
@@ -9329,8 +9333,8 @@ function statTableANOVANP(gvarName,dvarName,ranksum, statF) {
             cell[0].innerHTML = str1;
             cell[1].innerHTML = svgStrU[23][langNum]; // 검정통계량
             cell[2].innerHTML = "H";   
-            cell[3].innerHTML = "P(X <= H)";
-            cell[4].innerHTML = "P(X >= H)";
+            cell[3].innerHTML = "P(X \u2264 H)";
+            cell[4].innerHTML = "P(X \u2265 H)";
           } else {
             for (j=0; j<ncol-2; j++) {
               cell[j] = row.insertCell(j);          
@@ -9412,10 +9416,10 @@ function stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2,
           }
           cell[0].innerHTML = svgStr[44][langNum]+"<br>"+svgStr[34][langNum]+"<br>"+svgStr[35][langNum]; // "자료수<br>"+"평균<br>"+"표준편차";
           cell[0].style.textAlign = "center";
-          for (j=0; j<ngroup2; j++) {
-            cell[j+1].innerHTML = svgStr[21][langNum]+"<br>("+gvarName2+")<br>"+(j+1).toString()+" ("+gvalueLabel2[j]+")"
+          for (j=0; j<ngroup2; j++) { // 인자 B
+            cell[j+1].innerHTML = svgStr[92][langNum]+" B<br>("+gvarName2+")<br> "+gvalueLabel2[j]; // 인자 2 (인자명) 수준명
           }
-          cell[ngroup2+1].innerHTML = svgStr[104][langNum]; // "행의 합";
+          cell[ngroup2+1].innerHTML = svgStr[92][langNum]+" A<br>"+svgStr[93][langNum]+" i "+svgStr[23][langNum]; // "인자A 수준 i의 합계";
 
           for (g=0; g<ngroup; g++) {
             row = table.insertRow(++nrow);
@@ -9424,12 +9428,13 @@ function stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2,
               cell[j].style.border = "1px solid black";
               cell[j].style.textAlign = "right";         
             }                  
-            cell[0].innerHTML = svgStr[21][langNum]+" ("+gvarName+")<br>"+(g+1).toString()+" ("+gvalueLabel[g]+")";
+            // 인자 A
+            cell[0].innerHTML = svgStr[92][langNum]+"A ("+gvarName+")<br> "+gvalueLabel[g]; // 인자 1 (인자명) 수준명
             cell[0].style.backgroundColor = "#eee";
             for (j=0; j<ngroup2; j++) {
-              cell[j+1].innerHTML = nobsTwoWay[g][j]+"<br>"+f2(meanTwoWay[g][j])+"<br>"+f2(stdTwoWay[g][j]);   
+              cell[j+1].innerHTML = nobsTwoWay[g][j]+"<br>"+f3(meanTwoWay[g][j])+"<br>"+f3(stdTwoWay[g][j]);   
             }
-            cell[ngroup2+1].innerHTML = robsTwoWay[g]+"<br>"+f2(rmeanTwoWay[g])+"<br>"+f2(rstdTwoWay[g]);   
+            cell[ngroup2+1].innerHTML = robsTwoWay[g]+"<br>"+f3(rmeanTwoWay[g])+"<br>"+f3(rstdTwoWay[g]);   
             cell[ngroup2+1].style.backgroundColor = "#eee";
           }
 
@@ -9441,12 +9446,12 @@ function stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2,
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "right";
           }
-          cell[0].innerHTML = svgStr[105][langNum]; // "열의 합";
+          cell[0].innerHTML = svgStr[92][langNum]+" B<br>"+svgStr[93][langNum]+" j "+svgStr[23][langNum]; // 인자B 수준 j의 합계
           cell[0].style.textAlign = "center";
           for (j=0; j<ngroup2; j++) {
-            cell[j+1].innerHTML = cobsTwoWay[j]+"<br>"+f2(cmeanTwoWay[j])+"<br>"+f2(cstdTwoWay[j]);  
+            cell[j+1].innerHTML = cobsTwoWay[j]+"<br>"+f3(cmeanTwoWay[j])+"<br>"+f3(cstdTwoWay[j]);  
           }
-          cell[ngroup2+1].innerHTML = tstat[0]+"<br>"+f2(tstat[1])+"<br>"+f2(tstat[2]);
+          cell[ngroup2+1].innerHTML = tstat[0]+"<br>"+f3(tstat[1])+"<br>"+f3(tstat[2]);
 
           // missing
           nrow++
@@ -9517,7 +9522,7 @@ function Anova2Table(gvarName,dvarName,nobs,avg,std,statF) {
           }
           cell[0].style.backgroundColor = "#eee"; 
           cell[0].style.textAlign = "center";
-          cell[0].innerHTML = svgStr[92][langNum]+" 1"; // "인자 1";
+          cell[0].innerHTML = svgStr[92][langNum]+" A ("+gvarName+")" ; // "인자 A";
           cell[1].innerHTML = f3(statF[1]).toString();  
           cell[2].innerHTML = f0(statF[6]).toString();  
           cell[3].innerHTML = f3(statF[11]).toString();  
@@ -9535,7 +9540,7 @@ function Anova2Table(gvarName,dvarName,nobs,avg,std,statF) {
           }
           cell[0].style.backgroundColor = "#eee"; 
           cell[0].style.textAlign = "center";
-          cell[0].innerHTML = svgStr[92][langNum]+" 2"; // "인자 2";
+          cell[0].innerHTML = svgStr[92][langNum]+" B ("+gvarName2+")"; // "인자 B";
           cell[1].innerHTML = f3(statF[2]).toString();  
           cell[2].innerHTML = f0(statF[7]).toString();  
           cell[3].innerHTML = f3(statF[12]).toString();  
@@ -9543,6 +9548,8 @@ function Anova2Table(gvarName,dvarName,nobs,avg,std,statF) {
           if(statF[19] < 0.0001) str = " < 0.0001";
           else str = f4(statF[19]).toString();  
           cell[5].innerHTML = str;  
+
+
           if (!checkRBD) {
             row  = table.insertRow(++num);
             for (j=0; j<ncol; j++) {
@@ -9994,7 +10001,10 @@ function regressionTable(xvarName,yvarName,nobs,xavg,xstd,yavg,ystd,alphaR,betaR
           cell[3].innerHTML = f3(betaR[k]).toString() + "  x";   
           cell[3].style.textAlign = "center";
 
-          tobs = corr[k] * Math.sqrt( (nobs[k]-2)/(1-corr[k]*corr[k]) );
+          tobs = Math.sqrt(nobs[k]-2) * corr[k] / Math.sqrt(1-corr[k]*corr[k]);
+console.log(nobs[k])
+console.log(corr[k])
+console.log(tobs)
           pvalue = t_cdf(tobs,df,info);
           if (pvalue < 0.5) pvalue = 2*pvalue;
           else pvalue = 2*(1-pvalue)
@@ -10966,7 +10976,8 @@ function AnovaResidual(ngroup,tobs,yhat,residual) {
       for (j=0; j<tobs; j++) {
         chart.append("circle")
              .attr("class","circle")
-             .style("fill",myColor[k])
+             .style("stroke","black")
+             .style("fill",myColor[1])
              .attr("r", 4)
              .attr("cx", margin.left+graphWidth*(yhat[j]-gxmin)/gxrange)
              .attr("cy", margin.top+graphHeight-graphHeight*(residual[j]-gymin)/gyrange)
@@ -11081,10 +11092,10 @@ function drawTdistGraphTH(hypoType, h1Type, testType, statT, teststat, df, a, b,
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s/\u221A n )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (m\u2081-m\u2082-D) / (pooledStd * \u221A(1/n\u2081+1/n\u2082))  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
-         else if (hypoType == 43) str = svgStrU[23][langNum]+" = (m\u2081 - m\u2082 - D) / ( sqrt(sd\u00B2/n\u2081) )  ~  t("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (X\u0304 - \u03BC\u2080) / ( s/\u221A n )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (X\u0304\u2081 - X\u0304\u2082 - D) / (pooledStd * \u221A(1/n\u2081+1/n\u2082))  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (X\u0304\u2081 - X\u0304\u2082 - D) / ( \u221a(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
+         else if (hypoType == 43) str = svgStrU[23][langNum]+" = (d\u0304 - D) / ( Sd /\u221an )  ~  t("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -11281,25 +11292,25 @@ function drawNormalGraphTH(hypoType, h1Type, testType, statT, teststat, mu, sigm
            str += ", \u03BC\u2080 = "+ f2(statT[0]);
          }
          else if (hypoType == 3) {
-           str = "H\u2080: P = P\u2080 , ";
-           if (h1Type == 1)      str +=" H\u2081: P \u00b1 P\u2080 ";
-           else if (h1Type == 2) str +=" H\u2081: P > P\u2080 ";  
-           else                  str +=" H\u2081: P < P\u2080 ";
+           str = "H\u2080: p = p\u2080 , ";
+           if (h1Type == 1)      str +=" H\u2081: p \u00b1 p\u2080 ";
+           else if (h1Type == 2) str +=" H\u2081: p > p\u2080 ";  
+           else                  str +=" H\u2081: p < p\u2080 ";
            str += ", P\u2080 = "+ f2(statT[0]);
          }
          else if (hypoType == 6) {
-           str = "H\u2080: P\u2081 = P2 ";
-           if (h1Type == 1)      str +=" H\u2081: P\u2081 \u00b1 P2";
-           else if (h1Type == 2) str +=" H\u2081: P\u2081 > P";  
-           else                  str +=" H\u2081: P\u2081 < P";
+           str = "H\u2080: p\u2081 = p2 ";
+           if (h1Type == 1)      str +=" H\u2081: p\u2081 \u00b1 p\u2082";
+           else if (h1Type == 2) str +=" H\u2081: p\u2081 > p\u2082";  
+           else                  str +=" H\u2081: p\u2081 < p\u2082";
          }
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 1)      str = svgStrU[23][langNum]+" = (m - mu) / ( \u03C3 / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3) str = svgStrU[23][langNum]+" = (p - P\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
-         else if (hypoType == 6) str = svgStrU[23][langNum]+" = (p\u2081 - p\u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         if (hypoType == 1)      str = svgStrU[23][langNum]+" = (X\u0304 - \u03BC\u2080) / ( \u03C3 / sqrt(n) )  ~  N(0,1)";
+         else if (hypoType == 3) str = svgStrU[23][langNum]+" = (p\u0302  - p\u2080) / ( sqrt(p*(1-p)/n) )  ~  N(0,1)";
+         else if (hypoType == 6) str = svgStrU[23][langNum]+" = (p\u0302 \u2081 - p\u0302 \u2082 - D) / (sqrt(pbar*(1-pbar)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -11653,8 +11664,8 @@ function drawChisqGraphTH(hypoType, h1Type, statT, teststat, df, a, b, prob, pva
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
          ty += 20;
-         if (hypoType == 2)      str = svgStrU[23][langNum]+" = (n - 1) s\u00B2 / \u03C3\u2080\u00B2 ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 8) str = svgStrU[23][langNum]+" = Sum( EF - OF)^2 / EF ) ~  ChiSq("+df+") "+svgStrU[24][langNum];
+         if (hypoType == 2)      str = svgStrU[23][langNum]+" = (n - 1) S\u00B2 / \u03C3\u2080\u00B2 ~ \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 8) str = svgStrU[23][langNum]+" = Sum( EF - OF)^2 / EF ) ~  \u03C7\u00B2("+df+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -11794,7 +11805,7 @@ function drawChisqGraphTH(hypoType, h1Type, statT, teststat, df, a, b, prob, pva
          }
 */
 }     
-// chisq 분포 가설검정 그래프 함수 --------------------------------------------------
+// chisq 분포 가설검정 비모수 그래프 함수 --------------------------------------------------
 function drawChisqGraphTHNP(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          var margin  = {top: 60, bottom: 130, left: 100, right: 100};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
@@ -11983,7 +11994,7 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
            else                  str +=" H\u2081: \u03C3\u2081\u00B2 < \u03C3\u2082\u00B2 ";
          }
          else if (hypoType == 7) {
-           str  = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BC\u2096 , ";
+           str  = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BC\u2096";
 //           str +=" H\u2081: at least one pair of means is no equal ";
          }
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
@@ -11991,8 +12002,8 @@ function drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, a, b, prob, pvalue,
 
          // 통계량 
          ty += 20;
-         if (hypoType == 5)       str = svgStrU[23][langNum]+" = ( s\u2081\u00B2 / s\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
-         else if (hypoType == 7)  str = svgStrU[23][langNum]+" = (BSS / (k-1)) / (ESS / (n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         if (hypoType == 5)       str = svgStrU[23][langNum]+" = ( S\u2081\u00B2 / S\u2082\u00B2 )  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
+         else if (hypoType == 7)  str = svgStrU[23][langNum]+" = (SSTr/(k-1)) / (SSE/(n-k))  ~  F("+df1+","+df2+") "+svgStrU[24][langNum];
          chart.append("text").attr("x", tx).attr("y", ty).text(str)
               .style("stroke","green").style("font-size","9pt").style("font-family","sans-serif").style("text-anchor","middle")
 
@@ -12424,10 +12435,10 @@ function drawSignedRankGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksu
          str = "R+ = "+ranksum;
          chart.append("text").attr("x", x2).attr("y", y2+15).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         str = "P(X <= R+) = "+f4(sum1);
+         str = "P( X \u2264 (R+) ) = "+f4(sum1);
          chart.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
-         str = "P(X >= R+) = "+f4(sum2);
+         str = "P( X \u2265 (R+) ) = "+f4(sum2);
          chart.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
 
@@ -12559,10 +12570,10 @@ function drawBarGraphNP(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, al
          str = "R\u2082 = "+ranksum;
          chart.append("text").attr("x", x2).attr("y", y2+15).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         str = "P(X <= R\u2082) = "+f4(sum1);
+         str = "P(X \u2264 R\u2082) = "+f4(sum1);
          chart.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
-         str = "P(X >= R\u2082) = "+f4(sum2);
+         str = "P(X \u2265 R\u2082) = "+f4(sum2);
          chart.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
 
@@ -12750,8 +12761,8 @@ function WilcoxonSignedRankSumTable(nvalue, nobs, dataValue, dvalueP) {
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X \u2264 x)";
+          cell[3].innerHTML = "P(X \u2265 x)";
           sum = 0;
           for (i=0; i<nvalue; i++) {
             row = table.insertRow(++nrow);
@@ -12890,10 +12901,10 @@ function drawKruskalBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksu
          str = "H = "+f3(ranksum);
          chart.append("text").attr("x", x2).attr("y", y2+15).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         str = "P(X <= H) = "+f4(sum1);
+         str = "P(X \u2264 H) = "+f4(sum1);
          chart.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
-         str = "P(X >= H) = "+f4(sum2);
+         str = "P(X \u2265 H) = "+f4(sum2);
          chart.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
 
