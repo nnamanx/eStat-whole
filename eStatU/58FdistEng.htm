@@ -72,17 +72,27 @@
          <sup><small>0 </small></sup>
          <input type="range" min="0" max="100" value="95" id="range4F" onchange="showValueF4(this.value)"/>
          <sup><small>1</small> </sup> <br>
-    <button type="button" id="saveGraphU" >
+      <button type="button" id="saveGraphU" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-    </button>
-    &nbsp;
-    <span data-msgid="Reference Site">Reference Site</span> :  &nbsp; 
+      </button>
+      &nbsp;
+      <span data-msgid="Reference Site">Reference Site</span> :  &nbsp; 
       <a href="https://en.wikipedia.org/wiki/F-distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/F-Distribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://stattrek.com/probability-distributions/f-distribution.aspx" target="_blank" >StatTrek </a> &nbsp; 
-
+      <p>
+      <button type="button" id="percentileTable"> <span data-msgid="Percentile">Percentile</span></button> 
+      &nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
     </form>
   </div> 
+  <div width="800px" style="position:absolute; left:10px; top:790px"> <p>
+      <p>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+  </div>
 
   <script>
 
@@ -218,6 +228,18 @@
         function save(dataBlob, filesize) {
           saveAs(dataBlob, 'eStatGraphU.png');
         }
+      });
+      // 백분위수표 버튼 클릭
+      d3.select("#percentileTable").on("click",function() {
+        df1 = parseFloat(d3.select("#df1").node().value);
+        df2 = parseFloat(d3.select("#df2").node().value);  
+        fPercentileTable(df1,df2);
+      })
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
       });
 
   </script>

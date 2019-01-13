@@ -36,17 +36,19 @@
     <input type="range" min="1" max="20" value="10" id="rangeHyperG" onchange="showValueHyperGeo(this.value, valueLabel, hyperGeoP)"/>  
       <sup><small>20</small></sup>  &nbsp;&nbsp;
     <p>
-    <button type="button" id="executeHyperGeoTable" >
-        <span data-msgid="HyperGeometric Prob Table">HyperGeometric Prob Table</span>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
     </button>
     &nbsp;  
     <label><input type="checkbox" value="freq2" id=freqHyperG>
       <span data-msgid="Show Probability">Show Probability<span>
     </label>
     <p>
-    <button type="button" id="saveGraphU" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    <button type="button" id="executeHyperGeoTable" >
+        <span data-msgid="HyperGeometric Prob Table">HyperGeometric Prob Table</span>
     </button>
+    &nbsp;&nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
     &nbsp;
     <span data-msgid="Reference Site">Reference</span> :  &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Hypergeometric_distribution" target="_blank" >Wikipedia </a> &nbsp; 
@@ -55,7 +57,14 @@
   </div>
 
   <div width="650" style="position:absolute; left:10px; top:830px"> <p>
+    <p>
+    <div id="screenTable">
+      <div id="loc">
+      </div>
+    </div>
+<!---
     <table id="hyperGeoTable" cellpadding="2" cellspacing="2" border="2" >  </table>
+--->
   </div>
 
   <script>
@@ -132,6 +141,12 @@
         function save(dataBlob, filesize) {
           saveAs(dataBlob, 'eStatGraphU.png');
         }
+      });
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
       });
 
   </script>

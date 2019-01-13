@@ -49,7 +49,7 @@
             <input type="range" min="2" max="8" value="5" id="range2" onchange="showValueRangeN2(this.value)"/>  
             <sup><small>8</small></sup>
           </td>
-          <td><span class="fontguide" > (k=3, n<=8) (k=4, n<=6) </span></td>
+          <td><span class="fontguide" > (k=3, n&leq;8) (k=4, n&leq;6) </span></td>
           <td>
             <button type="button" id="executeTH4" > <span data-msgid="Execute">Execute</span></button>
           </td>
@@ -67,11 +67,16 @@
     <button type="button" id="ranksumBtn" >
 	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
     </button>
-
+    &nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
   </div> 
 
   <div width="650" style="position:absolute; left:10px; top:580px"> <p>
-    <table id="ranksumTable" cellpadding="2" cellspacing="2" border="2" >  </table>
+      <p>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
   </div>
 
   <script>
@@ -379,7 +384,7 @@
         }
 
         // draw graph
-        var sub2 = "k = "+ nkk + ", n = " + nblock;
+        var sub2 = "p = "+ nkk + ", n = " + nblock;
         drawFriedmanBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, SP, alpha, h1Type, checkData) 
       }
       else {
@@ -399,11 +404,17 @@
           saveAs(dataBlob, 'eStatGraphU.png');
         }
     });
-
     // 크루스칼 통계표 버튼 클릭
     d3.select("#ranksumBtn").on("click",function() {
         FriedmanDistTable(nvalue, nkk, nblock, dataValue, dvalueP);
     })
+    // save Table
+    d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+    });
+
 //******************************************************************
 function showValueRangeN1(newValue) {
         bar.selectAll("*").remove();
@@ -621,7 +632,10 @@ function drawFriedmanBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranks
 
 // 프리드만분포표
 function FriedmanDistTable(nvalue, nkk, nobs, dataValue, dvalueP) {
-        var table = document.getElementById("ranksumTable");
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
         var row, header;
         var i, j, sum;
         var nrow = 0;
@@ -636,6 +650,7 @@ function FriedmanDistTable(nvalue, nkk, nobs, dataValue, dvalueP) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[72][langNum]+"</h3>";
           cell[1].innerHTML = "k = "+nkk;
@@ -648,23 +663,26 @@ function FriedmanDistTable(nvalue, nkk, nobs, dataValue, dvalueP) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.width ="80px";          
+            cell[j].style.border = "1px solid black";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X &leq; x)";
+          cell[3].innerHTML = "P(X &geq; x)";
           sum = 0;
           for (i=0; i<nvalue; i++) {
             row = table.insertRow(++nrow);
-            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
             cell[0].innerHTML = f3(dataValue[i]);
             cell[1].innerHTML = f4(dvalueP[i]);
             sum += dvalueP[i];
             cell[2].innerHTML = f4(sum);
             cell[3].innerHTML = f4(1 - sum + dvalueP[i]);
             cell[0].style.backgroundColor = "#eee";
-            cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
 }
 

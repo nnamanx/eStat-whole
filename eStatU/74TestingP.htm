@@ -29,17 +29,17 @@
     <form name="myForm0"> 
       <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
       <span class="fontmath">&nbsp;&nbsp;
-        H<sub>o</sub> : P = P<sub>o</sub> &nbsp;
+        H<sub>o</sub> : p = p<sub>o</sub> &nbsp;
       </span>
-      <input type="text" class="textarea" size=6 id="mu">&nbsp;  <span class="fontmath"> 0 < P<sub>o</sub> < 1</span>
+      <input type="text" class="textarea" size=6 id="mu">&nbsp;  <span class="fontmath"> 0 < p<sub>o</sub> < 1</span>
       <br> &nbsp;&nbsp;
       <span class="fontmath">
 	    <input type="radio" name = "type0" value="1" checked>
-	    H<sub>1</sub> : P &ne;  P<sub>o</sub> &nbsp;&nbsp;
+	    H<sub>1</sub> : p &ne;  p<sub>o</sub> &nbsp;&nbsp;
 	    <input type="radio" name = "type0" value="2" >
-	    H<sub>1</sub> : P > P<sub>o</sub> &nbsp;&nbsp;      
+	    H<sub>1</sub> : p > p<sub>o</sub> &nbsp;&nbsp;      
 	    <input type="radio" name = "type0" value="3" >
-            H<sub>1</sub> : P < P<sub>o</sub>    
+            H<sub>1</sub> : p < p<sub>o</sub>    
       </span>
     </form>
 
@@ -68,23 +68,29 @@
 	<tr>
           <td></td>
 	  <td><span data-msgid="Sample Proportion">Sample Proportion</span></td>
-	  <td><span class="fontmath">p</span></td>
+	  <td><span class="fontmath">p&#770;</span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="pp"></td>
-          <td><span class="fontmath"> 0 < p < 1</span>  </td>
+          <td><span class="fontmath"> 0 < p&#770; < 1</span>  </td>
 	</tr>
       </tbody>
     </table>
-    
-    <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>      
+    <br>
+    <button type="button" id="executeTH3" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <p>    
     <table class="stat">
       <tbody>
+        <tr>
+          <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>      
+        </tr>
 	<tr>
           <td></td>
-	  <td><span class="fontmath">p</span></td>
+	  <td><span class="fontmath">p&#770;</span></td>
 	  <td>&plusmn;</td>
-	  <td><span class="fontmath">Z<sub>&alpha;/2<sub></span></td>
-          <td><span class="fontmath"> &radic; ( p*(1-p) /n )</span></td>
+	  <td><span class="fontmath">z<sub>&alpha;/2<sub></span></td>
+          <td><span class="fontmath"> &radic; ( p&#770; (1-p&#770;) /n )</span></td>
           <td>&hArr;</td>
 	  <td>(&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
 	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;)</td>
@@ -92,9 +98,6 @@
       </tbody>
     </table>
 
-    <button type="button" id="executeTH3" >
-        <span data-msgid="Execute">Execute</span>
-    </button> 
     <p>
     <svg id="chart" width="600" height="400"> </svg> 
     <br>
@@ -132,6 +135,9 @@
       a[0].onclick = function() { alpha = 0.05; }  
       a[1].onclick = function() { alpha = 0.01; }  
 
+      document.getElementById("cleft").disabled  = true;
+      document.getElementById("cright").disabled = true;; 
+
       // Testing Hypothesis ======================================
       d3.select("#executeTH3").on("click",function() {
         bar.selectAll("*").remove();
@@ -145,8 +151,9 @@
         temp = stdnormal_inv(1 - alpha/2, info) * Math.sqrt(pp*(1-pp)/nn);
         left  = pp - temp;
         right = pp + temp;  
-        document.getElementById("cleft").value   = f2(left);
-        document.getElementById("cright").value  = f2(right); 
+
+        document.getElementById("cleft").value   = f3(left);
+        document.getElementById("cright").value  = f3(right); 
 
         // test statistics
         teststat = (pp - mu) / (Math.sqrt(pp*(1-pp)/nn));

@@ -64,7 +64,7 @@
             <input type="range" min="1" max="5" value="3" id="range3" onchange="showValueRangeN3(this.value)"/>  
             <sup><small> 5 </small></sup>
           </td>
-          <td><span class="fontguide" >(n=n<sub>1</sub>+n<sub>2</sub>+n<sub>3</sub> <= 10)</span></td>
+          <td><span class="fontguide" >(n=n<sub>1</sub>+n<sub>2</sub>+n<sub>3</sub> &leq; 10)</span></td>
           <td>
             <button type="button" id="executeTH4" > <span data-msgid="Execute">Execute</span></button>
           </td>
@@ -82,11 +82,16 @@
     <button type="button" id="ranksumBtn" >
 	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
     </button>
-
+    &nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
   </div> 
 
   <div width="650" style="position:absolute; left:10px; top:600px"> <p>
-    <table id="ranksumTable" cellpadding="2" cellspacing="2" border="2" >  </table>
+      <p>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
   </div>
 
   <script>
@@ -205,6 +210,12 @@
       }
       else alert("No Exact Distribution if n > 10")
     })
+    // save Table
+    d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+    });
 
 //*******************************************************************
 function showValueRangeN1(newValue) {
@@ -378,7 +389,10 @@ function drawKruskalBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksu
 
 // 윌콕슨분포표
 function KruskalDistTable(ngroup, nvalue, nobs, dataValue, dvalueP) {
-        var table = document.getElementById("ranksumTable");
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
         var row, header;
         var i, j, sum;
         var nrow = 0;
@@ -393,6 +407,7 @@ function KruskalDistTable(ngroup, nvalue, nobs, dataValue, dvalueP) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           cell[0].style.width ="100px";
           cell[0].innerHTML = "<h3>"+svgStrU[66][langNum]+"</h3>";
@@ -404,6 +419,7 @@ function KruskalDistTable(ngroup, nvalue, nobs, dataValue, dvalueP) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           cell[1].innerHTML = "n<sub>1</sub> = "+nobs[1];
           cell[2].innerHTML = "n<sub>2</sub> = "+nobs[2];
@@ -417,26 +433,29 @@ function KruskalDistTable(ngroup, nvalue, nobs, dataValue, dvalueP) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           for (j=0; j<ncol; j++) {
             cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X &leq; x)";
+          cell[3].innerHTML = "P(X &geq; x)";
           sum = 0;
           for (i=0; i<nvalue; i++) {
             row = table.insertRow(++nrow);
-            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
             cell[0].innerHTML = f3(dataValue[i]);
             cell[1].innerHTML = f4(dvalueP[i]);
             sum += dvalueP[i];
             cell[2].innerHTML = f4(sum);
             cell[3].innerHTML = f4(1 - sum + dvalueP[i]);
             cell[0].style.backgroundColor = "#eee";
-            cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
 }
 

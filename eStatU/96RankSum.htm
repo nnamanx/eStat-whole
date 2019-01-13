@@ -20,7 +20,7 @@
     <div class="title">
       <b>&nbsp; 
          <span data-msgid="NonParametricMu12">
-           Testing Hypothesis : Two Population Means &mu;<sub>1</sub>,  &mu;<sub>2</sub> 
+           Testing Hypothesis : Two Population Means M<sub>1</sub>,  M<sub>2</sub> 
          </span>
       </b>
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
@@ -29,16 +29,16 @@
     <form name="myForm0"> 
       <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
       <span class="fontmath"> &nbsp;&nbsp; 
-        H<sub>o</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub>  
+        H<sub>o</sub> : M<sub>1</sub> = M<sub>2</sub>  
       </span>
       <br> &nbsp;&nbsp;
       <span class="fontmath">
 	    <input type="radio" name = "type0" value="1" checked>
-	    H<sub>1</sub> : &mu;<sub>1</sub> &ne; &mu;<sub>2</sub> &nbsp;&nbsp;
+	    H<sub>1</sub> : M<sub>1</sub> &ne; M<sub>2</sub> &nbsp;&nbsp;
 	    <input type="radio" name = "type0" value="2" >
-	    H<sub>1</sub> : &mu;<sub>1</sub> > &mu;<sub>2</sub>  &nbsp;&nbsp;      
+	    H<sub>1</sub> : M<sub>1</sub> > M<sub>2</sub>  &nbsp;&nbsp;      
 	    <input type="radio" name = "type0" value="3" >
-            H<sub>1</sub> : &mu;<sub>1</sub> < &mu;<sub>2</sub>      
+            H<sub>1</sub> : M<sub>1</sub> < M<sub>2</sub>      
        </span>
     </form>
     
@@ -147,6 +147,8 @@
       var i,j,k;
       var checkRankSum = true;  // rank sum인 경우 true, signed rank sum인 경우 false
 
+      document.getElementById("nn41").disabled = true;
+      document.getElementById("nn42").disabled = true;
       document.getElementById("xbar41").disabled = true;
       document.getElementById("xbar42").disabled = true;
       // H1 type
@@ -194,8 +196,6 @@
       }  
       nobs[0] = nobs[1] + nobs[2];         
       if (checkData == true) {
-        document.getElementById("nn41").disabled = true;
-        document.getElementById("nn42").disabled = true;
         z = x.concat(y);
         // Calculate sample 2 rank sum
         T = statRankSum(ngroup, nobs, z, ranksum);
@@ -208,7 +208,7 @@
         nvalue = rankSumDist(nobs[1], nobs[2], dataValue, dvalueP, checkRankSum);
         // draw graph
         var title = svgStrU[63][langNum] ;
-        var sub1  = "H\u2080: \u03BC\u2081 = \u03BC\u2082  " + " , H\u2081: \u03BC\u2081 "+ symbol[h1Type-1] + " \u03BC\u2082" ;
+        var sub1  = "H\u2080: M\u2081 = M\u2082  " + " , H\u2081: M\u2081 "+ symbol[h1Type-1] + " M\u2082" ;
         var sub2  = svgStrU[23][langNum]+" R\u2082 ~ Wilcoxson (n\u2081 = "+nobs[1]+", n\u2082 = "+nobs[2]+") "+svgStrU[24][langNum];
         drawBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData) 
       }
@@ -332,10 +332,10 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
          str = "R\u2082 = "+ranksum;
          bar.append("text").attr("x", x2).attr("y", y2+15).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         str = "P(X <= R\u2082) = "+f4(sum1);
+         str = "P(X \u2264 R\u2082) = "+f4(sum1);
          bar.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
-         str = "P(X >= R\u2082) = "+f4(sum2);
+         str = "P(X \u2265 R\u2082) = "+f4(sum2);
          bar.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
 

@@ -19,7 +19,7 @@
   <div width="600" height="640" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; <span data-msgid="Confidence Interval">Confidence Interval Experiment</span></b> 
+      <b>&nbsp; <span data-msgid="Confidence Interval Simulation">Confidence Interval Experiment</span></b> 
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>   
     </div>
     <br>
@@ -32,7 +32,7 @@
       <span data-msgid="Sample Size">Sample Size</span>
       n = <input type="text" class="textarea" value="20" size=4 id="initEst"> &nbsp; &nbsp;
       <span data-msgid="Repetition">Repetition</span>
-      <input type="text" class="textarea" value="10"  size=4 id="iterEst"> <br>
+      r = <input type="text" class="textarea" value="10"  size=4 id="iterEst"> <br>
     </form>
       <br>
     <form name="myFormEst">  
@@ -57,8 +57,8 @@
       var margin, graphWidht, graphHeight;
 
       var i, j, k; // 
-      var nint, step, buffer, nvalue, gxmin, gxmax, error; 
- 
+      var nint, step, buffer, nvalue, gxmin, gxmax, error, str; 
+      var sobs, niter, str;
       var nobs   = 10000;
       var radius = 1;
       var samplePercent;
@@ -77,27 +77,25 @@
       var checkSampling = false;
       var checkInterval = true;
 
-      // Confidence Interval Simulation ---------------------------------------------------------------
+      // Confidence Interval Initital Simulation ---------------------------------------------------------------
+      dot2.selectAll("*").remove();        
+      margin      = {top: 20, bottom: 100, left: 20, right: 20};;
+      graphWidth  = svgWidth - margin.left - margin.right;
+      graphHeight = svgHeight - margin.top - margin.bottom;
 
-         dot2.selectAll("*").remove();        
+      title  = svgStrU[8][langNum]+" ~ N(0,1)  (N="+nobs.toString()+")";
+      dot2.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
 
-         margin      = {top: 20, bottom: 100, left: 20, right: 20};;
-         graphWidth  = svgWidth - margin.left - margin.right;
-         graphHeight = svgHeight - margin.top - margin.bottom;
-
-         title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
-         dot2.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
-
-         normalGenerator(nobs, dataSet);       
-         nint    = 400;
-         step    = 8/nint;
-         bins[0] = -4;
-         showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
-         gxmin  = statP[9];
-         gxmax  = statP[10];
-         xrange = gxmax - gxmin;
-         start = 0;
-         drawStatSample(statP, start, 1) ;
+      normalGenerator(nobs, dataSet);       
+      nint    = 400;
+      step    = 8/nint;
+      bins[0] = -4;
+      showDotSampleP(nobs, dataSet, nint, step, bins, statP, tdata, tdataY, dataValue);
+      gxmin  = statP[9];
+      gxmax  = statP[10];
+      xrange = gxmax - gxmin;
+      start = 0;
+      drawStatSample(statP, start, 1) ;
 
       // 신뢰도 선택
       var rad = document.myFormEst.type1;
@@ -119,18 +117,20 @@
       // 구간추정 시뮬레이션 버튼 클릭
       d3.select("#intervalEst").on("click",function() {
         removeAllSample3();      
+        str = svgStrU[19][langNum]+" "+confidenceLevel+" "+svgStrU[20][langNum]+" "+svgStrU[98][langNum];
         dot2.append("text").attr("class","title").attr("x", margin.left)
            .attr("y", svgHeight - margin.bottom/3 -10)
-           .text("")
-  
-        dot2.append("text").attr("class","title").attr("x", margin.left)
-           .attr("y", svgHeight - margin.bottom/3 -10)
-           .text(svgStrU[19][langNum]+" "+confidenceLevel+" "+svgStrU[20][langNum])
-
-	var sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
-        var niter = parseFloat(d3.select("#iterEst").node().value);    // 시뮬레이션 반복수 
+           .text(str)
+	sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
+        niter = parseFloat(d3.select("#iterEst").node().value);    // 시뮬레이션 반복수 
         if (sobs < 20 ) sobs = 20;
         if (niter > 300) niter = 300;
+        str = "n = "+sobs+", r = "+niter;
+        dot2.append("text").attr("class","title").attr("x", margin.left)
+           .attr("y", svgHeight - margin.bottom/3 + 10)
+           .text(str)
+
+
         var oneHeight = (totalHeight - svgHeight) / niter; 
 
         error = 0;

@@ -78,9 +78,19 @@
       <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/Chi-SquaredDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://stattrek.com/probability-distributions/chi-square.aspx" target="_blank" >StatTrek </a> &nbsp; 
-
+      <p>
+      <button type="button" id="percentileTable"> <span data-msgid="Percentile">Percentile</span></button> 
+      &nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
     </form>
   </div> 
+  <div width="800px" style="position:absolute; left:10px; top:790px"> <p>
+      <p>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+  </div>
 
   <script>
 
@@ -209,6 +219,17 @@
         function save(dataBlob, filesize) {
           saveAs(dataBlob, 'eStatGraphU.png');
         }
+      });
+      // 백분위수표 버튼 클릭
+      d3.select("#percentileTable").on("click",function() {
+         df    = parseFloat(d3.select("#dfchi").node().value); 
+         chisqPercentileTable(df);
+      })
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
       });
 
   </script>

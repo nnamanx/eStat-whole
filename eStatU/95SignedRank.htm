@@ -29,17 +29,17 @@
     <form name="myForm0"> 
       <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
       <span class="fontmath"> &nbsp;&nbsp; 
-        H<sub>o</sub> : &mu; = &mu;<sub>0</sub>  
+        H<sub>o</sub> : M = M<sub>0</sub>  
       </span> &nbsp;
       <input type="text" class="textarea" size=6 id="mu"> 
       <br> &nbsp;&nbsp;
       <span class="fontmath">
 	    <input type="radio" name = "type0" value="1" checked>
-	    H<sub>1</sub> : &mu; &ne; &mu;<sub>0</sub> &nbsp;&nbsp;
+	    H<sub>1</sub> : M &ne; M<sub>0</sub> &nbsp;&nbsp;
 	    <input type="radio" name = "type0" value="2" >
-	    H<sub>1</sub> : &mu; > &mu;<sub>0</sub>  &nbsp;&nbsp;      
+	    H<sub>1</sub> : M > M<sub>0</sub>  &nbsp;&nbsp;      
 	    <input type="radio" name = "type0" value="3" >
-            H<sub>1</sub> : &mu; < &mu;<sub>0</sub>      
+            H<sub>1</sub> : M < M<sub>0</sub>      
        </span>
     </form>
     
@@ -211,8 +211,8 @@
         nvalue = rankSumDist(0, nobs[0], dataValue, dvalueP, checkRankSum);
         // draw graph
         var title  = svgStrU[68][langNum]; // "Wilcoxon Rank Sum Test" 
-        var sub1 = "H\u2080: \u03BC = \u03BC\u2080  " + " , H\u2081: \u03BC "+ symbol[h1Type-1] + " \u03BC\u2080" ;
-        var sub2 = svgStrU[23][langNum]+"R+ ~ Wilcoxson Sign (n = "+nobs[0]+") "+svgStrU[24][langNum];
+        var sub1 = "H\u2080: M = M\u2080  " + " , H\u2081: M "+ symbol[h1Type-1] + " M\u2080" ;
+        var sub2 = svgStrU[23][langNum]+" (R+) ~ Wilcoxson Sign (n = "+nobs[0]+") "+svgStrU[24][langNum];
         drawSignedRankGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData) 
       }
       else {  // Z-test
@@ -328,10 +328,10 @@ function drawSignedRankGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksu
          str = "R+ = "+ranksum;
          bar.append("text").attr("x", x2).attr("y", y2+15).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         str = "P(X <= R+) = "+f4(sum1);
+         str = "P( X \u2264 (R+) ) = "+f4(sum1);
          bar.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
-         str = "P(X >= R+) = "+f4(sum2);
+         str = "P( X \u2265 (R+) ) = "+f4(sum2);
          bar.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
 

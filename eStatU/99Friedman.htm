@@ -32,7 +32,7 @@
 	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
 	  <td></span></td>
 	  <td><span class="fontmath">
-                H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub>
+                H<sub>o</sub> : &nbsp; M<sub>1</sub> = M<sub>2</sub> = ... = M<sub>k</sub>
               </span>
           </td>
 	</tr>
@@ -249,7 +249,7 @@
         if(kobs[i] > 4) {alert("k is too big!!!"); return}
         if(kobs[i] > 0) nblock++;
       }
-      for (i=2; i<=nblock; i++) if (kobs[i] != kobs[i-1]) {alert("k should be equal"); return;}
+      for (i=2; i<=nblock; i++) if (kobs[i] != kobs[i-1]) {alert("p should be equal"); return;}
       nkk = kobs[1];
     
       // calculate sample ranksum
@@ -257,7 +257,6 @@
       for (i=0; i<nblock; i++) {
         for (k=0; k<nkk; k++) tdata[k] = y[i][k];
         T[i] = rankFriedman(nkk, tdata, tempR);  //duplication weight
-// console.log(T[i])
         sumT += T[i];
         for (k=0; k<nkk; k++) w[i][k] = tempR[k];
       }  
@@ -369,7 +368,7 @@
 
         // draw graph
         var title  = svgStrU[70][langNum] ;
-        var sub1 = "H\u2080: \u03BC\u2081 = \u03BC\u2082 = ... = \u03BCk " ;
+        var sub1 = "H\u2080: M\u2081 = M\u2082 = ... = M\u2096 " ;
         var sub2 = svgStrU[71][langNum];
         drawFriedmanBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, SP, alpha, h1Type, checkData) 
      }
@@ -579,10 +578,10 @@ function drawFriedmanBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranks
          str = "S = "+f3(ranksum);
          bar.append("text").attr("x", x2).attr("y", y2+15).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-         str = "P(X <= S) = "+f4(sum1);
+         str = "P(X \u2264 S) = "+f4(sum1);
          bar.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
-         str = "P(X >= S) = "+f4(sum2);
+         str = "P(X \u2265 S) = "+f4(sum2);
          bar.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
             .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
 

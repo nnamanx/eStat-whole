@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="RandomNumber">Uniform Distribution</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      &nbsp; <b><span data-msgid="UniformDist"></span> <span data-msgid="RandomNumber">Random Number Generation</span></b> 
+      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+    </div>
+    <p>
+    <form name="myForm">&nbsp;&nbsp; 
+      <span data-msgid="UniformDist">Uniform</span> (
+      <input type="text" class="textarea" value="0" size=3 id="left"> , 
+      <input type="text" class="textarea" value="1" size=3 id="right"> )
+      &nbsp;&nbsp;
+      <input type="radio" name = "type" value="1" checked><span data-msgid="RealNumber">Real</span>       
+      <input type="radio" name = "type" value="2" ><span data-msgid="IntegerNumber">Integer</span>
+    </form>   
+    <br>
+    &nbsp;&nbsp;
+    <span data-msgid="NumberData">Number of Data</span>   n = <input type="text" class="textarea" value="10" size=3 id="nn"> <span class="fontguide" > ( &leq; 100) </span>
+    &nbsp;&nbsp;
+    <span data-msgid="NumberDigit">Number of Decimal Digit</span> <span class="fontguide" >0 &leq; </span>
+      <input type="text" class="textarea" value="4" size=3 id="digit"> <span class="fontguide" > &leq; 4 </span>
+    <p>
+    &nbsp;&nbsp;
+    <button type="button" id="executeUniform"> <span data-msgid="Execute">Execute</span> </button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+  </div>
+
+  <div width="650" style="position:absolute; left:10px; top:170px"> 
+    <p>
+    <div id="screenTable">
+      <div id="loc">
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+      var i, j, k, temp, info;
+      var left, right, nn, digit;
+      var nvalueMax = 100;
+      // 실수형 정수형
+      var a = document.myForm.type;
+      var type = 1;
+      a[0].onclick = function() { 
+        type = 1;
+        document.getElementById("digit").disabled = false;
+        document.getElementById("digit").value = 4;
+      }  
+      a[1].onclick = function() { 
+        type = 2;   
+        document.getElementById("digit").disabled = true;
+        document.getElementById("digit").value = 0;
+        left  = parseInt(d3.select("#left").node().value);    // uniform(left, right)
+        right = parseInt(d3.select("#right").node().value);   // uniform(left, right)
+        document.getElementById("left").value = left;
+        document.getElementById("right").value = right;
+      }
+
+      // 실행버튼 클릭 =================================================================================
+      d3.select("#executeUniform").on("click",function() {
+        left  = parseFloat(d3.select("#left").node().value);    // uniform(left, right)
+        right = parseFloat(d3.select("#right").node().value);   // uniform(left, right)
+        nn    = parseFloat(d3.select("#nn").node().value);      // data 크기 n
+        digit = parseFloat(d3.select("#digit").node().value);   // data 크기 n
+        if ( right < left ) {
+          temp  = left;
+          left  = right;
+          right = temp;
+          document.getElementById("left").value = left;
+          document.getElementById("right").value = right;
+        }
+        if ( nn > nvalueMax ) nn = nvalueMax;
+        if ( nn < 0) nn = 1;
+        if ( digit < 0) digit = 0;
+        if ( digit > 4) digit = 4;      
+        uniformTable(left, right, nn, digit, type);
+      })
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+      });
+
+
+// Uniform 분포표
+function uniformTable(left, right, nn, digit, type) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+//        var table = document.getElementById("table");
+        var row, header;
+        var i, j, num, delta, tt, temp;
+        var ncol = 2;
+        var cell = new Array(ncol);
+        var k = 0;
+        table.style.fontSize = "14px";
+
+          row  = table.insertRow(k++);
+          row.style.height ="40px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.columnWidth = "30px";
+          cell[1].style.columnWidth = "130px";
+          cell[0].innerHTML = "id";
+          cell[1].innerHTML = "<h5>"+svgStrU[50][langNum]+"( "+left+" , "+right+" )<br>"+svgStrU[99][langNum]+"</h5>";
+
+          num = right - left + 1;
+          delta = 1. / num;
+          for (i=0; i<nn; i++) {
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j);
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].innerHTML = i+1;
+            if (type == 1) temp = left + (right-left)*Math.random();
+            else if (type == 2) {
+              tt = Math.random();
+              for (j = 1; j < num+1; j++) {
+                if (tt < j*delta) {
+                  temp = left + j - 1;
+                  break;
+                } 
+              }
+            }
+            if (digit == 0) cell[1].innerHTML = f0(temp);
+            else if (digit == 1) cell[1].innerHTML = f1(temp);
+            else if (digit == 2) cell[1].innerHTML = f2(temp);
+            else if (digit == 3) cell[1].innerHTML = f3(temp);
+            else if (digit == 4) cell[1].innerHTML = f4(temp);
+
+            cell[0].style.textAlign = "center";
+            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
+          }
+}
+  </script>
+</body>
+</html>

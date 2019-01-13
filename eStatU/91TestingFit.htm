@@ -82,9 +82,9 @@
 	<tr>
           <td> &nbsp;&nbsp;&nbsp;</td>
           <td> &nbsp;</td>
-	  <td>&nbsp;<span data-msgid="ObservedFreq">Observed Frequency</span> </td>
+	  <td>&nbsp;<span data-msgid="ObservedFreq">Observed Frequency</span></td>
 	  <td>&nbsp;<span data-msgid="ExpectedProb">Expected Probability</span> </td>
-	  <td>&nbsp;<span data-msgid="ExpectedFreq">Expected Probability</span> </td>
+	  <td>&nbsp;<span data-msgid="ExpectedFreq">Expected Probability</span></td>
 	</tr>
 	<tr>
           <td> &nbsp;&nbsp;&nbsp;</td>
@@ -267,9 +267,9 @@
             expF[i] = obsF[0]*expP[i];
             expF[0] += expF[i];
             temp = "data"+(i).toString()+"3";
-            document.getElementById(temp).value = f1(expF[i]);
+            document.getElementById(temp).value = f2(expF[i]);
         }
-        document.getElementById("data103").value = f1(expF[0]);
+        document.getElementById("data103").value = f2(expF[0]);
         // test statistics
         df = (nrow-1);
         stat = 0;
