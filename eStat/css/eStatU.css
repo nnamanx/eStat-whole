@@ -2,10 +2,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 245px;
+    width: 295px;
     background-color: #f1f1f1; 
 }
-
 li a {
     display: block;
     color: white;
@@ -14,12 +13,10 @@ li a {
     background-color: #4CAF50; /* Green */
     border: 1px solid green;
 }
-
 li a:hover {
     background-color: #3e8e41;
     color: white;
 }
-
 .btn-group .button {
     background-color: #4CAF50; /* Green */
     border: 1px solid green;
@@ -32,31 +29,20 @@ li a:hover {
     cursor: pointer;
     width: 220px;
     display: block;
-}
-
-.btn-group .button:not(:last-child) {
+}.btn-group .button:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
-}
-
-.btn-group .button:hover {
+}.btn-group .button:hover {
     background-color: #3e8e41;
-}
-
-.sliderS {
+}.sliderS {
    width: 100px;
-}
-.slider-width{
+}.slider-width{
     width: 2006px;
-}
-
-section.range-slider {
+}section.range-slider {
     position: relative;
     width: 200px;
     height: 35px;
     text-align: center;
-}
-
-section.range-slider input {
+}section.range-slider input {
     pointer-events: none;
     position: absolute;
     overflow: hidden;
@@ -67,40 +53,29 @@ section.range-slider input {
     height: 20px;
     margin: 0;
     padding: 0;
-}
-
-section.range-slider input::-webkit-slider-thumb {
+}section.range-slider input::-webkit-slider-thumb {
     pointer-events: all;
     position: relative;
     z-index: 1;
     outline: 0;
-}
-
-section.range-slider input::-moz-range-thumb {
+}section.range-slider input::-moz-range-thumb {
     pointer-events: all;
     position: relative;
     z-index: 10;
     -moz-appearance: none;
     width: 9px;
-}
-
-section.range-slider input::-moz-range-track {
+}section.range-slider input::-moz-range-track {
     position: relative;
     z-index: -1;
     background-color: rgba(0, 0, 0, 1);
     border: 0;
-}
-section.range-slider input:last-of-type::-moz-range-track {
+}section.range-slider input:last-of-type::-moz-range-track {
     -moz-appearance: none;
     background: none transparent;
     border: 0;
-}
-
-section.range-slider input[type=range]::-moz-focus-outer {
+}section.range-slider input[type=range]::-moz-focus-outer {
   border: 0;
-}
-
-    div.title {
+}    div.title {
        color: blue;
        font-size: 20px;
     }
@@ -115,7 +90,6 @@ section.range-slider input[type=range]::-moz-focus-outer {
     table.stat > tbody > tr > td {
         padding: 0 0.5em;
     }
-
     .menu {
         background-color:#4CAF50;
         color:white;
@@ -124,14 +98,11 @@ section.range-slider input[type=range]::-moz-focus-outer {
         float: right;
     
     }
-
 .tooltip {
     position: relative;
     display: inline-block;
     border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
+}.tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: #4CAF50;
@@ -147,9 +118,7 @@ section.range-slider input[type=range]::-moz-focus-outer {
     opacity: 0;
     transition: opacity 1s;
     font-size: 12px;
-}
-
-.tooltip .tooltiptext::after {
+}.tooltip .tooltiptext::after {
     content: "";
     position: absolute;
     bottom: 100%;
@@ -158,45 +127,35 @@ section.range-slider input[type=range]::-moz-focus-outer {
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
+}.tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-}
-
-      svg  {border:1px solid black;}
+}      svg  {border:1px solid black;}
       #BarGraph rect {stroke : black; stroke-width : 1px; opacity : 0.7; }
      .axis text {font-family: sans-serif; font-size: 9px;}
      .axis path,
      .axis line {fill: none; stroke-width : 1px; stroke: black; }
-
      .bar {stroke: black; stroke-width: 1;}
      .bandfreq{font-family: sans-serif; font-size: 8pt; text-anchor: middle;}
      .barname {font-family: sans-serif; font-size: 8pt; text-anchor: middle;}
      .barnames{font-family: sans-serif; font-size: 8pt; text-anchor: start;}
      .barnameh{font-family: sans-serif; font-size: 8pt; text-anchor: end;}
-
      .circle {stroke: black; fill: #FF3500;}
      .circleG{stroke: black; fill:green; }
      .circleN{stroke: #0055FFF; fill:none; stroke-width: 2px;}
      .circleP{stroke: black; fill: #0055FF;}
      .circleR{stroke: black; fill:red; }
      .circleS{stroke: black; fill: #FF3500;}
-
-
      .font01   {font-size:9pt; stroke: #0055FF; text-anchor: middle;}
      .fontmath {font-size:13pt; font-family: "times new roman"; font-style : italic;  }
      .fontguide{font-size:13pt; font-family: "times new roman"; font-style : italic; color: blue;}
      .freq     {font-size:11pt; stroke:black; text-anchor: end;}
      .freqfont {font-family: sans-serif; font-size: 8pt; stroke:red; text-anchor: middle;}
      .freqfont2{font-size:8pt; fill:red; text-anchor: middle;}
-
      .hand{stroke: black}
      .histfreq {font-size:8pt; fill:red; text-anchor: middle;}
      .histline {font-size:9pt; stroke-width: 2; stroke:lime ; fill:black}
      .histmean {font-size: 7pt; stroke: red; text-anchor: middle;}
-
      .label  {font-size: 11px; font-family: sans-serif; text-anchor: start;}
      .leaf   {font-size:10pt; text-anchor: end;}
      .legend {font-size: 11pt; font-family: sans-serif; stroke : black;  text-anchor: start;}
@@ -206,7 +165,6 @@ section.range-slider input[type=range]::-moz-focus-outer {
      .lineNormal{stroke: red; stroke-width: 2px;} 
      .lineR  {stroke: red; stroke-width: 3px;} 
      .lineS  {stroke: #FF3500}
-
      .main text {font: 13px sans-serif;}
      .mainTitle {font: 17px sans-serif; stroke : black; text-anchor: middle;}
      .mean {font-family: sans-serif; font-size:9pt; stroke: #0055FF; text-anchor: middle;}
@@ -218,31 +176,25 @@ section.range-slider input[type=range]::-moz-focus-outer {
      .meanG{font-size:9pt; stroke: green;}
      .meanR{font-size:9pt; stroke: #FF3500;}
      .myaxis {font-family: sans-serif; font-size:7pt; stroke: black; stroke-width : 1px; text-anchor: middle;}
-
      .pie {fill:yellow; stroke:white;}
      .pieFreq {font-size: 9pt; text-anchor:middle; fill:black}
      .population {stroke: black; fill: blue;}
-
      .rect{stroke: black; fill: #0055FF; stroke-width: 1px; }
      .reglabel {font-size: 13px; font-family: sans-serif;}
      .reglabel2{font-size: 13px; font-family: sans-serif;}
      .reglabel3{font-size: 15px; font-family: sans-serif; stroke: red; text-anchor: start;}
      .regline  {stroke: red}
-
      .scorefont{font-size:9pt; stroke:#0055FF; text-anchor: middle;}
      .stat {font-size:9pt; stroke: black; text-anchor: middle;}
      .std  {font-size:8pt; stroke: blue; text-anchor: middle;}
      .stdP {font-size:8pt; stroke: #00A2FF}
      .stdS {font-size:8pt; stroke: #FF3500}
      .stem {font-size:10pt; stroke:black; text-anchor: end;}
-
      .textarea  {text-align: center; }
      .textarea2 {text-align: center; background-color: yellow; border:1px solid black;}
-
      .title {font-size:13pt; stroke:blue; text-anchor: start;}
      .titleS{font-size:12pt; stroke:#FF3500;}
      .titleStem{font-family: sans-serif; font-size:13pt; text-anchor: start;}
      .xlevel{font-size:8pt; stroke: black; text-anchor: middle;}
      .xTitle {font-size: 12px; font-family: sans-serif; stroke : black; text-anchor: middle;}
      .yTitle {font-size: 12px; font-family: sans-serif; stroke : black; text-anchor: end;}
-

@@ -744,7 +744,7 @@ $.message.en = {
     "Sample": "Sample",
     "Exponential": "Exponential(0.3)",
     "Uniform": "Uniform(0,1)",
-    "UniformDist": "Uniform Distribution",
+    "UniformDist": "Uniform",
     "Sample05": "Sampling 5%",
     "Sample10": "Sampling 10%",
     "Sample20": "Sampling 20%",
@@ -773,7 +773,7 @@ $.message.en = {
     "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
     "Testing Independence": "Testing Independence",
-    "Correlation Coefficient": "Correlation Coeff",
+    "Correlation Coefficient": "Correlation Coefficient",
     "Regression Experiment": "Regression Experiment",
     "Hypothesis": "Hypothesis",
     "Test Type": "Test Type",
@@ -859,7 +859,7 @@ $.message.en = {
     "WilcoxonTest": "Wilcoxon Rank Sum Test",
     "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
-    "SignedRankTestDist": "Wilcoxon Signed Rank Sum Distribution",
+    "SignedRankTestDist": "Wilcoxon Signed Rank Sum Dist.",
     "WilcoxonTestDist": "Wilcoxon Rank Sum Distribution",
     "KruskalTestDist": "Kruskal-Wallis H Distribution",
     "FriedmanTestDist": "Friedman S Distribution",
@@ -897,7 +897,7 @@ $.message.en = {
     "NumberDigit":    "Decimal Digit",
     "NormalTable":    "Normal Distribution Table",
     "Percentile":     "Percentile Table",
-    "StudentRangeDist": "HSD Studentized Range Distribution",
+    "StudentRangeDist": "HSD Studentized Range Dist.",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
