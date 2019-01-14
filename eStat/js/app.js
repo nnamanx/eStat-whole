@@ -396,17 +396,29 @@ d3.select("#new").on("click", function() {
 // Hook Handsontable Events
 //
 function initEventControl(datasheet) {
+    isDatasheetChanged = false;
     // 시트 셀 어느 이벤트 발생하든 cell alignment : 문자 left, 숫자 right
-    datasheet.addHook('afterChange', function(change, source) {
-        //	  console.log(change.length);
-        var row = change[0][0];
-        var col = change[0][1];
-        if (isNaN(change[0][3])) {
-            datasheet.setCellMeta(row, col, "className", "htLeft");
-        } else {
-            datasheet.setCellMeta(row, col, "className", "htRight");
-        }
-        // update raw data & obs
+    datasheet.addHook('afterChange', turnOnDatasheetChangeFlag);
+    datasheet.addHook('afterRemoveCol', turnOnDatasheetChangeFlag);
+    datasheet.addHook('afterRemoveRow', turnOnDatasheetChangeFlag);
+    datasheet.addHook('afterCreateRow', turnOnDatasheetChangeFlag);
+    datasheet.addHook('afterCreateCol', turnOnDatasheetChangeFlag);
+    datasheet.addHook('afterCut', turnOnDatasheetChangeFlag);
+
+    function turnOnDatasheetChangeFlag() {
+	isDatasheetChanged = true;
+    }
+    
+    function syncDatasheetWithInternalDataArray(change, source) {
+        //  console.log(change.length);
+        // var row = change[0][0];
+        // var col = change[0][1];
+        // if (isNaN(change[0][3])) {
+        //     datasheet.setCellMeta(row, col, "className", "htLeft");
+        // } else {
+        //     datasheet.setCellMeta(row, col, "className", "htRight");
+        // }
+	
         for (j = 0; j < colMax; j++) {
             rvar[j]  = datasheet.getDataAtCol(j);
             robs[j]  = 0;
@@ -487,11 +499,17 @@ function initEventControl(datasheet) {
         numVar = 0;
         checkPastColSelection = false;
         updateVarList();
-    });
+    }
+
+    
     // 시트 컬럼 및 행 이벤트 컨트롤
     datasheet.addHook('afterOnCellMouseUp', function(event, coords) {
         //	  console.log(coords);
         //	  console.log(coords.row+" "+coords.col);
+	if(isDatasheetChanged) {
+	    syncDatasheetWithInternalDataArray();
+	    isDataChanged = false;
+	}
 
         if (coords.row == -1) { // 컬럼번호 클릭
             checkMouseSelection = true;
