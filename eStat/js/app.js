@@ -16,12 +16,6 @@
           .style("stroke-width", 5) ;
 }
 
-$(document).ready(function() {
-    if(window.navigator.userAgent.indexOf("Chrome") <= 0) {
-	alert("Chrome 웹브라우저를 사용하면 100% 기능이 작동됩니다. 다른 웹브라우저에서는 일부 기능이 작동하지 않을 수 있습니다.");
-    };
-});
-
 
 var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
