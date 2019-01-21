@@ -1692,7 +1692,72 @@ function drawExponentialGraph(lambda, a, b, prob) {
             .attr("y", y1)
             .text(f4(prob))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-}     
+}   
+// 지수분포 백분위수표
+function expPercentileTable(lambda) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, k, rowValue, colValue, delta, temp, info;
+        var nrow  = 40
+        var ncol  = 10;
+        var delta = 0.005;
+        var cell = new Array(ncol);
+        table.style.fontSize = "13px";
+        k = 0;
+    
+          row = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<2; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="60px";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[49][langNum]+"</h3>";
+          cell[1].innerHTML = "lambda = "+f2(lambda);
+
+          row  = table.insertRow(k++);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+            cell[j].style.width ="60px";
+          }
+          for (j=0; j<ncol; j++) {
+            if ((j % 2) == 0) {
+              cell[j].innerHTML = "p";
+            }
+            else {
+              cell[j].innerHTML = "P(X &leq; x) = p";
+            }
+          }
+
+          rowValue = 0.005;        
+          for (i=0; i<nrow; i++) {
+            row = table.insertRow(k++);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+              cell[j].style.width ="60px";
+              if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
+            }
+            temp = rowValue;
+            for (j=0; j<5; j++) {
+              if (i == (nrow-1) && j == 4) continue;
+              cell[2*j].innerHTML   = f3(temp); 
+              cell[2*j+1].innerHTML = f3(exponential_inv(temp,lambda,info));
+              temp += 0.2;
+            }                   
+            rowValue += 0.005;
+          }
+}
+  
 // =====================================================================================
 // Normal functions 
 // =====================================================================================
@@ -2190,7 +2255,7 @@ function normalTable(mu, sigma) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="70px";
+            cell[j].style.width ="50px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[100][langNum]+"</h3>";
           cell[1].innerHTML = "&mu; = "+mu;
@@ -2204,7 +2269,7 @@ function normalTable(mu, sigma) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="70px";
+            cell[j].style.width ="50px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -2222,7 +2287,7 @@ function normalTable(mu, sigma) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="70px";
+              cell[j].style.width ="50px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;
@@ -2261,7 +2326,6 @@ function normalPercentileTable(mu, sigma) {
           cell[1].innerHTML = "&mu; = "+mu;
           cell[2].innerHTML = "&sigma; = "+f3(sigma);
 
-          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -2502,12 +2566,11 @@ function tPercentileTable(df) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";
+            cell[j].style.width ="60px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[101][langNum]+"</h3>";
           cell[1].innerHTML = "df = "+df;
 
-          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -2515,7 +2578,7 @@ function tPercentileTable(df) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";
+            cell[j].style.width ="60px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -2533,7 +2596,7 @@ function tPercentileTable(df) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="70px";
+              cell[j].style.width ="60px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;
@@ -2612,7 +2675,8 @@ function showValueChisq0(newValue) {
           d3.select("#g").node().value = f4(g);
           drawChisqGraph(df, f, g, h); 
        }
-}//
+}
+//
 function showValueChisq1(newValue) {
        if (radioType == 1) {
           var a, b, c, info;
@@ -2782,13 +2846,11 @@ function chisqPercentileTable(df) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";
+            cell[j].style.width ="60px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[102][langNum]+"</h3>";
           cell[1].innerHTML = "df = "+df;
 
-
-          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -2796,7 +2858,7 @@ function chisqPercentileTable(df) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";
+            cell[j].style.width ="60px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -2814,7 +2876,7 @@ function chisqPercentileTable(df) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="70px";
+              cell[j].style.width ="60px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;
@@ -3060,13 +3122,12 @@ function fPercentileTable(df1,df2) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";
+            cell[j].style.width ="60px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[103][langNum]+"</h3>";
           cell[1].innerHTML = "df1 = "+df1;
           cell[2].innerHTML = "df2 = "+df2;
 
-          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -3074,7 +3135,7 @@ function fPercentileTable(df1,df2) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";
+            cell[j].style.width ="60px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -3092,7 +3153,7 @@ function fPercentileTable(df1,df2) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="70px";
+              cell[j].style.width ="60px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;

@@ -70,17 +70,25 @@
          <sup><small>0 </small></sup>
          <input type="range" min="0" max="100" value="95" id="range4E" onchange="showValueExponential4(this.value)"/>
          <sup><small>1</small> </sup> <br>
-    <button type="button" id="saveGraphU" >
+      <button type="button" id="saveGraphU" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-    </button>
-    &nbsp;
-
-    <span data-msgid="Reference Site">Reference Site</span> :  &nbsp; 
+      </button>
+      &nbsp;
+      <span data-msgid="Reference Site">Reference Site</span> :  &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Exponential_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/ExponentialDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://www.itl.nist.gov/div898/handbook/eda/section3/eda3667.htm" target="_blank" >NIST </a> &nbsp; 
-
+      <p>
+      <button type="button" id="percentileTable"> <span data-msgid="Percentile">Percentile</span></button> 
+      &nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
     </form>
+    <div>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
   </div> 
 
   <script>
@@ -219,6 +227,17 @@
         function save(dataBlob, filesize) {
           saveAs(dataBlob, 'eStatGraphU.png');
         }
+      });
+      // 백분위수표 버튼 클릭
+      d3.select("#percentileTable").on("click",function() {
+        lambda    = parseFloat(d3.select("#explambda").node().value); 
+        expPercentileTable(lambda);
+      })
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
       });
 
   </script>

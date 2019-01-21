@@ -106,7 +106,7 @@
     </button> 
     <p>
     <svg id="chart" width="600" height="400"> </svg>
-    <br>
+    <p>
     &nbsp;
     <button type="button" id="saveGraphU" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
@@ -115,12 +115,16 @@
     <button type="button" id="ranksumBtn" >
 	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
     </button>
-
+    &nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
   </div> 
-
-  <div width="650" style="position:absolute; left:10px; top:790px"> <p>
-    <table id="ranksumTable" cellpadding="2" cellspacing="2" border="2" >  </table>
-  </div>
 
   <script>
       var bar = d3.select("#chart");
@@ -268,6 +272,12 @@
       }
       else alert("No Exact Distribution if n > 25")
     })
+    // save Table
+    d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+    });
 
 //******************************************************************
 function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, checkData) {
@@ -405,7 +415,10 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
 
 // 윌콕슨분포표
 function WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP) {
-        var table = document.getElementById("ranksumTable");
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
         var row, header;
         var i, j, sum;
         var nrow = 0;
@@ -415,18 +428,15 @@ function WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP) {
          table.style.fontSize = "13px";
     
           row = table.insertRow(nrow);
-          row.style.height ="40px";
-          row.innerHTML = "<h3>"+svgStrU[63][langNum]+"</h3>";
-          row.style.textAlign = "center";
-
-          row  = table.insertRow(++nrow);
           row.style.height ="30px";
-          for (j=0; j<2; j++) {
+          for (j=0; j<3; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "n<sub>1</sub> = "+nobs[1];
-          cell[1].innerHTML = "n<sub>2</sub> = "+nobs[2];
+          cell[0].innerHTML = "<h3>"+svgStrU[63][langNum]+"</h3>";
+          cell[1].innerHTML = "n<sub>1</sub> = "+nobs[1];
+          cell[2].innerHTML = "n<sub>2</sub> = "+nobs[2];
 
           row  = table.insertRow(++nrow);
           row.style.height ="30px";
@@ -434,26 +444,29 @@ function WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
           }
           for (j=0; j<ncol; j++) {
             cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
-          cell[2].innerHTML = "P(X <= x)";
-          cell[3].innerHTML = "P(X >= x)";
+          cell[2].innerHTML = "P(X &leq; x)";
+          cell[3].innerHTML = "P(X &geq; x)";
           sum = 0;
           for (i=0; i<nvalue; i++) {
             row = table.insertRow(++nrow);
-            for (j=0; j<ncol; j++) cell[j] = row.insertCell(j)          
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].style.backgroundColor = "#eee";
             cell[0].innerHTML = dataValue[i];
             cell[1].innerHTML = f4(dvalueP[i]);
             sum += dvalueP[i];
             cell[2].innerHTML = f4(sum);
             cell[3].innerHTML = f4(1 - sum + dvalueP[i]);
-            cell[0].style.backgroundColor = "#eee";
-            cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
           }
 }
 
