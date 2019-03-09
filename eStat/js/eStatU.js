@@ -1692,72 +1692,7 @@ function drawExponentialGraph(lambda, a, b, prob) {
             .attr("y", y1)
             .text(f4(prob))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-}   
-// 지수분포 백분위수표
-function expPercentileTable(lambda) {
-    var screenTable = document.getElementById("screenTable");
-    var table = document.createElement('table');
-    loc.appendChild(table);
-
-        var row, header;
-        var i, j, k, rowValue, colValue, delta, temp, info;
-        var nrow  = 40
-        var ncol  = 10;
-        var delta = 0.005;
-        var cell = new Array(ncol);
-        table.style.fontSize = "13px";
-        k = 0;
-    
-          row = table.insertRow(k++);
-          row.style.height ="30px";
-          for (j=0; j<2; j++) {
-            cell[j] = row.insertCell(j);
-            cell[j].style.textAlign = "center";
-            cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
-          }
-          cell[0].innerHTML = "<h3>"+svgStrU[49][langNum]+"</h3>";
-          cell[1].innerHTML = "lambda = "+f2(lambda);
-
-          row  = table.insertRow(k++);
-          row.style.height ="30px";
-          for (j=0; j<ncol; j++) {
-            cell[j] = row.insertCell(j);
-            cell[j].style.backgroundColor = "#eee";
-            cell[j].style.textAlign = "center";
-            cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
-          }
-          for (j=0; j<ncol; j++) {
-            if ((j % 2) == 0) {
-              cell[j].innerHTML = "p";
-            }
-            else {
-              cell[j].innerHTML = "P(X &leq; x) = p";
-            }
-          }
-
-          rowValue = 0.005;        
-          for (i=0; i<nrow; i++) {
-            row = table.insertRow(k++);
-            for (j=0; j<ncol; j++) {
-              cell[j] = row.insertCell(j)          
-              cell[j].style.textAlign = "center";
-              cell[j].style.border = "1px solid black";
-              cell[j].style.width ="60px";
-              if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
-            }
-            temp = rowValue;
-            for (j=0; j<5; j++) {
-              if (i == (nrow-1) && j == 4) continue;
-              cell[2*j].innerHTML   = f3(temp); 
-              cell[2*j+1].innerHTML = f3(exponential_inv(temp,lambda,info));
-              temp += 0.2;
-            }                   
-            rowValue += 0.005;
-          }
-}
-  
+}     
 // =====================================================================================
 // Normal functions 
 // =====================================================================================
@@ -2255,7 +2190,7 @@ function normalTable(mu, sigma) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="50px";
+            cell[j].style.width ="70px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[100][langNum]+"</h3>";
           cell[1].innerHTML = "&mu; = "+mu;
@@ -2269,7 +2204,7 @@ function normalTable(mu, sigma) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="50px";
+            cell[j].style.width ="70px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -2287,7 +2222,7 @@ function normalTable(mu, sigma) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="50px";
+              cell[j].style.width ="70px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;
@@ -2326,6 +2261,7 @@ function normalPercentileTable(mu, sigma) {
           cell[1].innerHTML = "&mu; = "+mu;
           cell[2].innerHTML = "&sigma; = "+f3(sigma);
 
+          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -2566,11 +2502,12 @@ function tPercentileTable(df) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
+            cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[101][langNum]+"</h3>";
           cell[1].innerHTML = "df = "+df;
 
+          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -2578,7 +2515,7 @@ function tPercentileTable(df) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
+            cell[j].style.width ="80px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -2596,7 +2533,7 @@ function tPercentileTable(df) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="60px";
+              cell[j].style.width ="70px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;
@@ -2675,8 +2612,7 @@ function showValueChisq0(newValue) {
           d3.select("#g").node().value = f4(g);
           drawChisqGraph(df, f, g, h); 
        }
-}
-//
+}//
 function showValueChisq1(newValue) {
        if (radioType == 1) {
           var a, b, c, info;
@@ -2846,11 +2782,13 @@ function chisqPercentileTable(df) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
+            cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[102][langNum]+"</h3>";
           cell[1].innerHTML = "df = "+df;
 
+
+          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -2858,7 +2796,7 @@ function chisqPercentileTable(df) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
+            cell[j].style.width ="80px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -2876,7 +2814,7 @@ function chisqPercentileTable(df) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="60px";
+              cell[j].style.width ="70px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;
@@ -3122,12 +3060,13 @@ function fPercentileTable(df1,df2) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
+            cell[j].style.width ="80px";
           }
           cell[0].innerHTML = "<h3>"+svgStrU[103][langNum]+"</h3>";
           cell[1].innerHTML = "df1 = "+df1;
           cell[2].innerHTML = "df2 = "+df2;
 
+          // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
           for (j=0; j<ncol; j++) {
@@ -3135,7 +3074,7 @@ function fPercentileTable(df1,df2) {
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="60px";
+            cell[j].style.width ="80px";
           }
           for (j=0; j<ncol; j++) {
             if ((j % 2) == 0) {
@@ -3153,7 +3092,7 @@ function fPercentileTable(df1,df2) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
-              cell[j].style.width ="60px";
+              cell[j].style.width ="70px";
               if (j%2 == 0) cell[j].style.backgroundColor = "#eee";
             }
             temp = rowValue;
@@ -4619,10 +4558,14 @@ function inputValueAB() {
         mu0    = parseFloat(d3.select("#mu0AB").node().value);
         mu1    = parseFloat(d3.select("#mu1AB").node().value);
         stdP   = parseFloat(d3.select("#stdPAB").node().value);
-        alpha1 = parseFloat(d3.select("#alpha1AB").node().value);
-        nn1    = parseFloat(d3.select("#nn1AB").node().value);
-        alpha2 = parseFloat(d3.select("#alpha2AB").node().value);
-        beta2  = parseFloat(d3.select("#beta2AB").node().value); 
+        if (testType == "1") { // given alpha1, calculate beta 
+          alpha1 = parseFloat(d3.select("#alpha1AB").node().value);
+          nn1    = parseFloat(d3.select("#nn1AB").node().value);
+        }
+        else { // given alpha2 & beta2, calculate n, C
+          alpha2 = parseFloat(d3.select("#alpha2AB").node().value);
+          beta2  = parseFloat(d3.select("#beta2AB").node().value); 
+        }
         if (isNaN(mu0))  {alert("Enter \u03BC\2080"); return}
         if (isNaN(mu1))  {alert("Enter \u03BC\u2081"); return}
         if (isNaN(stdP)) {alert("Enter \u03C3"); return}
@@ -4691,15 +4634,16 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var k, x1, y1, x2, y2, ta, tb, tx, ty, str;
          var gxmin, gxmax, gxrange, gymin, ymax, gymax, gyrange;
-         var temp, tempx, tempy, step, stderr, tymax;
+         var temp, tempx, tempy, step, stderr, tymax, talpha;
          var c1, c2, left0, right0, left1, right2, info, dmax;
          var x = [];
          var y = [];
 
-         if (testType == "1") {
+         if (testType == "1") { // Calculate beta for given alpha
            stderr = stdP / Math.sqrt(nn1);        
            dmax = 4 * stderr
-         } else if (testType == "2") {
+           talpha = alpha1;
+         } else if (testType == "2") { // Calculate C,n gor given alpha beta
            if (h1Type == 2) {
              nn2 = stdP*(stdnormal_inv(1-alpha2,info) - stdnormal_inv(beta2,info))/(mu1 - mu0);
              nn2 = nn2*nn2;
@@ -4710,12 +4654,13 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
            }
            stderr = stdP / Math.sqrt(nn2);        
            dmax = 4 * stderr
+           talpha = alpha2;
          }
 
          if (h1Type == 2) {
            gxmin  = mu0 - dmax;
            gxmax  = mu1 + dmax;
-           left0  = mu0 + stdnormal_inv(1-alpha1, info)*stderr;
+           left0  = mu0 + stdnormal_inv(1-talpha, info)*stderr;
            right0 = mu0 + dmax;
            left1  = mu1 - dmax;
            right1 = left0;
@@ -4724,7 +4669,7 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
            gxmin  = mu1 - dmax;
            gxmax  = mu0 + dmax;
            left0  = mu0 - dmax;
-           right0 = mu0 + stdnormal_inv(alpha1, info)*stderr;
+           right0 = mu0 + stdnormal_inv(talpha, info)*stderr;
            left1  = right0;
            right1 = mu1 + dmax;
            beta1  = 1 - stdnormal_cdf((left1-mu1)/stderr);

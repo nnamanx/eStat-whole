@@ -19,7 +19,7 @@
     <br>
     <div class="title">
       <b>&nbsp; 
-         <span data-msgid="Testing Hypothesis muAB">
+         <span data-msgid="Testing Hypothesis muA">
            Testing Hypothesis : Population Mean &mu; 
          </span> 
       </b>
@@ -43,19 +43,19 @@
           <td><span class="fontmath">&sigma; = </span></td>
           <td><input type="text" class="textarea" size=6 id="stdPAB"> </td>
         </tr>
-        <tr>
+	<tr>
           <td></td>
 	  <td><span data-msgid="Type1Error">1종오류</span></td>
 	  <td><span class="fontmath">&alpha; = </span></td>
-	  <td><input type="text" class="textarea" value="0.050" size=6 id="alpha2AB"></td>
+	  <td><input type="text" class="textarea" value="0.050" size=6 id="alpha1AB"></td>
           <td></td>
-	  <td><span data-msgid="Type2Error">2종오류</span></td>
-	  <td><span class="fontmath">&beta; =</span></td>
-	  <td><input type="text" class="textarea" value="0.100"size=6 id="beta2AB"> </td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
+	  <td><span class="fontmath">n = </span></td>
+          <td><input type="text" class="textarea"  size=6 id="nn1AB"></td>
 	</tr>
       </tbody>
     </table>
-    </p>
+    <p>
 
     <div>
       <button type="button" id="executeTH" ><span data-msgid="Execute">Execute</span></button> 
@@ -107,12 +107,12 @@
       var svgHeight2  = 400;
       var title;
       var mu0, mu1, stdP, alpha1, alpha2, beta1, beta2, nn1, nn2;
-      var h1Type, testType;
+      var h1Type;
 
       // Test type
-      var testType = 2;
-      document.getElementById("sub1AB").style.display  = "none";
-      document.getElementById("sub2AB").style.display  = "block";
+      var testType = 1; 
+      document.getElementById("sub1AB").style.display  = "block";
+      document.getElementById("sub2AB").style.display  = "none";
 
       // Testing Hypothesis ======================================
       d3.select("#executeTH").on("click",function() {
