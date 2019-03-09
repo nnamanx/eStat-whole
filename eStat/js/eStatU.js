@@ -4558,7 +4558,7 @@ function inputValueAB() {
         mu0    = parseFloat(d3.select("#mu0AB").node().value);
         mu1    = parseFloat(d3.select("#mu1AB").node().value);
         stdP   = parseFloat(d3.select("#stdPAB").node().value);
-        if (testType == "1") { // given alpha1, calculate beta 
+        if (testType == "1") { // given alpha1, calculate beta1 
           alpha1 = parseFloat(d3.select("#alpha1AB").node().value);
           nn1    = parseFloat(d3.select("#nn1AB").node().value);
         }
@@ -4634,7 +4634,7 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var k, x1, y1, x2, y2, ta, tb, tx, ty, str;
          var gxmin, gxmax, gxrange, gymin, ymax, gymax, gyrange;
-         var temp, tempx, tempy, step, stderr, tymax, talpha;
+         var temp, tempx, tempy, step, stderr, tymax, talpha, tbeta;
          var c1, c2, left0, right0, left1, right2, info, dmax;
          var x = [];
          var y = [];
@@ -4655,9 +4655,10 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
            stderr = stdP / Math.sqrt(nn2);        
            dmax = 4 * stderr
            talpha = alpha2;
+           tbeta  = beta2;
          }
 
-         if (h1Type == 2) {
+         if (h1Type == 2) { // 우측검정
            gxmin  = mu0 - dmax;
            gxmax  = mu1 + dmax;
            left0  = mu0 + stdnormal_inv(1-talpha, info)*stderr;
@@ -4665,7 +4666,8 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
            left1  = mu1 - dmax;
            right1 = left0;
            beta1  = stdnormal_cdf((right1-mu1)/stderr);
-         } else if (h1Type == 3) {
+           tbeta  = beta1;
+         } else if (h1Type == 3) { // 좌측검정
            gxmin  = mu1 - dmax;
            gxmax  = mu0 + dmax;
            left0  = mu0 - dmax;
@@ -4719,14 +4721,14 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          bar.append("text").attr("x", x1+20).attr("y", y2).text(svgStrU[25][langNum]) // "Ho 기각역"
             .style("font-family","sans-serif").style("font-size","10pt").style("stroke","red").style("text-anchor","start")
          if (h1Type == 2) {
-           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B2 = "+f3(beta1))
+           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B2 = "+f3(tbeta))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","end")
-           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B1 = "+f3(alpha1))
+           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B1 = "+f3(talpha))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","start")
          } else if (h1Type == 3) {
-           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B1 = "+f3(alpha1))
+           bar.append("text").attr("x", x1-10).attr("y", y1).text("\u03B1 = "+f3(talpha))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","end")
-           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B2 = "+f3(beta1))
+           bar.append("text").attr("x", x1+10).attr("y", y1).text("\u03B2 = "+f3(tbeta))
               .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","start")
          }
 
@@ -4774,7 +4776,7 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          bar.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu0)+" ,"+f2(stderr)+"\u00B2)")
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          y1 = margin.top + graphHeight2 - 20;
-         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B1 = "+f3(1-alpha1))
+         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B1 = "+f3(1-talpha))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          x[0] = mu0 - dmax;
          y[0] = normal_pdf(mu0, stderr, x[0] );
@@ -4802,7 +4804,7 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          bar.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu1)+" ,"+f2(stderr)+"\u00B2)")
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          y1 = margin.top + graphHeight2 - 20;
-         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B2 = "+f3(1-beta1))
+         bar.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B2 = "+f3(1-tbeta))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
          x[0] = mu1 - dmax;
          y[0] = normal_pdf(mu1, stderr, x[0] );
