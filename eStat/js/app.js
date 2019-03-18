@@ -3,7 +3,12 @@
 * using URL Parameters
 */
 
-var estatapp = {};
+var estatapp = {
+    example : undefined,
+    analysisVar : undefined,
+    groupVars : undefined,
+    graphNum : undefined,
+};
 
 $(document).ready(function() {
     checkURLParameters();
@@ -11,26 +16,22 @@ $(document).ready(function() {
 
 function getURLParameters() {
     var url_param_str = document.location.search.substring(1);
-    if(url_param_str != "") {
-	var params = {};
-	decodeURIComponent(url_param_str)
-	    .split("&")
-	    .forEach(function(paramstr) {
-		param_key_val_pair = paramstr.split("=");
-		param_key = param_key_val_pair[0];
-		param_val = param_key_val_pair[1];
-		params[param_key] = param_val;
-	    });
-	return params;
-    } else {
-	return null;
-    }
+    if (url_param_str == "") return null;
+    
+    var params = {};
+    decodeURIComponent(url_param_str)
+	.split("&")
+	.forEach(function(paramstr) {
+	    param_key_val_pair = paramstr.split("=");
+	    param_key = param_key_val_pair[0];
+	    param_val = param_key_val_pair[1];
+	    params[param_key] = param_val;
+	});
+    return params;
 }
 
 
 function checkURLParameters() {
-    // estat.me/estatdev/eStat/index.html?json={"example":"01Korean/036연속_나이월수입조사.csv","analysisVar":2,"groupVars":[3],"graphNum":20}    
-
     url_params = getURLParameters();
     if (url_params == null) return false;
 	
@@ -41,12 +42,13 @@ function checkURLParameters() {
     var groupVars = json["groupVars"];
     var graphNum = json["graphNum"];
     
-    //    readFromURL(datasetURL);
+    if (examplePath === undefined) return false;
+    
     openExample(examplePath, function() {
-	selectAnalysisVariable(analysisVar);
-	groupVars.forEach(function(v) { selectGroupVariable(v) });
-	document.getElementById(strGraph[graphNum]).click();
-	window.history.replaceState({}, "", "index.html");	
+	if (analysisVar !== undefined) selectAnalysisVariable(analysisVar);
+	if (groupVars !== undefined) groupVars.forEach(function(v) { selectGroupVariable(v) });
+	if (graphNum !== undefined) document.getElementById(strGraph[graphNum]).click();
+	window.history.replaceState({}, "", "/estat/eStat/");
     });
 
 }
