@@ -56,7 +56,7 @@
       var svgHeight   = 320;  // 모집단 그래프 영역
       var margin, graphWidht, graphHeight;
 
-      var i, j, k; // 
+      var i, j, k, tx, ty, ty2;  
       var nint, step, buffer, nvalue, gxmin, gxmax, error, str; 
       var sobs, niter, str;
       var nobs   = 10000;
@@ -119,17 +119,21 @@
         removeAllSample3();      
         str = svgStrU[19][langNum]+" "+confidenceLevel+" "+svgStrU[20][langNum]+" "+svgStrU[98][langNum];
         dot2.append("text").attr("class","title").attr("x", margin.left)
-           .attr("y", svgHeight - margin.bottom/3 -10)
-           .text(str)
+            .attr("y", svgHeight - margin.bottom/3 -10)
+            .text(str)
 	sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
         niter = parseFloat(d3.select("#iterEst").node().value);    // 시뮬레이션 반복수 
         if (sobs < 20 ) sobs = 20;
         if (niter > 300) niter = 300;
         str = "n = "+sobs+", r = "+niter;
         dot2.append("text").attr("class","title").attr("x", margin.left)
-           .attr("y", svgHeight - margin.bottom/3 + 10)
-           .text(str)
-
+            .attr("y", svgHeight - margin.bottom/3 + 10)
+            .text(str)
+        tx  = margin.left + graphWidth*(statP[1]-gxmin)/xrange; // population mean location
+        ty  = svgHeight - margin.bottom/3;
+        ty2 = totalHeight - 20;
+        dot2.append("line").attr("class","meanG").style("stroke","blue")
+            .attr("x1",tx).attr("y1",ty).attr("x2",tx).attr("y2",ty2)
 
         var oneHeight = (totalHeight - svgHeight) / niter; 
 
