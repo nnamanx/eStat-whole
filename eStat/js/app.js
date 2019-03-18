@@ -1,4 +1,98 @@
-﻿function highlight_datapoint() {
+﻿/*
+* app control
+* using URL Parameters
+*/
+
+var estatapp = {};
+
+$(document).ready(function() {
+    checkURLParameters();
+})
+
+function getURLParameters() {
+    var url_param_str = document.location.search.substring(1);
+    if(url_param_str != "") {
+	var params = {};
+	decodeURIComponent(url_param_str)
+	    .split("&")
+	    .forEach(function(paramstr) {
+		param_key_val_pair = paramstr.split("=");
+		param_key = param_key_val_pair[0];
+		param_val = param_key_val_pair[1];
+		params[param_key] = param_val;
+	    });
+	return params;
+    } else {
+	return null;
+    }
+}
+
+
+function checkURLParameters() {
+    // estat.me/estatdev/eStat/index.html?json={"example":"01Korean/036연속_나이월수입조사.csv","analysisVar":2,"groupVars":[3],"graphNum":20}    
+
+    url_params = getURLParameters();
+    if (url_params == null) return false;
+	
+    json = JSON.parse(url_params["json"]);
+	
+    var examplePath = json["example"];
+    var analysisVar = json["analysisVar"];
+    var groupVars = json["groupVars"];
+    var graphNum = json["graphNum"];
+    
+    //    readFromURL(datasetURL);
+    openExample(examplePath, function() {
+	selectAnalysisVariable(analysisVar);
+	groupVars.forEach(function(v) { selectGroupVariable(v) });
+	document.getElementById(strGraph[graphNum]).click();
+	window.history.replaceState({}, "", "index.html");	
+    });
+
+}
+
+
+$("#copylink").click(function() {
+    estatapp.graphNum = graphNum;
+    var baseurl = document.location.href.split("?")[0];
+    var copylinkText = baseurl + "?json=" + JSON.stringify(estatapp);
+    var el = document.createElement('textarea');
+    el.id = "copylinkText";
+    el.value = copylinkText;
+    el.select();
+    document.execCommand('copy');
+//    navigator.clipboard.writeText(copyText);
+    el.readOnly = true;
+    el.setAttribute("style", "font-size: 12pt; font-family: Monospace; font-color: lightgray; title: none; height: auto; width : 600px; resize: none; overflow-x: hidden; overflow-y: hidden; outline: none; border-style : none; border-color: Transparent");
+    $("#copylinkPopup").html(el);
+    $("#copylinkPopup").dialog({
+	dialogClass: 'no-titlebar',
+	show: { effect: "blind", duration: 1000},
+	hide: { effect: "blind", duration: 1000},
+	width: "640px",
+	height: "auto",
+	overflow: "hidden",
+	resize: "none",
+	buttons: { 'Close' : function(event) {
+	    $("#copylinkPopup").dialog('close');
+	    setTimeout(function() { $(".ui-dialog-titlebar").css("display", "block");}, 1000);    
+	}
+		}
+    });
+
+    $(".ui-dialog-titlebar").css("display", "none");
+    $("#copylinkText").height($("#copylinkText").prop("scrollHeight")+12);    
+    $("#copylinkPopup").dialog('open');
+
+
+});
+
+
+/*
+* Data point Highlighting
+*/
+
+function highlight_datapoint() {
 	console.log("Click Here!");
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
@@ -17,6 +111,9 @@
 }
 
 
+/*
+* Global variables
+*/
 var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
@@ -298,6 +395,10 @@ if (levelNum == "1") { // 초등
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
 
+
+
+
+
 // =================================================================
 // 시트 컨트롤
 // =================================================================
@@ -328,6 +429,13 @@ datasheet = new Handsontable(container, {
     fragmentSelection: false,
 });
 initEventControl(datasheet);
+
+
+
+
+
+
+
 // 새 시트
 d3.select("#new").on("click", function() {
     try {
@@ -547,6 +655,7 @@ function initEventControl(datasheet) {
               if (numVar == 1) {
                   // 분석변량
                   document.getElementById("analysisSelectMain").value = tdvarNumber[0];
+		  estatapp.analysisVar = tdvarNumber[0];
                   // 선택변수 리스트
                   varListStr = "V" + tdvarNumber[numVar-1].toString();
                   d3.select("#selectedVars").node().value = varListStr;
@@ -554,6 +663,7 @@ function initEventControl(datasheet) {
               else {
                   // 그룹변량
                   document.getElementById("groupSelectMain").value = tdvarNumber[numVar-1];
+		  estatapp.groupVars = tdvarNumber.slice(1, numVar);
                   // 선택변수 리스트
                   if (numVar == 2) varListStr += "  "+svgStrU[84][langNum]+"  ";
                   varListStr += "V" + tdvarNumber[numVar-1].toString() + ",";
@@ -657,14 +767,27 @@ $(document).ready(function() {
     $("#exampleFileListing").fileTree({
         root: '../Example/'
     }, function(file) {
-        document.getElementById("loadFileName").value = file.split('/').pop();
-        d3.csv(file, function(csvdata) {
-            data = csvdata.map(Object.values);
-            updateDatasheetWithArrayOfRows(data, csvdata.columns);
-        });
+	examplePath = file.substring(11);
+	openExample(examplePath);
         $("#exampleFileListing").dialog("close");
     });
 });
+function openExample(examplePath, callback = undefined) {
+    estatapp.example = examplePath;
+    url = "../Example/" + examplePath;
+        document.getElementById("loadFileName").value = url.split('/').pop();
+        d3.csv(url, function(csvdata) {
+            data = csvdata.map(Object.values);
+            updateDatasheetWithArrayOfRows(data, csvdata.columns);
+	    if (callback !== undefined) callback();	    
+        });
+}
+
+
+
+
+
+
 /*
  *  read data from URL
  *
@@ -675,13 +798,18 @@ $("#button_readFromURL").click(function() {
 $("#button_readFromURLSubmit").click(function() {
     $("#dialog_readFromURL").dialog("close");
     var url = $("#text_readFromURL").val();
+    readFromURL(url);
+});
+function readFromURL(url) {
     $("#text_readFromURL").val("");
     document.getElementById("loadFileName").value = url.split('/').pop();
     d3.csv(url, function(csvdata) {
         data = csvdata.map(Object.values);
         updateDatasheetWithArrayOfRows(data, csvdata.columns);
     });
-});
+}
+
+
 /*
  * import a CSV file
  */
@@ -980,11 +1108,16 @@ d3.select("#printTable").on("click", function() {
 });
 // 분석변량 선택   
 document.getElementById("analysisSelectMain").onchange = function() {
+      j = parseInt(document.getElementById("analysisSelectMain").value);
+    selectAnalysisVariable(j);
+    document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프        
+}
+function selectAnalysisVariable(varid) {
       chart.selectAll("*").remove();
       document.getElementById("groupSelectMain").options[0].selected = true
       checkPastColSelection = true;
-      numVar = 0;
-      j = parseInt(document.getElementById("analysisSelectMain").value);
+    document.getElementById("analysisSelectMain").value = varid    
+    j = varid;
       k = j - 1;
       if (k < 0) return;
       numVar = 0;
@@ -1003,11 +1136,23 @@ document.getElementById("analysisSelectMain").onchange = function() {
       // 변수선택 표시
       varListStr = "V"+tdvarNumber[0].toString();
       d3.select("#selectedVars").node().value = varListStr;
-      document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+
+    estatapp.analysisVar = tdvarNumber[0];
+
 }
+
 // 그룹변량 선택 
 document.getElementById("groupSelectMain").onchange = function() {
-      j = parseInt(document.getElementById("groupSelectMain").value);
+    j = parseInt(document.getElementById("groupSelectMain").value);
+    selectGroupVariable(j);
+    if(checkNumVar) {
+        document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
+    }
+
+}
+function selectGroupVariable(varid) {
+    document.getElementById("groupSelectMain").value = varid;
+    j = varid;
       // 그룹과 분석이 같은 변수가 선택되었는지 체크
       for (var i=0; i < numVar; i++) {
         if ( tdvarNumber[i] == j ) {
@@ -1045,9 +1190,13 @@ document.getElementById("groupSelectMain").onchange = function() {
         varListStr += "V" + tdvarNumber[numVar].toString()+",";
         d3.select("#selectedVars").node().value = varListStr;
         numVar++;
-        document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
       }
+
+    estatapp.groupVars = tdvarNumber.slice(1, numVar);
 }
+
+
+
 // 산점도 그룹변량 선택 
 document.getElementById("groupSelect").onchange = function() {
     j = parseInt(document.getElementById("groupSelect").value);
