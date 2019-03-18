@@ -407,6 +407,8 @@ function initXTitle() {
 }
 // 변량 선택 초기화 함수
 function variableSelectClear() {
+     estatapp.params.analysisVar = undefined;
+     estatapp.params.groupVars = undefined;
     document.getElementById("selectedVars").value = "";
     document.getElementById("dataType").innerHTML = "("+svgStrU[88][langNum]+")";
     graphTopInitialize();

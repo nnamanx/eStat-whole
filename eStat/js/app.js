@@ -4,11 +4,20 @@
 */
 
 var estatapp = {
-    example : undefined,
-    analysisVar : undefined,
-    groupVars : undefined,
-    graphNum : undefined,
+    params : {
+        examaple : undefined,
+        analysisVar : undefined,
+        groupVars : undefined,
+        graphNum : undefined
+    },
+    init : function() {
+        estatapp.params.example = undefined;
+        estatapp.params.analysisVar = undefined;
+        estatapp.params.groupVars = undefined;
+        estatapp.params.graphNum = undefined;
+    }
 };
+
 
 $(document).ready(function() {
     checkURLParameters();
@@ -38,26 +47,36 @@ function checkURLParameters() {
     json = JSON.parse(url_params["json"]);
 	
     var examplePath = json["example"];
+    var dataurl = json["dataurl"];
     var analysisVar = json["analysisVar"];
     var groupVars = json["groupVars"];
     var graphNum = json["graphNum"];
     
-    if (examplePath === undefined) return false;
-    
-    openExample(examplePath, function() {
-	if (analysisVar !== undefined) selectAnalysisVariable(analysisVar);
-	if (groupVars !== undefined) groupVars.forEach(function(v) { selectGroupVariable(v) });
-	if (graphNum !== undefined) document.getElementById(strGraph[graphNum]).click();
-	window.history.replaceState({}, "", "/estat/eStat/");
-    });
+    if (examplePath !== undefined) {
+        openExample(examplePath, function() {
+            if (analysisVar !== undefined) selectAnalysisVariable(analysisVar);
+            if (groupVars !== undefined) groupVars.forEach(function(v) { selectGroupVariable(v) });
+            if (graphNum !== undefined) document.getElementById(strGraph[graphNum]).click();
+            window.history.replaceState({}, "", "/estat/eStat/");
+        });
+    } else if (dataurl !== undefined) {
+        readFromURL(dataurl, function() {
+            if (analysisVar !== undefined) selectAnalysisVariable(analysisVar);
+            if (groupVars !== undefined) groupVars.forEach(function(v) { selectGroupVariable(v) });
+            if (graphNum !== undefined) document.getElementById(strGraph[graphNum]).click();
+            window.history.replaceState({}, "", "/estat/eStat/");
+        });
+    } else {
+        return false;
+    }
 
 }
 
 
 $("#copylink").click(function() {
-    estatapp.graphNum = graphNum;
+    estatapp.params.graphNum = graphNum;
     var baseurl = document.location.href.split("?")[0];
-    var copylinkText = baseurl + "?json=" + JSON.stringify(estatapp);
+    var copylinkText = baseurl + "?json=" + JSON.stringify(estatapp.params);
     var el = document.createElement('textarea');
     el.id = "copylinkText";
     el.value = copylinkText;
@@ -657,7 +676,7 @@ function initEventControl(datasheet) {
               if (numVar == 1) {
                   // 분석변량
                   document.getElementById("analysisSelectMain").value = tdvarNumber[0];
-		  estatapp.analysisVar = tdvarNumber[0];
+		  estatapp.params.analysisVar = tdvarNumber[0];
                   // 선택변수 리스트
                   varListStr = "V" + tdvarNumber[numVar-1].toString();
                   d3.select("#selectedVars").node().value = varListStr;
@@ -665,7 +684,7 @@ function initEventControl(datasheet) {
               else {
                   // 그룹변량
                   document.getElementById("groupSelectMain").value = tdvarNumber[numVar-1];
-		  estatapp.groupVars = tdvarNumber.slice(1, numVar);
+		  estatapp.params.groupVars = tdvarNumber.slice(1, numVar);
                   // 선택변수 리스트
                   if (numVar == 2) varListStr += "  "+svgStrU[84][langNum]+"  ";
                   varListStr += "V" + tdvarNumber[numVar-1].toString() + ",";
@@ -775,7 +794,8 @@ $(document).ready(function() {
     });
 });
 function openExample(examplePath, callback = undefined) {
-    estatapp.example = examplePath;
+    estatapp.init();
+    estatapp.params.example = examplePath;
     url = "../Example/" + examplePath;
         document.getElementById("loadFileName").value = url.split('/').pop();
         d3.csv(url, function(csvdata) {
@@ -802,12 +822,15 @@ $("#button_readFromURLSubmit").click(function() {
     var url = $("#text_readFromURL").val();
     readFromURL(url);
 });
-function readFromURL(url) {
+function readFromURL(url, callback = undefined) {
+    estatapp.init();
+    estatapp.params.dataurl = url;    
     $("#text_readFromURL").val("");
     document.getElementById("loadFileName").value = url.split('/').pop();
     d3.csv(url, function(csvdata) {
         data = csvdata.map(Object.values);
         updateDatasheetWithArrayOfRows(data, csvdata.columns);
+        if (callback !== undefined) callback();
     });
 }
 
@@ -830,6 +853,8 @@ function importCSV(evt) {
     }
     fr.readAsText(evt.target.files[0]);
     $("#input_importCSV").val("");
+
+    estatapp.init();
 }
 function updateDatasheetWithArrayOfRows(data, colHeaders) {
     datasheet.destroy();
@@ -1139,7 +1164,7 @@ function selectAnalysisVariable(varid) {
       varListStr = "V"+tdvarNumber[0].toString();
       d3.select("#selectedVars").node().value = varListStr;
 
-    estatapp.analysisVar = tdvarNumber[0];
+    estatapp.params.analysisVar = tdvarNumber[0];
 
 }
 
@@ -1194,7 +1219,7 @@ function selectGroupVariable(varid) {
         numVar++;
       }
 
-    estatapp.groupVars = tdvarNumber.slice(1, numVar);
+    estatapp.params.groupVars = tdvarNumber.slice(1, numVar);
 }
 
 
@@ -3692,9 +3717,12 @@ d3.select("#vcancel").on("click", function() {
 })
 // Language Selector
 languageNumber = {
-    'ko': 0,
-    'en': 1,
-    'ja': 2,
+    'ko': 0,
+
+    'en': 1,
+
+    'ja': 2,
+
     'zh': 10,
     'zhTW': 3,
     'fr': 4,
