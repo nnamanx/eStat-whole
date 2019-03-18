@@ -344,6 +344,7 @@ $.message.ko = {
     "NormalTable":    "정규분포표",
     "Percentile":     "백분위수표",
     "StudentRangeDist": "HSD 표준화범위분포",
+    "copy link": "링크 복사",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -900,6 +901,8 @@ $.message.en = {
     "NormalTable":    "Normal Distribution Table",
     "Percentile":     "Percentile Table",
     "StudentRangeDist": "HSD Studentized Range Dist.",
+    "copy link": "link copy",
+
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1457,6 +1460,7 @@ $.message.ja = {
     "NormalTable":    "正規分布表",
     "Percentile":     "百分位数表",
     "StudentRangeDist": "HSDスチューデント化範囲分布",
+    "copy link": "リンクをコピー",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -2011,6 +2015,7 @@ $.message.zhTW = {
     "NormalTable":    "常態分佈表",
     "Percentile":     "百分表",
     "StudentRangeDist": "HSD範圍分佈",
+    "copy link": "複製鏈接",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -2564,6 +2569,7 @@ $.message.fr = {
     "NormalTable":    "Table de distribution normale",
     "Percentile":     "Tableau des centiles",
     "StudentRangeDist": "HSD Répartition de la gamme",
+    "copy link": "copiar enlace",
 
 };
 // French
@@ -3116,6 +3122,7 @@ $.message.de = {
     "NormalTable":    "Normal Distribution Table",
     "Percentile":     "Perzentil-Tabellee",
     "StudentRangeDist": "HSD Bereichsverteilung",
+    "copy link": "Link kopieren",
 
 };
 // German
@@ -3671,6 +3678,7 @@ $.message.es = {
     "NormalTable":    "Tabla de distribución normal",
     "Percentile":     "Tabla percentil",
     "StudentRangeDist": "HSD Distribución de rango",
+    "copy link": "copiar link",
 
 };
 // Spanish
@@ -4222,6 +4230,7 @@ $.message.vi = {
     "NormalTable":    "Bảng phân phối bình thường",
     "Percentile":     "Bảng tỷ lệ phần trăm",
     "StudentRangeDist": "HSD Phân phối phạm vi",
+    "copy link": "sao chép đường dẫn",
 
 };
 // Vietnamese
@@ -4777,6 +4786,7 @@ $.message.id = {
     "NormalTable":    "Tabel Distribusi Normal",
     "Percentile":     "Tabel Persentil",
     "StudentRangeDist": "HSD Distribusi Rentang",
+    "copy link": "Salin tautan",
 
 };
 // Indonesian 
@@ -5331,6 +5341,7 @@ $.message.mn = {
     "NormalTable":    "Хэвийн хуваарилах хүснэгт",
     "Percentile":     "Хувь Хүснэгт",
     "StudentRangeDist": "HSD Range тархац",
+    "copy link": "хуулбар холбоос",
 
 };
 // Mongolian
@@ -5885,6 +5896,7 @@ $.message.zh = {
     "NormalTable":    "正态分布表",
     "Percentile":     "百分表",
     "StudentRangeDist": "HSD 范围分布",
+    "copy link": "复制链接",
 
 };
 // Chinese Simplified
@@ -6442,6 +6454,7 @@ $.message.pt = {
     "NormalTable":    "Tabela de Distribuição Normal",
     "Percentile":     "Tabela percentual",
     "StudentRangeDist": "Distribuição de Faixa",
+    "copy link": "link de cópia",
 
 };
 // Portugese
