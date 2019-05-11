@@ -407,8 +407,6 @@ function initXTitle() {
 }
 // 변량 선택 초기화 함수
 function variableSelectClear() {
-     estatapp.params.analysisVar = undefined;
-     estatapp.params.groupVars = undefined;
     document.getElementById("selectedVars").value = "";
     document.getElementById("dataType").innerHTML = "("+svgStrU[88][langNum]+")";
     graphTopInitialize();
@@ -2239,7 +2237,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
     var table = document.createElement('table');
     loc.appendChild(table);
 
-        var row, header, sum, x, t, str, maxDeci, temp1, temp2;
+        var row, header, sum, x, t, str, maxDeci, temp1, temp2, tempsum;
         var i, j, k, g, ncol, df, info, pvalue;
         var cell = new Array(10);
         var sumRow = new Array(ngroupMax);
@@ -2367,7 +2365,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           row.style.height ="20px";
 
         } else if (ngroup < 2) { // ngroup=1일때는 도수분포표
-          ncol = 4;
+          ncol = 5;
           sum  = 0;
           for (j=0; j<ndvalue; j++) sum += dataSet[0][j];
 
@@ -2389,15 +2387,17 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k] = row.insertCell(k);
             cell[k].style.width ="80px";
           }
-          cell[0].innerHTML = svgStr[27][langNum];
-          cell[1].innerHTML = svgStr[28][langNum];
-          cell[2].innerHTML = svgStr[29][langNum];
-          cell[3].innerHTML = svgStr[30][langNum];   
+          cell[0].innerHTML = svgStr[27][langNum]; // 변량값
+          cell[1].innerHTML = svgStr[28][langNum]; // 변량값명
+          cell[2].innerHTML = svgStr[29][langNum]; // 도수
+          cell[3].innerHTML = svgStr[30][langNum]; // 상대도수  
+          cell[4].innerHTML = svgStrU[109][langNum]; // 누적상대도수  
           for (k=0; k<ncol; k++) {
             cell[k].style.textAlign = "center";
             cell[k].style.backgroundColor = "#eee";
             cell[k].style.border = "1px solid black";
           }
+          tempsum = 0;
           for (j=0; j<ndvalue; j++) {
             row = table.insertRow(j+2);
             for (k=0; k<ncol; k++) {
@@ -2413,15 +2413,18 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
               cell[1].innerHTML = dvalueLabel[j];
             }
             cell[2].innerHTML = dataSet[0][j];
+            tempsum += dataSet[0][j];
             cell[3].innerHTML = f1(100*dataSet[0][j]/sum);
+            cell[4].innerHTML = f1(100*tempsum/sum);
             cell[0].style.textAlign = "left";
             cell[1].style.textAlign = "left";
             cell[2].style.textAlign = "right";
             cell[3].style.textAlign = "right";
+            cell[4].style.textAlign = "right";
           }
 
           row = table.insertRow(ndvalue+2);
-          for (k=0; k<ncol; k++) {
+          for (k=0; k<ncol-1; k++) {
             cell[k] = row.insertCell(k);
             cell[k].style.backgroundColor = "#eee";
             cell[k].style.border = "1px solid black";
@@ -2429,7 +2432,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           cell[0].innerHTML = svgStr[23][langNum];
           cell[1].innerHTML = "";
           cell[2].innerHTML = sum;
-          cell[3].innerHTML = "100";
+          cell[3].innerHTML = "100.0";
           cell[0].style.textAlign = "center";
           cell[1].style.textAlign = "center";
           cell[2].style.textAlign = "right";
@@ -2437,7 +2440,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
 
           // missing
           row = table.insertRow(ndvalue+3);
-          for (k=0; k<ncol-1; k++) {
+          for (k=0; k<ncol-2; k++) {
             cell[k] = row.insertCell(k);
             cell[k].style.backgroundColor = "#eee";
             cell[k].style.border = "1px solid black";
@@ -6055,9 +6058,10 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gva
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = svgStr[38][langNum]+" ("+dvarName+")";
+          cell[0].innerHTML = svgStr[38][langNum]+" ("+dvarName+" )";
           for (j=0; j<ngroup; j++) {
-            cell[j+1].innerHTML = svgStr[18][langNum]+(j+1).toString()+" ("+gvalueLabel[j]+")";
+            cell[j+1].innerHTML = gvalueLabel[j];
+//            cell[j+1].innerHTML = svgStr[18][langNum]+(j+1).toString()+"<br>("+gvalueLabel[j]+")";
           }
           cell[ngroup+1].innerHTML = svgStr[23][langNum];
 
@@ -6786,7 +6790,7 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
     loc.appendChild(table);
 
         var row, nrow, str;
-        var ncol = 11;
+        var ncol = 12;
         var cell = new Array(ncol);
 
           table.style.fontSize = "13px";
@@ -6824,12 +6828,13 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
           cell[2].innerHTML = svgStr[34][langNum]; // avg
           cell[3].innerHTML = svgStr[35][langNum]; // std
           cell[4].innerHTML = svgStr[45][langNum]; // 최솟값
-          cell[5].innerHTML = "Q1";
-          cell[6].innerHTML = svgStr[46][langNum]; // 중앙값
-          cell[7].innerHTML = "Q3"; 
-          cell[8].innerHTML = svgStr[47][langNum]; // 최댓값
-          cell[9].innerHTML = "IQR"; 
-          cell[10].innerHTML= svgStr[112][langNum]; // 범위
+          cell[5].innerHTML = svgStrU[105][langNum]; // Q1
+          cell[6].innerHTML = svgStr[46][langNum];   // 중앙값
+          cell[7].innerHTML = svgStrU[106][langNum]; // Q3 
+          cell[8].innerHTML = svgStr[47][langNum];   // 최댓값
+          cell[9].innerHTML = svgStrU[107][langNum]; //IQR 
+          cell[10].innerHTML= svgStr[112][langNum];  // 범위
+          cell[11].innerHTML= svgStrU[108][langNum]; // CV
           for (j=0; j<ncol; j++) {
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
@@ -6855,7 +6860,8 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             cell[7].innerHTML = f3(Q3[g]).toString();   
             cell[8].innerHTML = f3(maxi[g]).toString();   
             cell[9].innerHTML = f3(Q3[g]-Q1[g]).toString();   
-            cell[10].innerHTML = f3(maxi[g]-mini[g]).toString();   
+            cell[10].innerHTML = f3(maxi[g]-mini[g]).toString(); 
+            cell[11].innerHTML = f3(std[g]/avg[g]).toString();  
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) cell[j].style.textAlign = "right";         
           }
@@ -6878,7 +6884,8 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
             cell[7].innerHTML = f3(tstat[6]).toString(); // q3
             cell[8].innerHTML = f3(tstat[7]).toString(); // max
             cell[9].innerHTML = f3(tstat[6]-tstat[4]).toString(); // iqr
-            cell[10].innerHTML = f3(tstat[7]-tstat[3]).toString(); // range
+            cell[10].innerHTML= f3(tstat[7]-tstat[3]).toString(); // range
+            cell[11].innerHTML= f3(tstat[2]/tstat[1]).toString(); // CV
             cell[0].style.textAlign = "center";
             for (j=1; j<ncol; j++) {
               cell[j].style.textAlign = "right";          
