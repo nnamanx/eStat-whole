@@ -2105,7 +2105,7 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
          var title;
 //	 var title  = "N("+mu+","+sigma+") "+svgStrU[24][langNum];
          if (sigma == 1) title  = "N("+mu+","+sigma+")";
-         else title  = "N("+mu+","+sigma+"^2)";
+         else title  = "N("+mu+","+sigma+"\u00B2)";
          bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
          var gxmin   = mu - 4*sigma;
          var gxmax   = mu + 4*sigma;

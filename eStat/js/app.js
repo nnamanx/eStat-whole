@@ -502,12 +502,12 @@ d3.select("#new").on("click", function() {
 function initEventControl(datasheet) {
     isDatasheetChanged = false;
     // 시트 셀 어느 이벤트 발생하든 cell alignment : 문자 left, 숫자 right
-    datasheet.addHook('afterChange', turnOnDatasheetChangeFlag);
+    datasheet.addHook('afterChange',    turnOnDatasheetChangeFlag);
     datasheet.addHook('afterRemoveCol', turnOnDatasheetChangeFlag);
     datasheet.addHook('afterRemoveRow', turnOnDatasheetChangeFlag);
     datasheet.addHook('afterCreateRow', turnOnDatasheetChangeFlag);
     datasheet.addHook('afterCreateCol', turnOnDatasheetChangeFlag);
-    datasheet.addHook('afterCut', turnOnDatasheetChangeFlag);
+    datasheet.addHook('afterCut',       turnOnDatasheetChangeFlag);
 
     function turnOnDatasheetChangeFlag() {
 	isDatasheetChanged = true;
@@ -598,23 +598,24 @@ function initEventControl(datasheet) {
             for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
         }
         datasheet.render();
-        // 선택된 변수 초기화
-        document.getElementById("selectedVars").value = "";
-        numVar = 0;
-        checkPastColSelection = false;
-        updateVarList();
+        // 선택된 변수 초기화 -- 데이터의 변화가 있을때만 집행 
+	if(checkPastColSelection == false) { // 만일 마우스로 변수 선택만 했을 경우는 초기화 안함 2019.5.12
+          document.getElementById("selectedVars").value = "";
+          numVar = 0;
+          checkPastColSelection = false;
+          updateVarList();
+        }
     }
-
     
     // 시트 컬럼 및 행 이벤트 컨트롤
     datasheet.addHook('afterOnCellMouseUp', function(event, coords) {
         //	  console.log(coords);
         //	  console.log(coords.row+" "+coords.col);
+
 	if(isDatasheetChanged) {
 	    syncDatasheetWithInternalDataArray();
-	    isDataChanged = false;
+	    isDataSheetChanged = false;
 	}
-
         if (coords.row == -1) { // 컬럼번호 클릭
             checkMouseSelection = true;
             selected = datasheet.getSelected();
@@ -653,6 +654,7 @@ function initEventControl(datasheet) {
             }
             if (checkVarSame == false && checkNumVar == true) {
               numVar += numOfSelectedColumns;
+
               // Select box에 표시
               if (numVar == 1) {
                   // 분석변량
