@@ -581,7 +581,7 @@ function showScatterPlot3(graphWidth, graphHeight) {
 	var e = y - (b0 + b1*x);
 	sse = sse + e*e;
 	    }
-    return {a : b0, b : b1, xbar : sx/n, ybar : sy/n, rsq: 1 - sse/sst};
+    return {a : b0, b : b1, xbar : sx/n, ybar : sy/n, rsq: 1 - sse/sst, r: sxy / Math.sqrt(sxx*syy)};
 }function updateRegressionLine() {
     var x1, x2, y1, y2;
     var coef = lsfit(svg.selectAll("circle").nodes());
@@ -627,7 +627,7 @@ function showScatterPlot3(graphWidth, graphHeight) {
     svg.append("text").attr("class","reglabel3")
         .attr("x", margin.left + graphHeight/2)
         .attr("y", y1)
-        .text("r = "+f2(Math.sqrt(coef.rsq)))
+        .text("r = "+f2(coef.r))
     svg.append("text").attr("class","reglabel3")
         .attr("x", margin.left + graphHeight/2 + 60)
         .attr("y", y1)
