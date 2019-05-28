@@ -1,6 +1,6 @@
 ﻿// language.js
 var langNum;
-var nLanguage = 15;
+var nLanguage = 20;
 var nString = 120;
 var appStr = new Array(nString);
 var svgStr = new Array(nString);
@@ -28,6 +28,7 @@ languageNumber = {
     'pt': 11,
     'gr': 12,
     'ro': 13,
+    'th': 14,
 };
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
@@ -68,6 +69,7 @@ else if (lang == "mn") langNum = 9;
 else if (lang == "pt") langNum = 11;
 else if (lang == "gr") langNum = 12;
 else if (lang == "ro") langNum = 13;
+else if (lang == "th") langNum = 14;
 // console.log("eStatU.js langNum="+langNum);
 $.message = {}
 // Korean
@@ -884,8 +886,8 @@ $.message.en = {
     "Treatment": "Treatment",
     "At least one locations is different": "At least one pair of locations is different",
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
+    "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Approximation Test",
+    "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
     "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
@@ -1013,7 +1015,7 @@ svgStr[53][1] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub>
 svgStr[54][1] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
 svgStr[55][1] = "Each interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
 svgStr[56][1] = "Sum of &chi;<sup>2</sup> value";
-svgStr[57][1] = "Probability Hitogram and Normal Distribution";
+svgStr[57][1] = "Probability Histogram and Normal Distribution";
 svgStr[58][1] = "Normal Q-Q Plot";
 svgStr[59][1] = "Normal Quantile";
 svgStr[60][1] = "Correlation Coefficient";
@@ -1078,7 +1080,7 @@ svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
 svgStrU[3][1] = "Mean";
 svgStrU[4][1] = "Std Dev";
-svgStrU[5][1] = "Poissson Distribution";
+svgStrU[5][1] = "Poisson Distribution";
 svgStrU[6][1] = "Geometric Distribution";
 svgStrU[7][1] = "HyperGeometric Distribution";
 svgStrU[8][1] = "Population";
@@ -2552,8 +2554,8 @@ $.message.fr = {
     "Treatment": "Traitement",
     "At least one locations is different": "Au moins une paire d'emplacements est différente",
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rang Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
+    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rang Sum Test,  n > 20 Normal Approximation Test",
+    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
@@ -3105,8 +3107,8 @@ $.message.de = {
     "Treatment": "Behandlung",
     "At least one locations is different": "Mindestens ein Standortpaar ist unterschiedlich",
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Annäherung Test",
-    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Annäherung Test",
-    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rangsum Test,  n>25 Nomal Approximation Test",
+    "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Annäherung Test",
+    "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rangsum Test,  n>25 Normal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> Annäherung test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Auswahl : Click var name or use RHS selection box ",
@@ -3662,7 +3664,7 @@ $.message.es = {
     "At least one locations is different": "Al menos un par de ubicaciones es diferente",
     "SignCondition": "Si n ≤ 100 Binomial prueba,  n > 100 Normal prueba de aproximación",
     "WilcoxonSignCondition": "Si n≤ 20 Wilcoxon prueba de suma de rango,  n > 20 Normal prueba de aproximación",
-    "WilcoxonRankCondition": "Si n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon prueba de suma de rango,  n>25 Nomal prueba de aproximación",
+    "WilcoxonRankCondition": "Si n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon prueba de suma de rango,  n>25 Normal prueba de aproximación",
     "KruskalCondition": "Si n≤ 10 H prueba de distribución,  no &chi;<sup>2</sup> prueba de aproximación",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Selección de Variables : Click var name or use RHS selection box ",
@@ -4769,7 +4771,7 @@ $.message.id = {
     "Treatment": "Pengobatan",
     "At least one locations is different": "Setidaknya terdapat satu pasang lokasi yang berbeda",
     "SignCondition": "Jika n ≤ 100 Uji Binomial,  n > 100 Pendekatan Normal",
-    "WilcoxonSignCondition": "jika n≤ 20 Wilcoxon Tes Jumlah Peringkat,  n > 20 Nomal Uji Approximation",
+    "WilcoxonSignCondition": "jika n≤ 20 Wilcoxon Tes Jumlah Peringkat,  n > 20 Normal Uji Approximation",
     "WilcoxonRankCondition": "jika n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Uji Jumlah Peringkat Wilcoxon, n>25 Pendekatan Normal",
     "KruskalCondition": "jika n≤ 10 Uji Distribusi H,  else &chi;<sup>2</sup> Uji Aproksimasi",
     "VariableSelect":  "* Analisis Data : Muat File >> Pilih Variabel >>  Klik Ikon",
@@ -5324,8 +5326,8 @@ $.message.mn = {
     "Treatment": "Эмчилгээ",
     "At least one locations is different": "Наад зах нь нэг хос байршил өөр байна",
     "SignCondition": "хэрэв n ≤ 100 Binomial Туршилт,  n > 100 Normal Тооцоолол",
-    "WilcoxonSignCondition": "хэрэв n≤ 20 Wilcoxon Дундаж дүн шинжилгээ,  n > 20 Nomal Тооцоолол",
-    "WilcoxonRankCondition": "v n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Дундаж дүн шинжилгээ,  n>25 Nomal Тооцоолол",
+    "WilcoxonSignCondition": "хэрэв n≤ 20 Wilcoxon Дундаж дүн шинжилгээ,  n > 20 Normal Тооцоолол",
+    "WilcoxonRankCondition": "v n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Дундаж дүн шинжилгээ,  n>25 Normal Тооцоолол",
     "KruskalCondition": "хэрэв n≤ 10 H Түгээлт Тест,  else &chi;<sup>2</sup> Тооцоолол",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
@@ -7269,286 +7271,286 @@ svgStrU[109][12] = "Αθροιστική Συχνότητα (%)";
 
 // Romanian
 $.message.ro = {
-    "eStat : Stat Education SW": "eStat : Stat Education SW",
-    "Filename": "File",
-    "Selected Variables": "SelectedVar",
-    "Cancel": "Cancel",
+    "eStat : Stat Education SW": "eStat : Stat Educatie SW",
+    "Filename": "Nume Fișier",
+    "Selected Variables": "Var Selectate",
+    "Cancel": "Îinchidere",
     "Edit Variables": "EditVar",
-    "Level": "Level",
+    "Level": "Nivel",
     "ElementaryLevel": "E",
-    "MiddleLevel": "M",
-    "HighLevel": "H",
+    "MiddleLevel": "G",
+    "HighLevel": "L",
     "UniversityLevel": "U",
-    "Example": "Example",
-    "New Sheets": "New Sheets",
-    "csv Open": "csv Open",
-    "www Open": "www Open",
-    "json Open": "json Open",
-    "csv Save": "csv Save",
-    "json Save": "json Save",
-    "Print Sheet": "Print Sheet",
-    "Bar Graph": "Bar Graph",
-    "Pie Chart": "Pie Chart",
-    "Band Graph": "Band Graph",
-    "Line Graph": "Line Graph",
-    "Dot Graph": "Dot Graph",
-    "Histogram": "Histogram",
-    "Stem & Leaf Plot": "Stem & Leaf Plot",
-    "Box-Whisker Plot": "Box-Whisker Plot",
-    "Scatterplot": "Scatterplot",
-    "Frequency Table": "Frequency Table",
-    "Basic Statistics": "Basic Statistics",
-    "Testing Hypothesis &mu;": "Testing Hypothesis &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Analysis of Variance": "Analysis of Variance",
-    "High School Stat Education": "High School Stat Education",
-    "University Stat Education": "University Stat Education",
-    "Elem Stat Graph Example": "Elem Stat Graph Example",
-    "Learning eStat w Example": "Learning eStat w Example",
-    "Vertical": "Vertical",
-    "Horizontal": "Horizontal",
-    "Vertical Separated Bar": "Vertical Separated Bar",
-    "Vertical Stacked Bar": "Vertical Stacked Bar",
-    "Vertical Ratio Bar": "Vertical Ratio Bar",
-    "Vertical Side by Side Bar": "Vertical Side by Side Bar",
-    "Vertical Two Sided Bar": "Vertical Two Sided Bar",
-    "Horizontal Separated Bar": "Horizontal Separated Bar",
-    "Horizontal Stacked Bar": "Horizontal Stacked Bar",
-    "Horizontal Ratio Bar": "Horizontal Ratio Bar",
-    "Horizontal Side by Side Bar": "Horizontal Side by Side Bar",
-    "Horizontal Two Sided Bar": "Horizontal Two Sided Bar",
-    "Doughnut Graph": "Doughnut Graph",
-    "Two Sided Stem & Leaf Plot": "Two Sided Stem & Leaf Plot",
-    "Graph Save": "Graph Save",
-    "Graph Print": "Graph Print",
-    "Move to Table": "Move to Table",
-    "Edit Title": "Edit Title",
-    "Table Save": "Table Save",
-    "Table Print": "Table Print",
-    "Frequency": "Frequency",
-    "(Sorting)": "(Sorting)",
-    "Raw Data": "Raw Data",
-    "Descending": "Descending",
-    "Ascending": "Ascending",
-    "Mean": "Mean",
-    "Std Deviation": "Std Deviation",
-    "MeanStd": "Mean/StdDev",
-    "95CI": "95% Confidence Interval",
-    "RegressionAnalysis": "Regression Analysis",
+    "Example": "Exemplu",
+    "New Sheets": "Sheet Nou",
+    "csv Open": "csv Deschidere",
+    "www Open": "www Deschidere",
+    "json Open": "json Deschidere",
+    "csv Save": "csv Salvare",
+    "json Save": "json Salvare",
+    "Print Sheet": "Imprimare",
+    "Bar Graph": "Diagramă Coloane",
+    "Pie Chart": "Diagramă Radială",
+    "Band Graph": "Diagrammă Bară",
+    "Line Graph": "Diagramă Liniară",
+    "Dot Graph": "Diagramă prin Puncte",
+    "Histogram": "Histogramă",
+    "Stem & Leaf Plot": "Diagramă Rădăcină-Frunză",
+    "Box-Whisker Plot": "Box complot",
+    "Scatterplot": "Diagramă prin Puncte",
+    "Frequency Table": "Tabelul Frecvențelor",
+    "Basic Statistics": "Bazele Statisticii",
+    "Testing Hypothesis &mu;": "Testare Ipoteza &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Testare Ipoteza &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testare Ipoteza  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testare Ipoteza &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance": "Analiza Varianței",
+    "High School Stat Education": "Statistică La Nivel Liceal",
+    "University Stat Education": "Statistică la Nivel Universitar",
+    "Elem Stat Graph Example": "Nivel Gimnazial",
+    "Learning eStat w Example": "Învață eStat prin Exemple",
+    "Vertical": "Coloană",
+    "Horizontal": "Bară",
+    "Vertical Separated Bar": "Diagramă Coloane Separate",
+    "Vertical Stacked Bar": "Diagramă Coloane Stivuite",
+    "Vertical Ratio Bar": "Diagrame Coloană Stivuite 100%",
+    "Vertical Side by Side Bar": "Diagramă Coloane Grupate",
+    "Vertical Two Sided Bar": "Diagramă cu Coloane Pozitive și Negative",
+    "Horizontal Separated Bar": "Diagramă Bare Separate",
+    "Horizontal Stacked Bar": "Diagramă Bare Stivuite",
+    "Horizontal Ratio Bar": "Diagrame Bare Stivuite 100%",
+    "Horizontal Side by Side Bar": "Diagramă Bare Grupate",
+    "Horizontal Two Sided Bar": "Diagramă cu Bare Pozitive și Negative",
+    "Doughnut Graph": "Diagramă Inelară",
+    "Two Sided Stem & Leaf Plot": "Diagramă Rădăcină-Frunză",
+    "Graph Save": "Salvare Diagramă",
+    "Graph Print": "Printare Diagramă",
+    "Move to Table": "Mută în Tabel",
+    "Edit Title": "Editare Titlu",
+    "Table Save": "Salvare Tabel",
+    "Table Print": "Printare Tabel",
+    "Frequency": "Frecvență",
+    "(Sorting)": "(Sortare)",
+    "Raw Data": "Date Brute",
+    "Descending": "Descrescător",
+    "Ascending": "Crescător",
+    "Mean": "Medie",
+    "Std Deviation": "Abatere Standard",
+    "MeanStd": "Medie/AbatereStandard",
+    "95CI": "95% Interval de Încredere",
+    "RegressionAnalysis": "Analiza Regresiei",
     "ANOVA2": "Two way ANOVA",
-    "Regression": "Regression",
-    "RegressionLine": "Regression Line",
+    "Regression": "Regresiei",
+    "RegressionLine": "Regresiei Line",
     "RegressionBand": "Confidence Band",
-    "RegressionTable": "Regression Analysis",	
-    "Frequency Polygon": "Frequency Polygon",
-    "Execute New Interval": "Execute New Interval",
-    "Interval Start": "Interval Start",
-    "Interval Width": "Interval Width",
-    "t-test": "t test",
-    "Z-test": "Z test",
-    "(if Z-test, enter &sigma;)": "(if Z test, enter &sigma;)",
-    "Significance Level": "Significance Level",
-    "Execute": "Execute",
-    "(Confidence Interval)": "(Confidence Interval)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z test, Z<sub>&alpha;/2</sub>is used)",
+    "RegressionTable": "Analiza Regresiei",	
+    "Frequency Polygon": "Poligonul Frecvențelor",
+    "Execute New Interval": "Excută un nou interval",
+    "Interval Start": "Capătul de început al intervalului",
+    "Interval Width": "Lungimea Intervalului",
+    "t-test": "t Testare",
+    "Z-test": "Z Testare",
+    "(if Z-test, enter &sigma;)": "(în cazul unui Z test, introduceți valoare pentru &sigma;)",
+    "Significance Level": "Nivel de Semnificație",
+    "Execute": "Execută",
+    "(Confidence Interval)": "(Interval de Încredere)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(În cazul unui test Z, utilizați Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
-    "Variance Assumption": "Variance Assumption",
-    "F test": "F test",
-    "At least one pair of means is different": "At least one pair of means is different",
-    "Main Title : ": "Main Title : ",
-    "y title : ": "y title : ",
-    "x title : ": "x title : ",
-    "Modify": "Modify",
-    "Confirm": "Confirm",
-    "Variable Name": "Variable Name",
-    "Variable Value": "Variable Value",
-    "Value Label": "Value Label",
-    "* Less than nine value labels allowed.": "* Less than nine value labels allowed.",
+    "Variance Assumption": "Presupunere asupra Varianței",
+    "F test": "F Testare",
+    "At least one pair of means is different": "Cel puțin o pereche de medii este diferită",
+    "Main Title : ": "Titlu Principal : ",
+    "y title : ": "Axa y : ",
+    "x title : ": "Axa x : ",
+    "Modify": "Modificați",
+    "Confirm": "Confirmare",
+    "Variable Name": "Nume Variabilă",
+    "Variable Value": "Valoare Variabilă",
+    "Value Label": "Etichetă Variabilă",
+    "* Less than nine value labels allowed.": "* Sunt permise și mai puțin de de 9 etichete",
     "Save": "Save",
-    "Exit": "Exit",
-    "eStatU UnivStatEdu": "eStatU - University Statistics Education SW",
-    "eStatH HighStatEdu": "eStatH - High School Statistics Education SW",
-    "Menu": "Menu",
-    "Binomial Experiment": "Binomial Experiment",
-    "Binomial Distribution": "Binomial Distribution",
-    "Binomial Prob Table": "Binomial Prob Table",
-    "Poisson Distribution": "Poisson Distribution",
-    "Poisson Prob Table": "Poisson Prob Table",
-    "Geometric Distribution": "Geometric Distribution",
-    "Geometric Prob Table": "Geometric Prob Table",
-    "HyperGeometric Distribution": "HyperGeometric Distribution",
-    "HyperGeometric Prob Table": "HyperGeometric Prob Table",
-    "Exponential Distribution": "Exponential Distribution",
-    "Normal Experiment": "Normal Experiment",
-    "Normal Distribution": "Normal Distribution",
-    "Normal Approx": "Normal Approx",
-    "t Distribution": "t Distribution",
-    "ChiSquare Distribution": "ChiSquare Distribution",
-    "F Distribution": "F Distribution",
-    "Sampling": "Sampling",
-    "Population vs Sample": "Population vs Sample",
-    "Population": "Population",
-    "Sample": "Sample",
-    "Exponential": "Exponential(0.3)",
-    "Uniform": "Uniform(0,1)",
-    "UniformDist": "Uniform",
-    "Sample05": "Sampling 5%",
-    "Sample10": "Sampling 10%",
-    "Sample20": "Sampling 20%",
-    "Statistics/BoxPlot": "Statistics/BoxPlot",
-    "Law of Large Number": "Law of Large Number",
-    "Dist of Sample Means": "Dist of Sample Means",
-    "Sample Size": "Sample Size",
-    "Confidence Interval": "Confidence Interval",
-    "Confidence Interval Simulation": "Confidence Interval Simulation",
-    "Estimation Accuracy": "Estimation Accuracy",
-    "Repetition": "Repetition",
-    "Confidence Level": "Confidence Level",
-    "Testing Hypothesis mu_titleAB": "Testing Hypothesis Mean",
-    "Testing Hypothesis mu_title": "Testing Mean",
-    "Testing Hypothesis sigma_title": "Testing Variance",
-    "Testing Hypothesis P_title": "Testing Proportion",
-    "Testing Hypothesis mu12_title": "Testing Two Means",
-    "Testing Hypothesis sigma12_title": "Testing Two Variances",
-    "Testing Hypothesis P12_title": "Testing Two Proportions",
-    "Testing Hypothesis muA":  "Testing &mu; - C, &beta;",
-    "Testing Hypothesis muAB": "Testing &mu; - C, n",
-    "Testing Hypothesis mu": "Testing Hypothesis &mu;",
-    "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "Testing Hypothesis p",
-    "Testing Hypothesis mu12": "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
-    "Testing Independence": "Testing Independence",
-    "Correlation Coefficient": "Correlation Coefficient",
-    "Regression Experiment": "Regression Experiment",
-    "Hypothesis": "Hypothesis",
-    "Test Type": "Test Type",
-    "Z-test": "Z test",
-    "t-test": "t test",
-    "Chi-test": "&chi;<sup>2</sup> test",
-    "F-test": "F test",
-    "Sampling Type": "Sampling Type",
-    "Independent Sample": "independent sample",
-    "Paired Sample": "paired sample",
-    "Sample Data": "Sample Data",
-    "input either sample data": "Input either sample data using BSV or sample statistics at the next boxes",
-    "Sample Statistics": "Sample Statistics",
-    "Sample Mean": "Sample Mean",
-    "Sample Variance": "Sample Variance",
-    "Sample Proportion": "Sample Proportion",
-    "if Z-test-1": "(if Z test, enter population variance &sigma;<sup>2</sup>)",
-    "if Z-test-2": "(if Z test, z<sub>&alpha;/2 </sub> is used.)",
-    "At least one pair": "At least one pair of means is different",
-    "Row-Col-0": "Row and column variables are independent",
-    "Row-Col-1": "Row and column variables are not independent",
-    "Enter any number of row": "(Enter observation from upper left cell)",
-    "Row": "Row",
-    "Column": "Column",
-    "Show Probability": "Show Probability",
-    "Regression Line": "Regression Line",
-    "Erase All": "Erase Screen",
-    "Add Point": "Add Point",
-    "Erase Point": "Erase Point",
-    "Reference Site": "Reference Site",
-    "Lot Size": "Lot Size",
-    "Defect Size": "Defect Size",
-    "If typed": "(If number is typed)",
+    "Exit": "Leșire",
+    "eStatU UnivStatEdu": "eStatU - Statistică la Nivel Universitar SW",
+    "eStatH HighStatEdu": "eStatH - Statistică La Nivel Liceal SW",
+    "Menu": "Meniu",
+    "Binomial Experiment": "Experiment Binomial",
+    "Binomial Distribution": "Distribuție Binomială",
+    "Binomial Prob Table": "Tabel Probabilități pentru Distribuție Binomială",
+    "Poisson Distribution": "Distribuție Poisson",
+    "Poisson Prob Table": "Tabel Probabilități pentru Distribuție Poisson",
+    "Geometric Distribution": "Distrbuție Geometrică",
+    "Geometric Prob Table": "Tabel Probabilități pentru Distribuție Geometrică",
+    "HyperGeometric Distribution": "Distrbuție Hipergeometrică",
+    "HyperGeometric Prob Table": "Tabel Probabilități pentru Distribuție Hipergeometrică",
+    "Exponential Distribution": "Distrbuție Exponențială",
+    "Normal Experiment": "Experiment Normală",
+    "Normal Distribution": "Distribuție Normală",
+    "Normal Approx": "Aproximație Normală",
+    "t Distribution": "Distribuție Student t",
+    "ChiSquare Distribution": "Distribuție Chi Pătrat",
+    "F Distribution": "Distribuție Fisher F",
+    "Sampling": "Sondaj",
+    "Population vs Sample": "Populație vs Sondaj",
+    "Population": "Populație",
+    "Sample": "Sondaj",
+    "Exponential": "Exponențială(0.3)",
+    "Uniform": "Uniformă(0,1)",
+    "UniformDist": "Uniformă",
+    "Sample05": "Sondaj 5%",
+    "Sample10": "Sondaj 10%",
+    "Sample20": "Sondaj 20%",
+    "Statistics/BoxPlot": "Statistică/BoxPlot",
+    "Law of Large Number": "Legea Numerelor Mari",
+    "Dist of Sample Means": "Dist of Sondaj Means",
+    "Sample Size": "Volumul Eșantionului",
+    "Confidence Interval": "Interval de Încredere",
+    "Confidence Interval Simulation": "Interval de Încredere Simulare",
+    "Estimation Accuracy": "Acuretețea Estimației",
+    "Repetition": "Repetiție",
+    "Confidence Level": "Siguranță Statistică",
+    "Testing Hypothesis mu_titleAB": "Testare Ipoteza Medie",
+    "Testing Hypothesis mu_title": "Testare Ipoteza Medie",
+    "Testare Ipoteza sigma_title": "Testare Ipoteza Varianțe",
+    "Testing Hypothesis P_title": "Testare Ipoteza Proporții",
+    "Testing Hypothesis mu12_title": "Testare Ipoteza Două Medie",
+    "Testing Hypothesis sigma12_title": "Testare Ipoteza Două Varianțe",
+    "Testing Hypothesis P12_title": "Testare Ipoteza Două Proporții",
+    "Testing Hypothesis muA":  "Testare Ipoteza &mu; - C, &beta;",
+    "Testing Hypothesis muAB": "Testare Ipoteza &mu; - C, n",
+    "Testing Hypothesis mu": "Testare Ipoteza &mu;",
+    "Testing Hypothesis sigma": "Testare Ipoteza &sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "Testare Ipoteza p",
+    "Testing Hypothesis mu12": "Testare Ipoteza &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "Testare Ipoteza &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12": "Testare Ipoteza p<sub>1</sub>, p<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "Testare Ipoteza ANOVA",
+    "Testing Independence": "Testarea Independenței",
+    "Correlation Coefficient": "Coeficient de Corelație",
+    "Regression Experiment": "Regresiei Experiment",
+    "Hypothesis": "Ipoteza",
+    "Test Type": "Tipul Testului",
+    "Z-test": "Z Testare",
+    "t-test": "t Testare",
+    "Chi-test": "&chi;<sup>2</sup>Testare",
+    "F-test": "F Testare",
+    "Sampling Type": "Sondaj Type",
+    "Independent Sample": "independent Sondaj",
+    "Paired Sample": "Două Selecții",
+    "Sample Data": "Sondaj Date",
+    "input either sample data": "Introduceți fie datele unui sondaj, fie date statistice in spațiile următoare ultizând csv/bsv",
+    "Sample Statistics": "Sondaj Statistică",
+    "Sample Mean": "Medie Sondaj",
+    "Sample Variance": "Varianță Sondaj",
+    "Sample Proportion": "Proporție Sondaj",
+    "if Z-test-1": "(În cazul unui test Z, introduceți varianța populației &sigma;<sup>2</sup>)",
+    "if Z-test-2": "(În cazul unui test Z, z<sub>&alpha;/2 </sub> is used.)",
+    "At least one pair": "Cel puțin o pereche de medii este diferită",
+    "Row-Col-0": "Variabilele de pe rând si de pe coloană sunt independente",
+    "Row-Col-1": "Variabilele de pe rând si de pe coloană sunt dependente",
+    "Enter any number of row": "(Introduceți observația în celula din stânga sus)",
+    "Row": "Rând",
+    "Column": "Coloană",
+    "Show Probability": "Afișează Probabilitatea",
+    "Regression Line": "Linie Regresie",
+    "Erase All": "Șterge tot",
+    "Add Point": "Adaugă Punct",
+    "Erase Point": "Șterge Punct",
+    "Reference Site": "Site de Referință",
+    "Lot Size": "Mărime Lot",
+    "Defect Size": "Mărime Defect",
+    "If typed": "(Dacă un număr este introdus)",
     "Stat/BoxPlot": "Stat/BoxPlot",
-    "Mean": "Mean",
-    "Std Dev": "Std Dev",
+    "Mean": "Medie",
+    "Std Dev": "Abatere Standard",
     "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
-    "OneGroup": "(one group)",
-    "AnalysisVar": "Analysis Var",
+    "OneGroup": "(un grup)",
+    "AnalysisVar": "Analiza Var",
     "AnalysisVar2": "Y Var",
-    "GroupVar": "Group",
+    "GroupVar": "Grup",
     "GroupVar2": "X Var",
     "GroupVar3": "Factor1",
     "GroupVar4": "Factor2",
-    "AnalysisVarMu12": "Analysis(or X1) Variable",
-    "GroupVarMu12": "Group(or X2) Variable",
-    "PairedMu12": " X1, X2 : Paired Variables",
-    "SizeVar": "Size Var",
-    "RegressionBand": "Confidence Band",
-    "RegressionTable": "Regression Analysis",
-    "RegressionResidual": "Residual Plot",
-    "RegressionResidualLeverage": "Residual vs Leverage",
-    "RegressionCook": "Cook's Distance Graph",
-    "RegressionQQ": "Residual Q-Q Plot",
-    "HistogramNormal": "Histogram",
-    "HistogramChisq": "Normality Test",
-    "HistogramNormalQQ": "Normal Q-Q Plot",
-    "PopulationStd": "Population Standard Deviation",
-    "Type1Error": "Type 1 Error",
-    "Type2Error": "Type 2 Error",
-    "AnovaTable": "ANOVA Table",
-    "AnovaMeanGraph": "Mean Confidence Interval",
-    "MultipleComparison": "Multiple Comparison",
-    "AnovaResidual": "Standardized Residual Plot",
-    "AnovaQQ": "Residual Q-Q Plot",
-    "TestingFit": "Goodness of Fit Test",
-    "FitTest0": "Observed & theoretical Distributions are the same",
-    "FitTest1": "Observed & theoretical Distributions are different",
-    "ObservedFreq": "Observed Frequency O",
-    "ExpectedProb": "Expected Probability p",
-    "ExpectedFreq": "Expected Frequency E(>5)",
-    "InputFitData": "Enter cell from upper left cell",
-    "ExecuteTable": "Statistics",
-    "MeanDotGraph": "Confidence Interval Graph",
-    "ScatterRegression": "Scatter Plot",
+    "AnalysisVarMu12": "Analiza(sau X1) Variabilă",
+    "GroupVarMu12": "Grup(or X2) Variabilă",
+    "PairedMu12": " X1, X2 : Două Variabilă",
+    "SizeVar": "Mărimea Var",
+    "RegressionBand": "bandă de încredere",
+    "RegressionTable": "Analiza Regresiei",
+    "RegressionResidual": "Diagrama Reziduurilor",
+    "RegressionResidualLeverage": "Reziduu vs Influență",
+    "RegressionCook": "Cook distanţă Diagramă",
+    "RegressionQQ": "Reziduu Q-Q Diagramăt",
+    "HistogramNormal": "Histogramă",
+    "HistogramChisq": "Test Normalitate",
+    "HistogramNormalQQ": "Normală Q-Q Diagramă",
+    "PopulationStd": "Populație Abatere Standard",
+    "Type1Error": "Eroare Tip 1",
+    "Type2Error": "Eroare Tip 2",
+    "AnovaTable": "ANOVA Tabel",
+    "AnovaMeanGraph": "Medie Interval de Încredere",
+    "MultipleComparison": "Comparație Multiplă",
+    "AnovaResidual": "Standardizat Reziduu Diagramă",
+    "AnovaQQ": "Reziduu Q-Q Diagramă",
+    "TestingFit": "Test de ajustare",
+    "FitTest0": "Distribuția teoretică și cea observată sunt identice",
+    "FitTest1": "Distribuția teoretică diferă de cea observată",
+    "ObservedFreq": "Frecvență Observată O",
+    "ExpectedProb": "Probabilitate Așteptată p",
+    "ExpectedFreq": "Frecvență Așteptată E(>5)",
+    "InputFitData": "Introduceți observația în celula din stânga sus",
+    "ExecuteTable": "Statistică",
+    "MeanDotGraph": "Interval de Încredere Diagramă",
+    "ScatterRegression": "Diagramă prin Puncte",
     "Factor": "Factor",
-    "Interaction": "Interaction",
-    "NoInteraction": "No Interaction",
-    "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
-    "WilcoxonTest": "Rank Sum Test",
-    "Sample Range": "Rank Sum",
-    "DistributionTable": "Distribution Table",
-    "SignedRankTestDist": "Wilcoxon Signed Rank Sum Dist.",
-    "WilcoxonTestDist": "Wilcoxon Rank Sum Distribution",
-    "KruskalTestDist": "Kruskal-Wallis H Distribution",
-    "FriedmanTestDist": "Friedman S Distribution",
-    "SignedRankTest": "Signed Rank Sum Test",
-    "SignTest": "Sign Test",
-    "SignCount": "Sign Count",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test",
+    "Interaction": "Interacțiune",
+    "NoInteraction": "Fără Interacțiune",
+    "ExistInteraction": "Există Interacțiune",
+    "eStatLecture": "Introducere eStat",
+    "NonParametricMu12_title": "Testul Wilcoxon al Sumei Rangurilor", 
+    "NonParametricMu12": "Testul Wilcoxon al Sumei Rangurilor : Parametru de Localizare M<sub>1</sub>, M<sub>2</sub>", 
+    "WilcoxonTest": "Testul Rang Suma",
+    "Sample Range": "Rang Suma",
+    "DistributionTable": "Tabel Distrbuție",
+    "SignedRankTestDist": "Wilcoxon Sumei Semnat Rangurilor Distribuție",
+    "WilcoxonTestDist": "Wilcoxon al Sumei Rangurilor Distribuție",
+    "KruskalTestDist": "Kruskal-Wallis H Distribuție",
+    "FriedmanTestDist": "Friedman S Distribuție",
+    "SignedRankTest": "Testul Sumei Semnat Rangurilor",
+    "SignTest": "Testul Semnat",
+    "SignCount": "Semnat Numara",
+    "KruskalTest": "Kruskal-Wallis Testul",
+    "KruskalTestANOVA": "Kruskal-Wallis Testul",
     "Total": "Total",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test",
-    "Block": "Block",
-    "Treatment": "Treatment",
-    "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Nomal Approximation Test",
-    "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Nomal Approximation Test",
-    "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "FriedmanTest": "Friedman Testul",
+    "FriedmanTestANOVA": "Friedman Testul",
+    "Block": "Bloc",
+    "Treatment": "Tratament",
+    "At least one locations is different": "Cel puțin o pereche de localizare este diferită",
+    "SignCondition": "Dacă n ≤ 100 Binomial Testul,  n > 100 Normală Approximation Testul",
+    "WilcoxonSignCondition": "Dacă n ≤ 20 Wilcoxon Sumei Rangurilor Testul,  n > 20 Normală Apropiere Testul",
+    "WilcoxonRankCondition": "Dacă n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Sumei Rangurilor Testul,  n>25 Normală Apropiere Testul",
+    "KruskalCondition": "Dacă n ≤ 10 H Distribuție Testul,  altfel &chi;<sup>2</sup> approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
-    "VariableSelect3": "Variable Selection",
-    "VariableSelect4": "More Analysis Variable can be selected.",
-    "VariableSelect5": "More X Variable can be selected.",
-    "SummaryData": "Summary Data",
-    "RawData": "Raw Data",
+    "VariableSelect2": "* Selecție Variabilă : Faceți clic pe numele var sau utilizați caseta de selecție RHS ",
+    "VariableSelect3": "Selecție Variabilă",
+    "VariableSelect4": "Se poate selecta mai multe variabile de analiză",
+    "VariableSelect5": "Mai multe X variabile pot fi selectate.",
+    "SummaryData": "Date Sumare",
+    "RawData": "Date Brute",
     "MultiSelect": "",
-    "DataType": "(Select variables by click var name)",
-    "by": "by",
-    "NameVar": "Name Var",
-    "n_variance": "n-1 formula",
-    "RandomNumber": "Random Number",
-    "RealNumber":     "Real",
-    "IntegerNumber":  "Integer",
-    "NumberData":     "Number of Data",
-    "NumberDigit":    "Decimal Digit",
-    "NormalTable":    "Normal Distribution Table",
-    "Percentile":     "Percentile Table",
-    "StudentRangeDist": "HSD Studentized Range Dist.",
-    "copy link": "link copy",
+    "DataType": "(Selectați variabilele prin clic pe numele var)",
+    "by": "de",
+    "NameVar": "Nume Var",
+    "n_variance": "n-1 formulă",
+    "RandomNumber": "Număr aleatoriu",
+    "RealNumber":     "număr real",
+    "IntegerNumber":  "număr întreg",
+    "NumberData":     "numărul de date",
+    "NumberDigit":    "zecimal",
+    "NormalTable":    "Distribuție Normală Tabel",
+    "Percentile":     "Percentila Tabel",
+    "StudentRangeDist": "HSD Student Gamă Dist.",
+    "copy link": "copiere legătura",
 
 };
 // Romanian
@@ -7558,269 +7560,828 @@ appStr[3][13] = "../eStatE/index_en.html";
 appStr[4][13] = "../ExLearning/index_en.html";
 appStr[5][13] = "index.html";
 appStr[6][13] = "../ExLecture/index_en.html";
-alertMsg[1][13] = "One of the selected variables does not have data.";
-alertMsg[2][13] = "Select variables for analysis (click column name or select var at the selection box ) one by one. If two variables for raw data are selected, the first one is analysis(or Y) variable and the 2nd one is group (or X) variable. ";
-alertMsg[3][13] = "Missing data on the selected variable.";
-alertMsg[4][13] = "If the number of observations in each column are different, analysis is not allowed.";
-alertMsg[5][13] = "Too many groups! Graphs may be overlapped due to size of the screen.";
-alertMsg[6][13] = "If the analysis variable in summary data includes character, analysis or creating table is not allowed.";
-alertMsg[7][13] = "If more than three variables are selected for raw data, analysis or creating table is not allowed.";
-alertMsg[8][13] = "Dot Graph is allowed if the number of observation is less than 200.";
-alertMsg[9][13] = "Stem & Leaf Plot is allowed if the number of observation is less than 100.";
-alertMsg[10][13] = "Analysis variable is not selected.";
-alertMsg[11][13] = "Analysis/Group variables are not selected.";
-alertMsg[12][13] = "If the analysis variable includes characters, analysis or creating table is not allowed.";
+alertMsg[1][13] = "Una dintre variabilele selectate nu are date introduse.";
+alertMsg[2][13] = "Selectați variabilele pentru analiză(click pe numele coloanelor) una câte una. În cazul a două variabile, prima este considerată un grup de variabile.";
+alertMsg[3][13] = "Date lipsă în variabila selectată.";
+alertMsg[4][13] = "Dacă observațiile asupra variabilelor selectate diferă, analiza nu este permisă.";
+alertMsg[5][13] = "Prea multe grupuri! Diagramele se pot suprapune din cauza mărimii ecranului.";
+alertMsg[6][13] = "Dacă analiza variabilelor include caractere în rezumatul datelor, analiza statistica sau crearea unui tabel nu sunt permise.";
+alertMsg[7][13] = "Dacă trei sau mai multe dintre variabilele selectate sunt date brute, analiza sau creare a unui tabel nu sunt permise.";
+alertMsg[8][13] = "Diagrama prin Puncte este permisa doar daca numarul de observații nu depășește 200.";
+alertMsg[9][13] = "Diagrama Rădăcină-Frunză este permisă doar dacă numărul observațiilor nu depășește 100.";
+alertMsg[10][13] = "Variabila de Analizat nu este selectat.";
+alertMsg[11][13] = "Analizats/Grup variables nu este selectat.";
+alertMsg[12][13] = "Dacă analiza variabilelor include caractere, analiza statistica sau crearea unui tabel nu sunt permise.";
 alertMsg[13][13] = "";
-alertMsg[14][13] = "Summary data is not allowed for continuous graphs and testing hypothesis.";
-alertMsg[16][13] = "Only two groups are allowed for this testing hypothesis.";
-alertMsg[17][13] = "Scatter plot requires Y variable and X variable.";
-alertMsg[18][13] = "More than three variables are not allowed.";
-alertMsg[19][13] = "If there is a character on data, analysis cannot be done.";
-alertMsg[20][13] = "If there is a character on data, regression analysis cannot be done.";
-alertMsg[21][13] = "If there is a missing data, save is not allowed.";
-alertMsg[22][13] = "If there is a negative number, bar graph cannot be drawn.";
-alertMsg[25][13] = "If there is only one group, stacked bar graph is not allowed.";
-alertMsg[27][13] = "If there is only one group, ratio bar graph is not allowed.";
-alertMsg[29][13] = "If there is only one group, side-by-side bar graph is not allowed.";
-alertMsg[31][13] = "If there is only one group, both-side bar graph is not allowed.";
-alertMsg[32][13] = "If there is a negative number, pie chart cannot be drawn.";
-alertMsg[33][13] = "If there is a negative number, doughnut graph cannot be drawn.";
-alertMsg[34][13] = "If there is a negative number, band graph cannot be drawn.";
-alertMsg[35][13] = "If there is a negative number, frequency table cannot be drawn.";
-alertMsg[36][13] = "This bar graph is allowed only for two groups.";
-alertMsg[37][13] = "This testing hypothesis is allowed only for one variable.";
-alertMsg[38][13] = "mu is NaN . Enter value and then retry!";
-alertMsg[39][13] = "Standard deviation is either zero or NaN . Retry!";
-alertMsg[40][13] = "input variance is NaN . Enter value and then retry!";
-alertMsg[41][13] = "This testing hypothesis is allowed only for two variables. 1st one is an Analysis Variable and 2nd one is a Group Variable. Group variable should have only two groups";
-alertMsg[42][13] = "Title editing of testing hypothesis is not allowed! ";
-alertMsg[43][13] = "Simple Linear Regression is only for one group";
+alertMsg[14][13] = "Un rezumat al datelor nu este permis în cazul diagramelor continue sau a testării unei ipoteze.";
+alertMsg[16][13] = "Doar două grupuri sunt permise pentru acest tip de test.";
+alertMsg[17][13] = "Diagrama prin Puncte necesită cel puțin o variabilă x și o variabilă y";
+alertMsg[18][13] = "Nu sunt permise mai mult de 3 variabile în cazul diagramei prin punte";
+alertMsg[19][13] = "Dacă se regăsesc date de tip caracter în coloana variabilei X, nu se poate realiza o diagramă prin puncte.";
+alertMsg[20][13] = "Dacă se regăsesc date de tip caracter în coloana variabilei Y, nu se poate realiza o diagramă prin puncte.";
+alertMsg[21][13] = "Dacă lipsesc anumite date, nu este permisă salvarea.";
+alertMsg[22][13] = "Dacă apar numere negative, nu se poate realiza o diagramă prin bare.";
+alertMsg[25][13] = "Dacă apare doar un singur grup, nu se poate realiza o diagramă prin stivuire, fie aceasta de tip coloană sau bandă.";
+alertMsg[27][13] = "Dacă apare doar un singur grup, nu se poate realiza o diagramă prin stivuire cu proporție.";
+alertMsg[29][13] = "Dacă apare doar un singur grup, nu se poate realiza o diagramă cu date grupate.";
+alertMsg[31][13] = "Dacă apare doar un singur grup, nu se poate realiza o diagramă cu coloane/bande pozitive si negative";
+alertMsg[32][13] = "Dacă apare un număr negativ, nu se poate realiza o diagramă radială.";
+alertMsg[33][13] = "Dacă apare un număr negativ, nu se poate realiza o diagramă inelară.";
+alertMsg[34][13] = "Dacă apare un număr negativ, nu se poate realiza o diagramă cu bande.";
+alertMsg[35][13] = "Dacă apare un număr negativ, nu se poate realiza un tabel de frecvență..";
+alertMsg[36][13] = "Această diagramă este permisă doar pentru două grupuri.";
+alertMsg[37][13] = "Acest test este permis pentru o singură variabilă.";
+alertMsg[38][13] = "&mu; is NaN . Introduceți o valoare nouă și încercați din nou!!";
+alertMsg[39][13] = "Abaterea standard este fie zero sau este de tip NaN. Încercați din nou!";
+alertMsg[40][13] = "Varianța introdusă nu este de tip NaN. Încercați din nou!";
+alertMsg[41][13] = "Acest test este permis doar pentru două variabile. Variabila grup ar trebui să includă doar două grupuri.";
+alertMsg[42][13] = "Editarea titlului nu este permisă în cazul testării unei ipoteze! ";
+alertMsg[43][13] = "Regresia liniară simplă este doar pentru o singură grou";
 alertMsg[44][13] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][13] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][13] = "The same variable number is selected.";
-svgStr[1][13] = " Bar Graph";
-svgStr[2][13] = " Pie Chart";
-svgStr[3][13] = " Doughnut Graph";
-svgStr[4][13] = " Band Graph";
-svgStr[5][13] = " Line Graph";
-svgStr[6][13] = " Dot Graph";
-svgStr[7][13] = " Box-Whisker Plot";
-svgStr[8][13] = " Stem and Leaf Plot";
-svgStr[9][13] = " Histogram";
-svgStr[10][13] = " Scatter Plot";
-svgStr[11][13] = " Testing Hypothesis: Population Mean";
-svgStr[12][13] = " Testing Hypothesis: Population Variance";
-svgStr[13][13] = " Testing Hypothesis: Two Population Means";
-svgStr[14][13] = " Testing Hypothesis: Two Population Variances";
-svgStr[15][13] = " Analysis of Variance";
-svgStr[16][13] = "Frequency";
-svgStr[17][13] = "Ratio";
-svgStr[18][13] = "Group ";
+alertMsg[45][13] = "Cannot draw GIS Diagramă if more than five variables.";
+alertMsg[46][13] = "Același număr variabil este selectat.";
+svgStr[1][13] = " Bar Diagramă";
+svgStr[2][13] = " Diagramă Radială";
+svgStr[3][13] = " Diagramă Inelară";
+svgStr[4][13] = " Diagrammă Bară";
+svgStr[5][13] = " Diagramă Liniară"; // Simple Linear Regression is only for one group
+svgStr[6][13] = " Diagramă prin Puncte";
+svgStr[7][13] = " Box Diagramă";
+svgStr[8][13] = " Diagramă Rădăcină-Frunză";
+svgStr[9][13] = " Histogramăm";
+svgStr[10][13] = " Diagramă prin Puncte";
+svgStr[11][13] = " Testare Ipoteza: Populație Medie";
+svgStr[12][13] = " Testare Ipoteza: Varianța Populației";
+svgStr[13][13] = " Testare Ipoteza: Populație cu Două Medii";
+svgStr[14][13] = " Testare Ipoteza: Populație cu Două Varianțe";
+svgStr[15][13] = " Analiza Varianței";
+svgStr[16][13] = "Frecvență";
+svgStr[17][13] = "Raport";
+svgStr[18][13] = "Grup ";
 svgStr[19][13] = " ";
-svgStr[20][13] = "<h3>Summary Data<br>Frequency Table</h3>";
-svgStr[21][13] = "Group Variable";
-svgStr[22][13] = "Row Variable";
+svgStr[20][13] = "<h3>Rezumat Date<br>Tabelul Frecvențelor</h3>";
+svgStr[21][13] = "Grup de Variabile";
+svgStr[22][13] = "Variabilă pe Rând";
 svgStr[23][13] = "Total";
-svgStr[24][13] = "CircleSize";
-svgStr[25][13] = "<h3>Frequency Table</h3>";
-svgStr[26][13] = "Analysis Var";
-svgStr[27][13] = "Var Value";
-svgStr[28][13] = "Value Label";
-svgStr[29][13] = "Frequency";
+svgStr[24][13] = "Dimensiunea cercului";
+svgStr[25][13] = "<h3>Tabelul Frecvențelor</h3>";
+svgStr[26][13] = "Analiza Var";
+svgStr[27][13] = "Var Valoare";
+svgStr[28][13] = "Etichetă Variabilăl";
+svgStr[29][13] = "Frecvență";
 svgStr[30][13] = "Frecventa relativa (%)";
-svgStr[31][13] = "<h3>Cross Table</h3>";
-svgStr[32][13] = "Col Variable";
-svgStr[33][13] = "Row Variable";
-svgStr[34][13] = "Mean"
-svgStr[35][13] = "Std Dev"
-svgStr[36][13] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStr[37][13] = "Group Name";
+svgStr[31][13] = "<h3>Tabel transversal</h3>";
+svgStr[32][13] = "Variabila pe Coloană";
+svgStr[33][13] = "Variabilă pe Rând";
+svgStr[34][13] = "Medie"
+svgStr[35][13] = "Medie"
+svgStr[36][13] = "<h3> Histogramă<br>Tabelul Frecvențelor</h3>";
+svgStr[37][13] = "Nume Grup";
 svgStr[38][13] = "Interval";
-svgStr[39][13] = "Stem";
-svgStr[40][13] = " Leaf";
-svgStr[41][13] = "Group 1  Leaf";
-svgStr[42][13] = "Group 2  Leaf"
-svgStr[43][13] = "<h3>Basic Statistics</h3>";
-svgStr[44][13] = "Observation";
-svgStr[45][13] = "Minimum";
-svgStr[46][13] = "Median";
-svgStr[47][13] = "Maximum";
+svgStr[39][13] = "Rădăcină";
+svgStr[40][13] = " Frunză";
+svgStr[41][13] = "Grup 1  Frunză";
+svgStr[42][13] = "Grup 2  Frunză"
+svgStr[43][13] = "<h3>Bazele Statisticii</h3>";
+svgStr[44][13] = "Observație";
+svgStr[45][13] = "Minim";
+svgStr[46][13] = "Mediană";
+svgStr[47][13] = "Maxim";
 svgStr[48][13] = "Total";
-svgStr[49][13] = "<h3>Normality Test</h3>";
-svgStr[50][13] = "Expected frequency > 5 <br> is recommended";
+svgStr[49][13] = "<h3>Test Normalitate</h3>";
+svgStr[50][13] = "Frecvență Așteptată > 5 <br> este recomandat";
 svgStr[51][13] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
-svgStr[52][13] = "Data<br>Observed Frequency<br>(O<sub>i</sub>)";
-svgStr[53][13] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub> , b<sub>i</sub>))";
-svgStr[54][13] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
-svgStr[55][13] = "Each interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][13] = "Sum of &chi;<sup>2</sup> value";
-svgStr[57][13] = "Probability Hitogram and Normal Distribution";
-svgStr[58][13] = "Normal Q-Q Plot";
-svgStr[59][13] = "Normal Quantile";
-svgStr[60][13] = "Correlation Coefficient";
-svgStr[61][13] = "Coefficient of Determination";
-svgStr[62][13] = "Standard Error";
-svgStr[63][13] = "Variable";
-svgStr[64][13] = "Variable Name";
-svgStr[65][13] = "Independent Variable";
-svgStr[66][13] = "Dependent Variable";
-svgStr[67][13] = "Parameter";
-svgStr[68][13] = "Estimated Value";
-svgStr[69][13] = "value";
+svgStr[52][13] = "Date<br>Frecvență Observată<br>(O<sub>i</sub>)";
+svgStr[53][13] = "Distribuție Normală<br>Probabilitate Așteptată<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][13] = "Distribuție Normală<br>Frecvență Așteptată<br>(E<sub>i</sub>)";
+svgStr[55][13] = "interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][13] = "Sumă de &chi;<sup>2</sup> Valoare";
+svgStr[57][13] = "Probabilitate Histogramă și Distribuție Normală";
+svgStr[58][13] = "Normală Q-Q Diagramă";
+svgStr[59][13] = "Normală Quantile";
+svgStr[60][13] = "Coeficient de Corelație";
+svgStr[61][13] = "Coeficient de Determinare";
+svgStr[62][13] = "Eroare Standard";
+svgStr[63][13] = "Variabilă";
+svgStr[64][13] = "Nume Variabilă";
+svgStr[65][13] = "variabilă independentă";
+svgStr[66][13] = "variabilă dependentă";
+svgStr[67][13] = "parametru";
+svgStr[68][13] = "valoare estimată";
+svgStr[69][13] = "valoare";
 svgStr[70][13] = "Intercept";
-svgStr[71][13] = "Slope";
+svgStr[71][13] = "pantă";
 svgStr[72][13] = "Factor";
-svgStr[73][13] = "Sum of Squares";
-svgStr[74][13] = "deg of freedom";
-svgStr[75][13] = "Mean Squares";
-svgStr[76][13] = "Regression";
-svgStr[77][13] = "Error";
+svgStr[73][13] = "suma pătratelor";
+svgStr[74][13] = "grad de libertate";
+svgStr[75][13] = "patratele mediei";
+svgStr[76][13] = "Regresiei";
+svgStr[77][13] = "Eroare";
 svgStr[78][13] = "Total";
-svgStr[79][13] = "<h3>Regression Analysis</h3>";
-svgStr[80][13] = "Standardized Residual Q-Q Plot";
-svgStr[81][13] = "Standardized Residual";
-svgStr[82][13] = "Normal Quantile";
-svgStr[83][13] = "Residual Plot";
-svgStr[84][13] = "Predicted Value";
-svgStr[85][13] = "Two way ANOVA";
-svgStr[86][13] = "Confidence Interval Graph";
-svgStr[87][13] = "Residual";
-svgStr[88][13] = "Two-dimension Statistics";
-svgStr[89][13] = "Scatter Plot Matrix";
-svgStr[90][13] = "Multiple Comparison";
-svgStr[91][13] = "Statistics";
+svgStr[79][13] = "<h3>Analiza Regresiei</h3>";
+svgStr[80][13] = "Reziduu Standardizat Q-Q Diagramă";
+svgStr[81][13] = "Reziduu Standardizat";
+svgStr[82][13] = "Normală Quantile";
+svgStr[83][13] = "Reziduu Diagramă";
+svgStr[84][13] = "valoare prezisă";
+svgStr[85][13] = "Tabel ANOVA Bifactorial";
+svgStr[86][13] = "Interval de Încredere Diagramă";
+svgStr[87][13] = "Reziduu";
+svgStr[88][13] = "două dimensiuni Statistică";
+svgStr[89][13] = "Matricea Diagramei prin Puncte";
+svgStr[90][13] = "Comparație Multiplă";
+svgStr[91][13] = "Statistică";
 svgStr[92][13] = "Factor";
-svgStr[93][13] = "Level";
-svgStr[94][13] = "Paired Sample Data Graph";
-svgStr[95][13] = "Standardized Residual vs Forecasting Plot";
-svgStr[96][13] = "Standardized Residual vs Leverage Plot";
-svgStr[97][13] = "Cook's Distance Graph";
-svgStr[98][13] = "Cook's Distance";
-svgStr[99][13] = "Data Order";
-svgStr[100][13]= "Mean Difference";
-svgStr[101][13]= "Testing Means";
-svgStr[102][13]= "Treatment";
-svgStr[103][13]= "Interaction";
-svgStr[104][13]= "Row Total";
-svgStr[105][13]= "Column Total";
-svgStr[106][13]= "Multiple Correlation Coeff";
-svgStr[107][13]= "<h3>Correlation Analysis</h3>";
-svgStr[108][13]= "Correlation Matrix";
-svgStr[109][13]= "Factor A - Factor B Mean Graph";
-svgStr[110][13]= "Leverage";
-svgStr[111][13]= "Geographic Information Graph";
-svgStr[112][13]= "Range";
-svgStr[113][13]= "Mean - Standard Deviation Graph";
-svgStr[114][13]= "Population Variance";
-svgStr[115][13]= "Hypothesis";
+svgStr[93][13] = "Nivel";
+svgStr[94][13] = "Două Sondaj Date Diagramă";
+svgStr[95][13] = "Reziduu Standardizat vs Prognoză Diagramă";
+svgStr[96][13] = "Reziduu Standardizat vs Influență Diagramă";
+svgStr[97][13] = "Cook Distanţă Diagramă";
+svgStr[98][13] = "Cook Distanţă";
+svgStr[99][13] = "Date Ordin";
+svgStr[100][13]= "Medie Diferență";
+svgStr[101][13]= "Testarea Medie";
+svgStr[102][13]= "Tratare";
+svgStr[103][13]= "Interacțiune";
+svgStr[104][13]= "Total Rând";
+svgStr[105][13]= "Total pe Coloană";
+svgStr[106][13]= "Coeficient de Corelație Multiplă";
+svgStr[107][13]= "<h3>Analiza Corelației</h3>";
+svgStr[108][13]= "Matricea Corelației";
+svgStr[109][13]= "Factor A - Factor B Medie Diagramă";
+svgStr[110][13]= "Influență";
+svgStr[111][13]= "Geographic Information Diagramă";
+svgStr[112][13]= "gamă";
+svgStr[113][13]= "Medie - Abatere Standard Diagramă";
+svgStr[114][13]= "Varianța Populației";
+svgStr[115][13]= "Ipoteză";
 svgStr[116][13]= "Test";
 
-svgStrU[1][13] = "Binomial Distribution";
-svgStrU[2][13] = "repetition";
-svgStrU[3][13] = "Mean";
-svgStrU[4][13] = "Std Dev";
-svgStrU[5][13] = "Poissson Distribution";
-svgStrU[6][13] = "Geometric Distribution";
-svgStrU[7][13] = "HyperGeometric Distribution";
-svgStrU[8][13] = "Population";
-svgStrU[9][13] = "Sample Dist";
-svgStrU[10][13] = "Law of Large Number";
-svgStrU[11][13] = "Tail";
-svgStrU[12][13] = "Head";
-svgStrU[13][13] = "Coin Head";
-svgStrU[14][13] = "Number of Heads";
-svgStrU[15][13] = "Number of Trials";
-svgStrU[16][13] = "Dist of Sample Means";
-svgStrU[17][13] = "repetition";
-svgStrU[18][13] = "std err";
-svgStrU[19][13] = "Population Mean";
-svgStrU[20][13] = "Confidence Interval";
-svgStrU[21][13] = "Estimation Accuracy";
-svgStrU[22][13] = "sample mean";
+svgStrU[1][13] = "Distribuție Binomială";
+svgStrU[2][13] = "Repetiție";
+svgStrU[3][13] = "Medie";
+svgStrU[4][13] = "Medie";
+svgStrU[5][13] = "Distribuție Poisson";
+svgStrU[6][13] = "Distrbuție Geometrică";
+svgStrU[7][13] = "Distrbuție Hipergeometrică";
+svgStrU[8][13] = "Populație";
+svgStrU[9][13] = "Sondaj Distrbuție";
+svgStrU[10][13] = "Legea Numerelor Mari";
+svgStrU[11][13] = "Coadă";
+svgStrU[12][13] = "Cap";
+svgStrU[13][13] = "Capul Monedei";
+svgStrU[14][13] = "Număr Cap";
+svgStrU[15][13] = "Număr Încercări";
+svgStrU[16][13] = "Distribuția Mediilor de Eșantioanelor";
+svgStrU[17][13] = "Repetiție";
+svgStrU[18][13] = "Eroare Standard";
+svgStrU[19][13] = "Populație Medie";
+svgStrU[20][13] = "Interval de Încredere";
+svgStrU[21][13] = "Acuretețea Estimațieiy";
+svgStrU[22][13] = "Sondaj Medie";
 svgStrU[23][13] = "[TestStat]";
-svgStrU[24][13] = "Distribution";
-svgStrU[25][13] = "Reject H\u2080";
-svgStrU[26][13] = "Accept H\u2080";
-svgStrU[27][13] = "p-value";
-svgStrU[28][13] = "[Decision] ";
+svgStrU[24][13] = "Distribuție";
+svgStrU[25][13] = "Respinge H\u2080";
+svgStrU[26][13] = "Acceptă H\u2080";
+svgStrU[27][13] = "p-valoare";
+svgStrU[28][13] = "[Decizie] ";
 svgStrU[29][13] = "[ANOVA]";
-svgStrU[30][13] = "Enter Correlation Coefficient and click Execute button";
-svgStrU[31][13] = "Regression";
-svgStrU[32][13] = "Row Var";
-svgStrU[33][13] = "Col Var";
-svgStrU[34][13] = "Mean"
-svgStrU[35][13] = "Std Dev"
-svgStrU[36][13] = "<h3> Histogram<br>Frequency Table</h3>";
-svgStrU[37][13] = "Group Name";
+svgStrU[30][13] = "Introduceți Coeficientul de Corelație și apăsați execută";
+svgStrU[31][13] = "Regresiei";
+svgStrU[32][13] = "Variabilă pe Rând";
+svgStrU[33][13] = "Variabila pe Coloană";
+svgStrU[34][13] = "Medie"
+svgStrU[35][13] = "Medie"
+svgStrU[36][13] = "<h3> Histogramă<br>Tabelul Frecvențelor</h3>";
+svgStrU[37][13] = "Nume Grup";
 svgStrU[38][13] = "Interval";
-svgStrU[39][13] = "Stem";
-svgStrU[40][13] = " Leaf";
-svgStrU[41][13] = "Group 1  Leaf";
-svgStrU[42][13] = "Group 2  Leaf"
-svgStrU[43][13] = "<h3>Basic Statistics</h3>";
-svgStrU[44][13] = "Observation";
-svgStrU[45][13] = "Minimum";
-svgStrU[46][13] = "Median";
-svgStrU[47][13] = "Maximum";
+svgStrU[39][13] = "Rădăcină";
+svgStrU[40][13] = " Frunză";
+svgStrU[41][13] = "Grup 1  Frunză";
+svgStrU[42][13] = "Grup 2  Frunză"
+svgStrU[43][13] = "<h3>Bazele Statisticii</h3>";
+svgStrU[44][13] = "Observație";
+svgStrU[45][13] = "Minim";
+svgStrU[46][13] = "Mediană";
+svgStrU[47][13] = "Maxim";
 svgStrU[48][13] = "Total";
-svgStrU[49][13] = "Exponential";
-svgStrU[50][13] = "Uniform";
-svgStrU[51][13] = "Estimation Accuracy";
-svgStrU[52][13] = "- Create points by click, then eStat finds a regression line.";
-svgStrU[53][13] = "- Move or erase a point. Watch change of the regression line.";
-svgStrU[54][13] = "[Sample Statistics] ";
-svgStrU[55][13] = "[Sample 1 Statistics] ";
-svgStrU[56][13] = "[Sample 2 Statistics] ";
-svgStrU[57][13] = "confidence level";
-svgStrU[58][13] = "Row & Col Independent";
-svgStrU[59][13] = "Row & Col Dependent";
-svgStrU[60][13] = "Observed Distribution";
-svgStrU[61][13] = "Theoretical Distribution";
-svgStrU[62][13] = "Goodness of Fit Test for Observed Frequency";
-svgStrU[63][13] = "Wilcoxon Rank Sum Test";
-svgStrU[64][13] = "Wilcoxon Rank Sum Test Table";
-svgStrU[65][13] = "Kruskal-Wallis Test";
-svgStrU[66][13] = "Kruskal-Wallis H Distribution";
-svgStrU[67][13] = "Kruskal-Wallis H Statistic";
-svgStrU[68][13] = "Wilcoxon Signed Rank Sum Test";
-svgStrU[69][13] = "Sign Test";
-svgStrU[70][13] = "Friedman Test";
-svgStrU[71][13] = "Friedman S Statistic";
-svgStrU[72][13] = "Friedman S Distribution";
-svgStrU[73][13] = "t value (or Z)";
-svgStrU[74][13] = "ChiSq value";
-svgStrU[75][13] = "Sample Variance";
-svgStrU[76][13] = "Difference of Sample Means";
-svgStrU[77][13] = "Ratio of Sample Variances";
-svgStrU[78][13] = "Variance Assumption";
-svgStrU[79][13] = "Summary Data";
-svgStrU[80][13] = "Multiple Selection";
-svgStrU[81][13] = "Select up to two groups";
+svgStrU[49][13] = "Exponențială";
+svgStrU[50][13] = "Uniformă";
+svgStrU[51][13] = "Acuretețea Estimației";
+svgStrU[52][13] = "- Creează punctele apasând, apoi eStat va găsi o linie de regresie.";
+svgStrU[53][13] = "- Mută sau Șterge un punct. Observă cum se schimbă linia de regresie..";
+svgStrU[54][13] = "[Sondaj Statisticii] ";
+svgStrU[55][13] = "[Sondaj 1 Statisticii] ";
+svgStrU[56][13] = "[Sondaj 2 Statisticii] ";
+svgStrU[57][13] = "Siguranță Statistică";
+svgStrU[58][13] = "Variabilele de pe rând si de pe coloană sunt independente";
+svgStrU[59][13] = "Variabilele de pe rând si de pe coloană sunt dependente";
+svgStrU[60][13] = "Dispersie Observată";
+svgStrU[61][13] = "Distribuția Teoretică";
+svgStrU[62][13] = "Test de ajustare";
+svgStrU[63][13] = "Testul Wilcoxon al Sumei Rangurilor";
+svgStrU[64][13] = "Testul Wilcoxon al Sumei Rangurilor Tabel";
+svgStrU[65][13] = "Test Kruskal-Wallis";
+svgStrU[66][13] = "Kruskal-Wallis H Distribuție";
+svgStrU[67][13] = "Kruskal-Wallis H Statistică";
+svgStrU[68][13] = "Testul Wilcoxon al Sumei Rangurilor cu Semn";
+svgStrU[69][13] = "Testul Semnului";
+svgStrU[70][13] = "Testul Friedman";
+svgStrU[71][13] = "Friedman S Statistică";
+svgStrU[72][13] = "Friedman S Distribuție";
+svgStrU[73][13] = "t valoare (sau Z)";
+svgStrU[74][13] = "ChiSq valoare";
+svgStrU[75][13] = "Sondaj Varianței";
+svgStrU[76][13] = "Diferența dintre mijloacele de eșantionare";
+svgStrU[77][13] = "Raportul variațiilor eșantionului";
+svgStrU[78][13] = "Presupunere asupra Varianței";
+svgStrU[79][13] = "Rezumat Date";
+svgStrU[80][13] = "Selecție multiplă";
+svgStrU[81][13] = "Selectați până la două grupuri";
 svgStrU[82][13] = "X Var";
 svgStrU[83][13] = "Y Var";
-svgStrU[84][13] = "by";
-svgStrU[85][13] = "No Group Variable";
-svgStrU[86][13] = "Selected data: ";
-svgStrU[87][13] = "Raw Data";
-svgStrU[88][13] = "Select variables by click var name";
-svgStrU[89][13] = "Missing Observations";
-svgStrU[90][13] = "Rank Sum";
+svgStrU[84][13] = "de";
+svgStrU[85][13] = "nici o variabilă de grup";
+svgStrU[86][13] = "Datele selectate: ";
+svgStrU[87][13] = "Date Brute";
+svgStrU[88][13] = "Selectați variabilă dând clic pe numele var";
+svgStrU[89][13] = "lipsă de observație";
+svgStrU[90][13] = "Rang Suma";
 svgStrU[91][13] = "Longitude";
 svgStrU[92][13] = "Latitude";
-svgStrU[93][13] = "At least one pair of locations is different";
-svgStrU[94][13] = "Wilcoxon Signed Rank Sum Distribution";
-svgStrU[95][13] = "Paired Var";
-svgStrU[96][13] = "Paired Data";
-svgStrU[97][13] = "Independence Test";
-svgStrU[98][13] = "Simulation";
-svgStrU[99][13] = "Random Number";
-svgStrU[100][13] = "Normal Distribution";
-svgStrU[101][13] = "t Distribution";
-svgStrU[102][13] = "&chi;<sup>2</sup> Distribution";
-svgStrU[103][13] = "F Distribution";
-svgStrU[104][13] = "HSD Studentized Range Distribution";
+svgStrU[93][13] = "Cel puțin o pereche de locații este diferităt";
+svgStrU[94][13] = "Wilcoxon Semnat Rang Suma Distribuție";
+svgStrU[95][13] = "Două Var";
+svgStrU[96][13] = "Două Selecții";
+svgStrU[97][13] = "Testul de independență";
+svgStrU[98][13] = "Simulare";
+svgStrU[99][13] = "Număr aleatoriu";
+svgStrU[100][13] = "Distribuție Normală";
+svgStrU[101][13] = "t Distribuție";
+svgStrU[102][13] = "&chi;<sup>2</sup> Distribuție";
+svgStrU[103][13] = "F Distribuție";
+svgStrU[104][13] = "HSD Studentd Gamăe Distribuție";
 svgStrU[105][13] = "primul trimestru pentru primul trimestru<br>Q1";
 svgStrU[106][13] = "al treilea trimestru din trimestrul<br> Q3";
 svgStrU[107][13] = "Intervalul Interquartile <br> IQR";
 svgStrU[108][13] = "Coeficient de determinare";
 svgStrU[109][13] = "Frecvența relativă cumulată (%)";
+
+// Thai
+$.message.th = {
+    "eStat : Stat Education SW": "eStat : ซอฟต์แวร์การศึกษาสถิติ",
+    "Filename": "ชื่อไฟล์",
+    "Selected Variables": "ตัวแปรที่เลือกไว้",
+    "Cancel": "ยกเลิก",
+    "Edit Variables": "แก้ไขตัวแปร",
+    "Level": "ระดับ",
+    "ElementaryLevel": "E",
+    "MiddleLevel": "M",
+    "HighLevel": "H",
+    "UniversityLevel": "U",
+    "Example": "ตัวอย่าง",
+    "New Sheets": "ชีตใหม่",
+    "csv Open": "csv เปิด",
+    "www Open": "www เปิด",
+    "json Open": "json เปิด",
+    "csv Save": "csv บันทึก",
+    "json Save": "json บันทึก",
+    "Print Sheet": "พิมพ์ชีต",
+    "Bar Graph": "แผนภูมิแท่ง",
+    "Pie Chart": "แผนภูมิรูปวงกลม",
+    "Band Graph": "แผนภาพแถบ",
+    "Line Graph": "แผนภาพเส้น",
+    "Dot Graph": "แผนภาพจุด",
+    "Histogram": "ฮิสโทแกรม",
+    "Stem & Leaf Plot": "แผนภาพลำต้นและใบ",
+    "Box-Whisker Plot": "แผนภาพกล่อง",
+    "Scatterplot": "แผนภาพการกระจาย",
+    "Frequency Table": "ตารางแจกแจงความถี่",
+    "Basic Statistics": "สถิติพื้นฐาน",
+    "Testing Hypothesis &mu;": "ทดสอบสมมติฐาน &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "ทดสอบสมมติฐาน &sigma;<sup>2</sup>",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "ทดสอบสมมติฐาน  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "ทดสอบสมมติฐาน &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Analysis of Variance": "ตัวแปรวิเคราะห์",
+    "High School Stat Education": "สถิติระดับมัธยมศึกษา",
+    "University Stat Education": "สถิติระดับมหาวิทยาลัย",
+    "Elem Stat Graph Example": "ตัวอย่างกราฟเชิงสถิติ",
+    "Learning eStat w Example": "เรียนรู้ eStat ด้วยตัวอย่าง",
+    "Vertical": "แนวตั้ง",
+    "Horizontal": "แนวนอน",
+    "Vertical Separated Bar": "แผนภูมิแท่งแยกกันในแนวตั้ง",
+    "Vertical Stacked Bar": "แผนภูมิแท่งซ้อนกันในแนวตั้ง",
+    "Vertical Ratio Bar": "แผนภูมิแท่งแสดงสัดส่วนในแนวตั้ง",
+    "Vertical Side by Side Bar": "แผนภูมิแท่งเชิงซ้อนในแนวตั้ง",
+    "Vertical Two Sided Bar": "แผนภูมิแท่งสองฝั่งในแนวตั้ง",
+    "Horizontal Separated Bar": "แผนภูมิแท่งแยกกันในแนวนอน",
+    "Horizontal Stacked Bar": "แผนภูมิแท่งซ้อนกันในแนวนอน",
+    "Horizontal Ratio Bar": "แผนภูมิแท่งแสดงสัดส่วนในแนวนอน",
+    "Horizontal Side by Side Bar": "แผนภูมิแท่งเชิงซ้อนในแนวนอน",
+    "Horizontal Two Sided Bar": "แผนภูมิแท่งสองฝั่งในแนวนอน",
+    "Doughnut Graph": "แผนภาพโดนัท",
+    "Two Sided Stem & Leaf Plot": "สองด้านแผนภาพลำต้นและใบ",
+    "Graph Save": "บันทึกแผนภาพ",
+    "Graph Print": "พิมพ์แผนภาพ",
+    "Move to Table": "ย้ายไปในตาราง",
+    "Edit Title": "แก้ไขหัวข้อ",
+    "Table Save": "บันทึกตารางe",
+    "Table Print": "พิมพ์ตาราง",
+    "Frequency": "ความถี่",
+    "(Sorting)": "(เรียงลำดับ)",
+    "Raw Data": "ข้อมูลดิบ",
+    "Descending": "จากมากไปหาน้อย",
+    "Ascending": "จากน้อยไปหามาก",
+    "Mean": "ค่าเฉลี่ย",
+    "Std Deviation": "ส่วนเบี่ยงเบนมาตรฐาน",
+    "MeanStd": "ค่าเฉลี่ย/ส่วนเบี่ยงเบนมาตรฐาน",
+    "95CI": "95% ช่วงความเชื่อมั่น",
+    "RegressionAnalysis": "การวิเคราะห์การถดถอย",
+    "ANOVA2": "การวิเคราะห์ความแปรปรวนแบบสองทาง",
+    "Regression": "การถดถอย",
+    "RegressionLine": "เส้นการถดถอย",
+    "RegressionBand": "แถบความเชื่อมั่น",
+    "RegressionTable": "การวิเคราะห์การถดถอย",	
+    "Frequency Polygon": "รูปหลายเหลี่ยมความถี่",
+    "Execute New Interval": "คำนวณช่วงใหม่",
+    "Interval Start": "ค่าเริ่มต้นของช่วง",
+    "Interval Width": "ความกว้างของช่วง",
+    "t-test": "t การทดสอบ",
+    "Z-test": "Z การทดสอบ",
+    "(if Z-test, enter &sigma;)": "(สำหรับการทดสอบแซด ระบุส่วนเบี่ยงเบนมาตรฐาน &sigma;)",
+    "Significance Level": "ระดับนัยสำคัญ",
+    "Execute": "คำนวณ",
+    "(Confidence Interval)": "(ช่วงความเชื่อมั่น)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(สำหรับการทดสอบแซด ใช้ Z<sub>&alpha;/2</sub>)",
+    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> การทดสอบ",
+    "Variance Assumption": "สมมติฐานของความแปรปรวน",
+    "F test": "F การทดสอบ",
+    "At least one pair of means is different": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
+    "Main Title : ": "หัวข้อหลัก : ",
+    "y title : ": "ชื่อแกนตั้ง : ",
+    "x title : ": "ชื่อแกนนอน : ",
+    "Modify": "ปรับเปลี่ยน",
+    "Confirm": "ยืนยัน",
+    "Variable Name": "ชื่อตัวแปร",
+    "Variable Value": "ค่าของตัวแปร",
+    "Value Label": "ค่าระดับ",
+    "* Less than nine value labels allowed.": "* อนุญาตให้มีไม่เกิน 9 ระดับ",
+    "Save": "บันทึก",
+    "Exit": "ออก",
+    "eStatU UnivStatEdu": "eStatU - สถิติระดับมหาวิทยาลัย",
+    "eStatH HighStatEdu": "eStatH - สถิติระดับมัธยมศึกษา",
+    "Menu": "เมนู",
+    "Binomial Experiment": "การทดลองทวินาม",
+    "Binomial Distribution": "การแจกแจงทวินาม",
+    "Binomial Prob Table": "ตารางความน่าจะเป็นทวินาม",
+    "Poisson Distribution": "การแจกแจงปัวซง",
+    "Poisson Prob Table": "ตารางความน่าจะเป็นปัวซง",
+    "Geometric Distribution": "การแจกแจงเรขาคณิต",
+    "Geometric Prob Table": "ตารางความน่าจะเป็นเรขาคณิต",
+    "HyperGeometric Distribution": "การแจกแจงเรขาคณิตไฮเพอร์",
+    "HyperGeometric Prob Table": "ตารางความน่าจะเป็นเรขาคณิตไฮเพอร์",
+    "Exponential Distribution": "การแจกแจงแบบเลขชี้กำลัง",
+    "Normal Experiment": "การทดลองปรกติ",
+    "Normal Distribution": "การแจกแจงปรกติ",
+    "Normal Approx": "การประมาณด้วยการแจกแจงปกติ",
+    "t Distribution": "t การแจกแจง",
+    "ChiSquare Distribution": "ChiSquare การแจกแจง",
+    "F Distribution": "F การแจกแจง",
+    "Sampling": "การสุ่ม",
+    "Population vs Sample": "ประชากร vs ตัวอย่าง",
+    "Population": "ประชากร",
+    "Sample": "ตัวอย่าง",
+    "Exponential": "เลขชี้กำลัง(0.3)",
+    "Uniform": "เอกรูป(0,1)",
+    "UniformDist": "เอกรูป",
+    "Sample05": "การสุ่ม 5%",
+    "Sample10": "การสุ่ม 10%",
+    "Sample20": "การสุ่ม 20%",
+    "Statistics/BoxPlot": "สถิติ/แผนภาพกล่อง",
+    "Law of Large Number": "กฎจำนวนมาก",
+    "Dist of Sample Means": "การแจกแจงค่าเฉลี่ยตัวอย่าง",
+    "Sample Size": "ขนาดตัวอย่าง",
+    "Confidence Interval": "ช่วงความเชื่อมั่น",
+    "Confidence Interval Simulation": "ช่วงความเชื่อมั่น จำลอง",
+    "Estimation Accuracy": "ความแม่นยำของการประมาณ",
+    "Repetition": "การทำซ้ำ",
+    "Confidence Level": "ช่วงความเชื่อมั่น",
+    "Testing Hypothesis mu_titleAB": "การทดสอบเกี่ยวกับค่าเฉลี่ย",
+    "Testing Hypothesis mu_title": "การทดสอบเกี่ยวกับค่าเฉลี่ย",
+    "Testing Hypothesis sigma_title": "การทดสอบเกี่ยวกับความแปรปรวน",
+    "Testing Hypothesis P_title": "การทดสอบเกี่ยวกับค่าสัดส่วน",
+    "Testing Hypothesis mu12_title": "การทดสอบเกี่ยวกับค่าเฉลี่ยของสองกลุ่ม",
+    "Testing Hypothesis sigma12_title": "การทดสอบเกี่ยวกับความแปรปรวนของสองกลุ่ม",
+    "Testing Hypothesis P12_title": "การทดสอบเกี่ยวกับค่าสัดส่วนของสองกลุ่ม",
+    "Testing Hypothesis muA":  "ทดสอบสมมติฐาน &mu; - C, &beta;",
+    "Testing Hypothesis muAB": "ทดสอบสมมติฐาน &mu; - C, n",
+    "Testing Hypothesis mu": "ทดสอบสมมติฐาน &mu;",
+    "Testing Hypothesis sigma": "ทดสอบสมมติฐาน &sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "ทดสอบสมมติฐาน p",
+    "Testing Hypothesis mu12": "ทดสอบสมมติฐาน &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "ทดสอบสมมติฐาน &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12": "ทดสอบสมมติฐาน p<sub>1</sub>, p<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "ทดสอบสมมติฐาน ANOVA",
+    "Testing Independence": "ทดสอบสมมติฐาน",
+    "Correlation Coefficient": "สัมประสิทธิ์สหสัมพันธ์",
+    "Regression Experiment": "การทดลองการถดถอยt",
+    "Hypothesis": "สมมติฐาน",
+    "Test Type": "ชนิดของการทดสอบ",
+    "Z-test": "Z การทดสอบ",
+    "t-test": "t การทดสอบ",
+    "Chi-test": "&chi;<sup>2</sup> การทดสอบ",
+    "F-test": "F การทดสอบ",
+    "Sampling Type": "ประเภทของการสุ่ม",
+    "Independent Sample": "ตัวอย่างอิสระ",
+    "Paired Sample": "ตัวอย่างเป็นคู่",
+    "Sample Data": "ข้อมูลตัวอย่าง",
+    "input either sample data": "ใส่ข้อมูลตัวอย่างหรือค่าสถิติในช่องถัดไปโดยใช้ csv/bsv",
+    "Sample Statistics": "ค่าสถิติตัวอย่าง",
+    "Sample Mean": "ค่าเฉลี่ยตัวอย่าง",
+    "Sample Variance": "ความแปรปรวนตัวอย่าง",
+    "Sample Proportion": "ค่าสัดส่วนตัวอย่าง",
+    "if Z-test-1": "(สำหรับการทดสอบแซด ระบุส่วนเบี่ยงเบนมาตรฐาน &sigma;<sup>2</sup>)",
+    "if Z-test-2": "(สำหรับการทดสอบแซด ใช้  z<sub>&alpha;/2 </sub>)",
+    "At least one pair": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
+    "Row-Col-0": "ตัวแปรแถวและคอลัมน์อิสระต่อกัน",
+    "Row-Col-1": "ตัวแปรแถวและคอลัมน์ไม่อิสระต่อกัน",
+    "Enter any number of row": "(ใส่ค่าสังเกตจากช่องด้านบนซ้าย)",
+    "Row": "แถว",
+    "Column": "คอลัมน์",
+    "Show Probability": "แสดงความน่าจะเป็น",
+    "Regression Line": "เส้นการถดถอย",
+    "Erase All": "ลบทั้งหมด",
+    "Add Point": "เพิ่มจุด",
+    "Erase Point": "ลบจุด",
+    "Reference Site": "ตำแหน่งอ้างอิง",
+    "Lot Size": "ขนาดการแบ่งส่วน",
+    "Defect Size": "ขนาดความผิดพลาด",
+    "If typed": "(หากมีการใส่ตัวเลข)",
+    "Stat/BoxPlot": "สถิติ/แผนภาพกล่อง",
+    "Mean": "ค่าเฉลี่ย",
+    "Std Dev": "ส่วนเบี่ยงเบนมาตรฐาน",
+    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
+    "OneGroup": "(หนึ่งกลุ่ม)",
+    "AnalysisVar": "ตัวแปรวิเคราะห์",
+    "AnalysisVar2": "Y ตัวแปร",
+    "GroupVar": "กลุ่ม",
+    "GroupVar2": "X ตัวแปร",
+    "GroupVar3": "ปัจจัย1",
+    "GroupVar4": "ปัจจัย2",
+    "AnalysisVarMu12": "ตัวแปรวิเคราะห์(หรือ X1)",
+    "GroupVarMu12": "ตัวแปรกลุ่ม(หรือ X2)",
+    "PairedMu12": " X1, X2 : ตัวแปรที่ถูกจับคู่",
+    "SizeVar": "ขนาดตัวแปร",
+    "RegressionBand": "แถบความเชื่อมั่น",
+    "RegressionTable": "การวิเคราะห์การถดถอย",
+    "RegressionResidual": "พล็อตส่วนเหลือ",
+    "RegressionResidualLeverage": "ส่วนเหลือ vs เลฟเวอเรจ",
+    "RegressionCook": "ระยะทางของคุก",
+    "RegressionQQ": "ส่วนเหลือ คิว-คิวพล็อต",
+    "HistogramNormal": "ฮิสโทแกรม",
+    "HistogramChisq": "การทดสอบความเป็นปรกติ",
+    "HistogramNormalQQ": "การแจกแจงปรกติ คิว-คิวพล็อต",
+    "PopulationStd": "ส่วนเบี่ยงเบนมาตรฐานของประชากร",
+    "Type1Error": "ความผิดพลาดแบบที่ 1",
+    "Type2Error": "ความผิดพลาดแบบที่ 2",
+    "AnovaTable": "ตารางวิเคราะห์ความแปรปรวน",
+    "AnovaMeanGraph": "ค่าเฉลี่ยช่วงความเชื่อมั่น",
+    "MultipleComparison": "การเปรียบเทียบพหุคูณ",
+    "AnovaResidual": "ส่วนเหลือมาตรฐาน พล็อต",
+    "AnovaQQ": "ส่วนเหลือ คิว-คิวพล็อต",
+    "TestingFit": "การทดสอบภาวะสารูปดี",
+    "FitTest0": "การแจกแจงเชิงสังเกตและเชิงทฤษฎีนั้นเหมือนกัน",
+    "FitTest1": "การแจกแจงเชิงสังเกตและเชิงทฤษฎีนั้นแตกต่างกัน",
+    "ObservedFreq": "ความถี่เชิงสังเกต O",
+    "ExpectedProb": "ความน่าจะเป็นคาดหมาย p",
+    "ExpectedFreq": "ความถี่คาดหมาย E(>5)",
+    "InputFitData": "ใส่ค่าสังเกตจากช่องด้านบนซ้าย",
+    "ExecuteTable": "สถิติ",
+    "MeanDotGraph": "ช่วงความเชื่อมั่น Graph",
+    "ScatterRegression": "แผนภาพการกระจาย",
+    "Factor": "ปัจจัย",
+    "Interaction": "อิทธิพลร่วม",
+    "NoInteraction": "ไม่มีอิทธิพลร่วม",
+    "ExistInteraction": "มีอิทธิพลร่วม",
+    "eStatLecture": "การบรรยายแนะนำ eStat",
+    "NonParametricMu12_title": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน", 
+    "NonParametricMu12": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน : พารามิเตอร์บ่งตำแหน่ง M<sub>1</sub>, M<sub>2</sub>", 
+    "WilcoxonTest": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน",
+    "Sample Range": "อันดับผลรวม",
+    "DistributionTable": "ตารางแจกแจงความถี่",
+    "SignedRankTestDist": "การทดสอบลำดับที่โดยเครื่องหมายของวิลค็อกซันการแจกแจง",
+    "WilcoxonTestDist": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน การแจกแจง",
+    "KruskalTestDist": "Kruskal-Wallis H การแจกแจง",
+    "FriedmanTestDist": "Friedman S การแจกแจง",
+    "SignedRankTest": "การทดสอบลำดับที่โดยเครื่องหมายของวิลค็อกซัน",
+    "SignTest": "การทดสอบด้วยเครื่องหมาย",
+    "SignCount": "การนับเครื่องหมาย",
+    "KruskalTest": "Kruskal-Wallis การทดสอบ",
+    "KruskalTestANOVA": "Kruskal-Wallis การทดสอบ",
+    "Total": "รวม",
+    "FriedmanTest": "Friedman การทดสอบ",
+    "FriedmanTestANOVA": "Friedman การทดสอบ",
+    "Block": "กลุ่ม",
+    "Treatment": "การรักษา",
+    "At least one locations is different": "สถานที่ตั้งอย่างน้อยหนึ่งคู่แตกต่างกัน",
+    "SignCondition": "ถ้า  n ≤ 100 ทดสอบทวินาม,  n > 100 การประมาณด้วยการแจกแจงปกติ",
+    "WilcoxonSignCondition": "ถ้า n ≤ 20 การทดสอบผลบวกลำดับที่ของวิลค็อกซัน,  n > 20 การประมาณด้วยการแจกแจงปกติ",
+    "WilcoxonRankCondition": "ถ้า  n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 การทดสอบผลบวกลำดับที่ของวิลค็อกซัน,  n>25 การประมาณด้วยการแจกแจงปกติ",
+    "KruskalCondition": "ถ้า  n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup>การประมาณt",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
+    "VariableSelect3": "การเลือกตัวแปร",
+    "VariableSelect4": "สามารถเลือกตัวแปรการวิเคราะห์เพิ่มเติมได้",
+    "VariableSelect5": "สามารถเลือกตัวแปร X เพิ่มเติมได้",
+    "SummaryData": "ข้อมูลสรุป",
+    "RawData": "ข้อมูลดิบ",
+    "MultiSelect": "",
+    "DataType": "(เลือกตัวแปรโดยคลิกชื่อตัวแปร)",
+    "by": "โดย",
+    "NameVar": "ชื่อตัวแปร",
+    "n_variance": "n-1 สูตร",
+    "RandomNumber": "จำนวนสุ่ม",
+    "RealNumber":     "เบอร์จริง",
+    "IntegerNumber":  "เลขจำนวนเต็ม",
+    "NumberData":     "จำนวนข้อมูล",
+    "NumberDigit":    "เลขทศนิยม",
+    "NormalTable":    "การแจกแจงปรกติ ตาราง",
+    "Percentile":     "เปอร์เซ็น",
+    "StudentRangeDist": "HSDช่วงที่ได้รับการศึกษา การแจกแจง.",
+    "copy link": "คัดลอกลิงค์",
+
+};
+
+// Thai
+appStr[1][14] = "../eStatH/index.html";
+appStr[2][14] = "../eStatU/index.html";
+appStr[3][14] = "../eStatE/index_en.html";
+appStr[4][14] = "../ExLearning/index_en.html";
+appStr[5][14] = "index.html";
+appStr[6][14] = "../ExLecture/index_en.html";
+alertMsg[1][14] = "หนึ่งในตัวแปรที่เลือกไว้ไม่มีข้อมูล";
+alertMsg[2][14] = "เลือกตัวแปรเพื่อนำมาวิเคราะห์ (คลิกที่ชื่อคอลัมน์) ทีละตัวแปร หากมีตัวแปรสองตัว ตัวแปรแรกเป็นตัวแปรกลุ่ม";
+alertMsg[3][14] = "ตัวแปรที่เลือกไว้มีข้อมูลสูญหาย";
+alertMsg[4][14] = "หากจำนวนข้อมูลของแต่ละตัวแปรมีความแตกต่างกัน จะไม่สามารถวิเคราะห์ข้อมูลได้";
+alertMsg[5][14] = "มีกลุ่มมากเกินไป! อาจเกิดการซ้อนทับของกราฟเนื่องจากพื้นที่ในการแสดงผลไม่เพียงพอ";
+alertMsg[6][14] = "หากตัวแปรที่จะนำมาวิเคราะห์มีตัวอักษรในข้อมูล จะไม่สามารถทำการวิเคราะห์เชิงสถิติ หรือสร้างตารางได้";
+alertMsg[7][14] = "หากเลือกตัวแปรมากกว่าสามตัวจากข้อมูลดิบ จะไม่สามารถทำการวิเคราะห์ หรือการสร้างตารางได้";
+alertMsg[8][14] = "หากมีจำนวนข้อมูลน้อยกว่า 200 ตัว จะไม่สามารถสร้างแผนภาพจุดได้";
+alertMsg[9][14] = "หากมีจำนวนข้อมูลน้อยกว่า 100 ตัว จะไม่สามารถสร้างแผนภาพลำต้นและใบได้";
+alertMsg[10][14] = "ไม่ได้เลือกตัวแปรการวิเคราะห์";
+alertMsg[11][14] = "ไม่ได้เลือกตัวแปรการวิเคราะห์ / กลุ่ม";
+alertMsg[12][14] = "หากตัวแปรที่จะนำมาวิเคราะห์มีตัวอักษรในข้อมูล จะไม่สามารถทำการวิเคราะห์หรือการสร้างตารางได้";
+alertMsg[13][14] = "";
+alertMsg[14][14] = "ไม่สามารถใช้ข้อมูลที่สรุปมาแล้ว สำหรับแผนภาพแสดงข้อมูลแบบต่อเนื่อง และการทดสอบสมมติฐาน";
+alertMsg[16][14] = "การทดสอบสมมติฐานนี้ใช้ได้เฉพาะข้อมูลสองกลุ่มเท่านั้น";
+alertMsg[17][14] = "แผนภาพการกระจายจำเป็นต้องมีแกน x และแกน y";
+alertMsg[18][14] = "แผนภาพการกระจายไม่สามารถแสดงผลตัวแปรมากกว่า 3 ตัวได้";
+alertMsg[19][14] = "ถ้าตัวแปร  มีตัวอักษร จะไม่สามารถสร้างแผนภาพการกระจายได้";
+alertMsg[20][14] = "ถ้าตัวแปร  มีตัวอักษร จะไม่สามารถสร้างแผนภาพการกระจายได้";
+alertMsg[21][14] = "ถ้ามีข้อมูลสูญหาย ไม่สามารถทำการบันทึกได้";
+alertMsg[22][14] = "ถ้ามีจำนวนลบ ไม่สามารถสร้างแผนภูมิแท่งได้";
+alertMsg[25][14] = "ถ้ามีเพียงกลุ่มเดียว ไม่สามารถสร้างแผนภูมิแท่งส่วนประกอบได้";
+alertMsg[27][14] = "ถ้ามีเพียงกลุ่มเดียว ไม่สามารถสร้างแผนภูมิแท่งเชิงอัตราส่วนได้";
+alertMsg[29][14] = "ถ้ามีเพียงกลุ่มเดียว ไม่สามารถสร้างแผนภูมิแท่งเชิงซ้อนได้";
+alertMsg[31][14] = "ถ้ามีเพียงกลุ่มเดียว ไม่สามารถสร้างแผนภูมิแท่งสองฝั่งได้";
+alertMsg[32][14] = "ถ้ามีจำนวนลบ ไม่สามารถสร้างแผนภูมิรูปวงกลมได้";
+alertMsg[33][14] = "ถ้ามีจำนวนลบ ไม่สามารถสร้างแผนภาพโดนัทได้";
+alertMsg[34][14] = "ถ้ามีจำนวนลบ ไม่สามารถสร้างแผนภาพแถบได้";
+alertMsg[35][14] = "ถ้ามีจำนวนลบ ไม่สามารถสร้างตารางแจกแจงความถี่ได้";
+alertMsg[36][14] = "แผนภูมิแท่งนี้สามารถสร้างได้สำหรับข้อมูลที่มีเพียงสองกลุ่มเท่านั้น";
+alertMsg[37][14] = "การทดสอบสมมติฐานนี้สามารถทำได้กับตัวแปรหนึ่งตัวเท่านั้น";
+alertMsg[38][14] = "ค่าเฉลี่ยประชากรไม่ใช่ตัวเลข ใส่ค่าแล้วลองใหม่อีกครั้ง!";
+alertMsg[39][14] = "ส่วนเบี่ยงเบนมาตรฐานไม่ใช่ตัวเลขหรือมีค่าเป็นศูนย์ ลองใหม่อีกครั้ง!";
+alertMsg[40][14] = "ค่าความแปรปรวนไม่ใช่ตัวเลข ใส่ค่าแล้วลองใหม่อีกครั้ง!";
+alertMsg[41][14] = "การทดสอบสมมติฐานนี้สามารถทำได้กับสองตัวแปรเท่านั้น ตัวแปรกลุ่มต้องมีเพียง 2 กลุ่ม";
+alertMsg[42][14] = "ไม่สามารถแก้ไขชื่อของการทดสอบสมมติฐาน!";
+alertMsg[43][14] = "การถดถอยเชิงเส้นสำหรับกลุ่มเดียวเท่านั้น";
+alertMsg[44][14] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][14] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][14] = "เลือกหมายเลขตัวแปรเดียวกัน";
+svgStr[1][14] = " แผนภูมิแท่ง";
+svgStr[2][14] = " แผนภูมิรูปวงกลม";
+svgStr[3][14] = " แผนภาพโดนัท";
+svgStr[4][14] = " แผนภาพแถบ";
+svgStr[5][14] = " แผนภาพเส้น";
+svgStr[6][14] = " แผนภาพจุด";
+svgStr[7][14] = " แผนภาพกล่อง";
+svgStr[8][14] = " แผนภาพลำต้นและใบ";
+svgStr[9][14] = " ฮิสโทแกรม";
+svgStr[10][14] = " แผนภาพการกระจาย";
+svgStr[11][14] = " ทดสอบสมมติฐาน: ค่าเฉลี่ยประชากร";
+svgStr[12][14] = " ทดสอบสมมติฐาน:ความแปรปรวนของประชากร";
+svgStr[13][14] = " ทดสอบสมมติฐาน: ประชากรสองคนหมายถึง";
+svgStr[14][14] = " ทดสอบสมมติฐาน: ความแปรปรวนของประชากรสองค่า";
+svgStr[15][14] = " ตัวแปรวิเคราะห์";
+svgStr[16][14] = "ความถี่";
+svgStr[17][14] = "สัดส่วน";
+svgStr[18][14] = "กลุ่ม ";
+svgStr[19][14] = " ";
+svgStr[20][14] = "<h3>ข้อมูลสรุป<br>ตารางแจกแจงความถี่</h3>";
+svgStr[21][14] = "ตัวแปรกลุ่ม";
+svgStr[22][14] = "ตัวแปรแถว";
+svgStr[23][14] = "รวม";
+svgStr[24][14] = "ขนาดวงกลม";
+svgStr[25][14] = "<h3>ตารางแจกแจงความถี่</h3>";
+svgStr[26][14] = "ตัวแปรวิเคราะห์";
+svgStr[27][14] = "ค่าของตัวแปร";
+svgStr[28][14] = "ค่าระดับ";
+svgStr[29][14] = "ความถี่";
+svgStr[30][14] = "ความถี่สัมพัทธ์ (%)";
+svgStr[31][14] = "<h3>ตารางไขว้</h3>";
+svgStr[32][14] = "ตัวแปรคอลัมน์";
+svgStr[33][14] = "ตัวแปรแถว";
+svgStr[34][14] = "ค่าเฉลี่ย"
+svgStr[35][14] = "ส่วนเบี่ยงเบนมาตรฐาน"
+svgStr[36][14] = "<h3> ฮิสโทแกรม<br>ตารางแจกแจงความถี่</h3>";
+svgStr[37][14] = "ชื่อกลุ่ม";
+svgStr[38][14] = "ช่วง";
+svgStr[39][14] = "ลำต้น";
+svgStr[40][14] = " ใบไม้";
+svgStr[41][14] = "กลุ่ม 1  ใบไม้";
+svgStr[42][14] = "กลุ่ม 2  ใบไม้"
+svgStr[43][14] = "<h3>สถิติพื้นฐาน</h3>";
+svgStr[44][14] = "ค่าสังเกต";
+svgStr[45][14] = "ค่าต่ำสุด";
+svgStr[46][14] = "มัธยฐาน";
+svgStr[47][14] = "ค่าสูงสุด";
+svgStr[48][14] = "รวม";
+svgStr[49][14] = "<h3>การทดสอบความเป็นปรกติ</h3>";
+svgStr[50][14] = "ความถี่คาดหมาย > 5 <br>ขอแนะนำ";
+svgStr[51][14] = "&chi;<sup>2</sup> การทดสอบ<br>ระยะห่าง i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][14] = "ข้อมูล<br>ความถี่เชิงสังเกต<br>(O<sub>i</sub>)";
+svgStr[53][14] = "การแจกแจงปรกติ<br>ความน่าจะเป็นคาดหมาย<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][14] = "การแจกแจงปรกติ<br>ความถี่คาดหมาย<br>(E<sub>i</sub>)";
+svgStr[55][14] = "ระยะห่าง<br>&chi;<sup>2</sup> ค่า<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[56][14] = "ผลรวม &chi;<sup>2</sup> ค่า";
+svgStr[57][14] = "ฮิสโทแกรม /  การแจกแจงปรกติ";
+svgStr[58][14] = "การแจกแจงปรกติ คิว-คิวพล็อต";
+svgStr[59][14] = "การแจกแจงปรกติ ควอนไทล์";
+svgStr[60][14] = "สัมประสิทธิ์สหสัมพันธ์";
+svgStr[61][14] = "สัมประสิทธิ์การกำหนด";
+svgStr[62][14] = "ความคาดเคลื่อนมาตรฐาน";
+svgStr[63][14] = "ตัวแปร";
+svgStr[64][14] = "ชื่อตัวแปร";
+svgStr[65][14] = "ตัวแปรอิสระ";
+svgStr[66][14] = "ตัวแปรตาม";
+svgStr[67][14] = "พารามิเตอร์";
+svgStr[68][14] = "ค่าประมาณ";
+svgStr[69][14] = "ค่า";
+svgStr[70][14] = "ค่าจุดตัดแกนตั้ง";
+svgStr[71][14] = "ความชัน";
+svgStr[72][14] = "ปัจจัย";
+svgStr[73][14] = "ผลบวกกำลังสอง";
+svgStr[74][14] = "องศาอิสระ";
+svgStr[75][14] = "กำลังสองเฉลี่ย";
+svgStr[76][14] = "การถดถอย";
+svgStr[77][14] = "ความคาดเคลื่อน";
+svgStr[78][14] = "รวม";
+svgStr[79][14] = "<h3>การวิเคราะห์การถดถอย</h3>";
+svgStr[80][14] = "ส่วนเหลือมาตรฐาน คิว-คิวพล็อต";
+svgStr[81][14] = "ส่วนเหลือมาตรฐาน";
+svgStr[82][14] = "การแจกแจงปรกติ ควอนไทล์";
+svgStr[83][14] = "พล็อตส่วนเหลือ";
+svgStr[84][14] = "ค่าทำนาย";
+svgStr[85][14] = "การวิเคราะห์ความแปรปรวนแบบสองทาง";
+svgStr[86][14] = "ช่วงความเชื่อมั่น กราฟ";
+svgStr[87][14] = "ส่วนเหลือ";
+svgStr[88][14] = "ตารางค่าเฉลี่ยแบบสองทาง";
+svgStr[89][14] = "เมทริกซ์แผนภาพการกระจาย";
+svgStr[90][14] = "การเปรียบเทียบพหุคูณ";
+svgStr[91][14] = "สถิติ";
+svgStr[92][14] = "ปัจจัย";
+svgStr[93][14] = "ระดับ";
+svgStr[94][14] = "ตัวอย่างเป็นคู่กราฟข้อมูล";
+svgStr[95][14] = "ส่วนเหลือมาตรฐาน vs พล็อตการพยากรณ์";
+svgStr[96][14] = "ส่วนเหลือมาตรฐาน vs พล็อตยกระดับ";
+svgStr[97][14] = "ระยะทางของคุก";
+svgStr[98][14] = "ระยะทางของคุก";
+svgStr[99][14] = "ลำดับข้อมูล";
+svgStr[100][14] = "หมายถึงความแตกต่าง";
+svgStr[101][14] = "การทดสอบหมายถึง";
+svgStr[102][14] = "การรักษา";
+svgStr[103][14] = "อิทธิพลร่วม";
+svgStr[104][14] = "ผลรวมแถว";
+svgStr[105][14] = "ผลรวมคอลัมน์";
+svgStr[106][14] = "สัมประสิทธิ์สหสัมพันธ์พหุคูณ";
+svgStr[107][14] = "<h3>การวิเคราะห์สหสัมพันธ์</h3>";
+svgStr[108][14] = "เมทริกซ์สหสัมพันธ์";
+svgStr[109][14] = "ปัจจัย A - ปัจจัย B กราฟค่าเฉลี่ย";
+svgStr[110][14] = "เลฟเวอเรจ";
+svgStr[111][14] = "Geographic Information Graph";
+svgStr[112][14] = "พิสัย";
+svgStr[113][14] = "ค่าเฉลี่ย - ส่วนเบี่ยงเบนมาตรฐาน กราฟ";
+svgStr[114][14] = "ความแปรปรวนของประชากร";
+svgStr[115][14] = "สมมติฐาน";
+svgStr[116][14] = "การทดสอบ";
+
+svgStrU[1][14] = "การแจกแจงทวินาม";
+svgStrU[2][14] = "การทำซ้ำ";
+svgStrU[3][14] = "ค่าเฉลี่ย";
+svgStrU[4][14] = "ส่วนเบี่ยงเบนมาตรฐาน";
+svgStrU[5][14] = "Poisson การแจกแจง";
+svgStrU[6][14] = "Geometric การแจกแจง";
+svgStrU[7][14] = "HyperGeometric การแจกแจง";
+svgStrU[8][14] = "ประชากร";
+svgStrU[9][14] = "ตัวอย่าง การแจกแจง";
+svgStrU[10][14] = "กฎจำนวนมาก";
+svgStrU[11][14] = "หางเหรียญ";
+svgStrU[12][14] = "หัวเหรียญ";
+svgStrU[13][14] = "หัวเหรียญ";
+svgStrU[14][14] = "จำนวนหัวเหรียญ";
+svgStrU[15][14] = "จำนวนการทดลอง";
+svgStrU[16][14] = "การแจกแจงค่าเฉลี่ยตัวอย่าง";
+svgStrU[17][14] = "การทำซ้ำ";
+svgStrU[18][14] = "ความคาดเคลื่อนมาตรฐาน";
+svgStrU[19][14] = "ค่าเฉลี่ยประชากร";
+svgStrU[20][14] = "ช่วงความเชื่อมั่น";
+svgStrU[21][14] = "ความแม่นยำของการประมาณ";
+svgStrU[22][14] = "ค่าเฉลี่ยตัวอย่าง";
+svgStrU[23][14] = "[ค่าสถิติทดสอบ]";
+svgStrU[24][14] = "การแจกแจง";
+svgStrU[25][14] = "ปฏิเสธ H\u2080";
+svgStrU[26][14] = "ยอมรับ H\u2080";
+svgStrU[27][14] = "p-ค่า";
+svgStrU[28][14] = "[การตัดสิน] ";
+svgStrU[29][14] = "[ANOVA]";
+svgStrU[30][14] = "ใส่ค่าสัมประสิทธิ์สหสัมพันธ์ และกดปุ่มคำนวณ";
+svgStrU[31][14] = "การถดถอย";
+svgStrU[32][14] = "ตัวแปรแถว";
+svgStrU[33][14] = "ตัวแปรคอลัมน์";
+svgStrU[34][14] = "ค่าเฉลี่ย"
+svgStrU[35][14] = "ส่วนเบี่ยงเบนมาตรฐาน"
+svgStrU[36][14] = "<h3> ฮิสโทแกรม<br>ตารางแจกแจงความถี่</h3>";
+svgStrU[37][14] = "ชื่อกลุ่ม";
+svgStrU[38][14] = "ช่วง";
+svgStrU[39][14] = "ลำต้น";
+svgStrU[40][14] = " ใบไม้";
+svgStrU[41][14] = "กลุ่ม 1  ใบไม้";
+svgStrU[42][14] = "กลุ่ม 2  ใบไม้"
+svgStrU[43][14] = "<h3>สถิติพื้นฐาน</h3>";
+svgStrU[44][14] = "ค่าสังเกต";
+svgStrU[45][14] = "ค่าต่ำสุด";
+svgStrU[46][14] = "มัธยฐาน";
+svgStrU[47][14] = "ค่าสูงสุด";
+svgStrU[48][14] = "รวม";
+svgStrU[49][14] = "เลขชี้กำลัง";
+svgStrU[50][14] = "เอกรูป";
+svgStrU[51][14] = "ความแม่นยำของการประมาณ";
+svgStrU[52][14] = "- สร้างจุดโดยการคลิก และ eStat จะหาเส้นการถดถอย";
+svgStrU[53][14] = "- ขยับหรือลบจุด ดูการเปลี่ยนแปลงของเส้นการถดถอย";
+svgStrU[54][14] = "[ค่าสถิติตัวอย่าง] ";
+svgStrU[55][14] = "[ตัวอย่าง 1 สถิติ] ";
+svgStrU[56][14] = "[ตัวอย่าง 2 สถิติ] ";
+svgStrU[57][14] = "ช่วงความเชื่อมั่น";
+svgStrU[58][14] = "ตัวแปรแถวและคอลัมน์อิสระต่อกัน";
+svgStrU[60][14] = "การแจกแจงเชิงสังเกต";
+svgStrU[61][14] = "การแจกแจงเชิงทฤษฎี";
+svgStrU[62][14] = "การทดสอบภาวะสารูปดี";
+svgStrU[63][14] = "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน";
+svgStrU[64][14] = "การทดสอบผลบวกลำดับที่ของวิลค็อกซันตาราง";
+svgStrU[65][14] = "Kruskal-Wallis การทดสอบ";
+svgStrU[66][14] = "Kruskal-Wallis H การแจกแจง";
+svgStrU[67][14] = "Kruskal-Wallis H สถิติ";
+svgStrU[68][14] = "การทดสอบลำดับที่โดยเครื่องหมายของวิลค็อกซัน";
+svgStrU[69][14] = "การทดสอบด้วยเครื่องหมาย";
+svgStrU[70][14] = "Friedman การทดสอบ";
+svgStrU[71][14] = "Friedman S สถิติ";
+svgStrU[72][14] = "Friedman S การแจกแจง";
+svgStrU[73][14] = "t ค่า (หรือ Z)";
+svgStrU[74][14] = "ChiSq ค่า";
+svgStrU[75][14] = "ความแปรปรวนตัวอย่าง";
+svgStrU[76][14] = "ความแตกต่างของตัวอย่างหมายถึง";
+svgStrU[77][14] = "อัตราส่วนของผลต่างตัวอย่าง";
+svgStrU[78][14] = "สมมติฐานของความแปรปรวน";
+svgStrU[79][14] = "ข้อมูลสรุป";
+svgStrU[80][14] = "การเลือกหลายรายการ";
+svgStrU[81][14] = "เลือกได้สูงสุดสองกลุ่ม";
+svgStrU[82][14] = "X ตัวแปร";
+svgStrU[83][14] = "Y ตัวแปร";
+svgStrU[84][14] = "โดย";
+svgStrU[85][14] = "ไม่มีกลุ่มตัวแปร";
+svgStrU[86][14] = "ข้อมูลที่เลือก: ";
+svgStrU[87][14] = "ข้อมูลดิบ";
+svgStrU[88][14] = "เลือกตัวแปรโดยคลิกชื่อตัวแปรe";
+svgStrU[89][14] = "ไม่มีการสังเกต";
+svgStrU[90][14] = "อันดับผลรวม";
+svgStrU[91][14] = "Longitude";
+svgStrU[92][14] = "Latitude";
+svgStrU[93][14] = "สถานที่ตั้งอย่างน้อยหนึ่งคู่แตกต่างกัน";
+svgStrU[94][14] = "การทดสอบลำดับที่โดยเครื่องหมายของวิลค็อกซัน การแจกแจง";
+svgStrU[95][14] = "ตัวแปรที่จับคู่";
+svgStrU[96][14] = "ข้อมูลที่จับคู่";
+svgStrU[97][14] = "การทดสอบความเป็นอิสระ";
+svgStrU[98][14] = "การจำลอง";
+svgStrU[99][14] = "จำนวนสุ่ม";
+svgStrU[100][14] = "การแจกแจงปรกติ";
+svgStrU[101][14] = "t การแจกแจง";
+svgStrU[102][14] = "&chi;<sup>2</sup> การแจกแจง";
+svgStrU[103][14] = "F การแจกแจง";
+svgStrU[104][14] = "HSD ช่วงที่ได้รับการศึกษา การแจกแจง";
+svgStrU[105][14] = "ควอไทล์ที่ 1<br>Q1";
+svgStrU[106][14] = "ควอไทล์ที่สาม<br>Q3";
+svgStrU[107][14] = "ช่วงควอไทล์<br>IQR";
+svgStrU[108][14] = "สัมประสิทธิ์การแปรผัน";
+svgStrU[109][14] = "ความถี่สัมพัทธ์สะสม (%)";
+
