@@ -851,8 +851,8 @@ $.message.en = {
     "AnovaResidual": "Standardized Residual Plot",
     "AnovaQQ": "Residual Q-Q Plot",
     "TestingFit": "Goodness of Fit Test",
-    "FitTest0": "Observed & theoretical Distributions are the same",
-    "FitTest1": "Observed & theoretical Distributions are different",
+    "FitTest0": "Observed & theoretical Dist. are the same",
+    "FitTest1": "Observed & theoretical Dist. are different",
     "ObservedFreq": "Observed Frequency O",
     "ExpectedProb": "Expected Probability p",
     "ExpectedFreq": "Expected Frequency E(>5)",
@@ -1135,8 +1135,8 @@ svgStrU[56][1] = "[Sample 2 Statistics] ";
 svgStrU[57][1] = "confidence level";
 svgStrU[58][1] = "Row & Col Independent";
 svgStrU[59][1] = "Row & Col Dependent";
-svgStrU[60][1] = "Observed Distribution";
-svgStrU[61][1] = "Theoretical Distribution";
+svgStrU[60][1] = "Observed Dist";
+svgStrU[61][1] = "Theoretical Dist";
 svgStrU[62][1] = "Goodness of Fit Test for Observed Frequency";
 svgStrU[63][1] = "Wilcoxon Rank Sum Test";
 svgStrU[64][1] = "Wilcoxon Rank Sum Test Table";
@@ -2519,8 +2519,8 @@ $.message.fr = {
     "AnovaResidual": "Résiduel Diagramme",
     "AnovaQQ": "Résiduel Q-Q Diagramme",
     "TestingFit": "Qualité de l'ajustement Test",
-    "FitTest0": "Les distributions observées et théoriques sont les mêmes",
-    "FitTest1": "Les distributions observées et théoriques sont différentes",
+    "FitTest0": "Les dist observées et théoriques sont les mêmes",
+    "FitTest1": "Les dist observées et théoriques sont différentes",
     "ObservedFreq": "Fréquence observée O",
     "ExpectedProb": "Probabilité attendue p",
     "ExpectedFreq": "Fréquence attendue E(>5)",
@@ -3628,8 +3628,8 @@ $.message.es = {
     "AnovaResidual": "Residual Trama",
     "AnovaQQ": "Residual Q-Q Trama",
     "TestingFit": "Prueba de bondad de ajuste",
-    "FitTest0": "Distribuciones observadas y teóricas son las mismas",
-    "FitTest1": "Las distribuciones observadas y teóricas son diferentes",
+    "FitTest0": "Distr. observadas y teóricas son las mismas",
+    "FitTest1": "Distr. observadas y teóricas son diferentes",
     "ObservedFreq": "Frecuencia observada O",
     "ExpectedProb": "Probabilidad esperada p",
     "ExpectedFreq": "Frecuencia esperada E(>5)",
@@ -6378,8 +6378,8 @@ $.message.pt = {
     "AnovaResidual": "gráfico de resíduos",
     "AnovaQQ": "Residual Gráfico Q-Q",
     "TestingFit": "Teste de Bondade de Ajuste",
-    "FitTest0": "Distribuições Observadas e Teóricas são diferentes",
-    "FitTest1": "Distribuições Observadas e Teóricas são equivalentes",
+    "FitTest0": "Distr. Observadas e Teóricas são diferentes",
+    "FitTest1": "Distr. Observadas e Teóricas são equivalentes",
     "ObservedFreq": "Frequência Observada O",
     "ExpectedProb": "Probabilidade Esperada p",
     "ExpectedFreq": "Frequência Esperada E(>5)",
