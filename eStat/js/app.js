@@ -3706,6 +3706,7 @@ languageNumber = {
     'gr': 12,
     'ro': 13,
     'th': 14,
+    'pl': 15,
 }
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
