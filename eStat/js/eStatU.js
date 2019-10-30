@@ -3978,9 +3978,9 @@ function drawTdistGraphTH(hypoType, h1Type, stat, df, a, b, prob, pvalue, D) {
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
          ty = margin.top;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (X\u0304 - \u03BC\u2080) / ( S / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (X\u0304\u2081 - X\u0304\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
-         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (X\u0304\u2081 - X\u0304\u2082 - D) / ( \u221a(S\u2081\u00B2/n\u2081 + S\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (x\u0304 - \u03BC\u2080) / ( s / sqrt(n) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 41) str = svgStrU[23][langNum]+" = (x\u0304\u2081 - x\u0304\u2082 - D) / ( pooled std * sqrt(1/n\u2081+1/n\u2082) )  ~  t("+df+") "+svgStrU[24][langNum];
+         else if (hypoType == 42) str = svgStrU[23][langNum]+" = (x\u0304\u2081 - x\u0304\u2082 - D) / ( \u221a(s\u2081\u00B2/n\u2081 + s\u2082\u00B2/n\u2082) )  ~  t("+f1(df)+") "+svgStrU[24][langNum];
          else if (hypoType == 43) str = svgStrU[23][langNum]+" = (d\u0304 - D) / ( Sd/\u221an) )  ~  t("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("x", tx).attr("y", ty).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
@@ -4124,7 +4124,7 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
             .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")
 
          ty = margin.top;
-         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (m - \u03BC\u2080) / ( s / sqrt(n) )  ~  N(0,1)";
+         if (hypoType == 1)       str = svgStrU[23][langNum]+" = (x\u0304 - \u03BC\u2080) / ( \u03C3 / sqrt(n) )  ~  N(0,1)";
          else if (hypoType == 3)  str = svgStrU[23][langNum]+" = (p\u0302 - p\u2080) / (  \u221a ( p\u0302(1-p\u0302)/n ) )  ~  N(0,1)";
          else if (hypoType == 6)  str = svgStrU[23][langNum]+" = (p\u0302\u2081 - p\u0302\u2082 - D) / \u221a ( p\u0304(1-p\u0304)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
          else if (hypoType == 94) str = svgStrU[23][langNum]+" = (+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];

@@ -106,8 +106,8 @@ $.message.ko = {
     "Scatterplot": "산점도",
     "Frequency Table": "도수분포표",
     "Basic Statistics": "기초통계량",
-    "Testing Hypothesis &mu;": "추검정 &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "추검정 &sigma;<sup>2</sup>",
+    "Testing Hypothesis &mu;": "가설검정 &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "가설검정 &sigma;<sup>2</sup>",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "검정 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "검정 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Analysis of Variance": "분산분석",
@@ -194,7 +194,7 @@ $.message.ko = {
     "ChiSquare Distribution": "카이제곱분포",
     "F Distribution": "F 분포",
     "Sampling": "표본추출",
-    "Population vs Sample": "모집단과 표본",
+    "Population vs Sample": "모집단과 표본 시뮬레이션",
     "Population": "모집단",
     "Sample": "표본",
     "Exponential": "지수분포(0.3)",
@@ -204,33 +204,37 @@ $.message.ko = {
     "Sample10": "10% 표본추출",
     "Sample20": "20% 표본추출",
     "Statistics/BoxPlot": "통계량/상자그림",
-    "Law of Large Number": "대수의 법칙",
-    "Dist of Sample Means": "표본평균의 표집분포",
+    "Law of Large Number": "대수의 법칙 시뮬레이션",
+    "Dist of Sample Means": "표본평균의 표집분포 시뮬레이션",
+    "Sampling Distribution": "표집분포",
     "Sample Size": "표본크기",
     "Confidence Interval": "신뢰구간",
-    "Confidence Interval Simulation": "신뢰구간 시뮬레이션",
+    "Confidence Interval Simulation": "모평균 신뢰구간 시뮬레이션",
+    "Confidence Interval Mu": "추정 : 모평균 &mu; 신뢰구간",
+    "Confidence Interval Sigma": "추정 : 모분산 &sigma;<sup>2</sup> 신뢰구간",
+    "Confidence Interval P": "추정 : 모비율 p 신뢰구간",
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
     "Confidence Level": "신뢰수준",
     "Testing Hypothesis mu_titleAB": "가설검정 모평균",
-    "Testing Hypothesis mu_title": "추검정 모평균",
-    "Testing Hypothesis sigma_title": "추검정 모분산",
-    "Testing Hypothesis P_title": "추검정 모비율",
+    "Testing Hypothesis mu_title": "가설검정 모평균",
+    "Testing Hypothesis sigma_title": "가설검정 모분산",
+    "Testing Hypothesis P_title": "가설검정 모비율",
     "Testing Hypothesis mu12_title": "두 모평균 가설검정",
     "Testing Hypothesis sigma12_title": "두 모분산 가설검정",
     "Testing Hypothesis P12_title": "두 모비율 검정",
     "Testing Hypothesis muA": "가설검정 &mu; 실험 ; C, &beta; 계산",
     "Testing Hypothesis muAB": "가설검정 &mu; 실험 : C, 표본크기 계산",
-    "Testing Hypothesis mu": "추정 및 가설검정 : 모평균 &mu;",
-    "Testing Hypothesis sigma": "추정 및 가설검정 : 모분산 &sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "추정 및 가설검정 : 모비율 p",
+    "Testing Hypothesis mu": "가설검정 : 모평균 &mu;",
+    "Testing Hypothesis sigma": "가설검정 : 모분산 &sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "가설검정 : 모비율 p",
     "Testing Hypothesis mu12": "가설검정 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "가설검정 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Testing Hypothesis P12": "가설검정 : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "분산분석",
-    "Testing Independence": "독립성검정",
-    "Correlation Coefficient": "상관계수",
-    "Regression Experiment": "회귀실험",
+    "Testing Hypothesis ANOVA": "가설검정 :분산분석",
+    "Testing Independence": "범주형 : 독립성검정",
+    "Correlation Coefficient": "상관계수 시뮬레이션",
+    "Regression Experiment": "회귀선 실험",
     "Hypothesis": "가  설",
     "Test Type": "검정형태",
     "Z-test": "Z 검정",
@@ -295,7 +299,7 @@ $.message.ko = {
     "MultipleComparison": "다중비교",
     "AnovaResidual": "표준화 잔차와 예측값 산점도",
     "AnovaQQ": "잔차 Q-Q 산점도",
-    "TestingFit": "적합성검정",
+    "TestingFit": "범주형 : 적합성검정",
     "FitTest0": "표본분포가 이론분포를 따름",
     "FitTest1": "표본분포와 이론분포가 다름",
     "ObservedFreq": "관찰도수 O<sub>i</sub>",
@@ -310,23 +314,23 @@ $.message.ko = {
     "NoInteraction": "교호작용 없음",
     "ExistInteraction": "교호작용 있음",
     "eStatLecture": "eStat 강의",
-    "NonParametricMu12_title": "윌콕슨 순위합검정",
-    "NonParametricMu12": "윌콕슨 순위합검정 : 위치모수 M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "비모수 : 윌콕슨 순위합검정",
+    "NonParametricMu12": "비모수 : 윌콕슨 순위합검정 : 위치모수 M<sub>1</sub>, M<sub>2</sub>",
     "Sample Range": "표본순위합",
     "DistributionTable": "분포표",
     "SignedRankTestDist": "윌콕슨 부호순위합분포",
     "WilcoxonTestDist": "윌콕슨 순위합분포",
     "KruskalTestDist": "크루스칼-왈리스 H분포",
     "FriedmanTestDist": "프리드만 S분포",
-    "SignedRankTest": "윌콕슨 부호순위합검정",
-    "SignTest": "부호검정",
+    "SignedRankTest": "비모수 : 윌콕슨 부호순위합검정",
+    "SignTest": "비모수 : 부호검정",
     "SignCount": "부호 수",
-    "WilcoxonTest": "윌콕슨 순위합검정",
-    "KruskalTest": "크루스칼-왈리스 검정",
-    "KruskalTestANOVA": "크루스칼-왈리스 검정",
+    "WilcoxonTest": "비모수 : 윌콕슨 순위합검정",
+    "KruskalTest": "비모수 : 크루스칼-왈리스 검정",
+    "KruskalTestANOVA": "비모수 : 크루스칼-왈리스 검정",
     "Total": "합계",
-    "FriedmanTest": "프리드만 검정",
-    "FriedmanTestANOVA": "프리드만 검정",
+    "FriedmanTest": "비모수 : 프리드만 검정",
+    "FriedmanTestANOVA": "비모수 : 프리드만 검정",
     "Block": "블록",
     "Treatment": "처리",
     "At least one locations is different": "적어도 한쌍 이상의 위치모수가 다름",
@@ -355,6 +359,7 @@ $.message.ko = {
     "Percentile": "백분위수표",
     "StudentRangeDist": "HSD 표준화범위분포",
     "copy link": "링크 복사",
+    "WithoutReplacement": "비복원추출",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -629,7 +634,7 @@ svgStrU[106][0] = "3사분위수<br>Q3";
 svgStrU[107][0] = "사분위수 범위<br>IQR";
 svgStrU[108][0] = "변위계수";
 svgStrU[109][0] = "누적상대도수 (%)";
-
+svgStrU[110][0] = "균등분포의 최대 정수 수";
 
 // English
 $.message.en = {
@@ -764,9 +769,13 @@ $.message.en = {
     "Statistics/BoxPlot": "Statistics/BoxPlot",
     "Law of Large Number": "Law of Large Number",
     "Dist of Sample Means": "Dist of Sample Means",
+    "Sampling Distribution": "Sampling Distribution",
     "Sample Size": "Sample Size",
     "Confidence Interval": "Confidence Interval",
     "Confidence Interval Simulation": "Confidence Interval Simulation",
+    "Confidence Interval Mu": "Estimation : &mu; Confidence Interval",
+    "Confidence Interval Sigma": "Estimation : &sigma;<sup>2</sup> Confidence Interval",
+    "Confidence Interval P": "Estimation : p Confidence Interval",
     "Estimation Accuracy": "Estimation Accuracy",
     "Repetition": "Repetition",
     "Confidence Level": "Confidence Level",
@@ -777,8 +786,8 @@ $.message.en = {
     "Testing Hypothesis mu12_title": "Testing Two Means",
     "Testing Hypothesis sigma12_title": "Testing Two Variances",
     "Testing Hypothesis P12_title": "Testing Two Proportions",
-    "Testing Hypothesis muA": "Testing &mu; - C, &beta;",
-    "Testing Hypothesis muAB": "Testing &mu; - C, n",
+    "Testing Hypothesis muA": "Testing Hypothesis &mu; - C, &beta;",
+    "Testing Hypothesis muAB": "Testing Hypothesis &mu; - C, n",
     "Testing Hypothesis mu": "Testing Hypothesis &mu;",
     "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
     "Testing Hypothesis P": "Testing Hypothesis p",
@@ -786,7 +795,7 @@ $.message.en = {
     "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
-    "Testing Independence": "Testing Independence",
+    "Testing Independence": "Categorical: Independence Test",
     "Correlation Coefficient": "Correlation Coefficient",
     "Regression Experiment": "Regression Experiment",
     "Hypothesis": "Hypothesis",
@@ -853,7 +862,7 @@ $.message.en = {
     "MultipleComparison": "Multiple Comparison",
     "AnovaResidual": "Standardized Residual Plot",
     "AnovaQQ": "Residual Q-Q Plot",
-    "TestingFit": "Goodness of Fit Test",
+    "TestingFit": "Categorical : Goodness of Fit Test",
     "FitTest0": "Observed & theoretical Dist. are the same",
     "FitTest1": "Observed & theoretical Dist. are different",
     "ObservedFreq": "Observed Frequency O",
@@ -868,23 +877,23 @@ $.message.en = {
     "NoInteraction": "No Interaction",
     "ExistInteraction": "Exist Interaction",
     "eStatLecture": "eStat Intro Lecture",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test",
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>",
-    "WilcoxonTest": "Rank Sum Test",
+    "NonParametricMu12_title": "Nonparametric : Wilcoxon Rank Sum Test",
+    "NonParametricMu12": "Nonparametric : Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>",
+    "WilcoxonTest": "Nonparametric : Rank Sum Test",
     "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
     "SignedRankTestDist": "Wilcoxon Signed Rank Sum Dist.",
     "WilcoxonTestDist": "Wilcoxon Rank Sum Distribution",
     "KruskalTestDist": "Kruskal-Wallis H Distribution",
     "FriedmanTestDist": "Friedman S Distribution",
-    "SignedRankTest": "Signed Rank Sum Test",
-    "SignTest": "Sign Test",
+    "SignedRankTest": "Nonparametric : Signed Rank Sum Test",
+    "SignTest": "Nonparametric : Sign Test",
     "SignCount": "Sign Count",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test",
+    "KruskalTest": "Nonparametric : Kruskal-Wallis Test",
+    "KruskalTestANOVA": "Nonparametric : Kruskal-Wallis Test",
     "Total": "Total",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test",
+    "FriedmanTest": "Nonparametric : Friedman Test",
+    "FriedmanTestANOVA": "Nonparametric : Friedman Test",
     "Block": "Block",
     "Treatment": "Treatment",
     "At least one locations is different": "At least one pair of locations is different",
@@ -913,7 +922,7 @@ $.message.en = {
     "Percentile": "Percentile Table",
     "StudentRangeDist": "HSD Studentized Range Dist.",
     "copy link": "link copy",
-
+    "WithoutReplacement": "without replacement",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1188,6 +1197,7 @@ svgStrU[106][1] = "3rd Quartile<br>Q3";
 svgStrU[107][1] = "Interquartile Range<br>IQR";
 svgStrU[108][1] = "Coefficient of Variation";
 svgStrU[109][1] = "Cumulated Relative Frequency (%)";
+svgStrU[110][1] = "Max number of integers of Uniform Dist";
 
 // Japanese
 $.message.ja = {
@@ -1323,29 +1333,33 @@ $.message.ja = {
     "Statistics/BoxPlot": "統計量/箱ひげ図",
     "Law of Large Number": "大数の法則",
     "Dist of Sample Means": "標本平均の標本分布",
+    "Sampling Distribution": "標本分布",
     "Sample Size": "サンプルサイズ",
     "Confidence Interval": "信頼区間",
     "Confidence Interval Simulation": "信頼区間シミュレーション",
+    "Confidence Interval Mu": "推定 : &mu; 信頼区間",
+    "Confidence Interval Sigma": "推定 : &sigma;<sup>2</sup> 信頼区間",
+    "Confidence Interval P": "推定 : p 信頼区間",
     "Estimation Accuracy": "推定精度",
     "Repetition": "反復数",
     "Confidence Level": "信頼水準",
     "Testing Hypothesis mu_titleAB": "仮説検定母平均",
-    "Testing Hypothesis mu_title": "母平均の推定・検定",
-    "Testing Hypothesis sigma_title": "母分散の推定・検定",
-    "Testing Hypothesis P_title": "母比率の推定・検定",
+    "Testing Hypothesis mu_title": "仮説検定母平均",
+    "Testing Hypothesis sigma_title": "仮説検定母分散",
+    "Testing Hypothesis P_title": "仮説検定母比率",
     "Testing Hypothesis mu12_title": "母平均の仮説検定 (2集団)",
     "Testing Hypothesis sigma12_title": "母分散の仮説検定 (2集団)",
     "Testing Hypothesis P12_title": "母比率の仮説検定 (2集団)",
-    "Testing Hypothesis muA": "仮説検定 &mu; - C, &beta;",
-    "Testing Hypothesis muAB": "仮説検定 &mu; - C, n",
-    "Testing Hypothesis mu": "母平均&mu;の推定・検定",
-    "Testing Hypothesis sigma": "母分散&sigma;<sup>2</sup>の推定・検定",
-    "Testing Hypothesis P": "母比率pの推定・検定",
-    "Testing Hypothesis mu12": "母平均の仮説検定 (2集団) : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "母分散の仮説検定 (2集団) : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
-    "Testing Hypothesis P12": "母比率の仮説検定 (2集団) : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "分散分析",
-    "Testing Independence": "独立性検定",
+    "Testing Hypothesis muA": "仮説検定母平均 - C, &beta;",
+    "Testing Hypothesis muAB": "仮説検定母平均 - C, n",
+    "Testing Hypothesis mu": "仮説検定母平均&mu;",
+    "Testing Hypothesis sigma": "仮説検定母分散&sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "仮説検定母比率p",
+    "Testing Hypothesis mu12": "仮説検定母平均 (2集団) : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "仮説検定母分散 (2集団) : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis P12": "仮説検定母比率 (2集団) : p<sub>1</sub>, p<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "仮説検定分散分析",
+    "Testing Independence": "カテゴリ型独立性検定",
     "Correlation Coefficient": "相関係数",
     "Regression Experiment": "回帰シミュレーション",
     "Hypothesis": "仮説",
@@ -1412,7 +1426,7 @@ $.message.ja = {
     "MultipleComparison": "多重比較",
     "AnovaResidual": "殘差プロット",
     "AnovaQQ": "殘差Q-Qプロット",
-    "TestingFit": "適合性檢定",
+    "TestingFit": "カテゴリ型適合性檢定",
     "FitTest0": "観測分布 = 理論分布",
     "FitTest1": "観測分布 != 理論分布",
     "ObservedFreq": "観測度數 O",
@@ -1435,15 +1449,15 @@ $.message.ja = {
     "WilcoxonTestDist": "ウィルコクソン順位合分布",
     "KruskalTestDist": "クルスカル-ウォリス H分布",
     "FriedmanTestDist": "フリードマン S分布",
-    "SignedRankTest": "符號順位合檢定",
-    "SignTest": "符號檢定",
+    "SignedRankTest": "ウィルコクソン符號順位合檢定",
+    "SignTest": "ウィルコクソン符號檢定",
     "SignCount": "符號數",
-    "WilcoxonTest": "順位合檢定",
-    "KruskalTest": "クルスカル-ウォリス檢定",
-    "KruskalTestANOVA": "クルスカル-ウォリス檢定",
+    "WilcoxonTest": "ウィルコクソン順位合檢定",
+    "KruskalTest": "ウィルコクソンクルスカル-ウォリス檢定",
+    "KruskalTestANOVA": "ウィルコクソンクルスカル-ウォリス檢定",
     "Total": "全体",
-    "FriedmanTest": "フリードマン檢定",
-    "FriedmanTestANOVA": "フリードマン檢定",
+    "FriedmanTest": "ウィルコクソンフリードマン檢定",
+    "FriedmanTestANOVA": "ウィルコクソンフリードマン檢定",
     "Block": "Block",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
@@ -1472,6 +1486,7 @@ $.message.ja = {
     "Percentile": "百分位数表",
     "StudentRangeDist": "HSDスチューデント化範囲分布",
     "copy link": "リンクをコピー",
+    "WithoutReplacement": "非復元抽出",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1747,6 +1762,7 @@ svgStrU[106][2] = "3四分位数<br>Q3";
 svgStrU[107][2] = "四分位数範囲<br>IQR";
 svgStrU[108][2] = "決定係数";
 svgStrU[109][2] = "累積相対度数 (%)";
+svgStrU[110][2] = "均等分布の最大整数";
 
 // Chinese
 $.message.zhTW = {
@@ -1878,29 +1894,33 @@ $.message.zhTW = {
     "Statistics/BoxPlot": "統計量/盒形圖",
     "Law of Large Number": "大數法則",
     "Dist of Sample Means": "樣本平均的分佈",
+    "Sampling Distribution": "樣本分佈",
     "Sample Size": "樣本數",
     "Confidence Interval": "信頼區間",
     "Confidence Interval Simulation": "信頼区間實驗",
+    "Confidence Interval Mu": "估計 : &mu; 信頼区間",
+    "Confidence Interval Sigma": "估計 : &sigma;<sup>2</sup> 信頼区間",
+    "Confidence Interval P": "估計 : p 信頼区間",
     "Estimation Accuracy": "估計準確率",
     "Repetition": "重覆數",
     "Confidence Level": "信頼水準",
     "Testing Hypothesis mu_titleAB": "假設檢定平均數",
-    "Testing Hypothesis mu_title": "平均數檢定",
-    "Testing Hypothesis sigma_title": "變異數檢定",
-    "Testing Hypothesis P_title": "比例檢定",
-    "Testing Hypothesis mu12_title": "兩母體平均數檢定",
-    "Testing Hypothesis sigma12_title": "兩母體變異數檢定",
-    "Testing Hypothesis P12_title": "兩母體比例檢定",
+    "Testing Hypothesis mu_title": "假設檢定平均數檢定",
+    "Testing Hypothesis sigma_title": "假設檢定變異數",
+    "Testing Hypothesis P_title": "假設檢定比例",
+    "Testing Hypothesis mu12_title": "假設檢定兩母體平均數",
+    "Testing Hypothesis sigma12_title": "假設檢定兩母體變異數",
+    "Testing Hypothesis P12_title": "假設檢定兩母體比例",
     "Testing Hypothesis muA": "假説検定 &mu; - C, &beta;",
     "Testing Hypothesis muAB": "假説検定 &mu; - C, n",
-    "Testing Hypothesis mu": "區間估計/假設檢定: 平均數&mu;",
-    "Testing Hypothesis sigma": "區間估計/假設檢定: 變異數&sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "區間估計/假設檢定: 比例 p",
+    "Testing Hypothesis mu": "假設檢定: 平均數&mu;",
+    "Testing Hypothesis sigma": "假設檢定: 變異數&sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "假設檢定: 比例 p",
     "Testing Hypothesis mu12": "假設檢定 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "假設檢定 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Testing Hypothesis P12": "假設檢定 : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "變異數分析",
-    "Testing Independence": "獨立性檢定",
+    "Testing Hypothesis ANOVA": "假設檢定變異數分析",
+    "Testing Independence": "分類的獨立性檢定",
     "Correlation Coefficient": "相關係數",
     "Regression Experiment": "回歸實驗",
     "Hypothesis": "假設",
@@ -1967,7 +1987,7 @@ $.message.zhTW = {
     "MultipleComparison": "多重比較",
     "AnovaResidual": "殘差図",
     "AnovaQQ": "殘差Q-Q図",
-    "TestingFit": "適合性檢定",
+    "TestingFit": "分類的適合性檢定",
     "FitTest0": "觀察分布與理論分布相同",
     "FitTest1": "觀察分布與理論分布不同",
     "ObservedFreq": "觀察次數 O",
@@ -1982,23 +2002,23 @@ $.message.zhTW = {
     "NoInteraction": "無交互作用",
     "ExistInteraction": "有交互作用",
     "eStatLecture": "eStat 入門講義",
-    "NonParametricMu12_title": "Wilcoxon 等級和檢定",
-    "NonParametricMu12": "Wilcoxon 等級和檢定 : 位置參數 M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "非參數Wilcoxon 等級和檢定",
+    "NonParametricMu12": "非參數Wilcoxon 等級和檢定 : 位置參數 M<sub>1</sub>, M<sub>2</sub>",
     "Sample Range": "秩和",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "Wilcoxon 符號等級和分布",
     "WilcoxonTestDist": "Wilcoxon 等級和分布",
     "KruskalTestDist": "Kruskal-Wallis H分布",
     "FriedmanTestDist": "Friedman S分布",
-    "SignedRankTest": "符號等級和檢定",
-    "SignTest": "符號檢定",
+    "SignedRankTest": "非參數符號等級和檢定",
+    "SignTest": "非參數符號檢定",
     "SignCount": "符號數",
-    "WilcoxonTest": "等級和檢定",
-    "KruskalTest": "Kruskal-Wallis 檢定",
-    "KruskalTestANOVA": "Kruskal-Wallis 檢定",
+    "WilcoxonTest": "非參數等級和檢定",
+    "KruskalTest": "非參數Kruskal-Wallis 檢定",
+    "KruskalTestANOVA": "非參數Kruskal-Wallis 檢定",
     "Total": "全體",
-    "FriedmanTest": "Friedman檢定",
-    "FriedmanTestANOVA": "Friedman檢定",
+    "FriedmanTest": "非參數Friedman檢定",
+    "FriedmanTestANOVA": "非參數Friedman檢定",
     "Block": "塊",
     "Treatment": "處理",
     "At least one locations is different": "至少一個位置參數不相同",
@@ -2027,6 +2047,7 @@ $.message.zhTW = {
     "Percentile": "百分表",
     "StudentRangeDist": "HSD範圍分佈",
     "copy link": "複製鏈接",
+    "WithoutReplacement": "沒有恢復提取",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -2301,6 +2322,7 @@ svgStrU[106][3] = "第三個四分位數<br>Q3";
 svgStrU[107][3] = "四分位數範圍<br>IQR";
 svgStrU[108][3] = "確定係數";
 svgStrU[109][3] = "累積相對頻率 (%)";
+svgStrU[110][3] = "均勻分佈的最大整數";
 
 // French
 $.message.fr = {
@@ -2432,9 +2454,13 @@ $.message.fr = {
     "Statistics/BoxPlot": "Statistiques/Boîte à moustaches",
     "Law of Large Number": "Loi des grands nombres",
     "Dist of Sample Means": "Distribution des moyennes d'échantillon",
+    "Sampling Distribution": "Distribution d'échantillonnage",
     "Sample Size": "Taille de l'échantillon",
     "Confidence Interval": "Intervalle de confinace",
     "Confidence Interval Simulation": "Essai Intervalle de confinace",
+    "Confidence Interval Mu": "Estimation : &mu; Intervalle de confinace",
+    "Confidence Interval Sigma": "Estimation : &sigma;<sup>2</sup> Intervalle de confinace",
+    "Confidence Interval P": "Estimation : p Intervalle de confinace",
     "Estimation Accuracy": "Précision de l'estimation",
     "Repetition": "Répétition",
     "Confidence Level": "Niveau de confiance",
@@ -2581,6 +2607,7 @@ $.message.fr = {
     "Percentile": "Tableau des centiles",
     "StudentRangeDist": "HSD Répartition de la gamme",
     "copy link": "copiar enlace",
+    "WithoutReplacement": "sans remplacement",
 
 };
 // French
@@ -2857,6 +2884,7 @@ svgStrU[106][4] = "3ème quartile<br>Q3";
 svgStrU[107][4] = "Gamme interquartile<br>IQR";
 svgStrU[108][4] = "Coefficient de détermination";
 svgStrU[109][4] = "Fréquence relative cumulée (%)";
+svgStrU[110][4] = "Nombre maximum d'entiers de la distribution uniforme";
 
 // German
 $.message.de = {
@@ -2988,9 +3016,13 @@ $.message.de = {
     "Statistics/BoxPlot": "Statistik/BoxPlot",
     "Law of Large Number": "Gesetz der Großen Zahlen",
     "Dist of Sample Means": "Verteilung der Stichprobenmittelwerte",
+    "Sampling Distribution": "Stichprobenverteilung",
     "Sample Size": "Stichprobenumfang",
     "Confidence Interval": "Konfidenzintervall",
     "Confidence Interval Simulation": "Konfidenzintervallexperiment",
+    "Confidence Interval Mu": "Einschätzung : &mu; Konfidenzintervall",
+    "Confidence Interval Sigma": "Einschätzung : &sigma;<sup>2</sup> Konfidenzintervall",
+    "Confidence Interval P": "Einschätzung : p Konfidenzintervall",
     "Estimation Accuracy": "Schätzgenauigkeit",
     "Repetition": "Wiederholung",
     "Confidence Level": "Konfidenzniveau",
@@ -3134,6 +3166,7 @@ $.message.de = {
     "Percentile": "Perzentil-Tabellee",
     "StudentRangeDist": "HSD Bereichsverteilung",
     "copy link": "Link kopieren",
+    "WithoutReplacement": "ohne Ersatz",
 
 };
 // German
@@ -3410,6 +3443,7 @@ svgStrU[106][5] = "3. Quartil <br> Q3";
 svgStrU[107][5] = "Interquartilsabstand <br> IQR";
 svgStrU[108][5] = "Bestimmtheitsmaß";
 svgStrU[109][5] = "Kumulierte relative Häufigkeit (%)";
+svgStrU[110][5] = "Maximale Anzahl von Ganzzahlen der Gleichverteilung";
 
 // Spanish
 $.message.es = {
@@ -3541,9 +3575,13 @@ $.message.es = {
     "Statistics/BoxPlot": "Estadísticos/Diagrama de Box",
     "Law of Large Number": "Ley de los Grandes Números",
     "Dist of Sample Means": "Distribución de Medias Muestrales",
+    "Sampling Distribution": "Distribución muestral",
     "Sample Size": "Tamaño muestral",
     "Confidence Interval": "Nivel de confianza",
     "Confidence Interval Simulation": "Experimento Nivel de confianza",
+    "Confidence Interval Mu": "Estimación : &mu; Nivel de confianza",
+    "Confidence Interval Sigma": "Estimación : &sigma;<sup>2</sup> Nivel de confianza",
+    "Confidence Interval P": "Estimación : p Nivel de confianza",
     "Estimation Accuracy": "Precisión de la estimación",
     "Repetition": "Repetición",
     "Confidence Level": "Nivel de confianza",
@@ -3690,6 +3728,7 @@ $.message.es = {
     "Percentile": "Tabla percentil",
     "StudentRangeDist": "HSD Distribución de rango",
     "copy link": "copiar link",
+    "WithoutReplacement": "sin reemplazo",
 
 };
 // Spanish
@@ -3966,6 +4005,7 @@ svgStrU[106][6] = "3er cuartil <br> Q3";
 svgStrU[107][6] = "Gama intercuartil <br> IQR";
 svgStrU[108][6] = "Coeficiente de determinación";
 svgStrU[109][6] = "Frecuencia relativa acumulada (%)";
+svgStrU[110][6] = "Número máximo de enteros de distribución uniforme";
 
 // Vietnamese
 $.message.vi = {
@@ -4097,9 +4137,13 @@ $.message.vi = {
     "Statistics/BoxPlot": "Thống kê/Biểu đồ Box",
     "Law of Large Number": "Luật số lớn",
     "Dist of Sample Means": "P/p của trung bình mẫu",
+    "Sampling Distribution": "Phân phối lấy mẫu",
     "Sample Size": "Cỡ mẫu",
     "Confidence Interval": "Khoảng tin cậy",
     "Confidence Interval Simulation": "Thí Khoảng tin cậy",
+    "Confidence Interval Mu": "Ước lượng : &mu; Khoảng tin cậy",
+    "Confidence Interval Sigma": "Ước lượng : &sigma;<sup>2</sup> Khoảng tin cậy간",
+    "Confidence Interval P": "Ước lượng : p Khoảng tin cậy",
     "Estimation Accuracy": "Độ chính xác của ước lượng",
     "Repetition": "Sự lặp lại",
     "Confidence Level": "Độ tin cậy",
@@ -4242,6 +4286,7 @@ $.message.vi = {
     "Percentile": "Bảng tỷ lệ phần trăm",
     "StudentRangeDist": "HSD Phân phối phạm vi",
     "copy link": "sao chép đường dẫn",
+    "WithoutReplacement": "không có vật thay thế",
 
 };
 // Vietnamese
@@ -4518,6 +4563,7 @@ svgStrU[106][7] = "Phần tư thứ 3 <br> Q3";
 svgStrU[107][7] = "Phạm vi liên vùng <br> IQR";
 svgStrU[108][7] = "Hệ số xác định";
 svgStrU[109][7] = "Tần số tương đối tích lũy (%)";
+svgStrU[110][7] = "Số lượng tối đa của số nguyên phân phối đồng đều";
 
 // Indonesian
 $.message.id = {
@@ -4649,9 +4695,13 @@ $.message.id = {
     "Statistics/BoxPlot": "Statistik/Diagram Kotak Garis",
     "Law of Large Number": "Hukum Bilangan Besar",
     "Dist of Sample Means": "Distribusi dari Rata-rata Sampel",
+    "Sampling Distribution": "Distribusi Pengambilan Sampel",
     "Sample Size": "Ukuran Sampel",
     "Confidence Interval": "Selang Kepercayaan",
     "Confidence Interval Simulation": "Percobaan Selang Kepercayaan",
+    "Confidence Interval Mu": "Estimasi : &mu; Selang Kepercayaan",
+    "Confidence Interval Sigma": "Estimasi : &sigma;<sup>2</sup> Selang Kepercayaan",
+    "Confidence Interval P": "Estimasi : p Selang Kepercayaan",
     "Estimation Accuracy": "Keakurasian Nilai Estimasi",
     "Repetition": "Ulangan",
     "Confidence Level": "Taraf Nyata",
@@ -4798,6 +4848,7 @@ $.message.id = {
     "Percentile": "Tabel Persentil",
     "StudentRangeDist": "HSD Distribusi Rentang",
     "copy link": "Salin tautan",
+    "WithoutReplacement": "tanpa penggantian",
 
 };
 // Indonesian 
@@ -5074,6 +5125,7 @@ svgStrU[106][8] = "Kuartil ke-3 <br> Q3";
 svgStrU[107][8] = "Rentang Interkuartil <br> IQR";
 svgStrU[108][8] = "Koefisien Determinasi";
 svgStrU[109][8] = "Frekuensi Relatif terakumulasi (%)";
+svgStrU[110][8] = "Jumlah maksimum bilangan bulat dari Distribusi Seragam";
 
 
 // Mongolian
@@ -5206,9 +5258,13 @@ $.message.mn = {
     "Statistics/BoxPlot": "Статистик/BoxPlot",
     "Law of Large Number": "Их тооны хууль",
     "Dist of Sample Means": "Жишээ дундаж утгуудын тархалт ",
+    "Sampling Distribution": "Дээж авах түгээлт",
     "Sample Size": "Жишээ хэмжээ ",
     "Confidence Interval": "Найдварт завсар ",
     "Confidence Interval Simulation": "Найдварт завсар туршилт",
+    "Confidence Interval Mu": "Тооцоолол : &mu; Найдварт завсар",
+    "Confidence Interval Sigma": "Тооцоолол : &sigma;<sup>2</sup> Найдварт завсар",
+    "Confidence Interval P": "Тооцоолол : p Найдварт завсар",
     "Estimation Accuracy": "нарийвчлалыг үнэлэх",
     "Repetition": "Давтамж",
     "Confidence Level": "Найдварт түвшинl",
@@ -5353,6 +5409,7 @@ $.message.mn = {
     "Percentile": "Хувь Хүснэгт",
     "StudentRangeDist": "HSD Range тархац",
     "copy link": "хуулбар холбоос",
+    "WithoutReplacement": "орлуулахгүйгээр",
 
 };
 // Mongolian
@@ -5629,6 +5686,7 @@ svgStrU[106][9] = "Гуравдугаар Quartile <br> Q3";
 svgStrU[107][9] = "Interquartile Range <br> IQR";
 svgStrU[108][9] = "Тодорхойлох коэффициент";
 svgStrU[109][9] = "Хуримтлагдсан давтамж (%)";
+svgStrU[110][9] = "Uniform Distribution бүхэл тоо";
 
 // Chinese - Simplified
 $.message.zh = {
@@ -5760,29 +5818,33 @@ $.message.zh = {
     "Statistics/BoxPlot": "统计量/箱线图",
     "Law of Large Number": "大数法则",
     "Dist of Sample Means": "样本均值",
+    "Sampling Distribution": "抽样分布",
     "Sample Size": "样本数",
     "Confidence Interval": "置信区间",
     "Confidence Interval Simulation": "置信区间试验",
+    "Confidence Interval Mu": "估计 : &mu; 置信区间",
+    "Confidence Interval Sigma": "估计 : &sigma;<sup>2</sup> 置信区间",
+    "Confidence Interval P": "估计 : p 置信区间",
     "Estimation Accuracy": "估计准确率",
     "Repetition": "重复数",
     "Confidence Level": "置信水平",
-    "Testing Hypothesis mu_titleAB": "均值检验",
-    "Testing Hypothesis mu_title": "均值检验",
-    "Testing Hypothesis sigma_title": "方差检验",
-    "Testing Hypothesis P_title": "比例检验",
-    "Testing Hypothesis mu12_title": "两总体均值检验",
-    "Testing Hypothesis sigma12_title": "两总体方差检验",
-    "Testing Hypothesis P12_title": "两总体比例检验",
+    "Testing Hypothesis mu_titleAB": "假设检验均值",
+    "Testing Hypothesis mu_title": "假设检验均值",
+    "Testing Hypothesis sigma_title": "假设检验方差",
+    "Testing Hypothesis P_title": "假设检验比例",
+    "Testing Hypothesis mu12_title": "假设检验两总体均值",
+    "Testing Hypothesis sigma12_title": "假设检验两总体方差",
+    "Testing Hypothesis P12_title": "假设检验两总体比例",
     "Testing Hypothesis muA": "假设检验 &mu; - C, &beta;",
     "Testing Hypothesis muAB": "假设检验 &mu; - C, n",
-    "Testing Hypothesis mu": "区间估计/假设检验: 均值&mu;",
-    "Testing Hypothesis sigma": "区间估计/假设检验: 变异数&sigma;<sup>2</sup>",
-    "Testing Hypothesis P": "区间估计/假设检验: 比例 p",
+    "Testing Hypothesis mu": "假设检验: 均值&mu;",
+    "Testing Hypothesis sigma": "假设检验: 变异数&sigma;<sup>2</sup>",
+    "Testing Hypothesis P": "假设检验: 比例 p",
     "Testing Hypothesis mu12": "假设检验 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "假设检验 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Testing Hypothesis P12": "假设检验 : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "方差分析",
-    "Testing Independence": "独立性检验",
+    "Testing Hypothesis ANOVA": "假设检验方差分析",
+    "Testing Independence": "分类的独立性检验",
     "Correlation Coefficient": "相关系数",
     "Regression Experiment": "回归实验",
     "Hypothesis": "假设",
@@ -5849,7 +5911,7 @@ $.message.zh = {
     "MultipleComparison": "多重比较过程",
     "AnovaResidual": "残差图",
     "AnovaQQ": "残差Q-Q图",
-    "TestingFit": "拟合优度检验",
+    "TestingFit": "分类的拟合优度检验",
     "FitTest0": "观测和理论分布是一致的",
     "FitTest1": "观测和理论分布是不一致的",
     "ObservedFreq": "观测频率O",
@@ -5864,23 +5926,23 @@ $.message.zh = {
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat 入門講義",
-    "NonParametricMu12_title": "Wilcoxon 順位合檢定",
-    "NonParametricMu12": "Wilcoxon 順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "非參數Wilcoxon 順位合檢定",
+    "NonParametricMu12": "非參數Wilcoxon 順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>",
     "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "Wilcoxon 符號順位合分布",
     "WilcoxonTestDist": "Wilcoxon 順位合分布",
     "KruskalTestDist": "Kruskal-Wallis H 分布",
     "FriedmanTestDist": "Friedman S 分布",
-    "SignedRankTest": "符號順位檢定",
-    "SignTest": "符號檢定",
+    "SignedRankTest": "非參數符號順位檢定",
+    "SignTest": "非參數符號檢定",
     "SignCount": "符號數",
-    "WilcoxonTest": "順位檢定",
-    "KruskalTest": "Kruskal-Wallis 檢定",
-    "KruskalTestANOVA": "Kruskal-Wallis 檢定",
+    "WilcoxonTest": "非參數順位檢定",
+    "KruskalTest": "非參數Kruskal-Wallis 檢定",
+    "KruskalTestANOVA": "非參數Kruskal-Wallis 檢定",
     "Total": "全体",
-    "FriedmanTest": "Friedman檢定",
-    "FriedmanTestANOVA": "Friedman 檢定",
+    "FriedmanTest": "非參數Friedman檢定",
+    "FriedmanTestANOVA": "非參數Friedman 檢定",
     "Block": "Block",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
@@ -5908,6 +5970,7 @@ $.message.zh = {
     "Percentile": "百分表",
     "StudentRangeDist": "HSD 范围分布",
     "copy link": "复制链接",
+    "WithoutReplacement": "没有恢复提取",
 
 };
 // Chinese Simplified
@@ -6184,6 +6247,7 @@ svgStrU[106][10] = "第三个四分位数问题<br>Q3";
 svgStrU[107][10] = "四分位数范围<br> IQR";
 svgStrU[108][10] = "确定系数";
 svgStrU[109][10] = "累积相对频率（％）";
+svgStrU[110][10] = "分布均匀的最大整数数";
 
 // Portugese
 $.message.pt = {
@@ -6318,9 +6382,13 @@ $.message.pt = {
     "Statistics/BoxPlot": "Estatística/BoxPlot",
     "Law of Large Number": "Lei dos Grandes Números",
     "Dist of Sample Means": "Distribuição de Médias Amostrais",
+    "Sampling Distribution": "Distribuição de amostras",
     "Sample Size": "Tamanho da Amostra",
     "Confidence Interval": "Intervalo de Confiança",
     "Confidence Interval Simulation": "Intervalo de Confiança Experimento",
+    "Confidence Interval Mu": "Estimativo : &mu; Intervalo de Confiança",
+    "Confidence Interval Sigma": "Estimativo : &sigma;<sup>2</sup> Intervalo de Confiança",
+    "Confidence Interval P": "Estimativo : p Intervalo de Confiança",
     "Estimation Accuracy": "Acurácia ",
     "Repetition": "Repetição",
     "Confidence Level": "Coeficiente de Confiança",
@@ -6466,6 +6534,7 @@ $.message.pt = {
     "Percentile": "Tabela percentual",
     "StudentRangeDist": "Distribuição de Faixa",
     "copy link": "link de cópia",
+    "WithoutReplacement": "Sem substituição",
 
 };
 // Portugese
@@ -6742,6 +6811,7 @@ svgStrU[106][11] = "Terceiro quartil <br> Q3";
 svgStrU[107][11] = "Interquartile Range <br> IQR";
 svgStrU[108][11] = "Coeficiente de determinação";
 svgStrU[109][11] = "Freqüência Relativa Cumulada (%)";
+svgStrU[110][11] = "Número máximo de números inteiros de distribuição uniforme";
 
 // Greek
 $.message.gr = {
@@ -6876,9 +6946,13 @@ $.message.gr = {
     "Statistics/BoxPlot": "Στατιστική/Θηκόγραμμα",
     "Law of Large Number": "Νόμος των Μεγάλων Αριθμών",
     "Dist of Sample Means": "Κατανομή των Δειγματικών Μέσων",
+    "Sampling Distribution": "Δειγματοληψία Διανομή",
     "Sample Size": "Μέγεθος Δείγματος",
     "Confidence Interval": "Διάστημα Εμπυστοσύνης",
     "Confidence Interval Simulation": "Διάστημα Εμπυστοσύνης προσομοίωση",
+    "Confidence Interval Mu": "Εκτίμηση : &mu; Διάστημα Εμπυστοσύνης",
+    "Confidence Interval Sigma": "Εκτίμηση : &sigma;<sup>2</sup> Διάστημα Εμπυστοσύνης",
+    "Confidence Interval P": "Εκτίμηση : p Διάστημα Εμπυστοσύνης",
     "Estimation Accuracy": "Εκτίμηση Ορθότητας",
     "Repetition": "Επανάληψη",
     "Confidence Level": "Επίπεδο Εμπυστοσύνης",
@@ -7023,6 +7097,7 @@ $.message.gr = {
     "Percentile": "Πίνακας ποσοστών",
     "StudentRangeDist": "HSD Εκπαιδευόμενο εύρος διανομής.",
     "copy link": "αντιγραφή συνδέσμου",
+    "WithoutReplacement": "χωρίς αντικατάσταση",
 
 };
 // Greek
@@ -7297,6 +7372,7 @@ svgStrU[106][12] = "Τρίτο Τεταρτημόριο<br>Q3";
 svgStrU[107][12] = "Ενδοτεταρτημοριακό Εύρος<br>IQR";
 svgStrU[108][12] = "Συντελεστής Μεταβλητότητας";
 svgStrU[109][12] = "Αθροιστική Συχνότητα (%)";
+svgStrU[110][12] = "Μέγιστος αριθμός ακεραίων της Ομοιόμορφης Διανομής";
 
 // Romanian
 $.message.ro = {
@@ -7431,9 +7507,13 @@ $.message.ro = {
     "Statistics/BoxPlot": "Statistică/BoxPlot",
     "Law of Large Number": "Legea Numerelor Mari",
     "Dist of Sample Means": "Dist of Sondaj Means",
+    "Sampling Distribution": "Distribuția eșantionului",
     "Sample Size": "Volumul Eșantionului",
     "Confidence Interval": "Interval de Încredere",
     "Confidence Interval Simulation": "Interval de Încredere Simulare",
+    "Confidence Interval Mu": "Estimației : &mu; Interval de Încredere",
+    "Confidence Interval Sigma": "Estimației : &sigma;<sup>2</sup> Interval de Încredere",
+    "Confidence Interval P": "Estimației : p Interval de Încredere",
     "Estimation Accuracy": "Acuretețea Estimației",
     "Repetition": "Repetiție",
     "Confidence Level": "Siguranță Statistică",
@@ -7580,6 +7660,7 @@ $.message.ro = {
     "Percentile": "Percentila Tabel",
     "StudentRangeDist": "HSD Student Gamă Dist.",
     "copy link": "copiere legătura",
+    "WithoutReplacement": "fără înlocuire",
 
 };
 // Romanian
@@ -7855,6 +7936,7 @@ svgStrU[106][13] = "al treilea trimestru din trimestrul<br> Q3";
 svgStrU[107][13] = "Intervalul Interquartile <br> IQR";
 svgStrU[108][13] = "Coeficient de determinare";
 svgStrU[109][13] = "Frecvența relativă cumulată (%)";
+svgStrU[110][13] = "Numărul maxim de numere întregi de distribuție uniformă";
 
 // Thai
 $.message.th = {
@@ -7989,9 +8071,13 @@ $.message.th = {
     "Statistics/BoxPlot": "สถิติ/แผนภาพกล่อง",
     "Law of Large Number": "กฎจำนวนมาก",
     "Dist of Sample Means": "การแจกแจงค่าเฉลี่ยตัวอย่าง",
+    "Sampling Distribution": "การกระจายตัวตัวอย่าง",
     "Sample Size": "ขนาดตัวอย่าง",
     "Confidence Interval": "ช่วงความเชื่อมั่น",
     "Confidence Interval Simulation": "ช่วงความเชื่อมั่น จำลอง",
+    "Confidence Interval Mu": "การประเมิน :  &mu; ช่วงความเชื่อมั่น",
+    "Confidence Interval Sigma": "การประเมิน :  &sigma;<sup>2</sup> ช่วงความเชื่อมั่น",
+    "Confidence Interval P": "การประเมิน :  p ช่วงความเชื่อมั่น",
     "Estimation Accuracy": "ความแม่นยำของการประมาณ",
     "Repetition": "การทำซ้ำ",
     "Confidence Level": "ช่วงความเชื่อมั่น",
@@ -8138,6 +8224,7 @@ $.message.th = {
     "Percentile": "เปอร์เซ็น",
     "StudentRangeDist": "HSDช่วงที่ได้รับการศึกษา การแจกแจง.",
     "copy link": "คัดลอกลิงค์",
+    "WithoutReplacement": "โดยไม่ต้องเปลี่ยน",
 
 };
 
@@ -8413,6 +8500,7 @@ svgStrU[106][14] = "ควอไทล์ที่สาม<br>Q3";
 svgStrU[107][14] = "ช่วงควอไทล์<br>IQR";
 svgStrU[108][14] = "สัมประสิทธิ์การแปรผัน";
 svgStrU[109][14] = "ความถี่สัมพัทธ์สะสม (%)";
+svgStrU[110][14] = "จำนวนสูงสุดของจำนวนเต็มของการกระจายชุด";
 
 // Polish
 $.message.pl = {
@@ -8547,9 +8635,13 @@ $.message.pl = {
     "Statistics/BoxPlot": "Statystyka/wykres pudełkowy",
     "Law of Large Number": "Prawo wielkich liczby",
     "Dist of Sample Means": "Rozkład średniej z próby",
+    "Sampling Distribution": "Dystrybucja próbek",
     "Sample Size": "Wielkość próby",
     "Confidence Interval": "Przedział ufności",
     "Confidence Interval Simulation": "Przedział ufności Symulacja",
+    "Confidence Interval Mu": "Oszacowanie : &mu; Przedział ufności",
+    "Confidence Interval Sigma": "Oszacowanie : &sigma;<sup>2</sup> Przedział ufności",
+    "Confidence Interval P": "Oszacowanie : p Przedział ufności",
     "Estimation Accuracy": "Dokładność szacowania",
     "Repetition": "Powtórzenie",
     "Confidence Level": "Poziom ufności",
@@ -8696,6 +8788,7 @@ $.message.pl = {
     "Percentile": "Tablica udziałów procentowych",
     "StudentRangeDist": "HSD Zakres Studentyzowanej Dyst",
     "copy link": "Skopiuj link",
+    "WithoutReplacement": "bez zamiany",
 
 };
 
@@ -8972,3 +9065,4 @@ svgStrU[106][15] = "Trzeci kwartyl<br>Q3";
 svgStrU[107][15] = "Zakres międzykwartylowy<br>IQR";
 svgStrU[108][15] = "Współczynnik zmienności";
 svgStrU[109][15] = "Skumulowana częstotliwość względna (%)";
+svgStrU[110][15] = "Maksymalna liczba całkowita o jednolitym rozkładzie";
