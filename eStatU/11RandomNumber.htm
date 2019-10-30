@@ -31,10 +31,12 @@
       &nbsp;&nbsp;
       <input type="radio" name = "type" value="1" checked><span data-msgid="RealNumber">Real</span>       
       <input type="radio" name = "type" value="2" ><span data-msgid="IntegerNumber">Integer</span>
+      &nbsp;(<span data-msgid="WithoutReplacement">without replacement</span>)
     </form>   
     <br>
     &nbsp;&nbsp;
-    <span data-msgid="NumberData">Number of Data</span>   n = <input type="text" class="textarea" value="10" size=3 id="nn"> <span class="fontguide" > ( &leq; 100) </span>
+    <span data-msgid="NumberData">Number of Data</span>   n = <input type="text" class="textarea" value="10" size=3 id="nn"> 
+    <span class="fontguide" id="nmax"> ( &leq; 100) </span>
     &nbsp;&nbsp;
     <span data-msgid="NumberDigit">Number of Decimal Digit</span> <span class="fontguide" >0 &leq; </span>
       <input type="text" class="textarea" value="4" size=3 id="digit"> <span class="fontguide" > &leq; 4 </span>
@@ -59,15 +61,19 @@
       var i, j, k, temp, info;
       var left, right, nn, digit;
       var nvalueMax = 100;
+      var nmaxR = "(&leq; 100)";
+      var nmaxI = "("+svgStrU[110][langNum]+")";
+ 
       // 실수형 정수형
       var a = document.myForm.type;
       var type = 1;
-      a[0].onclick = function() { 
+      a[0].onclick = function() { // 실수형
         type = 1;
         document.getElementById("digit").disabled = false;
         document.getElementById("digit").value = 4;
+        document.getElementById("nmax").innerHTML = nmaxR;
       }  
-      a[1].onclick = function() { 
+      a[1].onclick = function() { // 정수형
         type = 2;   
         document.getElementById("digit").disabled = true;
         document.getElementById("digit").value = 0;
@@ -75,6 +81,7 @@
         right = parseInt(d3.select("#right").node().value);   // uniform(left, right)
         document.getElementById("left").value = left;
         document.getElementById("right").value = right;
+        document.getElementById("nmax").innerHTML = nmaxI;
       }
 
       // 실행버튼 클릭 =================================================================================
@@ -82,7 +89,7 @@
         left  = parseFloat(d3.select("#left").node().value);    // uniform(left, right)
         right = parseFloat(d3.select("#right").node().value);   // uniform(left, right)
         nn    = parseFloat(d3.select("#nn").node().value);      // data 크기 n
-        digit = parseFloat(d3.select("#digit").node().value);   // data 크기 n
+        digit = parseFloat(d3.select("#digit").node().value);   // digit 크기 n
         if ( right < left ) {
           temp  = left;
           left  = right;
@@ -112,9 +119,11 @@ function uniformTable(left, right, nn, digit, type) {
 
 //        var table = document.getElementById("table");
         var row, header;
-        var i, j, num, delta, tt, temp;
+        var i, j, m, mcount, num, delta, tt, temp, tempDigit, check, nnMax;
         var ncol = 2;
         var cell = new Array(ncol);
+        var randNum = new Array(nvalueMax);
+        for (i=0; i<nvalueMax; i++) randNum[i] = null;
         var k = 0;
         table.style.fontSize = "14px";
 
@@ -132,15 +141,14 @@ function uniformTable(left, right, nn, digit, type) {
           cell[1].innerHTML = "<h5>"+svgStrU[50][langNum]+"( "+left+" , "+right+" )<br>"+svgStrU[99][langNum]+"</h5>";
 
           num = right - left + 1;
+          if (type == 1) nnMax = nn;
+          else {
+            if(nn <= num) nnMax = nn;
+            else nnMax = num;
+          }
           delta = 1. / num;
-          for (i=0; i<nn; i++) {
-            row = table.insertRow(k++);
-            for (j=0; j<ncol; j++) {
-              cell[j] = row.insertCell(j);
-              cell[j].style.textAlign = "center";
-              cell[j].style.border = "1px solid black";
-            }
-            cell[0].innerHTML = i+1;
+          mcount = 0;
+          for (i=0; mcount<nnMax; i++) {
             if (type == 1) temp = left + (right-left)*Math.random();
             else if (type == 2) {
               tt = Math.random();
@@ -151,15 +159,51 @@ function uniformTable(left, right, nn, digit, type) {
                 } 
               }
             }
-            if (digit == 0) cell[1].innerHTML = f0(temp);
-            else if (digit == 1) cell[1].innerHTML = f1(temp);
-            else if (digit == 2) cell[1].innerHTML = f2(temp);
-            else if (digit == 3) cell[1].innerHTML = f3(temp);
-            else if (digit == 4) cell[1].innerHTML = f4(temp);
+            if (digit == 0) tempDigit = f0(temp);
+            else if (digit == 1) tempDigit = f1(temp);
+            else if (digit == 2) tempDigit = f2(temp);
+            else if (digit == 3) tempDigit = f3(temp);
+            else if (digit == 4) tempDigit = f4(temp);
 
-            cell[0].style.textAlign = "center";
-            for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
-          }
+            if (type == 1) { // real
+              row = table.insertRow(k++);
+              for (j=0; j<ncol; j++) {
+                cell[j] = row.insertCell(j);
+                cell[j].style.textAlign = "center";
+                cell[j].style.border = "1px solid black";
+              }
+              cell[0].innerHTML = mcount+1;         
+              cell[1].innerHTML = tempDigit; 
+              mcount++;
+            }
+            else if (type == 2) { // integer
+console.log(mcount+" "+nn)
+              check = 0;
+              if (i == 0) {
+                randNum[0] = tempDigit;
+              }
+              else {
+                for (m=0; m<mcount; m++) {
+                  if (randNum[m] == tempDigit) { check = 1; break }
+                }
+                if (check == 0) {
+                  randNum[mcount] = tempDigit;
+                }
+              }
+              if (check == 0) {
+                row = table.insertRow(k++);
+                for (j=0; j<ncol; j++) {
+                  cell[j] = row.insertCell(j);
+                  cell[j].style.textAlign = "center";
+                  cell[j].style.border = "1px solid black";
+                }
+                cell[0].innerHTML = mcount+1;         
+                cell[1].innerHTML = tempDigit;           
+                mcount++;
+              }
+            } // end of elseif type==2
+
+          } // end of i<nn
 }
   </script>
 </body>

@@ -158,14 +158,14 @@
       // H1 type
       var h1 = document.myForm0.type0;
       var h1Type = 1; 
-      h1[0].onclick = function() { h1Type = 1 }    // 양측검정
-      h1[1].onclick = function() { h1Type = 2 }    // 우측검정
-      h1[2].onclick = function() { h1Type = 3 }    // 좌측검정
+      h1[0].onclick = function() { h1Type = 1; bar.selectAll("*").remove(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = 2; bar.selectAll("*").remove(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = 3; bar.selectAll("*").remove(); }    // 좌측검정
       // alpha
       var a = document.myForm2.type2;
       alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; }  
-      a[1].onclick = function() { alpha = 0.01; } 
+      a[0].onclick = function() { alpha = 0.05; bar.selectAll("*").remove(); }  
+      a[1].onclick = function() { alpha = 0.01; bar.selectAll("*").remove(); } 
 
       // input data control ===================================================
       d3.select("#data1").on("input", function() {

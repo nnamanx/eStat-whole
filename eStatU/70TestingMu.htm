@@ -46,8 +46,9 @@
 
     <form name="myForm1"> 
       <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
-      <input type="radio" name = "type1" value="1" ><span class="fontmath" data-msgid="Z-test"> Z-test</span>      
-      <input type="radio" name = "type1" value="2" checked> <span class="fontmath" data-msgid="t-test">t-test</span>
+      <input type="radio" name = "type1" value="1" checked> <span class="fontmath" data-msgid="t-test">t-test</span>
+      &nbsp; <input type="radio" name = "type1" value="2" ><span class="fontmath" data-msgid="Z-test"> Z-test</span>      
+      &nbsp; &sigma;<sup>2</sup> = <input type="text" class="textarea" size=6 id="variP"> 
     </form> 
 
     <form name="myForm2">&nbsp;&nbsp;&nbsp; 
@@ -93,24 +94,28 @@
 	  <td><span data-msgid="Sample Variance">Sample Variance</span></td>
 	  <td><span class="fontmath">s<sup>2</sup></span></td>
 	  <td>=</td>
-	  <td><input type="text" class="textarea" size=6 id="std"></td>
+	  <td><input type="text" class="textarea" size=6 id="variS"></td>
+<!--
           <td><span class="fontguide" data-msgid="if Z-test-1">(if Z-test, enter population variance &sigma;<sup>2</sup>)</span> </td>
+-->
 	</tr>
       </tbody>
     </table>
 
     <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>
+<!--
        &nbsp; <span class="fontguide" data-msgid="if Z-test-2">(if Z-test, z<sub>1-&alpha;/2 </sub> is used)</span>     
+-->
     <table class="stat">
       <tbody>
 	<tr>
           <td></td>
-	  <td><span class="fontmath">X&#772;</span></td>
+	  <td><span class="fontmath">x&#772;</span></td>
 	  <td>&plusmn;</td>
-	  <td><span class="fontmath">t<sub>n-1 ; &alpha;/2</sub> (S / &radic; n )</span></td>
+	  <td><span class="fontmath" id="intFormula"></span></td>
           <td>&hArr;</td>
-	  <td>(&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
-	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;)</td>
+	  <td>[&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;]</td>
 	</tr>
       </tbody>
     </table>
@@ -135,10 +140,13 @@
       var svgWidth2   = 600;
       var svgHeight2  = 400;
 
-      var nobs, avg, std, gxmin, gxmax, gymin, gymax;
+      var nobs, avg, gxmin, gxmax, gymin, gymax;
       var title;
       var df, info, alpha, pvalue, b, c, d, e, f, g, h;
-      var mu, nn, xbar, std, stat, teststat, left, right, temp;
+      var mu, nn, xbar, std, stat, teststat, left, right, temp, variS, variP;
+      var intT = "t<sub>n-1 ; &alpha;/2</sub> &nbsp; (s / &radic; n )";
+      var intZ = "z<sub>&alpha;/2</sub> &nbsp; (&sigma; / &radic; n )";
+
       var hypoType = 1;
 
       document.getElementById("cleft").disabled = true; 
@@ -147,34 +155,55 @@
       // H1 type
       var h1 = document.myForm0.type0;
       var h1Type = h1.value; 
-      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
-      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
-      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+      h1[0].onclick = function() { h1Type = h1.value; clearText(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value; clearText(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value; clearText(); }    // 좌측검정
 
       // Test type
       var test = document.myForm1.type1;
-      var testType = test.value;
-      test[0].onclick = function() { testType = 1; }  // Z-test
-      test[1].onclick = function() { testType = 2; }  // t-test
+      var testType = 1;
+      document.getElementById("variP").disabled  = true; 
+      document.getElementById("intFormula").innerHTML = intT;
+      test[0].onclick = function() { // t-test 
+        testType = 1; 
+        clearText();
+        document.getElementById("intFormula").innerHTML = intT;
+        document.getElementById("variP").value     = null; 
+        document.getElementById("variS").disabled  = false; 
+        document.getElementById("variP").disabled  = true; 
+      }  
+      test[1].onclick = function() { // Z-test
+        testType = 2; 
+        clearText();
+        document.getElementById("intFormula").innerHTML = intZ;
+        document.getElementById("variS").value     = null; 
+        document.getElementById("variS").disabled  = true; 
+        document.getElementById("variP").disabled  = false; 
+      }  
 
       // alpha
       var a = document.myForm2.type2;
       alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; }  
-      a[1].onclick = function() { alpha = 0.01; }  
-
+      a[0].onclick = function() { 
+        alpha = 0.05; 
+        clearText();
+      }  
+      a[1].onclick = function() {
+        alpha = 0.01; 
+        clearText();
+      }  
       // data input control =====================================
       d3.select("#data1").on("input", function() {
         stat = simplestat("#data1");  
         document.getElementById("nn").value   = stat.n;    
-        document.getElementById("xbar").value = f2(stat.xbar);
-        document.getElementById("std").value  = f2(stat.var);  
-        if (testType == 1) temp = stdnormal_inv(1 - alpha/2, info) * Math.sqrt(stat.var /stat.n);
-        else temp = t_inv(1 - alpha/2, stat.n - 1, info) * Math.sqrt(stat.var / stat.n);
+        document.getElementById("xbar").value = f3(stat.xbar);
+        document.getElementById("variS").value  = f3(stat.var);  
+        if (testType == 1) temp = t_inv(1 - alpha/2, stat.n - 1, info) * Math.sqrt(stat.var / stat.n);
+        else temp = stdnormal_inv(1 - alpha/2, info) * Math.sqrt(stat.var /stat.n);
         left  = stat.xbar - temp;
         right = stat.xbar + temp;  
-        document.getElementById("cleft").value   = f2(left);
-        document.getElementById("cright").value  = f2(right); 
+        document.getElementById("cleft").value   = f3(left);
+        document.getElementById("cright").value  = f3(right); 
       });
 
       updateData = function() {
@@ -183,7 +212,7 @@
 
       d3.select("#nn").on("input", updateData);
       d3.select("#xbar").on("input", updateData);
-      d3.select("#std").on("input", updateData);
+      d3.select("#variS").on("input", updateData);
 
       // Testing Hypothesis ======================================
       d3.select("#executeTH").on("click",function() {
@@ -193,28 +222,35 @@
         mu   = parseFloat(d3.select("#mu").node().value);
         nn   = parseFloat(d3.select("#nn").node().value);
         xbar = parseFloat(d3.select("#xbar").node().value);
-        std  = Math.sqrt(parseFloat(d3.select("#std").node().value));
+        if (testType == 1) { // t-test
+          variS = parseFloat(d3.select("#variS").node().value);
+          std   = Math.sqrt(variS);
+        }
+        else { // Z-test
+          variP = parseFloat(d3.select("#variP").node().value);
+          std   = Math.sqrt(variP);
+        }
         df = nn - 1;
 
         // confidence interval
-        if (testType == 1) temp = stdnormal_inv(1 - alpha/2, info) * std / Math.sqrt(nn);
-        else temp = t_inv(1 - alpha/2, df, info) * std / Math.sqrt(nn);
+        if (testType == 1) temp = t_inv(1 - alpha/2, df, info) * std / Math.sqrt(nn);
+        else temp = stdnormal_inv(1 - alpha/2, info) * std / Math.sqrt(nn);
         left  = xbar - temp;
         right = xbar + temp;  
-        document.getElementById("cleft").value   = f2(left);
-        document.getElementById("cright").value  = f2(right); 
+        document.getElementById("cleft").value   = f3(left);
+        document.getElementById("cright").value  = f3(right); 
 
         // test statistics
         teststat = (xbar - mu) / (std / Math.sqrt(nn));
 
-        if (isNaN(mu) || isNaN(nn) || isNaN(xbar) || isNaN(std) || nn < 2 || std <= 0 ) {  // wrong input
+        if (isNaN(mu) || isNaN(nn) || isNaN(xbar) || isNaN(variS) || nn < 2 || std <= 0 ) {  // wrong input
           bar.append("text").attr("class","mean")
              .attr("x", 150)
              .attr("y", 100)
              .text("No input or wrong input !!   Try again.")
              .style("stroke","red")
         }
-        else if (testType == 1) {    // Z-test
+        else if (testType == 2) {    // Z-test
           if (h1Type == 1) {
             h = alpha / 2;  
             f = stdnormal_inv(h, info);
@@ -275,6 +311,13 @@
           saveAs(dataBlob, 'eStatGraphU.png');
         }
       });
+
+// alpha t Z 바뀔때 clear
+function clearText() {
+        bar.selectAll("*").remove();
+        document.getElementById("cleft").value  = null;
+        document.getElementById("cright").value = null;
+}
 
   </script>
 </body>

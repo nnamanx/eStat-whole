@@ -95,8 +95,8 @@
       <tbody>
 	<tr>
           <td></td>
-	  <td><span class="fontmath">(&nbsp;(n-1)S<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span>&nbsp;,</td>
-	  <td><span class="fontmath">(n-1) S<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub> &nbsp;)</span></td>
+	  <td><span class="fontmath">(&nbsp;(n-1)s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span>&nbsp;,</td>
+	  <td><span class="fontmath">(n-1) s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub> &nbsp;)</span></td>
           <td>&hArr;</td>
 	  <td>(&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
 	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;)</td>
@@ -138,15 +138,15 @@
       // H1 type
       var h1 = document.myForm0.type0;
       var h1Type = h1.value; 
-      h1[0].onclick = function() { h1Type = h1.value }    // 양측검정
-      h1[1].onclick = function() { h1Type = h1.value }    // 우측검정
-      h1[2].onclick = function() { h1Type = h1.value }    // 좌측검정
+      h1[0].onclick = function() { h1Type = h1.value; clearText(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value; clearText(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value; clearText(); }    // 좌측검정
 
       // alpha
       var a = document.myForm2.type2;
       alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; }  
-      a[1].onclick = function() { alpha = 0.01; }  
+      a[0].onclick = function() { alpha = 0.05; clearText(); }  
+      a[1].onclick = function() { alpha = 0.01; clearText(); }  
 
      // data input control =====================================
       d3.select("#data1").on("input", function() {
@@ -234,6 +234,13 @@
           saveAs(dataBlob, 'eStatGraphU.png');
         }
       });
+
+// alpha t Z 바뀔때 clear
+function clearText() {
+        bar.selectAll("*").remove();
+        document.getElementById("cleft").value  = null;
+        document.getElementById("cright").value = null;
+}
 
   </script>
 </body>

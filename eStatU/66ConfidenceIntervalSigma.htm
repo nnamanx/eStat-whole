@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Confidence Interval Sigma">Confidence Interval &sigma;</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; 
+          <span data-msgid="Confidence Interval Sigma">
+            Confidence Interval : Population Variance &sigma;<sup>2</sup>
+          </span>
+      </b>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+    </div>
+    <br>
+  
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using csv / bsv)
+    </span>   
+   
+    <table class="data">
+      <tbody>
+       <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td><input type="text" size=60 id="data1"></td>
+      </tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
+    <table class="stat">
+      <tbody>
+         <tr>
+           <td></td>
+           <td><span data-msgid="Sample Size">Sample Size</span></td>
+           <td><span class="fontmath">n</span></td>
+           <td>=</td>
+           <td><input type="text" class="textarea" size=6 id="nn"></td>
+           <td> <span class="fontguide">( > 1) </span></td>
+         </tr>
+         <tr>
+            <td></td>
+            <td><span data-msgid="Sample Variance">Sample Variance</span></td>
+            <td><span class="fontmath">s<sup>2</sup></span></td>
+            <td>=</td>
+            <td><input type="text" class="textarea" size=6 id="varS"></td>
+            <td><span class="fontguide">( > 0)</span> </td>
+         </tr>
+      </tbody>
+    </table>
+
+    <b>[<span data-msgid="Confidence Level">Confidence Level</span>]</b>
+    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+      &nbsp; 
+      <span class="fontmath">1 - &alpha;</span> &nbsp; &nbsp;
+      <input type="radio" name = "type2" value="1" checked> 95%       
+      <input type="radio" name = "type2" value="2" > 99%
+    </form>       
+
+    <div> 
+      <b>[<span data-msgid="Sampling Distribution">Sampling Distribution</span>]</b> &nbsp;
+      <span data-msgid="ChiSquare Distribution">ChiSquare Distribution</span> 
+    </div> 
+    <br>
+
+    <button type="button" id="executeTH2" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <p>
+    <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>   
+    <table class="stat">
+      <tbody>
+          <tr>
+            <td></td>
+            <td><span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub></span></td>
+            <td>=</td>
+            <td><input type="text" class="textarea" size=6 id="chiLeft"></td>
+            <td></td>
+            <td></td>
+            <td><span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span></td>
+            <td>=</td>
+            <td><input type="text" class="textarea" size=6 id="chiRight"></td>
+          </tr>
+      </tbody>
+    </table>
+
+    <table class="stat">
+      <tbody>
+          <tr>
+            <td></td>
+            <td><span class="fontmath">[&nbsp;(n-1)s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span>&nbsp;,</td>
+            <td><span class="fontmath">(n-1) s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub> &nbsp;]</span></td>
+            <td>&hArr;</td>
+            <td>[&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+            <td><input type="text" class="textarea" size=6 id="cright">&nbsp;]</td>
+         </tr>
+      </tbody>
+    </table>
+    
+    <p>
+    <svg id="chart" width="600" height="200"> </svg> 
+    <br>
+     &nbsp;
+    <span style="color:red;stroke:2">
+      n = <input type="text" class="textarea" value="20" size=3 id="nn2"><sup><small> 2 </small></sup>  
+      <input type="range" min="2" max="200" value="100" id="rangeN" onchange="showValueNN2(this.value)"/>  
+      <sup><small>200</small></sup>  &nbsp;&nbsp;
+      1-&alpha; = <input type="text" class="textarea" value="0.95" size=3 id="alpha2"><sup><small> 0.60 </small></sup> 
+      <input type="range" min="60" max="99" value="95" id="rangeAlpha" onchange="showValueAlpha2(this.value)"/>
+      <sup><small> 0.99 </small></sup> 
+    </span>
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
+      var svgWidth2   = 600;
+      var svgHeight2  = 200;
+      var graphWidth  = svgWidth2 - margin.left - margin.right;
+      var graphHeight = svgHeight2 - margin.top - margin.bottom;
+
+      var nobs, gxmin, gxmax, gymin, gymax;
+      var stat = new Array(30);
+      var title;
+      var df, info, alpha, confidence;
+      var nn, varS, left, right,chiLeft,chiRight,rightMax;
+      var df2,nn2, varS2,left2,right2,chiLeft2,chiRight2,alpha2, confidence2;
+ 
+      document.getElementById("chiLeft").disabled  = true;
+      document.getElementById("chiRight").disabled  = true;
+      document.getElementById("cleft").disabled  = true;
+      document.getElementById("cright").disabled = true; 
+
+      // alpha
+      var a = document.myForm2.type2;
+      alpha = 0.05;
+      confidence = 1-alpha;
+      a[0].onclick = function() { alpha = 0.05; confidence = 1-alpha; clearText()}  
+      a[1].onclick = function() { alpha = 0.01; confidence = 1-alpha; clearText()}  
+
+     // data input control =====================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn").value   = stat.n;    
+        document.getElementById("varS").value  = f3(stat.var);   
+        nn   = stat.n;
+        varS = stat.var;
+        df = nn - 1; 
+        chiLeft = chisq_inv(alpha/2, df, info);
+        chiRight   = chisq_inv(1 - alpha/2, df, info);
+        left  = (nn - 1) * varS / chiRight;
+        right = (nn - 1) * varS / chiLeft;
+        document.getElementById("chiLeft").value   = f2(chiLeft);
+        document.getElementById("chiRight").value  = f2(chiRight);
+        document.getElementById("cleft").value   = f2(left);
+        document.getElementById("cright").value  = f2(right);
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = ''; 
+      }
+
+      d3.select("#nn").on("input", updateData);
+      d3.select("#varS").on("input", updateData);
+
+      // Confidence Interval ======================================
+      d3.select("#executeTH2").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        nn   = parseFloat(d3.select("#nn").node().value);
+        varS = parseFloat(d3.select("#varS").node().value);
+        df = nn - 1;
+
+        if (isNaN(nn) || isNaN(varS) || varS <= 0 || nn < 2) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150) .attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else { // confidence interval
+          // confidence interval
+          chiLeft = chisq_inv(alpha/2, df, info);
+          chiRight   = chisq_inv(1 - alpha/2, df, info);
+          left  = (nn - 1) * varS / chiRight;
+          right = (nn - 1) * varS / chiLeft;
+          document.getElementById("chiLeft").value   = f2(chiLeft);
+          document.getElementById("chiRight").value   = f2(chiRight);
+          document.getElementById("cleft").value   = f2(left);
+          document.getElementById("cright").value  = f2(right);
+          document.getElementById("nn2").value  = nn;
+          document.getElementById("alpha2").value  = f2(confidence);
+          drawConfidenceIntervalSigma() 
+        }
+
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// alpha 바뀔때 clear
+function clearText() {
+        bar.selectAll("*").remove();
+        document.getElementById("chiLeft").value  = "";
+        document.getElementById("chiRight").value = "";
+        document.getElementById("cleft").value    = "";
+        document.getElementById("cright").value   = "";
+}
+
+// n slide bar
+function showValueNN2(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("nn2").value = newValue;
+        drawConfidenceIntervalSigma();
+}
+// alpha slide bar
+function showValueAlpha2(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("alpha2").value = f2(newValue/100);
+        drawConfidenceIntervalSigma();
+}
+// draw confidence interval
+function drawConfidenceIntervalSigma() {
+        var x1, x2,xm, y1, y2, tempy;
+        bar.selectAll("*").remove();
+        nn2    = parseFloat(d3.select("#nn2").node().value); 
+        confidence2 = parseFloat(d3.select("#alpha2").node().value); 
+        alpha2 = 1 - confidence2;
+        // confidence interval
+        df2 = nn2 - 1;
+        chiLeft2     = chisq_inv(alpha2/2, df2, info);
+        chiRight2   = chisq_inv(1 - alpha2/2, df2, info);
+        left2 = (nn2 - 1) * varS / chiRight2;
+        right2 = (nn2 - 1) * varS / chiLeft2;
+        rightMax    = (nn - 1) * varS / chisq_inv(0.005, df, info);
+
+        tempy    = margin.top + graphHeight/2 -10;
+        var xScale = d3.scaleLinear().domain([0,rightMax]).range([margin.left,graphWidth])
+        bar.append("g")
+          .attr("transform","translate("+margin.left+","+tempy+")")
+          .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+
+        // draw conf interval
+        x1 = margin.left +30;
+        y1 = margin.top + 20; 
+        bar.append("text").attr("x",x1).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" : n="+f0(nn) +",          (1-\u03B1)="+f2(confidence)+"  ***")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","start");
+        x1 = margin.left + left*graphWidth/rightMax;
+        x2 = margin.left + right*graphWidth/rightMax;
+        xm = margin.left + 0.5*(left+right)*graphWidth/rightMax;
+        y1 = margin.top + graphHeight/3 - 20; 
+        y2 = y1;
+        bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","black").style("stroke-width","2");
+        bar.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","blue");
+        bar.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","blue");
+        y1 += 20;
+        y2 = y1;
+        bar.append("text").attr("x", x1).attr("y", y1).text("[ "+f2(left))
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", xm).attr("y", y1).text(",")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", x2).attr("y", y1).text(f2(right)+" ]")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+
+        // conf interval simulation
+        x1 = margin.left + left2*graphWidth/rightMax;
+        x2 = margin.left + right2*graphWidth/rightMax;
+        xm = margin.left + 0.5*(left2+right2)*graphWidth/rightMax;
+        y1 = margin.top + 2*graphHeight/3 + 10; 
+        y2 = y1;
+        bar.append("text").attr("x", margin.left+30).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" "+svgStrU[98][langNum]+" : n="+f0(nn2) +",          (1-\u03B1)="+f2(confidence2)+"  ***")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","start");
+        y1 += 20;
+        y2 = y1;
+        bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","red").style("stroke-width","2");
+        bar.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","red");
+        bar.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","red");
+        y1 += 20;
+        y2 = y1;
+        bar.append("text").attr("x", x1).attr("y", y1).text("[ "+f2(left2))
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+        bar.append("text").attr("x", xm).attr("y", y1).text(",")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+        bar.append("text").attr("x", x2).attr("y", y1).text(f2(right2)+" ]")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+}
+  </script>
+</body>
+</html>

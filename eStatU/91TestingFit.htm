@@ -202,8 +202,8 @@
       // alpha
       var a = document.myForm2.type2;
       alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; }  
-      a[1].onclick = function() { alpha = 0.01; }  
+      a[0].onclick = function() { alpha = 0.05; bar.selectAll("*").remove(); }  
+      a[1].onclick = function() { alpha = 0.01; bar.selectAll("*").remove(); }  
 
       // Testing Hypothesis ======================================
       d3.select("#executeTH8").on("click",function() {
