@@ -1,4 +1,4 @@
-﻿ // language.js
+﻿// language.js
 var langNum;
 var nLanguage = 20;
 var nString = 120;
@@ -44,7 +44,6 @@ $('#select_language').change(function() {
     var lang = $("#select_language option:selected").val();
     setLanguage(lang);
 });
-
 function setLanguage(lang) {
     langNum = languageNumber[lang];
     localStorage.setItem("lang", lang);
@@ -223,7 +222,7 @@ $.message.ko = {
     "Testing Hypothesis mu12_title": "두 모평균 가설검정",
     "Testing Hypothesis sigma12_title": "두 모분산 가설검정",
     "Testing Hypothesis P12_title": "두 모비율 검정",
-    "Testing Hypothesis muA": "가설검정 &mu; 실험 ; C, &beta; 계산",
+    "Testing Hypothesis muA":  "가설검정 &mu; 실험 ; C, &beta; 계산",
     "Testing Hypothesis muAB": "가설검정 &mu; 실험 : C, 표본크기 계산",
     "Testing Hypothesis mu": "가설검정 : 모평균 &mu;",
     "Testing Hypothesis sigma": "가설검정 : 모분산 &sigma;<sup>2</sup>",
@@ -314,8 +313,8 @@ $.message.ko = {
     "NoInteraction": "교호작용 없음",
     "ExistInteraction": "교호작용 있음",
     "eStatLecture": "eStat 강의",
-    "NonParametricMu12_title": "비모수 : 윌콕슨 순위합검정",
-    "NonParametricMu12": "비모수 : 윌콕슨 순위합검정 : 위치모수 M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "비모수 : 윌콕슨 순위합검정", 
+    "NonParametricMu12": "비모수 : 윌콕슨 순위합검정 : 위치모수 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "표본순위합",
     "DistributionTable": "분포표",
     "SignedRankTestDist": "윌콕슨 부호순위합분포",
@@ -338,7 +337,7 @@ $.message.ko = {
     "WilcoxonSignCondition": "n ≤ 20 이면 윌콕슨 순위합 분포 검정,  n > 20 근사 정규분포 검정",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 이면 순위합 분포 검정,  n > 25 근사 정규분포 검정",
     "KruskalCondition": "n ≤ 10 이면 H 분포 검정,  n>10 이면 근사 카이제곱 검정",
-    "VariableSelect": "* 데이터분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
+    "VariableSelect":  "* 데이터분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
     "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
     "VariableSelect3": "변량선택",
     "VariableSelect4": "분석변량 추가 선택 가능",
@@ -350,13 +349,13 @@ $.message.ko = {
     "by": "by",
     "NameVar": "이름변량",
     "n_variance": "n-1 공식",
-    "RandomNumber": "확률난수",
-    "RealNumber": "실수형",
-    "IntegerNumber": "정수형",
-    "NumberData": "데이터수",
-    "NumberDigit": "소수 자릿수",
-    "NormalTable": "정규분포표",
-    "Percentile": "백분위수표",
+    "RandomNumber":   "확률난수",
+    "RealNumber":     "실수형",
+    "IntegerNumber":  "정수형",
+    "NumberData":     "데이터수",
+    "NumberDigit":    "소수 자릿수",
+    "NormalTable":    "정규분포표",
+    "Percentile":     "백분위수표",
     "StudentRangeDist": "HSD 표준화범위분포",
     "copy link": "링크 복사",
     "WithoutReplacement": "비복원추출",
@@ -507,23 +506,23 @@ svgStr[96][0] = "표준화 잔차와 지렛값 산점도";
 svgStr[97][0] = "Cook 거리 그래프";
 svgStr[98][0] = "Cook 거리";
 svgStr[99][0] = "데이터 순서";
-svgStr[100][0] = "평균차";
-svgStr[101][0] = "평균차검정";
-svgStr[102][0] = "처리";
-svgStr[103][0] = "교호작용";
-svgStr[104][0] = "행 합";
-svgStr[105][0] = "열 합";
-svgStr[106][0] = "중상관계수";
-svgStr[107][0] = "상관계수";
-svgStr[108][0] = "상관계수행렬";
-svgStr[109][0] = "인자A - 인자B 평균 그래프";
-svgStr[110][0] = "지렛값(Leverage)";
-svgStr[111][0] = "지리정보그래프";
-svgStr[112][0] = "범위";
-svgStr[113][0] = "평균-표준편차 그래프";
-svgStr[114][0] = "모분산";
-svgStr[115][0] = "가설";
-svgStr[116][0] = "검정";
+svgStr[100][0]= "평균차";
+svgStr[101][0]= "평균차검정";
+svgStr[102][0]= "처리";
+svgStr[103][0]= "교호작용";
+svgStr[104][0]= "행 합";
+svgStr[105][0]= "열 합";
+svgStr[106][0]= "중상관계수";
+svgStr[107][0]= "상관계수";
+svgStr[108][0]= "상관계수행렬";
+svgStr[109][0]= "인자A - 인자B 평균 그래프";
+svgStr[110][0]= "지렛값(Leverage)";
+svgStr[111][0]= "지리정보그래프";
+svgStr[112][0]= "범위";
+svgStr[113][0]= "평균-표준편차 그래프";
+svgStr[114][0]= "모분산";
+svgStr[115][0]= "가설";
+svgStr[116][0]= "검정";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -629,12 +628,13 @@ svgStrU[101][0] = "t 분포";
 svgStrU[102][0] = "&chi;<sup>2</sup> 분포";
 svgStrU[103][0] = "F 분포";
 svgStrU[104][0] = "HSD 표준화범위분포";
-svgStrU[105][0] = "1사분위수<br>Q1";
-svgStrU[106][0] = "3사분위수<br>Q3";
-svgStrU[107][0] = "사분위수 범위<br>IQR";
+svgStrU[105][0] = "1사분위수 Q1";
+svgStrU[106][0] = "3사분위수 Q3";
+svgStrU[107][0] = "사분위수범위 IQR";
 svgStrU[108][0] = "변위계수";
 svgStrU[109][0] = "누적상대도수 (%)";
 svgStrU[110][0] = "균등분포의 최대 정수 수";
+svgStrU[111][0] = "마우스로 한 점을 이동";
 
 // English
 $.message.en = {
@@ -710,7 +710,7 @@ $.message.en = {
     "Regression": "Regression",
     "RegressionLine": "Regression Line",
     "RegressionBand": "Confidence Band",
-    "RegressionTable": "Regression Analysis",
+    "RegressionTable": "Regression Analysis",	
     "Frequency Polygon": "Frequency Polygon",
     "Execute New Interval": "Execute New Interval",
     "Interval Start": "Interval Start",
@@ -786,7 +786,7 @@ $.message.en = {
     "Testing Hypothesis mu12_title": "Testing Two Means",
     "Testing Hypothesis sigma12_title": "Testing Two Variances",
     "Testing Hypothesis P12_title": "Testing Two Proportions",
-    "Testing Hypothesis muA": "Testing Hypothesis &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Testing Hypothesis &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Testing Hypothesis &mu; - C, n",
     "Testing Hypothesis mu": "Testing Hypothesis &mu;",
     "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
@@ -877,8 +877,8 @@ $.message.en = {
     "NoInteraction": "No Interaction",
     "ExistInteraction": "Exist Interaction",
     "eStatLecture": "eStat Intro Lecture",
-    "NonParametricMu12_title": "Nonparametric : Wilcoxon Rank Sum Test",
-    "NonParametricMu12": "Nonparametric : Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Nonparametric : Wilcoxon Rank Sum Test", 
+    "NonParametricMu12": "Nonparametric : Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Nonparametric : Rank Sum Test",
     "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
@@ -901,7 +901,7 @@ $.message.en = {
     "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Approximation Test",
     "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
     "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Selection",
     "VariableSelect4": "More Analysis Variable can be selected.",
@@ -914,12 +914,12 @@ $.message.en = {
     "NameVar": "Name Var",
     "n_variance": "n-1 formula",
     "RandomNumber": "Random Number",
-    "RealNumber": "Real",
-    "IntegerNumber": "Integer",
-    "NumberData": "Number of Data",
-    "NumberDigit": "Decimal Digit",
-    "NormalTable": "Normal Distribution Table",
-    "Percentile": "Percentile Table",
+    "RealNumber":     "Real",
+    "IntegerNumber":  "Integer",
+    "NumberData":     "Number of Data",
+    "NumberDigit":    "Decimal Digit",
+    "NormalTable":    "Normal Distribution Table",
+    "Percentile":     "Percentile Table",
     "StudentRangeDist": "HSD Studentized Range Dist.",
     "copy link": "link copy",
     "WithoutReplacement": "without replacement",
@@ -1198,6 +1198,7 @@ svgStrU[107][1] = "Interquartile Range<br>IQR";
 svgStrU[108][1] = "Coefficient of Variation";
 svgStrU[109][1] = "Cumulated Relative Frequency (%)";
 svgStrU[110][1] = "Max number of integers of Uniform Dist";
+svgStrU[111][1] = "Move a point using mouse";
 
 // Japanese
 $.message.ja = {
@@ -1273,7 +1274,7 @@ $.message.ja = {
     "Regression": "回帰直線",
     "RegressionLine": "回帰直線",
     "RegressionBand": "信賴帶",
-    "RegressionTable": "回帰分析表",
+    "RegressionTable": "回帰分析表",		
     "Frequency Polygon": "度数分布多角形",
     "Execute New Interval": "区間を変えて実行",
     "Interval Start": "区間始点",
@@ -1350,7 +1351,7 @@ $.message.ja = {
     "Testing Hypothesis mu12_title": "母平均の仮説検定 (2集団)",
     "Testing Hypothesis sigma12_title": "母分散の仮説検定 (2集団)",
     "Testing Hypothesis P12_title": "母比率の仮説検定 (2集団)",
-    "Testing Hypothesis muA": "仮説検定母平均 - C, &beta;",
+    "Testing Hypothesis muA":  "仮説検定母平均 - C, &beta;",
     "Testing Hypothesis muAB": "仮説検定母平均 - C, n",
     "Testing Hypothesis mu": "仮説検定母平均&mu;",
     "Testing Hypothesis sigma": "仮説検定母分散&sigma;<sup>2</sup>",
@@ -1441,8 +1442,8 @@ $.message.ja = {
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat 入門講義",
-    "NonParametricMu12_title": "ウィルコクソン順位合檢定",
-    "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "ウィルコクソン順位合檢定", 
+    "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "ウィルコクソン符號順位合分布",
@@ -1478,12 +1479,12 @@ $.message.ja = {
     "NameVar": "名前変数",
     "n_variance": "n式",
     "RandomNumber": "乱数",
-    "RealNumber": "実数",
-    "IntegerNumber": "整数",
-    "NumberData": "データ数",
-    "NumberDigit": "小数桁数",
-    "NormalTable": "正規分布表",
-    "Percentile": "百分位数表",
+    "RealNumber":     "実数",
+    "IntegerNumber":  "整数",
+    "NumberData":     "データ数",
+    "NumberDigit":    "小数桁数",
+    "NormalTable":    "正規分布表",
+    "Percentile":     "百分位数表",
     "StudentRangeDist": "HSDスチューデント化範囲分布",
     "copy link": "リンクをコピー",
     "WithoutReplacement": "非復元抽出",
@@ -1635,23 +1636,23 @@ svgStr[96][2] = "残差-レバレッジ";
 svgStr[97][2] = "クック距離図";
 svgStr[98][2] = "クック距離";
 svgStr[99][2] = "資料順序";
-svgStr[100][2] = "平均差";
-svgStr[101][2] = "平均差檢定";
-svgStr[102][2] = "處理";
-svgStr[103][2] = "交互作用";
-svgStr[104][2] = "行合";
-svgStr[105][2] = "列合";
-svgStr[106][2] = "重相關係數";
-svgStr[107][2] = "<h3>相關分析</h3>";
-svgStr[108][2] = "相關係數行列";
-svgStr[109][2] = "因子A-因子B 平均図";
-svgStr[110][2] = "レバレッジ";
-svgStr[111][2] = "地理情報グラフ";
-svgStr[112][2] = "範囲";
-svgStr[113][2] = "平均 - 標準偏差図";
-svgStr[114][2] = "母分散";
-svgStr[115][2] = "仮説";
-svgStr[116][2] = "檢定";
+svgStr[100][2]= "平均差";
+svgStr[101][2]= "平均差檢定";
+svgStr[102][2]= "處理";
+svgStr[103][2]= "交互作用";
+svgStr[104][2]= "行合";
+svgStr[105][2]= "列合";
+svgStr[106][2]= "重相關係數";
+svgStr[107][2]= "<h3>相關分析</h3>";
+svgStr[108][2]= "相關係數行列";
+svgStr[109][2]= "因子A-因子B 平均図";
+svgStr[110][2]= "レバレッジ";
+svgStr[111][2]= "地理情報グラフ";
+svgStr[112][2]= "範囲";
+svgStr[113][2]= "平均 - 標準偏差図";
+svgStr[114][2]= "母分散";
+svgStr[115][2]= "仮説";
+svgStr[116][2]= "檢定";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1763,6 +1764,7 @@ svgStrU[107][2] = "四分位数範囲<br>IQR";
 svgStrU[108][2] = "決定係数";
 svgStrU[109][2] = "累積相対度数 (%)";
 svgStrU[110][2] = "均等分布の最大整数";
+svgStrU[111][2] = "一点をマウスで移動";
 
 // Chinese
 $.message.zhTW = {
@@ -1911,7 +1913,7 @@ $.message.zhTW = {
     "Testing Hypothesis mu12_title": "假設檢定兩母體平均數",
     "Testing Hypothesis sigma12_title": "假設檢定兩母體變異數",
     "Testing Hypothesis P12_title": "假設檢定兩母體比例",
-    "Testing Hypothesis muA": "假説検定 &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "假説検定 &mu; - C, &beta;",
     "Testing Hypothesis muAB": "假説検定 &mu; - C, n",
     "Testing Hypothesis mu": "假設檢定: 平均數&mu;",
     "Testing Hypothesis sigma": "假設檢定: 變異數&sigma;<sup>2</sup>",
@@ -2002,8 +2004,8 @@ $.message.zhTW = {
     "NoInteraction": "無交互作用",
     "ExistInteraction": "有交互作用",
     "eStatLecture": "eStat 入門講義",
-    "NonParametricMu12_title": "非參數Wilcoxon 等級和檢定",
-    "NonParametricMu12": "非參數Wilcoxon 等級和檢定 : 位置參數 M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "非參數Wilcoxon 等級和檢定", 
+    "NonParametricMu12": "非參數Wilcoxon 等級和檢定 : 位置參數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "秩和",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "Wilcoxon 符號等級和分布",
@@ -2026,7 +2028,7 @@ $.message.zhTW = {
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 等級和檢定,  n > 20 常態近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  等級和檢定,  n>25 常態近似檢定",
     "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
-    "VariableSelect": "* 資料分析 : 変数選択 >>  點擊圖示",
+    "VariableSelect":  "* 資料分析 : 変数選択 >>  點擊圖示",
     "VariableSelect2": "* 変数選択 : 點擊變數名或利用右側選択箱",
     "VariableSelect3": "変数選択",
     "VariableSelect4": "可以選擇更多分析變量",
@@ -2039,12 +2041,12 @@ $.message.zhTW = {
     "NameVar": "名稱變數",
     "n_variance": "n-1 式",
     "RandomNumber": "隨機數",
-    "RealNumber": "實數",
-    "IntegerNumber": "整数",
-    "NumberData": "數據數量",
-    "NumberDigit": "小數位數",
-    "NormalTable": "常態分佈表",
-    "Percentile": "百分表",
+    "RealNumber":     "實數",
+    "IntegerNumber":  "整数",
+    "NumberData":     "數據數量",
+    "NumberDigit":    "小數位數",
+    "NormalTable":    "常態分佈表",
+    "Percentile":     "百分表",
     "StudentRangeDist": "HSD範圍分佈",
     "copy link": "複製鏈接",
     "WithoutReplacement": "沒有恢復提取",
@@ -2195,23 +2197,23 @@ svgStr[96][3] = "残差-槓桿圖";
 svgStr[97][3] = "Cook距離圖";
 svgStr[98][3] = "Cook距離";
 svgStr[99][3] = "資料順序";
-svgStr[100][3] = "平均差";
-svgStr[101][3] = "平均差檢定";
-svgStr[102][3] = "處理";
-svgStr[103][3] = "交互作用";
-svgStr[104][3] = "行和";
-svgStr[105][3] = "列和";
-svgStr[106][3] = "多重相關係數";
-svgStr[107][3] = "<h3>相關分析</h3>";
-svgStr[108][3] = "相關係數矩陣";
-svgStr[109][3] = "因子A-因子B 平均圖";
-svgStr[110][3] = "槓桿量";
-svgStr[111][3] = "地理訊息圖";
-svgStr[112][3] = "範圍";
-svgStr[113][3] = "平均 - 標準誤差圖";
-svgStr[114][3] = "母體變異數";
-svgStr[115][3] = "假設";
-svgStr[116][3] = "檢定";
+svgStr[100][3]= "平均差";
+svgStr[101][3]= "平均差檢定";
+svgStr[102][3]= "處理";
+svgStr[103][3]= "交互作用";
+svgStr[104][3]= "行和";
+svgStr[105][3]= "列和";
+svgStr[106][3]= "多重相關係數";
+svgStr[107][3]= "<h3>相關分析</h3>";
+svgStr[108][3]= "相關係數矩陣";
+svgStr[109][3]= "因子A-因子B 平均圖";
+svgStr[110][3]= "槓桿量";
+svgStr[111][3]= "地理訊息圖";
+svgStr[112][3]= "範圍";
+svgStr[113][3]= "平均 - 標準誤差圖";
+svgStr[114][3]= "母體變異數";
+svgStr[115][3]= "假設";
+svgStr[116][3]= "檢定";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2323,6 +2325,7 @@ svgStrU[107][3] = "四分位數範圍<br>IQR";
 svgStrU[108][3] = "確定係數";
 svgStrU[109][3] = "累積相對頻率 (%)";
 svgStrU[110][3] = "均勻分佈的最大整數";
+svgStrU[111][3] = "用鼠標移動點";
 
 // French
 $.message.fr = {
@@ -2471,7 +2474,7 @@ $.message.fr = {
     "Testing Hypothesis mu12_title": "Test deux moyennes de population",
     "Testing Hypothesis sigma12_title": "Test deux variances de population",
     "Testing Hypothesis P12_title": "Test deux proportion de population",
-    "Testing Hypothesis muA": "Test d'hypothèse &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Test d'hypothèse &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Test d'hypothèse &mu; - C, n",
     "Testing Hypothesis mu": "Test d'hypothèse &mu;",
     "Testing Hypothesis sigma": "Test d'hypothèse &sigma;<sup>2</sup>",
@@ -2562,8 +2565,8 @@ $.message.fr = {
     "NoInteraction": "Aucune Interaction",
     "ExistInteraction": "Exister Interaction",
     "eStatLecture": "eStat Intro Conférence",
-    "NonParametricMu12_title": "Wilcoxon Rang Sum Tester",
-    "NonParametricMu12": "Wilcoxon Rang Sum Tester : Paramètre d'emplacement M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Wilcoxon Rang Sum Tester", 
+    "NonParametricMu12": "Wilcoxon Rang Sum Tester : Paramètre d'emplacement M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Rang Sum Tester",
     "Sample Range": "Rang Sum",
     "DistributionTable": "Distribution Table",
@@ -2586,7 +2589,7 @@ $.message.fr = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rang Sum Test,  n > 20 Normal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Sélection de variables",
     "VariableSelect4": "Plus de variables d'analyse peuvent être sélectionnées",
@@ -2599,12 +2602,12 @@ $.message.fr = {
     "NameVar": "Nom Var",
     "n_variance": "n-1 formule",
     "RandomNumber": "Nombre aléatoire",
-    "RealNumber": "Nombre réel",
-    "IntegerNumber": "Nombre entier",
-    "NumberData": "Nombre de données",
-    "NumberDigit": "Chiffre décimal",
-    "NormalTable": "Table de distribution normale",
-    "Percentile": "Tableau des centiles",
+    "RealNumber":     "Nombre réel",
+    "IntegerNumber":  "Nombre entier",
+    "NumberData":     "Nombre de données",
+    "NumberDigit":    "Chiffre décimal",
+    "NormalTable":    "Table de distribution normale",
+    "Percentile":     "Tableau des centiles",
     "StudentRangeDist": "HSD Répartition de la gamme",
     "copy link": "copiar enlace",
     "WithoutReplacement": "sans remplacement",
@@ -2757,23 +2760,23 @@ svgStr[96][4] = "Résiduel vs Influence Diagramme";
 svgStr[97][4] = "Cook's Distance Diagramme";
 svgStr[98][4] = "Cook's Distance";
 svgStr[99][4] = "Ordre des données";
-svgStr[100][4] = "Différence moyenne";
-svgStr[101][4] = "Moyens de test";
-svgStr[102][4] = "Traitement";
-svgStr[103][4] = "Interaction";
-svgStr[104][4] = "Total de ligne";
-svgStr[105][4] = "Total de colonne";
-svgStr[106][4] = "Coefficient de corrélation multiple";
-svgStr[107][4] = "<h3>Analyse de corrélation</h3>";
-svgStr[108][4] = "Matrice de corrélation";
-svgStr[109][4] = "Facteur A - Facteur B Graphique moyen";
-svgStr[110][4] = "Influence";
-svgStr[111][4] = "Graphique d'information géographique";
-svgStr[112][4] = "Gamme";
-svgStr[113][4] = "Moyenne - Ecart-type Diagramme";
-svgStr[114][4] = "Population variance";
-svgStr[115][4] = "d'hypothèse";
-svgStr[116][4] = "test";
+svgStr[100][4]= "Différence moyenne";
+svgStr[101][4]= "Moyens de test";
+svgStr[102][4]= "Traitement";
+svgStr[103][4]= "Interaction";
+svgStr[104][4]= "Total de ligne";
+svgStr[105][4]= "Total de colonne";
+svgStr[106][4]= "Coefficient de corrélation multiple";
+svgStr[107][4]= "<h3>Analyse de corrélation</h3>";
+svgStr[108][4]= "Matrice de corrélation";
+svgStr[109][4]= "Facteur A - Facteur B Graphique moyen";
+svgStr[110][4]= "Influence";
+svgStr[111][4]= "Graphique d'information géographique";
+svgStr[112][4]= "Gamme";
+svgStr[113][4]= "Moyenne - Ecart-type Diagramme";
+svgStr[114][4]= "Population variance";
+svgStr[115][4]= "d'hypothèse";
+svgStr[116][4]= "test";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -2885,6 +2888,7 @@ svgStrU[107][4] = "Gamme interquartile<br>IQR";
 svgStrU[108][4] = "Coefficient de détermination";
 svgStrU[109][4] = "Fréquence relative cumulée (%)";
 svgStrU[110][4] = "Nombre maximum d'entiers de la distribution uniforme";
+svgStrU[111][4] = "Déplacer un point avec la souris";
 
 // German
 $.message.de = {
@@ -3033,7 +3037,7 @@ $.message.de = {
     "Testing Hypothesis mu12_title": "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12_title": "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
     "Testing Hypothesis P12_title": "Hypothesen testen p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis muA": "Hypothesen testen &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Hypothesen testen &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Hypothesen testen &mu; - C, n",
     "Testing Hypothesis mu": "Hypothesen testen &mu;",
     "Testing Hypothesis sigma": "Hypothesen testen &sigma;<sup>2</sup>",
@@ -3121,8 +3125,8 @@ $.message.de = {
     "NoInteraction": "Keine Interaktion",
     "ExistInteraction": "Interaction existiert",
     "eStatLecture": "eStat Einführung Vorlesung",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test",
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
+    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Rangsum Test",
     "Sample Range": "Rangsum",
     "DistributionTable": "Verteilungstabelle",
@@ -3145,7 +3149,7 @@ $.message.de = {
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Annäherung Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rangsum Test,  n>25 Normal Approximation Test",
     "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> Annäherung test",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Auswahl : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Auswahl",
     "VariableSelect4": "Weitere Analysevariablen können ausgewählt werden",
@@ -3158,12 +3162,12 @@ $.message.de = {
     "NameVar": "Name Var",
     "n_variance": "n-1 formel",
     "RandomNumber": "Zufallszahl",
-    "RealNumber": "Reelle Zahl",
-    "IntegerNumber": "Ganzzahl",
-    "NumberData": "Anzahl der Daten",
-    "NumberDigit": "Dezimalstelle",
-    "NormalTable": "Normal Distribution Table",
-    "Percentile": "Perzentil-Tabellee",
+    "RealNumber":     "Reelle Zahl",
+    "IntegerNumber":  "Ganzzahl",
+    "NumberData":     "Anzahl der Daten",
+    "NumberDigit":    "Dezimalstelle",
+    "NormalTable":    "Normal Distribution Table",
+    "Percentile":     "Perzentil-Tabellee",
     "StudentRangeDist": "HSD Bereichsverteilung",
     "copy link": "Link kopieren",
     "WithoutReplacement": "ohne Ersatz",
@@ -3316,23 +3320,23 @@ svgStr[96][5] = "Residual vs Hebelwirkungplot";
 svgStr[97][5] = "Cook's Entfernungdiagramm";
 svgStr[98][5] = "Cook's Entfernung";
 svgStr[99][5] = "Datenreihenfolge";
-svgStr[100][5] = "Mittlere Differenz";
-svgStr[101][5] = "Testmittel";
-svgStr[102][5] = "Behandlung";
-svgStr[103][5] = "Interaktion";
-svgStr[104][5] = "Zeilensumme";
-svgStr[105][5] = "Spalte Gesamt";
-svgStr[106][5] = "Mehrfacher Korrelationskoeffizient";
-svgStr[107][5] = "<h3>Korrelationsanalyse</h3>";
-svgStr[108][5] = "Korrelationsmatrix";
-svgStr[109][5] = "Faktor A - Faktor B Mittlerer Graph";
-svgStr[110][5] = "Hebelwirkung";
-svgStr[111][5] = "Geografisches Informationsdiagramm";
-svgStr[112][5] = "Angebot";
-svgStr[113][5] = "Mittelwert - Standardabweichung Diagramm";
-svgStr[114][5] = "Grundgesamtheit Varianz";
-svgStr[115][5] = "Hypothesen";
-svgStr[116][5] = "test";
+svgStr[100][5]= "Mittlere Differenz";
+svgStr[101][5]= "Testmittel";
+svgStr[102][5]= "Behandlung";
+svgStr[103][5]= "Interaktion";
+svgStr[104][5]= "Zeilensumme";
+svgStr[105][5]= "Spalte Gesamt";
+svgStr[106][5]= "Mehrfacher Korrelationskoeffizient";
+svgStr[107][5]= "<h3>Korrelationsanalyse</h3>";
+svgStr[108][5]= "Korrelationsmatrix";
+svgStr[109][5]= "Faktor A - Faktor B Mittlerer Graph";
+svgStr[110][5]= "Hebelwirkung";
+svgStr[111][5]= "Geografisches Informationsdiagramm";
+svgStr[112][5]= "Angebot";
+svgStr[113][5]= "Mittelwert - Standardabweichung Diagramm";
+svgStr[114][5]= "Grundgesamtheit Varianz";
+svgStr[115][5]= "Hypothesen";
+svgStr[116][5]= "test";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3444,6 +3448,7 @@ svgStrU[107][5] = "Interquartilsabstand <br> IQR";
 svgStrU[108][5] = "Bestimmtheitsmaß";
 svgStrU[109][5] = "Kumulierte relative Häufigkeit (%)";
 svgStrU[110][5] = "Maximale Anzahl von Ganzzahlen der Gleichverteilung";
+svgStrU[111][5] = "Bewegen Sie einen Punkt mit der Maus";
 
 // Spanish
 $.message.es = {
@@ -3592,7 +3597,7 @@ $.message.es = {
     "Testing Hypothesis mu12_title": "Prueba de hipótesis dos medias",
     "Testing Hypothesis sigma12_title": "Prueba de hipótesis dos varianza",
     "Testing Hypothesis P12_title": "Prueba de hipótesis dos proporción",
-    "Testing Hypothesis muA": "Prueba de hipótesis &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Prueba de hipótesis &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Prueba de hipótesis &mu; - C, n",
     "Testing Hypothesis mu": "Prueba de hipótesis &mu;",
     "Testing Hypothesis sigma": "Prueba de hipótesis &sigma;<sup>2</sup>",
@@ -3683,8 +3688,8 @@ $.message.es = {
     "NoInteraction": "Sin Interaction",
     "ExistInteraction": "Interacción existente",
     "eStatLecture": "eStat conferencia introductoria",
-    "NonParametricMu12_title": "Wilcoxon Rank Sum Test",
-    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
+    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "prueba de suma de rango",
     "Sample Range": "suma de rango",
     "DistributionTable": "Mesa de Distribución",
@@ -3707,7 +3712,7 @@ $.message.es = {
     "WilcoxonSignCondition": "Si n≤ 20 Wilcoxon prueba de suma de rango,  n > 20 Normal prueba de aproximación",
     "WilcoxonRankCondition": "Si n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon prueba de suma de rango,  n>25 Normal prueba de aproximación",
     "KruskalCondition": "Si n≤ 10 H prueba de distribución,  no &chi;<sup>2</sup> prueba de aproximación",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Selección de Variables : Click var name or use RHS selection box ",
     "VariableSelect3": "Selección de Variables",
     "VariableSelect4": "Se pueden seleccionar más variables de análisis",
@@ -3720,12 +3725,12 @@ $.message.es = {
     "NameVar": "Nombre Var",
     "n_variance": "n-1 fórmula",
     "RandomNumber": "Número aleatorio",
-    "RealNumber": "Número Real",
-    "IntegerNumber": "Número entero",
-    "NumberData": "Numero de datos",
-    "NumberDigit": "Dígito decimal",
-    "NormalTable": "Tabla de distribución normal",
-    "Percentile": "Tabla percentil",
+    "RealNumber":     "Número Real",
+    "IntegerNumber":  "Número entero",
+    "NumberData":     "Numero de datos",
+    "NumberDigit":    "Dígito decimal",
+    "NormalTable":    "Tabla de distribución normal",
+    "Percentile":     "Tabla percentil",
     "StudentRangeDist": "HSD Distribución de rango",
     "copy link": "copiar link",
     "WithoutReplacement": "sin reemplazo",
@@ -3878,23 +3883,23 @@ svgStr[96][6] = "Residual vs Parcela de apalancamiento";
 svgStr[97][6] = "Cook's Distancia el gráfico";
 svgStr[98][6] = "Cook's Distancia";
 svgStr[99][6] = "orden de datos";
-svgStr[100][6] = "Diferencia significativa";
-svgStr[101][6] = "Medios de prueba";
-svgStr[102][6] = "Tratamiento";
-svgStr[103][6] = "Interacción";
-svgStr[104][6] = "Total de la fila";
-svgStr[105][6] = "Columna total";
-svgStr[106][6] = "Correlación múltiple Coeff";
-svgStr[107][6] = "<h3>Correlation Analysis</h3>";
-svgStr[108][6] = "Análisis de correlación";
-svgStr[109][6] = "Factor A - Factor B Gráfico medio";
-svgStr[110][6] = "apalancamiento";
-svgStr[111][6] = "Gráfico de información geográfica";
-svgStr[112][6] = "Distancia";
-svgStr[113][6] = "Media - Desviación estándar Grafico";
-svgStr[114][6] = "Varianza Poblacional";
-svgStr[115][6] = "hipótesis";
-svgStr[116][6] = "prueba";
+svgStr[100][6]= "Diferencia significativa";
+svgStr[101][6]= "Medios de prueba";
+svgStr[102][6]= "Tratamiento";
+svgStr[103][6]= "Interacción";
+svgStr[104][6]= "Total de la fila";
+svgStr[105][6]= "Columna total";
+svgStr[106][6]= "Correlación múltiple Coeff";
+svgStr[107][6]= "<h3>Correlation Analysis</h3>";
+svgStr[108][6]= "Análisis de correlación";
+svgStr[109][6]= "Factor A - Factor B Gráfico medio";
+svgStr[110][6]= "apalancamiento";
+svgStr[111][6]= "Gráfico de información geográfica";
+svgStr[112][6]= "Distancia";
+svgStr[113][6]= "Media - Desviación estándar Grafico";
+svgStr[114][6]= "Varianza Poblacional";
+svgStr[115][6]= "hipótesis";
+svgStr[116][6]= "prueba";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -4006,6 +4011,7 @@ svgStrU[107][6] = "Gama intercuartil <br> IQR";
 svgStrU[108][6] = "Coeficiente de determinación";
 svgStrU[109][6] = "Frecuencia relativa acumulada (%)";
 svgStrU[110][6] = "Número máximo de enteros de distribución uniforme";
+svgStrU[111][6] = "Mueve un punto con el mouse";
 
 // Vietnamese
 $.message.vi = {
@@ -4154,7 +4160,7 @@ $.message.vi = {
     "Testing Hypothesis mu12_title": "Kiểm định Trung bình hai tổng thể",
     "Testing Hypothesis sigma12_title": "Kiểm định Phương sai hai tổng thể",
     "Testing Hypothesis P12_title": "Kiểm định p1, p2",
-    "Testing Hypothesis muA": "Kiểm định giả thuyết &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Kiểm định giả thuyết &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Kiểm định giả thuyết &mu; - C, n",
     "Testing Hypothesis mu": "Kiểm định giả thuyết &mu;",
     "Testing Hypothesis sigma": "Kiểm định giả thuyết &sigma;<sup>2</sup>",
@@ -4245,8 +4251,8 @@ $.message.vi = {
     "NoInteraction": "Không tương tác",
     "ExistInteraction": "Tương tác hiện tại",
     "eStatLecture": "Bài giảng eStat ",
-    "NonParametricMu12_title": " Kiểm định hạng Wilconxon ",
-    "NonParametricMu12": "Wilcoxon Xếp hạng Tổng kiểm tra : Thông số thống kê M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": " Kiểm định hạng Wilconxon ", 
+    "NonParametricMu12": "Wilcoxon Xếp hạng Tổng kiểm tra : Thông số thống kê M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Kiểm định hạng",
     "Sample Range": "Phạm vi mẫu",
     "DistributionTable": "Bảng phân phối",
@@ -4265,7 +4271,7 @@ $.message.vi = {
     "WilcoxonSignCondition": "Nếu n≤ 20 Wilcoxon Xếp hạng Tổng kiểm tra,  n > 20 Kiểm định xấp xỉ",
     "WilcoxonRankCondition": "Nếu n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Kiểm định xấp xỉ chuẩn",
     "KruskalCondition": "Nếu n≤ 10 H Kiểm tra phân phối,  else &chi;<sup>2</sup> Kiểm định xấp xỉ",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Lựa chọn biến",
     "VariableSelect4": "Có thể chọn các biến phân tích khác",
@@ -4278,12 +4284,12 @@ $.message.vi = {
     "NameVar": "Biến tên",
     "n_variance": "n-1 công thức",
     "RandomNumber": "Số ngẫu nhiên",
-    "RealNumber": "Số thực",
-    "IntegerNumber": "Số nguyên",
-    "NumberData": "Số lượng dữ liệu",
-    "NumberDigit": "Chữ số thập phân",
-    "NormalTable": "Bảng phân phối bình thường",
-    "Percentile": "Bảng tỷ lệ phần trăm",
+    "RealNumber":     "Số thực",
+    "IntegerNumber":  "Số nguyên",
+    "NumberData":     "Số lượng dữ liệu",
+    "NumberDigit":    "Chữ số thập phân",
+    "NormalTable":    "Bảng phân phối bình thường",
+    "Percentile":     "Bảng tỷ lệ phần trăm",
     "StudentRangeDist": "HSD Phân phối phạm vi",
     "copy link": "sao chép đường dẫn",
     "WithoutReplacement": "không có vật thay thế",
@@ -4436,23 +4442,23 @@ svgStr[96][7] = "Dư so với Đòn bẩy Lô đất";
 svgStr[97][7] = "Cook Khoảng cách đất";
 svgStr[98][7] = "Cook Khoảng cách";
 svgStr[99][7] = "Thứ tự dữ liệu";
-svgStr[100][7] = "Nghĩa khác";
-svgStr[101][7] = "Phương tiện kiểm tra";
-svgStr[102][7] = "Điều trị";
-svgStr[103][7] = "Sự tương tác";
-svgStr[104][7] = "Tổng số hàng";
-svgStr[105][7] = "Tổng số cột";
-svgStr[106][7] = "Hệ số tương quan nhiều";
-svgStr[107][7] = "<h3>Phân tích tương quan</h3>";
-svgStr[108][7] = "Ma trận tương quan";
-svgStr[109][7] = "Hệ số A - Hệ số B Đồ thị trung bình";
-svgStr[110][7] = "Đòn bẩy";
-svgStr[111][7] = "Biểu đồ thông tin địa lý";
-svgStr[112][7] = "Phạm vi";
-svgStr[113][7] = "Trung bình - Độ lệch chuẩn đồ thị";
-svgStr[114][7] = "Phương sai tổng thể";
-svgStr[115][7] = "giả thuyết";
-svgStr[116][7] = "kiểm tra";
+svgStr[100][7]= "Nghĩa khác";
+svgStr[101][7]= "Phương tiện kiểm tra";
+svgStr[102][7]= "Điều trị";
+svgStr[103][7]= "Sự tương tác";
+svgStr[104][7]= "Tổng số hàng";
+svgStr[105][7]= "Tổng số cột";
+svgStr[106][7]= "Hệ số tương quan nhiều";
+svgStr[107][7]= "<h3>Phân tích tương quan</h3>";
+svgStr[108][7]= "Ma trận tương quan";
+svgStr[109][7]= "Hệ số A - Hệ số B Đồ thị trung bình";
+svgStr[110][7]= "Đòn bẩy";
+svgStr[111][7]= "Biểu đồ thông tin địa lý";
+svgStr[112][7]= "Phạm vi";
+svgStr[113][7]= "Trung bình - Độ lệch chuẩn đồ thị";
+svgStr[114][7]= "Phương sai tổng thể";
+svgStr[115][7]= "giả thuyết";
+svgStr[116][7]= "kiểm tra";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -4564,6 +4570,7 @@ svgStrU[107][7] = "Phạm vi liên vùng <br> IQR";
 svgStrU[108][7] = "Hệ số xác định";
 svgStrU[109][7] = "Tần số tương đối tích lũy (%)";
 svgStrU[110][7] = "Số lượng tối đa của số nguyên phân phối đồng đều";
+svgStrU[111][7] = "Di chuyển một điểm bằng chuột";
 
 // Indonesian
 $.message.id = {
@@ -4712,7 +4719,7 @@ $.message.id = {
     "Testing Hypothesis mu12_title": "Uji Hipotesis Rata-rata Dua Populasi",
     "Testing Hypothesis sigma12_title": "Uji Hipotesis Varians Dua Populasi",
     "Testing Hypothesis P12_title": "Uji Hipotesis Proporsi Dua Populasi",
-    "Testing Hypothesis muA": "Pengujian Hipotesis &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Pengujian Hipotesis &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Pengujian Hipotesis &mu; - C, n",
     "Testing Hypothesis mu": "Pengujian Hipotesis &mu;",
     "Testing Hypothesis sigma": "Pengujian Hipotesis &sigma;<sup>2</sup>",
@@ -4803,8 +4810,8 @@ $.message.id = {
     "NoInteraction": "Tanpa Interaction",
     "ExistInteraction": "Ada Interaction",
     "eStatLecture": "eStat Pengantar Kuliahe",
-    "NonParametricMu12_title": "Wilcoxon Tes Jumlah Peringkat",
-    "NonParametricMu12": "Wilcoxon Tes Jumlah Peringkatt : Parameter Lokasi M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Wilcoxon Tes Jumlah Peringkat", 
+    "NonParametricMu12": "Wilcoxon Tes Jumlah Peringkatt : Parameter Lokasi M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Uji Jumlah Peringkat",
     "Sample Range": "Jumlah Pangkat",
     "DistributionTable": "Tabel Distribusi",
@@ -4827,7 +4834,7 @@ $.message.id = {
     "WilcoxonSignCondition": "jika n≤ 20 Wilcoxon Tes Jumlah Peringkat,  n > 20 Normal Uji Approximation",
     "WilcoxonRankCondition": "jika n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Uji Jumlah Peringkat Wilcoxon, n>25 Pendekatan Normal",
     "KruskalCondition": "jika n≤ 10 Uji Distribusi H,  else &chi;<sup>2</sup> Uji Aproksimasi",
-    "VariableSelect": "* Analisis Data : Muat File >> Pilih Variabel >>  Klik Ikon",
+    "VariableSelect":  "* Analisis Data : Muat File >> Pilih Variabel >>  Klik Ikon",
     "VariableSelect2": "* Pemilihan Variabel : Klik nama variabel atau gunakan kotak pemilihan RHS",
     "VariableSelect3": "Seleksi Variabel",
     "VariableSelect4": "Lebih banyak variabel analisis dapat dipilih",
@@ -4840,12 +4847,12 @@ $.message.id = {
     "NameVar": "Var Nama",
     "n_variance": "n-1 rumus",
     "RandomNumber": "Angka acak",
-    "RealNumber": "Bilangan asli",
-    "IntegerNumber": "Nomor Integer",
-    "NumberData": "Jumlah Data",
-    "NumberDigit": "Digit desimal",
-    "NormalTable": "Tabel Distribusi Normal",
-    "Percentile": "Tabel Persentil",
+    "RealNumber":     "Bilangan asli",
+    "IntegerNumber":  "Nomor Integer",
+    "NumberData":     "Jumlah Data",
+    "NumberDigit":    "Digit desimal",
+    "NormalTable":    "Tabel Distribusi Normal",
+    "Percentile":     "Tabel Persentil",
     "StudentRangeDist": "HSD Distribusi Rentang",
     "copy link": "Salin tautan",
     "WithoutReplacement": "tanpa penggantian",
@@ -4998,23 +5005,23 @@ svgStr[96][8] = "Plot Residual vs Pengaruh";
 svgStr[97][8] = "Grafik Jarak Cook";
 svgStr[98][8] = "Jarak Cook";
 svgStr[99][8] = "Urutan Data";
-svgStr[100][8] = "Beda rata-rata";
-svgStr[101][8] = "Pengujian Rata-rata";
-svgStr[102][8] = "Perlakuan";
-svgStr[103][8] = "Interaksi";
-svgStr[104][8] = "Total Baris";
-svgStr[105][8] = "Total Kolom";
-svgStr[106][8] = "Koefisien Korelasi Berganda";
-svgStr[107][8] = "<h3>Analisis korelasi</h3>";
-svgStr[108][8] = "Matriks Korelasi";
-svgStr[109][8] = "Faktor A - Faktor B Grafik Berartih";
-svgStr[110][8] = "Pengaruh";
-svgStr[111][8] = "Grafik Informasi Geografis";
-svgStr[112][8] = "Jarak";
-svgStr[113][8] = "Rata-rata Standar Deviasi Grafik";
-svgStr[114][8] = "Varians Satu Populasi";
-svgStr[115][8] = "Hipotesis";
-svgStr[116][8] = "Uji";
+svgStr[100][8]= "Beda rata-rata";
+svgStr[101][8]= "Pengujian Rata-rata";
+svgStr[102][8]= "Perlakuan";
+svgStr[103][8]= "Interaksi";
+svgStr[104][8]= "Total Baris";
+svgStr[105][8]= "Total Kolom";
+svgStr[106][8]= "Koefisien Korelasi Berganda";
+svgStr[107][8]= "<h3>Analisis korelasi</h3>";
+svgStr[108][8]= "Matriks Korelasi";
+svgStr[109][8]= "Faktor A - Faktor B Grafik Berartih";
+svgStr[110][8]= "Pengaruh";
+svgStr[111][8]= "Grafik Informasi Geografis";
+svgStr[112][8]= "Jarak";
+svgStr[113][8]= "Rata-rata Standar Deviasi Grafik";
+svgStr[114][8]= "Varians Satu Populasi";
+svgStr[115][8]= "Hipotesis";
+svgStr[116][8]= "Uji";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -5126,6 +5133,7 @@ svgStrU[107][8] = "Rentang Interkuartil <br> IQR";
 svgStrU[108][8] = "Koefisien Determinasi";
 svgStrU[109][8] = "Frekuensi Relatif terakumulasi (%)";
 svgStrU[110][8] = "Jumlah maksimum bilangan bulat dari Distribusi Seragam";
+svgStrU[111][8] = "Pindahkan satu titik dengan mouse";
 
 
 // Mongolian
@@ -5275,7 +5283,7 @@ $.message.mn = {
     "Testing Hypothesis mu12_title": "Хоёр дундажийн тухай таамаглалын тест",
     "Testing Hypothesis sigma12_title": "Хоёр вариацийн тухай таамаглалын тест",
     "Testing Hypothesis P12_title": "Хоёр хувийн жин буюу пропорцийн тухай таамаглалын тест",
-    "Testing Hypothesis muA": "Тестэн таамаглал &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Тестэн таамаглал &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Тестэн таамаглал &mu; - C, n",
     "Testing Hypothesis mu": "Тестэн таамаглал &mu;",
     "Testing Hypothesis sigma": "Тестэн таамаглал &sigma;<sup>2</sup>",
@@ -5364,8 +5372,8 @@ $.message.mn = {
     "NoInteraction": "Харилцан яриа үгүй",
     "ExistInteraction": "Харилцан холбоо үүсгэх",
     "eStatLecture": "eStat Лекцийн танилцуулга",
-    "NonParametricMu12_title": "Wilcoxon Дундаж дүн шинжилгээt",
-    "NonParametricMu12": "Wilcoxon Дундаж дүн шинжилгээ : Байршлын параметрr M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Wilcoxon Дундаж дүн шинжилгээt", 
+    "NonParametricMu12": "Wilcoxon Дундаж дүн шинжилгээ : Байршлын параметрr M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Дундаж дүн шинжилгээ",
     "Sample Range": "Дугаар Сар",
     "DistributionTable": "Түгээлт Хүснэгтe",
@@ -5388,7 +5396,7 @@ $.message.mn = {
     "WilcoxonSignCondition": "хэрэв n≤ 20 Wilcoxon Дундаж дүн шинжилгээ,  n > 20 Normal Тооцоолол",
     "WilcoxonRankCondition": "v n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Дундаж дүн шинжилгээ,  n>25 Normal Тооцоолол",
     "KruskalCondition": "хэрэв n≤ 10 H Түгээлт Тест,  else &chi;<sup>2</sup> Тооцоолол",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Хувьсах сонголт",
     "VariableSelect4": "Илүү их дүн шинжилгээ хийх хувьсагчдыг сонгож болно",
@@ -5401,12 +5409,12 @@ $.message.mn = {
     "NameVar": "Хувьсах нэр",
     "n_variance": "n-1 томъёо",
     "RandomNumber": "санамсаргүй тоо",
-    "RealNumber": "Бодит тоо",
-    "IntegerNumber": "Бүхэл тоо",
-    "NumberData": "Өгөгдлийн тоо",
-    "NumberDigit": "Дижитал тоо",
-    "NormalTable": "Хэвийн хуваарилах хүснэгт",
-    "Percentile": "Хувь Хүснэгт",
+    "RealNumber":     "Бодит тоо",
+    "IntegerNumber":  "Бүхэл тоо",
+    "NumberData":     "Өгөгдлийн тоо",
+    "NumberDigit":    "Дижитал тоо",
+    "NormalTable":    "Хэвийн хуваарилах хүснэгт",
+    "Percentile":     "Хувь Хүснэгт",
     "StudentRangeDist": "HSD Range тархац",
     "copy link": "хуулбар холбоос",
     "WithoutReplacement": "орлуулахгүйгээр",
@@ -5559,23 +5567,23 @@ svgStr[96][9] = "Үлдсэн vs Хөшүүрэг plot";
 svgStr[97][9] = "Cook Зайн график";
 svgStr[98][9] = "Cook Зай";
 svgStr[99][9] = "Өгөгдлийн дараалал";
-svgStr[100][9] = "Дундаж ялгаа";
-svgStr[101][9] = "Тест хийх";
-svgStr[102][9] = "Эмчилгээ";
-svgStr[103][9] = "Харилцаа холбоо";
-svgStr[104][9] = "Бүгд";
-svgStr[105][9] = "Багана Нийт";
-svgStr[106][9] = "Олон харилцан хамаарлын коэффициент";
-svgStr[107][9] = "<h3>Корреляцийн шинжилгээ</h3>";
-svgStr[108][9] = "Корреляцийн матриц";
-svgStr[109][9] = "Фактор A - Фактор B Mean Graph";
-svgStr[110][9] = "Хөшүүрэг";
-svgStr[111][9] = "Газар зүйн мэдээллийн график";
-svgStr[112][9] = "Хүрээ";
-svgStr[113][9] = "Дундаж  утга - Стандарт хэлбэлзэл график";
-svgStr[114][9] = "Хүн амын дундаж кватрат хазайлт";
-svgStr[115][9] = "таамаглал";
-svgStr[116][9] = "Туршилт";
+svgStr[100][9]= "Дундаж ялгаа";
+svgStr[101][9]= "Тест хийх";
+svgStr[102][9]= "Эмчилгээ";
+svgStr[103][9]= "Харилцаа холбоо";
+svgStr[104][9]= "Бүгд";
+svgStr[105][9]= "Багана Нийт";
+svgStr[106][9]= "Олон харилцан хамаарлын коэффициент";
+svgStr[107][9]= "<h3>Корреляцийн шинжилгээ</h3>";
+svgStr[108][9]= "Корреляцийн матриц";
+svgStr[109][9]= "Фактор A - Фактор B Mean Graph";
+svgStr[110][9]= "Хөшүүрэг";
+svgStr[111][9]= "Газар зүйн мэдээллийн график";
+svgStr[112][9]= "Хүрээ";
+svgStr[113][9]= "Дундаж  утга - Стандарт хэлбэлзэл график";
+svgStr[114][9]= "Хүн амын дундаж кватрат хазайлт";
+svgStr[115][9]= "таамаглал";
+svgStr[116][9]= "Туршилт";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -5687,6 +5695,7 @@ svgStrU[107][9] = "Interquartile Range <br> IQR";
 svgStrU[108][9] = "Тодорхойлох коэффициент";
 svgStrU[109][9] = "Хуримтлагдсан давтамж (%)";
 svgStrU[110][9] = "Uniform Distribution бүхэл тоо";
+svgStrU[111][9] = "Хулганы тусламжтайгаар цэгийг шилжүүл";
 
 // Chinese - Simplified
 $.message.zh = {
@@ -5835,7 +5844,7 @@ $.message.zh = {
     "Testing Hypothesis mu12_title": "假设检验两总体均值",
     "Testing Hypothesis sigma12_title": "假设检验两总体方差",
     "Testing Hypothesis P12_title": "假设检验两总体比例",
-    "Testing Hypothesis muA": "假设检验 &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "假设检验 &mu; - C, &beta;",
     "Testing Hypothesis muAB": "假设检验 &mu; - C, n",
     "Testing Hypothesis mu": "假设检验: 均值&mu;",
     "Testing Hypothesis sigma": "假设检验: 变异数&sigma;<sup>2</sup>",
@@ -5926,8 +5935,8 @@ $.message.zh = {
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat 入門講義",
-    "NonParametricMu12_title": "非參數Wilcoxon 順位合檢定",
-    "NonParametricMu12": "非參數Wilcoxon 順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "非參數Wilcoxon 順位合檢定", 
+    "NonParametricMu12": "非參數Wilcoxon 順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
     "DistributionTable": "分布表",
     "SignedRankTestDist": "Wilcoxon 符號順位合分布",
@@ -5950,7 +5959,7 @@ $.message.zh = {
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 順位合檢定t,  n > 20 正規近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
     "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
-    "VariableSelect": "* 資料分析 : 变量選択 >>  Click Icon",
+    "VariableSelect":  "* 資料分析 : 变量選択 >>  Click Icon",
     "VariableSelect2": "* 变量選択 : Click 变量名 / 右側選択箱利用 ",
     "VariableSelect3": "* 变量選択",
     "VariableSelect4": "可以选择更多X变量",
@@ -5962,12 +5971,12 @@ $.message.zh = {
     "NameVar": "名称变量",
     "n_variance": "n-1 式",
     "RandomNumber": "随机数",
-    "RealNumber": "实数",
-    "IntegerNumber": "整数",
-    "NumberData": "数据数量",
-    "NumberDigit": "小数位数",
-    "NormalTable": "正态分布表",
-    "Percentile": "百分表",
+    "RealNumber":     "实数",
+    "IntegerNumber":  "整数",
+    "NumberData":     "数据数量",
+    "NumberDigit":    "小数位数",
+    "NormalTable":    "正态分布表",
+    "Percentile":     "百分表",
     "StudentRangeDist": "HSD 范围分布",
     "copy link": "复制链接",
     "WithoutReplacement": "没有恢复提取",
@@ -6120,23 +6129,23 @@ svgStr[96][10] = "残差-Leverage";
 svgStr[97][10] = "Cook距離图";
 svgStr[98][10] = "Cook距離";
 svgStr[99][10] = "資料順序";
-svgStr[100][10] = "平均差";
-svgStr[101][10] = "平均差檢定";
-svgStr[102][10] = "處理";
-svgStr[103][10] = "交互作用";
-svgStr[104][10] = "行合";
-svgStr[105][10] = "列合";
-svgStr[106][10] = "重相關係數";
-svgStr[107][10] = "<h3>相關分析</h3>";
-svgStr[108][10] = "相關係數行列";
-svgStr[109][10] = "因子A - 因子B 平均图";
-svgStr[110][10] = "杠杆作用";
-svgStr[111][10] = "地理信息图";
-svgStr[112][10] = "范围";
-svgStr[113][10] = "平均 - 标准差图";
-svgStr[114][10] = "总体方差";
-svgStr[115][10] = "假设";
-svgStr[116][10] = "檢定";
+svgStr[100][10]= "平均差";
+svgStr[101][10]= "平均差檢定";
+svgStr[102][10]= "處理";
+svgStr[103][10]= "交互作用";
+svgStr[104][10]= "行合";
+svgStr[105][10]= "列合";
+svgStr[106][10]= "重相關係數";
+svgStr[107][10]= "<h3>相關分析</h3>";
+svgStr[108][10]= "相關係數行列";
+svgStr[109][10]= "因子A - 因子B 平均图";
+svgStr[110][10]= "杠杆作用";
+svgStr[111][10]= "地理信息图";
+svgStr[112][10]= "范围";
+svgStr[113][10]= "平均 - 标准差图";
+svgStr[114][10]= "总体方差";
+svgStr[115][10]= "假设";
+svgStr[116][10]= "檢定";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -6170,33 +6179,7 @@ svgStrU[29][10] = "[方差分析]";
 svgStrU[30][10] = "输入相关系数后按确认";
 svgStrU[31][10] = "回归分析";
 svgStrU[32][10] = "列变量";
-svgStrU[33][10] = "行变量";
-svgStrU[34][10] = "平均"
-svgStrU[35][10] = "标准差"
-svgStrU[36][10] = "<h3> 直方图<br>频数分布表</h3>";
-svgStrU[37][10] = "群组名称";
-svgStrU[38][10] = "阶级区间";
-svgStrU[39][10] = "叶";
-svgStrU[40][10] = "叶";
-svgStrU[41][10] = "群组1 叶";
-svgStrU[42][10] = "群组2 叶";
-svgStrU[43][10] = "<h3>基本统计量</h3>";
-svgStrU[44][10] = "资料数";
-svgStrU[45][10] = "最小值";
-svgStrU[46][10] = "中位数";
-svgStrU[47][10] = "最大值";
-svgStrU[48][10] = "全体";
-svgStrU[49][10] = "指数分布";
-svgStrU[50][10] = "均匀分布";
-svgStrU[51][10] = "估计准确率";
-svgStrU[52][10] = "- 单击鼠标添加观察点，eStat会计算出回归线。";
-svgStrU[53][10] = "- 移动或者删除一个观察点，观看回归线的变化。";
-svgStrU[54][10] = "[样本统计量] ";
-svgStrU[55][10] = "[样本 1 统计量] ";
-svgStrU[56][10] = "[样本 2 统计量] ";
-svgStrU[57][10] = "显著性水平";
-svgStrU[58][10] = "列行独立";
-svgStrU[59][10] = "列行不独立";
+svgStrU[33][10] = "行变量";svgStrU[34][10] = "平均"svgStrU[35][10] = "标准差"svgStrU[36][10] = "<h3> 直方图<br>频数分布表</h3>";svgStrU[37][10] = "群组名称";svgStrU[38][10] = "阶级区间";svgStrU[39][10] = "叶";svgStrU[40][10] = "叶";svgStrU[41][10] = "群组1 叶";svgStrU[42][10] = "群组2 叶";svgStrU[43][10] = "<h3>基本统计量</h3>";svgStrU[44][10] = "资料数";  svgStrU[45][10] = "最小值";  svgStrU[46][10] = "中位数"; svgStrU[47][10] = "最大值";  svgStrU[48][10] = "全体";svgStrU[49][10] = "指数分布";svgStrU[50][10] = "均匀分布";svgStrU[51][10] = "估计准确率";svgStrU[52][10] = "- 单击鼠标添加观察点，eStat会计算出回归线。";svgStrU[53][10] = "- 移动或者删除一个观察点，观看回归线的变化。";svgStrU[54][10] = "[样本统计量] ";svgStrU[55][10] = "[样本 1 统计量] ";svgStrU[56][10] = "[样本 2 统计量] ";svgStrU[57][10] = "显著性水平";svgStrU[58][10] = "列行独立";svgStrU[59][10] = "列行不独立";
 svgStrU[60][10] = "观测分布";
 svgStrU[61][10] = "理论分布";
 svgStrU[62][10] = "观测频率的拟合优度检验";
@@ -6248,6 +6231,7 @@ svgStrU[107][10] = "四分位数范围<br> IQR";
 svgStrU[108][10] = "确定系数";
 svgStrU[109][10] = "累积相对频率（％）";
 svgStrU[110][10] = "分布均匀的最大整数数";
+svgStrU[111][10] = "用鼠标移动点";
 
 // Portugese
 $.message.pt = {
@@ -6399,7 +6383,7 @@ $.message.pt = {
     "Testing Hypothesis mu12_title": "Teste para duas médias",
     "Testing Hypothesis sigma12_title": "Teste para duas variâncias",
     "Testing Hypothesis P12_title": "Teste para duas proporções",
-    "Testing Hypothesis muA": "Teste Hipótese &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Teste Hipótese &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Teste Hipótese &mu; - C, n",
     "Testing Hypothesis mu": "Teste Hipótese &mu;",
     "Testing Hypothesis sigma": "Teste Hipótese &sigma;<sup>2</sup>",
@@ -6489,8 +6473,8 @@ $.message.pt = {
     "NoInteraction": "Sem Interação",
     "ExistInteraction": "Existe Interação",
     "eStatLecture": "Aula Intro eStat",
-    "NonParametricMu12_title": "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)",
-    "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)", 
+    "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Teste da Soma dos Postos",
     "Sample Range": "Amplitude Amostral",
     "DistributionTable": "Tabela de Distribuição",
@@ -6513,7 +6497,7 @@ $.message.pt = {
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon Rank Soma Teste,  n > 20 Teste Aproximado pela Normal",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Soma Teste,  n>25 Teste Aproximado pela Normal",
     "KruskalCondition": "n ≤ 10 H Distribuição Teste,  else &chi;<sup>2</sup> approximado teste",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* seleção de variáveis : Click var name or use RHS selection box ",
     "VariableSelect3": "seleção de variáveis",
     "VariableSelect4": "Mais variáveis ​​de análise podem ser selecionadas",
@@ -6526,12 +6510,12 @@ $.message.pt = {
     "NameVar": "Var de nome",
     "n_variance": "n-1 Fórmula",
     "RandomNumber": "Número aleatório",
-    "RealNumber": "Número real",
-    "IntegerNumber": "Número inteiro",
-    "NumberData": "Número de dados",
-    "NumberDigit": "Dígito Decimal",
-    "NormalTable": "Tabela de Distribuição Normal",
-    "Percentile": "Tabela percentual",
+    "RealNumber":     "Número real",
+    "IntegerNumber":  "Número inteiro",
+    "NumberData":     "Número de dados",
+    "NumberDigit":    "Dígito Decimal",
+    "NormalTable":    "Tabela de Distribuição Normal",
+    "Percentile":     "Tabela percentual",
     "StudentRangeDist": "Distribuição de Faixa",
     "copy link": "link de cópia",
     "WithoutReplacement": "Sem substituição",
@@ -6684,23 +6668,23 @@ svgStr[96][11] = "Residual vs Alavancagem gráfico";
 svgStr[97][11] = "Distância de Cook gráfico";
 svgStr[98][11] = "Distância de Cook";
 svgStr[99][11] = "Ordem dos Dados";
-svgStr[100][11] = "Diferença média";
-svgStr[101][11] = "Teste para uma média";
-svgStr[102][11] = "Tratamento";
-svgStr[103][11] = "Interação";
-svgStr[104][11] = "Total nas Linhas";
-svgStr[105][11] = "Total nas Colunas";
-svgStr[106][11] = "Coeficiente de Correlação Múltipla";
-svgStr[107][11] = "<h3>Análise de Correlação</h3>";
-svgStr[108][11] = "Matriz de Correlação";
-svgStr[109][11] = "Fator A - Fator B média gráfico";
-svgStr[110][11] = "Alavancagem";
-svgStr[111][11] = "Gráfico de Informação Geográfica";
-svgStr[112][11] = "Alcance";
-svgStr[113][11] = "Média - Desvio Padrão Gráfico";
-svgStr[114][11] = "Variância Populacional";
-svgStr[115][11] = "Hipótese";
-svgStr[116][11] = "Teste";
+svgStr[100][11]= "Diferença média";
+svgStr[101][11]= "Teste para uma média";
+svgStr[102][11]= "Tratamento";
+svgStr[103][11]= "Interação";
+svgStr[104][11]= "Total nas Linhas";
+svgStr[105][11]= "Total nas Colunas";
+svgStr[106][11]= "Coeficiente de Correlação Múltipla";
+svgStr[107][11]= "<h3>Análise de Correlação</h3>";
+svgStr[108][11]= "Matriz de Correlação";
+svgStr[109][11]= "Fator A - Fator B média gráfico";
+svgStr[110][11]= "Alavancagem";
+svgStr[111][11]= "Gráfico de Informação Geográfica";
+svgStr[112][11]= "Alcance";
+svgStr[113][11]= "Média - Desvio Padrão Gráfico";
+svgStr[114][11]= "Variância Populacional";
+svgStr[115][11]= "Hipótese";
+svgStr[116][11]= "Teste";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -6812,6 +6796,7 @@ svgStrU[107][11] = "Interquartile Range <br> IQR";
 svgStrU[108][11] = "Coeficiente de determinação";
 svgStrU[109][11] = "Freqüência Relativa Cumulada (%)";
 svgStrU[110][11] = "Número máximo de números inteiros de distribuição uniforme";
+svgStrU[111][11] = "Mover um ponto com o mouse";
 
 // Greek
 $.message.gr = {
@@ -6887,7 +6872,7 @@ $.message.gr = {
     "Regression": "Παλινδρόμηση",
     "RegressionLine": "Ευθεία Παλινδρόμησης",
     "RegressionBand": "Ζώνη Εμπιστοσύνης",
-    "RegressionTable": "Ανάλυση Παλινδρόμησης",
+    "RegressionTable": "Ανάλυση Παλινδρόμησης",	
     "Frequency Polygon": "Πολύγωννο συχνοτήτων",
     "Execute New Interval": "Εκτελέστε Νέο Διάστημα",
     "Interval Start": "Αρχή Διαστήματος",
@@ -6963,7 +6948,7 @@ $.message.gr = {
     "Testing Hypothesis mu12_title": "Έλεγχος Δύο Μέσων",
     "Testing Hypothesis sigma12_title": "Έλεγχος Δύο Διασπορών",
     "Testing Hypothesis P12_title": "Έλεγχος Δύο Ποσοστών",
-    "Testing Hypothesis muA": "Έλεγχος &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Έλεγχος &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Έλεγχος &mu; - C, n",
     "Testing Hypothesis mu": "Έλεγχος Υπόθεσης &mu;",
     "Testing Hypothesis sigma": "Έλεγχος Υπόθεσης &sigma;<sup>2</sup>",
@@ -7052,8 +7037,8 @@ $.message.gr = {
     "NoInteraction": "Χωρίς Αλληλεπίδραση",
     "ExistInteraction": "Υπάρχει Αλληλεπίδραση",
     "eStatLecture": "Εισαγωγική Διάλεξη eStat",
-    "NonParametricMu12_title": "Έλεγχος Αθροίσματος Βαθμίδων του Wilcoxon",
-    "NonParametricMu12": "λεγχος Αθροίσματος Βαθμίδων του Wilcoxon : Θέση Παραμέτρου M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Έλεγχος Αθροίσματος Βαθμίδων του Wilcoxon", 
+    "NonParametricMu12": "λεγχος Αθροίσματος Βαθμίδων του Wilcoxon : Θέση Παραμέτρου M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Έλεγχος Αθροίσματος Βαθμίδων του",
     "Sample Range": "αθροιστικό ποσό",
     "DistributionTable": "Πίνακας Κατανομής",
@@ -7076,7 +7061,7 @@ $.message.gr = {
     "WilcoxonSignCondition": "If n ≤ 20 Έλεγχος Αθροίσματος Βαθμίδων του Wilcoxon,  n > 20 Κανονική Προσέγγιση",
     "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Έλεγχος Αθροίσματος Βαθμίδων του Wilcoxon,  n>25 Κανονική Προσέγγιση",
     "KruskalCondition": "If n ≤ 10 H Κατανομή,  αλλού &chi;<sup>2</sup> προσέγγιση",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "επιλογή μεταβλητών",
     "VariableSelect4": "More Analysis Variable can be selected.",
@@ -7089,12 +7074,12 @@ $.message.gr = {
     "NameVar": "Όνομα μεταβλητή",
     "n_variance": "n-1 τύπος",
     "RandomNumber": "τυχαίο αριθμόr",
-    "RealNumber": "πραγματικός αριθμός",
-    "IntegerNumber": "ακέραιος αριθμός",
-    "NumberData": "Αριθμός δεδομένων",
-    "NumberDigit": "Δεκαδικό ψηφίοt",
-    "NormalTable": "Κανονική προσέγγιση",
-    "Percentile": "Πίνακας ποσοστών",
+    "RealNumber":     "πραγματικός αριθμός",
+    "IntegerNumber":  "ακέραιος αριθμός",
+    "NumberData":     "Αριθμός δεδομένων",
+    "NumberDigit":    "Δεκαδικό ψηφίοt",
+    "NormalTable":    "Κανονική προσέγγιση",
+    "Percentile":     "Πίνακας ποσοστών",
     "StudentRangeDist": "HSD Εκπαιδευόμενο εύρος διανομής.",
     "copy link": "αντιγραφή συνδέσμου",
     "WithoutReplacement": "χωρίς αντικατάσταση",
@@ -7246,23 +7231,23 @@ svgStr[96][12] = "Τυποποιημένα Κατάλοιπα vs Μόχλευσ�
 svgStr[97][12] = "Απόσταση του Cook";
 svgStr[98][12] = "Απόσταση του Cook";
 svgStr[99][12] = "Ταξινόμηση Δεδομένων";
-svgStr[100][12] = "Διαφορά Μέσων";
-svgStr[101][12] = "Έλεγχος Μέσων";
-svgStr[102][12] = "Θεραπεία";
-svgStr[103][12] = "Αλληλεπίδραση";
-svgStr[104][12] = "Ολικό Σειράς";
-svgStr[105][12] = "Ολικό Στήλης";
-svgStr[106][12] = "Πολλαπλός Συντελεστής Συσχέτισης";
-svgStr[107][12] = "<h3>Ανάλυση Συσχέτισης</h3>";
-svgStr[108][12] = "Πίνακας Συσχέτισης";
-svgStr[109][12] = "Παράγοντας A - Παράγοντας B Μέσος";
-svgStr[110][12] = "Μόχλευση";
-svgStr[111][12] = "Geographic Information Graph";
-svgStr[112][12] = "εύρος";
-svgStr[113][12] = "Μέσος - Τυπική Απόκλισηn Γράφημα";
-svgStr[114][12] = "Πλυθυσμιακή Διασπορά";
-svgStr[115][12] = "Υπόθεση";
-svgStr[116][12] = "Έλεγχος";
+svgStr[100][12]= "Διαφορά Μέσων";
+svgStr[101][12]= "Έλεγχος Μέσων";
+svgStr[102][12]= "Θεραπεία";
+svgStr[103][12]= "Αλληλεπίδραση";
+svgStr[104][12]= "Ολικό Σειράς";
+svgStr[105][12]= "Ολικό Στήλης";
+svgStr[106][12]= "Πολλαπλός Συντελεστής Συσχέτισης";
+svgStr[107][12]= "<h3>Ανάλυση Συσχέτισης</h3>";
+svgStr[108][12]= "Πίνακας Συσχέτισης";
+svgStr[109][12]= "Παράγοντας A - Παράγοντας B Μέσος";
+svgStr[110][12]= "Μόχλευση";
+svgStr[111][12]= "Geographic Information Graph";
+svgStr[112][12]= "εύρος";
+svgStr[113][12]= "Μέσος - Τυπική Απόκλισηn Γράφημα";
+svgStr[114][12]= "Πλυθυσμιακή Διασπορά";
+svgStr[115][12]= "Υπόθεση";
+svgStr[116][12]= "Έλεγχος";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -7373,6 +7358,7 @@ svgStrU[107][12] = "Ενδοτεταρτημοριακό Εύρος<br>IQR";
 svgStrU[108][12] = "Συντελεστής Μεταβλητότητας";
 svgStrU[109][12] = "Αθροιστική Συχνότητα (%)";
 svgStrU[110][12] = "Μέγιστος αριθμός ακεραίων της Ομοιόμορφης Διανομής";
+svgStrU[111][12] = "Μετακινήστε ένα σημείο με το ποντίκι";
 
 // Romanian
 $.message.ro = {
@@ -7448,7 +7434,7 @@ $.message.ro = {
     "Regression": "Regresiei",
     "RegressionLine": "Regresiei Line",
     "RegressionBand": "Confidence Band",
-    "RegressionTable": "Analiza Regresiei",
+    "RegressionTable": "Analiza Regresiei",	
     "Frequency Polygon": "Poligonul Frecvențelor",
     "Execute New Interval": "Excută un nou interval",
     "Interval Start": "Capătul de început al intervalului",
@@ -7524,7 +7510,7 @@ $.message.ro = {
     "Testing Hypothesis mu12_title": "Testare Ipoteza Două Medie",
     "Testing Hypothesis sigma12_title": "Testare Ipoteza Două Varianțe",
     "Testing Hypothesis P12_title": "Testare Ipoteza Două Proporții",
-    "Testing Hypothesis muA": "Testare Ipoteza &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Testare Ipoteza &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Testare Ipoteza &mu; - C, n",
     "Testing Hypothesis mu": "Testare Ipoteza &mu;",
     "Testing Hypothesis sigma": "Testare Ipoteza &sigma;<sup>2</sup>",
@@ -7615,8 +7601,8 @@ $.message.ro = {
     "NoInteraction": "Fără Interacțiune",
     "ExistInteraction": "Există Interacțiune",
     "eStatLecture": "Introducere eStat",
-    "NonParametricMu12_title": "Testul Wilcoxon al Sumei Rangurilor",
-    "NonParametricMu12": "Testul Wilcoxon al Sumei Rangurilor : Parametru de Localizare M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Testul Wilcoxon al Sumei Rangurilor", 
+    "NonParametricMu12": "Testul Wilcoxon al Sumei Rangurilor : Parametru de Localizare M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Testul Rang Suma",
     "Sample Range": "Rang Suma",
     "DistributionTable": "Tabel Distrbuție",
@@ -7639,7 +7625,7 @@ $.message.ro = {
     "WilcoxonSignCondition": "Dacă n ≤ 20 Wilcoxon Sumei Rangurilor Testul,  n > 20 Normală Apropiere Testul",
     "WilcoxonRankCondition": "Dacă n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Sumei Rangurilor Testul,  n>25 Normală Apropiere Testul",
     "KruskalCondition": "Dacă n ≤ 10 H Distribuție Testul,  altfel &chi;<sup>2</sup> approximation test",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Selecție Variabilă : Faceți clic pe numele var sau utilizați caseta de selecție RHS ",
     "VariableSelect3": "Selecție Variabilă",
     "VariableSelect4": "Se poate selecta mai multe variabile de analiză",
@@ -7652,12 +7638,12 @@ $.message.ro = {
     "NameVar": "Nume Var",
     "n_variance": "n-1 formulă",
     "RandomNumber": "Număr aleatoriu",
-    "RealNumber": "număr real",
-    "IntegerNumber": "număr întreg",
-    "NumberData": "numărul de date",
-    "NumberDigit": "zecimal",
-    "NormalTable": "Distribuție Normală Tabel",
-    "Percentile": "Percentila Tabel",
+    "RealNumber":     "număr real",
+    "IntegerNumber":  "număr întreg",
+    "NumberData":     "numărul de date",
+    "NumberDigit":    "zecimal",
+    "NormalTable":    "Distribuție Normală Tabel",
+    "Percentile":     "Percentila Tabel",
     "StudentRangeDist": "HSD Student Gamă Dist.",
     "copy link": "copiere legătura",
     "WithoutReplacement": "fără înlocuire",
@@ -7809,23 +7795,23 @@ svgStr[96][13] = "Reziduu Standardizat vs Influență Diagramă";
 svgStr[97][13] = "Cook Distanţă Diagramă";
 svgStr[98][13] = "Cook Distanţă";
 svgStr[99][13] = "Date Ordin";
-svgStr[100][13] = "Medie Diferență";
-svgStr[101][13] = "Testarea Medie";
-svgStr[102][13] = "Tratare";
-svgStr[103][13] = "Interacțiune";
-svgStr[104][13] = "Total Rând";
-svgStr[105][13] = "Total pe Coloană";
-svgStr[106][13] = "Coeficient de Corelație Multiplă";
-svgStr[107][13] = "<h3>Analiza Corelației</h3>";
-svgStr[108][13] = "Matricea Corelației";
-svgStr[109][13] = "Factor A - Factor B Medie Diagramă";
-svgStr[110][13] = "Influență";
-svgStr[111][13] = "Geographic Information Diagramă";
-svgStr[112][13] = "gamă";
-svgStr[113][13] = "Medie - Abatere Standard Diagramă";
-svgStr[114][13] = "Varianța Populației";
-svgStr[115][13] = "Ipoteză";
-svgStr[116][13] = "Test";
+svgStr[100][13]= "Medie Diferență";
+svgStr[101][13]= "Testarea Medie";
+svgStr[102][13]= "Tratare";
+svgStr[103][13]= "Interacțiune";
+svgStr[104][13]= "Total Rând";
+svgStr[105][13]= "Total pe Coloană";
+svgStr[106][13]= "Coeficient de Corelație Multiplă";
+svgStr[107][13]= "<h3>Analiza Corelației</h3>";
+svgStr[108][13]= "Matricea Corelației";
+svgStr[109][13]= "Factor A - Factor B Medie Diagramă";
+svgStr[110][13]= "Influență";
+svgStr[111][13]= "Geographic Information Diagramă";
+svgStr[112][13]= "gamă";
+svgStr[113][13]= "Medie - Abatere Standard Diagramă";
+svgStr[114][13]= "Varianța Populației";
+svgStr[115][13]= "Ipoteză";
+svgStr[116][13]= "Test";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -7937,6 +7923,7 @@ svgStrU[107][13] = "Intervalul Interquartile <br> IQR";
 svgStrU[108][13] = "Coeficient de determinare";
 svgStrU[109][13] = "Frecvența relativă cumulată (%)";
 svgStrU[110][13] = "Numărul maxim de numere întregi de distribuție uniformă";
+svgStrU[111][13] = "Deplasați un punct cu mouse-ul";
 
 // Thai
 $.message.th = {
@@ -8012,7 +7999,7 @@ $.message.th = {
     "Regression": "การถดถอย",
     "RegressionLine": "เส้นการถดถอย",
     "RegressionBand": "แถบความเชื่อมั่น",
-    "RegressionTable": "การวิเคราะห์การถดถอย",
+    "RegressionTable": "การวิเคราะห์การถดถอย",	
     "Frequency Polygon": "รูปหลายเหลี่ยมความถี่",
     "Execute New Interval": "คำนวณช่วงใหม่",
     "Interval Start": "ค่าเริ่มต้นของช่วง",
@@ -8088,7 +8075,7 @@ $.message.th = {
     "Testing Hypothesis mu12_title": "การทดสอบเกี่ยวกับค่าเฉลี่ยของสองกลุ่ม",
     "Testing Hypothesis sigma12_title": "การทดสอบเกี่ยวกับความแปรปรวนของสองกลุ่ม",
     "Testing Hypothesis P12_title": "การทดสอบเกี่ยวกับค่าสัดส่วนของสองกลุ่ม",
-    "Testing Hypothesis muA": "ทดสอบสมมติฐาน &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "ทดสอบสมมติฐาน &mu; - C, &beta;",
     "Testing Hypothesis muAB": "ทดสอบสมมติฐาน &mu; - C, n",
     "Testing Hypothesis mu": "ทดสอบสมมติฐาน &mu;",
     "Testing Hypothesis sigma": "ทดสอบสมมติฐาน &sigma;<sup>2</sup>",
@@ -8179,8 +8166,8 @@ $.message.th = {
     "NoInteraction": "ไม่มีอิทธิพลร่วม",
     "ExistInteraction": "มีอิทธิพลร่วม",
     "eStatLecture": "การบรรยายแนะนำ eStat",
-    "NonParametricMu12_title": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน",
-    "NonParametricMu12": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน : พารามิเตอร์บ่งตำแหน่ง M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน", 
+    "NonParametricMu12": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน : พารามิเตอร์บ่งตำแหน่ง M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน",
     "Sample Range": "อันดับผลรวม",
     "DistributionTable": "ตารางแจกแจงความถี่",
@@ -8203,7 +8190,7 @@ $.message.th = {
     "WilcoxonSignCondition": "ถ้า n ≤ 20 การทดสอบผลบวกลำดับที่ของวิลค็อกซัน,  n > 20 การประมาณด้วยการแจกแจงปกติ",
     "WilcoxonRankCondition": "ถ้า  n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 การทดสอบผลบวกลำดับที่ของวิลค็อกซัน,  n>25 การประมาณด้วยการแจกแจงปกติ",
     "KruskalCondition": "ถ้า  n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup>การประมาณt",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "การเลือกตัวแปร",
     "VariableSelect4": "สามารถเลือกตัวแปรการวิเคราะห์เพิ่มเติมได้",
@@ -8216,12 +8203,12 @@ $.message.th = {
     "NameVar": "ชื่อตัวแปร",
     "n_variance": "n-1 สูตร",
     "RandomNumber": "จำนวนสุ่ม",
-    "RealNumber": "เบอร์จริง",
-    "IntegerNumber": "เลขจำนวนเต็ม",
-    "NumberData": "จำนวนข้อมูล",
-    "NumberDigit": "เลขทศนิยม",
-    "NormalTable": "การแจกแจงปรกติ ตาราง",
-    "Percentile": "เปอร์เซ็น",
+    "RealNumber":     "เบอร์จริง",
+    "IntegerNumber":  "เลขจำนวนเต็ม",
+    "NumberData":     "จำนวนข้อมูล",
+    "NumberDigit":    "เลขทศนิยม",
+    "NormalTable":    "การแจกแจงปรกติ ตาราง",
+    "Percentile":     "เปอร์เซ็น",
     "StudentRangeDist": "HSDช่วงที่ได้รับการศึกษา การแจกแจง.",
     "copy link": "คัดลอกลิงค์",
     "WithoutReplacement": "โดยไม่ต้องเปลี่ยน",
@@ -8501,6 +8488,7 @@ svgStrU[107][14] = "ช่วงควอไทล์<br>IQR";
 svgStrU[108][14] = "สัมประสิทธิ์การแปรผัน";
 svgStrU[109][14] = "ความถี่สัมพัทธ์สะสม (%)";
 svgStrU[110][14] = "จำนวนสูงสุดของจำนวนเต็มของการกระจายชุด";
+svgStrU[111][14] = "เลื่อนจุดด้วยเมาส์";
 
 // Polish
 $.message.pl = {
@@ -8576,7 +8564,7 @@ $.message.pl = {
     "Regression": "Regresja",
     "RegressionLine": "Linia regresji",
     "RegressionBand": "przedział ufności",
-    "RegressionTable": "Analiza regresji",
+    "RegressionTable": "Analiza regresji",	
     "Frequency Polygon": "Wielobok liczebnosci",
     "Execute New Interval": "Oblicz nowy przedział",
     "Interval Start": "Początek przedziału",
@@ -8652,7 +8640,7 @@ $.message.pl = {
     "Testing Hypothesis mu12_title": "Test dla dwóch średnich",
     "Testing Hypothesis sigma12_title": "Test dla dwóch wariancji",
     "Testing Hypothesis P12_title": "Test dla dwóch wskaźników struktury",
-    "Testing Hypothesis muA": "Hipoteza testowa &mu; - C, &beta;",
+    "Testing Hypothesis muA":  "Hipoteza testowa &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Hipoteza testowa &mu; - C, n",
     "Testing Hypothesis mu": "Hipoteza testowa &mu;",
     "Testing Hypothesis sigma": "Hipoteza testowa &sigma;<sup>2</sup>",
@@ -8743,8 +8731,8 @@ $.message.pl = {
     "NoInteraction": "Brak interakcji",
     "ExistInteraction": "Występuje interakcja",
     "eStatLecture": "eStat Wykład wprowadzający",
-    "NonParametricMu12_title": "Test sumy rang Wilcoxona",
-    "NonParametricMu12": "Test sumy rang Wilcoxona : Location Parameter M<sub>1</sub>, M<sub>2</sub>",
+    "NonParametricMu12_title": "Test sumy rang Wilcoxona", 
+    "NonParametricMu12": "Test sumy rang Wilcoxona : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Test sumy rang Wilcoxona",
     "Sample Range": "Suma rang",
     "DistributionTable": "Dystrybuanta Tabelę",
@@ -8767,7 +8755,7 @@ $.message.pl = {
     "WilcoxonSignCondition": "Jeśli n ≤ 20 Test sumy rang Wilcoxona,  n > 20 Aproksymacja rozkładu normalnego Test",
     "WilcoxonRankCondition": "Jeśli n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Test sumy rang Wilcoxona,  n>25 Aproksymacja rozkładu normalnego Test",
     "KruskalCondition": "Jeśli n ≤ 10 H Dystrybuanta Test,  else &chi;<sup>2</sup> Aproksymacja test",
-    "VariableSelect": "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Zmiennej wybór",
     "VariableSelect4": "Można wybrać większą liczbę Analiz.",
@@ -8780,12 +8768,12 @@ $.message.pl = {
     "NameVar": "Nazwa zmiennej",
     "n_variance": "n-1 formuła",
     "RandomNumber": "Liczba losowa",
-    "RealNumber": "Liczba rzeczywista",
-    "IntegerNumber": "Liczba całkowita",
-    "NumberData": "Liczba danych",
-    "NumberDigit": "Cyfra dziesiętna",
-    "NormalTable": "Rozkład normalny Tabelę",
-    "Percentile": "Tablica udziałów procentowych",
+    "RealNumber":     "Liczba rzeczywista",
+    "IntegerNumber":  "Liczba całkowita",
+    "NumberData":     "Liczba danych",
+    "NumberDigit":    "Cyfra dziesiętna",
+    "NormalTable":    "Rozkład normalny Tabelę",
+    "Percentile":     "Tablica udziałów procentowych",
     "StudentRangeDist": "HSD Zakres Studentyzowanej Dyst",
     "copy link": "Skopiuj link",
     "WithoutReplacement": "bez zamiany",
@@ -9066,3 +9054,4 @@ svgStrU[107][15] = "Zakres międzykwartylowy<br>IQR";
 svgStrU[108][15] = "Współczynnik zmienności";
 svgStrU[109][15] = "Skumulowana częstotliwość względna (%)";
 svgStrU[110][15] = "Maksymalna liczba całkowita o jednolitym rozkładzie";
+svgStrU[111][15] = "Przesuń punkt za pomocą myszy";
