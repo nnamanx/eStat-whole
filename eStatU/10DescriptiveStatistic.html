@@ -393,16 +393,27 @@ function drawSimpleDotGrpah() {
         bar.append("line").attr("x1",xq1 ).attr("x2",xq3 ).attr("y1",y2).attr("y2",y2).style("stroke","green")
         bar.append("line").attr("x1",xmin).attr("x2",xq1 ).attr("y1",ty).attr("y2",ty).style("stroke","green")
         bar.append("line").attr("x1",xq3 ).attr("x2",xmax).attr("y1",ty).attr("y2",ty).style("stroke","green")
-        y1 = y2 + 15;
+        y1 = y2 + 13;
         bar.append("text").attr("x", xmin).attr("y", y1).text("min")
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
         bar.append("text").attr("x", xq1 ).attr("y", y1).text("Q1")
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
-        bar.append("text").attr("x", xmed).attr("y", y1+10).text("m="+f2(medi))
+        bar.append("text").attr("x", xmed).attr("y", y1).text("m")
            .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
         bar.append("text").attr("x", xq3 ).attr("y", y1).text("Q3")
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
         bar.append("text").attr("x", xmax).attr("y", y1).text("max")
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
+        y1 += 12;
+        bar.append("text").attr("x", xmin).attr("y", y1).text(f2(mini))
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", xq1 ).attr("y", y1).text(f2(q1))
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", xmed).attr("y", y1).text(f2(medi))
+           .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+        bar.append("text").attr("x", xq3 ).attr("y", y1).text(f2(q3))
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", xmax).attr("y", y1).text(f2(maxi))
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle")
 }
 // draw dot graph for simulation data
@@ -463,16 +474,27 @@ function drawDotGrpahSimulation(sdata) {
         bar.append("line").attr("x1",xq1 ).attr("x2",xq3 ).attr("y1",y2).attr("y2",y2).style("stroke","green").attr("class","simul")
         bar.append("line").attr("x1",xmin).attr("x2",xq1 ).attr("y1",ty).attr("y2",ty).style("stroke","green").attr("class","simul")
         bar.append("line").attr("x1",xq3 ).attr("x2",xmax).attr("y1",ty).attr("y2",ty).style("stroke","green").attr("class","simul")
-        y1 = y2 + 15;
+        y1 = y2 + 13;
         bar.append("text").attr("x", xmin).attr("y", y1).text("min")
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
         bar.append("text").attr("x", xq1 ).attr("y", y1).text("Q1")
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
-        bar.append("text").attr("x", xmed).attr("y", y1+10).text("m="+f2(medi3))
+        bar.append("text").attr("x", xmed).attr("y", y1).text("m")
            .style("font-size","9pt").style("stroke","red").style("text-anchor","middle").attr("class","simul")
         bar.append("text").attr("x", xq3 ).attr("y", y1).text("Q3")
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
         bar.append("text").attr("x", xmax).attr("y", y1).text("max")
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
+        y1 += 12;
+        bar.append("text").attr("x", xmin).attr("y", y1).text(f2(mini3))
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
+        bar.append("text").attr("x", xq1 ).attr("y", y1).text(f2(q13))
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
+        bar.append("text").attr("x", xmed).attr("y", y1).text(f2(medi3))
+           .style("font-size","9pt").style("stroke","red").style("text-anchor","middle").attr("class","simul")
+        bar.append("text").attr("x", xq3 ).attr("y", y1).text(f2(q33))
+           .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
+        bar.append("text").attr("x", xmax).attr("y", y1).text(f2(maxi3))
            .style("font-size","9pt").style("stroke","blue").style("text-anchor","middle").attr("class","simul")
 }
 // mouse drag

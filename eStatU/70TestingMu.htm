@@ -243,62 +243,82 @@
         // test statistics
         teststat = (xbar - mu) / (std / Math.sqrt(nn));
 
-        if (isNaN(mu) || isNaN(nn) || isNaN(xbar) || isNaN(variS) || nn < 2 || std <= 0 ) {  // wrong input
+        if (isNaN(mu) || isNaN(nn) || isNaN(xbar) || nn < 2 || std <= 0 ) {  // wrong input
           bar.append("text").attr("class","mean")
              .attr("x", 150)
              .attr("y", 100)
              .text("No input or wrong input !!   Try again.")
              .style("stroke","red")
         }
-        else if (testType == 2) {    // Z-test
-          if (h1Type == 1) {
+        else {
+         if (testType == 2) {    // Z-test
+          if (isNaN(variP)) { // Population variance checking
+            bar.append("text").attr("class","mean")
+               .attr("x", 150)
+               .attr("y", 100)
+               .text("No input or wrong input !!   Try again.")
+               .style("stroke","red")
+          }
+          else {
+           if (h1Type == 1) {
             h = alpha / 2;  
             f = stdnormal_inv(h, info);
             g = -f;
             if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
             else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
             drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
-          }
-          else if (h1Type == 2) {
+           }
+           else if (h1Type == 2) {
             h = alpha;  
             f = -5
             g = stdnormal_inv(1-h, info);
             pvalue = 1 - stdnormal_cdf(teststat);
             drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
-          }
-          else {
+           }
+           else {
             h = alpha;  
             f = stdnormal_inv(h, info);
             g = 5;
             pvalue = stdnormal_cdf(teststat);
             drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
+           }
+          } // end of Z-test variP checking else 
+         } // end of Z-test
+         else { // t-test 
+          if (isNaN(variS)) {
+            bar.append("text").attr("class","mean")
+               .attr("x", 150)
+               .attr("y", 100)
+               .text("No input or wrong input !!   Try again.")
+               .style("stroke","red")
           }
-        }
-        else { // t-test
-          if (h1Type == 1) {
+          else {
+           if (h1Type == 1) {
             h = alpha / 2;  
             f = t_inv(h, df, info);
             g = -f;
             if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
             else  pvalue = 2 * (1 - t_cdf(teststat, df, info));
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
-          }
-          else if (h1Type == 2) {
+           }
+           else if (h1Type == 2) {
             h = alpha;  
             f = -5;   //t_inv(0.0001, df, info);
             g = t_inv(1-h, df, info);
             pvalue = 1 - t_cdf(teststat, df, info);
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
-          }
-          else {
+           }
+           else {
             h = alpha;  
             f = t_inv(h, df, info);
             g = 5;    //t_inv(0.9999, df, info);
             pvalue = t_cdf(teststat, df, info);
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
-          }          
-        }
-      })
+           }
+          } // end of t-test else
+         } // end of t-test         
+        } // end of input error cheching if
+      })  // end of Execute
 
       // svg Graph Save
       d3.select("#saveGraphU").on("click", function() {
