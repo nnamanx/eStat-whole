@@ -129,7 +129,7 @@
 
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, ty;
-      var nint, step, buffer, nvalue, gxmin, gxmax, gxrange; 
+      var nint, step, buffer, nvalue, gxmin, gxmax, gxrange, xScale; 
       var nn, xbar, stdS, range, iqr, mini, q1, medi, q3, maxi;
       var sdata = new Array(100);
       var sdotx = new Array(100); 
@@ -216,7 +216,7 @@
            .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
         // draw x axis for simulation
         ty = margin.top + 3*graphHeight/4 + 40; 
-        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
         bar.append("g")
           .attr("transform","translate("+margin.left+","+ty+")")
           .call(d3.axisBottom(xScale))                  
@@ -316,6 +316,7 @@ function simplestat3(sdata) {
         s = Math.sqrt(v)
 
         sdata.sort(function(a, b) { return a - b; });
+        sdotx.sort(function(a, b) { return a - b; });
         mini  = sdata[0];
         maxi  = sdata[nn-1];
         range = maxi - mini;
@@ -519,17 +520,16 @@ function drag() {
                var x = d3.event.x;
                if (x < margin.left) {
                  x = margin.left;
-	         d3.select(this).attr("cx", x)
                }
                if (x > margin.left + graphWidth) {
                  x = margin.left + graphWidth;
-	         d3.select(this).attr("cx", x)
                }
 	       d3.select(this)
+                 .attr("cx", x)
                  .attr("r", radius*2)
                  .transition()
                  .attr("r", radius)
-               sdata[ith] = gxmin + gxrange*x/(margin.left+graphWidth)
+               sdata[ith] = gxmin + gxrange*(x-margin.left)/graphWidth
                sdotx[ith] = x;
                bar.selectAll("line.simul").remove();  
                bar.selectAll("text.simul").remove();  
