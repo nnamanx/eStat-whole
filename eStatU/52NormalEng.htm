@@ -19,72 +19,146 @@
     <br>
     <div class="title">
       <b>&nbsp; <span data-msgid="Normal Distribution">Normal Distribution</span></b> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+      <span data-msgid="Mean">Mean</span>&nbsp; 
+      &mu;=    <input type="text" class="textarea" value="0"  size=6 id="mu">  &nbsp; 
+      <span data-msgid="Std Dev">Std Dev</span>&nbsp;
+      &sigma;= <input type="text" class="textarea" value="1"  size=6 id="sigma"> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
-    <br>
-    <span data-msgid="Mean">Mean</span>&nbsp; 
-    &mu;=    <input type="text" class="textarea" value="0"  size=6 id="mu">  &nbsp; 
-    <span data-msgid="Std Dev">Std Dev</span>&nbsp;
-    &sigma;= <input type="text" class="textarea" value="1"  size=6 id="sigma"> 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span data-msgid="If typed">If typed</span>  &nbsp; 
-    <button type="button" id="btn2Normal" >
-      <span data-msgid="Execute">Execute</span>
-    </button>
     <p>
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-    <input value="300" min="0" max="800" type="range" onchange="showValueNormal1(this.value)"/>
-    <input value="500" min="0" max="800" type="range" onchange="showValueNormal2(this.value)"/>
+      <input value="300" min="0" max="800" type="range" onchange="showValueNormal1(this.value)"/>
+      <input value="500" min="0" max="800" type="range" onchange="showValueNormal2(this.value)"/>
     </section>
-    
-    <form name="myForm"> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name = "type1" value="1" checked> 
-         P( &nbsp; <input type="text" class="textarea" value="-1" size=6  id="a"> &nbsp;  < &nbsp;  Z &nbsp; < &nbsp; 
-         <input type="text" class="textarea"  value="1"  size=6 id="b">  &nbsp; ) &nbsp;  =   &nbsp; 
-         <input type="text" class="textarea2" value="0.6827"  size=14 id="c"> <p> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name = "type1" value="2" > 
-         P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp; Z &nbsp; < &nbsp;
-         <input type="text" class="textarea2" value="1.6449" size=6  id="d"> &nbsp; ) &nbsp; = &nbsp;
-         <input type="text" class="textarea"  value="0.95"  size=14  id="e">  <br>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-         <sup><small>0 </small></sup>
-         <input type="range" min="0" max="100" value="95" id="range3N" onchange="showValueNormal3(this.value)"/>
-         <sup><small>1</small> </sup> <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name = "type1" value="3" >   
-         P( &nbsp; <input type="text" class="textarea2" value="-1.9600" size=6  id="f"> &nbsp;  < &nbsp;  Z &nbsp; < &nbsp; 
-         <input type="text" class="textarea2"  value="1.9600"  size=6 id="g">  &nbsp; ) &nbsp;  =   &nbsp; 
-         <input type="text" class="textarea" value="0.95"  size=14 id="h">  <br>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-         <sup><small>0 </small></sup>
-         <input type="range" min="0" max="100" value="95" id="range4N" onchange="showValueNormal4(this.value)"/>
-         <sup><small>1</small> </sup> <br>
-      <button type="button" id="saveGraphU" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      &nbsp;
-      <span data-msgid="Reference Site">Reference Site</span> :&nbsp;
+ 
+     <form name="myForm"> 
+      <table class="stat">
+      <tbody>
+        <tr>
+          <td>
+            <button type="button" id="btn2Normal">
+              <span data-msgid="Execute">Execute</span>
+            </button>
+          </td>
+          <td><span data-msgid="If typed">If typed</span> </td>
+          <td></td>
+          <td>
+            <button type="button" id="saveGraphU"> 
+              <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+            </button>
+          </td>
+          <td>
+            <button type="button" id="saveTable">
+              <span class="tooltiptext" data-msgid="Table Save">Table Save</span>
+            </button>
+            <br>
+          </td>
+        </tr>
+        <tr><td><span data-msgid="Probability"></span></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+            <input type="radio" name = "type1" value="1" checked> 
+            P( <input type="text" class="textarea" value="-1.960" size=6  id="a"> &nbsp;  < &nbsp;  X &nbsp; < &nbsp; 
+            <input type="text" class="textarea"  value="1.960"  size=6 id="b"> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.9500"  size=5 id="c"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="2"> 
+            P( X &nbsp; < &nbsp; 
+            <input type="text" class="textarea"  value="-1.960"  size=6 id="b2">  )  
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0250"  size=5 id="c2"></td>
+          <td><button type="button" id="normalTable"> <span data-msgid="NormalTable">Normal Table</span></button></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="3"> 
+            P( X &nbsp; > &nbsp; 
+            <input type="text" class="textarea"  value="1.960"  size=6 id="a3"> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0250"  size=5 id="c3"></td>
+        </tr>
+        <tr><td><span data-msgid="PercentileValue">Percentile</span></span> </td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="4" > 
+              P( X &nbsp; < &nbsp;
+              <input type="text" class="textarea2" value="1.645" size=6  id="d"> ) 
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea"  value="0.9500"  size=5  id="e">  
+          </td>
+          <td><button type="button" id="percentileTable"> <span data-msgid="Percentile">Percentile</span></button></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+              <sup><small>0 </small></sup>
+              <input type="range" min="1" max="999" value="950" id="range3N" onchange="showValueNormal3(this.value)"/>
+              <sup><small>1</small> </sup>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+              <input type="radio" name = "type1" value="5" >   
+              P( <input type="text" class="textarea2" value="-1.960" size=6 id="f"> &nbsp;  < &nbsp; X &nbsp; < &nbsp; 
+              <input type="text" class="textarea2"  value="1.960"  size=6 id="g"> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+              <input type="text" class="textarea" value="0.9500"  size=5 id="h">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+              <sup><small>0 </small></sup>
+              <input type="range" min="1" max="999" value="950" id="range4N" onchange="showValueNormal4(this.value)"/>
+              <sup><small>1</small> </sup>
+          </td>
+        </tr>
+
+      </tbody>
+      </table>
+
+      &nbsp; <span data-msgid="Reference Site">Reference Site</span> 
       <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/NormalDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 
       <a href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution" target="_blank" >KhanAcademy </a> &nbsp; 
       <p>
-      <button type="button" id="normalTable"> <span data-msgid="NormalTable">Normal Table</span></button> 
-      &nbsp;
-      <button type="button" id="percentileTable"> <span data-msgid="Percentile">Percentile</span></button> 
-      &nbsp;
-      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+ 
     </form>
     <div>
       <p>
@@ -112,11 +186,18 @@
       var mu, sigma, a, b, c, d, e, f, g, h;
       var dataSet;
 
+      document.getElementById("c").disabled  = true; 
+      document.getElementById("c2").disabled = true; 
+      document.getElementById("c3").disabled = true; 
+      document.getElementById("d").disabled  = true; 
+      document.getElementById("f").disabled  = true; 
+      document.getElementById("g").disabled  = true; 
+
       // 초기 정규분포 (-1,1) 확률 그리기
       mu    = 0;
       sigma = 1;
-      a     = -1;
-      b     = 1;
+      a     = -1.96;
+      b     = 1.96;
       c     = stdnormal_cdf(b) - stdnormal_cdf(a);
       drawNormalGraph(mu, sigma, a, b, c);
 
@@ -135,8 +216,30 @@
           d3.select("#c").node().value = f4(c);
           drawNormalGraph(mu, sigma, a, b, c);
       }
-      rad[1].onclick = function() {     // P(Z < d) = e
-          radioType = 2;
+      rad[1].onclick = function() {     // P( Z < b) = c
+          radioType = 2;  
+          bar.selectAll("*").remove();
+          a = mu - 4*sigma;   
+          b = parseFloat(d3.select("#b2").node().value);
+          if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
+          if ( a > b ) c = 0;
+          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+          d3.select("#c2").node().value = f4(c);
+          drawNormalGraph(mu, sigma, a, b, c);
+      }
+      rad[2].onclick = function() {     // P( Z > b) = c
+          radioType = 3;  
+          bar.selectAll("*").remove();
+          a = parseFloat(d3.select("#a3").node().value); 
+          if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
+          b = mu + 4*sigma;
+          if ( a > b ) c = 0;
+          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+          d3.select("#c3").node().value = f4(c);
+          drawNormalGraph(mu, sigma, a, b, c);
+      }
+      rad[3].onclick = function() {     // P(Z < d) = e
+          radioType = 4;
           bar.selectAll("*").remove();
           mu    = parseFloat(d3.select("#mu").node().value); 
           sigma = parseFloat(d3.select("#sigma").node().value); 
@@ -145,11 +248,11 @@
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
           d = mu + sigma*stdnormal_inv(e, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
       }
-      rad[2].onclick = function() {     // P(f < Z < g) = h
-          radioType = 3;
+      rad[4].onclick = function() {     // P(f < Z < g) = h
+          radioType = 5;
           bar.selectAll("*").remove();
           mu    = parseFloat(d3.select("#mu").node().value); 
           sigma = parseFloat(d3.select("#sigma").node().value); 
@@ -159,8 +262,8 @@
           d3.select("#h").node().value = f4(h);
           g = mu + sigma*stdnormal_inv(1-(1-h)/2, info);
           f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawNormalGraph(mu, sigma, f, g, h); 
       }    
 
@@ -179,7 +282,7 @@
           d3.select("#sigma").node().value = f4(sigma);
         }
 
-        if (radioType == 1) {
+        if (radioType == 1) { // P( a < Z < b) = c
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           a = parseFloat(d3.select("#a").node().value); 
@@ -191,32 +294,54 @@
           d3.select("#c").node().value = f4(c);
           drawNormalGraph(mu, sigma, a, b, c);
         } 
-        else if (radioType == 2) {
+        else if (radioType == 2) {     // P( Z < b) = c
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          a = mu - 4*sigma;   
+          b = parseFloat(d3.select("#b2").node().value);
+          if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
+          if ( a > b ) c = 0;
+          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+          d3.select("#c2").node().value = f4(c);
+          drawNormalGraph(mu, sigma, a, b, c);
+        }
+        else if (radioType == 3) {     // P( Z > b) = c
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          a = parseFloat(d3.select("#a3").node().value); 
+          if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
+          b = mu + 4*sigma;
+          if ( a > b ) c = 0;
+          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+          d3.select("#c3").node().value = f4(c);
+          drawNormalGraph(mu, sigma, a, b, c);
+        }
+        else if (radioType == 4) {
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           e = parseFloat(d3.select("#e").node().value); 
           if (e > 0.9999) e = 0.9999;
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
-          document.getElementById("range3N").value  = f0(e*100);
+          document.getElementById("range3N").value  = f0(e*1000);
           d = mu + sigma*stdnormal_inv(e, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
-       }
-       else if (radioType == 3) {
+        }
+        else if (radioType == 5) {
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           h = parseFloat(d3.select("#h").node().value); 
           if (h > 0.9999) h = 0.9999;
           if (h < 0.0001) h = 0.0001;
           d3.select("#h").node().value = f4(h);
-          document.getElementById("range4N").value  = f0(h*100);
+          document.getElementById("range4N").value  = f0(h*1000);
           g = mu + sigma*stdnormal_inv(1-(1-h)/2, info);
           f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawNormalGraph(mu, sigma, f, g, h); 
-       }
+        }
       })
 
       // svg Graph Save

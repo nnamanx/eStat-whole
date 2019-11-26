@@ -2040,14 +2040,14 @@ function showValueNormal2(newValue) {
 }   
 // 정규분포 inverse  그리기 - 단측
 function showValueNormal3(newValue) {
-       if (radioType == 2) {
+       if (radioType == 4) {
           var d,e;
           bar.selectAll("*").remove();
 //          bar.selectAll("text.mean").remove();
 //          bar.selectAll("line.lineb").remove();
           var mu    = parseFloat(d3.select("#mu").node().value); 
           var sigma = parseFloat(d3.select("#sigma").node().value); 
-          document.getElementById("e").value  = newValue/100;
+          document.getElementById("e").value  = newValue/1000;
           e = parseFloat(d3.select("#e").node().value); 
           if (e > 0.9999) e = 0.9999;
           if (e < 0.0001) e = 0.0001;
@@ -2059,14 +2059,14 @@ function showValueNormal3(newValue) {
 } 
 // 정규분포 inverse  그리기  - 양측
 function showValueNormal4(newValue) {
-       if (radioType == 3) {
+       if (radioType == 5) {
           var h, g, f;
           bar.selectAll("*").remove();
 //          bar.selectAll("text.mean").remove();
 //          bar.selectAll("line.lineb").remove();
           var mu    = parseFloat(d3.select("#mu").node().value); 
           var sigma = parseFloat(d3.select("#sigma").node().value); 
-          document.getElementById("h").value  = newValue/100;
+          document.getElementById("h").value  = newValue/1000;
           h = parseFloat(d3.select("#h").node().value); 
           if (h > 0.9999) h = 0.9999;
           if (h < 0.0001) h = 0.0001;
@@ -2100,7 +2100,7 @@ function drawAxisNormal(top, bottom, left, right, gxmin, gxmax, gymin, gymax) {
           .call(d3.axisLeft(yScale))                  // 눈금을 표시할 함수 호출
 }// 정규분포 그래프 함수 --------------------------------------------------
 function drawNormalGraph(mu, sigma, a, b, prob) {
-         var margin  = {top: 50, bottom: 50, left: 50, right: 20};
+         var margin  = {top: 50, bottom: 50, left: 50, right: 40};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2
@@ -2155,12 +2155,12 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(a))
+            .text(f3(a))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(b))
+            .text(f3(b))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
@@ -2318,22 +2318,51 @@ function showValueT0(newValue) {
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
-          c = t_cdf(b, df, info) - t_cdf(a, df, info);
+          if ( a > b ) c = 0;
+          else c = t_cdf(b, df, info) - t_cdf(a, df, info);
           d3.select("#c").node().value = f4(c);
+          if (a < -5) a = -5;
+          if (b > 5)  b = 5;
           drawTdistGraph(df, a, b, c);
        }          
-       else if (radioType == 2) {
+       else if (radioType == 2) {         
+          a = -5;
+          b = parseFloat(d3.select("#b2").node().value);
+          if ( a > b ) c = 0;
+          else c = t_cdf(b, df, info) 
+          d3.select("#c2").node().value = f4(c); 
+          if ( b > 5 ) b = 5;
+          drawTdistGraph(df, a, b, c);
+       }          
+       else if (radioType == 3) {         
+          a = parseFloat(d3.select("#a3").node().value); 
+          b = 5;
+          c = 1 - t_cdf(a, df, info);
+          d3.select("#c3").node().value = f4(c);
+          if (a < -5) a = -5;
+          drawTdistGraph(df, a, b, c);
+       }          
+       else if (radioType == 4) {
           e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d3.select("#e").node().value = f4(e);
           d = t_inv(e, df, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
+          if (d > 5) d = 5;
           drawTdistGraph(df, -5, d, e);
        }
-       else if (radioType == 3) {
+       else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          d3.select("#h").node().value = f4(h);
           g = t_inv(1-(1-h)/2, df, info);
           f = -t_inv(1-(1-h)/2, df, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
+          if (f < -5) f = -5;
+          if (g > 5)  g = 5;
           drawTdistGraph(df, f, g, h); 
        }
 }// 
@@ -2380,40 +2409,40 @@ function showValueT2(newValue) {
        }       
 }// t분포 inverse  그리기 - 단측
 function showValueT3(newValue) {
-       if (radioType == 2) {
+       if (radioType == 4) {
           var d, e, info;
           bar.selectAll("*").remove();
           var df = parseFloat(d3.select("#dft").node().value); 
-          document.getElementById("e").value  = newValue/100;
+          document.getElementById("e").value  = newValue/1000;
           e = parseFloat(d3.select("#e").node().value); 
           if (e > 0.9999) e = 0.9999;
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
           d = t_inv(e, df, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawTdistGraph(df, -5, d, e);
        }
 } 
 // t분포 inverse  그리기  - 양측
 function showValueT4(newValue) {   
-       if (radioType == 3) {
+       if (radioType == 5) {
           var h, g, f;
           bar.selectAll("*").remove();
           var df = parseFloat(d3.select("#dft").node().value); 
-          document.getElementById("h").value  = newValue/100;
+          document.getElementById("h").value  = newValue/1000;
           h = parseFloat(d3.select("#h").node().value); 
           if (h > 0.9999) h = 0.9999;
           if (h < 0.0001) h = 0.0001;
           d3.select("#h").node().value = f4(h);
           g = t_inv(1-(1-h)/2, df, info);
           f = -t_inv(1-(1-h)/2, df, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawTdistGraph(df, f, g, h); 
        }
 }// t분포 그래프 함수 --------------------------------------------------
 function drawTdistGraph(df, a, b, prob) {
-         var margin  = {top: 50, bottom: 50, left: 50, right: 20};
+         var margin  = {top: 50, bottom: 50, left: 50, right: 40};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info;
@@ -2467,12 +2496,12 @@ function drawTdistGraph(df, a, b, prob) {
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(a))
+            .text(f3(a))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(b))
+            .text(f3(b))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
@@ -2550,7 +2579,7 @@ function tPercentileTable(df) {
 }
 // N(0,1) 그래프 함수 --------------------------------------------------
 function drawStdNormalGraph() {
-         var margin  = {top: 50, bottom: 50, left: 50, right: 20};
+         var margin  = {top: 50, bottom: 50, left: 50, right: 40};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2
@@ -2600,18 +2629,32 @@ function showValueChisq0(newValue) {
           d3.select("#c").node().value = f4(c);
           drawChisqGraph(df, a, b, c);
        }          
-       else if (radioType == 2) {
+       else if (radioType == 2) {         
+          a = 0; 
+          b = parseFloat(d3.select("#b").node().value);
+          c = chisq_cdf(b, df, info);
+          d3.select("#c2").node().value = f4(c);
+          drawChisqGraph(df, a, b, c);
+       }          
+       else if (radioType == 3) {         
+          a = parseFloat(d3.select("#a").node().value); 
+          b = gxmax;
+          c = 1 - chisq_cdf(a, df, info);
+          d3.select("#c3").node().value = f4(c);
+          drawChisqGraph(df, a, b, c);
+       }          
+       else if (radioType == 4) {
           e = parseFloat(d3.select("#e").node().value); 
           d = chisq_inv(e, df, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawChisqGraph(df, 0, d, e);
        }
-       else if (radioType == 3) {
+       else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
           g = chisq_inv(1-(1-h)/2, df, info);
           f = chisq_inv((1-h)/2, df, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawChisqGraph(df, f, g, h); 
        }
 }//
@@ -2656,41 +2699,41 @@ function showValueChisq2(newValue) {
        }       
 }// Chisq분포 inverse  그리기 - 단측
 function showValueChisq3(newValue) {
-       if (radioType == 2) {
+       if (radioType == 4) {
           var d, e, info;
           bar.selectAll("*").remove();
           var df = parseFloat(d3.select("#dfchi").node().value); 
-          document.getElementById("e").value  = newValue/100;
+          document.getElementById("e").value  = newValue/1000;
           e = parseFloat(d3.select("#e").node().value); 
           if (e > 0.9999) e = 0.9999;
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
           d = chisq_inv(e, df, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawChisqGraph(df, 0, d, e);
        }
 } 
 // Chisq분포 inverse  그리기  - 양측
 function showValueChisq4(newValue) {   
-       if (radioType == 3) {
+       if (radioType == 5) {
           var h, g, f;
           bar.selectAll("*").remove();
           var df = parseFloat(d3.select("#dfchi").node().value); 
-          document.getElementById("h").value  = newValue/100;
+          document.getElementById("h").value  = newValue/1000;
           h = parseFloat(d3.select("#h").node().value); 
           if (h > 0.9999) h = 0.9999;
           if (h < 0.0001) h = 0.0001;
           d3.select("#h").node().value = f4(h);
           g = chisq_inv(1-(1-h)/2, df, info);
           f = chisq_inv((1-h)/2, df, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawChisqGraph(df, f, g, h); 
        }
 }// Chisq분포 그래프 함수 --------------------------------------------------
 function drawChisqGraph(df, a, b, prob) {
          var info;
-         var margin  = {top: 50, bottom: 50, left: 50, right: 20};
+         var margin  = {top: 50, bottom: 50, left: 50, right: 40};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info;
@@ -2700,11 +2743,12 @@ function drawChisqGraph(df, a, b, prob) {
          var ymax;
          df = parseFloat(d3.select("#dfchi").node().value); 
          gxmin   = 0;
-         gymin   = 0;2
+         gymin   = 0;
          if (df <= 3) { gxmax = 20; ymax = 1 }
          else if (df < 15) { gxmax = 30; ymax = 0.2 }
          else if (df < 50) { gxmax = 100; ymax = 0.1 }
          else { gxmax = 150; ymax = 0.1}
+         if (b > gxmax) b = gxmax;
          gymax   = ymax + ymax/5; 
          gxrange = gxmax - gxmin;
          gyrange = gymax - gymin;
@@ -2747,12 +2791,12 @@ function drawChisqGraph(df, a, b, prob) {
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(a))
+            .text(f3(a))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(b))
+            .text(f3(b))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
@@ -2845,18 +2889,32 @@ function showValueF01(newValue) {
           d3.select("#c").node().value = f4(c);
           drawFGraph(df1, df2,  a, b, c);
        }          
-       else if (radioType == 2) {
+       else if (radioType == 2) {         
+          a = 0; 
+          b = parseFloat(d3.select("#b2").node().value);
+          c = f_cdf(b, df1, df2,  info);
+          d3.select("#c2").node().value = f4(c);
+          drawFGraph(df1, df2,  a, b, c);
+       }          
+       else if (radioType == 3) {         
+          a = parseFloat(d3.select("#a").node().value); 
+          b = 10;
+          c = 1 - f_cdf(a, df1, df2,  info);
+          d3.select("#c3").node().value = f4(c);
+          drawFGraph(df1, df2,  a, b, c);
+       }          
+       else if (radioType == 4) {
           e = parseFloat(d3.select("#e").node().value); 
           d = f_inv(e, df1, df2,  info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawFGraph(df1, df2,  0, d, e);
        }
-       else if (radioType == 3) {
+       else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
           g = f_inv(1-(1-h)/2, df1, df2,  info);
           f = f_inv((1-h)/2, df1, df2,  info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawFGraph(df1, df2,  f, g, h); 
        }
 }function showValueF02(newValue) {
@@ -2872,13 +2930,27 @@ function showValueF01(newValue) {
           d3.select("#c").node().value = f4(c);
           drawFGraph(df1, df2,  a, b, c);
        }          
-       else if (radioType == 2) {
+       else if (radioType == 2) {         
+          a = 0; 
+          b = parseFloat(d3.select("#b2").node().value);
+          c = f_cdf(b, df1, df2,  info);
+          d3.select("#c2").node().value = f4(c);
+          drawFGraph(df1, df2,  a, b, c);
+       }          
+       else if (radioType == 3) {         
+          a = parseFloat(d3.select("#a").node().value); 
+          b = 10;
+          c = 1 - f_cdf(a, df1, df2,  info);
+          d3.select("#c3").node().value = f4(c);
+          drawFGraph(df1, df2,  a, b, c);
+       }          
+       else if (radioType == 4) {
           e = parseFloat(d3.select("#e").node().value); 
           d = f_inv(e, df1, df2,  info);
           d3.select("#d").node().value = f4(d);
           drawFGraph(df1, df2,  0, d, e);
        }
-       else if (radioType == 3) {
+       else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
           g = f_inv(1-(1-h)/2, df1, df2,  info);
           f = f_inv((1-h)/2, df1, df2,  info);
@@ -2930,43 +3002,43 @@ function showValueF01(newValue) {
        }       
 }// F분포 inverse  그리기 - 단측
 function showValueF3(newValue) {
-       if (radioType == 2) {
+       if (radioType == 4) {
           var d, e, info;
           bar.selectAll("*").remove();
           var df1 = parseFloat(d3.select("#df1").node().value);
           var df2 = parseFloat(d3.select("#df2").node().value);  
-          document.getElementById("e").value  = newValue/100;
+          document.getElementById("e").value  = newValue/1000;
           e = parseFloat(d3.select("#e").node().value); 
           if (e > 0.9999) e = 0.9999;
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
           d = f_inv(e, df1, df2,  info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawFGraph(df1, df2,  0, d, e);
        }
 } 
 // F분포 inverse  그리기  - 양측
 function showValueF4(newValue) {   
-       if (radioType == 3) {
+       if (radioType == 5) {
           var h, g, f;
           bar.selectAll("*").remove();
           var df1 = parseFloat(d3.select("#df1").node().value);
           var df2 = parseFloat(d3.select("#df2").node().value);  
-          document.getElementById("h").value  = newValue/100;
+          document.getElementById("h").value  = newValue/1000;
           h = parseFloat(d3.select("#h").node().value); 
           if (h > 0.9999) h = 0.9999;
           if (h < 0.0001) h = 0.0001;
           d3.select("#h").node().value = f4(h);
           g = f_inv(1-(1-h)/2, df1, df2,  info);
           f = f_inv((1-h)/2, df1, df2,  info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawFGraph(df1, df2,  f, g, h); 
        }
 }// F분포 그래프 함수 --------------------------------------------------
 function drawFGraph(df1, df2,  a, b, prob) {
          var info;
-         var margin  = {top: 50, bottom: 50, left: 50, right: 20};
+         var margin  = {top: 50, bottom: 50, left: 50, right: 40};
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info;
@@ -2980,6 +3052,7 @@ function drawFGraph(df1, df2,  a, b, prob) {
          gxmin   = 0;
          gymin   = 0;
          gxmax   = 10;  
+         if (b > gxmax) b = gxmax;
          if ( df1 <  2 ) {ymax = 2.5;}
          else if ( df1 < 50 ) ymax = 1.2;
          else  ymax = 1.5;
@@ -3025,12 +3098,12 @@ function drawFGraph(df1, df2,  a, b, prob) {
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(a-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(a))
+            .text(f3(a))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          bar.append("text")
             .attr("x", margin.left + graphWidth2*(b-gxmin)/gxrange)
             .attr("y", svgHeight2 - margin.bottom/3)
-            .text(f2(b))
+            .text(f3(b))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
           x1 = margin.left + graphWidth2*(b-gxmin)/gxrange + 20;
 //         if (radioType == 2) x1 = margin.left + graphWidth2*((-2+b)/2-gxmin)/gxrange;
