@@ -2315,6 +2315,23 @@ function showValueT0(newValue) {
        else document.getElementById("normalGraph").checked = false;
        document.getElementById("dft").value  = newValue;
        var df = parseFloat(d3.select("#dft").node().value); 
+       h = 0.95;
+       g = t_inv(1-(1-h)/2, df, info);
+       f = -t_inv(1-(1-h)/2, df, info);
+       d3.select("#a").node().value  = f3(f);
+       d3.select("#b").node().value  = f3(g);
+       d3.select("#c").node().value  = f4(h);
+       d3.select("#b2").node().value = f3(f);
+       d3.select("#c2").node().value = f4((1-h)/2);
+       d3.select("#a3").node().value = f3(g);
+       d3.select("#c3").node().value = f4((1-h)/2);
+       d = t_inv(h, df, info);
+       d3.select("#d").node().value  = f3(d);
+       d3.select("#e").node().value  = f4(h);
+       d3.select("#f").node().value  = f3(f);
+       d3.select("#g").node().value  = f3(g);
+       d3.select("#h").node().value  = f4(h);
+
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
@@ -2622,6 +2639,23 @@ function showValueChisq0(newValue) {
        b = parseFloat(d3.select("#b").node().value);
 //       document.getElementById("rangeChi1").value  = a * (300/gxmax);
 //       document.getElementById("rangeChi2").value  = b * (300/gxmax);
+       h = 0.95;
+       g = chisq_inv(1-(1-h)/2, df, info);
+       f = chisq_inv((1-h)/2, df, info);
+       d3.select("#a").node().value  = f3(f);
+       d3.select("#b").node().value  = f3(g);
+       d3.select("#c").node().value  = f4(h);
+       d3.select("#b2").node().value = f3(f);
+       d3.select("#c2").node().value = f4((1-h)/2);
+       d3.select("#a3").node().value = f3(g);
+       d3.select("#c3").node().value = f4((1-h)/2);
+       d = chisq_inv(h, df, info);
+       d3.select("#d").node().value  = f3(d);
+       d3.select("#e").node().value  = f4(h);
+       d3.select("#f").node().value  = f3(f);
+       d3.select("#g").node().value  = f3(g);
+       d3.select("#h").node().value  = f4(h);
+
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
@@ -2631,13 +2665,13 @@ function showValueChisq0(newValue) {
        }          
        else if (radioType == 2) {         
           a = 0; 
-          b = parseFloat(d3.select("#b").node().value);
+          b = parseFloat(d3.select("#b2").node().value);
           c = chisq_cdf(b, df, info);
           d3.select("#c2").node().value = f4(c);
           drawChisqGraph(df, a, b, c);
        }          
        else if (radioType == 3) {         
-          a = parseFloat(d3.select("#a").node().value); 
+          a = parseFloat(d3.select("#a3").node().value); 
           b = gxmax;
           c = 1 - chisq_cdf(a, df, info);
           d3.select("#c3").node().value = f4(c);
@@ -2882,6 +2916,23 @@ function showValueF01(newValue) {
        document.getElementById("df1").value  = newValue;
        var df1 = parseFloat(d3.select("#df1").node().value);
        var df2 = parseFloat(d3.select("#df2").node().value);  
+       h = 0.95;
+       g = f_inv(1-(1-h)/2, df1, df2, info);
+       f = f_inv((1-h)/2, df1, df2, info);
+       d3.select("#a").node().value  = f3(f);
+       d3.select("#b").node().value  = f3(g);
+       d3.select("#c").node().value  = f4(h);
+       d3.select("#b2").node().value = f3(f);
+       d3.select("#c2").node().value = f4((1-h)/2);
+       d3.select("#a3").node().value = f3(g);
+       d3.select("#c3").node().value = f4((1-h)/2);
+       d = f_inv(h, df1, df2, info);
+       d3.select("#d").node().value  = f3(d);
+       d3.select("#e").node().value  = f4(h);
+       d3.select("#f").node().value  = f3(f);
+       d3.select("#g").node().value  = f3(g);
+       d3.select("#h").node().value  = f4(h);
+
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
@@ -2897,7 +2948,7 @@ function showValueF01(newValue) {
           drawFGraph(df1, df2,  a, b, c);
        }          
        else if (radioType == 3) {         
-          a = parseFloat(d3.select("#a").node().value); 
+          a = parseFloat(d3.select("#a3").node().value); 
           b = 10;
           c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#c3").node().value = f4(c);
@@ -2923,6 +2974,23 @@ function showValueF01(newValue) {
        document.getElementById("df2").value  = newValue;
        var df1 = parseFloat(d3.select("#df1").node().value);
        var df2 = parseFloat(d3.select("#df2").node().value);  
+       h = 0.95;
+       g = f_inv(1-(1-h)/2, df1, df2, info);
+       f = f_inv((1-h)/2, df1, df2, info);
+       d3.select("#a").node().value  = f3(f);
+       d3.select("#b").node().value  = f3(g);
+       d3.select("#c").node().value  = f4(h);
+       d3.select("#b2").node().value = f3(f);
+       d3.select("#c2").node().value = f4((1-h)/2);
+       d3.select("#a3").node().value = f3(g);
+       d3.select("#c3").node().value = f4((1-h)/2);
+       d = f_inv(h, df1, df2, info);
+       d3.select("#d").node().value  = f3(d);
+       d3.select("#e").node().value  = f4(h);
+       d3.select("#f").node().value  = f3(f);
+       d3.select("#g").node().value  = f3(g);
+       d3.select("#h").node().value  = f4(h);
+
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
@@ -2938,7 +3006,7 @@ function showValueF01(newValue) {
           drawFGraph(df1, df2,  a, b, c);
        }          
        else if (radioType == 3) {         
-          a = parseFloat(d3.select("#a").node().value); 
+          a = parseFloat(d3.select("#a3").node().value); 
           b = 10;
           c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#c3").node().value = f4(c);
