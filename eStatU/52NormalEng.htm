@@ -31,8 +31,8 @@
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-      <input value="300" min="0" max="800" type="range" onchange="showValueNormal1(this.value)"/>
-      <input value="500" min="0" max="800" type="range" onchange="showValueNormal2(this.value)"/>
+      <input type="range" min="0" max="800" value="201" id="range21N" onchange="showValueNormal1(this.value)"/>
+      <input type="range" min="0" max="800" value="591" id="range22N" onchange="showValueNormal2(this.value)"/>
     </section>
  
      <form name="myForm"> 
@@ -112,7 +112,6 @@
           </td>
           <td><button type="button" id="percentileTable"> <span data-msgid="Percentile">Percentile</span></button></td>
         </tr>
-
         <tr>
           <td></td>
           <td></td>
@@ -180,7 +179,8 @@
       svgWidth2   = 600;
       svgHeight2  = 400;
 
-      var nobs, avg, std, min, Q1, median, Q3, max, freqMaxP, gxmin, gxmax, gymin, gymax, info;
+      var nobs, avg, std, min, Q1, median, Q3, max, freqMaxP;
+      var gxmin, gxmax, gymin, gymax, gxrange, gyrange, info;
       var stat = new Array(30);
       var title;
       var mu, sigma, a, b, c, d, e, f, g, h;
@@ -199,6 +199,9 @@
       a     = -1.96;
       b     = 1.96;
       c     = stdnormal_cdf(b) - stdnormal_cdf(a);
+      gxmin   = mu - 4*sigma;
+      gxmax   = mu + 4*sigma;
+      gxrange = gxmax - gxmin;
       drawNormalGraph(mu, sigma, a, b, c);
 
       // 정규분포 확률 ------------------------------------------------------------------------------------
@@ -214,6 +217,8 @@
           if ( a > b ) c = 0;
           else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(b-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, a, b, c);
       }
       rad[1].onclick = function() {     // P( Z < b) = c
@@ -225,6 +230,8 @@
           if ( a > b ) c = 0;
           else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
           d3.select("#c2").node().value = f4(c);
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(b-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, a, b, c);
       }
       rad[2].onclick = function() {     // P( Z > b) = c
@@ -236,6 +243,8 @@
           if ( a > b ) c = 0;
           else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
           d3.select("#c3").node().value = f4(c);
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(b-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, a, b, c);
       }
       rad[3].onclick = function() {     // P(Z < d) = e
@@ -249,7 +258,10 @@
           d3.select("#e").node().value = f4(e);
           d = mu + sigma*stdnormal_inv(e, info);
           d3.select("#d").node().value = f3(d);
-          drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
+          a = gxmin;
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(d-gxmin)/gxrange).toString();
+          drawNormalGraph(mu, sigma, a, d, e);
       }
       rad[4].onclick = function() {     // P(f < Z < g) = h
           radioType = 5;
@@ -264,6 +276,8 @@
           f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
+          document.getElementById("range21N").value = (800*(f-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(g-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, f, g, h); 
       }    
 
@@ -271,7 +285,7 @@
       d3.select("#btn2Normal").on("click",function() {
         bar.selectAll("*").remove();
 
-        margin  = {top: 50, bottom: 50, left: 50, right: 20};
+        margin  = {top: 50, bottom: 50, left: 50, right: 40};
         graphWidth2   = svgWidth2 - margin.left - margin.right;
         graphHeight2  = svgHeight2 - margin.top - margin.bottom;
  
@@ -292,17 +306,21 @@
           if ( a > b ) c = 0;
           else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(b-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, a, b, c);
         } 
         else if (radioType == 2) {     // P( Z < b) = c
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
-          a = mu - 4*sigma;   
+          a = gxmin;   
           b = parseFloat(d3.select("#b2").node().value);
           if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
           if ( a > b ) c = 0;
           else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
           d3.select("#c2").node().value = f4(c);
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(b-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, a, b, c);
         }
         else if (radioType == 3) {     // P( Z > b) = c
@@ -310,10 +328,12 @@
           bar.selectAll("line.lineb").remove();
           a = parseFloat(d3.select("#a3").node().value); 
           if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
-          b = mu + 4*sigma;
+          b = gxmax;
           if ( a > b ) c = 0;
           else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
           d3.select("#c3").node().value = f4(c);
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(b-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, a, b, c);
         }
         else if (radioType == 4) {
@@ -326,7 +346,10 @@
           document.getElementById("range3N").value  = f0(e*1000);
           d = mu + sigma*stdnormal_inv(e, info);
           d3.select("#d").node().value = f3(d);
-          drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
+          a = gxmin;
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(d-gxmin)/gxrange).toString();
+          drawNormalGraph(mu, sigma, a, d, e);
         }
         else if (radioType == 5) {
           bar.selectAll("text.mean").remove();
@@ -340,6 +363,8 @@
           f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
+          document.getElementById("range21N").value = (800*(f-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(g-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, f, g, h); 
         }
       })

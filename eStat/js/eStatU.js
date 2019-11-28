@@ -1524,15 +1524,15 @@ function showValueExponential0(newValue) {
        else if (radioType == 2) {
           e = parseFloat(d3.select("#e").node().value); 
           d = exponential_inv(e, lambda, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawExponentialGraph(lambda, 0, d, e);
        }
        else if (radioType == 3) {
           h = parseFloat(d3.select("#h").node().value); 
           g = exponential_inv(1-(1-h)/2, lambda, info);
           f = exponential_inv((1-h)/2, lambda, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawExponentialGraph(lambda, f, g, h); 
        }
 }//
@@ -1593,7 +1593,7 @@ function showValueExponential3(newValue) {
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
           d = exponential_inv(e, lambda, info);
-          d3.select("#d").node().value = f4(d);
+          d3.select("#d").node().value = f3(d);
           drawExponentialGraph(lambda, 0, d, e);
        }
 } 
@@ -1612,8 +1612,8 @@ function showValueExponential4(newValue) {
           d3.select("#h").node().value = f4(h);
           g = exponential_inv(1-(1-h)/2, lambda, info);
           f = exponential_inv((1-h)/2, lambda, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
           drawExponentialGraph(lambda, f, g, h); 
        }
 }// Exponential분포 그래프 함수 --------------------------------------------------
@@ -2053,8 +2053,11 @@ function showValueNormal3(newValue) {
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
           d = mu + sigma*stdnormal_inv(e);
-          d3.select("#d").node().value = f4(d);
-          drawNormalGraph(mu, sigma, mu-4*sigma, d, e);
+          d3.select("#d").node().value = f3(d);
+          a = gxmin;
+          document.getElementById("range21N").value = (800*(a-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(d-gxmin)/gxrange).toString();
+          drawNormalGraph(mu, sigma, a, d, e);
        }
 } 
 // 정규분포 inverse  그리기  - 양측
@@ -2073,8 +2076,10 @@ function showValueNormal4(newValue) {
           d3.select("#h").node().value = f4(h);
           g = mu + sigma*stdnormal_inv(1-(1-h)/2);
           f = mu - sigma*stdnormal_inv(1-(1-h)/2);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
+          document.getElementById("range21N").value = (800*(f-gxmin)/gxrange).toString();
+          document.getElementById("range22N").value = (800*(g-gxmin)/gxrange).toString();
           drawNormalGraph(mu, sigma, f, g, h); 
        }
 }      
@@ -2109,13 +2114,13 @@ function drawNormalGraph(mu, sigma, a, b, prob) {
          if (sigma == 1) title  = "N("+mu+","+sigma+")";
          else title  = "N("+mu+","+sigma+"\u00B2)";
          bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
-         var gxmin   = mu - 4*sigma;
-         var gxmax   = mu + 4*sigma;
-         var gxrange = gxmax - gxmin;
-         var gymin   = 0;
+         gxmin   = mu - 4*sigma;
+         gxmax   = mu + 4*sigma;
+         gxrange = gxmax - gxmin;
+         gymin   = 0;
          var ymax    = 1/(sigma*Math.sqrt(2*Math.PI));
-         var gymax   = ymax + ymax/5; 
-         var gyrange = gymax - gymin;
+         gymax   = ymax + ymax/5; 
+         gyrange = gymax - gymin;
          drawAxisNormal(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);
          
          var x = [];
@@ -2331,6 +2336,8 @@ function showValueT0(newValue) {
        d3.select("#f").node().value  = f3(f);
        d3.select("#g").node().value  = f3(g);
        d3.select("#h").node().value  = f4(h);
+       document.getElementById("range3T").value = "950";
+       document.getElementById("range4T").value = "950";
 
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
@@ -2340,6 +2347,8 @@ function showValueT0(newValue) {
           d3.select("#c").node().value = f4(c);
           if (a < -5) a = -5;
           if (b > 5)  b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
        }          
        else if (radioType == 2) {         
@@ -2349,6 +2358,8 @@ function showValueT0(newValue) {
           else c = t_cdf(b, df, info) 
           d3.select("#c2").node().value = f4(c); 
           if ( b > 5 ) b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
        }          
        else if (radioType == 3) {         
@@ -2357,6 +2368,8 @@ function showValueT0(newValue) {
           c = 1 - t_cdf(a, df, info);
           d3.select("#c3").node().value = f4(c);
           if (a < -5) a = -5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
        }          
        else if (radioType == 4) {
@@ -2366,8 +2379,11 @@ function showValueT0(newValue) {
           d3.select("#e").node().value = f4(e);
           d = t_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
+          a = -5;
           if (d > 5) d = 5;
-          drawTdistGraph(df, -5, d, e);
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*d).toString();
+          drawTdistGraph(df, a, d, e);
        }
        else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
@@ -2380,6 +2396,8 @@ function showValueT0(newValue) {
           d3.select("#g").node().value = f3(g);
           if (f < -5) f = -5;
           if (g > 5)  g = 5;
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
           drawTdistGraph(df, f, g, h); 
        }
 }// 
@@ -2395,7 +2413,7 @@ function showValueT1(newValue) {
             c = 0;
             a = b;
             document.getElementById("a").value = b.toString();
-            document.getElementById("range1T").value = (500+100*b).toString();
+            document.getElementById("range21T").value = (500+100*b).toString();
           } 
           else c = t_cdf(b, df, info) - t_cdf(a, df, info);
           d3.select("#c").node().value = f4(c);
@@ -2416,7 +2434,7 @@ function showValueT2(newValue) {
             c = 0;
             b = a;
             document.getElementById("b").value = a.toString();
-            document.getElementById("range2T").value = (500+100*b).toString();
+            document.getElementById("range22T").value = (500+100*b).toString();
           }
           else c = t_cdf(b, df, info) - t_cdf(a, df, info);
           d3.select("#c").node().value = f4(c);
@@ -2437,7 +2455,10 @@ function showValueT3(newValue) {
           d3.select("#e").node().value = f4(e);
           d = t_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
-          drawTdistGraph(df, -5, d, e);
+          a = -5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*d).toString();
+          drawTdistGraph(df, a, d, e);
        }
 } 
 // t분포 inverse  그리기  - 양측
@@ -2455,6 +2476,8 @@ function showValueT4(newValue) {
           f = -t_inv(1-(1-h)/2, df, info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
           drawTdistGraph(df, f, g, h); 
        }
 }// t분포 그래프 함수 --------------------------------------------------
@@ -2635,10 +2658,11 @@ function showValueChisq0(newValue) {
        bar.selectAll("*").remove();
        document.getElementById("dfchi").value  = newValue;
        var df = parseFloat(d3.select("#dfchi").node().value); 
-       a = parseFloat(d3.select("#a").node().value); 
-       b = parseFloat(d3.select("#b").node().value);
-//       document.getElementById("rangeChi1").value  = a * (300/gxmax);
-//       document.getElementById("rangeChi2").value  = b * (300/gxmax);
+       if (df <= 3) { gxmax = 20; }
+       else if (df < 15) { gxmax = 30; }
+       else if (df < 50) { gxmax = 100; }
+       else { gxmax = 150 }
+
        h = 0.95;
        g = chisq_inv(1-(1-h)/2, df, info);
        f = chisq_inv((1-h)/2, df, info);
@@ -2655,12 +2679,18 @@ function showValueChisq0(newValue) {
        d3.select("#f").node().value  = f3(f);
        d3.select("#g").node().value  = f3(g);
        d3.select("#h").node().value  = f4(h);
+       document.getElementById("range3C").value = "950";
+       document.getElementById("range4C").value = "950";
 
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
           c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
           d3.select("#c").node().value = f4(c);
+          if (a < 0) a = 0;
+          if (b > gxmax) b = gxmax;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
        }          
        else if (radioType == 2) {         
@@ -2668,6 +2698,9 @@ function showValueChisq0(newValue) {
           b = parseFloat(d3.select("#b2").node().value);
           c = chisq_cdf(b, df, info);
           d3.select("#c2").node().value = f4(c);
+          if (b > gxmax) b = gxmax;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
        }          
        else if (radioType == 3) {         
@@ -2675,13 +2708,19 @@ function showValueChisq0(newValue) {
           b = gxmax;
           c = 1 - chisq_cdf(a, df, info);
           d3.select("#c3").node().value = f4(c);
+          if (a < 0) a = 0;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
        }          
        else if (radioType == 4) {
           e = parseFloat(d3.select("#e").node().value); 
           d = chisq_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
-          drawChisqGraph(df, 0, d, e);
+          a = 0;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*d/gxmax - 5).toString();
+          drawChisqGraph(df, a, d, e);
        }
        else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
@@ -2689,6 +2728,10 @@ function showValueChisq0(newValue) {
           f = chisq_inv((1-h)/2, df, info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
+          if (a < 0) a = 0;
+          if (b > gxmax) b = gxmax;
+          document.getElementById("range21Chi").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*g/gxmax - 5).toString();
           drawChisqGraph(df, f, g, h); 
        }
 }//
@@ -2701,7 +2744,7 @@ function showValueChisq1(newValue) {
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.00001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) {
             c = 0;
             a = b;
@@ -2721,7 +2764,7 @@ function showValueChisq2(newValue) {
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.00001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) {
             c = 0;
             b = a;
@@ -2744,7 +2787,10 @@ function showValueChisq3(newValue) {
           d3.select("#e").node().value = f4(e);
           d = chisq_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
-          drawChisqGraph(df, 0, d, e);
+          a = 0;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*d/gxmax - 5).toString();
+          drawChisqGraph(df, a, d, e);
        }
 } 
 // Chisq분포 inverse  그리기  - 양측
@@ -2762,6 +2808,8 @@ function showValueChisq4(newValue) {
           f = chisq_inv((1-h)/2, df, info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
+          document.getElementById("range21Chi").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*g/gxmax - 5).toString();
           drawChisqGraph(df, f, g, h); 
        }
 }// Chisq분포 그래프 함수 --------------------------------------------------
@@ -2771,7 +2819,7 @@ function drawChisqGraph(df, a, b, prob) {
          var graphWidth2   = svgWidth2 - margin.left - margin.right;
          var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
          var x1, y1, x2, y2, info;
-		 var title  = "ChiSq("+df+") "+svgStrU[24][langNum];
+	 var title  = "ChiSq("+df+") "+svgStrU[24][langNum];
          bar.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top*0.7).text(title) 
 		 
          var ymax;
@@ -2867,7 +2915,6 @@ function chisqPercentileTable(df) {
           cell[0].innerHTML = "<h3>"+svgStrU[102][langNum]+"</h3>";
           cell[1].innerHTML = "df = "+df;
 
-
           // 1st Half
           row  = table.insertRow(k++);
           row.style.height ="30px";
@@ -2932,33 +2979,44 @@ function showValueF01(newValue) {
        d3.select("#f").node().value  = f3(f);
        d3.select("#g").node().value  = f3(g);
        d3.select("#h").node().value  = f4(h);
+       document.getElementById("range3F").value = "950";
+       document.getElementById("range4F").value = "950";
 
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
           c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
           d3.select("#c").node().value = f4(c);
-          drawFGraph(df1, df2,  a, b, c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
+          drawFGraph(df1, df2, a, b, c);
        }          
        else if (radioType == 2) {         
           a = 0; 
           b = parseFloat(d3.select("#b2").node().value);
           c = f_cdf(b, df1, df2,  info);
           d3.select("#c2").node().value = f4(c);
-          drawFGraph(df1, df2,  a, b, c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
+          drawFGraph(df1, df2, a, b, c);
        }          
        else if (radioType == 3) {         
           a = parseFloat(d3.select("#a3").node().value); 
           b = 10;
           c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#c3").node().value = f4(c);
-          drawFGraph(df1, df2,  a, b, c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
+          drawFGraph(df1, df2, a, b, c);
        }          
        else if (radioType == 4) {
           e = parseFloat(d3.select("#e").node().value); 
           d = f_inv(e, df1, df2,  info);
           d3.select("#d").node().value = f3(d);
-          drawFGraph(df1, df2,  0, d, e);
+          a = 0;
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*d/gxmax).toString();
+          drawFGraph(df1, df2, a, d, e);
        }
        else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
@@ -2966,7 +3024,9 @@ function showValueF01(newValue) {
           f = f_inv((1-h)/2, df1, df2,  info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
-          drawFGraph(df1, df2,  f, g, h); 
+          document.getElementById("range21F").value = (100*f/gxmax).toString();
+          document.getElementById("range22F").value = (100*g/gxmax).toString();
+          drawFGraph(df1, df2, f, g, h); 
        }
 }function showValueF02(newValue) {
        var a, b, c, d, e, f, g, h, info;
@@ -2990,41 +3050,54 @@ function showValueF01(newValue) {
        d3.select("#f").node().value  = f3(f);
        d3.select("#g").node().value  = f3(g);
        d3.select("#h").node().value  = f4(h);
+       document.getElementById("range3F").value = "950";
+       document.getElementById("range4F").value = "950";
 
        if (radioType == 1) {         
           a = parseFloat(d3.select("#a").node().value); 
           b = parseFloat(d3.select("#b").node().value);
           c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
           d3.select("#c").node().value = f4(c);
-          drawFGraph(df1, df2,  a, b, c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
+          drawFGraph(df1, df2, a, b, c);
        }          
        else if (radioType == 2) {         
           a = 0; 
           b = parseFloat(d3.select("#b2").node().value);
           c = f_cdf(b, df1, df2,  info);
           d3.select("#c2").node().value = f4(c);
-          drawFGraph(df1, df2,  a, b, c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
+          drawFGraph(df1, df2, a, b, c);
        }          
        else if (radioType == 3) {         
           a = parseFloat(d3.select("#a3").node().value); 
           b = 10;
           c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#c3").node().value = f4(c);
-          drawFGraph(df1, df2,  a, b, c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
+          drawFGraph(df1, df2, a, b, c);
        }          
        else if (radioType == 4) {
           e = parseFloat(d3.select("#e").node().value); 
           d = f_inv(e, df1, df2,  info);
-          d3.select("#d").node().value = f4(d);
-          drawFGraph(df1, df2,  0, d, e);
+          d3.select("#d").node().value = f3(d);
+          a = 0;
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*d/gxmax).toString();
+          drawFGraph(df1, df2, 0, d, e);
        }
        else if (radioType == 5) {
           h = parseFloat(d3.select("#h").node().value); 
           g = f_inv(1-(1-h)/2, df1, df2,  info);
           f = f_inv((1-h)/2, df1, df2,  info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
-          drawFGraph(df1, df2,  f, g, h); 
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
+          document.getElementById("range21F").value = (100*f/gxmax).toString();
+          document.getElementById("range22F").value = (100*g/gxmax).toString();
+          drawFGraph(df1, df2, f, g, h); 
        }
 }function showValueF1(newValue) {
        if (radioType == 1) {
@@ -3036,7 +3109,7 @@ function showValueF01(newValue) {
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.00001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) {
             c = 0;
             a = b;
@@ -3057,7 +3130,7 @@ function showValueF01(newValue) {
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.00001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) {
             c = 0;
             b = a;
@@ -3082,7 +3155,11 @@ function showValueF3(newValue) {
           d3.select("#e").node().value = f4(e);
           d = f_inv(e, df1, df2,  info);
           d3.select("#d").node().value = f3(d);
-          drawFGraph(df1, df2,  0, d, e);
+          a = 0;
+          if ( d > gxmax ) d = gxmax;
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*d/gxmax).toString();
+          drawFGraph(df1, df2, a, d, e);
        }
 } 
 // F분포 inverse  그리기  - 양측
@@ -3101,7 +3178,9 @@ function showValueF4(newValue) {
           f = f_inv((1-h)/2, df1, df2,  info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
-          drawFGraph(df1, df2,  f, g, h); 
+          document.getElementById("range21F").value = (100*f/gxmax).toString();
+          document.getElementById("range22F").value = (100*g/gxmax).toString();
+          drawFGraph(df1, df2, f, g, h); 
        }
 }// F분포 그래프 함수 --------------------------------------------------
 function drawFGraph(df1, df2,  a, b, prob) {

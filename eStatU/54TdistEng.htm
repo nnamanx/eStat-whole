@@ -32,8 +32,8 @@
     <p>
 
     <section class="range-slider">
-      <input value="400" min="0" max="1000" type="range" onchange="showValueT1(this.value)"/>
-      <input value="600" min="0" max="1000" type="range" onchange="showValueT2(this.value)"/>
+      <input type="range" min="0" max="1000" value="267" id="range21T" onchange="showValueT1(this.value)"/>
+      <input type="range" min="0" max="1000" value="713" id="range22T" onchange="showValueT2(this.value)"/>
     </section>
  
     <form name="myForm"> 
@@ -204,6 +204,8 @@
           if ( a < -5 ) a = - 5;   
           if ( b > 5 ) b = 5;
           drawTdistGraph(df, a, b, c);
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           if(checkNormal) drawStdNormalGraph();
       }
       rad[1].onclick = function() {     // P(t < b) = c
@@ -216,6 +218,8 @@
           else c = t_cdf(b, df, info) 
           d3.select("#c2").node().value = f4(c); 
           if ( b > 5 ) b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
           if(checkNormal) drawStdNormalGraph();
       }
@@ -229,6 +233,8 @@
           else c = 1 - t_cdf(a, df, info);
           d3.select("#c3").node().value = f4(c);
           if ( a < -5 ) a = - 5;   
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
           if(checkNormal) drawStdNormalGraph();
       }
@@ -243,7 +249,10 @@
           d = t_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
           if (d > 5) d = 5;
-          drawTdistGraph(df, -5, d, e);
+          a = -5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*d).toString();
+          drawTdistGraph(df, a, d, e);
           if(checkNormal) drawStdNormalGraph();
       }
       rad[4].onclick = function() {     // P(f < t < g) = h
@@ -260,6 +269,8 @@
           d3.select("#g").node().value = f3(g);
           if (f < -5) f = -5;
           if (g > 5)  g = 5;
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
           drawTdistGraph(df, f, g, h); 
           if(checkNormal) drawStdNormalGraph();
       }    
@@ -268,7 +279,7 @@
       d3.select("#executeT").on("click",function() {
         bar.selectAll("*").remove();
 
-        margin  = {top: 50, bottom: 50, left: 50, right: 20};
+        margin  = {top: 50, bottom: 50, left: 50, right: 40};
         graphWidth2   = svgWidth2 - margin.left - margin.right;
         graphHeight2  = svgHeight2 - margin.top - margin.bottom;
  
@@ -286,6 +297,8 @@
           d3.select("#c").node().value = f4(c);
           if ( a < -5 ) a = - 5;   
           if ( b > 5 ) b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
           if(checkNormal) drawStdNormalGraph();
         } 
@@ -298,6 +311,8 @@
           else c = t_cdf(b, df, info);
           d3.select("#c").node().value = f4(c);
           if ( b > 5 ) b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
           if(checkNormal) drawStdNormalGraph();
         } 
@@ -310,6 +325,8 @@
           else c = 1 - t_cdf(a, df, info);
           d3.select("#c").node().value = f4(c);
           if ( a < -5 ) a = - 5;   
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
           drawTdistGraph(df, a, b, c);
           if(checkNormal) drawStdNormalGraph();
         } 
@@ -321,10 +338,13 @@
           if (e < 0.0001) e = 0.0001;
           d3.select("#e").node().value = f4(e);
           document.getElementById("range3T").value  = f0(e*1000);
+          a = -5;
           d = t_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
           if (d > 5) d = 5;
-          drawTdistGraph(df, -5, d, e);
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*d).toString();
+          drawTdistGraph(df, a, d, e);
           if(checkNormal) drawStdNormalGraph();
        }
        else if (radioType == 5) {
@@ -341,6 +361,8 @@
           d3.select("#g").node().value = f3(g);
           if (f < -5) f = -5;
           if (g > 5)  g = 5;
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
           drawTdistGraph(df, f, g, h); 
           if(checkNormal) drawStdNormalGraph();
        }

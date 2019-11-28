@@ -36,7 +36,7 @@ li a:hover {
 }.sliderS {
    width: 100px;
 }.slider-width{
-    width: 2006px;
+    width: 200px;
 }section.range-slider {
     position: relative;
     width: 200px;
@@ -48,7 +48,7 @@ li a:hover {
     overflow: hidden;
     left: 50px;
     top: 0px;
-    width: 540px;
+    width: 515px;
     outline: none;
     height: 20px;
     margin: 0;

@@ -34,8 +34,8 @@
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-    <input value="5"  min="0" max="100" type="range" onchange="showValueF1(this.value)"/>
-    <input value="30" min="0" max="100" type="range" onchange="showValueF2(this.value)"/>
+    <input type="range" min="0" max="100" value="1"  id="range21F" onchange="showValueF1(this.value)"/>
+    <input type="range" min="0" max="100" value="42" id="range22F" onchange="showValueF2(this.value)"/>
     </section>
 
     <form name="myForm"> 
@@ -178,6 +178,14 @@
       var stat = new Array(30);
       var title;
       var df1, df2, info, a, b, c, d, e, f, g, h;
+      gxmax = 10;
+
+      document.getElementById("c").disabled  = true; 
+      document.getElementById("c2").disabled = true; 
+      document.getElementById("c3").disabled = true; 
+      document.getElementById("d").disabled  = true; 
+      document.getElementById("f").disabled  = true; 
+      document.getElementById("g").disabled  = true; 
 
       // 초기 F분포 확률 그리기
       df1   = 5;
@@ -198,10 +206,12 @@
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.0001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
       }
       rad[1].onclick = function() {     // P(a< F < b) = c
@@ -211,10 +221,12 @@
           df2 = parseFloat(d3.select("#df2").node().value);  
           a = 0.0001;   
           b = parseFloat(d3.select("#b2").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = f_cdf(b, df1, df2,  info);
           d3.select("#c2").node().value = f4(c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
       }
       rad[2].onclick = function() {     // P(a< F < b) = c
@@ -224,10 +236,12 @@
           df2 = parseFloat(d3.select("#df2").node().value);  
           a = parseFloat(d3.select("#a3").node().value); 
           if ( a < 0 ) a = 0.0001;   
-          b = 100;
+          b = gxmax;
           if ( a > b ) c = 0;
           else c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#c3").node().value = f4(c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
       }
       rad[3].onclick = function() {     // P(F < d) = e
@@ -241,7 +255,10 @@
           d3.select("#e").node().value = f4(e);
           d = f_inv(e, df1, df2,  info);
           d3.select("#d").node().value = f3(d);
-          drawFGraph(df1, df2,  0, d, e);
+          a = 0;
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*d/gxmax).toString();
+          drawFGraph(df1, df2,  a, d, e);
       }
       rad[4].onclick = function() {     // P(f < F < g) = h
           radioType = 5;
@@ -256,6 +273,8 @@
           f = f_inv((1-h)/2, df1, df2,  info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
+          document.getElementById("range21F").value = (100*f/gxmax).toString();
+          document.getElementById("range22F").value = (100*g/gxmax).toString();
           drawFGraph(df1, df2,  f, g, h); 
       }    
 
@@ -280,10 +299,12 @@
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.0001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
         } 
         else if (radioType == 2) {
@@ -291,10 +312,12 @@
           bar.selectAll("line.lineb").remove();
           a = 0.0001;   
           b = parseFloat(d3.select("#b2").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = f_cdf(b, df1, df2,  info);
           d3.select("#c2").node().value = f4(c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
         } 
         else if (radioType == 3) {
@@ -302,10 +325,12 @@
           bar.selectAll("line.lineb").remove();
           a = parseFloat(d3.select("#a3").node().value); 
           if ( a < 0 ) a = 0.0001;   
-          b = 100;
+          b = gxmax;
           if ( a > b ) c = 0;
           else c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#c3").node().value = f4(c);
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
         } 
         else if (radioType == 4) {
@@ -318,7 +343,10 @@
           document.getElementById("range3F").value  = f0(e*1000);
           d = f_inv(e, df1, df2,  info);
           d3.select("#d").node().value = f3(d);
-          drawFGraph(df1, df2,  0, d, e);
+          a = 0;
+          document.getElementById("range21F").value = (100*a/gxmax).toString();
+          document.getElementById("range22F").value = (100*d/gxmax).toString();
+          drawFGraph(df1, df2, a, d, e);
        }
        else if (radioType == 5) {
           bar.selectAll("text.mean").remove();
@@ -332,7 +360,9 @@
           f = f_inv((1-h)/2, df1, df2,  info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
-          drawFGraph(df1, df2,  f, g, h); 
+          document.getElementById("range21F").value = (100*f/gxmax).toString();
+          document.getElementById("range22F").value = (100*g/gxmax).toString();
+          drawFGraph(df1, df2, f, g, h); 
        }
       })
       // svg Graph Save

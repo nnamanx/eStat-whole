@@ -31,8 +31,8 @@
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-    <input value="50"  min="0" max="300" type="range" id="rangeCh11" onchange="showValueChisq1(this.value)"/>
-    <input value="200" min="0" max="300" type="range" id="rangeChi2" onchange="showValueChisq2(this.value)"/>
+    <input type="range" min="0" max="300" value="33"  id="range21Chi" onchange="showValueChisq1(this.value)"/>
+    <input type="range" min="0" max="300" value="205" id="range22Chi" onchange="showValueChisq2(this.value)"/>
     </section>
 
     <form name="myForm"> 
@@ -205,6 +205,8 @@
           if ( a > b ) c = 0;
           else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
       }
       rad[1].onclick = function() {     // P(a< ChiSq < b) = c
@@ -216,7 +218,9 @@
           if ( a > b ) c = 0;
           else c = chisq_cdf(b, df, info);
           d3.select("#c2").node().value = f4(c);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
       }
       rad[2].onclick = function() {     // P(a< ChiSq < b) = c
@@ -228,7 +232,9 @@
           if ( a > b ) c = 0;
           else c = 1 - chisq_cdf(a, df, info);
           d3.select("#c3").node().value = f4(c);
-          b = 100;
+          b = gxmax;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
       }
       rad[3].onclick = function() {     // P(ChiSq < d) = e
@@ -241,7 +247,10 @@
           d3.select("#e").node().value = f4(e);
           d = chisq_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
-          drawChisqGraph(df, 0, d, e);
+          a = 0;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*d/gxmax - 5).toString();
+          drawChisqGraph(df, a, d, e);
       }
       rad[4].onclick = function() {     // P(f < ChiSq < g) = h
           radioType = 5;
@@ -255,6 +264,8 @@
           f = chisq_inv((1-h)/2, df, info);
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
+          document.getElementById("range21Chi").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*g/gxmax - 5).toString();
           drawChisqGraph(df, f, g, h); 
       }    
 
@@ -275,6 +286,8 @@
           if ( a > b ) c = 0;
           else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
         } 
         else if (radioType == 2) {
@@ -285,7 +298,9 @@
           if ( a > b ) c = 0;
           else c = chisq_cdf(b, df, info);
           d3.select("#c2").node().value = f4(c);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
         } 
         else if (radioType == 3) {
@@ -296,7 +311,9 @@
           if ( a > b ) c = 0;
           else c = 1 - chisq_cdf(a, df, info);
           d3.select("#c3").node().value = f4(c);
-          b = 100;
+          b = gxmax;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
           drawChisqGraph(df, a, b, c);
         } 
         else if (radioType == 4) {
@@ -309,7 +326,11 @@
           document.getElementById("range3C").value  = f0(e*1000);
           d = chisq_inv(e, df, info);
           d3.select("#d").node().value = f3(d);
-          drawChisqGraph(df, 0, d, e);
+          a = 0;
+          if ( d > gxmax ) d = gxmax;
+          document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
+          drawChisqGraph(df, a, d, e);
        }
        else if (radioType == 5) {
           bar.selectAll("text.mean").remove();
@@ -321,6 +342,8 @@
           document.getElementById("range4C").value  = f0(h*1000);
           g = chisq_inv(1-(1-h)/2, df, info);
           f = chisq_inv((1-h)/2, df, info);
+          document.getElementById("range21Chi").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22Chi").value = (300*g/gxmax - 5).toString();
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
           drawChisqGraph(df, f, g, h); 
