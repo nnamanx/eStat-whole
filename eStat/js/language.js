@@ -106,9 +106,9 @@ $.message.ko = {
     "Frequency Table": "도수분포표",
     "Basic Statistics": "기초통계량",
     "Testing Hypothesis &mu;": "가설검정 &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "가설검정 &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "가설검정 &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "검정 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "검정 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "검정 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "분산분석",
     "High School Stat Education": "고등 통계교육",
     "University Stat Education": "대학 통계교육",
@@ -158,7 +158,7 @@ $.message.ko = {
     "Execute": "실행",
     "(Confidence Interval)": "(신뢰구간)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 검정이면, Z<sub>&alpha;/2</sub> )",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 검정",
+    "&chi;<sup>2</sup> test": "&chi;&#178; 검정",
     "Variance Assumption": "분산가정",
     "F test": "F 검정",
     "At least one pair of means is different": "적어도 한쌍 이상의 평균이 다름",
@@ -190,7 +190,7 @@ $.message.ko = {
     "Normal Distribution": "정규분포",
     "Normal Approx": "정규분포근사",
     "t Distribution": "t 분포",
-    "ChiSquare Distribution": "&chi;<sup>2</sup> 분포",
+    "ChiSquare Distribution": "&chi;&#178; 분포",
     "F Distribution": "F 분포",
     "Sampling": "표본추출",
     "Population vs Sample": "모집단과 표본 시뮬레이션",
@@ -210,7 +210,7 @@ $.message.ko = {
     "Confidence Interval": "신뢰구간",
     "Confidence Interval Simulation": "모평균 신뢰구간 시뮬레이션",
     "Confidence Interval Mu": "추정 : 모평균 &mu; 신뢰구간",
-    "Confidence Interval Sigma": "추정 : 모분산 &sigma;<sup>2</sup> 신뢰구간",
+    "Confidence Interval Sigma": "추정 : 모분산 &sigma;&#178; 신뢰구간",
     "Confidence Interval P": "추정 : 모비율 p 신뢰구간",
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
@@ -225,10 +225,10 @@ $.message.ko = {
     "Testing Hypothesis muA":  "가설검정 &mu; 실험 ; C, &beta; 계산",
     "Testing Hypothesis muAB": "가설검정 &mu; 실험 : C, n 계산",
     "Testing Hypothesis mu": "가설검정 : 모평균 &mu;",
-    "Testing Hypothesis sigma": "가설검정 : 모분산 &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "가설검정 : 모분산 &sigma;&#178;",
     "Testing Hypothesis P": "가설검정 : 모비율 p",
     "Testing Hypothesis mu12": "가설검정 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "가설검정 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "가설검정 : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "가설검정 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "가설검정 :분산분석",
     "Testing Independence": "범주형 : 독립성검정",
@@ -238,7 +238,7 @@ $.message.ko = {
     "Test Type": "검정형태",
     "Z-test": "Z 검정",
     "t-test": "t 검정",
-    "Chi-test": "&chi;<sup>2</sup> 검정",
+    "Chi-test": "&chi;&#178; 검정",
     "F-test": "F 검정",
     "Sampling Type": "표본",
     "Independent Sample": "독립표본",
@@ -266,7 +266,7 @@ $.message.ko = {
     "Reference Site": "참고사이트",
     "Lot Size": "로트 개수",
     "Defect Size": "불량 개수",
-    "If typed": "(숫자 입력 후 '실행' 버튼 클릭)",
+    "If typed": "숫자 입력 후 [실행] 또는 [Enter] 클릭",
     "Stat/BoxPlot": "통계량/상자그림",
     "Mean": "평균",
     "Std Dev": "표준편차",
@@ -463,7 +463,7 @@ svgStr[51][0] = "카이제곱 적합성검정<br>구간 i <br>[a<sub>i</sub> , b
 svgStr[52][0] = "데이터<br>관찰도수<br>(O<sub>i</sub>)";
 svgStr[53][0] = "정규분포<br>기대확률<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][0] = "정규분포<br>기대도수<br>(E<sub>i</sub>)";
-svgStr[55][0] = "각 구간<br>카이제곱값<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
+svgStr[55][0] = "각 구간<br>카이제곱값<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
 svgStr[56][0] = "카이제곱값";
 svgStr[57][0] = "확률 히스토그램과 정규분포";
 svgStr[58][0] = "정규 Q-Q 산점도";
@@ -627,7 +627,7 @@ svgStrU[98][0] = "시뮬레이션";
 svgStrU[99][0] = "확률난수";
 svgStrU[100][0] = "정규분포";
 svgStrU[101][0] = "t 분포";
-svgStrU[102][0] = "&chi;<sup>2</sup> 분포";
+svgStrU[102][0] = "&chi;&#178; 분포";
 svgStrU[103][0] = "F 분포";
 svgStrU[104][0] = "HSD 표준화범위분포";
 svgStrU[105][0] = "1사분위수 Q1";
@@ -670,9 +670,9 @@ $.message.en = {
     "Frequency Table": "Frequency Table",
     "Basic Statistics": "Descriptive Statistics",
     "Testing Hypothesis &mu;": "Testing Hypothesis &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Testing Hypothesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Testing Hypothesis &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analysis of Variance",
     "High School Stat Education": "High School Stat Education",
     "University Stat Education": "University Stat Education",
@@ -724,7 +724,7 @@ $.message.en = {
     "Execute": "Execute",
     "(Confidence Interval)": "(Confidence Interval)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z test, Z<sub>&alpha;/2</sub>is used)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
+    "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Variance Assumption",
     "F test": "F test",
     "At least one pair of means is different": "At least one pair of means is different",
@@ -756,7 +756,7 @@ $.message.en = {
     "Normal Distribution": "Normal Distribution",
     "Normal Approx": "Normal Approx",
     "t Distribution": "t Distribution",
-    "ChiSquare Distribution": "&chi;<sup>2</sup> Distribution",
+    "ChiSquare Distribution": "&chi;&#178; Distribution",
     "F Distribution": "F Distribution",
     "Sampling": "Sampling",
     "Population vs Sample": "Population vs Sample",
@@ -776,7 +776,7 @@ $.message.en = {
     "Confidence Interval": "Confidence Interval",
     "Confidence Interval Simulation": "Confidence Interval Simulation",
     "Confidence Interval Mu": "Estimation : &mu; Confidence Interval",
-    "Confidence Interval Sigma": "Estimation : &sigma;<sup>2</sup> Confidence Interval",
+    "Confidence Interval Sigma": "Estimation : &sigma;&#178; Confidence Interval",
     "Confidence Interval P": "Estimation : p Confidence Interval",
     "Estimation Accuracy": "Estimation Accuracy",
     "Repetition": "Repetition",
@@ -791,10 +791,10 @@ $.message.en = {
     "Testing Hypothesis muA":  "Testing Hypothesis &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Testing Hypothesis &mu; - C, n",
     "Testing Hypothesis mu": "Testing Hypothesis &mu;",
-    "Testing Hypothesis sigma": "Testing Hypothesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Testing Hypothesis &sigma;&#178;",
     "Testing Hypothesis P": "Testing Hypothesis p",
     "Testing Hypothesis mu12": "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
     "Testing Independence": "Categorical: Independence Test",
@@ -804,7 +804,7 @@ $.message.en = {
     "Test Type": "Test Type",
     "Z-test": "Z test",
     "t-test": "t test",
-    "Chi-test": "&chi;<sup>2</sup> test",
+    "Chi-test": "&chi;&#178; test",
     "F-test": "F test",
     "Sampling Type": "Sampling Type",
     "Independent Sample": "independent sample",
@@ -815,7 +815,7 @@ $.message.en = {
     "Sample Mean": "Sample Mean",
     "Sample Variance": "Sample Variance",
     "Sample Proportion": "Sample Proportion",
-    "if Z-test-1": "(if Z test, enter population variance &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(if Z test, enter population variance &sigma;&#178;)",
     "if Z-test-2": "(if Z test, z<sub>&alpha;/2 </sub> is used.)",
     "At least one pair": "At least one pair of means is different",
     "Row-Col-0": "Row and column variables are independent",
@@ -832,7 +832,7 @@ $.message.en = {
     "Reference Site": "Reference Site",
     "Lot Size": "Lot Size",
     "Defect Size": "Defect Size",
-    "If typed": "(Click Execute after typing number)",
+    "If typed": "After typing number, click [Execute] or [Enter]",
     "Stat/BoxPlot": "Stat/BoxPlot",
     "Mean": "Mean",
     "Std Dev": "Std Dev",
@@ -903,7 +903,7 @@ $.message.en = {
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
     "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Approximation Test",
     "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
-    "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;&#178; approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Selection",
@@ -1025,12 +1025,12 @@ svgStr[47][1] = "Maximum";
 svgStr[48][1] = "Total";
 svgStr[49][1] = "<h3>Normality Test</h3>";
 svgStr[50][1] = "Expected frequency > 5 <br> is recommended";
-svgStr[51][1] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][1] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][1] = "Data<br>Observed Frequency<br>(O<sub>i</sub>)";
 svgStr[53][1] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][1] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
-svgStr[55][1] = "Each interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][1] = "Sum of &chi;<sup>2</sup> value";
+svgStr[55][1] = "Each interval<br>&chi;&#178; value<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][1] = "Sum of &chi;&#178; value";
 svgStr[57][1] = "Probability Histogram and Normal Distribution";
 svgStr[58][1] = "Normal Q-Q Plot";
 svgStr[59][1] = "Normal Quantile";
@@ -1193,7 +1193,7 @@ svgStrU[98][1] = "Simulation";
 svgStrU[99][1] = "Random Number";
 svgStrU[100][1] = "Normal Distribution";
 svgStrU[101][1] = "t Distribution";
-svgStrU[102][1] = "&chi;<sup>2</sup> Distribution";
+svgStrU[102][1] = "&chi;&#178; Distribution";
 svgStrU[103][1] = "F Distribution";
 svgStrU[104][1] = "HSD Studentized Range Distribution";
 svgStrU[105][1] = "1st Quartile<br>Q1";
@@ -1236,9 +1236,9 @@ $.message.ja = {
     "Frequency Table": "度数分布表",
     "Basic Statistics": "基礎統計量",
     "Testing Hypothesis &mu;": "推定・検定 &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "推定・検定 &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "推定・検定 &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "母平均の仮説検定 (2集団) &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "母分散の仮説検定 (2集団) &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "母分散の仮説検定 (2集団) &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "分散分析",
     "High School Stat Education": "高校統計教育",
     "University Stat Education": "大学統計教育",
@@ -1290,7 +1290,7 @@ $.message.ja = {
     "Execute": "実行",
     "(Confidence Interval)": "(信頼区間)",
     "(if Z-test, Z<sub>&alpha;/2 </sub> is used)": "(Z 検定のとき, Z &sigma;利用)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 検定",
+    "&chi;<sup>2</sup> test": "&chi;&#178; 検定",
     "Variance Assumption": "分散の仮定",
     "F test": "F 検定",
     "At least one pair of means is different": "少なくとも一つ以上のペアの平均が異なる",
@@ -1343,7 +1343,7 @@ $.message.ja = {
     "Confidence Interval": "信頼区間",
     "Confidence Interval Simulation": "信頼区間シミュレーション",
     "Confidence Interval Mu": "推定 : &mu; 信頼区間",
-    "Confidence Interval Sigma": "推定 : &sigma;<sup>2</sup> 信頼区間",
+    "Confidence Interval Sigma": "推定 : &sigma;&#178; 信頼区間",
     "Confidence Interval P": "推定 : p 信頼区間",
     "Estimation Accuracy": "推定精度",
     "Repetition": "反復数",
@@ -1358,10 +1358,10 @@ $.message.ja = {
     "Testing Hypothesis muA":  "仮説検定母平均 - C, &beta;",
     "Testing Hypothesis muAB": "仮説検定母平均 - C, n",
     "Testing Hypothesis mu": "仮説検定母平均&mu;",
-    "Testing Hypothesis sigma": "仮説検定母分散&sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "仮説検定母分散&sigma;&#178;",
     "Testing Hypothesis P": "仮説検定母比率p",
     "Testing Hypothesis mu12": "仮説検定母平均 (2集団) : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "仮説検定母分散 (2集団) : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "仮説検定母分散 (2集団) : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "仮説検定母比率 (2集団) : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "仮説検定分散分析",
     "Testing Independence": "カテゴリ型独立性検定",
@@ -1399,7 +1399,7 @@ $.message.ja = {
     "Reference Site": "参考サイト",
     "Lot Size": "ロットの数",
     "Defect Size": "不良品の数",
-    "If typed": "(数字を入力した場合)",
+    "If typed": "番号を入力したら、[実行]/[入力]をクリック",
     "Stat/BoxPlot": "統計量/箱ひげ図",
     "Mean": "平均",
     "Std Dev": "標準偏差",
@@ -1470,7 +1470,7 @@ $.message.ja = {
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
     "WilcoxonSignCondition": "n ≤ 20 ウィルコクソン順位合檢定,  n > 20 正規近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
-    "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
+    "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;&#178;近似檢定",
     "VariableSelect": "* データ分析 : 変数選択 >> クリックアイコン *",
     "VariableSelect2": "* 変数選択 : クリック変数名 / 右側選択はこ利用 ",
     "VariableSelect3": "変数選択",
@@ -1593,12 +1593,12 @@ svgStr[47][2] = "最大値";
 svgStr[48][2] = "全体";
 svgStr[49][2] = "<h3>正規性檢定</h3>";
 svgStr[50][2] = "期待度数 > 5 <br> 推奨";
-svgStr[51][2] = "&chi;<sup>2</sup> 檢定<br>區間 i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][2] = "&chi;&#178; 檢定<br>區間 i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][2] = "データ<br>観測度数<br>(O<sub>i</sub>)";
 svgStr[53][2] = "正規分布<br>期待確率<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][2] = "正規分布<br>期待度数<br>(E<sub>i</sub>)";
-svgStr[55][2] = "&chi;<sup>2</sup> 値<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][2] = "総&chi;<sup>2</sup>値";
+svgStr[55][2] = "&chi;&#178; 値<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][2] = "総&chi;&#178;値";
 svgStr[57][2] = "確率ヒストグラム, 正規分布";
 svgStr[58][2] = "正規Q-Qプロット";
 svgStr[59][2] = "正規分位数";
@@ -1761,7 +1761,7 @@ svgStrU[98][2] = "シミュレーション";
 svgStrU[99][2] = "乱数";
 svgStrU[100][2] = "正規分布";
 svgStrU[101][2] = "t 分布";
-svgStrU[102][2] = "&chi;<sup>2</sup> 分布";
+svgStrU[102][2] = "&chi;&#178; 分布";
 svgStrU[103][2] = "F 分布";
 svgStrU[104][2] = "HSD 分布";
 svgStrU[105][2] = "1四分位数<br>Q1";
@@ -1804,9 +1804,9 @@ $.message.zhTW = {
     "Frequency Table": "次數分佈表",
     "Basic Statistics": "基本統計量",
     "Testing Hypothesis &mu;": "假設檢定 &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "假設檢定 &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "假設檢定 &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "假設檢定 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假設檢定 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假設檢定 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "變異數分析",
     "High School Stat Education": "高級中學統計教育",
     "University Stat Education": "大學統計教育",
@@ -1855,7 +1855,7 @@ $.message.zhTW = {
     "Execute": "執行",
     "(Confidence Interval)": "(信頼區間)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 檢定, Z<sub>&alpha;/2</sub>使用)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 檢定",
+    "&chi;<sup>2</sup> test": "&chi;&#178; 檢定",
     "Variance Assumption": "變異數假設",
     "F test": "F 檢定",
     "At least one pair of means is different": "至少有一對平均數不相等",
@@ -1907,7 +1907,7 @@ $.message.zhTW = {
     "Confidence Interval": "信頼區間",
     "Confidence Interval Simulation": "信頼区間實驗",
     "Confidence Interval Mu": "估計 : &mu; 信頼区間",
-    "Confidence Interval Sigma": "估計 : &sigma;<sup>2</sup> 信頼区間",
+    "Confidence Interval Sigma": "估計 : &sigma;&#178; 信頼区間",
     "Confidence Interval P": "估計 : p 信頼区間",
     "Estimation Accuracy": "估計準確率",
     "Repetition": "重覆數",
@@ -1922,10 +1922,10 @@ $.message.zhTW = {
     "Testing Hypothesis muA":  "假説検定 &mu; - C, &beta;",
     "Testing Hypothesis muAB": "假説検定 &mu; - C, n",
     "Testing Hypothesis mu": "假設檢定: 平均數&mu;",
-    "Testing Hypothesis sigma": "假設檢定: 變異數&sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "假設檢定: 變異數&sigma;&#178;",
     "Testing Hypothesis P": "假設檢定: 比例 p",
     "Testing Hypothesis mu12": "假設檢定 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "假設檢定 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "假設檢定 : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "假設檢定 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "假設檢定變異數分析",
     "Testing Independence": "分類的獨立性檢定",
@@ -1963,7 +1963,7 @@ $.message.zhTW = {
     "Reference Site": "参考站",
     "Lot Size": "批量數",
     "Defect Size": "不良品數",
-    "If typed": "(若數字已輸入)",
+    "If typed": "輸入數字後，單擊[執行]或[輸入]",
     "Stat/BoxPlot": "統計量/盒形圖",
     "Mean": "平均",
     "Std Dev": "標準差",
@@ -2034,7 +2034,7 @@ $.message.zhTW = {
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 常態近似檢定",
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 等級和檢定,  n > 20 常態近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  等級和檢定,  n>25 常態近似檢定",
-    "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
+    "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;&#178;近似檢定",
     "VariableSelect":  "* 資料分析 : 変数選択 >>  點擊圖示",
     "VariableSelect2": "* 変数選択 : 點擊變數名或利用右側選択箱",
     "VariableSelect3": "変数選択",
@@ -2156,12 +2156,12 @@ svgStr[47][3] = "最大値";
 svgStr[48][3] = "全體";
 svgStr[49][3] = "<h3>正規性檢定</h3>";
 svgStr[50][3] = "期待度數 > 5 <br> 勸獎";
-svgStr[51][3] = "&chi;<sup>2</sup> 檢定<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][3] = "&chi;&#178; 檢定<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][3] = "資料<br>觀察度數<br>(O<sub>i</sub>)";
 svgStr[53][3] = "正規分布<br>期待確率<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][3] = "正規分布<br>期待度數<br>(E<sub>i</sub>)";
-svgStr[55][3] = "各區間l<br>&chi;<sup>2</sup> 値<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][3] = "合&chi;<sup>2</sup>値";
+svgStr[55][3] = "各區間l<br>&chi;&#178; 値<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][3] = "合&chi;&#178;値";
 svgStr[57][3] = "確率直方圖,常態分布";
 svgStr[58][3] = "常態Q-Q圖";
 svgStr[59][3] = "常態分位數";
@@ -2324,7 +2324,7 @@ svgStrU[98][3] = "模擬";
 svgStrU[99][3] = "隨機數";
 svgStrU[100][3] = "正態分佈";
 svgStrU[101][3] = "t 分布";
-svgStrU[102][3] = "&chi;<sup>2</sup> 分布";
+svgStrU[102][3] = "&chi;&#178; 分布";
 svgStrU[103][3] = "F 分布";
 svgStrU[104][3] = "HSD 分布";
 svgStrU[105][3] = "第一個四分位數<br>Q1";
@@ -2367,9 +2367,9 @@ $.message.fr = {
     "Frequency Table": "Tableau des fréquences",
     "Basic Statistics": "Statistiques élémentaires",
     "Testing Hypothesis &mu;": "Test d'hypothèse &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Test d'hypothèse &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Test d'hypothèse &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Test d'hypothèse &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Test d'hypothèse &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analyse de la variance",
     "High School Stat Education": "L'enseignement de la statistique au lycée",
     "University Stat Education": "Enseignement de la statistique à l'université",
@@ -2418,7 +2418,7 @@ $.message.fr = {
     "Execute": "Exécuter",
     "(Confidence Interval)": "(Intervalle de confinace)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Pour le Z test, Z<sub>&alpha;/2</sub>utilisé)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
+    "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Hypothèse de variance",
     "F test": "F test",
     "At least one pair of means is different": "Au moins deux moyennes sont différentes",
@@ -2450,7 +2450,7 @@ $.message.fr = {
     "Normal Distribution": "Loi normale",
     "Normal Approx": "Approximation normale",
     "t Distribution": "t Distribution",
-    "ChiSquare Distribution": "&chi;<sup>2</sup> Distribution",
+    "ChiSquare Distribution": "&chi;&#178; Distribution",
     "F Distribution": "F Distribution",
     "Sampling": "Echantillonnage",
     "Population vs Sample": "Population vs Echantillon",
@@ -2470,7 +2470,7 @@ $.message.fr = {
     "Confidence Interval": "Intervalle de confinace",
     "Confidence Interval Simulation": "Essai Intervalle de confinace",
     "Confidence Interval Mu": "Estimation : &mu; Intervalle de confinace",
-    "Confidence Interval Sigma": "Estimation : &sigma;<sup>2</sup> Intervalle de confinace",
+    "Confidence Interval Sigma": "Estimation : &sigma;&#178; Intervalle de confinace",
     "Confidence Interval P": "Estimation : p Intervalle de confinace",
     "Estimation Accuracy": "Précision de l'estimation",
     "Repetition": "Répétition",
@@ -2485,10 +2485,10 @@ $.message.fr = {
     "Testing Hypothesis muA":  "Test d'hypothèse &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Test d'hypothèse &mu; - C, n",
     "Testing Hypothesis mu": "Test d'hypothèse &mu;",
-    "Testing Hypothesis sigma": "Test d'hypothèse &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Test d'hypothèse &sigma;&#178;",
     "Testing Hypothesis P": "Test d'hypothèse p",
     "Testing Hypothesis mu12": "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Test d'hypothèse &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Test d'hypothèse &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Test d'hypothèse p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Test d'hypothèse ANOVA",
     "Testing Independence": "Test d'indépendance",
@@ -2498,7 +2498,7 @@ $.message.fr = {
     "Test Type": "Type de test",
     "Z-test": "Z test",
     "t-test": "t test",
-    "Chi-test": "&chi;<sup>2</sup> test",
+    "Chi-test": "&chi;&#178; test",
     "F-test": "F test",
     "Sampling Type": "type d'échantillonnage",
     "Independent Sample": "indépendant",
@@ -2509,7 +2509,7 @@ $.message.fr = {
     "Sample Mean": "Moyenne de l'échantillon",
     "Sample Variance": "Variance de l'échantillon",
     "Sample Proportion": "Pourcentage de l'échantillon",
-    "if Z-test-1": "(if Z test, Pour le Z test, entrez la variance de la population &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(if Z test, Pour le Z test, entrez la variance de la population &sigma;&#178;)",
     "if Z-test-2": "(if Z test, z<sub>&alpha;/2 </sub> utilisé.)",
     "At least one pair": "Au moins deux moyennes sont différentes ",
     "Row-Col-0": "Les variables en ligne et en colonne sont indépendantes",
@@ -2526,7 +2526,7 @@ $.message.fr = {
     "Reference Site": "Site de référence",
     "Lot Size": "Taille du lot",
     "Defect Size": "Taille du défaute",
-    "If typed": "(Si le numéro est saisi)",
+    "If typed": "Après avoir tapé le numéro, cliquez [Exécuter] / [Entrée]",
     "Stat/BoxPlot": "Statistiques/Boîte à moustaches",
     "Mean": "Moyenne",
     "Std Dev": "Ecart-type",
@@ -2597,7 +2597,7 @@ $.message.fr = {
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rang Sum Test,  n > 20 Normal Approximation Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
-    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> approximation test",
+    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;&#178; approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Sélection de variables",
@@ -2721,12 +2721,12 @@ svgStr[47][4] = "Maximum";
 svgStr[48][4] = "Total";
 svgStr[49][4] = "<h3>Normale Test</h3>";
 svgStr[50][4] = "*** E<sub>i</sub> > 5";
-svgStr[51][4] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][4] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][4] = "Données<br>Fréquence<br>(O<sub>i</sub>)";
 svgStr[53][4] = "Normal Distribution<br>Expected Probability<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][4] = "Normal Distribution<br>Expected Frequency<br>(E<sub>i</sub>)";
-svgStr[55][4] = "&chi;<sup>2</sup> valeur<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][4] = "résumés &chi;<sup>2</sup> value";
+svgStr[55][4] = "&chi;&#178; valeur<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][4] = "résumés &chi;&#178; value";
 svgStr[57][4] = "Probabilité Histogramme and Loi normale";
 svgStr[58][4] = "Normale Q-Q Plot";
 svgStr[59][4] = "Normale Quantile";
@@ -2889,7 +2889,7 @@ svgStrU[98][4] = "Simulation";
 svgStrU[99][4] = "Nombre aléatoire";
 svgStrU[100][4] = "Distribution normale";
 svgStrU[101][4] = "Distribution t";
-svgStrU[102][4] = "Distribution &chi;<sup>2</sup>";
+svgStrU[102][4] = "Distribution &chi;&#178;";
 svgStrU[103][4] = "Distribution F";
 svgStrU[104][4] = "Distribution HSD";
 svgStrU[105][4] = "1er quartile<br>Q1";
@@ -2932,9 +2932,9 @@ $.message.de = {
     "Frequency Table": "Häufigkeitstabelle",
     "Basic Statistics": "Basisstatistik",
     "Testing Hypothesis &mu;": "Hypothesen testen  &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Hypothesen testen  &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Hypothesen testen  &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hypothesen testen  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hypothesen testen &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hypothesen testen &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Varianzanalyse",
     "High School Stat Education": "Statistikausbildung an High Schools",
     "University Stat Education": "Statistikausausbildung an Universitäten",
@@ -2983,7 +2983,7 @@ $.message.de = {
     "Execute": "Führe aus",
     "(Confidence Interval)": "(Konfidenzintervall)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Fall Z Test vorliegt, Z, &sigma)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
+    "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Annahme für die Varianz",
     "F test": "F test",
     "At least one pair of means is different": "mindestens ein Paar von Mittelwerten ist verschieden",
@@ -3015,7 +3015,7 @@ $.message.de = {
     "Normal Distribution": "Normalverteilung",
     "Normal Approx": "Normalapproximation",
     "t Distribution": "t Verteilung",
-    "ChiSquare Distribution": "&chi;<sup>2</sup> Verteilung",
+    "ChiSquare Distribution": "&chi;&#178; Verteilung",
     "F Distribution": "F Verteilung",
     "Sampling": "Ziehen von Stichproben",
     "Population vs Sample": "Population vs Stichproben",
@@ -3035,25 +3035,25 @@ $.message.de = {
     "Confidence Interval": "Konfidenzintervall",
     "Confidence Interval Simulation": "Konfidenzintervallexperiment",
     "Confidence Interval Mu": "Einschätzung : &mu; Konfidenzintervall",
-    "Confidence Interval Sigma": "Einschätzung : &sigma;<sup>2</sup> Konfidenzintervall",
+    "Confidence Interval Sigma": "Einschätzung : &sigma;&#178; Konfidenzintervall",
     "Confidence Interval P": "Einschätzung : p Konfidenzintervall",
     "Estimation Accuracy": "Schätzgenauigkeit",
     "Repetition": "Wiederholung",
     "Confidence Level": "Konfidenzniveau",
     "Testing Hypothesis mu_titleAB": "Hypothesen testen &mu",
     "Testing Hypothesis mu_title": "Hypothesen testen &mu;",
-    "Testing Hypothesis sigma_title": "Hypothesen testen &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma_title": "Hypothesen testen &sigma;&#178;",
     "Testing Hypothesis P_title": "Hypothesen testen p",
     "Testing Hypothesis mu12_title": "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12_title": "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12_title": "Hypothesen testen  &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12_title": "Hypothesen testen p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis muA":  "Hypothesen testen &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Hypothesen testen &mu; - C, n",
     "Testing Hypothesis mu": "Hypothesen testen &mu;",
-    "Testing Hypothesis sigma": "Hypothesen testen &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Hypothesen testen &sigma;&#178;",
     "Testing Hypothesis P": "Hypothesen testen p",
     "Testing Hypothesis mu12": "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Hypothesen testen  &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Hypothesen testen  &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Hypothesen testen  p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Hypothesen testen ANOVA",
     "Testing Independence": "Hypothesen testen auf Unabhängigkeit",
@@ -3061,7 +3061,7 @@ $.message.de = {
     "Regression Experiment": "Regressionsexperiment",
     "Hypothesis": "Hypothese",
     "Test Type": "Testtyp",
-    "Chi-test": "&chi;<sup>2</sup> test",
+    "Chi-test": "&chi;&#178; test",
     "Sampling Type": "Beispielstyp",
     "Independent Sample": "unabhängig",
     "Paired Sample": "gepaart",
@@ -3088,7 +3088,7 @@ $.message.de = {
     "Reference Site": "Referenzseite",
     "Lot Size": "Losgröße",
     "Defect Size": "Defektzahl",
-    "If typed": "(Falls eine Nummer getippt wird)",
+    "If typed": "Klicken Sie nach der Nummer auf [Ausführen] / [Eingeben]",
     "Stat/BoxPlot": "Statistik/BoxPlot",
     "Mean": "Mittelwert",
     "Std Dev": "Standardabweichung",
@@ -3159,7 +3159,7 @@ $.message.de = {
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Annäherung Test",
     "WilcoxonSignCondition": "If n≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Annäherung Test",
     "WilcoxonRankCondition": "if n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rangsum Test,  n>25 Normal Approximation Test",
-    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;<sup>2</sup> Annäherung test",
+    "KruskalCondition": "If n≤ 10 H Distribution Test,  else &chi;&#178; Annäherung test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Auswahl : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Auswahl",
@@ -3283,12 +3283,12 @@ svgStr[47][5] = "Maximum";
 svgStr[48][5] = "Total";
 svgStr[49][5] = "<h3>Normal Test</h3>";
 svgStr[50][5] = "*** E<sub>i</sub> > 5";
-svgStr[51][5] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][5] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][5] = "Daten<br>Observed Häufigkeit<br>(O<sub>i</sub>)";
 svgStr[53][5] = "Normalverteilung<br>Expected Wahrscheinlichkeit<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][5] = "Normalverteilung<br>Expected Häufigkeit<br>(E<sub>i</sub>)";
-svgStr[55][5] = "&chi;<sup>2</sup> wert<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][5] = "Total &chi;<sup>2</sup> wert";
+svgStr[55][5] = "&chi;&#178; wert<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][5] = "Total &chi;&#178; wert";
 svgStr[57][5] = "Wahrscheinlichkeit Histogramm, Normalverteilung";
 svgStr[58][5] = "Normal Q-Q Diagramm";
 svgStr[59][5] = "Normal Quantile";
@@ -3451,7 +3451,7 @@ svgStrU[98][5] = "Simulation";
 svgStrU[99][5] = "Zufallszahl";
 svgStrU[100][5] = "Normalverteilung";
 svgStrU[101][5] = "t Verteilung";
-svgStrU[102][5] = "&chi;<sup>2</sup> Verteilung";
+svgStrU[102][5] = "&chi;&#178; Verteilung";
 svgStrU[103][5] = "F Verteilung";
 svgStrU[104][5] = "HSD Verteilung";
 svgStrU[105][5] = "1. Quartil <br> Q1";
@@ -3494,9 +3494,9 @@ $.message.es = {
     "Frequency Table": "Tabla de frecuencias",
     "Basic Statistics": "Estadística básica",
     "Testing Hypothesis &mu;": "Prueba de hipótesis &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Prueba de hipótesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Prueba de hipótesis &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Prueba de hipótesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Prueba de hipótesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Prueba de hipótesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Análisis de Varianza",
     "High School Stat Education": "Educación Estadística de Bachillerato",
     "University Stat Education": "Educación Estadística Universitaria",
@@ -3545,7 +3545,7 @@ $.message.es = {
     "Execute": "Ejecutar",
     "(Confidence Interval)": "(Intervalo de confianza)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Si prueba Z  Z, &sigma)",
-    "&chi;<sup>2</sup> test": "Prueba &chi;<sup>2</sup>",
+    "&chi;<sup>2</sup> test": "Prueba &chi;&#178;",
     "Variance Assumption": "Premisa sobre la varianza",
     "F test": "Prueba F",
     "At least one pair of means is different": "Al menos un par de medias es diferente",
@@ -3577,7 +3577,7 @@ $.message.es = {
     "Normal Distribution": "Distribución Normal",
     "Normal Approx": "Aproximación Normal",
     "t Distribution": "Distribución t ",
-    "ChiSquare Distribution": "Distribución &chi;<sup>2</sup>",
+    "ChiSquare Distribution": "Distribución &chi;&#178;",
     "F Distribution": "Distribución F",
     "Sampling": "Muestreo",
     "Population vs Sample": "Población vs Muestra",
@@ -3597,7 +3597,7 @@ $.message.es = {
     "Confidence Interval": "Nivel de confianza",
     "Confidence Interval Simulation": "Experimento Nivel de confianza",
     "Confidence Interval Mu": "Estimación : &mu; Nivel de confianza",
-    "Confidence Interval Sigma": "Estimación : &sigma;<sup>2</sup> Nivel de confianza",
+    "Confidence Interval Sigma": "Estimación : &sigma;&#178; Nivel de confianza",
     "Confidence Interval P": "Estimación : p Nivel de confianza",
     "Estimation Accuracy": "Precisión de la estimación",
     "Repetition": "Repetición",
@@ -3612,10 +3612,10 @@ $.message.es = {
     "Testing Hypothesis muA":  "Prueba de hipótesis &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Prueba de hipótesis &mu; - C, n",
     "Testing Hypothesis mu": "Prueba de hipótesis &mu;",
-    "Testing Hypothesis sigma": "Prueba de hipótesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Prueba de hipótesis &sigma;&#178;",
     "Testing Hypothesis P": "Prueba de hipótesis p",
     "Testing Hypothesis mu12": "Prueba de hipótesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Prueba de hipótesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Prueba de hipótesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Prueba de hipótesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Prueba de hipótesis ANOVA",
     "Testing Independence": "Prueba de independencia",
@@ -3625,7 +3625,7 @@ $.message.es = {
     "Test Type": "Tipo de prueba",
     "Z-test": " Prueba Z",
     "t-test": " Prueba t",
-    "Chi-test": "Prueba &chi;<sup>2</sup>",
+    "Chi-test": "Prueba &chi;&#178;",
     "F-test": "Prueba F",
     "Sampling Type": "Tipo de muestreo",
     "Independent Sample": "independiente",
@@ -3636,7 +3636,7 @@ $.message.es = {
     "Sample Mean": "Media muestral",
     "Sample Variance": "Varianza muestral",
     "Sample Proportion": "Proporción muestral",
-    "if Z-test-1": "(Si test Z entrar la varianza de la población &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(Si test Z entrar la varianza de la población &sigma;&#178;)",
     "if Z-test-2": "(Si test Z z<sub>&alpha;/2 </sub> )",
     "At least one pair": "Al menos un par de medias es diferente",
     "Row-Col-0": "La variables fila y columna son independientes",
@@ -3653,7 +3653,7 @@ $.message.es = {
     "Reference Site": "Enlace de referencia",
     "Lot Size": "Tamaño del lote",
     "Defect Size": "Tamaño del defecto",
-    "If typed": "(Si el número está escrito)",
+    "If typed": "Después de escribir el número, clic [Ejecutar] o [Entrar]",
     "Stat/BoxPlot": "Estadísticos/Diagrama de Box",
     "Mean": "Media",
     "Std Dev": "Desviación estándar",
@@ -3724,7 +3724,7 @@ $.message.es = {
     "SignCondition": "Si n ≤ 100 Binomial prueba,  n > 100 Normal prueba de aproximación",
     "WilcoxonSignCondition": "Si n≤ 20 Wilcoxon prueba de suma de rango,  n > 20 Normal prueba de aproximación",
     "WilcoxonRankCondition": "Si n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon prueba de suma de rango,  n>25 Normal prueba de aproximación",
-    "KruskalCondition": "Si n≤ 10 H prueba de distribución,  no &chi;<sup>2</sup> prueba de aproximación",
+    "KruskalCondition": "Si n≤ 10 H prueba de distribución,  no &chi;&#178; prueba de aproximación",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Selección de Variables : Click var name or use RHS selection box ",
     "VariableSelect3": "Selección de Variables",
@@ -3848,12 +3848,12 @@ svgStr[47][6] = "Máximo";
 svgStr[48][6] = "Total";
 svgStr[49][6] = "<h3>Normal prueba</h3>";
 svgStr[50][6] = "*** E<sub>i</sub> > 5";
-svgStr[51][6] = "&chi;<sup>2</sup> prueba<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][6] = "&chi;&#178; prueba<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][6] = "Data<br>Observed Frecuencias<br>(O<sub>i</sub>)";
 svgStr[53][6] = "Normal Distribución<br>Expected Probabilidad<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][6] = "Normal Distribución<br>Expected Frecuencias<br>(E<sub>i</sub>)";
-svgStr[55][6] = "&chi;<sup>2</sup> valor<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][6] = "Total &chi;<sup>2</sup> valor";
+svgStr[55][6] = "&chi;&#178; valor<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][6] = "Total &chi;&#178; valor";
 svgStr[57][6] = "Probabilidad Hitograma, Normal Distribución";
 svgStr[58][6] = "Normal Q-Q Diagrama";
 svgStr[59][6] = "Normal Quantile";
@@ -4016,7 +4016,7 @@ svgStrU[98][6] = "Simulación";
 svgStrU[99][6] = "Número aleatorio";
 svgStrU[100][6] = "Distribución normal";
 svgStrU[101][6] = "Distribución t";
-svgStrU[102][6] = "Distribución &chi;<sup>2</sup>";
+svgStrU[102][6] = "Distribución &chi;&#178;";
 svgStrU[103][6] = "Distribución F";
 svgStrU[104][6] = "Distribución HSD";
 svgStrU[105][6] = "1er cuartil <br> Q1";
@@ -4059,9 +4059,9 @@ $.message.vi = {
     "Frequency Table": "Bảng tần số",
     "Basic Statistics": "Thống kê cơ bản",
     "Testing Hypothesis &mu;": "Kiểm định giả thuyết &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Kiểm định giả thuyết &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Kiểm định giả thuyết &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Kiểm định giả thuyết &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Kiểm định giả thuyết &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Kiểm định giả thuyết &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Phân tích ANOVA",
     "High School Stat Education": "Thống kê trung học",
     "University Stat Education": "Thống kê Đại học",
@@ -4110,7 +4110,7 @@ $.message.vi = {
     "Execute": "Thực thi",
     "(Confidence Interval)": "(Khoảng tin cậy)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Nếu kiểm định Z, Z<sub>&alpha;/2</sub>)",
-    "&chi;<sup>2</sup> test": "Kiểm định &chi;<sup>2</sup>",
+    "&chi;<sup>2</sup> test": "Kiểm định &chi;&#178;",
     "Variance Assumption": "Giả thiết về phương sai",
     "F test": "Kiểm định F",
     "At least one pair of means is different": "Có ít nhất một cặp trung bình khác nhau",
@@ -4142,7 +4142,7 @@ $.message.vi = {
     "Normal Distribution": "Phân phối chuẩn",
     "Normal Approx": "Xấp xỉ chuẩn",
     "t Distribution": "Phân phối t",
-    "ChiSquare Distribution": "Phân phối &chi;<sup>2</sup>",
+    "ChiSquare Distribution": "Phân phối &chi;&#178;",
     "F Distribution": "Phân phối F",
     "Sampling": "Lấy mẫu",
     "Population vs Sample": "Tổng thể vs mẫu",
@@ -4162,7 +4162,7 @@ $.message.vi = {
     "Confidence Interval": "Khoảng tin cậy",
     "Confidence Interval Simulation": "Thí Khoảng tin cậy",
     "Confidence Interval Mu": "Ước lượng : &mu; Khoảng tin cậy",
-    "Confidence Interval Sigma": "Ước lượng : &sigma;<sup>2</sup> Khoảng tin cậy간",
+    "Confidence Interval Sigma": "Ước lượng : &sigma;&#178; Khoảng tin cậy간",
     "Confidence Interval P": "Ước lượng : p Khoảng tin cậy",
     "Estimation Accuracy": "Độ chính xác của ước lượng",
     "Repetition": "Sự lặp lại",
@@ -4177,10 +4177,10 @@ $.message.vi = {
     "Testing Hypothesis muA":  "Kiểm định giả thuyết &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Kiểm định giả thuyết &mu; - C, n",
     "Testing Hypothesis mu": "Kiểm định giả thuyết &mu;",
-    "Testing Hypothesis sigma": "Kiểm định giả thuyết &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Kiểm định giả thuyết &sigma;&#178;",
     "Testing Hypothesis P": "Kiểm định p",
     "Testing Hypothesis mu12": "Kiểm định giả thuyết &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Kiểm định giả thuyết &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Kiểm định giả thuyết &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Kiểm định giả thuyết p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Kiểm định ANOVA",
     "Testing Independence": "Kiểm định độc lập",
@@ -4190,7 +4190,7 @@ $.message.vi = {
     "Test Type": "Loại kiểm định",
     "Z-test": "Kiểm định Z",
     "t-test": "Kiểm định t",
-    "Chi-test": "kiểm định &chi;<sup>2</sup>",
+    "Chi-test": "kiểm định &chi;&#178;",
     "F-test": "Kiểm định F",
     "Sampling Type": "Kiểu lấy mẫu",
     "Independent Sample": "độc lập",
@@ -4201,7 +4201,7 @@ $.message.vi = {
     "Sample Mean": "Trung bình mẫu",
     "Sample Variance": " Phương sai mẫu",
     "Sample Proportion": "Tỉ lệ mẫu",
-    "if Z-test-1": "(Nếu kiểm định Z, nhập phương sai tổng thể &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(Nếu kiểm định Z, nhập phương sai tổng thể &sigma;&#178;)",
     "if Z-test-2": "(Nếu kiểm định Z, z<sub>&alpha;/2 </sub>.)",
     "At least one pair": "Có ít nhất một cặp trung bình khác nhau",
     "Row-Col-0": "Biến cột và biến dòng độc lập ",
@@ -4218,7 +4218,7 @@ $.message.vi = {
     "Reference Site": "Tham khảo",
     "Lot Size": "Kích thước lô",
     "Defect Size": "Có vấn đề về cỡ mẫu",
-    "If typed": "(Nhập số bằng tay)",
+    "If typed": "Sau khi nhập số, nhấp vào [Thực thi] / [Enter]",
     "Stat/BoxPlot": "Thống kê / Biểu đồ Box",
     "Mean": "Trung bình",
     "Std Dev": "Độ lệch chuẩn",
@@ -4285,7 +4285,7 @@ $.message.vi = {
     "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Kiểm định xấp xỉ chuẩn",
     "WilcoxonSignCondition": "Nếu n≤ 20 Wilcoxon Xếp hạng Tổng kiểm tra,  n > 20 Kiểm định xấp xỉ",
     "WilcoxonRankCondition": "Nếu n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Kiểm định xấp xỉ chuẩn",
-    "KruskalCondition": "Nếu n≤ 10 H Kiểm tra phân phối,  else &chi;<sup>2</sup> Kiểm định xấp xỉ",
+    "KruskalCondition": "Nếu n≤ 10 H Kiểm tra phân phối,  else &chi;&#178; Kiểm định xấp xỉ",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Lựa chọn biến",
@@ -4409,12 +4409,12 @@ svgStr[47][7] = "Lớn nhất";
 svgStr[48][7] = "Tổng cộng";
 svgStr[49][7] = "<h3>Kiểm định chuẩn</h3>";
 svgStr[50][7] = "Tần số kì vọng nên > 5 <br>";
-svgStr[51][7] = "&chi;<sup>2</sup> Kiểm tra<br>Khoảng thời gian i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][7] = "&chi;&#178; Kiểm tra<br>Khoảng thời gian i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][7] = "Dữ liệu<br>Tần số quan sát<br>(O<sub>i</sub>)";
 svgStr[53][7] = "P/p Chuẩn<br>Xác suất kì vọng<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][7] = "P/p Chuẩn<br>Tần số kì vọng<br>(E<sub>i</sub>)";
-svgStr[55][7] = "Khoảng thời gian<br>&chi;<sup>2</sup> giá trị<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][7] = "Tổng của &chi;<sup>2</sup> giá trị";
+svgStr[55][7] = "Khoảng thời gian<br>&chi;&#178; giá trị<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][7] = "Tổng của &chi;&#178; giá trị";
 svgStr[57][7] = "Biểu đồ x/suất và p/p chuẩn";
 svgStr[58][7] = "Đồ thị Q-Q Plot p/p chuẩn";
 svgStr[59][7] = "Phân vị chuẩn";
@@ -4577,7 +4577,7 @@ svgStrU[98][7] = "Mô phỏng";
 svgStrU[99][7] = "Số ngẫu nhiên";
 svgStrU[100][7] = "Phân phối bình thường";
 svgStrU[101][7] = "Phân phối t";
-svgStrU[102][7] = "Phân phối &chi;<sup>2</sup>";
+svgStrU[102][7] = "Phân phối &chi;&#178;";
 svgStrU[103][7] = "Phân phối F";
 svgStrU[104][7] = "Phân phối HSD";
 svgStrU[105][7] = "Phần tư thứ nhất <br> Q1";
@@ -4620,9 +4620,9 @@ $.message.id = {
     "Frequency Table": "Tabel Frekuensi",
     "Basic Statistics": "Statistika Dasar",
     "Testing Hypothesis &mu;": "Pengujian Hipotesis &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": " Pengujian Hipotesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": " Pengujian Hipotesis &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": " Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": " Pengujian Hipotesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": " Pengujian Hipotesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analisis Varians",
     "High School Stat Education": "Pelajaran Statistika tingkat Sekolah Menengah Atas",
     "University Stat Education": "Pelajaran Statistika tingkat Universitas",
@@ -4671,7 +4671,7 @@ $.message.id = {
     "Execute": "Jalankan",
     "(Confidence Interval)": "(Selang Kepercayaan)",
     "(jika Z-uji, Z<sub>1-&alpha;/2 </sub> digunakan)": "(jika uji-Z, Z<sub>&alpha;/2</sub>digunakan)",
-    "&chi;<sup>2</sup> test": "uji &chi;<sup>2</sup>",
+    "&chi;<sup>2</sup> test": "uji &chi;&#178;",
     "Variance Assumption": "Asumsi Varians",
     "F test": "Uji F",
     "At least one pair of means is different": "Setidaknya ada satu pasang Rata-rata yang berbeda",
@@ -4703,7 +4703,7 @@ $.message.id = {
     "Normal Distribution": "Distribusi Normal",
     "Normal Approx": "Pendekatan Normal",
     "t Distribution": "Distribusi t",
-    "ChiSquare Distribution": "Distribusi &chi;<sup>2</sup>",
+    "ChiSquare Distribution": "Distribusi &chi;&#178;",
     "F Distribution": "Distribusi F",
     "Sampling": "Pengambilan Sampel",
     "Population vs Sample": "Populasi vs Sampel",
@@ -4723,7 +4723,7 @@ $.message.id = {
     "Confidence Interval": "Selang Kepercayaan",
     "Confidence Interval Simulation": "Percobaan Selang Kepercayaan",
     "Confidence Interval Mu": "Estimasi : &mu; Selang Kepercayaan",
-    "Confidence Interval Sigma": "Estimasi : &sigma;<sup>2</sup> Selang Kepercayaan",
+    "Confidence Interval Sigma": "Estimasi : &sigma;&#178; Selang Kepercayaan",
     "Confidence Interval P": "Estimasi : p Selang Kepercayaan",
     "Estimation Accuracy": "Keakurasian Nilai Estimasi",
     "Repetition": "Ulangan",
@@ -4738,10 +4738,10 @@ $.message.id = {
     "Testing Hypothesis muA":  "Pengujian Hipotesis &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Pengujian Hipotesis &mu; - C, n",
     "Testing Hypothesis mu": "Pengujian Hipotesis &mu;",
-    "Testing Hypothesis sigma": "Pengujian Hipotesis &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Pengujian Hipotesis &sigma;&#178;",
     "Testing Hypothesis P": "Pengujian Hipotesis p",
     "Testing Hypothesis mu12": "Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Pengujian Hipotesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Pengujian Hipotesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Pengujian Hipotesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Pengujian Hipotesis ANOVA",
     "Testing Independence": "Uji Independensi",
@@ -4751,7 +4751,7 @@ $.message.id = {
     "Test Type": "Tipe Uji",
     "Z-test": "uji Z ",
     "t-test": "uji t",
-    "Chi-test": "uji &chi;<sup>2</sup>",
+    "Chi-test": "uji &chi;&#178;",
     "F-test": "uji F",
     "Sampling Type": "Jenis Sampling",
     "Independent Sample": "independen",
@@ -4762,7 +4762,7 @@ $.message.id = {
     "Sample Mean": "Rata-rata Sampel",
     "Sample Variance": "Varians Sampel",
     "Sample Proportion": "Proporsi Sampel",
-    "if Z-test-1": "(if uji Z, Masukkan Varians Populasi &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(if uji Z, Masukkan Varians Populasi &sigma;&#178;)",
     "if Z-test-2": "(if uji Z, z<sub>&alpha;/2 </sub> digunakan.)",
     "At least one pair": " Setidaknya Ada Satu Pasang Rata-rata yang Berbeda",
     "Row-Col-0": "Baris dan Kolom Variabel saling bebas/independen",
@@ -4779,7 +4779,7 @@ $.message.id = {
     "Reference Site": "Situs Referensi",
     "Lot Size": "Jumlah Lot",
     "Defect Size": "Jumlah Cacat",
-    "If typed": "(Jika Bilangan di Ketik)",
+    "If typed": "Setelah mengetik nomor, klik [Jalankan] / [Enter]",
     "Stat/BoxPlot": "Stat/Diagram Kotak Garis",
     "Mean": "Rata-rata",
     "Std Dev": "Standar Deviasi",
@@ -4850,7 +4850,7 @@ $.message.id = {
     "SignCondition": "Jika n ≤ 100 Uji Binomial,  n > 100 Pendekatan Normal",
     "WilcoxonSignCondition": "jika n≤ 20 Wilcoxon Tes Jumlah Peringkat,  n > 20 Normal Uji Approximation",
     "WilcoxonRankCondition": "jika n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Uji Jumlah Peringkat Wilcoxon, n>25 Pendekatan Normal",
-    "KruskalCondition": "jika n≤ 10 Uji Distribusi H,  else &chi;<sup>2</sup> Uji Aproksimasi",
+    "KruskalCondition": "jika n≤ 10 Uji Distribusi H,  else &chi;&#178; Uji Aproksimasi",
     "VariableSelect":  "* Analisis Data : Muat File >> Pilih Variabel >>  Klik Ikon",
     "VariableSelect2": "* Pemilihan Variabel : Klik nama variabel atau gunakan kotak pemilihan RHS",
     "VariableSelect3": "Seleksi Variabel",
@@ -4974,12 +4974,12 @@ svgStr[47][8] = "Maksimum";
 svgStr[48][8] = "Total";
 svgStr[49][8] = "<h3>Uji Kenormalan</h3>";
 svgStr[50][8] = "Frekuensi harapan > 5 <br> disarankan";
-svgStr[51][8] = "&chi;<sup>2</sup> Tes<br>Selang i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][8] = "&chi;&#178; Tes<br>Selang i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][8] = "Data<br>Frekuensi Amatan<br>(O<sub>i</sub>)";
 svgStr[53][8] = "Distribusi Normal<br>Peluang Harapan<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][8] = "Distribusi Normal<br>Frekuensi Harapan<br>(E<sub>i</sub>)";
-svgStr[55][8] = "Setiap interval<br>&chi;<sup>2</sup> nilai<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][8] = "Jumlah dari nilai &chi;<sup>2</sup>";
+svgStr[55][8] = "Setiap interval<br>&chi;&#178; nilai<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][8] = "Jumlah dari nilai &chi;&#178;";
 svgStr[57][8] = "Histogram Peluang dan Distribusi Normal";
 svgStr[58][8] = "Q-Q Plot Normal";
 svgStr[59][8] = "Kuantil Normal";
@@ -5142,7 +5142,7 @@ svgStrU[98][8] = "Simulasi";
 svgStrU[99][8] = "Angka acak";
 svgStrU[100][8] = "Distribusi normal";
 svgStrU[101][8] = "Distribusi t";
-svgStrU[102][8] = "Distribusi &chi;<sup>2</sup>";
+svgStrU[102][8] = "Distribusi &chi;&#178;";
 svgStrU[103][8] = "Distribusi F";
 svgStrU[104][8] = "Distribusi HSD";
 svgStrU[105][8] = "Kuartil 1 <br> Q1";
@@ -5186,9 +5186,9 @@ $.message.mn = {
     "Frequency Table": "Давтамжит хүснэгт",
     "Basic Statistics": "Суурь, үндсэн статистик",
     "Testing Hypothesis &mu;": "Тестэн таамаглал &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Тестэн таамаглал &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Тестэн таамаглал &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Тестэн таамаглал &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Тестэн таамаглал &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Дундаж кватрат хазайлтын шинжилгээ",
     "High School Stat Education": "Ахлах сургуулийн статистикийн боловсрол",
     "University Stat Education": "Их сургуулийн статистикийн боловсрол ",
@@ -5237,7 +5237,7 @@ $.message.mn = {
     "Execute": "Гүйцэтгэл",
     "(Confidence Interval)": "(Найдварт завсар)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Хэрэв Z тест байвал z<sub>&alpha;/2</sub>)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> Тест",
+    "&chi;<sup>2</sup> test": "&chi;&#178; Тест",
     "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
     "F test": "F Тестийн",
     "At least one pair of means is different": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр. ",
@@ -5269,7 +5269,7 @@ $.message.mn = {
     "Normal Distribution": "Хэвийн тархац",
     "Normal Approx": "Хэвийн ойролцоо утга",
     "t Distribution": "t Тархалт",
-    "ChiSquare Distribution": "&chi;<sup>2</sup> тархалт",
+    "ChiSquare Distribution": "&chi;&#178; тархалт",
     "F Distribution": "F Тархалт",
     "Sampling": "Түүвэрлэлт",
     "Population vs Sample": "Хүн амын тооны эсрэг жишээ ",
@@ -5289,7 +5289,7 @@ $.message.mn = {
     "Confidence Interval": "Найдварт завсар ",
     "Confidence Interval Simulation": "Найдварт завсар туршилт",
     "Confidence Interval Mu": "Тооцоолол : &mu; Найдварт завсар",
-    "Confidence Interval Sigma": "Тооцоолол : &sigma;<sup>2</sup> Найдварт завсар",
+    "Confidence Interval Sigma": "Тооцоолол : &sigma;&#178; Найдварт завсар",
     "Confidence Interval P": "Тооцоолол : p Найдварт завсар",
     "Estimation Accuracy": "нарийвчлалыг үнэлэх",
     "Repetition": "Давтамж",
@@ -5304,10 +5304,10 @@ $.message.mn = {
     "Testing Hypothesis muA":  "Тестэн таамаглал &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Тестэн таамаглал &mu; - C, n",
     "Testing Hypothesis mu": "Тестэн таамаглал &mu;",
-    "Testing Hypothesis sigma": "Тестэн таамаглал &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Тестэн таамаглал &sigma;&#178;",
     "Testing Hypothesis P": "Тестэн таамаглал p",
     "Testing Hypothesis mu12": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Тестэн таамаглал &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Тестэн таамаглал &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Тестэн таамаглал p<sub>1</sub>, <sub>2</sub>",
     "Testing Hypothesis ANOVA": "Тестэн таамаглал ANOVA",
     "Testing Independence": "Тестэн хамааралгүй байдал",
@@ -5317,7 +5317,7 @@ $.message.mn = {
     "Test Type": "Тестийн төрөл",
     "Z-test": "Z Тестийн",
     "t-test": "t Тестийн",
-    "Chi-test": "&chi;<sup>2</sup> Тестийн",
+    "Chi-test": "&chi;&#178; Тестийн",
     "F-test": "F Тестийн",
     "Sampling Type": "Түүвэрлэлт",
     "Independent Sample": "Үл хамааран",
@@ -5328,7 +5328,7 @@ $.message.mn = {
     "Sample Mean": "Жишээ дундаж утга",
     "Sample Variance": "Түүврийн вариаци",
     "Sample Proportion": "жишээ харьцаа",
-    "if Z-test-1": "(Хэрэв Z тест байвал хүн амын дундаж кватрат хазайлтыг оруул &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(Хэрэв Z тест байвал хүн амын дундаж кватрат хазайлтыг оруул &sigma;&#178;)",
     "if Z-test-2": "(Хэрэв Z тест z<sub>&alpha;/2 </sub> ашиглагдсан.)",
     "At least one pair": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр.",
     "Row-Col-0": "Мөр болон баганы хувьсагчууд хоорондоо хамааралгүй ",
@@ -5345,7 +5345,7 @@ $.message.mn = {
     "Reference Site": "Иш татсан цахим хуудас",
     "Lot Size": "Их хэмжээ",
     "Defect Size": "Алдаатай хэмжээ",
-    "If typed": "(Хэрэв тоо бичигдвэл)",
+    "If typed": "Дугаар оруулсны дараа [Гүйцэтгэх] / [Enter]",
     "Stat/BoxPlot": "Статистик/Шигтгээ зураг",
     "Mean": "Дундаж  утга",
     "Std Dev": "Стандарт хэлбэлзэл",
@@ -5414,7 +5414,7 @@ $.message.mn = {
     "SignCondition": "хэрэв n ≤ 100 Binomial Туршилт,  n > 100 Normal Тооцоолол",
     "WilcoxonSignCondition": "хэрэв n≤ 20 Wilcoxon Дундаж дүн шинжилгээ,  n > 20 Normal Тооцоолол",
     "WilcoxonRankCondition": "v n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Дундаж дүн шинжилгээ,  n>25 Normal Тооцоолол",
-    "KruskalCondition": "хэрэв n≤ 10 H Түгээлт Тест,  else &chi;<sup>2</sup> Тооцоолол",
+    "KruskalCondition": "хэрэв n≤ 10 H Түгээлт Тест,  else &chi;&#178; Тооцоолол",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Хувьсах сонголт",
@@ -5538,12 +5538,12 @@ svgStr[47][9] = "Хамгийн их ";
 svgStr[48][9] = "Нийлбэр ";
 svgStr[49][9] = "<h3>Нормал тархалтын тест</h3>";
 svgStr[50][9] = "Хүлээгдэж буй давтамж > 5";
-svgStr[51][9] = "&chi;<sup>2</sup> Тест<br>Интервал i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][9] = "&chi;&#178; Тест<br>Интервал i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][9] = "Өгөгдөл<br>Ажиглалтын давтамж<br>(O<sub>i</sub>)";
 svgStr[53][9] = "Нормал тархалт<br>Хүлээгдэж буй магадлал<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][9] = "Нормал тархалт<br>Хүлээгдэж буй давтамж<br>(E<sub>i</sub>)";
-svgStr[55][9] = "Интервал<br>&chi;<sup>2</sup> Утга<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][9] = "&chi;<sup>2</sup> Утга";
+svgStr[55][9] = "Интервал<br>&chi;&#178; Утга<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][9] = "&chi;&#178; Утга";
 svgStr[57][9] = "Магадлал Гистограм";
 svgStr[58][9] = "Нормал Q-Q диаграм";
 svgStr[59][9] = "Нормал Quantile";
@@ -5706,7 +5706,7 @@ svgStrU[98][9] = "Загварчлал";
 svgStrU[99][9] = "Санамсаргүй тоо";
 svgStrU[100][9] = "Хэвийн тархалт";
 svgStrU[101][9] = "t Түгээлт";
-svgStrU[102][9] = "&chi;<sup>2</sup> Түгээлт";
+svgStrU[102][9] = "&chi;&#178; Түгээлт";
 svgStrU[103][9] = "F Түгээлт";
 svgStrU[104][9] = "HSD Түгээлт";
 svgStrU[105][9] = "1-р Квартет<br>Q1";
@@ -5749,9 +5749,9 @@ $.message.zh = {
     "Frequency Table": "频频率分布表",
     "Basic Statistics": "基本统计量",
     "Testing Hypothesis &mu;": "假设检验 &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "假设检验 &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "假设检验 &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "假设检验 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假设检验 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假设检验 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "方差分析",
     "High School Stat Education": "高中统计",
     "University Stat Education": "大学统计",
@@ -5800,7 +5800,7 @@ $.message.zh = {
     "Execute": "执行",
     "(Confidence Interval)": "(置信区间)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 检验, Z<sub>&alpha;/2</sub>使用)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> 检验",
+    "&chi;<sup>2</sup> test": "&chi;&#178; 检验",
     "Variance Assumption": "方差假设",
     "F test": "F 检验",
     "At least one pair of means is different": "至少有一对平均数不相等",
@@ -5852,7 +5852,7 @@ $.message.zh = {
     "Confidence Interval": "置信区间",
     "Confidence Interval Simulation": "置信区间试验",
     "Confidence Interval Mu": "估计 : &mu; 置信区间",
-    "Confidence Interval Sigma": "估计 : &sigma;<sup>2</sup> 置信区间",
+    "Confidence Interval Sigma": "估计 : &sigma;&#178; 置信区间",
     "Confidence Interval P": "估计 : p 置信区间",
     "Estimation Accuracy": "估计准确率",
     "Repetition": "重复数",
@@ -5867,10 +5867,10 @@ $.message.zh = {
     "Testing Hypothesis muA":  "假设检验 &mu; - C, &beta;",
     "Testing Hypothesis muAB": "假设检验 &mu; - C, n",
     "Testing Hypothesis mu": "假设检验: 均值&mu;",
-    "Testing Hypothesis sigma": "假设检验: 变异数&sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "假设检验: 变异数&sigma;&#178;",
     "Testing Hypothesis P": "假设检验: 比例 p",
     "Testing Hypothesis mu12": "假设检验 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "假设检验 : &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "假设检验 : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "假设检验 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "假设检验方差分析",
     "Testing Independence": "分类的独立性检验",
@@ -5908,7 +5908,7 @@ $.message.zh = {
     "Reference Site": "参考站",
     "Lot Size": "Lot数",
     "Defect Size": "不良品数",
-    "If typed": "(若数字已输入)",
+    "If typed": "输入数字后，单击[执行]或[输入]",
     "Stat/BoxPlot": "统计量/箱型图",
     "Mean": "均值",
     "Std Dev": "标准差",
@@ -5979,7 +5979,7 @@ $.message.zh = {
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon 順位合檢定t,  n > 20 正規近似檢定",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25  順位合檢定,  n>25 正規近似檢定",
-    "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;<sup>2</sup>近似檢定",
+    "KruskalCondition": "n ≤ 10 H 分布檢定,  n > 100 &chi;&#178;近似檢定",
     "VariableSelect":  "* 資料分析 : 变量選択 >>  Click Icon",
     "VariableSelect2": "* 变量選択 : Click 变量名 / 右側選択箱利用 ",
     "VariableSelect3": "* 变量選択",
@@ -6102,12 +6102,12 @@ svgStr[47][10] = "最大值";
 svgStr[48][10] = "全体";
 svgStr[49][10] = "<h3>正态性检验</h3>";
 svgStr[50][10] = "期望频数> 5 <br> 建议";
-svgStr[51][10] = "&chi;<sup>2</sup> 检验<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][10] = "&chi;&#178; 检验<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][10] = "资料<br>观察频数<br>(O<sub>i</sub>)";
 svgStr[53][10] = "正态分布<br>期望概率<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][10] = "正态分布<br>期望频数<br>(E<sub>i</sub>)";
-svgStr[55][10] = "各区间l<br>&chi;<sup>2</sup> 值<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][10] = "合&chi;<sup>2</sup>值";
+svgStr[55][10] = "各区间l<br>&chi;&#178; 值<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][10] = "合&chi;&#178;值";
 svgStr[57][10] = "概率直方图, 正态分布";
 svgStr[58][10] = "正态Q-Q图";
 svgStr[59][10] = "正态分位数";
@@ -6244,7 +6244,7 @@ svgStrU[98][10] = "模拟";
 svgStrU[99][10] = "随机数";
 svgStrU[100][10] = "正态分布";
 svgStrU[101][10] = "t 分布";
-svgStrU[102][10] = "&chi;<sup>2</sup> 分布";
+svgStrU[102][10] = "&chi;&#178; 分布";
 svgStrU[103][10] = "F 分布";
 svgStrU[104][10] = "HSD 分布";
 svgStrU[105][10] = "第一个四分位数问题<br>Q1";
@@ -6287,9 +6287,9 @@ $.message.pt = {
     "Frequency Table": "Tabela de Frequências",
     "Basic Statistics": "Estatísticas Básicas",
     "Testing Hypothesis &mu;": "Teste de Hipóteses &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Teste de Hipóteses &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Teste de Hipóteses &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Teste de Hipóteses  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Análise de Variância",
     "High School Stat Education": "Educação Estatística no Ensino Médio",
     "University Stat Education": "Educação Estatística Universitária",
@@ -6341,7 +6341,7 @@ $.message.pt = {
     "Execute": "Execute",
     "(Confidence Interval)": "(Confidence Interval)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Se teste Z, use z<sub>&alpha;/2 </sub>)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> teste",
+    "&chi;<sup>2</sup> test": "&chi;&#178; teste",
     "Variance Assumption": "Suposição sobre as variâncias",
     "F test": "F teste",
     "At least one pair of means is different": "Pelo menos um par de médias difere",
@@ -6373,7 +6373,7 @@ $.message.pt = {
     "Normal Distribution": "Distribuição Normal",
     "Normal Approx": "Aproximação Normal",
     "t Distribution": "Distribuição t",
-    "ChiSquare Distribution": "Distribuição &chi;<sup>2</sup>",
+    "ChiSquare Distribution": "Distribuição &chi;&#178;",
     "F Distribution": "Distribuição F",
     "Sampling": "Amostragem",
     "Population vs Sample": "População vs Amostra",
@@ -6393,7 +6393,7 @@ $.message.pt = {
     "Confidence Interval": "Intervalo de Confiança",
     "Confidence Interval Simulation": "Intervalo de Confiança Experimento",
     "Confidence Interval Mu": "Estimativo : &mu; Intervalo de Confiança",
-    "Confidence Interval Sigma": "Estimativo : &sigma;<sup>2</sup> Intervalo de Confiança",
+    "Confidence Interval Sigma": "Estimativo : &sigma;&#178; Intervalo de Confiança",
     "Confidence Interval P": "Estimativo : p Intervalo de Confiança",
     "Estimation Accuracy": "Acurácia ",
     "Repetition": "Repetição",
@@ -6408,10 +6408,10 @@ $.message.pt = {
     "Testing Hypothesis muA":  "Teste Hipótese &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Teste Hipótese &mu; - C, n",
     "Testing Hypothesis mu": "Teste Hipótese &mu;",
-    "Testing Hypothesis sigma": "Teste Hipótese &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Teste Hipótese &sigma;&#178;",
     "Testing Hypothesis P": "Teste Hipótese p",
     "Testing Hypothesis mu12": "Teste Hipótese &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Teste Hipótese &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Teste Hipótese &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Teste Hipótese p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Teste Hipótese ANOVA",
     "Testing Independence": "Teste de Independência",
@@ -6421,7 +6421,7 @@ $.message.pt = {
     "Test Type": "Tipo do Teste",
     "Z-test": "Z teste",
     "t-test": "t teste",
-    "Chi-test": "&chi;<sup>2</sup> teste",
+    "Chi-test": "&chi;&#178; teste",
     "F-test": "F teste",
     "Sampling Type": "Tipo de Amostragem",
     "Independent Sample": "Independência",
@@ -6449,7 +6449,7 @@ $.message.pt = {
     "Reference Site": "Local de referência",
     "Lot Size": "Tamanho do Lote",
     "Defect Size": "Número com defeitos",
-    "If typed": "(Se o número for digitado)",
+    "If typed": "Após digitar o número, clique [Execute] / [Enter]",
     "Stat/BoxPlot": "Estatística/BoxPlot",
     "Mean": "Média",
     "Std Dev": "Desvio Padrão",
@@ -6519,7 +6519,7 @@ $.message.pt = {
     "SignCondition": "n ≤ 100 Teste Binomial,  n > 100 Teste Aproximado pela Normal",
     "WilcoxonSignCondition": "n ≤ 20 Wilcoxon Rank Soma Teste,  n > 20 Teste Aproximado pela Normal",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Soma Teste,  n>25 Teste Aproximado pela Normal",
-    "KruskalCondition": "n ≤ 10 H Distribuição Teste,  else &chi;<sup>2</sup> approximado teste",
+    "KruskalCondition": "n ≤ 10 H Distribuição Teste,  else &chi;&#178; approximado teste",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* seleção de variáveis : Click var name or use RHS selection box ",
     "VariableSelect3": "seleção de variáveis",
@@ -6643,12 +6643,12 @@ svgStr[47][11] = "Máximo";
 svgStr[48][11] = "Total";
 svgStr[49][11] = "<h3>Teste de Normalidade</h3>";
 svgStr[50][11] = "Frequência Esperada > 5 <br> recomendado";
-svgStr[51][11] = "&chi;<sup>2</sup> Teste<br>Intervalo i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][11] = "&chi;&#178; Teste<br>Intervalo i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][11] = "Dados<br>Frequência Observada<br>(O<sub>i</sub>)";
 svgStr[53][11] = "Distribuição Normal<br>Probabilidade Esperada<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][11] = "Distribuição Normal<br>Frequência Esperada<br>(E<sub>i</sub>)";
-svgStr[55][11] = "Intervalo<br>&chi;<sup>2</sup> valor<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][11] = "Soma of &chi;<sup>2</sup> valor";
+svgStr[55][11] = "Intervalo<br>&chi;&#178; valor<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][11] = "Soma of &chi;&#178; valor";
 svgStr[57][11] = "Hitograma and Distribuição Normal";
 svgStr[58][11] = "Normal Gráfico Q-Q";
 svgStr[59][11] = "Normal Quantil";
@@ -6811,7 +6811,7 @@ svgStrU[98][11] = "Simulação";
 svgStrU[99][11] = "Número aleatório";
 svgStrU[100][11] = "Distribuição normal";
 svgStrU[101][11] = "Distribuição t";
-svgStrU[102][11] = "Distribuição &chi;<sup>2</sup>";
+svgStrU[102][11] = "Distribuição &chi;&#178;";
 svgStrU[103][11] = "Distribuição F";
 svgStrU[104][11] = "Distribuição HSD";
 svgStrU[105][11] = "primeiro quartil <br> Q1";
@@ -6854,9 +6854,9 @@ $.message.gr = {
     "Frequency Table": "Πίνακας Συχνοτήτων",
     "Basic Statistics": "Βασικά Στατιστικά Χαρακτηριστικά",
     "Testing Hypothesis &mu;": "Έλεγχος Υπόθεσης &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Έλεγχος Υπόθεσης &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Έλεγχος Υπόθεσης &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Έλεγχος Υπόθεσης &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Έλεγχος Υπόθεσης &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Έλεγχος Υπόθεσης &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Ανάλυση Μεταβλητών",
     "High School Stat Education": "Εκπαίδευση Στατιστικής Λυκείου",
     "University Stat Education": "Ακαδημαϊκή Εκπαίδευση Στατιστικής",
@@ -6908,7 +6908,7 @@ $.message.gr = {
     "Execute": "Επίπεδο Σημαντικότητας",
     "(Confidence Interval)": "(Διάστημα Εμπυστοσύνης)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(αν Ζ-τεστ, χρησιμοποιήστε Z<sub>&alpha;/2</sub>)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> Έλεγχος",
+    "&chi;<sup>2</sup> test": "&chi;&#178; Έλεγχος",
     "Variance Assumption": "Υπόθεση Διασποράς",
     "F test": "F Έλεγχος",
     "At least one pair of means is different": "Τουλάχιστον ένα ζευγάρι μέσων να είναι διαφορετικοί",
@@ -6940,7 +6940,7 @@ $.message.gr = {
     "Normal Distribution": "Κανονική Κατανομή",
     "Normal Approx": "Κανονική Προσέγγιση",
     "t Distribution": "Κατανομή t",
-    "ChiSquare Distribution": "Κατανομή &chi;<sup>2</sup>",
+    "ChiSquare Distribution": "Κατανομή &chi;&#178;",
     "F Distribution": "Κατανομή F",
     "Sampling": "Δειγματοληψία",
     "Population vs Sample": "Πληθυσμός vs Δείγμα",
@@ -6960,7 +6960,7 @@ $.message.gr = {
     "Confidence Interval": "Διάστημα Εμπυστοσύνης",
     "Confidence Interval Simulation": "Διάστημα Εμπυστοσύνης προσομοίωση",
     "Confidence Interval Mu": "Εκτίμηση : &mu; Διάστημα Εμπυστοσύνης",
-    "Confidence Interval Sigma": "Εκτίμηση : &sigma;<sup>2</sup> Διάστημα Εμπυστοσύνης",
+    "Confidence Interval Sigma": "Εκτίμηση : &sigma;&#178; Διάστημα Εμπυστοσύνης",
     "Confidence Interval P": "Εκτίμηση : p Διάστημα Εμπυστοσύνης",
     "Estimation Accuracy": "Εκτίμηση Ορθότητας",
     "Repetition": "Επανάληψη",
@@ -6975,10 +6975,10 @@ $.message.gr = {
     "Testing Hypothesis muA":  "Έλεγχος &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Έλεγχος &mu; - C, n",
     "Testing Hypothesis mu": "Έλεγχος Υπόθεσης &mu;",
-    "Testing Hypothesis sigma": "Έλεγχος Υπόθεσης &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Έλεγχος Υπόθεσης &sigma;&#178;",
     "Testing Hypothesis P": "Έλεγχος Υπόθεσης p",
     "Testing Hypothesis mu12": "Έλεγχος Υπόθεσης &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Έλεγχος Υπόθεσης &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Έλεγχος Υπόθεσης &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Έλεγχος Υπόθεσης p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Έλεγχος Υπόθεσης ANOVA",
     "Testing Independence": "Έλεγχος Ανεξαρτησίας",
@@ -6988,7 +6988,7 @@ $.message.gr = {
     "Test Type": "Τύπος Ελέγχου",
     "Z-test": "Z Έλεγχος",
     "t-test": "t Έλεγχος",
-    "Chi-test": "&chi;<sup>2</sup> Έλεγχος",
+    "Chi-test": "&chi;&#178; Έλεγχος",
     "F-test": "F Έλεγχος",
     "Sampling Type": "Τύπος Δειγματοληψίας",
     "Independent Sample": "Ανεξάρτητο Δείγμα",
@@ -6999,7 +6999,7 @@ $.message.gr = {
     "Sample Mean": "Δειγματικός Μέσος",
     "Sample Variance": "Δειγματική Διασπορά",
     "Sample Proportion": "Δειγματικό Ποσοστό",
-    "if Z-test-1": "(αν Ζ-τεστ, καταχωρείστε την πλυθισμιακή διασπορά &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(αν Ζ-τεστ, καταχωρείστε την πλυθισμιακή διασπορά &sigma;&#178;)",
     "if Z-test-2": "(αν Ζ-τεστ, χρησιμοποιήστε z<sub>&alpha;/2 </sub>)",
     "At least one pair": "Τουλάχιστον ένα ζευγάρι μέσων να είναι διαφορετικοί",
     "Row-Col-0": "Γραμμές και στήλες μεταβλητών είναι ανεξάρτητες",
@@ -7007,6 +7007,8 @@ $.message.gr = {
     "Enter any number of row": "(Καταχωρείστε παρατήρηση από το άνω αριστερά κελί)",
     "Row": "Γραμμή",
     "Column": "Στήλη",
+    "Probability": "Πιθανότητα",
+    "Show Probability": "Εμφάνιση πιθανότητας",
     "Regression Line": "Ευθεία Παλινδρόμησης",
     "Erase All": "Διαγραφή Όλων",
     "Add Point": "Προσθήκη Σημείου",
@@ -7014,7 +7016,7 @@ $.message.gr = {
     "Reference Site": "Θέση Αναφοράς",
     "Lot Size": "Μέγεθος Παρτίδας",
     "Defect Size": "Μέγεθος Ελλατωμάτων",
-    "If typed": "(Αν ο αριθμός πληκτρολογείται)",
+    "If typed": "Αφού πληκτρολογήσετε τον αριθμό, [Εκτέλεση] ή [Εισαγωγή])",
     "Stat/BoxPlot": "Στατιστική/Θηκόγραμμα",
     "Mean": "Μέσος",
     "Std Dev": "Τυπική Απόκλιση",
@@ -7084,7 +7086,7 @@ $.message.gr = {
     "SignCondition": "If n ≤ 100 Διωνυμική,  n > 100 Κανονική Προσέγγιση",
     "WilcoxonSignCondition": "If n ≤ 20 Έλεγχος Αθροίσματος Βαθμίδων του Wilcoxon,  n > 20 Κανονική Προσέγγιση",
     "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Έλεγχος Αθροίσματος Βαθμίδων του Wilcoxon,  n>25 Κανονική Προσέγγιση",
-    "KruskalCondition": "If n ≤ 10 H Κατανομή,  αλλού &chi;<sup>2</sup> προσέγγιση",
+    "KruskalCondition": "If n ≤ 10 H Κατανομή,  αλλού &chi;&#178; προσέγγιση",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "επιλογή μεταβλητών",
@@ -7207,12 +7209,12 @@ svgStr[47][12] = "Μέγιστο";
 svgStr[48][12] = "Ολικό";
 svgStr[49][12] = "<h3>Έλεγχος Κανονικότητας</h3>";
 svgStr[50][12] = "Αναμενόμενη Συχνότητα > 5 <br> προτείνεται";
-svgStr[51][12] = "&chi;<sup>2</sup> Έλεγχος<br>Διάστημα  i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][12] = "&chi;&#178; Έλεγχος<br>Διάστημα  i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][12] = "Δεδομένα<br>Παρατηρηθείσα Συχνότητα<br>(O<sub>i</sub>)";
 svgStr[53][12] = "Κανονική Κατανομή<br>Εκτιμώμενη Πιθανότητα<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][12] = "Κανονική Κατανομή<br>Αναμενόμενη Συχνότητα<br>(E<sub>i</sub>)";
-svgStr[55][12] = "κάθε διάστημα<br>&chi;<sup>2</sup> Τιμή<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][12] = "Άθροισμαf &chi;<sup>2</sup> Τιμή";
+svgStr[55][12] = "κάθε διάστημα<br>&chi;&#178; Τιμή<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][12] = "Άθροισμαf &chi;&#178; Τιμή";
 svgStr[57][12] = "το ιστόγραμμα πιθανότητας και η κανονική κατανομή";
 svgStr[58][12] = "Κανονική Q-Q Plot";
 svgStr[59][12] = "Κανονική Ποσοστημόριο";
@@ -7374,7 +7376,7 @@ svgStrU[98][12] = "προσομοίωση";
 svgStrU[99][12] = "Τυχαίος αριθμός";
 svgStrU[100][12] = "Κανονική Κατανομή";
 svgStrU[101][12] = "t Κατανομή";
-svgStrU[102][12] = "&chi;<sup>2</sup> Κατανομή";
+svgStrU[102][12] = "&chi;&#178; Κατανομή";
 svgStrU[103][12] = "F Κατανομή";
 svgStrU[104][12] = "HSD εύρος Κατανομή";
 svgStrU[105][12] = "Πρώτο Τεταρτημόριο<br>Q1";
@@ -7417,9 +7419,9 @@ $.message.ro = {
     "Frequency Table": "Tabelul Frecvențelor",
     "Basic Statistics": "Bazele Statisticii",
     "Testing Hypothesis &mu;": "Testare Ipoteza &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Testare Ipoteza &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Testare Ipoteza &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testare Ipoteza  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testare Ipoteza &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testare Ipoteza &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analiza Varianței",
     "High School Stat Education": "Statistică La Nivel Liceal",
     "University Stat Education": "Statistică la Nivel Universitar",
@@ -7471,7 +7473,7 @@ $.message.ro = {
     "Execute": "Execută",
     "(Confidence Interval)": "(Interval de Încredere)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(În cazul unui test Z, utilizați Z<sub>&alpha;/2</sub>)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
+    "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Presupunere asupra Varianței",
     "F test": "F Testare",
     "At least one pair of means is different": "Cel puțin o pereche de medii este diferită",
@@ -7503,7 +7505,7 @@ $.message.ro = {
     "Normal Distribution": "Distribuție Normală",
     "Normal Approx": "Aproximație Normală",
     "t Distribution": "Distribuție Student t",
-    "ChiSquare Distribution": "Distribuție &chi;<sup>2</sup>",
+    "ChiSquare Distribution": "Distribuție &chi;&#178;",
     "F Distribution": "Distribuție Fisher F",
     "Sampling": "Sondaj",
     "Population vs Sample": "Populație vs Sondaj",
@@ -7523,7 +7525,7 @@ $.message.ro = {
     "Confidence Interval": "Interval de Încredere",
     "Confidence Interval Simulation": "Interval de Încredere Simulare",
     "Confidence Interval Mu": "Estimației : &mu; Interval de Încredere",
-    "Confidence Interval Sigma": "Estimației : &sigma;<sup>2</sup> Interval de Încredere",
+    "Confidence Interval Sigma": "Estimației : &sigma;&#178; Interval de Încredere",
     "Confidence Interval P": "Estimației : p Interval de Încredere",
     "Estimation Accuracy": "Acuretețea Estimației",
     "Repetition": "Repetiție",
@@ -7538,10 +7540,10 @@ $.message.ro = {
     "Testing Hypothesis muA":  "Testare Ipoteza &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Testare Ipoteza &mu; - C, n",
     "Testing Hypothesis mu": "Testare Ipoteza &mu;",
-    "Testing Hypothesis sigma": "Testare Ipoteza &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Testare Ipoteza &sigma;&#178;",
     "Testing Hypothesis P": "Testare Ipoteza p",
     "Testing Hypothesis mu12": "Testare Ipoteza &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Testare Ipoteza &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Testare Ipoteza &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Testare Ipoteza p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testare Ipoteza ANOVA",
     "Testing Independence": "Testarea Independenței",
@@ -7551,7 +7553,7 @@ $.message.ro = {
     "Test Type": "Tipul Testului",
     "Z-test": "Z Testare",
     "t-test": "t Testare",
-    "Chi-test": "&chi;<sup>2</sup>Testare",
+    "Chi-test": "&chi;&#178;Testare",
     "F-test": "F Testare",
     "Sampling Type": "Sondaj Type",
     "Independent Sample": "independent Sondaj",
@@ -7562,7 +7564,7 @@ $.message.ro = {
     "Sample Mean": "Medie Sondaj",
     "Sample Variance": "Varianță Sondaj",
     "Sample Proportion": "Proporție Sondaj",
-    "if Z-test-1": "(În cazul unui test Z, introduceți varianța populației &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(În cazul unui test Z, introduceți varianța populației &sigma;&#178;)",
     "if Z-test-2": "(În cazul unui test Z, z<sub>&alpha;/2 </sub> is used.)",
     "At least one pair": "Cel puțin o pereche de medii este diferită",
     "Row-Col-0": "Variabilele de pe rând si de pe coloană sunt independente",
@@ -7579,7 +7581,7 @@ $.message.ro = {
     "Reference Site": "Site de Referință",
     "Lot Size": "Mărime Lot",
     "Defect Size": "Mărime Defect",
-    "If typed": "(Dacă un număr este introdus)",
+    "If typed": "După introducerea numărului, clic [Execute] / [Enter]",
     "Stat/BoxPlot": "Stat/BoxPlot",
     "Mean": "Medie",
     "Std Dev": "Abatere Standard",
@@ -7650,7 +7652,7 @@ $.message.ro = {
     "SignCondition": "Dacă n ≤ 100 Binomial Testul,  n > 100 Normală Approximation Testul",
     "WilcoxonSignCondition": "Dacă n ≤ 20 Wilcoxon Sumei Rangurilor Testul,  n > 20 Normală Apropiere Testul",
     "WilcoxonRankCondition": "Dacă n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Sumei Rangurilor Testul,  n>25 Normală Apropiere Testul",
-    "KruskalCondition": "Dacă n ≤ 10 H Distribuție Testul,  altfel &chi;<sup>2</sup> approximation test",
+    "KruskalCondition": "Dacă n ≤ 10 H Distribuție Testul,  altfel &chi;&#178; approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Selecție Variabilă : Faceți clic pe numele var sau utilizați caseta de selecție RHS ",
     "VariableSelect3": "Selecție Variabilă",
@@ -7773,12 +7775,12 @@ svgStr[47][13] = "Maxim";
 svgStr[48][13] = "Total";
 svgStr[49][13] = "<h3>Test Normalitate</h3>";
 svgStr[50][13] = "Frecvență Așteptată > 5 <br> este recomandat";
-svgStr[51][13] = "&chi;<sup>2</sup> Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][13] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][13] = "Date<br>Frecvență Observată<br>(O<sub>i</sub>)";
 svgStr[53][13] = "Distribuție Normală<br>Probabilitate Așteptată<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][13] = "Distribuție Normală<br>Frecvență Așteptată<br>(E<sub>i</sub>)";
-svgStr[55][13] = "interval<br>&chi;<sup>2</sup> value<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][13] = "Sumă de &chi;<sup>2</sup> Valoare";
+svgStr[55][13] = "interval<br>&chi;&#178; value<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][13] = "Sumă de &chi;&#178; Valoare";
 svgStr[57][13] = "Probabilitate Histogramă și Distribuție Normală";
 svgStr[58][13] = "Normală Q-Q Diagramă";
 svgStr[59][13] = "Normală Quantile";
@@ -7941,7 +7943,7 @@ svgStrU[98][13] = "Simulare";
 svgStrU[99][13] = "Număr aleatoriu";
 svgStrU[100][13] = "Distribuție Normală";
 svgStrU[101][13] = "t Distribuție";
-svgStrU[102][13] = "&chi;<sup>2</sup> Distribuție";
+svgStrU[102][13] = "&chi;&#178; Distribuție";
 svgStrU[103][13] = "F Distribuție";
 svgStrU[104][13] = "HSD Studentd Gamăe Distribuție";
 svgStrU[105][13] = "primul trimestru pentru primul trimestru<br>Q1";
@@ -7984,9 +7986,9 @@ $.message.th = {
     "Frequency Table": "ตารางแจกแจงความถี่",
     "Basic Statistics": "สถิติพื้นฐาน",
     "Testing Hypothesis &mu;": "ทดสอบสมมติฐาน &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "ทดสอบสมมติฐาน &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "ทดสอบสมมติฐาน &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "ทดสอบสมมติฐาน  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "ทดสอบสมมติฐาน &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "ทดสอบสมมติฐาน &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "ตัวแปรวิเคราะห์",
     "High School Stat Education": "สถิติระดับมัธยมศึกษา",
     "University Stat Education": "สถิติระดับมหาวิทยาลัย",
@@ -8038,7 +8040,7 @@ $.message.th = {
     "Execute": "คำนวณ",
     "(Confidence Interval)": "(ช่วงความเชื่อมั่น)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(สำหรับการทดสอบแซด ใช้ Z<sub>&alpha;/2</sub>)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> การทดสอบ",
+    "&chi;<sup>2</sup> test": "&chi;&#178; การทดสอบ",
     "Variance Assumption": "สมมติฐานของความแปรปรวน",
     "F test": "F การทดสอบ",
     "At least one pair of means is different": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
@@ -8070,7 +8072,7 @@ $.message.th = {
     "Normal Distribution": "การแจกแจงปรกติ",
     "Normal Approx": "การประมาณด้วยการแจกแจงปกติ",
     "t Distribution": "t การแจกแจง",
-    "ChiSquare Distribution": "&chi;<sup>2</sup> การแจกแจง",
+    "ChiSquare Distribution": "&chi;&#178; การแจกแจง",
     "F Distribution": "F การแจกแจง",
     "Sampling": "การสุ่ม",
     "Population vs Sample": "ประชากร vs ตัวอย่าง",
@@ -8090,7 +8092,7 @@ $.message.th = {
     "Confidence Interval": "ช่วงความเชื่อมั่น",
     "Confidence Interval Simulation": "ช่วงความเชื่อมั่น จำลอง",
     "Confidence Interval Mu": "การประเมิน :  &mu; ช่วงความเชื่อมั่น",
-    "Confidence Interval Sigma": "การประเมิน :  &sigma;<sup>2</sup> ช่วงความเชื่อมั่น",
+    "Confidence Interval Sigma": "การประเมิน :  &sigma;&#178; ช่วงความเชื่อมั่น",
     "Confidence Interval P": "การประเมิน :  p ช่วงความเชื่อมั่น",
     "Estimation Accuracy": "ความแม่นยำของการประมาณ",
     "Repetition": "การทำซ้ำ",
@@ -8105,10 +8107,10 @@ $.message.th = {
     "Testing Hypothesis muA":  "ทดสอบสมมติฐาน &mu; - C, &beta;",
     "Testing Hypothesis muAB": "ทดสอบสมมติฐาน &mu; - C, n",
     "Testing Hypothesis mu": "ทดสอบสมมติฐาน &mu;",
-    "Testing Hypothesis sigma": "ทดสอบสมมติฐาน &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "ทดสอบสมมติฐาน &sigma;&#178;",
     "Testing Hypothesis P": "ทดสอบสมมติฐาน p",
     "Testing Hypothesis mu12": "ทดสอบสมมติฐาน &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "ทดสอบสมมติฐาน &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "ทดสอบสมมติฐาน &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "ทดสอบสมมติฐาน p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "ทดสอบสมมติฐาน ANOVA",
     "Testing Independence": "ทดสอบสมมติฐาน",
@@ -8118,7 +8120,7 @@ $.message.th = {
     "Test Type": "ชนิดของการทดสอบ",
     "Z-test": "Z การทดสอบ",
     "t-test": "t การทดสอบ",
-    "Chi-test": "&chi;<sup>2</sup> การทดสอบ",
+    "Chi-test": "&chi;&#178; การทดสอบ",
     "F-test": "F การทดสอบ",
     "Sampling Type": "ประเภทของการสุ่ม",
     "Independent Sample": "ตัวอย่างอิสระ",
@@ -8129,7 +8131,7 @@ $.message.th = {
     "Sample Mean": "ค่าเฉลี่ยตัวอย่าง",
     "Sample Variance": "ความแปรปรวนตัวอย่าง",
     "Sample Proportion": "ค่าสัดส่วนตัวอย่าง",
-    "if Z-test-1": "(สำหรับการทดสอบแซด ระบุส่วนเบี่ยงเบนมาตรฐาน &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(สำหรับการทดสอบแซด ระบุส่วนเบี่ยงเบนมาตรฐาน &sigma;&#178;)",
     "if Z-test-2": "(สำหรับการทดสอบแซด ใช้  z<sub>&alpha;/2 </sub>)",
     "At least one pair": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
     "Row-Col-0": "ตัวแปรแถวและคอลัมน์อิสระต่อกัน",
@@ -8146,7 +8148,7 @@ $.message.th = {
     "Reference Site": "ตำแหน่งอ้างอิง",
     "Lot Size": "ขนาดการแบ่งส่วน",
     "Defect Size": "ขนาดความผิดพลาด",
-    "If typed": "(หากมีการใส่ตัวเลข)",
+    "If typed": "หลังจากพิมพ์หมายเลขคลิก [ดำเนินการ] หรือ [Enter]",
     "Stat/BoxPlot": "สถิติ/แผนภาพกล่อง",
     "Mean": "ค่าเฉลี่ย",
     "Std Dev": "ส่วนเบี่ยงเบนมาตรฐาน",
@@ -8217,7 +8219,7 @@ $.message.th = {
     "SignCondition": "ถ้า  n ≤ 100 ทดสอบทวินาม,  n > 100 การประมาณด้วยการแจกแจงปกติ",
     "WilcoxonSignCondition": "ถ้า n ≤ 20 การทดสอบผลบวกลำดับที่ของวิลค็อกซัน,  n > 20 การประมาณด้วยการแจกแจงปกติ",
     "WilcoxonRankCondition": "ถ้า  n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 การทดสอบผลบวกลำดับที่ของวิลค็อกซัน,  n>25 การประมาณด้วยการแจกแจงปกติ",
-    "KruskalCondition": "ถ้า  n ≤ 10 H Distribution Test,  else &chi;<sup>2</sup>การประมาณt",
+    "KruskalCondition": "ถ้า  n ≤ 10 H Distribution Test,  else &chi;&#178;การประมาณt",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "การเลือกตัวแปร",
@@ -8341,12 +8343,12 @@ svgStr[47][14] = "ค่าสูงสุด";
 svgStr[48][14] = "รวม";
 svgStr[49][14] = "<h3>การทดสอบความเป็นปรกติ</h3>";
 svgStr[50][14] = "ความถี่คาดหมาย > 5 <br>ขอแนะนำ";
-svgStr[51][14] = "&chi;<sup>2</sup> การทดสอบ<br>ระยะห่าง i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][14] = "&chi;&#178; การทดสอบ<br>ระยะห่าง i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][14] = "ข้อมูล<br>ความถี่เชิงสังเกต<br>(O<sub>i</sub>)";
 svgStr[53][14] = "การแจกแจงปรกติ<br>ความน่าจะเป็นคาดหมาย<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][14] = "การแจกแจงปรกติ<br>ความถี่คาดหมาย<br>(E<sub>i</sub>)";
-svgStr[55][14] = "ระยะห่าง<br>&chi;<sup>2</sup> ค่า<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][14] = "ผลรวม &chi;<sup>2</sup> ค่า";
+svgStr[55][14] = "ระยะห่าง<br>&chi;&#178; ค่า<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][14] = "ผลรวม &chi;&#178; ค่า";
 svgStr[57][14] = "ฮิสโทแกรม /  การแจกแจงปรกติ";
 svgStr[58][14] = "การแจกแจงปรกติ คิว-คิวพล็อต";
 svgStr[59][14] = "การแจกแจงปรกติ ควอนไทล์";
@@ -8508,7 +8510,7 @@ svgStrU[98][14] = "การจำลอง";
 svgStrU[99][14] = "จำนวนสุ่ม";
 svgStrU[100][14] = "การแจกแจงปรกติ";
 svgStrU[101][14] = "t การแจกแจง";
-svgStrU[102][14] = "&chi;<sup>2</sup> การแจกแจง";
+svgStrU[102][14] = "&chi;&#178; การแจกแจง";
 svgStrU[103][14] = "F การแจกแจง";
 svgStrU[104][14] = "HSD ช่วงที่ได้รับการศึกษา การแจกแจง";
 svgStrU[105][14] = "ควอไทล์ที่ 1<br>Q1";
@@ -8551,9 +8553,9 @@ $.message.pl = {
     "Frequency Table": "Tabela częstości",
     "Basic Statistics": "Statystyki opisowe",
     "Testing Hypothesis &mu;": "Hipoteza testowa &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Hipoteza testowa &sigma;<sup>2</sup>",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Hipoteza testowa &sigma;&#178;",
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hipoteza testowa  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hipoteza testowa &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hipoteza testowa &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analiza wariancji",
     "High School Stat Education": "Statystyka - wykształcenie w szkole średniej",
     "University Stat Education": "Statystyka - edukacja poziom uniwersytecki",
@@ -8605,7 +8607,7 @@ $.message.pl = {
     "Execute": "Wykonaj",
     "(Confidence Interval)": "(Przedział ufności)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Jeśli test Z, Z<sub>&alpha;/2</sub>is used)",
-    "&chi;<sup>2</sup> test": "&chi;<sup>2</sup> test",
+    "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Założenie o wariancji",
     "F test": "F test",
     "At least one pair of means is different": "Co najmniej jedna para średnich jest inna",
@@ -8637,7 +8639,7 @@ $.message.pl = {
     "Normal Distribution": "Rozkład normalny",
     "Normal Approx": "Aproksymacja rozkładu normalnego",
     "t Distribution": "t Dystrybuanta",
-    "ChiSquare Distribution": "&chi;<sup>2</sup> Dystrybuanta",
+    "ChiSquare Distribution": "&chi;&#178; Dystrybuanta",
     "F Distribution": "F Dystrybuanta",
     "Sampling": "Próbkowanie",
     "Population vs Sample": "Populacja vs próbka",
@@ -8657,7 +8659,7 @@ $.message.pl = {
     "Confidence Interval": "Przedział ufności",
     "Confidence Interval Simulation": "Przedział ufności Symulacja",
     "Confidence Interval Mu": "Oszacowanie : &mu; Przedział ufności",
-    "Confidence Interval Sigma": "Oszacowanie : &sigma;<sup>2</sup> Przedział ufności",
+    "Confidence Interval Sigma": "Oszacowanie : &sigma;&#178; Przedział ufności",
     "Confidence Interval P": "Oszacowanie : p Przedział ufności",
     "Estimation Accuracy": "Dokładność szacowania",
     "Repetition": "Powtórzenie",
@@ -8672,10 +8674,10 @@ $.message.pl = {
     "Testing Hypothesis muA":  "Hipoteza testowa &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Hipoteza testowa &mu; - C, n",
     "Testing Hypothesis mu": "Hipoteza testowa &mu;",
-    "Testing Hypothesis sigma": "Hipoteza testowa &sigma;<sup>2</sup>",
+    "Testing Hypothesis sigma": "Hipoteza testowa &sigma;&#178;",
     "Testing Hypothesis P": "Hipoteza testowa p",
     "Testing Hypothesis mu12": "Hipoteza testowa &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Hipoteza testowa &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>",
+    "Testing Hypothesis sigma12": "Hipoteza testowa &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Hipoteza testowa p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Hipoteza testowa ANOVA",
     "Testing Independence": "Test niezależności",
@@ -8685,7 +8687,7 @@ $.message.pl = {
     "Test Type": "Rodzaj testu",
     "Z-test": "Z test",
     "t-test": "t test",
-    "Chi-test": "&chi;<sup>2</sup> test",
+    "Chi-test": "&chi;&#178; test",
     "F-test": "F test",
     "Sampling Type": "Rodzaj próbkowania",
     "Independent Sample": "niezależna próbka",
@@ -8696,7 +8698,7 @@ $.message.pl = {
     "Sample Mean": "Średnia z próby",
     "Sample Variance": "Wariancja z próby",
     "Sample Proportion": "Wskaźnik struktury z próby ",
-    "if Z-test-1": "(w przypadku testu Z wprowadź wariancję populacji &sigma;<sup>2</sup>)",
+    "if Z-test-1": "(w przypadku testu Z wprowadź wariancję populacji &sigma;&#178;)",
     "if Z-test-2": "(w przypadku testu Z, z<sub>&alpha;/2 </sub> używany.)",
     "At least one pair": "Co najmniej jedna para średnich jest inna",
     "Row-Col-0": "Zmienne w wierszach i kolumnach są niezależne",
@@ -8713,7 +8715,7 @@ $.message.pl = {
     "Reference Site": "Strona referencyjna",
     "Lot Size": "Wielkość partii",
     "Defect Size": "Rozmiar defektu/wada/brak",
-    "If typed": "(Jeśli numer jest wpisany)",
+    "If typed": "Po wpisaniu numeru kliknij [Wykonaj] lub [Enter]",
     "Stat/BoxPlot": "Statystyka/wykres pudełkowy",
     "Mean": "Śrdenia",
     "Std Dev": "Odchylenie standardowe",
@@ -8784,7 +8786,7 @@ $.message.pl = {
     "SignCondition": "Jeśli n ≤ 100 Test dwumianowy,  n > 100 Aproksymacja rozkładu normalnego Test",
     "WilcoxonSignCondition": "Jeśli n ≤ 20 Test sumy rang Wilcoxona,  n > 20 Aproksymacja rozkładu normalnego Test",
     "WilcoxonRankCondition": "Jeśli n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Test sumy rang Wilcoxona,  n>25 Aproksymacja rozkładu normalnego Test",
-    "KruskalCondition": "Jeśli n ≤ 10 H Dystrybuanta Test,  else &chi;<sup>2</sup> Aproksymacja test",
+    "KruskalCondition": "Jeśli n ≤ 10 H Dystrybuanta Test,  else &chi;&#178; Aproksymacja test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Zmiennej wybór",
@@ -8908,12 +8910,12 @@ svgStr[47][15] = "Maksimum";
 svgStr[48][15] = "Całkowity";
 svgStr[49][15] = "<h3>Normalny Test</h3>";
 svgStr[50][15] = "Oczekiwana częstość > 5 <br> jest polecany";
-svgStr[51][15] = "&chi;<sup>2</sup> Test<br>Przedział i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[51][15] = "&chi;&#178; Test<br>Przedział i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][15] = "Dane<br>Obserwowane częstości<br>(O<sub>i</sub>)";
 svgStr[53][15] = "Rozkład normalny<br>Oczekiwane prwdopodobieństwa<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][15] = "Rozkład normalny<br>Oczekiwana częstość<br>(E<sub>i</sub>)";
-svgStr[55][15] = "Każdy interwał<br>&chi;<sup>2</sup> wartość<br>(O<sub>i</sub>-E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub>";
-svgStr[56][15] = "Suma &chi;<sup>2</sup> value";
+svgStr[55][15] = "Każdy interwał<br>&chi;&#178; wartość<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][15] = "Suma &chi;&#178; value";
 svgStr[57][15] = "Prawdopodobieństwo Histogram and Rozkład normalny";
 svgStr[58][15] = "Normalny Wykres Q-Q";
 svgStr[59][15] = "Kwantyl z rozkładu normalnego";
@@ -9076,7 +9078,7 @@ svgStrU[98][15] = "Symulacja";
 svgStrU[99][15] = "Liczba losowa";
 svgStrU[100][15] = "Rozkład normalny";
 svgStrU[101][15] = "t Dystrybuanta";
-svgStrU[102][15] = "&chi;<sup>2</sup> Dystrybuanta";
+svgStrU[102][15] = "&chi;&#178; Dystrybuanta";
 svgStrU[103][15] = "F Dystrybuanta";
 svgStrU[104][15] = "HSD Rang Dystrybuanta";
 svgStrU[105][15] = "Pierwszy kwartyl<br>Q1";

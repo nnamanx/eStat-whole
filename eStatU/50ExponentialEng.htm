@@ -19,69 +19,157 @@
     <br>
     <div class="title">
       <b>&nbsp; <span data-msgid="Exponential Distribution">Exponential Distribution</span></b> 
+      &nbsp; &lambda; = <input type="text" class="textarea" value="1.0" size=4 id="explambda" onfocus="focus0()" onKeyUp="changeRangeLambda()">  
+      <sup><small>0.1</small></sup>
+      <input type="range" min="1" max="100" value="10" id="range1E" onchange="showValueExponential0(this.value)"/>
+      <sup><small>10 </small></sup> 
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
-    <br>
-    &nbsp; &lambda; = <input type="text" class="textarea" value="1.0"  size=4 id="explambda"> 
-    <sup><small>1 </small></sup>
-    <input type="range" min="1" max="100" value="10" id="range1E" onchange="showValueExponential0(this.value)"/>
-    <sup><small>10 </small></sup> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span data-msgid="If typed">If typed</span>  &nbsp; 
-      <button type="button" id="executeE" >
-        <span data-msgid="Execute">Execute</span>
-      </button>
+    <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style="color:red;" data-msgid="If typed"></span> 
     <p>
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-    <input value="60" min="0" max="300" type="range" onchange="showValueExponential1(this.value)"/>
-    <input value="240" min="0" max="300" type="range" onchange="showValueExponential2(this.value)"/>
+    <input value="2"  min="0" max="300" type="range" id="range21E" onchange="showValueExponential1(this.value)"/>
+    <input value="221" min="0" max="300" type="range" id="range22E" onchange="showValueExponential2(this.value)"/>
     </section>
 
     <form name="myForm"> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name = "type1" value="1" checked> 
-         P( &nbsp; <input type="text" class="textarea" value="1" size=6  id="a"> &nbsp;  < &nbsp;  X &nbsp; < &nbsp; 
-         <input type="text" class="textarea"  value="4"  size=6 id="b">  &nbsp; ) &nbsp;  =   &nbsp; 
-         <input type="text" class="textarea2" value="0.3496"  size=14 id="c"> <p> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name = "type1" value="2" > 
-         P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp; X &nbsp; < &nbsp;
-         <input type="text" class="textarea2" value="2.9957" size=6  id="d"> &nbsp; ) &nbsp; = &nbsp;
-         <input type="text" class="textarea"  value="0.95"  size=14  id="e">  <br>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
-         <sup><small>0 </small></sup>
-         <input type="range" min="0" max="100" value="95" id="range3E" onchange="showValueExponential3(this.value)"/>
-         <sup><small>1</small> </sup> <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name = "type1" value="3" >   
-         P( &nbsp; <input type="text" class="textarea2" value="0.0253" size=6  id="f"> &nbsp;  < &nbsp;  X &nbsp; < &nbsp; 
-         <input type="text" class="textarea2"  value="3.6889"  size=6 id="g">  &nbsp; ) &nbsp;  =   &nbsp; 
-         <input type="text" class="textarea" value="0.95"  size=14 id="h">  <br>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-         <sup><small>0 </small></sup>
-         <input type="range" min="0" max="100" value="95" id="range4E" onchange="showValueExponential4(this.value)"/>
-         <sup><small>1</small> </sup> <br>
-      <button type="button" id="saveGraphU" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
+      <table class="stat">
+      <tbody>
+        <tr>
+          <td>
+            <button type="button" id="Execute">
+              <span data-msgid="Execute">Execute</span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td><span data-msgid="Probability"></span></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="1" checked> 
+              P( <input type="text" class="textarea" value="0.026" size=6  id="a" onfocus="focus1()" onKeyUp="executeClick()"/> 
+              &nbsp; &le; &nbsp; X &nbsp; &le; &nbsp;
+              <input type="text" class="textarea"  value="3.689"  size=6 id="b" onfocus="focus1()" onKeyUp="executeClick()"/> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.9500"  size=5 id="c"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="2"> 
+            P( X &nbsp; &le; &nbsp; 
+            <input type="text" class="textarea" value="0.051" size=6 id="b2" onfocus="focus2()" onKeyUp="executeClick()" /> )
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0500"  size=5 id="c2"></td>
+          <td>
+            <button type="button" id="percentileTable">
+              <span data-msgid="Percentile">Percentile</span>
+            </button> 
+          </td>
+       </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="3"> 
+              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; X &nbsp; &ge; &nbsp; 
+            <input type="text" class="textarea" value="2.996" size=6 id="a3" onfocus="focus3()" onKeyUp="executeClick()" /> )
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0500"  size=5 id="c3"></td>
+        </tr>
+        <tr>
+          <td><span data-msgid="PercentileValue">Percentile</span></td>
+          <td>
+            <label>
+              <input type="radio" name = "type1" value="4" >   
+              P( <input type="text" class="textarea2" value="0.026" size=6 id="f"> &nbsp; &le; &nbsp; X &nbsp; &le; &nbsp; 
+              <input type="text" class="textarea2"  value="3.689"  size=6 id="g"> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.9500" size=5 id="h" onfocus="focus4()" onKeyUp="executeClick()" />
+          </td>
+          <td>
+<!--
+              <sup><small>0 </small></sup>
+              <input type="range" min="1" max="999" value="950" id="range4E" onchange="showValueExponential4(this.value)"/>
+              <sup><small>1</small> </sup>
+-->
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="5" > 
+              P( X &nbsp; &le; &nbsp;
+              <input type="text" class="textarea2" value="0.051" size=6  id="d"> ) 
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.0500" size=5 id="e" onfocus="focus5()" onKeyUp="executeClick()" /> 
+          </td>
+          <td>
+<!--
+            <sup><small>0 </small></sup>
+            <input type="range" min="1" max="999" value="950" id="range3E" onchange="showValueExponential3(this.value)"/>
+            <sup><small>1</small> </sup> 
+-->
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="6" >
+              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; X &nbsp; &ge; &nbsp; 
+              <input type="text" class="textarea2" value="2.996" size=6  id="a6"/> ) 
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.0500" size=5 id="c6" onfocus="focus6()" onKeyUp="executeClick()" />
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" id="saveGraphU"> 
+              <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+            </button>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="button" id="saveTable">
+              <span class="tooltiptext" data-msgid="Table Save">Table Save</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <p>
       &nbsp;
       <span data-msgid="Reference Site">Reference Site</span> :  &nbsp; 
       <a href="https://en.wikipedia.org/wiki/Exponential_distribution" target="_blank" >Wikipedia </a> &nbsp; 
       <a href="http://mathworld.wolfram.com/ExponentialDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
       <a href="http://www.itl.nist.gov/div898/handbook/eda/section3/eda3667.htm" target="_blank" >NIST </a> &nbsp; 
-      <p>
-      <button type="button" id="percentileTable"> <span data-msgid="Percentile">Percentile</span></button> 
-      &nbsp;
-      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
     </form>
     <div>
       <div id="screenTable">
@@ -105,13 +193,24 @@
       var nobs, avg, std, gxmin, gxmax, gymin, gymax;
       var stat = new Array(30);
       var title;
-      var lambda, info, a, b, c, d, e, f, g, h;
+      var lambda, info;
+      var a, b, c, b2, c2, a3, c3, f, g, h, d, e, a6, c6;
+      var checkParameter = false;
+      var checkExecute = false
+
+      document.getElementById("c").disabled  = true; 
+      document.getElementById("c2").disabled = true; 
+      document.getElementById("c3").disabled = true; 
+      document.getElementById("f").disabled  = true; 
+      document.getElementById("g").disabled  = true; 
+      document.getElementById("d").disabled  = true; 
+      document.getElementById("a6").disabled = true; 
 
       // 초기 Exponential분포 확률 그리기
       lambda = 1;
-      a      = 1;
-      b      = 4;
-      c      = exponential_cdf(b,lambda,info) - exponential_cdf(a,lambda,info);
+      c      = 0.95;
+      a      = exponential_inv((1-c)/2, lambda, info);
+      b      = exponential_inv(1-(1-c)/2, lambda, info);
       gxmax  = 5;
       drawExponentialGraph(lambda, a, b, c);
 
@@ -127,28 +226,56 @@
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.0001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
+          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+          d3.select("#a").node().value = f3(a)
+          d3.select("#b").node().value = f3(b)
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
       }
-      rad[1].onclick = function() {     // P(X < d) = e
-          radioType = 2;
+      rad[1].onclick = function() {     // P(a< X < b) = c
+          radioType = 2;  
           bar.selectAll("*").remove();
           lambda    = parseFloat(d3.select("#explambda").node().value); 
           if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
           else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
-          e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.9999) e = 0.9999;
-          if (e < 0.0001) e = 0.0001;
-          d3.select("#e").node().value = f4(e);
-          d = exponential_inv(e, lambda, info);
-          d3.select("#d").node().value = f4(d);
-          drawExponentialGraph(lambda, 0, d, e);
+          a = 0;   
+//          b = parseFloat(d3.select("#b2").node().value); 
+          c = parseFloat(d3.select("#c2").node().value); 
+          b = exponential_inv(c, lambda, info);
+          if ( b > gxmax ) b = gxmax;
+//          if ( a > b ) c = 0;
+//          else c = exponential_cdf(b, lambda, info);
+          d3.select("#b2").node().value = f3(b)
+          d3.select("#c2").node().value = f4(c);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+          drawExponentialGraph(lambda, a, b, c);
       }
-      rad[2].onclick = function() {     // P(f < X < g) = h
-          radioType = 3;
+      rad[2].onclick = function() {     // P(a< X < b) = c
+          radioType = 3;  
+          bar.selectAll("*").remove();
+          lambda    = parseFloat(d3.select("#explambda").node().value); 
+          if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
+          else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
+          c = parseFloat(d3.select("#c3").node().value); 
+          a = exponential_inv(1-c, lambda, info);
+//          a = parseFloat(d3.select("#a3").node().value); 
+          if ( a < 0 ) a = 0.0001;   
+          b = gxmax;
+          if ( a > b ) c = 0;
+          else c = 1 - exponential_cdf(a, lambda, info);
+          d3.select("#a3").node().value = f3(a)
+          d3.select("#c3").node().value = f4(c);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+          drawExponentialGraph(lambda, a, b, c);
+      }
+      rad[3].onclick = function() {     // P(f < X < g) = h
+          radioType = 4;
           bar.selectAll("*").remove();
           lambda    = parseFloat(d3.select("#explambda").node().value); 
           if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
@@ -156,66 +283,178 @@
           h = parseFloat(d3.select("#h").node().value); 
           if (h > 0.9999) h = 0.9999;
           if (h < 0.0001) h = 0.0001;
-          d3.select("#h").node().value = f4(h);
-          g = exponential_inv(1-(1-h)/2, lambda, info);
           f = exponential_inv((1-h)/2, lambda, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          g = exponential_inv(1-(1-h)/2, lambda, info);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
+          d3.select("#h").node().value = f4(h);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, f, g, h); 
       }    
+      rad[4].onclick = function() {     // P(X < d) = e
+          radioType = 5;
+          bar.selectAll("*").remove();
+          lambda    = parseFloat(d3.select("#explambda").node().value); 
+          if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
+          else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
+          e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          a = 0;
+          d = exponential_inv(e, lambda, info);
+          d3.select("#d").node().value = f3(d);
+          d3.select("#e").node().value = f4(e);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+          drawExponentialGraph(lambda, 0, d, e);
+      }
+      rad[5].onclick = function() {     // P( Z > b) = c
+          radioType = 6;  
+          bar.selectAll("*").remove();
+          lambda    = parseFloat(d3.select("#explambda").node().value); 
+          if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
+          else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
+          h = parseFloat(d3.select("#c6").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          f = exponential_inv(1-h, lambda, info);
+          g = gxmax;
+          d3.select("#a6").node().value = f3(f);
+          d3.select("#c6").node().value = f4(h);
+          document.getElementById("range21E").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*g/gxmax - 5).toString();
+          drawExponentialGraph(lambda, f, g, h); 
+      }
 
       // 확률계산 실행버튼 클릭
-      d3.select("#executeE").on("click",function() {
+      d3.select("#Execute").on("click",function() {
+        checkExecute = true;
+        if (checkParameter == true) changeRangeLambda();
         bar.selectAll("*").remove();
 
-        margin  = {top: 50, bottom: 50, left: 50, right: 20};
+        margin  = {top: 50, bottom: 50, left: 50, right: 40};
         graphWidth2   = svgWidth2 - margin.left - margin.right;
         graphHeight2  = svgHeight2 - margin.top - margin.bottom;
  
         lambda    = parseFloat(d3.select("#explambda").node().value); 
         if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
         else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
-        // slider control
-        document.getElementById("range1E").value  = f0(lambda*10);
+        a  = document.getElementById("a").value; 
+        b  = document.getElementById("b").value;
+        b2 = document.getElementById("b2").value;
+        a3 = document.getElementById("a3").value; 
+        e  = document.getElementById("e").value; 
+        h  = document.getElementById("h").value;
+        if (isNaN(a) || isNaN(b) || isNaN(b2) || isNaN(a3)) {
+          alert("Enter number!");
+          showValueChisq0(df)
+          return;
+        }
+        if (isNaN(e) || isNaN(h)) {
+          alert("Enter number between 0 and 1!");
+          showValueChisq0(df)
+          return;
+        }
 
         if (radioType == 1) {
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
-          a = parseFloat(d3.select("#a").node().value); 
-          if ( a < 0 ) a = 0.0001;   
-          b = parseFloat(d3.select("#b").node().value);
-          if ( b > 100 ) b = 100;
-          if ( a > b ) c = 0;
-          else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+          if (checkParameter == true){
+            c = 0.95;
+            a = exponential_inv((1-c)/2, lambda, info);
+            b = exponential_inv(1-(1-c)/2, lambda, info);
+            checkParameter = false; 
+          }
+          else {
+            a = parseFloat(d3.select("#a").node().value); 
+            b = parseFloat(d3.select("#b").node().value);
+            if ( a < 0 ) a = 0.0001;   
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) c = 0;
+            else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+          }
+          d3.select("#a").node().value = f3(a)
+          d3.select("#b").node().value = f3(b)
           d3.select("#c").node().value = f4(c);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
         } 
         else if (radioType == 2) {
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
-          e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.9999) e = 0.9999;
-          if (e < 0.0001) e = 0.0001;
-          d3.select("#e").node().value = f4(e);
-          document.getElementById("range3E").value  = f0(e*100);
-          d = exponential_inv(e, lambda, info);
-          d3.select("#d").node().value = f4(d);
-          drawExponentialGraph(lambda, 0, d, e);
-       }
-       else if (radioType == 3) {
+          a = 0;   
+          b = parseFloat(d3.select("#b2").node().value);
+          if ( b > gxmax ) b = gxmax;
+          if ( a > b ) c = 0;
+          else c = exponential_cdf(b, lambda, info);
+          d3.select("#b2").node().value = f3(b)
+          d3.select("#c2").node().value = f4(c);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+          drawExponentialGraph(lambda, a, b, c);
+        } 
+        else if (radioType == 3) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          a = parseFloat(d3.select("#a3").node().value); 
+          if ( a < 0 ) a = 0.0001;   
+          b = gxmax; 
+          if ( a > b ) c = 0;
+          else c = 1 - exponential_cdf(a, lambda, info);
+          d3.select("#a3").node().value = f3(a)
+          d3.select("#c3").node().value = f4(c);
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+          drawExponentialGraph(lambda, a, b, c);
+        } 
+        else if (radioType == 4) {
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           h = parseFloat(d3.select("#h").node().value); 
           if (h > 0.9999) h = 0.9999;
           if (h < 0.0001) h = 0.0001;
-          d3.select("#h").node().value = f4(h);
-          document.getElementById("range4E").value  = f0(h*100);
+//          document.getElementById("range4E").value  = f0(h*100);
           g = exponential_inv(1-(1-h)/2, lambda, info);
           f = exponential_inv((1-h)/2, lambda, info);
-          d3.select("#f").node().value = f4(f);
-          d3.select("#g").node().value = f4(g);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
+          d3.select("#h").node().value = f4(h);
+          document.getElementById("range21E").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*g/gxmax - 5).toString();
           drawExponentialGraph(lambda, f, g, h); 
+        }
+        else if (radioType == 5) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+//          document.getElementById("range3E").value  = f0(e*100);
+          d = exponential_inv(e, lambda, info);
+          d3.select("#d").node().value = f3(d);
+          d3.select("#e").node().value = f4(e);
+          a = 0;
+          if ( d > gxmax ) d = gxmax;
+          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*d/gxmax - 5).toString();
+          drawExponentialGraph(lambda, a, d, e);
        }
+        else if (radioType == 6) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          h = parseFloat(d3.select("#c6").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          f = exponential_inv(1-h, lambda, info);
+          g = gxmax;
+          d3.select("#a6").node().value = f3(f);
+          d3.select("#c6").node().value = f4(h);
+          document.getElementById("range21E").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*g/gxmax - 5).toString();
+          drawExponentialGraph(lambda, f, g, h); 
+        }
       })
       // svg Graph Save
       d3.select("#saveGraphU").on("click", function() {
@@ -240,6 +479,19 @@
         saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
       });
 
+    function changeRangeLambda(){
+       if (checkExecute == false && event.keyCode != 13) return;
+       lambda = document.getElementById("explambda").value;
+       if (isNaN(lambda) || parseFloat(lambda) <= 0) {
+          alert("Enter number between 0 and 10 !");
+          return;
+       }
+       if (lambda < 0.1) { lambda = 0.1; document.getElementById("explambda").value = lambda;}
+       if (lambda > 10)  { lambda = 10;  document.getElementById("explambda").value = lambda;}
+       document.getElementById("range1E").value = lambda*10;
+       showValueExponential0(lambda*10);
+       checkExecute   = false;
+    }
   </script>
 </body>
 </html>
