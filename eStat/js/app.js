@@ -4,7 +4,7 @@
 */
 
 var estatapp = {
-    example : undefined,
+    dataURL : undefined,
     analysisVar : undefined,
     groupVars : undefined,
     graphNum : undefined,
@@ -37,14 +37,14 @@ function checkURLParameters() {
 	
     json = JSON.parse(url_params["json"]);
 	
-    var examplePath = json["example"];
+    var dataURL = json["dataURL"];
     var analysisVar = json["analysisVar"];
     var groupVars = json["groupVars"];
     var graphNum = json["graphNum"];
     
-    if (examplePath === undefined) return false;
+    if (dataURL === undefined) return false;
     
-    openExample(examplePath, function() {
+    readFromURL(dataURL, function() {
 	if (analysisVar !== undefined) selectAnalysisVariable(analysisVar);
 	if (groupVars !== undefined) groupVars.forEach(function(v) { selectGroupVariable(v) });
 	if (graphNum !== undefined) document.getElementById(strGraph[graphNum]).click();
@@ -777,19 +777,10 @@ $(document).ready(function() {
     });
 });
 function openExample(examplePath, callback = undefined) {
-    estatapp.example = examplePath;
     url = "../Example/" + examplePath;
-        document.getElementById("loadFileName").value = url.split('/').pop();
-        d3.csv(url, function(csvdata) {
-            data = csvdata.map(Object.values);
-            updateDatasheetWithArrayOfRows(data, csvdata.columns);
-	    if (callback !== undefined) callback();	    
-        });
+    estatapp.dataURL = url;
+    readFromURL(url, callback);
 }
-
-
-
-
 
 
 /*
@@ -802,14 +793,16 @@ $("#button_readFromURL").click(function() {
 $("#button_readFromURLSubmit").click(function() {
     $("#dialog_readFromURL").dialog("close");
     var url = $("#text_readFromURL").val();
+    $("#text_readFromURL").val("");
+    estatapp.dataURL = url;
     readFromURL(url);
 });
-function readFromURL(url) {
-    $("#text_readFromURL").val("");
+function readFromURL(url, callback = undefined) {
     document.getElementById("loadFileName").value = url.split('/').pop();
     d3.csv(url, function(csvdata) {
         data = csvdata.map(Object.values);
         updateDatasheetWithArrayOfRows(data, csvdata.columns);
+	if (callback !== undefined) callback();
     });
 }
 
