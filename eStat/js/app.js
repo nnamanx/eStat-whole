@@ -794,10 +794,10 @@ $("#button_readFromURLSubmit").click(function() {
     $("#dialog_readFromURL").dialog("close");
     var url = $("#text_readFromURL").val();
     $("#text_readFromURL").val("");
-    estatapp.dataURL = url;
     readFromURL(url);
 });
 function readFromURL(url, callback = undefined) {
+    estatapp.dataURL = url;
     document.getElementById("loadFileName").value = url.split('/').pop();
     d3.csv(url, function(csvdata) {
         data = csvdata.map(Object.values);
