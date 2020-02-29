@@ -4,6 +4,7 @@
 */
 
 var estatapp = {
+    example : undefined,        // legacy
     dataURL : undefined,
     analysisVar : undefined,
     groupVars : undefined,
@@ -38,11 +39,18 @@ function checkURLParameters() {
     json = JSON.parse(url_params["json"]);
 	
     var dataURL = json["dataURL"];
+    var example = json["example"];
     var analysisVar = json["analysisVar"];
     var groupVars = json["groupVars"];
     var graphNum = json["graphNum"];
     
-    if (dataURL === undefined) return false;
+    if (dataURL === undefined) {
+	if (example === undefined) {
+	    return false;
+	} else {
+	    dataURL = "../Example/" + example;
+	};
+    }
     
     readFromURL(dataURL, function() {
 	if (analysisVar !== undefined) selectAnalysisVariable(analysisVar);
