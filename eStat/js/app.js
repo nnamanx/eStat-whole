@@ -3710,6 +3710,7 @@ languageNumber = {
     'pl': 15,
     'az': 16,
     'uz': 17,
+    'ru': 18,
 }
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
