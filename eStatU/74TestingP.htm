@@ -156,7 +156,7 @@
         document.getElementById("cright").value  = f3(right); 
 
         // test statistics
-        teststat = (pp - mu) / (Math.sqrt(pp*(1-pp)/nn));
+        teststat = (pp - mu) / (Math.sqrt(mu*(1-mu)/nn));
 
         if (isNaN(mu) || isNaN(nn) || isNaN(pp) || mu <= 0 || mu >= 1 || nn < 2 || pp <= 0 || pp >= 1) {  // wrong input
           bar.append("text").attr("class","mean")

@@ -4280,8 +4280,8 @@ function drawNormalGraphTH(hypoType, h1Type, stat, mu, sigma, a, b, prob, pvalue
 
          ty = margin.top;
          if (hypoType == 1)       str = svgStrU[23][langNum]+" = (x\u0304 - \u03BC\u2080) / ( \u03C3 / sqrt(n) )  ~  N(0,1)";
-         else if (hypoType == 3)  str = svgStrU[23][langNum]+" = (p\u0302 - p\u2080) / (  \u221a ( p\u0302(1-p\u0302)/n ) )  ~  N(0,1)";
-         else if (hypoType == 6)  str = svgStrU[23][langNum]+" = (p\u0302\u2081 - p\u0302\u2082 - D) / \u221a ( p\u0304(1-p\u0304)(1/n\u2081 + 1/n\u2082) )  ~  N(0,1)";
+         else if (hypoType == 3)  str = svgStrU[23][langNum]+" = (p\u0302 - p\u2080) / \u221a ( p\u2080(1-p\u2080) / n )  ~  N(0,1)";
+         else if (hypoType == 6)  str = svgStrU[23][langNum]+" = (p\u0302\u2081 - p\u0302\u2082 - D) / \u221a p\u0304(1-p\u0304)(1/n\u2081 + 1/n\u2082) ~  N(0,1)";
          else if (hypoType == 94) str = svgStrU[23][langNum]+" = (+) ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
          else if (hypoType == 95) str = svgStrU[23][langNum]+" = R+ ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
          else if (hypoType == 96) str = svgStrU[23][langNum]+" = R\u2082 ~ N("+mu+" , "+f3(sigma)+"\u00B2) "+svgStrU[24][langNum];
