@@ -251,6 +251,7 @@ $.message.ko = {
     "Paired Sample": "대응표본",
     "Sample Data": "표본자료",
     "input either sample data": "(자료를 공란으로 구분), ([표본통계량]만 입력도 가능)",
+    "input data": "데이터 입력",
     "Sample Statistics": "표본통계량",
     "Sample Mean": "표본평균",
     "Sample Variance": "표본분산",
@@ -636,9 +637,9 @@ svgStrU[101][0] = "t 분포";
 svgStrU[102][0] = "&chi;&#178; 분포";
 svgStrU[103][0] = "F 분포";
 svgStrU[104][0] = "HSD 표준화범위분포";
-svgStrU[105][0] = "1사분위수 Q1";
-svgStrU[106][0] = "3사분위수 Q3";
-svgStrU[107][0] = "사분위수범위 IQR";
+svgStrU[105][0] = "1사분위수";
+svgStrU[106][0] = "3사분위수";
+svgStrU[107][0] = "사분위수범위";
 svgStrU[108][0] = "변위계수";
 svgStrU[109][0] = "누적상대도수 (%)";
 svgStrU[110][0] = "균등분포의 최대 정수 수";
@@ -671,7 +672,7 @@ $.message.en = {
     "Dot Graph": "Dot Graph",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": "Stem & Leaf Plot",
-    "Box-Whisker Plot": "Box-Whisker Plot",
+    "Box-Whisker Plot": "Box Plot",
     "Scatterplot": "Scatterplot",
     "Frequency Table": "Frequency Table",
     "Basic Statistics": "Descriptive Statistics",
@@ -817,6 +818,7 @@ $.message.en = {
     "Paired Sample": "paired sample",
     "Sample Data": "Sample Data",
     "input either sample data": "Input either sample data using BSV or sample statistics at the next boxes",
+    "input data": "Enter Data",
     "Sample Statistics": "Sample Statistics",
     "Sample Mean": "Sample Mean",
     "Sample Variance": "Sample Variance",
@@ -1202,9 +1204,9 @@ svgStrU[101][1] = "t Distribution";
 svgStrU[102][1] = "&chi;&#178; Distribution";
 svgStrU[103][1] = "F Distribution";
 svgStrU[104][1] = "HSD Studentized Range Distribution";
-svgStrU[105][1] = "1st Quartile<br>Q1";
-svgStrU[106][1] = "3rd Quartile<br>Q3";
-svgStrU[107][1] = "Interquartile Range<br>IQR";
+svgStrU[105][1] = "1st Quartile";
+svgStrU[106][1] = "3rd Quartile";
+svgStrU[107][1] = "Interquartile Range";
 svgStrU[108][1] = "Coefficient of Variation";
 svgStrU[109][1] = "Cumulated Relative Frequency (%)";
 svgStrU[110][1] = "Max number of integers of Uniform Dist";
@@ -1384,6 +1386,7 @@ $.message.ja = {
     "Paired Sample": "対応のある２標本",
     "Sample Data": "標本データ",
     "input either sample data": "(標本データをここに入力, あるいは 次の標本統計量を入力(空白またはカンマ区切り)",
+    "input data": "データを入力",
     "Sample Statistics": "標本統計量",
     "Sample Mean": "標本平均",
     "Sample Variance": "標本分散",
@@ -1770,9 +1773,9 @@ svgStrU[101][2] = "t 分布";
 svgStrU[102][2] = "&chi;&#178; 分布";
 svgStrU[103][2] = "F 分布";
 svgStrU[104][2] = "HSD 分布";
-svgStrU[105][2] = "1四分位数<br>Q1";
-svgStrU[106][2] = "3四分位数<br>Q3";
-svgStrU[107][2] = "四分位数範囲<br>IQR";
+svgStrU[105][2] = "1四分位数";
+svgStrU[106][2] = "3四分位数";
+svgStrU[107][2] = "四分位数範囲";
 svgStrU[108][2] = "決定係数";
 svgStrU[109][2] = "累積相対度数 (%)";
 svgStrU[110][2] = "均等分布の最大整数";
@@ -1948,6 +1951,7 @@ $.message.zhTW = {
     "Paired Sample": "配對樣本",
     "Sample Data": "樣本資料",
     "input either sample data": "於接下來的對話視窗，使用csv/bsv格式輸入樣本資料或樣本統計量",
+    "input data": "輸入數據",
     "Sample Statistics": "樣本統計量",
     "Sample Mean": "樣本平均",
     "Sample Variance": "樣本變異數",
@@ -2333,9 +2337,9 @@ svgStrU[101][3] = "t 分布";
 svgStrU[102][3] = "&chi;&#178; 分布";
 svgStrU[103][3] = "F 分布";
 svgStrU[104][3] = "HSD 分布";
-svgStrU[105][3] = "第一個四分位數<br>Q1";
-svgStrU[106][3] = "第三個四分位數<br>Q3";
-svgStrU[107][3] = "四分位數範圍<br>IQR";
+svgStrU[105][3] = "第一個四分位數";
+svgStrU[106][3] = "第三個四分位數";
+svgStrU[107][3] = "四分位數範圍";
 svgStrU[108][3] = "確定係數";
 svgStrU[109][3] = "累積相對頻率 (%)";
 svgStrU[110][3] = "均勻分佈的最大整數";
@@ -2511,6 +2515,7 @@ $.message.fr = {
     "Paired Sample": "jumelé",
     "Sample Data": "Données échantillonnées",
     "input either sample data": "Entrez soit la taille de l'échantillon, soit  les statistiques de l'échantillon dans les cases suivantes en séparant par  des virgules ou des blancs",
+    "input data": "Entrer des données",
     "Sample Statistics": "Statistiques de l'échantillon",
     "Sample Mean": "Moyenne de l'échantillon",
     "Sample Variance": "Variance de l'échantillon",
@@ -2898,9 +2903,9 @@ svgStrU[101][4] = "Distribution t";
 svgStrU[102][4] = "Distribution &chi;&#178;";
 svgStrU[103][4] = "Distribution F";
 svgStrU[104][4] = "Distribution HSD";
-svgStrU[105][4] = "1er quartile<br>Q1";
-svgStrU[106][4] = "3ème quartile<br>Q3";
-svgStrU[107][4] = "Gamme interquartile<br>IQR";
+svgStrU[105][4] = "1er quartile";
+svgStrU[106][4] = "3ème quartile";
+svgStrU[107][4] = "Gamme interquartile";
 svgStrU[108][4] = "Coefficient de détermination";
 svgStrU[109][4] = "Fréquence relative cumulée (%)";
 svgStrU[110][4] = "Nombre maximum d'entiers de la distribution uniforme";
@@ -3073,6 +3078,7 @@ $.message.de = {
     "Paired Sample": "gepaart",
     "Sample Data": "Stichprobendaten",
     "input either sample data": "Gib entweder Stichprobenwerte oder Stichprobenstatistik ein.",
+    "input data": "Daten eingeben",
     "Sample Statistics": "Stichprobenstatistik",
     "Sample Mean": "Stichprobenmittelwert",
     "Sample Variance": "Stichprobenvarianz",
@@ -3460,9 +3466,9 @@ svgStrU[101][5] = "t Verteilung";
 svgStrU[102][5] = "&chi;&#178; Verteilung";
 svgStrU[103][5] = "F Verteilung";
 svgStrU[104][5] = "HSD Verteilung";
-svgStrU[105][5] = "1. Quartil <br> Q1";
-svgStrU[106][5] = "3. Quartil <br> Q3";
-svgStrU[107][5] = "Interquartilsabstand <br> IQR";
+svgStrU[105][5] = "1. Quartil";
+svgStrU[106][5] = "3. Quartil";
+svgStrU[107][5] = "Interquartilsabstand";
 svgStrU[108][5] = "Bestimmtheitsmaß";
 svgStrU[109][5] = "Kumulierte relative Häufigkeit (%)";
 svgStrU[110][5] = "Maximale Anzahl von Ganzzahlen der Gleichverteilung";
@@ -3638,6 +3644,7 @@ $.message.es = {
     "Paired Sample": "emparejado",
     "Sample Data": "Datos muestrales",
     "input either sample data": "Introducir datos muestrales o estadísticos muestrales en las siguientes cajas usando csv/bsv",
+    "input data": "Introducir datos",
     "Sample Statistics": "Estadísticos muestrales",
     "Sample Mean": "Media muestral",
     "Sample Variance": "Varianza muestral",
@@ -4025,9 +4032,9 @@ svgStrU[101][6] = "Distribución t";
 svgStrU[102][6] = "Distribución &chi;&#178;";
 svgStrU[103][6] = "Distribución F";
 svgStrU[104][6] = "Distribución HSD";
-svgStrU[105][6] = "1er cuartil <br> Q1";
-svgStrU[106][6] = "3er cuartil <br> Q3";
-svgStrU[107][6] = "Gama intercuartil <br> IQR";
+svgStrU[105][6] = "1er cuartil";
+svgStrU[106][6] = "3er cuartil";
+svgStrU[107][6] = "Gama intercuartil";
 svgStrU[108][6] = "Coeficiente de determinación";
 svgStrU[109][6] = "Frecuencia relativa acumulada (%)";
 svgStrU[110][6] = "Número máximo de enteros de distribución uniforme";
@@ -4203,6 +4210,7 @@ $.message.vi = {
     "Paired Sample": "mẫu ghép",
     "Sample Data": "Dữ liệu mẫu",
     "input either sample data": "Nhập dữ vào bảng kế tiếp bằng file csv/bsv",
+    "input data": "Nhập dữ liệu",
     "Sample Statistics": "Thống kê mẫu",
     "Sample Mean": "Trung bình mẫu",
     "Sample Variance": " Phương sai mẫu",
@@ -4586,9 +4594,9 @@ svgStrU[101][7] = "Phân phối t";
 svgStrU[102][7] = "Phân phối &chi;&#178;";
 svgStrU[103][7] = "Phân phối F";
 svgStrU[104][7] = "Phân phối HSD";
-svgStrU[105][7] = "Phần tư thứ nhất <br> Q1";
-svgStrU[106][7] = "Phần tư thứ 3 <br> Q3";
-svgStrU[107][7] = "Phạm vi liên vùng <br> IQR";
+svgStrU[105][7] = "Phần tư thứ nhất";
+svgStrU[106][7] = "Phần tư thứ 3";
+svgStrU[107][7] = "Phạm vi liên vùng";
 svgStrU[108][7] = "Hệ số xác định";
 svgStrU[109][7] = "Tần số tương đối tích lũy (%)";
 svgStrU[110][7] = "Số lượng tối đa của số nguyên phân phối đồng đều";
@@ -4764,6 +4772,7 @@ $.message.id = {
     "Paired Sample": "data yang dipasangkan",
     "Sample Data": "Data Sampel",
     "input either sample data": " Masukan Data Sampel atau Statistik Sampel di Kotak Selanjutnya menggunakan csv/bsv ",
+    "input data": "Masukkan Data",
     "Sample Statistics": "Statistik Sampel",
     "Sample Mean": "Rata-rata Sampel",
     "Sample Variance": "Varians Sampel",
@@ -5151,9 +5160,9 @@ svgStrU[101][8] = "Distribusi t";
 svgStrU[102][8] = "Distribusi &chi;&#178;";
 svgStrU[103][8] = "Distribusi F";
 svgStrU[104][8] = "Distribusi HSD";
-svgStrU[105][8] = "Kuartil 1 <br> Q1";
-svgStrU[106][8] = "Kuartil ke-3 <br> Q3";
-svgStrU[107][8] = "Rentang Interkuartil <br> IQR";
+svgStrU[105][8] = "Kuartil 1";
+svgStrU[106][8] = "Kuartil ke-3";
+svgStrU[107][8] = "Rentang Interkuartil";
 svgStrU[108][8] = "Koefisien Determinasi";
 svgStrU[109][8] = "Frekuensi Relatif terakumulasi (%)";
 svgStrU[110][8] = "Jumlah maksimum bilangan bulat dari Distribusi Seragam";
@@ -5330,6 +5339,7 @@ $.message.mn = {
     "Paired Sample": "хосолсон",
     "Sample Data": "Жишээ өгөгдөл",
     "input either sample data": "Энгийн өгөгдөл, энгийн статистикийн аль алийг нь cvs/bsv-ийг ашигласан дараагийн хайрцагт нэмж оруулах",
+    "input data": "Өгөгдөл оруулах",
     "Sample Statistics": "Жишээ статистик",
     "Sample Mean": "Жишээ дундаж утга",
     "Sample Variance": "Түүврийн вариаци",
@@ -5715,9 +5725,9 @@ svgStrU[101][9] = "t Түгээлт";
 svgStrU[102][9] = "&chi;&#178; Түгээлт";
 svgStrU[103][9] = "F Түгээлт";
 svgStrU[104][9] = "HSD Түгээлт";
-svgStrU[105][9] = "1-р Квартет<br>Q1";
-svgStrU[106][9] = "Гуравдугаар Quartile <br> Q3";
-svgStrU[107][9] = "Interquartile Range <br> IQR";
+svgStrU[105][9] = "1-р Квартет";
+svgStrU[106][9] = "3-р Квартет";
+svgStrU[107][9] = "Interquartile Range";
 svgStrU[108][9] = "Тодорхойлох коэффициент";
 svgStrU[109][9] = "Хуримтлагдсан давтамж (%)";
 svgStrU[110][9] = "Uniform Distribution бүхэл тоо";
@@ -5893,6 +5903,7 @@ $.message.zh = {
     "Paired Sample": "対応样本",
     "Sample Data": "样本数据",
     "input either sample data": "接下来的对话视窗，使用csv/bsv格式输入样本资料或样本统计量",
+    "input data": "输入数据",
     "Sample Statistics": "样本统计量",
     "Sample Mean": "样本均值",
     "Sample Variance": "样本方差",
@@ -6253,9 +6264,9 @@ svgStrU[101][10] = "t 分布";
 svgStrU[102][10] = "&chi;&#178; 分布";
 svgStrU[103][10] = "F 分布";
 svgStrU[104][10] = "HSD 分布";
-svgStrU[105][10] = "第一个四分位数问题<br>Q1";
-svgStrU[106][10] = "第三个四分位数问题<br>Q3";
-svgStrU[107][10] = "四分位数范围<br> IQR";
+svgStrU[105][10] = "第一个四分位数问题";
+svgStrU[106][10] = "第三个四分位数问题";
+svgStrU[107][10] = "四分位数范围";
 svgStrU[108][10] = "确定系数";
 svgStrU[109][10] = "累积相对频率（％）";
 svgStrU[110][10] = "分布均匀的最大整数数";
@@ -6434,6 +6445,7 @@ $.message.pt = {
     "Paired Sample": "amostras pareadas",
     "Sample Data": "Dados Amostrais",
     "input either sample data": "entre com o tamanho da amostra ou com a estatística amostral nas próximas caixas usando csv/bsv",
+    "input data": "Inserir dados",
     "Sample Statistics": "Estatísticas Amostrais",
     "Sample Mean": "Média Amostral",
     "Sample Variance": "Variância Amostral",
@@ -6820,9 +6832,9 @@ svgStrU[101][11] = "Distribuição t";
 svgStrU[102][11] = "Distribuição &chi;&#178;";
 svgStrU[103][11] = "Distribuição F";
 svgStrU[104][11] = "Distribuição HSD";
-svgStrU[105][11] = "primeiro quartil <br> Q1";
-svgStrU[106][11] = "Terceiro quartil <br> Q3";
-svgStrU[107][11] = "Interquartile Range <br> IQR";
+svgStrU[105][11] = "primeiro quartil";
+svgStrU[106][11] = "Terceiro quartil";
+svgStrU[107][11] = "Interquartile Range";
 svgStrU[108][11] = "Coeficiente de determinação";
 svgStrU[109][11] = "Freqüência Relativa Cumulada (%)";
 svgStrU[110][11] = "Número máximo de números inteiros de distribuição uniforme";
@@ -7001,6 +7013,7 @@ $.message.gr = {
     "Paired Sample": "δείγμα κατά ζεύγη",
     "Sample Data": "Δεδομένα Δείγματος",
     "input either sample data": "καταχωρείστε ή δειγματικά δεδομένα είτε δειγματικά στατιστικά στα επόμενα κελιά χρησιμοποιώντας αρχεία csv/bsv",
+    "input data": "Εισαγάγετε δεδομένα",
     "Sample Statistics": "Δειγματικά Στατιστικά",
     "Sample Mean": "Δειγματικός Μέσος",
     "Sample Variance": "Δειγματική Διασπορά",
@@ -7385,9 +7398,9 @@ svgStrU[101][12] = "t Κατανομή";
 svgStrU[102][12] = "&chi;&#178; Κατανομή";
 svgStrU[103][12] = "F Κατανομή";
 svgStrU[104][12] = "HSD εύρος Κατανομή";
-svgStrU[105][12] = "Πρώτο Τεταρτημόριο<br>Q1";
-svgStrU[106][12] = "Τρίτο Τεταρτημόριο<br>Q3";
-svgStrU[107][12] = "Ενδοτεταρτημοριακό Εύρος<br>IQR";
+svgStrU[105][12] = "Πρώτο Τεταρτημόριο";
+svgStrU[106][12] = "Τρίτο Τεταρτημόριο";
+svgStrU[107][12] = "Ενδοτεταρτημοριακό Εύρος";
 svgStrU[108][12] = "Συντελεστής Μεταβλητότητας";
 svgStrU[109][12] = "Αθροιστική Συχνότητα (%)";
 svgStrU[110][12] = "Μέγιστος αριθμός ακεραίων της Ομοιόμορφης Διανομής";
@@ -7566,6 +7579,7 @@ $.message.ro = {
     "Paired Sample": "Două Selecții",
     "Sample Data": "Sondaj Date",
     "input either sample data": "Introduceți fie datele unui sondaj, fie date statistice in spațiile următoare ultizând csv/bsv",
+    "input data": "Introduceți date",
     "Sample Statistics": "Sondaj Statistică",
     "Sample Mean": "Medie Sondaj",
     "Sample Variance": "Varianță Sondaj",
@@ -7952,9 +7966,9 @@ svgStrU[101][13] = "t Distribuție";
 svgStrU[102][13] = "&chi;&#178; Distribuție";
 svgStrU[103][13] = "F Distribuție";
 svgStrU[104][13] = "HSD Studentd Gamăe Distribuție";
-svgStrU[105][13] = "primul trimestru pentru primul trimestru<br>Q1";
-svgStrU[106][13] = "al treilea trimestru din trimestrul<br> Q3";
-svgStrU[107][13] = "Intervalul Interquartile <br> IQR";
+svgStrU[105][13] = "primul trimestru pentru primul trimestru";
+svgStrU[106][13] = "al treilea trimestru din trimestrul";
+svgStrU[107][13] = "Intervalul Interquartile";
 svgStrU[108][13] = "Coeficient de determinare";
 svgStrU[109][13] = "Frecvența relativă cumulată (%)";
 svgStrU[110][13] = "Numărul maxim de numere întregi de distribuție uniformă";
@@ -8133,6 +8147,7 @@ $.message.th = {
     "Paired Sample": "ตัวอย่างเป็นคู่",
     "Sample Data": "ข้อมูลตัวอย่าง",
     "input either sample data": "ใส่ข้อมูลตัวอย่างหรือค่าสถิติในช่องถัดไปโดยใช้ csv/bsv",
+    "input data": "ป้อนข้อมูล",
     "Sample Statistics": "ค่าสถิติตัวอย่าง",
     "Sample Mean": "ค่าเฉลี่ยตัวอย่าง",
     "Sample Variance": "ความแปรปรวนตัวอย่าง",
@@ -8519,9 +8534,9 @@ svgStrU[101][14] = "t การแจกแจง";
 svgStrU[102][14] = "&chi;&#178; การแจกแจง";
 svgStrU[103][14] = "F การแจกแจง";
 svgStrU[104][14] = "HSD ช่วงที่ได้รับการศึกษา การแจกแจง";
-svgStrU[105][14] = "ควอไทล์ที่ 1<br>Q1";
-svgStrU[106][14] = "ควอไทล์ที่สาม<br>Q3";
-svgStrU[107][14] = "ช่วงควอไทล์<br>IQR";
+svgStrU[105][14] = "ควอไทล์ที่ 1";
+svgStrU[106][14] = "ควอไทล์ที่สาม";
+svgStrU[107][14] = "ช่วงควอไทล์";
 svgStrU[108][14] = "สัมประสิทธิ์การแปรผัน";
 svgStrU[109][14] = "ความถี่สัมพัทธ์สะสม (%)";
 svgStrU[110][14] = "จำนวนสูงสุดของจำนวนเต็มของการกระจายชุด";
@@ -8700,6 +8715,7 @@ $.message.pl = {
     "Paired Sample": "sparowana próbka",
     "Sample Data": "Dane próbkowe",
     "input either sample data": "Wprowadź dane z próby lub statystyki z próby w kolejnych polach za pomocą csv / bsv",
+    "input data": "Wprowadzanie danych",
     "Sample Statistics": "Statystyki z próby",
     "Sample Mean": "Średnia z próby",
     "Sample Variance": "Wariancja z próby",
@@ -9087,9 +9103,9 @@ svgStrU[101][15] = "t Dystrybuanta";
 svgStrU[102][15] = "&chi;&#178; Dystrybuanta";
 svgStrU[103][15] = "F Dystrybuanta";
 svgStrU[104][15] = "HSD Rang Dystrybuanta";
-svgStrU[105][15] = "Pierwszy kwartyl<br>Q1";
-svgStrU[106][15] = "Trzeci kwartyl<br>Q3";
-svgStrU[107][15] = "Zakres międzykwartylowy<br>IQR";
+svgStrU[105][15] = "Pierwszy kwartyl";
+svgStrU[106][15] = "Trzeci kwartyl";
+svgStrU[107][15] = "Zakres międzykwartylowy";
 svgStrU[108][15] = "Współczynnik zmienności";
 svgStrU[109][15] = "Skumulowana częstotliwość względna (%)";
 svgStrU[110][15] = "Maksymalna liczba całkowita o jednolitym rozkładzie";
@@ -9268,6 +9284,7 @@ $.message.az = {
     "Paired Sample": "cütlü nümunə",
     "Sample Data": "məlumat nümunəsi",
     "input either sample data": "csv / bsv istifadə edərək növbəti qutularda nümunə məlumatlarını və ya nümunə statistikasını daxil edin",
+    "input data": "Məlumat daxil edin",
     "Sample Statistics": "nümunə statistikası",
     "Sample Mean": "nümumənin ədədi ortası",
     "Sample Variance": "Nümunənin dispersiyası",
@@ -9653,9 +9670,9 @@ svgStrU[101][16] = "t Paylanman";
 svgStrU[102][16] = "&chi;&#178; Paylanma";
 svgStrU[103][16] = "F Paylanma";
 svgStrU[104][16] = "HSD Tələbəli İnterval Paylanması";
-svgStrU[105][16] = "birinchi kvartil<br>Q1";
-svgStrU[106][16] = "uchinchi kvartil<br>Q3";
-svgStrU[107][16] = "kvartil oralig'i<br>IQR";
+svgStrU[105][16] = "birinchi kvartil";
+svgStrU[106][16] = "uchinchi kvartil";
+svgStrU[107][16] = "kvartil oralig'i";
 svgStrU[108][16] = "o'zgaruvchanlik koeffitsienti";
 svgStrU[109][16] = "To'plangan nisbiy chastota (%)";
 svgStrU[110][16] = "Uniform Distribution butun sonlarining maksimal soni";
@@ -9834,6 +9851,7 @@ $.message.uz = {
     "Paired Sample": "ulangan namuna",
     "Sample Data": "namuna malumotlari",
     "input either sample data": "csv/bsv yordamida keyingi malumotlarganamunaviy malumot yoki namunaviy statistikani kiriting",
+    "input data": "Ma'lumotni kiriting",
     "Sample Statistics": "namuna statistikasi",
     "Sample Mean": "namuna ortacha",
     "Sample Variance": "namuna o'zgarishi",
@@ -10219,9 +10237,9 @@ svgStrU[101][17] = "t Tarqatish";
 svgStrU[102][17] = "&chi;&#178; Tarqatish";
 svgStrU[103][17] = "F Tarqatish";
 svgStrU[104][17] = "HSD Talabalar qatori Tarqatish";
-svgStrU[105][17] = "birinchi kvartil<br>Q1";
-svgStrU[106][17] = "uchinchi kvartil<br>Q3";
-svgStrU[107][17] = "kvartil oralig'i Range<br>IQR";
+svgStrU[105][17] = "birinchi kvartil";
+svgStrU[106][17] = "uchinchi kvartil";
+svgStrU[107][17] = "kvartil oralig'i Range";
 svgStrU[108][17] = "O'zgarish koeffitsienti";
 svgStrU[109][17] = "To'plangan nisbiy chastota (%)";
 svgStrU[110][17] = "Maksimal butun sonlar Formali Tarqatish";
@@ -10400,6 +10418,7 @@ $.message.ru = {
     "Paired Sample": "Парные выборки",
     "Sample Data": "Данные выборки",
     "input either sample data": "Введите выборочные данные или выборочную статистику в следующие поля, используя csv / bsv",
+    "input data": "Введите данные",
     "Sample Statistics": "Статистика выборки",
     "Sample Mean": "Среднее значение выборки",
     "Sample Variance": "Коэффициент вариации выборки",
@@ -10784,9 +10803,9 @@ svgStrU[101][18] = "t Распределение";
 svgStrU[102][18] = "&chi;&#178; Распределение";
 svgStrU[103][18] = "F Распределение";
 svgStrU[104][18] = "Стьюдентизированное распределение диапазонов";
-svgStrU[105][18] = "первый квартиль<br>Q1";
-svgStrU[106][18] = "третий квартиль<br>Q3";
-svgStrU[107][18] = "межквартильный Диапазон<br>IQR";
+svgStrU[105][18] = "первый квартиль";
+svgStrU[106][18] = "третий квартиль";
+svgStrU[107][18] = "межквартильный Диапазон";
 svgStrU[108][18] = "коэффициент вариации";
 svgStrU[109][18] = "Относительная частота (%)";
 svgStrU[110][18] = "Максимальное количество целых чисел равномерного распределения";
