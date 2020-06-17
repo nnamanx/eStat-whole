@@ -19,9 +19,8 @@
     <br>
     <div class="title">
       <b>&nbsp; 
-         <span data-msgid="Confidence Interval Mu">
-           Confidence Interval : Population Mean &mu; 
-         </span> 
+         <span data-msgid="Confidence Interval Mu"></span> 
+         <span data-msgid="Confidence Interval"></span> 
       </b>
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
@@ -87,9 +86,9 @@
     <button type="button" id="executeTH" >
         <span data-msgid="Execute">Execute</span>
     </button> 
-    <p>
-    <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>
-    <table class="stat">
+    &nbsp;&nbsp;&nbsp;
+    <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b> 
+    <table class="stat"> 
       <tbody>
         <tr>
           <td></td>
@@ -98,6 +97,7 @@
           <td><input type="text" class="textarea" size=6 id="tvalue"></td>
           <td><span class="fontmath" id="stderrFormula"></span> &nbsp;= </td>
           <td><input type="text" class="textarea" size=6 id="stderr"></td>
+          <td></td>
         </tr>
         <tr>
           <td></td>
@@ -143,7 +143,7 @@
       var gxmin, gxmax, gymin, gymax;
       var title;
       var df, info, alpha, alpha2, confidence, confidence2;
-      var nn, xbar, variS, stdS, stat, left, right, temp, tvalue, zvalue, stderr;
+      var nn, xbar, variS, variP, stdS, stdP, stat, left, right, temp, tvalue, zvalue, stderr;
       var nn2, left2, right2, temp2, tvalue2, zvalue2, stderr2;
       var leftMin, rightMax, range;
       var strT    = "t<sub>n-1 ; &alpha;/2</sub> ";
@@ -171,6 +171,7 @@
          testType = 1; 
          clearText();
          document.getElementById("variP").disabled  = true; 
+         document.getElementById("variS").disabled  = false; 
          document.getElementById("variP").value     = null; 
          document.getElementById("tFormula").innerHTML = strT;
          document.getElementById("stderrFormula").innerHTML = stderrT;
@@ -179,7 +180,9 @@
       test[1].onclick = function() {  // Z-test
          testType = 2; 
          clearText();
+         document.getElementById("variS").value  = null; 
          document.getElementById("variP").disabled  = false; 
+         document.getElementById("variS").disabled  = true; 
          document.getElementById("tFormula").innerHTML = strZ;
          document.getElementById("stderrFormula").innerHTML = stderrZ;
          document.getElementById("intFormula").innerHTML = intZ;
@@ -226,13 +229,27 @@
         nn    = parseFloat(d3.select("#nn").node().value);
         xbar  = parseFloat(d3.select("#xbar").node().value);
         variS = parseFloat(d3.select("#variS").node().value);
+        variP = parseFloat(d3.select("#variP").node().value);
         stdS  = Math.sqrt(variS);
+        stdP  = Math.sqrt(variP);
         df    = nn - 1;
 
-        if ( isNaN(nn) || isNaN(xbar) || isNaN(variS) || nn < 2 || variS <= 0 ) {  // wrong input
+        if ( isNaN(nn) || isNaN(xbar)  || nn < 2 ) {  // wrong input
           bar.append("text").attr("class","mean")
              .attr("x", 150).attr("y", 100)
              .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else if ( isNaN(variS) && isNaN(variP) ) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else if ( variS < 0 || variP < 0 ) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150).attr("y", 100)
+             .text("wrong input on variance !!   Try again.")
              .style("stroke","red")
         }
         else {
@@ -243,18 +260,13 @@
           }
           else { // Z distribution
             tvalue = stdnormal_inv(1 - alpha/2, info);
-            variP = parseFloat(d3.select("#variP").node().value);
-            if ( isNaN(variP) || variP <=0) {
-               bar.append("text").attr("class","mean")
-                   .attr("x", 150).attr("y", 100)
-                   .text("Population variance - No input or wrong input !!   Try again.")
-                   .style("stroke","red")
-               return;
-            }
+//            variP = parseFloat(d3.select("#variP").node().value);
             stderr = Math.sqrt(variP/nn);
+            variS  = variP;
+            stdS   = stdP;
           }
-          temp = tvalue * stderr;
-          left   = xbar - temp;
+          temp  = tvalue * stderr;
+          left  = xbar - temp;
           right = xbar + temp;  
           leftMin = xbar - t_inv(0.999, nn - 1, info)*stdS;
           rightMax = xbar + t_inv(0.999, nn - 1, info)*stdS;

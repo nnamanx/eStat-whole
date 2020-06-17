@@ -40,31 +40,36 @@
 	<tr>
           <td></td>
           <td><span data-msgid="PopulationStd">모표준편차 </span></td>
-          <td><span class="fontmath">&sigma; = </span></td>
-          <td><input type="text" class="textarea" size=6 id="stdPAB"> </td>
+          <td><span class="fontmath">&sigma; = </span><input type="text" class="textarea" size=6 id="stdPAB"> </td>
         </tr>
         <tr>
           <td></td>
 	  <td><span data-msgid="Type1Error">1종오류</span></td>
-	  <td><span class="fontmath">&alpha; = </span></td>
-	  <td><input type="text" class="textarea" value="0.050" size=6 id="alpha2AB"></td>
+	  <td><span class="fontmath">&alpha; = </span><input type="text" class="textarea" value="0.050" size=6 id="alpha2AB"></td>
+        </tr>
+        <tr>
           <td></td>
 	  <td><span data-msgid="Type2Error">2종오류</span></td>
-	  <td><span class="fontmath">&beta; =</span></td>
-	  <td><input type="text" class="textarea" value="0.100"size=6 id="beta2AB"> </td>
+	  <td><span class="fontmath">&beta; = </span><input type="text" class="textarea" value="0.100"size=6 id="beta2AB"> </td>
 	</tr>
       </tbody>
     </table>
     </p>
-
+    <button type="button" id="executeTH" ><span data-msgid="Execute">Execute</span></button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;
+    <span class="fontmath">C = </span>
+    <input type="text" class="textarea"  size=6 id="C">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">n = </span></td>
+    <input type="text" class="textarea" size=6 id="nnAB"></td>
+    <p>
     <div>
-      <button type="button" id="executeTH" ><span data-msgid="Execute">Execute</span></button> 
-      &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
       <span class="fontmath">&mu;<sub>1</sub> &nbsp; &nbsp;<sup><small> &mu;<sub>0</sub>-3&sigma; </small></sup></span>
       <input type="range" min="0" max="60" value="30" id="rangeMu1AB" onchange="showValueMu1AB(this.value)"/> 
       <span class="fontmath"><sup><small> &mu;<sub>0</sub>+3&sigma; </small></sup></span>
     <div>
-    <br>
+
     <svg id="chart" width="600" height="400"> </svg> 
   
     <div id="sub1AB">
@@ -107,12 +112,15 @@
       var svgHeight2  = 400;
       var title;
       var mu0, mu1, stdP, alpha1, alpha2, beta1, beta2, nn1, nn2;
+      var ansC, ansN;
       var h1Type, testType;
 
       // Test type
       var testType = 2;
       document.getElementById("sub1AB").style.display  = "none";
       document.getElementById("sub2AB").style.display  = "block";
+      document.getElementById("C").disabled = true; 
+      document.getElementById("nnAB").disabled = true;  
 
       // Testing Hypothesis ======================================
       d3.select("#executeTH").on("click",function() {
@@ -120,6 +128,8 @@
         if (isNaN(mu0) || isNaN(mu1) || isNaN(stdP) ) return;
         if (testType == "1" && isNaN(nn1)) return;
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
+        document.getElementById("C").value = f2(ansC); 
+        document.getElementById("nnAB").value = f1(ansN);  
       });
 
       // svg Graph Save

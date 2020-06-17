@@ -4832,7 +4832,9 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
            left1  = right0;
            right1 = mu1 + dmax;
            beta1  = 1 - stdnormal_cdf((left1-mu1)/stderr);
+           tbeta = beta1;
          }
+         ansBeta = tbeta
 
          gxrange = gxmax - gxmin;
          gymin   = 0;
@@ -4855,7 +4857,9 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
          // 기준선 C, alpha, beta write
          if (h1Type == 2) tempx = left0;
          else if (h1Type == 3) tempx = right0;
+         ansC = tempx;
          if (testType == "2") nn1 = nn2;
+         ansN = nn1;
          tempy = normal_pdf(mu0, stderr, tempx );
          x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
          x2   = x1;
@@ -4869,7 +4873,7 @@ function drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1,
             .attr("stroke-width","2px").style("stroke","#0055FF")
          bar.append("text").attr("x", x1).attr("y", y1+15).text("C = "+f2(tempx))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-         bar.append("text").attr("x", x1).attr("y", y1+30).text("n = "+f0(nn1))
+         bar.append("text").attr("x", x1).attr("y", y1+30).text("n = "+f1(nn1))
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          y1 = y1 - 30;
          y2 = y1 + 25;
