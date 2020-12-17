@@ -273,7 +273,10 @@ var median = new Array(ngroupMax);
 var Q3     = new Array(ngroupMax);
 var maxi   = new Array(ngroupMax);
 var avg    = new Array(ngroupMax);
-var std    = new Array(ngroupMax);
+var stdnm1 = new Array(ngroupMax);
+var varnm1 = new Array(ngroupMax);
+var stdn   = new Array(ngroupMax);
+var varn   = new Array(ngroupMax);
 var ranksum = new Array(ngroupMax);
 // 산점도 변량 정의
 var xobs, xvarNumber, xvarName, yobs, yvarNumber, yvarName, nwvalue, wobs, wvarNumber, wvarName;
@@ -1275,6 +1278,7 @@ d3.select("#debugBtn").on("click", function() {
 // =================================================================
 // 학습수준 버튼
 var rad1 = document.myForm1.type1;
+/*
 rad1[0].onclick = function() { // 초등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
@@ -1288,7 +1292,8 @@ rad1[0].onclick = function() { // 초등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-rad1[1].onclick = function() { // 중등
+*/
+rad1[0].onclick = function() { // 중등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1301,7 +1306,7 @@ rad1[1].onclick = function() { // 중등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-rad1[2].onclick = function() { // 고등
+rad1[1].onclick = function() { // 고등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1314,7 +1319,7 @@ rad1[2].onclick = function() { // 고등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-rad1[3].onclick = function() { // 대학
+rad1[2].onclick = function() { // 대학
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1883,7 +1888,7 @@ d3.select("#dot1").on("click", function() {
     if (checkNumeric == false) return;
     DotGraph = true;
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     chart.selectAll("*").remove();
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
     document.getElementById("sub5").style.display = "block"; //점그래프 평균, 표준편차표시
@@ -1893,8 +1898,8 @@ d3.select("#DotMean").on("click", function() {
     if (DotGraph) {
         if (this.checked) {
             checkDotMean = true;
-            showDotMean(ngroup, nobs, avg, std, tstat);
-            showDotStd3(ngroup, nobs, avg, std, tstat);
+            showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+            showDotStd3(ngroup, nobs, avg, stdnm1, tstat);
         } else {
             checkDotMean = false;
             removeDotMean();
@@ -1910,7 +1915,7 @@ d3.select("#DotStd").on("click", function() {
             checkDotStd = true;
             gxmin = tstat[11];
             gxmax = tstat[12];
-            showDotStd(ngroup, nobs, avg, std, gxmin, gxmax, tstat[13], tstat[14]);
+            showDotStd(ngroup, nobs, avg, stdnm1, gxmin, gxmax, tstat[13], tstat[14]);
         } else {
             checkDotStd = false;
             removeDotStd();
@@ -1938,7 +1943,7 @@ d3.select("#hist1").on("click", function() {
     chart.selectAll("*").remove();
 //    enableHist();
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     nint = 7;
     xstep = (tstat[7] - tstat[3]) / nint; // (전체 최대 - 최소) / 인터발수	: 양쪽 그래프 buffer
     gxminH = tstat[3] - xstep;
@@ -2021,7 +2026,7 @@ d3.select("#box1").on("click", function() {
     if (checkNumeric == false) return;
     BoxGraph = true;
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     chart.selectAll("*").remove();
     //	  chart.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top/2).text(title);
     drawBoxGraphH(ngroup, gvalueLabel, mini, Q1, median, Q3, maxi, graphWidth, oneHeight, tstat);
@@ -2040,7 +2045,7 @@ rad52[1].onclick = function() { // 수직형
 }
 // 상자그래프 기초통계량 버튼 클릭 -------------------------------------------------------------------------------
 d3.select("#statBox").on("click", function() {
-    statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, varnm1, stdn, varn, mini, Q1, median, Q3, maxi, tstat);
 })
 // 줄기잎그래프 : 주메뉴 -----------------------------------------------------------------------------------------
 d3.select("#stem1").on("click", function() {
@@ -2059,7 +2064,7 @@ d3.select("#stem1").on("click", function() {
     if (checkNumeric == false) return;
     StemLeaf = true;
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     chart.selectAll("*").remove();
     drawStemLeaf(ngroup, nobs, dataSet, tstat, graphWidth, buffer);
 })
@@ -2084,7 +2089,7 @@ d3.select("#bothstem2").on("click", function() {
     if (checkNumeric == false) return;
     StemBoth = true;
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     chart.selectAll("*").remove();
     drawStemLeafBoth(ngroup, nobs, dataSet, tstat, graphWidth, buffer);
 })
@@ -2107,14 +2112,14 @@ d3.select("#statTable").on("click", function() {
       if (checkNumeric == false) return;
       StatTable = true;
       TotalStat(dobs, dvar, tstat);
-      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
-      statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
+      statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, varnm1, stdn, varn, mini, Q1, median, Q3, maxi, tstat);
     }
     else if (numVar == 3) {
       dataClassifyANOVA2();
       if (checkNumeric == false) return;
       TotalStat(dobs, dvar, tstat);
-      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
       stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2, gvalueLabel2);
     }
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
@@ -2261,13 +2266,13 @@ d3.select("#testM1").on("click", function() {
     document.myForm82.type3.value = 1;
     confidence = 0.95;
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     if (dobs <= 200) {
       drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
-      showDotMean(ngroup, nobs, avg, std, tstat);
-      showDotStd(ngroup, nobs, avg, std, tstat);
+      showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+      showDotStd(ngroup, nobs, avg, stdnm1, tstat);
     }
-    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    else drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
     document.getElementById("sub8").style.display = "block"; //가설검정 선택사항표시
     if (dobs > 200)  document.getElementById("DotMu1").disabled = true;
 })
@@ -2381,7 +2386,7 @@ d3.select("#executeTH8").on("click", function() {
     statT[14] = left;
     statT[15] = right;
     // 모수적 검정결과표
-    statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 윌콕슨 부호순위 가설검정 실행
@@ -2490,19 +2495,19 @@ d3.select("#executeTH8NP").on("click", function() {
 d3.select("#DotMu1").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd(ngroup, nobs, avg, std, tstat);
+    showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+    showDotStd(ngroup, nobs, avg, stdnm1, tstat);
 })
 // 확률 히스토그램 
 d3.select("#HistNormal").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
 })
 // 정규성 카이제곱검정 
 d3.select("#HistChisq").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
-    showHistNormalTable(nobs, avg, std, nvalueH, freq, dataValueH, dvarName);
+    drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
+    showHistNormalTable(nobs, avg, stdnm1, nvalueH, freq, dataValueH, dvarName);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 정규성 Q-Q Plot 
@@ -2533,13 +2538,13 @@ d3.select("#testS1").on("click", function() {
     document.myForm92.type3.value = 1;
     confidence = 0.95;
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     if (dobs <= 200) {
       drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
-      showDotMean(ngroup, nobs, avg, std, tstat);
-      showDotStd3(ngroup, nobs, avg, std, tstat);
+      showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+      showDotStd3(ngroup, nobs, avg, stdnm1, tstat);
     }
-    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    else drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
     document.getElementById("sub9").style.display = "block"; //가설검정 선택사항표시
     if (dobs > 200)  document.getElementById("DotSigma1").disabled = true;
 })
@@ -2625,34 +2630,34 @@ d3.select("#executeTH9").on("click", function() {
     statT[14] = left;
     statT[15] = right;
     // 분산 검정결과표 그리기
-    statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight)
 })
 // 평균점그래프 
 d3.select("#DotSigma1").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd3(ngroup, nobs, avg, std, tstat);
+    showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+    showDotStd3(ngroup, nobs, avg, stdnm1, tstat);
 })
 // 분산 검정결과표 그리기
 d3.select("#executeTH9Table").on("click", function() {
     // confidence
     if (document.myForm92.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
-    statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 확률 히스토그램 
 d3.select("#HistNormalS").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
 })
 // 정규성 카이제곱검정 
 d3.select("#HistChisqS").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
-    showHistNormalTable(nobs, avg, std, nvalueH, freq, dataValueH, dvarName);
+    drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
+    showHistNormalTable(nobs, avg, stdnm1, nvalueH, freq, dataValueH, dvarName);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 정규성 Q-Q Plot 
@@ -2686,25 +2691,25 @@ d3.select("#testM12").on("click", function() {
     confidence = 0.95;
     if (checkPairedT == false) {
       TotalStat(dobs, dvar, tstat);
-      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
       if (dobs <= 200) {
         drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
-        showDotMean(ngroup, nobs, avg, std, tstat);
-        showDotStd(ngroup, nobs, avg, std, tstat);
+        showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+        showDotStd(ngroup, nobs, avg, stdnm1, tstat);
       }
-      else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+      else drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
     }
     else {  // paired t-test 
       document.getElementById("executeTH10NP").disabled = true;
       TotalStat(dobs, tdata, tstat);
-      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+      GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
       str = "d = ("+tdvarName[0] + " - " + tdvarName[1]+")";
       if (dobs <= 200) {
         drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, str);
-        showDotMean(ngroup, nobs, avg, std, tstat);
-        showDotStd(ngroup, nobs, avg, std, tstat);
+        showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+        showDotStd(ngroup, nobs, avg, stdnm1, tstat);
       }
-      else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);      
+      else drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);      
     } 
     document.getElementById("sub10").style.display = "block"; //가설검정 선택사항표시 
     if (dobs > 200)  document.getElementById("DotMu12").disabled = true;
@@ -2732,10 +2737,10 @@ d3.select("#executeTH10").on("click", function() {
   if (checkPairedT == false) { // independent T-test
     nn1 = nobs[0];
     xbar1 = avg[0];
-    var1 = std[0] * std[0];
+    var1 = stdnm1[0] * stdnm1[0];
     nn2 = nobs[1];
     xbar2 = avg[1];
-    var2 = std[1] * std[1];
+    var2 = stdnm1[1] * stdnm1[1];
     // test statistics
     df = nn1 + nn2 - 2;
     df1 = nn1 - 1;
@@ -2763,10 +2768,10 @@ d3.select("#executeTH10").on("click", function() {
     statT[2] = alpha;
     statT[3] = nn1;
     statT[4] = xbar1;
-    statT[5] = std[0];
+    statT[5] = stdnm1[0];
     statT[6] = nn2;
     statT[7] = xbar2;
-    statT[8] = std[1];
+    statT[8] = stdnm1[1];
     if (isNaN(nn1) || isNaN(nn2) || isNaN(xbar1) || isNaN(xbar2) || isNaN(var1) || isNaN(var2) ||
         nn1 < 2 || nn2 < 2 || var1 <= 0 || var2 <= 0) { // wrong input
         chart.append("text").attr("class", "mean").attr("x", 150).attr("y", 100)
@@ -2880,7 +2885,7 @@ d3.select("#executeTH10").on("click", function() {
     statT[15] = right;
   }
   // 두모평균 검정결과표 그리기
-    statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 
 })
@@ -2888,13 +2893,13 @@ d3.select("#executeTH10").on("click", function() {
 d3.select("#DotMu12").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd(ngroup, nobs, avg, std, tstat);
+    showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+    showDotStd(ngroup, nobs, avg, stdnm1, tstat);
 })
 // 확률 히스토그램 
 d3.select("#HistNormalMu12").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
 })
 // 윌콕슨 순위합 가설검정 실행
 d3.select("#executeTH10NP").on("click", function() {
@@ -3009,13 +3014,13 @@ d3.select("#testS12").on("click", function() {
     document.myForm112.type3.value = 1;
     confidence = 0.95;
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     if (dobs <= 200) {
       drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
-      showDotMean(ngroup, nobs, avg, std, tstat);
-      showDotStd3(ngroup, nobs, avg, std, tstat);
+      showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+      showDotStd3(ngroup, nobs, avg, stdnm1, tstat);
     }
-    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    else drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
     document.getElementById("sub11").style.display = "block"; //가설검정 선택사항표시
     if (dobs > 200)  document.getElementById("DotSigma12").disabled = true;
 })
@@ -3039,8 +3044,8 @@ d3.select("#executeTH11").on("click", function() {
     nn2 = nobs[1];
     df1 = nn1 - 1;
     df2 = nn2 - 1;
-    var1 = std[0] * std[0];
-    var2 = std[1] * std[1];
+    var1 = stdnm1[0] * stdnm1[0];
+    var2 = stdnm1[1] * stdnm1[1];
     // test statistics
     teststat = var1 / var2;
     left  = teststat / f_inv(1-(mconfidence/2), df1, df2, info);
@@ -3049,10 +3054,10 @@ d3.select("#executeTH11").on("click", function() {
     statF[2] = alpha;
     statF[3] = nobs[0]; // nn1
     statF[4] = avg[0]; // xbar1
-    statF[5] = std[0]; // std1
+    statF[5] = stdnm1[0]; // std1
     statF[6] = nobs[1]; // nn2
     statF[7] = avg[1]; // xbar2
-    statF[8] = std[1]; // std2
+    statF[8] = stdnm1[1]; // std2
     chart.selectAll("*").remove();
     if (isNaN(nn1) || isNaN(nn2) || isNaN(var1) || isNaN(var2) ||
         nn1 < 2 || nn2 < 2 || var1 <= 0 || var2 <= 0) { // wrong input
@@ -3068,19 +3073,19 @@ d3.select("#executeTH11").on("click", function() {
             if (teststat > 0.5) pvalue = 1 - pvalue;
             pvalue = 2 * pvalue;
             if (pvalue > 1.0) pvalue = 1.0;
-            drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
+            drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, stdnm1);
         } else if (h1Type == 2) {
             h = alpha;
             f = 0;
             g = f_inv(1 - h, df1, df2, info);
             pvalue = 1 - f_cdf(teststat, df1, df2, info);
-            drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
+            drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, stdnm1);
         } else {
             h = alpha;
             f = f_inv(h, df1, df2, info);
             g = 10;
             pvalue = f_cdf(teststat, df1, df2, info);
-            drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
+            drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, stdnm1);
         }
     }
     statF[9]  = teststat;
@@ -3090,28 +3095,28 @@ d3.select("#executeTH11").on("click", function() {
     statF[14] = left;
     statF[15] = right;
     // 두그룹 분산 검정결과표 그리기
-    statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 그룹별 평균점그래프 
 d3.select("#DotSigma12").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd3(ngroup, nobs, avg, std, tstat);
+    showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+    showDotStd3(ngroup, nobs, avg, stdnm1, tstat);
 })
 // 두그룹 분산 검정결과표 그리기
 d3.select("#executeTH11Table").on("click", function() {
     // confidence
     if (document.myForm112.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
-    statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
+    statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 확률 히스토그램 
 d3.select("#HistNormalSigma12").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
 })
 // 분산분석
 d3.select("#anova").on("click", function() {
@@ -3138,14 +3143,14 @@ d3.select("#anova").on("click", function() {
        return;
     }
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     if (dobs <= 200) {
       drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);  
-      showDotMean(ngroup, nobs, avg, std, tstat);
-      showDotStd(ngroup, nobs, avg, std, tstat);
+      showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+      showDotStd(ngroup, nobs, avg, stdnm1, tstat);
     }
-    else drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
-    anovaStat(ngroup,gobs,nobs,avg,std,statF,gvar,dvar,yhat,residual);
+    else drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
+    anovaStat(ngroup,gobs,nobs,avg,stdnm1,statF,gvar,dvar,yhat,residual);
     document.getElementById("sub12").style.display = "block"; // ANOVA 선택사항표시
     if (dobs > 200)  document.getElementById("DotANOVA").disabled = true;
   }
@@ -3157,9 +3162,9 @@ d3.select("#anova").on("click", function() {
       return;
     }
     TotalStat(dobs, dvar, tstat);
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     chart.selectAll("*").remove();
-    drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);
+    drawDotGraph3(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, stdnm1, gvar, gvar2, dvar, tstat);
     showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
 //    if (!checkRBD) showDotStd4(ngroup, ngroup2, graphWidth, graphHeight);
     document.getElementById("sub15").style.display = "block"; // ANOVA2 선택사항표시
@@ -3184,10 +3189,10 @@ d3.select("#executeTH12").on("click", function() {
     h = alpha;
     f = 0;
     g = f_inv(1 - h, df1, df2, info);
-    drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, std);
+    drawFdistGraphTH(hypoType, h1Type, statF, df1, df2, f, g, h, pvalue, ngroup, nobs, avg, stdnm1);
     // 1원분산분석표 그리기
-    statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat);
-    AnovaTable(gvarName,dvarName,nobs,avg,std,statF);
+    statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
+    AnovaTable(gvarName,dvarName,nobs,avg,stdnm1,statF);
     multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
     graphNum = 33;
@@ -3287,13 +3292,13 @@ d3.select("#executeTH12NP").on("click", function() {
 d3.select("#DotANOVA").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
     drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer, tstat, dvarName);
-    showDotMean(ngroup, nobs, avg, std, tstat);
-    showDotStd(ngroup, nobs, avg, std, tstat);
+    showDotMean(ngroup, nobs, avg, stdnm1, tstat);
+    showDotStd(ngroup, nobs, avg, stdnm1, tstat);
 })
 // 확률 히스토그램 
 d3.select("#HistNormalANOVA").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawHistNormal(ngroup, nobs, avg, std, dataSet, freq, dvarName);
+    drawHistNormal(ngroup, nobs, avg, stdnm1, dataSet, freq, dvarName);
 })
 // 1원분산분석 잔차 Plot
 d3.select("#anovaResidual").on("click", function() {
@@ -3306,19 +3311,19 @@ d3.select("#anovaQQ").on("click", function() {
 // 2원 그룹별 평균점그래프 
 d3.select("#DotANOVA2").on("click", function() {
     chart.selectAll("*").remove(); // 전화면 제거
-    drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, std, gvar, gvar2, dvar, tstat);
+    drawDotGraph2(ngroup, ngroup2, gvalueLabel, gvalueLabel2, dvarName, nobs, avg, stdnm1, gvar, gvar2, dvar, tstat);
     if (!checkRBD) showDotStd2(ngroup, ngroup2, graphWidth, graphHeight)
 })
 // 2원분산분석표 
 d3.select("#anova2Table").on("click", function() {
     stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2, gvalueLabel2);
-    Anova2Table(gvarName,dvarName,nobs,avg,std,statF);
+    Anova2Table(gvarName,dvarName,nobs,avg,stdnm1,statF);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })
 // 2원분산분석 다중비교표
 d3.select("#multipleComparison2").on("click", function() {
     // 행 요인
-    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std);
+    GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn);
     multipleComparisonTable2(ngroup,ngroup2, dvarName,gvarName,gvarName2, gvalueLabel,gvalueLabel2, nobs, avg, cobsTwoWay, cmeanTwoWay);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
 })

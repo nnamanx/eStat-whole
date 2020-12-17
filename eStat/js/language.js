@@ -119,7 +119,7 @@ $.message.ko = {
     "High School Stat Education": "고등 통계교육",
     "University Stat Education": "대학 통계교육",
     "Elem Stat Graph Example": "초중그래프 예",
-    "Learning eStat w Example": "eStat 예제학습",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "수직형",
     "Horizontal": "수평형",
     "Vertical Separated Bar": "수직 분리형",
@@ -320,7 +320,7 @@ $.message.ko = {
     "Interaction": "교호작용",
     "NoInteraction": "교호작용 없음",
     "ExistInteraction": "교호작용 있음",
-    "eStatLecture": "eStat 강의",
+    "eStatLecture": "eStat e강의",
     "NonParametricMu12_title": "비모수 : 윌콕슨 순위합검정", 
     "NonParametricMu12": "비모수 : 윌콕슨 순위합검정 : 위치모수 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "표본순위합",
@@ -373,9 +373,9 @@ $.message.ko = {
 appStr[1][0] = "../eStatH/index.html";
 appStr[2][0] = "../eStatU/index.html";
 appStr[3][0] = "../eStatE/index.html";
-appStr[4][0] = "../ExLearning/index.html";
+appStr[4][0] = "../eHelp/index.html";
 appStr[5][0] = "index_en.html";
-appStr[6][0] = "../ExLecture/index.html";
+appStr[6][0] = "../eLearning/kr/index.html";
 alertMsg[1][0] = "데이터가 없습니다!";
 alertMsg[2][0] = "분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
 alertMsg[3][0] = "선택된 열에 결측치가 있습니다.";
@@ -532,6 +532,7 @@ svgStr[113][0]= "평균-표준편차 그래프";
 svgStr[114][0]= "모분산";
 svgStr[115][0]= "가설";
 svgStr[116][0]= "검정";
+svgStr[117][0]= "분산";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -684,7 +685,7 @@ $.message.en = {
     "High School Stat Education": "High School Stat Education",
     "University Stat Education": "University Stat Education",
     "Elem Stat Graph Example": "Elem Stat Graph Example",
-    "Learning eStat w Example": "Learning eStat w Example",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Vertical",
     "Horizontal": "Horizontal",
     "Vertical Separated Bar": "Vertical Separated Bar",
@@ -887,7 +888,7 @@ $.message.en = {
     "Interaction": "Interaction",
     "NoInteraction": "No Interaction",
     "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat Intro Lecture",
+    "eStatLecture": "eStat eLecture",
     "NonParametricMu12_title": "Nonparametric : Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Nonparametric : Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Nonparametric : Rank Sum Test",
@@ -940,9 +941,9 @@ $.message.en = {
 appStr[1][1] = "../eStatH/index.html";
 appStr[2][1] = "../eStatU/index.html";
 appStr[3][1] = "../eStatE/index_en.html";
-appStr[4][1] = "../ExLearning/index_en.html";
+appStr[4][1] = "../eHelp/index_en.html";
 appStr[5][1] = "index.html";
-appStr[6][1] = "../ExLecture/index_en.html";
+appStr[6][1] = "../eLearning/en/index.html";
 alertMsg[1][1] = "One of the selected variables does not have data.";
 alertMsg[2][1] = "Select variables for analysis (click column name or select var at the selection box ) one by one. If two variables for raw data are selected, the first one is analysis(or Y) variable and the 2nd one is group (or X) variable. ";
 alertMsg[3][1] = "Missing data on the selected variable.";
@@ -1099,6 +1100,7 @@ svgStr[113][1] = "Mean - Standard Deviation Graph";
 svgStr[114][1] = "Population Variance";
 svgStr[115][1] = "Hypothesis";
 svgStr[116][1] = "Test";
+svgStr[117][1] = "Variance";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1251,7 +1253,7 @@ $.message.ja = {
     "High School Stat Education": "高校統計教育",
     "University Stat Education": "大学統計教育",
     "Elem Stat Graph Example": "小中学グラフの例",
-    "Learning eStat w Example": "eStat例題学習",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "縦型",
     "Horizontal": "横型",
     "Vertical Separated Bar": "縦分離型",
@@ -1455,7 +1457,7 @@ $.message.ja = {
     "Interaction": "交互作用",
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
-    "eStatLecture": "eStat 入門講義",
+    "eStatLecture": "eStat 講義",
     "NonParametricMu12_title": "ウィルコクソン順位合檢定", 
     "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
@@ -1508,9 +1510,9 @@ $.message.ja = {
 appStr[1][2] = "../eStatH/index.html";
 appStr[2][2] = "../eStatU/index.html";
 appStr[3][2] = "../eStatE/index_en.html";
-appStr[4][2] = "../ExLearning/index_en.html";
+appStr[4][2] = "../eHelp/index_en.html";
 appStr[5][2] = "index.html";
-appStr[6][2] = "../ExLecture/index_en.html";
+appStr[6][2] = "../eLearning/en/index.html";
 alertMsg[1][2] = "選択した変数の中に、欠損値が含まれています!";
 alertMsg[2][2] = "変数の番号をクリックし，シートから変数を選んでください. 変数が2つ以上の場合は，1番目の変数がグループ変数として指定されます. ";
 alertMsg[3][2] = "選択した列に欠損値があります.";
@@ -1668,6 +1670,7 @@ svgStr[113][2]= "平均 - 標準偏差図";
 svgStr[114][2]= "母分散";
 svgStr[115][2]= "仮説";
 svgStr[116][2]= "檢定";
+svgStr[117][2]= "分散";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1820,7 +1823,7 @@ $.message.zhTW = {
     "High School Stat Education": "高級中學統計教育",
     "University Stat Education": "大學統計教育",
     "Elem Stat Graph Example": "中小學圖表例題",
-    "Learning eStat w Example": "eStat例題學習",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "縦向",
     "Horizontal": "横向",
     "Vertical Separated Bar": "縱向分離長條圖",
@@ -2020,7 +2023,7 @@ $.message.zhTW = {
     "Interaction": "交互作用",
     "NoInteraction": "無交互作用",
     "ExistInteraction": "有交互作用",
-    "eStatLecture": "eStat 入門講義",
+    "eStatLecture": "eStat 講義",
     "NonParametricMu12_title": "非參數Wilcoxon 等級和檢定", 
     "NonParametricMu12": "非參數Wilcoxon 等級和檢定 : 位置參數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "秩和",
@@ -2072,9 +2075,9 @@ $.message.zhTW = {
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
 appStr[3][3] = "../eStatE/index_en.html";
-appStr[4][3] = "../ExLearning/index_en.html";
+appStr[4][3] = "../eHelp/index_en.html";
 appStr[5][3] = "index.html";
-appStr[6][3] = "../ExLecture/index_en.html";
+appStr[6][3] = "../eLearning/en/index.html";
 alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[2][3] = "逐一選取變數進行分析(選按欄位名稱)。若是同時選取兩變數，則第一個視為群組變數。";
 alertMsg[3][3] = "所選的變數有缺失值。";
@@ -2232,6 +2235,7 @@ svgStr[113][3]= "平均 - 標準誤差圖";
 svgStr[114][3]= "母體變異數";
 svgStr[115][3]= "假設";
 svgStr[116][3]= "檢定";
+svgStr[117][3]= "變異數";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2384,7 +2388,7 @@ $.message.fr = {
     "High School Stat Education": "L'enseignement de la statistique au lycée",
     "University Stat Education": "Enseignement de la statistique à l'université",
     "Elem Stat Graph Example": "élémentaire Statistiques graphique Exemple",
-    "Learning eStat w Example": "Apprendre eStat par l'exemple",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Verticale",
     "Horizontal": "Horizontal",
     "Vertical Separated Bar": "Barre verticale séparée",
@@ -2584,7 +2588,7 @@ $.message.fr = {
     "Interaction": "Interaction",
     "NoInteraction": "Aucune Interaction",
     "ExistInteraction": "Exister Interaction",
-    "eStatLecture": "eStat Intro Conférence",
+    "eStatLecture": "eStat eConférence",
     "NonParametricMu12_title": "Wilcoxon Rang Sum Tester", 
     "NonParametricMu12": "Wilcoxon Rang Sum Tester : Paramètre d'emplacement M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Rang Sum Tester",
@@ -2638,9 +2642,9 @@ $.message.fr = {
 appStr[1][4] = "../eStatH/index.html";
 appStr[2][4] = "../eStatU/index.html";
 appStr[3][4] = "../eStatE/index_en.html";
-appStr[4][4] = "../ExLearning/index_en.html";
+appStr[4][4] = "../eHelp/index_en.html";
 appStr[5][4] = "index.html";
-appStr[6][4] = "../ExLecture/index_en.html";
+appStr[6][4] = "../eLearning/en/index.html";
 alertMsg[1][4] = "Une des variables sélectionnées ne contient pas de données.";
 alertMsg[2][4] = "Selectionnez une par une les variables à analyser en cliquant sur chaque nom de colonne. Pour deux variables, la premiere est la variable de groupe. ";
 alertMsg[3][4] = "Données manquantes dans la variable sélectionnée.";
@@ -2798,6 +2802,7 @@ svgStr[113][4]= "Moyenne - Ecart-type Diagramme";
 svgStr[114][4]= "Population variance";
 svgStr[115][4]= "d'hypothèse";
 svgStr[116][4]= "test";
+svgStr[117][4]= "Variance";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -2950,7 +2955,7 @@ $.message.de = {
     "High School Stat Education": "Statistikausbildung an High Schools",
     "University Stat Education": "Statistikausausbildung an Universitäten",
     "Elem Stat Graph Example": "Diagramm Beispiel",
-    "Learning eStat w Example": "eStat lernen mit Beispielen",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Vertikal",
     "Horizontal": "Horizontal",
     "Vertical Separated Bar": "getrennte Balkendiagramme",
@@ -3147,7 +3152,7 @@ $.message.de = {
     "Interaction": "Interaktion",
     "NoInteraction": "Keine Interaktion",
     "ExistInteraction": "Interaction existiert",
-    "eStatLecture": "eStat Einführung Vorlesung",
+    "eStatLecture": "eStat eVorlesung",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Rangsum Test",
@@ -3201,9 +3206,9 @@ $.message.de = {
 appStr[1][5] = "../eStatH/index.html";
 appStr[2][5] = "../eStatU/index.html";
 appStr[3][5] = "../eStatE/index_en.html";
-appStr[4][5] = "../ExLearning/index_en.html";
+appStr[4][5] = "../eHelp/index_en.html";
 appStr[5][5] = "index.html";
-appStr[6][5] = "../ExLecture/index_en.html";
+appStr[6][5] = "../eLearning/en/index.html";
 alertMsg[1][5] = "Zu einer der ausgewählten Variablen fehlen Daten.";
 alertMsg[2][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.  If two variables, first one is group variable. ";
 alertMsg[3][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.";
@@ -3361,6 +3366,7 @@ svgStr[113][5]= "Mittelwert - Standardabweichung Diagramm";
 svgStr[114][5]= "Grundgesamtheit Varianz";
 svgStr[115][5]= "Hypothesen";
 svgStr[116][5]= "test";
+svgStr[117][5]= "Varianz";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3513,7 +3519,7 @@ $.message.es = {
     "High School Stat Education": "Educación Estadística de Bachillerato",
     "University Stat Education": "Educación Estadística Universitaria",
     "Elem Stat Graph Example": "Estadística Gráfico Ejemplo",
-    "Learning eStat w Example": "Aprendiendo eStat con Ejemplo",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Vertical",
     "Horizontal": "Horizontal",
     "Vertical Separated Bar": "Barra vertical separada",
@@ -3713,7 +3719,7 @@ $.message.es = {
     "Interaction": "Interacción",
     "NoInteraction": "Sin Interaction",
     "ExistInteraction": "Interacción existente",
-    "eStatLecture": "eStat conferencia introductoria",
+    "eStatLecture": "eStat eConferencia",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "prueba de suma de rango",
@@ -3767,9 +3773,9 @@ $.message.es = {
 appStr[1][6] = "../eStatH/index.html";
 appStr[2][6] = "../eStatU/index.html";
 appStr[3][6] = "../eStatE/index_en.html";
-appStr[4][6] = "../ExLearning/index_en.html";
+appStr[4][6] = "../eHelp/index_en.html";
 appStr[5][6] = "index.html";
-appStr[6][6] = "../ExLecture/index_en.html";
+appStr[6][6] = "../eLearning/en/index.html";
 alertMsg[1][6] = "Una de las variables seleccionadas no contiene datos";
 alertMsg[2][6] = "Seleccionar una a una las  variables para el análisis (clicando los nombres de las columnas). Si hay dos variables, la primera es la variable grupo";
 alertMsg[3][6] = "Datos faltantes en la variable seleccionada";
@@ -3927,6 +3933,7 @@ svgStr[113][6]= "Media - Desviación estándar Grafico";
 svgStr[114][6]= "Varianza Poblacional";
 svgStr[115][6]= "hipótesis";
 svgStr[116][6]= "prueba";
+svgStr[117][6]= "Varianza";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -4079,7 +4086,7 @@ $.message.vi = {
     "High School Stat Education": "Thống kê trung học",
     "University Stat Education": "Thống kê Đại học",
     "Elem Stat Graph Example": "biểu đồ Ví dụ",
-    "Learning eStat w Example": "Học eStat bằng ví dụ",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "theo chiều dọc",
     "Horizontal": "Theo chiều ngang",
     "Vertical Separated Bar": "Biểu đồ cột dọc (phân tách)",
@@ -4329,9 +4336,9 @@ $.message.vi = {
 appStr[1][7] = "../eStatH/index.html";
 appStr[2][7] = "../eStatU/index.html";
 appStr[3][7] = "../eStatE/index_en.html";
-appStr[4][7] = "../ExLearning/index_en.html";
+appStr[4][7] = "../eHelp/index_en.html";
 appStr[5][7] = "index.html";
-appStr[6][7] = "../ExLecture/index_en.html";
+appStr[6][7] = "../eLearning/en/index.html";
 alertMsg[1][7] = "Đã chọn biến không chứa dữ liệu";
 alertMsg[2][7] = "Chọn từng biến để phân tích (click tên cột). Nếu chọn 2 biến, biến đầu tiên là biến định tính";
 alertMsg[3][7] = "Biến đã chọn thiếu số liệu";
@@ -4489,6 +4496,7 @@ svgStr[113][7]= "Trung bình - Độ lệch chuẩn đồ thị";
 svgStr[114][7]= "Phương sai tổng thể";
 svgStr[115][7]= "giả thuyết";
 svgStr[116][7]= "kiểm tra";
+svgStr[117][7]= "phương sai";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -4641,7 +4649,7 @@ $.message.id = {
     "High School Stat Education": "Pelajaran Statistika tingkat Sekolah Menengah Atas",
     "University Stat Education": "Pelajaran Statistika tingkat Universitas",
     "Elem Stat Graph Example": "Contoh Diagram Statistik Dasar",
-    "Learning eStat w Example": "Contoh Pelajaran eStat w",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Vertikal",
     "Horizontal": "Horisontal",
     "Vertical Separated Bar": "Batang Terpisah Vertikal",
@@ -4895,9 +4903,9 @@ $.message.id = {
 appStr[1][8] = "../eStatH/index.html";
 appStr[2][8] = "../eStatU/index.html";
 appStr[3][8] = "../eStatE/index_en.html";
-appStr[4][8] = "../ExLearning/index_en.html";
+appStr[4][8] = "../eHelp/index_en.html";
 appStr[5][8] = "index.html";
-appStr[6][8] = "../ExLecture/index_en.html";
+appStr[6][8] = "../eLearning/en/index.html";
 alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
 alertMsg[2][8] = "Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
 alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
@@ -5055,6 +5063,7 @@ svgStr[113][8]= "Rata-rata Standar Deviasi Grafik";
 svgStr[114][8]= "Varians Satu Populasi";
 svgStr[115][8]= "Hipotesis";
 svgStr[116][8]= "Uji";
+svgStr[117][8]= "Varians";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -5208,7 +5217,7 @@ $.message.mn = {
     "High School Stat Education": "Ахлах сургуулийн статистикийн боловсрол",
     "University Stat Education": "Их сургуулийн статистикийн боловсрол ",
     "Elem Stat Graph Example": "График жишээ",
-    "Learning eStat w Example": "eStat-ийг жишээтэй суралцах",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "босоо",
     "Horizontal": "хэвтээ",
     "Vertical Separated Bar": "Босоо тусгаарлагдсан багана",
@@ -5460,9 +5469,9 @@ $.message.mn = {
 appStr[1][9] = "../eStatH/index.html";
 appStr[2][9] = "../eStatU/index.html";
 appStr[3][9] = "../eStatE/index_en.html";
-appStr[4][9] = "../ExLearning/index_en.html";
+appStr[4][9] = "../eHelp/index_en.html";
 appStr[5][9] = "index.html";
-appStr[6][9] = "../ExLecture/index_en.html";
+appStr[6][9] = "../eLearning/en/index.html";
 alertMsg[1][9] = "Нэг сонгогдсон хувьсагч нь өгөгдөл байхгүй ";
 alertMsg[2][9] = "Судалгаа шинжилгээнд хувьсагчуудыг нэг нэгээр сонгох. Хэрэв эхнийх нь 2 хувьсагч бол групп хувьсагч болно.";
 alertMsg[3][9] = "Сонгогдсон хувьсагчаас өгөгдөл орхигдсон.";
@@ -5620,6 +5629,7 @@ svgStr[113][9]= "Дундаж  утга - Стандарт хэлбэлзэл г
 svgStr[114][9]= "Хүн амын дундаж кватрат хазайлт";
 svgStr[115][9]= "таамаглал";
 svgStr[116][9]= "Туршилт";
+svgStr[117][9]= "хэлбэлзэл";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -5772,7 +5782,7 @@ $.message.zh = {
     "High School Stat Education": "高中统计",
     "University Stat Education": "大学统计",
     "Elem Stat Graph Example": "小学统计图表示例",
-    "Learning eStat w Example": "eStat例题学习",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "纵向",
     "Horizontal": "横向",
     "Vertical Separated Bar": "纵向分离条形图",
@@ -5972,7 +5982,7 @@ $.message.zh = {
     "Interaction": "交互作用",
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
-    "eStatLecture": "eStat 入門講義",
+    "eStatLecture": "eStat e講義",
     "NonParametricMu12_title": "非參數Wilcoxon 順位合檢定", 
     "NonParametricMu12": "非參數Wilcoxon 順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
@@ -6025,9 +6035,9 @@ $.message.zh = {
 appStr[1][10] = "../eStatH/index.html";
 appStr[2][10] = "../eStatU/index.html";
 appStr[3][10] = "../eStatE/index_en.html";
-appStr[4][10] = "../ExLearning/index_en.html";
+appStr[4][10] = "../eHelp/index_en.html";
 appStr[5][10] = "index.html";
-appStr[6][10] = "../ExLecture/index_en.html";
+appStr[6][10] = "../eLearning/en/index.html";
 alertMsg[1][10] = "所选的变量，其中之一没有包含资料。";
 alertMsg[2][10] = "逐一选取变量进行分析（选按栏位名称）。若是同事选取两个变量，则第一个视为群组变量。";
 alertMsg[3][10] = "所选的变量有缺失值。";
@@ -6185,6 +6195,7 @@ svgStr[113][10]= "平均 - 标准差图";
 svgStr[114][10]= "总体方差";
 svgStr[115][10]= "假设";
 svgStr[116][10]= "檢定";
+svgStr[117][10]= "方差";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -6311,7 +6322,7 @@ $.message.pt = {
     "High School Stat Education": "Educação Estatística no Ensino Médio",
     "University Stat Education": "Educação Estatística Universitária",
     "Elem Stat Graph Example": "Gráfico Exemplo",
-    "Learning eStat w Example": "Aprendendo eStat com Exemplos",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Verticais",
     "Horizontal": "Horizontais",
     "Vertical Separated Bar": "Barras Verticais Separadas",
@@ -6513,7 +6524,7 @@ $.message.pt = {
     "Interaction": "Interação",
     "NoInteraction": "Sem Interação",
     "ExistInteraction": "Existe Interação",
-    "eStatLecture": "Aula Intro eStat",
+    "eStatLecture": "Aula eStat",
     "NonParametricMu12_title": "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)", 
     "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Teste da Soma dos Postos",
@@ -6567,9 +6578,9 @@ $.message.pt = {
 appStr[1][11] = "../eStatH/index.html";
 appStr[2][11] = "../eStatU/index.html";
 appStr[3][11] = "../eStatE/index_en.html";
-appStr[4][11] = "../ExLearning/index_en.html";
+appStr[4][11] = "../eHelp/index_en.html";
 appStr[5][11] = "index.html";
-appStr[6][11] = "../ExLecture/index_en.html";
+appStr[6][11] = "../eLearning/en/index.html";
 alertMsg[1][11] = "Uma das variáveis selecionadas não contém observações.";
 alertMsg[2][11] = "Selecione as variáveis para a análise uma por uma (clique nos nomes das colunas). Se houverem duas variáveis, a primeira deve ser a de agrupamento.";
 alertMsg[3][11] = "Dados faltantes para variável selecionada.";
@@ -6727,6 +6738,7 @@ svgStr[113][11]= "Média - Desvio Padrão Gráfico";
 svgStr[114][11]= "Variância Populacional";
 svgStr[115][11]= "Hipótese";
 svgStr[116][11]= "Teste";
+svgStr[117][11]= "Variância";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -6879,7 +6891,7 @@ $.message.gr = {
     "High School Stat Education": "Εκπαίδευση Στατιστικής Λυκείου",
     "University Stat Education": "Ακαδημαϊκή Εκπαίδευση Στατιστικής",
     "Elem Stat Graph Example": "παραδείγματος γραφήματος",
-    "Learning eStat w Example": "Μαθαίνοντας το eStat με παράδειγμα",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Κάθετο",
     "Horizontal": "Οριζόντιο",
     "Vertical Separated Bar": "Κάθετο Ραβδογράφημα Διαχωρισμού",
@@ -7135,9 +7147,9 @@ $.message.gr = {
 appStr[1][12] = "../eStatH/index.html";
 appStr[2][12] = "../eStatU/index.html";
 appStr[3][12] = "../eStatE/index_en.html";
-appStr[4][12] = "../ExLearning/index_en.html";
+appStr[4][12] = "../eHelp/index_en.html";
 appStr[5][12] = "index.html";
-appStr[6][12] = "../ExLecture/index_en.html";
+appStr[6][12] = "../eLearning/en/index.html";
 alertMsg[1][12] = "Μία από τις επιλεγμένες μεταβλητές δεν έχει δεδομένα.";
 alertMsg[2][12] = "Επιλέξτε μεταβλητές για ανάλυση (επιλέξτε ονόματα στηλών) μία προς μία. Αν έχετε δύο μεταβλητές θέστε τη μία ως ομάδα μεταβλητών.";
 alertMsg[3][12] = "Ελλιπείς δεδομένα στις επιλεγμένες μεταβλητές.";
@@ -7294,6 +7306,7 @@ svgStr[113][12]= "Μέσος - Τυπική Απόκλισηn Γράφημα";
 svgStr[114][12]= "Πλυθυσμιακή Διασπορά";
 svgStr[115][12]= "Υπόθεση";
 svgStr[116][12]= "Έλεγχος";
+svgStr[117][12]= "διαφορά";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -7445,7 +7458,7 @@ $.message.ro = {
     "High School Stat Education": "Statistică La Nivel Liceal",
     "University Stat Education": "Statistică la Nivel Universitar",
     "Elem Stat Graph Example": "Nivel Gimnazial",
-    "Learning eStat w Example": "Învață eStat prin Exemple",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Coloană",
     "Horizontal": "Bară",
     "Vertical Separated Bar": "Diagramă Coloane Separate",
@@ -7702,9 +7715,9 @@ $.message.ro = {
 appStr[1][13] = "../eStatH/index.html";
 appStr[2][13] = "../eStatU/index.html";
 appStr[3][13] = "../eStatE/index_en.html";
-appStr[4][13] = "../ExLearning/index_en.html";
+appStr[4][13] = "../eHelp/index_en.html";
 appStr[5][13] = "index.html";
-appStr[6][13] = "../ExLecture/index_en.html";
+appStr[6][13] = "../eLearning/en/index.html";
 alertMsg[1][13] = "Una dintre variabilele selectate nu are date introduse.";
 alertMsg[2][13] = "Selectați variabilele pentru analiză(click pe numele coloanelor) una câte una. În cazul a două variabile, prima este considerată un grup de variabile.";
 alertMsg[3][13] = "Date lipsă în variabila selectată.";
@@ -7861,6 +7874,7 @@ svgStr[113][13]= "Medie - Abatere Standard Diagramă";
 svgStr[114][13]= "Varianța Populației";
 svgStr[115][13]= "Ipoteză";
 svgStr[116][13]= "Test";
+svgStr[117][13]= "Varianța";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -8013,7 +8027,7 @@ $.message.th = {
     "High School Stat Education": "สถิติระดับมัธยมศึกษา",
     "University Stat Education": "สถิติระดับมหาวิทยาลัย",
     "Elem Stat Graph Example": "ตัวอย่างกราฟเชิงสถิติ",
-    "Learning eStat w Example": "เรียนรู้ eStat ด้วยตัวอย่าง",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "แนวตั้ง",
     "Horizontal": "แนวนอน",
     "Vertical Separated Bar": "แผนภูมิแท่งแยกกันในแนวตั้ง",
@@ -8271,9 +8285,9 @@ $.message.th = {
 appStr[1][14] = "../eStatH/index.html";
 appStr[2][14] = "../eStatU/index.html";
 appStr[3][14] = "../eStatE/index_en.html";
-appStr[4][14] = "../ExLearning/index_en.html";
+appStr[4][14] = "../eHelp/index_en.html";
 appStr[5][14] = "index.html";
-appStr[6][14] = "../ExLecture/index_en.html";
+appStr[6][14] = "../eLearning/en/index.html";
 alertMsg[1][14] = "หนึ่งในตัวแปรที่เลือกไว้ไม่มีข้อมูล";
 alertMsg[2][14] = "เลือกตัวแปรเพื่อนำมาวิเคราะห์ (คลิกที่ชื่อคอลัมน์) ทีละตัวแปร หากมีตัวแปรสองตัว ตัวแปรแรกเป็นตัวแปรกลุ่ม";
 alertMsg[3][14] = "ตัวแปรที่เลือกไว้มีข้อมูลสูญหาย";
@@ -8430,6 +8444,7 @@ svgStr[113][14] = "ค่าเฉลี่ย - ส่วนเบี่ยง�
 svgStr[114][14] = "ความแปรปรวนของประชากร";
 svgStr[115][14] = "สมมติฐาน";
 svgStr[116][14] = "การทดสอบ";
+svgStr[117][14] = "ความแปรปรวน";
 
 svgStrU[1][14] = "การแจกแจงทวินาม";
 svgStrU[2][14] = "การทำซ้ำ";
@@ -8581,7 +8596,7 @@ $.message.pl = {
     "High School Stat Education": "Statystyka - wykształcenie w szkole średniej",
     "University Stat Education": "Statystyka - edukacja poziom uniwersytecki",
     "Elem Stat Graph Example": "Przykłady wykresów statystyki elementarnej",
-    "Learning eStat w Example": "Uczenie się eStat w Przykłady",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Pionowy",
     "Horizontal": "Poziomy",
     "Vertical Separated Bar": "Wykres kolumnowy rozdzielony pionowy ",
@@ -8839,9 +8854,9 @@ $.message.pl = {
 appStr[1][15] = "../eStatH/index.html";
 appStr[2][15] = "../eStatU/index.html";
 appStr[3][15] = "../eStatE/index_en.html";
-appStr[4][15] = "../ExLearning/index_en.html";
+appStr[4][15] = "../eHelp/index_en.html";
 appStr[5][15] = "index.html";
-appStr[6][15] = "../ExLecture/index_en.html";
+appStr[6][15] = "../eLearning/en/index.html";
 alertMsg[1][15] = "Jedna z wybranych zmiennych nie zawiera danych.";
 alertMsg[2][15] = "Wybierz zmienne do analizy (klikając nazwy kolumn) jedną po drugiej. Jeśli dwie zmienne to pierwsza zmienna jest grupująca.";
 alertMsg[3][15] = "Brak danych dla wybranej zmiennej.";
@@ -8998,6 +9013,7 @@ svgStr[113][15] = "Śrdenia - Odchylenie standardowe Wykres";
 svgStr[114][15] = "Wariancja populacji";
 svgStr[115][15] = "Hipotezy";
 svgStr[116][15] = "Test";
+svgStr[117][15] = "Wariancja";
 
 svgStrU[1][15] = "Rozkład dwumianowy";
 svgStrU[2][15] = "Powtórzenie";
@@ -9150,7 +9166,7 @@ $.message.az = {
     "High School Stat Education": "Ali məktəb stat təhsil",
     "University Stat Education": "Universitet stat təhsil",
     "Elem Stat Graph Example": "İbtidai məktəb qrafik nümunəsi",
-    "Learning eStat w Example": "Öyrənmək eStat nümunə",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Şaquli",
     "Horizontal": "Üfüqi",
     "Vertical Separated Bar": "Şaquli Ayrılmış Sütun Qrafiki",
@@ -9406,9 +9422,9 @@ $.message.az = {
 appStr[1][16] = "../eStatH/index.html";
 appStr[2][16] = "../eStatU/index.html";
 appStr[3][16] = "../eStatE/index_en.html";
-appStr[4][16] = "../ExLearning/index_en.html";
+appStr[4][16] = "../eHelp/index_en.html";
 appStr[5][16] = "index.html";
-appStr[6][16] = "../ExLecture/index_en.html";
+appStr[6][16] = "../eLearning/en/index.html";
 alertMsg[1][16] = "seçilmiş dəyişənlərdən birində məlumat yoxdur.";
 alertMsg[2][16] = "seçilmiş dəyişənlərdən birində məlumat yoxdur. ";
 alertMsg[3][16] = "seçilmiş dəyişən haqqında məlumat çatışmazlığı.";
@@ -9565,6 +9581,7 @@ svgStr[113][16] = "Ədədi orta - standart kənarlaşma grafiki";
 svgStr[114][16] = "Populyasiya Dispersiyası";
 svgStr[115][16] = "fərziyyə";
 svgStr[116][16] = "Test";
+svgStr[117][16] = "Dispersiyası";
 
 svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "təkrar";
@@ -9717,7 +9734,7 @@ $.message.uz = {
     "High School Stat Education": "Maktab Stat Ta'lim",
     "University Stat Education": "Universitet Stat Ta'lim",
     "Elem Stat Graph Example": "Boshlang'ich maktab Grafik namunasi",
-    "Learning eStat w Example": "O'rganish eStat",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "vertikal",
     "Horizontal": "Gorizontal",
     "Vertical Separated Bar": "Vertikal ajratilgan satr",
@@ -9973,9 +9990,9 @@ $.message.uz = {
 appStr[1][17] = "../eStatH/index.html";
 appStr[2][17] = "../eStatU/index.html";
 appStr[3][17] = "../eStatE/index_en.html";
-appStr[4][17] = "../ExLearning/index_en.html";
+appStr[4][17] = "../eHelp/index_en.html";
 appStr[5][17] = "index.html";
-appStr[6][17] = "../ExLecture/index_en.html";
+appStr[6][17] = "../eLearning/en/index.html";
 alertMsg[1][17] = "Tanlangan ozgaruvchilardan birida malumot yoq.";
 alertMsg[2][17] = "o'zgaruvchilarni bir ma bir tahlil qiling.ikkita o'zgaruvchisi birinchi b'olib guruh o'zgaruvchisidir.";
 alertMsg[3][17] = "tanlangan o'zgaruvchiga oid m'alumotlar yoq.";
@@ -10132,6 +10149,7 @@ svgStr[113][17] = "anglatadi - standart o'gish Grafigi";
 svgStr[114][17] = "Aholi tafovuti";
 svgStr[115][17] = "Gipotez";
 svgStr[116][17] = "sinov";
+svgStr[117][17] = "dispersiya";
 
 svgStrU[1][17] = "Binominal Tarqatish";
 svgStrU[2][17] = "takrorlash";
@@ -10284,7 +10302,7 @@ $.message.ru = {
     "High School Stat Education": "Статистика для старших классов школы",
     "University Stat Education": "Статистика для высшего образования",
     "Elem Stat Graph Example": "Пример графика",
-    "Learning eStat w Example": "Изучение eStat на примерах",
+    "Learning eStat w Example": "eStat ?",
     "Vertical": "Вертикаль",
     "Horizontal": "Горизонталь",
     "Vertical Separated Bar": "Вертикально разделенный столбик",
@@ -10540,9 +10558,9 @@ $.message.ru = {
 appStr[1][18] = "../eStatH/index.html";
 appStr[2][18] = "../eStatU/index.html";
 appStr[3][18] = "../eStatE/index_en.html";
-appStr[4][18] = "../ExLearning/index_en.html";
+appStr[4][18] = "../eHelp/index_en.html";
 appStr[5][18] = "index.html";
-appStr[6][18] = "../ExLecture/index_en.html";
+appStr[6][18] = "../eLearning/en/index.html";
 alertMsg[1][18] = "В одном из выбранных переменных отсутствуют данные.";
 alertMsg[2][18] = "Выберите переменные для анализа (щелкнув названия столбцов) поочерёдно. Если имеются два переменных, то первая - это групповая переменная.";
 alertMsg[3][18] = "Отсутствуют данные по выбранной переменной.";
@@ -10698,6 +10716,7 @@ svgStr[113][18] = "Среднее значение - Среднеквадрат�
 svgStr[114][18] = "Коэффициент вариации генеральной совокупности";
 svgStr[115][18] = "Коэффициент корреляции";
 svgStr[116][18] = "Тест";
+svgStr[117][18] = "отклонение";
 
 svgStrU[1][18] = "Биномиальное распределение";
 svgStrU[2][18] = "Повторение";

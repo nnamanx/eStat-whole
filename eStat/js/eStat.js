@@ -4679,7 +4679,7 @@ function HistIntervalFreq(tobs, nvalueH, dataA, dataValueH, dvalueFreq) {
 // Statistics for array in tdata[i], i=0,..,tobs-1 
 function TotalStat(tobs, tdata, tstat) {
     var i;
-    var sum, sqsum, tavg, tstd, tmini, tQ1, tmedian, tQ3, tmaxi;
+    var sum, sqsum, tavg, tvarn, tvarnm1, tstdn, tstdnm1, tmini, tQ1, tmedian, tQ3, tmaxi;
     var dataA = new Array(tobs);
 
     for (i = 0; i < tobs; i++) dataA[i] = tdata[i];
@@ -4697,8 +4697,10 @@ function TotalStat(tobs, tdata, tstat) {
         temp = dataA[i] - tavg;
         sqsum += temp * temp;
     } // endof i
-    if (tobs < 2) tstd = NaN;
-    else tstd = Math.sqrt(sqsum / (tobs - 1));
+    if (tobs < 1) {      tvarn = NaN;   tstdn = NaN;              tvarnm1 = NaN; tstdnm1 = NaN;}
+    else if (tobs < 2) { tvarn = sqsum; tstdn = Math.sqrt(tvarn); tvarnm1 = NaN; tstdnm1 = NaN;} 
+    else {tvarn = sqsum / tobs; tstdn = Math.sqrt(tvarn);  tvarnm1 = sqsum / (tobs - 1); tstdnm1 = Math.sqrt(tvarnm1); }
+ 
     tmini = dataA[0];
     tmaxi = dataA[tobs - 1];
     tQ1 = d3.quantile(dataA, 0.25);
@@ -4706,16 +4708,19 @@ function TotalStat(tobs, tdata, tstat) {
     tQ3 = d3.quantile(dataA, 0.75);
     tstat[0] = tobs;
     tstat[1] = tavg;
-    tstat[2] = tstd;
+    tstat[2] = tstdnm1;
     tstat[3] = tmini;
     tstat[4] = tQ1;
     tstat[5] = tmedian;
     tstat[6] = tQ3;
     tstat[7] = tmaxi;
+    tstat[8] = tvarn;
+    tstat[9] = tstdn;
+    tstat[10]= tvarnm1;
 }
 
 // 각 그룹의 통계량 계산 mini[ngroup] ... std[ngroup]에는 total statistic
-function GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std) {
+function GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, stdnm1, varnm1, stdn, varn) {
     var i, j, k, sum, sqsum, temp;
     var tobs, tavg, tstd, tmini, tQ1, tmedian, tQ3, tmaxi;
     for (k = 0; k < ngroup; k++) {
@@ -4738,8 +4743,10 @@ function GroupStat(ngroup, nobs, dataSet, mini, Q1, median, Q3, maxi, avg, std) 
             temp = dataA[i] - avg[k];
             sqsum += temp * temp;
         } // endof i
-        if (tobs <= 1) std[k] = NaN;
-        else std[k] = Math.sqrt(sqsum / (tobs - 1));
+        if (tobs < 1) {varn[k] = NaN; stdn[k] = NaN;}
+        else {varn[k] = sqsum / tobs; stdn[k] = Math.sqrt(varn[k]);}
+        if (tobs < 2)  {varnm1[k] = NaN; stdnm1[k] = NaN;}
+        else {varnm1[k] = sqsum / (tobs - 1); stdnm1[k] = Math.sqrt(varnm1[k]);}
         mini[k] = dataA[0];
         maxi[k] = dataA[tobs - 1];
         Q1[k] = d3.quantile(dataA, 0.25);
@@ -4806,7 +4813,7 @@ function drawDotGraph(ngroup, gvalueLabel, nobs, graphWidth, graphHeight, buffer
     gxmax = parseFloat(tstat[7]) + temp;
     for (k = 0; k < ngroup; k++) {
         df = nobs[k] - 1;
-        if (nobs[k] > 0) stdErr = t_inv(0.975, df, info) * std[k] / Math.sqrt(nobs[k]);
+        if (nobs[k] > 0) stdErr = t_inv(0.975, df, info) * stdnm1[k] / Math.sqrt(nobs[k]);
         else stdErr = 0;
         temp2 = avg[k] - stdErr;
         if (temp2 < gxmin) gxmin = temp2;
@@ -7155,36 +7162,44 @@ function CountLeaf(nvalue, tobs, tdata, dataValue, dvalueFreq, stem, leaf) {
 }
 
 // 기초통계량표 --------------------------------------------------------------------------------------------------
-function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
+function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, varnm1, stdn, varn, mini, Q1, median, Q3, maxi, tstat) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
     loc.appendChild(table);
 
     var row, nrow, str;
-    var ncol = 12;
+    var ncol = 15;
     var cell = new Array(ncol);
 
     table.style.fontSize = "13px";
 
     var header = table.createTHead()
-    row = table.insertRow(0);
+    nrow = 0;
+    row = table.insertRow(nrow);
     row.style.height = "40px";
-    for (j = 0; j < 5; j++) {
+    for (j = 0; j < 2; j++) {
         cell[j] = row.insertCell(j);
         cell[j].style.width = "70px";
         cell[j].style.textAlign = "center";
         cell[j].style.backgroundColor = "#eee";
         cell[j].style.border = "1px solid black";
     }
-    cell[0].style.width = "100px";
-    cell[0].innerHTML = svgStr[43][langNum];
-    cell[1].innerHTML = svgStr[26][langNum]
-    cell[2].innerHTML = "(" + dvarName + ")";
+    cell[0].style.width = "150px";
+    cell[0].innerHTML = svgStr[43][langNum];  // Descriptive Stat
+    cell[1].innerHTML = svgStr[26][langNum] + "<br>(" + dvarName + ")";  // Analysis Var (Anal Var Name)
     if (ngroup > 1) {
-        cell[3].innerHTML = svgStr[37][langNum];
-        cell[4].innerHTML = "(" + gvarName + ")";
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.width = "70px";
+        cell[2+g].style.textAlign = "center";
+        cell[2+g].style.backgroundColor = "#eee";
+        cell[2+g].style.border = "1px solid black";
+        str = (g + 1).toString() + " (" + gvalueLabel[g] + ")";
+        cell[2+g].innerHTML = svgStr[37][langNum] + "<br>(" + gvarName + ")<br>" + str; // Group Var (Group Var Name)
+      }
     }
 
+/*
     row = table.insertRow(1);
     row.style.height = "40px";
     for (j = 0; j < ncol; j++) {
@@ -7196,15 +7211,18 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     cell[1].innerHTML = svgStr[44][langNum]; // n
     cell[2].innerHTML = svgStr[34][langNum]; // avg
-    cell[3].innerHTML = svgStr[35][langNum]; // std
-    cell[4].innerHTML = svgStr[45][langNum]; // 최솟값
-    cell[5].innerHTML = svgStrU[105][langNum]; // Q1
-    cell[6].innerHTML = svgStr[46][langNum]; // 중앙값
-    cell[7].innerHTML = svgStrU[106][langNum]; // Q3 
-    cell[8].innerHTML = svgStr[47][langNum]; // 최댓값
-    cell[9].innerHTML = svgStrU[107][langNum]; //IQR 
-    cell[10].innerHTML = svgStr[112][langNum]; // 범위
-    cell[11].innerHTML = svgStrU[108][langNum]; // CV
+    cell[3].innerHTML = svgStr[117][langNum]+"(n)"; // variance n
+    cell[4].innerHTML = svgStr[117][langNum]+"(n-1)"; // variance n-1
+    cell[5].innerHTML = svgStr[35][langNum]+"(n)"; // std
+    cell[6].innerHTML = svgStr[35][langNum]+"(n-1)"; // std n-1
+    cell[7].innerHTML = svgStr[45][langNum]; // 최솟값
+    cell[8].innerHTML = svgStrU[105][langNum]; // Q1
+    cell[9].innerHTML = svgStr[46][langNum]; // 중앙값
+    cell[10].innerHTML = svgStrU[106][langNum]; // Q3 
+    cell[11].innerHTML = svgStr[47][langNum]; // 최댓값
+    cell[12].innerHTML = svgStrU[107][langNum]; //IQR 
+    cell[13].innerHTML = svgStr[112][langNum]; // 범위
+    cell[14].innerHTML = svgStrU[108][langNum]+"(n-1)"; // CV
     for (j = 0; j < ncol; j++) {
         cell[j].style.textAlign = "center";
         cell[j].style.backgroundColor = "#eee";
@@ -7223,15 +7241,18 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
-        cell[3].innerHTML = f3(std[g]).toString();
-        cell[4].innerHTML = f3(mini[g]).toString();
-        cell[5].innerHTML = f3(Q1[g]).toString();
-        cell[6].innerHTML = f3(median[g]).toString();
-        cell[7].innerHTML = f3(Q3[g]).toString();
-        cell[8].innerHTML = f3(maxi[g]).toString();
-        cell[9].innerHTML = f3(Q3[g] - Q1[g]).toString();
-        cell[10].innerHTML = f3(maxi[g] - mini[g]).toString();
-        cell[11].innerHTML = f3(std[g] / avg[g]).toString();
+        cell[3].innerHTML = f3(varn[g]).toString();
+        cell[4].innerHTML = f3(varnm1[g]).toString();
+        cell[5].innerHTML = f3(stdn[g]).toString();
+        cell[6].innerHTML = f3(stdnm1[g]).toString();
+        cell[7].innerHTML = f3(mini[g]).toString();
+        cell[8].innerHTML = f3(Q1[g]).toString();
+        cell[9].innerHTML = f3(median[g]).toString();
+        cell[10].innerHTML = f3(Q3[g]).toString();
+        cell[11].innerHTML = f3(maxi[g]).toString();
+        cell[12].innerHTML = f3(Q3[g] - Q1[g]).toString();
+        cell[13].innerHTML = f3(maxi[g] - mini[g]).toString();
+        cell[14].innerHTML = f3(stdnm1[g] / avg[g]).toString();
         cell[0].style.textAlign = "center";
         for (j = 1; j < ncol; j++) cell[j].style.textAlign = "right";
     }
@@ -7245,36 +7266,370 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
         }
         cell[0].innerHTML = svgStr[48][langNum]
         cell[0].style.backgroundColor = "#eee";
-        cell[1].innerHTML = tstat[0].toString(); // obs
-        cell[2].innerHTML = f3(tstat[1]).toString(); // avg
-        cell[3].innerHTML = f3(tstat[2]).toString(); // std
-        cell[4].innerHTML = f3(tstat[3]).toString(); // min
-        cell[5].innerHTML = f3(tstat[4]).toString(); // q1
-        cell[6].innerHTML = f3(tstat[5]).toString(); // med
-        cell[7].innerHTML = f3(tstat[6]).toString(); // q3
-        cell[8].innerHTML = f3(tstat[7]).toString(); // max
-        cell[9].innerHTML = f3(tstat[6] - tstat[4]).toString(); // iqr
-        cell[10].innerHTML = f3(tstat[7] - tstat[3]).toString(); // range
-        cell[11].innerHTML = f3(tstat[2] / tstat[1]).toString(); // CV
+        cell[1].innerHTML = tstat[0].toString();      // obs
+        cell[2].innerHTML = f3(tstat[1]).toString();  // avg
+        cell[3].innerHTML = f3(tstat[8]).toString();  // varn
+        cell[4].innerHTML = f3(tstat[10]).toString(); // varnm1
+        cell[5].innerHTML = f3(tstat[9]).toString();  // stdn
+        cell[6].innerHTML = f3(tstat[2]).toString();  // stdnm1
+        cell[7].innerHTML = f3(tstat[3]).toString();  // min
+        cell[8].innerHTML = f3(tstat[4]).toString();  // q1
+        cell[9].innerHTML = f3(tstat[5]).toString();  // med
+        cell[10].innerHTML = f3(tstat[6]).toString(); // q3
+        cell[11].innerHTML = f3(tstat[7]).toString(); // max
+        cell[12].innerHTML = f3(tstat[6] - tstat[4]).toString(); // iqr
+        cell[13].innerHTML = f3(tstat[7] - tstat[3]).toString(); // range
+        cell[14].innerHTML = f3(tstat[2] / tstat[1]).toString(); // CVnm1
         cell[0].style.textAlign = "center";
         for (j = 1; j < ncol; j++) {
             cell[j].style.textAlign = "right";
             cell[j].style.backgroundColor = "#eee";
         }
     }
+*/
+    // obs
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[44][langNum]; // n
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = tstat[0].toString();  // obs
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = nobs[g].toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
 
     // missing
-    nrow++
+    nrow++;
     row = table.insertRow(nrow);
-    for (k = 0; k < 2; k++) {
-        cell[k] = row.insertCell(k);
-        cell[k].style.backgroundColor = "#eee";
-        cell[k].style.border = "1px solid black";
-    }
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
     cell[0].innerHTML = svgStrU[89][langNum];
-    cell[1].innerHTML = mobs;
-    cell[0].style.textAlign = "center";
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = mobs; // missing obs
     cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+
+    // Average
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[34][langNum]; // avg
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[1]).toString();  // avg
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(avg[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Variance n
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[117][langNum]+" (n)"; // variance n
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[8]).toString();  // varn
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(varn[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Varianc n-1
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[117][langNum]+" (n-1)"; // variance n-1
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[10]).toString(); // varnm1
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(varnm1[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Std dev n
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[35][langNum]+" (n)"; // std n
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[9]).toString();  // stdn
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(stdn[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Std dev n-1
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[35][langNum]+" (n-1)"; // std n-1
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[2]).toString();  // stdnm1
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(stdnm1[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Minimum
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[45][langNum]; // 최솟값
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[3]).toString();  // min
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(mini[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Q1
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStrU[105][langNum]; // Q1
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[4]).toString();  // q1
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(Q1[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Median
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[46][langNum]; // 중앙값
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[5]).toString();  // med
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(median[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Q3
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStrU[106][langNum]; // Q3 
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[6]).toString(); // q3
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(Q3[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Maximum
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[47][langNum]; // 최댓값
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[7]).toString(); // max
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(maxi[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // Range 
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStr[112][langNum]; // 범위
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[7] - tstat[3]).toString(); // range
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(maxi[g] - mini[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // IQR
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStrU[107][langNum]; //IQR 
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f3(tstat[6] - tstat[4]).toString(); // iqr
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f3(Q3[g] - Q1[g]).toString();
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // CV n
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStrU[108][langNum]+" (n)"; // CV
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f2(100 * tstat[9] / tstat[1]).toString() + " %"; // CVn
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f2(100 * stdn[g] / avg[g]).toString() + " %";
+        cell[2+g].style.textAlign = "right";
+      }
+    }
+
+    // CV (n-1)
+    nrow++;
+    row = table.insertRow(nrow);
+    for (j = 0; j < 2; j++) {
+      cell[j] = row.insertCell(j);
+      cell[j].style.border = "1px solid black";
+    } 
+    cell[0].innerHTML = svgStrU[108][langNum]+" (n-1)"; // CV
+    cell[0].style.textAlign = "left";
+    cell[0].style.backgroundColor = "#eee";
+    cell[1].innerHTML = f2(100 * tstat[2] / tstat[1]).toString() + " %"; // CVnm1
+    cell[1].style.textAlign = "right";
+    cell[1].style.backgroundColor = "#eee";
+    if (ngroup > 1) {
+      for (g = 0; g < ngroup; g++) {
+        cell[2+g] = row.insertCell(2+g);
+        cell[2+g].style.border = "1px solid black";
+        cell[2+g].innerHTML = f2(100 * stdnm1[g] / avg[g]).toString() + " %";
+        cell[2+g].style.textAlign = "right";
+      }
+    }
 
     nrow++;
     row = table.insertRow(nrow);
@@ -8595,8 +8950,8 @@ function statTableMu(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mi
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
-        cell[3].innerHTML = f3(std[g]).toString();
-        stderr = std[g] / Math.sqrt(nobs[g]);
+        cell[3].innerHTML = f3(stdnm1[g]).toString();
+        stderr = stdnm1[g] / Math.sqrt(nobs[g]);
         df = nobs[g] - 1;
         temp = t_inv(1 - mconfidence / 2, df, info) * stderr;
         left = avg[g] - temp;
@@ -8867,14 +9222,14 @@ function statTableSigma(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std,
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
-        cell[3].innerHTML = f3(std[g]).toString();
-        stderr = std[g] / Math.sqrt(nobs[g]);
+        cell[3].innerHTML = f3(stdnm1[g]).toString();
+        stderr = stdnm1[g] / Math.sqrt(nobs[g]);
         df = nobs[g] - 1;
         temp = t_inv(1 - mconfidence / 2, df, info) * stderr;
         left = avg[g] - temp;
         right = avg[g] + temp;
         cell[4].innerHTML = f3(stderr).toString();
-        temp = (nobs[g] - 1) * std[g] * std[g];
+        temp = (nobs[g] - 1) * stdnm1[g] * stdnm1[g];
         left = temp / chisq_inv(1 - mconfidence / 2, df, info);
         right = temp / chisq_inv(mconfidence / 2, df, info);
         cell[5].innerHTML = "(" + f3(left) + ", " + f3(right) + ")";
@@ -9000,8 +9355,8 @@ function statTableMu12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, 
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
-        cell[3].innerHTML = f3(std[g]).toString();
-        stderr = std[g] / Math.sqrt(nobs[g]);
+        cell[3].innerHTML = f3(stdnm1[g]).toString();
+        stderr = stdnm1[g] / Math.sqrt(nobs[g]);
         df = nobs[g] - 1;
         temp = t_inv(1 - mconfidence / 2, df, info) * stderr;
         left = avg[g] - temp;
@@ -9160,7 +9515,7 @@ function statTableMu12NP(ngroup, dvarName, statT) {
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
-        cell[3].innerHTML = f3(std[g]).toString();
+        cell[3].innerHTML = f3(stdnm1[g]).toString();
         cell[4].innerHTML = f2(ranksum[g]).toString();
         cell[0].style.textAlign = "center";
         for (j = 1; j < ncol - 1; j++) cell[j].style.textAlign = "right";
@@ -9328,14 +9683,14 @@ function statTableSigma12(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, st
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
-        cell[3].innerHTML = f3(std[g]).toString();
-        stderr = std[g] / Math.sqrt(nobs[g]);
+        cell[3].innerHTML = f3(stdnm1[g]).toString();
+        stderr = stdnm1[g] / Math.sqrt(nobs[g]);
         df = nobs[g] - 1;
         temp = t_inv(1 - mconfidence / 2, df, info) * stderr;
         left = avg[g] - temp;
         right = avg[g] + temp;
         cell[4].innerHTML = f3(stderr).toString();
-        temp = (nobs[g] - 1) * std[g] * std[g];
+        temp = (nobs[g] - 1) * stdnm1[g] * stdnm1[g];
         left = temp / chisq_inv(1 - mconfidence / 2, df, info);
         right = temp / chisq_inv(mconfidence / 2, df, info);
         cell[5].innerHTML = "(" + f3(left) + ", " + f3(right) + ")";
@@ -9491,15 +9846,15 @@ function statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, min
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
-        cell[3].innerHTML = f3(std[g]).toString();
-        stderr = std[g] / Math.sqrt(nobs[g]);
+        cell[3].innerHTML = f3(stdnm1[g]).toString();
+        stderr = stdnm1[g] / Math.sqrt(nobs[g]);
         df = nobs[g] - 1;
         temp = t_inv(1 - mconfidence / 2, df, info) * stderr;
         left = avg[g] - temp;
         right = avg[g] + temp;
         cell[4].innerHTML = f3(stderr).toString();
         cell[5].innerHTML = "(" + f3(left) + ", " + f3(right) + ")";
-        temp = (nobs[g] - 1) * std[g] * std[g];
+        temp = (nobs[g] - 1) * stdnm1[g] * stdnm1[g];
         left = temp / chisq_inv(1 - mconfidence / 2, df, info);
         right = temp / chisq_inv(mconfidence / 2, df, info);
         cell[6].innerHTML = "(" + f3(left) + ", " + f3(right) + ")";
@@ -9706,7 +10061,7 @@ function statTableANOVANP(gvarName, dvarName, ranksum, statF) {
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f3(avg[g]).toString();
 
-        cell[3].innerHTML = f3(std[g]).toString();
+        cell[3].innerHTML = f3(stdnm1[g]).toString();
         cell[4].innerHTML = f2(ranksum[g + 1]).toString();
         cell[0].style.textAlign = "center";
         for (j = 1; j < ncol - 1; j++) cell[j].style.textAlign = "right";
@@ -9843,7 +10198,7 @@ function stat2Table(ngroup, ngroup2, dvarName, gvarName, gvalueLabel, gvarName2,
         cell[j].style.width = "90px";
         cell[j].style.textAlign = "center";
     }
-    cell[0].innerHTML = svgStr[44][langNum] + "<br>" + svgStr[34][langNum] + "<br>" + svgStr[35][langNum]; // "자료수<br>"+"평균<br>"+"표준편차";
+    cell[0].innerHTML = svgStr[44][langNum] + "<br>" + svgStr[34][langNum] + "<br>" + svgStr[35][langNum]+"(n-1)"; // "자료수<br>"+"평균<br>"+"표준편차";
     cell[0].style.textAlign = "center";
     for (j = 0; j < ngroup2; j++) { // 인자 B
         cell[j + 1].innerHTML = svgStr[92][langNum] + " B<br>(" + gvarName2 + ")<br> " + gvalueLabel2[j]; // 인자 2 (인자명) 수준명
@@ -11033,9 +11388,9 @@ function scatterTable(ngroup, tobs, xvarName, yvarName, gvarName, gvalueLabel, n
         cell[0].style.backgroundColor = "#eee";
         cell[1].innerHTML = nobs[g].toString();
         cell[2].innerHTML = f2(xavg[g]).toString();
-        cell[3].innerHTML = f2(xstd[g]).toString();
+        cell[3].innerHTML = f2(xstdnm1[g]).toString();
         cell[4].innerHTML = f2(yavg[g]).toString();
-        cell[5].innerHTML = f2(ystd[g]).toString();
+        cell[5].innerHTML = f2(ystdnm1[g]).toString();
         cell[6].innerHTML = f2(alphaR[g]).toString();
         cell[7].innerHTML = f2(betaR[g]).toString();
         cell[8].innerHTML = f2(corr[g]).toString();
