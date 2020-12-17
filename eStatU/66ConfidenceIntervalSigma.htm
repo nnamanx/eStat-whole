@@ -189,8 +189,15 @@
         bar.selectAll("*").remove();
 
         // input value
-        nn   = parseFloat(d3.select("#nn").node().value);
-        varS = parseFloat(d3.select("#varS").node().value);
+        stat = simplestat("#data1");
+        if (stat.n > 1) {
+          nn   = stat.n;
+          varS = stat.var;
+        }
+        else {
+          nn   = parseFloat(d3.select("#nn").node().value);
+          varS = parseFloat(d3.select("#varS").node().value);
+        }
         df = nn - 1;
 
         if (isNaN(nn) || isNaN(varS) || varS <= 0 || nn < 2) {  // wrong input

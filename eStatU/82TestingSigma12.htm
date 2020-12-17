@@ -167,10 +167,24 @@
         bar.selectAll("*").remove();
 
         // input value
-        nn51  = parseFloat(d3.select("#nn51").node().value);
-        nn52  = parseFloat(d3.select("#nn52").node().value);
-        var51 = parseFloat(d3.select("#var51").node().value);
-        var52 = parseFloat(d3.select("#var52").node().value);
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn51    = stat.n;
+          var51   = stat.var;
+        }
+        else {
+          nn51   = parseFloat(d3.select("#nn51").node().value);
+          var51  = parseFloat(d3.select("#var51").node().value);
+        }
+        stat = simplestat("#data2");
+        if (stat.n > 0) {
+          nn52    = stat.n;
+          var52   = stat.var;
+        }
+        else {
+          nn52   = parseFloat(d3.select("#nn52").node().value);
+          var52  = parseFloat(d3.select("#var52").node().value);
+        }
 
         // test statistics
         df1   = nn51 - 1;

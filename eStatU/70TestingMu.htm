@@ -220,15 +220,29 @@
 
         // input value
         mu   = parseFloat(d3.select("#mu").node().value);
-        nn   = parseFloat(d3.select("#nn").node().value);
-        xbar = parseFloat(d3.select("#xbar").node().value);
-        if (testType == 1) { // t-test
-          variS = parseFloat(d3.select("#variS").node().value);
-          std   = Math.sqrt(variS);
+        stat = simplestat("#data1");
+        variP = parseFloat(d3.select("#variP").node().value);
+        if (stat.n > 0) {
+          nn    = stat.n;
+          xbar  = stat.xbar;
+          variS = stat.var;
+          if (testType == 1) { // t-test
+            std   = Math.sqrt(variS);
+          }
+          else { // Z-test
+            std   = Math.sqrt(variP);
+          }
         }
-        else { // Z-test
-          variP = parseFloat(d3.select("#variP").node().value);
-          std   = Math.sqrt(variP);
+        else {
+          nn    = parseFloat(d3.select("#nn").node().value);
+          xbar  = parseFloat(d3.select("#xbar").node().value);
+          variS = parseFloat(d3.select("#variS").node().value);
+          if (testType == 1) { // t-test
+            std   = Math.sqrt(variS);
+          }
+          else { // Z-test
+            std   = Math.sqrt(variP);
+          }
         }
         df = nn - 1;
 

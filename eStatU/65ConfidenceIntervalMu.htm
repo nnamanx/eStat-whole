@@ -226,9 +226,17 @@
         bar.selectAll("*").remove();
 
         // input value
-        nn    = parseFloat(d3.select("#nn").node().value);
-        xbar  = parseFloat(d3.select("#xbar").node().value);
-        variS = parseFloat(d3.select("#variS").node().value);
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn    = stat.n;
+          xbar  = stat.xbar;
+          variS = stat.var;
+        }
+        else {
+          nn    = parseFloat(d3.select("#nn").node().value);
+          xbar  = parseFloat(d3.select("#xbar").node().value);
+          variS = parseFloat(d3.select("#variS").node().value);
+        }
         variP = parseFloat(d3.select("#variP").node().value);
         stdS  = Math.sqrt(variS);
         stdP  = Math.sqrt(variP);

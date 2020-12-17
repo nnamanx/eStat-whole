@@ -155,8 +155,8 @@
         document.getElementById("var2S").value  = f3(stat.var);    
         left  = (stat.n - 1) * stat.var / chisq_inv(1 - alpha/2, stat.n - 1, info);
         right = (stat.n - 1) * stat.var / chisq_inv(alpha/2, stat.n - 1, info);
-        document.getElementById("cleft").value   = f2(left);
-        document.getElementById("cright").value  = f2(right); 
+        document.getElementById("cleft").value   = f3(left);
+        document.getElementById("cright").value  = f3(right); 
       });
 
       updateData = function() {
@@ -172,8 +172,15 @@
 
         // input value
         var2  = parseFloat(d3.select("#var2").node().value);
-        nn2   = parseFloat(d3.select("#nn2").node().value);
-        var2S = parseFloat(d3.select("#var2S").node().value);
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn2   = stat.n;
+          var2S = stat.var;
+        }
+        else {
+          nn2   = parseFloat(d3.select("#nn2").node().value);
+          var2S = parseFloat(d3.select("#var2S").node().value);
+        }
         df = nn2 - 1;
 
         // confidence interval

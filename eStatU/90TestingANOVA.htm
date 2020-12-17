@@ -104,13 +104,13 @@
 	  <td><input type="text" class="textarea" size=5 id="nn74"></td>        
 	</tr>
 	<tr>
-	  <td><span class="fontmath">&nbsp; m<sub>1</sub> =</span></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>1</sub> =</span></td>
 	  <td><input type="text" class="textarea" size=5 id="xbar71"></td>
-	  <td><span class="fontmath">&nbsp; m<sub>2</sub> =</span></td>	
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>2</sub> =</span></td>	
 	  <td><input type="text" class="textarea" size=5 id="xbar72"></td>
-	  <td><span class="fontmath">&nbsp; m<sub>3</sub> =</span></td>	
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>3</sub> =</span></td>	
 	  <td><input type="text" class="textarea" size=5 id="xbar73"></td>
-	  <td><span class="fontmath">&nbsp; m<sub>4</sub> =</span></td>	
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>4</sub> =</span></td>	
 	  <td><input type="text" class="textarea" size=5 id="xbar74"></td>
 	</tr>
 	<tr>
@@ -216,6 +216,7 @@
         bar.selectAll("*").remove();
 
         // input value
+/*
         nn7[0]   = parseFloat(d3.select("#nn71").node().value);
         nn7[1]   = parseFloat(d3.select("#nn72").node().value);
         nn7[2]   = parseFloat(d3.select("#nn73").node().value);
@@ -228,7 +229,52 @@
         var7[1]  = parseFloat(d3.select("#var72").node().value);
         var7[2]  = parseFloat(d3.select("#var73").node().value);
         var7[3]  = parseFloat(d3.select("#var74").node().value);
- 
+*/
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn7[0]    = stat.n;
+          xbar7[0]  = stat.xbar;
+          var7[0]   = stat.var;
+        }
+        else {
+          nn7[0]   = parseFloat(d3.select("#nn71").node().value);
+          xbar7[0] = parseFloat(d3.select("#xbar71").node().value);
+          var7[0]  = parseFloat(d3.select("#var71").node().value);
+        }
+        stat = simplestat("#data2");
+        if (stat.n > 0) {
+          nn7[1]    = stat.n;
+          xbar7[1]  = stat.xbar;
+          var7[1]   = stat.var;
+        }
+        else {
+          nn7[1]   = parseFloat(d3.select("#nn72").node().value);
+          xbar7[1] = parseFloat(d3.select("#xbar72").node().value);
+          var7[1]  = parseFloat(d3.select("#var72").node().value);
+        }
+        stat = simplestat("#data3");
+        if (stat.n > 0) {
+          nn7[2]    = stat.n;
+          xbar7[2]  = stat.xbar;
+          var7[2]   = stat.var;
+        }
+        else {
+          nn7[2]   = parseFloat(d3.select("#nn73").node().value);
+          xbar7[2] = parseFloat(d3.select("#xbar73").node().value);
+          var7[2]  = parseFloat(d3.select("#var73").node().value);
+        }
+        stat = simplestat("#data4");
+        if (stat.n > 0) {
+          nn7[3]    = stat.n;
+          xbar7[3]  = stat.xbar;
+          var7[3]   = stat.var;
+        }
+        else {
+          nn7[3]   = parseFloat(d3.select("#nn74").node().value);
+          xbar7[3] = parseFloat(d3.select("#xbar74").node().value);
+          var7[3]  = parseFloat(d3.select("#var74").node().value);
+        }
+
         // determine number of populations kk7
         kk7 = 0;
         if ( !isNaN(nn7[0]) && isNaN(nn7[1]) && isNaN(nn7[2]) && isNaN(nn7[3]) ) kk7 = 1;

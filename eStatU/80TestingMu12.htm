@@ -227,13 +227,30 @@
         bar.selectAll("*").remove();
         // input value
         mu4    = parseFloat(d3.select("#mu4").node().value);
-        nn41   = parseFloat(d3.select("#nn41").node().value);
-        nn42   = parseFloat(d3.select("#nn42").node().value);
-        xbar41 = parseFloat(d3.select("#xbar41").node().value);
-        xbar42 = parseFloat(d3.select("#xbar42").node().value);
-        var41  = parseFloat(d3.select("#var41").node().value);
-        var42  = parseFloat(d3.select("#var42").node().value);
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn41    = stat.n;
+          xbar41  = stat.xbar;
+          var41   = stat.var;
+        }
+        else {
+          nn41   = parseFloat(d3.select("#nn41").node().value);
+          xbar41 = parseFloat(d3.select("#xbar41").node().value);
+          var41  = parseFloat(d3.select("#var41").node().value);
+        }
+        stat = simplestat("#data2");
+        if (stat.n > 0) {
+          nn42    = stat.n;
+          xbar42  = stat.xbar;
+          var42   = stat.var;
+        }
+        else {
+          nn42   = parseFloat(d3.select("#nn42").node().value);
+          xbar42 = parseFloat(d3.select("#xbar42").node().value);
+          var42  = parseFloat(d3.select("#var42").node().value);
+        }
         varDiff= parseFloat(d3.select("#varDiff").node().value);
+
         // input validataion
         if (isNaN(nn41) || isNaN(nn42) || isNaN(xbar41) || isNaN(xbar42) || isNaN(var41) || isNaN(var42) ||
             nn41 < 2 || nn42 < 2 || var41 <= 0 || var42 <= 0) {  // wrong input
@@ -270,10 +287,13 @@
               varDiff += temp*temp;
             }
             df  = x.length -1;
-            varDiff /= df ;
+            if (varDiff == 0) varDiff = 0;
+            else varDiff /= df ;
             document.getElementById("xbarDiff").value  = f3(avgDiff); 
             document.getElementById("varDiff").value   = f3(varDiff); 
-            teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varDiff/x.length);
+            if (varDiff == 0) teststat = 0; 
+            else teststat = (xbar41 - xbar42 - mu4) / Math.sqrt(varDiff/x.length);
+//   console.log(varDiff+" "+teststat)
           }       
           if (h1Type == 1) {
             h = alpha / 2;  
