@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> 『eStat』 Basic Operation</title>
+  <link rel="stylesheet" href="/estat/eStat/css/eBook.css">
+  <script src="../js/eBook.js"></script>
+
+</head>
+<body>
+
+  <h3>Appendix A. Basic Operation of 『eStat』</h3>
+
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft"><img class="imgIcon" src="../Icon/Chrome.bmp"></td>
+    <td class="mainRight">
+      <h4>A.1 Entering 『eStat』 System</h4>
+      <p>Click the Chrome browser icon  on your computer and type the address<p>
+      <div class="figText"><a href="http://www.estat.me" target="_blank"><b>http://www.estat.me</b></a></div>
+      <p>in the address box that appears. The main screen of『eStat』will appear as shown in &lt;Figure A.1.1&gt;. 
+      <p>
+      <img class="imgFig600400N" src="../Figure/Fig00A11.png">
+      <div class="figText">&lt;Figure A.1.1&gt; Main screen of 『eStat』</div>
+    </td> 
+  </tr> 
+  <tr>
+    <td class="mainLeft"></td>
+    <td class="mainRight"> 
+      <p>If your smart phone can read the QR code as in &lt;Figure A.1.2&gt;, you can see the same screen of 『eStat』 as &lt;Figure A.1.1&gt; on your smartphone. 
+      <p>
+      <input class="qrBtn" type="image" src="../QR/eStat.svg" onclick="window.open(addrStr[0])">
+      <div class="figText">&lt;Figure A.1.2&gt; QR for 『eStat』</div> 
+      <p> You can also enter the address at http://www.estat.me on your smartphone web browser, preferably Chrome. Although data input using the sheet of『eStat』on your smartphone is not convenient because of its small screen, you can use all other modules as your personal computer. A lecture video to introduce 『eStat』which explains this Appendix is located at the following address or you can enter using the QR code as in &lt;Figure A.1.3&gt;. 
+      <p>
+      <div class="figText"><a href="http://www.estat.me/estat/ExLecture/index_en.html" target="_blank">http://www.estat.me/estat/ExLecture/index_en.html </a></div>
+      <p>
+      <input class="qrBtn" type="image" src="../Icon/eStat_icon30_lecture.png" onclick="window.open(addrStr[3])"> 
+      <div class="figText">&lt;Figure A.1.3&gt; 『eStat』Lecture</div>
+      <p>At the top of 『eStat』 main screen, several icons (buttons) are arranged. There is also a combo box to select a language and radio buttons to select a level. These icons are the main menu of 『eStat』 system which is a different design as in many other softwares which use a foldable drop-down menu. We believe that the icon menu of 『eStat』 makes users comfortable to see what they can do using 『eStat』 at a glance. 
+      <p>However, modules for the high school level and the university level have a variety of submenus separately. If you click on icons 『eStatH』  and『eStatU』 . you can see the detailed menu of『eStatH』as in &lt;Figure A.1.4&gt; and『eStatU』as in &lt;Figure A.1.5&gt; at a new window.
+    </td>
+  </tr>
+  <tr>
+    <td class="mainLeft">
+      <input class="imgIcon" type="image" src="../Icon/eStat_icon25_eStatH.png" onclick="window.open(addrStr[1])">
+      <p>
+      <input class="qrBtn" type="image" src="../QR/eStatH.svg" onclick="window.open(addrStr[1])">
+    </td>
+    <td class="mainRight"> 
+      <img class="imgFig600400" src="../Figure/Fig00A14.png">
+      <div class="figText">&lt;Figure A.1.4&gt; Menu of the 『eStatH』 for the High School Students</div>
+    </td> 
+  </tr> 
+  <tr>
+    <td class="mainLeft">
+      <input class="imgIcon" type="image" src="../Icon/eStat_icon26_eStatU.png" onclick="window.open(addrStr[2])">
+      <p>
+      <input class="qrBtn" type="image" src="../QR/eStatH.svg" onclick="window.open(addrStr[2])">
+    </td>
+    <td class="mainRight"> 
+      <img class="imgFig600400" src="../Figure/Fig00A15.png">
+      <div class="figText">&lt;Figure A.1.5&gt; Menu of the 『eStatU』 for the University Students</div>
+    </td> 
+  </tr> 
+  <tr>
+    <td class="mainLeft">
+    </td>
+    <td class="mainRight"> 
+      <p>The left side of the main screen is the Sheet Area for data entry as in &lt;Figure A.1.6&gt;. On top of the Sheet Area, there are boxes for variable selection which select the 'Analysis Var' and 'by Group' variable. There are also boxes for the ‘Selected Var’ to show the variables selected and for the ‘File’ to input a file name. The center of the main screen is the Graph Area which shows the graph of a data analysis. There are also several smaller icons for changing a graph into other type. The right side of the main screen is the Log Area which shows the result of an analysis and can store the graph which is in the Graph Area if needed. 
+      <p>
+      <img class="imgFig300250" src="../Figure/Fig00A16.png">
+      <div class="figText">&lt;Figure A.1.6&gt; Sheet Area includes variable selection boxes and sheet for data input</div>
+    </td> 
+  </tr> 
+  </table>
+
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft"></td>
+    <td class="mainRight">
+      <h4>A.2 Data Input / Save / Open</h4>
+      <b>Entering data in  『eStat』</b>
+      <p>
+      <p>You can enter data on the sheet of the main screen. Each row of the sheet which is numbered as 1, 2, ... , represents an observation, and each column which is denoted as V1, V2, ... , represents a variable of the observation. If you click on the row 1 and the column V1 using the mouse, the row number and the column number for this cell are displayed in dark grey color unlike other cell, and the cell has a rectangular contour with blue color as in &lt;Figure A.2.1&gt; which is called a cursor. This means that the cell where the cursor is located is ready to accept data which is a similar function to the Excel. The cursor can move from one cell to another cell using the arrow keys &larr; &rarr; &uarr; &darr; or one page to another page using the PageUp and PageDown key.   
+      <p>
+      <img class="imgFig300200" src="../Figure/Fig00A21.png">
+      <div class="figText">&lt;Figure A.2.1&gt; Data input sheet</div>
+      <p>
+      <p>Since  『eStat』 is a web based software for educational purpose, the maximum number of rows is limited to 9,999 observations and the maximum number of columns is limited to 20 variables. You can enter data from the first row of the upper left cell (observation number 1, variable V1) and then use the down arrow key &darr; (or &crarr; key) to move the cursor to the cell below (row 2, column V1) to enter the following data. In the same way, all data can be entered into each cell while moving the cursor using the arrow keys (&larr;, &rarr;, &uarr;, &darr;). 
+      <p>&lt;Figure A.2.2&gt; shows an example of data input for the number of male students and female students at two classes (named ‘5-1’ and ‘5-2’) in an elementary school. In each cell, you can enter data either characters or numbers, but we assume that all data in a single column should be the same regardless of being character data or numeric data. Mixture of characters and numbers in a cell is considered as the character data and real number which has decimal digits after dot(‘.’) is considered as the numeric data.
+      <p>
+      <img class="imgFig15060" src="../Figure/Fig00A22.png">
+      <div class="figText">&lt;Figure A.2.2&gt; Example of data input</div>
+      <p>
+      <p>Bar graph, pie chart, and band graph can be drawn by using both the character data and the numeric data. However, dot graph, histogram, stem and leaf plot for quantitative data must use the numeric data. The character data can be used as a group variable for the graphs of quantitative data..
+      <p>In &lt;Figure A.2.2&gt;, all data are visible on the sheet appeared on the main screen. If data are large and only some part of the data appeared on the sheet, you can use the PageUp and PageDown key to move up and down by page, or can move the end of left / right / up / down of the data by pressing both the Ctrl key and arrow keys (&larr;, &rarr;, &uarr;, &darr;).
+      <p>
+
+      <b>Enter the variable name and the value label of a variable</b>
+      <p>
+      <p>If data are entered into 『eStat』 without assigning the variable name and if they are processed for a statistical analysis, the result of the analysis will have a variable name such as V1 (implies the Variable 1), V2 (implies the Variable 2) and so on. It would be better for users to see the result with the name of the variable similar to their actual name and also the value label of the variable.  
+      <p>
+      <p> Click [Edit Var] button located above of the sheet. If you see the dialogue box as In &lt;Figure A.2.3&gt;, enter 'Gender' instead of 'V1' to the box of ‘Variable Name’. Select 'V2' at the combo box, then enter the class name '5-1'. Similarly, select ‘V3’, then enter '5-2'. It is recommended to limit the number of characters for a variable name or a value label up to 8 characters if possible. 
+      <p>
+      <img class="imgFig300400" src="../Figure/Fig00A23.png">
+      <div class="figText">&lt;Figure A.2.3&gt; Dialog box to edit variable</div>
+      <p>
+      <p>After the variable names are entered, click [Save] button and [Exit]. The data will have the variable names as In &lt;Figure A.2.4&gt;.
+      <p>
+      <img class="imgFig15060" src="../Figure/Fig00A24.png">
+      <div class="figText">&lt;Figure A.2.4&gt; Data with the variable names</div>
+      <p>
+      <p>For raw data, you can specify the value labels of a variable using the same dialog box of [Edit Var] button as in &lt;Figure A.2.3&gt;. But, the maximum number of the value labels is limited up to 9 labels.
+      <p>
+
+      <b>Modifying data</b>
+      <p>
+      <p>If you want to modify the data entered in a cell, you can place the cursor in the desired cell to modify and enter new data. If you want to modify only a part of the data entered in a cell, you can modify it by clicking the desired cell twice and by moving the pointer to the desired position using the arrow keys (&larr;, &rarr;).
+    </td>
+  </tr> 
+
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon06_csvSave.png">
+    </td>
+    <td class="mainRight">
+      <b>Save data</b>
+      <p>
+      <p>Since the data input of 『eStat』 utilizes the main memory of a computer, if power is lost, all data you entered will be lost. Therefore, once you entered all data, you must save it on a secondary memory device, such as a hard disk or an USB. 
+      <p>In order to save the data you entered, enter a file name at the box of ‘File’ as in &lt;Figure A.2.5&gt;. Then click the ‘CSV Save’ icon  to save the data including the variable name. The data file is saved at the ‘download’ folder of your computer as a text file in CSV (comma separated value) format and the file name will have a csv extension automatically. For example, if you saved your data with a file name ‘021Summary_StudentByGender.csv’ as in &lt;Figure A.2.5&gt;, then you can see your saved file using the Notepad as in &lt;Figure A.2.6&gt;. It shows the separation of each data using comma (‘,’) and the first row consists of the variable names separated by comma. The text file in ‘CSV’ format can be loaded to the Excel and other softwares. 
+      <p>
+      <img class="imgFig300200" src="../Figure/Fig00A25.png">
+      <div class="figText">&lt;Figure A.2.5&gt; Enter a file name and click the ‘CSV’ icon to save</div>
+      <p>
+      <img class="imgFig15060" src="../Figure/Fig00A26.png">
+      <div class="figText">&lt;Figure A.2.6&gt; Saved file in CSV format can be opened using Notepad</div>
+    </td>
+
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon07_jsonSave.png">
+    </td>
+    <td class="mainRight">
+      <p>If the value labels of a variable are assigned, you have to save your data using the ‘JSON Save’ icon  which will save your data in JSON file format. The file name extension is json. This file will also be saved at the 'download' folder of your computer.
+    </td>
+  </tr> 
+
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon03_csvOpen.png">
+      <img class="imgIcon" src="../Icon/eStat_icon04_wwwOpen.png">
+      <img class="imgIcon" src="../Icon/eStat_icon05_jsonOpen.png">
+    </td>
+    <td class="mainRight">
+      <b>Retrieve the saved file</b>
+      <p>
+      <p>The file in CSV format saved on your computer can be retrieved using the ‘CSV Open’ icon . 
+      <p>The file in CSV format saved on a web server computer can be retrieved using the ‘www Open’ icon . 
+      <p>The file in JSON format saved on your computer can be retrieved using the ‘JSON Open’ icon .
+    </td>
+  </tr> 
+  </table>
+
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft">
+      <input class="imgIcon" type="image" src="../Icon/eStat_icon09_bar.png" onclick="window.open(addrStr[4])">
+      <p>
+      <input class="qrBtn" type="image" src="../QR/FigA31.svg" onclick="window.open(addrStr[4])">
+    </td>
+    <td class="mainRight">
+      <h4>A.3 Data Analysis</h4>
+      <b>Analysis of the summary data</b>
+      <p>
+      <p>Data as in&lt;Figure A.2.5&gt; are referred to as the summary data of a categorical variable. If you click on the variable names 'Gender', '5-1' and '5-2' sequentially in  the Sheet as in &lt;Figure A.2.5&gt;, you will see the selected variable names 'V1 V2 V3' at the box of ‘Selected Var’. Then a vertical bar graph (), which is the default graph of  『eStat』 , will be appeared on the Graph Area as in &lt;Figure A.3.1&gt;. Instead of mouse clicking on the variable names, you can select the ‘Gender’ variable at the combo box of the ‘Analysis Var’ which is located above the sheet and select the variable names, '5-1' and '5-2', at the combo box of 'By Group'. You can see the same graph on your smartphone if it can recognize the QR code at the right hand side of &lt;Figure A.3.1&gt;.
+      <p>
+      <img class="imgFig600540" src="../Figure/Fig00A31.svg">
+      <div class="figText">&lt;Figure A.3.1&gt; Bar graph of the number of students by gender and by classes.</div>
+    </td>
+  </tr> 
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon50_edit.png">
+    </td>
+    <td class="mainRight">
+      <p>The main title, Y-axis title and X-axis title of a graph can be modified with desired contents. If you click the [Edit] button  located above the Graph Area, the following dialog box as in &lt;Figure A.3.2&gt; will be appeared at the below of the graph. After you change the main title, Y-axis title and X-axis title here, click the [Modify] button.
+      <p>
+      <img class="imgFig40070" src="../Figure/Fig00A32.png">
+      <div class="figText">&lt;Figure A.3.2&gt; Dialog box to edit titles of a graph</div>
+    </td>
+  </tr>  
+
+  <tr>
+    <td class="mainLeft">
+    </td>
+    <td class="mainRight">
+      <b>Analysis of the raw data</b>
+      <p>
+      <p>The processing of the raw data as in&lt;Figure A.3.3&gt;, is similar to the processing of the summary data as in the above example. Enter the data in column V1 of the sheet except the variable name. Enter the variable name by clicking [Edit Var] button located above the sheet, and enter 'Gender' instead of V1 at the box of ‘Variable Name’.
+      <p>
+      <img class="imgFig150200" src="../Figure/Fig00A33.png">
+      <div class="figText">&lt;Figure A.3.3&gt; Raw data of gender survey</div>
+    </td>
+  </tr>  
+
+  <tr>
+    <td class="mainLeft">
+      <input class="imgIcon" type="image" src="../Icon/eStat_icon09_bar.png" onclick="window.open(addrStr[5])">
+      <p>
+      <input class="qrBtn" type="image" src="../QR/FigA34.svg" onclick="window.open(addrStr[5])">
+    </td>
+    <td class="mainRight">
+      <p>After you entered the data, if you click on the variable name 'Gender' using your mouse, the box of the 'Selected Var’ will display 'V1' which implies the first variable is selected. Then the default vertical bar graph () will be appeared as in &lt;Figure A.3.4&gt;. This is a bar graph after counting the number of male (‘M’) and female (‘F’) students in the raw data in &lt;Figure A.3.3&gt;. You can see the same graph on your smartphone if it can recognize the QR code at the right hand side of &lt;Figure A.3.4&gt;,
+      <p>
+      <img class="imgFig600540" src="../Figure/Fig00A34.svg">
+      <div class="figText">&lt;Figure A.3.4&gt; Bar graph for gender using the raw data</div>
+    </td>
+  </tr> 
+
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon10_pie.png">
+      <img class="imgIcon" src="../Icon/eStat_icon11_band.png">
+      <img class="imgIcon" src="../Icon/eStat_icon12_line.png">
+    </td>
+    <td class="mainRight">
+      <p>While the gender variable is selected, if you click the icon of pie chart, a pie chart will be appeared in the Graph Area. 
+      <p>If you click the icon of band graph, a band graph will be appeared. 
+      <p>If you click the icon of line graph, a line graph will be appeared.
+    </td>
+  </tr> 
+  </table>
+
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon47_graphSave.png">
+    </td>
+    <td class="mainRight">
+      <h4>A.4 Save Graph and Print</h4>
+      <p>Click the ‘Graph Save’ icon  located above the Graph Area to save the graph. Then the current graph of the Graph Area will be saved with a file name ‘eStatGraph.png’ which is shown at the bottom left of the main screen as in &lt;Figure A.4.1&gt;. 
+      <p>
+      <img class="imgFig600540" src="../Figure/Fig00A41.png">
+      <div class="figText">&lt;Figure A.4.1&gt; By clicking the ‘Graph Save’ icon, a graph file is saved as ‘eStatGraph.png’ shown on the left bottom corner </div>
+    </td>
+  </tr> 
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon48_graphPrint.png">
+    </td>
+    <td class="mainRight">
+      The location of the graph file saved is the download folder specified in your computer system. If you save another graph, eStatGraph(1).png will be created in the download folder. Number in parentheses of the file will be increased whenever you save a new  graph. 
+      <p>In order to print the graph, click the ‘Graph Print’ icon  located above the Graph Area. This will display the print-out screen provided by the Window system as in &lt;Figure A.4.2&gt;, where click on the [Print] button to print the graph on the specified printer.
+      <p>
+      <img class="imgFig600400" src="../Figure/Fig00A42.png">
+      <div class="figText">&lt;Figure A.4.2&gt; By clicking the ‘Graph Print’ icon, the window for printing is appeared.</div>
+    </td>
+  </tr>  
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon49_graphMove.png">
+      <img class="imgIcon" src="../Icon/eStat_icon51_htmlSave.png">
+      <img class="imgIcon" src="../Icon/eStat_icon52_htmlPrint.png">
+    </td>
+    <td class="mainRight">
+      <p>If necessary, the graph on the Graph Area can be moved to the Log Area. Press the ‘Graph Move’ icon  located above the Graph Area to move the current graph on the Graph Area to the end of the content on the Log Area. 
+      <p>
+      <p>To save the content on the Log Area, click the ‘Table Save’ icon  located above the Log Area. The content on the Log Area will be saved as the ‘eStatLog.html’ file in the download folder as shown  at the bottom left corner of the main screen. The saved file has an ‘html’ extension and can be retrieved from the MS Word.
+      <p>
+      <p>To print the content on the Log Area, click the Print icon  located above the Log Area. Then the print-out screen by the Window system will be appeared. If you click the [Print] button here, all the content on the Log Area will be printed at the specified printer.
+      <p>
+    </td>
+  </tr>  
+  </table>
+
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon47_graphSave.png">
+    </td>
+    <td class="mainRight">
+      <h4>A.4 Save Graph and Print</h4>
+      <p>Click the ‘Graph Save’ icon  located above the Graph Area to save the graph. Then the current graph of the Graph Area will be saved with a file name ‘eStatGraph.png’ which is shown at the bottom left of the main screen as in &lt;Figure A.4.1&gt;. 
+      <p>
+      <img class="imgFig600400" src="../Figure/Fig00A41.png">
+      <div class="figText">&lt;Figure A.4.1&gt; By clicking the ‘Graph Save’ icon, a graph file is saved as ‘eStatGraph.png’ shown on the left bottom corner </div>
+    </td>
+  </tr> 
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon48_graphPrint.png">
+    </td>
+    <td class="mainRight">
+      <p>The location of the graph file saved is the download folder specified in your computer system. If you save another graph, eStatGraph(1).png will be created in the download folder. Number in parentheses of the file will be increased whenever you save a new  graph. 
+      <p>
+      <p>In order to print the graph, click the ‘Graph Print’ icon  located above the Graph Area. This will display the print-out screen provided by the Window system as in &lt;Figure A.4.2&gt;, where click on the [Print] button to print the graph on the specified printer.
+      <p>
+      <img class="imgFig600400" src="../Figure/Fig00A42.png">
+      <div class="figText">&lt;Figure A.4.2&gt; By clicking the ‘Graph Print’ icon, the window for printing is appeared.</div>
+    </td>
+  </tr>  
+  </table>
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft">
+      <img class="imgIcon" src="../Icon/eStat_icon49_graphMove.png"> <p>
+      <img class="imgIcon" src="../Icon/eStat_icon51_htmlSave.png"> <p>
+      <img class="imgIcon" src="../Icon/eStat_icon52_htmlPrint.png">
+    </td>
+    <td class="mainRight">
+      <p>If necessary, the graph on the Graph Area can be moved to the Log Area. Press the ‘Graph Move’ icon  located above the Graph Area to move the current graph on the Graph Area to the end of the content on the Log Area. 
+      <p>To save the content of the Log Area, click the ‘Table Save’ icon  located above the Log Area. The content on the Log Area will be saved as the ‘eStatLog.html’ file in the download folder as shown  at the bottom left corner of the main screen. The saved file has an ‘html’ extension and can be retrieved from the MS Word.
+      <p>To print the content of the Log Area, click the Print icon  located above the Log Area. Then the print-out screen by the Window system will be appeared. If you click the [Print] button here, all the content on the Log Area will be printed at the specified printer.
+    </td>
+  </tr> 
+  </table>
+  <p>
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft">
+    </td>
+    <td class="mainRight">
+      <h4>A.5 Exit  『eStat』  System</h4>
+      <p>To exit 『eStat』 system, simply exit the browser by clicking the ☒ button located at the upper right corner of the browser.
+      <p>
+    </td>
+  </tr>  
+  </table>
+
+  <table class="mainTableGrey">
+  <tr>
+    <td class="mainLeft">
+    </td>
+    <td class="mainRight">
+      <h4>Exercise</h>
+      A.1  A survey for students was conducted at a middle school to examine the desired occupation in the future. The result of the survey data is summarized as follows. 
+      <p>   
+      <table class="tableCenter"> 
+        <tr> 
+          <th class="thGrey">JobType</th><th class="thGrey">Number</th>
+        </tr>
+        <tr> <td class="tdLeft">Talent</td>   <td class="tdRight">45</td> </tr>
+        <tr> <td class="tdLeft">Doctor</td>   <td class="tdRight">30</td> </tr>
+        <tr> <td class="tdLeft">Teacher</td>  <td class="tdRight">60</td> </tr>
+        <tr> <td class="tdLeft">Lawer</td>    <td class="tdRight">24</td> </tr>
+        <tr> <td class="tdLeft">ProGamer</td> <td class="tdRight">10</td> </tr>
+        <tr> <td class="tdLeft">Chef</td>     <td class="tdRight">20</td> </tr>
+        <tr> <td class="tdLeft">SportsPlayer</td> <td class="tdRight">43</td> </tr>
+        <tr> <td class="tdLeft">Police</td>   <td class="tdRight">26</td> </tr>
+        <tr> <td class="tdLeft">Other</td>    <td class="tdRight">5</td> </tr>
+      </table>
+      <p>
+      <div class="textIndent">1) Enter this data and their variable names using the sheet of  『eStat』 and save it as a file in CSV format. </div>
+      <div class="textIndent">2) Load the file saved in 1) to 『eStat』 system, draw a vertical bar graph and save the graph as a file with PNG format. </div>
+      <div class="textIndent">3) Using the same data, draw a pie chart, a band graph, and a line graph and save each graph as a file with PNG format. </div>
+      <div class="textIndent">4) Make a report of the survey using the saved graph files. Use the MS Word. </div>
+    </td>
+  </tr>  
+  </table>
+
+</body>
+</html>
+

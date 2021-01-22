@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 11</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+  <!--***********************************************************************-->
+  <h2>Chapter 11. Testing Hypothesis for Categorical Data</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(114)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(120)"><b>Chapter 12</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+  <p>
+  <h3>11.3 Exercise</h3>
+  <p>
+  <div class="mainTablePink">
+    <div class="textL30M30">
+      <p>
+      11.1 300 customers selected randomly are asked on which day of the week 
+      they usually went to the grocery store and received the following votes. Can you 
+      conclude that the percentage of days customers prefer is different? Use the 5% 
+      significance level. Check the test result using 『eStatU』.
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Day</th><th>Number of Customers</th>
+         </tr>
+         <tr> <td class="tdCenter">Mon</td>    <td class="tdCenter">10</td> </tr>
+         <tr> <td class="tdCenter">Tue</td>    <td class="tdCenter">20</td> </tr>
+         <tr> <td class="tdCenter">Wed</td>    <td class="tdCenter">40</td> </tr>
+         <tr> <td class="tdCenter">Thr</td>    <td class="tdCenter">40</td> </tr>
+         <tr> <td class="tdCenter">Fri</td>    <td class="tdCenter">80</td> </tr>
+         <tr> <td class="tdCenter">Sat</td>    <td class="tdCenter">60</td> </tr>
+         <tr> <td class="tdCenter">Sun</td>    <td class="tdCenter">50</td> </tr>
+         <tr> <td class="tdCenter">Total</td>  <td class="tdCenter">300</td> </tr>
+      </table>
+      <p>
+      11.2 The market shares of toothpaste brands A, B, C and D are known to be 0.3, 
+      0.6, 0.08, and 0.02 respectively. The result of a survey of 600 people for the 
+      toothpaste brands are as follows. Can you conclude from these data that the existing 
+      market share is incorrect? Use  and check your test result using 『eStatU』.
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Brand</th><th>Number of Customers</th>
+         </tr>
+         <tr> <td class="tdCenter">A</td>      <td class="tdCenter">192</td> </tr>
+         <tr> <td class="tdCenter">B</td>      <td class="tdCenter">342</td> </tr>
+         <tr> <td class="tdCenter">C</td>      <td class="tdCenter">44</td> </tr>
+         <tr> <td class="tdCenter">D</td>      <td class="tdCenter">22</td> </tr>
+         <tr> <td class="tdCenter">Total</td>  <td class="tdCenter">600</td> </tr>
+      </table>
+      <p>
+      11.3 The following table shows the distribution by score by conducting an aptitude 
+      test on 223 workers at a plant. The mean and variance from the sample data are 75 
+      and 386 respectively. Test whether the scores of the aptitude test follow a normal 
+      distribution. Use  and check your test result using 『eStatU』.
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Score interval</th><th>Number of Workers</th>
+         </tr>
+         <tr> <td class="tdCenter">    X < 40</td>      <td class="tdCenter">10</td> </tr>
+         <tr> <td class="tdCenter">40 \(\le\) X < 50</td>      <td class="tdCenter">12</td> </tr>
+         <tr> <td class="tdCenter">50 \(\le\) X < 60</td>      <td class="tdCenter">17</td> </tr>
+         <tr> <td class="tdCenter">60 \(\le\) X < 70</td>      <td class="tdCenter">37</td> </tr>
+         <tr> <td class="tdCenter">70 \(\le\) X < 80</td>      <td class="tdCenter">55</td> </tr>
+         <tr> <td class="tdCenter">80 \(\le\) X < 90</td>      <td class="tdCenter">51</td> </tr>
+         <tr> <td class="tdCenter">90 \(\le\) X < 100</td>     <td class="tdCenter">34</td> </tr>
+         <tr> <td class="tdCenter">    X \(\ge\) 100</td>  <td class="tdCenter"> 7</td> </tr>
+         <tr> <td class="tdCenter">Total</td>  <td class="tdCenter">223</td> </tr>
+      </table>
+      <p>
+      11.4 The following data shows the highest temperature of a city during the month of 
+      August. Test whether the temperature data follow a normal distribution with the 5% 
+      significance level. (Unit: °C)
+      <p>
+      <div class="textLeft">
+         29, 29, 34, 35, 35, 31, 32, 34, 38, 34, 33, 31, 31, 30, 34, 35, 
+      </div>
+      <div class="textLeft">
+         34, 32, 32, 29, 28, 30, 29, 31, 29, 28, 30, 29, 29, 27, 28.
+      </div>
+      <p>
+      11.5 For market research, a company obtained data on the educational level and 
+      socio-economic status of 375 housewives and summarized a contingency table as 
+      follows. Test the null hypothesis that social and economic status and educational 
+      level are independent at the significance level of 0.05. Check the test result using 『eStatU』.
+      <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Socio-economic status</th>
+           <th>Elementary</th>
+           <th>Middle</th>
+           <th>High</th>
+           <th>College</th>
+           <th>Above</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 1</td>
+           <td class="tdCenter">10</td>
+           <td class="tdCenter"> 7</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 4</td>
+           <td class="tdCenter"> 1</td>
+           <td class="tdCenter">25</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 2</td>
+           <td class="tdCenter">14</td>
+           <td class="tdCenter">10</td>
+           <td class="tdCenter"> 7</td>
+           <td class="tdCenter"> 4</td>
+           <td class="tdCenter"> 2</td>
+           <td class="tdCenter">37</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 9</td>
+           <td class="tdCenter">25</td>
+           <td class="tdCenter">13</td>
+           <td class="tdCenter">18</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter">68</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 4</td>
+           <td class="tdCenter"> 7</td>
+           <td class="tdCenter"> 9</td>
+           <td class="tdCenter">38</td>
+           <td class="tdCenter">44</td>
+           <td class="tdCenter"> 6</td>
+           <td class="tdCenter">104</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 5</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 8</td>
+           <td class="tdCenter">14</td>
+           <td class="tdCenter">18</td>
+           <td class="tdCenter">62</td>
+           <td class="tdCenter">105</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 6</td>
+           <td class="tdCenter"> 2</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 8</td>
+           <td class="tdCenter">10</td>
+           <td class="tdCenter">13</td>
+           <td class="tdCenter">36</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">45</td>
+           <td class="tdCenter">62</td>
+           <td class="tdCenter">83</td>
+           <td class="tdCenter">98</td>
+           <td class="tdCenter">87</td>
+           <td class="tdCenter">375</td>
+         </tr>
+      </table>
+      <p>
+      11.6 Government agencies surveyed workers who wanted to get a job and classified 
+      532 respondents according to the gender and technical level as follows. Does these 
+      data provide sufficient evidence that the technical level and gender are related? Use  
+      and check your test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Technical Level</th>
+           <th>Male</th>
+           <th>Female</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Skilled worker</td>
+           <td class="tdCenter">106</td>
+           <td class="tdCenter">6</td>
+           <td class="tdCenter">112</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Semi-skilled worker</td>
+           <td class="tdCenter">93</td>
+           <td class="tdCenter">39</td>
+           <td class="tdCenter">132</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Unskilled worker</td>
+           <td class="tdCenter">215</td>
+           <td class="tdCenter">73</td>
+           <td class="tdCenter">288</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">414</td>
+           <td class="tdCenter">118</td>
+           <td class="tdCenter">532</td>
+         </tr>
+      </table>
+      <p>
+      11.7 A guidance counselor surveyed 110 high school students for reading and 
+      watching TV. The following table was obtained by classifying each item as high and 
+      low. At the significance level of 0.05, are these data sufficient to claim that the 
+      reading and TV viewing are related? Check the test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th></th>
+           <th>Reading High</th>
+           <th>Reading Low</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">TV viewing High</td>
+           <td class="tdCenter">40</td>
+           <td class="tdCenter">18</td>
+           <td class="tdCenter">58</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">TV viewing Low</td>
+           <td class="tdCenter">41</td>
+           <td class="tdCenter">11</td>
+           <td class="tdCenter">52</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">81</td>
+           <td class="tdCenter">29</td>
+           <td class="tdCenter">110</td>
+         </tr>
+      </table>
+      <p>
+      11.8 165 defective products produced in two plants operated by the same company 
+      were classified depending on whether they were due to low occupational awareness 
+      or low quality raw materials by each plant. Test the null hypothesis that the cause of 
+      the defect and production plant are independent with the significance level of 0.05. 
+      Check the test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Cause of Defect</th>
+           <th>Plant A</th>
+           <th>Plant B</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Low occupational awareness</td>
+           <td class="tdCenter">21</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">93</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Low quality raw materials</td>
+           <td class="tdCenter">46</td>
+           <td class="tdCenter">26</td>
+           <td class="tdCenter">72</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">67</td>
+           <td class="tdCenter">98</td>
+           <td class="tdCenter">165</td>
+         </tr>
+      </table>
+      <p>
+      11.9 To evaluate the effectiveness of typing training, 110 documents by company 
+      employees who received type training and 120 documents by employees who did not 
+      receive typing training were evaluated. Evaluated documents are classified as good, 
+      normal, and low. The following table shows a classification of the evaluation for total 
+      230 documents according to whether or not they received training. Test the null 
+      hypothesis that typing training and document evaluation are independent. Use  and 
+      check your test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th></th>
+           <th>Good</th>
+           <th>Normal</th>
+           <th>Low</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Typing training</td>
+           <td class="tdCenter">48</td>
+           <td class="tdCenter">39</td>
+           <td class="tdCenter">23</td>
+           <td class="tdCenter">110</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">No typing training</td>
+           <td class="tdCenter">12</td>
+           <td class="tdCenter">36</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">120</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">60</td>
+           <td class="tdCenter">75</td>
+           <td class="tdCenter">95</td>
+           <td class="tdCenter">230</td>
+         </tr>
+      </table>
+      <p>
+      11.10 A company with three large plants applied different working conditions and 
+      wage systems to three plants to ask them for satisfaction with the new system six 
+      months later. 250 workers from each of three plants were randomly selected and the 
+      survey results were as follows. Is there sufficient evidence that workers at each plant 
+      have different satisfaction levels?  Test with the significance level of 0.05. Check the 
+      test result using 『eStatU』.
+      <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Plant</th>
+           <th>Very satisfied</th>
+           <th>Satisfied</th>
+           <th>Average</th>
+           <th>Not Satisfied</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Plant 1</td>
+           <td class="tdCenter">135</td>
+           <td class="tdCenter"> 70</td>
+           <td class="tdCenter"> 25</td>
+           <td class="tdCenter"> 20</td>
+           <td class="tdCenter">250</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Plant 2</td>
+           <td class="tdCenter">145</td>
+           <td class="tdCenter"> 80</td>
+           <td class="tdCenter"> 15</td>
+           <td class="tdCenter"> 10</td>
+           <td class="tdCenter">250</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Plant 3</td>
+           <td class="tdCenter">140</td>
+           <td class="tdCenter"> 75</td>
+           <td class="tdCenter"> 20</td>
+           <td class="tdCenter"> 15</td>
+           <td class="tdCenter">250</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">420</td>
+           <td class="tdCenter">225</td>
+           <td class="tdCenter"> 60</td>
+           <td class="tdCenter"> 45</td>
+           <td class="tdCenter">750</td>
+         </tr>
+      </table>
+      <p>
+    </div>
+  </div>
+  <p>
+
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(114)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(120)"><b>Chapter 12</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

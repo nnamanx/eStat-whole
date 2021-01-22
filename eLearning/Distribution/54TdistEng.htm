@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="t Distribution">t Distribution</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="t Distribution">t Distribution</span></b>
+      &nbsp;&nbsp; df = <input type="text" class="textarea" value="10" size=4 id="dft" onfocus="focus0()" onKeyUp="changeRangeTdf()"/> 
+      <sup><small>1 </small></sup>
+      <input type="range" min="1" max="100" value="10" id="range1T" onchange="showValueT0(this.value)"/>
+      <sup><small>100 </small></sup>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label style="color:red"><input type="checkbox" value="freq2" id="normalGraph" > N(0,1)</label>  
+      <a class="menu" href="../Distribution/index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+    </div>
+    <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style="color:red;" data-msgid="If typed"></span> 
+    <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+ 
+    <section class="range-slider">
+      <input type="range" min="0" max="1000" value="267" id="range21T" onchange="showValueT1(this.value)"/>
+      <input type="range" min="0" max="1000" value="713" id="range22T" onchange="showValueT2(this.value)"/>
+    </section>
+ 
+    <form name="myForm"> 
+      <table class="stat">
+      <tbody>
+        <tr>
+          <td>
+            <button type="button" id="Execute">
+              <span data-msgid="Execute">Execute</span>
+            </button>
+          </td>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="button" id="saveGraphU"> 
+              <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+            </button>
+          </td>
+          <td>
+            <button type="button" id="saveTable">
+              <span class="tooltiptext" data-msgid="Table Save">Table Save</span>
+            </button>
+            <br>
+          </td>
+        </tr>
+        <tr>
+          <td><span data-msgid="Probability"></span></td>
+          <td>
+            <label> 
+            <input type="radio" name = "type1" value="1" checked> 
+            P( <input type="text" class="textarea" value="-2.228" size=6  id="a" onfocus="focus1()" onKeyUp="executeClick()"/>
+            &nbsp;  &le; &nbsp;  t &nbsp; &le; &nbsp; 
+            <input type="text" class="textarea"  value="2.228"  size=6 id="b" onfocus="focus1()" onKeyUp="executeClick()"/> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.9500" size=5 id="c"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="2"> 
+            P( t &nbsp; &le; &nbsp; 
+            <input type="text" class="textarea" value="-1.812" size=6 id="b2" onfocus="focus2()" onKeyUp="executeClick()" /> )
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0500"  size=5 id="c2"></td>
+          <td>
+            <button type="button" id="percentileTable">
+              <span data-msgid="Percentile">Percentile</span>
+            </button> 
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="3"> 
+              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; t &nbsp; &ge; &nbsp; 
+            <input type="text" class="textarea" value="2.228" size=6 id="a3" onfocus="focus3()" onKeyUp="executeClick()" />  )
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0500"  size=5 id="c3"></td>
+        </tr>
+        <tr>
+          <td><span data-msgid="PercentileValue">Percentile</span></td>
+          <td>
+            <label>
+              <input type="radio" name = "type1" value="4" >   
+              P( <input type="text" class="textarea2" value="-2.228" size=6 id="f"> &nbsp;  &le; &nbsp;  t &nbsp; &le; &nbsp; 
+              <input type="text" class="textarea2"  value="2.228"  size=6 id="g"> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.9500" size=5 id="h" onfocus="focus4()" onKeyUp="executeClick()" />
+          </td>
+          <td>
+<!--
+              <sup><small>0 </small></sup>
+              <input type="range" min="1" max="999" value="950" id="range4T" onchange="showValueT4(this.value)"/>
+              <sup><small>1</small> </sup>
+-->
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="5" > 
+              P( t &nbsp; &le; &nbsp;
+              <input type="text" class="textarea2" value="-1.812" size=6  id="d"> ) 
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.0500" size=5 id="e" onfocus="focus5()" onKeyUp="executeClick()" /> 
+          </td>
+          <td>
+<!--
+            <sup><small>0 </small></sup>
+            <input type="range" min="1" max="999" value="950" id="range3T" onchange="showValueT3(this.value)"/>
+            <sup><small>1</small> </sup> 
+-->
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="6" >
+              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; t &nbsp; &ge; &nbsp; 
+              <input type="text" class="textarea2" value="1.645" size=6  id="a6"/> ) 
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.0500" size=5 id="c6" onfocus="focus6()" onKeyUp="executeClick()" /> 
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" id="saveGraphU"> 
+              <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+            </button>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="button" id="saveTable">
+              <span class="tooltiptext" data-msgid="Table Save">Table Save</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <p>
+      &nbsp;
+      <span data-msgid="Reference Site">Reference Site</span> :  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/Studentst-Distribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="http://stattrek.com/probability-distributions/t-distribution.aspx" target="_blank" >StatTrek </a> &nbsp; 
+      <p>
+    </form>
+    <div>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <script>
+
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth    = 600;
+      svgHeight   = 510;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, avg, std, gxmin, gxmax, gymin, gymax;
+      var stat = new Array(30);
+      var title;
+      var df, info;
+      var checkNormal = false;
+      var a, b, c, b2, c2, a3, c3, f, g, h, d, e, a6, c6;
+      var checkParameter = false;
+      var checkExecute = false
+
+      document.getElementById("c").disabled  = true; 
+      document.getElementById("c2").disabled = true; 
+      document.getElementById("c3").disabled = true; 
+      document.getElementById("f").disabled  = true; 
+      document.getElementById("g").disabled  = true; 
+      document.getElementById("d").disabled  = true; 
+      document.getElementById("a6").disabled = true; 
+
+      // 초기 t분포 (-1,1) 확률 그리기
+      df    = parseFloat(d3.select("#dft").node().value); 
+      a     = -2.228;
+      b     = 2.228;
+      c     = t_cdf(b,df,info) - t_cdf(a,df,info);
+      drawTdistGraph(df, a, b, c);
+
+      // t분포 확률 ------------------------------------------------------------------------------------
+      var rad = document.myForm.type1;
+      var radioType = 1;
+      rad[0].onclick = function() {     // P(a< t < b) = c
+          radioType = 1;  
+          bar.selectAll("*").remove();
+          df = parseFloat(d3.select("#dft").node().value); 
+          a  = parseFloat(d3.select("#a").node().value); 
+          b  = parseFloat(d3.select("#b").node().value);
+          if ( a > b ) c = 0;
+          else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+          d3.select("#a").node().value = f3(a)
+          d3.select("#b").node().value = f3(b)
+          d3.select("#c").node().value = f4(c);
+          if ( a < -5 ) a = - 5;   
+          if ( b > 5 ) b = 5;
+          drawTdistGraph(df, a, b, c);
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
+          if(checkNormal) drawStdNormalGraph();
+      }
+      rad[1].onclick = function() {     // P(t < b) = c
+          radioType = 2;  
+          bar.selectAll("*").remove();
+          df = parseFloat(d3.select("#dft").node().value); 
+          a  = -5;
+          c = parseFloat(d3.select("#c2").node().value); 
+          b = t_inv(c, df, info);
+//          b  = parseFloat(d3.select("#b2").node().value);
+//          if ( a > b ) c = 0;
+//          else c = t_cdf(b, df, info) 
+          d3.select("#b2").node().value = f3(b)
+          d3.select("#c2").node().value = f4(c);
+          if ( b > 5 ) b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
+          drawTdistGraph(df, a, b, c);
+          if(checkNormal) drawStdNormalGraph();
+      }
+      rad[2].onclick = function() {     // P( t > a) = c
+          radioType = 3;  
+          bar.selectAll("*").remove();
+          df = parseFloat(d3.select("#dft").node().value); 
+          c = parseFloat(d3.select("#c3").node().value); 
+          a = t_inv(1-c, df, info);
+//          a  = parseFloat(d3.select("#a3").node().value); 
+          b  = 5;
+          if ( a > b ) c = 0;
+          else c = 1 - t_cdf(a, df, info);
+          if ( a < -5 ) a = - 5;   
+          d3.select("#a3").node().value = f3(a)
+          d3.select("#c3").node().value = f4(c);
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
+          drawTdistGraph(df, a, b, c);
+          if(checkNormal) drawStdNormalGraph();
+      }
+      rad[3].onclick = function() {     // P(f < t < g) = h
+          radioType = 4;
+          bar.selectAll("*").remove();
+          df    = parseFloat(d3.select("#dft").node().value); 
+          h = parseFloat(d3.select("#h").node().value);
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          g = t_inv(1-(1-h)/2, df, info);
+          f = - t_inv(1-(1-h)/2, df, info);
+          if (f < -5) f = -5;
+          if (g > 5)  g = 5;
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
+          d3.select("#h").node().value = f4(h);
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
+          drawTdistGraph(df, f, g, h); 
+          if(checkNormal) drawStdNormalGraph();
+      }    
+      rad[4].onclick = function() {     // P(t < d) = e
+          radioType = 5;
+          bar.selectAll("*").remove();
+          df    = parseFloat(d3.select("#dft").node().value); 
+          e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+          d = t_inv(e, df, info);
+          d3.select("#d").node().value = f3(d);
+          d3.select("#e").node().value = f4(e);
+          if (d > 5) d = 5;
+          a = -5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*d).toString();
+          drawTdistGraph(df, a, d, e);
+          if(checkNormal) drawStdNormalGraph();
+      }
+      rad[5].onclick = function() {     // P( Z > b) = c
+          radioType = 6;  
+          bar.selectAll("*").remove();
+          h = parseFloat(d3.select("#c6").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          f = t_inv(1-h, df, info);
+          g = 5;
+          d3.select("#a6").node().value = f3(f);
+          d3.select("#c6").node().value = f4(h);
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
+          drawTdistGraph(df, f, g, h); 
+      }
+
+      // 확률계산 실행버튼 클릭
+      d3.select("#Execute").on("click",function() {
+        checkExecute = true;
+        if (checkParameter == true) changeRangeTdf(); 
+        bar.selectAll("*").remove();
+
+        margin  = {top: 50, bottom: 50, left: 50, right: 40};
+        graphWidth2   = svgWidth2 - margin.left - margin.right;
+        graphHeight2  = svgHeight2 - margin.top - margin.bottom;
+ 
+        df = parseFloat(d3.select("#dft").node().value); 
+        a  = document.getElementById("a").value; 
+        b  = document.getElementById("b").value;
+        b2 = document.getElementById("b2").value;
+        a3 = document.getElementById("a3").value; 
+        e  = document.getElementById("e").value; 
+        h  = document.getElementById("h").value;
+        if (isNaN(a) || isNaN(b) || isNaN(b2) || isNaN(a3)) {
+          alert("Enter number!");
+          showValueT0(df)
+          return;
+        }
+        if (isNaN(e) || isNaN(h)) {
+          alert("Enter number between 0 and 1!");
+          showValueT0(df)
+          return;
+        }
+
+        if (radioType == 1) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          a = parseFloat(d3.select("#a").node().value); 
+          b = parseFloat(d3.select("#b").node().value);
+          if ( a > b ) c = 0;
+          else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+          d3.select("#a").node().value = f3(a)
+          d3.select("#b").node().value = f3(b)
+          d3.select("#c").node().value = f4(c);
+          if ( a < -5 ) a = - 5;   
+          if ( b > 5 ) b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
+          drawTdistGraph(df, a, b, c);
+          if(checkNormal) drawStdNormalGraph();
+        } 
+        else if (radioType == 2) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          a = -5;
+          b = parseFloat(d3.select("#b2").node().value);
+          if ( a > b ) c = 0;
+          else c = t_cdf(b, df, info);
+          d3.select("#b2").node().value = f3(b)
+          d3.select("#c2").node().value = f4(c);
+          if ( b > 5 ) b = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
+          drawTdistGraph(df, a, b, c);
+          if(checkNormal) drawStdNormalGraph();
+        } 
+        else if (radioType == 3) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          a = parseFloat(d3.select("#a3").node().value); 
+          b = 5;
+          if ( a > b ) c = 0;
+          else c = 1 - t_cdf(a, df, info);
+          d3.select("#a3").node().value = f3(a)
+          d3.select("#c3").node().value = f4(c);
+          if ( a < -5 ) a = - 5;   
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*b).toString();
+          drawTdistGraph(df, a, b, c);
+          if(checkNormal) drawStdNormalGraph();
+        } 
+        else if (radioType == 4) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          h = parseFloat(d3.select("#h").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+//          document.getElementById("range4T").value  = f0(h*1000);
+          g = t_inv(1-(1-h)/2, df, info);
+          f = - t_inv(1-(1-h)/2, df, info);
+          d3.select("#f").node().value = f3(f);
+          d3.select("#g").node().value = f3(g);
+          d3.select("#h").node().value = f4(h);
+          if (f < -5) f = -5;
+          if (g > 5)  g = 5;
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
+          drawTdistGraph(df, f, g, h); 
+          if(checkNormal) drawStdNormalGraph();
+        }
+        else if (radioType == 5) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          e = parseFloat(d3.select("#e").node().value); 
+          if (e > 0.9999) e = 0.9999;
+          if (e < 0.0001) e = 0.0001;
+//          document.getElementById("range3T").value  = f0(e*1000);
+          a = -5;
+          d = t_inv(e, df, info);
+          d3.select("#d").node().value = f3(d);
+          d3.select("#e").node().value = f4(e);
+          if (d > 5) d = 5;
+          document.getElementById("range21T").value = (500+100*a).toString();
+          document.getElementById("range22T").value = (500+100*d).toString();
+          drawTdistGraph(df, a, d, e);
+          if(checkNormal) drawStdNormalGraph();
+        }
+        else if (radioType == 6) {
+          bar.selectAll("text.mean").remove();
+          bar.selectAll("line.lineb").remove();
+          h = parseFloat(d3.select("#c6").node().value); 
+          if (h > 0.9999) h = 0.9999;
+          if (h < 0.0001) h = 0.0001;
+          f = t_inv(1-h, df, info);
+          g = 5;
+          d3.select("#a6").node().value = f3(f);
+          d3.select("#c6").node().value = f4(h);
+          document.getElementById("range21T").value = (500+100*f).toString();
+          document.getElementById("range22T").value = (500+100*g).toString();
+          drawTdistGraph(df, f, g, h); 
+          if(checkNormal) drawStdNormalGraph();
+        }
+      })
+
+      // 정규분포 그래프 버튼 클릭
+      d3.select("#normalGraph").on("click",function() {
+        if(this.checked) {
+          checkNormal = true;
+          drawStdNormalGraph();
+        } else {
+          document.getElementById("normalGraph").checked = false;
+          checkNormal = false;
+	  bar.selectAll("line.lineNormal").remove();
+        }
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+      // 백분위수표 버튼 클릭
+      d3.select("#percentileTable").on("click",function() {
+         df    = parseFloat(d3.select("#dft").node().value); 
+         tPercentileTable(df);
+      })
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+      });
+
+    function changeRangeTdf(){
+       if (checkExecute == false && event.keyCode != 13) return;
+       df = document.getElementById("dft").value;
+       if (isNaN(df)) {
+          alert("Enter number between 1 and 100!");
+          return;
+       }
+       if (df < 1) { df = 1; document.getElementById("dft").value = df;}
+       if (df > 100) {df = 100; document.getElementById("dft").value = df;}
+       document.getElementById("range1T").value = df;
+       showValueT0(df)
+       checkExecute   = false;
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 12</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h2>Chapter 12. Correlation and Regression Analysis</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(121)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(128)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+  <p>
+  <h3>12.2 Simple Linear Regression Analysis </h3>
+  <p>
+  <h6>
+      <a href="1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Regression analysis is a statistical method that first establishes a reasonable mathematical model of 
+      relationships between variables, estimates the model using measured values of the variables, and 
+      then uses the estimated model to describe the relationship between the variables, or to apply it 
+      to the analysis such as forecasting. For example, a mathematical model of the relationship between 
+      sales (\(Y\)) and advertising costs (\(X\)) would not only explain the relationship between sales 
+      and advertising costs, but would also be able to predict the amount of sales that a given investment. 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Regression Analysis</b>
+      <p>
+         Regression analysis is a statistical method that first establishes a reasonable mathematical 
+         model of relationships between variables, estimates the model using measured values of the variables, 
+         and then uses the estimated model to describe the relationship between the variables, or to apply 
+         it to the analysis such as forecasting. 
+    </div>
+    <p>
+
+    <div class="mainTable">
+      As such, the regression analysis is intended to investigate and predict the degree of relation 
+      between variables and the shape of the relation. In regression analysis, a mathematical model of 
+      the relation between variables is called a <b>regression equation</b>, and the variable affected 
+      by other related variables is called a <b>dependent variable</b>. The dependent variable is 
+      the variable we would like to describe which is usually observed in response to other variables, 
+      so it is also called a <b>response variable</b>. In addition, variables that affect the dependent 
+      variable are called <b>independent variables</b>. The independent variable is also referred to 
+      as the <b>explanatory variable</b>, because it is used to describe the dependent variable. 
+      In the previous example, if the objective is to analyse the change in sales amounts resulting 
+      from increases and decreases in advertising costs, the sales amount is a dependent variable and 
+      the advertising cost is an independent variable. 
+      <p>
+      If the number of independent variables included in the regression equation is one, it is called a 
+      <b>simple linear regression</b>. If the number of independent variables are two or more, it is called a
+      <b>multiple linear regression</b>.
+    </div>
+    <p>
+
+  <h4>12.2.1 Simple Linear Regression Model</h4>
+  <p>
+
+    <div class="mainTable">
+      Simple linear regression analysis has only one independent variable and the regression equation is shown
+      as follows: 
+      $$
+        Y = f(X,\alpha,\beta) = \alpha + \beta X
+      $$
+      In other words, the regression equation is represented by the linear equation of the independent variable,
+      and \(\alpha\) and \(\beta\) are unknown parameters which represent the intercept and slope respectively. 
+      The \(\alpha\) and \(\beta\) are called the <b>regression coefficients</b>. The above equation represents
+      an unknown linear relationship between \(Y\) and \(X\) in population and is therefore, referred to as 
+      the population regression equation.
+      <p>
+      In order to estimate the regression coefficients \(\alpha\) and \(\beta\), observations of the dependent
+      and independent variable are required, i.e., samples. In general, all of these observations are not 
+      located in a line. This is because, even if the \(Y\) and \(X\) have an exact linear relation, 
+      there may be a measurement error in the observations, or there may not be an exact linear relationship 
+      between \(Y\) and \(X\). Therefore, the regression formula can be written by considering these errors 
+      together as follows:
+      $$
+        Y_i = \alpha + \beta X_i + \epsilon_{i}, \quad i=1,2,...,n
+      $$
+      where \(i\) is the subscript representing the \(i^{th}\) observation, and \(\epsilon_i\) is the 
+      random variable indicating an error with a mean of zero and a variance \(\sigma^2\) which is 
+      independent of each other. The error \(\epsilon_i\) indicates that the observation \(Y_i\) is 
+      how far away from the population regression equation. The above equation includes unknown population 
+      parameters \(\alpha\), \(\beta\) and \(\sigma^2\), and is therefore, referred to as a population 
+      regression model. 
+      <p>
+      If \(a\) and \(b\) are the estimated regression coefficients using samples, the fitted regression equation
+      can be written as follows: It is referred to as the sample regression equation.
+      $$
+        {\hat Y}_i = a + b X_i 
+      $$
+      In this expression, \({\hat Y}_i\) represents the estimated value of \(Y\) at \(X=X_i\) as predicted
+      by the appropriate regression equation. These predicted values can not match the actual observed values
+      of \(Y\), and differences between these two values are called residuals and denoted as \(e_i\).
+      $$
+        \text{Residuals} \qquad e_i = Y_i - {\hat Y}_i , \quad i=1,2,...,n
+      $$
+      The regression analysis makes some assumptions about the unobservable error \(\epsilon_i\). 
+      Since the residuals \(e_i\) calculated using the sample values have similar characteristics as 
+      \(\epsilon_i\), they are used to investigate the validity of these assumptions. (Refer to Section 
+      12.2.6 for residual analysis.)
+    </div>
+    <p>
+
+ 
+  <h4>12.2.2 Estimation of Regression Coefficient</h4>
+  <p>
+
+    <div class="mainTable">
+      When sample data, \((X_1 , Y_1 ) , (X_2 , Y_2 ) , ... , (X_n , Y_n ) \), are given, a straight line 
+      representing it can be drawn in many ways. Since one of the main objectives of regression analysis is 
+      prediction, we would like to use the estimated regression line that would make the residuals smallest 
+      that the error occurs when predicting the value of Y. However, it is not possible to minimize the value 
+      of the residuals at all points, and it should be chosen to make the residuals 'totally' smaller. 
+      The most widely used of these methods is the method which minimizes the total sum of squared residuals, 
+      that is called the method of least squares regression. 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Method of Least Squares Regression</b>
+      <p>      
+        A method of estimating regression coefficients so that the total sum of the squared errors occurring 
+        in each observation is minimized. i.e., 
+      <p>
+        \(\quad\) Find \(\alpha\) and \(\beta\) which minimize
+      <p>
+      $$
+        \sum_{i=1}^{n} \epsilon_{i}^2  =  \sum_{i=1}^{n} ( Y_i - \alpha - \beta X_i  )^2 
+      $$ 
+    </div>
+    <p>
+
+    <div class="mainTable">
+      To obtain the values of \(\alpha\) and \(\beta\) by the least squares method, the sum of squares 
+      above should be differentiated partially with respect to \(\alpha\) and \(\beta\), and equate them zero
+      respectively. If the solution of \(\alpha\) and \(\beta\) of these equations is \(a\) and \(b\), 
+      the equations can be written as follows: 
+      $$
+        \begin{align}
+          a \cdot n + b \sum_{i=1}^{n} X_i  &= \sum_{i=1}^{n} Y_i \\ 
+          a \sum_{i=1}^{n} X_i +  \sum_{i=1}^{n} X_i^2  &= \sum_{i=1}^{n} X_i Y_i \\
+        \end{align}
+      $$
+      <p>
+      The above expression is called a <b>normal equation</b>. The solution \(a\) and \(b\) of this normal
+      equation is called the <b>least squares estimator</b> of \(\alpha\) and \(\beta\) and is given as follows:
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Least Squares Estimator of \(\alpha\) and \(\beta\)</b>
+      <p>
+      $$
+        \begin{align}
+          \quad b &= \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \\
+          \quad a &= \overline Y - b \overline X
+        \end{align}
+      $$            
+    </div>
+    <p>
+
+    <div class="mainTable">
+      If we divide both the numerator and the denominator of \(b\) by \(n-1\), \(b\) can be written as 
+      \(b = \frac{s_{XY}}{s_{X}^2}\). Since the correlation coefficient is  \(r = \frac{s_{XY}}{s_X s_Y}\)
+      and therefore, the slope \(b\) can also be calculated by using the correlation coefficient as follows: 
+      $$
+        b = \frac{s_{XY}}{s_X ^2} = \frac{ r s_X s_Y } {s_X ^2 } =  r \frac{s_Y}{s_X}
+      $$      
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 12.2.1</b>
+         In [Example 12.1.1], find the least squares estimate of the slope and intercept if the sales amount
+         is a dependent variable and the advertising cost is an independent variable. Predict the amount 
+         of sales when you have spent on advertising by 10.
+      <p>
+      <b>Answer</b>
+      <p>
+      In [Example 12.1.1], the calculation required to obtain the intercept and slope has already been made. 
+      The intercept and slope using this are as follows:
+      <p>
+        \( 
+          \quad b = \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \\
+                  = \frac {151.2}{60.4} = 2.503
+        \)
+        \(
+          \quad a = \small  \overline Y - b \overline X = 49.7 - 2.503 \times 8.4 = 28.672
+        \)  
+      <p>     
+      Therefore, the fitted regression line is \(\small \hat Y_i = 28.672 + 2.503 X_i \).
+      <p>
+      &lt;Figure 12.2.1&gt; shows the fitted regression line on the original data. The meaning of slope value, 2.5033, is that, 
+      if advertising cost increases by one (i.e., one million), sales increases by about 2.5 million.
+      <p>
+
+      <img class="imgFig600400" src="../../Figure/Fig120201.svg">
+      <div class="figText">&lt;Figure 12.2.1&gt; Simple linear regression using 『eStat』</div>
+      <p>
+
+      Prediction of the sales amount of a company with an advertising cost of 10 can be obtained by using the 
+      fitted sample regression line as follows:
+      <p>
+        \(\quad \small 29.672  +  (2.503)(10) = 53.702  \)
+      <p>
+      In other words, sales of 53.705 million are expected. That is not to say that all companies with 
+      advertising costs of 10 million USD have sales of 53.705 million USD, but that the average amount of their 
+      sales is about that. Therefore, there may be some differences in individual companies.
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <b>Practice 12.2.1</b>
+        Using the data of [Practice 12.1.1] for the mid-term and final exam score, find the least squares 
+        estimate of the slope and intercept if the final exam score is a dependent variable and the mid-term score 
+        is an independent variable. Predict the final exam score when you have a mid-term score of 80.
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+   <h4>12.2.3 Goodness of Fit for Regression Line</h4>
+   <p>
+
+    <div class="mainTable">
+      After estimating the regression line, it should be investigated how valid the regression line is. Since the 
+      objective of a regression analysis is to describe a dependent variable as a function of an independent variable, 
+      it is necessary to find out how much the explanation is. A residual standard error and a coefficient of 
+      determination are used for such validation studies. 
+      <p>
+      Residual standard error \(s\) is a measure of the extent to which observations are scattered around 
+      the estimated line. First, you can define the sample variance of residuals as follows: 
+      $$
+        s^2 = \frac{1}{n-2} \sum_{i=1}^{n} ( Y_i -  {\hat Y}_i )^2 
+      $$
+      The residual standard error \(s\) is defined as the square root of \(s^2\). The \(s^2\) is an estimate of
+      \(\sigma^2\) which is the extent that the observations \(Y\) are spread around the population regression 
+      line. A small value of \(s\) or \(s^2\) indicates that the 
+      observations are close to the estimated regression line, which in turn the regression line represents well the 
+      relationship between the two variables. 
+      <p>
+      However, it is not clear how small the residual standard error \(s\) is, although the smaller value is 
+      the better. In addition, the size of the value of \(s\) depends on the unit of \(Y\). To eliminate this 
+      shortcoming, a relative measure called the coefficient of determination is defined. The <b>coefficient 
+      of determination</b> is the ratio of the variation described by the regression line over the total 
+      variation of observation \(Y_i\), so that it is a relative measure that can be used regardless of the 
+      type and unit of the variable.
+      <p>
+      As in the analysis of variance in Chapter 9, the following partitions of the sum of squares and degrees of 
+      freedom are formed in the regression analysis:
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Partitions of the sum of squares and degrees of freedom 
+        <p>
+         \(\qquad\) Sum of squares:  \(\qquad SST = SSE + SSR\) <br>   	
+         \(\qquad\) Degrees of freedom: \((n-1) = (n-2) + 1\) 
+      </b>
+    </div>
+    <p>
+
+    <div class="mainTable">
+      Description of the above three sums of squares is as follows:
+      <p>
+      <b>Total Sum of Squares</b>   : \( SST = \sum_{i=1}^{n} ( Y_i - {\overline Y} )^2\) <br>
+      The total sum of squares indicating the total variation in observed values of \(Y\) is called the 
+      total sum of squares (\(SST\)). This \(SST\) has the degree of freedom, \(n-1\), and if \(SST\) 
+      is divided by the the degree of freedom, it becomes the sample variance of \(Y_i\). 
+      <p>
+      <b>Error Sum of Squares</b>    : \( SSE = \sum_{i=1}^{n} ( Y_i - {\hat Y}_i )^2\)<br>
+      The error sum of squares (\(SSE\)) of the residuals represents the unexplained variation of the 
+      total variation of the \(Y\). Since the calculation of this sum of squares requires the estimation of 
+      two parameters \(\alpha\) and \(\beta\), \(SSE\) has the degree of freedom \(n-2\). 
+      This is the reason why, in the calculation of the sample variance of residuals \(s^2\), it was divided 
+      by \(n-2\).
+      <p>
+      <b>Regression Sum of Squares</b> : \({SSR} = \sum_{i=1}^{n} ( {\hat Y}_i - {\overline Y} )^2 \)<br>	
+      The regression sum of squares (\(SSR\)) indicates the variation explained by the regression line 
+      among the total variation of \(Y\). This sum of squares has the degree of freedom of 1.
+      <p>
+      If the estimated regression equation fully explains the variation in all samples (i.e., if all 
+      observations are on the sample regression line), the unexplained variation \(SSE\) will be zero. Thus, 
+      if the portion of \(SSE\) is small among the total sum of squares \(SST\), or if the portion of
+      \(SSR\) is large, the estimated regression model is more suitable. Therefore, the ratio of \(SSR\)
+      to the total variation \(SST\), called the coefficient of determination, is defined as a 
+      measure of the suitability of the regression line as follows:
+      $$
+        R^2 = \frac{Explained \;\; Variation}{Total \;\; Variation} = \frac{SSR}{SST}
+      $$
+      The value of the coefficient of determination is always between 0 and 1 and the closer the value is to 1,
+      the more concentrated the samples are around the regression line, which means that the estimated 
+      regression line explains the observations well.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 12.2.2</b>
+         Calculate the value of the residual standard error and the coefficient of determination in the data on advertising costs and sales.
+      <p>
+      <b>Answer</b>
+      <p>
+      To obtain the residual standard error and the coefficient of determination, it is convenient to make the 
+      following Table 12.2.1. Here, the estimated value \(\small {\hat Y}_i\) of the sales from each value of 
+      \(\small {X}_i\) uses the fitted regression line.
+      <p>
+      \( \qquad \small {\hat Y}_i = 28.672 + 2.503 X_i \)
+      <p>
+      <div class="textLeft">Table 12.2.1  Useful calculations for the residual standard error and coefficient of determination</div>
+      <p>
+      <table style="width:650px"> 
+        <tr> 
+          <th class="thGrey">Number</th>
+          <th class="thGrey">\(\small X_i\)</th>
+          <th class="thGrey">\(\small Y_i\)</th>
+          <th class="thGrey">\(\small {\hat Y}_i\)</th>
+          <th class="thGrey">\(\small SST\) <br> \(\small (Y_i - {\overline Y}_i )^2 \)</th>
+          <th class="thGrey">\(\small SSR\) <br> \(\small ({\hat Y}_i - {\overline Y}_i )^2 \)</th>
+          <th class="thGrey">\(\small SSE\) <br> \(\small (Y_i - {\hat Y}_i )^2 \)</th>
+        </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter"> 4</td> <td class="tdCenter">39</td> <td class="tdCenter">38.639</td> <td class="tdCenter">114.49</td> <td class="tdCenter">122.346</td> <td class="tdCenter">0.130</td </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter"> 6</td> <td class="tdCenter">42</td> <td class="tdCenter">43.645</td> <td class="tdCenter"> 59.29</td> <td class="tdCenter"> 36.663</td> <td class="tdCenter">2.706</td </tr>
+        <tr> <td class="tdCenter">3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">45</td> <td class="tdCenter">43.645</td> <td class="tdCenter"> 22.09</td> <td class="tdCenter"> 36.663</td> <td class="tdCenter">1.836</td </tr>
+        <tr> <td class="tdCenter">4</td> <td class="tdCenter"> 8</td> <td class="tdCenter">47</td> <td class="tdCenter">48.651</td> <td class="tdCenter">  7.29</td> <td class="tdCenter">  1.100</td> <td class="tdCenter">2.726</td </tr>
+        <tr> <td class="tdCenter">5</td> <td class="tdCenter"> 8</td> <td class="tdCenter">50</td> <td class="tdCenter">48.651</td> <td class="tdCenter">  0.09</td> <td class="tdCenter">  1.100</td> <td class="tdCenter">1.820</td </tr>
+        <tr> <td class="tdCenter">6</td> <td class="tdCenter"> 9</td> <td class="tdCenter">50</td> <td class="tdCenter">51.154</td> <td class="tdCenter">  0.09</td> <td class="tdCenter">  2.114</td> <td class="tdCenter">1.332</td </tr>
+        <tr> <td class="tdCenter">7</td> <td class="tdCenter"> 9</td> <td class="tdCenter">52</td> <td class="tdCenter">51.154</td> <td class="tdCenter">  5.29</td> <td class="tdCenter">  2.114</td> <td class="tdCenter">0.716</td </tr>
+        <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> <td class="tdCenter">53.657</td> <td class="tdCenter"> 28.09</td> <td class="tdCenter"> 15.658</td> <td class="tdCenter">1.804</td </tr>
+        <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> <td class="tdCenter">58.663</td> <td class="tdCenter"> 53.29</td> <td class="tdCenter"> 80.335</td> <td class="tdCenter">2.766</td </tr>
+        <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> <td class="tdCenter">58.663</td> <td class="tdCenter">106.09</td> <td class="tdCenter"> 80.335</td> <td class="tdCenter">1.788</td </tr>
+        <tr> <td class="tdCenter">Sum</td><td class="tdCenter">64</td> <td class="tdCenter">497</td> <td class="tdCenter">496.522</td> <td class="tdCenter">396.1</td> <td class="tdCenter">378.429</td> <td class="tdCenter">17.622</td </tr>
+        <tr> <td class="tdCenter">Average</td><td class="tdCenter">8.4</td> <td class="tdCenter">49.7</td> </tr>
+      </table>
+      <p>
+      In Table 12.2.1, \(\small SST\) = 396.1,  \(\small SSR\) = 378.429,  \(\small SSE\) = 17.622. Here, 
+      the relationship of \(\small SST = SSE + SSR\) does not exactly match because of the error in the 
+      number of digits calculation. The sample variance of residuals is as follows: 
+      <p>
+        \(\qquad \small s^2 = \frac{1}{n-2} \sum_{i=1}^{n} ( Y_i -  {\hat Y}_i )^2 = \frac{17.622}{(10-2)} = 2.203 \)
+      <p>
+      Hence, the residual standard error is \(s\) = 1.484. The coefficient of determination is as follows: 
+      <p>
+        \(\qquad \small R^2 = \frac{SSR}{SST} = \frac{378.429}{396.1} = 0.956\)
+      <p>
+      This means that 95.6% of the total variation in the observed 10 sales amounts can be explained by the 
+      simple linear regression model using a variable of advertising costs, so this regression line is quite 
+      useful. 
+      <p>
+      Click the [Correlation and Regression] button in the option below the graph of &lt;Figure 12.2.1&gt; to 
+      show the coefficient of determinations and estimation errors shown in &lt;Figure 12.2.2&gt;.
+      <p>
+      <img class="imgFig600400" src="../../Figure/Fig120202.png">
+      <div class="figText">&lt;Figure 12.2.2&gt; Correlation and descriptive statistics</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <b>Practice 12.2.2</b>
+        Using the data of [Practice 12.1.1] for the mid-term and final exam scores, calculate the value 
+        of the residual standard error and coefficient of determination. 
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+
+  <h4>12.2.4 Analysis of Variance for Regression</h4>
+
+    <p>
+    <div class="mainTable">
+      If we divide three sums of squares obtained in the above example by its degrees of freedom, each one 
+      becomes a kind of variance. For example, if you divide the \(SST\) by \(n-1\) degrees of freedom, 
+      then it becomes the sample variance of the observed values \(Y_1 , Y_2 , ... , Y_n\). If you divide 
+      the \(SSE\) by \(n-2\) degrees of freedom, it becomes \(s^2\) which is an estimate of the variance 
+      of error \(\sigma^2\). For this reason, addressing the problems associated with the regression 
+      using the partition of the sum of squares is called the ANOVA of regression. Information required 
+      for ANOVA, such as calculated sum of squares and degrees of freedom, can be compiled in the ANOVA 
+      table as shown in Table 12.2.2.
+    </div>
+    <p>
+      <div class="textLeft">Table 12.2.2  Analysis of variance table for simple linear regression </div>
+    <p>
+      <table style="width:650px"> 
+        <tr> 
+          <th class="thGrey">Source</th>
+          <th class="thGrey">Sum of squares</th>
+          <th class="thGrey">Degrees of freedom</th>
+          <th class="thGrey">Mean Squares</th>
+          <th class="thGrey">F value</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Regression</td>
+          <td class="tdCenter">SSR</td>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">MSR =\(\frac{SSR}{1}\)</td>
+          <td class="tdCenter">\(F_0 = \frac{MSR}{MSE}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Error</td>
+          <td class="tdCenter">SSE</td>
+          <td class="tdCenter">\(n-2\)</td>
+          <td class="tdCenter">MSE = \(\frac{SSE}{n-2}\)</td>
+          <td class="tdCenter"></td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Total</td>
+          <td class="tdCenter">SST</td>
+          <td class="tdCenter">\(n-1\)</td>
+          <td class="tdCenter"></td>
+          <td class="tdCenter"></td>
+        </tr>
+      </table>
+      <p>
+
+    <div class="mainTable">
+      The sum of squares divided by its degrees of freedom is referred to as mean squares, and Table 12.2.2 
+      defines the regression mean squares (\(MSR\)) and error mean squares (\(MSE\)) respectively. As the
+      expression indicates, \(MSE\) is the same statistic as \(s^2\) which is the estimate of \(\sigma^2\). 
+      <p>
+      The \(F\) value given in the last column are used for testing hypothesis 
+      \(H_0: \beta = 0 ,\; H_1 : \beta \ne 0 \). If \(\beta\) is not 0, the \(F\) value can be expected 
+      to be large, because the assumed regression line is valid and the variation of \(Y\) is explained
+      in large part by the regression line. Therefore, we can reversely decide that \(\beta\) is not zero
+      if the calculated \(F\) ratio is large enough. If the assumptions about the error terms mentioned
+      in the population regression model are valid and if the error terms follows a normal distribution, 
+      the distribution of \(F\) value, when the null hypothesis is true, follows  distribution 
+      with 1 and \(n-2\) degrees of freedom. Therefore, if \(F_0 > F_{1,n-2; &alpha;}\), then we can reject
+      \(H_0 : \beta = 0\) . 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>\(F\) Test for simple linear regression:</b>
+      <p>
+         \(\quad \) Hypothesis: \(H_0 : \beta = 0, \;\; H_1 : \beta \ne = 0\) <br> 
+         \(\quad \) Decision rule:  If \({F_0} = \frac{MSR}{MSE} > F_{1, n-2; &alpha;}\), then reject \(H_0\)
+      <p>
+      (In  『eStat』, the \(p\)-value for this test is calculated and the decision can be made using this 
+      \(p\)-value. That is, if the \(p\)-value is less than the significance level, the null hypothesis 
+      \(H_0\) is rejected.)
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 12.2.3</b>
+         Prepare an ANOVA table for the example of advertising cost and test it using the 5% significance level.
+      <p>
+      <b>Answer</b>
+      <p>
+      Using the sum of squares calculated in [Example 12.2.2], the ANOVA table is prepared as follows:
+
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey">Source</th>
+          <th class="thGrey">Sum of squares</th>
+          <th class="thGrey">Degrees of freedom</th>
+          <th class="thGrey">Mean Squares</th>
+          <th class="thGrey">\(\small F\) value</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Regression</td>
+          <td class="tdCenter">378.42</td>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">MSR = \(\frac{378.42}{1}\)  = 378.42</td>
+          <td class="tdCenter">\(F_0 = \frac{378.42}{2.20}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Error</td>
+          <td class="tdCenter">17.62</td>
+          <td class="tdCenter">10-2</td>
+          <td class="tdCenter">MSE = \(\frac{17.62}{8} = 2.20\)</td>
+          <td class="tdCenter"></td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Total</td>
+          <td class="tdCenter">396.04</td>
+          <td class="tdCenter">10-1</td>
+          <td class="tdCenter"></td>
+          <td class="tdCenter"></td>
+        </tr>
+      </table>
+      <p>
+        Since the calculated \(\small F\) value of 172.0 is much greater than \(\small F_{1,8; 0.05} = 5.32 \), 
+        we reject the null hypothesis \(\small H_0 : \beta = 0\) with the significance level \(\alpha\) = 0.05. 
+      <p>
+        Click the [Correlation and Regression] button in the options window below the graph &lt;Figure 12.2.1&gt; 
+        to show the result of the ANOVA as shown in &lt;Figure 12.2.3&gt;.
+      <p>
+      <img class="imgFig600400" src="../../Figure/Fig120203.png">
+      <div class="figText">&lt;Figure 12.2.3&gt; Regression Analysis of Variance using 『eStat』</div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <b>Practice 12.2.3</b>
+        Using the data of [Practice 12.1.1] for the mid-term and final exam scores, prepare an ANOVA table 
+        and test it using the 5% significance level.
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+
+  <h4>12.2.5 Inference for Regression</h4>
+  <p>
+
+    <div class="mainTable">
+      One assumption of the error term \(\epsilon\) in the population regression model is that it follows 
+      a normal distribution with the mean of zero and variance of \(\sigma^2\). Under this assumption 
+      the regression coefficients and other parameters can be estimated and tested. Note that, under the 
+      assumption above, the regression model \(Y = \alpha + \beta X + \epsilon \) follows a normal 
+      distribution with the mean \(\alpha + \beta X \) and variance \(\sigma^2\).
+    </div>
+    <p>
+    <div class="textL20M20">
+      <b>1) Inference for the parameter</b>
+    </div>
+    <p>
+    <div class="textL20">
+      The parameter \(\beta\), which is the slope of the regression line, indicates the existence and extent 
+      of a linear relationship between the dependent and the independent variables. The inference for \(\beta\)
+      can be summarized as follows: Especially, the test for hypotheses \(H_0 : \beta = 0\) is used whether 
+      the independent variable describes the dependent variable significantly. The \(F\) test for the hypothesis
+      \(H_0 : \beta = 0\) described in the ANOVA of regression is theoretically the same as in the test below. 
+      『eStat』  calculates the \(p\)-value under the null hypothesis. If this \(p\)-value is less 
+      than the significance level, the null hypothesis is rejected and the regression line is said to be 
+      significant.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Inference for the parameter \(\; \beta\)</b>
+      <p>
+         Point estimate: \(\quad b = \frac {\sum_{i=1}^{n} (X_i - \overline X) (Y_i - \overline Y)} { \sum_{i=1}^{n} (X_i - \overline X)^2 } , \quad b \sim N(\beta, \frac{\sigma^2} {\sum_{i=1}^{n} (X_i - \overline X )^2 } ) \)  <p>
+         Standard error of estimate \(b\):   \(\quad SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n}n (X_i - \overline X)^2} } }\) <p>
+         Confidence interval of \(\; \beta\): \(\quad b \pm t_{n-2; &alpha;/2} \cdot SE(b)\) <p> 
+         Testing hypothesis:  <br>
+         \(\quad\)     Null hypothesis: \(\quad H_0 : \beta = \beta_0\)   <br>
+         \(\quad\)     Test statistic:  \(\quad t = \frac{b -  \beta_0 } { SE (b) }\)   <br>  
+         \(\quad\)     rejection region:  <br>
+         \(\qquad\)      if \(H_1 : \beta \lt \beta_0\), then \(\; t < - t_{n-2; &alpha;}\)  <br> 
+         \(\qquad\)      if \(H_1 : \beta \gt \beta_0\), then \(\; t > t_{n-2; &alpha;}\)  <br>
+         \(\qquad\)      if \(H_1 : \beta \ne \beta_0\), then \(\; |t| > t_{n-2; &alpha;/2}\)  <br>
+    </div>
+    <p>
+
+    <div class="textL20M20">
+      <b>2) Inference for the parameter \(\alpha\)</b>
+    </div>
+    <p>
+    <div class="textL20">
+      The inference for the parameter \(\alpha\), which is the intercept of the regression line, can be 
+      summarized as below. The parameter \(\alpha\) is not much of interest in most of the analysis, 
+      because it represents the average value of the response variable when an independent variable is 0.
+    </div>
+    <p>
+  
+    <div class="mainTableYellow">
+      <b>Inference for the parameter \(\; \alpha\)</b>
+      <p>
+         Point estimate: \(\quad a = \overline Y - b  \overline X , \quad a \sim N( \alpha, ( \frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) \cdot \sigma^2  )  \)  <p>
+         Standard error of estimate \(a\):   \(\quad SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) } \) <p>
+         Confidence interval of \(\; \alpha\): \(\quad a \pm t_{n-2; &alpha;/2} \cdot SE(a)\) <p> 
+         Testing hypothesis:  <br>
+         \(\quad\)     Null hypothesis: \(\quad H_0 : \alpha = \alpha_0\)   <br>
+         \(\quad\)     Test statistic: \(\quad t = \frac{a -  \alpha_0 } { SE (a) }\)   <br>  
+         \(\quad\)     rejection region:  <br>
+         \(\qquad\)      if \(H_1 : \alpha \lt \alpha_0\), then \(\; t < - t_{n-2; &alpha;}\)  <br> 
+         \(\qquad\)      if \(H_1 : \alpha \gt \alpha_0\), then \(\; t > t_{n-2; &alpha;}\)  <br>
+         \(\qquad\)      if \(H_1 : \alpha \ne \alpha_0\), then \(\; |t| > t_{n-2; &alpha;/2}\)  <br>
+    </div>
+    <p>
+
+    <div class="textL20M20">
+      <b>3) Inference for the average of \(Y\) </b>
+    </div>
+    <p>
+    <div class="textL20">
+      At any point in \(X = X_0\), the dependent variable \(Y\) has an average value 
+      \(\mu_{Y|x} = \alpha + \beta X_0\). Estimation of \(\mu_{Y|x}\) is also considered as an 
+      important parameter, because it means predicting the mean value of \(Y\) .
+    </div>
+    <p>
+   
+    <div class="mainTableYellow">
+      <b>Inference for the average value \(\; \mu_{Y|x} = \alpha + \beta X_0\)</b>
+      <p>
+         Point estimate: \(\quad {\hat Y}_0 = a + b X_0 \)  <p>
+         Standard error of estimate \({\hat Y}_0\):   \(\quad SE({\hat Y}_0) = s \cdot \sqrt { \frac{1}{n} + \frac { (X_0 - \overline X )^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } } \) <p>
+         Confidence interval of \(\; \mu_{Y|x}\): \(\quad {\hat Y}_0  \pm t_{n-2; &alpha;/2} \cdot SE ({\hat Y}_0  )\) <p> 
+    </div>
+    <p>
+
+    <div class="textL20">
+      The confidence interval formula of the mean value \(\mu_{Y|x}\) depends on the value of the \(X\) 
+      given the standard error of the estimate, so the width of the confidence interval depends on the value 
+      of the given \(X\). As the formula for the standard error shows, this width is the narrowest at a time
+      \(X = \overline X\), and if \(X\) is the farther away from \(\overline X\), the wider it becomes. 
+      If we calculate the confidence interval for the mean value of \(Y\) at each point of \(X\), and then 
+      if we connect the upper and lower limits to each other, we have a <b>confidence band</b> of the 
+      regression line on the above and below of the sample regression line. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 12.2.4</b>
+         Let's make inferences about each parameter with the result of a regression analysis of the previous 
+         data for the sales amount and advertising costs. Use 『eStat』 to check the test result and confidence band.
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) Inference for \(\beta\)
+      </div>
+      <p>
+      <div class="textL20">
+        The point estimate of \(\beta\) is \(b\) = 2.5033 and the standard error of \(b\) is as follows:
+        <p>
+        \(\quad \small SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n}n (X_i - \overline X)^2} } } = \frac{1.484}{\sqrt 60.4} = 0.1908\) 
+        <p>
+        Hence, the 95% confidence interval of \(\beta\) using \(t_{8; 0.025} \) = 3.833 is as follows: 
+        <p>
+        \(\quad \small 2.5033 \pm (3.833)(0.1908)\) <br>
+        \(\quad \small 2.5033 \pm 0.7313\) <br>
+        \(\quad\)  i.e. the interval (1.7720, 3.2346). 
+        <p>
+        The test statistic for the hypothesis  \(\small H_0 : \beta = 0\), is as follows:
+        <p>
+        \(\quad t= \frac{2.5033 - 0}{0.1908}\)  = 13.12
+        <p>
+        Since \(t_{8; 0.025} \) = 3.833, the null hypothesis \(\small H_0 : \beta = 0\) is rejected with 
+        the significance level of \(\alpha\) = 0.05. This result of two sided test can be obtained from 
+        the confidence interval. Since 95％ confidence interval (1.7720, 3.2346) do not include 0, 
+        the null hypothesis \(\small H_0 : \beta = 0\) can be rejected.
+      </div>
+      <p>
+
+      <div class="textL20M20">
+        2) Inference for \(\alpha\)
+      </div>
+      <p>
+      <div class="textL20">
+        The point estimate of \(\alpha\) is \(a\) = 29.672 and its standard error is as follows: 
+        <p>
+          \(\quad \small SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) } = 1.484 \cdot \sqrt { \frac{1}{10} + \frac{8.4^2}{60.4} } \) = 1.670
+        <p>
+        Since the value of \(t\) statistic is \(\frac{29.672}{1.67}\) = 17.1657 and \(t_{8; 0.025}\) = 3.833, 
+        the null hypothesis \(\small H_0 : \alpha = 0\) is also rejected with the significance level 
+        \(\alpha\) = 0.05. 
+      </div>
+      <p>
+
+      <div class="textL20M20">
+        3) Inference for the average value of \(\small Y\)
+      </div>
+      <p> 
+      <div class="textL20">
+        In 『eStat』 , the standard error of \(\small \hat Y\), which is the estimate of \(\mu_{Y|x}\), 
+        is calculated at each point of \(\small X\). For example, the point estimate of \(\small Y\) at \(\small X\) = 8 is
+        \(\small \hat Y\) = 49.699  and its standard error is 0.475. Hence, the 95% confidence interval of 
+        \(\mu_{Y|x}\) is as follows: 
+        <p>
+          \(\quad \small 49.699 \pm (3.833)(0.475)\) <br>     
+          \(\quad \small 49.699 \pm 1.821\)     <br>
+          \(\quad\) i.e., the inteval is (46.878, 50.520).    
+        <p>
+        We can calculate the confidence interval for other value of \(\small X\) in a similar way as follows: 
+        <p>
+          \(\quad \) At \(\small \;X = 4, \quad  39.685 \pm (3.833)(0.962)  \Rightarrow (33.998, 43.372)\) <br>   
+          \(\quad \) At \(\small \;X = 6, \quad  43.692 \pm (3.833)(0.656)  \Rightarrow (41.178, 46.206)\) <br>
+          \(\quad \) At \(\small \;X = 9, \quad  51.202 \pm (3.833)(0.483)  \Rightarrow (49.351, 53.053)\) <br>
+          \(\quad \) At \(\small \;X =12, \quad  59.712 \pm (3.833)(0.832)  \Rightarrow (56.063, 61.361)\) <br>
+        <p>
+        As we discussed, the confidence interval becomes wider as \(\small X\) is far from \(\small \overline X\). 
+        <p>
+        If you select the [Confidence Band] button from the options below the regression graph of &lt;Figure 
+        12.2.1&gt;, you can see the confidence band graph on the scatter plot together with regression line as 
+        &lt;Figure 12.2.4&gt;. If you click the [Correlation and Regression] button, the inference result of each 
+        parameter will appear in the Log Area as shown in &lt;Figure 12.2.5&gt;.
+      </div>
+      <p>
+ 
+      <img class="imgFig600400" src="../../Figure/Fig120204.svg">
+      <div class="figText">&lt;Figure 12.2.4&gt; Confidence band using 『eStat』 </div>
+      <p>
+      <img class="imgFig600400" src="../../Figure/Fig120205.png">
+      <div class="figText">&lt;Figure 12.2.5&gt; Testing hypothesis of regression coefficients</div>
+      <p>
+
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <b>Practice 12.2.4</b>
+        Using the data in [Practice 12.1.1] for the mid-term and final exam scores, make inferences 
+        about each parameter using 『eStat』 and draw the confidence band.
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+
+  <h4>12.2.6 Residual Analysis</h4>
+
+    <p>
+    <div class="mainTable">
+      The inference for each regression parameter in the previous section is all based on some assumptions 
+      about the error term \(\epsilon\) included in the population regression model. Therefore, the satisfaction 
+      of these assumptions is an important precondition for making a valid inference. However, 
+      because the error term is unobservable, the residuals as estimate of the error term are used to investigate 
+      the validity of these assumptions which are referred to as a residual analysis. 
+      <p>
+      First, let's look at the assumptions in the regression model.
+      <p>
+        \(\quad \) Assumptions in regression model <br>
+        \(\quad \;\; A_1\): The assumed model \(Y = \alpha + \beta X + \epsilon\) is correct. <br>
+        \(\quad \;\; A_2\): The expectation of error terms \(\epsilon_i\) is 0.  <br>
+        \(\quad \;\; A_3\): (Homoscedasticity) The variance of \(\epsilon_i\) is \(\sigma^2\) which is the same for all \(X\).  <br>
+        \(\quad \;\; A_4\): (Independence) Error terms \(\epsilon_i\) are independent. <br>
+        \(\quad \;\; A_5\): (Normality) Error terms \(\epsilon_i\)’s are normally distributed. <br> 
+      <p>
+      Review the references for the meaning of these assumptions. The validity of these assumptions is generally 
+      investigated using scatter plots of the residuals. The following scatter plots used primarily for each 
+      assumption:
+      <p>
+        \(\quad \)1) Residuals versus predicted values (i.e., \(e_i\) vs \(Y_i\))   : \(\quad A_3\)   <br>
+        \(\quad \)2) Residuals versus independent variables (i.e., \(e_i\) vs \(X_i\)) : \(\quad A_1\)  <br>
+        \(\quad \)3) Residuals versus observations (i.e., \(e_i\) vs \(i\))   :  \(\quad A_2 , A4\)  <br>
+      <p>
+      In the above scatter plots, if the residuals show no particular trend around zero, and appear randomly, 
+      then each assumption is valid.
+      <p>
+      The assumption that the error term \(\epsilon\) follows a normal distribution can be investigated 
+      by drawing a histogram of the residuals in case of a large amount of data to see if the distribution
+      is similar to the shape of the normal distribution. Another method is to use the quantile–quantile (Q-Q)
+      scatter plot of the residuals. In general, if the Q-Q scatter plot of the residuals forms a straight line,
+      it can be considered as a normal distribution.
+      <p>
+      Since residuals are also dependent on the unit of the dependent variable, standardized values of 
+      the residuals are used for consistent analysis of the residuals, which are called standardized residuals.
+      Both the scatter plots of the residuals described above and the Q-Q scatter plot are created using 
+      the standardized residuals. In particular, if the value of the standardized residuals is outside 
+      the \(\pm\)2, an anomaly value or an outlier value can be suspected.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 12.2.5</b>
+         Draw a scatter plot of residuals and a Q-Q scatter plot for the advertising cost example.
+      <p>
+      <b>Answer</b>
+      <p>
+      When you click the [Residual Plot] button from the options below the regression graph of &lt;Figure 12.2.1&gt;, 
+      the scatter plot of the standardized residuals and predicted values are appeared as shown in &lt;Figure 12.2.6&gt;. 
+      If you click [Residual Q-Q Plot] button, &lt;Figure 12.2.7&gt; is appeared. Although the scatter plot of 
+      the residuals has no significant pattern, the Q-Q plot deviates much from the straight line and so, the 
+      normality of the error term is somewhat questionable. In such cases, the values of the response variable 
+      need to be re-analyzed by taking logarithmic or square root transformation.
+      <p>
+      <img class="imgFig600400" src="../../Figure/Fig120206.svg">
+      <div class="figText">&lt;Figure 12.2.6&gt;  Residual plot</div>
+      <p>
+      <p>
+      <img class="imgFig600400" src="../../Figure/Fig120207.svg">
+      <div class="figText">&lt;Figure 12.2.7&gt;  Residual Q-Q Plot  </div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <b>Practice 12.2.5</b>
+        Using the data in [Practice 12.1.1] for the mid-term and final exam scores, draw a scatter plot 
+        of the residuals and a Q-Q scatter plot.
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      In  『eStatU』 , it is possible to do experiments on how much a regression line is affected by an extreme point 
+      (&lt;Figure 12.2.8&gt;). A point can be created by clicking the mouse on the screen in the link below. If you 
+      create multiple dots, you can see how much the regression line changes each time. You can observe how sensitive 
+      the correlation coefficient and the coefficient of determination are as you move a point along with the mouse.
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU320_RegressionSim.svg" onclick="window.open(addrStr[80])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../../Figure/Fig120208.png">
+            <div class="figText">&lt;Figure 12.2.8&gt; Simulation experiment of regression analysis at 『eStatU』</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+  <div class="mainTablePink">
+    <h4>Multiple Choice Exercise</h4>
+    <p style="color:blue">*** Choose one answer and click [Submit] button
+
+    <h6 class="textL30M30">12.15 Find the regression line between \(x\) and \(y\) using the following data.</h6>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th>\(x\)</th><th>\(y\)</th>
+        </tr>
+        <tr> <td  class="tdCenter">1</td>  <td  class="tdCenter">1</td> </tr>
+        <tr> <td  class="tdCenter">2</td>  <td  class="tdCenter">4</td> </tr>
+        <tr> <td  class="tdCenter">3</td>  <td  class="tdCenter">7</td> </tr>
+        <tr> <td  class="tdCenter">4</td>  <td  class="tdCenter">10</td> </tr>
+        <tr> <td  class="tdCenter">5</td>  <td  class="tdCenter">13</td> </tr>
+      </table>
+      <p>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> \(y-7 = 3(x-3)\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(y-7 = 2(x-3)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(y-3 = 3(x-7)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(y-3 = 2(x-7)\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+  
+    <h6 class="textL30M30">12.16  If we know the sample correlation coefficient \(r\) 
+      and the standard deviations of \(X\) and \(Y\), \(s_x\)  and \(s_y\)  respectively, 
+      what is the regression line equation? </h6>
+    <form name="Q16">
+      <label><input type="radio" name="item" value="1"> \(y = \overline y +\frac{s_y}{s_x} r(x-\overline x)\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(y = \overline x +\frac{s_y}{s_x} r(y-\overline y)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(y = \overline y +\frac{s_x}{s_y} r(x-\overline x)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(y = \overline x +\frac{s_x}{s_y} r(y-\overline y)\)</label><br>
+     <p>
+      <input type="button" value="Submit" onClick="radio(12,16,Q16)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ16">
+    </form>
+   
+    <h6 class="textL30M30">12.17 If the sample correlation coefficient of two random variables 
+      \(x\) and \(y\) is \(r\), the sample means are \(\overline x = 10, \overline y = 14\), 
+      and the sample standard deviations are \(s_x = 2, s_y = 3\), what is the regression line 
+      of \(y\) on \(x\)? </h6>
+    <form name="Q17">
+      <label><input type="radio" name="item" value="1"> \(y = \frac{3}{4} +\frac{13}{2}\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(y = \frac{3}{4} -\frac{13}{4}\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(y = \frac{3}{x} -1\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(y = \frac{3}{4}x +1\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,17,Q17)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ17">
+    </form>
+  
+    <h6 class="textL30M30">12.18 Find the regression coefficient  of the regression line  using the following data.</h6>
+    <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th></th><th>sample mean</th><th>sample standard deviation</th><th>correlation coefficient</th>
+        </tr>
+        <tr> <td  class="tdCenter">\(X\)</td>  <td  class="tdCenter">40</td> <td  class="tdCenter">4</td> <td  class="tdCenter">0.75</td></tr>
+        <tr> <td  class="tdCenter">\(Y\)</td>  <td  class="tdCenter">30</td> <td  class="tdCenter">3</td> </tr>
+      </table>
+      <p>
+    <form name="Q18">
+      <label><input type="radio" name="item" value="1"> 0.56</label><br>
+      <label><input type="radio" name="item" value="2"> 0.07</label><br>
+      <label><input type="radio" name="item" value="3"> 1.00</label><br>
+      <label><input type="radio" name="item" value="4"> 1.53</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,28,Q18)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ18">
+    </form>
+  
+    <h6 class="textL30M30">12.19 Which one of the following statements is true about 
+        the regression line of two variables \(\small X\) and \(\small Y\), the regression line of
+        \(\small Y\) on \(\small X\) and the regression line of \(\small X\) on \(\small Y\)? </h6>
+    <form name="Q19">
+      <label><input type="radio" name="item" value="1"> The two regression lines are always consistent.</label><br>
+      <label><input type="radio" name="item" value="2"> The two regression lines are always parallel.</label><br>
+      <label><input type="radio" name="item" value="3"> The two regression lines meet at one point (\(\small \overline X, \overline Y\))  and do not match.</label><br>
+      <label><input type="radio" name="item" value="4"> The two regression lines are always perpendicular.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,19,Q19)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ19">
+    </form>
+  
+    <h6 class="textL30M30">12.20  Find the regression coefficient \(b\) of the regression line \(\small Y = a + bX\) using the following data.</h6>
+        <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th></th><th>sample mean</th><th>sample standard deviation</th><th>correlation coefficient</th>
+        </tr>
+        <tr> <td  class="tdCenter">\(\small X\)</td>  <td  class="tdCenter">12</td> <td  class="tdCenter">3</td> <td  class="tdCenter">0.6</td></tr>
+        <tr> <td  class="tdCenter">\(\small Y\)</td>  <td  class="tdCenter">13</td> <td  class="tdCenter">4</td> </tr>
+      </table>
+      <p>
+    <form name="Q20">
+      <label><input type="radio" name="item" value="1"> 0.6</label><br>
+      <label><input type="radio" name="item" value="2"> 0.7</label><br>
+      <label><input type="radio" name="item" value="3"> 0.8</label><br>
+      <label><input type="radio" name="item" value="4"> 0.9</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,20,Q20)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ20">
+    </form>
+  
+    <h6 class="textL30M30">12.21 Which one is a wrong explanation about the regression coefficient \(b\)
+      and the sample correlation coefficient \(r\)? </h6>
+    <form name="Q21">
+      <label><input type="radio" name="item" value="1"> If \(b=0, r=0\) (no correlation)</label><br>
+      <label><input type="radio" name="item" value="2"> If \(b>0, r>0\) (positive correlation)</label><br>
+      <label><input type="radio" name="item" value="3"> If \(b=1, r=1\) (perfect correlation)</label><br>
+      <label><input type="radio" name="item" value="4"> If \(b<0, r<0\) (negative correlation)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,21,Q21)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ21">
+    </form>
+  
+    <h6 class="textL30M30">12.22 If a regression line is \(\small Y = 4 + 0.4X\) and the sample 
+        standard deviations of \(\small X\) and \(\small Y\) are 4, 2 respectively, what is the value of 
+        the sample correlation coefficient \(r\)?</h6>
+    <form name="Q22">
+      <label><input type="radio" name="item" value="1"> 1</label><br>
+      <label><input type="radio" name="item" value="2"> 0.8</label><br>
+      <label><input type="radio" name="item" value="3"> 0.5</label><br>
+      <label><input type="radio" name="item" value="4"> 0.4</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,22,Q22)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ22">
+    </form>
+  </div>
+
+  <script>
+    for (var i=15; i < ans[12][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
+  </script>
+  <p>
+
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(121)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(128)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

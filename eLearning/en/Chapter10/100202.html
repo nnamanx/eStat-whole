@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 10</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+  <!--***********************************************************************-->
+  <h2>Chapter 10. Nonparametric Testing Hypothesis</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(103)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(105)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+  <p>
+  <h4>10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</h4>
+  <p>
+  <h6>
+      <a href="100202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/tCXKHkEJalU" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+    
+    <div class="mainTable">
+      Section 8.1.2 discussed the testing hypothesis for two population means using paired samples. Paired 
+      samples are used when it is difficult to extract samples independently from two populations, or if independently 
+      extracted, the characteristics of each sample object are so different that the resulting analysis is meaningless. 
+      If two populations are normally distributed, the t-test was applied for the difference data of the paired samples 
+      as described in Section 8.1.2. However, if the normality assumption of two populations can not be satisfied, the 
+      Wilcoxon signed rank sum test in Section 10.1.2, which is a nonparametric test, can be applied to the difference 
+      data of the paired samples. 
+      <p>
+      In case of the paired samples, first calculate the differences (\(d_i =  x_{i1} -x_{i2}\)) for each paired 
+      sample as shown in Table 10.2.6. For the data of differences, we examine the normality to check whether 
+      the parametric test can be applicable or not. If it is not applicable, we apply the Wilcoxon signed rank 
+      sum test on the differences. 
+    </div>
+    <p>
+
+      <div class="textLeft">Table 10.2.6  Data of differences for paired samples</div>
+    <p>
+      <table style="width:650px"> 
+        <tr> 
+          <th class="thGrey">Pair number</th>
+          <th class="thGrey">Sample of population 1 <br>(\(x_{i1}\))</th>
+          <th class="thGrey">Sample of population 2 <br>(\(x_{i2}\))</th>
+          <th class="thGrey">Difference <br>(\(d_{i} = x_{i1} - x_{i2}\))</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">(\(x_{11}\))</td>
+          <td class="tdCenter">(\(x_{12}\))</td>
+          <td class="tdCenter">(\(d_{1} = x_{11} - x_{12}\))</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">2</td>
+          <td class="tdCenter">(\(x_{21}\))</td>
+          <td class="tdCenter">(\(x_{22}\))</td>
+          <td class="tdCenter">(\(d_{2} = x_{21} - x_{22}\))</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">n</td>
+          <td class="tdCenter">(\(x_{n1}\))</td>
+          <td class="tdCenter">(\(x_{n2}\))</td>
+          <td class="tdCenter">(\(d_{n} = x_{n1} - x_{n2}\))</td>
+        </tr>
+      </table>
+      <p>
+
+    <div class="mainTable">
+      Let's take a look at the next example.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 10.2.2</b>
+         The following is the survey result of eight samples from young couples. The husband’s age and wife’s age of each couple are recorded. 
+       <p>
+         <div class="textLeft">[(28, 28) (30, 29) (34, 31) (29, 32) (28, 29) (31, 33) (39, 35) (34, 29)</div>
+         <div class="textLeft">[Ex] ⇨ eBook ⇨ EX100202_AgeOfCouple.csv</div>
+      <p>
+      <div class="textL20M20">
+        1) Calculate data of differences in each pair and draw their histogram to check whether a parametric test is applicable or not. 
+      </div>
+      <div class="textL20M20">
+        2) Apply the Wilcoxon signed rank sum test to see whether the husband’s age is greater than the wife’s age with the significance level of 0.05.
+      </div>
+      <div class="textL20M20">
+        3) Check the result of the above signed rank sum test using 『eStat』.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) The data of age differences between husband and wife are as follows:
+      </div>
+      <p>
+        <div class="textLeft">Table 10.2.7  Data of age differences between husband and wife</div>
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey">Pair number</th>
+          <th class="thGrey">Husband Age<br>(\(x_{i1}\))</th>
+          <th class="thGrey">Wife Age<br>(\(x_{i2}\))</th>
+          <th class="thGrey">Difference <br>(\(d_{i} = x_{i1} - x_{i2}\))</th>
+        </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter">28</td> <td class="tdCenter">28</td> <td class="tdCenter">0</td> </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter">30</td> <td class="tdCenter">29</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">3</td> <td class="tdCenter">34</td> <td class="tdCenter">31</td> <td class="tdCenter">3</td> </tr>
+        <tr> <td class="tdCenter">4</td> <td class="tdCenter">29</td> <td class="tdCenter">32</td> <td class="tdCenter">-3</td> </tr>
+        <tr> <td class="tdCenter">5</td> <td class="tdCenter">28</td> <td class="tdCenter">29</td> <td class="tdCenter">-1</td> </tr>
+        <tr> <td class="tdCenter">6</td> <td class="tdCenter">31</td> <td class="tdCenter">33</td> <td class="tdCenter">-2</td> </tr>
+        <tr> <td class="tdCenter">7</td> <td class="tdCenter">39</td> <td class="tdCenter">35</td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">8</td> <td class="tdCenter">34</td> <td class="tdCenter">29</td> <td class="tdCenter">5</td> </tr>
+      </table>
+      <p>
+
+      <div class="textL20">
+        The histogram for the data of differences by using『eStat』 (the testing hypothesis for 
+        a population mean) is as in &lt;Figure 10.2.8&gt;. If you look at the histogram, 
+        it is not sufficient evidence that the data of differences follow a normal distribution, 
+        because the number of data is small. In such a case, applying the parametric hypothesis test 
+        may lead to errors. An appropriate nonparametric method for this problem is the Wilcoxon 
+        signed rank sum test on the data of differences.
+      </div>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX100202.svg" onclick="window.open(addrStr[32])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../../Figure/Fig100208.svg">
+            <div class="figText">&lt;Figure 10.2.8&gt; Histogram of age difference</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+
+      <div class="textL20M20">
+        2) The  hypothesis to test is that the population median of the husband’s age (\(\small M_1\)) is the same 
+           as the population median of the wife’s age (\(\small M_2\)) or not as follows: 
+      </div>
+      
+      <div class="textL20">
+        <p>
+        \(\quad \small \quad H_0 : M_1 = M_2, \quad \quad H_1 : M_1 \ne M_2 \)
+        <p>
+        Since it is a paired sample, the hypothesis can be written whether the population median of differences 
+        (\(\small M_d = M_1 - M_2\)) is equal to 0 or not as follows: 
+        <p>
+        \(\quad \small \quad H_0 : M_d = 0, \quad \quad H_1 : M_d \ne 0 \)
+        <p>
+      </div>
+      <p>
+
+      <div class="textL20">
+        In order to apply the signed rank sum test on the data of differences, we count the number of 
+        differences which is greater than 0 (denote as + sign) or not (denote as – sign) and assign ranks
+        on |difference – 0|. Then calculate the sum of ranks with + sign and the sum of ranks with – sign. 
+        If the difference data is 0, omit the data. If there are ties on the difference data, assign 
+        the average rank.
+      </div>
+      <p>
+
+      <table style="width:600px"> 
+        <tr> 
+          <td class="tdLeft">Difference data</td>
+          <td class="tdCenter"> 1</td>
+          <td class="tdCenter"> 3</td>
+          <td class="tdCenter">-3</td>
+          <td class="tdCenter">-1</td>
+          <td class="tdCenter">-2</td>
+          <td class="tdCenter"> 4</td>
+          <td class="tdCenter"> 5</td>
+        </tr>
+        <tr> 
+          <td class="tdLeft">Sign data</td>
+          <td class="tdCenter" style="color:red">+</td>
+          <td class="tdCenter" style="color:red">+</td>
+          <td class="tdCenter">-</td>
+          <td class="tdCenter">-</td>
+          <td class="tdCenter">-</td>
+          <td class="tdCenter" style="color:red">+</td>
+          <td class="tdCenter" style="color:red">+</td>
+        </tr>
+        <tr> 
+          <td class="tdLeft">| data – 0 |</td>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">2</td>
+          <td class="tdCenter">4</td>
+          <td class="tdCenter">5</td>
+        </tr>
+        <tr> 
+          <td class="tdLeft">Rank of | data – 0 |</td>
+          <td class="tdCenter" style="color:red">1.5</td>
+          <td class="tdCenter" style="color:red">4.5</td>
+          <td class="tdCenter">4.5</td>
+          <td class="tdCenter">1.5</td>
+          <td class="tdCenter">3  </td>
+          <td class="tdCenter" style="color:red">6  </td>
+          <td class="tdCenter" style="color:red">7  </td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Rank sum of ‘+’ sign ()</td>
+          <td colspan="7" style="color:red">\(R_{+}\) = 1.5 + 4.5               +  6  + 7 = 19</td>
+        </tr>
+      </table>
+      <p>
+
+      <div class="textL20">
+        In『eStatU』, the distribution of the Wilcoxon signed rank sum when  is shown in &lt;Figure 10.2.9&gt; 
+        and Table 10.2.8.
+      </div>
+      <p>
+      <div class="textLeft">Table 10.2.8  Wilcoxon signed rank sum distribution when \(n = 7\)</div>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey">Wilcoxon Signed Rank Sum Distribution</th>
+          <th class="thGrey">\(n\) = 7</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(x\)</td>
+          <td class="tdCenter">\(P(X = x)\)</td>
+          <td class="tdCenter">\(P(X \le x)\)</td>
+          <td class="tdCenter">\(P(X \ge x)\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">0</td>
+          <td class="tdCenter">0.0078</td>
+          <td class="tdCenter">0.0078</td>
+          <td class="tdCenter">1.0000</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">0.0078</td>
+          <td class="tdCenter">0.0156</td>
+          <td class="tdCenter">0.9922</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">2</td>
+          <td class="tdCenter">0.0078</td>
+          <td class="tdCenter">0.0234</td>
+          <td class="tdCenter">0.9844</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">0.0156</td>
+          <td class="tdCenter">0.0391</td>
+          <td class="tdCenter">0.9766</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+        </tr>                  
+        <tr>
+          <td class="tdCenter">25</td>
+          <td class="tdCenter">0.0156</td>
+          <td class="tdCenter">0.9766</td>
+          <td class="tdCenter">0.0391</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">26</td>
+          <td class="tdCenter">0.0078</td>
+          <td class="tdCenter">0.9844</td>
+          <td class="tdCenter">0.0234</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">27</td>
+          <td class="tdCenter">0.0078</td>
+          <td class="tdCenter">0.9922</td>
+          <td class="tdCenter">0.0156</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">28</td>
+          <td class="tdCenter">0.0078</td>
+          <td class="tdCenter">1.0000</td>
+          <td class="tdCenter">0.0078</td>
+        </tr>                  
+      </table>
+      <p>
+
+      <div class="textL20">
+        Since it is a two-sided test with the significance level of 5%, if a 2.5 percentile is found 
+        at both ends, \(\small P(X \le 2) = 0.0234, P(X \ge 26) = 0.0234 \). Since it is a discrete distribution, 
+        there is no exact value of the 2.5 percentile. Therefore, the decision rule is as follows:
+        <p>
+        <div class="textL30">
+          \(\quad \)If \(\small R_+ \le 2.5 \) or \(R_+ \ge 25.5\), reject \(\small H_0\)
+        </div>
+        <p> 
+        Since \(\small R_+ \) = 19 in this problem, we can not reject the null hypothesis \(\small H_0\) 
+        and conclude that the husband’s age and the wife’s age are the same.
+      </div>
+      <p>
+
+      <div class="textL20M20">
+        3) Enter the data as shown in &lt;Figure 10.2.9&gt; in『eStat』and click the icon  which is      
+           the test for a population mean. If you select the variable ‘Difference’ as the analysis 
+           variable,  a dot graph with the 95% confidence interval for the population mean difference will
+            appear. 
+      </div>
+      <p>
+      <div class="textL20">
+        If you enter 0 for testing value in the hypothesis option and click the [Execute] button, 
+        you will see the test result as in&lt;Figure 10.2.10&gt; and &lt;Figure 10.2.11&gt;. 
+        Two critical lines for values containing 2.5 percentile from both sides are shown here. 
+        For a discrete distribution, the choice of the final decision rule should be determined by the analyst.
+      </div>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX100202.svg" onclick="window.open(addrStr[32])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../../Figure/Fig100209.png">
+            <div class="figText">&lt;Figure 10.2.9&gt; Data difference </div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig100210.svg">
+        <div class="figText">&lt;Figure 10.2.10&gt; 『eStat』Signed rank sum test</div>
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig100211.png">
+        <div class="figText">&lt;Figure 10.2.11&gt; Result of Wilcoxon signed rank sum test</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      The Wilcoxon signed rank test for the paired samples is to test whether the population median of the 
+      differences between two populations, \(M_d\), is zero or not. If we denote the paired samples as 
+      \((x_1 , y_1 ), (x_2 , y_2 ) , ...  , (x_n , y_n )\), the Wilcoxon signed rank sum test calculate 
+      the difference \(d_i = x_i - y_i\) first and assign ranks on \(|d_i|\). The sum of ranks of \(|d_i|\)
+      which has + sign of \(d_i\), \(R_+\), is used as the test statistic. 『eStatU』 provides the distribution
+      of \(R_+\), denoted as \(w_{+}(n)\), up to \(n\) = 22. \(w_{+}(n)_{&alpha;}\) refers to the 
+      right-hand 100 \(\times &alpha;\) percentile of this distribution  which may not have an accurate 
+      percentile value, because it is a discrete distribution. In this case the average of two values near 
+      \(w_{+}(n)_{&alpha;}\) is used approximately. Table 10.2.9 summarizes the decision rule of the 
+      Wilcoxon signed rank sum test for paired samples by the type of hypothesis.
+    </div>
+    <p>
+      <div class="textLeft">Table 10.2.9  Wilcoxon signed rank sum test for paired samples</div>
+    <p>
+      <table style="width:650px"> 
+        <tr> 
+          <th class="thGrey" style="width:120px">Type of Hypothesis</th>
+          <th class="thGrey" >Decision Rule<br>Test Statistic \(R_{+}\)= 'Sum of ranks on \(|d_{i} |\) with + sign </th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : M_d = 0 \)<br>\(\quad\,\, H_1 : M_d > 0 \)</td>
+          <td class="tdLeft">If \( R_{+}  > w_{+}(n)_{&alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : M_d = 0 \)<br>\(\quad\,\, H_1 : M_d < 0 \)</td>
+          <td class="tdLeft">If \( R_{+}  < w_{+}(n)_{1-&alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : M_d = 0 \)<br>\(\quad\,\, H_1 : M_d \ne 0 \)</td>
+          <td class="tdLeft">If \( R_{+}  < w_{+}(n)_{1-&alpha;/2} \quad or\quad R_{+}  > w_{+}(n)_{&alpha;/2}   \), then reject \( H_0 \) </td>
+        </tr>
+      </table>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>☞ If there is 0 on the differences of paired samples?</b>
+      <p>
+      If there is 0 on the differences of paired samples, the data is omitted for further analysis. 
+      That is, \(n\) is decreased.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/PR100202.svg" onclick="window.open(addrStr[70])">
+          </td>
+          <td>
+            <b>Practice 10.2.2</b>
+            An oil company has developed a gasoline additive that will improve the fuel mileage of gasoline. 
+            We used 8 pairs of cars to compare the fuel mileage to see if it is actually improved. 
+            Each pair of cars has the same details as its structure, model, engine size, and other relationship 
+            characteristics. When driving the test course using gasoline, one of the pair selected randomly 
+            and added additives, the other of the pair was driving the same course using gasoline without additives. 
+            The following table shows the km per liter for each of pairs. 
+            <p>
+            <table style="width:400px"> 
+              <tr> 
+                <th class="thGrey">Pair number</th>
+                <th class="thGrey">Additive<br>(\(x_{i1}\))</th>
+                <th class="thGrey">No Additive<br>(\(x_{i2}\))</th>
+                <th class="thGrey">Difference <br>(\(d_{i} = x_{i1} - x_{i2}\))</th>
+              </tr>
+              <tr> <td class="tdCenter">1</td> <td class="tdCenter">17.1</td> <td class="tdCenter">16.3</td> <td class="tdCenter">0.8</td> </tr>
+              <tr> <td class="tdCenter">2</td> <td class="tdCenter">12.7</td> <td class="tdCenter">11.6</td> <td class="tdCenter">1.1</td> </tr>
+              <tr> <td class="tdCenter">3</td> <td class="tdCenter">11.6</td> <td class="tdCenter">11.2</td> <td class="tdCenter">0.4</td> </tr>
+              <tr> <td class="tdCenter">4</td> <td class="tdCenter">15.8</td> <td class="tdCenter">14.9</td> <td class="tdCenter">0.9</td> </tr>
+              <tr> <td class="tdCenter">5</td> <td class="tdCenter">14.0</td> <td class="tdCenter">12.8</td> <td class="tdCenter">1.2</td> </tr>
+              <tr> <td class="tdCenter">6</td> <td class="tdCenter">17.8</td> <td class="tdCenter">17.1</td> <td class="tdCenter">0.7</td> </tr>
+              <tr> <td class="tdCenter">7</td> <td class="tdCenter">14.7</td> <td class="tdCenter">13.4</td> <td class="tdCenter">1.3</td> </tr>
+              <tr> <td class="tdCenter">8</td> <td class="tdCenter">16.3</td> <td class="tdCenter">15.4</td> <td class="tdCenter">0.9</td> </tr>
+              <p>
+              <div class="textLeft">[Ex] ⇨ eBook ⇨ PR100202_DifferenceOfMileage.csv</div>
+              <p>
+              Apply a nonparametric test to check whether the additive increase fuel mileage. Use the significance level of 0.05.
+            </table>
+      </table>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      If the sample size of the paired sample is large, use the normal distribution approximation formula shown in Table 10.1.6.
+    </div>
+    <p>
+
+  <div class="mainTablePink">
+    <h4>Multiple Choice Exercise</h4>
+    <p style="color:blue">*** Choose one answer and click [Submit] button
+
+    <h6 class="textL30M30">10.6 Which of the following nonparametric tests is for testing the location parameters of two populations?<h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> Wilcoxon signed rank sum test</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon rank sum test</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis test</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman test</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">10.7 What is the test statistic used for testing two location parameters of two populations using a nonparametric test?</h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> (number of + signs)</label><br>
+      <label><input type="radio" name="item" value="2"> sum of ranks in population 2</label><br>
+      <label><input type="radio" name="item" value="3"> (number of - signs)</label><br>
+      <label><input type="radio" name="item" value="4"> (sum of ranks in population 1) + (sum of ranks in population 2)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+  </div>
+
+  <script>
+    for (var i=1; i < ans[10][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
+  </script>
+  <p>
+
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(103)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(105)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 5</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+	   <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+	   <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+           <li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+	   <li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+           <li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+           <li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+	   <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+           <li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+           <li><a href="../chapter05/0504021.html">&nbsp;&nbsp;5.4.2 Exponential Distribution </a></li>
+	   <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <h2>Chapter 5. Probability Distribution</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(52)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(54)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+  <!--**********************************************************************************************************-->
+  <h3>5.3 Discrete Random Variable</h3>
+  <p>
+  <h6>
+      <a href="0503.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/DDISKMo7Iho" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      <p>In case of statistical experiments which are frequently observed around us, there are many similar probability calculations. For example, the problem of tossing coins several times to see how many times the head comes out is similar to counting how many defective products are made from a product line. This problem is also similar to counting the number of voters who support a particular candidate for the president. In this section, the probability calculations as the previous examples, in general the discrete sample spaces are discussed.
+      <p>Consider a statistical experiment in which a coin is thrown repeatedly two times. If the coin is ideal, the sample space for this experiment is {'Tail-Tail', 'Tail-Head', 'Head-Tail', 'Head-Head’}. The probability of an event in which each element of the sample space is produced is 1/4 by the classical definition. In most cases, the fact that we are interested in this example will be counting the number of heads or tails. If \(\small X\) is defined as 'the number of heads' in this experiment, the possible value of \(\small X\) can be 0, 1, or 2 and we are interested in calculating probabilities that \(\small X\)=0, \(\small X\)=1 or \(\small X\)=2. As such, a function that corresponds to one real number between [0,1] for each element of the sample space is called a random variable (see Table 5.3.1).
+    </div>
+
+    <p class="textLeft">Table 5.3.1 Random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice' 
+    <table style="width:600px"> 
+        <tr>
+          <th style="width:300px">Sample space</th>
+          <th style="width:300px">\(\small X\) = 'Number of Heads’</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Tail-Tail<br>Tail-Head<br>Head-Tail<br>Head-Head</td>
+          <td class="tdCenter">0<br>1<br>1<br>2</td>
+        </tr>
+    </table>
+    <p>
+
+    <div class="mainTable">
+      When possible values of a random variable are finite or countably infinite, it is called a discrete random variable. If possible values of a random variable are uncountably infinite, it is called a continuous random variable and discussed in more detail in Section 5.4.
+    </div>
+    <p>
+    <div class="mainTableYellow">
+      <b>Random Variable</b>
+      <p>
+      <b>Random variable</b> is a function from the sample space to a real number in [0, 1]. 
+      <p>
+      When possible values of a random variable are finite or countably infinite, it is called a <b>discrete random variable</b>. 
+      If possible values of a random variable are uncountably infinite, it is called a <b>continuous random variable</b>.
+    </div>
+    <p>
+
+    <div class="mainTable">
+      The probability that the random variable \(\small X\) defined as in Table 5.3.1 will be zero, denoted as \(\small P(X=0)\), is 1/4, 
+      because it is the probability of an event {Tail-Tail}. The probability that \(\small X\) being 1, \(\small P(X=1)\), is 2/4, because, P({Tail-Head, Head-Tail}) is 2/4. Also, the probability that \(\small X\) being 2, \(\small P(X=2)\), is 1/4 because P({Head-Head}) is 1/4. The probabilities for each value of the random variable \(\small X\) can be summarized as shown in Table 5.3.2, and it is called a probability distribution function of \(\small X\) usually denoted as f(x). &lt;Figure 5.3.1&gt; is a graph of f(x).
+    </div>
+    <p>
+
+    <p class="textLeft">Table 5.3.2  Probability distribution function of \(\small X\) = 'Number of Heads’ when tossing a coin twice' 
+ 
+    <table style="width:600px"> 
+        <tr>
+          <th style="width:300px; text-align:left">1) Table style of the probability distribution function </th>
+          <th style="width:300px; text-align:left">2) Function style of the probability distribution function </th>
+        </tr>
+        <tr>
+          <td class="tdCenter">
+            <p>
+            <table style="width:200px"> 
+              <tr>
+                <td class="tdCenter" style="width:100px">\(\small X = x\)</td>
+                <td class="tdCenter" style="width:100px">\(\small P(X \le x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2</td>
+                <td class="tdCenter">1/4<br>2/4<br>1/4</td>
+              </tr>
+            </table>
+          </td>
+          <td class="tdCenter">
+            $$ \small
+              \begin{align}
+                f(x) &= 1/4, \qquad \text{if } x = 0 \\
+                     &= 2/4, \qquad \text{if } x = 1 \\
+                     &= 1/4, \qquad \text{if } x = 2 \\
+              \end{align}
+            $$
+          </td>
+        </tr>
+    </table>
+
+    <p>
+      <img class="imgFig400300" src="../../Figure/Fig050301.png">
+      <div class="figText">&lt;Figure 5.3.1&gt; Probability distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice'</div>
+    <p>        
+
+    <div class="mainTable">
+      The cumulative probability of \(\small P(X \le x)\) as the value of random variable \(\small X\) increases is referred to as a cumulative distribution function and denoted as F(x). In the previous example, the cumulative distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice' is shown as in Table 5.3.3.
+    </div>
+    <p>
+
+    <p class="textLeft">Table 5.3.3  Cumulative distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice'</p>
+    <table style="width:600px"> 
+        <tr>
+          <th style="width:300px">1) Table style of the cumulative distribution function </td>
+          <th style="width:300px">2) Function style of the cumulative distribution function </td>
+        </tr>
+        <tr>
+          <td class="tdCenter">
+            <p>
+            <table style="width:200px"> 
+              <tr>
+                <td class="tdCenter" style="width:100px">\(\small X = x\)</td>
+                <td class="tdCenter" style="width:100px">\(\small P(X \le x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2</td>
+                <td class="tdCenter">1/4<br>3/4<br>4/4=1</td>
+              </tr>
+            </table>
+          </td>
+          <td class="tdCenter">
+            $$ 
+              \begin{align}
+                F(x) &= 0,   \qquad\quad \text{if } x < 0 \\
+                     &= 1/4, \qquad \text{if } 0 \le x < 1 \\
+                     &= 3/4, \qquad \text{if } 1 \le x < 2 \\
+                     &= 1,   \qquad\quad \text{if } 2 \le x
+              \end{align}
+            $$
+          </td>
+        </tr>
+    </table>
+    <p>
+      <img class="imgFig400300" src="../../Figure/Fig050302.png">
+      <div class="figText">&lt;Figure 5.3.2&gt; Cumulative distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice'</div>
+    <p>        
+ 
+    <div class="mainTableYellow">
+      <b>Probability Distribution Function</b> 
+      <p>If probability for each value of the random variable \(X\) is summarized as a function, 
+         it is called a <b>probability distribution function</b> of \(X\) and usually denoted as f(x).
+      <p>The cumulative probability of \(P(X \le x)\) as the value of random variable \(X\) increases 
+         is referred to as a <b>cumulative distribution function</b> and denoted as F(x).
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.1</b>
+      There are 200 families living in a village. The number of visits to hospitals by each household over the past year is as follows. Obtain the probability distribution function and the cumulative distribution function of the random variable \(\small X\) = 'hospital visit count'.
+      <p>
+      <table style="width:350px"> 
+        <tr>
+          <td class="tdCenter" style="width:100px">Hospital visit</td>
+          <td class="tdCenter" style="width:50px">0</td>
+          <td class="tdCenter" style="width:50px">1</td>
+          <td class="tdCenter" style="width:50px">2</td>
+          <td class="tdCenter" style="width:50px">3</td>
+          <td class="tdCenter" style="width:50px">4</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Houshold</td>
+          <td class="tdCenter">74</td>
+          <td class="tdCenter">80</td>
+          <td class="tdCenter">30</td>
+          <td class="tdCenter">10</td>
+          <td class="tdCenter">6</td>
+        </tr>
+      </table>
+
+      <p>
+      <b>Answer</b>
+      <p>
+      1) Probability distribution function 
+      <p>
+            <table style="width:300px"> 
+              <tr>
+                <th class="thGrey" style="width:150px">\(\small X = x\)</td>
+                <th class="thGrey" style="width:150px">\(\small P(X = x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2<br>3<br>4</td>
+                <td class="tdCenter">0.37<br>0.40<br>0.15<br>0.05<br>0.03</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">Total</td>
+                <td class="tdCenter">1.00</td>
+              </tr>
+            </table>
+      <p>
+      2) Cumulative distribution function 
+      <p>
+            <table style="width:300px"> 
+              <tr>
+                <th class="thGrey" style="width:150px">\(\small X = x\)</td>
+                <th class="thGrey" style="width:150px">\(\small P(X \le x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2<br>3<br>4</td>
+                <td class="tdCenter">0.37<br>0.77<br>0.92<br>0.97<br>1.00</td>
+              </tr>
+            </table>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      If possible values of a discrete random variable \(\small X\) are \( x_1 , x_2 , ... , x_n \), a mean and variance of \(\small X\) are also used as measures of the central tendency and dispersion. 
+      The mean of \(\small X\) called an expectation of \(\small X\), denoted \(E(X)\) or \mu, and the variance of \(\small X\), denoted as \(\small V(X)\) or \( \sigma_X^2 \) , are defined as follows: 
+      The standard deviation of \(\small X\), denoted &sigma; , is the square root of the variance \(\small X\).
+    </div>
+    <p>  
+
+    <div class="mainTableYellow">
+      <b>Expectation and Variance of \(X\)</b>
+      <p>
+      $$ 
+        \begin{align}
+         E(X) &= \mu  = \sum _{i=1} ^{n} x_{i} P(\textrm{X}= x_{i} ) \\
+         V(X) &= \sigma^2 = \sum_{i=1} ^{n} ( x_i - \mu )^2  P(\textrm{X}= x_i ) =  \sum_{i=1}^{n} x_i  ^2 P(\textrm{X}= x_i ) - \mu^2 
+        \end{align}
+      $$
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.2</b>
+      Find the expected value and variance of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice' which described in Table 5.3.2. 
+      <p>
+      <b>Answer</b>
+      <p>
+      Expectation and variance of \(\small X\) are as follows: 
+      <p>
+      $$ \small
+        \begin{align}
+          E(X) &= \mu = \sum_{i=1}^{n} x_{i} \text{P(X } = x_{i} ) = 0 \times \frac{1}{4} + 1 \times \frac{2}{4} + 2 \times \frac{1}{4} = 1 \\
+          V(X) &= \sigma^2 = \sum_{i=1}^{n} x_{i}^{2} \textrm{ P(X} = x_{i} )- \mu^{2} = 0^{2} \times \frac{1}{4} + 1^{2} \times \frac{2}{4} + 2^{2} \times \frac{1}{4} - 1^{2} = \frac{1}{2}
+        \end{align}
+      $$
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      When knowing the expected value \(E(X)\) and variance \(\small V(X)\) of a random variable \(\small X\), 
+      it is often necessary to obtain the expected value and variance of \(aX + b\) where \(a\) and \(b\) are constants. 
+      The expected value and variance of the new random variable \(aX + b\) are as follows: 
+      This formula applies equally to a continuous random variable.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Expectation and variance of \( a X + b \) where \( a,b \) are constant.</b>
+      <p>
+      $$ 
+        \begin{align}
+        E(aX + b) &= a E(X) + b \\
+        V(aX + b) &= a^2 V(X)
+        \end{align}
+      $$
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.3</b>
+      The mean of midterm exam scores in a Statistics course was 60 points and the variance was 100. In order to adjust the scores, professor is thinking of following alternatives. Find the mean and variance of each alternative.
+      <p>
+      <div class="textL20M20"> 1) Add 20 points to each student's score. </div>
+      <div class="textL20M20"> 2) Each student's score is multiplied by 1.4. </div>
+      <div class="textL20M20"> 3) Multiply each student's score by 1.2 and add 10 points. </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        The random variable \(\small X\) is the mid-term score and its mean and variance are \(\small E(X)\) = 60 and \(\small V(X)\) = 100.
+      <p class="textL20M20"> 1) The mean and variance of the new random variable \(\small X\) + 20 are as follows.
+      <p>
+        \(\qquad \small E(X ＋ 20) = E(X) ＋ 20 = 60 ＋ 20 \)
+        \(\qquad \small V(X ＋ 20) = V(X) = 100\)
+      <p>
+      <div class="textL20">In other words, if you add 20 points to each score, the mean is increased 20 points but there is no change on the variance.  </div>
+      <p class="textL20M20"> 2) The mean and variance of the new random variable 1.4\(\small X\) are as follows.
+      <p>
+        \(\qquad \small E(1.4X) = 1.4 E(X) = 1.4 × 60 = 84\) 
+        \(\qquad \small V(1.4X) = 1.4^2 V(X) = 1.96 × 100 = 196 \)
+      <p>
+      <div class="textL20">In other words, if you multiply 1.4 to each score, the mean is increased 1.4 times and 
+        the variance is increased  \(\small 1.4^2\)= 1.96 times.  </div>
+      <p class="textL20M20"> 3) The mean and variance of the new random variable 1.2X + 10 are as follows: 
+      <p>
+        \(\qquad \small E(1.2X ＋ 10) = 1.2 E(X) ＋ 10 = 1.2 × 60 ＋ 10 = 82 \)
+        \(\qquad \small V(1.2X ＋ 10) = 1.2^2 V(X) = 1.44 × 100 = 144 \)
+      <p>
+      <div class="textL20">In other words, adding 10 points after multiplying by 1.2 increases the mean by 1.2 times and
+          the variance by  \(\small 1.2^2\)= 1.44 times. Note that adding scores will change the mean, but not the variance. </div>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      Let the mean of random variable \(\small X\) be \mu and the standard deviation &sigma;. Then \(Z = \frac{X-\mu}{\sigma}\) is a new random variable with the mean of 0 and the variance of 1. 
+      This new random variable is referred to as a <b>standardized random variable</b>.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Standardized random variable</b>
+      <p>
+      If the mean of a random variable \(X\) is \mu, and the standard deviation is &sigma;,  
+      then \(Z = \frac{X-\mu}{\sigma}\) is a new random variable with the mean of 0 and the variance of 1. 
+      This new random variable is referred to as a <b>standardized random variable</b>.
+    </div>
+    <p>
+
+    <div class="mainTable">
+      Let us discuss about binomial, Poisson, geometrical, and hyper-geometrical distributions  which are used widely as discrete probability distributions.
+    </div>
+    <p>
+
+  <div class="mainTablePink">
+    <h4>Multiple Choice Exercise</h4>
+    <p style="color:blue">*** Choose one answer and click [Submit] button
+
+    <h6 class="textL30M30">5.12 What is the standard deviation when we multiply five times each of the values of one random variable? </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> It is five times as much.</label><br>
+      <label><input type="radio" name="item" value="2"> It is one-fifth the size.	</label><br>
+      <label><input type="radio" name="item" value="3"> It is ten times as much. </label><br>
+      <label><input type="radio" name="item" value="4"> Four-tenths the size. </label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+    <h6 class="textL30M30">5.13 In a class, the average of mid-term scores was 24 points and its standard deviation was 3. Because of poor grades, 
+         professor doubled the mid-term scores and then add 10 points for all the students in the class. 
+         What is the average and standard deviation of new scores? </h6>
+    <form name="Q13">
+      <label><input type="radio" name="item" value="1"> 24, 3</label><br>
+      <label><input type="radio" name="item" value="2"> 48, 3</label><br>
+      <label><input type="radio" name="item" value="3"> 48, 6</label><br>
+      <label><input type="radio" name="item" value="4"> 58, 6</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,13,Q13)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ13">
+    </form>
+
+    <h6 class="textL30M30">5.14 If the mean of a random variable \(\small X\) is 20, what is the mean of \(Y=2X+3\)? </h6>
+    <form name="Q14">
+      <label><input type="radio" name="item" value="1"> 20</label><br>
+      <label><input type="radio" name="item" value="2"> 40</label><br>
+      <label><input type="radio" name="item" value="3"> 23</label><br>
+      <label><input type="radio" name="item" value="4"> 43</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,14,Q14)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ14">
+    </form>
+
+    <h6 class="textL30M30">5.15 If the variance of a random variable \(\small X\) is 2, what is the variance of \(Y=2X+1\)? </h6>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> 2</label><br>
+      <label><input type="radio" name="item" value="2"> 3</label><br>
+      <label><input type="radio" name="item" value="3"> 8</label><br>
+      <label><input type="radio" name="item" value="4"> 18</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+
+    <h6 class="textL30M30">5.16 Which of the following is wrong? </h6>
+    <form name="Q16">
+      <label><input type="radio" name="item" value="1"> \(\small E(aX＋b) = aE(X)＋b\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small E(X＋Y) = E(X)＋E(Y)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(V(aX＋b) =  a^2 V(X)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(V(aX＋b) =  a^2 V(X)+b\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,16,Q16)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ16">
+    </form>
+
+    <h6 class="textL30M30">5.17 If the expected value of \(\small X\) is \(\small E(X)=5\) and \(\small E(X^2)\)=25, and what is the variance \(\small V(X)\)?  </h6>
+    <form name="Q17">
+      <label><input type="radio" name="item" value="1"> -5</label><br>
+      <label><input type="radio" name="item" value="2"> 0</label><br>
+      <label><input type="radio" name="item" value="3"> 5</label><br>
+      <label><input type="radio" name="item" value="4"> 25</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,17,Q17)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ17">
+    </form>
+
+  </div>
+
+  <script>
+    for (var i=12; i < 18; i++) document.getElementById(ansID[i]).disabled = true;
+  </script>
+
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(52)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(54)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

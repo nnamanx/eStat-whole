@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 12</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+  <!--***********************************************************************-->
+  <h2>Chapter 12. Correlation and Regression Analysis</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(122)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(132)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+  <p>
+  <h3>12.3 Multiple Linear Regression Analysis</h3>
+  <p>
+  <h6>
+      <a href="1203.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/TPj8hNA3RGU" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      For actual applications of the regression analysis, the multiple regression models with two or more 
+      independent variables are more frequently used than the simple linear regression with one independent
+      variable. This is because it is rare for a dependent variable to be sufficiently explained by a single
+      independent variable, and in most cases, a dependent variable has a relationship with several 
+      independent variables. For example, it may be expected that sales will be significantly affected 
+      by advertising costs, which are examples of simple linear regression, but will also be affected 
+      by product quality ratings, the number and size of stores sold. The statistical model used to identify
+      the relationship between one dependent variable and several independent variables is called a multiple
+      linear regression analysis. However, the simple linear regression and multiple linear regression 
+      analysis differ only in the number of independent variables involved, and there is no difference in 
+      the method of analysis.
+    </div>
+    <p>
+
+  <h4>12.3.1 Multiple Linear Regression Model</h4>
+  <p>
+
+    <div class="mainTable">
+      In the multiple linear regression model, it is assumed that the dependent variable \(Y\) and \(k\) 
+      number of independent variables have the following relational formulas:
+      $$
+          Y_i = \beta_0 + \beta_1 X_{i1} +  \cdots + \beta_k X_{ik} + \epsilon_i
+      $$
+      This means that the dependent variable is represented by the linear function of independent variables
+      and a random variable that represents the error term as in the simple linear regression model. 
+      The assumption of the error terms is the same as the assumption in the simple linear regression. 
+      In the above equation, \(\beta_0\) is the intercept of \(Y\) axis and \(\beta_i\) is the slope of the Y axis
+      and \(X_i\) which indicates the effect of \(X_i\) to \(Y\) when other independent variables are fixed.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 12.3.1</b>
+         When logging trees in forest areas, it is necessary to investigate the amount of timber in those areas. 
+         Since it is difficult to measure the volume of a tree directly, we can think of ways to estimate the 
+         volume using the diameter and height of a tree that is relatively easy to measure. The data in 
+         Table 12.3.1 are the values for measuring diameter, height and volume after sampling of 15 trees in a 
+         region. (The diameter was measured at a point 1.5 meters above the ground.) Draw a scatter plot matrix 
+         of this data and consider a regression model for this problem. 
+      <p>
+      <div class="textLeft">Table 12.3.1  Diameter, height and volume of tree</div>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">Diameter(\(cm\))</th>
+          <th class="thGrey">Height(\(m\))</th>
+          <th class="thGrey">Volume(\(m^3\)) </th>
+        </tr>
+        <tr> <td class="tdCenter">21.0</td> <td class="tdCenter">21.33</td> <td class="tdCenter">0.291</td> </tr>
+        <tr> <td class="tdCenter">21.8</td> <td class="tdCenter">19.81</td> <td class="tdCenter">0.291</td> </tr>
+        <tr> <td class="tdCenter">22.3</td> <td class="tdCenter">19.20</td> <td class="tdCenter">0.288</td> </tr>
+        <tr> <td class="tdCenter">26.6</td> <td class="tdCenter">21.94</td> <td class="tdCenter">0.464</td> </tr>
+        <tr> <td class="tdCenter">27.1</td> <td class="tdCenter">24.68</td> <td class="tdCenter">0.532</td> </tr>
+        <tr> <td class="tdCenter">27.4</td> <td class="tdCenter">25.29</td> <td class="tdCenter">0.557</td> </tr>
+        <tr> <td class="tdCenter">27.9</td> <td class="tdCenter">20.11</td> <td class="tdCenter">0.441</td> </tr>
+        <tr> <td class="tdCenter">27.9</td> <td class="tdCenter">22.86</td> <td class="tdCenter">0.515</td> </tr>
+        <tr> <td class="tdCenter">29.7</td> <td class="tdCenter">21.03</td> <td class="tdCenter">0.603</td> </tr>
+        <tr> <td class="tdCenter">32.7</td> <td class="tdCenter">22.55</td> <td class="tdCenter">0.628</td> </tr>
+        <tr> <td class="tdCenter">32.7</td> <td class="tdCenter">25.90</td> <td class="tdCenter">0.956</td> </tr>
+        <tr> <td class="tdCenter">33.7</td> <td class="tdCenter">26.21</td> <td class="tdCenter">0.775</td> </tr>
+        <tr> <td class="tdCenter">34.7</td> <td class="tdCenter">21.64</td> <td class="tdCenter">0.727</td> </tr>
+        <tr> <td class="tdCenter">35.0</td> <td class="tdCenter">19.50</td> <td class="tdCenter">0.704</td> </tr>
+        <tr> <td class="tdCenter">40.6</td> <td class="tdCenter">21.94</td> <td class="tdCenter">1.084</td> </tr>
+      </table>
+      <p>
+      <div class="textLeft">[Ex]  ⇨ eBook  ⇨ EX120301_TreeVolume.csv.</div>
+      <p>
+      <b>Answer</b>
+      <p>
+      Load the data saved at the following location of  『eStat』. 
+      <p>
+      <div class="textLeft">[Ex]  ⇨ eBook  ⇨ EX120301_TreeVolume.csv</div>
+      <p>
+      In the variable selection box which appears by selecting the regression icon, select 'Y variable' 
+      by volume and select ‘by X variable’ as the diameter and height to display a scatter plot matrix 
+      as shown in &lt;Figure 12.3.1&gt;. It can be observed that there is a high correlation between 
+      volume and diameter, and that volume and height, and diameter and height are also somewhat related.
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX120301.svg" onclick="window.open(addrStr[39])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../../Figure/Fig120301.svg">
+            <div class="figText">&lt;Figure 12.3.1&gt; Scatterplot matrix</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig120302.png">
+        <div class="figText">&lt;Figure 12.3.2&gt; Correlation matrix</div>
+      <p>
+        Since the volume is to be estimated using the diameter and height of the tree, the volume is 
+        the dependent variable \(\small Y\), and the diameter and height are independent variables 
+        \(\small X_1 , X_2\) respectively, and the following regression model can be considered.
+      <p>
+        \(\quad Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \epsilon_i , \quad i=1,2,...,15\)
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/PR120301.svg" onclick="window.open(addrStr[76])">
+          </td>
+          <td>
+            <b>Practice 12.3.1</b>
+              A health scientist randomly selected 20 people to determine the effect of smoking and obesity on 
+              their physical strength and examined the average daily smoking rate (\(x_1\), number/day), 
+              the ratio of weight by height (\(x_2\), kg/m), and the time to continue to exercise with 
+              a certain intensity (\(y\), in hours). Draw a scatter plot matrix of this data and consider 
+              a regression model for this problem. 
+            <p>
+            <table style="width:450px"> 
+              <tr> 
+                <th class="thGrey" style="width:150px">smoking rate<br>\(x_1\)</th>
+                <th class="thGrey" style="width:150px">ratio of weight by height<br>\(x_2\) </th>
+                <th class="thGrey" style="width:150px">time to continue to exercise<br>\(y\)</th>
+              </tr>
+              <tr> <td class="tdCenter">24</td> <td class="tdCenter">53</td> <td class="tdCenter">11</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">47</td> <td class="tdCenter">22</td> </tr>
+              <tr> <td class="tdCenter">25</td> <td class="tdCenter">50</td> <td class="tdCenter"> 7</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">52</td> <td class="tdCenter">26</td> </tr>
+              <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">40</td> <td class="tdCenter">22</td> </tr>
+              <tr> <td class="tdCenter">18</td> <td class="tdCenter">44</td> <td class="tdCenter">15</td> </tr>
+              <tr> <td class="tdCenter">20</td> <td class="tdCenter">46</td> <td class="tdCenter"> 9</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">23</td> </tr>
+              <tr> <td class="tdCenter">15</td> <td class="tdCenter">56</td> <td class="tdCenter">15</td> </tr>
+              <tr> <td class="tdCenter"> 6</td> <td class="tdCenter">40</td> <td class="tdCenter">24</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">27</td> </tr>
+              <tr> <td class="tdCenter">15</td> <td class="tdCenter">47</td> <td class="tdCenter">14</td> </tr>
+              <tr> <td class="tdCenter">18</td> <td class="tdCenter">41</td> <td class="tdCenter">13</td> </tr>
+              <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">38</td> <td class="tdCenter">21</td> </tr>
+              <tr> <td class="tdCenter">10</td> <td class="tdCenter">51</td> <td class="tdCenter">20</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">43</td> <td class="tdCenter">24</td> </tr>
+              <tr> <td class="tdCenter">12</td> <td class="tdCenter">38</td> <td class="tdCenter">15</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">36</td> <td class="tdCenter">24</td> </tr>
+              <tr> <td class="tdCenter">15</td> <td class="tdCenter">43</td> <td class="tdCenter">12</td> </tr>
+              <tr> <td class="tdCenter">12</td> <td class="tdCenter">45</td> <td class="tdCenter">16</td> </tr>
+            </table>
+            <p>
+              <div class="textLeft">[Ex]  ⇨ eBook  ⇨ PR120301_SmokingObesityExercis.csv.</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      In general, matrix and vectors are used to facilitate expression of formula and calculation of 
+      expressions. For example, if there are \(k\) number of independent variables, the population multiple 
+      regression model at the observation point \(i=1,2,...,n\) is presented in a simple manner as follows:
+      $$
+        \mathbf {Y  = X} \boldsymbol{\beta + \epsilon}
+      $$
+      <p>
+      Here \(\mathbf {Y, X}, \boldsymbol{\beta , \epsilon}\) are defined as follows: 
+      $$
+        {\bf Y} = \left[ \matrix{ Y_1 \\ Y_2 \\ \cdot \\ \cdot \\ Y_n } \right], \quad
+        {\bf X} = \left[ \matrix{ 1 & X_{11} & X_{12} & \cdots & X_{1k} \\
+                                  1 & X_{21} & X_{22} & \cdots & X_{2k} \\ 
+                                    &        &         \cdots \\
+                                    &        &         \cdots \\
+                                  1 & X_{n1} & X_{n2} & \cdots & X_{nk} } \right], \quad
+        {\boldsymbol \beta} = \left[ \matrix{ \beta_0 \\ \beta_1 \\ \cdot \\ \cdot \\ \beta_k } \right], \quad
+        {\boldsymbol \epsilon} = \left[ \matrix{ \epsilon_1 \\ \epsilon_2 \\ \cdot \\ \cdot \\ \epsilon_n } \right]
+      $$
+    </div>
+    <p>
+
+
+  <h4>12.3.2 Estimation of Regression Coefficient</h4>
+  <p>
+
+    <div class="mainTable">
+      In a multiple regression analysis, it is necessary to estimate the \(k+1\) number of regression 
+      coefficients \(\beta_0 , \beta_1 , ... , \beta_k\) using samples. In this case, the least squares method
+      which minimizes the sum of the squared errors is also used. We find \(\boldsymbol \beta\) which minimizes
+      the following sum of the error squares as follows: 
+      $$
+        S =  \sum_{i=1}^{n} \epsilon_{i}^2 = {\boldsymbol \epsilon ' \boldsymbol \epsilon} = ( \bf Y - \bf X' \boldsymbol \beta )'( \bf Y - \bf X' \boldsymbol \beta )
+      $$
+      As in the simple linear regression, the above error sum of squares is differentiated with respect to 
+      \(\boldsymbol \beta\) and then equate to zero which is called a normal equation. The solution of 
+      the equation, denoted as \(\bf b\) which is called the least squares estimate of \(\boldsymbol \beta\), 
+      should satisfy the following normal equation. 
+      $$
+        \bf {(X'X) b = X'y} 
+      $$
+      Therefore, if there exists an inverse matrix of \(\bf {X'X}\), the least squares estimator of 
+      \(\boldsymbol \beta\), \(\bf b\), is as follows: 
+      $$
+        \bf {b = (X'X)^{-1} X'y} 
+      $$
+      (Note: Statistical packages uses a different formula, because the above formula causes large amount 
+      of computing error)
+      <p>
+      If the estimated regression coefficients are \({\bf b} = (b_0 , b_1 , ... , b_k )\), the estimate of 
+      the response variable \(Y\) is as follows: 
+      $$
+        {\hat Y}_i = Y_i - (b_0 + b_1 X_{i1} + \cdots + b_k X_{ik} ) 
+      $$
+      The residuals are as follows:
+      $$
+        \begin{align}
+          e_i &= Y_i - {\hat Y}_i \\
+              &= Y_i - (b_0 + b_1 X_{i1} + \cdots + b_k X_{ik} ) 
+        \end{align}
+      $$
+      By using a vector notation, the residual vector \(\bf e\) can be defined as follows: 
+      $$
+        \bf {e = Y - X b} 
+      $$
+    </div>
+    <p>
+
+
+  <h4>12.3.3 Goodness of Fit for Regression and Analysis of Variance</h4>
+
+    <p>
+    <div class="mainTable">
+      In order to investigate the validity of the estimated regression line in the multiple regression analysis, 
+      the standardized residual error and coefficient of determination are also used. In the simple linear 
+      regression analysis, the computational formula for these measures was given as a function of the residuals,
+      i.e., observed value of \(Y\) and its predicted value, there is nothing to do with the number of 
+      independent variables. Therefore, the same formula can be used in the multiple linear regression and 
+      there is only a difference in the value of the degrees of freedom that each sum of squares has. 
+      <p>
+      In the multiple linear regression analysis, the standard error of residuals is defined as follows:
+      $$
+        s = \sqrt { \frac{1}{n-k-1} \sum_{i=1}^{n} (Y_i - {\hat Y}_i )^2}
+      $$
+      The difference from the simple linear regression is that the degrees of freedom for residuals is 
+      \(n-k-1\), because the \(k\) number of regression coefficients must be estimated in order to calculate 
+      residuals. As in simple linear regression, \(s^2\) is a statistic such as the residual mean squares 
+      (\(MSE\)). The coefficient of determination is given in \(R^2 = \frac{SSR}{SST}\) 
+      and its interpretation is as shown in the simple linear regression.
+      <p>
+      The sum of squares is defined by the same formula as in the simple linear regression, and can be divided with 
+      corresponding degrees of freedom as follows and the table of the analysis of variance is shown in Table 12.3.2.
+      <p>
+        \(\quad\) Sum of squares     \(\quad \quad \;\;SST = SSE + SSR\) <br>
+        \(\quad\) Degrees of freedom \(\quad (n-1) = (n-k-1) + k\) <br>
+      <p>
+    </div>
+    <p>
+      <div class="textLeft">Table 12.3.2  Analysis of variance table for multiple linear regression analysis</div>
+    <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey">Source</th>
+          <th class="thGrey">Sum of squares</th>
+          <th class="thGrey">Degrees of freedom</th>
+          <th class="thGrey">Mean Squares</th>
+          <th class="thGrey">F value</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Regression</td>
+          <td class="tdCenter">SSR</td>
+          <td class="tdCenter">\(k\)</td>
+          <td class="tdCenter">MSR = \(\frac{SSR}{k}\)</td>
+          <td class="tdCenter">\(F_0 = \frac{MSR}{MSE}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Error</td>
+          <td class="tdCenter">SSE</td>
+          <td class="tdCenter">\(n-k-1\)</td>
+          <td class="tdCenter">MSE = \(\frac{SSE}{n-k-1}\)</td>
+          <td class="tdCenter"></td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Total</td>
+          <td class="tdCenter">SST</td>
+          <td class="tdCenter">\(n-1\)</td>
+          <td class="tdCenter"></td>
+          <td class="tdCenter"></td>
+        </tr>
+      </table>
+      <p>
+
+    <div class="mainTable">
+      The \(F\) value in the above ANOVA table is used to test the significance of the regression equation, 
+      where the null hypothesis is that all independent variables are not linearly related to the dependent variables. 
+      $$
+        \begin{align}
+          H_0 &: \beta_1 = \beta_2 = \cdots = \beta_k = 0 \\
+          H_1 &: \text{At least one of } k \text { number of } \beta_i \text{s is not equal to 0}
+        \end{align}
+      $$
+      Since \(F_0\) follows \(F\) distribution with \(k\) and \((n-k-1)\) degrees of freedom under the null 
+      hypothesis, we can reject \(H_0\) at the significance level \(\alpha\) if \(F_0 \gt F_{k,n-k-1 ; &alpha;}\). 
+      Each \(\beta_i\) can also be tested which is described in the following sections. (Also,  『eStat』  
+      calculates the \(p\)-value for this test, so use this \(p\)-value to test. That is, if the \(p\)-value
+      is less than the significance level, the null hypothesis is rejected.)
+    </div>
+    <p>
+
+
+  <h4>12.3.4 Inference for Multiple Linear Regression</h4>
+  <p>
+
+    <div class="mainTable">
+      Parameters that are of interest in multiple linear regression, as in the simple linear regression, are the 
+      expected value of Y and each regression coefficients \(\beta_0 = \beta_1 = \cdots = \beta_k\). The 
+      inference of these parameters \(\beta_0 = \beta_1 = \cdots = \beta_k\) is made possible by 
+      obtaining a probability distribution of the point estimates \(b_i\). Under the assumption that the 
+      error terms \(\epsilon_i\) are independent and all have a distribution of \(N(0, \sigma^2 )\), 
+      it can be shown that the distribution of \(b_i\) is as follows:
+      $$
+        b_i \sim N( \beta_i , c_{ii} \cdot \sigma^2 ), \quad i=0,1,2,...,k
+      $$
+      The above \(c_{ii}\) is the \(i^{th}\) diagonal element of the \((k+1)\times (k+1)\) matrix 
+      \(\bf {(X'X)^{-1}}\). In addition, using an estimate \(s^2\) instead of a parameter  \(\sigma^2\), 
+      you can make inferences about each regression coefficient using the \(t\) distribution.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Inference on regression coefficient \(\; \beta_i\)</b>
+      <p>
+         Point estimate: \(\quad b_i \)  <p>
+         Standard error of estimate \(b\):   \(\quad SE(b_i) = \sqrt c_{ii} \cdot s \) <p>
+         Confidence interval of \(\; \beta_i\): \(\quad b_i \pm t_{n-k-1; &alpha;/2} \cdot SE(b_i)\) <p> 
+         Testing hypothesis:  <br>
+         \(\quad\)     Null hypothesis: \(\quad H_0 : \beta_i = \beta_{i0}\)   <br>
+         \(\quad\)     Test statistic: \(\quad t = \frac{b_i -  \beta_{i0} } { SE (b_i) }\)   <br>  
+         \(\quad\)     rejection region:  <br>
+         \(\qquad\)      if \(\; H_1 : \beta_i \lt \beta_{i0}\), then \(\; t < - t_{n-k-1; &alpha;}\)  <br> 
+         \(\qquad\)      if \(\; H_1 : \beta_i \gt \beta_{i0}\), then \(\; t > t_{n-k-1; &alpha;}\)  <br>
+         \(\qquad\)      if \(\; H_1 : \beta_i \ne \beta_{i0}\), then \(\; |t| > t_{n-k-1; &alpha;/2}\)  <br>
+         (Since 『eStat』 calculates the \(p\)-value under the null hypothesis \(H_0 : \beta_i = \beta_{i0}\),
+         \(p\)-value is used for testing hypothesis. )
+    </div>
+    <p>
+
+    <div class="mainTable">
+      Residual analysis of the multiple linear regression is the same as in the simple linear regression.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 12.3.2</b>
+         For the tree data of [Example 12.3.1], obtain the least squares estimate of each coefficient of 
+         the proposed regression equation using 『eStat』 and apply the analysis of variance, test for 
+         goodness of fit and test for regression coefficients.
+      <p>
+      <b>Answer</b>
+      <p>
+        In the options window below the scatter plot matrix in &lt;Figure 12.3.1&gt;, click [Regression Analysis] 
+        button. Then you can find the estimated regression line, ANOVA table as shown in &lt;Figure 12.3.3&gt; in 
+        the Log Area. The estimated regression equation is as follows: 
+      <p>
+        \(\quad \small {\hat Y}_i = -1.024 + 0.037 X_1 + 0.024 X_2 \)
+      <p>
+        In the above equation, 0.037 represents the increase of the volume of the tree when the diameter
+        (\(\small X_1\)) increases 1(cm). 
+      <p>
+        The \(p\)-value calculated from the ANOVA table in &lt;Figure 12.3.3&gt; at \(\small F\) value of 73.12 
+        is less than 0.0001, so you can reject the null hypothesis \(\small H_0 : \beta_1 = \beta_{2} = 0\)
+        at the significance level \(\alpha\) = 0.05. The coefficient of determination, \(\small R^2\) =  0.924, 
+        implies that 92.4% of the total variances of the dependent variable are explained by the 
+        regression line. Based on the above two results, we can conclude that the diameter and height of 
+        the tree are quite useful in estimating the volume.
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig120303.png">
+        <div class="figText">&lt;Figure 12.3.3&gt;  Result of Multiple Linear Regression</div>
+      <p>
+        Since \(\small {SE}(b_1 ) = 0.003, \; {SE} (b_2 ) = 0.008 \) and \(t_{12; 0.025}\) =  2.179  from 
+        the result in &lt;Figure 12.3.3&gt;, the 95% confidence intervals for each regression 
+        coefficients can be calculated as follows: The difference between this result and the 
+        &lt;Figure 12.3.3&gt; due to the error in the calculation below the decimal point.
+      <p>
+        \(\quad \) 95% confidence interval for \(\beta_1 : \;\; \) 0.037 \(\pm\) (2.179)(0.003) \(\Rightarrow\) (0.029, ~0.045) <br>
+        \(\quad \) 95% confidence interval for \(\beta_2 : \;\; \) 0.024 \(\pm\) (2.179)(0.008) \(\Rightarrow\) (0.006,~ 0.042)
+      <p>
+        In the hypothesis test of \(\small H_0 : \beta_i = 0 , \;\; H_1 : \beta_i \ne 0\) , each \(p\)-value is 
+        less than the significance level of 0.05, so you can reject each null hypothesis. 
+      <p>
+        The scatter plot of the standardized residuals is shown in &lt;Figure 12.3.4&gt; and the Q-Q scatter
+        plot is shown in &lt;Figure 12.3.5&gt;. There is no particular pattern in the scatter plot of the 
+        standardized residuals, but there is one outlier value, and the Q-Q scatter plot shows that the 
+        assumption of normality is somewhat satisfactory.
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig120304.svg">
+        <div class="figText">&lt;Figure 12.3.4&gt;  Residual analysis of multiple linear regression </div>
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig120305.svg">
+        <div class="figText">&lt;Figure 12.3.5&gt;  Q-Q plot of multiple linear regression</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <b>Practice 12.3.2</b>
+        Apply a multiple regression model by using 『eStat』 on the regression model of [Practice 12.3.1]. 
+        Obtain the least squares estimate of each coefficient of the proposed regression equation and 
+        apply the analysis of variance, test for goodness of fit and test for regression coefficients.
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(122)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(132)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

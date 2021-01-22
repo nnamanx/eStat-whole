@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Poisson Distribution">Poisson Distribution</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Poisson Distribution">Poisson Distribution</span></b> 
+      <a class="menu" href="../Distribution/index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+    </div>
+    <br> 
+    <svg id="chart" width="600" height="600"> </svg>
+    <br>
+    <button type="button" id="executePoisson" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;
+      &lambda; = <input type="text" class="textarea" value="1.0" size=3 id="lambda">
+      <sup><small> 0.1 </small></sup> 
+    <input type="range" min="1" max="100" value="10" id="rangeLambda" onchange="showValueLambda(this.value, valueLabel, poissonP)"/>
+      <sup><small> 10 </small></sup>  &nbsp;&nbsp;&nbsp;&nbsp;
+    <p> 
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    <label><input type="checkbox" value="freq2" id=freqPoisson>
+      <span data-msgid="Show Probability">Show Probability<span>
+    </label> 
+    <p>
+    <button type="button" id="poissonT" >
+        <span data-msgid="Poisson Prob Table">Poisson Prob Table</span>
+    </button>  
+    &nbsp;&nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    &nbsp;
+    <span data-msgid="Reference Site">Reference</span> :  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Poisson_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/PoissonDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="https://stattrek.com/probability-distributions/poisson.aspx" target="_blank" >StatTrek </a> &nbsp; 
+    <p>
+    <div>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+ 
+      var bar = d3.select("#chart");
+
+      var i, j, k, sum, temp, info;
+      var lambda, avg, std;
+      var xmin, xmax, ymin, ymax, gxmin, gxmax, gxrange, gymin, gymax, gyrange;
+      var nobs;
+
+      var nvalue = 21;
+      var checkFreq = false;
+
+      // svg 파라미터
+      var svgWidth    = 600;
+      var svgHeight   = 600;
+      var margin      = {top: 50, bottom: 60, left: 40, right: 40};
+
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+ 
+      var poissonP   = new Array(nvalue);
+      var valueLabel = new Array(nvalue);
+      lambda = parseFloat(d3.select("#lambda").node().value);
+      xmin = 0;
+      xmax = nvalue;
+      ymin = 0;
+      ymax = 0.4;
+      if (lambda < 0.7) ymax = 0.8;
+      drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax);
+
+      // Poisson분포 실행버튼 클릭 =================================================================================
+      d3.select("#executePoisson").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("freqPoisson").checked = false;
+        checkFreq = false;
+	  removeBinomialFreq2();
+
+        lambda = parseFloat(d3.select("#lambda").node().value);   
+        if (lambda < 0.1) lambda = 0.1;
+        if (lambda > 10)  lambda = 10.0;
+        // slider control
+        document.getElementById("rangeLambda").value  = 10*lambda;
+
+        drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax);
+
+        if (checkFreq) showPoissonFreq(nvalue, poissonP, xmin, xmax, ymin, ymax);
+      })
+
+      // Poisson분포 확률표시 버튼 클릭
+      d3.select("#freqPoisson").on("click",function() {
+        if(this.checked) {
+          checkFreq  = true;
+          showBinomialFreq2(nvalue, poissonP, xmin, xmax, ymin, ymax);
+        } else {
+          checkFreq = false;
+	  removeBinomialFreq2();
+        }
+      })
+
+      // Poisson분포표 버튼 클릭
+      d3.select("#poissonT").on("click",function() {
+        lambda = parseFloat(d3.select("#lambda").node().value);   
+        poissonTable(nvalue, lambda, poissonP);
+      })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+      });
+
+  </script>
+
+</body>
+</html>

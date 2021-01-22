@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 10</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+
+  <!--***********************************************************************-->
+  <h2>Chapter 10. Nonparametric Testing Hypothesis</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(105)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(107)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+  <p>
+  <h4>10.3.2 Randomized block design: Friedman Test</h4>
+  <p>
+  <h6>
+      <a href="100302.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/eNWkdslAKLg" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+
+    <div class="mainTable">
+      In Section 9.2, we studied the randomized block design to measure the fuel mileage of three types of cars 
+      which reduce the impact of the block factor, i.e., driver. If each population follows a normal distribution, 
+      sample data are analyzed using the F-test based on the two-way analysis of variance without the interaction. 
+      However, the assumption that a population follows a normal distribution may not be appropriate for real-world 
+      data, or that there may not be enough data to assume a normal distribution. Alternatively, if the data collected 
+      might not be continuous and are ordinal such as ranks, then the parametric test is not appropriate. In such 
+      cases, nonparametric tests are used to test parameters by converting data to ranks without assuming the 
+      distribution of the population. This section introduces the Friedman test corresponding to the randomized block 
+      design experiments in Section 9.2.2.
+      <p>
+      Let us take a look at the Friedman test using [Example 9.2.1] which was the car fuel mileage measurement problem.
+    </div>
+    <p>   
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 10.3.2</b>
+         The fuel mileage of the three types of cars (A, B and C) is measured using the randomized block design as 
+         Table 9.2.4 and it is rearranged in Table 10.3.7. 
+      <p>
+        <div class="textLeft">Table 10.3.7  Fuel mileage of the three types of cars </div>
+      <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey">Block</th>
+          <th class="thGrey">Car A</th>
+          <th class="thGrey">Car B</th>
+          <th class="thGrey">Car C</th>
+        </tr>
+        <tr> <td class="tdCenter">Driver 1</td> <td class="tdCenter">22.4</td> <td class="tdCenter">16.3</td> <td class="tdCenter">20.2</td> </tr>
+        <tr> <td class="tdCenter">Driver 2</td> <td class="tdCenter">16.1</td> <td class="tdCenter">12.6</td> <td class="tdCenter">15.2</td> </tr>
+        <tr> <td class="tdCenter">Driver 3</td> <td class="tdCenter">19.7</td> <td class="tdCenter">15.9</td> <td class="tdCenter">18.7</td> </tr>
+        <tr> <td class="tdCenter">Driver 4</td> <td class="tdCenter">21.1</td> <td class="tdCenter">17.8</td> <td class="tdCenter">18.9</td> </tr>
+        <tr> <td class="tdCenter">Driver 5</td> <td class="tdCenter">24.5</td> <td class="tdCenter">21.0</td> <td class="tdCenter">23.8</td> </tr>
+      </table>
+      <p>
+        <div class="textLeft">[Ex] ⇨ eBook ⇨ EX090201_GasMileage.csv</div>
+      <p>
+      <div class="textL20M20">
+        1) Draw a histogram of the data to see if the fuel mileage of the three cars can be tested by a parametric method.
+      </div>
+      <div class="textL20M20">
+        2) Using the Friedman test which is a nonparametric method of the randomized block design, test whether 
+           the fuel mileage of the three types of cars are different with the significance level of 5%.
+      </div>
+      <div class="textL20M20">
+        3) Check the result of the above Friedman test using『eStatU』.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20">
+        1) Enter data in『eStat』as shown in &lt;Figure 10.3.8&gt;.
+      </div>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX090201.svg" onclick="window.open(addrStr[28])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../../Figure/Fig100308.png">
+            <div class="figText">&lt;Figure 10.3.8&gt; 『eStat』Data input</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+
+      <div class="textL20">
+        Click icon  of the analysis of variance. Select ‘Miles’ as 'Analysis Var' and ‘Car’ as ‘by Group’. 
+        Then the dot graph by car type and the 95% confidence interval for the population mean will appear. 
+        Again, clicking the [Histogram] button in the options window below the graph will show the histogram and 
+        normal distribution curve for each car type as shown in &lt;Figure 10.3.9&gt;.
+      </div>
+      <p>
+      <img class="imgFig600400" src="../../Figure/Fig100309.svg">
+      <div class="figText">&lt;Figure 10.3.9&gt; Histogram of fuel mileage by car</div>
+      <p>
+
+      <div class="textL20">
+        Looking at the histogram, it is not sufficient to assume that each population follows a normal 
+        distribution, because of the small number of data. In such case, applying the parametric \(F\)-test 
+        may lead to errors. 
+        <p>
+        The hypothesis for this problem is to test whether or not the location parameters 
+        \(\small M_1 , M_2 , M_3 \) of the three populations are the same. 
+        <p>
+          \(\small \quad H_0 : M_1 = M_2 = M3 \) <br>
+          \(\small \quad H_1 : \) At least one pair of location parameters is not equal.
+        <p>
+        The Friedman test calculates the sum of ranks, \(\small R_1 , R_2 , R_3 \) for each of the three 
+        types of cars after the ranking is calculated for the fuel mileage measured for each driver (block) 
+        (Table 10.3.8). If there is a tie, then the average of ranks is assigned. 
+      </div>
+      <p>
+        <div class="textLeft">Table 10.3.8  Ranking in each of the block</div>
+      <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey">Block</th>
+          <th class="thGrey">Car A</th>
+          <th class="thGrey">Car B</th>
+          <th class="thGrey">Car C</th>
+        </tr>
+        <tr> <td class="tdCenter">Driver 1</td> <td class="tdCenter">3</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">Driver 2</td> <td class="tdCenter">3</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">Driver 3</td> <td class="tdCenter">3</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">Driver 4</td> <td class="tdCenter">3</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">Driver 5</td> <td class="tdCenter">3</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr> 
+          <td class="tdCenter">Sum of ranks</td>
+          <td class="tdCenter">\(\small R_1 = 15\)</td>
+          <td class="tdCenter">\(\small R_2 = 5\)</td>
+          <td class="tdCenter">\(\small R_3 = 10\)</td>
+        </tr>
+      </table>
+      <p>
+
+      <div class="textL20">
+        The sum of ranks for Car A is \(\small R_1\) = 15, for Car B is \(\small R_2\) = 5, for Car C is \(\small R_3\) = 10. 
+        The sum of ranks looks different. Are the differences statistically significant?  
+        <p>
+        The Friedman test statistic \(\small S\) can be considered as the \(\small F\) statistic in the 
+        two-way analysis of variance to these ranking data as follows:
+        <p>
+          \(\small \quad S = \frac{12}{nk(k+1)} \sum_{j=1}^{k} {R_j ^2 } - 3n(k+1) \)
+        <p>
+        where \(k\) is the number of population. In this example, \(k\) = 3 and the \(\small S\) statistic is as follows: 
+        <p>
+          \(\small \quad S = \frac{12}{5 \times 3(3+1)} (15^2 + 5^2 + 10^2 ) - 3 \times 5(3+1) = 10 \)
+        <p>
+        The distribution of the test statistic \(\small S\), when the null hypothesis is true, should be known 
+        to investigate how large a value of \(\small S\) is statistically significant. Since the number of cases
+        of ranking when \(n\) = 5, \(k\) = 3 is \((3!)^5  = 7776\), it is not easy to examine all of these 
+        possible rankings to obtain a distribution. 『eStatU』 provides the distribution of the test statistic
+        \(\small S\) in the case of \(n\) = 5, \(k\) = 3 as in &lt;Figure 10.3.10&gt; and its distribution table
+        as Table 10.3.9. As shown in the graph, the distribution of \(n\) = 5, \(k\) = 3 is an asymmetrical 
+        distribution.
+      </div>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU99D_TestFriedmanD.svg" onclick="window.open(addrStr[119])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../../Figure/Fig100310.svg">
+            <div class="figText">&lt;Figure 10.3.10&gt; Friedman S distribution when , </div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <div class="textLeft">Table 10.3.9  Friedman S distribution when \(k = 3, n = 5\)</div>
+      <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey">Friedman S distribution</th>
+          <th class="thGrey">\(k = 3\)</th>
+          <th class="thGrey">\(n = 5\)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(x\)</td>
+          <td class="tdCenter">\(P(X = x)\)</td>
+          <td class="tdCenter">\(P(X \le x)\)</td>
+          <td class="tdCenter">\(P(X \ge x)\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">0.000</td>
+          <td class="tdCenter">0.0463</td>
+          <td class="tdCenter">0.0463</td>
+          <td class="tdCenter">1.0000</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">0.400</td>
+          <td class="tdCenter">0.2623</td>
+          <td class="tdCenter">0.3086</td>
+          <td class="tdCenter">0.9537</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">1.200</td>
+          <td class="tdCenter">0.1698</td>
+          <td class="tdCenter">0.4784</td>
+          <td class="tdCenter">0.6914</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">1.600</td>
+          <td class="tdCenter">0.1543</td>
+          <td class="tdCenter">0.6327</td>
+          <td class="tdCenter">0.5216</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">2.800</td>
+          <td class="tdCenter">0.1852</td>
+          <td class="tdCenter">0.8179</td>
+          <td class="tdCenter">0.3673</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">3.600</td>
+          <td class="tdCenter">0.0579</td>
+          <td class="tdCenter">0.8758</td>
+          <td class="tdCenter">0.1821</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">4.800</td>
+          <td class="tdCenter">0.0309</td>
+          <td class="tdCenter">0.9066</td>
+          <td class="tdCenter">0.1242</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">5.200</td>
+          <td class="tdCenter">0.0540</td>
+          <td class="tdCenter">0.9606</td>
+          <td class="tdCenter">0.0934</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">6.400</td>
+          <td class="tdCenter">0.0154</td>
+          <td class="tdCenter">0.9761</td>
+          <td class="tdCenter">0.0394</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">7.600</td>
+          <td class="tdCenter">0.0154</td>
+          <td class="tdCenter">0.9915</td>
+          <td class="tdCenter">0.0239</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">8.400</td>
+          <td class="tdCenter">0.0077</td>
+          <td class="tdCenter">0.9992</td>
+          <td class="tdCenter">0.0085</td>
+        </tr>                  
+        <tr>                   
+          <td class="tdCenter">10.000</td>
+          <td class="tdCenter">0.0008</td>
+          <td class="tdCenter">1.0000</td>
+          <td class="tdCenter">0.0008</td>
+        </tr>                  
+      </table>                 
+      <p>                      
+
+      <div class="textL20">
+        The Friedman test is a right sided test. If we look for the five percentile from the right corresponding 
+        to significance level, the nearest value is \(\small P(X \ge 6.4)\) = 0.0394. Since it is a discrete distribution, 
+        there is no exact value of five percentile. Hence, the rejection region with the significance level of 5% 
+        can be written as follows: 
+        <p>
+        <div class="textL30">
+        ‘If \(\small S \ge 6.4\), then reject \(\small H_0\)’
+        </div>
+        <p>
+        Since \(\small S\) = 10 in this example, \(\small H_0\) is rejected.
+      </div>
+      <p>
+
+      <div class="textL20M20">
+        3) Enter data in『eStatU』as in &lt;Figure 10.3.11&gt; and click the [Execute] button. The sample 
+           statistics and test graph will be shown as in &lt;Figure 10.3.12&gt;. The critical line which contains 
+           5% of the significance level is shown here. For a discrete distribution, the choice of the final 
+           rejection region should be determined by the analyst.
+      </div>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU990_TestFriedman.svg" onclick="window.open(addrStr[121])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../../Figure/Fig100311.png">
+            <div class="figText">&lt;Figure 10.3.11&gt; Data input for Friedman test at『eStatU』</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig100312.svg">
+        <div class="figText">&lt;Figure 10.3.12&gt; Result of Friedman test using『eStatU』</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      Let's generalize the Friedman test described so far using the above example. Assume that there are \(k\) number 
+      of levels and denote the rank of \(n\) number of data as follows:
+    </div>
+    <p>
+      <div class="textLeft">Table 10.3.10  Notation of n random samples for k number of levels with randomized block design</div>
+    <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey"></th>
+          <th class="thGrey">Lebel 1</th>
+          <th class="thGrey">Lebel 2</th>
+          <th class="thGrey">\(\cdots\)</th>
+          <th class="thGrey">Lebel \(k\)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Block 1</td>
+          <td class="tdCenter">\(X_{11}\)</td>
+          <td class="tdCenter">\(X_{21}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(X_{k1}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Block 2</td>
+          <td class="tdCenter">\(X_{12}\)</td>
+          <td class="tdCenter">\(X_{22}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(X_{k2}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Block k</td>
+          <td class="tdCenter">\(X_{1n}\)</td>
+          <td class="tdCenter">\(X_{2n}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(X_{kn}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Mean</td>
+          <td class="tdCenter">Mean \({\overline X}_{1\cdot}\)</td>
+          <td class="tdCenter">Mean \({\overline X}_{2\cdot}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">Mean \({\overline X}_{k\cdot}\)</td>
+          <td class="tdCenter">Total Mean \({\overline X}_{\cdot \cdot}\)</td>
+        </tr>
+      </table>
+      <p>
+
+    <div class="mainTable">
+      A statistical model of the Friedman test is as follows: 
+      $$
+        X_{ij} =  \mu + \tau_{i} +  \beta_{j} + \epsilon_{ij}, \quad i=1,2,...,k; \;\; j=1,2,...,n 
+      $$
+      Here \(\tau_i\) is the effect of level \(i\) which satisfies \(\sum_{i=1}^{k} \tau_{i} = 0\) and
+      \(\beta_{j}\) is the effect of block \(j\) which satisfies \(\sum_{j=1}^{n} \beta_{j} = 0\).
+      \(\epsilon_{ij}\) ’s are independent and follows the same continuous distribution. 
+      <p>
+      The hypothesis of the Friedman test is as follows:
+      $$
+        \begin{align}
+          H_0 &: \tau_1 = \tau_2 = \cdots = \tau_k \\
+          H_1 &: \text{At least one pair of } \tau_i \text{ is not equal.}
+        \end{align}
+      $$
+      For the Friedman test, ranking data for each block must be created. Table 10.3.11 is the notation of 
+      ranking data for each level.
+    </div>
+    <p>
+      <div class="textLeft">Table 10.3.11  Notation of rank data in each level</div>
+    <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey"></th>
+          <th class="thGrey">Lebel 1</th>
+          <th class="thGrey">Lebel 2</th>
+          <th class="thGrey">\(\cdots\)</th>
+          <th class="thGrey">Lebel \(k\)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Block 1</td>
+          <td class="tdCenter">\(R_{11}\)</td>
+          <td class="tdCenter">\(R_{21}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(R_{k1}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Block 2</td>
+          <td class="tdCenter">\(R_{12}\)</td>
+          <td class="tdCenter">\(R_{22}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(R_{k2}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Block k</td>
+          <td class="tdCenter">\(R_{1n}\)</td>
+          <td class="tdCenter">\(R_{2n}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\(R_{kn}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Sum of ranks</td>
+          <td class="tdCenter">\({R}_{1\cdot}\)</td>
+          <td class="tdCenter">\({R}_{2\cdot}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\({R}_{k\cdot}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Mean</td>
+          <td class="tdCenter">\({\overline R}_{1\cdot}\)</td>
+          <td class="tdCenter">\({\overline R}_{2\cdot}\)</td>
+          <td class="tdCenter">\(\cdots\)</td>
+          <td class="tdCenter">\({\overline R}_{k\cdot}\)</td>
+          <td class="tdCenter">Average of Ranks \({\overline R}_{\cdot \cdot} = \frac{k+1}{2}\)</td>
+        </tr>
+      </table>
+      <p>
+
+    <div class="mainTable">
+      If we apply the analysis of variance for the rank data of Table 10.3.11 instead of the observation data in 
+      Section 9.2, the total sum of squares, \(SST\), and the block sum of squares \(SSB\) are constants. 
+      The treatment sum of squares \(SSTr\) is as follows: 
+      $$
+        \begin{align}
+          SSTr &= \sum_{i=1}^{k} n( {\overline R}_{i \cdot} - {\overline R}_{\cdot \cdot} )^2 \\
+          SST  &= SSTr + SSE
+        \end{align}
+      $$
+      Therefore, the \(F\)-test statistic can be written as follows:
+      $$
+        F = \frac{MSTr}{MSE} = c \frac{ {SSTr }  } { {SST - SSTr - SSE }  }
+      $$
+      Here \(c\) is a constant. That is, since  \(SST\) is a constant,  \(F\)-test statistic is proportional to
+      \(SSTr\).
+      <p>
+      The Friedman test statistic \(S\) is proportional to \(SSTr\) as follows: 
+      $$
+        \begin{align}
+          S &= \frac{12}{k(k+1)}  SSTr = \frac{12 n}{k(k+1)} \sum_{i=1}^{k}  ({\overline R}_{i \cdot} - {\overline R}_{\cdot \cdot} )^2  \\
+            &= \frac{12}{nk(k+1)} \sum_{i=1}^{k} {R}_{i \cdot} ^2 - 3n(k+1)
+        \end{align}
+      $$
+      <p>
+      The reason \(S\) statistic has the constant multiplication of \(\frac{12}{k(k+1)}\) is to make \(S\)
+      which follows a chi-square distribution with \(k-1\) degrees of freedom. 
+      <p>
+      The distribution of the Friedman test statistic \(S\) is denoted as \(S(k,n)\).『eStatU』 provides the 
+      distribution of \(S(k,n)\) up to \(n \le 8\) if \(k = 3\) and up to \(n \le 6\) if \(k = 4\). 
+      \(S(k,n)_{&alpha;}\) denotes the right tail 100\(\times &alpha;\) percentile, but there might not be 
+      the exact percentile, because it is a discrete distribution. In this case, the middle value of two nearest 
+      \(S(k,n)_{&alpha;}\) is often used approximately. Table 10.3.12 is the summary of decision rule of 
+      the Friedman test. 
+    </div>
+
+    <p>
+      <div class="textLeft">Table 10.3.12  Friedman Test</div>
+    <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey">Hypothesis</th>
+          <th class="thGrey">Decision Rule<br>Test Statistic \(S\)</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">\( \; H_0 : {\tau}_1 = {\tau}_2 = \cdots = {\tau}_k \)<br>\(\; H_1 : \text{At least one pair of } {\tau}_i \) is not equal</td>
+          <td class="tdLeft">If \( S > s(k, n)_{&alpha;} \), then reject \( H_0 \) </td>
+      </table>
+    <p>
+    <div class="mainTableYellow">
+      <b>☞ If there are tied values on each block, use the average rank.</b>
+    </div>
+    <p>
+
+    <div class="mainTable">
+      The distribution of the Friedman statistic \(S\) is independent of the population distribution. 
+      In other words, the Friedman test is a distribution-free test. 
+      <p>
+      If the null hypothesis is true and if the sample is large enough, the test statistic \(S\) is approximated 
+      by the chi-square distribution with \(k-1\) degrees of freedom. Table 10.3.13 summarizes the decision rule 
+      for the Friedman test in case of large sample. 
+    </div>
+    <p>
+      <div class="textLeft">Table 10.3.13  Friedman Test – large sample case</div>
+    <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey">Hypothesis</th>
+          <th class="thGrey">Decision Rule<br>Test Statistic \(S\)</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">\( \; H_0 : {\tau}_1 = {\tau}_2 = \cdots = {\tau}_k \)<br>\(\; H_1 : \text{At least one pair of } {\tau}_i \) is not equal</td>
+          <td class="tdLeft">If \( S > s(k, n)_{&alpha;} \), then reject \( H_0 \) </td>
+      </table>
+      <p>
+
+    <div class="mainTable">
+      If there is a tie in the block, the average rank is assigned to each data. In this case, the statistic  
+      \(S\) shall be modified as follows:
+      $$
+        S' = \frac{S}{1 - \sum_{j=1}^{g} \frac{T_j}{np(p^2 -1)} } 
+      $$
+      Here \(g\) = (number of tied groups), \(T_{j} = \sum_{j=1}^{g} {t}_{j} ({t}_{j}-1)({t}_{j}+1) \)  
+      where \(t_j\) = (the size of the \(j^{th}\) tie group, i.e., the number of observations in the tie group)
+      If there is no tie, the size of the \(j^{th}\) tie group is 1 and \(t_j\) = 1. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU990_TestFriedman.svg" onclick="window.open(addrStr[121])">
+          </td>
+          <td>
+            <b>Practice 10.3.2</b>
+            The following is the result of an agronomist's survey of the yield of four varieties of wheat 
+            by using the randomized block design of the three cultivated areas (block). Apply the Friedman test 
+            whether the mean yields of the four wheats are the same or not with the 5% significance level.
+            <p>
+            <div class="textLeft">Table 10.3.8  Ranking in each of the block</div>
+            <p>
+            <table style="width:400px"> 
+              <tr> 
+                <th class="thGrey"></th>
+                <th class="thGrey">Area 1</th>
+                <th class="thGrey">Area 2</th>
+                <th class="thGrey">Area 3</th>
+              </tr>
+              <tr> <td class="tdCenter">Wheat Type A</td> <td class="tdCenter">50</td> <td class="tdCenter">60</td> <td class="tdCenter">56</td> </tr>
+              <tr> <td class="tdCenter">Wheat Type B</td> <td class="tdCenter">59</td> <td class="tdCenter">52</td> <td class="tdCenter">51</td> </tr>
+              <tr> <td class="tdCenter">Wheat Type C</td> <td class="tdCenter">55</td> <td class="tdCenter">55</td> <td class="tdCenter">52</td> </tr>
+              <tr> <td class="tdCenter">Wheat Type D</td> <td class="tdCenter">58</td> <td class="tdCenter">58</td> <td class="tdCenter">55</td> </tr>
+            </table>
+            <p>
+             <div class="textLeft">[Ex] ⇨ eBook ⇨ PR100302_WheatAreaYield.csv</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+ <div class="mainTablePink">
+    <h4>Multiple Choice Exercise</h4>
+    <p style="color:blue">*** Choose one answer and click [Submit] button
+
+    <h6 class="textL30M30">10.8 Which of the following nonparametric tests is for tesing the location parameters of multiple populations?</h6>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> Wilcoxon signed rank sum test</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon rank sum test</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis test</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman test</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">10.9 Which of the following nonparametric tests is appropriate for testing of the randomized block design method?</h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> Wilcoxon signed rank sum test</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon rank sum test</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis test</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman test</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">10.10 What is the theoretical basis for the  statistic used for the Kruskal-Wallis test?</h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> Within sum of squares of rank data</label><br>
+      <label><input type="radio" name="item" value="2"> Error sum of squares of rank data	</label><br>
+      <label><input type="radio" name="item" value="3"> Total sum of squares of rank data</label><br>
+      <label><input type="radio" name="item" value="4"> Treatment sum of squares of rank data</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+  </div>
+
+  <script>
+    for (var i=1; i < ans[10][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
+  </script>
+  <p>
+
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(105)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(107)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

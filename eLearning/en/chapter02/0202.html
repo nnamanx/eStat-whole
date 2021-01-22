@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h2>Chapter 2. Visualization of Qualitative Data</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(21)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(24)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+  <h3>2.2 Visualization of Summary Data</h3>
+  <p>
+  <h6>
+      <a href="0202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/1wNOF7ewKdw" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+      In this section visualization of summary data without a group variable and visualization of summary data with a group variable are discussed.
+  <p>
+  <h4>2.2.1 Summary Data of Categorical Variable</h4>
+  <p>
+
+    <div class="mainTable">
+      <p>If you investigated a gender of students in a class and reported the result as follows.
+      <p>
+      <p class="textLeft">'male', 'female', 'male', ‘female’, 'male'. 'male', .'male', ‘female’, ‘female’, 'male'... 
+      <p>
+      <p>This data is called the raw data of the gender variable which is a categorical variable.
+      <p>If you counted the number of ‘male’ students and ‘female’ students in the above raw data and reported the result as shown in Table 2.2.1. 
+      <p class="textLeft">Table 2.2.1 Summary data of the gender in a class</p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey">Gender</th>
+          <th class="thGrey">Students</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Male</td>
+          <td class="tdCenter">6</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Female</td>
+          <td class="tdCenter">4</td>
+        </tr>
+      </table>
+      <p>This data is called the summary data of the gender variable.
+      <p>If the number of data increases, counting the number of cases in each category from the raw data of a categorical variable in order to make the summary data is not an easy task. One of the important functions of a statistical package is to organize the raw data into the summary data by counting the number of cases in each category. Because of this difficult task to generate the summary data from the raw data, governmental institutions usually provide statistics of a census to the public in the form of the summary data such as the number of population by gender or the number of population by region. These summary data can be downloaded from the governmental home page as an Excel file. 
+      <p>An Excel file can be saved as a text file in CSV (comma separated value) format (refer &lt;Figure A.2.6&gt; in Appendix A) which can be loaded by 『eStat』 for data processing and analysis (refer Appendix A). 
+      <p>This section discusses visualization of the summary data of a categorical variable which can also be found in textbooks of an elementary, a middle school, a high school and in governmental publications. 
+    </div>
+    <p>
+    <div class="mainTableGrey">
+      <b>Example 2.2.1</b><b>(Gender Summary Data)</b> 
+      <p>Enter the summary data of Table 2.2.1 to the sheet of 『eStat』 and save it as a file in CSV format. Using this data, draw a bar graph, a pie chart and a band graph with 『eStat』. Analyze the graphs and prepare a report using the MS Word (or any word processor you prefer). 
+      <p>
+      <b>Answer</b>
+      <p>
+        Enter the data of Table 2.2.1 to the sheet of 『eStat』 as in &lt;Figure 2.2.1&gt; and enter a variable name of V1 as ‘Gender’ and of V2 as ‘Number’ using [Edit Var] button located above the sheet (refer Appedix A.2).
+      <p>
+        <img class="imgFig300200" src="../../Figure/Fig020201.png">
+        <div class="figText">&lt;Figure 2.2.1&gt; Data input in 『eStat』 </div>
+      <p>Click the first variable name 'Gender' and then the second variable name 'Number'. 
+         Selected variables will be appeared in the box of the 'Selected Var' located above the sheet. 
+         You can select the variable ‘1: Gender’ using the combo box of the 'Analysis Var' 
+         and the variable ‘2: Number’ using the combo box of the 'By Group' located above the sheet as shown in &lt;Figure 2.2.1&gt;.
+      <p>
+         When variables are selected, a vertical bar graph which is the default graph of 『eStat』 is drawn as in &lt;Figure 2.2.2&gt;. 
+         The height of each bar (rectangle) is proportional to the frequency of each category in the gender variable and therefore the frequencies of both the male and the female categories can be easily compared by watching the heights of bars. The bar graph shows that the number of male students is larger than the number of female students. 
+      <p>A vertical bar graph which draws bars up and down as in &lt;Figure 2.2.2&gt; is widely used, but a horizontal bar graph which draws bars from left to right is often used if there are many categories. By clicking on the horizontal bar graph icon  located above the Graph Area, a horizontal bar graph as in &lt;Figure 2.2.3&gt; will be appeared in the Graph Area. By checking the ‘Frequency’ box located below of the graph, the frequency of each bar. will be displayed.
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX020201.svg" onclick="window.open(addrStr[7])">
+          </td>
+          <td>
+            <img src="../../Figure/Fig020202.svg">
+            <div class="figText">&lt;Figure 2.2.2&gt; Vertical bar graph of the number of male and female students. </div>            
+          </td>
+        </tr>
+      </table>
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020203.svg">
+        <div class="figText">&lt;Figure 2.2.3&gt; Horizontal bar graph of the number of male and female students. </div>
+      <p>
+        <img class="imgIcon" src="../../Icon/eStat_icon47_graphSave.png">
+      <br>
+        By clicking the ‘Graph Save’ icon  located above the Graph Area, the current graph of the Graph Area will be saved with a file name ‘eStatGraph.png’ which is shown at the bottom left corner of the main screen as in &lt;Figure 2.2.4&gt; (Refer Appendix A.4). 
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020204.png">
+        <div class="figText">&lt;Figure 2.2.4&gt;  Graph is saved by clicking the ‘Graph Save’ icon </div>
+      <p>
+        The location of the saved graph file is the download folder specified in your computer system. If you save another graph, eStatGraph(1).png will be created in the download folder. Number in parentheses of the file name will be increased whenever you save a new graph. 
+      <p>
+        <img class="imgIcon" src="../../Icon/Word.jpg">
+      <br>
+        You can copy this graph file from the download folder and paste to the MS Word as in &lt;Figure 2.2.5&gt;. You can also write comments about the graph if necessary. 
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020205.png">
+        <div class="figText">&lt;Figure 2.2.5&gt;  Copied graph file of 『eStat』 to MS Word</div>
+      <p>
+        Click on the pie chart icon <img class="imgIcon" src="../../Icon/eStat_icon10_pie.png">
+        to display a pie chart as in &lt;Figure 2.2.6&gt; 
+        and click on the doughnut graph icon <img class="imgIcon" src="../../Icon/eStat_icon45_Doughnut.png">
+        to display a doughnut graph as in &lt;Figure 2.2.7&gt; which is a pie chart but a small middle circle is cut off. 
+        The pie chart shows frequencies of the number of both male and female students by dividing a pie (circle) into pieces 
+        with two colors depending on angles which are proportional to the frequencies of each category.
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020206.svg">
+        <div class="figText">&lt;Figure 2.2.6&gt; Pie chart of the number of male and female students.</div>
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020207.svg">
+        <div class="figText">&lt;Figure 2.2.7&gt; Doughnut chart of the number of male and female students. </div>
+      <p>
+        Click on the band graph icon <img class="imgIcon" src="../../Icon/eStat_icon11_band.png">
+        to display a band graph as in &lt;Figure 2.2.8&gt;. A band graph is a variant of the pie chart 
+        by dividing a rectangle into square pieces which are proportional to frequencies of each category. It is named after a rectangular shape with multiple square pieces which looks like a band.
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020208.svg">
+        <div class="figText">&lt;Figure 2.2.8&gt; Band graph of the number of male and female students.</div>
+    </div>
+    <p>
+    <div class="mainTable">
+      International institutions such as UN, OECD and EU release their statistics to the public in the form of summary data and this data can be downloaded as an Excel file or a text file in CSV format. The following example shows how to download a file from the OECD and how to draw graphs using this file.
+    </div>
+    <p>
+    <div class="mainTableGrey">
+      <b>Example 2.2.2</b><b>(Life Expectancy at Birth : Source OECD)</b>
+      <p>From the home page of the OECD, https://www.oecd.org, download a data file of the life expectancy at birth. 
+        Copy the columns of the country name and 2017 data located at the last column to 『eStat』 system and save it as a file in CSV format. 
+        Using this data, draw a vertical bar graph and a horizontal bar graph in descending order of the life expectancy. Analyze the graphs.
+      <p>
+      <b>Answer</b>
+      <p>
+        The main screen of the OECD website as of December 2020, https://www.oecd.org, looks like as in &lt;Figure 2.2.9&gt;.
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig020209.png">
+        <div class="figText">&lt;Figure 2.2.9&gt; OECD home page</div>
+      <p>
+        Select the menu Topics &gt; Health, then the screen as in &lt;Figure 2.2.10&gt; will be appeared. 
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig020210.png">
+        <div class="figText">&lt;Figure 2.2.10&gt; OECD ‘Topic’ &gt; ‘Health’ menu</div>
+      <p>
+      If you click on ‘Explore all our data on health’, the screen as in &lt;Figure 2.2.11&gt; will be appeared. 
+      <p>
+        <img class="imgFig600300" src="../../Figure/Fig020211.png">
+        <div class="figText">&lt;Figure 2.2.11&gt; OECD Statistics for life expectancy at birth</div>
+      <p>
+        If you click on ‘&gt; OECD Health Statistics 2020: Frequently Requested Data’, an Excel file of 
+        OECD-Health-Statistics-2020-Frequently-Requested-Data.xls is downloaded. If you open the Excel file, 
+        the menu as in &lt;Figure 2.2.12&gt; is appeared. 
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig020212.png">
+        <div class="figText">&lt;Figure 2.2.12&gt; OECD Statistics for life expectancy at birth</div>
+      <p>
+        If you click on ‘Life expectancy at birth, total population’ in Health status (Mortality), an Excel file as in &lt;Figure 2.2.13&gt; will be appeared on the screen. 
+      <p>
+        <img class="imgFig600400" src="../../Figure/Fig020213.png">
+        <div class="figText">&lt;Figure 2.2.13&gt; OECD Statistics for life expectancy at birth</div>
+      <p>
+        The easiest way to make a file in CSV format is to copy the country name to the first column of the sheet of 『eStat』 and the column of 2017 data located at the last column of this Excel file to the second column of the sheet of 『eStat』 as in &lt;Figure 2.2.14&gt;. After you provide variable names ‘Country’ and ‘Years’ by using [Edit Var] of 『eStat』 , save the data as a file, for example, ‘EX020202_OECD_LifeExpectancy.csv’ in CSV format,.
+      <p>
+        <img class="imgFig300400" src="../../Figure/Fig020214.png">
+        <div class="figText">&lt;Figure 2.2.14&gt; OECD life expectancy at birth in 2017</div>
+      <p>
+        Another way is to edit the Excel file in &lt;Figure 2.2.13&gt; with only two columns, the country name and 2017 data similar to &lt;Figure 2.2.14&gt;, and save it as a file in CSV format. In this case, the first row should have variable names such as ‘Country’ and ‘Number’ (refer Appendix A.2).. In order to save this file in CSV format, select the Excel menu ‘File’ &gt; ‘Save As’, then a dialogue box as in &lt;Figure 2.2.15&gt; will be appeared. Select the option ‘CSV Utf-8’, then the file will be saved in CSV format in the download folder of your computer. Note that, if you are using an European version of Excel, you have to change the delimiter of semicolon ‘;’ with comma ‘,’ before you save the file (refer Excel option). 
+      <p>
+        <img class="imgFig300200" src="../../Figure/Fig020215.png">
+        <div class="figText">&lt;Figure 2.2.15&gt; OECD</div>
+      <p>
+        Click the variable names ‘Country’ and ‘Number’ on the sheet of 『eStat』 , then a vertical bar graph of the life expectancy will be appeared as in &lt;Figure 2.2.16&gt;. If the characters of the country name are too small to see, you can enlarge the screen by holding the [Ctrl] key and rolling up the wheel mouse. You can click on the horizontal bar graph icon  located above the Graph Area to draw a horizontal bar graph as in &lt;Figure 2.2.17&gt;.
+      <p>
+        It is sometimes convenient to compare data using a horizontal bar graph after sorting. If you check a sorting option ‘Descending’ located below the graph, a horizontal bar graph sorted by descending order of the life expectancy at the birth will be appeared as in &lt;Figure 2.2.17&gt;. It is easy to check that Japan is the longest life expectancy, Switzerland is the second and Latvia is the shortest.
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020216.svg">
+        <div class="figText">&lt;Figure 2.2.16&gt; Vertical bar graph of OECD life expectancy at birth in 2017 </div>
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020217.svg">
+        <div class="figText">&lt;Figure 2.2.17&gt; Horizontal bar graph of OECD life expectancy at birth, 2017</div>
+    </div>
+    <p>
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/PR020201.svg" onclick="window.open(addrStr[40])">     
+          </td>
+          <td>
+            <b>Practice 2.2.1</b> <b>(Alcohol Expenditure: OECD)</b>
+            <p>Draw a bar graph using the following data in 『eStat』 system and analyze the graph.
+            <p>
+            <p class="textLeft"> [Ex] ⇨ eBook ⇨ PR020201_OECD_AlcoholExpenditure_2013.csv            
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/PR020202.svg" onclick="window.open(addrStr[41])">     
+          </td>
+          <td>
+            <b>Practice 2.2.2</b> <b>(Obesity Ratio: World)</b>
+            <p>Draw a bar graph using the following data in 『eStat』 system and analyze the graph. 
+            <p>
+            <p class="textLeft"> [Ex] ⇨ eBook ⇨ PR020202_WORLD_ObesityRatio_Age15over__2017 
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+  <!--***********************************************************************-->
+
+  <h4>2.2.2 Summary Data of Categorical Variable with Group</h4>
+  <p>
+  <div class="mainTable">
+      The summary data as in Table 2.2.1 can be easily extended if you survey the gender of two classes in a school as in Table 2.2.2. It is the summary data of the gender variable for two classes (groups), classes of 5-1 and 5-2. In this case, we usually want to compare the summary data between two classes (groups) using graphs as the following example.
+      <p>
+      <p class="textLeft">Table 2.2.2 Summary data of two classes</p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey">Gender</th>
+          <th class="thGrey">5-1</th>
+          <th class="thGrey">5-2</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Male</td>
+          <td class="tdCenter">16</td>
+          <td class="tdCenter">12</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Female</td>
+          <td class="tdCenter">14</td>
+          <td class="tdCenter">18</td>
+        </tr>
+      </table>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+       <b>Example 2.2.3</b>
+       <b>(Gender Summary Data of Two Classes)</b>
+       <p>A file of the summary data in Table 2.2.2 is saved at the following location of 『eStat』 system. 
+       <p>
+       <p class="textLeft">[Ex] ⇨ eBook ⇨ EX020203_Summary_StudentByGender
+       <p>
+       <p>Using this data, draw a bar graph, a pie chart and a band graph. Use 『eStat』. 
+    <p>
+      <b>Answer</b>
+    <p>
+      If you load the data file from 『eStat』 , it looks like as in &lt;Figure 2.2.18&gt;.
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX020203.svg" onclick="window.open(addrStr[9])">
+          </td>
+          <td>
+            <img class="imgFig300200" src="../../Figure/Fig020218.png">
+            <div class="figText">&lt;Figure 2.2.18&gt; Load file of summary data</div>
+          </td>
+        </tr>
+      </table>
+    <p>
+      Click the variable names 'Gender', ‘5-1’ and ‘5-2’ sequentially, then the selected variables will be appeared at the box of 'Selected Var' located above the sheet. You can select the variable ‘1: Gender’ using the combo box of the 'Analysis Var' and the variable ‘2: 5-1’ and ‘3: 5-2’ using the combo box of the 'By Group' located above the sheet. 
+      <p>When the variables are selected, a vertical bar graph 
+         <img class="imgIcon" src="../../Icon/eStat_icon35_VbarSeparated.png">
+         which is the default graph of 『eStat』 is drawn 
+         using the number of male and female students in both classes as in &lt;Figure 2.2.19&gt;. A bar graph is drawn for each class and the heights of bars are the frequencies of male and female students. Two bar graphs has the same scale of Y-axis and therefore the frequencies of each class can be easily compared. This bar graph is called a separated vertical bar graph for each class. 
+         By clicking the horizontal bar graph icon 
+         <img class="imgIcon" src="../../Icon/eStat_icon40_HbarSeparated.png">,
+         a separated horizontal bar graph can be drawn as in &lt;Figure 2.2.20&gt; 
+    <p>
+      <img class="imgFig600540" src="../../Figure/Fig020219.svg">
+      <div class="figText">&lt;Figure 2.2.19&gt; Separated vertical bar graph of the gender distribution by class.</div>
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020220.svg">
+      <div class="figText">&lt;Figure 2.2.20&gt; Separated horizontal bar graph of the gender distribution by class.</div>
+      <p>
+      For the summary data of two groups, there are many variants of showing bar graphs 
+      in order to compare two groups visually well. 
+      If you click on the stacked bar icon either vertical 
+      <img class="imgIcon" src="../../Icon/eStat_icon36_VbarStacked.png">
+      or horizontal
+      <img class="imgIcon" src="../../Icon/eStat_icon41_HbarStacked.png">,
+      a stacked bar graph is drawn that divides a single bar into pieces with different colors which are proportional to the frequencies of male and female students (&lt;Figure 2.2.21&gt; and &lt;Figure 2.2.22&gt;). 
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020221.svg">
+      <div class="figText">&lt;Figure 2.2.21&gt; Stacked vertical bar graph of the gender by class </div>
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020222.svg">
+      <div class="figText">&lt;Figure 2.2.22&gt; Stacked horizontal bar graph of the gender by class</div>
+      <p>
+      If you click on the ratio bar graph icon either vertical
+      <img class="imgIcon" src="../../Icon/eStat_icon37_VbarRatio.png">
+      or horizontal
+      <img class="imgIcon" src="../../Icon/eStat_icon42_HbarRatio.png">,
+      a ratio bar graph is drawn in which bars with the same height are divided into pieces with different colors
+      which are proportional to the frequencies of male and female students (&lt;Figure 2.2.23&gt; and &lt;Figure 2.2.24&gt;).
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020223.svg">
+      <div class="figText">&lt;Figure 2.2.23&gt; Ratio vertical bar graph of the gender by class. </div>
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020224.svg">
+      <div class="figText">&lt;Figure 2.2.24&gt; Ratio horizontal bar graph of the gender by class. </div>
+      <p>
+      If you click on the side-by-side icon either vertical 
+      <img class="imgIcon" src="../../Icon/eStat_icon38_VbarSide.png">
+      or horizontal
+      <img class="imgIcon" src="../../Icon/eStat_icon43_HbarSide.png">,
+      a side-by-side bar graph is drawn which draws the bars of each group category sideways for comparison (&lt;Figure 2.2.25&gt; and &lt;Figure 2.2.26&gt;). 
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020225.svg">
+      <div class="figText">&lt;Figure 2.2.25&gt; Side-by-side vertical bar graph of the gender by class. </div>
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020226.svg">
+      <div class="figText">&lt;Figure 2.2.26&gt; Side-by-side horizontal bar graph of the gender by class. </div>
+      <p>
+      If there are only two categories of the group variable like this example, then by clicking on the bi-lateral bar icon 
+      either vertical 
+      <img class="imgIcon" src="../../Icon/eStat_icon39_VbarBilateral.png">
+      or horizontal
+      <img class="imgIcon" src="../../Icon/eStat_icon44_HbarBilateral.png">,
+      a two-sided (or bi-lateral) bar graph is drawn which draws the bars in the opposite direction either the above and below of X-axis (&lt;Figure 2.2.27&gt;), or the left and right of Y-axis (&lt;Figure 2.2.28&gt;).
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020227.svg">
+      <div class="figText">&lt;Figure 2.2.27&gt; Two-sided vertical bar graph of the gender by class.</div>
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020228.svg">
+      <div class="figText">&lt;Figure 2.2.28&gt; Bi-lateral horizontal bar graph of the gender by class. </div>
+      <p>
+      By clicking on the pie chart icon 
+      <img class="imgIcon" src="../../Icon/eStat_icon10_pie.png">,
+      a pie chart is drawn as in &lt;Figure 2.2.29&gt; which has two pie charts for classes of ‘5-1’ and ‘5-2’. 
+      Each pie chart shows the frequencies of the number of male and female students by dividing a pie (circle) into pieces with two colors depending on angles which are proportional to the frequencies of each category. 
+      <p>
+      By clicking on the band graph icon 
+      <img class="imgIcon" src="../../Icon/eStat_icon11_band.png">,
+      a band graph is drawn as in &lt;Figure 2.2.30&gt; which has two band graphs for classes of ‘5-1’ and ‘5-2’. Each band graph shows the frequencies of the number of male and female students by dividing a rectangle into squares with two colors which are proportional to the frequencies of each category.
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020229.svg">
+      <div class="figText">&lt;Figure 2.2.29&gt; Pie charts for gender distribution in two classes.</div>
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020230.svg">
+      <div class="figText">&lt;Figure 2.2.30&gt; Band graphs for gender distribution in two classes. </div>
+  </div>
+  <p>
+  <!------------------------------------------------------------->
+  <div class="mainTableGrey">
+    <b>Example 2.2.4</b>
+    <b>(Male and Female Population by Age Groups)</b>
+    <p>In 2015, the male and female populations by age groups in Korea are shown in Table 2.2.3. Using this data, draw a vertical bar graph by age groups and then find appropriate graphs to analyze the characteristics of this data easily. 
+    <p class="textLeft">Table 2.2.3  male and female populations by age groups in Korea<br> 
+               (KOSTAT Census 2015, unit 10,000 persons)</p>
+       <table style="width:600px"> 
+         <tr> 
+           <th class="thGrey">Age Interval</th>
+           <th class="thGrey">2015 Male</th>
+           <th class="thGrey">2015 Female</th>
+         </tr>
+         <tr>
+           <td class="tdCenter">00 - 04</td>
+           <td class="tdCenter">115</td>
+           <td class="tdCenter">109</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">05 - 09</td>
+           <td class="tdCenter">116</td>
+           <td class="tdCenter">109</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">10 - 14</td>
+           <td class="tdCenter">126</td>
+           <td class="tdCenter">116</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">15 - 19</td>
+           <td class="tdCenter">166</td>
+           <td class="tdCenter">151</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">20 - 24</td>
+           <td class="tdCenter">181</td>
+           <td class="tdCenter">158</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">25 - 29</td>
+           <td class="tdCenter">158</td>
+           <td class="tdCenter">145</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">30 - 34</td>
+           <td class="tdCenter">158</td>
+           <td class="tdCenter">176</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">35 - 39</td>
+           <td class="tdCenter">193</td>
+           <td class="tdCenter">186</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">40 - 44</td>
+           <td class="tdCenter">214</td>
+           <td class="tdCenter">207</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">45 - 49</td>
+           <td class="tdCenter">215</td>
+           <td class="tdCenter">212</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">50 - 54</td>
+           <td class="tdCenter">209</td>
+           <td class="tdCenter">205</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">55 - 59</td>
+           <td class="tdCenter">192</td>
+           <td class="tdCenter">194</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">60 - 64</td>
+           <td class="tdCenter">134</td>
+           <td class="tdCenter">141</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">65 - 69</td>
+           <td class="tdCenter">102</td>
+           <td class="tdCenter">110</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">70 - 74</td>
+           <td class="tdCenter">79</td>
+           <td class="tdCenter">97</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">75 - 79</td>
+           <td class="tdCenter">55</td>
+           <td class="tdCenter">80</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">80 - 84</td>
+           <td class="tdCenter">28</td>
+           <td class="tdCenter">54</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">over 85</td>
+           <td class="tdCenter">13</td>
+           <td class="tdCenter">39</td>
+         </tr>
+       </table>
+      <p> 
+      <b>Answer</b>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX020204.svg" onclick="window.open(addrStr[10])">
+          </td>
+          <td>
+            The data of Table 2.2.3 can be loaded from 『eStat』 using the following address.
+            <p>
+            <div class="textLeft"> [Ex] ⇨ eBook ⇨ EX020204_Summary_PopulationByGender.csv. </div>
+          </td>
+        </tr>
+      </table>
+      <p> 
+        Click on the variable name of the first variable, 'AgeInterval' followed by the second variable
+      ‘2015_Male’ and the third variable ‘2015_Female'. As shown in &lt;Figure 2.2.31&gt;, 
+       you may select the ’AgeInterval’ variable from the 'Analysis Var' box and ‘2015_Male' and 
+       ’2015_Female’ variables sequentially from the 'By Group box. When these variables are selected, 
+       a separated vertical bar graph 
+       <img class="imgIcon" src="../../Icon/eStat_icon35_VbarSeparated.png">
+       as shown in &lt;Figure 2.2.32&gt; which separates the male and 
+       female populations with the same scale of Y-axis will be appeared in the Graph Area. 
+      <p> 
+        <img class="imgFig300100" src="../../Figure/Fig020231.png">
+        <div class="figText">&lt;Figure 2.2.31&gt; Variable selection for analysis</div>
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020232.svg">
+        <div class="figText">&lt;Figure 2.2.32&gt; Separated vertical bar graph of population by age group and by gender</div>
+      <p> 
+      Among ten possible bar graphs, a side-by-side bar graph 
+      <img class="imgIcon" src="../../Icon/eStat_icon38_VbarSide.png">
+      as &lt;Figure 2.2.33&gt; would be useful, because it shows the comparison of the number of male 
+      and female populations in each age interval. A ratio bar graph 
+      <img class="imgIcon" src="../../Icon/eStat_icon42_HbarRatio.png">
+      as &lt;Figure 2.2.34&gt; which shows directly the proportions of male and female populations in each age interval 
+      can also be useful. In each of the graphs, you can easily see that the female population is getting larger than 
+      the male population after the age interval of 50s and more. 
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020233.svg">
+      <div class="figText">&lt;Figure 2.2.33&gt; Side-by-side vertical bar graph of population by age and by gender</div>
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020234.svg">
+      <div class="figText">&lt;Figure 2.2.34&gt; Proportional horizontal bar graph of population by age and by gender</div>
+      <p>
+      A line graph 
+      <img class="imgIcon" src="../../Icon/eStat_icon12_line.png">
+      as in &lt;Figure 2.2.35&gt; can also be used to see this kind of patterns. 
+      <img class="imgFig600540" src="../../Figure/Fig020235.svg">
+      <p>
+      <div class="figText">&lt;Figure 2.2.35&gt; Line graph of population by age and by gender</div>
+      <p>
+      An overall distribution of the male and female populations by age group can be observed by using 
+      a two-sided (bi-lateral) horizontal bar graph 
+      <img class="imgIcon" src="../../Icon/eStat_icon44_HbarBilateral.png">
+      as in &lt;Figure 2.2.36&gt; which is usually called a population pyramid. Currently, Korea has an age-specific population structure which looks like a jar. In other words, the population in age intervals of 40 to 50 is higher than the population in age intervals of 30 or less which is gradually decreasing. It would cause many problems in the future society such as the population decrease, the medicare budget increase etc.
+      <p>
+      <img class="imgFig600540" src="../../Figure/Fig020236.svg">
+      <div class="figText">&lt;Figure 2.2.36&gt; Bi-lateral horizontal bar graph of population by age and by gender</div>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/PR020203.svg" onclick="window.open(addrStr[42])">     
+          </td>
+          <td>
+            <b>Practice 2.2.3</b>
+            <b>(Death rates in Virginia)</b>
+            <p>For each of five age groups (50–54, 55–59, 60–64, 65–69, 70–74), death rates are measured per 1000 population per year
+               in Virginia. They are cross-classified by population group such as Rural/Male, Rural/Female, Urban/Male and 
+               Urban/Female. This data are saved at the following location of 『eStat』system. 
+            <p>
+            <p class="textLeft"> [Ex] ⇨ eBook ⇨ PR020203_Rdatasets_VADeaths.csv 
+            <p>
+            <p> Draw appropriate graphs to analyze characteristics of the data. 
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      In general, if there are many groups (columns) on the summary data, you can compare the difference between groups for each category of the analysis variable using different kinds of graphs. If there are many groups, it is recommended that you draw several kinds of graphs, because each graph can show you different characteristics of data.
+      <p>If data are observed over time, it is called a time series and a line graph is usually used to observe a trend over time. The X-axis includes values of a time variable which are spaced equally and Y-axis represents a scale of all time series data. Each pair of data, time and value is marked as a point in a two-dimensional coordinate plane and two adjacent points are connected with a line. 
+  </div>
+  <p>
+  <!-------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <b>Example 2.2.5</b>
+      <b>(OECD Export – Import by Country)</b>
+      <p>In 2017, import and export data of OECD countries are stored at the following location of 『eStat』 system. 
+      <p>
+      <p class="textLeft"> [Ex] ⇨ eBook ⇨ EX020205_OECD_ExportImport_2017.csv. 
+      <p>
+      Draw a line graph to find out characteristics of export and import by country. 
+      <p>
+      <b>Answer</b>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/EX020205.svg" onclick="window.open(addrStr[11])">
+          </td>
+          <td>
+            Retrieve the file from 『eStat』 which will show the data as in &lt;Figure 2.2.37&gt;. 
+            <p>
+            <img class="imgFig300400" src="../../Figure/Fig020237.png">
+            <div class="figText">&lt;Figure 2.2.37&gt; Export-Import data of OECD countries </div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        Click on the line graph icon 
+        <img class="imgIcon" src="../../Icon/eStat_icon12_line.png">,
+        then click the variable names of 'Country', ‘Export', 'Import' to draw a line graph as in &lt;Figure 2.2.38&gt;.
+      <p>
+        Looking in the Graph, we can see that China and Germany have lots of surplus in trade and USA has lots of loss. 
+      <p>
+        <img class="imgFig600540" src="../../Figure/Fig020238.svg">
+        <div class="figText">&lt;Figure 2.2.38&gt; Line graph of Export-Import of OECD countries </div>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/PR020204.svg" onclick="window.open(addrStr[43])">     
+          </td>
+          <td>
+            <b>Practice 2.2.4</b>
+            <b>(Income of OECD Countries)</b>
+            <p>National incomes of OECD countries in 2000, 2005, 2010 and 2015 are saved at the following location of 『eStat』 system. 
+            <p> 
+            <p class="textLeft"> [Ex] ⇨ OECD ⇨ PR020204_OECD_NationalIncome_2017.csv. 
+            <p>
+            <p>Draw a line graph of the national incomes for each country.
+          </td>
+        </tr>
+      </table>
+     </div>
+    <p>
+    <!-------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/PR020205.svg" onclick="window.open(addrStr[44])">     
+          </td>
+          <td>
+            <b>Practice 2.2.5</b>
+            <b>(Average Temperatures by Season in Korea)</b>
+            <p>Average temperatures of each season were observed from 1973 to 2016 in Korea and data are saved at the following location of 『eStat』 system. 
+            <p>
+            <p class="textLeft"> [Ex] ⇨ eBook ⇨ PR020205_Summary_TemperatureBySeason.csv  
+            <p>
+            <p>Draw a line graph of the temperatures by season and observe their characteristics.     </td>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(21)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(24)"><b>Next</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+
+  
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

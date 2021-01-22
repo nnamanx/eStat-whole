@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 5</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">HOME</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://estat.me">eStat</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html">eStatU</a>
+    </div>
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Distribution/index.html" target="_blank">Distributions</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">     
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapters<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter01/index.html">Chapter 1</a></li>
+	   <li><a href="../chapter02/index.html">Chapter 2</a></li>
+	   <li><a href="../chapter03/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter04/index.html">Chapter 3</a></li>
+	   <li><a href="../chapter05/index.html">Chapter 5</a></li>
+	   <li><a href="../chapter06/index.html">Chapter 6</a></li>
+	   <li><a href="../chapter07/index.html">Chapter 7</a></li>
+	   <li><a href="../chapter08/index.html">Chapter 8</a></li>
+	   <li><a href="../chapter09/index.html">Chapter 9</a></li>
+	   <li><a href="../chapter10/index.html">Chapter 10</a></li>
+	   <li><a href="../chapter11/index.html">Chapter 11</a></li>
+	   <li><a href="../chapter12/index.html">Chapter 12</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+	   <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+	   <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+	   <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+           <li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+	   <li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+           <li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+           <li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+	   <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+           <li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+           <li><a href="../chapter05/0504021.html">&nbsp;&nbsp;5.4.2 Exponential Distribution </a></li>
+	   <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/020302.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/030202.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/040102.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/040202.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/0403.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0403.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/0602.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0602.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/0603.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0603.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/0604.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0604.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/060502.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/070402.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/0801.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/0801.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090102.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/090202.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1202.html">&nbsp;&nbsp;12.2.1 Simple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120202.html">&nbsp;&nbsp;12.2.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120203.html">&nbsp;&nbsp;12.2.3 Goodness of Fit for Regression Line</a></li>
+                <li><a href="../chapter12/120204.html">&nbsp;&nbsp;12.2.4 Analysis of Variance for Regression</a></li>
+                <li><a href="../chapter12/120205.html">&nbsp;&nbsp;12.2.5 Inference for Regression</a></li>
+                <li><a href="../chapter12/120206.html">&nbsp;&nbsp;12.2.6 Residual Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">&nbsp;&nbsp;12.3.1 Multiple Linear Regression Model</a></li>
+                <li><a href="../chapter12/120302.html">&nbsp;&nbsp;12.3.2 Estimation of Regression Coefficient</a></li>
+                <li><a href="../chapter12/120303.html">&nbsp;&nbsp;12.3.3 Goodness of Fit for Regression and Analysis of Variance</a></li>
+                <li><a href="../chapter12/120304.html">&nbsp;&nbsp;12.3.4 Inference for Multiple Linear Regression</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <h2>Chapter 5. Probability Distribution</h2> 
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(60)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(62)"><b>Chapter 6</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+  <!--**********************************************************************************************************-->
+  <h3>5.5 Exercise </h3>
+  <div class="mainTablePink">
+      <p class="textL30M30"> 5.1  &nbsp;&nbsp;Calculate the following.
+      <div class="textL30">1) \({}_{8}P_{2} \)  <br>2) \({}_{5}P_{3} \)   <br>3) \({}_{9}P_{9} \)    <br>4) \({}_{10}P_{4} \)    <br>5) \({}_{6}P_{2} \) <br>
+      6) \({}_{10}C_{3} \) <br>7) \({}_{10}C_{7} \)  <br>8) \({}_{7}C_{3} \)    <br>9) \({}_{5}C_{1} \)     <br>10) \({}_{8}C_{4} \) 
+      </div>
+      <p>
+      <p class="textL30M30"> 5.2  &nbsp;&nbsp;When four offices are located side by side, they are run by four middle-level executives. How many ways are these four executives assigned to four offices?
+      <p>
+      <p class="textL30M30"> 5.3  &nbsp;&nbsp;A manager employs seven employees and four of them are to form a production team. How many ways can seven people form different production teams?
+      <p>
+      <p class="textL30M30"> 5.4  &nbsp;&nbsp;An advertising designer wants to design pages of a magazine by selecting three of eight photos. Page location is said to be unimportant. How many designs can be made using different combinations of photos?
+      <p>
+      <p class="textL30M30"> 5.5  &nbsp;&nbsp;The president of a company that produces five kinds of soap wants to display each sample soap in a row at a show case in his office. How many ways can you display five soaps?
+      <p>
+      <p class="textL30M30"> 5.6  &nbsp;&nbsp;A salesperson has seven items and wants them on display at the counter. He can only display four. If the order in which he displays the item is not important, how many ways can he display?
+      <p>
+      <p class="textL30M30"> 5.7  &nbsp;&nbsp;An airline company which has six airplanes plans to advertise each airplane's operation in the Sunday newspaper for six weeks.
+      <p>
+      <div class="textL50M30">1) How many ways are there to advertise flight operations?
+      </div>
+      <div class="textL50M30">2) If you have decided to advertise only four times, how many ways are there?
+      </div>
+      <p>
+      <p class="textL30M30">5.8  &nbsp;&nbsp;A company said that five applicants have applied to fill five different positions. If all applicants are given equal qualifications for five positions, how many ways are there to fill five positions?
+      <p>
+      <p class="textL30M30">5.9  &nbsp;&nbsp;A company which has 231 employees and employees are classified by age and rank as the following table.
+      <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey"></th>
+          <th class="thGrey">Age</th>
+        </tr>
+        <tr> 
+          <th class="thGrey">Rank</th>
+          <th class="thGrey">A1<br> &lt; 20</th>
+          <th class="thGrey">A2<br>21 - 25</th>
+          <th class="thGrey">A3<br>26 - 30</th>
+          <th class="thGrey">A4<br>31 - 35</th>
+          <th class="thGrey">A5<br> &gt; 35</th>
+          <th class="thGrey">Total</th>
+        </tr>
+        <tr>
+          <td class="tdLeft">B1 Clerk</td>
+          <td class="tdRight">20</td>
+          <td class="tdRight">20</td>
+          <td class="tdRight">15</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">70</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B2 Manager</td>
+          <td class="tdRight">3</td>
+          <td class="tdRight">6</td>
+          <td class="tdRight">3</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">15</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B3 Technician</td>
+          <td class="tdRight">15</td>
+          <td class="tdRight">30</td>
+          <td class="tdRight">35</td>
+          <td class="tdRight">20</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">110</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B4 Salesman</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">23</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B5 Director</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">8</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B6 Executive</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">5</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Total</td>
+          <td class="tdRight">39</td>
+          <td class="tdRight">62</td>
+          <td class="tdRight">70</td>
+          <td class="tdRight">41</td>
+          <td class="tdRight">19</td>
+          <td class="tdRight">231</td>
+        </tr>
+      </table>
+      <p>
+      <div class="textL30"> Refer to this table to explain the meaning of the following sets and find the number of each employee.</div>
+      <p>
+      <div class="textL30"> 1) B1 ∩ A5     2) A2 ∩ B6     3) B4 ∩ A5     4) A1 ∪ B6     5) A3 ∪ A5
+      </div>
+      <div class="textL30"> 6) B2 ∪ B3     7) A4     8) (A1 ∪ A2) ∩ B3    9) (B3 ∪ B4) ∩ A5
+      </div>
+      <p>
+      <div class="textL30">What is the number of employees who meet each of the following conditions? </div>
+      <p>
+      <div class="textL50M30">10) The number of persons who are neither Director nor Executive.
+      </div>
+      <div class="textL50M30">11) The number of persons in charge of both Director and Executive.
+      </div>
+      <div class="textL50M30">12) The number of persons aged older than 30 and in charge of Clerk or Manager.
+      </div>
+      <div class="textL50M30">13) The number of persons who are both Salesman and 21-25 years of age. The number of persons who are either Salesman or 21-25 years of age.
+      </div>
+      <div class="textL50M30">14) The number of Technicians under the age of 35.
+      </div>
+      <div class="textL50M30">15) The number of persons between the ages of 21 and 30 who are Technician  or Salesman.
+      </div>
+      <div class="textL50M30">16) The number of persons who are Clerk or Manager and are over 30.
+      </div>
+      <p>
+      <p class="textL30M30"> 5.10 A store which has three types of goods, A, B and C, has received orders from 200 customers for a certain period of time.
+      <p>
+      <div class="textL30">Goods A: 100 </div>
+      <div class="textL30">Goods B: 95 </div>
+      <div class="textL30">Goods C: 85 </div>
+      <div class="textL30">Goods A and C: 55 </div>
+      <div class="textL30">Goods B and C: 30 </div>
+      <div class="textL30">Goods A and B: 50  </div>
+      <div class="textL30">Goods A and B and C: 20 </div>
+      <p>
+      <div class="textL30"> Find the number of customers ordered using the Van diagram as follows: </div>
+      <p>
+      <div class="textL50M30">1) Number of customers who have ordered at least one product.</div>
+      <div class="textL50M30">2) Number of customers who have not ordered any product.</div>
+      <div class="textL50M30">3) The exact number of customers who ordered one product.</div>
+      <div class="textL50M30">4) The exact number of customers who have ordered two products.</div>
+      <div class="textL50M30">5) The exact number of customers who have ordered three products.</div>
+      <p>
+      <p class="textL30M30"> 5.11 Two executive positions in a company are vacant. Seven men and three women are fully qualified and equally eligible. The company decided to pick two of these ten people at random. Find the following odds.
+      <div class="textL50M30">1) The probability that a woman will be selected for both seats.</div>
+      <div class="textL50M30">2) The probability that at least one of the two seats will be selected by a woman.</div>
+      <div class="textL50M30">3) The probability that neither of the two seats will be selected by a woman.</div>
+      <p>
+      <p class="textL30M30">5.12 There are 300 households living in a neighborhood. One hundred of them are said to be out of the house in the evening. Of the remaining households, 50 do not respond to telephone surveys. When a person randomly selects a household in the neighborhood and conducts a telephone survey, ask for the following odds.
+      <div class="textL50M30">1) Probability that no one will be present when an investigator calls a house.</div>
+      <div class="textL50M30">2) When an investigator calls a house, there is someone, but there is a chance that they will not respond to the investigation.</div>
+      <div class="textL50M30">3) Probability of responding to a telephone survey.</div>
+      <p>
+      <p class="textL30M30">5.13 When an employee is selected randomly by a company, there is a 0.58 chance that the person is over the age of 31. What is the probability that an employee who is hired randomly is under 30?
+      <p>
+      <p class="textL30M30">5.14 The following table shows the number of absent days due to diseases of 100 workers over the year in a company. Answer the following questions based on this table. 
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <td class="tdCenter" style="width:180px">\(\small X\) (Number of absent days)</td> 
+          <td class="tdCenter" style="width:30px">0</td>
+          <td class="tdCenter" style="width:30px">1</td>
+          <td class="tdCenter" style="width:30px">2</td>
+          <td class="tdCenter" style="width:30px">3</td>
+          <td class="tdCenter" style="width:30px">4</td>
+          <td class="tdCenter" style="width:30px">5</td>
+          <td class="tdCenter" style="width:30px">6</td>
+          <td class="tdCenter" style="width:30px">7</td>
+          <td class="tdCenter" style="width:30px">8</td>
+          <td class="tdCenter" style="width:30px">9</td>
+          <td class="tdCenter" style="width:30px">10</td>
+        </tr>
+        <tr> <td class="tdCenter">Number of workers </td>
+          <td class="tdCenter"> 5</td> 
+          <td class="tdCenter"> 8</td> 
+          <td class="tdCenter">10</td> 
+          <td class="tdCenter">12</td> 
+          <td class="tdCenter">18</td> 
+          <td class="tdCenter">14</td> 
+          <td class="tdCenter">10</td> 
+          <td class="tdCenter"> 9</td> 
+          <td class="tdCenter"> 8</td> 
+          <td class="tdCenter"> 4</td> 
+          <td class="tdCenter"> 2</td> 
+        </tr>
+      </table>
+      <p>
+      <div class="textL50M30">1) Display the probability distribution of absent days due to disease.</div>
+      <div class="textL50M30">2) Draw the cumulative probability distribution.</div>
+      <div class="textL50M30">3) Calculate the expectation and variance.</div>
+      <p>
+      <p class="textL30M30">5.15 When selecting one worker at random in question 5.14, obtain the following probabilities.
+      <div class="textL50M30">1) Probability that the selected person was absent for 3 days.</div>
+      <div class="textL50M30">2) Probability that the selected person has been absent for more than five days.</div>
+      <div class="textL50M30">3) Probability that the selected person was absent from 6 to 8 days.</div>
+      <p>
+      <p class="textL30M30">5.16 In question 5.14, obtain the following.
+      <div class="textL50M30">1) \(\small P(X = 0)\)   </div>  
+      <div class="textL50M30">2) \(\small P(X = 10)\)  </div>   
+      <div class="textL50M30">3) \(\small P(X \ge 6) \)  </div>  
+      <div class="textL50M30">4) \(\small P(X \lt 6)\)  </div>
+      <div class="textL50M30">5) \(\small P(3 \le X \le 7)\)</div>
+      <p>
+      <p class="textL30M30">5.17 A department store surveyed 80 customers about their purchasing habits and asked, 'How many times did you buy at this department store last month?' The answer to the question is as follows.
+      <table style="width:600px"> 
+        <tr> 
+          <td class="tdCenter" style="width:180px">\(\small X\)(Number of purchases)</td> 
+          <td class="tdCenter" style="width:30px">0</td>
+          <td class="tdCenter" style="width:30px">1</td>
+          <td class="tdCenter" style="width:30px">2</td>
+          <td class="tdCenter" style="width:30px">3</td>
+          <td class="tdCenter" style="width:30px">4</td>
+          <td class="tdCenter" style="width:30px">5</td>
+          <td class="tdCenter" style="width:30px">6</td>
+          <td class="tdCenter" style="width:30px">7</td>
+        </tr>
+        <tr> <td class="tdCenter">Number of customers</td>
+          <td class="tdCenter">15</td> 
+          <td class="tdCenter">27</td> 
+          <td class="tdCenter">14</td> 
+          <td class="tdCenter">12</td> 
+          <td class="tdCenter">6</td> 
+          <td class="tdCenter">4</td> 
+          <td class="tdCenter">1</td> 
+          <td class="tdCenter">1</td> 
+        </tr>
+      </table>
+      <p>
+      <div class="textL50M30">1) If \(\small X\) = 'Number of purchases', draw the probability distribution function of \(\small X\).</div>
+      <div class="textL50M30">2) Draw the cumulative distribution function of \(\small X\).</div>
+      <div class="textL50M30">3) When selecting one of customers, obtain the following probability.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ① Probability that a person who purchased more than once will be selected.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ② Probability that a person who has never purchased will be selected.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ③ Probability that a person who has purchased more than 4 times will be selected.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ④ Probability that a person who purchased less than 3 will be selected.</div>
+      <div class="textL50M30">4)  Find the expectation and variance of \(\small X\).</div>
+      <p>
+      <p class="textL30M30">5.18 Over the years, a salesperson found that there was a 50% chance of selling the product when a customer visited. If one day five customers visit this salesman, calculate the following odds. Check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Exactly how likely is it to sell three product?</div>
+      <div class="textL50M30">2) What is the probability of selling three or more products?</div>
+      <div class="textL50M30">3) What is the probability of selling less than 3 products?</div>
+      <div class="textL50M30">4) What is the probability that none of products could be sold?</div>
+      <div class="textL50M30">5) What is the probability of selling 5 products?</div>
+      <p>
+      <p class="textL30M30">5.19 If a random variable \(\small X\) follows a binomial distribution with \(n = 6, p = 0.2\), find the following probabilities using  『eStatU』.
+      <div class="textL50M30">1) \(\small P(X \gt 2)\) </div>     
+      <div class="textL50M30">2) \(\small P(X \le 4)\) </div> 
+      <div class="textL50M30">3) \(\small P(2 \le X \le 4)\)</div>
+      <p>
+      <p class="textL30M30">5.20 In some cities, 35% of residents are said to be opposed to the idea of expanding the main street. Obtain the following probabilities and check them using  『eStatU』.
+      <div class="textL50M30">1) Probability that the number of residents who oppose the idea of expansion is 10 or more.</div>
+      <div class="textL50M30">2) Probability that the number of residents who oppose the idea of expansion is between 15 and 18.</div>
+      <div class="textL50M30">3) Probability that the number of residents who oppose the idea of expansion is less than 8.</div>
+      <div class="textL50M30">4) Probability that the number of residents who oppose the idea of expansion is at least 12.</div>
+      <div class="textL50M30">5) The probability that the number of residents who oppose the idea of expansion is only 13.</div>
+      <p>
+      <p class="textL30M30">5.21 It is said that 72% of drivers usually use a seat belt. When you select 15 drivers randomly and calculate the following probabilities of drivers who use a seat belt and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Probability of 10 or more drivers. </div>
+      <div class="textL50M30">2) 8 or less probability drivers. </div>
+      <div class="textL50M30">3) Probability of at least 11 drivers.</div>
+      <div class="textL50M30">4) Probability of at least 7 drivers.</div>
+      <p>
+      <p class="textL30M30">5.22 One producer claims that 6% of his product is defective. If you sample 20 products randomly, what is the probability that the number of defective products is as follows. Check the calculation using  『eStatU』.
+      <div class="textL50M30">1) 2 defective products    	</div>
+      <div class="textL50M30">2) more than 2(\ge) products   	</div>
+      <div class="textL50M30">3) 0 product</div>
+      <div class="textL50M30">4) less than 5 products	</div>
+      <div class="textL50M30">5) between 2 and 5 products</div>
+      <p>
+      <p class="textL30M30">5.23 The defect rate of products in a factory is said to be about 3%. When an employee continues to inspect the product until he finds a defective product to investigate the cause of defective products, find the following probabilities and check them using  『eStatU』.  
+      <div class="textL50M30">1) The probability of finding a defective product at the third trial. </div>
+      <div class="textL50M30">2) The probability of finding a defective product at least the third trial?</div>
+      <p>
+      <p class="textL30M30">5.24 The number of defects per 1 \(m^2\)in a fabric follows a Poisson distribution with the average defect  = 0.2. 
+        When 1 \(m^2\)of this fabric is investigated for quality inspection, find the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) What is the probability that the defect count is zero?</div>
+      <div class="textL50M30">2) What is the probability that the defect count is greater than 2?</div>
+      <p>
+      <p class="textL30M30">5.25 Assume that the average number of Hurricanes passing through the southern part of the country is  = 3 times per year. Check the following probabilities using  『eStatU』.
+      <div class="textL50M30">1) What is the probability that a Hurricane will pass once this year?</div>
+      <div class="textL50M30">2) What is the probability that more than 2 Hurricanes will pass this year?</div>
+      <div class="textL50M30">3) What is the probability that two or three Hurricanes will pass this year?</div>
+      <p>
+      <p class="textL30M30">5.26 A candidate has a 60% approval rating in an election. When interviewing voters to hear the opinions of those who oppose the candidate, look for the next probabilities.
+      <div class="textL50M30">1) What is the probability of finding someone who is opposed in the first interview?</div>
+      <div class="textL50M30">2) What is the probability of finding someone who is opposed in the fifth interview?</div>
+      <p>
+      <p class="textL30M30">5.27 Five samples are selected randomly from a box containing 20 tobacco products of which there are 15 normal products and 5 defective products. What is the probability of having one, two, or three defectives in the samples?
+      <p>
+      <p class="textL30M30">5.28 If \(\small Z\) is the standard normal random variable, obtain the following and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Calculate an area between \(\small Z\) = 0 and \(\small Z\) = 1.54.</div>
+      <div class="textL50M30">2) Calculate the probability that \(\small Z\) is between -2.07 and 2.33.</div>
+      <div class="textL50M30">3) \(\small P(Z \ge 0.65 )\)</div>
+      <div class="textL50M30">4) \(\small P(Z \ge -0.65 )\)</div>
+      <div class="textL50M30">5) \(\small P(Z \lt -2.33 )\)</div>
+      <div class="textL50M30">6) \(\small P(Z \lt 2.33 )\)</div>
+      <div class="textL50M30">7) \(\small P(-1.96 \le Z \le 1.96)\)</div>
+      <div class="textL50M30">8) \(\small P(-2.58 \le Z \le 2.58)\)</div>
+      <div class="textL50M30">9) \(\small P(-3.10 \le Z \le1.25)\)</div>
+      <div class="textL50M30">10) \(\small P(1.47 \le Z \le 3.44)\)</div>
+      <p>
+      <p class="textL30M30">5.29 It is said that a tin can lid produced by a company follows a normal distribution with the average diameter of 4 and the standard deviation of 0.012. Calculate the probability that the lids are between 3.97 and 4.03. Check the calculation using  『eStatU』.
+      <p>
+      <p class="textL30M30">5.30 It is said that the weight of a melon follows a normal distribution with the average of 250g and  standard deviation of 12g. Find the probability that the weight of the melon is less than 260 grams. Check the calculation using  『eStatU』.
+      <p>
+      <p class="textL30M30">5.31 A bank employee found that the length of waiting time of a customer to receive a service follows a normal distribution with the average of 3 minutes and the standard deviation of 1 minute. Calculate the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Probability that a customer will wait between 2 and 3 minutes.</div>
+      <div class="textL50M30">2) Probability that a customer will wait less than 1 minute.</div>
+      <div class="textL50M30">3) Probability that a customer will wait at least 5 minutes.</div>
+      <p>
+      <p class="textL30M30">5.32 It takes an average of 10 minutes for a production worker to finish a job at a factory and time follows a normal distribution with a standard deviation of 3 minutes. Calculate the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Probability of workers completing the work in 4 minutes.</div>
+      <div class="textL50M30">2) Probability of workers completing the work at least 5 minutes.</div>
+      <div class="textL50M30">3) Probability of workers completing the work within 3 minutes.</div>
+      <p>
+      <p class="textL30M30">5.33 An average product has a life expectancy of 100 hours and follows an exponential distribution. Calculate the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) What is the probability that a product has a lifespan less than 50 hours?</div>
+      <div class="textL50M30">2) What is the probability that a product has a lifespan of 120 hours or more? </div>
+  </div>
+  <p>
+  <table>
+    <tr>
+      <td><button type="button" style="width:160px" onclick="moveSection(60)">&#10094; &nbsp;&nbsp;<b>Previous</b></button></td>
+      <td><button type="button" style="width:160px" onclick="moveSection(62)"><b>Chapter 6</b>&nbsp;&nbsp; &#10095;</button></td>
+    </tr>
+  </table>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+
+
+</body>
+</html>
+
