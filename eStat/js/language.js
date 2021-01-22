@@ -888,7 +888,7 @@ $.message.en = {
     "Interaction": "Interaction",
     "NoInteraction": "No Interaction",
     "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eStat eLecture",
+    "eStatLecture": "eLearning",
     "NonParametricMu12_title": "Nonparametric : Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Nonparametric : Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Nonparametric : Rank Sum Test",

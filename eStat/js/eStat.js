@@ -8147,7 +8147,8 @@ function drawScatterMatrix(tdvarName, tdobs, tdvar) {
                 }
                 gyminH = 0;
                 gymaxH = freqmax / (tobs * xstep); // 확률 히스토그램 높이
-                maxNormal = 1 / (std[0] * Math.sqrt(2 * Math.PI))
+                maxNormal = 1 / (tstat[2] * Math.sqrt(2 * Math.PI))
+//                maxNormal = 1 / (std[0] * Math.sqrt(2 * Math.PI))
                 if (maxNormal > gymaxH) gymaxH = maxNormal;
                 gymaxH = gymaxH + (gymaxH / 8);
                 gyrangeH = gymaxH - gyminH;
