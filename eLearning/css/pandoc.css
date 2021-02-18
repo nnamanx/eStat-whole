@@ -1,3 +1,7 @@
+.navbar-nav>li {
+    float: left;
+}
+
 .hint {
     border-left: 5px solid #9bf;
     background-color: #eef;
