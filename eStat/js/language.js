@@ -368,6 +368,7 @@ $.message.ko = {
     "StudentRangeDist": "HSD 표준화범위분포",
     "copy link": "링크 복사",
     "WithoutReplacement": "비복원추출",
+    "WordCloud":       "텍스트 클라우드",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -936,6 +937,7 @@ $.message.en = {
     "StudentRangeDist": "HSD Studentized Range Dist.",
     "copy link": "link copy",
     "WithoutReplacement": "without replacement",
+    "WordCloud":       "Word Cloud",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1505,6 +1507,7 @@ $.message.ja = {
     "StudentRangeDist": "HSDスチューデント化範囲分布",
     "copy link": "リンクをコピー",
     "WithoutReplacement": "非復元抽出",
+    "WordCloud":       "Word Cloud",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -2071,6 +2074,7 @@ $.message.zhTW = {
     "StudentRangeDist": "HSD範圍分佈",
     "copy link": "複製鏈接",
     "WithoutReplacement": "沒有恢復提取",
+    "WordCloud":       "Word Cloud",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -2636,6 +2640,7 @@ $.message.fr = {
     "StudentRangeDist": "HSD Répartition de la gamme",
     "copy link": "copiar enlace",
     "WithoutReplacement": "sans remplacement",
+    "WordCloud":       "Word Cloud",
 
 };
 // French
@@ -3200,7 +3205,7 @@ $.message.de = {
     "StudentRangeDist": "HSD Bereichsverteilung",
     "copy link": "Link kopieren",
     "WithoutReplacement": "ohne Ersatz",
-
+    "WordCloud":       "Word Cloud",
 };
 // German
 appStr[1][5] = "../eStatH/index.html";
@@ -3767,7 +3772,7 @@ $.message.es = {
     "StudentRangeDist": "HSD Distribución de rango",
     "copy link": "copiar link",
     "WithoutReplacement": "sin reemplazo",
-
+    "WordCloud":       "Word Cloud",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -4330,7 +4335,7 @@ $.message.vi = {
     "StudentRangeDist": "HSD Phân phối phạm vi",
     "copy link": "sao chép đường dẫn",
     "WithoutReplacement": "không có vật thay thế",
-
+    "WordCloud":       "Word Cloud",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4897,7 +4902,7 @@ $.message.id = {
     "StudentRangeDist": "HSD Distribusi Rentang",
     "copy link": "Salin tautan",
     "WithoutReplacement": "tanpa penggantian",
-
+    "WordCloud":       "Word Cloud",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -5463,7 +5468,7 @@ $.message.mn = {
     "StudentRangeDist": "HSD Range тархац",
     "copy link": "хуулбар холбоос",
     "WithoutReplacement": "орлуулахгүйгээр",
-
+    "WordCloud":       "Word Cloud",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -6029,7 +6034,7 @@ $.message.zh = {
     "StudentRangeDist": "HSD 范围分布",
     "copy link": "复制链接",
     "WithoutReplacement": "没有恢复提取",
-
+    "WordCloud":       "Word Cloud",
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -6572,7 +6577,7 @@ $.message.pt = {
     "StudentRangeDist": "Distribuição de Faixa",
     "copy link": "link de cópia",
     "WithoutReplacement": "Sem substituição",
-
+    "WordCloud":       "Word Cloud",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -7141,7 +7146,7 @@ $.message.gr = {
     "StudentRangeDist": "HSD Εκπαιδευόμενο εύρος διανομής.",
     "copy link": "αντιγραφή συνδέσμου",
     "WithoutReplacement": "χωρίς αντικατάσταση",
-
+    "WordCloud":       "Word Cloud",
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -7709,7 +7714,7 @@ $.message.ro = {
     "StudentRangeDist": "HSD Student Gamă Dist.",
     "copy link": "copiere legătura",
     "WithoutReplacement": "fără înlocuire",
-
+    "WordCloud":       "Word Cloud",
 };
 // Romanian
 appStr[1][13] = "../eStatH/index.html";
@@ -8278,7 +8283,7 @@ $.message.th = {
     "StudentRangeDist": "HSDช่วงที่ได้รับการศึกษา การแจกแจง.",
     "copy link": "คัดลอกลิงค์",
     "WithoutReplacement": "โดยไม่ต้องเปลี่ยน",
-
+    "WordCloud":       "Word Cloud",
 };
 
 // Thai
@@ -8847,7 +8852,7 @@ $.message.pl = {
     "StudentRangeDist": "HSD Zakres Studentyzowanej Dyst",
     "copy link": "Skopiuj link",
     "WithoutReplacement": "bez zamiany",
-
+    "WordCloud":       "Word Cloud",
 };
 
 // Polish
@@ -9417,6 +9422,7 @@ $.message.az = {
     "StudentRangeDist": "HSD Tələbəli İnterval Paylanması",
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
+    "WordCloud":       "Word Cloud",
 };
 // Azerbaijan
 appStr[1][16] = "../eStatH/index.html";
@@ -9985,6 +9991,7 @@ $.message.uz = {
     "StudentRangeDist": "HSD Talabalar qatorini taqsimlash",
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
+    "WordCloud":       "Word Cloud",
 };
 // Uzbekistan
 appStr[1][17] = "../eStatH/index.html";
@@ -10553,6 +10560,7 @@ $.message.ru = {
     "StudentRangeDist": "Стьюдентизированное распределение диапазонов",
     "copy link": "копия ссылки",
     "WithoutReplacement": "без заменыt",
+    "WordCloud":       "Word Cloud",
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
