@@ -19,21 +19,19 @@
   <div width="640" height="640" style="position:absolute; left:10px; top:0px"> 
     <br>
     <div class="title">
-      <b>&nbsp; <span data-msgid="Word Cloud"></span>
-      </b> 
+      <b>&nbsp; Word Cloud</b> 
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>   
     </div>
     <p> 
-    <b>[<span data-msgid="input data">Data Input</span>]</b> *** English only *** 
+    <b>[<span data-msgid="input data">Data Input</span>]</b> &nbsp;&nbsp; <span style="color:blue">*** Copy any English text here ***</span> 
     <p>
-    <textarea id="textarea" name="textarea" rows="10" cols="80">
-    </textarea>  
+    <textarea id="textarea" name="textarea" rows="10" cols="85"></textarea>  
     <p> 
     <button type="button" id="execute" >
         <span data-msgid="Execute">Execute</span>
     </button> 
     <p>
-    <div id="chart" width="640" height="400"></div>
+    <svg id="chart" width="640" height="400"></svg>
     <p> 
     <div>
       Powered by <a href="https://bl.ocks.org/jyucsiro/767539a876836e920e38bc80d2031ba7">D3 Wordcloud</a>
@@ -47,11 +45,7 @@
 
     <script>
       var svgWidth    = 640;
-      var svgHeight   = 400;  // 모집단 그래프 영역
-      var margin, graphWidth, graphHeight;
-      margin      = {top: 20, bottom: 100, left: 20, right: 20};
-      graphWidth  = svgWidth - margin.left - margin.right;
-      graphHeight = svgHeight - margin.top - margin.bottom;
+      var svgHeight   = 400;  // 그래프 영역
 
       text_string = $("#textarea").val();
       drawWordCloud(text_string); 
@@ -96,8 +90,8 @@
           }
 
         var svg_location = "#chart";
-        var width = $(document).width();
-        var height = $(document).height();
+        var width = svgWidth; // $(document).width();
+        var height = svgHeight; // $(document).height();
 
         var fill = d3.scale.category20();
 
