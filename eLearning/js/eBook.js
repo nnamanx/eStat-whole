@@ -343,6 +343,9 @@
     addrStr[120] = "http://www.estat.me/estat/eStatU/995StudentRangeDist.htm";
     addrStr[121] = "http://www.estat.me/estat/eStatU/99Friedman.htm";
     addrStr[122]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX070104_Height.csv","analysisVar":1,"graphNum":27});
+    addrStr[123]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX080103_WageByGender.csv","analysisVar":2,"groupVars":[1],"graphNum":31});
+    addrStr[124] = "http://www.estat.me/estat/eStatU/05WordCloud.htm";
+
 // eBook link address
     temp          = "..";
     addrStrB[0]   = "../index.html";
@@ -372,7 +375,7 @@
     addrStrB[24]  = temp+"/chapter02/0203.html";  // +020301
     addrStrB[25]  = temp+"/chapter02/020302.html";
     addrStrB[26]  = temp+"/chapter02/0204.html";
-    addrStrB[27]  = "";
+    addrStrB[27]  = temp+"/chapter02/0205.html";
     addrStrB[28]  = "";
     addrStrB[29]  = "";
     addrStrB[30]  = temp+"/chapter03/index.html";

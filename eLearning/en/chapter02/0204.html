@@ -84,7 +84,8 @@
                 <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
-                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
+                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
 	  </ul>
     </li>
     <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
@@ -118,7 +119,8 @@
                 <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
-                <li><a href="../chapter02/0204.html">2.4 Exercise</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
+                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter03/index.html">Chapter 3</a>
@@ -253,134 +255,98 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
+
   <!--***********************************************************************-->
   <h2>Chapter 2. Visualization of Qualitative Data</h2> 
   <p>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(24)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(30)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(27)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
   <p>
-  <h3>2.4 Exercise</h3>
+  <h3>2.4 Word Cloud</h3>
   <p>
-  <div class="mainTablePink">
-    <h4> Multiple Choice Exercise </h4>
-    <p style="color:blue">*** Choose one answer and click [Submit] button
-
-    <h6 class="textL30M30">2.1 How do you call the following form of organized data? </h6>
-    <p>
-      <table style="width:400px"> 
-        <tr> 
-          <th class="thGrey">Gender</th>
-          <th class="thGrey">Students</th>
-        </tr>
-        <tr>
-          <td class="tdCenter">Male</td>
-          <td class="tdCenter">6</td>
-        </tr>
-        <tr>
-          <td class="tdCenter">Female</td>
-          <td class="tdCenter">4</td>
-        </tr>
-      </table>
-    <p>
-    <form name="Q1">
-    <label><input type="radio" name="item" value="1"> Discrete Data</label><br>
-    <label><input type="radio" name="item" value="2"> Summary Data</label><br>
-    <label><input type="radio" name="item" value="3"> Raw Data</label><br>
-    <label><input type="radio" name="item" value="4"> Continuous Data</label><br>
-    <p>
-    <input type="button" value="Submit" onClick="radio(2,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=15 id="ansQ1">
-    </form>
-
-    <h6 class="textL30M30">2.2 How do you call the following type of data?  </h6>
-    <p>
-      <table style="width:500px"> 
-        <tr> 
-          <th class="thGrey" style="width:250px">Gender<br>(1:Male, 2:Female)</th>
-          <th class="thGrey" style="width:250px">Marital Status<br>(1:Single, 2:Married, 3:Other)</th>
-        </tr>
-        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
-        <tr><td class="tdCenter">2</td> <td class="tdCenter">2</td></tr>
-        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
-        <tr><td class="tdCenter">2</td> <td class="tdCenter">1</td></tr>
-        <tr><td class="tdCenter">1</td> <td class="tdCenter">2</td></tr>
-        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
-        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
-        <tr><td class="tdCenter">2</td> <td class="tdCenter">2</td></tr>
-        <tr><td class="tdCenter">1</td> <td class="tdCenter">3</td></tr>
-        <tr><td class="tdCenter">2</td> <td class="tdCenter">1</td></tr>
-      </table>
-    <p>
-    <form name="Q2">
-    <label><input type="radio" name="item" value="1"> Discrete Data</label><br>
-    <label><input type="radio" name="item" value="2"> Summary Data</label><br>
-    <label><input type="radio" name="item" value="3"> Raw Data</label><br>
-    <label><input type="radio" name="item" value="4"> Continuous Data</label><br>
-    <p>
-    <input type="button" value="Submit" onClick="radio(2,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=15 id="ansQ2">
-    </form>
-
-    <h6 class="textL30M30">2.3 Which of the following graphs is used for visualizing qualitative data?</h6>
-    <form name="Q3">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> stem and leaf plot</label><br>
-    <label><input type="radio" name="item" value="4"> scatter plot</label><br>
-    <p>
-    <input type="button" value="Submit" onClick="radio(2,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=15 id="ansQ3">
-    </form>
-
-    <h6 class="textL30M30">2.4 Which of the following graphs is NOT used for visualizing qualitative data?  </h6>
-    <form name="Q4">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> pie chart</label><br>
-    <label><input type="radio" name="item" value="4"> band graph</label><br>
-    <p>
-    <input type="button" value="Submit" onClick="radio(2,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=15 id="ansQ4">
-    </form>
-
-    <h6 class="textL30M30">2.5 Which graph is useful for data observed over time, such as annual exports? </h6>
-    <form name="Q5">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> pie chart</label><br>
-    <label><input type="radio" name="item" value="4"> line graph</label><br>
-    <p>
-    <input type="button" value="Submit" onClick="radio(2,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=15 id="ansQ5">
-    </form>
-
-    <script>
-      for (var i=1; i < ans[2][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
-    </script>
+  <h6>
+      <a href="0204.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/lVjwz0VcJCs" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+  <p>
+  <div class="mainTable">
+      A word cloud is a visual representation of text data. It is a visualization of word frequency in a given text as a weighted list. The importance of each word is shown with font size or color in the word cloud. Bigger term means greater weight.
+      <p>The word cloud is useful for quickly perceiving the most prominent words to determine its relative prominence. It has been recently used to visualize the topical content of political speeches. It can be used as website navigation aids to determine hyperlink to items associated with the word in social software. The keyword in the cloud is sometimes used as a search engine marketing term that refers to a group of keywords that are relevant to a specific website. 
+      <p>There are many algorithms to generate a word cloud. eStat adopted the algorithm of d3 open software. There are some evolving approaches to construct a word cloud by applying word co-occurrences in documents.  
   </div>
   <p>
 
-  <div class="mainTablePink">
-    <h4>Exercise</h4>
-      <p class="textL30M30">2.1  Describe qualitative data and give examples.
+  <!-------------------------------------------------------------------->
+  <div class="mainTableGrey">
+    <b>Example 2.4.1</b> 
+      <b>(Word Cloud)</b>
+      <p>Generate a word cloud on the following description on data science and analyze important words. 
       <p>
-      <p class="textL30M30">2.2  Describe summary data and raw data using examples. 
+      <table style="width:650px"> 
+        <tr>
+          <td>
+            The development of these technologies has created massive data, simply called ‘Big Data’, that were unimaginable in the past. Typical examples of the big data include data from Google's search records, social media messages by mobile phones, web logs by internet connections, and telephone records of global telecom companies. The big data are expected to grow and increase exponentially in the future and the hyper-forecasting is also expected to be possible. The success or failure of each individual, group, company and even country would depend on how to utilize the big data efficiently.
+            <p>The analysis of the big data that emerged this century is so enormous and diverse in the amount of data that can not be fully utilized just by traditional statistical approaches. For the analysis and utilization of the big data, theories of statistics, computer science, mathematics, management or related disciplines must also be applied simultaneously. Data Science is a new area of study in which statistics, mathematics, computer science and other disciplines are fused to analyze and utilize the big data that emerged this century.
+          </td>
+        </tr>
+      </table>
       <p>
-      <p class="textL30M30">2.3  From the home page of the OECD, download any interesting data for you in Excel format and do the following: 
-      <div class="textL50M30">1) Save data as an Excel file in CSV format.</div>
-      <div class="textL50M30">2) Retrieve the file in 1) to 『eStat』 system.</div> 
-      <div class="textL50M30">3) Draw appropriate graphs using 『eStat』 and save results as graph files.</div>
-      <div class="textL50M30">4) Prepare a report using the MS Word.</div>
+      <b>Answer</b>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU050.svg" onclick="window.open(addrStr[124])">
+          </td>
+          <td>
+             Click eStaU icon and click ‘Word Cloud’ in the menu or you can use the QR code at the left. 
+             <p>Copy the sample text to [Data Input] text area and click [Execute] button. Then, a word cloud on data science is drawn as in 
+                &lt;Figure 2.4.1&gt;. 
+             <p>‘Data’ is the highest frequecy word in the word cloud,‘big’ is the next in this word cloud.   
+          </td>
+        </tr>
+      </table>
+      <img class="imgFig600540" src="../../Figure/Fig020401.svg">
+      <div class="figText">&lt;Figure 2.4.1&gt; Word cloud on the description of data science</div>
   </div>
   <p>
+
+    <!-------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU050.svg" onclick="window.open(addrStr[124])">
+          </td>
+          <td>
+            <b>Practice 2.4.1</b>
+            <b>(Inaugural Address of US President: Jonh F. Kennedy))</b>
+            <p>Generate a word cloud on the following part of inaugural address by US president John F. Kennedy and analyze important words. 
+            <table style="width:450px"> 
+              <tr>
+                <td>
+                  In the long history of the world, only a few generations have been granted the role of defending freedom in its hour of maximum danger. I do not shrink from this responsibility--I welcome it. I do not believe that any of us would exchange places with any other people or any other generation. The energy, the faith, the devotion which we bring to this endeavor will light our country and all who serve it--and the glow from that fire can truly light the world.
+                  <p>And so, my fellow Americans: ask not what your country can do for you--ask what you can do for your country.
+                  <p>My fellow citizens of the world: ask not what America will do for you, but what together we can do for the freedom of man.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(24)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(30)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(27)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
 
 </div>
+
     
     <!-- Bootstrap core JavaScript
     ================================================== -->
