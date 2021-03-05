@@ -140,7 +140,7 @@ $.message.ko = {
     "Edit Title": "제목편집",
     "Table Save": "테이블 저장",
     "Table Print": "테이블 인쇄",
-    "Frequency": "도수표시",
+    "Frequency": "도수",
     "(Sorting)": "(정렬)",
     "Raw Data": "원자료",
     "Descending": "내림차순",
@@ -168,9 +168,9 @@ $.message.ko = {
     "Variance Assumption": "분산가정",
     "F test": "F 검정",
     "At least one pair of means is different": "적어도 한쌍 이상의 평균이 다름",
-    "Main Title : ": "주 제목 : ",
-    "y title : ": "y축제목 : ",
-    "x title : ": "x축제목 : ",
+    "Main Title" : "주 제목 : ",
+    "y title": "y축제목 : ",
+    "x title": "x축제목 : ",
     "Modify": "수정",
     "Confirm": "확인",
     "Variable Name": "변량명",
@@ -238,6 +238,7 @@ $.message.ko = {
     "Testing Hypothesis P12": "가설검정 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "가설검정 :분산분석",
     "Testing Independence": "범주형 : 독립성검정",
+    "Category": "범주",
     "Correlation Coefficient": "상관계수 시뮬레이션",
     "Regression Experiment": "회귀선 실험",
     "Hypothesis": "가  설",
@@ -369,6 +370,7 @@ $.message.ko = {
     "copy link": "링크 복사",
     "WithoutReplacement": "비복원추출",
     "WordCloud":       "텍스트 클라우드",
+    "oneColor":        "단색",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -807,6 +809,7 @@ $.message.en = {
     "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
     "Testing Independence": "Categorical: Independence Test",
+    "Category": "Category",
     "Correlation Coefficient": "Correlation Coefficient",
     "Regression Experiment": "Regression Experiment",
     "Hypothesis": "Hypothesis",
@@ -937,7 +940,8 @@ $.message.en = {
     "StudentRangeDist": "HSD Studentized Range Dist.",
     "copy link": "link copy",
     "WithoutReplacement": "without replacement",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (English only)",
+    "oneColor":        "Single Color",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1377,6 +1381,7 @@ $.message.ja = {
     "Testing Hypothesis P12": "仮説検定母比率 (2集団) : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "仮説検定分散分析",
     "Testing Independence": "カテゴリ型独立性検定",
+    "Category": "カテゴリ",
     "Correlation Coefficient": "相関係数",
     "Regression Experiment": "回帰シミュレーション",
     "Hypothesis": "仮説",
@@ -1507,7 +1512,8 @@ $.message.ja = {
     "StudentRangeDist": "HSDスチューデント化範囲分布",
     "copy link": "リンクをコピー",
     "WithoutReplacement": "非復元抽出",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "ワードクラウド（英語のみ）",
+    "oneColor":        "単色",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1944,6 +1950,7 @@ $.message.zhTW = {
     "Testing Hypothesis P12": "假設檢定 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "假設檢定變異數分析",
     "Testing Independence": "分類的獨立性檢定",
+    "Category": "分類",
     "Correlation Coefficient": "相關係數",
     "Regression Experiment": "回歸實驗",
     "Hypothesis": "假設",
@@ -2074,7 +2081,8 @@ $.message.zhTW = {
     "StudentRangeDist": "HSD範圍分佈",
     "copy link": "複製鏈接",
     "WithoutReplacement": "沒有恢復提取",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "詞云（僅英語）",
+    "oneColor":        "單色",
 };
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
@@ -2510,6 +2518,7 @@ $.message.fr = {
     "Testing Hypothesis P12": "Test d'hypothèse p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Test d'hypothèse ANOVA",
     "Testing Independence": "Test d'indépendance",
+    "Category": "Catégorie",
     "Correlation Coefficient": "Coefficient de corrélation",
     "Regression Experiment": "Essai de régression",
     "Hypothesis": "Hypothèse",
@@ -2640,8 +2649,8 @@ $.message.fr = {
     "StudentRangeDist": "HSD Répartition de la gamme",
     "copy link": "copiar enlace",
     "WithoutReplacement": "sans remplacement",
-    "WordCloud":       "Word Cloud",
-
+    "WordCloud":       "Nuage de mots (en anglais uniquement)",
+    "oneColor":        "couleur unique",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -3078,6 +3087,7 @@ $.message.de = {
     "Testing Hypothesis P12": "Hypothesen testen  p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Hypothesen testen ANOVA",
     "Testing Independence": "Hypothesen testen auf Unabhängigkeit",
+    "Category": "Kategorie",
     "Correlation Coefficient": "Korrelationskoeffizient",
     "Regression Experiment": "Regressionsexperiment",
     "Hypothesis": "Hypothese",
@@ -3205,9 +3215,10 @@ $.message.de = {
     "StudentRangeDist": "HSD Bereichsverteilung",
     "copy link": "Link kopieren",
     "WithoutReplacement": "ohne Ersatz",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Wortwolke (Englisch)",
+    "oneColor":        "einzelne Farbe",
 };
-// German
+// German 
 appStr[1][5] = "../eStatH/index.html";
 appStr[2][5] = "../eStatU/index.html";
 appStr[3][5] = "../eStatE/index_en.html";
@@ -3642,6 +3653,7 @@ $.message.es = {
     "Testing Hypothesis P12": "Prueba de hipótesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Prueba de hipótesis ANOVA",
     "Testing Independence": "Prueba de independencia",
+    "Category": "Categoría",
     "Correlation Coefficient": "Coeficiente de correlación",
     "Regression Experiment": "Experimento de Regresión",
     "Hypothesis": "Hipótesis",
@@ -3772,7 +3784,8 @@ $.message.es = {
     "StudentRangeDist": "HSD Distribución de rango",
     "copy link": "copiar link",
     "WithoutReplacement": "sin reemplazo",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Nube de palabras (inglés)",
+    "oneColor":        "de un solo color",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -4209,6 +4222,7 @@ $.message.vi = {
     "Testing Hypothesis P12": "Kiểm định giả thuyết p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Kiểm định ANOVA",
     "Testing Independence": "Kiểm định độc lập",
+    "Category": "thể loại",
     "Correlation Coefficient": "Hệ số tương quan",
     "Regression Experiment": "Thí nghiệm hồi quy",
     "Hypothesis": "Giả thuyết",
@@ -4335,7 +4349,8 @@ $.message.vi = {
     "StudentRangeDist": "HSD Phân phối phạm vi",
     "copy link": "sao chép đường dẫn",
     "WithoutReplacement": "không có vật thay thế",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (tiếng Anh)",
+    "oneColor":        "màu đơn",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4772,6 +4787,7 @@ $.message.id = {
     "Testing Hypothesis P12": "Pengujian Hipotesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Pengujian Hipotesis ANOVA",
     "Testing Independence": "Uji Independensi",
+    "Category": "kategori",
     "Correlation Coefficient": "Koefisien Korelasi",
     "Regression Experiment": "Percobaan Regresi",
     "Hypothesis": "Hipotesis",
@@ -4902,7 +4918,8 @@ $.message.id = {
     "StudentRangeDist": "HSD Distribusi Rentang",
     "copy link": "Salin tautan",
     "WithoutReplacement": "tanpa penggantian",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (Inggris)",
+    "oneColor":        "warna tunggal",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -5340,6 +5357,7 @@ $.message.mn = {
     "Testing Hypothesis P12": "Тестэн таамаглал p<sub>1</sub>, <sub>2</sub>",
     "Testing Hypothesis ANOVA": "Тестэн таамаглал ANOVA",
     "Testing Independence": "Тестэн хамааралгүй байдал",
+    "Category": "ангилал",
     "Correlation Coefficient": "Хамаарлын коэфцеэнт ",
     "Regression Experiment": "Хамаарлын туршилт",
     "Hypothesis": "Таамаглал",
@@ -5468,7 +5486,8 @@ $.message.mn = {
     "StudentRangeDist": "HSD Range тархац",
     "copy link": "хуулбар холбоос",
     "WithoutReplacement": "орлуулахгүйгээр",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (Англи)",
+    "oneColor":        "нэг өнгө",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -5905,6 +5924,7 @@ $.message.zh = {
     "Testing Hypothesis P12": "假设检验 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "假设检验方差分析",
     "Testing Independence": "分类的独立性检验",
+    "Category": "分类",
     "Correlation Coefficient": "相关系数",
     "Regression Experiment": "回归实验",
     "Hypothesis": "假设",
@@ -6034,7 +6054,8 @@ $.message.zh = {
     "StudentRangeDist": "HSD 范围分布",
     "copy link": "复制链接",
     "WithoutReplacement": "没有恢复提取",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "词云（英语",
+    "oneColor":        "单色",
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -6448,6 +6469,7 @@ $.message.pt = {
     "Testing Hypothesis P12": "Teste Hipótese p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Teste Hipótese ANOVA",
     "Testing Independence": "Teste de Independência",
+    "Category": "Categoria",
     "Correlation Coefficient": "Coeficiente de Correlação",
     "Regression Experiment": "Experimento de Regressão",
     "Hypothesis": "Hipótese",
@@ -6577,7 +6599,8 @@ $.message.pt = {
     "StudentRangeDist": "Distribuição de Faixa",
     "copy link": "link de cópia",
     "WithoutReplacement": "Sem substituição",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Nuvem de palavras (inglês)",
+    "oneColor":        "única cor",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -7017,6 +7040,7 @@ $.message.gr = {
     "Testing Hypothesis P12": "Έλεγχος Υπόθεσης p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Έλεγχος Υπόθεσης ANOVA",
     "Testing Independence": "Έλεγχος Ανεξαρτησίας",
+    "Category": "κατηγορία",
     "Correlation Coefficient": "Συσχέτισης Συντελεστής",
     "Regression Experiment": "Πείραμα Παλινδρόμησης",
     "Hypothesis": "Υπόθεση",
@@ -7146,7 +7170,8 @@ $.message.gr = {
     "StudentRangeDist": "HSD Εκπαιδευόμενο εύρος διανομής.",
     "copy link": "αντιγραφή συνδέσμου",
     "WithoutReplacement": "χωρίς αντικατάσταση",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (Αγγλικά)",
+    "oneColor":        "μονόχρωμο",
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -7584,6 +7609,7 @@ $.message.ro = {
     "Testing Hypothesis P12": "Testare Ipoteza p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testare Ipoteza ANOVA",
     "Testing Independence": "Testarea Independenței",
+    "Category": "Categorie",
     "Correlation Coefficient": "Coeficient de Corelație",
     "Regression Experiment": "Regresiei Experiment",
     "Hypothesis": "Ipoteza",
@@ -7714,7 +7740,8 @@ $.message.ro = {
     "StudentRangeDist": "HSD Student Gamă Dist.",
     "copy link": "copiere legătura",
     "WithoutReplacement": "fără înlocuire",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (engleză)",
+    "oneColor":        "o singură culoare",
 };
 // Romanian
 appStr[1][13] = "../eStatH/index.html";
@@ -8153,6 +8180,7 @@ $.message.th = {
     "Testing Hypothesis P12": "ทดสอบสมมติฐาน p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "ทดสอบสมมติฐาน ANOVA",
     "Testing Independence": "ทดสอบสมมติฐาน",
+    "Category": "ประเภท",
     "Correlation Coefficient": "สัมประสิทธิ์สหสัมพันธ์",
     "Regression Experiment": "การทดลองการถดถอยt",
     "Hypothesis": "สมมติฐาน",
@@ -8283,9 +8311,9 @@ $.message.th = {
     "StudentRangeDist": "HSDช่วงที่ได้รับการศึกษา การแจกแจง.",
     "copy link": "คัดลอกลิงค์",
     "WithoutReplacement": "โดยไม่ต้องเปลี่ยน",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (ภาษาอังกฤษ)",
+    "oneColor":        "สีเดียว",
 };
-
 // Thai
 appStr[1][14] = "../eStatH/index.html";
 appStr[2][14] = "../eStatU/index.html";
@@ -8722,6 +8750,7 @@ $.message.pl = {
     "Testing Hypothesis P12": "Hipoteza testowa p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Hipoteza testowa ANOVA",
     "Testing Independence": "Test niezależności",
+    "Category": "Kategoria",
     "Correlation Coefficient": "Współczynnik korelacji",
     "Regression Experiment": "Eksperymen regresyjny",
     "Hypothesis": "Hipotezy",
@@ -8852,7 +8881,8 @@ $.message.pl = {
     "StudentRangeDist": "HSD Zakres Studentyzowanej Dyst",
     "copy link": "Skopiuj link",
     "WithoutReplacement": "bez zamiany",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (angielski)",
+    "oneColor":        "pojedynczy kolor",
 };
 
 // Polish
@@ -9292,6 +9322,7 @@ $.message.az = {
     "Testing Hypothesis P12": "Fərziyyənin yoxlanması p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Fərziyyənin yoxlanması ANOVA",
     "Testing Independence": "Kateqoriyalara aiddir: asılı olmama testi",
+    "Category": "Kateqoriya",
     "Correlation Coefficient": "Korrelyasiya əmsalı",
     "Regression Experiment": "reqressiya təcrübəsi",
     "Hypothesis": "Fərziyyə",
@@ -9422,7 +9453,8 @@ $.message.az = {
     "StudentRangeDist": "HSD Tələbəli İnterval Paylanması",
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Söz Buludu (İngilis dili)",
+    "oneColor":        "tək rəng",
 };
 // Azerbaijan
 appStr[1][16] = "../eStatH/index.html";
@@ -9860,7 +9892,8 @@ $.message.uz = {
     "Testing Hypothesis sigma12": "sinov gipotezasi &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "sinov gipotezasi p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "sinov gipotezasi ANOVA",
-    "Testing Independence": "Categorical: Independence Test",
+    "Testing Independence": "mustaqillik testi",
+    "Category": "toifasi",
     "Correlation Coefficient": "Korrelyatsiya koeffitsienti",
     "Regression Experiment": "Regressiya  eksperimenti",
     "Hypothesis": "Gipotez",
@@ -9991,7 +10024,8 @@ $.message.uz = {
     "StudentRangeDist": "HSD Talabalar qatorini taqsimlash",
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Word Cloud (inglizcha)",
+    "oneColor":        "bitta rang",
 };
 // Uzbekistan
 appStr[1][17] = "../eStatH/index.html";
@@ -10430,6 +10464,7 @@ $.message.ru = {
     "Testing Hypothesis P12": "Тестирование гипотезы p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Тестирование гипотезы ANOVA",
     "Testing Independence": "категорический: Проверка гипотезы независимости",
+    "Category": "категория",
     "Correlation Coefficient": "Коэффициент корреляции",
     "Regression Experiment": "Регрессионный эксперимент",
     "Hypothesis": "Коэффициент корреляции",
@@ -10560,7 +10595,8 @@ $.message.ru = {
     "StudentRangeDist": "Стьюдентизированное распределение диапазонов",
     "copy link": "копия ссылки",
     "WithoutReplacement": "без заменыt",
-    "WordCloud":       "Word Cloud",
+    "WordCloud":       "Облако слов (английский)",
+    "oneColor":        "один цветr",
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
