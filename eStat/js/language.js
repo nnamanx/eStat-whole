@@ -1,7 +1,7 @@
 ﻿// language.js
 var langNum;
 var nLanguage = 20;
-var nString = 120;
+var nString = 130;
 var appStr = new Array(nString);
 var svgStr = new Array(nString);
 var svgStrU = new Array(nString);
@@ -106,7 +106,8 @@ $.message.ko = {
     "Line Graph": "꺾은선그래프",
     "Dot Graph": "점그래프",
     "Histogram": "히스토그램",
-    "Stem & Leaf Plot": "줄기와 잎그림",
+    "Stem & Leaf Plot": "줄기와 잎 그림",
+    "maxStem": "** 최대 줄기 수 &le; 30 **",
     "Box-Whisker Plot": "상자그래프",
     "Scatterplot": "산점도",
     "Frequency Table": "도수분포표",
@@ -148,6 +149,7 @@ $.message.ko = {
     "Mean": "평균",
     "Std Deviation": "표준편차",
     "MeanStd": "평균/표준편차",
+    "DotMeanStd": "점그래프 - 평균/표준편차",
     "95CI": "95%신뢰구간",
     "RegressionAnalysis": "회귀분석",
     "ANOVA2": "2원 분산분석",
@@ -305,6 +307,7 @@ $.message.ko = {
     "AnovaTable": "분산분석표",
     "AnovaMeanGraph": "평균신뢰구간도",
     "MultipleComparison": "다중비교",
+    "ComparisonGraph": "비교 그래프",
     "AnovaResidual": "표준화 잔차와 예측값 산점도",
     "AnovaQQ": "잔차 Q-Q 산점도",
     "TestingFit": "범주형 : 적합성검정",
@@ -370,7 +373,9 @@ $.message.ko = {
     "copy link": "링크 복사",
     "WithoutReplacement": "비복원추출",
     "WordCloud":       "텍스트 클라우드",
-    "oneColor":        "단색",
+    "oneColor":        "색",
+    "defaultColor":    "기본색",
+    "RelativeFreq":    "상대도수",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -434,8 +439,8 @@ svgStr[12][0] = " 모분산 가설검정";
 svgStr[13][0] = " 두 모평균 가설검정";
 svgStr[14][0] = " 두 모분산 가설검정";
 svgStr[15][0] = " 분산분석";
-svgStr[16][0] = "도 수";
-svgStr[17][0] = "비 율";
+svgStr[16][0] = "도수";
+svgStr[17][0] = "백분율";
 svgStr[18][0] = "그룹";
 svgStr[19][0] = "의 ";
 svgStr[20][0] = "<h3>요약자료<br>도수분포표</h3>";
@@ -448,13 +453,13 @@ svgStr[26][0] = "분석변량";
 svgStr[27][0] = "변량값";
 svgStr[28][0] = "변량값명";
 svgStr[29][0] = "도수";
-svgStr[30][0] = "상대도수 (%)";
+svgStr[30][0] = "상대도수";
 svgStr[31][0] = "<h3>교차표</h3>";
 svgStr[32][0] = "열변량";
 svgStr[33][0] = "행변량";
 svgStr[34][0] = "평균";
 svgStr[35][0] = "표준편차";
-svgStr[36][0] = "<h3> 구간별<br>도수분포표</h3>";
+svgStr[36][0] = "<h3> 히스토그램<br>도수분포표</h3>";
 svgStr[37][0] = "그룹명";
 svgStr[38][0] = "계급구간";
 svgStr[39][0] = "줄기";
@@ -536,6 +541,7 @@ svgStr[114][0]= "모분산";
 svgStr[115][0]= "가설";
 svgStr[116][0]= "검정";
 svgStr[117][0]= "분산";
+svgStr[118][0]= "계급값";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -676,6 +682,7 @@ $.message.en = {
     "Dot Graph": "Dot Graph",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": "Stem & Leaf Plot",
+    "maxStem": "** max number of stems &le; 30 **",
     "Box-Whisker Plot": "Box Plot",
     "Scatterplot": "Scatterplot",
     "Frequency Table": "Frequency Table",
@@ -717,6 +724,7 @@ $.message.en = {
     "Mean": "Mean",
     "Std Deviation": "Std Deviation",
     "MeanStd": "Mean/StdDev",
+    "DotMeanStd": "Dot Graph - Mean/StdDev",
     "95CI": "95% Confidence Interval",
     "RegressionAnalysis": "Regression Analysis",
     "ANOVA2": "Two way ANOVA",
@@ -876,6 +884,7 @@ $.message.en = {
     "AnovaTable": "ANOVA Table",
     "AnovaMeanGraph": "Mean Confidence Interval",
     "MultipleComparison": "Multiple Comparison",
+    "ComparisonGraph": "Comparison Graph",
     "AnovaResidual": "Standardized Residual Plot",
     "AnovaQQ": "Residual Q-Q Plot",
     "TestingFit": "Categorical : Goodness of Fit Test",
@@ -940,8 +949,10 @@ $.message.en = {
     "StudentRangeDist": "HSD Studentized Range Dist.",
     "copy link": "link copy",
     "WithoutReplacement": "without replacement",
-    "WordCloud":       "Word Cloud (English only)",
-    "oneColor":        "Single Color",
+    "WordCloud":       "Word Cloud",
+    "oneColor":        "Color",
+    "defaultColor":    "Default Color",
+    "RelativeFreq":    "Relative Frequency",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1019,7 +1030,7 @@ svgStr[26][1] = "Analysis Var";
 svgStr[27][1] = "Var Value";
 svgStr[28][1] = "Value Label";
 svgStr[29][1] = "Frequency";
-svgStr[30][1] = "Relative Frequency (%)";
+svgStr[30][1] = "Relative Frequency";
 svgStr[31][1] = "<h3>Cross Table</h3>";
 svgStr[32][1] = "Col Variable";
 svgStr[33][1] = "Row Variable";
@@ -1107,6 +1118,7 @@ svgStr[114][1] = "Population Variance";
 svgStr[115][1] = "Hypothesis";
 svgStr[116][1] = "Test";
 svgStr[117][1] = "Variance";
+svgStr[118][1] = "Interval Value";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1247,6 +1259,7 @@ $.message.ja = {
     "Dot Graph": "ドットグラフ",
     "Histogram": "ヒストグラム",
     "Stem & Leaf Plot": "幹葉図",
+    "maxStem": "** 最大幹数 <= 30 **",
     "Box-Whisker Plot": "箱ひげ図",
     "Scatterplot": "散布図",
     "Frequency Table": "度数分布表",
@@ -1288,6 +1301,7 @@ $.message.ja = {
     "Mean": "平均",
     "Std Deviation": "標準偏差",
     "MeanStd": "平均/標準偏差",
+    "DotMeanStd": "ドットグラフ - 平均/標準偏差",
     "95CI": "95%信頼区間",
     "RegressionAnalysis": "回帰分析",
     "ANOVA2": "2元分散分析",
@@ -1448,6 +1462,7 @@ $.message.ja = {
     "AnovaTable": "分散分析表",
     "AnovaMeanGraph": "信賴區間圖",
     "MultipleComparison": "多重比較",
+    "ComparisonGraph": "比較グラフ",
     "AnovaResidual": "殘差プロット",
     "AnovaQQ": "殘差Q-Qプロット",
     "TestingFit": "カテゴリ型適合性檢定",
@@ -1513,7 +1528,9 @@ $.message.ja = {
     "copy link": "リンクをコピー",
     "WithoutReplacement": "非復元抽出",
     "WordCloud":       "ワードクラウド（英語のみ）",
-    "oneColor":        "単色",
+    "oneColor":        "色",
+    "defaultColor":    "デフォルトの色",
+    "RelativeFreq":    "相対度数",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1592,7 +1609,7 @@ svgStr[26][2] = "分析変数";
 svgStr[27][2] = "変数値";
 svgStr[28][2] = "変数値ラベル";
 svgStr[29][2] = "度数";
-svgStr[30][2] = "相対度数 (%)";
+svgStr[30][2] = "相対度数";
 svgStr[31][2] = "<h3>クロス表</h3>";
 svgStr[32][2] = "列変数";
 svgStr[33][2] = "行変数";
@@ -1680,6 +1697,7 @@ svgStr[114][2]= "母分散";
 svgStr[115][2]= "仮説";
 svgStr[116][2]= "檢定";
 svgStr[117][2]= "分散";
+svgStr[118][2] = "階級区間値";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1820,6 +1838,7 @@ $.message.zhTW = {
     "Dot Graph": "點圖",
     "Histogram": "直方圖",
     "Stem & Leaf Plot": "莖葉圖",
+    "maxStem": "** 最大莖數 <= 30 **",
     "Box-Whisker Plot": "盒形圖",
     "Scatterplot": "散佈圖",
     "Frequency Table": "次數分佈表",
@@ -1861,6 +1880,7 @@ $.message.zhTW = {
     "Mean": "平均數",
     "Std Deviation": "標準差",
     "MeanStd": "平均/標準差",
+    "DotMeanStd": "點圖 - 平均/標準差",
     "95CI": "95%信頼区間",
     "RegressionAnalysis": "回歸分析",
     "ANOVA2": "二因子變異數分析",
@@ -2017,6 +2037,7 @@ $.message.zhTW = {
     "AnovaTable": "變異數分析表",
     "AnovaMeanGraph": "信賴區間圖",
     "MultipleComparison": "多重比較",
+    "ComparisonGraph": "比較圖",
     "AnovaResidual": "殘差図",
     "AnovaQQ": "殘差Q-Q図",
     "TestingFit": "分類的適合性檢定",
@@ -2082,8 +2103,11 @@ $.message.zhTW = {
     "copy link": "複製鏈接",
     "WithoutReplacement": "沒有恢復提取",
     "WordCloud":       "詞云（僅英語）",
-    "oneColor":        "單色",
+    "oneColor":        "色",
+    "defaultColor":    "默認顏色",
+    "RelativeFreq":    "相對頻率",
 };
+// Chinese 
 appStr[1][3] = "../eStatH/index.html";
 appStr[2][3] = "../eStatU/index.html";
 appStr[3][3] = "../eStatE/index_en.html";
@@ -2160,7 +2184,7 @@ svgStr[26][3] = "分析變數";
 svgStr[27][3] = "變數値";
 svgStr[28][3] = "變數值標號";
 svgStr[29][3] = "次數";
-svgStr[30][3] = "相對頻率 (%)";
+svgStr[30][3] = "相對頻率";
 svgStr[31][3] = "<h3>交叉表</h3>";
 svgStr[32][3] = "行變數";
 svgStr[33][3] = "列變數";
@@ -2248,6 +2272,7 @@ svgStr[114][3]= "母體變異數";
 svgStr[115][3]= "假設";
 svgStr[116][3]= "檢定";
 svgStr[117][3]= "變異數";
+svgStr[118][3]= "階級區間値";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2388,6 +2413,7 @@ $.message.fr = {
     "Dot Graph": "Graphique à points",
     "Histogram": "Histogramme",
     "Stem & Leaf Plot": "Diagramme tige-feuille",
+    "maxStem": "** nombre maximum de tiges <= 30 **",
     "Box-Whisker Plot": "Boîte à moustaches",
     "Scatterplot": "Diagramme de dispersion",
     "Frequency Table": "Tableau des fréquences",
@@ -2429,6 +2455,7 @@ $.message.fr = {
     "Mean": "Moyenne",
     "Std Deviation": "Ecart-type",
     "MeanStd": "Moyenne/Ecart-type",
+    "DotMeanStd": "Graphique à points - Moyenne/Ecart-type",
     "95CI": "95% Intervalle de confinace",
     "RegressionAnalysis": "Régression Analyse",
     "ANOVA2": "Two way ANOVA",
@@ -2584,7 +2611,8 @@ $.message.fr = {
     "Type2Error": "Type 2 Erreur",
     "AnovaTable": "ANOVA Table",
     "AnovaMeanGraph": "MoyenneIntervalle de confiance",
-    "MultipleComparison": "Multiple Comparison",
+    "MultipleComparison": "Comparaison multiple",
+    "ComparisonGraph": "graphique de comparaison",
     "AnovaResidual": "Résiduel Diagramme",
     "AnovaQQ": "Résiduel Q-Q Diagramme",
     "TestingFit": "Qualité de l'ajustement Test",
@@ -2650,7 +2678,9 @@ $.message.fr = {
     "copy link": "copiar enlace",
     "WithoutReplacement": "sans remplacement",
     "WordCloud":       "Nuage de mots (en anglais uniquement)",
-    "oneColor":        "couleur unique",
+    "oneColor":        "couleur",
+    "defaultColor":    "couleur par défaut",
+    "RelativeFreq":    "Fréquence relative",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2729,7 +2759,7 @@ svgStr[26][4] = "Analyse Var";
 svgStr[27][4] = "valeur de la variable";
 svgStr[28][4] = "Libellé  d'une valeur";
 svgStr[29][4] = "Fréquence";
-svgStr[30][4] = "Fréquence relative (%)";
+svgStr[30][4] = "Fréquence relative";
 svgStr[31][4] = "<h3>Tableau croisé</h3>";
 svgStr[32][4] = "Variable colonne";
 svgStr[33][4] = "Ligne Variable";
@@ -2817,6 +2847,7 @@ svgStr[114][4]= "Population variance";
 svgStr[115][4]= "d'hypothèse";
 svgStr[116][4]= "test";
 svgStr[117][4]= "Variance";
+svgStr[118][4]= "Valeur d'intervalle";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -2957,6 +2988,7 @@ $.message.de = {
     "Dot Graph": "eindimensionales Streudiagramm",
     "Histogram": "Histogramm",
     "Stem & Leaf Plot": "Stamm-Blatt-Diagramm",
+    "maxStem": "** maximale Anzahl von Stamm <= 30 **",
     "Box-Whisker Plot": "Box-Whisker-Plot",
     "Scatterplot": "Streudiagramm",
     "Frequency Table": "Häufigkeitstabelle",
@@ -2998,6 +3030,7 @@ $.message.de = {
     "Mean": "Mittelwert",
     "Std Deviation": "Standardabweichung",
     "MeanStd": "Mittelwert/Standardabweichung",
+    "DotMeanStd": "eindimensionales Streudiagramm - Mittelwert/Standardabweichung",
     "95CI": "95% Konfidenzintervall",
     "RegressionAnalysis": "Regressionanalyse",
     "ANOVA2": "Zweiweg ANOVA",
@@ -3151,6 +3184,7 @@ $.message.de = {
     "AnovaTable": "ANOVA Table",
     "AnovaMeanGraph": "Mittleres Konfidenzintervall",
     "MultipleComparison": "Mehrfacher Vergleich",
+    "ComparisonGraph": "Vergleichsgraph",
     "AnovaResidual": "Restwertdiagramm",
     "AnovaQQ": "Restwert Q-Q Diagramm",
     "TestingFit": "Anpassungsgüte Test",
@@ -3216,7 +3250,9 @@ $.message.de = {
     "copy link": "Link kopieren",
     "WithoutReplacement": "ohne Ersatz",
     "WordCloud":       "Wortwolke (Englisch)",
-    "oneColor":        "einzelne Farbe",
+    "oneColor":        "Farbe",
+    "defaultColor":    "Standardfarbe",
+    "RelativeFreq":    "Relative Frequenz",
 };
 // German 
 appStr[1][5] = "../eStatH/index.html";
@@ -3295,7 +3331,7 @@ svgStr[26][5] = "Analyse Var";
 svgStr[27][5] = "Variablenwert";
 svgStr[28][5] = "Wertname";
 svgStr[29][5] = "Häufigkeit";
-svgStr[30][5] = "Relative Frequenz (%)";
+svgStr[30][5] = "Relative Frequenz";
 svgStr[31][5] = "<h3>Zweidimensionentabelle</h3>";
 svgStr[32][5] = "Spaltenvariable";
 svgStr[33][5] = "Zeilenvariable";
@@ -3383,6 +3419,7 @@ svgStr[114][5]= "Grundgesamtheit Varianz";
 svgStr[115][5]= "Hypothesen";
 svgStr[116][5]= "test";
 svgStr[117][5]= "Varianz";
+svgStr[118][5]= "Intervallwert";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3523,6 +3560,7 @@ $.message.es = {
     "Dot Graph": "Gráfico de puntos",
     "Histogram": "Histograma",
     "Stem & Leaf Plot": "Diagrama de Tallo y Hojas",
+    "maxStem": "** número máximo de tallo <= 30 **",
     "Box-Whisker Plot": "Box-Whisker Plot",
     "Scatterplot": "Diagrama de dispersión",
     "Frequency Table": "Tabla de frecuencias",
@@ -3564,6 +3602,7 @@ $.message.es = {
     "Mean": "Media",
     "Std Deviation": "Desviación estándar",
     "MeanStd": "Media/Desviación estándar",
+    "DotMeanStd": "Gráfico de puntos - Mean/StdDev",
     "95CI": "95% Nivel de confianza",
     "RegressionAnalysis": "Regresión Análisis",
     "ANOVA2": "Bidireccional ANOVA",
@@ -3720,6 +3759,7 @@ $.message.es = {
     "AnovaTable": "ANOVA Tabla",
     "AnovaMeanGraph": "Intervalo de confianza promedio",
     "MultipleComparison": "Comparación múltiple",
+    "ComparisonGraph": "Gráfico de comparación",
     "AnovaResidual": "Residual Trama",
     "AnovaQQ": "Residual Q-Q Trama",
     "TestingFit": "Prueba de bondad de ajuste",
@@ -3785,7 +3825,9 @@ $.message.es = {
     "copy link": "copiar link",
     "WithoutReplacement": "sin reemplazo",
     "WordCloud":       "Nube de palabras (inglés)",
-    "oneColor":        "de un solo color",
+    "oneColor":        "color",
+    "defaultColor":    "color predeterminado",
+    "RelativeFreq":    "Frecuencia relativa",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3864,7 +3906,7 @@ svgStr[26][6] = "Análisis Var";
 svgStr[27][6] = "Valor de la Variable";
 svgStr[28][6] = "Valor de la etiqueta";
 svgStr[29][6] = "Frecuencia";
-svgStr[30][6] = "Frecuencia relativa (%)";
+svgStr[30][6] = "Frecuencia relativa";
 svgStr[31][6] = "<h3>Tabla cruzada</h3>";
 svgStr[32][6] = "Variable columna";
 svgStr[33][6] = "Variable fila";
@@ -3952,6 +3994,7 @@ svgStr[114][6]= "Varianza Poblacional";
 svgStr[115][6]= "hipótesis";
 svgStr[116][6]= "prueba";
 svgStr[117][6]= "Varianza";
+svgStr[118][6]= "Valor de intervalo";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -4092,6 +4135,7 @@ $.message.vi = {
     "Dot Graph": "Biểu đồ điểm ",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": "Đồ thị Stem-Leaf",
+    "maxStem": "** số lượng thân cây tối đa <= 30 **",
     "Box-Whisker Plot": "Biểu đồ Box-Whisker",
     "Scatterplot": "Biểu đồ phân tán",
     "Frequency Table": "Bảng tần số",
@@ -4134,6 +4178,7 @@ $.message.vi = {
     "Std Deviation": "Độ lệch chuẩn",
     "Regression": "Hồi quy",
     "MeanStd": "Trung bình/Độ lệch chuẩn",
+    "DotMeanStd": "Biểu đồ điểm - Trung bình/Độ lệch chuẩn",
     "95CI": "Khoảng tin cậy 95%",
     "RegressionAnalysis": "Phân tích hồi quy",
     "ANOVA2": "ANOVA 2",
@@ -4289,6 +4334,7 @@ $.message.vi = {
     "AnovaTable": "Bảng ANOVA",
     "AnovaMeanGraph": "Khoảng tin cậy cho trung bình",
     "MultipleComparison": "So sánh kép",
+    "ComparisonGraph": "Biểu đồ so sánh",
     "AnovaResidual": "Biểu đồ phần dư",
     "AnovaQQ": "Biểu đồ Q-Q Plot cho phần dư",
     "TestingFit": "Kiểm định độ phù hợp của mô hình",
@@ -4351,6 +4397,8 @@ $.message.vi = {
     "WithoutReplacement": "không có vật thay thế",
     "WordCloud":       "Word Cloud (tiếng Anh)",
     "oneColor":        "màu đơn",
+    "defaultColor":    "màu mặc định",
+    "RelativeFreq":    "Tần số tương đối",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4429,7 +4477,7 @@ svgStr[26][7] = "Biến phân tích";
 svgStr[27][7] = "Giá trị biến";
 svgStr[28][7] = "Nhãn giá trị";
 svgStr[29][7] = "Tần số";
-svgStr[30][7] = "Tần số tương đối (%)";
+svgStr[30][7] = "Tần số tương đối";
 svgStr[31][7] = "<h3>Bảng chéo</h3>";
 svgStr[32][7] = "Biến cột";
 svgStr[33][7] = "Biến dòng";
@@ -4517,6 +4565,7 @@ svgStr[114][7]= "Phương sai tổng thể";
 svgStr[115][7]= "giả thuyết";
 svgStr[116][7]= "kiểm tra";
 svgStr[117][7]= "phương sai";
+svgStr[118][7]= "Giá trị khoảng thời gian";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -4657,6 +4706,7 @@ $.message.id = {
     "Dot Graph": "Diagram Dot",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": " Diagram Dahan dan Daun",
+    "maxStem": "** jumlah batang maksimal <= 30 **",
     "Box-Whisker Plot": "Diagram Kotak Garis",
     "Scatterplot": "Diagram Pencar",
     "Frequency Table": "Tabel Frekuensi",
@@ -4698,6 +4748,7 @@ $.message.id = {
     "Mean": "Rata-rata",
     "Std Deviation": "Standar Deviasi",
     "MeanStd": "Rata-rata/Standar Deviasi",
+    "DotMeanStd": "Diagram Dot - Rata-rata/Standar Deviasi",
     "95CI": "95% Selang Kepercayaan",
     "RegressionAnalysis": "Analisis regresi",
     "ANOVA2": "dua arah ANOVA",
@@ -4854,6 +4905,7 @@ $.message.id = {
     "AnovaTable": "Tabel ANOVA",
     "AnovaMeanGraph": "Selang kepercayaan dari Rata-rata",
     "MultipleComparison": "Perbandingan Berganda",
+    "ComparisonGraph": "Grafik Perbandingan",
     "AnovaResidual": "Sisa Merencanaka",
     "AnovaQQ": "Q-Q dari Sisa Merencanaka",
     "TestingFit": "Uji Kebaikan/kelayakan Model",
@@ -4919,7 +4971,9 @@ $.message.id = {
     "copy link": "Salin tautan",
     "WithoutReplacement": "tanpa penggantian",
     "WordCloud":       "Word Cloud (Inggris)",
-    "oneColor":        "warna tunggal",
+    "oneColor":        "warna",
+    "defaultColor":    "warna default",
+    "RelativeFreq":    "Frekuensi relatif",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -4998,7 +5052,7 @@ svgStr[26][8] = "Var Analisis";
 svgStr[27][8] = "Nilai Var";
 svgStr[28][8] = "Label Nilai";
 svgStr[29][8] = "Frekuensi";
-svgStr[30][8] = "Frekuensi relatif (%)";
+svgStr[30][8] = "Frekuensi relatif";
 svgStr[31][8] = "<h3>Tabel Silang</h3>";
 svgStr[32][8] = "Variabel Kolom";
 svgStr[33][8] = "Variabel Baris";
@@ -5086,6 +5140,7 @@ svgStr[114][8]= "Varians Satu Populasi";
 svgStr[115][8]= "Hipotesis";
 svgStr[116][8]= "Uji";
 svgStr[117][8]= "Varians";
+svgStr[118][8]= "Nilai interval";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -5227,6 +5282,7 @@ $.message.mn = {
     "Dot Graph": "Цэгэн график",
     "Histogram": "Гистограм",
     "Stem & Leaf Plot": "Модны их бие ба навчист (Stem & Leaf) график",
+    "maxStem": "** ишний хамгийн их тоо <= 30 **",
     "Box-Whisker Plot": "Boxplot график",
     "Scatterplot": "Тархалтын график",
     "Frequency Table": "Давтамжит хүснэгт",
@@ -5268,6 +5324,7 @@ $.message.mn = {
     "Mean": "Дундаж  утга",
     "Std Deviation": "Стандарт хэлбэлзэл ",
     "MeanStd": "Дундаж  утга/Стандарт хэлбэлзэл",
+    "DotMeanStd": "Цэгэн график - Дундаж  утга/Стандарт хэлбэлзэл",
     "95CI": "95% Найдварт завсар",
     "RegressionAnalysis": "Регрессийн шинжилгээ",
     "ANOVA2": "2 арга зам ANOVA",
@@ -5422,6 +5479,7 @@ $.message.mn = {
     "AnovaTable": "ANOVA Хүснэг",
     "AnovaMeanGraph": "Дундаж  утга Итгэх интервалl",
     "MultipleComparison": "Олон харьцуулалт",
+    "ComparisonGraph": "Харьцуулах график",
     "AnovaResidual": "Үлдэгдлийн диаграм/дүрслэл",
     "AnovaQQ": "Үлдэгдлийн диаграм/дүрслэл Q-Q ",
     "TestingFit": "Fit Test-ийн сайн сайхан байдал",
@@ -5487,7 +5545,9 @@ $.message.mn = {
     "copy link": "хуулбар холбоос",
     "WithoutReplacement": "орлуулахгүйгээр",
     "WordCloud":       "Word Cloud (Англи)",
-    "oneColor":        "нэг өнгө",
+    "oneColor":        "өнгө",
+    "defaultColor":    "анхдагч өнгө",
+    "RelativeFreq":    "Харьцангуй давтамж",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -5566,7 +5626,7 @@ svgStr[26][9] = "Вариацийн шинжилгээ";
 svgStr[27][9] = "Хувьсагчийн утга ";
 svgStr[28][9] = "Утгын нэр хаяг";
 svgStr[29][9] = "Давтамж ";
-svgStr[30][9] = "Харьцангуй давтамж (%)";
+svgStr[30][9] = "Харьцангуй давтамж";
 svgStr[31][9] = "<h3>Солбисон хүснэгт</h3>";
 svgStr[32][9] = "Баганан хувьсагч ";
 svgStr[33][9] = "Мөрийн хувьсагч";
@@ -5654,6 +5714,7 @@ svgStr[114][9]= "Хүн амын дундаж кватрат хазайлт";
 svgStr[115][9]= "таамаглал";
 svgStr[116][9]= "Туршилт";
 svgStr[117][9]= "хэлбэлзэл";
+svgStr[118][5]= "Интервал утга";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -5794,6 +5855,7 @@ $.message.zh = {
     "Dot Graph": "点图",
     "Histogram": "直方图",
     "Stem & Leaf Plot": "茎叶图",
+    "maxStem": "** 最大茎数 <= 30 **",
     "Box-Whisker Plot": "箱线图",
     "Scatterplot": "散点图",
     "Frequency Table": "频频率分布表",
@@ -5836,6 +5898,7 @@ $.message.zh = {
     "Std Deviation": "标准差",
     "Regression": "回归",
     "MeanStd": "平均/标准差",
+    "DotMeanStd": "点图 - 平均/标准差",
     "95CI": "95%置信区间",
     "RegressionAnalysis": "回归分析",
     "ANOVA2": "2元方差分析",
@@ -5991,6 +6054,7 @@ $.message.zh = {
     "AnovaTable": "方差分析表",
     "AnovaMeanGraph": "均值置信区间",
     "MultipleComparison": "多重比较过程",
+    "ComparisonGraph": "比較图",
     "AnovaResidual": "残差图",
     "AnovaQQ": "残差Q-Q图",
     "TestingFit": "分类的拟合优度检验",
@@ -6055,7 +6119,9 @@ $.message.zh = {
     "copy link": "复制链接",
     "WithoutReplacement": "没有恢复提取",
     "WordCloud":       "词云（英语",
-    "oneColor":        "单色",
+    "oneColor":        "色",
+    "defaultColor":    "默认颜色",
+    "RelativeFreq":    "相对频率",
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -6134,7 +6200,7 @@ svgStr[26][10] = "分析变量";
 svgStr[27][10] = "变量值";
 svgStr[28][10] = "变量值标号";
 svgStr[29][10] = "次数";
-svgStr[30][10] = "相对频率 (%)";
+svgStr[30][10] = "相对频率";
 svgStr[31][10] = "<h3>交叉表</h3>";
 svgStr[32][10] = "行变量";
 svgStr[33][10] = "列变量";
@@ -6222,6 +6288,7 @@ svgStr[114][10]= "总体方差";
 svgStr[115][10]= "假设";
 svgStr[116][10]= "檢定";
 svgStr[117][10]= "方差";
+svgStr[118][10]= "阶级区间值";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -6336,6 +6403,7 @@ $.message.pt = {
     "Dot Graph": "Gráfico de Pontos",
     "Histogram": "Histograma",
     "Stem & Leaf Plot": "Gráfico Ramo-e-Folhas",
+    "maxStem": "** número máximo de haste <= 30 **",
     "Box-Whisker Plot": "Diagrama de Caixas",
     "Scatterplot": "Diagrama de Dispersão",
     "Frequency Table": "Tabela de Frequências",
@@ -6377,6 +6445,7 @@ $.message.pt = {
     "Mean": "Média",
     "Std Deviation": "Desvio Padrão",
     "MeanStd": "Média/Desvio Padrão",
+    "DotMeanStd": "Gráfico de Pontos - Média/Desvio Padrão",
     "95CI": "95% Intervalo de Confiança",
     "RegressionAnalysis": "análise de regressão",
     "ANOVA2": "Dois sentidos ANOVA",
@@ -6535,6 +6604,7 @@ $.message.pt = {
     "AnovaTable": "Tabela ANOVA",
     "AnovaMeanGraph": "Intervalo de Confiança para a Média",
     "MultipleComparison": "Comparações Múltiplas",
+    "ComparisonGraph": "Gráfico de Comparação",
     "AnovaResidual": "gráfico de resíduos",
     "AnovaQQ": "Residual Gráfico Q-Q",
     "TestingFit": "Teste de Bondade de Ajuste",
@@ -6600,7 +6670,9 @@ $.message.pt = {
     "copy link": "link de cópia",
     "WithoutReplacement": "Sem substituição",
     "WordCloud":       "Nuvem de palavras (inglês)",
-    "oneColor":        "única cor",
+    "oneColor":        "cor",
+    "defaultColor":    "cor padrão",
+    "RelativeFreq":    "Frequência relativa",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -6679,7 +6751,7 @@ svgStr[26][11] = "Var Resposta";
 svgStr[27][11] = "Valor da Variável";
 svgStr[28][11] = "Rótulo do Valor";
 svgStr[29][11] = "Frequência";
-svgStr[30][11] = "Frequência relativa (%)";
+svgStr[30][11] = "Frequência relativa";
 svgStr[31][11] = "<h3>Tabela Cruzada</h3>";
 svgStr[32][11] = "Variável na Coluna";
 svgStr[33][11] = "Variável na Linha";
@@ -6767,6 +6839,7 @@ svgStr[114][11]= "Variância Populacional";
 svgStr[115][11]= "Hipótese";
 svgStr[116][11]= "Teste";
 svgStr[117][11]= "Variância";
+svgStr[118][11]= "Valor do intervalo";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -6907,6 +6980,7 @@ $.message.gr = {
     "Dot Graph": "Σημειόγραμμα ",
     "Histogram": "Ιστόγραμμα ",
     "Stem & Leaf Plot": "Δενδροδιάγραμμα",
+    "maxStem": "** μέγιστος αριθμός στελεχών <= 30 **",
     "Box-Whisker Plot": "Θηκόγραμμα",
     "Scatterplot": "Διάγραμμα Διασκορπισμού",
     "Frequency Table": "Πίνακας Συχνοτήτων",
@@ -6948,6 +7022,7 @@ $.message.gr = {
     "Mean": "Μέσος",
     "Std Deviation": "Τυπική Απόκλιση",
     "MeanStd": "Μέσος/Τυπική Απόκλιση",
+    "DotMeanStd": "Σημειόγραμμα - Μέσος/Τυπική Απόκλιση",
     "95CI": "95% Διάστημα Εμπυστοσύνης",
     "RegressionAnalysis": "Ανάλυση Παλινδρόμησης",
     "ANOVA2": "Ανάλυση Διακύμανσης Δύο Παραγόντων",
@@ -7106,6 +7181,7 @@ $.message.gr = {
     "AnovaTable": "Πίνακας ANOVA",
     "AnovaMeanGraph": "Διάστημα Εμπιστοσύνης για τον μέσο",
     "MultipleComparison": "Πολλαπλές Συγρίσεις",
+    "ComparisonGraph": "Γράφημα σύγκρισης",
     "AnovaResidual": "Τυποποιημένα Κατάλοιπα Γράφημα",
     "AnovaQQ": "Γράφημα Καταλοίπων Q-Q",
     "TestingFit": "Έλεγχος Καλής Προσαρμογής",
@@ -7172,6 +7248,8 @@ $.message.gr = {
     "WithoutReplacement": "χωρίς αντικατάσταση",
     "WordCloud":       "Word Cloud (Αγγλικά)",
     "oneColor":        "μονόχρωμο",
+    "defaultColor":    "προεπιλεγμένο χρώμα",
+    "RelativeFreq":    "Σχετική Συχνότητα",
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -7249,7 +7327,7 @@ svgStr[26][12] = "Ανάλυση Μεταβλητών";
 svgStr[27][12] = "Τιμή Μεταβλητής";
 svgStr[28][12] = "Χαρακτηρισμός Τιμής";
 svgStr[29][12] = "Συχνότητα";
-svgStr[30][12] = "Σχετική Συχνότητα (%)";
+svgStr[30][12] = "Σχετική Συχνότητα";
 svgStr[31][12] = "<h3>Πίνακας Διπλής Εισόδου</h3>";
 svgStr[32][12] = "Μεταβλητή Στήλης";
 svgStr[33][12] = "Μεταβλητή Γραμμής";
@@ -7337,6 +7415,7 @@ svgStr[114][12]= "Πλυθυσμιακή Διασπορά";
 svgStr[115][12]= "Υπόθεση";
 svgStr[116][12]= "Έλεγχος";
 svgStr[117][12]= "διαφορά";
+svgStr[118][12]= "Τιμή διαστήματος";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -7476,6 +7555,7 @@ $.message.ro = {
     "Dot Graph": "Diagramă prin Puncte",
     "Histogram": "Histogramă",
     "Stem & Leaf Plot": "Diagramă Rădăcină-Frunză",
+    "maxStem": "** numărul maxim de tulpină <= 30 **",
     "Box-Whisker Plot": "Box complot",
     "Scatterplot": "Diagramă prin Puncte",
     "Frequency Table": "Tabelul Frecvențelor",
@@ -7517,6 +7597,7 @@ $.message.ro = {
     "Mean": "Medie",
     "Std Deviation": "Abatere Standard",
     "MeanStd": "Medie/AbatereStandard",
+    "DotMeanStd": "Diagramă prin Puncte - Medie/AbatereStandard",
     "95CI": "95% Interval de Încredere",
     "RegressionAnalysis": "Analiza Regresiei",
     "ANOVA2": "Two way ANOVA",
@@ -7676,6 +7757,7 @@ $.message.ro = {
     "AnovaTable": "ANOVA Tabel",
     "AnovaMeanGraph": "Medie Interval de Încredere",
     "MultipleComparison": "Comparație Multiplă",
+    "ComparisonGraph": "Grafic comparativ",
     "AnovaResidual": "Standardizat Reziduu Diagramă",
     "AnovaQQ": "Reziduu Q-Q Diagramă",
     "TestingFit": "Test de ajustare",
@@ -7741,7 +7823,9 @@ $.message.ro = {
     "copy link": "copiere legătura",
     "WithoutReplacement": "fără înlocuire",
     "WordCloud":       "Word Cloud (engleză)",
-    "oneColor":        "o singură culoare",
+    "oneColor":        "culoare",
+    "defaultColor":    "culoare implicită",
+    "RelativeFreq":    "Frecventa relativa",
 };
 // Romanian
 appStr[1][13] = "../eStatH/index.html";
@@ -7819,7 +7903,7 @@ svgStr[26][13] = "Analiza Var";
 svgStr[27][13] = "Var Valoare";
 svgStr[28][13] = "Etichetă Variabilăl";
 svgStr[29][13] = "Frecvență";
-svgStr[30][13] = "Frecventa relativa (%)";
+svgStr[30][13] = "Frecventa relativa";
 svgStr[31][13] = "<h3>Tabel transversal</h3>";
 svgStr[32][13] = "Variabila pe Coloană";
 svgStr[33][13] = "Variabilă pe Rând";
@@ -7907,6 +7991,7 @@ svgStr[114][13]= "Varianța Populației";
 svgStr[115][13]= "Ipoteză";
 svgStr[116][13]= "Test";
 svgStr[117][13]= "Varianța";
+svgStr[118][13]= "Valoarea intervalului";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -8047,6 +8132,7 @@ $.message.th = {
     "Dot Graph": "แผนภาพจุด",
     "Histogram": "ฮิสโทแกรม",
     "Stem & Leaf Plot": "แผนภาพลำต้นและใบ",
+    "maxStem": "** จำนวนก้านสูงสุด <= 30 **",
     "Box-Whisker Plot": "แผนภาพกล่อง",
     "Scatterplot": "แผนภาพการกระจาย",
     "Frequency Table": "ตารางแจกแจงความถี่",
@@ -8088,6 +8174,7 @@ $.message.th = {
     "Mean": "ค่าเฉลี่ย",
     "Std Deviation": "ส่วนเบี่ยงเบนมาตรฐาน",
     "MeanStd": "ค่าเฉลี่ย/ส่วนเบี่ยงเบนมาตรฐาน",
+    "DotMeanStd": "แผนภาพจุด - ค่าเฉลี่ย/ส่วนเบี่ยงเบนมาตรฐาน",
     "95CI": "95% ช่วงความเชื่อมั่น",
     "RegressionAnalysis": "การวิเคราะห์การถดถอย",
     "ANOVA2": "การวิเคราะห์ความแปรปรวนแบบสองทาง",
@@ -8247,6 +8334,7 @@ $.message.th = {
     "AnovaTable": "ตารางวิเคราะห์ความแปรปรวน",
     "AnovaMeanGraph": "ค่าเฉลี่ยช่วงความเชื่อมั่น",
     "MultipleComparison": "การเปรียบเทียบพหุคูณ",
+    "ComparisonGraph": "กราฟเปรียบเทียบ",
     "AnovaResidual": "ส่วนเหลือมาตรฐาน พล็อต",
     "AnovaQQ": "ส่วนเหลือ คิว-คิวพล็อต",
     "TestingFit": "การทดสอบภาวะสารูปดี",
@@ -8313,6 +8401,8 @@ $.message.th = {
     "WithoutReplacement": "โดยไม่ต้องเปลี่ยน",
     "WordCloud":       "Word Cloud (ภาษาอังกฤษ)",
     "oneColor":        "สีเดียว",
+    "defaultColor":    "สีเริ่มต้น",
+    "RelativeFreq":    "ความถี่สัมพัทธ์",
 };
 // Thai
 appStr[1][14] = "../eStatH/index.html";
@@ -8390,7 +8480,7 @@ svgStr[26][14] = "ตัวแปรวิเคราะห์";
 svgStr[27][14] = "ค่าของตัวแปร";
 svgStr[28][14] = "ค่าระดับ";
 svgStr[29][14] = "ความถี่";
-svgStr[30][14] = "ความถี่สัมพัทธ์ (%)";
+svgStr[30][14] = "ความถี่สัมพัทธ์ ";
 svgStr[31][14] = "<h3>ตารางไขว้</h3>";
 svgStr[32][14] = "ตัวแปรคอลัมน์";
 svgStr[33][14] = "ตัวแปรแถว";
@@ -8478,6 +8568,7 @@ svgStr[114][14] = "ความแปรปรวนของประชาก�
 svgStr[115][14] = "สมมติฐาน";
 svgStr[116][14] = "การทดสอบ";
 svgStr[117][14] = "ความแปรปรวน";
+svgStr[118][14] = "ค่าช่วงเวลา";
 
 svgStrU[1][14] = "การแจกแจงทวินาม";
 svgStrU[2][14] = "การทำซ้ำ";
@@ -8617,6 +8708,7 @@ $.message.pl = {
     "Dot Graph": "Wykres punktowy",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": "Wykres łodyga i liście",
+    "maxStem": "** maksymalna liczba łodyg <= 30 **",
     "Box-Whisker Plot": "Wykres pudełkowy",
     "Scatterplot": "Wykres rozrzutu",
     "Frequency Table": "Tabela częstości",
@@ -8658,6 +8750,7 @@ $.message.pl = {
     "Mean": "Śrdenia",
     "Std Deviation": "Odchylenie standardowe",
     "MeanStd": "Śrdenia/Odchylenie standardowe",
+    "DotMeanStd": "Wykres punktowy - Śrdenia/Odchylenie standardowe",
     "95CI": "95% Przedział ufności",
     "RegressionAnalysis": "Analiza regresji",
     "ANOVA2": "Dwuczynnikowa analiza wariancji ",
@@ -8816,7 +8909,8 @@ $.message.pl = {
     "Type2Error": "Błąd II rodzaju",
     "AnovaTable": "ANOVA Tabelę",
     "AnovaMeanGraph": "Śrdenia Przedział ufności",
-    "MultipleComparison": "Multiple Comparison",
+    "MultipleComparison": "Wielokrotne porównania",
+    "ComparisonGraph": "Wykres porównawczy",
     "AnovaResidual": "Standardized Wykres reszt",
     "AnovaQQ": "Reszta Wykres Q-Q",
     "TestingFit": "Test zgodności CHI2",
@@ -8882,7 +8976,9 @@ $.message.pl = {
     "copy link": "Skopiuj link",
     "WithoutReplacement": "bez zamiany",
     "WordCloud":       "Word Cloud (angielski)",
-    "oneColor":        "pojedynczy kolor",
+    "oneColor":        "kolor",
+    "defaultColor":    "domyślny kolor",
+    "RelativeFreq":    "Procent",
 };
 
 // Polish
@@ -8961,7 +9057,7 @@ svgStr[26][15] = "Zmienna analizy";
 svgStr[27][15] = "Wartość zmiennej";
 svgStr[28][15] = "Etykieta wartości";
 svgStr[29][15] = "Częstotliwość";
-svgStr[30][15] = "Procent (%)";
+svgStr[30][15] = "Procent";
 svgStr[31][15] = "<h3>ela krzyżowa</h3>";
 svgStr[32][15] = "Zmienna kolumna";
 svgStr[33][15] = "Zmienna wiersza";
@@ -9049,6 +9145,7 @@ svgStr[114][15] = "Wariancja populacji";
 svgStr[115][15] = "Hipotezy";
 svgStr[116][15] = "Test";
 svgStr[117][15] = "Wariancja";
+svgStr[118][15] = "Wartość interwału";
 
 svgStrU[1][15] = "Rozkład dwumianowy";
 svgStrU[2][15] = "Powtórzenie";
@@ -9189,6 +9286,7 @@ $.message.az = {
     "Dot Graph": "nöqtə qrafiki",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": "saplaq və yarpaq sahəsi",
+    "maxStem": "** maksimum kök sayı <= 30 **",
     "Box-Whisker Plot": "Qutu qrafiki",
     "Scatterplot": "Səpələnmə diaqramı",
     "Frequency Table": "tezlik cədvəli",
@@ -9230,6 +9328,7 @@ $.message.az = {
     "Mean": "Ədədi orta",
     "Std Deviation": "standart kənarlaşma",
     "MeanStd": "Ədədi ortan/standart kənarlaşma",
+    "DotMeanStd": "nöqtə qrafiki - Ədədi ortan/standart kənarlaşma",
     "95CI": "95% İnam intervalı",
     "RegressionAnalysis": "reqressiya analizi",
     "ANOVA2": "İki üsulluq Dispersiya analizi",
@@ -9389,6 +9488,7 @@ $.message.az = {
     "AnovaTable": "Dispersiya analizi cədvəli",
     "AnovaMeanGraph": "Orta etimad intervalı",
     "MultipleComparison": "çoxsaylı müqayisə",
+    "ComparisonGraph": "Müqayisə qrafiki",
     "AnovaResidual": "standart qalıq Süjet",
     "AnovaQQ": "qalıq Q-Q Süjet",
     "TestingFit": "kategoriyali : Uyğunluğun keyfiyyəti testi",
@@ -9454,7 +9554,9 @@ $.message.az = {
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
     "WordCloud":       "Söz Buludu (İngilis dili)",
-    "oneColor":        "tək rəng",
+    "oneColor":        "rəng",
+    "defaultColor":    "standart rəng",
+    "RelativeFreq":    "nisbiy tezlik",
 };
 // Azerbaijan
 appStr[1][16] = "../eStatH/index.html";
@@ -9532,7 +9634,7 @@ svgStr[26][16] = "Analiz dəyişəni";
 svgStr[27][16] = "dəyişkən dəyəri";
 svgStr[28][16] = "dəyər etiketi";
 svgStr[29][16] = "tezlik";
-svgStr[30][16] = "nisbiy tezlik (%)";
+svgStr[30][16] = "nisbiy tezlik";
 svgStr[31][16] = "<h3>Kəsişən Cədvəl</h3>";
 svgStr[32][16] = "sütun dəyişəni";
 svgStr[33][16] = "sətir dəyişəni";
@@ -9620,6 +9722,7 @@ svgStr[114][16] = "Populyasiya Dispersiyası";
 svgStr[115][16] = "fərziyyə";
 svgStr[116][16] = "Test";
 svgStr[117][16] = "Dispersiyası";
+svgStr[118][16] = "İnterval dəyəri";
 
 svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "təkrar";
@@ -9760,6 +9863,7 @@ $.message.uz = {
     "Dot Graph": "Nuqta grafigi",
     "Histogram": "Gistogrammai",
     "Stem & Leaf Plot": "poyasi va barglari uchastkasii",
+    "maxStem": "** poyaning maksimal soni <= 30 **",
     "Box-Whisker Plot": "Quti uchastkasi",
     "Scatterplot": "tarqatiladigan fitna",
     "Frequency Table": "Chastotalar jadvali",
@@ -9801,6 +9905,7 @@ $.message.uz = {
     "Mean": "anglatadi",
     "Std Deviation": "standart o'gish",
     "MeanStd": "anglatadi/standart og'ish",
+    "DotMeanStd": "Nuqta grafigi - nglatadi/standart og'ish",
     "95CI": "95% ishonch oralig'i",
     "RegressionAnalysis": "Regressiya tahlili",
     "ANOVA2": "tafovutni ikki tomonlama tahlil qilish",
@@ -9960,6 +10065,7 @@ $.message.uz = {
     "AnovaTable": "Tafovutni tahlil qilish jadvali",
     "AnovaMeanGraph": "anglatadi ishonch oralig'i",
     "MultipleComparison": "ko'p taqqoslash",
+    "ComparisonGraph": "Taqqoslash grafigi",
     "AnovaResidual": "standart Qoldiq Fitna",
     "AnovaQQ": "Qoldiq Q-Q fitna",
     "TestingFit": "kategoriyali : fit testni yaxshiligi",
@@ -10025,7 +10131,9 @@ $.message.uz = {
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
     "WordCloud":       "Word Cloud (inglizcha)",
-    "oneColor":        "bitta rang",
+    "oneColor":        "rang",
+    "defaultColor":    "standart rang",
+    "RelativeFreq":    "nisbiy chastota",
 };
 // Uzbekistan
 appStr[1][17] = "../eStatH/index.html";
@@ -10103,7 +10211,7 @@ svgStr[26][17] = "Tahlil o'zgaruvcha";
 svgStr[27][17] = "o'zgaruvcha qiymati";
 svgStr[28][17] = "qiymat yorlig'i";
 svgStr[29][17] = "Chastotasi";
-svgStr[30][17] = "nisbiy chastota (%)";
+svgStr[30][17] = "nisbiy chastota";
 svgStr[31][17] = "<h3>O'zaro faoliyat stol</h3>";
 svgStr[32][17] = "Col o'zgaruvcha";
 svgStr[33][17] = "Satr o'zgaruvcha";
@@ -10191,6 +10299,7 @@ svgStr[114][17] = "Aholi tafovuti";
 svgStr[115][17] = "Gipotez";
 svgStr[116][17] = "sinov";
 svgStr[117][17] = "dispersiya";
+svgStr[118][17] = "Interval qiymati";
 
 svgStrU[1][17] = "Binominal Tarqatish";
 svgStrU[2][17] = "takrorlash";
@@ -10331,6 +10440,7 @@ $.message.ru = {
     "Dot Graph": "Точечный график",
     "Histogram": "Гистограмма",
     "Stem & Leaf Plot": "Диаграмма стебель-лист",
+    "maxStem": "** максимальное количество стволов <= 30 **",
     "Box-Whisker Plot": "Коробочный сюжет",
     "Scatterplot": "Точечная диаграмма",
     "Frequency Table": "Таблица частот",
@@ -10372,6 +10482,7 @@ $.message.ru = {
     "Mean": "Среднее значение",
     "Std Deviation": "Среднеквадратичное отклонение",
     "MeanStd": "Среднее значение/Среднеквадратичное отклонение",
+    "DotMeanStd": "Точечный график - Среднее значение/Среднеквадратичное отклонение",
     "95CI": "95% Доверительный интервал",
     "RegressionAnalysis": "Регрессионный анализ",
     "ANOVA2": "Двусторонний дисперсионный анализ",
@@ -10531,6 +10642,7 @@ $.message.ru = {
     "AnovaTable": "Дисперсионный анализ таблицы",
     "AnovaMeanGraph": "Среднее значение Доверительный интервал",
     "MultipleComparison": "Множественное сравнение",
+    "ComparisonGraph": "График сравнения",
     "AnovaResidual": "стандартизированы Диаграмма рассеяния остатков",
     "AnovaQQ": "Остаток График КК",
     "TestingFit": "категорический : Анализ степени согласия гипотетического распределения с наблюдаемыми данными",
@@ -10596,7 +10708,9 @@ $.message.ru = {
     "copy link": "копия ссылки",
     "WithoutReplacement": "без заменыt",
     "WordCloud":       "Облако слов (английский)",
-    "oneColor":        "один цветr",
+    "oneColor":        "цветr",
+    "defaultColor":    "цвет по умолчанию",
+    "RelativeFreq":    "Относительная частота",
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
@@ -10673,7 +10787,7 @@ svgStr[26][18] = "Анализ переменной";
 svgStr[27][18] = "переменной Value";
 svgStr[28][18] = "Метка значения";
 svgStr[29][18] = "Частота";
-svgStr[30][18] = "Относительная частота (%)";
+svgStr[30][18] = "Относительная частота";
 svgStr[31][18] = "<h3>Таблица кросстабуляции</h3>";
 svgStr[32][18] = "Переменная столбца";
 svgStr[33][18] = "Переменная строки";
@@ -10761,6 +10875,7 @@ svgStr[114][18] = "Коэффициент вариации генерально�
 svgStr[115][18] = "Коэффициент корреляции";
 svgStr[116][18] = "Тест";
 svgStr[117][18] = "отклонение";
+svgStr[118][18] = "Значение интервала";
 
 svgStrU[1][18] = "Биномиальное распределение";
 svgStrU[2][18] = "Повторение";

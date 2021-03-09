@@ -10428,7 +10428,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
     if (ngroup > 1) {
         if (confidence == 0.95) str = "(95%HSD)";
         else str = "(99%HSD)";
-        cell[0].innerHTML = svgStr[100][langNum] + "<br> " + str; // "평균차"
+        cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
         str = "";
@@ -10473,7 +10473,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
         cell[g].style.backgroundColor = "#eee";
     }
     if (ngroup > 1) {
-        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 95%, ** 99%"; // "평균차 검정"
+        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** %"; // "평균차 검정"
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
         str = "";
