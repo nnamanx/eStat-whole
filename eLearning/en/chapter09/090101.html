@@ -289,7 +289,7 @@
       difference \({\overline y}_i - {\overline y}_j\) and the decision rule to test \(H_0 : \mu_i = \mu_j\) is as follows:
       <p>
       <div class="textL20">
-        If \(|{\overline y}_i - {\overline y}_j | > HSD_{ij}\), then reject \(H_0\) <br>
+        If \(|{\overline y}_{i\cdot} - {\overline y}_{j\cdot} | > HSD_{ij}\), then reject \(H_0\) <br>
         where \(HSD_{ij} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_i } + \frac{1}{n_j} ) MSE }\),
         \(n_i\) and \(n_j\) are the number of samples (repetitions) in \(i^{th}\) level and \(j^{th}\) level, 
         \(MSE\) is the mean squared error, \(q_{k,n-k; &alpha;}\) is the right tail 100\(\times \alpha\) 
@@ -300,10 +300,10 @@
       <table class="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU995_StudentRangeD.svg" onclick="window.open(addrStr[120])">
+            <input class="qrBtn" type="image" src="../QR/eStatU995_StudentRangeD.svg" onclick="window.open(addrStr[120])">
           </td>
           <td>
-            <img class="imgFig600400" src="../../Figure/Fig090108.png">
+            <img class="imgFig600400" src="../Figure/Fig090108.png">
             <div class="figText">&lt;Figure 9.1.8&gt;『eStatU』HSD percentile table</div>
           </td>
         </tr>
@@ -324,7 +324,7 @@
       and the decision rule is as follows: 
       <p> 
       <div class="textL20">
-        'If \(\small {\overline y}_i - {\overline y}_j > HSD_{ij}\), then reject \(\small H_0\)'
+        'If \(\small |{\overline y}_{i\cdot} - {\overline y}_{j\cdot}| > HSD_{ij}\), then reject \(\small H_0\)'
       </div>
       <p>
       Since there are four school grades (\(k=4\)), \(_{4}C_{2}\) = 6 multiple comparisons are possible as follows.
@@ -333,7 +333,7 @@
       <p>
       1) \(\small H_0 : \mu_1 = \mu_2 , \quad H_1 : \mu_1 \ne \mu_2\)  
       <div class="textL20">
-           \(\small |{\overline y}_1 - {\overline y}_2 | =|78.3 - 74.5| \) = 3.8 <br>
+           \(\small |{\overline y}_{1\cdot} - {\overline y}_{2\cdot} | =|78.3 - 74.5| \) = 3.8 <br>
            \(\small HSD_{12} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_1 } + \frac{1}{n_2} ) MSE }\)
            = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{6} ) 49.355 }\) = 11.530 <br>
            Therefore, accept \(\small H_0\)
@@ -341,7 +341,7 @@
       <p>
       2) \(\small H_0 : \mu_1 = \mu_3 , \quad H_1 : \mu_1 \ne \mu_3\)  
       <div class="textL20">
-           \(\small |{\overline y}_1 - {\overline y}_3 | =|78.3 - 71.4| \) = 6.9 <br>
+           \(\small |{\overline y}_{1\cdot} - {\overline y}_{3\cdot} | =|78.3 - 71.4| \) = 6.9 <br>
            \(\small HSD_{13} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_1 } + \frac{1}{n_3} ) MSE }\)
            = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{5} ) 49.355 }\) = 12.092 <br>
            Therefore, accept \(\small H_0\)
@@ -349,7 +349,7 @@
       <p>
       3) \(\small H_0 : \mu_1 = \mu_4 , \quad H_1 : \mu_1 \ne \mu_4\)  
       <div class="textL20">
-           \(\small |{\overline y}_1 - {\overline y}_4 | =|78.3 - 88.5| \) = 10.2 <br>
+           \(\small |{\overline y}_{1\cdot} - {\overline y}_{4\cdot} | =|78.3 - 88.5| \) = 10.2 <br>
            \(\small HSD_{14} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_1 } + \frac{1}{n_4} ) MSE }\)
            = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{4} ) 49.355 }\) = 12.891 <br>
            Therefore, accept \(\small H_0\)
@@ -357,7 +357,7 @@
       <p>
       4) \(\small H_0 : \mu_2 = \mu_3 , \quad H_1 : \mu_2 \ne \mu_3\)  
       <div class="textL20">
-           \(\small |{\overline y}_2 - {\overline y}_3 | =|74.5 - 71.4| \) = 3.1 <br>
+           \(\small |{\overline y}_{2\cdot} - {\overline y}_{3\cdot} | =|74.5 - 71.4| \) = 3.1 <br>
            \(\small HSD_{23} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_2 } + \frac{1}{n_3} ) MSE }\)
            = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{5} ) 49.355 }\) = 12.092 <br>
            Therefore, accept \(\small H_0\)
@@ -365,7 +365,7 @@
       <p>
       5) \(\small H_0 : \mu_2 = \mu_4 , \quad H_1 : \mu_2 \ne \mu_4\)  
       <div class="textL20">
-           \(\small |{\overline y}_2 - {\overline y}_4 | =|74.5 -88.5| \) = 14 <br>
+           \(\small |{\overline y}_{2\cdot} - {\overline y}_{4\cdot} | =|74.5 -88.5| \) = 14 <br>
            \(\small HSD_{24} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_2 } + \frac{1}{n_4} ) MSE }\)
            = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{4} ) 49.355 }\) = 12.891 <br>
            Therefore, reject \(\small H_0\)
@@ -373,7 +373,7 @@
       <p>
       6) \(\small H_0 : \mu_3 = \mu_4 , \quad H_1 : \mu_3 \ne \mu_4\)  
       <div class="textL20">
-           \(\small |{\overline y}_3 - {\overline y}_4 | =|71.4 - 88.5| \) = 17.1 <br>
+           \(\small |{\overline y}_{3\cdot} - {\overline y}_{4\cdot} | =|71.4 - 88.5| \) = 17.1 <br>
            \(\small HSD_{34} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_3 } + \frac{1}{n_4} ) MSE }\)
            = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{5} + \frac{1}{4} ) 49.355 }\) = 13.396 <br>
            Therefore, reject \(\small H_0\)
@@ -392,7 +392,7 @@
         the 5% significance level, then * will be marked and if it is significant with the 1% significance level, then ** 
         will be marked, if it is not significant, then the cell is left blank.
       <p>
-          <img class="imgFig600400" src="../../Figure/Fig090109.png">
+          <img class="imgFig600400" src="../Figure/Fig090109.png">
           <div class="figText">&lt;Figure 9.1.9&gt; HSD Multiple Comarisons</div>
       <p>
         For the analysis of mean differences, confidence intervals for each level may also be used. &lt;Figure 
@@ -412,7 +412,7 @@
       <table class="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/PR090101.svg" onclick="window.open(addrStr[65])">
+            <input class="qrBtn" type="image" src="../QR/PR090101.svg" onclick="window.open(addrStr[65])">
           </td>
           <td>
             <b>Practice 9.1.2</b>      
@@ -458,7 +458,7 @@
         homoscedasticity are valid. There is no unusual tendency in this scatter plot. Normality of the residuals can be 
         checked by drawing the histogram of residuals. 
       <p>
-        <img class="imgFig600400" src="../../Figure/Fig090110.svg">
+        <img class="imgFig600400" src="../Figure/Fig090110.svg">
         <div class="figText">&lt;Figure 9.1.10&gt;  Residual plot of the ANOVA</div>
       <p>
     </div>
@@ -471,7 +471,7 @@
       <table class="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/PR090101.svg" onclick="window.open(addrStr[65])">
+            <input class="qrBtn" type="image" src="../QR/PR090101.svg" onclick="window.open(addrStr[65])">
           </td>
           <td>
             <b>Practice 9.1.3</b>

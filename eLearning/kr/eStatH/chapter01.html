@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>1장</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../index.html">목차</a></li>
+            <li><a href="../eStatH/chapter01.html">1. 통계</a></li>
+            <li><a href="../eStatH/chapter02.html">2. 질적 자료의 그래프</a></li>
+            <li><a href="../eStatH/chapter03.html">3. 양적 자료의 그래프</a></li>
+            <li><a href="../eStatH/chapter04.html">4. 자료의 대푯값과 산포도</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h1>1. 통계</h1> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(0)"> &#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(142)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <p>
+  <table>
+    <tr>
+      <td style="width:300px">
+        <h1>&nbsp; 🎲 🎯 💻 📱</h1>
+        <h4>
+        <a href="#0101"><u>1.1 통계란?</u></a> <p>
+        <a href="#0102"><u>1.2 자료의 구분</u></a> <p>
+        <a href="#0103"><u>1.3 『eStat』 소프트웨어</u></a> <p>
+        <a href="../eStatH/chapter01.pdf" target="_blank"><u>[1장 pdf]</u></a>
+        </h4>
+      </td>
+      <td style="width:350px">
+        <h1></h1>
+        <p>- 통계가 무엇인지 살펴본다.
+        <p>- 자료의 구분에 대해 살펴본다.
+        <p>- 통계 소프트웨어에 대해 살펴본다.
+      </td>
+    </tr>
+  </table>
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0101">1.1 통계란?</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <b>우리 학급 10명 학생의 신장은 어느 정도나 알아보기 위해 자를 이용하여 측정하였다.
+             측정된 신장 자료는 종이에 기록하였다.
+          </b>
+          <div class="textLeft">[표 1.1] 우리 학급 학생들의 신장 자료 (단위 cm)</div>
+          <p>
+          <table>
+            <td> 165  163  170  175  155  167  157  153  161  162
+            </td>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <b>우리 반 학생 중 내 신장 (165cm)이 키가 큰 순으로 몇 번째에 있는지 
+             알아 보려면 어떻게 하나?
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>학생들의 신장을 숫자로 된 자료라 부른다. 이 예에서는 학생의 수만큼 자료가 생기는데 
+         우리 사회에서는 많은 양의 자료가 생성되어 왔다. 컴퓨터의 발전과 더불어 자료의 수는 
+         앞으로 더욱 증가될 예정이다.
+      <p>내 신장의 상대 위치를 파악하기 위해서는 이 자료를 신장이 큰 사람부터 내림차 순으로 
+         [표 1.2]와 같이 정리한다.
+      <div class="textLeft">[표 1.2] 키가 큰 순으로 정리한 학생들의 신장 자료 (단위 cm)</div>
+      <p>
+      <table>
+        <td> 175  170  167  165  163  162  161  157  155  153 
+        </td>
+      </table>
+      <p>이 자료를 보면 쉽게 내 신장이 위에서 4번째 학생임을 알 수 있다.
+      <p>이렇게 자료를 수집해 정리, 요약한 후 유용한 정보를 얻어내는 것을 <b>통계</b>라고 한다. 
+         한 나라는 국민들의 의식주를 해결하기 위해 인구수, 가구수, 식량 등의 통계가 필요하다. 
+         이와 같은 통계는 5천년 전 이집트 문명시대부터 기록이 남아있다. 
+      <p>현대 정보화 사회가 더욱 진행되면서 자료의 크기가 엄청나게 커졌는데 이를 <b>빅데이터</b>라 부른다. 
+         빅데이터의 대표적인 예는 다음과 같다. 
+      <br>
+          - 구글의 검색기록 자료 <br>
+          - 스마트폰의 네이버나 카톡 자료<br>
+          - 인터넷에 접속하고 나간 기록 자료<br>
+          - 통신회사의 통화기록 자료 <br>
+
+      <p>미래의 정보화 사회에서는 어떻게 빅데이터에 대한 통계를 잘하여 과학적인 의사결정을 하느냐에 따라 
+         한 개인, 회사, 국가의 성패가 달라질 수 있다. 빅데이터를 분석하여 현실에 응용하는 통계의 활용 예는 많이 있다.
+      <br>
+          - 구글의 검색 엔진에 자동차 구입에 관한 질문을 조사하여 다음 달 미국서 판매되는 자동차 모델의 수를 예측하였다.<br> 
+          - 한 온라인 쇼핑몰은 고객의 웹 기록을 분석하여, 회원 고객이 어떤 취향을 가지고 어떤 제품에 관심이 있는지 파악하여 
+            고객 개개인에 맞는 맞춤형 광고를 하여 매출이 증가하였다. <br> 
+          - 한 원유 탐사회사에서 테라바이트 규모의 지질학 자료를 분석해 원유 시추의 성공률을 높였다. <br>
+          - 미국의 한 대학에서 온라인 수업에서 학생들이 시스템에 클릭하는 정보를 분석하여 학생 개개인의 학습 성과를 
+            모니터링하고 학생의 이해도에 맞춘 수준별 수업 내용을 제안하고, 향후 수강할 과목 등을 학생별로 제안하였다. 
+            이 결과 전공별 학위 취득률이 많이 향상되었다.
+  </div>
+  <p>
+
+<!---------------------------------------------------------------------------------------->
+  <h3 id="0102">1.2 자료의 구분</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <b>우리 학급 10명 학생의 성별을 조사하면 ‘남’ ‘여’ 이고,  신장을 조사하면 160cm 등이다.</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <b>1) 성별과 신장은 속성이 다른데 자료를 구분하는 적당한 방법이 있을까? <br>
+             2) 자료의 종류에 따라 분석 방법이 다를까?
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>자료는 관심의 대상이 되는 사물의 속성을 관찰하거나 측정한 값들이다. 이러한 사물이나 사건의 속성을 
+         <b>변수</b> 또는 <b>변량</b>이라고 한다. 예를 들어, 어느 초등학교 한 학급의 성별과 신장을 측정하였다면 
+         여기에는 두개의 변량(성별, 신장)이 있다. 성별에 대한 측정값은 ‘남’, ‘여’, ‘여’, ‘남’, .... 과 
+         같은 형태이고, 신장에 대한 측정값은 160cm, 155cm, 158cm, 165cm, ... 와 같은 형태일 것이다. 
+      <p>‘성별’과 같은 변량의 자료를 <b>질적 자료</b>, 신장과 같은 변량의 자료를 <b>양적 자료</b>로 구분한다. 
+         자료를 구분하는 이유는 자료의 종류의 따라 처리하는 방법과 분석 방법이 다르기 때문이다. 
+         2장은 질적 자료의 분석에 사용하는 그래프에 대해 살펴보고, 3장은 양적자료의 분석에 사용하는 그래프를 살펴본다.
+      <p>성별과 같은 질적 변량은 대개 몇 개의 범주 형태를 갖는데 이를 범주형 자료라고도 한다. 범주형 자료는 
+         각 범주별로 도수를 조사하여 도수분포표를 만들고 막대그래프, 원그래프, 띠그래프를 만들어 시각화 한다(2장). 
+         표 1.3은 한 학급 성별에 대한 도수분포표의 예이다. ‘남’이 6명이고 ‘여’가 4명임을 보여준다.  
+      <p>
+      <div class="figText">[표 1.3] 한 학급의 성별 도수분포표</div>
+      <br>
+      <table> 
+        <tr> 
+          <th class="thGrey">성별</th>
+          <th class="thGrey">학생수</th>
+        </tr>
+        <tr> <td class="tdCenter">남</td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">여</td> <td class="tdCenter">4</td> </tr>
+      </table>
+      <p>단어와 같은 질적 자료는 각 단어에 대한 빈도수를 조사하여 단어구름으로 만들어 분석한다. 
+      <p>양적 자료는 평균 및 표준편차를 계산하고 줄기와 잎 그림, 히스토그램, 점그래프 등을 이용하여 시각화 한다(3장).   
+  </div>
+  <p>
+<!---------------------------------------------------------------------------------------->
+  <h3 id="0103">1.3 『eStat』 소프트웨어</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>        <td style="width:450px">
+          <b>[표 1.1]의 신장 자료를 측정해 종이에 적고 이를 내림차순으로 정리하였다.</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <b>컴퓨터를 이용하는 방법은 없을까? 있다면 어떤 소프트웨어를 사용하여야 하나?
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>작은 학급 자료라면 수작업으로도 자료를 정리해 분석할 수 있으나 자료가 많아지면 컴퓨터의 도움이 없이는
+         자료의 분석이 불가능하다. 특히 빅데이터 분석을 위해서는 전문적인 분석 프로그램을 많이 가지고 있는 
+         통계 소프트웨어가 반드시 필요하다. 현재 자료 분석을 위해서는 SAS, SPSS, R과 같은 통계 소프트웨어가 
+         많이 사용되고 있다. 하지만 이들 소프트웨어는 초보자가 배우기는 쉽지 않고, SAS와 SPSS는 상업용이어서 
+         엄청난 고가이다. 그리고 이러한 소프트웨어는 자료 분석의 핵심인 통계 교육에 필요한 모듈의 기능은 거의 없다. 
+      <p>『eStat』시스템은 통계를 초등생부터 대학 및 일반인까지 쉽게 교육하기 위하여 만든 교육용 소프트웨어이다. 
+         자료가 주어지면 단지 마우스 클릭만으로 그래프를 그릴 수 있고, 동적인 그래프를 경험할 수 있다. 
+        『eStat』은 각급 교과서에 있는 많은 예를 포함하고 있으며, 웹 기반이어서 사용자들은 언제 어디서나 
+         PC, 태블릿, 또는 스마트폰으로 이용할 수 있다. 『eStat』은 무료로 서비스하고 있고 다국적 언어를 지원하며 
+         현재 한국어, 영어를 포함한 20개 언어가 가능하다. 
+      <p>『eStat』 시스템은 현재 통용되는 많은 웹브라우저 중에서 구글(Google)사의 크롬(Chrome)에서 100% 잘 작동한다.
+         MS 엣지(Edge)와 같은 브라우저에서도 『eStat』이 작동은 되나 일부 기능이 안 될 수 있다.  
+      <p>이 책은 『eStat』에서 초등 및 중학생을 대상으로 개발된 『eStatH』에 있는 몇 가지 모듈에 대해 설명한다. 
+         웹브라우져 크롬을 열어 주소창에 www.estat.me 를 입력한 후 아이콘 『eStatH』를 클릭하면 <그림 1.1>과 같다.  
+      <p>
+
+      <table>
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH.svg" onclick="window.open(addrStr[1])">
+            <div class="figText">『eStatH』</div>
+          </td>
+          <td>
+           <img class="imgFig600600" src="../Figure/Fig0101.png">
+           <div class="figText">&lt;그림 1.1&gt; 『eStatH』 메뉴의 구성</div>
+          </td>
+        </tr>
+      </table>
+      <p>  
+  </div>
+  <p>
+
+
+  <div class="mainTablePink">
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 제출 버튼을 누르세요
+
+  <h6 class="textL30M30">1.1  다음 중 통계에 대한 설명으로 맞는 것은?</h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> 날씨에 대한 변화를 연구</label><br>
+    <label><input type="radio" name="item" value="2"> 자료를 수집 정리하여 분석</label><br>
+    <label><input type="radio" name="item" value="3"> 화학 반응을 연구</label><br>
+    <label><input type="radio" name="item" value="4"> 전자제품 생산 연구</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(21,1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">1.2 다음 중 잘적 자료는? </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 신장</label><br>
+    <label><input type="radio" name="item" value="2"> 체중</label><br>
+    <label><input type="radio" name="item" value="3"> 교육정도</label><br>
+    <label><input type="radio" name="item" value="4"> 나이</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(21,2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">1.3 다음 중 양적 자료는? </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 성별</label><br>
+    <label><input type="radio" name="item" value="2"> 교육정도</label><br>
+    <label><input type="radio" name="item" value="3"> 결혼여부</label><br>
+    <label><input type="radio" name="item" value="4"> 나이</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(21,3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">1.4 다음 중 통계패키지가 아닌 것은? </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> SPSS</label><br>
+    <label><input type="radio" name="item" value="2"> SAS</label><br>
+    <label><input type="radio" name="item" value="3"> eStat</label><br>
+    <label><input type="radio" name="item" value="4"> Word</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(21,4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+
+  </div>
+
+  <script>
+    for (var i=0; i < ans[21][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
+  </script>
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(0)">&#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(142)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

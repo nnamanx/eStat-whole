@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>2장</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../index.html">목차</a></li>
+            <li><a href="../eStatH/chapter01.html">1. 통계</a></li>
+            <li><a href="../eStatH/chapter02.html">2. 질적 자료의 그래프</a></li>
+            <li><a href="../eStatH/chapter03.html">3. 양적 자료의 그래프</a></li>
+            <li><a href="../eStatH/chapter04.html">4. 자료의 대푯값과 산포도</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h1>2. 질적 자료의 그래프</h1> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>1장</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(143)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <p>
+  <table>
+    <tr>
+      <td style="width:350px">
+        <h1>&nbsp; 📊 🍕 🌈 ⛅</h1>        
+        <h4>
+        <a href="#0201"><u>2.1 막대그래프 – 원그래프 – 띠그래프</u></a> <p>
+        <a href="#0202"><u>2.2 단어구름</u></a> <p>
+        <a href="../eStatH/chapter02.pdf" target="_blank"><u>[2장 pdf]</u></a> 
+        </h4>
+      </td>
+      <td>
+        <h1></h1>        
+        <p>- 범주형 자료인 경우에 막대그래프, 원그래프, 띠그래프를 그려 분석한다.
+        <p>- 단어로 이루어진 문자 형태의 자료는 단어구름을 그려 분석한다. 
+      </td>
+    </tr>
+  </table>
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0201">2.1  막대그래프 – 원그래프 – 띠그래프</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <b>초등학교 한 학급 학생 20명을 대상으로 좋아하는 운동을 조사한 도수분포표가 다음과 같다. </b>
+          <br>
+          <div class="figText">[표 2.1] 한 학급의 성별 도수분포표</div>
+          <table> 
+            <tr> <th class="thGrey">성별</th> <th class="thGrey">학생수</th> </tr>
+            <tr> <td class="tdCenter">남</td> <td class="tdCenter">6</td>    </tr>
+            <tr> <td class="tdCenter">여</td> <td class="tdCenter">4</td>    </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <b>좋아하는 운동이 어떠한 것인지 쉽게 관찰할 수 있는 그래프에는 어떠한 것이 있을까? </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>학생들에게 좋아하는 운동을 물으면 ‘축구’, ‘농구’, ‘야구’, ... 등의 대답을 얻을 수 있는데
+         이를 <b>질적 자료</b>라 한다. 대개의 질적 자료는 그 값이 범주를 의미하여 <b>범주형 자료</b>로 부르기도 한다. 
+         질적 자료는 [표 2.1]과 같이 좋아하는 운동의 학생수를 세어 도수분포표로 만든 후 막대그래프, 
+         원그래프, 띠그래프 등을 이용하여 그 특징을 살펴본다. 
+      <p><b>막대그래프</b>는 각 범주별 자료의 도수를 직사각형 막대의 높이로 나타낸 것이다. 범주형 자료라는 것을
+         강조하기 위하여 막대사이의 간격을 띄어 놓는다. 
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0201.png">
+         <div class="figText">&lt;그림 2.1&gt; 좋아하는 운동의 막대그래프</div>
+      <p>
+         <b>원그래프</b>는 각 범주의 도수가 전체 자료에서 차지하는 비율을 원조각으로 나누어 표시한 그래프이다. 
+         비율의 비교를 잘 할 수 있도록 시계 방향으로 가장 큰 범주의 원조각부터 순서대로 차례로 그린다. 
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0202.png">
+         <div class="figText">&lt;그림 2.2&gt; 좋아하는 운동의 원그래프</div>
+      <p>
+         <b>띠그래프</b>는 원그래프의 변형 형태로 각 범주의 도수가 전체 자료 중에서 차지하는 비율을 
+         사각형 조각으로 나누어 표시한 그래프이다. 범주의 값이 가장 큰 순서부터 정렬할 수도 있으나 원그래프와 
+         구별하기 위하여 자료의 범주 순서대로 사각형 조각을 그린다.
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0203.png">
+         <div class="figText">&lt;그림 2.3&gt; 좋아하는 운동의 띠그래프</div>
+      <p>
+        『eStat』 소프트웨어를 이용하여 위의 그래프를 그려보자. 
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 실습 2.1</h4>
+      『eStatH』을 이용하여 좋아하는 운동에 대해 막대그래프, 원그래프, 띠그래프를 그리고 어느 운동을 많이 좋아하는지 관찰하라
+      <p><b>풀이</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘막대그래프 – 원그래프 – 띠그래프’를 선택하면 <그림 2.4>와
+               같은 자료 입력창이 나타난다.
+            <p>‘범주’와 ‘도수’를 입력하고 ‘주 제목’, ‘세로축 제목’, ‘가로축 제목’ 원하는 제목을 입력한다. 
+            <p>[막대그래프] 버튼을 클릭하면 <그림 2.1>과 같은 막대그래프가 나타난다. 원하는 범주의 색을 선택하여 
+                다시 [막대그래프를] 그릴 수도 있다. 제일 오른쪽에 각 범주별 아이콘을 선택하고 그래프 아래의 
+              ‘이모티콘’을 체크하면 <그림 2.5>와 같은 그래프가 나타난다.   
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0204.png">
+         <div class="figText">&lt;그림 2.4&gt; 좋아하는 운동의 자료 입력</div>
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0205.png">
+         <div class="figText">&lt;그림 2.5&gt; 각 범주의 이모티콘이 표시된 막대그래프 </div>
+      <p>
+         유사한 방법으로 막대 위에 <그림 2.6>과 같이 도수를 표시할 수도 있다.
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0206.png">
+         <div class="figText">&lt;그림 2.6&gt; 도수가 표시된 막대그래프</div>
+      <p>
+         그래프 아래 (정렬) 선택사항을 이용하여 <그림 2.7> <그림 2.8>처럼 막대를 도수의 내림차순 또는 오름차순으로 정렬할 수 있다. 
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0207.png">
+         <div class="figText">&lt;그림 2.7&gt; 도수의 내림차순 막대그래프 </div>
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0208.png">
+         <div class="figText">&lt;그림 2.8&gt; 도수의 오름차순 막대그래프 </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 실습 2.2</h4>
+         초등학생이 좋아하는 과일을 조사하였더니 다음과 같다. 『eStatH』을 이용하여 막대그래프를 그려보자. 
+          <div class="figText">[표 2.2] 초등학생들이 좋아하는 과일</div>
+          <table> 
+            <tr> <th class="thGrey">과일</th>       <th class="thGrey">학생수</th>  </tr>
+            <tr> <td class="tdCenter">딸기</td>     <td class="tdCenter">15</td>    </tr>
+            <tr> <td class="tdCenter">사과</td>     <td class="tdCenter">10</td>    </tr>
+            <tr> <td class="tdCenter">바나나</td>   <td class="tdCenter">25</td>    </tr>
+            <tr> <td class="tdCenter">포도</td>     <td class="tdCenter">20</td>    </tr>
+            <tr> <td class="tdCenter">오랜지</td>   <td class="tdCenter">10</td>    </tr>
+            <tr> <td class="tdCenter">토마토</td>   <td class="tdCenter"> 2</td>    </tr>
+            <tr> <td class="tdCenter">수박</td>     <td class="tdCenter">13</td>    </tr>
+            <tr> <td class="tdCenter">파인애플</td> <td class="tdCenter"> 5</td>    </tr>
+          </table>
+      <p><b>풀이</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+            <p> 왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘막대그래프 – 원그래프 – 띠그래프’를 선택하면 
+                <그림 2.9>와 같은 자료 입력창이 나타난다.
+            <p>‘범주’와 ‘도수’를 입력하고 ‘주 제목’을 입력한 후 제일 오른쪽에 각 과일 아이콘을 선택한다. 
+            <p>[막대그래프] 버튼을 클릭하고 그래프가 나타나면 그래프 아래의 ‘이모티콘’을 체크한다. 원하는 
+               범주의 색을 선택하여 다시 [막대그래프를] 그릴 수도 있다
+          </td>
+        </tr>
+      </table>
+      <p>
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0209.png">
+         <div class="figText">&lt;그림 2.9&gt; 좋아하는 과일의 자료 입력</div>
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0210.png">
+         <div class="figText">&lt;그림 2.10&gt; 좋아하는 과일의 막대그래프 </div>
+     </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ 과제 2.1</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+            <b>(우리나라 특별시/직할시 인구)<b> <br>
+            2015년 우리나라의 8개 특별시 및 직할시에 대한 인구가 [표 2.3]과 같다. 『eStatH』를 이용하여 막대그래프, 
+            원그래프, 띠그래프를 그려 특징을 알아보라.  
+            <p>
+            <div class="figText">[표 2.3] 시도별 인구수 (출처: 통계청 단위: 만명)</div>
+            <table> 
+              <tr> <th class="thGrey">도시명</th> <th class="thGrey">인구수</th>  </tr>
+              <tr> <td class="tdCenter">서울</td> <td class="tdCenter">990</td>   </tr>
+              <tr> <td class="tdCenter">부산</td> <td class="tdCenter">345</td>   </tr>
+              <tr> <td class="tdCenter">대구</td> <td class="tdCenter">247</td>   </tr>
+              <tr> <td class="tdCenter">인천</td> <td class="tdCenter">289</td>   </tr>
+              <tr> <td class="tdCenter">광주</td> <td class="tdCenter">150</td>   </tr>
+              <tr> <td class="tdCenter">대전</td> <td class="tdCenter">154</td>   </tr>
+              <tr> <td class="tdCenter">울산</td> <td class="tdCenter">117</td>   </tr>
+              <tr> <td class="tdCenter">세종</td> <td class="tdCenter"> 20</td>   </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ 과제 2.2</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+            <b>(장래 희망직업)<b> <br>
+            어느 초등학교 학생들의 장래 희망직업을 조사한 요약 자료가 다음과 같다. 『eStatH』를 이용하여 
+            막대그래프, 원그래프, 띠그래프를 그려 특징을 알아보라.  
+            <p>
+            <div class="figText">[표 2.4] 초등학생들의 장래 희망직업</div>
+            <table> 
+              <tr> <th class="thGrey">직업</th> <th class="thGrey">학생수</th>  </tr>
+              <tr> <td class="tdCenter">연예인</td>      <td class="tdCenter">45</td>   </tr>
+              <tr> <td class="tdCenter">의사</td>        <td class="tdCenter">30</td>   </tr>
+              <tr> <td class="tdCenter">교사, 교수</td>  <td class="tdCenter">60</td>   </tr>
+              <tr> <td class="tdCenter">법조인</td>      <td class="tdCenter">24</td>   </tr>
+              <tr> <td class="tdCenter">게이머</td>      <td class="tdCenter">10</td>   </tr>
+              <tr> <td class="tdCenter">운동선수</td>    <td class="tdCenter">43</td>   </tr>
+              <tr> <td class="tdCenter">경찰,소방관</td> <td class="tdCenter">26</td>   </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+<!---------------------------------------------------------------------------------->
+  <h3 id="0202">2.2 단어구름</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <b>다음은 4차 산업혁명에 대한 위키백과의 설명이다.</b>
+          <p>
+            <div class="figText">[표 2.5] 4차 산업혁명에 대한 위키백과의 설명</div>
+            <table> 
+              <tr> 
+                <td>
+                  제4차 산업 혁명은 기술이 사회와 심지어 인간의 신체에도 내장되는 새로운 방식을 대표하는 디지털 혁명 위에 구축되고 있다.[10] 제4차 산업 혁명은 로봇 공학, 인공 지능, 나노 기술, 양자 프로그래밍, 생명 공학, IoT, 3D 인쇄 및 자율주행 차량을 비롯한 여러 분야에서 새로운 기술 혁신이 나타나고 있다.
+                  <p>세계 경제 포럼 암시자 슈왑(Klaus Schwab)의 저서 《제4차 산업 혁명》에서 이 4번째 혁명이 기술 발전에 의해 특징지어졌던 이전의 3가지 혁명과 근본적으로 다른 점을 언급하고 있다. 이러한 기술은 수십억 명의 사람들을 계속해서 웹에 연결하고 비즈니스 및 조직의 효율성을 획기적으로 향상시키며 더 나은 자산 관리를 통해 자연 환경을 재생산할 수 있는 커다란 잠재력을 가지고 있다.[11]
+                  <p>"제4차 산업 혁명 마스터 하기"는 스위스 Davos-Klosters에서 열린 세계 경제 포럼 연례회의 (World Economic Forum Annual Meeting 2016)의 주제였다.  </tr>
+                </td>
+              <tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <b>과연 4차 산업혁명 설명에는 어떠한 단어가 중요할까? 
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p><b>단어구름</b>은 문자 자료의 정보를 시각적으로 표현한 것이다. 단어구름은 주어진 문장에 나타나는 모든 단어들의 빈도수를 조사하여 많이 나타난 단어의 중요성을 글꼴 크기, 기울기 또는 색상으로 잘 보이도록 표시한다. <그림 2.11>은 위의 4차 산업혁명 섦여에 대한 단어 구름이다.
+      <p>
+           <img class="imgFig600600" src="../Figure/Fig0211.png">
+           <div class="figText">&lt;그림 2.11&gt;  4차 산업혁명 설명에 대한 단어 구름</div>
+      <p>
+          단어구름은 가장 두드러진 단어를 빠르게 인식하여 상대적인 중요도를 결정하는 데 유용하다. 예를 들면 정치 연설의 중요한 주제를 시각화 하든지, 소셜 미디어 소프트웨어에서 한 단어와 관련된 항목의 하이퍼링크를 결정하는 도구로 사용할 수 있다. 단어 구름의 중요 단어는 특정 웹 사이트와 관련된 검색 엔진 마케팅 용어로 사용되기도 한다.
+      <p> 단어구름 생성에는 많은 알고리즘이 있는데 eStat는 d3 오픈 소프트웨어의 알고리즘을 채택했다. d3에는 아직 한글에 대한 알고리즘은 없어 현재 영어 문장에 대한 단어구름만 제공한다. 현재 단어구름은 단어 사이의 연관성을 표시할 수 있는 알고리즘 개발이 진행되고 있다. 
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 실습 2.3</h4>
+        『eStatH』을 이용하여 [표 2.5]의 4차 산업혁명에 대한 단어구름을 그려 관찰하라
+      <p><b>풀이</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_05WordCloud.svg" onclick="window.open(addrStr[142])">     
+          </td>
+          <td>
+            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘단어구름’을 선택하면 <그림 2.12>와 같은 자료 입력창이 나타난다. 
+            <p>여기에 [표 2.5]의 문장을 복사한 후 [실행] 버튼을 클릭하면 <그림 2.11>과 같은 단어 구름이 나타난다.
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../Figure/Fig0212.png">
+         <div class="figText">&lt;그림 2.12&gt; 단어구름을 위한 자료 입력</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ 과제 2.3</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_05WordCloud.svg" onclick="window.open(addrStr[142])">     
+          </td>
+          <td>
+ 
+            다음은 통계학에 대한 위키백과의 설명이다. 『eStatH』를 이용하여 단어구름을 그려 관찰하라
+            <p>
+            <div class="figText">[표 2.6] 통계학에 대한 위키백과의 설명</div>
+            <table> 
+              <tr> 
+                <td>
+                  통계학은 관찰 및 조사로 얻을 수 있는 데이터로부터, 응용 수학의 기법을 이용해 수치상의 성질, 규칙성 또는 불규칙성을 찾아낸다. 통계적 기법은, 실험 계획, 데이터의 요약이나 해석을 실시하는데 있어서의 근거를 제공하는 학문이며, 폭넓은 분야에서 응용되어 실생활에 적용되고 있다.[2] 통계학은 실증적인 뿌리를 가지고 있으며 실질적 활용에 초점을 맞추고 있기 때문에, 흔히 순수수학과는 다소 구분되는 응용수학의 일종으로 여겨진다. 통계학의 방법을 통해, 실제의 수치들을 왜곡하여 해석하는 것을 막고 연구를 바탕으로 합리적인 의사결정을 할 수 있다. 통계학은 과학, 산업, 또는 사회의 문제에 적용되며 모집단을 연구하는 과정이 우선시된다. 모집단은 "한나라 안에 사는 모든 사람" 또는 "크리스탈을 구성하는 모든 원자"와 같이 일정한 특성을 지닌 집단이면 어느 것이든 가능하다. 통계학자들은 전체인구(인구조사를 하는 기업)에 대한 데이터를 편집한다. 이것은 정부의 통계관련 법률요약집같은 조직화된 방법으로 수행될 수도 있다. 기술통계학은 모집단의 데이터를 요약하는데 사용된다. 도수 및 비율 (경주 등) 범주 형 데이터를 설명하는 측면에서 더 유용할 동안 수치 기술자는 연속적인 데이터 유형 (소득 등)에 대한 평균과 표준 편차를 포함한다. 데이터 분석 방법 엄청난 자료가 연구되는 현대 사회에서 경제지표연구, 마케팅, 여론조사, 농업, 생명과학, 의료의 임상연구 등 다양한 분야에서 응용되고 있는 통계는 단연 우리 사회에서 가장 필요하고 실용적인 학문이라고 할 수 있다.
+                </td>
+              <tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ 과제 2.4</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_05WordCloud.svg" onclick="window.open(addrStr[142])">     
+          </td>
+          <td>
+            다음은 다음은 존 에프 케네디 미국 대통령의 취임사 중 일부이다. 이 취임사에 대해 단어구름을 작성하여 주요 단어를 분석하라. 
+            <p>
+            <div class="figText">[표 2.7] 존 에프 케네디 미국 대통령의 취임사</div>
+            <table> 
+              <tr> 
+                <td>
+                  In the long history of the world, only a few generations have been granted the role of defending freedom in its hour of maximum danger. I do not shrink from this responsibility--I welcome it. I do not believe that any of us would exchange places with any other people or any other generation. The energy, the faith, the devotion which we bring to this endeavor will light our country and all who serve it--and the glow from that fire can truly light the world.
+And so, my fellow Americans: ask not what your country can do for you--ask what you can do for your country.
+My fellow citizens of the world: ask not what America will do for you, but what together we can do for the freedom of man.
+                </td>
+              <tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+
+  <div class="mainTablePink">
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 제출 버튼을 누르세요
+
+  <h6 class="textL30M30">2.1  다음과 같이 자료를 정리하여 만든 표를 무엇이라 부르는가?</h6>
+           <table> 
+              <tr> <th class="thGrey">성별</th> <th class="thGrey">학생수</th>  </tr>
+              <tr> <td class="tdCenter">남</td>      <td class="tdCenter">6</td>   </tr>
+              <tr> <td class="tdCenter">여</td>      <td class="tdCenter">4</td>   </tr>
+            </table>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> 학생표</label><br>
+    <label><input type="radio" name="item" value="2"> 도수분포표</label><br>
+    <label><input type="radio" name="item" value="3"> 정리표</label><br>
+    <label><input type="radio" name="item" value="4"> 성적표</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(22,1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">2.2 다음 중 질적 자료 분석에 사용되는 그래프는? </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 줄기와 잎 그림</label><br>
+    <label><input type="radio" name="item" value="4"> 산점도</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(22,2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">2.3 다음 중 질적 자료 분석에 사용되는 그래프가 아닌 것은?  </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
+    <label><input type="radio" name="item" value="4"> 띠그래프</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(22,3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  </div>
+
+  <script>
+    for (var i=0; i < ans[22][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
+  </script>
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>1장</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(143)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+ </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

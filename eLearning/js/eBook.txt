@@ -1,6 +1,6 @@
 // eBook.js
 // Multiple Choice Question Answers
-    var nChapter  = 13;
+    var nChapter  = 30;
     var nQuestion = 35;
     var ans       = new Array(nChapter);
     for (var i = 0; i < nChapter; i++) ans[i] = new Array(nQuestion);
@@ -178,7 +178,28 @@
     ans[12][20] = 3;
     ans[12][21] = 3;
     ans[12][22] = 2;
-
+// eStatH
+// 1.1 ②, 1.2 ③, 1.3 ④, 1.4 ④, 
+    ans[21][0] = 4;
+    ans[21][1] = 2;
+    ans[21][2] = 3;
+    ans[21][3] = 4;
+    ans[21][4] = 4;
+// 2.1 ②, 2.2 ①, 2.3 ②,
+    ans[22][0] = 3;
+    ans[22][1] = 2;
+    ans[22][2] = 1;
+    ans[22][3] = 2;
+// 3.1 ②, 3.2 ③, 3.3 ④
+    ans[23][0] = 3;
+    ans[23][1] = 2;
+    ans[23][2] = 3;
+    ans[23][3] = 4;
+// 4.1 ④, 4.2 ②, 4.3 ②
+    ans[24][0] = 3;
+    ans[24][1] = 4;
+    ans[24][2] = 2;
+    ans[24][3] = 2;
 // Answer text ID
     var ansID = new Array(nQuestion);
     for (var i = 1; i < nQuestion; i++) ansID[i] = "ansQ"+i; 
@@ -194,18 +215,21 @@
         break;
       }
     }
-    document.getElementById(ansID[numQ]).style.font = "italic bold 14px arial,serif";
+    document.getElementById(ansID[numQ]).style.font = "bold 14px arial,serif";
     if (ith == 0) {
-      eval = "!!! Click Radio Button";
+      if (langNum == 0) eval = "라디오 버튼을 누르세요!!!";
+      else eval = "!!! Click Radio Button";
       document.getElementById(ansID[numQ]).value = eval;
     }
     else if (ith == ans[numC][numQ]) {
-      eval = "Good! You are right";
+      if (langNum == 0) eval = "정답에요. 정말 잘했어요! ❤ 😉";
+      else eval = "Good! You are right 😉";
       document.getElementById(ansID[numQ]).style.color = "lime";
       document.getElementById(ansID[numQ]).value = eval;
     }
     else {
-      eval = "Wrong! Try again.";
+      if (langNum == 0) eval = "틀렸습니다. 다시 하세요!!! 😢";
+      else eval = "Wrong! Try again 😢";
       document.getElementById(ansID[numQ]).style.color = "red";
       document.getElementById(ansID[numQ]).value = eval;
     }
@@ -344,7 +368,27 @@
     addrStr[121] = "http://www.estat.me/estat/eStatU/99Friedman.htm";
     addrStr[122]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX070104_Height.csv","analysisVar":1,"graphNum":27});
     addrStr[123]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX080103_WageByGender.csv","analysisVar":2,"groupVars":[1],"graphNum":31});
-    addrStr[124] = "http://www.estat.me/estat/eStatU/05WordCloud.htm";
+    addrStr[124]  = "http://www.estat.me/estat/eStatU/05WordCloud.htm";
+    // eStatH
+    addrStr[141] = "http://www.estat.me/estat/eStatH/01BarChart.htm";
+    addrStr[142] = "http://www.estat.me/estat/eStatH/05WordCloud.htm";
+    addrStr[143] = "http://www.estat.me/estat/eStatH/07StemLeafPlot.htm";
+    addrStr[144] = "http://www.estat.me/estat/eStatH/08Histogram.htm";
+    addrStr[145] = "http://www.estat.me/estat/eStatH/09RelativeFrequency.htm";
+    addrStr[146] = "http://www.estat.me/estat/eStatH/10DotGraph.htm";
+    addrStr[147] = "http://www.estat.me/estat/eStatH/40Permutation.htm";
+    addrStr[148] = "http://www.estat.me/estat/eStatH/41BinomialEng.htm";
+    addrStr[149] = "http://www.estat.me/estat/eStatH/42BinomialEng.htm";
+    addrStr[150] = "http://www.estat.me/estat/eStatH/51NormalEng.htm";
+    addrStr[151] = "http://www.estat.me/estat/eStatH/52NormalEng.htm";
+    addrStr[152] = "http://www.estat.me/estat/eStatH/61SampleEng.htm";
+    addrStr[153] = "http://www.estat.me/estat/eStatH/62SampleEng.htm";
+    addrStr[154] = "http://www.estat.me/estat/eStatH/63SampleEng.htm";
+    addrStr[155] = "http://www.estat.me/estat/eStatH/64SampleEng.htm";
+    addrStr[156] = "http://www.estat.me/estat/eStatH/65ConfidenceIntervalMu_H.htm";
+// eLearning
+    addrStr[170] = "http://www.estat.me/estat/eLearning/kr/eStat_kr_Introduction.html";
+    addrStr[171] = "http://www.estat.me/estat/eLearning/kr/index.html";
 
 // eBook link address
     temp          = "..";
@@ -484,6 +528,13 @@
     addrStrB[130] = temp+"/chapter12/120303.html";
     addrStrB[131] = temp+"/chapter12/120304.html";
     addrStrB[132] = temp+"/chapter12/1204.html";
+
+    // eBookH
+    addrStrB[141] = temp+"/eStatH/chapter01.html";
+    addrStrB[142] = temp+"/eStatH/chapter02.html";
+    addrStrB[143] = temp+"/eStatH/chapter03.html";
+    addrStrB[144] = temp+"/eStatH/chapter04.html";
+    
 
 // Move Section
 function moveSection(num) {
