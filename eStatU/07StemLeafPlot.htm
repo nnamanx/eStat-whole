@@ -72,7 +72,7 @@
         document.getElementById("data1").value = ''; 
       }
 
-      // Draw Dot Graph ======================================
+      // Draw Stem and Leaf Graph ======================================
       d3.select("#execute").on("click",function() {
         chart.selectAll("*").remove();
         mTitle = d3.select("#mtitle").node().value;
@@ -151,6 +151,7 @@
 
   // 줄기잎그림 함수 -----------------------------------------------------------------------------
   function drawStemLeaf(nobs, mini, maxi, dataSet) {
+    var colr = ["#FF0000","#FF8000","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF","#0000FF"];
     var i, j, k, kk, digitMax, digitDeci, digit10, len, pos, temp, temp1, temp2, ty, x1, y1, x2, y2;
     var tempstr;
     var nvalue;
@@ -212,7 +213,7 @@
     for (i = 0; i < nobs; i++) {
         tdata[i] = dataSet[i] * digit10;
     }
-
+    // Determine Leaf
     CountLeaf(nvalue, nobs, tdata, dataValue, dvalueFreq, stem, leaf);
     // 주제목
     chart.append("text")
@@ -250,7 +251,7 @@
                         return i * 100;
                     }) // 0.5초마다 그리도록 대기시간 설정
                     .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
-                    .style("stroke", myColor[temp])
+                    .style("stroke", colr[temp])
             } // endfof k
     } // endof j 
 
@@ -269,18 +270,25 @@
     for (i = 0; i < tobs; i++) dataA[i] = tdata[i];
     sortAscendM(tobs, dataA, dataValue, dvalueFreq, dataY);
     for (j = 0; j < nvalue; j++) dvalueFreq[j] = 0;
-    k = 1;
     for (i = 0; i < tobs; i++) {
-        for (j = k; j < nvalue; j++) {
+      if (dataA[i] < 0) {  // 음수
+          for (j = 0; j < nvalue; j++) {
             if (dataA[i] < stem[j]) {
-                dvalueFreq[j - 1]++;
-                if (dataA[i] >= 0) leaf[j - 1][dvalueFreq[j - 1]] = dataA[i] % 10;
-                else leaf[j - 1][dvalueFreq[j - 1]] = -dataA[i] % 10;
+                dvalueFreq[j]++;
+                leaf[j][dvalueFreq[j]] = -dataA[i] % 10;
                 break;
-            } else {
-                k++;
-            }
-        }
+            } 
+          } // endof i
+      }
+      else { // 양수
+          for (j = 0; j < nvalue; j++) {
+            if (dataA[i] < stem[j+1]) {
+                dvalueFreq[j]++;
+                leaf[j][dvalueFreq[j]] = dataA[i] % 10;
+                break;
+            } 
+          } // endof i
+      }
     }
   }
   // Sorting in ascending and count each value frequency

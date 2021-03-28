@@ -44,11 +44,12 @@
   <div width="360" height="360" style="position:absolute; left:10px; top:170px">
   <ul>
     <li><a href="01BarChart.htm">&#8545; &nbsp;&nbsp;&nbsp; <span data-msgid="Bar Graph"></span> - <span data-msgid="Pie Chart"></span> - <span data-msgid="Band Graph"></span></a></li>
-    <li><a href="05WordCloud.htm">&#8545; &nbsp;&nbsp;&nbsp; <span data-msgid="WordCloud">Word Cloud</span> (English only)</a></li>
+    <li><a href="05WordCloud.htm">&#8545; &nbsp;&nbsp;&nbsp; <span data-msgid="WordCloud">Word Cloud</span></a></li>
     <li><a href="07StemLeafPlot.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Stem & Leaf Plot">Stem and Leaf Plot</span></a></li>
     <li><a href="08Histogram.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Histogram">Histogram</span> - <span data-msgid="Frequency Table"></span></a></li>
-    <li><a href="09RelativeFrequency.htm">&#8547; &nbsp; <span data-msgid="RelativeFreq">Relative Frequency</span> <span data-msgid="ComparisonGraph"></span></a></li>
-    <li><a href="10DescriptiveStatistics.htm">&#8547; &nbsp; <span data-msgid="DotMeanStd">Descriptive Statistics</span></a>    </li>
+    <li><a href="09RelativeFrequency.htm">&#8546; &nbsp; <span data-msgid="Frequency Polygon"></span> - <span data-msgid="RelativeFreq">Relative Frequency</span> <span data-msgid="ComparisonGraph"></span></a></li>
+    <li><a href="11BoxGraph.htm">&#8547; &nbsp; <span data-msgid="Box-Whisker Plot"></span> - <span data-msgid="Basic Statistics"></span></a></li>
+    <li><a href="40Permutation.htm">&#8548; &nbsp; <span data-msgid="Permutation"></span> - <span data-msgid="Combination"></span></a></li>
     <li><a href="63SampleEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Law of Large Number">Law of Large Number</span></a></li>
     <li><a href="41BinomialEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Binomial Experiment">Binomial Experiment</span></a></li>
     <li><a href="42BinomialEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Binomial Distribution">Binomial Distribution</span></a></li>
@@ -62,7 +63,6 @@
     <li><a href="56ChisqEng.htm">&#8549; &nbsp; <span data-msgid="ChiSquare Distribution">ChiSquare Distribution</span></a></li>
     <li><a href="58FdistEng.htm">&#8551; &nbsp; <span data-msgid="F Distribution">F Distribution</span></a></li>
     <li><a href="11RandomNumber.htm">&#8549; &nbsp; <span data-msgid="UniformDist"></span> <span data-msgid="RandomNumber">Random Number</span></a></li>
-    <li><a href="61SampleEng.htm">&#8549; &nbsp; <span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
   </ul>
   </div>
 
@@ -73,6 +73,7 @@
 
   <div style="position:absolute; left:380px; top:480px">
   <ul>
+    <li><a href="61SampleEng.htm">&#8549; &nbsp; <span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
     <li><a href="62SampleEng.htm">&#8549; &nbsp; <span data-msgid="Dist of Sample Means">Dist of Sample Means</span></a></li>
     <li><a href="64SampleEng.htm">&#8549; &nbsp; <span data-msgid="Confidence Interval Simulation">Confidence Interval</span></a></li>
     <li><a href="65ConfidenceIntervalMu.htm">&#8549; &nbsp;&nbsp; <span data-msgid="Confidence Interval Mu"></span> <span data-msgid="Confidence Interval"></span></a></li>
@@ -88,7 +89,7 @@
   </ul>
   </div>
 
-  <div style="position:absolute; left:750px; top:220px">
+  <div style="position:absolute; left:750px; top:260px">
   <ul>
     <li><a href="80TestingMu12.htm">&#8551; &nbsp; <span data-msgid="Testing Hypothesis mu12">Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub> </span> </a></li>
     <li><a href="82TestingSigma12.htm">&#8551; &nbsp; <span data-msgid="Testing Hypothesis sigma12">Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>,&sigma;<sub>2</sub><sup>2</sup></span> </a></li>
@@ -119,6 +120,7 @@
       var margin      = {top: 10, bottom: 10, left: 10, right: 10};
       var graphWidth  = svgWidth - margin.left - margin.right;
       var graphHeight = svgHeight - margin.top - margin.bottom;
+//      document.getElementById("msgMean").innerHTML  = svgStr[34][langNum] +" / " +svgStr[46][langNum]; 
 
       var stat      = new Array(30);
       var tobs      = 20;

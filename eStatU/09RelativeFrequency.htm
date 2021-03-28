@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title data-msgid="RelativeFreq">Relative Frequency</title>
+    <title data-msgid="Frequency Polygon"></title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
     <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
@@ -19,7 +19,7 @@
   <div width="640" height="640" style="position:absolute; left:10px; top:0px"> 
     <br>
     <div class="title">
-      <b>&nbsp; <span data-msgid="RelativeFreq"></span> <span data-msgid="ComparisonGraph"></span></b> 
+      <b>&nbsp; <span data-msgid="Frequency Polygon"></span> - <span data-msgid="RelativeFreq"></span> <span data-msgid="ComparisonGraph"></span></b> 
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>   
     </div>
     <br>     
@@ -52,9 +52,9 @@
           <td>&nbsp;&nbsp;&nbsp;</td>
 	  <td colspan="3" style="text-align: center;"><b><span data-msgid="Category"></span></b></td>
           <td>&nbsp;</td>
-	  <td style="text-align: center;"><b><span data-msgid="Frequency"></span> 1</b></td>
+	  <td style="text-align: center;"><input type="text" size="9" id="freq1"></td>
           <td>&nbsp;</td>
-	  <td style="text-align: center;"><b><span data-msgid="Frequency"></span> 2</b></td>
+	  <td style="text-align: center;"><input type="text" size="9" id="freq2"></td>
           <td>&nbsp;</td>
 	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span> 1</b></td>
           <td>&nbsp;</td>
@@ -202,9 +202,23 @@
 	</tr>
         <tr>
           <td> </td>
-          <td>
-            <button type="button" id="execute"><span data-msgid="Execute">Execute</span></button>
-          </td>
+          <td> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Mean"> </span> </td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data112" style="text-align: right;"></td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data113" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> <button type="button" id="execute"><span data-msgid="Execute">Execute</span></button> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Std Deviation"> </span> </td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data122" style="text-align: right;"></td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data123" style="text-align: right;"></td>
         </tr>
       </tbody>
     </table>
@@ -221,7 +235,7 @@
       var svgWidth    = 680;
       var svgHeight   = 450;  
       var margin, graphWidth, graphHeight;
-      margin      = {top: 80, bottom: 50, left: 80, right: 30};
+      margin      = {top: 80, bottom: 60, left: 80, right: 80};
       graphWidth  = svgWidth - margin.left - margin.right;
       graphHeight = svgHeight - margin.top - margin.bottom;
       var colr = ["#FF0000","#FF8000","#FFFF00","#00FF00","#00FFFF","#0080FF","#0000FF","#8000FF","#FF00FF","#0000FF"];
@@ -229,6 +243,7 @@
       var dint  = new Array(rowMax);
       var catg1 = new Array(rowMax);
       var catg2 = new Array(rowMax);
+      var catgm = new Array(rowMax);
       var freq1 = new Array(rowMax);
       var freq2 = new Array(rowMax);
       var perc1 = new Array(rowMax);
@@ -238,9 +253,10 @@
       var nrow = new Array(maxcol);
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, tx, ty;
-      var nobs, sum1, sum2, start, xstep, temp;
+      var nobs, sum1, sum2, mean1, mean2, stdv1, stdv2, start, xstep, temp;
       var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
       var mTitle, yTitle, xTitle;
+      var freq1Name, freq2Name;
 
       document.getElementById("data11").disabled = true;
       document.getElementById("data21").disabled = true;
@@ -273,10 +289,17 @@
       document.getElementById("data103").disabled = true;
       document.getElementById("data104").disabled = true;
       document.getElementById("data105").disabled = true;
+      document.getElementById("data112").disabled = true;
+      document.getElementById("data113").disabled = true;
+      document.getElementById("data122").disabled = true;
+      document.getElementById("data123").disabled = true;
 
       document.getElementById("data02").value = colr[2]; // Yellow
       document.getElementById("data04").value = colr[0]; // red
       document.getElementById("data05").value = colr[6]; // blue
+      document.getElementById("ytitle").value = svgStr[30][langNum];
+      document.getElementById("freq1").value  = svgStr[16][langNum]+ " 1";
+      document.getElementById("freq2").value  = svgStr[16][langNum]+ " 2";
 
 
       // Draw Histogram ======================================
@@ -321,6 +344,8 @@
         catg1[7] = d3.select("#data80").node().value;
         catg1[8] = d3.select("#data90").node().value;
         // freq data
+        freq1Name= document.getElementById("freq1").value; 
+        freq2Name= document.getElementById("freq2").value; 
         freq1[1] = parseFloat(d3.select("#data12").node().value);
         freq1[2] = parseFloat(d3.select("#data22").node().value);
         freq1[3] = parseFloat(d3.select("#data32").node().value);
@@ -339,6 +364,25 @@
         freq2[7] = parseFloat(d3.select("#data73").node().value);
         freq2[8] = parseFloat(d3.select("#data83").node().value);
         freq2[9] = parseFloat(d3.select("#data93").node().value);
+        // clean up relative frequency
+        document.getElementById("data14").value = ""; 
+        document.getElementById("data24").value = ""; 
+        document.getElementById("data34").value = ""; 
+        document.getElementById("data44").value = ""; 
+        document.getElementById("data54").value = ""; 
+        document.getElementById("data64").value = ""; 
+        document.getElementById("data74").value = ""; 
+        document.getElementById("data84").value = ""; 
+        document.getElementById("data94").value = ""; 
+        document.getElementById("data15").value = ""; 
+        document.getElementById("data25").value = ""; 
+        document.getElementById("data35").value = ""; 
+        document.getElementById("data45").value = ""; 
+        document.getElementById("data55").value = ""; 
+        document.getElementById("data65").value = ""; 
+        document.getElementById("data75").value = ""; 
+        document.getElementById("data85").value = ""; 
+        document.getElementById("data95").value = ""; 
         // get new color
         colr[2] = d3.select("#data02").node().value;
         colr[0] = d3.select("#data04").node().value;
@@ -427,6 +471,7 @@
         dint[0] = parseFloat(catg1[0]);
         for (i = 0; i < nvalueH; i++) {
           catg2[i]   = parseFloat(catg1[i]) + xstep; 
+          catgm[i]   = (parseFloat(catg1[i]) + parseFloat(catg2[i])) / 2;
           dint[i+1]  = catg2[i];
         } 
         if( catg1[0] != "" ) document.getElementById("data11").value = f2(catg2[0]);
@@ -438,13 +483,31 @@
         if( catg1[6] != "" ) document.getElementById("data71").value = f2(catg2[6]);
         if( catg1[7] != "" ) document.getElementById("data81").value = f2(catg2[7]);
         if( catg1[8] != "" ) document.getElementById("data91").value = f2(catg2[8]);
-        // Relative Frequency Calculation
+        // Mean, Std Dev, Relative Frequency Calculation
         sum1 = 0;
         sum2 = 0;
+        mean1 = 0;
+        mean2 = 0;      
         for (i = 0; i < nvalueH; i++) {
-            sum1 += parseFloat(freq1[i+1]);
-            if (nrow[3] > 0) sum2 += parseFloat(freq2[i+1]);
+            sum1  += freq1[i+1];
+            mean1 += catgm[i] * freq1[i+1];
+            if (nrow[3] > 0) {
+              sum2  += freq2[i+1];
+              mean2 += catgm[i] * freq2[i+1]; 
+            }
         }
+        mean1 = mean1 / sum1;
+        if (nrow[3] > 0) mean2 = mean2 / sum2;
+        stdv1 = 0;
+        stdv2 = 0;      
+        for (i = 0; i < nvalueH; i++) {
+            stdv1 += (catgm[i] - mean1) * (catgm[i] - mean1) * freq1[i+1];
+            if (nrow[3] > 0) {
+              stdv2 += (catgm[i] - mean2) * (catgm[i] - mean2) * freq2[i+1]; 
+            }
+        }
+        stdv1 = Math.sqrt(stdv1 / sum1);
+        if (nrow[3] > 0) stdv2 = Math.sqrt(stdv2 / sum2);
         for (i = 0; i < nvalueH; i++) {
             perc1[i+1] = freq1[i+1] / sum1;
             if (nrow[3] > 0) perc2[i+1] = freq2[i+1] / sum2;
@@ -470,15 +533,19 @@
         // write total
         document.getElementById("data102").value = sum1;
         document.getElementById("data104").value = f3(1);
+        document.getElementById("data112").value = f2(mean1);
+        document.getElementById("data122").value = f2(stdv1);
         if (nrow[3] > 0) {
           document.getElementById("data103").value = sum2;
           document.getElementById("data105").value = f3(1);
+          document.getElementById("data113").value = f2(mean2);
+          document.getElementById("data123").value = f2(stdv2);
         }
   }
 
   // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
   function drawHistogramRel(nvalueH, dataValueH, dvalueFreq1, dvalueFreq2) {
-    var i, j, k, str;
+    var i, j, k, str, cx, cy;
     var label, tempx, tempy, tempw, temph, xgap, xwidth, xstep, color1, colr2;
     var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax;
 
@@ -504,7 +571,7 @@
     // 전체 제목
     drawTitle(mTitle, yTitle, xTitle);
     // 아래 축그리기
-    drawHistAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidth, graphHeight);
+    drawHistAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidth, graphHeight);   
     // 히스토그램 freq1[]
     tempw = xwidth * xstep / gxrangeH; // 막대 너비
     for (i = 1; i <= nvalueH; i++) {
@@ -530,32 +597,24 @@
     } // endof i
     color1 = colr[0];
     showHistLineRel(nvalueH, xstep, dataValueH, dvalueFreq1, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, color1);
-/*
-    // 히스토그램 freq2[]
-    for (i = 1; i <= nvalueH; i++) {
-            tempx = margin.left + xgap + xwidth * (dataValueH[i - 1] - gxminH) / gxrangeH;
-            tempy = margin.top + graphHeight - graphHeight * (dvalueFreq2[i] - gyminH) / gyrangeH;
-            temph = graphHeight * (dvalueFreq2[i] - gyminH) / gyrangeH;
-            chart.append("rect")
-                .style("fill", colr[4])
-                .attr("class", "bar")
-                .style("stroke", "black")
-                .style("stroke-width", "1px")
-                .attr("x", tempx)
-                .attr("width", tempw)
-                .attr("height", 0)
-                .attr("y", margin.top + graphHeight)
-                .transition() // 애니매이션 효과 지정
-                .delay(function(d, i) {
-                    return i * 250;
-                }) // 0.5초마다 그리도록 대기시간 설정
-                .duration(1000) // 2초동안 애니매이션이 진행되도록 설정
-                .attr("y", tempy)
-                .attr("height", temph)
-    } // endof i
-*/
+
     if (nrow[3] > 0) {
       color2 = colr[6];
+      // 레이블
+      cx = margin.left + graphWidth + 10;
+      cy = margin.top + 30;
+      chart.append("circle").attr("class", "histline").style("stroke", color1).style("stroke-width", "2px")
+             .attr("cx", cx).attr("cy", cy).attr("r", 3)
+      chart.append("text").attr("x", cx+10).attr("y", cy+7)
+           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color1).style("text-anchor", "begin")
+           .text(freq1Name)
+      cy += 30;
+      chart.append("circle").attr("class", "histline").style("stroke", color2).style("stroke-width", "2px")
+             .attr("cx", cx).attr("cy", cy).attr("r", 3)
+      chart.append("text").attr("x", cx+10).attr("y", cy+7)
+           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color2).style("text-anchor", "begin")
+           .text(freq2Name)
+      // freq2 상대도수다각형
       showHistLineRel(nvalueH, xstep, dataValueH, dvalueFreq2, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, color2);
     }
   }
@@ -632,7 +691,7 @@
             .attr("class", "myaxis")
             .style("text-anchor", "middle")
             .style("font-family", "sans-serif")
-            .style("font-size", "7px")
+            .style("font-size", "0.7em")
             .style("font-family", "sans-serif")
             .style("stroke", "#0055FF")
             .attr("x", x1)
@@ -647,25 +706,25 @@
     chart.append("text")
         .attr("x", margin.left + graphWidth/2)
         .attr("y", margin.top / 2 + 10)
-        .style("font-size", "20px")
+        .style("font-size", "1.8em")
         .style("font-family", "sans-seirf")
         .style("stroke", "black")
         .style("text-anchor", "middle")
         .text(mTitle)
     // X축 제목
     chart.append("text")
-            .style("font-size", "12px")
+            .style("font-size", "1em")
             .style("font-family", "sans-seirf")
             .style("stroke", "black")
             .style("text-anchor", "middle")
             .attr("x", margin.left + graphWidth / 2)
-            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 10)
+            .attr("y", margin.top + graphHeight + margin.bottom * 0.8)
             .text(xTitle)
      // Y축 제목
      var tx = margin.left / 2 - 30;
      var ty = margin.top + 15;
      chart.append("text")
-            .style("font-size", "12px")
+            .style("font-size", "1em")
             .style("font-family", "sans-seirf")
             .style("stroke", "black")
             .style("text-anchor", "end")
