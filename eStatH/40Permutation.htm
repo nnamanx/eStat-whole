@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Permutation"></title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Permutation">Permutaion</span> - <span data-msgid="Combination">Combination</span>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+    </div>
+    <br>
+    <table>
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <td><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><input type="text" size=6 id="nn" value="10" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><sup><small> 1 </small></sup><input type="range" min="1" max="30" value="10" id="rangeN" onchange="showValueN(this.value)"/>
+          </td>
+          <td><sup><small>30</small></sup></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="fontmath">x</span></td>
+          <td>=</td>
+          <td><input type="text" size=6 id="xx" value="2" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><sup><small> 0 </small></sup><input type="range" min="0" max="10" value="2" id="rangeX" onchange="showValueX(this.value)"/>
+          </td>
+          <td><span id="maxX"></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <table>
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <td><b><button type="button" style="width:100px;" id="execute"><span data-msgid="Execute"></span></button> </b></td>
+          <td>&nbsp;</td>
+          <td><b>[<span data-msgid="Permutation">Permutation</span>]</b></td>
+          <td>&nbsp;</td>
+          <td><span id="msgPermu"></span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="permu" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><b>[<span data-msgid="Combination">Combination</span>]</b></span></td>
+          <td>&nbsp;</td>
+          <td><span id="msgCombi"></span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="combi" style="text-align: right;"></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <div style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n &le; 10 , x = 2 <span data-msgid="NumberOfCase"></span></div>
+    <svg id="chart" width="600" height="480"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+  </div> 
+
+  <script>
+
+      var chart = d3.select("#chart");
+ 
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
+      var svgWidth    = 600;
+      var svgHeight   = 480;
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+      var i, nn, xx, permu, combi;
+      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
+
+      document.getElementById("permu").disabled = true; 
+      document.getElementById("combi").disabled = true; 
+      nn = document.getElementById("nn").value
+      document.getElementById("maxX").innerHTML = "<sup>"+nn.toString()+"</sup>"; 
+      document.getElementById("msgPermu").innerHTML = "<sub>n</sub>P<sub>x</sub>";
+      document.getElementById("msgCombi").innerHTML = "<sub>n</sub>C<sub>x</sub>";
+
+      // Calculate Permutation & Combinatio ======================================
+      d3.select("#execute").on("click",function() {
+        chart.selectAll("*").remove();
+        // input value
+        nn = parseFloat(d3.select("#nn").node().value);
+        xx = parseFloat(d3.select("#xx").node().value);
+        if ( isNaN(nn) || isNaN(xx) ) {  // wrong input
+          chart.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text("Wrong input!  Enter number, not character!   Try again.")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        if ( nn < 1 || nn > 30 ) {  // wrong input
+          chart.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text("Enter n between 1 and 30 !!   Try again.")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        if ( xx > nn ) {
+          chart.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text("x > n !!   Try again.")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        permu = 1;
+        for (i = 0; i < xx; i++) permu = permu * (nn - i);   
+        combi = permu / factorial(xx);
+        document.getElementById("msgPermu").innerHTML = "<sub>"+nn.toString()+"</sub>P<sub>"+xx.toString()+"</sub>";
+        document.getElementById("msgCombi").innerHTML = "<sub>"+nn.toString()+"</sub>C<sub>"+xx.toString()+"</sub>";
+        document.getElementById("permu").value = f0(permu);
+        document.getElementById("combi").value = f0(combi);
+        drawPermutation(nn, xx, permu, combi);   
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+      // factorial
+      function factorial(n) {
+        var fact = 1;
+        for (var i = 1; i <= n; i++) {
+          fact = fact * i;
+        }
+        return fact; 
+      }
+      // n slidebar
+      function showValueN(newValue) {
+        document.getElementById("nn").value = newValue;
+        document.getElementById("maxX").innerHTML = "<sup>"+newValue.toString()+"</sup>"; 
+        document.getElementById("rangeX").max   = newValue;
+      }
+      // x slide bar
+      function showValueX(newValue) {
+        document.getElementById("xx").value = newValue;
+      }
+      // draw Permutaion and Combination
+      function drawPermutation(nn, xx, permu, combi) {
+        chart.selectAll("*").remove();
+        var i, j, tx, ty, cx, cy, temp, str1, str2, str3;
+        var radius = 8;
+        var xgap   = 50;
+        var ygap   = 20;
+        var fontsize  = "0.8em";
+        var fontsize2 = "1.5em";
+        // Permutation
+        cx = margin.left;
+        cy = margin.top + 20;
+        str1 = nn.toString();
+        str2 = xx.toString();
+        if (xx <= 1) temp = "";
+        else if (xx == 2) temp = " = " + str1 + " \u00D7 " + (nn-1).toString();
+        else if (xx == 3) temp = " = " + str1 + " \u00D7 " + (nn-1).toString() + " \u00D7 " + (nn-2).toString();
+        else temp = " = " + str1 + " \u00D7 " + (nn-1).toString() + " \u00D7 " + " \u22EF " + " \u00D7 " + (nn-xx+1).toString();
+        str3 = temp + " = " + permu.toString();
+        chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
+        chart.append("text").attr("x", cx+13).attr("y", cy).text("P").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
+        chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
+        chart.append("text").attr("x", cx+40).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
+        if (nn <= 10 && xx == 2) {
+          for (i = 0; i < nn; i++) { 
+            cy = cy + ygap;
+            ty = cy + 4;
+            str1 = (i+1).toString();
+            for (j = 0; j < nn; j++) {
+              if (i==j) continue;
+              cx = (j+1) * xgap;
+              tx = cx + 15;
+              str2 = (j+1).toString();
+              chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius).style("fill",colr[i]);
+              chart.append("text").attr("x", cx).attr("y", ty).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+              chart.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radius).style("fill",colr[j]);
+              chart.append("text").attr("x", tx).attr("y", ty).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+            } // endof j
+          } // endof i
+        } // endof if
+        // Combination
+        cx = margin.left;
+        cy = cy + 2*ygap;
+        str1 = nn.toString();
+        str2 = xx.toString();
+        if (xx == 0) str3 = " = 1 " + " / " + str2 + "! = " + combi.toString();
+        else if (xx == 1) str3 = " = " + str1 + " / " + str2 + "! = " + combi.toString();
+        else str3 = temp + " / " + str2 + "! = " + combi.toString();
+        chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
+        chart.append("text").attr("x", cx+13).attr("y", cy).text("C").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
+        chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
+        chart.append("text").attr("x", cx+40).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
+        if (nn <= 10 && xx == 2) {
+          for (i = 0; i < nn-1; i++) { 
+            cy = cy + ygap;
+            ty = cy + 4;
+            str1 = (i+1).toString();
+            for (j = i+1; j < nn; j++) {
+              cx = (j+1) * xgap;
+              tx = cx + 15;
+              str2 = (j+1).toString();
+              chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius).style("fill",colr[i]);
+              chart.append("text").attr("x", cx).attr("y", ty).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+              chart.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radius).style("fill",colr[j]);
+              chart.append("text").attr("x", tx).attr("y", ty).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+            } // endof j
+          } // endof i
+        } // endof if
+      }
+
+  </script>
+</body>
+</html>

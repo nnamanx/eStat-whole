@@ -26,31 +26,44 @@
     <b>[<span data-msgid="input data">Data Input</span>]</b>&nbsp; <input type="text" size=70 id="data1">
     <table class="stat">
         <tr>
+          <td></td>
           <td><span data-msgid="NumberData">Data Size</span></td>
           <td><span class="fontmath">n</span></td>
-          <td><input type="text" size=8 id="nn" style="text-align: right;"></td>
+          <td><input type="text" size=10 id="nn" style="text-align: right;"></td>
           <td></td>
           <td><span id="msgMin"></span></td>
           <td><span class="fontmath">min</span></td>
-          <td><input type="text" size=8 id="mini" style="text-align: right;"></td>
+          <td><input type="text" size=10 id="mini" style="text-align: right;"></td>
         </tr>
         <tr>
+          <td></td>
           <td><span data-msgid="Sample Mean">Sample Mean</span></td>
           <td><span class="fontmath">x&#772;</span></td>
-          <td><input type="text" size=8 id="xbar" style="text-align: right;"></td>
+          <td><input type="text" size=10 id="xbar" style="text-align: right;"></td>
           <td></td>
           <td><span id="msgMax"></span></td>
           <td><span class="fontmath">max</span></td>
-          <td><input type="text" size=8 id="maxi" style="text-align: right;"></td>
+          <td><input type="text" size=10 id="maxi" style="text-align: right;"></td>
         </tr>
         <tr>
+          <td></td>
+          <td><span id="msgMed"></span></td>
+          <td><span class="fontmath">m</span></td>
+          <td><input type="text" size=10 id="medi" style="text-align: right;"></td>
+          <td></td>
+          <td><span id="msgRange"></span></td>
+          <td><span class="fontmath">range</span></td>
+          <td><input type="text" size=10 id="range" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td></td>
           <td><span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
           <td><span class="fontmath">s<sup>2</sup></span></td>
-          <td><input type="text" size=8 id="variS" style="text-align: right;"></td>
+          <td><input type="text" size=10 id="varS" style="text-align: right;"></td>
           <td></td>
-          <td><span data-msgid="Sample"></span> <span data-msgid="Std Deviation"></span></td>
+          <td><span data-msgid="Sample"></span><span data-msgid="Std Deviation"></span></td>
           <td><span class="fontmath">s</span></td>
-          <td><input type="text" size=8 id="stdS" style="text-align: right;"></td>
+          <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
         </tr>
     </table>
     <br>
@@ -71,7 +84,7 @@
       </tr>
       <tr>
         <td><b><span data-msgid="Main Title">Main Title</span></b></td>
-        <td colspan="4">&nbsp;<input type="text" size=50 id="mtitle"></td>
+        <td colspan="4">&nbsp;<input type="text" size=51 id="mtitle"></td>
         <td>&nbsp;&nbsp;</td>
         <td><b><span data-msgid="Histogram"></span> <span data-msgid="oneColor"></span></b></td>
         <td><input type="color"id="data104" onclick="changeColor(10)" width="100px"></td>
@@ -105,7 +118,7 @@
       var svgWidth    = 640;
       var svgHeight   = 500;  
       var margin, graphWidth, graphHeight;
-      margin      = {top: 80, bottom: 50, left: 80, right: 20};
+      margin      = {top: 80, bottom: 60, left: 80, right: 40};
       graphWidth  = svgWidth - margin.left - margin.right;
       graphHeight = svgHeight - margin.top - margin.bottom;
       var histColor = "#00FFFF";
@@ -113,34 +126,41 @@
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, ty;
       var nint, step, buffer, nvalue; 
-      var nobs, mean, variS, stdS, mini, maxi, start, xstep;
+      var nobs, mean, varS, stdS, mini, maxi, start, xstep;
       var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
       var mTitle, yTitle, xTitle;
       var rowMax = 100;
       var dint = new Array(rowMax);
       var freq = new Array(rowMax);
 
-      document.getElementById("data104").value= histColor;
-      document.getElementById("msgMin").innerHTML = svgStr[45][langNum]; 
-      document.getElementById("msgMax").innerHTML = svgStr[47][langNum]; 
+      document.getElementById("data104").value      = histColor;
+      document.getElementById("ytitle").value       = svgStr[16][langNum];
+      document.getElementById("msgMed").innerHTML   = svgStr[46][langNum]; 
+      document.getElementById("msgMin").innerHTML   = svgStr[45][langNum]; 
+      document.getElementById("msgMax").innerHTML   = svgStr[47][langNum]; 
+      document.getElementById("msgRange").innerHTML = svgStr[112][langNum]; 
+
       document.getElementById("nn").disabled    = true;    
       document.getElementById("xbar").disabled  = true; 
-      document.getElementById("variS").disabled = true;  
-      document.getElementById("stdS").disabled  = true;   
+      document.getElementById("medi").disabled  = true;   
       document.getElementById("mini").disabled  = true;  
       document.getElementById("maxi").disabled  = true;  
+      document.getElementById("range").disabled = true; 
+      document.getElementById("varS").disabled  = true; 
+      document.getElementById("stdS").disabled  = true; 
 
       // data input control =====================================
       d3.select("#data1").on("input", function() {
         stat = simplestat2("#data1");  
         document.getElementById("nn").value    = stat.n;    
         document.getElementById("xbar").value  = f2(stat.xbar);
-        variS = stat.var;
-        stdS  = Math.sqrt(variS);
-        document.getElementById("variS").value = f2(variS);  
-        document.getElementById("stdS").value  = f2(stdS);  
+        document.getElementById("medi").value  = f2(stat.medi);  
+        document.getElementById("range").value = f2(stat.range);  
         document.getElementById("mini").value  = f2(stat.mini);  
-        document.getElementById("maxi").value  = f2(stat.maxi);
+        document.getElementById("medi").value  = f2(stat.medi);  
+        document.getElementById("maxi").value  = f2(stat.maxi);  
+        document.getElementById("varS").value  = f2(stat.var);  
+        document.getElementById("stdS").value  = f2(stat.std);  
       });
 
       updateData = function() {
@@ -160,12 +180,14 @@
         // input check
         if ( nobs > 100) {
            chart.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
-                .text("number of observations should be less than 100 !!   Try again.").style("stroke","red");
+                .text("number of observations should be less than 100 !!   Try again.").style("stroke","red")
+                .style("font-size", "1em")
            return;
         }
         if ( start == "" || xstep == "" || isNaN(start) || isNaN(xstep) ) {
            chart.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
-                .text("No input or wrong input !!   Try again.").style("stroke","red");
+                .text("No input or wrong input !!   Try again.").style("stroke","red")
+                .style("font-size", "1em")
            return;
         }
         else {
@@ -448,7 +470,7 @@
             .attr("class", "myaxis")
             .style("text-anchor", "middle")
             .style("font-family", "sans-serif")
-            .style("font-size", "7px")
+            .style("font-size", "0.7em")
             .style("font-family", "sans-serif")
             .style("stroke", "#0055FF")
             .attr("x", x1)
@@ -463,25 +485,25 @@
     chart.append("text")
         .attr("x", margin.left + graphWidth/2)
         .attr("y", margin.top / 2 + 10)
-        .style("font-size", "20px")
+        .style("font-size", "1.8em")
         .style("font-family", "sans-seirf")
         .style("stroke", "black")
         .style("text-anchor", "middle")
         .text(mTitle)
     // X축 제목
     chart.append("text")
-            .style("font-size", "12px")
+            .style("font-size", "1em")
             .style("font-family", "sans-seirf")
             .style("stroke", "black")
             .style("text-anchor", "middle")
-            .attr("x", margin.left + graphWidth / 2)
-            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 10)
+            .attr("x", margin.left + graphWidth / 2 + 10)
+            .attr("y", margin.top + graphHeight + margin.bottom*0.8 )
             .text(xTitle)
      // Y축 제목
      var tx = margin.left / 2 - 30;
      var ty = margin.top + 15;
      chart.append("text")
-            .style("font-size", "12px")
+            .style("font-size", "1em")
             .style("font-family", "sans-seirf")
             .style("stroke", "black")
             .style("text-anchor", "end")
@@ -510,7 +532,7 @@
          .style("stroke", "red")
          .style("text-anchor", "middle")
          .style("font-family", "sans-serif")
-         .style("font-size", "7pt")
+         .style("font-size", "0.7em")
          .attr("x", tempx)
          .attr("y", tempy + graphHeight + 5)
          .text(svgStr[34][langNum] + "=" + f2(avg))
@@ -537,7 +559,7 @@
              .style("stroke", "red")
              .style("text-anchor", "middle")
              .style("font-family", "sans-serif")
-             .style("font-size", "8pt")
+             .style("font-size", "0.8em")
              .attr("x", x1)
              .attr("y", y1 - 4)
              .text(freq[i])
