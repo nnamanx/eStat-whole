@@ -7137,7 +7137,8 @@ function drawStemLeafBoth(ngroup, nobs, dataSet, tstat, graphWidth, buffer) {
 
 }
 
-// Sorting freq in ascending order and determine leaf
+// Sorting freq in ascending order and determine leaf- updated Mar 22, 2021
+/*
 function CountLeaf(nvalue, tobs, tdata, dataValue, dvalueFreq, stem, leaf) {
     var i, j, k;
     var dataA = new Array(tobs);
@@ -7160,7 +7161,36 @@ function CountLeaf(nvalue, tobs, tdata, dataValue, dvalueFreq, stem, leaf) {
     }
 
 }
+*/
+function CountLeaf(nvalue, tobs, tdata, dataValue, dvalueFreq, stem, leaf) {
+    var i, j, k;
+    var dataA = new Array(tobs);
+    var dataY = new Array(tobs);
 
+    for (i = 0; i < tobs; i++) dataA[i] = tdata[i];
+    sortAscendM(tobs, dataA, dataValue, dvalueFreq, dataY);
+    for (j = 0; j < nvalue; j++) dvalueFreq[j] = 0;
+    for (i = 0; i < tobs; i++) {
+      if (dataA[i] < 0) {  // 음수
+          for (j = 0; j < nvalue; j++) {
+            if (dataA[i] < stem[j]) {
+                dvalueFreq[j]++;
+                leaf[j][dvalueFreq[j]] = -dataA[i] % 10;
+                break;
+            } 
+          } // endof i
+      }
+      else { // 양수
+          for (j = 0; j < nvalue; j++) {
+            if (dataA[i] < stem[j+1]) {
+                dvalueFreq[j]++;
+                leaf[j][dvalueFreq[j]] = dataA[i] % 10;
+                break;
+            } 
+          } // endof i
+      }
+    }
+}
 // 기초통계량표 --------------------------------------------------------------------------------------------------
 function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, varnm1, stdn, varn, mini, Q1, median, Q3, maxi, tstat) {
     var screenTable = document.getElementById("screenTable");

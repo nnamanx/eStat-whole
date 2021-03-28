@@ -146,11 +146,12 @@ li a:hover {
      .circleP{stroke: black; fill: #0055FF;}
      .circleR{stroke: black; fill:red; }
      .circleS{stroke: black; fill: #FF3500;}
+     .iconfont {text-anchor: middle;}
      .font01   {font-size:9pt; stroke: #0055FF; text-anchor: middle;}
      .fontmath {font-size:13pt; font-family: "times new roman"; font-style : italic;  }
      .fontguide{font-size:13pt; font-family: "times new roman"; font-style : italic; color: blue;}
      .freq     {font-size:11pt; stroke:black; text-anchor: end;}
-     .freqfont {font-family: sans-serif; font-size: 8pt; stroke:red; text-anchor: middle;}
+     .freqfont {font-family: sans-serif; font-size: 1em; stroke:black; text-anchor: middle;}
      .freqfont2{font-size:8pt; fill:red; text-anchor: middle;}
      .hand{stroke: black}
      .histfreq {font-size:8pt; fill:red; text-anchor: middle;}

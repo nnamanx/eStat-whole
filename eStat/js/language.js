@@ -171,8 +171,8 @@ $.message.ko = {
     "F test": "F 검정",
     "At least one pair of means is different": "적어도 한쌍 이상의 평균이 다름",
     "Main Title" : "주 제목 : ",
-    "y title": "y축제목 : ",
-    "x title": "x축제목 : ",
+    "y title": "세로축 제목 : ",
+    "x title": "가로축 제목 : ",
     "Modify": "수정",
     "Confirm": "확인",
     "Variable Name": "변량명",
@@ -182,7 +182,7 @@ $.message.ko = {
     "Save": "저장",
     "Exit": "나가기",
     "eStatU UnivStatEdu": "eStatU - 대학 통계교육 SW",
-    "eStatH HighStatEdu": "eStatH - 고등 통계교육 SW",
+    "eStatH HighStatEdu": "eStatH 중 / 고 통계교육 SW",
     "Menu": "메뉴",
     "Binomial Experiment": "이항분포실험",
     "Binomial Distribution": "이항분포",
@@ -240,7 +240,8 @@ $.message.ko = {
     "Testing Hypothesis P12": "가설검정 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "가설검정 :분산분석",
     "Testing Independence": "범주형 : 독립성검정",
-    "Category": "범주",
+    "CategoryD": "범주",
+    "Category": "계급",
     "Correlation Coefficient": "상관계수 시뮬레이션",
     "Regression Experiment": "회귀선 실험",
     "Hypothesis": "가  설",
@@ -254,7 +255,7 @@ $.message.ko = {
     "Paired Sample": "대응표본",
     "Sample Data": "표본자료",
     "input either sample data": "(자료를 공란으로 구분), ([표본통계량]만 입력도 가능)",
-    "input data": "데이터 입력",
+    "input data": "자료 입력",
     "Sample Statistics": "표본통계량",
     "Sample Mean": "표본평균",
     "Sample Variance": "표본분산",
@@ -264,7 +265,7 @@ $.message.ko = {
     "At least one pair": "적어도 한쌍 이상의 평균이 다름",
     "Row-Col-0": "행변량과 열변량이 독립",
     "Row-Col-1": "행변량과 열변량이 독립 아님",
-    "Enter any number of row": "(왼쪽 위 셀부터 데이터 입력)",
+    "Enter any number of row": "(왼쪽 위 셀부터 자료 입력)",
     "Row": "행",
     "Column": "열",
     "Show Probability": "확률표시",
@@ -290,7 +291,7 @@ $.message.ko = {
     "GroupVar4": "인자2",
     "AnalysisVarMu12": "분석(or X1)변량",
     "GroupVarMu12": "그룹(or X2)변량",
-    "PairedMu12": " X1 or X2는 대응데이터 경우",
+    "PairedMu12": " X1 or X2는 대응자료 경우",
     "SizeVar": "크기변량",
     "RegressionBand": "신뢰대",
     "RegressionTable": "상관 및 회귀분석",
@@ -307,7 +308,7 @@ $.message.ko = {
     "AnovaTable": "분산분석표",
     "AnovaMeanGraph": "평균신뢰구간도",
     "MultipleComparison": "다중비교",
-    "ComparisonGraph": "비교 그래프",
+    "ComparisonGraph": "비교",
     "AnovaResidual": "표준화 잔차와 예측값 산점도",
     "AnovaQQ": "잔차 Q-Q 산점도",
     "TestingFit": "범주형 : 적합성검정",
@@ -349,7 +350,7 @@ $.message.ko = {
     "WilcoxonSignCondition": "n ≤ 20 이면 윌콕슨 순위합 분포 검정,  n > 20 근사 정규분포 검정",
     "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 이면 순위합 분포 검정,  n > 25 근사 정규분포 검정",
     "KruskalCondition": "n ≤ 10 이면 H 분포 검정,  n>10 이면 근사 카이제곱 검정",
-    "VariableSelect":  "* 데이터분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
+    "VariableSelect":  "* 자료분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
     "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
     "VariableSelect3": "변량선택",
     "VariableSelect4": "분석변량 추가 선택 가능",
@@ -364,7 +365,7 @@ $.message.ko = {
     "RandomNumber":   "확률난수",
     "RealNumber":     "실수형",
     "IntegerNumber":  "정수형",
-    "NumberData":     "데이터수",
+    "NumberData":     "자료수",
     "NumberDigit":    "소수 자릿수",
     "NormalTable":    "정규분포표",
     "Percentile":     "백분위수표",
@@ -372,10 +373,15 @@ $.message.ko = {
     "StudentRangeDist": "HSD 표준화범위분포",
     "copy link": "링크 복사",
     "WithoutReplacement": "비복원추출",
-    "WordCloud":       "텍스트 클라우드",
+    "WordCloud":       "단어 구름",
     "oneColor":        "색",
     "defaultColor":    "기본색",
     "RelativeFreq":    "상대도수",
+    "MarginOfError":   "오차의 한계",
+    "Permutation":     "순열",
+    "Combination":     "조합",
+    "NumberOfCase":    "경우의 수",
+    "Character":       "이모티콘",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -384,15 +390,15 @@ appStr[3][0] = "../eStatE/index.html";
 appStr[4][0] = "../eHelp/index.html";
 appStr[5][0] = "index_en.html";
 appStr[6][0] = "../eLearning/kr/index.html";
-alertMsg[1][0] = "데이터가 없습니다!";
+alertMsg[1][0] = "자료가 없습니다!";
 alertMsg[2][0] = "분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
 alertMsg[3][0] = "선택된 열에 결측치가 있습니다.";
 alertMsg[4][0] = "각 열의 자료수가 다르거나 결측치가 있으면 처리를 할 수 없습니다.";
 alertMsg[5][0] = "그룹의 수가 너무 많습니다. ";
 alertMsg[6][0] = "요약자료의 분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
 alertMsg[7][0] = "원시자료에서 두 개이상 선택된 변량에 대해서는 그래프를 그리거나 표를 만들 수 없습니다.";
-alertMsg[8][0] = "점그림은 데이터 수가 200개 이하일때 가능합니다.";
-alertMsg[9][0] = "줄기와 잎 그림은 데이터 수가 100개 이하일때 가능합니다.";
+alertMsg[8][0] = "점그림은 자료 수가 200개 이하일때 가능합니다.";
+alertMsg[9][0] = "줄기와 잎 그림은 자료 수가 100개 이하일때 가능합니다.";
 alertMsg[10][0] = "분석변수가 선택되지 않았습니다.";
 alertMsg[11][0] = "분석변수/그룹변수가 선택되지 않았습니다.";
 alertMsg[12][0] = "분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
@@ -401,8 +407,8 @@ alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합
 alertMsg[16][0] = "두 개의 그룹에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[17][0] = "산점도는 Y축변량과 X축변량을 선택하여야 합니다.";
 alertMsg[18][0] = "세 개 이상 선택된 변량에 대해서는 처리를 할 수 없습니다.";
-alertMsg[19][0] = "데이터에 문자가 있어 처리할수 없습니다";
-alertMsg[20][0] = "데이터에 문자가 있어 회귀분석을 처리할수 없습니다";
+alertMsg[19][0] = "자료에 문자가 있어 처리할수 없습니다";
+alertMsg[20][0] = "자료에 문자가 있어 회귀분석을 처리할수 없습니다";
 alertMsg[21][0] = "자료에 결측치가 있으면 저장할 수 없습니다.";
 alertMsg[22][0] = "음수자료의 막대그래프는 그릴 수 없습니다.";
 alertMsg[25][0] = "한그룹의 경우 쌓는형 막대그래프는 그릴 수 없습니다.";
@@ -418,7 +424,7 @@ alertMsg[37][0] = "한 (분석변량)에 대해서만 가설검정을 할 수 �
 alertMsg[38][0] = "mu를 입력하고 다시 실행하세요!";
 alertMsg[39][0] = "표준편차가 0이거나 숫자가 아닙니다. 다시 입력하고 실행하세요!";
 alertMsg[40][0] = "입력된 분산이 숫자가 아닙니다. 다시 입력하고 실행하세요!";
-alertMsg[41][0] = "두 변량 (분석변량과 그룹변량) 데이터에 대해서만 가설검정을 할 수 있습니다.";
+alertMsg[41][0] = "두 변량 (분석변량과 그룹변량) 자료에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[42][0] = "가설검정의 제목은 편집할 수 없습니다! ";
 alertMsg[43][0] = "단순 선형 회귀분석은 그룹이 없는 경우에 분석할 수 있습니다";
 alertMsg[44][0] = "분석변수에서 1st:지역명, 2nd:위도(latitude), 3rd:경도(longitude), 4th:분석값(선택)을 선택";
@@ -475,7 +481,7 @@ svgStr[48][0] = "전체";
 svgStr[49][0] = "<h3>정규성 검정</h3>";
 svgStr[50][0] = "적합성검정은<br> 기대도수가<br> 5보다 클때 권장";
 svgStr[51][0] = "카이제곱 적합성검정<br>구간 i <br>[a<sub>i</sub> , b<sub>i</sub>)";
-svgStr[52][0] = "데이터<br>관찰도수<br>(O<sub>i</sub>)";
+svgStr[52][0] = "자료<br>관찰도수<br>(O<sub>i</sub>)";
 svgStr[53][0] = "정규분포<br>기대확률<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][0] = "정규분포<br>기대도수<br>(E<sub>i</sub>)";
 svgStr[55][0] = "각 구간<br>카이제곱값<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
@@ -517,12 +523,12 @@ svgStr[90][0] = "다중비교";
 svgStr[91][0] = "통계량";
 svgStr[92][0] = "인자";
 svgStr[93][0] = "수준";
-svgStr[94][0] = "대응비교 데이터 점그래프";
+svgStr[94][0] = "대응비교 자료 점그래프";
 svgStr[95][0] = "표준화 잔차와 예측값 산점도";
 svgStr[96][0] = "표준화 잔차와 지렛값 산점도";
 svgStr[97][0] = "Cook 거리 그래프";
 svgStr[98][0] = "Cook 거리";
-svgStr[99][0] = "데이터 순서";
+svgStr[99][0] = "자료 순서";
 svgStr[100][0]= "평균차";
 svgStr[101][0]= "평균차검정";
 svgStr[102][0]= "처리";
@@ -542,6 +548,7 @@ svgStr[115][0]= "가설";
 svgStr[116][0]= "검정";
 svgStr[117][0]= "분산";
 svgStr[118][0]= "계급값";
+svgStr[119][0]= "범주";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -759,7 +766,7 @@ $.message.en = {
     "Save": "Save",
     "Exit": "Exit",
     "eStatU UnivStatEdu": "eStatU - University Statistics Education SW",
-    "eStatH HighStatEdu": "eStatH - High School Statistics Education SW",
+    "eStatH HighStatEdu": "eStatH - Middle / High School Statistics Education SW",
     "Menu": "Menu",
     "Binomial Experiment": "Binomial Experiment",
     "Binomial Distribution": "Binomial Distribution",
@@ -817,6 +824,7 @@ $.message.en = {
     "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
     "Testing Independence": "Categorical: Independence Test",
+    "CategoryD": "Category",
     "Category": "Category",
     "Correlation Coefficient": "Correlation Coefficient",
     "Regression Experiment": "Regression Experiment",
@@ -953,6 +961,12 @@ $.message.en = {
     "oneColor":        "Color",
     "defaultColor":    "Default Color",
     "RelativeFreq":    "Relative Frequency",
+    "MarginOfError":   "Margin of Error",
+    "Permutation":     "Permutation",
+    "Combination":     "Combination",
+    "NumberOfCase":    "Number of cases",
+    "Character":       "Emoji",
+
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1119,6 +1133,7 @@ svgStr[115][1] = "Hypothesis";
 svgStr[116][1] = "Test";
 svgStr[117][1] = "Variance";
 svgStr[118][1] = "Interval Value";
+svgStr[119][1] = "Category";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1337,7 +1352,7 @@ $.message.ja = {
     "Save": "保存",
     "Exit": "閉じる",
     "eStatU UnivStatEdu": "eStatU - 大学統計教育",
-    "eStatH HighStatEdu": "eStatH - 高校統計教育",
+    "eStatH HighStatEdu": "eStatH - 中高統計教育",
     "Menu": "メニュー",
     "Binomial Experiment": "二項分布シミュレーション",
     "Binomial Distribution": "二項分布",
@@ -1395,6 +1410,7 @@ $.message.ja = {
     "Testing Hypothesis P12": "仮説検定母比率 (2集団) : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "仮説検定分散分析",
     "Testing Independence": "カテゴリ型独立性検定",
+    "CategoryD": "カテゴリ",
     "Category": "カテゴリ",
     "Correlation Coefficient": "相関係数",
     "Regression Experiment": "回帰シミュレーション",
@@ -1531,6 +1547,12 @@ $.message.ja = {
     "oneColor":        "色",
     "defaultColor":    "デフォルトの色",
     "RelativeFreq":    "相対度数",
+    "MarginOfError":   "誤差の範囲",
+    "Permutation":     "順列",
+    "Combination":     "組合",
+    "NumberOfCase":    "場合の数",
+    "Character":       "絵文字",
+
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1698,6 +1720,7 @@ svgStr[115][2]= "仮説";
 svgStr[116][2]= "檢定";
 svgStr[117][2]= "分散";
 svgStr[118][2] = "階級区間値";
+svgStr[119][2] = "カテゴリ";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1970,6 +1993,7 @@ $.message.zhTW = {
     "Testing Hypothesis P12": "假設檢定 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "假設檢定變異數分析",
     "Testing Independence": "分類的獨立性檢定",
+    "CategoryD": "分類",
     "Category": "分類",
     "Correlation Coefficient": "相關係數",
     "Regression Experiment": "回歸實驗",
@@ -2106,6 +2130,12 @@ $.message.zhTW = {
     "oneColor":        "色",
     "defaultColor":    "默認顏色",
     "RelativeFreq":    "相對頻率",
+    "MarginOfError":   "誤差範圍",
+    "Permutation":     "排列",
+    "Combination":     "組合",
+    "NumberOfCase":    "案件數",
+    "Character":       "表情符號",
+
 };
 // Chinese 
 appStr[1][3] = "../eStatH/index.html";
@@ -2273,6 +2303,7 @@ svgStr[115][3]= "假設";
 svgStr[116][3]= "檢定";
 svgStr[117][3]= "變異數";
 svgStr[118][3]= "階級區間値";
+svgStr[119][3] = "分類";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2545,6 +2576,7 @@ $.message.fr = {
     "Testing Hypothesis P12": "Test d'hypothèse p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Test d'hypothèse ANOVA",
     "Testing Independence": "Test d'indépendance",
+    "CategoryD": "Catégorie",
     "Category": "Catégorie",
     "Correlation Coefficient": "Coefficient de corrélation",
     "Regression Experiment": "Essai de régression",
@@ -2681,6 +2713,12 @@ $.message.fr = {
     "oneColor":        "couleur",
     "defaultColor":    "couleur par défaut",
     "RelativeFreq":    "Fréquence relative",
+    "MarginOfError":   "Margines błędu",
+    "Permutation":     "Permutation",
+    "Combination":     "Combinaison",
+    "NumberOfCase":    "Nombre de cas",
+    "Character":       "Emoji",
+
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2848,6 +2886,7 @@ svgStr[115][4]= "d'hypothèse";
 svgStr[116][4]= "test";
 svgStr[117][4]= "Variance";
 svgStr[118][4]= "Valeur d'intervalle";
+svgStr[119][4]= "Catégorie";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -3120,6 +3159,7 @@ $.message.de = {
     "Testing Hypothesis P12": "Hypothesen testen  p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Hypothesen testen ANOVA",
     "Testing Independence": "Hypothesen testen auf Unabhängigkeit",
+    "CategoryD": "Kategorie",
     "Category": "Kategorie",
     "Correlation Coefficient": "Korrelationskoeffizient",
     "Regression Experiment": "Regressionsexperiment",
@@ -3253,6 +3293,12 @@ $.message.de = {
     "oneColor":        "Farbe",
     "defaultColor":    "Standardfarbe",
     "RelativeFreq":    "Relative Frequenz",
+    "MarginOfError":   "Fehlermarge",
+    "Permutation":     "Permutation",
+    "Combination":     "Kombination",
+    "NumberOfCase":    "Zahl der Fälle",
+    "Character":       "Emoji",
+
 };
 // German 
 appStr[1][5] = "../eStatH/index.html";
@@ -3420,6 +3466,7 @@ svgStr[115][5]= "Hypothesen";
 svgStr[116][5]= "test";
 svgStr[117][5]= "Varianz";
 svgStr[118][5]= "Intervallwert";
+svgStr[119][5] = "Kategorie";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3692,6 +3739,7 @@ $.message.es = {
     "Testing Hypothesis P12": "Prueba de hipótesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Prueba de hipótesis ANOVA",
     "Testing Independence": "Prueba de independencia",
+    "CategoryD": "Categoria",
     "Category": "Categoría",
     "Correlation Coefficient": "Coeficiente de correlación",
     "Regression Experiment": "Experimento de Regresión",
@@ -3828,6 +3876,12 @@ $.message.es = {
     "oneColor":        "color",
     "defaultColor":    "color predeterminado",
     "RelativeFreq":    "Frecuencia relativa",
+    "MarginOfError":   "Margen de error",
+    "Permutation":     "Permutación",
+    "Combination":     "Combinación",
+    "NumberOfCase":    "Numero de casos",
+    "Character":       "Emoji",
+
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -3995,6 +4049,7 @@ svgStr[115][6]= "hipótesis";
 svgStr[116][6]= "prueba";
 svgStr[117][6]= "Varianza";
 svgStr[118][6]= "Valor de intervalo";
+svgStr[119][6]= "Categoria";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -4267,6 +4322,7 @@ $.message.vi = {
     "Testing Hypothesis P12": "Kiểm định giả thuyết p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Kiểm định ANOVA",
     "Testing Independence": "Kiểm định độc lập",
+    "CategoryD": "thể loại",
     "Category": "thể loại",
     "Correlation Coefficient": "Hệ số tương quan",
     "Regression Experiment": "Thí nghiệm hồi quy",
@@ -4399,6 +4455,12 @@ $.message.vi = {
     "oneColor":        "màu đơn",
     "defaultColor":    "màu mặc định",
     "RelativeFreq":    "Tần số tương đối",
+    "MarginOfError":   "Biên độ của lỗi",
+    "Permutation":     "Hoán vị",
+    "Combination":     "Sự phối hợp",
+    "NumberOfCase":    "Số trường hợp",
+    "Character":       "Emoji",
+
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4566,6 +4628,7 @@ svgStr[115][7]= "giả thuyết";
 svgStr[116][7]= "kiểm tra";
 svgStr[117][7]= "phương sai";
 svgStr[118][7]= "Giá trị khoảng thời gian";
+svgStr[119][7]= "thể loại";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -4838,6 +4901,7 @@ $.message.id = {
     "Testing Hypothesis P12": "Pengujian Hipotesis p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Pengujian Hipotesis ANOVA",
     "Testing Independence": "Uji Independensi",
+    "CategoryD": "kategori",
     "Category": "kategori",
     "Correlation Coefficient": "Koefisien Korelasi",
     "Regression Experiment": "Percobaan Regresi",
@@ -4974,6 +5038,12 @@ $.message.id = {
     "oneColor":        "warna",
     "defaultColor":    "warna default",
     "RelativeFreq":    "Frekuensi relatif",
+    "MarginOfError":   "Margin of Error",
+    "Permutation":     "Permutasi",
+    "Combination":     "Kombinasi",
+    "NumberOfCase":    "Jumlah kasus",
+    "Character":       "Emoji",
+
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -5141,6 +5211,7 @@ svgStr[115][8]= "Hipotesis";
 svgStr[116][8]= "Uji";
 svgStr[117][8]= "Varians";
 svgStr[118][8]= "Nilai interval";
+svgStr[119][8]= "kategori";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -5414,6 +5485,7 @@ $.message.mn = {
     "Testing Hypothesis P12": "Тестэн таамаглал p<sub>1</sub>, <sub>2</sub>",
     "Testing Hypothesis ANOVA": "Тестэн таамаглал ANOVA",
     "Testing Independence": "Тестэн хамааралгүй байдал",
+    "CategoryD": "ангилал",
     "Category": "ангилал",
     "Correlation Coefficient": "Хамаарлын коэфцеэнт ",
     "Regression Experiment": "Хамаарлын туршилт",
@@ -5548,6 +5620,12 @@ $.message.mn = {
     "oneColor":        "өнгө",
     "defaultColor":    "анхдагч өнгө",
     "RelativeFreq":    "Харьцангуй давтамж",
+    "MarginOfError":   "Алдааны хэмжээ",
+    "Permutation":     "Зөвшөөрөл",
+    "Combination":     "Хослол",
+    "NumberOfCase":    "Хэргийн тоо",
+    "Character":       "Emoji",
+
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -5714,7 +5792,8 @@ svgStr[114][9]= "Хүн амын дундаж кватрат хазайлт";
 svgStr[115][9]= "таамаглал";
 svgStr[116][9]= "Туршилт";
 svgStr[117][9]= "хэлбэлзэл";
-svgStr[118][5]= "Интервал утга";
+svgStr[118][9]= "Интервал утга";
+svgStr[119][9]= "ангилал";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -5987,6 +6066,7 @@ $.message.zh = {
     "Testing Hypothesis P12": "假设检验 : p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "假设检验方差分析",
     "Testing Independence": "分类的独立性检验",
+    "CategoryD": "分类",
     "Category": "分类",
     "Correlation Coefficient": "相关系数",
     "Regression Experiment": "回归实验",
@@ -6122,6 +6202,12 @@ $.message.zh = {
     "oneColor":        "色",
     "defaultColor":    "默认颜色",
     "RelativeFreq":    "相对频率",
+    "MarginOfError":   "误差范围",
+    "Permutation":     "排列",
+    "Combination":     "組合",
+    "NumberOfCase":    "案件數",
+    "Character":       "表情符号",
+
 };
 // Chinese Simplified
 appStr[1][10] = "../eStatH/index.html";
@@ -6289,6 +6375,7 @@ svgStr[115][10]= "假设";
 svgStr[116][10]= "檢定";
 svgStr[117][10]= "方差";
 svgStr[118][10]= "阶级区间值";
+svgStr[119][10]= "分类";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -6538,6 +6625,7 @@ $.message.pt = {
     "Testing Hypothesis P12": "Teste Hipótese p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Teste Hipótese ANOVA",
     "Testing Independence": "Teste de Independência",
+    "CategoryD": "Categoria",
     "Category": "Categoria",
     "Correlation Coefficient": "Coeficiente de Correlação",
     "Regression Experiment": "Experimento de Regressão",
@@ -6673,6 +6761,12 @@ $.message.pt = {
     "oneColor":        "cor",
     "defaultColor":    "cor padrão",
     "RelativeFreq":    "Frequência relativa",
+    "MarginOfError":   "Margem de erro",
+    "Permutation":     "Permutação",
+    "Combination":     "Combinação",
+    "NumberOfCase":    "Número de casos",
+    "Character":       "Emoji",
+
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -6840,6 +6934,7 @@ svgStr[115][11]= "Hipótese";
 svgStr[116][11]= "Teste";
 svgStr[117][11]= "Variância";
 svgStr[118][11]= "Valor do intervalo";
+svgStr[119][11]= "Categoria";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -7115,6 +7210,7 @@ $.message.gr = {
     "Testing Hypothesis P12": "Έλεγχος Υπόθεσης p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Έλεγχος Υπόθεσης ANOVA",
     "Testing Independence": "Έλεγχος Ανεξαρτησίας",
+    "CategoryD": "κατηγορία",
     "Category": "κατηγορία",
     "Correlation Coefficient": "Συσχέτισης Συντελεστής",
     "Regression Experiment": "Πείραμα Παλινδρόμησης",
@@ -7250,6 +7346,12 @@ $.message.gr = {
     "oneColor":        "μονόχρωμο",
     "defaultColor":    "προεπιλεγμένο χρώμα",
     "RelativeFreq":    "Σχετική Συχνότητα",
+    "MarginOfError":   "Περιθώριο σφάλματος",
+    "Permutation":     "Μετάθεση",
+    "Combination":     "Συνδυασμός",
+    "NumberOfCase":    "Αριθμός περιπτώσεων",
+    "Character":       "Emoji",
+
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -7416,6 +7518,7 @@ svgStr[115][12]= "Υπόθεση";
 svgStr[116][12]= "Έλεγχος";
 svgStr[117][12]= "διαφορά";
 svgStr[118][12]= "Τιμή διαστήματος";
+svgStr[119][12]= "κατηγορία";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -7690,6 +7793,7 @@ $.message.ro = {
     "Testing Hypothesis P12": "Testare Ipoteza p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Testare Ipoteza ANOVA",
     "Testing Independence": "Testarea Independenței",
+    "CategoryD": "Categorie",
     "Category": "Categorie",
     "Correlation Coefficient": "Coeficient de Corelație",
     "Regression Experiment": "Regresiei Experiment",
@@ -7826,6 +7930,12 @@ $.message.ro = {
     "oneColor":        "culoare",
     "defaultColor":    "culoare implicită",
     "RelativeFreq":    "Frecventa relativa",
+    "MarginOfError":   "Marja de eroare",
+    "Permutation":     "Permutare",
+    "Combination":     "Combinaţie",
+    "NumberOfCase":    "Numărul de cazuri",
+    "Character":       "Emoji",
+
 };
 // Romanian
 appStr[1][13] = "../eStatH/index.html";
@@ -7992,6 +8102,7 @@ svgStr[115][13]= "Ipoteză";
 svgStr[116][13]= "Test";
 svgStr[117][13]= "Varianța";
 svgStr[118][13]= "Valoarea intervalului";
+svgStr[119][13]= "Categorie";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -8267,6 +8378,7 @@ $.message.th = {
     "Testing Hypothesis P12": "ทดสอบสมมติฐาน p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "ทดสอบสมมติฐาน ANOVA",
     "Testing Independence": "ทดสอบสมมติฐาน",
+    "CategoryD": "ประเภท",
     "Category": "ประเภท",
     "Correlation Coefficient": "สัมประสิทธิ์สหสัมพันธ์",
     "Regression Experiment": "การทดลองการถดถอยt",
@@ -8403,6 +8515,12 @@ $.message.th = {
     "oneColor":        "สีเดียว",
     "defaultColor":    "สีเริ่มต้น",
     "RelativeFreq":    "ความถี่สัมพัทธ์",
+    "MarginOfError":   "ขอบของข้อผิดพลาด",
+    "Permutation":     "การเรียงสับเปลี่ยน",
+    "Combination":     "การรวมกัน",
+    "NumberOfCase":    "จำนวนกรณี",
+    "Character":       "Emoji",
+
 };
 // Thai
 appStr[1][14] = "../eStatH/index.html";
@@ -8569,6 +8687,7 @@ svgStr[115][14] = "สมมติฐาน";
 svgStr[116][14] = "การทดสอบ";
 svgStr[117][14] = "ความแปรปรวน";
 svgStr[118][14] = "ค่าช่วงเวลา";
+svgStr[119][14] = "ประเภท";
 
 svgStrU[1][14] = "การแจกแจงทวินาม";
 svgStrU[2][14] = "การทำซ้ำ";
@@ -8843,6 +8962,7 @@ $.message.pl = {
     "Testing Hypothesis P12": "Hipoteza testowa p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Hipoteza testowa ANOVA",
     "Testing Independence": "Test niezależności",
+    "CategoryD": "Kategoria",
     "Category": "Kategoria",
     "Correlation Coefficient": "Współczynnik korelacji",
     "Regression Experiment": "Eksperymen regresyjny",
@@ -8979,6 +9099,12 @@ $.message.pl = {
     "oneColor":        "kolor",
     "defaultColor":    "domyślny kolor",
     "RelativeFreq":    "Procent",
+    "MarginOfError":   "Margines błędu",
+    "Permutation":     "Permutacja",
+    "Combination":     "Połączenie",
+    "NumberOfCase":    "Liczba spraw",
+    "Character":       "Emoji",
+
 };
 
 // Polish
@@ -9146,6 +9272,7 @@ svgStr[115][15] = "Hipotezy";
 svgStr[116][15] = "Test";
 svgStr[117][15] = "Wariancja";
 svgStr[118][15] = "Wartość interwału";
+svgStr[119][15] = "Kategoria";
 
 svgStrU[1][15] = "Rozkład dwumianowy";
 svgStrU[2][15] = "Powtórzenie";
@@ -9421,6 +9548,7 @@ $.message.az = {
     "Testing Hypothesis P12": "Fərziyyənin yoxlanması p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Fərziyyənin yoxlanması ANOVA",
     "Testing Independence": "Kateqoriyalara aiddir: asılı olmama testi",
+    "CategoryD": "Kateqoriya",
     "Category": "Kateqoriya",
     "Correlation Coefficient": "Korrelyasiya əmsalı",
     "Regression Experiment": "reqressiya təcrübəsi",
@@ -9557,6 +9685,12 @@ $.message.az = {
     "oneColor":        "rəng",
     "defaultColor":    "standart rəng",
     "RelativeFreq":    "nisbiy tezlik",
+    "MarginOfError":   "Xəta həddi",
+    "Permutation":     "İcazə",
+    "Combination":     "Kombinasiya",
+    "NumberOfCase":    "İşlərin sayı",
+    "Character":       "Emoji",
+
 };
 // Azerbaijan
 appStr[1][16] = "../eStatH/index.html";
@@ -9723,6 +9857,7 @@ svgStr[115][16] = "fərziyyə";
 svgStr[116][16] = "Test";
 svgStr[117][16] = "Dispersiyası";
 svgStr[118][16] = "İnterval dəyəri";
+svgStr[119][16] = "Kateqoriya";
 
 svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "təkrar";
@@ -9998,6 +10133,7 @@ $.message.uz = {
     "Testing Hypothesis P12": "sinov gipotezasi p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "sinov gipotezasi ANOVA",
     "Testing Independence": "mustaqillik testi",
+    "CategoryD": "toifasi",
     "Category": "toifasi",
     "Correlation Coefficient": "Korrelyatsiya koeffitsienti",
     "Regression Experiment": "Regressiya  eksperimenti",
@@ -10134,6 +10270,12 @@ $.message.uz = {
     "oneColor":        "rang",
     "defaultColor":    "standart rang",
     "RelativeFreq":    "nisbiy chastota",
+    "MarginOfError":   "Xato chegarasi",
+    "Permutation":     "Permutatsiya",
+    "Combination":     "Kombinatsiya",
+    "NumberOfCase":    "Ishlar soni",
+    "Character":       "Emoji",
+
 };
 // Uzbekistan
 appStr[1][17] = "../eStatH/index.html";
@@ -10300,6 +10442,7 @@ svgStr[115][17] = "Gipotez";
 svgStr[116][17] = "sinov";
 svgStr[117][17] = "dispersiya";
 svgStr[118][17] = "Interval qiymati";
+svgStr[119][17] = "toifasi";
 
 svgStrU[1][17] = "Binominal Tarqatish";
 svgStrU[2][17] = "takrorlash";
@@ -10575,6 +10718,7 @@ $.message.ru = {
     "Testing Hypothesis P12": "Тестирование гипотезы p<sub>1</sub>, p<sub>2</sub>",
     "Testing Hypothesis ANOVA": "Тестирование гипотезы ANOVA",
     "Testing Independence": "категорический: Проверка гипотезы независимости",
+    "CategoryD": "категория",
     "Category": "категория",
     "Correlation Coefficient": "Коэффициент корреляции",
     "Regression Experiment": "Регрессионный эксперимент",
@@ -10711,6 +10855,12 @@ $.message.ru = {
     "oneColor":        "цветr",
     "defaultColor":    "цвет по умолчанию",
     "RelativeFreq":    "Относительная частота",
+    "MarginOfError":   "Допустимая погрешность",
+    "Permutation":     "Перестановка",
+    "Combination":     "Комбинация",
+    "NumberOfCase":    "Кол-во кейсов",
+    "Character":       "Эмодзи",
+
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
@@ -10876,6 +11026,7 @@ svgStr[115][18] = "Коэффициент корреляции";
 svgStr[116][18] = "Тест";
 svgStr[117][18] = "отклонение";
 svgStr[118][18] = "Значение интервала";
+svgStr[119][18] = "категория";
 
 svgStrU[1][18] = "Биномиальное распределение";
 svgStrU[2][18] = "Повторение";
