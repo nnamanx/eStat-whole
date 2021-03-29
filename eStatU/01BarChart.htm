@@ -292,6 +292,8 @@
           <td>&nbsp;&nbsp;&nbsp; </td>
           <td><button type="button" id="executePie"  style="width:110px;"> <span data-msgid="Pie Chart">Pie Chart</span></button> </td>
           <td>&nbsp;&nbsp;&nbsp; </td>
+          <td><button type="button" id="executeRainbow" style="width:110px;"> <span data-msgid="Rainbow Chart">Rainbow Chart</span></button> </td>
+          <td>&nbsp;&nbsp;&nbsp; </td>
           <td><button type="button" id="executeBand" style="width:110px;"> <span data-msgid="Band Graph">Band Graph</span></button> </td>
         </tr>
     </table>
@@ -316,7 +318,7 @@
   <rect fill="url(#Pattern)" stroke="black" width="200" height="200"/>
 </svg>
 -->
-    <svg id="chart" width="640" height="480"> </svg> 
+    <svg id="chart" width="640" height="540"> </svg> 
     <form action="#" name="myForm2" class="option-group">
       <button type="button" id="saveGraphU" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
@@ -333,9 +335,9 @@
   <script>
       var chart = d3.select("#chart");
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      margin = {top:90, bottom:60, left:80, right:40};
+      margin = {top:90, bottom:50, left:80, right:60};
       svgWidth    = 640;
-      svgHeight   = 480;
+      svgHeight   = 540;
       graphWidth  = svgWidth - margin.left - margin.right;
       graphHeight = svgHeight - margin.top - margin.bottom;
 
@@ -344,8 +346,10 @@
       var mTitle, yTitle, xTitle;
       var checkIcon = false;
       var checkFreq = false;
+      var checkInput = false;
       var rowMax = 9;
       var fontsize = "1em";
+      var strPath;
       var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
       var catg  = new Array(rowMax);
       var freq  = new Array(rowMax);
@@ -409,6 +413,7 @@
         document.getElementById("descend").disabled  = false;
         document.getElementById("ascend").disabled   = false;
         initialize();
+        if (checkInput) return;
         drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
       })
       // Draw Pie Chart ======================================
@@ -419,7 +424,19 @@
         document.getElementById("descend").disabled  = true;
         document.getElementById("ascend").disabled   = true;
         initialize();
+        if (checkInput) return;
         drawPieChart(nrow, perc, catg, freqMax);
+      })
+      // Draw Rainbow Chart ======================================
+      d3.select("#executeRainbow").on("click",function() {
+        document.getElementById("showicon").disabled = true;
+        document.getElementById("showfreq").disabled = true;
+        document.getElementById("raw").disabled      = true;
+        document.getElementById("descend").disabled  = true;
+        document.getElementById("ascend").disabled   = true;
+        initialize();
+        if (checkInput) return;
+        drawRainbowChart(nrow, freq, catg, freqMax);
       })
       // Draw Band Graph ======================================
       d3.select("#executeBand").on("click",function() {
@@ -429,6 +446,7 @@
         document.getElementById("descend").disabled  = true;
         document.getElementById("ascend").disabled   = true;
         initialize();
+        if (checkInput) return;
         drawBandGraph(nrow, freq, catg, freqMax);
       })
       // 초기 작업
@@ -487,6 +505,7 @@
         }
         // 입력행이 하나 이상인지 체크
         if (nrow < 2 ) {
+          checkInput = true;
           chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
              .text("At least two rows are required !!   Try again.").style("stroke","red").style("font-size",fontsize);
           return;
@@ -494,11 +513,13 @@
         // 입력 도수에 숫자 문자 빈칸 있나 체크
         for (i=0; i<nrow; i++) {
             if (isNaN(freq[i]) ) {
+              checkInput = true;
               chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
                  .text("No input or wrong input !!   Try again.").style("stroke","red").style("font-size",fontsize);
               return;
             }
         }
+        checkInput = false;
         // 입력값 합계, 최대도수 계산
         ntot = 0;
         freqMax = 0;
@@ -858,7 +879,6 @@
     var radiusIn, radiusOut;
     radiusIn = 0;
     radiusOut = graphHeight / 2;
-
     var tdata = new Array(ndvalue);
     for (i=0; i<ndvalue; i++) tdata[i] = 100*datafreq[i];    
 
@@ -919,6 +939,127 @@
             })
   }
 
+  // 무지개그래프 함수
+  function drawRainbowChart(ndvalue, datafreq, dvalueLabel, freqMax) {
+    var i, j, k, sum, tx, ty, tr, str;
+    var tratio     = new Array(ndvalue);
+    var bandWidth  = new Array(ndvalue);
+    var bandX      = new Array(ndvalue);
+    var oneLine    = 30; // pixel
+    var bandHeight = graphHeight * 0.75;
+    // 전체 그래프 영역 지우기 1px 문제
+    chart.append("rect")
+             .attr("x", margin.left)
+             .attr("y", margin.top)
+             .attr("width", graphWidth) // 최초 막대의 너비를 0 px 로 지정
+             .attr("height", graphHeight)
+             .style("fill", "white")
+    // 주제목
+    chart.append("text")
+         .attr("x", margin.left + graphWidth/2)
+         .attr("y", margin.top / 2 + 10)
+         .style("font-size", "1.8em")
+         .style("font-family", "sans-seirf")
+         .style("stroke", "black")
+         .style("text-anchor", "middle")
+         .text(mTitle)
+
+    sum = 0;
+    for (i = 0; i < ndvalue; i++) {
+            sum += datafreq[i];
+    }
+    for (i = 0; i < ndvalue; i++) {
+            tratio[i] = 100 * datafreq[i] / sum;
+            bandWidth[i] = Math.floor(0.5 + graphWidth * datafreq[i] / sum);
+    }
+    bandX[0] = margin.left + 20;
+    for (i = 1; i < ndvalue; i++) {
+            bandX[i] = bandX[i - 1] + bandWidth[i - 1];
+    }
+
+    ty = margin.top + 10; 
+    t2 = ty + bandHeight + oneLine;
+    chart.append("text")
+         .attr("x", margin.left)
+         .attr("y", t2)
+         .text(svgStr[119][langNum])
+         .style("font-size", fontsize)
+         .style("font-family", "sans-seirf")
+         .style("text-anchor", "end")
+         .style("stroke", "black")
+    chart.append("text")
+         .attr("x", margin.left)
+         .attr("y", t2 + oneLine)
+         .text(svgStr[16][langNum])
+         .style("font-size", fontsize)
+         .style("font-family", "sans-seirf")
+         .style("text-anchor", "end")
+         .style("stroke", "black")
+    chart.append("text")
+         .attr("x", margin.left)
+         .attr("y", t2 + 2*oneLine)
+         .text(svgStr[17][langNum])
+         .style("font-size", fontsize)
+         .style("font-family", "sans-seirf")
+         .style("text-anchor", "end")
+         .style("stroke", "black")
+    // draw rainbow
+    tx = margin.left + graphWidth / 2;
+    ty = margin.top + bandHeight ;
+    k  = svgHeight - ty;
+    for (j = 0; j < ndvalue; j++) {
+        tr = (graphWidth - bandX[j]) / 2 + 20;            
+        chart.append("circle")
+             .attr("cx", tx)
+             .attr("cy", ty)
+             .attr("r",  0)
+             .transition() // 애니매이션 효과 지정
+                .delay(function(d, i) {
+                     return i * 500;
+                 }) // 0.5초마다 그리도록 대기시간 설정
+                .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
+             .attr("r",  tr)
+//             .style("stroke","black")
+             .style("fill", ncolr[j])
+    }
+    // 아래 반원 지우기
+    chart.append("rect")
+             .attr("x", margin.left)
+             .attr("y", ty)
+             .attr("width", graphWidth) // 최초 막대의 너비를 0 px 로 지정
+             .attr("height", k)
+             .style("fill", "white")
+    // 도수 쓰기
+    for (j = 0; j < ndvalue; j++) {
+        tx = bandX[j] + bandWidth[j] / 2;
+        str = dvalueLabel[j];
+        chart.append("text")
+             .attr("x", tx)
+             .attr("y", t2)
+             .text(dvalueLabel[j])
+             .style("font-size", fontsize)
+             .style("font-family", "sans-seirf")
+             .style("text-anchor", "middle")
+             .style("stroke", ncolr[j])
+        chart.append("text")
+             .attr("x", tx)
+             .attr("y", t2 + oneLine)
+             .text(datafreq[j])
+             .style("font-size", fontsize)
+             .style("font-family", "sans-seirf")
+             .style("text-anchor", "middle")
+             .style("stroke","black")
+        chart.append("text")
+             .attr("x", tx)
+             .attr("y", t2 + 2*oneLine)
+             .text(f1(tratio[j]) + "%")
+             .style("font-size", "1em")
+             .style("font-family", "sans-seirf")
+             .style("text-anchor", "middle")
+             .style("stroke", "black")
+    }
+
+  }
   // 띠그래프 함수
   function drawBandGraph(ndvalue, datafreq, dvalueLabel, freqMax) {
     var i, j, k, sum, tx, ty, t2, str;
@@ -944,9 +1085,9 @@
     }
     for (i = 0; i < ndvalue; i++) {
             tratio[i] = 100 * datafreq[i] / sum;
-            bandWidth[i] = graphWidth * datafreq[i] / sum;
+            bandWidth[i] = Math.floor(0.5 + graphWidth * datafreq[i] / sum);
     }
-    bandX[0] = margin.left;
+    bandX[0] = margin.left+5;
     for (i = 1; i < ndvalue; i++) {
             bandX[i] = bandX[i - 1] + bandWidth[i - 1];
     }
