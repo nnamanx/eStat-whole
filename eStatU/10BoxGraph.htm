@@ -220,7 +220,14 @@
       // Draw Dot Graph ======================================
       d3.select("#executeTH").on("click",function() {
         bar.selectAll("*").remove();
-        nn    = stat.n;    
+        nn    = stat.n;   
+        for (i=0; i<nn; i++) {
+            if (isNaN(data[i]) ) { //문자 데이터 체크
+              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
+              return;
+            }
+        } 
         xbar  = stat.xbar;
         variS = stat.var;
         variP = (nn-1)*variS/nn;

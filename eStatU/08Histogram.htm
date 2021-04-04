@@ -37,8 +37,8 @@
         </tr>
         <tr>
           <td></td>
-          <td><span data-msgid="Sample Mean">Sample Mean</span></td>
-          <td><span class="fontmath">x&#772;</span></td>
+          <td><span data-msgid="Mean"></span></td>
+          <td><span class="fontmath">&mu;</span></td>
           <td><input type="text" size=10 id="xbar" style="text-align: right;"></td>
           <td></td>
           <td><span id="msgMax"></span></td>
@@ -57,12 +57,12 @@
         </tr>
         <tr>
           <td></td>
-          <td><span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
-          <td><span class="fontmath">s<sup>2</sup></span></td>
+          <td><span id="msgVariance">Variance</span></td>
+          <td><span class="fontmath">&sigma;<sup>2</sup></span></td>
           <td><input type="text" size=10 id="varS" style="text-align: right;"></td>
           <td></td>
-          <td><span data-msgid="Sample"></span><span data-msgid="Std Deviation"></span></td>
-          <td><span class="fontmath">s</span></td>
+          <td><span data-msgid="Std Deviation"></span></td>
+          <td><span class="fontmath">&sigma;</span></td>
           <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
         </tr>
     </table>
@@ -139,6 +139,7 @@
       document.getElementById("msgMin").innerHTML   = svgStr[45][langNum]; 
       document.getElementById("msgMax").innerHTML   = svgStr[47][langNum]; 
       document.getElementById("msgRange").innerHTML = svgStr[112][langNum]; 
+      document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
 
       document.getElementById("nn").disabled    = true;    
       document.getElementById("xbar").disabled  = true; 
@@ -171,6 +172,13 @@
       d3.select("#execute").on("click",function() {
         chart.selectAll("*").remove();
         nobs  = stat.n;  
+        for (i=0; i<nobs; i++) {
+            if (isNaN(data[i]) ) { //문자 데이터 체크
+              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
+              return;
+            }
+        }
         mean  = stat.xbar;  
         mini  = stat.mini;  
         maxi  = stat.maxi;    
@@ -180,14 +188,12 @@
         // input check
         if ( nobs > 100) {
            chart.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
-                .text("number of observations should be less than 100 !!   Try again.").style("stroke","red")
-                .style("font-size", "1em")
+                .text(alertMsg[49][langNum]).style("stroke","red").style("font-size", "1em")
            return;
         }
         if ( start == "" || xstep == "" || isNaN(start) || isNaN(xstep) ) {
            chart.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
-                .text("No input or wrong input !!   Try again.").style("stroke","red")
-                .style("font-size", "1em")
+                .text(alertMsg[50][langNum]).style("stroke","red").style("font-size", "1em")
            return;
         }
         else {
@@ -278,7 +284,7 @@
           sumsq += d*d;
         });
         xbar = sum / n;
-        v = (sumsq - n*xbar*xbar) / (n-1);
+        v = (sumsq - n*xbar*xbar) / (n);
         s = Math.sqrt(v)
         data.sort(function(a, b) { return a - b; });
         mini  = data[0];

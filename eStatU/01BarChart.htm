@@ -500,22 +500,21 @@
 
         // 도수 입력한 행의 수 카운트
         nrow = 0;
-        for (i=0; i<rowMax; i++) {
-          if ( !isNaN(freq[i]) ) nrow++;
+        for (i=0; i<rowMax; i++) { // 입력 행의 수
+            if (!isNaN(freq[i]) ) nrow = i+1;
         }
         // 입력행이 하나 이상인지 체크
         if (nrow < 2 ) {
           checkInput = true;
           chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-             .text("At least two rows are required !!   Try again.").style("stroke","red").style("font-size",fontsize);
+             .text(alertMsg[46][langNum]).style("stroke","red").style("font-size",fontsize);
           return;
         }
-        // 입력 도수에 숫자 문자 빈칸 있나 체크
         for (i=0; i<nrow; i++) {
-            if (isNaN(freq[i]) ) {
+            if (isNaN(freq[i]) ) { //문자 데이터 체크
               checkInput = true;
               chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                 .text("No input or wrong input !!   Try again.").style("stroke","red").style("font-size",fontsize);
+                   .text(alertMsg[47][langNum]).style("stroke","red").style("font-size",fontsize);
               return;
             }
         }
@@ -689,7 +688,6 @@
 
     if (checkFreq) {
         showFreq(ndvalue, dataSet, freqMax, freqRatioV, gapWidth, barWidth, betweenbarWidth);
-        return;
     }
     // icon 그리기
     if (checkIcon) {

@@ -75,8 +75,15 @@
       // Draw Stem and Leaf Graph ======================================
       d3.select("#execute").on("click",function() {
         chart.selectAll("*").remove();
+        nobs  = stat.n;  
+        for (i=0; i<nobs; i++) {
+            if (isNaN(data[i]) ) { //문자 데이터 체크
+              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
+              return;
+            }
+        }
         mTitle = d3.select("#mtitle").node().value;
-        nobs  = stat.n;    
         mini  = stat.mini;  
         maxi  = stat.maxi;    
         for (i=0; i<nobs; i++) tdata[i] = data[i];
