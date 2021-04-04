@@ -27,6 +27,9 @@
     <li><a href="08Histogram.htm">&#8546; &nbsp; <span data-msgid="Histogram">Histogram</span> - <span data-msgid="Frequency Table"></span></a></li>
     <li><a href="09RelativeFrequency.htm">&#8546; &nbsp; <span data-msgid="Frequency Polygon"></span> - <span data-msgid="RelativeFreq">Relative Frequency</span> <span data-msgid="ComparisonGraph"></span></a></li>
     <li><a href="10DotGraph.htm">&#8547; &nbsp; <span data-msgid="Dot Graph"></span> - <span id="msgMean"></span></a></li>
+    <li><a href="30ScatterPlotH.htm">&#8547; &nbsp; <span data-msgid="Scatterplot"></span> - <span id="msgCorr"></span></a></li>
+    <li><a href="31CorrelationEng.htm">&#8547; &nbsp; <span data-msgid="Correlation Coefficient">Correlation Coefficient</span></a></li>
+    <li><a href="32RegressionEng.htm">&#8547; &nbsp; <span data-msgid="Correlation Coefficient"></span> - <span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
     <li><a href="40Permutation.htm">&#8548; &nbsp; <span data-msgid="Permutation"></span> - <span data-msgid="Combination"></span></a></li>
     <li><a href="63SampleEng.htm">&#8548; &nbsp; <span data-msgid="Law of Large Number">Law of Large Number</span></a></li>
     <li><a href="41BinomialEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Binomial Experiment">Binomial Experiment</span></a></li>
@@ -48,12 +51,12 @@
           </script>
         </td>
         <td>
-          <h3 style="width:250px"> 전자책 링크</h3>
-          <a style="color:blue; font-weight:bold" href="../eLearning/kr/index.html" target="_blank">eStat 통계</a>
+          <div style="width:250px"> </div> 
+          <a style="color:blue; font-weight:bold" href="../eLearning/kr/index.html" target="_blank">전자책 링크 (Korean eBook)</a>
         </td>
       </tr>
       <tr>
-        <td colspan="2"><p style="text-align:center">이메일: jjlee@ssu.ac.kr &nbsp;&nbsp;&nbsp; &copy; eStat.org, Korea</p></td>
+        <td colspan="2"><p style="text-align:center"> jjlee@ssu.ac.kr &nbsp;&nbsp;&nbsp; &copy; eStat.org, Korea</p></td>
       </tr>
     </table>
   </div>
@@ -72,6 +75,7 @@
       var graphHeight = svgHeight - margin.top - margin.bottom;
       var tobs      = 10;
       document.getElementById("msgMean").innerHTML  = svgStr[34][langNum] +" / " +svgStr[46][langNum]; 
+      document.getElementById("msgCorr").innerHTML = svgStr[60][langNum]; 
       lawLargeDemo(tobs);
   </script>
 

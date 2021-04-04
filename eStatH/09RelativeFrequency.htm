@@ -400,7 +400,7 @@
           if ( isNaN(freq1[i]) || freq1[i] == "" ) break;
           else nrow[2]++;
         }
-        // freq1 행의 수 카운트
+        // freq2 행의 수 카운트
         nrow[3] = 0;
         for (i=1; i<rowMax; i++) {
           if ( isNaN(freq2[i]) || freq2[i] == "" ) break;
@@ -412,22 +412,22 @@
         ty = margin.top;
         if (nvalueH < 2 ) {
           chart.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-               .text("Number of rows is less than 2 !!   Try again.").style("stroke","red");
+               .text(alertMsg[46][langNum]).style("stroke","red").style("font-size", "1em")
           wrongInput = true;
           return;
         }
         // catg과 freq1 입력행의 수가 다른지 체크 
         if (nvalueH != nrow[2]) {
           chart.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-               .text("Number of rows are different !!   Try again.").style("stroke","red");
+               .text(alertMsg[51][langNum]).style("stroke","red").style("font-size", "1em")
           wrongInput = true;
           return;
         }
-        // 입력행의 수가 다른지 체크 
+        // catg와 freq2 입력행의 수가 다른지 체크 
         if (nrow[3] > 0) {
           if (nvalueH != nrow[3] ) {
             chart.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-               .text("Number of rows are different !!   Try again.").style("stroke","red");
+                 .text(alertMsg[51][langNum]).style("stroke","red").style("font-size", "1em")
             wrongInput = true;
             return;
           }
@@ -436,7 +436,7 @@
         for (i=0; i<nvalueH; i++) {
             if (isNaN(catg1[i]) || isNaN(freq1[i+1]) ) {
               chart.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text("No input or wrong input in category or frequncy 1 !!   Try again.").style("stroke","red");
+                   .text(alertMsg[52][langNum]).style("stroke","red").style("font-size", "1em")
               wrongInput = true;
               return;
             }
@@ -446,7 +446,7 @@
           for (i=0; i<nvalueH; i++) {
             if ( isNaN(freq2[i+1]) ) {
               chart.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text("No input or wrong input in 2nd frequency 2 !!   Try again.").style("stroke","red");
+                   .text(alertMsg[52][langNum]).style("stroke","red").style("font-size", "1em")
               wrongInput = true;
               return;
             }
@@ -459,7 +459,7 @@
             temp = parseFloat(catg1[i]) - parseFloat(catg1[i-1]);
             if (temp != xstep ) {
               chart.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text("Interval size is not the same !!   Try again.").style("stroke","red");
+                   .text(alertMsg[53][langNum]).style("stroke","red").style("font-size", "1em")
               wrongInput = true;
               return;
             }

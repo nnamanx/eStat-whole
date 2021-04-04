@@ -28,10 +28,18 @@
     </div>
     <p> 
     <b>[<span data-msgid="input data">Data Input</span>]</b>  
-    &nbsp; &nbsp;<input type="text" size=70 id="data1">
-   
+    &nbsp;<input type="text" size=70 id="data1"> 
+    <br>
+    
     <table class="stat">
       <tbody>
+        <tr>
+          <td></td>
+          <td colspan="7"> 
+            <span data-msgid="SortData">Sorted Data</span>  
+            <input type="text" size=60 id="datasort">
+          </td>
+        </tr>
         <tr>
           <td></td>
           <td><span data-msgid="NumberData">Data Size</span></td>
@@ -44,40 +52,51 @@
         </tr>
         <tr>
           <td></td>
-          <td><span data-msgid="Mean"></td>
-          <td><span class="fontmath">x&#772;</span></td>
-          <td><input type="text" class="textarea" size=10 id="xbar" style="text-align: right;"></td>
+          <td><span data-msgid="Total"></td>
+          <td></td>
+          <td><input type="text" class="textarea" size=10 id="xsum" style="text-align: right;"></td>
           <td></td>
           <td><span id="msgMax"></span></td>
           <td><span class="fontmath">max</span></td>
           <td><input type="text" class="textarea" size=10 id="maxi" style="text-align: right;"></td>
         </tr>
         <tr>
+        <tr>
           <td></td>
-          <td><span id="msgMed"></span></td>
-          <td><span class="fontmath">m</span></td>
-          <td><input type="text" class="textarea" size=10 id="medi" style="text-align: right;"></td>
+          <td><span data-msgid="Mean"></td>
+          <td><span class="fontmath">&mu;</span></td>
+          <td><input type="text" class="textarea" size=10 id="xbar" style="text-align: right;"></td>
           <td></td>
           <td><span id="msgRange"></span></td>
           <td><span class="fontmath">range</span></td>
-          <td><input type="text" class="textarea" size=10 id="range" style="text-align: right;"></td>
+          <td><input type="text" size=10 id="range" style="text-align: right;"></td>
         </tr>
         <tr>
           <td></td>
-          <td><span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
-          <td><span class="fontmath">s<sup>2</sup></span></td>
-          <td><input type="text" class="textarea" size=10 id="varS" style="text-align: right;"></td>
+          <td><span id="msgMed"></span></td>
+          <td><span class="fontmath">m</span></td>
+          <td><input type="text" size=10 id="medi" style="text-align: right;"></td>
           <td></td>
-          <td><span data-msgid="Sample"></span> <span data-msgid="Std Deviation"></span></td>
-          <td><span class="fontmath">s</span></td>
-          <td><input type="text" class="textarea" size=10 id="stdS" style="text-align: right;"></td>
+          <td><span id="msgVariance">Variance</span></td>
+          <td><span class="fontmath">&sigma;<sup>2</sup></span></td>
+          <td><input type="text" size=10 id="varS" style="text-align: right;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span id="msgMode"></span></td>
+          <td><span class="fontmath">mode</span></td>
+          <td><input type="text" size=10 id="mode" style="text-align: right;"></td>
+          <td></td>
+          <td><span data-msgid="Std Deviation"></span></td>
+          <td><span class="fontmath">&sigma;</span></td>
+          <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td><button type="button" id="execute"> <span data-msgid="Execute">Execute</span>     </button> </td>
         </tr>
       </tbody>
     </table>
-    <br>
-    <button type="button" id="execute" >
-        <span data-msgid="Execute">Execute</span>
-    </button> 
     <p>
     <svg id="chart" width="640" height="400"> </svg>
     <p> 
@@ -100,11 +119,15 @@
 
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, ty;
-      var nint, step, buffer, nvalue, gxmin, gxmax, gxrange, xScale; 
-      var nn, xbar, medi, mini, maxi, range, varS, stdS, left, right;
+      var nint, step, buffer, nvalue, gxmin, gxmax, gxrange, xScale, strMode, maxfreq; 
+      var nn, xbar, medi, mini, maxi, range, varS, stdS, left, right, mode, nvalue;
       var nn3, xba3, medi3, mini3, maxi3, range3, stdS3;
-      var sdata = new Array(100);
-      var sdotx = new Array(100); 
+      var rowmax = 100;
+      var sdata      = new Array(rowmax);
+      var sdotx      = new Array(rowmax); 
+      var dataValue  = new Array(rowmax);
+      var dvalueFreq = new Array(rowmax);
+
       var radius = 7;
       var fontsize = "1em";
 
@@ -113,10 +136,15 @@
       document.getElementById("msgMin").innerHTML   = svgStr[45][langNum]; 
       document.getElementById("msgMax").innerHTML   = svgStr[47][langNum]; 
       document.getElementById("msgRange").innerHTML = svgStr[112][langNum]; 
+      document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
+      document.getElementById("msgMode").innerHTML  = svgStr[120][langNum]; 
 
+      document.getElementById("datasort").disabled = true;    
       document.getElementById("nn").disabled    = true;    
+      document.getElementById("xsum").disabled  = true; 
       document.getElementById("xbar").disabled  = true; 
       document.getElementById("medi").disabled  = true;   
+      document.getElementById("mode").disabled  = true;   
       document.getElementById("mini").disabled  = true;  
       document.getElementById("maxi").disabled  = true;  
       document.getElementById("range").disabled = true; 
@@ -127,7 +155,9 @@
       d3.select("#data1").on("input", function() {
         stat = simplestat2("#data1");  
         nn   = stat.n;
+        document.getElementById("datasort").value = data;    
         document.getElementById("nn").value    = stat.n;    
+        document.getElementById("xsum").value  = f2(stat.xsum);
         document.getElementById("xbar").value  = f2(stat.xbar);
         document.getElementById("medi").value  = f2(stat.medi);  
         document.getElementById("range").value = f2(stat.range);  
@@ -135,7 +165,8 @@
         document.getElementById("medi").value  = f2(stat.medi);  
         document.getElementById("maxi").value  = f2(stat.maxi);  
         document.getElementById("varS").value  = f2(stat.var);  
-        document.getElementById("stdS").value  = f2(stat.std);  
+        document.getElementById("stdS").value  = f2(stat.std); 
+        document.getElementById("mode").value  = stat.mode;  
       });
 
       updateData = function() {
@@ -145,7 +176,15 @@
       // Draw Dot Graph ======================================
       d3.select("#execute").on("click",function() {
         chart.selectAll("*").remove();
-        nn    = stat.n;    
+        nn    = stat.n;  
+        for (i=0; i<nn; i++) {
+            if (isNaN(data[i]) ) { //문자 데이터 체크
+              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
+              return;
+            }
+        }
+  
         xbar  = stat.xbar;
         range = stat.range;  
         mini  = stat.mini;  
@@ -214,7 +253,7 @@ simplestat2 = function(dataid) {
           sumsq += d*d;
         });
         xbar = sum / n;
-        v = (sumsq - n*xbar*xbar) / (n-1);
+        v = (sumsq - n*xbar*xbar) / (n);
         s = Math.sqrt(v)
         data.sort(function(a, b) { return a - b; });
         mini  = data[0];
@@ -238,7 +277,19 @@ simplestat2 = function(dataid) {
           q3 = medianCalc(ntemp,tdata)
         }
         iqr = q3 - q1;
-        return {'n':n, 'xbar':xbar, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr};
+        // mode
+        nvalue = modeCalc(n, data, dataValue, dvalueFreq) ;
+        maxfreq = dvalueFreq[0];
+        for (i = 1; i < nvalue; i++) {
+          if (dvalueFreq[i] > maxfreq) maxfreq = dvalueFreq[i];
+        }
+        strMode ="";
+        if (maxfreq > 1) {
+          for (i = 0; i < nvalue; i++) {
+            if (dvalueFreq[i] == maxfreq) strMode += (dataValue[i]).toString() + " ";
+          }
+        }
+        return {'n':n, 'xbar':xbar, 'xsum':sum, 'sumsq':sumsq, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr, 'mode': strMode};
 }
 // median calculation
 function medianCalc(n, data) {
@@ -263,7 +314,7 @@ function simplestat3(sdata) {
           sumsq += sdata[i]*sdata[i];
         }
         xbar = sum / nn;
-        v = (sumsq - nn*xbar*xbar) / (nn-1);
+        v = (sumsq - nn*xbar*xbar) / (nn);
         s = Math.sqrt(v)
 
         sdata.sort(function(a, b) { return a - b; });
@@ -284,11 +335,32 @@ function simplestat3(sdata) {
           for (i=0; i<ntemp; i++) tdata[i] = sdata[i];
           q1 = medianCalc(ntemp,tdata)
           for (i=ntemp; i<nn; i++) tdata[i-ntemp] = sdata[i];
-          q3 = medianCalc(ntemp,tdata)
         }
         iqr = q3 - q1;
-        return {'n':nn, 'xbar':xbar, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr};
+        return {'n':nn, 'xbar':xbar,'xsum':sum, 'sumsq':sumsq, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr};
 }
+  // Sorting in ascending and count each value frequency
+  function modeCalc(dobs, dataA, dataValue, dvalueFreq) {
+    var i, j, temp;
+    var nvalue = 0;
+    for (i = 0; i < dobs; i++) {
+        dvalueFreq[i] = 0;
+    }
+    dataValue[nvalue] = dataA[0];
+    dvalueFreq[nvalue] = 1;
+    nvalue = 0;
+    for (i = 1; i < dobs; i++) {
+        if (dataA[i] == dataA[i - 1]) {
+            dvalueFreq[nvalue]++;
+        } else {
+            nvalue++;
+            dataValue[nvalue] = dataA[i];
+            dvalueFreq[nvalue]++;
+        }
+    }
+    nvalue++;
+    return nvalue;
+  }
 // draw dot graph for input data
 function drawSimpleDotGrpah() {
         var xavg, xmed;
@@ -311,18 +383,18 @@ function drawSimpleDotGrpah() {
         y1 = ty + 25;
         y2 = y1 - 60;
         chart.append("line").attr("x1",xavg).attr("x2",xavg).attr("y1",y1).attr("y2",y2).style("stroke","green")
-        chart.append("text").attr("x", xavg).attr("y", y1+15).text("x\u0304="+f2(xbar))
+        chart.append("text").attr("x", xavg).attr("y", y1+15).text("\u03BC="+f2(xbar))
              .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
         chart.append("line").attr("x1",xmed).attr("x2",xmed).attr("y1",y1+25).attr("y2",y2).style("stroke","red")
         chart.append("text").attr("x", xmed).attr("y", y1+40).text("m="+f2(medi))
              .style("font-size",fontsize).style("stroke","red").style("text-anchor","middle")
         x1 = margin.left + (left-gxmin)*graphWidth/gxrange;
         x2 = margin.left + (right-gxmin)*graphWidth/gxrange;   
-        chart.append("text").attr("x", x1).attr("y", y1+15).text("x\u0304-s")
+        chart.append("text").attr("x", x1).attr("y", y1+15).text("\u03BC-\u03C3")
              .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chart.append("text").attr("x", x2).attr("y", y1+15).text("x\u0304+s")
+        chart.append("text").attr("x", x2).attr("y", y1+15).text("\u03BC+\u03C3")
              .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chart.append("text").attr("x", x2+50).attr("y", y1+15).text("s="+f2(stdS))
+        chart.append("text").attr("x", x2+50).attr("y", y1+15).text("\u03C3="+f2(stdS))
              .style("font-size",fontsize).style("stroke","blue").style("text-anchor","middle")
         chart.append("line").attr("x1",x1).attr("x2",x2).attr("y1",y1).attr("y2",y1).style("stroke","green")
         chart.append("circle").attr("cx",x1).attr("cy",y1).attr("r",2).style("fill","green")
@@ -352,7 +424,7 @@ function drawDotGrpahSimulation(sdata) {
         y2 = y1 - 60;
         chart.append("line").attr("x1",xavg).attr("x2",xavg).attr("y1",y1).attr("y2",y2)
              .style("stroke","green").attr("class","simul")
-        chart.append("text").attr("x", xavg).attr("y", y1+15).text("x\u0304="+f2(xbar3))
+        chart.append("text").attr("x", xavg).attr("y", y1+15).text("\u03BC="+f2(xbar3))
              .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle").attr("class","simul")
         chart.append("line").attr("x1",xmed).attr("x2",xmed).attr("y1",y1+25).attr("y2",y2)
              .style("stroke","red").attr("class","simul")
@@ -360,11 +432,11 @@ function drawDotGrpahSimulation(sdata) {
              .style("font-size",fontsize).style("stroke","red").style("text-anchor","middle")
         x1 = margin.left + (left3-gxmin)*graphWidth/gxrange;
         x2 = margin.left + (right3-gxmin)*graphWidth/gxrange;   
-        chart.append("text").attr("x", x1).attr("y", y1+15).text("x\u0304-s").attr("class","simul")
+        chart.append("text").attr("x", x1).attr("y", y1+15).text("\u03BC-\u03C3").attr("class","simul")
              .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chart.append("text").attr("x", x2).attr("y", y1+15).text("x\u0304+s").attr("class","simul")
+        chart.append("text").attr("x", x2).attr("y", y1+15).text("\u03BC+\u03C3").attr("class","simul")
              .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chart.append("text").attr("x", x2+50).attr("y", y1+15).text("s="+f2(stdS3)).attr("class","simul")
+        chart.append("text").attr("x", x2+50).attr("y", y1+15).text("\u03C3="+f2(stdS3)).attr("class","simul")
              .style("font-size",fontsize).style("stroke","blue").style("text-anchor","middle").attr("class","simul")
         chart.append("line").attr("x1",x1).attr("x2",x2).attr("y1",y1).attr("y2",y1).style("stroke","green").attr("class","simul")
         chart.append("circle").attr("cx",x1).attr("cy",y1).attr("r",2).style("fill","green").attr("class","simul")
