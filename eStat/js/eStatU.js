@@ -436,9 +436,11 @@ function showScatterPlot(nobs, xdata, ydata, gxmin, gxmax, gymin, gymax, graphWi
      var gxrange = gxmax - gxmin;
      var gyrange = gymax - gymin;
      if(checkTitle) {
+/*
         var title = svgStrU[30][langNum];
         svg.append("text").attr("x",margin.left).attr("y",margin.top/2).text(title)
            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
+*/
         // x축 그리기
         var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
         var ty = margin.top + graphHeight;

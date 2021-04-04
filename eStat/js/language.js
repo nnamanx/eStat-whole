@@ -102,6 +102,7 @@ $.message.ko = {
     "Print Sheet": "시트 Print",
     "Bar Graph": "막대그래프",
     "Pie Chart": "원그래프",
+    "Rainbow Chart": "무지개그래프",
     "Band Graph": "띠그래프",
     "Line Graph": "꺾은선그래프",
     "Dot Graph": "점그래프",
@@ -143,6 +144,7 @@ $.message.ko = {
     "Table Print": "테이블 인쇄",
     "Frequency": "도수",
     "(Sorting)": "(정렬)",
+    "SortData": "정렬자료",
     "Raw Data": "원자료",
     "Descending": "내림차순",
     "Ascending": "올림차순",
@@ -170,9 +172,9 @@ $.message.ko = {
     "Variance Assumption": "분산가정",
     "F test": "F 검정",
     "At least one pair of means is different": "적어도 한쌍 이상의 평균이 다름",
-    "Main Title" : "주 제목 : ",
-    "y title": "세로축 제목 : ",
-    "x title": "가로축 제목 : ",
+    "Main Title" : "주 제목",
+    "y title": "세로축 제목",
+    "x title": "가로축 제목",
     "Modify": "수정",
     "Confirm": "확인",
     "Variable Name": "변량명",
@@ -242,7 +244,7 @@ $.message.ko = {
     "Testing Independence": "범주형 : 독립성검정",
     "CategoryD": "범주",
     "Category": "계급",
-    "Correlation Coefficient": "상관계수 시뮬레이션",
+    "Correlation Coefficient": "상관계수",
     "Regression Experiment": "회귀선 실험",
     "Hypothesis": "가  설",
     "Test Type": "검정형태",
@@ -430,6 +432,21 @@ alertMsg[43][0] = "단순 선형 회귀분석은 그룹이 없는 경우에 분�
 alertMsg[44][0] = "분석변수에서 1st:지역명, 2nd:위도(latitude), 3rd:경도(longitude), 4th:분석값(선택)을 선택";
 alertMsg[45][0] = "GIS그래프를 그릴 수 없습니다. ";
 alertMsg[46][0] = "같은 변수번호를 선택하였습니다.";
+alertMsg[46][0] = "적어도 두 행의 자료가 필요합니다.";        // Bar Chart,  도수분포다각형
+alertMsg[47][0] = "도수에 문자 자료는 허용이 안됩니다.";      // Bar Chart
+alertMsg[48][0] = "문자 자료는 허용이 안됩니다.";             // Stem and Leaf Plot
+alertMsg[49][0] = "자료수는 100개 미만만 허용합니다.";        // Histogram
+alertMsg[50][0] = "구간시작과 구간너비에 숫자를 입력하세요."; // Histogram
+alertMsg[51][0] = "계급과 도수는 숫자이어야 하고 자료수가 동일해야 합니다.";  // 도수분포다각형
+alertMsg[52][0] = "계급과 도수에 문자는 허용이 안됩니다.";    // 도수분포다각형
+alertMsg[53][0] = "계급구간의 크기는 동일해야 합니다.";       // 도수분포다각형
+alertMsg[54][0] = "X 자료수와 Y 자료수는 동일해야 합니다.";
+alertMsg[55][0] = "The same variable number is selected.";
+alertMsg[56][0] = "The same variable number is selected.";
+alertMsg[57][0] = "The same variable number is selected.";
+alertMsg[58][0] = "The same variable number is selected.";
+alertMsg[59][0] = "The same variable number is selected.";
+
 svgStr[1][0] = " 막대그래프";
 svgStr[2][0] = " 원그래프";
 svgStr[3][0] = " 도넛그래프";
@@ -549,6 +566,9 @@ svgStr[116][0]= "검정";
 svgStr[117][0]= "분산";
 svgStr[118][0]= "계급값";
 svgStr[119][0]= "범주";
+svgStr[120][0]= "최빈값";
+svgStr[121][0]= "공분산";
+
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -682,9 +702,10 @@ $.message.en = {
     "csv Save": "csv Save",
     "json Save": "json Save",
     "Print Sheet": "Print Sheet",
-    "Bar Graph": "Bar Graph",
+    "Bar Graph": "Bar Chart",
     "Pie Chart": "Pie Chart",
-    "Band Graph": "Band Graph",
+    "Rainbow Chart": "Rainbow Chart",
+    "Band Graph": "Band Chart",
     "Line Graph": "Line Graph",
     "Dot Graph": "Dot Graph",
     "Histogram": "Histogram",
@@ -725,6 +746,7 @@ $.message.en = {
     "Table Print": "Table Print",
     "Frequency": "Frequency",
     "(Sorting)": "(Sorting)",
+    "SortData": "Sorted Data",
     "Raw Data": "Raw Data",
     "Descending": "Descending",
     "Ascending": "Ascending",
@@ -754,9 +776,9 @@ $.message.en = {
     "Variance Assumption": "Variance Assumption",
     "F test": "F test",
     "At least one pair of means is different": "At least one pair of means is different",
-    "Main Title : ": "Main Title : ",
-    "y title : ": "y title : ",
-    "x title : ": "x title : ",
+    "Main Title : ": "Main Title",
+    "y title : ": "y title",
+    "x title : ": "x title",
     "Modify": "Modify",
     "Confirm": "Confirm",
     "Variable Name": "Variable Name",
@@ -1014,7 +1036,21 @@ alertMsg[42][1] = "Title editing of testing hypothesis is not allowed! ";
 alertMsg[43][1] = "Simple Linear Regression is only for one group";
 alertMsg[44][1] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][1] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][1] = "The same variable number is selected.";
+alertMsg[46][1] = "At least two rows are required !!   Try again.";  // Bar Chart
+alertMsg[47][1] = "Character data in Frequency are not allowed !!   Try again."; // Bar Chart
+alertMsg[48][1] = "Character data are not allowed !!   Try again."; // Stem and Leaf Plot
+alertMsg[49][1] = "Number of observations should be less than 100 !!   Try again.";
+alertMsg[50][1] = "Enter numbers in interval start or step.";
+alertMsg[51][1] = "Enter numbers / Nnumber of rows should be the same!!   Try again.";
+alertMsg[52][1] = "Enter numbers in category and frequency.";
+alertMsg[53][1] = "Interval size is not the same !!   Try again.";
+alertMsg[54][1] = "X observation is not equal Y observation !!   Try again.";
+alertMsg[55][1] = "The same variable number is selected.";
+alertMsg[56][1] = "The same variable number is selected.";
+alertMsg[57][1] = "The same variable number is selected.";
+alertMsg[58][1] = "The same variable number is selected.";
+alertMsg[59][1] = "The same variable number is selected.";
+
 svgStr[1][1] = " Bar Graph";
 svgStr[2][1] = " Pie Chart";
 svgStr[3][1] = " Doughnut Graph";
@@ -1134,6 +1170,8 @@ svgStr[116][1] = "Test";
 svgStr[117][1] = "Variance";
 svgStr[118][1] = "Interval Value";
 svgStr[119][1] = "Category";
+svgStr[120][1] = "Mode";
+svgStr[121][1] = "Covariance";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1310,6 +1348,7 @@ $.message.ja = {
     "Table Print": "テーブル印刷",
     "Frequency": "度数",
     "(Sorting)": "(並べ替え)",
+    "SortData": "並べ替えデータ",
     "Raw Data": "元データ",
     "Descending": "降順",
     "Ascending": "昇順",
@@ -1340,9 +1379,9 @@ $.message.ja = {
     "F test": "F 検定",
     "At least one pair of means is different": "少なくとも一つ以上のペアの平均が異なる",
     "F test": "F 検定",
-    "Main Title : ": "タイトル : ",
-    "y title : ": "y軸タイトル : ",
-    "x title : ": "x軸タイトル : ",
+    "Main Title : ": "タイトル",
+    "y title : ": "y軸タイトル",
+    "x title : ": "x軸タイトル",
     "Modify": "修正",
     "Confirm": "確認",
     "Variable Name": "変数名",
@@ -1721,6 +1760,8 @@ svgStr[116][2]= "檢定";
 svgStr[117][2]= "分散";
 svgStr[118][2] = "階級区間値";
 svgStr[119][2] = "カテゴリ";
+svgStr[120][2] = "Mode";
+svgStr[121][2] = "Covariance";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1897,6 +1938,7 @@ $.message.zhTW = {
     "Table Print": "列印表格",
     "Frequency": "次數",
     "(Sorting)": "(排序)",
+    "SortData": "排序資料",
     "Raw Data": "原資料",
     "Descending": "下降的",
     "Ascending": "上昇的",
@@ -1923,9 +1965,9 @@ $.message.zhTW = {
     "Variance Assumption": "變異數假設",
     "F test": "F 檢定",
     "At least one pair of means is different": "至少有一對平均數不相等",
-    "Main Title : ": "主標題 : ",
-    "y title : ": "y軸標題 : ",
-    "x title : ": "x軸標題 : ",
+    "Main Title : ": "主標題",
+    "y title : ": "y軸標題",
+    "x title : ": "x軸標題",
     "Modify": "修正",
     "Confirm": "確認",
     "Variable Name": "變數名",
@@ -2304,6 +2346,8 @@ svgStr[116][3]= "檢定";
 svgStr[117][3]= "變異數";
 svgStr[118][3]= "階級區間値";
 svgStr[119][3] = "分類";
+svgStr[120][3] = "Mode";
+svgStr[121][3] = "Covariance";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2480,6 +2524,7 @@ $.message.fr = {
     "Table Print": "Imprimer le tableau",
     "Frequency": "Fréquence",
     "(Sorting)": "(Tri)",
+    "SortData": "Tri",
     "Raw Data": "Donnée brute",
     "Descending": "Descendant",
     "Ascending": "Ascendant",
@@ -2506,9 +2551,9 @@ $.message.fr = {
     "Variance Assumption": "Hypothèse de variance",
     "F test": "F test",
     "At least one pair of means is different": "Au moins deux moyennes sont différentes",
-    "Main Title : ": "Titre principal : ",
-    "y title : ": "y Titre : ",
-    "x title : ": "x Titre : ",
+    "Main Title : ": "Titre principal",
+    "y title : ": "y Titre",
+    "x title : ": "x Titre",
     "Modify": "Modifiez",
     "Confirm": "Confirmer",
     "Variable Name": "Nom de variable",
@@ -2887,6 +2932,8 @@ svgStr[116][4]= "test";
 svgStr[117][4]= "Variance";
 svgStr[118][4]= "Valeur d'intervalle";
 svgStr[119][4]= "Catégorie";
+svgStr[120][4] = "Mode";
+svgStr[121][4] = "Covariance";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -3063,6 +3110,7 @@ $.message.de = {
     "Table Print": "Tabelle drucken",
     "Frequency": "Häufigkeit",
     "(Sorting)": "(Sortieren)",
+    "SortData": "Sortieren",
     "Raw Data": "Rohdaten",
     "Descending": "absteigend",
     "Ascending": "aufsteigend",
@@ -3089,9 +3137,9 @@ $.message.de = {
     "Variance Assumption": "Annahme für die Varianz",
     "F test": "F test",
     "At least one pair of means is different": "mindestens ein Paar von Mittelwerten ist verschieden",
-    "Main Title : ": "Hauptüberschrift : ",
-    "y title : ": "y titel : ",
-    "x title : ": "x titel : ",
+    "Main Title : ": "Hauptüberschrift",
+    "y title : ": "y titel",
+    "x title : ": "x titel",
     "Modify": "Verändern",
     "Confirm": "Bestätige",
     "Variable Name": "Variablenname",
@@ -3467,6 +3515,8 @@ svgStr[116][5]= "test";
 svgStr[117][5]= "Varianz";
 svgStr[118][5]= "Intervallwert";
 svgStr[119][5] = "Kategorie";
+svgStr[120][5] = "Mode";
+svgStr[121][5] = "Covariance";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3643,6 +3693,7 @@ $.message.es = {
     "Table Print": "Imprimir Tabla",
     "Frequency": "Frecuencia",
     "(Sorting)": "(Ordenar)",
+    "SortData": "Ordenar",
     "Raw Data": "Datos crudos",
     "Descending": "Descendiente",
     "Ascending": "Ascendiente",
@@ -3669,9 +3720,9 @@ $.message.es = {
     "Variance Assumption": "Premisa sobre la varianza",
     "F test": "Prueba F",
     "At least one pair of means is different": "Al menos un par de medias es diferente",
-    "Main Title : ": "Titulo principal : ",
-    "y title : ": "y titulo : ",
-    "x title : ": "x titulo : ",
+    "Main Title : ": "Titulo principal",
+    "y title : ": "y titulo",
+    "x title : ": "x titulo",
     "Modify": "Modificar",
     "Confirm": "Confirmar",
     "Variable Name": "Nombre de la Variable",
@@ -4050,6 +4101,8 @@ svgStr[116][6]= "prueba";
 svgStr[117][6]= "Varianza";
 svgStr[118][6]= "Valor de intervalo";
 svgStr[119][6]= "Categoria";
+svgStr[120][6] = "Mode";
+svgStr[121][6] = "Covariance";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -4226,6 +4279,7 @@ $.message.vi = {
     "Table Print": "In bảng",
     "Frequency": "Tần số",
     "(Sorting)": "(Sắp xếp)",
+    "SortData": "Sắp xếp",
     "Raw Data": "Dữ liệu thô",
     "Descending": "S/x giảm dần",
     "Ascending": "S/x tăng dần",
@@ -4252,9 +4306,9 @@ $.message.vi = {
     "Variance Assumption": "Giả thiết về phương sai",
     "F test": "Kiểm định F",
     "At least one pair of means is different": "Có ít nhất một cặp trung bình khác nhau",
-    "Main Title : ": "Tiêu đề chính : ",
-    "y title : ": "Tên y : ",
-    "x title : ": "Tên x : ",
+    "Main Title : ": "Tiêu đề chính",
+    "y title : ": "Tên y",
+    "x title : ": "Tên x",
     "Modify": "Chỉnh sửa",
     "Confirm": "Xác nhận",
     "Variable Name": "Tên biến",
@@ -4629,6 +4683,8 @@ svgStr[116][7]= "kiểm tra";
 svgStr[117][7]= "phương sai";
 svgStr[118][7]= "Giá trị khoảng thời gian";
 svgStr[119][7]= "thể loại";
+svgStr[120][7] = "Mode";
+svgStr[121][7] = "Covariance";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -4805,6 +4861,7 @@ $.message.id = {
     "Table Print": "Cetak Tabel",
     "Frequency": "Frekuensi",
     "(Sorting)": "(Mengurutkan)",
+    "SortData": "Mengurutkan",
     "Raw Data": "Data Mentah",
     "Descending": "Mengurutkan dari Besar ke Kecil",
     "Ascending": "Mengurutkan dari Kecil ke Besar",
@@ -4831,9 +4888,9 @@ $.message.id = {
     "Variance Assumption": "Asumsi Varians",
     "F test": "Uji F",
     "At least one pair of means is different": "Setidaknya ada satu pasang Rata-rata yang berbeda",
-    "Main Title : ": "Judul Utama : ",
-    "y title : ": "Judul y : ",
-    "x title : ": "Judul x : ",
+    "Main Title : ": "Judul Utama",
+    "y title : ": "Judul y",
+    "x title : ": "Judul x",
     "Modify": "Modifikasi",
     "Confirm": "Konfirmasi",
     "Variable Name": "Nama Variabel",
@@ -5212,6 +5269,8 @@ svgStr[116][8]= "Uji";
 svgStr[117][8]= "Varians";
 svgStr[118][8]= "Nilai interval";
 svgStr[119][8]= "kategori";
+svgStr[120][8] = "Mode";
+svgStr[121][8] = "Covariance";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -5389,6 +5448,7 @@ $.message.mn = {
     "Table Print": "Хүснэгт хэвлэх",
     "Frequency": "Давтамж",
     "(Sorting)": "(Эрэмблэх)",
+    "SortData": "Эрэмблэх",
     "Raw Data": "Бүрэн болоогүй өгөгдөл",
     "Descending": "Буурч буй",
     "Ascending": "өгсөж буй, өгсөх хандлага",
@@ -5415,9 +5475,9 @@ $.message.mn = {
     "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
     "F test": "F Тестийн",
     "At least one pair of means is different": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр. ",
-    "Main Title : ": "Үндсэн гарчиг : ",
-    "y title : ": "У хувьсагч : ",
-    "x title : ": "Х хувьсагч : ",
+    "Main Title : ": "Үндсэн гарчиг",
+    "y title : ": "У хувьсагч",
+    "x title : ": "Х хувьсагч",
     "Modify": "Өөрчлөн сайжруулах",
     "Confirm": "Батлах ",
     "Variable Name": "Хувьсагчийн нэр",
@@ -5794,6 +5854,8 @@ svgStr[116][9]= "Туршилт";
 svgStr[117][9]= "хэлбэлзэл";
 svgStr[118][9]= "Интервал утга";
 svgStr[119][9]= "ангилал";
+svgStr[120][9] = "Mode";
+svgStr[121][9] = "Covariance";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -5970,6 +6032,7 @@ $.message.zh = {
     "Table Print": "打印表格",
     "Frequency": "频数",
     "(Sorting)": "(排序)",
+    "SortData": "排序",
     "Raw Data": "原始数据",
     "Descending": "递减的",
     "Ascending": "递增的",
@@ -5996,9 +6059,9 @@ $.message.zh = {
     "Variance Assumption": "方差假设",
     "F test": "F 检验",
     "At least one pair of means is different": "至少有一对平均数不相等",
-    "Main Title : ": "主标题 : ",
-    "y title : ": "y轴标题 : ",
-    "x title : ": "x轴标题 : ",
+    "Main Title : ": "主标题",
+    "y title : ": "y轴标题",
+    "x title : ": "x轴标题",
     "Modify": "修改",
     "Confirm": "确认",
     "Variable Name": "变量名",
@@ -6376,6 +6439,8 @@ svgStr[116][10]= "檢定";
 svgStr[117][10]= "方差";
 svgStr[118][10]= "阶级区间值";
 svgStr[119][10]= "分类";
+svgStr[120][10] = "Mode";
+svgStr[121][10] = "Covariance";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -6526,6 +6591,7 @@ $.message.pt = {
     "Table Print": "Imprimir a Tabela",
     "Frequency": "Frequência",
     "(Sorting)": "(Ordenando)",
+    "SortData": "Ordenando",
     "Raw Data": "Dados Brutos",
     "Descending": "Decrescente",
     "Ascending": "Crescente",
@@ -6555,9 +6621,9 @@ $.message.pt = {
     "Variance Assumption": "Suposição sobre as variâncias",
     "F test": "F teste",
     "At least one pair of means is different": "Pelo menos um par de médias difere",
-    "Main Title : ": "Título Principal : ",
-    "y title : ": "Título da ordenada (y) : ",
-    "x title : ": "Título da abscissa (x) : ",
+    "Main Title : ": "Título Principal",
+    "y title : ": "Título da ordenada (y)",
+    "x title : ": "Título da abscissa (x)",
     "Modify": "Modifique",
     "Confirm": "Confirme",
     "Variable Name": "Nome da Variável",
@@ -6935,6 +7001,8 @@ svgStr[116][11]= "Teste";
 svgStr[117][11]= "Variância";
 svgStr[118][11]= "Valor do intervalo";
 svgStr[119][11]= "Categoria";
+svgStr[120][11] = "Mode";
+svgStr[121][11] = "Covariance";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -7111,6 +7179,7 @@ $.message.gr = {
     "Table Print": "Εκτύπωση Πίνακα",
     "Frequency": "Συχνότητα",
     "(Sorting)": "(Ταξινόμηση)",
+    "SortData": "Ταξινόμηση",
     "Raw Data": "Ακατέργαστα Δεδομμένα",
     "Descending": "Φθίνουσα Σειρά",
     "Ascending": "Αύξουσα Σειρά",
@@ -7140,9 +7209,9 @@ $.message.gr = {
     "Variance Assumption": "Υπόθεση Διασποράς",
     "F test": "F Έλεγχος",
     "At least one pair of means is different": "Τουλάχιστον ένα ζευγάρι μέσων να είναι διαφορετικοί",
-    "Main Title : ": "Κύριος Τίτλος : ",
-    "y title : ": "τίτλος y : ",
-    "x title : ": "τίτλος x : ",
+    "Main Title : ": "Κύριος Τίτλος",
+    "y title : ": "τίτλος y",
+    "x title : ": "τίτλος x",
     "Modify": "Τροποποιείστε",
     "Confirm": "Επιβεβαιώστε",
     "Variable Name": "Όνομα Μεταβλητης",
@@ -7519,6 +7588,8 @@ svgStr[116][12]= "Έλεγχος";
 svgStr[117][12]= "διαφορά";
 svgStr[118][12]= "Τιμή διαστήματος";
 svgStr[119][12]= "κατηγορία";
+svgStr[120][12] = "Mode";
+svgStr[121][12] = "Covariance";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -7694,6 +7765,7 @@ $.message.ro = {
     "Table Print": "Printare Tabel",
     "Frequency": "Frecvență",
     "(Sorting)": "(Sortare)",
+    "SortData": "Sortare",
     "Raw Data": "Date Brute",
     "Descending": "Descrescător",
     "Ascending": "Crescător",
@@ -7723,9 +7795,9 @@ $.message.ro = {
     "Variance Assumption": "Presupunere asupra Varianței",
     "F test": "F Testare",
     "At least one pair of means is different": "Cel puțin o pereche de medii este diferită",
-    "Main Title : ": "Titlu Principal : ",
-    "y title : ": "Axa y : ",
-    "x title : ": "Axa x : ",
+    "Main Title : ": "Titlu Principal",
+    "y title : ": "Axa y",
+    "x title : ": "Axa x",
     "Modify": "Modificați",
     "Confirm": "Confirmare",
     "Variable Name": "Nume Variabilă",
@@ -8103,6 +8175,8 @@ svgStr[116][13]= "Test";
 svgStr[117][13]= "Varianța";
 svgStr[118][13]= "Valoarea intervalului";
 svgStr[119][13]= "Categorie";
+svgStr[120][13] = "Mode";
+svgStr[121][13] = "Covariance";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -8279,6 +8353,7 @@ $.message.th = {
     "Table Print": "พิมพ์ตาราง",
     "Frequency": "ความถี่",
     "(Sorting)": "(เรียงลำดับ)",
+    "SortData": "เรียงลำดับ",
     "Raw Data": "ข้อมูลดิบ",
     "Descending": "จากมากไปหาน้อย",
     "Ascending": "จากน้อยไปหามาก",
@@ -8308,9 +8383,9 @@ $.message.th = {
     "Variance Assumption": "สมมติฐานของความแปรปรวน",
     "F test": "F การทดสอบ",
     "At least one pair of means is different": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
-    "Main Title : ": "หัวข้อหลัก : ",
-    "y title : ": "ชื่อแกนตั้ง : ",
-    "x title : ": "ชื่อแกนนอน : ",
+    "Main Title : ": "หัวข้อหลัก",
+    "y title : ": "ชื่อแกนตั้ง",
+    "x title : ": "ชื่อแกนนอน",
     "Modify": "ปรับเปลี่ยน",
     "Confirm": "ยืนยัน",
     "Variable Name": "ชื่อตัวแปร",
@@ -8688,6 +8763,8 @@ svgStr[116][14] = "การทดสอบ";
 svgStr[117][14] = "ความแปรปรวน";
 svgStr[118][14] = "ค่าช่วงเวลา";
 svgStr[119][14] = "ประเภท";
+svgStr[120][14] = "Mode";
+svgStr[121][14] = "Covariance";
 
 svgStrU[1][14] = "การแจกแจงทวินาม";
 svgStrU[2][14] = "การทำซ้ำ";
@@ -8863,6 +8940,7 @@ $.message.pl = {
     "Table Print": "Drukuj tabelę",
     "Frequency": "Częstotliwość",
     "(Sorting)": "(Sortowanie)",
+    "SortData": "Sortowanie",
     "Raw Data": "Surowe dane",
     "Descending": "Malejąco",
     "Ascending": "Rosnąco",
@@ -8892,9 +8970,9 @@ $.message.pl = {
     "Variance Assumption": "Założenie o wariancji",
     "F test": "F test",
     "At least one pair of means is different": "Co najmniej jedna para średnich jest inna",
-    "Main Title : ": "Główny tytuł : ",
-    "y title : ": "y tytuł : ",
-    "x title : ": "x tytuł : ",
+    "Main Title : ": "Główny tytuł",
+    "y title : ": "y tytuł",
+    "x title : ": "x tytuł",
     "Modify": "Modyfikuj",
     "Confirm": "Potwierdź",
     "Variable Name": "Nazwa zmiennej",
@@ -9273,6 +9351,8 @@ svgStr[116][15] = "Test";
 svgStr[117][15] = "Wariancja";
 svgStr[118][15] = "Wartość interwału";
 svgStr[119][15] = "Kategoria";
+svgStr[120][15] = "Mode";
+svgStr[121][15] = "Covariance";
 
 svgStrU[1][15] = "Rozkład dwumianowy";
 svgStrU[2][15] = "Powtórzenie";
@@ -9449,6 +9529,7 @@ $.message.az = {
     "Table Print": "cədvəli çap etmək",
     "Frequency": "tezlik",
     "(Sorting)": "(Çeşidləmə)",
+    "SortData": "Çeşidləmə",
     "Raw Data": "Xam Məlumat",
     "Descending": "azalan",
     "Ascending": "artan",
@@ -9478,9 +9559,9 @@ $.message.az = {
     "Variance Assumption": "Dispersiya fərziyyəsi",
     "F test": "F test",
     "At least one pair of means is different": "Ən azı bir cüt ədədi orta fərqlidir",
-    "Main Title : ": "əsas başlıq : ",
-    "y title : ": "Y başlığı : ",
-    "x title : ": "X başlığı : ",
+    "Main Title : ": "əsas başlıq",
+    "y title : ": "Y başlığı",
+    "x title : ": "X başlığı",
     "Modify": "dəyişmək",
     "Confirm": "Təsdiq etmək",
     "Variable Name": "dəyişənin adı",
@@ -9858,6 +9939,8 @@ svgStr[116][16] = "Test";
 svgStr[117][16] = "Dispersiyası";
 svgStr[118][16] = "İnterval dəyəri";
 svgStr[119][16] = "Kateqoriya";
+svgStr[120][16] = "Mode";
+svgStr[121][16] = "Covariance";
 
 svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "təkrar";
@@ -10034,6 +10117,7 @@ $.message.uz = {
     "Table Print": "Jadval bosma",
     "Frequency": "Chastotasi",
     "(Sorting)": "(Tartiblash)",
+    "SortData": "Tartiblash",
     "Raw Data": "Xom ma'lumot",
     "Descending": "Kamayishi",
     "Ascending": "Borayotgan",
@@ -10063,9 +10147,9 @@ $.message.uz = {
     "Variance Assumption": "o'zgarish tahmin",
     "F test": "F-sinov",
     "At least one pair of means is different": "Hech bolmaganda bita juft vosita farq qiladi",
-    "Main Title : ": "Asosiy sarlavha : ",
-    "y title : ": "y sarlavha : ",
-    "x title : ": "x sarlavha : ",
+    "Main Title : ": "Asosiy sarlavha",
+    "y title : ": "y sarlavha",
+    "x title : ": "x sarlavha",
     "Modify": "O'zgartiring",
     "Confirm": "Tasdiqlang",
     "Variable Name": "o'zgaruvchan ism",
@@ -10443,6 +10527,8 @@ svgStr[116][17] = "sinov";
 svgStr[117][17] = "dispersiya";
 svgStr[118][17] = "Interval qiymati";
 svgStr[119][17] = "toifasi";
+svgStr[120][17] = "Mode";
+svgStr[121][17] = "Covariance";
 
 svgStrU[1][17] = "Binominal Tarqatish";
 svgStrU[2][17] = "takrorlash";
@@ -10619,6 +10705,7 @@ $.message.ru = {
     "Table Print": "Печать таблицы",
     "Frequency": "Частота",
     "(Sorting)": "(Сортировка)",
+    "SortData": "Сортировка",
     "Raw Data": "Необработанные данные",
     "Descending": "По убыванию",
     "Ascending": "По возрастанию",
@@ -10648,9 +10735,9 @@ $.message.ru = {
     "Variance Assumption": "Допущение дисперсии",
     "F test": "F-Тест",
     "At least one pair of means is different": "Минимум одна пара средних отличается",
-    "Main Title : ": "Основной заголовок : ",
-    "y title : ": "Заголовок y : ",
-    "x title : ": "Заголовок х : ",
+    "Main Title : ": "Основной заголовок",
+    "y title : ": "Заголовок y",
+    "x title : ": "Заголовок х",
     "Modify": "Изменить",
     "Confirm": "Подтверждение",
     "Variable Name": "Название переменной",
@@ -11027,6 +11114,8 @@ svgStr[116][18] = "Тест";
 svgStr[117][18] = "отклонение";
 svgStr[118][18] = "Значение интервала";
 svgStr[119][18] = "категория";
+svgStr[120][18] = "Mode";
+svgStr[121][18] = "Covariance";
 
 svgStrU[1][18] = "Биномиальное распределение";
 svgStrU[2][18] = "Повторение";

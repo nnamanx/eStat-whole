@@ -195,11 +195,13 @@
     ans[23][1] = 2;
     ans[23][2] = 3;
     ans[23][3] = 4;
-// 4.1 ④, 4.2 ②, 4.3 ②
-    ans[24][0] = 3;
+// 4.1 ④, 4.2 ②, 4.3 ②,  4.4  ③ ,4.5 ①
+    ans[24][0] = 5;
     ans[24][1] = 4;
     ans[24][2] = 2;
     ans[24][3] = 2;
+    ans[24][4] = 3;
+    ans[24][5] = 1;
 // Answer text ID
     var ansID = new Array(nQuestion);
     for (var i = 1; i < nQuestion; i++) ansID[i] = "ansQ"+i; 
@@ -386,6 +388,9 @@
     addrStr[154] = "http://www.estat.me/estat/eStatH/63SampleEng.htm";
     addrStr[155] = "http://www.estat.me/estat/eStatH/64SampleEng.htm";
     addrStr[156] = "http://www.estat.me/estat/eStatH/65ConfidenceIntervalMu_H.htm";
+    addrStr[157] = "http://www.estat.me/estat/eStatH/30ScatterPlotH.htm";
+    addrStr[158] = "http://www.estat.me/estat/eStatH/31CorrelationEng.htm";
+    addrStr[159] = "http://www.estat.me/estat/eStatH/32RegressionEng.htm";
 // eLearning
     addrStr[170] = "http://www.estat.me/estat/eLearning/kr/eStat_kr_Introduction.html";
     addrStr[171] = "http://www.estat.me/estat/eLearning/kr/index.html";
