@@ -69,11 +69,11 @@
       <ul>
 	<li><a href=""></a>
 	  <ul>
-            <li><a href="../index.html">목차</a></li>
-            <li><a href="../eStatH/chapter01.html">1. 통계</a></li>
-            <li><a href="../eStatH/chapter02.html">2. 질적 자료의 그래프</a></li>
-            <li><a href="../eStatH/chapter03.html">3. 양적 자료의 그래프</a></li>
-            <li><a href="../eStatH/chapter04.html">4. 자료의 대푯값과 산포도</a></li>
+            <li><a href="../indexH.html">목차</a></li>
+            <li><a href="../eStatH/chapter01.html">1장 경우의 수</a></li>
+            <li><a href="../eStatH/chapter02.html">2장 확률</a></li>
+            <li><a href="../eStatH/chapter03.html">3장 확률변수와 확률분포</a></li>
+            <li><a href="../eStatH/chapter04.html">4장 통계적 추정</a></li>
 	  </ul>
 	</li>
       </ul>
@@ -84,29 +84,29 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
-  <h1>1. 통계</h1> 
+  <h1>1장 경우의 수</h1> 
   <p>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(0)"> &#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
+      <button type="button" style="width:160px" onclick="moveSection(150)"> &#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(152)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
   <p>
   <table>
     <tr>
       <td style="width:300px">
-        <h1>&nbsp; 🎲 🎯 💻 📱</h1>
+        <h1>&nbsp; 🎲 🎴 ♥ ♦ ♣ ♠ </h1>
         <h4>
-        <a href="#0101"><u>1.1 통계란?</u></a> <p>
-        <a href="#0102"><u>1.2 자료의 구분</u></a> <p>
-        <a href="#0103"><u>1.3 『eStat』 소프트웨어</u></a> <p>
+        <a href="#0101"><u>1.1  순열과 조합</u></a> <p>
+        <a href="#0102"><u>1.2  이항정리</u></a> <p>
         <a href="../eStatH/chapter01.pdf" target="_blank"><u>[1장 pdf]</u></a>
         </h4>
       </td>
       <td style="width:350px">
         <h1></h1>
-        <p>- 통계가 무엇인지 살펴본다.
-        <p>- 자료의 구분에 대해 살펴본다.
-        <p>- 통계 소프트웨어에 대해 살펴본다.
+        <p>-  우리 일상생활에서는 적절한 의사 결정을 해야 하는 상황이 많이 발생한다. 
+              합리적인 의사결정을 위해서는 가능한 경우를 파악하여 여러 가지 대안을 분석해야 한다. 
+              관찰되는 자료에는 일정한 유형과 규칙이 있는 경우가 많다. 이때 모든 가능한 경우를 파악하는데
+              순열과 조합이 많이 이용된다. 
       </td>
     </tr>
   </table>
@@ -117,7 +117,7 @@
 -->
   <p>
 
-  <h3 id="0101">1.1 통계란?</h3>
+  <h3 id="0101">1.1 순열과 조합</h3>
   <p>
   <div class="mainTableYellow">
     <table>
@@ -126,15 +126,8 @@
           <h4>⭐ 생각열기</h4>
         </td>
         <td style="width:450px">
-          <b>우리 학급 10명 학생의 신장은 어느 정도나 알아보기 위해 자를 이용하여 측정하였다.
-             측정된 신장 자료는 종이에 기록하였다.
+          <b>회원이 10명인 한 자전거 동호회에서 앞으로 1년간 모임을 운영을 사람을 뽑고자 한다.
           </b>
-          <div class="textLeft">[표 1.1] 우리 학급 학생들의 신장 자료 (단위 cm)</div>
-          <p>
-          <table>
-            <td> 165  163  170  175  155  167  157  153  161  162
-            </td>
-          </table>
         </td>
       </tr>
       <tr>
@@ -142,8 +135,8 @@
           <h4>💎 탐구</h4>
         </td>
         <td>
-          <b>우리 반 학생 중 내 신장 (165cm)이 키가 큰 순으로 몇 번째에 있는지 
-             알아 보려면 어떻게 하나?
+          <b>1) 회원 중에서 회장 1명과 부회장 1명을 뽑는 경우는 얼마나 될까? <br>
+             2) 단지 대표 2명을 뽑는 경우의 수는 얼마나 될까?   
           </b>
         </td>
       </tr>
@@ -152,228 +145,911 @@
   <p>
 
   <div class="mainTable">
-      <p>학생들의 신장을 숫자로 된 자료라 부른다. 이 예에서는 학생의 수만큼 자료가 생기는데 
-         우리 사회에서는 많은 양의 자료가 생성되어 왔다. 컴퓨터의 발전과 더불어 자료의 수는 
-         앞으로 더욱 증가될 예정이다.
-      <p>내 신장의 상대 위치를 파악하기 위해서는 이 자료를 신장이 큰 사람부터 내림차 순으로 
-         [표 1.2]와 같이 정리한다.
-      <div class="textLeft">[표 1.2] 키가 큰 순으로 정리한 학생들의 신장 자료 (단위 cm)</div>
+      <p>회원 10명 중에서 회장 1명을 뽑는 경우의 수는 10가지이다. 회장을 뽑은 후 부회장을 뽑는 
+         경우의 수는 회장으로 뽑힌 사람을 제외해야 하므로 9가지이다. 따라서 회장 1명과 부회장 1명을
+         뽑는 전체 경우의 수는  10 × 9 = 90 이다. 이를 10명 중 2명을 순서를 생각하여 선택하는 
+         <b>순열</b>이라 부르고 \({}_{10} P_{2} \)로 표시한다. <그림 1.1>의 윗부분이 90가지 
+         경우의 수를 보여준다.
       <p>
-      <table>
-        <td> 175  170  167  165  163  162  161  157  155  153 
-        </td>
-      </table>
-      <p>이 자료를 보면 쉽게 내 신장이 위에서 4번째 학생임을 알 수 있다.
-      <p>이렇게 자료를 수집해 정리, 요약한 후 유용한 정보를 얻어내는 것을 <b>통계</b>라고 한다. 
-         한 나라는 국민들의 의식주를 해결하기 위해 인구수, 가구수, 식량 등의 통계가 필요하다. 
-         이와 같은 통계는 5천년 전 이집트 문명시대부터 기록이 남아있다. 
-      <p>현대 정보화 사회가 더욱 진행되면서 자료의 크기가 엄청나게 커졌는데 이를 <b>빅데이터</b>라 부른다. 
-         빅데이터의 대표적인 예는 다음과 같다. 
+      <img class="imgFig600600" src="../Figure/HFig0101.png">
+      <div class="figText">&lt;그림 1.1&gt; 10명중 2명을 뽑는 순열과 조합 경우의 수</div>
+      <p>
+         단지 대표 2명을 뽑는 것은 위의 경우에서 회장과 부회장으로 뽑힌 두 사람의 직책을
+         구분하지 않는 경우로 볼 수 있어 전체 경우의 수는 \(\frac{{}_{10} P_{2}}{2}\) = 45 이다. 
+         이를 10명 중 2명을 순서를 생각하지 않고 선택하는 <b>조합</b>으로 부르고 
+         \({}_{10} C_{2}\)로 표시한다. <그림 1.1>의 아래 부분이 45가지 경우의 수를 보여준다.  
+      <p>10명을 모두 나열하는 경우의 수는 다음과 같고 이를 10! (10 팩토리얼로 읽음)로 표시한다. 
+      <div class="textLeft">
+         10! = 10 × 9 × \(\cdots \) × 2 ×1  = 3628800
+      </div>
       <br>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 구글의 검색기록 자료 
+         일반적으로 \(n\)개의 사물 중 \(r\)개를 선택해 순서를 고려해 나열하는 <b>순열</b>은
+         다음과 같이 계산된다.  . 
+      <p>
+      <div class="textLeft">
+         \( {}_{n} P_{r} ~=~n(n-1)(n-2) \cdots (n-r+1)= \frac {n!} {(n-r)!} \)
       </div>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 스마트폰의 네이버나 카톡 자료
-      </div>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 인터넷에 접속하고 나간 기록 자료
-      </div>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 통신회사의 통화기록 자료 <
-      </div>
-      <p>미래의 정보화 사회에서는 어떻게 빅데이터에 대한 통계를 잘하여 과학적인 의사결정을 하느냐에 따라 
-         한 개인, 회사, 국가의 성패가 달라질 수 있다. 빅데이터를 분석하여 현실에 응용하는 통계의 활용 예는 많이 있다.
       <br>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 구글의 검색 엔진에 자동차 구입에 관한 질문을 조사하여 다음 달 미국서 판매되는 자동차 모델의 수를 예측하였다.
+        그러므로 \(n\)개를 모두 나열하는 방법의 수는 다음과 같다.          
+      <p>
+      <div class="textLeft">
+         \( {}_{n} P_{n} ~=~n(n-1)(n-2) \cdots 2 \cdot 1 = n! \) <br>
+         참고: 0! = 1로 정의한다.
       </div>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 한 온라인 쇼핑몰은 고객의 웹 기록을 분석하여, 회원 고객이 어떤 취향을 가지고 어떤 제품에 관심이 있는지 파악하여 
-            고객 개개인에 맞는 맞춤형 광고를 하여 매출이 증가하였다. < 
-      </div>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 한 원유 탐사회사에서 테라바이트 규모의 지질학 자료를 분석해 원유 시추의 성공률을 높였다. 
-      </div>
-      <div class="textL20M20">
-          &nbsp;&nbsp;&nbsp;- 미국의 한 대학에서 온라인 수업에서 학생들이 시스템에 클릭하는 정보를 분석하여 학생 개개인의 학습 성과를 
-            모니터링하고 학생의 이해도에 맞춘 수준별 수업 내용을 제안하고, 향후 수강할 과목 등을 학생별로 제안하였다. 
-            이 결과 전공별 학위 취득률이 많이 향상되었다.
+      <br>
+         일반적으로 \(n\)개의 사물 중 \(r\)개를 순서를 고려치 않고 선택하는 경우의 수를 
+         <b>조합</b>이라 하고 다음과 같이 계산된다.
+      <p>
+      <div class="textLeft">
+         \( {}_n C_r ~=~  \frac{{}_n P_r } { r! } ~=~ \frac{n!} {r!(n-r)!} \)
       </div>
   </div>
-  <p>
-
-<!---------------------------------------------------------------------------------------->
-  <h3 id="0102">1.2 자료의 구분</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <b>우리 학급 10명 학생의 성별을 조사하면 ‘남’ ‘여’ 이고,  신장을 조사하면 160cm 등이다.</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <b>1) 성별과 신장은 속성이 다른데 자료를 구분하는 적당한 방법이 있을까? <br>
-             2) 자료의 종류에 따라 분석 방법이 다를까?
-          </b>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <p>
-
-  <div class="mainTable">
-      <p>자료는 관심의 대상이 되는 사물의 속성을 관찰하거나 측정한 값들이다. 이러한 사물이나 사건의 속성을 
-         <b>변수</b> 또는 <b>변량</b>이라고 한다. 예를 들어, 어느 초등학교 한 학급의 성별과 신장을 측정하였다면 
-         여기에는 두개의 변량(성별, 신장)이 있다. 성별에 대한 측정값은 ‘남’, ‘여’, ‘여’, ‘남’, .... 과 
-         같은 형태이고, 신장에 대한 측정값은 160cm, 155cm, 158cm, 165cm, ... 와 같은 형태일 것이다. 
-      <p>‘성별’과 같은 변량의 자료를 <b>질적 자료</b>, 신장과 같은 변량의 자료를 <b>양적 자료</b>로 구분한다. 
-         자료를 구분하는 이유는 자료의 종류의 따라 처리하는 방법과 분석 방법이 다르기 때문이다. 
-         2장은 질적 자료의 분석에 사용하는 그래프에 대해 살펴보고, 3장은 양적자료의 분석에 사용하는 그래프를 살펴본다.
-      <p>성별과 같은 질적 변량은 대개 몇 개의 범주 형태를 갖는데 이를 <b>범주형</b> 자료라고도 한다. 범주형 자료는 
-         각 범주별로 도수를 조사하여 도수분포표를 만들고 막대그래프, 원그래프, 띠그래프를 만들어 시각화 한다(2장). 
-         [표 1.3]은 한 학급 성별에 대한 도수분포표의 예이다. ‘남’이 6명이고 ‘여’가 4명임을 보여준다.  
+      <p><span style="font-size:1.5em">✨</span><b>&nbsp;&nbsp; 순열</b>
       <p>
-      <div class="textLeft">[표 1.3] 한 학급의 성별 도수분포표</div>
+         일반적으로 \(n\)개의 사물 중 \(r\)개를 선택해 순서를 고려해 나열하는 <b>순열</b>은 다음과 같이 계산된다.  . 
+      <p>
+      <div class="textLeft">
+         \( {}_{n} P_{r} ~=~n(n-1)(n-2) \cdots (n-r+1)= \frac {n!} {(n-r)!} \)
+      </div> 
       <br>
-      <table> 
-        <tr> 
-          <th class="thGrey">성별</th>
-          <th class="thGrey">학생수</th>
-        </tr>
-        <tr> <td class="tdCenter">남</td> <td class="tdCenter">6</td> </tr>
-        <tr> <td class="tdCenter">여</td> <td class="tdCenter">4</td> </tr>
-      </table>
-      <p>단어와 같은 질적 자료는 각 단어에 대한 빈도수를 조사하여 단어구름으로 만들어 분석한다. 
-      <p>양적 자료는 평균 및 표준편차를 계산하고 줄기와 잎 그림, 히스토그램, 점그래프 등을 이용하여 시각화 한다(3장).   
+        그러므로 \(n\)개를 모두 나열하는 방법의 수는 다음과 같다.          
+      <p>
+      <div class="textLeft">
+         \( {}_{n} P_{n} ~=~n(n-1)(n-2) \cdots 2 \cdot 1 = n! \) <br>
+         참고: 0! = 1로 정의한다.
+      </div>
   </div>
-  <p>
-<!---------------------------------------------------------------------------------------->
-  <h3 id="0103">1.3 『eStat』 소프트웨어</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>        <td style="width:450px">
-          <b>[표 1.1]의 신장 자료를 측정해 종이에 적고 이를 내림차순으로 정리하였다.</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <b>컴퓨터를 이용하는 방법은 없을까? 있다면 어떤 소프트웨어를 사용하여야 하나?
-          </b>
-        </td>
-      </tr>
-    </table>
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; 조합</b>
+      <p>
+         일반적으로 \(n\)개의 사물 중 \(r\)개를 순서를 고려치 않고 선택하는 경우의 수를 
+         <b>조합</b>이라 하고 다음과 같이 계산된다.
+      <p>
+      <div class="textLeft">
+         \( {}_n C_r ~=~  \frac{{}_n P_r } { r! } ~=~ \frac{n!} {r!(n-r)!} \)
+      </div>
   </div>
   <p>
-
   <div class="mainTable">
-      <p>작은 학급 자료라면 수작업으로도 자료를 정리해 분석할 수 있으나 자료가 많아지면 컴퓨터의 도움이 없이는
-         자료의 분석이 불가능하다. 특히 빅데이터 분석을 위해서는 전문적인 분석 프로그램을 많이 가지고 있는 
-         <b>통계 소프트웨어</b>가 반드시 필요하다. 현재 자료 분석을 위해서는 SAS, SPSS, R과 같은 통계 소프트웨어가 
-         많이 사용되고 있다. 하지만 이들 소프트웨어는 초보자가 배우기는 쉽지 않고, SAS와 SPSS는 상업용이어서 
-         엄청난 고가이다. 그리고 이러한 소프트웨어는 자료 분석의 핵심인 통계 교육에 필요한 모듈의 기능은 거의 없다. 
-      <p><b>『eStat』</b>시스템은 통계를 초등생부터 대학 및 일반인까지 쉽게 교육하기 위하여 만든 교육용 소프트웨어이다. 
-         자료가 주어지면 단지 마우스 클릭만으로 그래프를 그릴 수 있고, 동적인 그래프를 경험할 수 있다. 
-        『eStat』은 각급 교과서에 있는 많은 예를 포함하고 있으며, 웹 기반이어서 사용자들은 언제 어디서나 
-         PC, 태블릿, 또는 스마트폰으로 이용할 수 있다. 『eStat』은 무료로 서비스하고 있고 다국적 언어를 지원하며 
-         현재 한국어, 영어를 포함한 20개 언어가 가능하다. 
-      <p>『eStat』 시스템은 현재 통용되는 많은 웹브라우저 중에서 구글(Google)사의 크롬(Chrome)에서 100% 잘 작동한다.
-         MS 엣지(Edge)와 같은 브라우저에서도 『eStat』이 작동은 되나 일부 기능이 안 될 수 있다.  
-      <p>이 책은 『eStat』에서 중학생 및 고등학생을 대상으로 개발된 <b>『eStatH』</b>에서 중학생이 공부할 수 있는 
-         그래프와 측도 등에 대해 설명한다. 
-         웹브라우져 크롬을 열어 주소창에 www.estat.me 를 입력한 후 아이콘 『eStatH』를 클릭하면 <그림 1.1>과 같다.  
+      <p>순열과 조합을 수작업이나 계산기를 이용하여 계산하려면 쉽지 않은데『eStatH』를 이용하면 
+         간편히 계산할 수 있다.
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 예제 1.1</h5>
+        『eStat』을 이용하여 10명의 자전거 회원 중에서 2명을 선택하는 순열과 조합을 계산하여 보자. 
+      <h5>풀이</h5>
+         『eStatH』 메뉴에서 ‘순열 - 조합’을 선택하면 <그림 1.2>와 같은 창이 나타난다. 
+         여기에서 \(n\)=10과 \(r\)=2를 입력하면 바로 순열과 조합이 계산된다.
+      <p>\(n\)이 10보다 작고 \(r\)이 2인 경우에 [실행] 버튼을 누르면 모든 경우의 수에 대한 그림을 보여준다(<그림 1.1>).
       <p>
-
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH.svg" onclick="window.open(addrStr[1])">
-            <div class="textLeft">『eStatH』</div>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
           </td>
           <td>
-           <img class="imgFig600600" src="../Figure/Fig0101.png">
-           <div class="textLeft">&lt;그림 1.1&gt; 『eStatH』 메뉴의 구성</div>
+            <img class="imgFig600600" src="../Figure/HFig0102.png">
+            <div class="figText">&lt;그림 1.2&gt; 순열과 조합의 계산</div>
           </td>
         </tr>
       </table>
-      <p>  
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table >
+        <tr>
+          <td style="width:100px">
+            <h5>⏱ 문제 1.1</h5>
+          </td>
+          <td>
+            어느 학급에 30명의 학생이 있다.
+            <div class="textL20M20">1) 이 중에서 3명의 대의원을 선출하는 경우의 수는?
+            </div>
+            <div class="textL20M20">2) 회장 1명, 부회장 1명, 총무 1명을 뽑는 경우의 수는? 
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+ 
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <div class="mainTable">
+      <p>여러 가지 변형된 순열의 경우의 수에 대해 알아보자
   </div>
   <p>
 
+  <!------------------------------------------------------------------------------------------------->
+  <h4>가. 원순열</h4>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>10명의 자전거 회원들이 원형 식탁에 않아 식사를 하려고 한다. </b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <p>
+          <b>10명을 일렬로 나열하는 경우의 수는 10! 인데 원형 식탁에 않는 경우도 마찬가지일까? </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>10명을 일렬로 배열한 다음의 경우를 생각해 보자
+      <div class="textLeft">
+        1 2 3 4 5 6 7 8 9 10 <br>
+        2 3 4 5 6 7 8 9 10 1 <br>
+        ⋯ <br>
+        10 9 8 7 6 5 4 3 2 1
+      </div>
+      <p>
+         원형 식탁에 않는 경우는 위의 10가지가 모두 같은 경우가 된다. 모든 10! 경우의 수에
+         위의 경우처럼 10가지씩 같은 경우가 생긴다. 따리서 10명의 회원이 원형 식탁에 둘러않는 경우의 수는
+      <div class="textLeft">
+         \(\frac{10!}{10} = 9!\)
+      </div>
+      <p>
+         이다. 이와 같이 서로 다른 것을 원형으로 배열하는 순열을 <b>원순열</b>이라 한다.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; 원순열</b>
+      <p>
+         서로 다른 \(n\)개의 사물을 원형으로 배열하는 <b>원순열</b>의 경우의 수는 다음과 같다. 
+      <p>
+      <div class="textLeft">
+         \(\frac{n!}{n} = (n-1)!\)
+      </div>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 예제 1.2</h5>
+        다섯 사람 A, B, C, D, E가 강강수월래 춤을 추려고 서로 손을 잡고 원형으로 섰다. 
+      <div class="textL20M20">1) 다섯 사람이 원형으로 서는 경우의 수는 얼마인가? 
+      </div>
+      <div class="textL20M20">2) 이 중 A와 B가 서로 이웃하게 서는 경우의 수는 얼마인가?
+      </div>
+      <h5>풀이</h5>
+      <div class="textL20M20">1) 5명이 원형으로 서는 경우의 수는 다음과 같다.
+      </div>
+      <p>
+      <div class="textLeft">(5-1)! = 4! = 24
+      </div>
+      <p>
+      <div class="textL20M20">2) A와 B를 묶어서 한 사람으로 생각하고 원형으로 서는 경우의 수는 다음과 같다.
+      </div>
+      <p>
+      <div class="textLeft">(4-1)! = 3! = 6 
+      </div>
+      <p>
+      <div class="textL20">각각의 경우에 대해 A와 B가 자리를 바꾸는 경우의 수는 2!
+        이므로 구하는 경우의 수는 다음과 같다.
+      </div>
+      <p>
+      <div class="textLeft">6 × 2 = 12
+      </div>     
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table >
+        <tr>
+          <td style="width:100px">
+            <h5>⏱ 문제 1.2</h5>
+          </td>
+          <td>
+            한 중국집의 회전 식탁에 탕수육, 잡채, 군만두, 자장면, 볶음밥 등을 놓고자 한다. 
+            <div class="textL20M20">1) 요리를 배치하는 경우의 수는? 
+            </div>
+            <div class="textL20M20">2) 자장면과 볶음밥을 인접하게 배치하는 경우의 수는?
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+
+
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4>나. 중복순열</h4>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>나의 여행 가방은 숫자 0에서 9까지 적혀있는 세 개의 굴림쇠를 이용하여 비밀번호를 설정하도록 되어있다.  </b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <p>
+          <b>세 개의 숫자로 비밀번호를 설정하는 경우의 수는 얼마일까?</b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>세 개의 숫자를 이용하여 비밀번호를 정하는 경우의 수는 첫 번째, 두 번째, 세 번째 각 자리의 숫자가 10개씩 있으므로 다음과 같다.
+      <div class="textLeft">
+        10 × 10 × 10 = 1000
+      </div>
+      <p>
+         이와 같이 서로 다른 \(n\)개의 사물에서 중복을 허락하여 \(r\)개를 선택하는 순열을 중복순열이라 하고, 
+         기호로 \({}_n \pi_{r}\) 로 표시한다. 중복순열의 수는 \(n\)개의 사물이 첫 번째, 두 번째,
+          ... ,\(r\)번째 자리에 중복해서 나타날 수 있으므로 다음과 같다. 
+      <div class="textLeft">
+         \({}_n \pi_{r} = n × n × \cdots × n = n^r \)
+      </div>
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; 중복순열</b>
+      <p>
+         서로 다른 \(n\)개의 사물을 중복을 허용하여 \(r\)번 선택하는 경우의 수는 다음과 같다. 
+      <p>
+      <div class="textLeft">
+          \({}_n \pi_{r} =  n^r \)
+      </div>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 예제 1.3</h5>
+        한 시험에서 4개의 답(①, ②, ③, ④) 중에서 하나를 선택하는 시험 문제가 5개 있다. 
+      <div class="textL20M20">1) 학생이 답을 적는 경우의 수는 얼마인가? 
+      </div>
+      <div class="textL20M20">2) 『eStatH』를 이용하여 이 경우의 수를 확인하라.
+      </div>
+      <h5>풀이</h5>
+      <div class="textL20M20">
+        1) 네 개의 숫자가 첫 번째, 두 번째, 세 번째, 네 번째, 다섯 번째 나올 수 있으므로 
+           전체 경우의 수는 다음과 같다.
+      </div>
+      <p>
+      <div class="textLeft">
+          4 × 4 × 4 × 4 × 4 =  = 1024<br>
+      </div>
+      <p>
+      <div class="textL20M20">
+        2)『eStatH』‘순열 조합’ 메뉴의 <그림 1.3>과 같은 선택 창에서 \(n\)을 4,
+           \(r\)을 5로 선택하고 [실행]버튼을 클릭하면 중복순열을 계산할 수 있다.
+      </div>
+      <p>
+      <table>
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <img class="imgFig600600" src="../Figure/HFig0103.png">
+            <div class="figText">&lt;그림 1.3&gt; 중복순열의 계산</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table >
+        <tr>
+          <td style="width:100px">
+            <h5>⏱ 문제 1.3</h5>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <p>
+            한 카드회사의 고객은 0부터 9까지의 숫자를 이용하여 여섯 자리의 비밀번호를 만들어야 한다. 전체 만들 수 있는 비밀번호의 경우의 수는?
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4>다. 같은 것이 있는순열</h4>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>검은 공 세 개와 빨간 공 두 개를 일렬로 배열하고자 한다.  </b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <p>
+          <b>다섯 개의 공을 배열하는 전체 경우의 수가 \({}_5 P_5 \) = 5! = 120 일까? </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>세 개의 검은 공을 B, B, B 두 개의 빨간 공을 R, R로 표시하자. 각각의 공이 모두 다르다면 120개의 
+         서로 다른 공의 순열이 생긴다. 하지만 검은 공 세 개와 빨간 공 두 개가 서로 같으므로 120개의 순열 중 
+         구별할 수 없는 경우가 생긴다. 예를 들어, 검은 공을 \(B_1 \), \(B_2 \), \(B_3 \), 빨간 공을 
+         \(R_1 \), \(R_2 \)로
+         표시하여 순열을 생각하면 다음과 같은 12가지의 순열은 모두 동일한 B, B, B, R, R 이라는 순열이다. 
+      <p>
+      <table> 
+        <tr> 
+          <th>검은 공을 \(B_1 , B_2 , B_3 \)<br> 빨간 공을 \(R_1 , R_2 \)로 표시한 순열</th>
+          <th>검은 공을 B, B, B<br>  빨간 공을 R, R로 표시한 순열</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter" style="width:200px">
+             \(B_1 , B_2 , B_3 , R_1 , R_2 \) <br>
+             \(B_1 , B_3 , B_2 , R_1 , R_2 \) <br>
+             \(B_2 , B_1 , B_3 , R_1 , R_2 \) <br>
+             \(B_2 , B_3 , B_1 , R_1 , R_2 \) <br>
+             \(B_3 , B_1 , B_2 , R_1 , R_2 \) <br>
+             \(B_3 , B_2 , B_1 , R_1 , R_2 \) <br>
+             \(B_1 , B_2 , B_3 , R_2 , R_1 \) <br>
+             \(B_1 , B_3 , B_2 , R_2 , R_1 \) <br>
+             \(B_2 , B_1 , B_3 , R_2 , R_1 \) <br>
+             \(B_2 , B_3 , B_1 , R_2 , R_1 \) <br>
+             \(B_3 , B_1 , B_2 , R_2 , R_1 \) <br>
+             \(B_3 , B_2 , B_1 , R_2 , R_1 \) 
+          </td>
+          <td class="tdCenter" style="width:200px">
+             <p><p>
+             \(B, B, B, R, R\)
+          </td>
+        </tr>
+      </table>
+      <p>
+         여기서 12가지 경우란 검은 공 세 개의 순열 3! 과 빨간 공 두 개의 순열 2!을 곱한 것이다. 
+         위와 같이 공 5개의 120가지의 순열에는 12가지씩 같은 것이 생기므로 3개의 검정색 공과 2개의 빨간색 공을 일렬로 배열하는 순열의 수는 다음과 같다.
+      <p>
+      <div class="textLeft">
+         \(\frac{5!}{3! × 2!} = \frac{120}{6×2} = 10\)
+      </div>
+      <p>
+         일반적으로 같은 것이 있는 순열은 다음과 같다.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; 같은 것이 있는 순열</b>
+      <p>
+         \(n\)개의 사물 중 서로 같은 것이 각각 \(p\)개, \(q\)개, ... , \(z\)개 있을 때 이들 \(n\)개를 
+         일렬로 배열하는 순열의 수는 다음과 같다. 
+      <p>
+      <div class="textLeft">
+         \(\frac{n!}{p! × q! × \cdots × z!} \;\;\) (단 \(n = p + q + \cdots + z\) )
+      </div>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 예제 1.4</h5>
+        흰 바둑돌 4개와 검은 바둑돌 3개가 있다.  
+      <div class="textL20M20">1) 이 7개의 바둑돌을 일렬로 배열하는 경우의 수는 얼마인가? 
+      </div>
+      <div class="textL20M20">2)  『eStatH』를 이용하여 이 경우의 수를 확인하라.
+      </div>
+      <h5>풀이</h5>
+      <div class="textL20M20">1) 횐 바둑돌 4개와 검은 바둑돌 3개를 일렬로 배열하는 경우의 수는 다음과 같다. 
+      </div>
+      <p>
+      <div class="textLeft">\(\frac{7!}{4! × 3!} = \frac{5040}{24 × 6} = 35 \)
+      </div>
+      <p>
+      <div class="textL20M20">2) 『eStatH』 ‘순열 조합’ 메뉴의 <그림 1.4>와 같은 선택 창에서
+        \(n\)을 7, \(p\)를 4, \(q\)를 3으로 선택하고 [실행]버튼을 클릭하면 같은 것이 있는 순열을
+        계산할 수 있다.
+      </div>
+      <p>
+      <table>
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <p>
+            <img class="imgFig600600" src="../Figure/HFig0104.png">
+            <div class="figText">&lt;그림 1.4&gt; 같은 것이 있는 순열의 계산</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table >
+        <tr>
+          <td style="width:100px">
+            <h5>⏱ 문제 1.4</h5>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <p>
+            STATISTICS이라는 단어에 포함된 문자를 모두 사용하여 만들 수 있는 순열의 수를 구하라.
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table >
+        <tr>
+          <td style="width:100px">
+            <h5>⏱ 문제 1.5</h5>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <p>프로 야구 한국 시리즈는 7전 4선승제이다. 한국 시리즈에 오른 A, B 두 팀 중에서 A팀이 7차전에서 승리하여 우승하는 경우의 수를 구하라. 매 게임에 무승부는 없다고 가정하자.
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4>라 중복조합</h4>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <p><b>여행지에 가보니 빨강, 초록, 파랑색 세 가지 예쁜 연필이 있다. 이 연필을 구입하여 친구 4명에게 선물하고자 한다.  </b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <p><b>네 개의 연필을 구입하는 경우의 수는 얼마일까? </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>세 가지 색의 연필에서 네 개를 고르려면 중복이 허락되어야 하고, 또 연필을 구입하는 것은 순서를
+         고려하지 않으므로 조합이다. 이와 같이 중복을 허용하여 만든 조합을 <b>중복조합</b>이라고 한다.
+         서로 다른 \(n\)개의 사물에서 \(r\)개를 선택하는 중복조합의 수를 \({}_n H_{r}\)로 표시한다.
+      <p>
+         빨강, 초록, 파랑색 연필을 각각 R, G, B라고 하자. 네 개의 연필을 구입하는 \({}_3 H_{4}\) 
+         경우의 수는 15가지로 다음표의 왼쪽과 같이 적을 수 있다. 여기에 R, G, B를 구분하는 사각형
+         󰌡을 삽입하면 오른쪽과 같다. 
+      <table> 
+        <tr> 
+          <th>빨강 연필의 개수로 정리한 경우의 수</th>
+          <th>빨강, 초록, 파랑의 구분선 󰌡을 삽입한 경우의 수</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter" style="width:200px">
+             네 개 빨강 	R R R R <br>
+             세 개 빨강 	R R R G <br>
+             세 개 빨강 	R R R B <br>
+             두 개 빨강 	R R B B <br>
+             두 개 빨강 R R G B <br>
+             두 개 빨강 R R G G <br>
+             한 개 빨강 	R G G G <br>
+             한 개 빨강 R G G B <br>
+             한 개 빨강 	R G B B <br>
+             한 개 빨강 	R B B B <br>
+             영 개 빨강 G G G G <br>
+             영 개 빨강 G G G B <br>
+             영 개 빨강 G G B B <br>
+             영 개 빨강 G B B B <br>
+             영 개 빨강 B B B B <br>
+          </td>
+          <td class="tdCenter" style="width:200px">
+             네 개 빨강 	R R R R 󰌡 󰌡 <br>
+             세 개 빨강 	R R R 󰌡 G 󰌡 <br>
+             세 개 빨강 	R R R 󰌡 󰌡 B <br>
+             두 개 빨강 	R R 󰌡 󰌡 B B <br>
+             두 개 빨강 R R 󰌡 G 󰌡 B <br>
+             두 개 빨강 R R 󰌡 G G 󰌡 <br>
+             한 개 빨강 	R 󰌡 G G G 󰌡 <br>
+             한 개 빨강 R 󰌡 G G 󰌡 B <br>
+             한 개 빨강 R 󰌡 G 󰌡 B B <br>
+             한 개 빨강 R 󰌡 󰌡 B B B <br>
+             영 개 빨강 󰌡 G G G G 󰌡 <br>
+             영 개 빨강 󰌡 G G G 󰌡 B <br>
+             영 개 빨강 󰌡 G G 󰌡 B B <br>
+             영 개 빨강 󰌡 G 󰌡 B B B <br>
+             영 개 빨강 󰌡 󰌡 B B B B <br>
+          </td>
+        </tr>
+      </table>
+      <p>
+         이와 같이 생각하면 서로 다른 세 가지 색의 연필이 있을 때 네 개를 선택하는 중복조합의 수 는 
+         6개의 사물이 있을 때 이 중 같은 것이 네 개 (●,●,●,●), 두 개(󰌡, 󰌡)있는 순열의 수와 같다. 즉
+      <div class="textLeft">
+         \({}_3 H_{4} = \frac{(4+2)!}{4! × 2!} = 15\)
+      </div>
+      <p>
+         일반적으로 중복조합의 수 \({}_n H_{r}\)는 \(r\)개의 ●와 경계를 구분하는 (\(n-1\))개의 󰌡를 
+         배열하는 같은 것이 있는 순열의 수와 같으므로 다음과 같다.
+      <div class="textLeft">
+         \({}_n H_{r} = \frac{(r+n-1)!}{r! × (n-1)!} = {}_{n+r-1} C_r\)
+      </div>
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; 중복조합의 수</b>
+      <p>
+         서로 다른 \(n\)개의 사물을 \(r\)개를 선택하는 중복조합의 수는 다음과 같다. 
+      <p>
+      <div class="textLeft">
+         \({}_n H_{r} = \frac{(r+n-1)!}{r! × (n-1)!} = {}_{n+r-1} C_r\)
+      </div>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 예제 1.5</h5>
+        5종류의 과일이 각각 세 개 이상씩 있다. 
+      <div class="textL20M20">1) 이 과일중에서 세 개를 바구니에 담는 경우의 수는 얼마인가? 
+      </div>
+      <div class="textL20M20">2) 『eStatH』를 이용하여 이 경우의 수를 확인하라.
+      </div>
+      <h5>풀이</h5>
+      <div class="textL20M20">1) 5종류의 과일 중에서 세 개를 바구니에 담는 경우의 수는 
+        \({}_5 H_{3}\)으로 다음과 같다.
+      </div>
+      <p>
+      <div class="textLeft"> \({}_5 H_{3} = \frac{(5+3-1)!}{3! × (5-1)!} = \frac{5040}{6 × 24} = 35 \)
+      </div>
+      <p>
+      <div class="textL20M20">2) 『eStatH』 ‘순열 조합’ 메뉴의 <그림 1.5>와 같은 선택 창에서 
+        \(n\)을 5, \(r\)을 3으로 선택하고 [실행]버튼을 클릭하면 중복조합을 계산할 수 있다.
+      </div>
+      <table>
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <img class="imgFig600600" src="../Figure/HFig0105.png">
+            <div class="figText">&lt;그림 1.5&gt; 중복조합의 계산</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table >
+        <tr>
+          <td style="width:100px">
+            <h5>⏱ 문제 1.6</h5>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <p>상자에 들어있는 세 종류의 과자를 중복을 허용하여 다섯 명에게 나누어주는 경우의 수는?
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+
+
+<!--***************************************************************-->
+  <h3 id="0102">1.2 이항정리</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ 생각열기</h4>
+        </td>
+        <td style="width:450px">
+          <p><b>세 개의 주머니에 은구슬과 금구슬이 각각 하나 들어있다. 은구슬에는 \(a\)라는 문자가 
+             적혀 있고 금구슬에는 \(b\)라는 문자가 적혀 있다. </b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 탐구</h4>
+        </td>
+        <td>
+          <p>
+          <div class="textL20M20">
+            <b>1) 각 주머니에서 하나씩 구슬을 뽑아 적힌 문자를 곱해 보려고 한다. 나타나는 전체 경우의 수는 얼마일까? </b><br>
+          </div>
+          <div class="textL20M20">
+            <b>2) 이 중에서 금구슬을 두 번 뽑은 가 되는 경우의 수를 조합으로 표시할 수 있을까?</b>
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>세 개의 주머니에서 하나씩 구슬을 뽑는 전체 경우의 수와 각 경우에 적힌 문자를 곱했을 때 나타나는 항이 다음과 같다.   
+      <p>
+      <table> 
+        <tr> 
+          <th>세 주머니에서 하나씩 구슬을 뽑는<br> 전체 경우와 적힌 문자의 곱</th>
+          <th>정리된 문자의 곱</th>
+          <th>같은 항의 수</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             은 은 은 ⇨   \(a × a × a\)  
+          </td>
+          <td class="tdCenter">
+             \(a^3\)
+          </td>
+          <td class="tdCenter">
+             \({}_3 C_0 = 1\)
+          </td>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             은 은 금 ⇨   \(a × a × a\) <br> 
+             은 금 은 ⇨   \(a × b × a\) <br> 
+             금 은 은 ⇨   \(b × a × a\) 
+          </td>
+          <td class="tdCenter">
+             \(a^2 b\)
+          </td>
+          <td class="tdCenter">
+             \({}_3 C_1 = 3\)
+          </td>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             은 금 금 ⇨   \(a × b × b\) <br> 
+             금 은 금 ⇨   \(b × a × b\) <br> 
+             금 금 은 ⇨   \(b × b × a\)  
+          </td>
+          <td class="tdCenter">
+             \(a b^2\)
+          </td>
+          <td class="tdCenter">
+             \({}_3 C_1 = 3\)
+          </td>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             금 금 금 ⇨   \(b × b × b\) 
+          </td>
+          <td class="tdCenter">
+             \(b^3\)
+          </td>
+          <td class="tdCenter">
+             \({}_3 C_3 = 1\)
+          </td>
+        </tr>
+      </table>
+      <p>
+         이 중에서 \(ab^2 \)가 되는 경우의 수는 세 가지({은,금,금}, {금,은,금}, {금,금,은})로서 
+         세 주머니에서 금구슬을 두 번 뽑는 조합의 수인 \({}_3 C_{2}\) = 3 과 같다.
+      <p>
+         마찬가지로 항 \(a^3 , a^2 b, b^3 \)의 경우의 수는 \({}_3 C_{0} , {}_3 C_{1} , {}_3 C_{3} \)가 된다.
+      <p>
+         위의 실험은 다항식 \((a+b)^3\)을 전개할 때 나타나는 항과 동일하다
+      $$ 
+        \begin{align} 
+          (a+b)^3 ~&=~(a+b)(a+b)(a+b) \\
+                  ~&=~(aa + ab+ba+bb)((a+b) \\
+                  ~&=~aaa+aab+aba+abb+baa+bab+bba+bbb \\
+                  ~&=~a^3 +3a^2 b+3ab^2 +b^3
+        \end{align}
+      $$
+        각 항의 경우의 수를 조합을 이용하여 나타내면 다음과 같다.
+      $$ 
+        \begin{align} 
+          (a+b)^3 ~=~{}_3 C_{0}a^3 +{}_3 C_{1}a^2 b + {}_3 C_{2}ab^2 + {}_3 C_{3}b^3
+        \end{align}
+      $$
+        일반적으로 \((a+b)^3\)의 전개식은 \(n\)개의 \((a+b)\) 중에서 각각 \(a\) 또는 \(b\)를 
+        하나씩 택하여 곱한 항을 모두 더한 것이다. 여기서 항 \(a^{n-r} b^r\)은 \(n-r\)개에서 
+        각각 \(a\)를 택하고 \(r\)개에서 각각 \(b\)를 택하여 곱한 것이므로 \(a^{n-r} b^r\)의 계수는
+        \({}_n C_r\)과 같다. 따라서 \((a+b)^n\)의 전개식을 조합의 수를 이용하여 나타내면 다음과 같다.
+      $$ 
+        \begin{align} 
+          (a+b)^n ~=~{}_n C_{0}a^n +{}_n C_{1}a^{n-1} b + \cdots + {}_n C_{r}a^{n-r}b^r + \cdots + {}_n C_{n}b^n
+        \end{align}
+      $$
+        이것을 이항정리라고 하고 각 항의 계수
+      $$ 
+        \begin{align} 
+          {}_n C_{0} , {}_n C_{1} , \cdots , {}_n C_{r} , \cdots .  {}_n C_{n}
+        \end{align}
+      $$
+        을 이항계수라 하고 \({}_n C_{r}a^{n-r}b^r \)를 전개식의 일반항이라고 한다.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; 이항정리</b>
+      <p>
+         \(n\)이 자연수일 때 
+      $$ 
+        \begin{align} 
+          (a+b)^n ~=~{}_n C_{0}a^n +{}_n C_{1}a^{n-1} b + \cdots + {}_n C_{r}a^{n-r}b^r + \cdots + {}_n C_{n}b^n
+        \end{align}
+      $$ 
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         \((a+b)^n\)의 이항계수를 각 \(n\)=1,2,3, ... 에 대해 <그림 1.6>과 같이 삼각형 형태로 
+         배열한 것을 <b>파스칼의 삼각형</b>이라고 한다.
+      <p>
+         파스칼의 삼각형에서 각 단계의 배열은 대칭이다. 이는 두 항 \({}_n C_{r}a^{n-r}b^r \)과
+         \({}_n C_{n-r}a^{r}b^{n-r} \)의 계수 \({}_n C_{r}\)과 \({}_n C_{n-r}\)이 같기 때문이다. 
+      <p>
+         또 각 단계에서 이웃하는 두 수의 합은 그 다음 단계에서 두수의 중앙에 있는 수와 같음을 
+         알 수 있는데 이는 \({}_n C_{r} = {}_{n-1} C_{r-1} + {}_{n-1} C_{r}\)이기 때문이다.
+      <p>
+      <table>
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Pascal.svg" onclick="window.open(addrStr[165])">
+          </td>
+          <td>
+            <img class="imgFig600600" src="../Figure/HFig0106.png">
+            <div class="figText">&lt;그림 1.6&gt; 파스칼의 삼각형</div>
+          </td>
+        </tr>
+      </table>  
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 예제 1.6</h5>
+        『eStat』을 이용하여 \(n\) = 8 인 경우의 파스칼 삼각형을 그리고 이항정리를 살펴보자.
+      <table>
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Pascal.svg" onclick="window.open(addrStr[165])">
+          </td>
+          <td>
+            <h5>풀이</h5>
+            <p>
+               왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘이항정리 – 파스칼의 삼각형’을 선택하면 <그림 1.6>과
+               같은 \(n\) = 8인 경우의 파스칼의 삼각형과 전개식이 나타난다. 
+            <p>다른 \(n\)에 대한 파스칼의 삼각형을 보려면 \(n\)값을 입력하고 [실행] 버튼을 누르면 된다. 
+          </td>
+        </tr>
+      </table>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table >
+        <tr>
+          <td style="width:100px">
+            <h5>⏱ 문제 1.7</h5>
+            <input class="qrBtn" type="image" src="../QR/eStatH_40Pascal.svg" onclick="window.open(addrStr[165])">
+          </td>
+          <td>
+            <p>파스칼의 삼각형을 이용하여 \((a+b)^5 \)을 전개하라.
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <p>
   <div class="mainTablePink">
     <h4> 연습문제 </h4>
     <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
 
-  <h6 class="textL30M30">1.1  다음 중 통계에 대한 설명으로 맞는 것은?</h6>
+  <h6 class="textL30M30">1.1  4명의 학생이 원탁에 앉는 경우의 수는? </h6>
   <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 날씨에 대한 변화를 연구</label><br>
-    <label><input type="radio" name="item" value="2"> 자료를 수집 정리하여 분석</label><br>
-    <label><input type="radio" name="item" value="3"> 화학 반응을 연구</label><br>
-    <label><input type="radio" name="item" value="4"> 전자제품 생산 연구</label><br>
+    <label><input type="radio" name="item" value="1"> 1</label><br>
+    <label><input type="radio" name="item" value="2"> 2</label><br>
+    <label><input type="radio" name="item" value="3"> 24</label><br>
+    <label><input type="radio" name="item" value="4"> 6</label><br>
     <p>
-    <input type="button" value="제출" onClick="radio(21,1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="button" value="제출" onClick="radio(31,1,Q1)"> &nbsp;&nbsp;&nbsp;
     <input type="text" size=25 id="ansQ1">
   </form>
 
-  <h6 class="textL30M30">1.2 다음 중 잘적 자료는? </h6>
+  <h6 class="textL30M30">1.2 10개의 숫자 0,1,2,..., 9 중에서 중복을 허용하여 만들 수 있는 네 자리의 비밀번호를 만들 수 있느 경우의 수는 얼마인가? </h6>
   <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 신장</label><br>
-    <label><input type="radio" name="item" value="2"> 체중</label><br>
-    <label><input type="radio" name="item" value="3"> 교육정도</label><br>
-    <label><input type="radio" name="item" value="4"> 나이</label><br>
+    <label><input type="radio" name="item" value="1"> 1000</label><br>
+    <label><input type="radio" name="item" value="2"> 10000</label><br>
+    <label><input type="radio" name="item" value="3"> 264256</label><br>
+    <label><input type="radio" name="item" value="4"> 21474838</label><br>
     <p>
-    <input type="button" value="제출" onClick="radio(21,2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="button" value="제출" onClick="radio(31,2,Q2)"> &nbsp;&nbsp;&nbsp;
     <input type="text" size=25 id="ansQ2">
   </form>
 
-  <h6 class="textL30M30">1.3 다음 중 양적 자료는? </h6>
+  <h6 class="textL30M30">1.3 영어 단어 mathematics에 있는 문자를 일렬로 배열하는 경우의 수는?  </h6>
   <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 성별</label><br>
-    <label><input type="radio" name="item" value="2"> 교육정도</label><br>
-    <label><input type="radio" name="item" value="3"> 결혼여부</label><br>
-    <label><input type="radio" name="item" value="4"> 나이</label><br>
+    <label><input type="radio" name="item" value="1"> 1663200</label><br>
+    <label><input type="radio" name="item" value="2"> 4989600</label><br>
+    <label><input type="radio" name="item" value="3"> 415800</label><br>
+    <label><input type="radio" name="item" value="4"> 34650</label><br>
     <p>
-    <input type="button" value="제출" onClick="radio(21,3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="button" value="제출" onClick="radio(31,3,Q3)"> &nbsp;&nbsp;&nbsp;
     <input type="text" size=25 id="ansQ3">
   </form>
 
-  <h6 class="textL30M30">1.4 다음 중 통계패키지가 아닌 것은? </h6>
+  <h6 class="textL30M30">1.4 한 진공관에 전기가 들어오고 나가는 것을 숫자 1과 0으로 표시할 수 있다. 
+      진공관 8개 다발로 표시할 수 있는 경우의 수는?  </h6>
   <form name="Q4">
-    <label><input type="radio" name="item" value="1"> SPSS</label><br>
-    <label><input type="radio" name="item" value="2"> SAS</label><br>
-    <label><input type="radio" name="item" value="3"> eStat</label><br>
-    <label><input type="radio" name="item" value="4"> Word</label><br>
+    <label><input type="radio" name="item" value="1"> 8</label><br>
+    <label><input type="radio" name="item" value="2"> 128</label><br>
+    <label><input type="radio" name="item" value="3"> 256</label><br>
+    <label><input type="radio" name="item" value="4"> 512</label><br>
     <p>
-    <input type="button" value="제출" onClick="radio(21,4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="button" value="제출" onClick="radio(31,4,Q4)"> &nbsp;&nbsp;&nbsp;
     <input type="text" size=25 id="ansQ4">
   </form>
 
+  <h6 class="textL30M30">1.5 \((a+b)^6\)의 전개식에서 \(a^2 b^4\)의 계수는?   </h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 15</label><br>
+    <label><input type="radio" name="item" value="2"> 20</label><br>
+    <label><input type="radio" name="item" value="3"> 6</label><br>
+    <label><input type="radio" name="item" value="4"> 1</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(31,5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ5">
+  </form>
 
   </div>
 
   <script>
-    for (var i=0; i < ans[21][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
+    for (var i=0; i < ans[31][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
   </script>
   <p>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(0)">&#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
+      <button type="button" style="width:160px" onclick="moveSection(150)">&#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(152)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
 
 </div>
     
