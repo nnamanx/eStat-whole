@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Permutation"></title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+    <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Permutation">Permutaion</span> - <span data-msgid="Combination">Combination</span>
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+    </div>
+    <p>
+    <table>
+        <tr>
+          <td><b><button type="button" style="width:100px;" id="execute1"><span data-msgid="Execute"></span></button> </b></td>
+          <td>&nbsp;</td>
+          <td><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><input type="text" size=2 id="nn" value="10" style="text-align: center;">&nbsp;
+              <sup><small> 1 </small></sup>
+              <input type="range" style="width: 100px;" min="1" max="30" value="10" id="rangeN" onchange="showValueN(this.value)"/>
+              <sup><small>30</small></sup>
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span class="fontmath">r</span></td>
+          <td>=</td>
+          <td><input type="text" size=2 id="xx" value="2" style="text-align: center;">&nbsp;
+              <sup><small> 0 </small></sup><input type="range" style="width: 100px;" min="0" max="30" value="2" id="rangeX" onchange="showValueX(this.value)"/>
+              <sup><small>30</small></sup>
+          </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+          <td><b>[<span data-msgid="Permutation">Permutation</span>]</b></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span style="font-size:1.4em">\(n !\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="nfact" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td></td>
+          <td><span style="font-size:1.4em">\(r !\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="rfact" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span style="font-size:1.4em">\({}_n {P}_{r}\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="permu" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td>(<span data-msgid="NonReplacement">Non-replacement</span>)</td>
+          <td>&nbsp;<span style="color:red"> \(r \le n\)</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span style="font-size:1.4em">\({}_n {Π}_{r}\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="permuRep" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td>(<span data-msgid="Replacement">Replacement</span>)</td>
+        </tr>
+    </table>
+
+    <svg id="chart" width="400" height="240"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script>
+
+      var chart = d3.select("#chart");
+ 
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
+      var svgWidth    = 400;
+      var svgHeight   = 240;
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+      var i, ns, na, nb, nab;
+      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
+/*
+      document.getElementById("nfact").disabled     = true; 
+      document.getElementById("rfact").disabled     = true; 
+      document.getElementById("permu").disabled     = true; 
+      document.getElementById("permuRep").disabled  = true; 
+      document.getElementById("permuMult").disabled = true; 
+      document.getElementById("combi").disabled     = true; 
+      document.getElementById("combiRep").disabled  = true; 
+      // initial calculation
+      nn = parseFloat(d3.select("#nn").node().value);
+      xx = parseFloat(d3.select("#xx").node().value);
+*/
+      ns  = 60;
+      na  = 20;
+      nb  = 30;
+      nab = 10;
+      drawUnion(ns, na, nb, nab);  
+      // Calculate Permutation & Combinatio ======================================
+      d3.select("#execute1").on("click",function() {
+        chart.selectAll("*").remove();
+        // input value
+        nn = parseFloat(d3.select("#nn").node().value);
+        xx = parseFloat(d3.select("#xx").node().value);
+        if ( isNaN(nn) || isNaN(xx) ) {  // wrong input
+          chart.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text("Wrong input!  Enter number, not character!   Try again.")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        if ( nn < 1 || nn > 30 ) {  // wrong input
+          chart.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text("Enter n between 1 and 30 !!   Try again.")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        drawUnion(ns, na, nb, nab);    
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+
+      // n slidebar
+      function showValueN(newValue) {
+        document.getElementById("nn").value = newValue;
+        nn = parseFloat(d3.select("#nn").node().value);
+        xx = parseFloat(d3.select("#xx").node().value);
+        calculate();
+      }
+      // x slide bar
+      function showValueX(newValue) {
+        document.getElementById("xx").value = newValue;
+        nn = parseFloat(d3.select("#nn").node().value);
+        xx = parseFloat(d3.select("#xx").node().value);
+        calculate();
+      }
+      // draw 
+      function drawUnion(ns, na, nb, nab) {
+        chart.selectAll("*").remove();
+        var i, j, tx, ty, cx, cy, rx, ry, width, height, temp, str1, str2, str3;
+        var radius = 70;
+        var xgap   = 50;
+        var ygap   = 20;
+        var fontsize  = "0.9em";
+        var fontsize2 = "1.3em";
+        cx = margin.left + 150;
+        cy = margin.top  + 110;
+        tx = margin.left + 10;
+        ty = margin.top  + 10;
+        rx = 20;
+        ry = 20;
+        width  = 360;
+        height = 200;
+
+        // Complementary Event
+        chart.append("rect").attr("x",tx).attr("y",ty).attr("rx",rx).attr("ry",ry).attr("width",width).attr("height",height)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","yellow");
+        chart.append("text").attr("x", tx+30).attr("y", ty+30).text("S")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chart.append("text").attr("x", cx-40).attr("y", cy+20).text("A")
+             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","end")
+        chart.append("text").attr("x", cx-40).attr("y", cy+20-5).text("C")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","start")
+        chart.append("circle").attr("cx",cx+120).attr("cy",cy).attr("r",radius)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.5").style("fill","green");
+        chart.append("text").attr("x", cx+120).attr("y", cy-radius+20).text("A")
+             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","middle")
+      }
+
+  </script>
+</body>
+</html>

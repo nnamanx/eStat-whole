@@ -80,70 +80,8 @@
           <td>(<span data-msgid="Replacement">Replacement</span>)</td>
         </tr>
     </table>
-    <table>
-        <tr>
-          <td colspan=5><b>[<span data-msgid="Combination">Combination</span>]</span></b></td>
-        </tr>
-        <tr>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><span style="font-size:1.4em">\({}_n {C}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="combi" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-          <td>(<span data-msgid="NonReplacement">Non-replacement</span>)</td>
-          <td>&nbsp;<span style="color:red">\( r \le n\)</span></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><span style="font-size:1.4em">\({}_n {H}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="combiRep" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-          <td>(<span data-msgid="Replacement">Replacement</span>)</td>
-          <td>&nbsp;<span style="color:blue">\({}_{n+r-1} C_{r} \)</span></td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-          <td colspan=5><b>[<span data-msgid="PermutationSame">Permutation with the same thing</span>]</span></b></td>
-        </tr>
-        <tr>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><span class="fontmath">n</span></td>
-          <td>=</td>
-          <td><input type="text" size=2 id="nn2" style="text-align: center;"></td>
-          <td><span style="color:red">\(= p + q + r + s\)</span></td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><span class="fontmath">p</span></td>
-          <td>=</td>
-          <td><input type="text" size=1 id="pp" style="text-align: right;"></td>
-          <td></td>
-          <td><span class="fontmath">q</span></td>
-          <td>=</td>
-          <td><input type="text" size=1 id="qq" style="text-align: right;"></td>
-          <td></td>
-          <td><span class="fontmath">r</span></td>
-          <td>=</td>
-          <td><input type="text" size=1 id="rr" style="text-align: right;"></td>
-          <td></td>
-          <td><span class="fontmath">s</span></td>
-          <td>=</td>
-          <td><input type="text" size=1 id="ss" style="text-align: right;"></td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><b><button type="button" style="width:80px;" id="execute2"><span data-msgid="Execute"></span></button> </b></td>
-          <td>&nbsp;</td>
-          <td><span style="font-size:1.7em">\(\frac{n!}{p!\, q! \, r! \, s!}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="permuMult" style="text-align: right;"></td>
-        </tr>
-    </table>
 
-    <div style="color:red">&nbsp;&nbsp;&nbsp;*** \(\;\; {}_n P_{2},\; {}_n C_{2} \;\;\) <span data-msgid="NumberOfCase"></span>\( \; n &le; 10\) </div>
-    <svg id="chart" width="600" height="520"> </svg> 
+    <svg id="chart" width="400" height="500"> </svg> 
     <br>
     <button type="button" id="saveGraphU" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
@@ -156,14 +94,13 @@
  
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var margin      = {top: 10, bottom: 10, left: 10, right: 10};
-      var svgWidth    = 600;
-      var svgHeight   = 520;
+      var svgWidth    = 400;
+      var svgHeight   = 500;
       var graphWidth  = svgWidth - margin.left - margin.right;
       var graphHeight = svgHeight - margin.top - margin.bottom;
-      var i, nn, xx, nn2, pp, qq, rr, ss, permu, permuRep, permuMult, combi, combiRep;
-      var nfact, rfact;
+      var i, ns, na, nb, nab;
       var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
-
+/*
       document.getElementById("nfact").disabled     = true; 
       document.getElementById("rfact").disabled     = true; 
       document.getElementById("permu").disabled     = true; 
@@ -174,7 +111,12 @@
       // initial calculation
       nn = parseFloat(d3.select("#nn").node().value);
       xx = parseFloat(d3.select("#xx").node().value);
-      calculate()
+*/
+      ns  = 60;
+      na  = 20;
+      nb  = 30;
+      nab = 10;
+      drawUnion(ns, na, nb, nab);  
       // Calculate Permutation & Combinatio ======================================
       d3.select("#execute1").on("click",function() {
         chart.selectAll("*").remove();
@@ -197,18 +139,7 @@
              .style("font-size","1.2em")
           return;
         }
-        calculate()
-        drawPermutation(nn, xx, permu, combi);   
-      })
-      // 같은 것이 있는 순열 ======================================
-      d3.select("#execute2").on("click",function() {
-        nn2 = parseFloat(d3.select("#nn2").node().value);
-        pp  = parseFloat(d3.select("#pp").node().value);
-        qq  = parseFloat(d3.select("#qq").node().value);
-        rr  = parseFloat(d3.select("#rr").node().value);
-        ss  = parseFloat(d3.select("#ss").node().value);
-        permuMult = factorial(nn2) / ( factorial(pp) * factorial(qq) * factorial(rr) * factorial(ss) );
-        document.getElementById("permuMult").value = f0(permuMult);
+        drawUnion(ns, na, nb, nab);    
       })
 
       // svg Graph Save
@@ -223,14 +154,6 @@
         }
       });
 
-      // factorial
-      function factorial(n) {
-        var fact = 1;
-        for (var i = 1; i <= n; i++) {
-          fact = fact * i;
-        }
-        return fact; 
-      }
       // Calculate permutation and combination
       function calculate() {
         nfact = factorial(nn);
@@ -257,7 +180,7 @@
         document.getElementById("permuRep").value = f0(permuRep);
         document.getElementById("combi").value    = f0(combi);
         document.getElementById("combiRep").value = f0(combiRep);
-        drawPermutation(nn, xx, permu, combi);   
+        drawUnion(ns, na, nb, nab);   
       }
 
       // n slidebar
@@ -275,39 +198,73 @@
         calculate();
       }
       // draw Permutaion and Combination
-      function drawPermutation(nn, xx, permu, combi) {
+      function drawUnion(ns, na, nb, nab) {
         chart.selectAll("*").remove();
-        var i, j, tx, ty, cx, cy, temp, str1, str2, str3;
-        var radius = 8;
+        var i, j, tx, ty, cx, cy, rx, ry, width, height, temp, str1, str2, str3;
+        var radius = 70;
         var xgap   = 50;
         var ygap   = 20;
-        var fontsize  = "0.8em";
+        var fontsize  = "0.9em";
         var fontsize2 = "1.3em";
+        cx = margin.left + 150;
+        cy = margin.top  + 110;
+        tx = margin.left + 10;
+        ty = margin.top  + 10;
+        rx = 20;
+        ry = 20;
+        width  = 360;
+        height = 200;
+        // A union B
+        chart.append("rect").attr("x",tx).attr("y",ty).attr("rx",rx).attr("ry",ry).attr("width",width).attr("height",height)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","white");
+        chart.append("text").attr("x", tx+30).attr("y", ty+30).text("S")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","yellow");
+        chart.append("text").attr("x", cx).attr("y", cy-radius+20).text("A")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chart.append("circle").attr("cx",cx+80).attr("cy",cy).attr("r",radius)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","yellow");
+        chart.append("text").attr("x", cx+80).attr("y", cy-radius+20).text("B")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chart.append("text").attr("x", cx+40).attr("y", cy+50).text("A ∪ B")
+             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","middle")
+
+        // A intersection B
+        ty += 250;
+        cy += 250;
+        chart.append("rect").attr("x",tx).attr("y",ty).attr("rx",rx).attr("ry",ry).attr("width",width).attr("height",height)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","yellow");
+        chart.append("text").attr("x", tx+30).attr("y", ty+30).text("S")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.5").style("fill","red");
+        chart.append("text").attr("x", cx).attr("y", cy-radius+20).text("A")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chart.append("circle").attr("cx",cx+80).attr("cy",cy).attr("r",radius)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.5").style("fill","green");
+        chart.append("text").attr("x", cx+80).attr("y", cy-radius+20).text("B")
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chart.append("text").attr("x", cx+40).attr("y", cy+10).text("A ∩ B")
+             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","middle")
+
+/*
+   <defs>
+        <clipPath id="mask_left">
+            <circle r="85" id="circle_right" cy="100" cx="200" stroke-width="1.5"  stroke="#000" fill="none"/>
+        </clipPath>
+    </defs>
+    <g>
+        <circle r="85" id="center" cy="100" cx="100" fill="orange" clip-path="url(#mask_left)"/>
+        <circle r="85" id="circle_left" cy="100" cx="100" stroke-width="1.5" stroke="#000" fill="none" />
+        <circle r="85" id="circle_right" cy="100" cx="200" stroke-width="1.5"  stroke="#000" fill="none"/>
+    </g>
+
+        chart.append("circle").attr("cx",cx+50).attr("cy",cy+80).attr("r",radius)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.5").style("fill","blue");
         // Permutation
-        cx = margin.left;
-        cy = margin.top + 20;
         str1 = nn.toString();
         str2 = xx.toString();
-        if ( xx <= nn) {
-          if (xx <= 1) temp = "";
-          else if (xx == 2) temp = " = " + str1 + " \u00D7 " + (nn-1).toString();
-          else if (xx == 3) temp = " = " + str1 + " \u00D7 " + (nn-1).toString() + " \u00D7 " + (nn-2).toString();
-          else temp = " = " + str1 + " \u00D7 " + (nn-1).toString() + " \u00D7 " + " \u22EF " + " \u00D7 " + (nn-xx+1).toString();
-          str3 = temp + " = " + permu.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("P").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        } 
-        if ( nn > 10 || xx > 1 ) {
-          cy += ygap+5;
-          str3 = " = " + str1 + " ^ " + str2 + " = " + permuRep.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("Π").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        }
-
         if (nn <= 10 && xx == 2) {
           for (i = 0; i < nn; i++) { 
             cy = cy + ygap;
@@ -325,44 +282,7 @@
             } // endof j
           } // endof i
         } // endof if
-        // Combination
-        cx = margin.left;
-        cy = cy + 2*ygap;
-        str1 = nn.toString();
-        str2 = xx.toString();
-        if ( xx <= nn) {
-          if (xx == 0) str3 = " = 1 " + " / " + str2 + "! = " + combi.toString();
-          else if (xx == 1) str3 = " = " + str1 + " / " + str2 + "! = " + combi.toString();
-          else str3 = temp + " / " + str2 + "! = " + combi.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("C").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        }
-        if ( nn > 10 || xx > 1 ) {
-          cy += ygap+5;
-          str3 = " = ("+str2+"+" + str1 + "-1)!" + " / ("+ str2 + "! ("+ str1+"-1)! ) = " + combiRep.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("H").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        }
-        if (nn <= 10 && xx == 2) {
-          for (i = 0; i < nn-1; i++) { 
-            cy = cy + ygap;
-            ty = cy + 4;
-            str1 = (i+1).toString();
-            for (j = i+1; j < nn; j++) {
-              cx = (j+1) * xgap;
-              tx = cx + 15;
-              str2 = (j+1).toString();
-              chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius).style("fill",colr[i]);
-              chart.append("text").attr("x", cx).attr("y", ty).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-              chart.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radius).style("fill",colr[j]);
-              chart.append("text").attr("x", tx).attr("y", ty).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-            } // endof j
-          } // endof i
-        } // endof if
+*/
       }
 
   </script>

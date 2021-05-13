@@ -12,6 +12,11 @@
     <script src="/estat/eStat/js/eStatU.js"></script>
     <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
     <script src="/estat/eStat/lib/convertSVG.js"></script>
+<style>
+    .slider { width:100%; -webkit-appearance: none; background: cyan; }
+//    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background: #ffffff; cursor: pointer; border: 1px solid #000000; height: 36px; width: 16px; margin-top: -14px; box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; border-radius: 3px; }
+</style>
+
 </head>
 
 <body>
@@ -34,8 +39,8 @@
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-      <input type="range" min="0" max="800" value="201" id="range21N" onchange="showValueNormal1(this.value)"/>
-      <input type="range" min="0" max="800" value="591" id="range22N" onchange="showValueNormal2(this.value)"/>
+      <input type="range" min="0" max="800" value="201" id="range21N" class="slider" onchange="showValueNormal1(this.value)"/>
+      <input type="range" min="0" max="800" value="591" id="range22N" class="slider" onchange="showValueNormal2(this.value)"/>
     </section>
  
      <form name="myForm"> 
@@ -179,8 +184,9 @@
       <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 
       <a href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution" target="_blank" >KhanAcademy </a> &nbsp; 
       <p>
- 
+
     </form>
+
     <div>
       <p>
       <div id="screenTable">

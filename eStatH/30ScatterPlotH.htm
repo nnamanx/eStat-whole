@@ -392,11 +392,12 @@ function showScatterPlot(nobs, xdata, ydata, gxmin, gxmax, gymin, gymax, graphWi
 
 // 회귀선 그리기 함수
 function showRegression2(alpha, beta, corr, rsquare, gxmin, gxmax, gymin, gymax, checkTitle) {
+        var gxrange = gxmax - gxmin;
         var gyrange = gymax - gymin;
-        var x1  = margin.left;
-        var y1  = margin.top  + graphHeight - graphHeight*((alpha+beta*gxmin)-gymin)/gyrange;
-        var x2  = margin.left + graphWidth;
-        var y2  = margin.top  + graphHeight - graphHeight*((alpha+beta*gxmax)-gymin)/gyrange;
+        var x1  = margin.left + graphWidth*(stat[3]-gxmin)/gxrange;
+        var y1  = margin.top  + graphHeight - graphHeight*((alpha+beta*stat[3])-gymin)/gyrange;
+        var x2  = margin.left + graphWidth*(stat[4]-gxmin)/gxrange;
+        var y2  = margin.top  + graphHeight - graphHeight*((alpha+beta*stat[4])-gymin)/gyrange;
         svg.append("line").attr("class","reglabel2")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -411,7 +412,7 @@ function showRegression2(alpha, beta, corr, rsquare, gxmin, gxmax, gymin, gymax,
       
         svg.append("text").attr("class","reglabel2").attr("x", margin.left + 80).attr("y", margin.top +  40)
                 .text("ρ = "+f2(corr))
-/*
+/* for university
         svg.append("text").attr("class","reglabel2").attr("x", margin.left + 80).attr("y", margin.top +  40)
                 .text("r = "+f2(corr)+" r\u00B2 = "+f2(rsquare))
 */
