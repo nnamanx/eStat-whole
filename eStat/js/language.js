@@ -170,6 +170,7 @@ $.message.ko = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 검정이면, Z<sub>&alpha;/2</sub> )",
     "&chi;<sup>2</sup> test": "&chi;&#178; 검정",
     "Variance Assumption": "분산가정",
+    "Variance": "분산",
     "F test": "F 검정",
     "At least one pair of means is different": "적어도 한쌍 이상의 평균이 다름",
     "Main Title" : "주 제목",
@@ -185,6 +186,9 @@ $.message.ko = {
     "Exit": "나가기",
     "eStatU UnivStatEdu": "eStatU - 대학 통계교육 SW",
     "eStatH HighStatEdu": "eStatH 중 / 고 통계교육 SW",
+    "MiddleStat": "중학: 통계",
+    "HighStat":   "고등: 확률 및 통계",
+    "ebookLink":  "전자책 링크",
     "Menu": "메뉴",
     "Binomial Experiment": "이항분포실험",
     "Binomial Distribution": "이항분포",
@@ -213,18 +217,20 @@ $.message.ko = {
     "Sample10": "10% 표본추출",
     "Sample20": "20% 표본추출",
     "Statistics/BoxPlot": "통계량/상자그림",
-    "Law of Large Number": "대수의 법칙 시뮬레이션",
-    "Dist of Sample Means": "표본평균의 표집분포 시뮬레이션",
+    "StatisticalProb":     "통계적 확률",
+    "Law of Large Number": "큰수의 법칙",
+    "Dist of Sample Means": "표본평균의 분포 시뮬레이션",
     "Sampling Distribution": "표집분포",
     "Sample Size": "표본크기",
     "Confidence Interval": "신뢰구간",
     "Confidence Interval Simulation": "모평균 신뢰구간 시뮬레이션",
     "Confidence Interval Mu": "추정 : 모평균 &mu;",
+    "Mu Confidence Interval": "모평균 신뢰구간",
     "Confidence Interval Sigma": "추정 : 모분산 &sigma;&#178;",
     "Confidence Interval P": "추정 : 모비율 p",
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
-    "Confidence Level": "신뢰수준",
+    "Confidence Level": "신뢰도",
     "Testing Hypothesis mu_titleAB": "가설검정 모평균",
     "Testing Hypothesis mu_title": "가설검정 모평균",
     "Testing Hypothesis sigma_title": "가설검정 모분산",
@@ -310,7 +316,7 @@ $.message.ko = {
     "AnovaTable": "분산분석표",
     "AnovaMeanGraph": "평균신뢰구간도",
     "MultipleComparison": "다중비교",
-    "ComparisonGraph": "비교",
+    "ComparisonGraph": "비교 그래프",
     "AnovaResidual": "표준화 잔차와 예측값 산점도",
     "AnovaQQ": "잔차 Q-Q 산점도",
     "TestingFit": "범주형 : 적합성검정",
@@ -364,7 +370,7 @@ $.message.ko = {
     "by": "by",
     "NameVar": "이름변량",
     "n_variance": "n-1 공식",
-    "RandomNumber":   "확률난수",
+    "RandomNumber":   "확률난수 생성",
     "RealNumber":     "실수형",
     "IntegerNumber":  "정수형",
     "NumberData":     "자료수",
@@ -374,16 +380,28 @@ $.message.ko = {
     "PercentileValue":"백분위수",
     "StudentRangeDist": "HSD 표준화범위분포",
     "copy link": "링크 복사",
+    "WithReplacement":    "복원추출",
     "WithoutReplacement": "비복원추출",
+    "Replacement":    "중복",
+    "NonReplacement": "비중복",
+    "WordCloud":       "Word Cloud",
     "WordCloud":       "단어 구름",
     "oneColor":        "색",
     "defaultColor":    "기본색",
     "RelativeFreq":    "상대도수",
     "MarginOfError":   "오차의 한계",
     "Permutation":     "순열",
+    "PermutationSame": "같은 것이 있는 순열",
     "Combination":     "조합",
     "NumberOfCase":    "경우의 수",
+    "BinomialTheorem": "이항정리",
+    "PascalTriangle":  "파스칼의 삼각형",
     "Character":       "이모티콘",
+    "AdditionRule":      "확률의 덧셈정리",
+    "MultiplicationRule": "확률의 곱셈정리",
+    "ConditionalProb":   "조건부확률",
+    "JointProb":         "결합확률",
+    "DiscreteDist":      "이산확률변수의 분포",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -440,7 +458,7 @@ alertMsg[50][0] = "구간시작과 구간너비에 숫자를 입력하세요."; 
 alertMsg[51][0] = "계급과 도수는 숫자이어야 하고 자료수가 동일해야 합니다.";  // 도수분포다각형
 alertMsg[52][0] = "계급과 도수에 문자는 허용이 안됩니다.";    // 도수분포다각형
 alertMsg[53][0] = "계급구간의 크기는 동일해야 합니다.";       // 도수분포다각형
-alertMsg[54][0] = "X 자료수와 Y 자료수는 동일해야 합니다.";
+alertMsg[54][0] = "두 자료수는 동일해야 합니다.";
 alertMsg[55][0] = "The same variable number is selected.";
 alertMsg[56][0] = "The same variable number is selected.";
 alertMsg[57][0] = "The same variable number is selected.";
@@ -568,7 +586,10 @@ svgStr[118][0]= "계급값";
 svgStr[119][0]= "범주";
 svgStr[120][0]= "최빈값";
 svgStr[121][0]= "공분산";
-
+svgStr[122][0]= "파스칼의 삼각형";
+svgStr[123][0]= "결합확률";
+svgStr[124][0]= "조건부확률";
+svgStr[125][0]= "이산확률변수의 확률분포";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -579,12 +600,12 @@ svgStrU[6][0] = "기하분포";
 svgStrU[7][0] = "초기하분포";
 svgStrU[8][0] = "모집단";
 svgStrU[9][0] = "표본의 분포";
-svgStrU[10][0] = "대수의 법칙";
+svgStrU[10][0] = "통계적 확률";
 svgStrU[11][0] = "뒷면";
 svgStrU[12][0] = "앞면";
-svgStrU[13][0] = "동전 앞면";
-svgStrU[14][0] = "  앞면의 수  ";
-svgStrU[15][0] = "  시행 횟수  ";
+svgStrU[13][0] = " 동전 앞면 ";
+svgStrU[14][0] = "앞면 나온 횟수  ";
+svgStrU[15][0] = "동전 던진 횟수";
 svgStrU[16][0] = "표본평균들의 분포";
 svgStrU[17][0] = "반복";
 svgStrU[18][0] = "표준오차";
@@ -681,6 +702,8 @@ svgStrU[108][0] = "변위계수";
 svgStrU[109][0] = "누적상대도수 (%)";
 svgStrU[110][0] = "균등분포의 최대 정수 수";
 svgStrU[111][0] = "마우스로 한 점을 이동";
+svgStrU[112][0] = "복원추출";
+svgStrU[113][0] = "비복원추출"; 
 
 // English
 $.message.en = {
@@ -774,6 +797,7 @@ $.message.en = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(if Z test, Z<sub>&alpha;/2</sub>is used)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Variance Assumption",
+    "Variance": "Variance",
     "F test": "F test",
     "At least one pair of means is different": "At least one pair of means is different",
     "Main Title : ": "Main Title",
@@ -789,6 +813,9 @@ $.message.en = {
     "Exit": "Exit",
     "eStatU UnivStatEdu": "eStatU - University Statistics Education SW",
     "eStatH HighStatEdu": "eStatH - Middle / High School Statistics Education SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menu",
     "Binomial Experiment": "Binomial Experiment",
     "Binomial Distribution": "Binomial Distribution",
@@ -817,6 +844,7 @@ $.message.en = {
     "Sample10": "Sampling 10%",
     "Sample20": "Sampling 20%",
     "Statistics/BoxPlot": "Statistics/BoxPlot",
+    "StatisticalProb":     "Statistical Probability",
     "Law of Large Number": "Law of Large Number",
     "Dist of Sample Means": "Dist of Sample Means",
     "Sampling Distribution": "Sampling Distribution",
@@ -824,6 +852,7 @@ $.message.en = {
     "Confidence Interval": "Confidence Interval",
     "Confidence Interval Simulation": "Confidence Interval Simulation",
     "Confidence Interval Mu": "Estimation : &mu;",
+    "Mu Confidence Interval": "Population Mean Confidence Interval",
     "Confidence Interval Sigma": "Estimation : &sigma;&#178;",
     "Confidence Interval P": "Estimation : p",
     "Estimation Accuracy": "Estimation Accuracy",
@@ -914,7 +943,7 @@ $.message.en = {
     "AnovaTable": "ANOVA Table",
     "AnovaMeanGraph": "Mean Confidence Interval",
     "MultipleComparison": "Multiple Comparison",
-    "ComparisonGraph": "Comparison Graph",
+    "ComparisonGraph": "Graph",
     "AnovaResidual": "Standardized Residual Plot",
     "AnovaQQ": "Residual Q-Q Plot",
     "TestingFit": "Categorical : Goodness of Fit Test",
@@ -968,7 +997,7 @@ $.message.en = {
     "by": "by",
     "NameVar": "Name Var",
     "n_variance": "n-1 formula",
-    "RandomNumber": "Random Number",
+    "RandomNumber":   "Random Number Generator",
     "RealNumber":     "Real",
     "IntegerNumber":  "Integer",
     "NumberData":     "Number of Data",
@@ -978,16 +1007,27 @@ $.message.en = {
     "PercentileValue": "Percentile",
     "StudentRangeDist": "HSD Studentized Range Dist.",
     "copy link": "link copy",
+    "WithReplacement":    "with replacement",
     "WithoutReplacement": "without replacement",
+    "Replacement":     "with replacement",
+    "NonReplacement":  "without replacement",
     "WordCloud":       "Word Cloud",
     "oneColor":        "Color",
     "defaultColor":    "Default Color",
     "RelativeFreq":    "Relative Frequency",
     "MarginOfError":   "Margin of Error",
     "Permutation":     "Permutation",
+    "PermutationSame": "Permutation with the same thing",
     "Combination":     "Combination",
     "NumberOfCase":    "Number of cases",
+    "BinomialTheorem": "Binomial Theorem",
+    "PascalTriangle":  "Pascal Triangle",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // English
@@ -1172,6 +1212,10 @@ svgStr[118][1] = "Interval Value";
 svgStr[119][1] = "Category";
 svgStr[120][1] = "Mode";
 svgStr[121][1] = "Covariance";
+svgStr[122][1] = "Pascal Triangle";
+svgStr[123][1] = "Joint Probability";
+svgStr[124][1] = "Conditional";
+svgStr[125][1] = "Discrete Distribution";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1284,6 +1328,8 @@ svgStrU[108][1] = "Coefficient of Variation";
 svgStrU[109][1] = "Cumulated Relative Frequency (%)";
 svgStrU[110][1] = "Max number of integers of Uniform Dist";
 svgStrU[111][1] = "Move a point using mouse";
+svgStrU[112][1] = "with replacement";
+svgStrU[113][1] = "without replacement"; 
 
 // Japanese
 $.message.ja = {
@@ -1376,9 +1422,9 @@ $.message.ja = {
     "(if Z-test, Z<sub>&alpha;/2 </sub> is used)": "(Z 検定のとき, Z &sigma;利用)",
     "&chi;<sup>2</sup> test": "&chi;&#178; 検定",
     "Variance Assumption": "分散の仮定",
+    "Variance": "分散",
     "F test": "F 検定",
     "At least one pair of means is different": "少なくとも一つ以上のペアの平均が異なる",
-    "F test": "F 検定",
     "Main Title : ": "タイトル",
     "y title : ": "y軸タイトル",
     "x title : ": "x軸タイトル",
@@ -1392,6 +1438,9 @@ $.message.ja = {
     "Exit": "閉じる",
     "eStatU UnivStatEdu": "eStatU - 大学統計教育",
     "eStatH HighStatEdu": "eStatH - 中高統計教育",
+    "MiddleStat": "中統計",
+    "HighStat":   "高統計",
+    "ebookLink":  "電子書籍リンク (韓国語)",
     "Menu": "メニュー",
     "Binomial Experiment": "二項分布シミュレーション",
     "Binomial Distribution": "二項分布",
@@ -1420,6 +1469,7 @@ $.message.ja = {
     "Sample10": "10% 標本抽出",
     "Sample20": "20% 標本抽出",
     "Statistics/BoxPlot": "統計量/箱ひげ図",
+    "StatisticalProb":     "統計的確率",
     "Law of Large Number": "大数の法則",
     "Dist of Sample Means": "標本平均の標本分布",
     "Sampling Distribution": "標本分布",
@@ -1427,6 +1477,7 @@ $.message.ja = {
     "Confidence Interval": "信頼区間",
     "Confidence Interval Simulation": "信頼区間シミュレーション",
     "Confidence Interval Mu": "推定 : &mu;",
+    "Mu Confidence Interval": "信頼区間 &mu;",
     "Confidence Interval Sigma": "推定 : &sigma;&#178;",
     "Confidence Interval P": "推定 : p",
     "Estimation Accuracy": "推定精度",
@@ -1581,17 +1632,27 @@ $.message.ja = {
     "PercentileValue": "百分位数",
     "StudentRangeDist": "HSDスチューデント化範囲分布",
     "copy link": "リンクをコピー",
+    "WithReplacement":    "復元抽出",
     "WithoutReplacement": "非復元抽出",
+    "Replacement":     "復元",
+    "NonReplacement":  "非復元",
     "WordCloud":       "ワードクラウド（英語のみ）",
     "oneColor":        "色",
     "defaultColor":    "デフォルトの色",
     "RelativeFreq":    "相対度数",
     "MarginOfError":   "誤差の範囲",
     "Permutation":     "順列",
+    "PermutationSame": "同じものがある順列",
     "Combination":     "組合",
     "NumberOfCase":    "場合の数",
+    "BinomialTheorem": "二項定理",
+    "PascalTriangle":  "パスカルトライアングル",
     "Character":       "絵文字",
-
+    "AdditionRule":      "確率加法規則",
+    "MultiplicationRule": "確率乗法規則",
+    "ConditionalProb":   "条件付確率",
+    "JointProb":         "結合確率",
+    "DiscreteDist":      "離散確率分布",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1762,6 +1823,10 @@ svgStr[118][2] = "階級区間値";
 svgStr[119][2] = "カテゴリ";
 svgStr[120][2] = "Mode";
 svgStr[121][2] = "Covariance";
+svgStr[122][2] = "Pascal Triangle";
+svgStr[123][2] = "Joint Probability";
+svgStr[124][2] = "Conditional";
+svgStr[125][2] = "Discrete Distribution";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -1874,6 +1939,8 @@ svgStrU[108][2] = "決定係数";
 svgStrU[109][2] = "累積相対度数 (%)";
 svgStrU[110][2] = "均等分布の最大整数";
 svgStrU[111][2] = "一点をマウスで移動";
+svgStrU[112][2] = "復元抽出";
+svgStrU[113][2] = "非復元抽出"; 
 
 // Chinese
 $.message.zhTW = {
@@ -1963,6 +2030,7 @@ $.message.zhTW = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 檢定, Z<sub>&alpha;/2</sub>使用)",
     "&chi;<sup>2</sup> test": "&chi;&#178; 檢定",
     "Variance Assumption": "變異數假設",
+    "Variance": "變異數",
     "F test": "F 檢定",
     "At least one pair of means is different": "至少有一對平均數不相等",
     "Main Title : ": "主標題",
@@ -1978,6 +2046,9 @@ $.message.zhTW = {
     "Exit": "離開",
     "eStatU UnivStatEdu": "eStatU - 大學統計教育軟體",
     "eStatH HighStatEdu": "eStatH - 中學統計教育軟體",
+    "MiddleStat": "中統計",
+    "HighStat":   "高統計",
+    "ebookLink":  "電子書連結 (韓国語)",
     "Menu": "選單",
     "Binomial Experiment": "二項式分佈實驗",
     "Binomial Distribution": "二項式分佈",
@@ -2006,13 +2077,15 @@ $.message.zhTW = {
     "Sample10": "10% 樣本抽出",
     "Sample20": "20% 樣本抽出",
     "Statistics/BoxPlot": "統計量/盒形圖",
+    "StatisticalProb":     "統計概率",
     "Law of Large Number": "大數法則",
     "Dist of Sample Means": "樣本平均的分佈",
     "Sampling Distribution": "樣本分佈",
     "Sample Size": "樣本數",
     "Confidence Interval": "信頼區間",
-    "Confidence Interval Simulation": "信頼区間實驗",
+    "Confidence Interval Simulation": "信頼區間實驗",
     "Confidence Interval Mu": "估計 : &mu;",
+    "Mu Confidence Interval": "信頼區間 &mu;",
     "Confidence Interval Sigma": "估計 : &sigma;&#178;",
     "Confidence Interval P": "估計 : p",
     "Estimation Accuracy": "估計準確率",
@@ -2167,17 +2240,27 @@ $.message.zhTW = {
     "PercentileValue": "百分",
     "StudentRangeDist": "HSD範圍分佈",
     "copy link": "複製鏈接",
-    "WithoutReplacement": "沒有恢復提取",
+    "WithReplacement":    "修復抽樣",
+    "WithoutReplacement": "非復原抽樣",
+    "Replacement":     "修復",
+    "NonReplacement":  "非復原",
     "WordCloud":       "詞云（僅英語）",
     "oneColor":        "色",
     "defaultColor":    "默認顏色",
     "RelativeFreq":    "相對頻率",
     "MarginOfError":   "誤差範圍",
     "Permutation":     "排列",
+    "PermutationSame": "等次序列",
     "Combination":     "組合",
     "NumberOfCase":    "案件數",
+    "BinomialTheorem": "二項式定理",
+    "PascalTriangle":  "帕斯卡三角形",
     "Character":       "表情符號",
-
+    "AdditionRule":      "確率加法規則",
+    "MultiplicationRule": "確率乗法規則",
+    "ConditionalProb":   "条件付確率",
+    "JointProb":         "結合確率",
+    "DiscreteDist":      "離散確率分布",
 };
 // Chinese 
 appStr[1][3] = "../eStatH/index.html";
@@ -2348,6 +2431,10 @@ svgStr[118][3]= "階級區間値";
 svgStr[119][3] = "分類";
 svgStr[120][3] = "Mode";
 svgStr[121][3] = "Covariance";
+svgStr[122][3] = "Pascal Triangle";
+svgStr[123][3] = "Joint Probability";
+svgStr[124][3] = "Conditional";
+svgStr[125][3] = "Discrete Distribution";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2460,6 +2547,8 @@ svgStrU[108][3] = "確定係數";
 svgStrU[109][3] = "累積相對頻率 (%)";
 svgStrU[110][3] = "均勻分佈的最大整數";
 svgStrU[111][3] = "用鼠標移動點";
+svgStrU[112][3] = "修復抽樣";
+svgStrU[113][3] = "非復原抽樣"; 
 
 // French
 $.message.fr = {
@@ -2549,6 +2638,7 @@ $.message.fr = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Pour le Z test, Z<sub>&alpha;/2</sub>utilisé)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Hypothèse de variance",
+    "Variance": "Variance",
     "F test": "F test",
     "At least one pair of means is different": "Au moins deux moyennes sont différentes",
     "Main Title : ": "Titre principal",
@@ -2564,6 +2654,9 @@ $.message.fr = {
     "Exit": "Terminer",
     "eStatU UnivStatEdu": "eStatU - Enseignement de la statistique à l'université SW",
     "eStatH HighStatEdu": "eStatH - L'enseignement de la statistique au lycée SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menu",
     "Binomial Experiment": "Essai binomialt",
     "Binomial Distribution": "Loi binomiale",
@@ -2592,6 +2685,7 @@ $.message.fr = {
     "Sample10": "Echantillonnage 10%",
     "Sample20": "Echantillonnage 20%",
     "Statistics/BoxPlot": "Statistiques/Boîte à moustaches",
+    "StatisticalProb":     "Probabilité statistique",
     "Law of Large Number": "Loi des grands nombres",
     "Dist of Sample Means": "Distribution des moyennes d'échantillon",
     "Sampling Distribution": "Distribution d'échantillonnage",
@@ -2599,6 +2693,7 @@ $.message.fr = {
     "Confidence Interval": "Intervalle de confinace",
     "Confidence Interval Simulation": "Essai Intervalle de confinace",
     "Confidence Interval Mu": "Estimation : &mu;",
+    "Mu Confidence Interval": "Estimation : &mu;",
     "Confidence Interval Sigma": "Estimation : &sigma;&#178;",
     "Confidence Interval P": "Estimation : p",
     "Estimation Accuracy": "Précision de l'estimation",
@@ -2753,17 +2848,27 @@ $.message.fr = {
     "PercentileValue": "Centiles",
     "StudentRangeDist": "HSD Répartition de la gamme",
     "copy link": "copiar enlace",
-    "WithoutReplacement": "sans remplacement",
+    "WithoutReplacement": "Extraction non restaurée",
+    "WithReplacement":    "Récupération",
+    "Replacement":     "Récupération",
+    "NonReplacement":  "Extraction non restaurée",
     "WordCloud":       "Nuage de mots (en anglais uniquement)",
     "oneColor":        "couleur",
     "defaultColor":    "couleur par défaut",
     "RelativeFreq":    "Fréquence relative",
     "MarginOfError":   "Margines błędu",
     "Permutation":     "Permutation",
+    "PermutationSame": "la même rangée de colonnes",
     "Combination":     "Combinaison",
     "NumberOfCase":    "Nombre de cas",
+    "BinomialTheorem": "binôme de Newton",
+    "PascalTriangle":  "Triangle de Pascal",
     "Character":       "Emoji",
-
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2934,6 +3039,10 @@ svgStr[118][4]= "Valeur d'intervalle";
 svgStr[119][4]= "Catégorie";
 svgStr[120][4] = "Mode";
 svgStr[121][4] = "Covariance";
+svgStr[122][4] = "Pascal Triangle";
+svgStr[123][4] = "Joint Probability";
+svgStr[124][4] = "Conditional";
+svgStr[125][4] = "Discrete Distribution";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -3046,6 +3155,8 @@ svgStrU[108][4] = "Coefficient de détermination";
 svgStrU[109][4] = "Fréquence relative cumulée (%)";
 svgStrU[110][4] = "Nombre maximum d'entiers de la distribution uniforme";
 svgStrU[111][4] = "Déplacer un point avec la souris";
+svgStrU[112][4] = "Récupération";
+svgStrU[113][4] = "Extraction non restaurée"; 
 
 // German
 $.message.de = {
@@ -3135,6 +3246,7 @@ $.message.de = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Fall Z Test vorliegt, Z, &sigma)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Annahme für die Varianz",
+    "Variance": "Varianz",
     "F test": "F test",
     "At least one pair of means is different": "mindestens ein Paar von Mittelwerten ist verschieden",
     "Main Title : ": "Hauptüberschrift",
@@ -3150,6 +3262,9 @@ $.message.de = {
     "Exit": "Exit",
     "eStatU UnivStatEdu": "eStatU - Statistikausausbildung an Universitäten",
     "eStatH HighStatEdu": "eStatH - Statistikausbildung an High Schools",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menü",
     "Binomial Experiment": "Binomialexperiment",
     "Binomial Distribution": "Binomialverteilung",
@@ -3178,6 +3293,7 @@ $.message.de = {
     "Sample10": "Stichproben 10%",
     "Sample20": "Stichproben 20%",
     "Statistics/BoxPlot": "Statistik/BoxPlot",
+    "StatisticalProb":     "Statistische Wahrscheinlichkeit",
     "Law of Large Number": "Gesetz der Großen Zahlen",
     "Dist of Sample Means": "Verteilung der Stichprobenmittelwerte",
     "Sampling Distribution": "Stichprobenverteilung",
@@ -3185,6 +3301,7 @@ $.message.de = {
     "Confidence Interval": "Konfidenzintervall",
     "Confidence Interval Simulation": "Konfidenzintervallexperiment",
     "Confidence Interval Mu": "Einschätzung : &mu;",
+    "Mu Confidence Interval": "Einschätzung : &mu;",
     "Confidence Interval Sigma": "Einschätzung : &sigma;&#178;",
     "Confidence Interval P": "Einschätzung : p",
     "Estimation Accuracy": "Schätzgenauigkeit",
@@ -3337,15 +3454,28 @@ $.message.de = {
     "StudentRangeDist": "HSD Bereichsverteilung",
     "copy link": "Link kopieren",
     "WithoutReplacement": "ohne Ersatz",
+    "WithReplacement":    "Wiederherstellungs-Extraktion",
+    "Replacement":     "Wiederherstellungs-Extraktion",
+    "NonReplacement":  "ohne Ersatz",
     "WordCloud":       "Wortwolke (Englisch)",
     "oneColor":        "Farbe",
     "defaultColor":    "Standardfarbe",
     "RelativeFreq":    "Relative Frequenz",
     "MarginOfError":   "Fehlermarge",
     "Permutation":     "Permutation",
+    "PermutationSame": "Die gleiche Reihenfolge.",
     "Combination":     "Kombination",
     "NumberOfCase":    "Zahl der Fälle",
+    "BinomialTheorem": "Zweistellige Logik",
+    "PascalTriangle":  "Pascal-Dreieck",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // German 
@@ -3517,6 +3647,10 @@ svgStr[118][5]= "Intervallwert";
 svgStr[119][5] = "Kategorie";
 svgStr[120][5] = "Mode";
 svgStr[121][5] = "Covariance";
+svgStr[122][5] = "Pascal Triangle";
+svgStr[123][5] = "Joint Probability";
+svgStr[124][5] = "Conditional";
+svgStr[125][5] = "Discrete Distribution";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3629,6 +3763,8 @@ svgStrU[108][5] = "Bestimmtheitsmaß";
 svgStrU[109][5] = "Kumulierte relative Häufigkeit (%)";
 svgStrU[110][5] = "Maximale Anzahl von Ganzzahlen der Gleichverteilung";
 svgStrU[111][5] = "Bewegen Sie einen Punkt mit der Maus";
+svgStrU[112][5] = "Wiederherstellungs-Extraktion";
+svgStrU[113][5] = "ohne Ersatz"; 
 
 // Spanish
 $.message.es = {
@@ -3718,6 +3854,7 @@ $.message.es = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Si prueba Z  Z, &sigma)",
     "&chi;<sup>2</sup> test": "Prueba &chi;&#178;",
     "Variance Assumption": "Premisa sobre la varianza",
+    "Variance": "Varianza",
     "F test": "Prueba F",
     "At least one pair of means is different": "Al menos un par de medias es diferente",
     "Main Title : ": "Titulo principal",
@@ -3733,6 +3870,9 @@ $.message.es = {
     "Exit": "Salir",
     "eStatU UnivStatEdu": "eStatU - Educación Estadística Universitaria SW",
     "eStatH HighStatEdu": "eStatH - Educación Estadística de Bachillerato SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menú",
     "Binomial Experiment": "Experimento Binomial",
     "Binomial Distribution": "Distribución Binomial",
@@ -3761,6 +3901,7 @@ $.message.es = {
     "Sample10": "Muestreo 10%",
     "Sample20": "Muestreo 20%",
     "Statistics/BoxPlot": "Estadísticos/Diagrama de Box",
+    "StatisticalProb":     "Probabilidad estadística",
     "Law of Large Number": "Ley de los Grandes Números",
     "Dist of Sample Means": "Distribución de Medias Muestrales",
     "Sampling Distribution": "Distribución muestral",
@@ -3768,6 +3909,7 @@ $.message.es = {
     "Confidence Interval": "Nivel de confianza",
     "Confidence Interval Simulation": "Experimento Nivel de confianza",
     "Confidence Interval Mu": "Estimación : &mu;",
+    "Mu Confidence Interval": "Estimación : &mu;",
     "Confidence Interval Sigma": "Estimación : &sigma;&#178;",
     "Confidence Interval P": "Estimación : p",
     "Estimation Accuracy": "Precisión de la estimación",
@@ -3923,15 +4065,26 @@ $.message.es = {
     "StudentRangeDist": "HSD Distribución de rango",
     "copy link": "copiar link",
     "WithoutReplacement": "sin reemplazo",
+    "WithReplacement":    "desmovilización",
+    "Replacement":     "desmovilización",
+    "NonReplacement":  "sin reemplazo",
     "WordCloud":       "Nube de palabras (inglés)",
     "oneColor":        "color",
     "defaultColor":    "color predeterminado",
     "RelativeFreq":    "Frecuencia relativa",
     "MarginOfError":   "Margen de error",
     "Permutation":     "Permutación",
+    "PermutationSame": "Permutación con lo mismo",
     "Combination":     "Combinación",
     "NumberOfCase":    "Numero de casos",
+    "BinomialTheorem": "Teorema de la transposición",
+    "PascalTriangle":  "Triángulo de Pascal",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Spanish
@@ -4103,6 +4256,10 @@ svgStr[118][6]= "Valor de intervalo";
 svgStr[119][6]= "Categoria";
 svgStr[120][6] = "Mode";
 svgStr[121][6] = "Covariance";
+svgStr[122][6] = "Pascal Triangle";
+svgStr[123][6] = "Joint Probability";
+svgStr[124][6] = "Conditional";
+svgStr[125][6] = "Discrete Distribution";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -4215,6 +4372,8 @@ svgStrU[108][6] = "Coeficiente de determinación";
 svgStrU[109][6] = "Frecuencia relativa acumulada (%)";
 svgStrU[110][6] = "Número máximo de enteros de distribución uniforme";
 svgStrU[111][6] = "Mueve un punto con el mouse";
+svgStrU[112][6] = "desmovilización";
+svgStrU[113][6] = "sin reemplazo"; 
 
 // Vietnamese
 $.message.vi = {
@@ -4304,6 +4463,7 @@ $.message.vi = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Nếu kiểm định Z, Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "Kiểm định &chi;&#178;",
     "Variance Assumption": "Giả thiết về phương sai",
+    "Variance": "phương sai",
     "F test": "Kiểm định F",
     "At least one pair of means is different": "Có ít nhất một cặp trung bình khác nhau",
     "Main Title : ": "Tiêu đề chính",
@@ -4319,6 +4479,9 @@ $.message.vi = {
     "Exit": "Thoát",
     "eStatU UnivStatEdu": "eStatU - T/kê Đại học",
     "eStatH HighStatEdu": "eStatH - T/kê Trung học",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menu",
     "Binomial Experiment": "Thí nghiệm nhị thức",
     "Binomial Distribution": "Phân phối nhị thức",
@@ -4347,6 +4510,7 @@ $.message.vi = {
     "Sample10": "Lấy mẫu 10%",
     "Sample20": "Lấy mẫu 20%",
     "Statistics/BoxPlot": "Thống kê/Biểu đồ Box",
+    "StatisticalProb":     "Xác suất thống kê",
     "Law of Large Number": "Luật số lớn",
     "Dist of Sample Means": "P/p của trung bình mẫu",
     "Sampling Distribution": "Phân phối lấy mẫu",
@@ -4354,6 +4518,7 @@ $.message.vi = {
     "Confidence Interval": "Khoảng tin cậy",
     "Confidence Interval Simulation": "Thí Khoảng tin cậy",
     "Confidence Interval Mu": "Ước lượng : &mu;",
+    "Mu Confidence Interval": "Ước lượng : &mu;",
     "Confidence Interval Sigma": "Ước lượng : &sigma;&#178;",
     "Confidence Interval P": "Ước lượng : p",
     "Estimation Accuracy": "Độ chính xác của ước lượng",
@@ -4505,15 +4670,30 @@ $.message.vi = {
     "StudentRangeDist": "HSD Phân phối phạm vi",
     "copy link": "sao chép đường dẫn",
     "WithoutReplacement": "không có vật thay thế",
+    "WithReplacement":    "Khai thác phục hồi",
+    "Replacement":     "Khai thác phục hồi",
+    "NonReplacement":  "không có vật thay thế",
     "WordCloud":       "Word Cloud (tiếng Anh)",
     "oneColor":        "màu đơn",
     "defaultColor":    "màu mặc định",
     "RelativeFreq":    "Tần số tương đối",
     "MarginOfError":   "Biên độ của lỗi",
     "Permutation":     "Hoán vị",
+    "PermutationSame": "Hoán vị với cùng một thứ",
     "Combination":     "Sự phối hợp",
     "NumberOfCase":    "Số trường hợp",
+    "BinomialTheorem": "sự sắp xếp lại hai điều",
+    "PascalTriangle":  "Tam giác Pascal",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Vietnamese
@@ -4685,6 +4865,10 @@ svgStr[118][7]= "Giá trị khoảng thời gian";
 svgStr[119][7]= "thể loại";
 svgStr[120][7] = "Mode";
 svgStr[121][7] = "Covariance";
+svgStr[122][7] = "Pascal Triangle";
+svgStr[123][7] = "Joint Probability";
+svgStr[124][7] = "Conditional";
+svgStr[125][7] = "Discrete Distribution";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -4797,6 +4981,8 @@ svgStrU[108][7] = "Hệ số xác định";
 svgStrU[109][7] = "Tần số tương đối tích lũy (%)";
 svgStrU[110][7] = "Số lượng tối đa của số nguyên phân phối đồng đều";
 svgStrU[111][7] = "Di chuyển một điểm bằng chuột";
+svgStrU[112][7] = "Khai thác phục hồi";
+svgStrU[113][7] = "không có vật thay thế"; 
 
 // Indonesian
 $.message.id = {
@@ -4886,6 +5072,7 @@ $.message.id = {
     "(jika Z-uji, Z<sub>1-&alpha;/2 </sub> digunakan)": "(jika uji-Z, Z<sub>&alpha;/2</sub>digunakan)",
     "&chi;<sup>2</sup> test": "uji &chi;&#178;",
     "Variance Assumption": "Asumsi Varians",
+    "Variance": "Varians",
     "F test": "Uji F",
     "At least one pair of means is different": "Setidaknya ada satu pasang Rata-rata yang berbeda",
     "Main Title : ": "Judul Utama",
@@ -4901,6 +5088,9 @@ $.message.id = {
     "Exit": "Keluar",
     "eStatU UnivStatEdu": "eStatU ? Pelajaran Statistika Tingkat Universitas SW",
     "eStatH HighStatEdu": "eStatH ? Pelajaran Statistika Tingkat Sekolah Menengah Atas SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menu",
     "Binomial Experiment": "Percobaan Binomial",
     "Binomial Distribution": "Distribusi Binomial ",
@@ -4929,6 +5119,7 @@ $.message.id = {
     "Sample10": "Pengambilan Sampel 10%",
     "Sample20": "Pengambilan Sampel 20%",
     "Statistics/BoxPlot": "Statistik/Diagram Kotak Garis",
+    "StatisticalProb":     "Probabilitas Statistik",
     "Law of Large Number": "Hukum Bilangan Besar",
     "Dist of Sample Means": "Distribusi dari Rata-rata Sampel",
     "Sampling Distribution": "Distribusi Pengambilan Sampel",
@@ -4936,6 +5127,7 @@ $.message.id = {
     "Confidence Interval": "Selang Kepercayaan",
     "Confidence Interval Simulation": "Percobaan Selang Kepercayaan",
     "Confidence Interval Mu": "Estimasi : &mu;",
+    "Mu Confidence Interval": "Estimasi : &mu;",
     "Confidence Interval Sigma": "Estimasi : &sigma;&#178;",
     "Confidence Interval P": "Estimasi : p",
     "Estimation Accuracy": "Keakurasian Nilai Estimasi",
@@ -5091,15 +5283,26 @@ $.message.id = {
     "StudentRangeDist": "HSD Distribusi Rentang",
     "copy link": "Salin tautan",
     "WithoutReplacement": "tanpa penggantian",
+    "WithReplacement":    "Ekstraksi restorasi",
+    "Replacement":     "Ekstraksi restorasi",
+    "NonReplacement":  "tanpa penggantian",
     "WordCloud":       "Word Cloud (Inggris)",
     "oneColor":        "warna",
     "defaultColor":    "warna default",
     "RelativeFreq":    "Frekuensi relatif",
     "MarginOfError":   "Margin of Error",
     "Permutation":     "Permutasi",
+    "PermutationSame": "Permutasi dengan hal yang sama",
     "Combination":     "Kombinasi",
     "NumberOfCase":    "Jumlah kasus",
+    "BinomialTheorem": "Teorema binomial",
+    "PascalTriangle":  "Segitiga Pascal",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Indonesian 
@@ -5271,6 +5474,10 @@ svgStr[118][8]= "Nilai interval";
 svgStr[119][8]= "kategori";
 svgStr[120][8] = "Mode";
 svgStr[121][8] = "Covariance";
+svgStr[122][8] = "Pascal Triangle";
+svgStr[123][8] = "Joint Probability";
+svgStr[124][8] = "Conditional";
+svgStr[125][8] = "Discrete Distribution";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -5383,7 +5590,8 @@ svgStrU[108][8] = "Koefisien Determinasi";
 svgStrU[109][8] = "Frekuensi Relatif terakumulasi (%)";
 svgStrU[110][8] = "Jumlah maksimum bilangan bulat dari Distribusi Seragam";
 svgStrU[111][8] = "Pindahkan satu titik dengan mouse";
-
+svgStrU[112][8] = "Ekstraksi restorasi";
+svgStrU[113][8] = "tanpa penggantian"; 
 
 // Mongolian
 $.message.mn = {
@@ -5473,6 +5681,7 @@ $.message.mn = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Хэрэв Z тест байвал z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;&#178; Тест",
     "Variance Assumption": "Дундаж кватратын хазайлтын таамаглал ",
+    "Variance": "хэлбэлзэл",
     "F test": "F Тестийн",
     "At least one pair of means is different": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр. ",
     "Main Title : ": "Үндсэн гарчиг",
@@ -5488,6 +5697,9 @@ $.message.mn = {
     "Exit": "гарах",
     "eStatU UnivStatEdu": "eStatU - Их сургуулийн статистикийн боловсрол",
     "eStatH HighStatEdu": "eStatH - Ахлах сургуулийн статистикийн боловсрол",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Цэс",
     "Binomial Experiment": "Бином туршилт",
     "Binomial Distribution": "Бином тархалт",
@@ -5516,6 +5728,7 @@ $.message.mn = {
     "Sample10": "Түүвэрлэлт 10%",
     "Sample20": "Түүвэрлэлт 20%",
     "Statistics/BoxPlot": "Статистик/BoxPlot",
+    "StatisticalProb":     "Statistical Probability",
     "Law of Large Number": "Их тооны хууль",
     "Dist of Sample Means": "Жишээ дундаж утгуудын тархалт ",
     "Sampling Distribution": "Дээж авах түгээлт",
@@ -5523,6 +5736,7 @@ $.message.mn = {
     "Confidence Interval": "Найдварт завсар ",
     "Confidence Interval Simulation": "Найдварт завсар туршилт",
     "Confidence Interval Mu": "Тооцоолол : &mu;",
+    "Mu Confidence Interval": "Тооцоолол : &mu;",
     "Confidence Interval Sigma": "Тооцоолол : &sigma;&#178;",
     "Confidence Interval P": "Тооцоолол : p",
     "Estimation Accuracy": "нарийвчлалыг үнэлэх",
@@ -5676,15 +5890,26 @@ $.message.mn = {
     "StudentRangeDist": "HSD Range тархац",
     "copy link": "хуулбар холбоос",
     "WithoutReplacement": "орлуулахгүйгээр",
+    "WithReplacement":    "Сэргээлтийн олборлолт",
+    "Replacement":     "Сэргээлтийн олборлолт",
+    "NonReplacement":  "орлуулахгүйгээр",
     "WordCloud":       "Word Cloud (Англи)",
     "oneColor":        "өнгө",
     "defaultColor":    "анхдагч өнгө",
     "RelativeFreq":    "Харьцангуй давтамж",
     "MarginOfError":   "Алдааны хэмжээ",
     "Permutation":     "Зөвшөөрөл",
+    "PermutationSame": "Үүнтэй ижил зүйл хийх",
     "Combination":     "Хослол",
     "NumberOfCase":    "Хэргийн тоо",
+    "BinomialTheorem": "Хоёртын теорем",
+    "PascalTriangle":  "Паскаль гурвалжин",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Mongolian
@@ -5856,6 +6081,10 @@ svgStr[118][9]= "Интервал утга";
 svgStr[119][9]= "ангилал";
 svgStr[120][9] = "Mode";
 svgStr[121][9] = "Covariance";
+svgStr[122][9] = "Pascal Triangle";
+svgStr[123][9] = "Joint Probability";
+svgStr[124][9] = "Conditional";
+svgStr[125][9] = "Discrete Distribution";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -5968,6 +6197,8 @@ svgStrU[108][9] = "Тодорхойлох коэффициент";
 svgStrU[109][9] = "Хуримтлагдсан давтамж (%)";
 svgStrU[110][9] = "Uniform Distribution бүхэл тоо";
 svgStrU[111][9] = "Хулганы тусламжтайгаар цэгийг шилжүүл";
+svgStrU[112][9] = "Сэргээлтийн олборлолт";
+svgStrU[113][9] = "орлуулахгүйгээр"; 
 
 // Chinese - Simplified
 $.message.zh = {
@@ -6057,6 +6288,7 @@ $.message.zh = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z 检验, Z<sub>&alpha;/2</sub>使用)",
     "&chi;<sup>2</sup> test": "&chi;&#178; 检验",
     "Variance Assumption": "方差假设",
+    "Variance": "方差",
     "F test": "F 检验",
     "At least one pair of means is different": "至少有一对平均数不相等",
     "Main Title : ": "主标题",
@@ -6072,6 +6304,9 @@ $.message.zh = {
     "Exit": "退出",
     "eStatU UnivStatEdu": "eStatU - 大学统计教育软件",
     "eStatH HighStatEdu": "eStatH - 中学统计教育软件",
+    "MiddleStat": "中统计",
+    "HighStat":   "高统计",
+    "ebookLink":  "韩文电子书连结",
     "Menu": "选择",
     "Binomial Experiment": "二项式分布试验",
     "Binomial Distribution": "二项式概率分布",
@@ -6100,6 +6335,7 @@ $.message.zh = {
     "Sample10": "10% 样本抽出",
     "Sample20": "20% 样本抽出",
     "Statistics/BoxPlot": "统计量/箱线图",
+    "StatisticalProb":     "统计概率",
     "Law of Large Number": "大数法则",
     "Dist of Sample Means": "样本均值",
     "Sampling Distribution": "抽样分布",
@@ -6107,6 +6343,7 @@ $.message.zh = {
     "Confidence Interval": "置信区间",
     "Confidence Interval Simulation": "置信区间试验",
     "Confidence Interval Mu": "估计 : &mu;",
+    "Mu Confidence Interval": "估计 : &mu;",
     "Confidence Interval Sigma": "估计 : &sigma;&#178;",
     "Confidence Interval P": "估计 : p",
     "Estimation Accuracy": "估计准确率",
@@ -6260,16 +6497,29 @@ $.message.zh = {
     "PercentileValue": "百分",
     "StudentRangeDist": "HSD 范围分布",
     "copy link": "复制链接",
-    "WithoutReplacement": "没有恢复提取",
+    "WithoutReplacement": "不可回收提取",
+    "WithReplacement":    "恢复提取",
+    "Replacement":     "恢复提取",
+    "NonReplacement":  "不可回收提取",
     "WordCloud":       "词云（英语",
     "oneColor":        "色",
     "defaultColor":    "默认颜色",
     "RelativeFreq":    "相对频率",
     "MarginOfError":   "误差范围",
     "Permutation":     "排列",
+    "PermutationSame": "排列相同的东西",
     "Combination":     "組合",
     "NumberOfCase":    "案件數",
+    "BinomialTheorem": "二项式定理",
+    "PascalTriangle":  "帕斯卡三角形",
     "Character":       "表情符号",
+    "AdditionRule":      "確率加法規則",
+    "MultiplicationRule": "確率乗法規則",
+    "ConditionalProb":   "条件付確率",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "WithoutReplacement": "不可回收提取",
+    "WithReplacement":    "恢复提取",
 
 };
 // Chinese Simplified
@@ -6441,6 +6691,10 @@ svgStr[118][10]= "阶级区间值";
 svgStr[119][10]= "分类";
 svgStr[120][10] = "Mode";
 svgStr[121][10] = "Covariance";
+svgStr[122][10] = "Pascal Triangle";
+svgStr[123][10] = "Joint Probability";
+svgStr[124][10] = "Conditional";
+svgStr[125][10] = "Discrete Distribution";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -6527,6 +6781,8 @@ svgStrU[108][10] = "确定系数";
 svgStrU[109][10] = "累积相对频率（％）";
 svgStrU[110][10] = "分布均匀的最大整数数";
 svgStrU[111][10] = "用鼠标移动点";
+svgStrU[112][10] = "恢复提取";
+svgStrU[113][10] = "不可回收提取";
 
 // Portugese
 $.message.pt = {
@@ -6619,6 +6875,7 @@ $.message.pt = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Se teste Z, use z<sub>&alpha;/2 </sub>)",
     "&chi;<sup>2</sup> test": "&chi;&#178; teste",
     "Variance Assumption": "Suposição sobre as variâncias",
+    "Variance": "variâncias",
     "F test": "F teste",
     "At least one pair of means is different": "Pelo menos um par de médias difere",
     "Main Title : ": "Título Principal",
@@ -6634,6 +6891,9 @@ $.message.pt = {
     "Exit": "Sair",
     "eStatU UnivStatEdu": "eStatU - Educação Estatística Universitária SW",
     "eStatH HighStatEdu": "eStatH - Educação Estatística no Ensino Médio SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menu",
     "Binomial Experiment": "Experimento Binomial",
     "Binomial Distribution": "Distribuição Binomial",
@@ -6662,6 +6922,7 @@ $.message.pt = {
     "Sample10": "Amostragem 10%",
     "Sample20": "Amostragem 20%",
     "Statistics/BoxPlot": "Estatística/BoxPlot",
+    "StatisticalProb":     "Probabilidade Estatística",
     "Law of Large Number": "Lei dos Grandes Números",
     "Dist of Sample Means": "Distribuição de Médias Amostrais",
     "Sampling Distribution": "Distribuição de amostras",
@@ -6669,6 +6930,7 @@ $.message.pt = {
     "Confidence Interval": "Intervalo de Confiança",
     "Confidence Interval Simulation": "Intervalo de Confiança Experimento",
     "Confidence Interval Mu": "Estimativo : &mu;",
+    "Mu Confidence Interval": "Estimativo : &mu;",
     "Confidence Interval Sigma": "Estimativo : &sigma;&#178;",
     "Confidence Interval P": "Estimativo : p",
     "Estimation Accuracy": "Acurácia ",
@@ -6823,15 +7085,26 @@ $.message.pt = {
     "StudentRangeDist": "Distribuição de Faixa",
     "copy link": "link de cópia",
     "WithoutReplacement": "Sem substituição",
+    "WithReplacement":    "Extração de restauração",
+    "Replacement":     "Extração de restauração",
+    "NonReplacement":  "Sem substituição",
     "WordCloud":       "Nuvem de palavras (inglês)",
     "oneColor":        "cor",
     "defaultColor":    "cor padrão",
     "RelativeFreq":    "Frequência relativa",
     "MarginOfError":   "Margem de erro",
     "Permutation":     "Permutação",
+    "PermutationSame": "Permutação com a mesma coisa",
     "Combination":     "Combinação",
     "NumberOfCase":    "Número de casos",
+    "BinomialTheorem": "Teorema Binomial",
+    "PascalTriangle":  "Triângulo Pascal",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Portugese
@@ -7003,6 +7276,10 @@ svgStr[118][11]= "Valor do intervalo";
 svgStr[119][11]= "Categoria";
 svgStr[120][11] = "Mode";
 svgStr[121][11] = "Covariance";
+svgStr[122][11] = "Pascal Triangle";
+svgStr[123][11] = "Joint Probability";
+svgStr[124][11] = "Conditional";
+svgStr[125][11] = "Discrete Distribution";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -7115,6 +7392,8 @@ svgStrU[108][11] = "Coeficiente de determinação";
 svgStrU[109][11] = "Freqüência Relativa Cumulada (%)";
 svgStrU[110][11] = "Número máximo de números inteiros de distribuição uniforme";
 svgStrU[111][11] = "Mover um ponto com o mouse";
+svgStrU[112][11] = "Extração de restauração";
+svgStrU[113][11] = "Sem substituição";
 
 // Greek
 $.message.gr = {
@@ -7207,6 +7486,7 @@ $.message.gr = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(αν Ζ-τεστ, χρησιμοποιήστε Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;&#178; Έλεγχος",
     "Variance Assumption": "Υπόθεση Διασποράς",
+    "Variance": "Υπόθεση",
     "F test": "F Έλεγχος",
     "At least one pair of means is different": "Τουλάχιστον ένα ζευγάρι μέσων να είναι διαφορετικοί",
     "Main Title : ": "Κύριος Τίτλος",
@@ -7222,6 +7502,9 @@ $.message.gr = {
     "Exit": "Έξοδος",
     "eStatU UnivStatEdu": "eStatU - Ακαδημαϊκή Εκπαίδευση Στατιστικής SW",
     "eStatH HighStatEdu": "eStatH - Εκπαίδευση Στατιστικής Λυκείου SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Μενού",
     "Binomial Experiment": "Διωνυμικό Πείραμα",
     "Binomial Distribution": "Διωνυμική Κατανομή",
@@ -7250,6 +7533,7 @@ $.message.gr = {
     "Sample10": "Δείγμα 10%",
     "Sample20": "Δείγμα 20%",
     "Statistics/BoxPlot": "Στατιστική/Θηκόγραμμα",
+    "StatisticalProb":     "Στατιστική πιθανότητα",
     "Law of Large Number": "Νόμος των Μεγάλων Αριθμών",
     "Dist of Sample Means": "Κατανομή των Δειγματικών Μέσων",
     "Sampling Distribution": "Δειγματοληψία Διανομή",
@@ -7257,6 +7541,7 @@ $.message.gr = {
     "Confidence Interval": "Διάστημα Εμπυστοσύνης",
     "Confidence Interval Simulation": "Διάστημα Εμπυστοσύνης προσομοίωση",
     "Confidence Interval Mu": "Εκτίμηση : &mu;",
+    "Mu Confidence Interval": "Εκτίμηση : &mu;",
     "Confidence Interval Sigma": "Εκτίμηση : &sigma;&#178;",
     "Confidence Interval P": "Εκτίμηση : p",
     "Estimation Accuracy": "Εκτίμηση Ορθότητας",
@@ -7411,15 +7696,28 @@ $.message.gr = {
     "StudentRangeDist": "HSD Εκπαιδευόμενο εύρος διανομής.",
     "copy link": "αντιγραφή συνδέσμου",
     "WithoutReplacement": "χωρίς αντικατάσταση",
+    "WithReplacement":    "Εξόρυξη αποκατάστασης",
+    "Replacement":     "Εξόρυξη αποκατάστασης",
+    "NonReplacement":  "χωρίς αντικατάσταση",
     "WordCloud":       "Word Cloud (Αγγλικά)",
     "oneColor":        "μονόχρωμο",
     "defaultColor":    "προεπιλεγμένο χρώμα",
     "RelativeFreq":    "Σχετική Συχνότητα",
     "MarginOfError":   "Περιθώριο σφάλματος",
     "Permutation":     "Μετάθεση",
+    "PermutationSame": "Παραλλαγή με το ίδιο πράγμα",
     "Combination":     "Συνδυασμός",
     "NumberOfCase":    "Αριθμός περιπτώσεων",
+    "BinomialTheorem": "Διωνυμικό θεώρημα",
+    "PascalTriangle":  "Pascal Triangle",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Greek
@@ -7590,6 +7888,10 @@ svgStr[118][12]= "Τιμή διαστήματος";
 svgStr[119][12]= "κατηγορία";
 svgStr[120][12] = "Mode";
 svgStr[121][12] = "Covariance";
+svgStr[122][12] = "Pascal Triangle";
+svgStr[123][12] = "Joint Probability";
+svgStr[124][12] = "Conditional";
+svgStr[125][12] = "Discrete Distribution";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -7701,6 +8003,9 @@ svgStrU[108][12] = "Συντελεστής Μεταβλητότητας";
 svgStrU[109][12] = "Αθροιστική Συχνότητα (%)";
 svgStrU[110][12] = "Μέγιστος αριθμός ακεραίων της Ομοιόμορφης Διανομής";
 svgStrU[111][12] = "Μετακινήστε ένα σημείο με το ποντίκι";
+svgStrU[112][12] = "Εξόρυξη αποκατάστασης";
+svgStrU[113][12] = "χωρίς αντικατάσταση";
+  
 
 // Romanian
 $.message.ro = {
@@ -7793,6 +8098,7 @@ $.message.ro = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(În cazul unui test Z, utilizați Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Presupunere asupra Varianței",
+    "Variance": "Varianței",
     "F test": "F Testare",
     "At least one pair of means is different": "Cel puțin o pereche de medii este diferită",
     "Main Title : ": "Titlu Principal",
@@ -7808,6 +8114,9 @@ $.message.ro = {
     "Exit": "Leșire",
     "eStatU UnivStatEdu": "eStatU - Statistică la Nivel Universitar SW",
     "eStatH HighStatEdu": "eStatH - Statistică La Nivel Liceal SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Meniu",
     "Binomial Experiment": "Experiment Binomial",
     "Binomial Distribution": "Distribuție Binomială",
@@ -7836,6 +8145,7 @@ $.message.ro = {
     "Sample10": "Sondaj 10%",
     "Sample20": "Sondaj 20%",
     "Statistics/BoxPlot": "Statistică/BoxPlot",
+    "StatisticalProb":     "Probabilitate statistică",
     "Law of Large Number": "Legea Numerelor Mari",
     "Dist of Sample Means": "Dist of Sondaj Means",
     "Sampling Distribution": "Distribuția eșantionului",
@@ -7843,6 +8153,7 @@ $.message.ro = {
     "Confidence Interval": "Interval de Încredere",
     "Confidence Interval Simulation": "Interval de Încredere Simulare",
     "Confidence Interval Mu": "Estimației : &mu;",
+    "Mu Confidence Interval": "Estimației : &mu;",
     "Confidence Interval Sigma": "Estimației : &sigma;&#178;",
     "Confidence Interval P": "Estimației : p",
     "Estimation Accuracy": "Acuretețea Estimației",
@@ -7998,15 +8309,26 @@ $.message.ro = {
     "StudentRangeDist": "HSD Student Gamă Dist.",
     "copy link": "copiere legătura",
     "WithoutReplacement": "fără înlocuire",
+    "WithReplacement":    "Extracția restaurării",
+    "Replacement":     "Extracția restaurării",
+    "NonReplacement":  "fără înlocuire",
     "WordCloud":       "Word Cloud (engleză)",
     "oneColor":        "culoare",
     "defaultColor":    "culoare implicită",
     "RelativeFreq":    "Frecventa relativa",
     "MarginOfError":   "Marja de eroare",
     "Permutation":     "Permutare",
+    "PermutationSame": "Permutarea cu același lucru",
     "Combination":     "Combinaţie",
     "NumberOfCase":    "Numărul de cazuri",
+    "BinomialTheorem": "Teorema binomului",
+    "PascalTriangle":  "Triunghiul Pascal",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Romanian
@@ -8177,6 +8499,10 @@ svgStr[118][13]= "Valoarea intervalului";
 svgStr[119][13]= "Categorie";
 svgStr[120][13] = "Mode";
 svgStr[121][13] = "Covariance";
+svgStr[122][13] = "Pascal Triangle";
+svgStr[123][13] = "Joint Probability";
+svgStr[124][13] = "Conditional";
+svgStr[125][13] = "Discrete Distribution";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -8289,7 +8615,9 @@ svgStrU[108][13] = "Coeficient de determinare";
 svgStrU[109][13] = "Frecvența relativă cumulată (%)";
 svgStrU[110][13] = "Numărul maxim de numere întregi de distribuție uniformă";
 svgStrU[111][13] = "Deplasați un punct cu mouse-ul";
-
+svgStrU[112][13] = "Extracția restaurării";
+svgStrU[113][13] = "fără înlocuire";
+   
 // Thai
 $.message.th = {
     "eStat : Stat Education SW": "eStat : ซอฟต์แวร์การศึกษาสถิติ",
@@ -8381,6 +8709,7 @@ $.message.th = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(สำหรับการทดสอบแซด ใช้ Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;&#178; การทดสอบ",
     "Variance Assumption": "สมมติฐานของความแปรปรวน",
+    "Variance": "ความแปรปรวน",
     "F test": "F การทดสอบ",
     "At least one pair of means is different": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
     "Main Title : ": "หัวข้อหลัก",
@@ -8396,6 +8725,9 @@ $.message.th = {
     "Exit": "ออก",
     "eStatU UnivStatEdu": "eStatU - สถิติระดับมหาวิทยาลัย",
     "eStatH HighStatEdu": "eStatH - สถิติระดับมัธยมศึกษา",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "เมนู",
     "Binomial Experiment": "การทดลองทวินาม",
     "Binomial Distribution": "การแจกแจงทวินาม",
@@ -8424,6 +8756,7 @@ $.message.th = {
     "Sample10": "การสุ่ม 10%",
     "Sample20": "การสุ่ม 20%",
     "Statistics/BoxPlot": "สถิติ/แผนภาพกล่อง",
+    "StatisticalProb":     "ความน่าจะเป็นทางสถิติ",
     "Law of Large Number": "กฎจำนวนมาก",
     "Dist of Sample Means": "การแจกแจงค่าเฉลี่ยตัวอย่าง",
     "Sampling Distribution": "การกระจายตัวตัวอย่าง",
@@ -8431,6 +8764,7 @@ $.message.th = {
     "Confidence Interval": "ช่วงความเชื่อมั่น",
     "Confidence Interval Simulation": "ช่วงความเชื่อมั่น จำลอง",
     "Confidence Interval Mu": "การประเมิน :  &mu;",
+    "Mu Confidence Interval": "การประเมิน :  &mu;",
     "Confidence Interval Sigma": "การประเมิน :  &sigma;&#178;",
     "Confidence Interval P": "การประเมิน :  p",
     "Estimation Accuracy": "ความแม่นยำของการประมาณ",
@@ -8586,6 +8920,9 @@ $.message.th = {
     "StudentRangeDist": "HSDช่วงที่ได้รับการศึกษา การแจกแจง.",
     "copy link": "คัดลอกลิงค์",
     "WithoutReplacement": "โดยไม่ต้องเปลี่ยน",
+    "WithReplacement":    "การสกัดการฟื้นฟู",
+    "Replacement":     "การสกัดการฟื้นฟู",
+    "NonReplacement":  "โดยไม่ต้องเปลี่ยน",
     "WordCloud":       "Word Cloud (ภาษาอังกฤษ)",
     "oneColor":        "สีเดียว",
     "defaultColor":    "สีเริ่มต้น",
@@ -8594,7 +8931,18 @@ $.message.th = {
     "Permutation":     "การเรียงสับเปลี่ยน",
     "Combination":     "การรวมกัน",
     "NumberOfCase":    "จำนวนกรณี",
+    "BinomialTheorem": "ทฤษฎีบททวินาม",
+    "PascalTriangle":  "สามเหลี่ยมปาสคาล",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Thai
@@ -8765,6 +9113,10 @@ svgStr[118][14] = "ค่าช่วงเวลา";
 svgStr[119][14] = "ประเภท";
 svgStr[120][14] = "Mode";
 svgStr[121][14] = "Covariance";
+svgStr[122][14] = "Pascal Triangle";
+svgStr[123][14] = "Joint Probability";
+svgStr[124][14] = "Conditional";
+svgStr[125][14] = "Discrete Distribution";
 
 svgStrU[1][14] = "การแจกแจงทวินาม";
 svgStrU[2][14] = "การทำซ้ำ";
@@ -8876,6 +9228,8 @@ svgStrU[108][14] = "สัมประสิทธิ์การแปรผั
 svgStrU[109][14] = "ความถี่สัมพัทธ์สะสม (%)";
 svgStrU[110][14] = "จำนวนสูงสุดของจำนวนเต็มของการกระจายชุด";
 svgStrU[111][14] = "เลื่อนจุดด้วยเมาส์";
+svgStrU[112][14] = "การสกัดการฟื้นฟู";
+svgStrU[113][14] = "โดยไม่ต้องเปลี่ยน";
 
 // Polish
 $.message.pl = {
@@ -8968,6 +9322,7 @@ $.message.pl = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Jeśli test Z, Z<sub>&alpha;/2</sub>is used)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Założenie o wariancji",
+    "Variance": "wariancji",
     "F test": "F test",
     "At least one pair of means is different": "Co najmniej jedna para średnich jest inna",
     "Main Title : ": "Główny tytuł",
@@ -8983,6 +9338,9 @@ $.message.pl = {
     "Exit": "Wyjście",
     "eStatU UnivStatEdu": "eStatU - Statystyka - edukacja poziom uniwersytecki SW",
     "eStatH HighStatEdu": "eStatH - Statystyka - wykształcenie w szkole średniej SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menu",
     "Binomial Experiment": "Eksperyment dla rozkładu dwumianowego",
     "Binomial Distribution": "Rozkład dwumianowy",
@@ -9011,6 +9369,7 @@ $.message.pl = {
     "Sample10": "Próbkowanie 10%",
     "Sample20": "Próbkowanie 20%",
     "Statistics/BoxPlot": "Statystyka/wykres pudełkowy",
+    "StatisticalProb":     "Prawdopodobieństwo statystyczne",
     "Law of Large Number": "Prawo wielkich liczby",
     "Dist of Sample Means": "Rozkład średniej z próby",
     "Sampling Distribution": "Dystrybucja próbek",
@@ -9018,6 +9377,7 @@ $.message.pl = {
     "Confidence Interval": "Przedział ufności",
     "Confidence Interval Simulation": "Przedział ufności Symulacja",
     "Confidence Interval Mu": "Oszacowanie : &mu;",
+    "Mu Confidence Interval": "Oszacowanie : &mu;",
     "Confidence Interval Sigma": "Oszacowanie : &sigma;&#178;",
     "Confidence Interval P": "Oszacowanie : p",
     "Estimation Accuracy": "Dokładność szacowania",
@@ -9173,15 +9533,28 @@ $.message.pl = {
     "StudentRangeDist": "HSD Zakres Studentyzowanej Dyst",
     "copy link": "Skopiuj link",
     "WithoutReplacement": "bez zamiany",
+    "WithReplacement":    "Ekstrakcja renowacji",
+    "Replacement":     "Ekstrakcja renowacji",
+    "NonReplacement":  "bez zamiany",
     "WordCloud":       "Word Cloud (angielski)",
     "oneColor":        "kolor",
     "defaultColor":    "domyślny kolor",
     "RelativeFreq":    "Procent",
     "MarginOfError":   "Margines błędu",
     "Permutation":     "Permutacja",
+    "PermutationSame": "Permutacja z tym samym",
     "Combination":     "Połączenie",
     "NumberOfCase":    "Liczba spraw",
+    "BinomialTheorem": "Dwumian newtona",
+    "PascalTriangle":  "Trójkąt Pascala",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 
@@ -9353,6 +9726,10 @@ svgStr[118][15] = "Wartość interwału";
 svgStr[119][15] = "Kategoria";
 svgStr[120][15] = "Mode";
 svgStr[121][15] = "Covariance";
+svgStr[122][15] = "Pascal Triangle";
+svgStr[123][15] = "Joint Probability";
+svgStr[124][15] = "Conditional";
+svgStr[125][15] = "Discrete Distribution";
 
 svgStrU[1][15] = "Rozkład dwumianowy";
 svgStrU[2][15] = "Powtórzenie";
@@ -9465,6 +9842,8 @@ svgStrU[108][15] = "Współczynnik zmienności";
 svgStrU[109][15] = "Skumulowana częstotliwość względna (%)";
 svgStrU[110][15] = "Maksymalna liczba całkowita o jednolitym rozkładzie";
 svgStrU[111][15] = "Przesuń punkt za pomocą myszy";
+svgStrU[112][15] = "Ekstrakcja renowacji";
+svgStrU[113][15] = "bez zamiany";
 
 // Azerbaijan
 $.message.az = {
@@ -9557,6 +9936,7 @@ $.message.az = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-testidirsə, Z<sub>&alpha;/2</sub> istifadə edin.)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Dispersiya fərziyyəsi",
+    "Variance": "Dispersiya",
     "F test": "F test",
     "At least one pair of means is different": "Ən azı bir cüt ədədi orta fərqlidir",
     "Main Title : ": "əsas başlıq",
@@ -9572,6 +9952,9 @@ $.message.az = {
     "Exit": "çıxmaq",
     "eStatU UnivStatEdu": "eStatU - Universitet statistika təhsili SW",
     "eStatH HighStatEdu": "eStatH - Ali məktəb statistika təhsili SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "menyu",
     "Binomial Experiment": "Binomial təcrübə",
     "Binomial Distribution": "Binomial paylanma",
@@ -9600,6 +9983,7 @@ $.message.az = {
     "Sample10": "nümunə götürülməsi 10%",
     "Sample20": "nümunə götürülməsi 20%",
     "Statistics/BoxPlot": "statistika/Qutu qrafiki",
+    "StatisticalProb":     "Statistik ehtimal",
     "Law of Large Number": "böyük rəqəmlər qanunu",
     "Dist of Sample Means": "nümunə ədədi ortaların paylanması",
     "Sampling Distribution": "nümunə götürülməsi paylanma",
@@ -9607,6 +9991,7 @@ $.message.az = {
     "Confidence Interval": "İnam intervalı",
     "Confidence Interval Simulation": "İnam intervalı Simulyasiya",
     "Confidence Interval Mu": "Hesablama : &mu;",
+    "Mu Confidence Interval": "Hesablama : &mu;",
     "Confidence Interval Sigma": "Hesablama : &sigma;&#178;",
     "Confidence Interval P": "Hesablama : p",
     "Estimation Accuracy": "Hesablama dəqiqliyi",
@@ -9762,15 +10147,26 @@ $.message.az = {
     "StudentRangeDist": "HSD Tələbəli İnterval Paylanması",
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
+    "WithReplacement":    "Bərpa hasilatı",
+    "Replacement":     "Bərpa hasilatı",
+    "NonReplacement":  "almashtirishsiz",
     "WordCloud":       "Söz Buludu (İngilis dili)",
     "oneColor":        "rəng",
     "defaultColor":    "standart rəng",
     "RelativeFreq":    "nisbiy tezlik",
     "MarginOfError":   "Xəta həddi",
     "Permutation":     "İcazə",
+    "PermutationSame": "Eyni şey ilə icazə",
     "Combination":     "Kombinasiya",
     "NumberOfCase":    "İşlərin sayı",
+    "BinomialTheorem": "Binom Teoremi",
+    "PascalTriangle":  "Paskal Üçbucağı",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Azerbaijan
@@ -9941,6 +10337,10 @@ svgStr[118][16] = "İnterval dəyəri";
 svgStr[119][16] = "Kateqoriya";
 svgStr[120][16] = "Mode";
 svgStr[121][16] = "Covariance";
+svgStr[122][16] = "Pascal Triangle";
+svgStr[123][16] = "Joint Probability";
+svgStr[124][16] = "Conditional";
+svgStr[125][16] = "Discrete Distribution";
 
 svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "təkrar";
@@ -10053,6 +10453,8 @@ svgStrU[108][16] = "o'zgaruvchanlik koeffitsienti";
 svgStrU[109][16] = "To'plangan nisbiy chastota (%)";
 svgStrU[110][16] = "Uniform Distribution butun sonlarining maksimal soni";
 svgStrU[111][16] = "Sichqoncha yordamida nuqtani siljiting";
+svgStrU[112][16] = "Bərpa hasilatı";
+svgStrU[113][16] = "almashtirishsiz";
 
 // Uzbekistan
 $.message.uz = {
@@ -10145,6 +10547,7 @@ $.message.uz = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Agar z-sinov bolsa, Z<sub>&alpha;/2</sub> foydalanishni kiriting)",
     "&chi;<sup>2</sup> test": "&chi;&#178;-sinov",
     "Variance Assumption": "o'zgarish tahmin",
+    "Variance": "dispersiya",
     "F test": "F-sinov",
     "At least one pair of means is different": "Hech bolmaganda bita juft vosita farq qiladi",
     "Main Title : ": "Asosiy sarlavha",
@@ -10160,6 +10563,9 @@ $.message.uz = {
     "Exit": "Chiqish",
     "eStatU UnivStatEdu": "eStatU - Universitet Statistika Ta'lim SW",
     "eStatH HighStatEdu": "eStatH - Maktab Statistika Ta'lim SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Menyu",
     "Binomial Experiment": "Binominal tajriba",
     "Binomial Distribution": "Binominal Tarqatish",
@@ -10188,6 +10594,7 @@ $.message.uz = {
     "Sample10": "namuna olish 10%",
     "Sample20": "namuna olish 20%",
     "Statistics/BoxPlot": "statistika/Quti uchastkasi",
+    "StatisticalProb":     "Statistik ehtimollik",
     "Law of Large Number": "kop sonli qonun",
     "Dist of Sample Means": "Namuna vositalarining tarqatish",
     "Sampling Distribution": "namuna olish Tarqatish",
@@ -10195,6 +10602,7 @@ $.message.uz = {
     "Confidence Interval": "ishonch oralig'i",
     "Confidence Interval Simulation": "ishonch oralig'i simulyatsiya",
     "Confidence Interval Mu": "Hisoblash : &mu;",
+    "Mu Confidence Interval": "Hisoblash : &mu;",
     "Confidence Interval Sigma": "Hisoblash : &sigma;&#178;",
     "Confidence Interval P": "Hisoblash : p",
     "Estimation Accuracy": "Hisoblash Aniqlik",
@@ -10350,15 +10758,26 @@ $.message.uz = {
     "StudentRangeDist": "HSD Talabalar qatorini taqsimlash",
     "copy link": "havola nusxasi",
     "WithoutReplacement": "almashtirishsiz",
+    "WithReplacement":    "Qayta tiklash ekstrakti",
+    "Replacement":     "Qayta tiklash ekstrakti",
+    "NonReplacement":  "almashtirishsiz",
     "WordCloud":       "Word Cloud (inglizcha)",
     "oneColor":        "rang",
     "defaultColor":    "standart rang",
     "RelativeFreq":    "nisbiy chastota",
     "MarginOfError":   "Xato chegarasi",
     "Permutation":     "Permutatsiya",
+    "PermutationSame": "Xuddi shu narsa bilan ruxsat",
     "Combination":     "Kombinatsiya",
     "NumberOfCase":    "Ishlar soni",
+    "BinomialTheorem": "Binomial teorema",
+    "PascalTriangle":  "Paskal uchburchagi",
     "Character":       "Emoji",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Uzbekistan
@@ -10529,6 +10948,10 @@ svgStr[118][17] = "Interval qiymati";
 svgStr[119][17] = "toifasi";
 svgStr[120][17] = "Mode";
 svgStr[121][17] = "Covariance";
+svgStr[122][17] = "Pascal Triangle";
+svgStr[123][17] = "Joint Probability";
+svgStr[124][17] = "Conditional";
+svgStr[125][17] = "Discrete Distribution";
 
 svgStrU[1][17] = "Binominal Tarqatish";
 svgStrU[2][17] = "takrorlash";
@@ -10641,6 +11064,8 @@ svgStrU[108][17] = "O'zgarish koeffitsienti";
 svgStrU[109][17] = "To'plangan nisbiy chastota (%)";
 svgStrU[110][17] = "Maksimal butun sonlar Formali Tarqatish";
 svgStrU[111][17] = "Sichqoncha yordamida nuqtani siljiting";
+svgStrU[112][17] = "Qayta tiklash ekstrakti";
+svgStrU[113][17] = "almashtirishsiz";
 
 // Russian
 $.message.ru = {
@@ -10733,6 +11158,7 @@ $.message.ru = {
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Если z-тест, то используйте Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;&#178;-Тест",
     "Variance Assumption": "Допущение дисперсии",
+    "Variance": "отклонение",
     "F test": "F-Тест",
     "At least one pair of means is different": "Минимум одна пара средних отличается",
     "Main Title : ": "Основной заголовок",
@@ -10748,6 +11174,9 @@ $.message.ru = {
     "Exit": "Выход",
     "eStatU UnivStatEdu": "eStatU - Статистика для высшего образования SW",
     "eStatH HighStatEdu": "eStatH - Статистика для старших классов школы SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (Korean)",
     "Menu": "Меню",
     "Binomial Experiment": "Биномиальный эксперимент",
     "Binomial Distribution": "Биномиальное распределение",
@@ -10776,6 +11205,7 @@ $.message.ru = {
     "Sample10": "Формирование выборки 10%",
     "Sample20": "Формирование выборки 20%",
     "Statistics/BoxPlot": "Статистика/BoxPlot",
+    "StatisticalProb":     "Статистическая вероятность",
     "Law of Large Number": "Закон больших чисел",
     "Dist of Sample Means": "Выборочное распределение средних значений",
     "Sampling Distribution": "Формирование выборки Распределение",
@@ -10783,6 +11213,7 @@ $.message.ru = {
     "Confidence Interval": "Доверительный интервал",
     "Confidence Interval Simulation": "Доверительный интервал Симуляция",
     "Confidence Interval Mu": "Oценки : &mu;",
+    "Mu Confidence Interval": "Oценки : &mu;",
     "Confidence Interval Sigma": "Oценки : &sigma;&#178;",
     "Confidence Interval P": "Oценки : p",
     "Estimation Accuracy": "Точность оценки",
@@ -10938,15 +11369,26 @@ $.message.ru = {
     "StudentRangeDist": "Стьюдентизированное распределение диапазонов",
     "copy link": "копия ссылки",
     "WithoutReplacement": "без заменыt",
+    "WithReplacement":    "Восстановление извлечения",
+    "Replacement":     "Восстановление извлечения",
+    "NonReplacement":  "без заменыt",
     "WordCloud":       "Облако слов (английский)",
     "oneColor":        "цветr",
     "defaultColor":    "цвет по умолчанию",
     "RelativeFreq":    "Относительная частота",
     "MarginOfError":   "Допустимая погрешность",
     "Permutation":     "Перестановка",
+    "PermutationSame": "Перестановка с тем же",
     "Combination":     "Комбинация",
     "NumberOfCase":    "Кол-во кейсов",
+    "BinomialTheorem": "Биномиальная теорема",
+    "PascalTriangle":  "Треугольник Паскаля",
     "Character":       "Эмодзи",
+    "AdditionRule":      "Addition Rule of Probability",
+    "MultiplicationRule": "Multiplication Rule of Probability",
+    "ConditionalProb":   "Conditional Probability",
+    "JointProb":         "Joint Probability",
+    "DiscreteDist":      "Discrete Distribution",
 
 };
 // Russian
@@ -11116,6 +11558,10 @@ svgStr[118][18] = "Значение интервала";
 svgStr[119][18] = "категория";
 svgStr[120][18] = "Mode";
 svgStr[121][18] = "Covariance";
+svgStr[122][18] = "Pascal Triangle";
+svgStr[123][18] = "Joint Probability";
+svgStr[124][18] = "Conditional";
+svgStr[125][18] = "Discrete Distribution";
 
 svgStrU[1][18] = "Биномиальное распределение";
 svgStrU[2][18] = "Повторение";
@@ -11228,5 +11674,6 @@ svgStrU[108][18] = "коэффициент вариации";
 svgStrU[109][18] = "Относительная частота (%)";
 svgStrU[110][18] = "Максимальное количество целых чисел равномерного распределения";
 svgStrU[111][18] = "Переместить точку с помощью мыши";
-
+svgStrU[112][18] = "Восстановление извлечения";
+svgStrU[113][18] = "без заменыt";
 

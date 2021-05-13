@@ -1,6 +1,6 @@
 // eBook.js
 // Multiple Choice Question Answers
-    var nChapter  = 30;
+    var nChapter  = 35;
     var nQuestion = 35;
     var ans       = new Array(nChapter);
     for (var i = 0; i < nChapter; i++) ans[i] = new Array(nQuestion);
@@ -178,7 +178,7 @@
     ans[12][20] = 3;
     ans[12][21] = 3;
     ans[12][22] = 2;
-// eStatH
+// eStatM
 // 1.1 ②, 1.2 ③, 1.3 ④, 1.4 ④, 
     ans[21][0] = 4;
     ans[21][1] = 2;
@@ -202,6 +202,58 @@
     ans[24][3] = 2;
     ans[24][4] = 3;
     ans[24][5] = 1;
+// eStatH
+// 1.1 ④,, 1.2 ②, 1.3 ②, 1.4 ③,  1.5 ① 
+    ans[31][0] = 5;
+    ans[31][1] = 4;
+    ans[31][2] = 2;
+    ans[31][3] = 2;
+    ans[31][4] = 3;
+    ans[31][5] = 1;
+// 2.1 ③, 2.2 ②,  2.3 ②, 2.4 ①, 2.5 ④, 2.6 ②, 2.7 ④, 2.8 ②, 2.9 ③, 2.10 ③, 2.11 ①
+    ans[32][0] = 11;
+    ans[32][1] = 3;
+    ans[32][2] = 2;
+    ans[32][3] = 2;
+    ans[32][4] = 1;
+    ans[32][5] = 4;
+    ans[32][6] = 2;
+    ans[32][7] = 4;
+    ans[32][8] = 2;
+    ans[32][9] = 3;
+    ans[32][10] = 3;
+    ans[32][11] = 1;
+// 3.1 ②,  3.2 ④,  3.3 ③,  3.4 ④,  3.5 ①,  3.6 ④,  3.7 ④,  3.8 ②,  3.9 ①, 3.10 ④, 
+// 3.11 ④, 3.12 ③, 3.13 ④, 3.14 ④, 3.15 ④, 3.16 ③, 3.17 ①, 3.18 ④, 
+    ans[33][0] = 18;
+    ans[33][1] = 2;
+    ans[33][2] = 4;
+    ans[33][3] = 3;
+    ans[33][4] = 4;
+    ans[33][5] = 1;
+    ans[33][6] = 4;
+    ans[33][7] = 4;
+    ans[33][8] = 2;
+    ans[33][9] = 1;
+    ans[33][10] = 4;
+    ans[33][11] = 4;
+    ans[33][12] = 3;
+    ans[33][13] = 4;
+    ans[33][14] = 4;
+    ans[33][15] = 4;
+    ans[33][16] = 3;
+    ans[33][17] = 1;
+    ans[33][18] = 4;
+// 4.1 ③, 4.2 ②, 4.3 ②, 4.4 ①, 4.5 ④, 4.6 ②, 4.7 ④, 4.8 ② 
+    ans[34][0] = 8;
+    ans[34][1] = 3;
+    ans[34][2] = 2;
+    ans[34][3] = 2;
+    ans[34][4] = 1;
+    ans[34][5] = 4;
+    ans[34][6] = 2;
+    ans[34][7] = 4;
+    ans[34][8] = 2;
 // Answer text ID
     var ansID = new Array(nQuestion);
     for (var i = 1; i < nQuestion; i++) ansID[i] = "ansQ"+i; 
@@ -279,7 +331,7 @@
     addrStr[30]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX100101_CookieWeight.csv","analysisVar":1,"graphNum":25});
     addrStr[31]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX100201_ScoreByDept.csv","analysisVar":2,"groupVars":[1],"graphNum":29});
     addrStr[32]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX100202_AgeOfCouple.csv","analysisVar":1,"graphNum":25});
-    addrStr[33]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX100301_JobSatisfaction.csv","analysisVar":2,"groupVars":[1],"graphNum":31});
+    addrStr[33]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX100301_JobSatisfaction.csv","analysisVar":2,"groupVars":[1],"graphNum":33});
     addrStr[34]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX110102_AgeOfLibraryVisitor.csv","analysisVar":1,"graphNum":19});
     addrStr[35]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX110201_GlassesByGender.csv","analysisVar":1,"groupVars":[2,3],"graphNum":14});
     addrStr[36]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX110202_BeverageByRegion.csv","analysisVar":1,"groupVars":[2,3,4],"graphNum":14});
@@ -371,7 +423,7 @@
     addrStr[122]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX070104_Height.csv","analysisVar":1,"graphNum":27});
     addrStr[123]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX080103_WageByGender.csv","analysisVar":2,"groupVars":[1],"graphNum":31});
     addrStr[124]  = "http://www.estat.me/estat/eStatU/05WordCloud.htm";
-    // eStatH
+    // eStatM
     addrStr[141] = "http://www.estat.me/estat/eStatH/01BarChart.htm";
     addrStr[142] = "http://www.estat.me/estat/eStatH/05WordCloud.htm";
     addrStr[143] = "http://www.estat.me/estat/eStatH/07StemLeafPlot.htm";
@@ -391,6 +443,14 @@
     addrStr[157] = "http://www.estat.me/estat/eStatH/30ScatterPlotH.htm";
     addrStr[158] = "http://www.estat.me/estat/eStatH/31CorrelationEng.htm";
     addrStr[159] = "http://www.estat.me/estat/eStatH/32RegressionEng.htm";
+    addrStr[160] = "http://www.estat.me/estat/eStatH/11RandomNumber.htm";
+    addrStr[161] = "http://www.estat.me/estat/eStatH/40AdditionRule.htm";
+    addrStr[162] = "http://www.estat.me/estat/eStatH/40Complementary.htm";
+    addrStr[163] = "http://www.estat.me/estat/eStatH/40DiscreteDistribution.htm";
+    addrStr[164] = "http://www.estat.me/estat/eStatH/40MultiplicationRule.htm";
+    addrStr[165] = "http://www.estat.me/estat/eStatH/40Pascal.htm";
+    addrStr[166] = "http://www.estat.me/estat/eStatH/43LawOfLarge.htm";
+    addrStr[167] = "http://www.estat.me/estat/eStatH/50NormalComparison.htm";
 // eLearning
     addrStr[170] = "http://www.estat.me/estat/eLearning/kr/eStat_kr_Introduction.html";
     addrStr[171] = "http://www.estat.me/estat/eLearning/kr/index.html";
@@ -534,12 +594,19 @@
     addrStrB[131] = temp+"/chapter12/120304.html";
     addrStrB[132] = temp+"/chapter12/1204.html";
 
-    // eBookH
-    addrStrB[141] = temp+"/eStatH/chapter01.html";
-    addrStrB[142] = temp+"/eStatH/chapter02.html";
-    addrStrB[143] = temp+"/eStatH/chapter03.html";
-    addrStrB[144] = temp+"/eStatH/chapter04.html";
+    // eBookM
+    addrStrB[140] = "../index.html";
+    addrStrB[141] = temp+"/eStatM/chapter01.html";
+    addrStrB[142] = temp+"/eStatM/chapter02.html";
+    addrStrB[143] = temp+"/eStatM/chapter03.html";
+    addrStrB[144] = temp+"/eStatM/chapter04.html";
     
+    // eBookH
+    addrStrB[150] = "../indexH.html";
+    addrStrB[151] = temp+"/eStatH/chapter01.html";
+    addrStrB[152] = temp+"/eStatH/chapter02.html";
+    addrStrB[153] = temp+"/eStatH/chapter03.html";
+    addrStrB[154] = temp+"/eStatH/chapter04.html";
 
 // Move Section
 function moveSection(num) {

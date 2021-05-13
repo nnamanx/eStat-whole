@@ -993,14 +993,14 @@ function drawBinomialBarGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, labe
          var betweenbarWidth = graphWidth / nvalue2;   // 막대와 막대 사이의 너비
          var barWidth  = betweenbarWidth * 2 / 3;    // 막대의 너비
          var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
-         var title  = svgStrU[1][langNum]+" n = "+nn2.toString()+", p = "+f2(pp2);
+         var title  = svgStrU[1][langNum]+" n = "+nn2.toString()+", p = "+f3(pp2);
          bar.append("text").attr("x", margin.left).attr("y", margin.top/2).text(title)
             .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
          var avg  = nn2 * pp2;
          var std  = Math.sqrt(nn2*pp2*(1-pp2));
-         var str = svgStrU[3][langNum]+" = "+f2(avg)+",  "+svgStrU[4][langNum]+" = "+f2(std);
+         var str = svgStrU[3][langNum]+" = "+f3(avg)+",  "+svgStrU[4][langNum]+" = "+f3(std);
          bar.append("text")
-            .attr("x", margin.left + graphWidth/2 - 40)
+            .attr("x", margin.left + graphWidth/2)
             .attr("y", svgHeight - margin.bottom/3).text(str)
             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
          // 확률및 통계량 계산
@@ -1050,10 +1050,20 @@ function showValueBinomial3(newValue, valueLabel, binomialP2) {
         removeBinomialFreq2();
         removeBinomialNormal();
         document.getElementById("nn2").value = newValue;
+        document.getElementById("a1").max = newValue-1;
+        document.getElementById("b1").max = newValue;
+        document.getElementById("b2").max = newValue;
+        document.getElementById("a3").max = newValue;
+        document.getElementById("a1").value = "";
+        document.getElementById("b1").value = "";
+        document.getElementById("b2").value = "";
+        document.getElementById("a3").value = "";
+
         var nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
         var pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
         drawBinomialBarGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, valueLabel);
-}// 이항분포 n, p
+}
+// 이항분포 n, p
 function showValueBinomial4(newValue, valueLabel, binomialP2) {
         bar.selectAll("*").remove();
         document.getElementById("freq2Binomial").checked = false;
@@ -1124,20 +1134,21 @@ function binomialTable(nn, pp, binomialP2) {
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "<h3>"+svgStrU[1][langNum]+"</h3>";
+          cell[0].innerHTML = "<b>"+svgStrU[1][langNum]+"</b>";
           cell[1].innerHTML = "n = "+nn;
           cell[2].innerHTML = "p = "+f3(pp);
 
           row  = table.insertRow(k++);
-          row.style.height ="30px";
+          row.style.height ="25px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
           }
-          for (j=0; j<ncol; j++) {
-            cell[j].style.width ="85px";
+          cell[0].style.width ="80px";
+          for (j=1; j<ncol; j++) {
+            cell[j].style.width ="60px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
@@ -1232,25 +1243,26 @@ function poissonTable(nvalue, lambda, poissonP) {
         k = 0;    
 
           row = table.insertRow(k++);
-          row.style.height ="40px";
+          row.style.height ="30px";
           for (j=0; j<2; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "<h3>"+svgStrU[5][langNum]+"</h3>";
+          cell[0].innerHTML = "<b>"+svgStrU[5][langNum]+"</b>";
           cell[1].innerHTML = "&lambda; = "+f1(lambda);
 
           row  = table.insertRow(k++);
-          row.style.height ="30px";
+          row.style.height ="25px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
           }
-          for (j=0; j<ncol; j++) {
-            cell[j].style.width ="80px";
+          cell[0].style.width ="80px";
+          for (j=1; j<ncol; j++) {
+            cell[j].style.width ="60px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
@@ -1290,8 +1302,14 @@ function showValueGeoP(newValue, valueLabel, geometricP) {
         else if (geoP > 0.1) nvalue = 31;
         else if (geoP > 0.02) nvalue = 51;
         else nvalue = 101;
+        document.getElementById("a1").max = nvalue-1;
+        document.getElementById("b1").max = nvalue;
+        document.getElementById("b2").max = nvalue;
+        document.getElementById("a3").max = nvalue;
+
         drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP);
-}// Geometric 분포 막대그래프 함수 --------------------------------------------------
+}
+// Geometric 분포 막대그래프 함수 --------------------------------------------------
 function drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP) {
          var i, avg, std, info;
          var gymin, gymax, yRatio, betweenbarWidth, barWidth, barMargin
@@ -1349,24 +1367,25 @@ function geometricTable(nvalue, geoP, geometricP) {
         k = 0;
     
           row = table.insertRow(k++);
-          row.style.height ="40px";
+          row.style.height ="30px";
           for (j=0; j<2; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "<h3>"+svgStrU[6][langNum]+" </h3>";
+          cell[0].innerHTML = "<b>"+svgStrU[6][langNum]+"</b>";
           cell[1].innerHTML = "p = "+f2(geoP);
 
           row  = table.insertRow(k++);
-          row.style.height ="30px";
+          row.style.height ="25px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
-            cell[j].style.width ="80px";
+            cell[j].style.width ="60px";
           }
+          cell[0].style.width ="80px";
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
           cell[2].innerHTML = "P(X &le; x)";
@@ -1397,8 +1416,13 @@ function showValueHyperGeo(newValue, valueLabel, hyperGeoP) {
         var nn = parseFloat(d3.select("#nn").node().value);    // sample 크기 
         if (nn > NN) newValue = d3.select("#NN").node().value;
         document.getElementById("nn").value = newValue;
+        document.getElementById("a1").max = newValue-1;
+        document.getElementById("b1").max = newValue;
+        document.getElementById("b2").max = newValue;
+        document.getElementById("a3").max = newValue;
         drawHyperGeoBarGraph(valueLabel, hyperGeoP, xmin, xmax, ymin, ymax);
-}// 초기하분포 막대그래프 함수 --------------------------------------------------
+}
+// 초기하분포 막대그래프 함수 --------------------------------------------------
 function drawHyperGeoBarGraph(label, hyperGeoP, xmin, xmax, ymin, ymax) {
          var info;
          bar.selectAll("*").remove();
@@ -1464,27 +1488,28 @@ function hyperGeoTable(NN, DD, nn, hyperGeoP) {
         k = 0;
     
           row = table.insertRow(k++);
-          row.style.height ="40px";
+          row.style.height ="30px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
           }
-          cell[0].innerHTML = "<h3>"+svgStrU[7][langNum]+" </h3>";
+          cell[0].innerHTML = "<b>"+svgStrU[7][langNum]+"</b>";
           cell[1].innerHTML = "N = "+NN;
           cell[2].innerHTML = "D = "+DD;
           cell[3].innerHTML = "n = "+nn;
 
           row  = table.insertRow(k++);
-          row.style.height ="30px";
+          row.style.height ="25px";
           for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
           }
-          for (j=0; j<ncol; j++) {
-            cell[j].style.width ="80px";
+          cell[0].style.width ="80px";
+          for (j=1; j<ncol; j++) {
+            cell[j].style.width ="60px";
           }
           cell[0].innerHTML = "x";
           cell[1].innerHTML = "P(X = x)";
@@ -3957,7 +3982,7 @@ function lawLarge(nobs) {
               dot2.selectAll("text.meanB").remove();
               dot2.append("text").attr("class","meanB").attr("x",tx+128).attr("y",ty).text(sum.toString());
               dot2.append("text").attr("class","meanB").attr("x",tx+125).attr("y",ty+20).text((g+1).toString()).style("stroke","green");
-              dot2.append("text").attr("class","meanB").attr("x",tx+165).attr("y",ty+8).text(" = "+f2(estp));
+              dot2.append("text").attr("class","meanB").attr("x",tx+165).attr("y",ty+8).text(" = "+f3(estp));
               tx2 = tx1 + step;
               ty2 = margin.top + graphHeight - areaHeight*estp ;
               dot2.append("line").attr("x1",tx1).attr("y1",ty1).attr("x2",tx2).attr("y2",ty2).style("stroke","blue")
@@ -5261,4 +5286,92 @@ function valueFreq(tobs, dataA, dataValue, dvalueFreq ) {
         nvalue++;
         return nvalue;
 }
+// draw axis for Normal Comparison, Law of Large Number
+function drawAxis() {
+        // x축 선
+        y1 = margin.top + graphHeight;
+        chart.append("line")
+         .attr("class", "line")
+         .attr("x1", margin.left)
+         .attr("x2", margin.left + graphWidth)
+         .attr("y1", y1)
+         .attr("y2", y1)
+         .style("stroke", "black")
 
+        // x축 그리기
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        xgrid = xScale.ticks();
+        // x축 그리드
+        for (i = 1; i < xgrid.length; i++) {
+          tx = margin.left + xScale(xgrid[i]);
+          chart.append("line")
+           .attr("x1", tx)
+           .attr("x2", tx)
+           .attr("y1", margin.top)
+           .attr("y2", margin.top + graphHeight)
+           .style("stroke", "lightgrey")
+        }
+        ty = margin.top + graphHeight;
+        chart.append("g")
+             .attr("transform","translate("+margin.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisBottom(xScale)) 
+
+        // y축 그리기
+        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeight, 0])
+        ygrid = yScale.ticks();
+        // Y축 그리드
+        for (i = 1; i < ygrid.length; i++) {
+          ty = margin.top + yScale(ygrid[i]);
+          chart.append("line")
+           .attr("x1", margin.left)
+           .attr("x2", margin.left + graphWidth)
+           .attr("y1", ty)
+           .attr("y2", ty)
+           .style("stroke", "lightgrey")
+        }
+        ty = margin.top;
+        chart.append("g")
+             .attr("transform","translate("+margin.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisLeft(yScale)) 
+}
+// 그래프 제목 쓰기 함수
+function drawTitle(mTitle, yTitle, xTitle) { 
+  // 주제목
+  if (mTitle != "") {
+    chart.append("text")
+         .attr("x", margin.left + graphWidth/2)
+         .attr("y", margin.top / 2 + 10)
+         .style("font-size", "1.3em")
+         .style("font-family", "sans-seirf")
+         .style("stroke", "black")
+         .style("text-anchor", "middle")
+         .text(mTitle)
+  }
+  // X축 제목
+  if (xTitle != "") {
+    chart.append("text")
+            .style("font-size", "1em")
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .attr("x", margin.left + graphWidth / 2)
+            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 15)
+            .text(xTitle)
+  }
+  // Y축 제목
+  if (yTitle != "") {
+     var tx = margin.left / 2 - 30;
+     var ty = margin.top + 15;
+     chart.append("text")
+            .style("font-size", "1em")
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "end")
+            .attr("x", tx)
+            .attr("y", ty)
+            .text(yTitle)
+            .attr("transform", "rotate(-90 30 100)")
+  }
+}

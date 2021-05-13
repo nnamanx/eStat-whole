@@ -191,6 +191,8 @@ li a:hover {
      .stdP {font-size:8pt; stroke: #00A2FF}
      .stdS {font-size:8pt; stroke: #FF3500}
      .stem {font-size:10pt; stroke:black; text-anchor: end;}
+     .inputNumber60  {text-align: center; width:60px; }
+     .inputNumber100 {text-align: center; width:100px; }
      .textarea  {text-align: center; }
      .textarea2 {text-align: center; background-color: yellow; border:1px solid black;}
      .title {font-size:13pt; stroke:blue; text-anchor: start;}
