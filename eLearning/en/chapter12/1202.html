@@ -391,7 +391,7 @@
       $$
         \begin{align}
           a \cdot n + b \sum_{i=1}^{n} X_i  &= \sum_{i=1}^{n} Y_i \\ 
-          a \sum_{i=1}^{n} X_i +  \sum_{i=1}^{n} X_i^2  &= \sum_{i=1}^{n} X_i Y_i \\
+          a \sum_{i=1}^{n} X_i + b \sum_{i=1}^{n} X_i^2  &= \sum_{i=1}^{n} X_i Y_i \\
         \end{align}
       $$
       <p>
@@ -455,7 +455,7 @@
       Prediction of the sales amount of a company with an advertising cost of 10 can be obtained by using the 
       fitted sample regression line as follows:
       <p>
-        \(\quad \small 29.672  +  (2.503)(10) = 53.702  \)
+        \(\quad \small 28.672  +  (2.503)(10) = 53.702  \)
       <p>
       In other words, sales of 53.705 million are expected. That is not to say that all companies with 
       advertising costs of 10 million USD have sales of 53.705 million USD, but that the average amount of their 
@@ -689,7 +689,7 @@
     <div class="mainTableYellow">
       <b>\(F\) Test for simple linear regression:</b>
       <p>
-         \(\quad \) Hypothesis: \(H_0 : \beta = 0, \;\; H_1 : \beta \ne = 0\) <br> 
+         \(\quad \) Hypothesis: \(H_0 : \beta = 0, \;\; H_1 : \beta \ne 0\) <br> 
          \(\quad \) Decision rule:  If \({F_0} = \frac{MSR}{MSE} > F_{1, n-2; &alpha;}\), then reject \(H_0\)
       <p>
       (In  『eStat』, the \(p\)-value for this test is calculated and the decision can be made using this 
@@ -793,7 +793,7 @@
       <b>Inference for the parameter \(\; \beta\)</b>
       <p>
          Point estimate: \(\quad b = \frac {\sum_{i=1}^{n} (X_i - \overline X) (Y_i - \overline Y)} { \sum_{i=1}^{n} (X_i - \overline X)^2 } , \quad b \sim N(\beta, \frac{\sigma^2} {\sum_{i=1}^{n} (X_i - \overline X )^2 } ) \)  <p>
-         Standard error of estimate \(b\):   \(\quad SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n}n (X_i - \overline X)^2} } }\) <p>
+         Standard error of estimate \(b\):   \(\quad SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n} (X_i - \overline X)^2} } }\) <p>
          Confidence interval of \(\; \beta\): \(\quad b \pm t_{n-2; &alpha;/2} \cdot SE(b)\) <p> 
          Testing hypothesis:  <br>
          \(\quad\)     Null hypothesis: \(\quad H_0 : \beta = \beta_0\)   <br>
@@ -878,19 +878,19 @@
       <div class="textL20">
         The point estimate of \(\beta\) is \(b\) = 2.5033 and the standard error of \(b\) is as follows:
         <p>
-        \(\quad \small SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n}n (X_i - \overline X)^2} } } = \frac{1.484}{\sqrt 60.4} = 0.1908\) 
+        \(\quad \small SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n} (X_i - \overline X)^2} } } = \frac{1.484}{\sqrt 60.4} = 0.1908\) 
         <p>
-        Hence, the 95% confidence interval of \(\beta\) using \(t_{8; 0.025} \) = 3.833 is as follows: 
+        Hence, the 95% confidence interval of \(\beta\) using \(t_{8; 0.025} \) = 2.056 is as follows: 
         <p>
-        \(\quad \small 2.5033 \pm (3.833)(0.1908)\) <br>
-        \(\quad \small 2.5033 \pm 0.7313\) <br>
-        \(\quad\)  i.e. the interval (1.7720, 3.2346). 
+        \(\quad \small 2.5033 \pm (2.056)(0.1908)\) <br>
+        \(\quad \small 2.5033 \pm 0.3922\) <br>
+        \(\quad\)  i.e. the interval (2.1110, 2.8956). 
         <p>
         The test statistic for the hypothesis  \(\small H_0 : \beta = 0\), is as follows:
         <p>
         \(\quad t= \frac{2.5033 - 0}{0.1908}\)  = 13.12
         <p>
-        Since \(t_{8; 0.025} \) = 3.833, the null hypothesis \(\small H_0 : \beta = 0\) is rejected with 
+        Since \(t_{8; 0.025} \) = 2.056, the null hypothesis \(\small H_0 : \beta = 0\) is rejected with 
         the significance level of \(\alpha\) = 0.05. This result of two sided test can be obtained from 
         the confidence interval. Since 95％ confidence interval (1.7720, 3.2346) do not include 0, 
         the null hypothesis \(\small H_0 : \beta = 0\) can be rejected.
@@ -904,9 +904,9 @@
       <div class="textL20">
         The point estimate of \(\alpha\) is \(a\) = 29.672 and its standard error is as follows: 
         <p>
-          \(\quad \small SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) } = 1.484 \cdot \sqrt { \frac{1}{10} + \frac{8.4^2}{60.4} } \) = 1.670
+          \(\quad \small SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 }  } = 1.484 \cdot \sqrt { \frac{1}{10} + \frac{8.4^2}{60.4} } \) = 1.670
         <p>
-        Since the value of \(t\) statistic is \(\frac{29.672}{1.67}\) = 17.1657 and \(t_{8; 0.025}\) = 3.833, 
+        Since the value of \(t\) statistic is \(\frac{29.672}{1.67}\) = 17.1657 and \(t_{8; 0.025}\) = 2.056, 
         the null hypothesis \(\small H_0 : \alpha = 0\) is also rejected with the significance level 
         \(\alpha\) = 0.05. 
       </div>
@@ -919,19 +919,23 @@
       <div class="textL20">
         In 『eStat』 , the standard error of \(\small \hat Y\), which is the estimate of \(\mu_{Y|x}\), 
         is calculated at each point of \(\small X\). For example, the point estimate of \(\small Y\) at \(\small X\) = 8 is
-        \(\small \hat Y\) = 49.699  and its standard error is 0.475. Hence, the 95% confidence interval of 
-        \(\mu_{Y|x}\) is as follows: 
+        \(\small \hat Y\) = 28.672 + 2.503 × 8 = 48.696  and its standard error is 0.475. 
         <p>
-          \(\quad \small 49.699 \pm (3.833)(0.475)\) <br>     
-          \(\quad \small 49.699 \pm 1.821\)     <br>
-          \(\quad\) i.e., the inteval is (46.878, 50.520).    
+          \(\small  \quad SE({\hat Y}_0) = s \cdot \sqrt { \frac{1}{n} + \frac { (X_0 - \overline X )^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } } \) <br>
+          \(\small  \qquad \qquad \; = 1.484 \cdot \sqrt { \frac{1}{10} + \frac { (8 - 8.4)^2} {60.4 } }= 0.475 \)
+        <p>
+        Hence, the 95% confidence interval of \(\mu_{Y|x}\) is as follows: 
+        <p>
+          \(\quad \small 48.696 \pm (2.056)×(0.475)\) <br>     
+          \(\quad \small 48.696 \pm 0.978\)     <br>
+          \(\quad\) i.e., the inteval is (47.718, 49.674).    
         <p>
         We can calculate the confidence interval for other value of \(\small X\) in a similar way as follows: 
         <p>
-          \(\quad \) At \(\small \;X = 4, \quad  39.685 \pm (3.833)(0.962)  \Rightarrow (33.998, 43.372)\) <br>   
-          \(\quad \) At \(\small \;X = 6, \quad  43.692 \pm (3.833)(0.656)  \Rightarrow (41.178, 46.206)\) <br>
-          \(\quad \) At \(\small \;X = 9, \quad  51.202 \pm (3.833)(0.483)  \Rightarrow (49.351, 53.053)\) <br>
-          \(\quad \) At \(\small \;X =12, \quad  59.712 \pm (3.833)(0.832)  \Rightarrow (56.063, 61.361)\) <br>
+          \(\quad \) At \(\small \;X = 4, \quad  38.684 \pm (2.056)×(0.962)  \Rightarrow (36.705, 40.663)\) <br>   
+          \(\quad \) At \(\small \;X = 6, \quad  47.690 \pm (2.056)×(0.656)  \Rightarrow (42.341, 45.039)\) <br>
+          \(\quad \) At \(\small \;X = 9, \quad  51.199 \pm (2.056)×(0.483)  \Rightarrow (50.206, 52.192)\) <br>
+          \(\quad \) At \(\small \;X =12, \quad  58.708 \pm (2.056)×(0.832)  \Rightarrow (56.997, 60.419)\) <br>
         <p>
         As we discussed, the confidence interval becomes wider as \(\small X\) is far from \(\small \overline X\). 
         <p>

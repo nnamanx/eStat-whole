@@ -671,15 +671,15 @@
           <th class="thGrey" style="width:200px">Decision Rule<br>Test Statistic \(R_{2}\)= 'Sum of ranks assigned samples of \(Y\)'</th>
         </tr>
         <tr style="height:40px">
-          <td class="tdLeft">1) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M > M_0 \)</td>
+          <td class="tdLeft">1) \( \; H_0 : M_1 = M_2 \)<br>\(\quad\,\, H_1 : M_1 > M_2 \)</td>
           <td class="tdLeft">If \( R_{2}  > w_{2}(n_1 , n_2)_{&alpha;} \), then reject \( H_0 \) </td>
         </tr>
         <tr style="height:40px">
-          <td class="tdLeft">2) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M < M_0 \)</td>
+          <td class="tdLeft">2) \( \; H_0 : M_1 = M_2 \)<br>\(\quad\,\, H_1 : M_1 < M_2 \)</td>
           <td class="tdLeft">If \( R_{2}  < w_{2}(n_1 , n_2)_{1-&alpha;} \), then reject \( H_0 \) </td>
         </tr>
         <tr style="height:40px">
-          <td class="tdLeft">3) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M \ne M_0 \)</td>
+          <td class="tdLeft">3) \( \; H_0 : M_1 = M_2 \)<br>\(\quad\,\, H_1 : M_1 \ne M_2 \)</td>
           <td class="tdLeft">If \( R_{2}  < w_{2}(n_1 , n_2)_{1-&alpha;/2} \quad or\quad R_{2}  > w_{2}(n_1 , n_2)_{&alpha;/2}   \), then reject \( H_0 \) </td>
         </tr>
       </table>
@@ -743,7 +743,7 @@
         </tr>
         <tr style="height:40px">
           <td class="tdLeft">1) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M > M_0 \)</td>
-          <td class="tdLeft">If \( \frac{ R_{2} - E(R_{2}) } {\sqrt{V(R_{2})}}  > z)_{&alpha;} \), then reject \( H_0 \) </td>
+          <td class="tdLeft">If \( \frac{ R_{2} - E(R_{2}) } {\sqrt{V(R_{2})}}  > z_{&alpha;} \), then reject \( H_0 \) </td>
         </tr>
         <tr style="height:40px">
           <td class="tdLeft">2) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M < M_0 \)</td>
@@ -760,7 +760,7 @@
       The distribution of rank sum statistic, \(w_{2}(n_{1},n_{2})\), is not dependent on the population 
       distribution. That is, the rank sum test is a distribution free test. For example, if \(n_1\) = 3 and
       \(n_2\) = 2, the distribution \(w_{2}(3, 2)\) can be found as follows. All possible cases of ranks for
-      \(R_2\) is \({}_{5}P_{2}\) = 10.
+      \(R_2\) is \({}_{5}C_{2}\) = 10.
     </div>
     <p>
       <table style="width:500px"> 
