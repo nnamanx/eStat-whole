@@ -350,7 +350,7 @@
       var rowMax = 9;
       var fontsize = "1em";
       var strPath;
-      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
+      var colr = ["#FF0000","#FF8000","#FFFF00","#32CD32","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
       var catg  = new Array(rowMax);
       var freq  = new Array(rowMax);
       var perc  = new Array(rowMax);
@@ -709,7 +709,8 @@
     for (var j = 0; j < ndvalue; j++) {
       if (dataSet[i] == 0) continue;
       chart.append("text")
-           .attr("class", "freqfont")
+           .style("text-anchor", "middle")
+           .style("font-size", "0.8em")
            .attr("x", margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth)
            .attr("y", margin.top + graphHeight - dataSet[j] * freqRatioV + 15)
            .text(dataSet[j]);
@@ -834,7 +835,7 @@
     var xScale, yScale;
     var ygrid    = new Array(rowMax);
 
-    yScale = d3.scaleLinear().domain([0, freqMax]).range([height, 0]);
+    yScale = d3.scaleLinear().domain([0, freqMax/0.8]).range([height, 0]);
     ygrid = yScale.ticks();
     tx = margin.left;
     ty = margin.top;

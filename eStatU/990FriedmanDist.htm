@@ -94,7 +94,7 @@
       var maxk     = 4;
       var maxblock = 10;
       var maxfact  = 1*2*3*4*5*6*7*8*9*10;
-      var tobs, nvalue, checkData;
+      var tobs, nvalue, checkData, temp;
       var hypoType, h1Type, df, info, f, g, h, pvalue, stat, alpha;
       hypoType = 99;
       h1Type = 2; 
@@ -161,6 +161,7 @@
       nkk    = parseInt(document.getElementById("nn41").value);
       nblock = parseInt(document.getElementById("nn42").value);
     
+      tdata =[];
       if ( (nkk == 3 && nblock <= 8) || (nkk == 4 && nblock <= 6) ) { // exact Friedman Distribution
         bar.selectAll("*").remove();
         // All possible factorial of Rank -팩토리얼 함수에서 메인으로 덤프 x[][] 하여 통계량 계산
@@ -384,7 +385,7 @@
         }
 
         // draw graph
-        var sub2 = "p = "+ nkk + ", n = " + nblock;
+        var sub2 = "k = "+ nkk + ", n = " + nblock;
         drawFriedmanBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, SP, alpha, h1Type, checkData) 
       }
       else {
