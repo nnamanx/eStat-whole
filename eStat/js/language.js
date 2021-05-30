@@ -104,6 +104,7 @@ $.message.ko = {
     "Pie Chart": "원그래프",
     "Rainbow Chart": "무지개그래프",
     "Band Graph": "띠그래프",
+    "Line": "꺾은선",
     "Line Graph": "꺾은선그래프",
     "Dot Graph": "점그래프",
     "Histogram": "히스토그램",
@@ -704,6 +705,7 @@ svgStrU[110][0] = "균등분포의 최대 정수 수";
 svgStrU[111][0] = "마우스로 한 점을 이동";
 svgStrU[112][0] = "복원추출";
 svgStrU[113][0] = "비복원추출"; 
+svgStrU[114][0] = "꺽은선"; 
 
 // English
 $.message.en = {
@@ -729,6 +731,7 @@ $.message.en = {
     "Pie Chart": "Pie Chart",
     "Rainbow Chart": "Rainbow Chart",
     "Band Graph": "Band Chart",
+    "Line": "Line",
     "Line Graph": "Line Graph",
     "Dot Graph": "Dot Graph",
     "Histogram": "Histogram",
@@ -1330,6 +1333,8 @@ svgStrU[110][1] = "Max number of integers of Uniform Dist";
 svgStrU[111][1] = "Move a point using mouse";
 svgStrU[112][1] = "with replacement";
 svgStrU[113][1] = "without replacement"; 
+svgStrU[114][1] = "Line"; 
+
 
 // Japanese
 $.message.ja = {
@@ -1354,6 +1359,7 @@ $.message.ja = {
     "Bar Graph": "棒グラフ",
     "Pie Chart": "円グラフ",
     "Band Graph": "帯グラフ",
+    "Line": "折れ線",
     "Line Graph": "折れ線グラフ",
     "Dot Graph": "ドットグラフ",
     "Histogram": "ヒストグラム",
@@ -1941,6 +1947,7 @@ svgStrU[110][2] = "均等分布の最大整数";
 svgStrU[111][2] = "一点をマウスで移動";
 svgStrU[112][2] = "復元抽出";
 svgStrU[113][2] = "非復元抽出"; 
+svgStrU[114][2] = "折れ線"; 
 
 // Chinese
 $.message.zhTW = {
@@ -1965,6 +1972,7 @@ $.message.zhTW = {
     "Bar Graph": "長條圖",
     "Pie Chart": "圓餅圖",
     "Band Graph": "帶狀圖",
+    "Line": "折線",
     "Line Graph": "折線圖",
     "Dot Graph": "點圖",
     "Histogram": "直方圖",
@@ -2549,6 +2557,7 @@ svgStrU[110][3] = "均勻分佈的最大整數";
 svgStrU[111][3] = "用鼠標移動點";
 svgStrU[112][3] = "修復抽樣";
 svgStrU[113][3] = "非復原抽樣"; 
+svgStrU[114][3] = "折線"; 
 
 // French
 $.message.fr = {
@@ -2573,6 +2582,7 @@ $.message.fr = {
     "Bar Graph": "Diagramme en barres",
     "Pie Chart": "Camembert",
     "Band Graph": "Graphique à bandes",
+    "Lineh": "Courbe",
     "Line Graph": "Graphique en courbe",
     "Dot Graph": "Graphique à points",
     "Histogram": "Histogramme",
@@ -3157,6 +3167,7 @@ svgStrU[110][4] = "Nombre maximum d'entiers de la distribution uniforme";
 svgStrU[111][4] = "Déplacer un point avec la souris";
 svgStrU[112][4] = "Récupération";
 svgStrU[113][4] = "Extraction non restaurée"; 
+svgStrU[114][4] = "Courbe"; 
 
 // German
 $.message.de = {
@@ -3181,6 +3192,7 @@ $.message.de = {
     "Bar Graph": "Balkendiagramm",
     "Pie Chart": "Kreisdiagramm",
     "Band Graph": "Banddiagramm",
+    "Line": "Linen",
     "Line Graph": "Gerade",
     "Dot Graph": "eindimensionales Streudiagramm",
     "Histogram": "Histogramm",
@@ -3765,6 +3777,7 @@ svgStrU[110][5] = "Maximale Anzahl von Ganzzahlen der Gleichverteilung";
 svgStrU[111][5] = "Bewegen Sie einen Punkt mit der Maus";
 svgStrU[112][5] = "Wiederherstellungs-Extraktion";
 svgStrU[113][5] = "ohne Ersatz"; 
+svgStrU[114][5] = "Linen"; 
 
 // Spanish
 $.message.es = {
@@ -3789,6 +3802,7 @@ $.message.es = {
     "Bar Graph": "Diagrama de barras",
     "Pie Chart": "Diagrama de tarta",
     "Band Graph": "Gráfico de partes componentes",
+    "Line": "Líneas",
     "Line Graph": "Gráfico de líneas",
     "Dot Graph": "Gráfico de puntos",
     "Histogram": "Histograma",
@@ -4374,6 +4388,7 @@ svgStrU[110][6] = "Número máximo de enteros de distribución uniforme";
 svgStrU[111][6] = "Mueve un punto con el mouse";
 svgStrU[112][6] = "desmovilización";
 svgStrU[113][6] = "sin reemplazo"; 
+svgStrU[114][6] = "Líneas"; 
 
 // Vietnamese
 $.message.vi = {
@@ -4398,6 +4413,7 @@ $.message.vi = {
     "Bar Graph": "Biểu đồ cột",
     "Pie Chart": "Biểu đồ tròn",
     "Band Graph": "Biểu đồ thanh",
+    "Line": "đường",
     "Line Graph": "Biểu đồ đường",
     "Dot Graph": "Biểu đồ điểm ",
     "Histogram": "Histogram",
@@ -4983,6 +4999,7 @@ svgStrU[110][7] = "Số lượng tối đa của số nguyên phân phối đồ
 svgStrU[111][7] = "Di chuyển một điểm bằng chuột";
 svgStrU[112][7] = "Khai thác phục hồi";
 svgStrU[113][7] = "không có vật thay thế"; 
+svgStrU[114][7] = "đường"; 
 
 // Indonesian
 $.message.id = {
@@ -5007,7 +5024,8 @@ $.message.id = {
     "Bar Graph": "Diagram Batang",
     "Pie Chart": "Diagram Pai",
     "Band Graph": "Diagram Band",
-    "Line Graph": " Diagram Garis",
+    "Line": "Garis",
+    "Line Graph": "Diagram Garis",
     "Dot Graph": "Diagram Dot",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": " Diagram Dahan dan Daun",
@@ -5592,6 +5610,7 @@ svgStrU[110][8] = "Jumlah maksimum bilangan bulat dari Distribusi Seragam";
 svgStrU[111][8] = "Pindahkan satu titik dengan mouse";
 svgStrU[112][8] = "Ekstraksi restorasi";
 svgStrU[113][8] = "tanpa penggantian"; 
+svgStrU[114][8] = "Garis"; 
 
 // Mongolian
 $.message.mn = {
@@ -5616,6 +5635,7 @@ $.message.mn = {
     "Bar Graph": "Баганан график",
     "Pie Chart": "Бялуун график",
     "Band Graph": "Туузан график",
+    "Line": "Шугаман",
     "Line Graph": "Шугаман график",
     "Dot Graph": "Цэгэн график",
     "Histogram": "Гистограм",
@@ -6199,6 +6219,8 @@ svgStrU[110][9] = "Uniform Distribution бүхэл тоо";
 svgStrU[111][9] = "Хулганы тусламжтайгаар цэгийг шилжүүл";
 svgStrU[112][9] = "Сэргээлтийн олборлолт";
 svgStrU[113][9] = "орлуулахгүйгээр"; 
+svgStrU[114][9] = "Шугаман"; 
+ 
 
 // Chinese - Simplified
 $.message.zh = {
@@ -6223,6 +6245,7 @@ $.message.zh = {
     "Bar Graph": "条形图",
     "Pie Chart": "饼图",
     "Band Graph": "带状图",
+    "Line": "折线",
     "Line Graph": "折线图",
     "Dot Graph": "点图",
     "Histogram": "直方图",
@@ -6783,6 +6806,8 @@ svgStrU[110][10] = "分布均匀的最大整数数";
 svgStrU[111][10] = "用鼠标移动点";
 svgStrU[112][10] = "恢复提取";
 svgStrU[113][10] = "不可回收提取";
+svgStrU[114][10] = "折线"; 
+
 
 // Portugese
 $.message.pt = {
@@ -6807,6 +6832,7 @@ $.message.pt = {
     "Bar Graph": "Gráfico de Barras",
     "Pie Chart": "Gráfico de Setores",
     "Band Graph": "Gráfico de Faixas/Bandas",
+    "Line": "Linha",
     "Line Graph": "Gráfico de Linha",
     "Dot Graph": "Gráfico de Pontos",
     "Histogram": "Histograma",
@@ -7394,6 +7420,7 @@ svgStrU[110][11] = "Número máximo de números inteiros de distribuição unifo
 svgStrU[111][11] = "Mover um ponto com o mouse";
 svgStrU[112][11] = "Extração de restauração";
 svgStrU[113][11] = "Sem substituição";
+svgStrU[114][11] = "Linha"; 
 
 // Greek
 $.message.gr = {
@@ -7418,6 +7445,7 @@ $.message.gr = {
     "Bar Graph": "Ραβδογράφημα ",
     "Pie Chart": "Κυκλικό Διάγραμμα",
     "Band Graph": "Διάγραμμα Ζώνης",
+    "Line": "Γραμμικό ",
     "Line Graph": "Γραμμικό Διάγραμμα, ",
     "Dot Graph": "Σημειόγραμμα ",
     "Histogram": "Ιστόγραμμα ",
@@ -8005,7 +8033,8 @@ svgStrU[110][12] = "Μέγιστος αριθμός ακεραίων της Ομ
 svgStrU[111][12] = "Μετακινήστε ένα σημείο με το ποντίκι";
 svgStrU[112][12] = "Εξόρυξη αποκατάστασης";
 svgStrU[113][12] = "χωρίς αντικατάσταση";
-  
+svgStrU[114][12] = "Γραμμικό"; 
+
 
 // Romanian
 $.message.ro = {
@@ -8030,6 +8059,7 @@ $.message.ro = {
     "Bar Graph": "Diagramă Coloane",
     "Pie Chart": "Diagramă Radială",
     "Band Graph": "Diagrammă Bară",
+    "Line": "Liniară",
     "Line Graph": "Diagramă Liniară",
     "Dot Graph": "Diagramă prin Puncte",
     "Histogram": "Histogramă",
@@ -8617,7 +8647,8 @@ svgStrU[110][13] = "Numărul maxim de numere întregi de distribuție uniformă"
 svgStrU[111][13] = "Deplasați un punct cu mouse-ul";
 svgStrU[112][13] = "Extracția restaurării";
 svgStrU[113][13] = "fără înlocuire";
-   
+svgStrU[114][13] = "Liniară"; 
+
 // Thai
 $.message.th = {
     "eStat : Stat Education SW": "eStat : ซอฟต์แวร์การศึกษาสถิติ",
@@ -8641,6 +8672,7 @@ $.message.th = {
     "Bar Graph": "แผนภูมิแท่ง",
     "Pie Chart": "แผนภูมิรูปวงกลม",
     "Band Graph": "แผนภาพแถบ",
+    "Line": "แผนภาพเส้น",
     "Line Graph": "แผนภาพเส้น",
     "Dot Graph": "แผนภาพจุด",
     "Histogram": "ฮิสโทแกรม",
@@ -9230,6 +9262,8 @@ svgStrU[110][14] = "จำนวนสูงสุดของจำนวนเ
 svgStrU[111][14] = "เลื่อนจุดด้วยเมาส์";
 svgStrU[112][14] = "การสกัดการฟื้นฟู";
 svgStrU[113][14] = "โดยไม่ต้องเปลี่ยน";
+svgStrU[114][14] = "แผนภาพเส้น"; 
+
 
 // Polish
 $.message.pl = {
@@ -9254,6 +9288,7 @@ $.message.pl = {
     "Bar Graph": "Wykres słupkowy",
     "Pie Chart": "Wykres kołowy",
     "Band Graph": "Wykres pasmowy",
+    "Line": "liniowy",
     "Line Graph": "Wykres liniowy",
     "Dot Graph": "Wykres punktowy",
     "Histogram": "Histogram",
@@ -9844,7 +9879,8 @@ svgStrU[110][15] = "Maksymalna liczba całkowita o jednolitym rozkładzie";
 svgStrU[111][15] = "Przesuń punkt za pomocą myszy";
 svgStrU[112][15] = "Ekstrakcja renowacji";
 svgStrU[113][15] = "bez zamiany";
-
+svgStrU[114][15] = "liniowy"; 
+ 
 // Azerbaijan
 $.message.az = {
     "eStat : Stat Education SW": "eStat : Stat Təhsil SW",
@@ -9868,6 +9904,7 @@ $.message.az = {
     "Bar Graph": "Sütun qrafiki",
     "Pie Chart": "dairə",
     "Band Graph": "Zolaq qrafiki",
+    "Line": "xətti",
     "Line Graph": "xətti qrafik",
     "Dot Graph": "nöqtə qrafiki",
     "Histogram": "Histogram",
@@ -10455,6 +10492,7 @@ svgStrU[110][16] = "Uniform Distribution butun sonlarining maksimal soni";
 svgStrU[111][16] = "Sichqoncha yordamida nuqtani siljiting";
 svgStrU[112][16] = "Bərpa hasilatı";
 svgStrU[113][16] = "almashtirishsiz";
+svgStrU[114][16] = "xətti"; 
 
 // Uzbekistan
 $.message.uz = {
@@ -10479,6 +10517,7 @@ $.message.uz = {
     "Bar Graph": "Bar grafigi",
     "Pie Chart": "pie jadvali",
     "Band Graph": "Tasma grafigi",
+    "Line": "chiziq",
     "Line Graph": "chiziq grafigii",
     "Dot Graph": "Nuqta grafigi",
     "Histogram": "Gistogrammai",
@@ -11066,6 +11105,7 @@ svgStrU[110][17] = "Maksimal butun sonlar Formali Tarqatish";
 svgStrU[111][17] = "Sichqoncha yordamida nuqtani siljiting";
 svgStrU[112][17] = "Qayta tiklash ekstrakti";
 svgStrU[113][17] = "almashtirishsiz";
+svgStrU[114][17] = "chiziq"; 
 
 // Russian
 $.message.ru = {
@@ -11090,6 +11130,7 @@ $.message.ru = {
     "Bar Graph": "Столбиковая диаграмма",
     "Pie Chart": "Круговая диаграмма",
     "Band Graph": "Полосная диаграмма",
+    "Line": "Линейный",
     "Line Graph": "Линейный график",
     "Dot Graph": "Точечный график",
     "Histogram": "Гистограмма",
@@ -11676,4 +11717,6 @@ svgStrU[110][18] = "Максимальное количество целых ч�
 svgStrU[111][18] = "Переместить точку с помощью мыши";
 svgStrU[112][18] = "Восстановление извлечения";
 svgStrU[113][18] = "без заменыt";
+svgStrU[114][18] = "Линейный"; 
+
 

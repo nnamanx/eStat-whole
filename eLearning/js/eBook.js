@@ -420,9 +420,10 @@
     addrStr[119] = "http://www.estat.me/estat/eStatU/990FriedmanDist.htm";
     addrStr[120] = "http://www.estat.me/estat/eStatU/995StudentRangeDist.htm";
     addrStr[121] = "http://www.estat.me/estat/eStatU/99Friedman.htm";
-    addrStr[122]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX070104_Height.csv","analysisVar":1,"graphNum":27});
-    addrStr[123]  = temp+JSON.stringify({"dataURL":"../Example/eBook/EX080103_WageByGender.csv","analysisVar":2,"groupVars":[1],"graphNum":31});
-    addrStr[124]  = "http://www.estat.me/estat/eStatU/05WordCloud.htm";
+    addrStr[122] = temp+JSON.stringify({"dataURL":"../Example/eBook/EX070104_Height.csv","analysisVar":1,"graphNum":27});
+    addrStr[123] = temp+JSON.stringify({"dataURL":"../Example/eBook/EX080103_WageByGender.csv","analysisVar":2,"groupVars":[1],"graphNum":31});
+    addrStr[124] = "http://www.estat.me/estat/eStatU/05WordCloud.htm";
+    addrStr[125] = "http://www.estat.me/estat/eStatU/02LineGraph.htm";
     // eStatM
     addrStr[141] = "http://www.estat.me/estat/eStatH/01BarChart.htm";
     addrStr[142] = "http://www.estat.me/estat/eStatH/05WordCloud.htm";
@@ -451,6 +452,7 @@
     addrStr[165] = "http://www.estat.me/estat/eStatH/40Pascal.htm";
     addrStr[166] = "http://www.estat.me/estat/eStatH/43LawOfLarge.htm";
     addrStr[167] = "http://www.estat.me/estat/eStatH/50NormalComparison.htm";
+    addrStr[168] = "http://www.estat.me/estat/eStatH/02LineGraph.htm";
 // eLearning
     addrStr[170] = "http://www.estat.me/estat/eLearning/kr/eStat_kr_Introduction.html";
     addrStr[171] = "http://www.estat.me/estat/eLearning/kr/index.html";
