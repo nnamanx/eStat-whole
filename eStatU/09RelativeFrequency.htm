@@ -603,13 +603,13 @@
       // 레이블
       cx = margin.left + graphWidth + 10;
       cy = margin.top + 30;
-      chart.append("circle").attr("class", "histline").style("stroke", color1).style("stroke-width", "2px")
+      chart.append("circle").attr("class", "histline").style("fill", color1)
              .attr("cx", cx).attr("cy", cy).attr("r", 3)
       chart.append("text").attr("x", cx+10).attr("y", cy+7)
            .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color1).style("text-anchor", "begin")
            .text(freq1Name)
       cy += 30;
-      chart.append("circle").attr("class", "histline").style("stroke", color2).style("stroke-width", "2px")
+      chart.append("circle").attr("class", "histline").style("fill", color2)
              .attr("cx", cx).attr("cy", cy).attr("r", 3)
       chart.append("text").attr("x", cx+10).attr("y", cy+7)
            .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color2).style("text-anchor", "begin")
