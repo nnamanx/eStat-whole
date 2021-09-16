@@ -19,21 +19,11 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; <span data-msgid="Scatterplot">Scatter Plot</span></b>
+      <b>&nbsp; <span data-msgid="Scatterplot">Scatter Plot</span> - <span data-msgid="Correlation Coefficient">Correlation Coefficient</span></b>
       <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <br>
     <table class="data">
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>X <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data1"></td>
-	</tr>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>Y <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data2"></td>
-	</tr>
         <tr>
           <td> &nbsp; &nbsp;</td>
           <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
@@ -48,6 +38,18 @@
  	</tr>
     </table>   
     <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data2"></td>
+	</tr>
+    </table>   
     <table class="stat">
       <tbody>
 	<tr>
@@ -96,6 +98,7 @@
 	</tr>
       </tbody>
     </table>
+    <br>
     <button type="button" id="redrawCorr" >
         <span data-msgid="Execute">Execute</span>
     </button>

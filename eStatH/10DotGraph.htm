@@ -34,14 +34,12 @@
     <table class="stat">
       <tbody>
         <tr>
-          <td></td>
-          <td colspan="7"> 
-            <span data-msgid="SortData">Sorted Data</span>  
-            <input type="text" size=60 id="datasort">
+          <td> <span data-msgid="SortData">Sorted Data</span>  </td>
+          <td colspan="6"> 
+            <input type="text" size=65 id="datasort">
           </td>
         </tr>
         <tr>
-          <td></td>
           <td><span data-msgid="NumberData">Data Size</span></td>
           <td><span class="fontmath">n</span></td>
           <td><input type="text" class="textarea" size=10 id="nn" style="text-align: right;"></td>
@@ -51,7 +49,6 @@
           <td><input type="text" class="textarea" size=10 id="mini" style="text-align: right;"></td>
         </tr>
         <tr>
-          <td></td>
           <td><span data-msgid="Total"></td>
           <td></td>
           <td><input type="text" class="textarea" size=10 id="xsum" style="text-align: right;"></td>
@@ -62,7 +59,6 @@
         </tr>
         <tr>
         <tr>
-          <td></td>
           <td><span data-msgid="Mean"></td>
           <td><span class="fontmath">&mu;</span></td>
           <td><input type="text" class="textarea" size=10 id="xbar" style="text-align: right;"></td>
@@ -72,7 +68,6 @@
           <td><input type="text" size=10 id="range" style="text-align: right;"></td>
         </tr>
         <tr>
-          <td></td>
           <td><span id="msgMed"></span></td>
           <td><span class="fontmath">m</span></td>
           <td><input type="text" size=10 id="medi" style="text-align: right;"></td>
@@ -83,7 +78,6 @@
           <td></td>
         </tr>
         <tr>
-          <td></td>
           <td><span id="msgMode"></span></td>
           <td><span class="fontmath">mode</span></td>
           <td><input type="text" size=10 id="mode" style="text-align: right;"></td>
@@ -92,11 +86,10 @@
           <td><span class="fontmath">&sigma;</span></td>
           <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
         </tr>
-        <tr>
-          <td><button type="button" id="execute"> <span data-msgid="Execute">Execute</span>     </button> </td>
-        </tr>
       </tbody>
     </table>
+    <br>
+    <button type="button" id="execute"> <span data-msgid="Execute">Execute</span>     </button>
     <p>
     <svg id="chart" width="640" height="400"> </svg>
     <p> 

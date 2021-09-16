@@ -17,9 +17,8 @@
     <h1 style="color:#4CAF50;" > &nbsp; 
       <span data-msgid="eStatH HighStatEdu">eStatH - High School Statistics Education SW</span>
     </h1>
-    <h3 style="color:#4CAF50;">&nbsp;&nbsp;&nbsp;Contact: jjlee@ssu.ac.kr</span></h3>
 
-  <div style="position:absolute; left:10px; top:110px">
+  <div style="position:absolute; left:10px; top:70px">
     <table>
       <tr>
          <td colspan="3"><span style="color:blue; font-size:2em; font-weight:bold" data-msgid="MiddleStat"></span></td>
@@ -30,14 +29,14 @@
           <a style="color:blue; font-weight:bold" href="../eLearning/kr/index.html" target="_blank"><span data-msgid="ebookLink"></span></a><p> 
         </td>
         <td>
-          <input type="image" src="eLearningH.png"  style="width:110px" onclick="myFunctionM()"> 
+          <input type="image" src="eLearningH.png"  style="width:100px" onclick="myFunctionM()"> 
           <script>
             function myFunctionM() { window.open("http://www.estat.me/estat/eLearning/kr/index.html"); }
           </script>
         </td>
       </tr>
     </table> 
-    <ul width="100px">
+    <ul width="130px">
       <li><a href="01BarChart.htm">&#8545; &nbsp;&nbsp; <span data-msgid="Bar Graph"></span> - <span data-msgid="Pie Chart"></span> - <span data-msgid="Band Graph"></span></a></li>
       <li><a href="02LineGraph.htm">&#8545; &nbsp;&nbsp; <span data-msgid="Line Graph">Line Graph</span></a></li>
       <li><a href="05WordCloud.htm">&#8545; &nbsp;&nbsp; <span data-msgid="WordCloud">Word Cloud</span></a></li>
@@ -51,11 +50,11 @@
     </ul>
   </div>
 
-  <div style="position:absolute; left:10px; top:680px">
-    <svg id="ScatterPlot2" width="360" height="360"> </svg> 
+  <div style="position:absolute; left:10px; top:610px">
+    <svg id="ScatterPlot2" width="380" height="300"> </svg> 
   </div>
 
-  <div style="position:absolute; left:390px; top:110px">
+  <div style="position:absolute; left:410px; top:70px">
     <table>
       <tr>
          <td colspan="3"><span style="color:blue; font-size:2em; font-weight:bold" data-msgid="HighStat"></span></td>
@@ -66,7 +65,7 @@
           <a style="color:blue; font-weight:bold" href="../eLearning/kr/indexH.html" target="_blank"><span data-msgid="ebookLink"></span></a>
         </td>
         <td>
-          <input type="image" src="eLearningH.png"  style="width:110px" onclick="myFunctionH()"> 
+          <input type="image" src="eLearningH.png"  style="width:100px" onclick="myFunctionH()"> 
           <script>
             function myFunctionH() { window.open("http://www.estat.me/estat/eLearning/kr/indexH.html"); }
           </script>
@@ -91,13 +90,15 @@
       <li><a href="64SampleEng.htm">&#8547; &nbsp; <span data-msgid="Confidence Interval Simulation">Confidence Interval</span></a></li>
       <li><a href="65ConfidenceIntervalMu_H.htm">&#8547; &nbsp; <span data-msgid="Mu Confidence Interval">Confidence Interval</span></a></li>
     </ul>
+    <p>
+    <h2 style="color:#4CAF50;">&nbsp;&nbsp;&nbsp;Contact: jjlee@ssu.ac.kr</span></h2>
   </div>
 
   <script>
       var svg = d3.select("#ScatterPlot2"); 
       svg.selectAll("*").remove();  // 전화면 제거
-      var svgWidth    = 360;
-      var svgHeight   = 360;
+      var svgWidth    = 380;
+      var svgHeight   = 300;
       var margin      = {top: 20, bottom: 20, left: 20, right: 20};
       var graphWidth  = svgWidth - margin.left - margin.right;
       var graphHeight = svgHeight - margin.top - margin.bottom;
