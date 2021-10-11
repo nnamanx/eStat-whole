@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 3</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../eStatM/index.html">Table of Contents</a></li>
+            <li><a href="../eStatM/chapter01.html">1. Statistics</a></li>
+            <li><a href="../eStatM/chapter02.html">2. Visualization of Qualitative Data</a></li>
+            <li><a href="../eStatM/chapter03.html">3. Visualization of Qunatitative Data</a></li>
+            <li><a href="../eStatM/chapter04.html">4. Measure of Central Tendency and Dispersion</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h1>Chapter 3. Visualization of Quantitative Data</h1> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(142)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(144)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <p>
+  <table>
+    <tr>
+      <td style="width:300px">
+        <h1>&nbsp; 🌿 📈</h1>
+        <h4>
+        <a href="#0301"><u>3.1 Stem and Leaf Plot</u></a> <p>
+        <a href="#0302"><u>3.2 Histogram – Frequency Table</u></a> <p>
+        <a href="#0303"><u>3.3 Frequency Distribution Polygon – Relative Frequency</u></a> <p>
+        <a href="#0304"><u>3.4 Scatterplot</u></a> <p>
+        <a href="../eStatM/chapter03.pdf" target="_blank"><u>[Chpater 3. pdf]</u></a>
+        </h4>
+      </td>
+      <td style="width:350px">
+        <h1></h1>
+        <p>In the case of quantitative data, the following graphs are drawn and 
+           analyzed.
+        <p>
+           - Stem and leaf drawing <br>
+           - Histogram <br>
+           - Frequency distribution polygon <br>
+        <p>
+           In the case of two quantitative variables, a scatter plot is used to 
+           analyze their relation.
+      </td>
+    </tr>
+  </table>
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0301">3.1  Stem and Leaf Plot</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+             <b>Fine dust occurs frequently these days in Seoul and causes inconvenience
+             to our daily life. The following are data on the fine dust concentration
+             in Seoul in February, 2021. How many days in February the fine dust was 
+             severe.</b>
+          <p>
+          <div class="textLeft">(Data 3.1)Fine dust concentration in Seoul, February 2021 (㎍/\(m^3\))<br>
+          </div>
+          <table> 
+            <tr> 
+              <td>
+                39  18  20  22  16  44  59  18  16  23  
+                53  76  77  76  37  15  13  17  24  42  <br>
+                46  30  18  25  34  24  11  14  
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <div class="textL20M20">
+             <b> 1) There are 28 data on fine dust concentration, how can we easily 
+                 express the overall distribution of data?</b>
+          </div>
+          <div class="textL20M20">
+             <b> 2) When the fine dust concentration exceeds 36 (㎍/), it is evaluated
+                 as 'bad', how many ‘bad’ days in February?  </b>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>In the above example data, the fine dust concentration was measured as 
+         39, 18, 20 ... etc. The data expressed as a quantity in this way is called a 
+         <b>quantitative variable</b>. 
+      <p>Since numerical data like (Data 3.1) uses the decimal system, data 
+         corresponding to each ten’s digit can be collected and organized as in 
+         the following table. That is, the first data 39 has a ten’s digit of ‘3’, 
+         so write this data in the third row, and write the next 18 in the first row 
+         because the ten’s digit is ‘1’. [Table 3.1] shows all data organized in 
+         the same way.
+      <p>
+          <div class="textLeft">[Table 3.1] Fine dust concentration data organized on ten’s digit</div>
+          <table> 
+            <tr> <th class="thGrey">Ten's digit</th>       <th class="thGrey">Data</th>  </tr>
+            <tr> <td class="tdCenter">1</td>  <td>18 16 18 16 15 13 17 18 11 14</td>    </tr>
+            <tr> <td class="tdCenter">2</td>  <td>20 22 23 24 25 24</td>    </tr>
+            <tr> <td class="tdCenter">3</td>  <td>39 37 30 34</td>    </tr>
+            <tr> <td class="tdCenter">4</td>  <td>44 42 46</td>    </tr>
+            <tr> <td class="tdCenter">5</td>  <td>59 53 </td>    </tr>
+            <tr> <td class="tdCenter">6</td>  <td></td>    </tr>
+            <tr> <td class="tdCenter">7</td>  <td>76 77 76</td>    </tr>
+          </table>
+      <p>
+         In [Table 3.1], if x denotes the fine dust concentration, each row 
+         (with ten’s digit) means intervals such as ‘10  x  20㎍/\(m^3\), 
+         ‘20  x  30㎍/\(m^3\),  ... ‘70  x  80㎍/\(m^3\). [Table 3.2] in which 
+         only one last digit of the data shown in each row is arranged in 
+         ascending order, is called a stem and leaf plot. In the stem and leaf plot,
+         the ten’s digit number is called the ‘stem’ of a tree, and the single digit 
+         number is called the ‘leaf’. 
+      <p>
+          <div class="textLeft">[Table 3.2] Fine dust concentration data in which the last digit of the data shown in each row is arranged in ascending order,</div>
+          <table> 
+            <tr> <th class="thGrey">Ten's digit</th>       <th class="thGrey">Data</th>  </tr>
+            <tr> <td class="tdCenter">1</td>  <td>1 3 4 5 6 6 7 8 8 8</td>    </tr>
+            <tr> <td class="tdCenter">2</td>  <td>0 2 3 4 4 5 </td>    </tr>
+            <tr> <td class="tdCenter">3</td>  <td>0 4 7 9</td>    </tr>
+            <tr> <td class="tdCenter">4</td>  <td>2 4 6</td>    </tr>
+            <tr> <td class="tdCenter">5</td>  <td>3 9 </td>    </tr>
+            <tr> <td class="tdCenter">6</td>  <td></td>    </tr>
+            <tr> <td class="tdCenter">7</td>  <td>6 6 7</td>    </tr>
+          </table>
+      <p>
+         Observing the stem and leaf plot such as in [Table 3.2], it is easy to see 
+         that the most frequent days when the concentration of fine dust is 
+         ‘10  x  20㎍/\(m^3\), followed by ‘20  x  30㎍/\(m^3\). Since the data 
+         are sorted in ascending order, it is easy to count the days when the fine 
+         dust concentration is 'bad', which is 36 ㎍/\(m^3\) or higher. Out of 28 days, 
+         the level of fine dust concentration was 'bad' for 10 days, so it can be 
+         seen that this is a serious pollution problem.
+      <p>
+         When there are a lot of data, it is time-consuming and not easy to draw 
+         a stem and leaf plot by hand like this. Let's draw a stem and leaf plot 
+         using 『eStatH』 software.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 3.1</h4>
+        Using 『eStatH』, let's draw a stem and leaf plot for the fine dust concentration data (Data 3.1).
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
+          </td>
+          <td>
+            <p>Using the QR on the left, select ‘Stem and Leaf Plot’ from the 『eStatH』
+               menu. A window such as in &lt;Figure 3.1&gt; appears.
+            <p>Enter the fine dust concentration data in ‘Data input’ (you can copy 
+               and paste the data from the e-book) and enter a title you want in 
+               ‘Main Title’.
+            <p>If you click the [Execute] button, the stem and leaf plot as shown 
+               in &lt;Figure 3.1&gt; appears.      
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0301.png">
+         <div class="textLeft">&lt;Figure 3.1&gt; Stem and leaf plof of fine dust concentration data </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+  <div class="mainTable">
+    <p>For data with more than three digits or a decimal point, you can draw stems 
+       and leaves with the last digit as the leaf and the numbers before it as the stem.
+  </div>
+  <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 3.2</h4>
+         The daily minimum temperature in Seoul in February is listed as follows. Using 『eStatH』, draw 
+         a stem and leaf plot for the daily minimum temperature.  
+      <p>
+          <div class="textLeft">(Data 3.2) Daily minimum temperature in Seoul in 
+             February 2021(unit degree in Celsius)</div>
+          <table> 
+            <tr> 
+              <td>
+                -2.3 -8.2 -9.4 -7.4 -4.4   4.3  -2.6   5.4  -6.1 -1.5 
+                 1.3  0.6  1.0  6.4 -5.2  -7.0 -10.4 -10.6  -7.1  5.5 <br>
+                 4.7  0.4 -3.1 -3.0  0.7   0.5   4.3   3.2 
+              </td>
+            </tr>
+          </table>
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
+          </td>
+          <td>
+            <p>If you select ‘Stem and Leaf Plot’ from 『eStatH』 menu using the QR 
+               on the left, a window for data input such as in &lt;Figure 3.2&gt; 
+               appears.
+            <p>Enter the daily minimum temperature data in 'Data input' and the 
+               title you want in 'Main Title'.
+            <p>If you click the [Execute] button, a stem and leaf plot as shown 
+               in &lt;Figure 3.2&gt; appears.
+            <p>Temperature data have a decimal point and a negative number, so the 
+               stem and leaf plot used the last digit number as a leaf.
+          </td>
+        </tr>
+      </table>
+      <p>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0302.png">
+         <div class="textLeft">&lt;Figure 3.2&gt; Stem and leaf plot of the daily minimum temperature data in Seoul</div>
+     </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 3.1</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
+          </td>
+          <td>
+          <p>
+            The following is data on the length of bicycle-only roads by 25 
+            administrative districts in Seoul as of 2019. Draw a stem and leaf plot
+            using 『eStatH』 and analyze it. 
+            <p>
+            <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul in 2019 (unit km) </div>
+            <table> 
+              <tr> 
+                <td>
+                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 
+                  42 11  8 37 13 20 29 53 93 42
+                </td>
+              </tr>
+            </table>
+         </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 3.2</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
+          </td>
+          <td>
+          <p>
+           The following is data on the maximum wind speed of typhoons that passed 
+           through Korea in 2020.<br>
+           1) Draw a stem and leaf plot using 『eStatH』. <br>
+           2) If the maximum wind speed of a typhoon is 54 m/sec or more, it is classified as a super strong typhoon. Count how many super typhoons have passed.
+            <p>
+            <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020.(unit m/sec) <br>
+            </div>
+            <table> 
+              <tr> 
+                <td>
+                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 
+                  24 35 40 56 24 21 43 18 <br>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+<!------------------------------------------------------------------------------------>
+  <h3 id="0302">3.2 Histogram – Frequency Table</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>The data on the weight of 2nd year middle school students is as follows. </b>
+          <p>
+            <div class="textLeft">(Data 3.5) Weight of middle school students (unit kg)</div>
+            <table> 
+              <tr> 
+                <td>
+                  63  65  67  68  61  60  72  55  64  76  68  63  70  61  54 <br> 
+                  63  66  53  58  70  62  62  57  58  59  53  58  58  62  61  
+                </td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <div class="textL20M20">
+            <b> 1) If there are 30 data, how can we easily express the distribution of students' weight in a graph?</b>
+          </div>
+          <div class="textL20M20">
+            <b> 2) How many students weigh between 70kg and 75kg? </b>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>In order to see the overall distribution of weight data as above, you can 
+         think of a stem and leaf plot discussed in the previous section. However, 
+         since there are only number 5, 6, and 7 on ten’s digit, it might be difficult
+         to examine the detailed distribution with the stem and leaf plot. Also, 
+         it is not easy to determine the number of students weighing between 70kg 
+         and 75kg. In order to know the overall distribution or specific information 
+         from the data, it is necessary to properly organize the data.
+      <p>
+         [Table 3.3] is a summary of the weight data starting at 50kg, dividing 
+         the intervals with 5kg width, and organizing the weights of students 
+         in each interval. Stem and leaf plot can be useful for organizing these data.
+      <p>
+          <div class="textLeft">[Table 3.3] Weight of middle school students organized by intervals with 5kg width</div>
+          <table> 
+            <tr> <th class="thGrey">Weight (kg)</th> <th class="thGrey">Data</th> <th class="thGrey">Number of data</th>   </tr>
+            <tr> <td class="tdCenter">50 &le; ~ &lt;55</td>  <td>53 53 54</td>                   <td class="tdCenter"> 3</td> </tr>
+            <tr> <td class="tdCenter">55 ~ 60</td>  <td>55 57 58 58 58 58 59</td>             <td class="tdCenter"> 7</td> </tr>
+            <tr> <td class="tdCenter">60 ~ 65</td>  <td>60 61 61 61 62 62 62 63 63 63 64</td> <td class="tdCenter">11</td> </tr>
+            <tr> <td class="tdCenter">65 ~ 70</td>  <td>65 66 67 68 68</td>                   <td class="tdCenter"> 5</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 75</td>  <td>70 70 72 </td>                        <td class="tdCenter"> 3</td> </tr>
+            <tr> <td class="tdCenter">75 ~ 80</td>  <td>76</td>                               <td class="tdCenter"> 1</td> </tr>
+          </table>
+
+      <p>Using the table organized as shown in [Table 3.3], it is easy to see 
+         that the number of students whose weights are between 60kg and 65kg is
+         the highest, followed by students between 55kg and 60kg. And it can be 
+         immediately seen that the number of students whose weights are between
+         70kg and 75kg is three.
+      <p>
+         The intervals of the weight variable as shown in [Table 3.3] are called 
+         <b>classes</b>, the width of the interval is called a <b>class width</b>
+         (or size), and the number of data belonging to each class is called a 
+         <b>frequency</b>. [Table 3.4] is a frequency table of students' weight.
+      <p>
+          <div class="textLeft">[Table 3.4] Weight of middle school students organized by intervals with 5kg width</div>
+          <table> 
+            <tr> <th class="thGrey">Class</th> <th class="thGrey">Frequency</th>   </tr>
+            <tr> <td class="tdCenter">50 &le; ~ &lt;55</td>  <td class="tdCenter"> 3</td> </tr>
+            <tr> <td class="tdCenter">55 ~ 60</td>        <td class="tdCenter"> 7</td> </tr>
+            <tr> <td class="tdCenter">60 ~ 65</td>        <td class="tdCenter">11</td> </tr>
+            <tr> <td class="tdCenter">65 ~ 70</td>        <td class="tdCenter"> 5</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 75</td>        <td class="tdCenter"> 3</td> </tr>
+            <tr> <td class="tdCenter">75 ~ 80</td>        <td class="tdCenter"> 1</td> </tr>
+            <tr> <th class="thGrey">Total</th>             <th class="tdCenter">30</th> </tr>
+          </table>
+
+      <p>As a value representing each class, the middle value of both ends of 
+         each class is used and called the <b>class value</b> of that class.
+      <p>
+        <div class="textLeft">Class value = (Addition of end values) / 2 </div>
+      <p>
+         For example, in the frequency table of [Table 3.4], the class value 
+         of the interval between 50kg and 55kg are as follows.
+      <p>
+         <div class="textLeft">Class value of  ‘50 &le; ~ &lt;55’ = (50 + 55) / 2 = 52.5(kg) </div>
+      <p>
+         By comparing the frequency of each class in the frequency table, 
+         the overall data distribution can be observed. However, it may be better 
+         to calculate the ratio of the frequency of each class to the total frequency.
+         The ratio of the frequency of each class to the total frequency is called 
+         the <b>relative frequency</b> of that class.
+      <p>
+         <div class="textLeft">Relative frequency of a class = \(\frac{frequency \, of \, class}{total \, frequency}\) </div>
+      <p>
+      <p>[Table 3.5] is a variation of the frequency table in which class values and relative frequencies are displayed. 
+      <p>
+          <div class="textLeft">[Table 3.5] Frequency table with class value and relative frequency</div>
+          <table> 
+            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">Class value</th> <th class="thGrey">Frequency</th> <th class="thGrey">Relative frequency</th>   </tr>
+            <tr> <td class="tdCenter">50 &le; ~ &lt;55</td> <td class="tdCenter">52.5</td> <td class="tdCenter">0.10</td> <td class="tdCenter"> 3</td> </tr>
+            <tr> <td class="tdCenter">55 ~ 60</td>       <td class="tdCenter">57.5</td> <td class="tdCenter">0.23</td> <td class="tdCenter"> 7</td> </tr>
+            <tr> <td class="tdCenter">60 ~ 65</td>       <td class="tdCenter">62.5</td> <td class="tdCenter">0.37</td> <td class="tdCenter">11</td> </tr>
+            <tr> <td class="tdCenter">65 ~ 70</td>       <td class="tdCenter">67.5</td> <td class="tdCenter">0.17</td> <td class="tdCenter"> 5</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter">72.5</td> <td class="tdCenter">0.10</td> <td class="tdCenter"> 3</td> </tr>
+            <tr> <td class="tdCenter">75 ~ 80</td>       <td class="tdCenter">77.5</td> <td class="tdCenter">0.03</td> <td class="tdCenter"> 1</td> </tr>
+            <tr> <th class="thGrey">Total</th> <th></th> <th class="thGrey">30</th> <th class="thGrey">1.00</th>   </tr>
+          </table>
+ 
+      <p>The above frequency table can be graphed in the following order, which is called a 
+         histogram. &lt;Figure 3.3&gt; is a histogram of students' weight.
+      <p>
+         ① Write the end value of each class on the horizontal axis. <br>
+         ② Write the frequency on the vertical axis.<br>
+         ③ In each class, draw a rectangle with the width of the class horizontally and the frequency vertically.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0303.png">
+         <div class="textLeft">&lt;Figure 3.3&gt; Histogram of students’ weights data</div>
+      <p>
+         Classes in the frequency table can be made in various ways depending on the width 
+         of the class determined by the analyst. The frequency table made with the weight data 
+         of students in (Data 3.5) with a class width of 10kg is shown in the following table. 
+         This frequency table is a  table to draw the stem and leaf plot which uses 10-digit numbers.
+      <p>
+          <div class="textLeft">[Table 3.6] Frequency table with 10kg class size</div>
+          <table> 
+            <tr> <th class="thGrey">Class (kg)</th> <th class="thGrey">Frequency</th>   </tr>
+            <tr> <td class="tdCenter">50 &le; ~ &lt;55</td> <td class="tdCenter">10</td> </tr>
+            <tr> <td class="tdCenter">60 ~ 66</td>       <td class="tdCenter">16</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter"> 4</td> </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th>   </tr>
+          </table>
+      <p>
+         When there are a lot of data, it is time-consuming and not easy to draw the frequency 
+         table and histogram manually as above. Let's draw a frequency table and histogram using
+         『eStatH』 software.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 3.3</h4>
+        Using 『eStatH』, let's draw a histogram of the weight of 2nd grader students (Data 3.5) 
+        and find out the frequency table.
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
+          </td>
+          <td>
+            <p>Using the QR on the left, select 'Histogram - Frequency Table' from the 『eStatH』 menu,
+               then a window like &lt;Figure 3.4&gt; appears.
+            <p>Enter students' weight data in 'Data input' (you can copy and paste the data from 
+               the e-book) and enter the title you want in 'Main Title'.
+            <p>Click the [Execute] button to draw a histogram as shown in &lt;Figure 3.3&gt;.
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0304.png">
+         <div class="textLeft">&lt;Figure 3.4&gt; Data input for a histogram</div>
+      <p>
+         If you check ‘frequency’ in the options under the histogram, the frequency of each 
+         class is displayed on the histogram bar as shown in &lt;Figure 3.5&gr;.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0305.png">
+         <div class="textLeft">&lt;Figure 3.5&gt; Histogram with class frequency</div>
+      <p>
+         If you click the ‘Frequency Table’ button in the options under the histogram, 
+         the frequency table of the histogram is displayed as shown in &lt;Figure 3.6&gt;.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0306.png">
+         <div class="textLeft">&lt;Figure 3.6&gt; Frequency table of the hisogram</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+  <div class="mainTable">
+    The class interval of the frequency table is determined by the analyst looking at the minimum 
+    and maximum values of the data. 
+  </div>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 3.4</h4>
+        Let's draw a histogram of the daily minimum temperature ([Practice 3.2]) in Seoul in February using 『eStatH』 (Data 3.2).
+      <p>
+          <div class="textLeft">(Data 3.2) Daily minimum temperature in Seoul in 
+             February 2021(unit degree in Celsius)</div>
+          <table> 
+            <tr> 
+              <td>
+                -2.3 -8.2 -9.4 -7.4 -4.4   4.3  -2.6   5.4  -6.1 -1.5 
+                 1.3  0.6  1.0  6.4 -5.2  -7.0 -10.4 -10.6  -7.1  5.5 <br>
+                 4.7  0.4 -3.1 -3.0  0.7   0.5   4.3   3.2 
+              </td>
+            </tr>
+          </table>
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
+          </td>
+          <td>
+            <p>If you select ‘Histogram – Frequency Table’ from the 『eStatH』 menu that appears 
+               using the QR on the left, a data input window as shown in &lt;Figure 3.7&gt; appears.
+            <p>If you enter the daily minimum temperature data in 'Data input' (you can copy 
+               and paste the data from the e-book), as shown in &lt;Figure 3.7&gt;, 『eStatH』 shows
+               that the number of data is 28 immediately, the minimum value is -10.6 degrees, and 
+               the maximum value is 6.4 degrees. You can use this information to determine the 
+               interval start and interval width. Here, the interval start is set to -15 and 
+               the interval width is set to 5 degrees.
+            <p>Enter the desired title and click the [Execute] button to display the histogram 
+               as shown in &lt;Figure 3.8&gt;.
+         </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0307.png">
+         <div class="textLeft">&lt;Figure 3.7&gt; Temperature data input for a histogram</div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0308.png">
+         <div class="textLeft">&lt;Figure 3.8&gt; Histogram of daily minimum temperature in Seoul</div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0309.png">
+         <div class="textLeft">&lt;Figure 3.9&gt; Frequency table of the histogram</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 3.3</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
+          </td>
+          <td>
+          <p>
+            The following is data on the length of bicycle-only roads by 25 administrative districts in Seoul as of 2019 ([Exercise 3.1]). 
+            Create and analyze histogram and frequency tables using 『eStatH』.
+            <p>
+            <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul (unit km) <br>
+            </div>
+            <table> 
+              <tr> 
+                <td>
+                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 <br>
+                  42 11  8 37 13 20 29 53 93 42
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 3.4</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
+          </td>
+          <td>
+          <p>
+            The following is data on the maximum wind speed of typhoons that passed through Korea in 2020 ([Exercise 3.2]). 
+            Create and analyze histogram and frequency table using 『eStatH』.
+            <p>
+            <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020. (unit m/sec) 
+            </div>
+            <table> 
+              <tr> 
+                <td>
+                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 <br>
+                  24 35 40 56 24 21 43 18 <br>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+<!-------------------------------------------------------------------------------->
+  <h3 id="0303">3.3  Frequency Distribution Polygon – Relative Frequency</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>The frequency table surveying the weights of the 2nd and 3rd grader students at a middle school is as follows. </b>
+          <p>
+          <div class="textLeft">[Table 3.7] Frequency table surveying the weights of the 2nd and 3rd grader students at a middle school. </div>
+          <table> 
+            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">2nd Grader</th> <th class="thGrey">3rd Grader</th>   </tr>
+            <tr> <td class="tdCenter">50&le; ~ &lt;55</td> <td class="tdCenter"> 3</td> <td class="tdCenter"> 2</td> </tr>
+            <tr> <td class="tdCenter">55 ~ 60</td>       <td class="tdCenter"> 7</td> <td class="tdCenter"> 6</td> </tr>
+            <tr> <td class="tdCenter">60 ~ 65</td>       <td class="tdCenter">11</td> <td class="tdCenter">12</td> </tr>
+            <tr> <td class="tdCenter">65 ~ 70</td>       <td class="tdCenter"> 5</td> <td class="tdCenter">13</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter"> 3</td> <td class="tdCenter"> 6</td> </tr>
+            <tr> <td class="tdCenter">75 ~ 80</td>       <td class="tdCenter"> 1</td> <td class="tdCenter"> 3</td> </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">40</th>   </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <div class="textL20M20">
+            <b> 1) The number of 2nd grader students is 30 and the number of 3rd grader students is 40. 
+                   How can we compare the distribution of weight between 2nd and 3rd graders? </b>
+          </div>
+          <div class="textL20M20">
+            <b> 2) Where is the interval where the weight of 3rd grader students is relatively larger 
+                   than the 2nd grader students? </b>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>In the frequency table above, it is not appropriate to directly compare the frequency of 
+         the 2nd and 3rd grader students because total number of students in each grader are different. 
+         In this case, as shown in [Table 3.8], the relative frequency of each class in both grades 
+         can be calculated for comparison.
+      <p>
+          <div class="textLeft">[Table 3.8] Frequency table with relative frequency surveying the weights of the 2nd and 3rd grader students at a middle school.</div>
+          <table> 
+            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">2nd Grader</th> <th class="thGrey">3rd Grader</th> <th class="thGrey">2학년 상대도수</th> <th class="thGrey">3학년 상대도수</th>  </tr>
+            <tr> <td class="tdCenter">50&le; ~ &lt;55</td> <td class="tdCenter"> 3</td> <td class="tdCenter"> 2</td> <td class="tdCenter">0.097</td> <td class="tdCenter">0.050</td> </tr>
+            <tr> <td class="tdCenter">55 ~ 60</td>       <td class="tdCenter"> 7</td> <td class="tdCenter"> 6</td> <td class="tdCenter">0.226</td> <td class="tdCenter">0.100</td> </tr>
+            <tr> <td class="tdCenter">60 ~ 65</td>       <td class="tdCenter">11</td> <td class="tdCenter">12</td> <td class="tdCenter">0.355</td> <td class="tdCenter">0.300</td> </tr>
+            <tr> <td class="tdCenter">65 ~ 70</td>       <td class="tdCenter"> 5</td> <td class="tdCenter">13</td> <td class="tdCenter">0.194</td> <td class="tdCenter">0.325</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter"> 3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">0.097</td> <td class="tdCenter">0.150</td> </tr>
+            <tr> <td class="tdCenter">75 ~ 80</td>       <td class="tdCenter"> 1</td> <td class="tdCenter"> 3</td> <td class="tdCenter">0.032</td> <td class="tdCenter">0.075</td> </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">40</th> <th class="thGrey">1.000</th> <th class="thGrey">1.000</th>  </tr>
+          </table>
+      <p>
+         Looking at this table, it can be seen that the relative frequency of the 3rd grader students
+         is higher than that of the 2nd grader students in the case of classes ‘65 ∼ 70’, ‘70 ∼ 75’, and ‘75 ∼ 80’.
+      <p>
+         Using a histogram, a line graph that draws a line for the frequency of each class is called 
+         a <b>frequency distribution polygon</b>. How to draw a frequency distribution polygon is as follows.
+      <p>
+         <div class="textL20M20">
+         ① Place a dot in the center of the upper side of each rectangle of the histogram. <br>
+         </div>
+         <div class="textL20M20">
+         ② Assume that there is one class with a frequency of 0 at both ends of the histogram and put a dot in the middle.<br>
+         </div>
+         <div class="textL20M20">
+         ③ Connect the points taken above with a line.
+         </div>
+      <p>
+         A histogram is generally drawn using the frequency of each class, but it can be drawn also
+         using the relative frequency. The method of drawing is the same as it is just using the 
+         relative frequency instead of the frequency. The frequency distribution polygon can be drawn 
+         using either the frequency or the relative frequency. As shown in [Table 3.8], when comparing 
+         the frequency distribution for two groups of the 2nd and 3rd graders, the number of data 
+         in each group may be different, so two frequency distribution polygons using the relative 
+         frequencies are used for comparison. 
+      <p>
+         &lt;Figure 3.10&gt; is a histogram and frequency distribution polygon using the relative frequency
+         by class of the weights of the second graders in [Table 3.7].
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0310.png">
+         <div class="textLeft">&lt;Figure 3.10&gt; Histogram and frequency distribution polygon using the relative frequency of each class interval</div>
+      <p>
+         &lt;Figure 3.11&gt; compares the frequency distribution polygons using the relative frequencies
+         for each class of 2nd and 3rd grader students.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0311.png">
+         <div class="textLeft">&lt;Figure 3.11&gt; Frequency distribution polygons using the relative frequencies for each class of 2nd and 3rd grader students</div>
+      <p>
+         When there are a lot of data, it is time-consuming and not easy to draw the frequency
+         distribution table and histogram manually as above. Let's draw a frequency distribution
+        table and histogram using 『eStatH』 software.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 3.5</h4>
+        Using 『eStatH』, draw a histogram and frequency distribution polygon for the weights of the 2nd and 3rd grader students in [Table 3.8].
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
+          </td>
+          <td>
+            <p>Using the QR on the left, select ‘Frequency Distribution Polygon 
+               - Relative Freq’ from the 『eStatH』 menu, then a window like 
+               &lt;Figure 3.12&gt; appears.
+            <p>After entering the desired title, input the left value of each class 
+               as shown in the figure, and then enter the second year's frequency in 
+               the 'Frequency 1' column.
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0312.png">
+         <div class="textLeft">&lt;Figure 3.12&gt; Data input of the weights of the 2nd grader</div>
+      <p>
+         If you click the [Execute] button, the histogram and frequency distribution 
+         polygon of the 2nd grader students are drawn as shown in &lt;Figure 3.10&gt;.
+      <p>
+         Next, enter the frequency of the 3rd grader students as follows, change the 
+         title and click the [Execute] button to draw a frequency distribution polygon 
+         for the weights of 2nd and 3rd grader students as shown in &lt;Figure 3.11&gt;.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0313.png">
+         <div class="textLeft">&lt;Figure 3.13&gt; Data input of the weightes of the 2nd grader and 3rd grader for the frequency distribution polygons</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+ 
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 3.6</h4>
+         The following table shows Korea's male and female populations by age group in 2021. Use 『eStatH』 to draw and compare the frequency distribution polygons for each gender. 
+      <p>
+          <div class="textLeft">[Table 3.8] Korea's male and female populations by age group in 2021 (unit: 10,000)</div>
+          <table> 
+            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">Male</th> <th class="thGrey">Female</th> </tr>
+            <tr> <td class="tdCenter">0&le; ~ &lt;20</td> <td class="tdCenter">437</td> <td class="tdCenter">411</td> </tr>
+            <tr> <td class="tdCenter">20 ~ 40</td>      <td class="tdCenter">737</td> <td class="tdCenter">659</td> </tr>
+            <tr> <td class="tdCenter">40 ~ 60</td>      <td class="tdCenter">851</td> <td class="tdCenter">827</td> </tr>
+            <tr> <td class="tdCenter">60 ~ 80</td>      <td class="tdCenter">504</td> <td class="tdCenter">557</td> </tr>
+            <tr> <td class="tdCenter">80 ~ 100</td>     <td class="tdCenter"> 67</td> <td class="tdCenter">132</td> </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey">2596</th> <th class="thGrey">2586</th>   </tr>
+          </table>
+     <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
+          </td>
+          <td>
+            <p>Using the QR on the left, select 'Frequency Distribution Polygon 
+               - Relative Frequency' from the 『eStatH』 menu, then a window like 
+               &lt;Figure 3.14&gt; appears.
+            <p>After entering the desired title, input the left value of the class 
+               interval as shown in the figure, then enter ‘Male’ in the 'Frequency 1' 
+               column and ‘Female’ in the 'Frequency 2' column.
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0314.png">
+         <div class="textLeft">&lt;Figure 3.14&gt; Male and female population data input for frequency distribution polygons</div>
+      <p>
+         If you click the [Execute] button, a frequency distribution polygon for 
+         each gender is drawn as shown in &lt;Figure 3.15&gt;. It is easy to see 
+         that the population of male is higher than that of female until the age of 60, 
+         but that the population of female over the age of 60 is larger than that of male.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0315.png">
+         <div class="textLeft">&lt;Figure 3.15&gt; Frequency distribution polygons of male and female populations in Korea </div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 3.5</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
+          </td>
+          <td>
+          <p>
+            The following table is a survey of the ages of male and female teachers
+            in a middle school. Draw a frequency distribution polygon using 『eStatH』 and compare them.
+            <p>
+            <div class="textLeft">[Table 3.9] Frequency table of the ages of male and female teachers<br>
+            </div>
+            <table> 
+              <tr> <th class="thGrey">Class</th> <th class="thGrey">Male</th> <th class="thGrey">Female</th> </tr>
+              <tr> <td class="tdCenter">20&le; ~ &lt;30</td> <td class="tdCenter">3</td> <td class="tdCenter">2</td> </tr>
+              <tr> <td class="tdCenter">30 ~ 40</td>       <td class="tdCenter">4</td> <td class="tdCenter">6</td> </tr>
+              <tr> <td class="tdCenter">40 ~ 50</td>       <td class="tdCenter">4</td> <td class="tdCenter">4</td> </tr>
+              <tr> <td class="tdCenter">50 ~ 60</td>       <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+              <tr> <td class="tdCenter">60 ~ 70</td>       <td class="tdCenter">0</td> <td class="tdCenter">2</td> </tr>
+              <tr> <th class="thGrey">Total</th> <th class="thGrey">13</th> <th class="thGrey">17</th>   </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 3.6</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
+          </td>
+          <td>
+          <p>
+            The following table compares the academic achievement test scores of 
+            the middle school A and middle school B. Draw a frequency distribution
+            polygon using 『eStatH』 and compare them.
+            <p>
+            <div class="textLeft">[Table 3.10] Frequency table to compare the academic achievement test scores of middle school A and middle school B<br>
+            </div>
+            <table> 
+              <tr> <th class="thGrey">Class</th> <th class="thGrey">Male</th> <th class="thGrey">Female</th> </tr>
+              <tr> <td class="tdCenter">50&le; ~ &lt;60</td> <td class="tdCenter"> 2</td> <td class="tdCenter"> 2</td> </tr>
+              <tr> <td class="tdCenter">60 ~ 70</td>       <td class="tdCenter"> 5</td> <td class="tdCenter"> 8</td> </tr>
+              <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">20</td> <td class="tdCenter">25</td> </tr>
+              <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">23</td> <td class="tdCenter">10</td> </tr>
+              <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">10</td> <td class="tdCenter"> 5</td> </tr>
+              <tr> <th class="thGrey">Total</th> <th class="thGrey">60</th> <th class="thGrey">50</th>   </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+
+
+<!--------------------------------------------------------------------------------------->
+  <h3 id="0304">3.4 Scatterplot</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>The height and weight of 7 male middle school students were investigated as follows. </b>
+          <p>
+            <div class="textLeft">(Data 3.5) Hieght and weight of 7 male middle school students</div>
+            <table> 
+              <tr> <th></th> <th class="thGrey">1</th> <th class="thGrey">2</th> <th class="thGrey">3</th> <th class="thGrey">4</th> <th class="thGrey">5</th> <th class="thGrey">6</th> <th class="thGrey">7</th> </tr>
+              <tr> <th class="thGrey">Height (cm)</th> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
+              <tr> <th class="thGrey">Weight (kg)</th> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <b>-  Is there a graph that shows the relation between height and weight?<br>
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>The data obtained by measuring two quantitative variables can be analyzed 
+         using a <b>scatter plot</b> to analyze the relationship between the two variables.
+         A scatter plot is a graph in which each point is plotted on the coordinate plane
+         with the value of one variable as the x-axis and the value of the other as 
+         the y-axis. That is, (Data 4.2) is represented such as in &lt;Figure 3.16&gt; as 
+         ordered pairs (162, 54), (164, 60), ... (172, 67).
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0316.png">
+         <div class="textLeft">&lt;Figure 3.16&gt;  Scatter plot of the height and weight of 7 middle school students</div>
+      <p>
+         If you look at &lt;Figure 3.16&gt;, it can be seen that as the height increases, 
+         the weight usually also increases. In other words, using a scatterplot, 
+         the relationship between height and weight variable can be well understood. 
+         A correlation between two variables x and y is said to exist when the value 
+         of y tends to increase or decrease as the value of x increases. There are 
+         several types of correlation.
+      <p class="textL20M20">
+         1) <b>Positive Correlation</b> – When the value of y generally increases 
+            as the value of one variate x increases, there is a positive correlation 
+            between two variables. Father's height and son's height are usually 
+            positively correlated. If the points on the scatter plot are close together 
+            on a straight line, the positive correlation is strong; if they are scattered, 
+            the positive correlation is weak.
+      </p>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0317.png">
+         <div class="textLeft">&lt;Figure 3.17&gt; Strong positve correlation</div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0318.png">
+         <div class="textLeft">&lt;Figure 3.18&gt; Weak positve correlation</div>
+      <p class="textL20M20 ">
+         2) <b>Negative Correlation</b> – When the value of y tends to decrease 
+            as the value of x increases, there is a negative correlation between
+            two variables. In a mountain climbing, the relationship between the 
+            height of the mountain and the temperature has a negative correlation. 
+            If the points on the scatter plot are close to a straight line, the
+            negative correlation is strong, and if they are scattered, the negative 
+            correlation is weak.
+      </p>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0319.png">
+         <div class="textLeft">&lt;Figure 3.19&gt; Strong negative correlation</div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0320.png">
+         <div class="textLeft">&lt;Figure 3.20&gt; Weak negative correlation</div>
+      <p class="textL20M20 ">
+         3) <b>No Correlation</b> – When the tendency of the value of y to increase 
+            or decrease is not clear as the value of x increases, there is no correlation between the two variables.
+      </p>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0321.png">
+         <div class="textLeft">&lt;Figure 3.21&gt; No correlation</div>
+      <p>
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 3.7</h4>
+        Let's draw a scatter plot of the height and weight of 7 students (Data 3.5) using 『eStatH』.
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
+          </td>
+          <td>
+            <p>If you select ‘Scatter Plot – Correlation Coefficient’ from the
+               『eStatH』 menu using the QR on the left, a window like &lt;Figure 3.22&gt; appears.
+            <p>Enter students' height in 'X data input' and their weight in 
+              'Y data input'. (You can also copy and paste the data from the e-book)
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0322.png">
+         <div class="textLeft">&lt;Figure 3.22&gt; Height and weight data input for a scatter plot </div>
+      <p>
+         After entering data and clicking the [Execute] button, the number of data, 
+         mean, variance, standard deviation, covariance and correlation coefficient
+         are calculated (it will be discussed in section 4.3), and a scatter plot 
+         as shown in &lt;Figure 3.16&gt; is displayed. 
+      <p>If you check the ‘regression line’ under the scatter plot, a regression line
+         that explains the relationship between height and weight is drawn. 
+         Regression line will be discussed at a university level.  
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 3.7</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
+          </td>
+          <td>
+          <p>
+            The following are data on the weekly study hours and test scores of 10 
+            middle school students. Draw a scatterplot using 『eStatH』 and see 
+            what kind of correlation there is.
+            <p>
+            <div class="textLeft">(Data 3.6) Weekly study hours and test score of 10 students</div>
+            <table> 
+              <tr> <th class="thGrey"></th> <th class="thGrey">1</th> <th class="thGrey">2</th> <th class="thGrey">3</th> <th class="thGrey">4</th> <th class="thGrey">5</th> <th class="thGrey">6</th> <th class="thGrey">7</th> <th class="thGrey">8</th> <th class="thGrey">9</th> <th class="thGrey">10</th> </tr>
+              <tr> <th class="thGrey">Study hours</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
+              <tr> <th class="thGrey">Test score</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+
+  <div class="mainTablePink">
+    <h4> Exercise </h4>
+    <p style="color:blue">*** Select an answer and click [SUBMIT] button.
+
+  <h6 class="textL30M30">3.1 Which of the following graphs is used for analyzing quantitative data?  </h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> pie graph</label><br>
+    <label><input type="radio" name="item" value="4"> band graph</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(23,1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">3.2 Which of the following graphs is not used for analyzing quantitative data? </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> stem and leaf plot</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> pie graph</label><br>
+    <label><input type="radio" name="item" value="4"> dot graph</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(23,2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">3.3 Which graph displays data with the last digit of the quantitative data as the leaf and the leading part as the stem? </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> dot graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> scatterplot</label><br>
+    <label><input type="radio" name="item" value="4"> stem and leaf plot</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(23,3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">3.4 Which graph displays data of two quantitative variables?</h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> dot graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> scatterplot</label><br>
+    <label><input type="radio" name="item" value="4"> stem and leaf plot</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(23,4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">3.5 Which of the following two variables has a negative correlation? </h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> climbing height and temperature</label><br>
+    <label><input type="radio" name="item" value="2"> weight and height</label><br>
+    <label><input type="radio" name="item" value="3"> summer temperature and ice cream sales</label><br>
+    <label><input type="radio" name="item" value="4"> father’s height and son’s height</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(23,5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ5">
+  </form>
+
+  </div>
+
+  <script>
+    for (var i=0; i < ans[23][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
+  </script>
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(142)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(144)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

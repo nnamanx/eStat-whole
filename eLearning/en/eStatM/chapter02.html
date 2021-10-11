@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../eStatM/index.html">Table of Contents</a></li>
+            <li><a href="../eStatM/chapter01.html">1. Statistics</a></li>
+            <li><a href="../eStatM/chapter02.html">2. Visualization of Qualitative Data</a></li>
+            <li><a href="../eStatM/chapter03.html">3. Visualization of Qunatitative Data</a></li>
+            <li><a href="../eStatM/chapter04.html">4. Measure of Central Tendency and Dispersion</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h1>Chapter 2. Visualization of Qualitative Data</h1> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 1</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(143)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <p>
+  <table>
+    <tr>
+      <td style="width:420px">
+        <h1>&nbsp; 📊 🍕 🌈 ⛅</h1>        
+        <h4>
+        <a href="#0201"><u>2.1 Bar/ Pie/ Rainbow/ Band Graph</u></a> <p>
+        <a href="#0202"><u>2.2 Line Graph</u></a> <p>
+        <a href="#0203"><u>2.3 Word Cloud</u></a> <p>
+        <a href="../eStatM/chapter02.pdf" target="_blank"><u>[Chapter 2. pdf]</u></a> 
+        </h4>
+      </td>
+      <td>
+        <p>In the case of categorical data, the following graphs are drawn and analyzed.
+        <p> - bar graph 
+        <br> - pie graph
+        <br> - rainbow graph
+        <br> - band graph
+        <br> - line graph
+        <p>The data in the form of words are analyzed by drawing a word cloud.
+      </td>
+    </tr>
+  </table>
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0201">2.1  Bar/ Pie/ Rainbow/ Band Graph</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>The frequency table that surveyed 20 students in an elementary school class 
+             for their favorite sports is as follows.</b>
+          <p>
+          <div class="textLeft">[Table 2.1] Frequency table of favorite sports</div>
+          <table> 
+            <tr> <th class="thGrey">Sports</th> <th class="thGrey">Number of students</th> </tr>
+            <tr> <td class="tdCenter">Soccer</td> <td class="tdCenter">8</td>    </tr>
+            <tr> <td class="tdCenter">Basketball</td> <td class="tdCenter">4</td>    </tr>
+            <tr> <td class="tdCenter">Baseball</td> <td class="tdCenter">5</td>    </tr>
+            <tr> <td class="tdCenter">Volleyball</td> <td class="tdCenter">2</td>    </tr>
+            <tr> <td class="tdCenter">Golf</td> <td class="tdCenter">1</td>    </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <b>What are some graphs that can be easily observed what a favorite sport is like? </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         When you ask your students about their favorite sports, they say, 'soccer', 
+         'basketball', 'baseball', ... You can get answers like this, which is called 
+         <b>qualitative data</b>. Most qualitative data are referred to as categorical
+         data because their values represent categories. Qualitative data can be 
+         summarized as a frequency table by counting the number of students in each 
+         category, and examine their characteristics using a bar graph, a pie graph, 
+         a rainbow graph and a band graph. 
+      <p>
+         A <b>bar graph</b> shows the frequency of each category of data at the height
+         of a rectangular bar. Spacing between the bars is used to emphasize that 
+         it is categorical data such as in &lt;Figure 2.1&gt;.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0201.png">
+         <div class="textLeft">&lt;Figure 2.1&gt; Bar graph for favorite sports</div>
+      <p>
+         A <b>pie graph</b> is a graph in which the frequency of each category in the 
+         whole data is divided into pie slices. For better comparison of proportions, draw the circle pieces in the order of the largest category in a clockwise direction.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0202.png">
+         <div class="textLeft">&lt;Figure 2.2&gt; Pie graph for favorite sports</div>
+      <p>
+         A <b>rainbow graph</b> is a modified form of a pie graph and is a graph in which the frequency of each category is divided into raibow pieces and displayed in the total data. 
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0203.png">
+         <div class="textLeft">&lt;Figure 2.3&gt; Rainbow graph for favorite sports</div>
+      <p>
+         A <b>band graph</b> is a modified form of a pie graph, and is a graph in which the 
+         frequency of each category is divided into rectangle pieces and displayed
+         in the total data. It is also possible to sort in the order of the largest
+         value of the category, but to distinguish it from the pie graph, the 
+         rectangle pieces are drawn in the order of the categories of the data 
+         in 『eStatH』.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0204.png">
+         <div class="textLeft">&lt;Figure 2.4&gt; Band graph for favorite sports</div>
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 2.1</h4>
+        Using 『eStatH』, draw a bar graph, pie graph, and band graph for favorite sports and observe which sports students like the most.
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+            <p>
+               If you select ‘Bar Graph - Pie - Band Graph’ from the 『eStatH』 menu using 
+               the QR on the left, the data input window as shown in &lt;Figure 2.5&gt; appears.
+            <p>
+               Enter the desired title for 'Main Title', 'y title', and 'x title' and 
+               enter 'Category' and 'Frequency'.
+            <p>
+               Click the [Bar Graph] button to display a bar graph as in &lt;Figure 2.1&gt;. 
+               You can also draw the bar graph again by selecting the color of the desired 
+               category. If you select the icon for each category on the far right and check
+               ‘Emoji’ under the graph, a bar graph like &lt;Figure 2.6&gt; appears.
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0205.png">
+         <div class="textLeft">&lt;Figure 2.5&gt; Data input for favorite sports</div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0206.png">
+         <div class="textLeft">&lt;Figure 2.6&gt; ar graph with Imoji icons for each category </div>
+      <p>
+         In a similar way, the frequency can be displayed on the bar as shown in &lt;Figure 2.7&gt;.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0207.png">
+         <div class="textLeft">&lt;Figure 2.7&gt; Bar graph with frequencies </div>
+      <p>
+         By using the (Soring) option under the graph, you can sort the bars in descending
+         or ascending order of frequency as in &lt;Figure 2.8&gt; or &lt;Figure 2.9&gt;.
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0208.png">
+         <div class="textLeft">&lt;Figure 2.8&gt; Bar graph in descending order of frequencies</div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0209.png">
+         <div class="textLeft">&lt;Figure 2.9&gt; Bar graph in ascending order of frequencies </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 2.2</h4>
+         Thhe fruits that elementary school students liked were as follows. Let's draw a bar graph using 『eStatH』.
+          <p>
+          <div class="textLeft">[Table 2.2] Fruits that students liked</div>
+          <table> 
+            <tr> <th class="thGrey">Fruits</th>       <th class="thGrey">Number of students</th>  </tr>
+            <tr> <td class="tdCenter">Strawberry</td> <td class="tdCenter">15</td>    </tr>
+            <tr> <td class="tdCenter">Apple</td>      <td class="tdCenter">10</td>    </tr>
+            <tr> <td class="tdCenter">Banana</td>     <td class="tdCenter">25</td>    </tr>
+            <tr> <td class="tdCenter">Grape</td>      <td class="tdCenter">20</td>    </tr>
+            <tr> <td class="tdCenter">Orange</td>     <td class="tdCenter">10</td>    </tr>
+            <tr> <td class="tdCenter">Tomato</td>     <td class="tdCenter"> 2</td>    </tr>
+            <tr> <td class="tdCenter">Watermelon</td> <td class="tdCenter">13</td>    </tr>
+            <tr> <td class="tdCenter">Pineapple</td>  <td class="tdCenter"> 5</td>    </tr>
+          </table>
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+            <p>If you select ‘Bar Graph – Pie Graph - Band Graph’ from the 『eStatH』 menu 
+               using the QR on the left, the data input window as shown in &lt;Figure 2.10&gt; 
+               appears.
+            <p>Enter the desired title for 'Main Title', 'y title', and 'x title' and 
+               enter 'Category' and 'Frequency'. Select each fruit imoji icon on the far right.
+            <p>Click the [Bar Graph] button and when the graph appears, check the 'Emoji' 
+               below the graph. You can also draw the bar graph again by selecting 
+               the color of the desired category.
+          </td>
+        </tr>
+      </table>
+      <p>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0210.png">
+         <div class="textLeft">&lt;Figure 2.10&gt; Data input for favorite fruits </div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0211.png">
+         <div class="textLeft">&lt;Figure 2.11&gt; Bar graph for favorite fruits with imoji</div>
+     </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 2.1</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+          <p>
+            According to the United Nations 2018 estimates, World largest  10 cities 
+            (mixture of city, metropolitan and urban area) are as follows. Draw a bar graph, 
+            pie graph, rainbow graph and band graph using 『eStatH』 to find out the characteristics.
+            <p>
+            <div class="textLeft">[Table 2.3] World largest  10 cities (mixture of city, metropolitan and urban area) </div>
+            <table> 
+              <tr> <th class="thGrey">City</th> <th class="thGrey">인구수</th>  </tr>
+              <tr> <td class="tdCenter">Tokyo (Japan)</td> <td class="tdCenter">37.4</td>   </tr>
+              <tr> <td class="tdCenter">Delhi (India)</td> <td class="tdCenter">28.5</td>   </tr>
+              <tr> <td class="tdCenter">Seoul (Korea)</td> <td class="tdCenter">25.7</td>   </tr>
+              <tr> <td class="tdCenter">Shanghai (China)</td> <td class="tdCenter">25.6</td>   </tr>
+              <tr> <td class="tdCenter">San Paulo (Brazil)</td> <td class="tdCenter">21.7</td>   </tr>
+              <tr> <td class="tdCenter">Mexico City (Mexico)</td> <td class="tdCenter">21.6</td>   </tr>
+              <tr> <td class="tdCenter">Cairo (Egypt)</td> <td class="tdCenter">20.1</td>   </tr>
+              <tr> <td class="tdCenter">Mumbai (India)</td> <td class="tdCenter">20.0</td>   </tr>
+              <tr> <td class="tdCenter">Beijing (China)</td> <td class="tdCenter">19.6</td>   </tr>
+              <tr> <td class="tdCenter">Dhaka (Bangladesh)</td> <td class="tdCenter">19.6</td>   </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 2.2</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
+          </td>
+          <td>
+          <p>
+            A summary of the survey of prospective jobs of elementary school students 
+            is as follows. Use 『eStatH』 to draw a bar graph, a pie graph, rainbow graph 
+            and band graph to identify the characteristics.  
+            <p>
+            <div class="textLeft">[Table 2.4] Prospective jobs of elementary school students</div>
+            <table> 
+              <tr> <th class="thGrey">Job</th> <th class="thGrey">Number of students</th>  </tr>
+              <tr> <td class="tdCenter">Movie-star</td>      <td class="tdCenter">45</td>   </tr>
+              <tr> <td class="tdCenter">Docort</td>          <td class="tdCenter">30</td>   </tr>
+              <tr> <td class="tdCenter">Teacher/Professor</td>  <td class="tdCenter">60</td>   </tr>
+              <tr> <td class="tdCenter">Lawer</td>           <td class="tdCenter">24</td>   </tr>
+              <tr> <td class="tdCenter">Pro Gamer</td>       <td class="tdCenter">10</td>   </tr>
+              <tr> <td class="tdCenter">Sportsman</td>       <td class="tdCenter">43</td>   </tr>
+              <tr> <td class="tdCenter">Police</td>          <td class="tdCenter">26</td>   </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+<!---------------------------------------------------------------------------------->
+  <h3 id="0202">2.2 Line Graph</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <b>The following table shows the population of Korea, surveyed at approximately five-year intervals from 1925 to 2019.</b>
+          <p>
+            <div class="textLeft">[Table 2.5] Population of Korea </div>
+            <table> 
+              <tr> <th class="thGrey">Year</th> <th class="thGrey">Population (unit 10,000)</th>  </tr>
+              <tr> <td class="tdCenter">1925</td>      <td class="tdCenter">1902</td>   </tr>
+              <tr> <td class="tdCenter">1930</td>      <td class="tdCenter">2044</td>   </tr>
+              <tr> <td class="tdCenter">1935</td>      <td class="tdCenter">2221</td>   </tr>
+              <tr> <td class="tdCenter">1940</td>      <td class="tdCenter">2355</td>   </tr>
+              <tr> <td class="tdCenter">1944</td>      <td class="tdCenter">2512</td>   </tr>
+              <tr> <td class="tdCenter">1949</td>      <td class="tdCenter">2017</td>   </tr>
+              <tr> <td class="tdCenter">1955</td>      <td class="tdCenter">2150</td>   </tr>
+              <tr> <td class="tdCenter">1960</td>      <td class="tdCenter">2499</td>   </tr>
+              <tr> <td class="tdCenter">1966</td>      <td class="tdCenter">2916</td>   </tr>
+              <tr> <td class="tdCenter">1970</td>      <td class="tdCenter">3144</td>   </tr>
+              <tr> <td class="tdCenter">1975</td>      <td class="tdCenter">3468</td>   </tr>
+              <tr> <td class="tdCenter">1980</td>      <td class="tdCenter">3741</td>   </tr>
+              <tr> <td class="tdCenter">1985</td>      <td class="tdCenter">4042</td>   </tr>
+              <tr> <td class="tdCenter">1990</td>      <td class="tdCenter">4339</td>   </tr>
+              <tr> <td class="tdCenter">1995</td>      <td class="tdCenter">4455</td>   </tr>
+              <tr> <td class="tdCenter">2000</td>      <td class="tdCenter">4599</td>   </tr>
+              <tr> <td class="tdCenter">2005</td>      <td class="tdCenter">4704</td>   </tr>
+              <tr> <td class="tdCenter">2010</td>      <td class="tdCenter">4799</td>   </tr>
+              <tr> <td class="tdCenter">2015</td>      <td class="tdCenter">5106</td>   </tr>
+              <tr> <td class="tdCenter">2019</td>      <td class="tdCenter">5178</td>   </tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <b>What kind of graph can easily observe the data measured over time?
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         Data measured over time is often observed using a <b>line graph</b>. In a line graph, 
+         each data is displayed as a dot on the XY plane, with the time such as month or year 
+         as the X axis and the value of the other variable as the Y value, and then connected 
+         with a line. It is similar to a bar graph, but the change in data over time can be 
+         observed.
+      <p>
+           <img class="imgFig600600" src="../FigureM/Fig0212.png">
+           <div class="textLeft">&lt;Figure 2.12&gt; Line graph of Korea’s population</div>
+      <p>
+         Observing the line graph of Korea's population, it can be seen that it was increased
+         from 1925 to 1944, and then decreased significantly in 1949 and 1954 due to the Pacific War and the Korean War. After that, the population continued to increase significantly during the baby boom period in the late 1950s, but the trend of increase became moderate after 1990, and this trend has become more gentle after 2015.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 2.3</h4>
+        Using 『eStatH』, draw and observe a line graph for the Korean population in [Table 2.5].
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
+          </td>
+          <td>
+            <p>If you select ‘Line Graph’ from the 『eStatH』 menu using the QR on the left, 
+               a data input window as shown in &lt;Figure 2.13&gt; appears.
+            <p>Enter the ‘main title’, ‘y title’, and ‘x title’ as shown in the figure,
+               enter the number of population by year in ‘Line 1’, the variable name next to it,
+               and year data in ‘X’.
+            <p>If you click the [Execute] button, a line graph as shown in &lt;Figure 2.12&gt; appears. You can also draw a line graph again by selecting the color of each line variable.
+
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0213.png">
+         <div class="textLeft">&lt;Figure 2.13&gt; Data input for Line Graph</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+  <div class="mainTable">
+      <p>When there are multiple variables observed at the same time, the line graph 
+         can draw multiple lines simultaneously on one graph. 
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 2.4</h4>
+        Using 『eStatH』, draw and observe the line graph for the average temperature of spring, 
+        summer, fall, and winter season in Korea such as in [Table 2.6] on one graph.
+      <p>
+            <div class="textLeft">[Table 2.6] Average temperature of each season in Korea (unit: degree in Celsius)   </div>
+            <table> 
+              <tr> <th class="thGrey">Year</th> <th class="thGrey">Spring</th> <th class="thGrey">Summer</th> <th class="thGrey">Fall</th> <th class="thGrey">Winter</th>  </tr>
+              <tr> <td class="tdCenter">1973</td> <td class="tdCenter">11.6</td> <td class="tdCenter">24.5</td> <td class="tdCenter">12.9</td> <td class="tdCenter">-1.4</td> </tr>
+              <tr> <td class="tdCenter">1974</td> <td class="tdCenter">10.8</td> <td class="tdCenter">22.4</td> <td class="tdCenter">13.0</td> <td class="tdCenter">-0.1</td> </tr>
+              <tr> <td class="tdCenter">1975</td> <td class="tdCenter">11.2</td> <td class="tdCenter">23.9</td> <td class="tdCenter">15.5</td> <td class="tdCenter"> 0.3</td> </tr>
+              <tr> <td class="tdCenter">1976</td> <td class="tdCenter">10.9</td> <td class="tdCenter">22.6</td> <td class="tdCenter">12.5</td> <td class="tdCenter">-1.7</td> </tr>
+              <tr> <td class="tdCenter">1977</td> <td class="tdCenter">11.8</td> <td class="tdCenter">23.5</td> <td class="tdCenter">15.0</td> <td class="tdCenter"> 0.7</td> </tr>
+              <tr> <td class="tdCenter">1978</td> <td class="tdCenter">11.7</td> <td class="tdCenter">24.7</td> <td class="tdCenter">14.3</td> <td class="tdCenter"> 2.2</td> </tr>
+              <tr> <td class="tdCenter">1979</td> <td class="tdCenter">11.2</td> <td class="tdCenter">23.5</td> <td class="tdCenter">13.6</td> <td class="tdCenter">-0.2</td> </tr>
+              <tr> <td class="tdCenter">1980</td> <td class="tdCenter">11.0</td> <td class="tdCenter">22.1</td> <td class="tdCenter">13.4</td> <td class="tdCenter">-2.3</td> </tr>
+              <tr> <td class="tdCenter">1981</td> <td class="tdCenter">11.5</td> <td class="tdCenter">23.6</td> <td class="tdCenter">12.2</td> <td class="tdCenter">-0.1</td> </tr>
+              <tr> <td class="tdCenter">1982</td> <td class="tdCenter">12.0</td> <td class="tdCenter">23.4</td> <td class="tdCenter">14.3</td> <td class="tdCenter">-0.2</td> </tr>
+              <tr> <td class="tdCenter">1983</td> <td class="tdCenter">12.2</td> <td class="tdCenter">23.4</td> <td class="tdCenter">14.2</td> <td class="tdCenter">-2.1</td> </tr>
+              <tr> <td class="tdCenter">1984</td> <td class="tdCenter">10.7</td> <td class="tdCenter">24.3</td> <td class="tdCenter">13.8</td> <td class="tdCenter">-0.6</td> </tr>
+              <tr> <td class="tdCenter">1985</td> <td class="tdCenter">11.5</td> <td class="tdCenter">24.1</td> <td class="tdCenter">14.3</td> <td class="tdCenter">-2.1</td> </tr>
+              <tr> <td class="tdCenter">1986</td> <td class="tdCenter">11.4</td> <td class="tdCenter">22.9</td> <td class="tdCenter">12.6</td> <td class="tdCenter"> 1.2</td> </tr>
+              <tr> <td class="tdCenter">1987</td> <td class="tdCenter">11.1</td> <td class="tdCenter">23.2</td> <td class="tdCenter">14.1</td> <td class="tdCenter"> 0.3</td> </tr>
+              <tr> <td class="tdCenter">1988</td> <td class="tdCenter">11.0</td> <td class="tdCenter">23.6</td> <td class="tdCenter">13.6</td> <td class="tdCenter"> 1.7</td> </tr>
+              <tr> <td class="tdCenter">1989</td> <td class="tdCenter">12.3</td> <td class="tdCenter">22.9</td> <td class="tdCenter">13.7</td> <td class="tdCenter"> 1.4</td> </tr>
+              <tr> <td class="tdCenter">1990</td> <td class="tdCenter">11.7</td> <td class="tdCenter">24.3</td> <td class="tdCenter">15.2</td> <td class="tdCenter"> 0.2</td> </tr>
+              <tr> <td class="tdCenter">1991</td> <td class="tdCenter">11.4</td> <td class="tdCenter">23.4</td> <td class="tdCenter">13.5</td> <td class="tdCenter"> 1.7</td> </tr>
+              <tr> <td class="tdCenter">1992</td> <td class="tdCenter">11.6</td> <td class="tdCenter">23.2</td> <td class="tdCenter">13.4</td> <td class="tdCenter"> 1.1</td> </tr>
+              <tr> <td class="tdCenter">1993</td> <td class="tdCenter">11.1</td> <td class="tdCenter">21.7</td> <td class="tdCenter">13.8</td> <td class="tdCenter"> 0.5</td> </tr>
+              <tr> <td class="tdCenter">1994</td> <td class="tdCenter">11.8</td> <td class="tdCenter">25.3</td> <td class="tdCenter">14.8</td> <td class="tdCenter"> 0.8</td> </tr>
+              <tr> <td class="tdCenter">1995</td> <td class="tdCenter">11.1</td> <td class="tdCenter">23.7</td> <td class="tdCenter">13.4</td> <td class="tdCenter">-0.6</td> </tr>
+              <tr> <td class="tdCenter">1996</td> <td class="tdCenter">10.6</td> <td class="tdCenter">23.5</td> <td class="tdCenter">14.1</td> <td class="tdCenter"> 0.5</td> </tr>
+              <tr> <td class="tdCenter">1997</td> <td class="tdCenter">12.1</td> <td class="tdCenter">24.0</td> <td class="tdCenter">14.0</td> <td class="tdCenter"> 1.9</td> </tr>
+              <tr> <td class="tdCenter">1998</td> <td class="tdCenter">13.4</td> <td class="tdCenter">23.1</td> <td class="tdCenter">15.4</td> <td class="tdCenter"> 1.6</td> </tr>
+              <tr> <td class="tdCenter">1999</td> <td class="tdCenter">12.1</td> <td class="tdCenter">23.3</td> <td class="tdCenter">14.7</td> <td class="tdCenter"> 0.3</td> </tr>
+              <tr> <td class="tdCenter">2000</td> <td class="tdCenter">11.6</td> <td class="tdCenter">24.2</td> <td class="tdCenter">13.7</td> <td class="tdCenter"> 0.3</td> </tr>
+              <tr> <td class="tdCenter">2001</td> <td class="tdCenter">12.2</td> <td class="tdCenter">24.2</td> <td class="tdCenter">14.3</td> <td class="tdCenter"> 1.5</td> </tr>
+              <tr> <td class="tdCenter">2002</td> <td class="tdCenter">12.7</td> <td class="tdCenter">23.1</td> <td class="tdCenter">12.5</td> <td class="tdCenter"> 0.9</td> </tr>
+              <tr> <td class="tdCenter">2003</td> <td class="tdCenter">11.9</td> <td class="tdCenter">22.3</td> <td class="tdCenter">14.7</td> <td class="tdCenter"> 1.4</td> </tr>
+              <tr> <td class="tdCenter">2004</td> <td class="tdCenter">12.2</td> <td class="tdCenter">24.0</td> <td class="tdCenter">14.7</td> <td class="tdCenter"> 0.5</td> </tr>
+              <tr> <td class="tdCenter">2005</td> <td class="tdCenter">11.7</td> <td class="tdCenter">24.1</td> <td class="tdCenter">14.8</td> <td class="tdCenter">-0.1</td> </tr>
+              <tr> <td class="tdCenter">2006</td> <td class="tdCenter">11.5</td> <td class="tdCenter">23.6</td> <td class="tdCenter">15.1</td> <td class="tdCenter"> 2.4</td> </tr>
+              <tr> <td class="tdCenter">2007</td> <td class="tdCenter">12.1</td> <td class="tdCenter">23.8</td> <td class="tdCenter">14.5</td> <td class="tdCenter"> 0.7</td> </tr>
+              <tr> <td class="tdCenter">2008</td> <td class="tdCenter">12.5</td> <td class="tdCenter">23.7</td> <td class="tdCenter">15.1</td> <td class="tdCenter"> 1.7</td> </tr>
+              <tr> <td class="tdCenter">2009</td> <td class="tdCenter">12.6</td> <td class="tdCenter">23.3</td> <td class="tdCenter">14.7</td> <td class="tdCenter"> 0.5</td> </tr>
+              <tr> <td class="tdCenter">2010</td> <td class="tdCenter">10.8</td> <td class="tdCenter">24.9</td> <td class="tdCenter">14.5</td> <td class="tdCenter">-0.7</td> </tr>
+              <tr> <td class="tdCenter">2011</td> <td class="tdCenter">11.0</td> <td class="tdCenter">24.0</td> <td class="tdCenter">15.3</td> <td class="tdCenter">-0.4</td> </tr>
+            </table>
+
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
+          </td>
+          <td>
+            <p>If you select ‘Line Graph’ from the 『eStatH』 menu using the QR on the left, 
+               the data input window as shown in &lt;Figure 2.14&gt; appears.
+            <p>Enter the 'main title', 'y title', and 'x title' as shown in the figure, 
+               and enter the spring, summer, autumn, and winter temperatures from 'Line 1' to 'Line 4'.Enter each variable name as Spring, Summer, Fall, Winter, and enter year data in 'X'.
+            <p>If you click the [Execute] button, a line graph as shown in &lt;Figure 2.15&gt; appears. You can also draw a line graph again by selecting the color of eacl line.
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0214.png">
+         <div class="textLeft">&lt;Figure 2.14&gt; Data input of average temperature by season for a line graph</div>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0215.png">
+         <div class="textLeft">&lt;Figure 2.15&gt; Line graph of average temperature by season in Korea</div>
+      <p>
+         Looking at the line graph of the average temperature by season, it can be seen 
+         that the average temperature is gradually increasing, especially in winter.
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 2.3</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
+          </td>
+          <td>
+            <p>
+              The following table shows the average life expectancy of Koreans surveyed 
+              every 10 years from 1970 to 2020. Draw a line graph using 『eStatH』 to find out 
+              the characteristics.
+            <p>
+            <div class="textLeft">[Table 2.7] Average life expectancy of Koreans </div>
+            <table> 
+              <tr> <th class="thGrey">Year</th> <th class="thGrey">Average life expentancy</th>  </tr>
+              <tr> <td class="tdCenter">1970</td>      <td class="tdCenter">62.3</td>   </tr>
+              <tr> <td class="tdCenter">1980</td>      <td class="tdCenter">66.1</td>   </tr>
+              <tr> <td class="tdCenter">1990</td>      <td class="tdCenter">71.7</td>   </tr>
+              <tr> <td class="tdCenter">2000</td>      <td class="tdCenter">76.0</td>   </tr>
+              <tr> <td class="tdCenter">2010</td>      <td class="tdCenter">80.2</td>   </tr>
+              <tr> <td class="tdCenter">2020</td>      <td class="tdCenter">81.3</td>   </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 2.4</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
+          </td>
+          <td>
+            The table below shows the amount of imports and exports of Korea from 2001 to 2020. Draw a line graph using 『eStatH』 to find out the characteristics.
+            <p>
+            <div class="textLeft">[Table 2.8] Amount of imports and exports of Korea (unit: billon dollar)  </div>
+            <table> 
+              <tr> <th class="thGrey">Year</th> <th class="thGrey">Export</th> <th class="thGrey">Import</th> </tr>
+              <tr> <td class="tdCenter">2001</td> <td class="tdCenter">1504</td> <td class="tdCenter">1411</td> </tr>
+              <tr> <td class="tdCenter">2002</td> <td class="tdCenter">1625</td> <td class="tdCenter">1521</td> </tr>
+              <tr> <td class="tdCenter">2003</td> <td class="tdCenter">1938</td> <td class="tdCenter">1788</td> </tr>
+              <tr> <td class="tdCenter">2004</td> <td class="tdCenter">2538</td> <td class="tdCenter">2245</td> </tr>
+              <tr> <td class="tdCenter">2005</td> <td class="tdCenter">2844</td> <td class="tdCenter">2612</td> </tr>
+              <tr> <td class="tdCenter">2006</td> <td class="tdCenter">3255</td> <td class="tdCenter">3094</td> </tr>
+              <tr> <td class="tdCenter">2007</td> <td class="tdCenter">3715</td> <td class="tdCenter">3568</td> </tr>
+              <tr> <td class="tdCenter">2008</td> <td class="tdCenter">4220</td> <td class="tdCenter">4353</td> </tr>
+              <tr> <td class="tdCenter">2009</td> <td class="tdCenter">3635</td> <td class="tdCenter">3231</td> </tr>
+              <tr> <td class="tdCenter">2010</td> <td class="tdCenter">4664</td> <td class="tdCenter">4252</td> </tr>
+              <tr> <td class="tdCenter">2011</td> <td class="tdCenter">5552</td> <td class="tdCenter">5244</td> </tr>
+              <tr> <td class="tdCenter">2012</td> <td class="tdCenter">5479</td> <td class="tdCenter">5196</td> </tr>
+              <tr> <td class="tdCenter">2013</td> <td class="tdCenter">5596</td> <td class="tdCenter">5156</td> </tr>
+              <tr> <td class="tdCenter">2014</td> <td class="tdCenter">5727</td> <td class="tdCenter">5255</td> </tr>
+              <tr> <td class="tdCenter">2015</td> <td class="tdCenter">5268</td> <td class="tdCenter">4365</td> </tr>
+              <tr> <td class="tdCenter">2016</td> <td class="tdCenter">4954</td> <td class="tdCenter">4062</td> </tr>
+              <tr> <td class="tdCenter">2017</td> <td class="tdCenter">5737</td> <td class="tdCenter">4785</td> </tr>
+              <tr> <td class="tdCenter">2018</td> <td class="tdCenter">6049</td> <td class="tdCenter">5352</td> </tr>
+              <tr> <td class="tdCenter">2019</td> <td class="tdCenter">5422</td> <td class="tdCenter">5033</td> </tr>
+              <tr> <td class="tdCenter">2020</td> <td class="tdCenter">5125</td> <td class="tdCenter">4676</td> </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+
+
+<!---------------------------------------------------------------------------------->
+  <h3 id="0203">2.3 Word Cloud</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>The following is Wikipedia's explanation of the 4th industrial revolution.</b>
+          <p>
+            <div class="textLeft">[Table 2.9] Wikipedia's explanation of the 4th industrial revolution.</div>
+            <table> 
+              <tr> 
+                <td>
+                  The Fourth Industrial Revolution (4IR or Industry 4.0) is the ongoing 
+                  automation of traditional manufacturing and industrial practices, 
+                  using modern smart technology. Large-scale machine-to-machine communication 
+                  (M2M) and the internet of things (IoT) are integrated for increased automation,
+                  improved communication and self-monitoring, and production of smart machines
+                  that can analyze and diagnose issues without the need for human intervention.[1]
+                </td>
+              <tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <b>What words are important to explain the 4th industrial revolution? </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>A <b>word cloud</b> is a visual representation of information in text data. 
+         The word cloud examines the frequency of all the words appearing in a given document,
+         and displays the importance of the frequently appearing words with font size, 
+         inclination, or color. &gt;Figure 2.16&gr; is a word cloud for the explanation of 
+         the 4th industrial revolution above.
+      <p>
+           <img class="imgFig600600" src="../FigureM/Fig0216.png">
+           <div class="textLeft">&lt;Figure 2.16&gt; Word cloud for Wikipedia’s explation of the 4th industrial revolution</div>
+      <p>
+         The word cloud is useful for quickly recognizing the most prominent words in 
+         a docmuent and determining their relative importance. It can be used, for example, 
+         to visualize important topics in a political speech, or as a tool to determine 
+         hyperlinks to items related to a single word in social media software. Key words 
+         in the word cloud are also used as marketing terms related to a particular website.
+      <p>
+         There are many algorithms for a word cloud generation, and 『eStat』 adopts the 
+         algorithm of d3 open software. d3 does not yet provide an accurate word cloud
+         because there is no algorithm to remove unnecessary terms. Currently, the development
+         of an algorithm that can display correlated words in a word cloud is in progress.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 2.3</h4>
+        Draw and observe the word cloud for the 4th industrial revolution in [Table 2.9] using 『eStatH』.
+      <p><b>Solution</b>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH_05WordCloud.svg" onclick="window.open(addrStr[142])">     
+          </td>
+          <td>
+            <p>If you select ‘Word Cloud’ from the 『eStatH』 menu using the QR on the left, 
+               a window for data input as shown in &lt;Figure 2.17&gt; appears. 
+            <p>After copying the sentences in [Table 2.9], click the [Execute] button, 
+               and a word cloud as shown in &lt;Figure 2.16&gt; appears.
+          </td>
+        </tr>
+      </table>
+      <p>
+         <img class="imgFig600600" src="../FigureM/Fig0217.png">
+         <div class="textLeft">&lt;Figure 2.17&gt; Data input for word cloud</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table style="width:650px">
+        <tr>
+          <td>
+            <h4>⏱ Exercise 2.3</h4> <p>
+            <input class="qrBtn" type="image" src="../QR/eStatH_05WordCloud.svg" onclick="window.open(addrStr[142])">     
+          </td>
+          <td>
+            <p>
+              The following are excerpts from US President John F. Kennedy's inaugural address. 
+              Create a word cloud for this inaugural address and analyze the key words.
+            <p>
+            <div class="textLeft">[Table 2.11] Inaugral address of US President John F. Kennedy</div>
+            <table> 
+              <tr> 
+                <td>
+                  In the long history of the world, only a few generations have been granted 
+                  the role of defending freedom in its hour of maximum danger. I do not shrink 
+                  from this responsibility--I welcome it. I do not believe that any of us would
+                  exchange places with any other people or any other generation. The energy, 
+                  the faith, the devotion which we bring to this endeavor will light our country 
+                  and all who serve it--and the glow from that fire can truly light the world.<br>
+                  And so, my fellow Americans: ask not what your country can do for you--ask 
+                  what you can do for your country. My fellow citizens of the world: ask not 
+                  what America will do for you, but what together we can do for the freedom of man.
+                </td>
+              <tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+
+
+  <div class="mainTablePink">
+    <h4> Exercise </h4>
+    <p style="color:blue">*** Select an answer and click [SUBMIT] button.
+
+  <h6 class="textL30M30">2.1 What is the name of the table by organizing the data as follows? </h6>
+           <table> 
+              <tr> <th class="thGrey">Gender</th> <th class="thGrey">Number of students</th>  </tr>
+              <tr> <td class="tdCenter">Male</td>      <td class="tdCenter">6</td>   </tr>
+              <tr> <td class="tdCenter">Female</td>      <td class="tdCenter">4</td>   </tr>
+            </table>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> student table</label><br>
+    <label><input type="radio" name="item" value="2"> frequency table</label><br>
+    <label><input type="radio" name="item" value="3"> organizing table</label><br>
+    <label><input type="radio" name="item" value="4"> transcript표</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(22,1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">2.2 Which of the following graphs is used for visualizing qualitative data?</h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> stem and leaf plot</label><br>
+    <label><input type="radio" name="item" value="4"> scatter plot</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(22,2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">2.3 Which of the following graphs is not used for visualizing qualitative data?   </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> pie graph</label><br>
+    <label><input type="radio" name="item" value="4"> band graph</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(22,3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  </div>
+
+  <script>
+    for (var i=0; i < ans[22][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
+  </script>
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 1</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(143)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+ </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

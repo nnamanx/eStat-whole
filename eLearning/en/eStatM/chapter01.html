@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 1</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../eStatM/index.html">Table of Contents</a></li>
+            <li><a href="../eStatM/chapter01.html">1. Statistics</a></li>
+            <li><a href="../eStatM/chapter02.html">2. Visualization of Qualitative Data</a></li>
+            <li><a href="../eStatM/chapter03.html">3. Visualization of Qunatitative Data</a></li>
+            <li><a href="../eStatM/chapter04.html">4. Measure of Central Tendency and Dispersion</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h1>Chapter 1. Statistics</h1> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:200px" onclick="moveSection(140)"> &#10094;&#10094; &nbsp;&nbsp;<b>Table of Contents</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:200px" onclick="moveSection(142)"><b>Chapter 2</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <p>
+  <table>
+    <tr>
+      <td style="width:300px">
+        <h1>&nbsp; 🎲 🎯 💻 📱</h1>
+        <h4>
+        <a href="#0101"><u>1.1 What is Statistics?</u></a> <p>
+        <a href="#0102"><u>1.2 Data Classification</u></a> <p>
+        <a href="#0103"><u>1.3 『eStat』 Software</u></a> <p>
+        <a href="../eStatM/chapter01.pdf" target="_blank"><u>[Chapter 1. pdf]</u></a>
+        </h4>
+      </td>
+      <td style="width:350px">
+        <h1></h1>
+        <p>- Examine what statistics are.
+        <p>- Examine the classification of data.
+        <p>- Examine statistical software.
+      </td>
+    </tr>
+  </table>
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0101">1.1 What is Statistics?</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>The height of 10 students in our class was measured to see how tall they were.
+             The measured height data were recorded on paper as follows.
+          </b>
+          <p>
+          <div class="textLeft">[Table1.1] The height of 10 students in our class (unit cm)</div>
+          <table>
+            <td> 165  163  170  175  155  167  157  153  161  162
+            </td>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <b>How can I find out where my height (165cm) is located among students 
+             in my class in descending order of height?
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>Students' heights are called numerical <b>data</b>. In this example, the data 
+         was generated as many as the number of students. In our society, a large amount
+         of data were generated and the number of data is expected to increase further
+         with the development of computer technologies in the future.
+      <p>In order to understand the relative position of my height among students, 
+         arrange the data in descending order from taller to smaller as shown in [Table 1.2].
+      <div class="textLeft">[Table 1.2] Height data in descending order (unit cm)</div>
+      <table>
+        <td> 175  170  167  165  163  162  161  157  155  153 
+        </td>
+      </table>
+      <p>From this data, it is easy to tell that my height of 165cm is the 4th from the top.
+      <p><b>Statistics</b> is the process of collecting, organizing, and summarizing data 
+         in this way and obtaining useful information by analysis. A country needs statistics
+         such as the number of people, the number of households, and the amount of food 
+         in order to solve eating, clothing and sheltering of its people. 
+         Such statistics have been recorded since the time of Egyptian civilization 
+         5,000 years ago.
+      <p>
+         As the modern information society progresses, the size of data has grown 
+         tremendously, which is called <b>Big Data</b>. Typical examples of big data 
+         are as follows.
+      <br>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Google’s search history data
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- SNS data from your smartphone
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Records of access to and out of the Internet
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Telecommunication company's call log data <
+      </div>
+      <p>In the information society of the future, the success or failure of an individual, company, or country can be different depending on how they make scientific decisions with reasonable statistical informations on big data. There are many examples of statistics applied to reality by analyzing big data.
+      <br>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Predict the number of car models sold in the United States next month by surveying Google's search engine questions about car purchases.
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- An online shopping mall analyzed customers' web records to find out what products the member customers have and what products they were interested in, and then customized advertisements tailored to each customer, resulting in increased sales.
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- An oil exploration company increased the success rate of oil drilling by analyzing terabytes of geological data.
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- A university in the United States analyzed the information that students click on the system in an online class to monitor each student's learning performance, suggested class content for each level tailored to the student's level of understanding, and suggested subjects to take in the future for each student. As a result, the degree acquisition rate by major improved significantly.
+      </div>
+  </div>
+  <p>
+
+<!---------------------------------------------------------------------------------------->
+  <h3 id="0102">1.2 Data Classification </h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>If the gender of the 10 students in our class is investigated, they are ‘male’ or ‘female’, and if the height is measured, it is 160cm, etc. Gender and height data have different attributes.</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <b>1) Gender and height have different attributes. Is there an appropriate way to classify data? <br>
+             2) Does the analysis method differ depending on the type of data?
+          </b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         Data are values that observed or measured the attributes of objects of interest. 
+         The attribute of such an object or event is called a <b>variable</b>. For example, 
+         if the gender and height of an elementary school were measured, there were two variables 
+         (gender and height). Gender measurements are in the form as male, female, female, male, .... 
+         and height measurements are 160cm, 155cm, 158cm, 165cm, ... 
+      <p>
+         Variable such as 'gender' is classified into qualitative data, and variable such as
+         height is classified into <b>quantitative data</b>. The reason for classifying data is 
+         that processing and analyzing methods are different depending on the type of data. 
+         Chapter 2 discusses visualization of qualitative data, and Chapter 3 discusses 
+         visualization of quantitative data.
+      <p>
+         Qualitative variable such as gender usually have several categories, which are also 
+         called a <b>categorical variable</b>. For a categorical variable, the frequency of 
+         each category is investigated, a frequency table is created, and a bar graph, 
+         pie graph, and band graph are drawn for analyis (Chapter 2). Table 1.3 is an 
+         example of a frequency table for gender in a class. It shows that there are 6 'male' 
+         and 4 'female' students.
+      <div class="textLeft">[Table 1.3]  Frequency table for gender in a class</div>
+      <table> 
+        <tr> 
+          <th class="thGrey">Gender</th>
+          <th class="thGrey">Number of Students</th>
+        </tr>
+        <tr> <td class="tdCenter">Male</td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">Female</td> <td class="tdCenter">4</td> </tr>
+      </table>
+      <p>
+         Qualitative data such as words are analyzed by examining the frequency of each word to form a word cloud.
+      <p>
+         For quantitative data, the mean and standard deviation are calculated and visualized using stem and leaf plot, histogram, and dot graph (Chapter 3).
+  </div>
+  <p>
+<!---------------------------------------------------------------------------------------->
+  <h3 id="0103">1.3 『eStat』 Software</h3>
+  <p>
+  <div class="mainTableYellow">
+    <table>
+      <tr>
+        <td style="width:110px">
+          <h4>⭐ Think</h4>
+        </td>
+        <td style="width:450px">
+          <p>
+          <b>[Table 1.2] arranged the height data in descending order on a paper </b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>💎 Explore</h4>
+        </td>
+        <td>
+          <p>
+          <b>Is there any way to use a computer? If yes, which software should I use?</b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         Small class data can be manually organized and analyzed, but if there are more data,
+         it is impossible to analyze data without the help of a computer. In particular, 
+         <b>statistical software</b> with many professional analysis programs is essential for 
+         big data analysis. Statistical software such as SAS, SPSS, and R are now widely 
+         used for data analysis. However, these software are not easy for beginners to learn, 
+         and SAS and SPSS are commercial and are very expensive. In addition, these software 
+         are focused on data analysis and there are few module required for statistical education.
+      <p>
+         <b>『eStat』</b> is a free educational software designed to teach statistics easily from 
+         elementary school students to college students and general public. Given the data, 
+         you can draw a graph with just a click of the mouse, and experience a dynamic graph.
+         『eStat』 includes many examples from textbooks of each level, and because it is web-based, users can use it anytime, anywhere with a PC, tablet, or smartphone. 『eStat』 is provided free of charge and supports multiple languages, and currently 20 languages including Korean and English are available.
+      <p>
+         『eStat』 system works 100% well with Google's Chrome among many web browsers currently in use. 
+         In browsers such as MS Edge, 『eStat』 works, but some functions may not work.
+      <p>
+         This book is focused on modules in 『eStatH』 developed for elementary and middle school 
+         students in 『eStat』. Open the web browser Chrome, enter www.estat.me in the address bar 
+         and click the icon 『eStatH』, then the screen as shown in &lt;Figure 1.1&gt; appears.
+      <p>
+      <table>
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../QR/eStatH.svg" onclick="window.open(addrStr[1])">
+            <div class="textLeft">『eStatH』</div>
+          </td>
+          <td>
+           <img class="imgFig600600" src="../FigureM/Fig0101.png">
+           <div class="textLeft">&lt;Fogure 1.1&gt; 『eStatH』 menu</div>
+          </td>
+        </tr>
+      </table>
+      <p>  
+  </div>
+  <p>
+
+  <div class="mainTablePink">
+    <h4> Exercise </h4>
+    <p style="color:blue">*** Select an answer and click [SUBMIT] button.
+
+  <h6 class="textL30M30">1.1  Which of the following statements about statistics is correct?</h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> Studying changes in the weather</label><br>
+    <label><input type="radio" name="item" value="2"> Collect and organize data for analysis</label><br>
+    <label><input type="radio" name="item" value="3"> Study chemical reactions</label><br>
+    <label><input type="radio" name="item" value="4"> Electronic production research</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(21,1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">1.2 Which of the following is qualitative data?  </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> Height</label><br>
+    <label><input type="radio" name="item" value="2"> Weight</label><br>
+    <label><input type="radio" name="item" value="3"> Education level</label><br>
+    <label><input type="radio" name="item" value="4"> Age</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(21,2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">1.3 Which of the following is quantitative data? </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> Gender</label><br>
+    <label><input type="radio" name="item" value="2"> Education level</label><br>
+    <label><input type="radio" name="item" value="3"> Marrital status</label><br>
+    <label><input type="radio" name="item" value="4"> Age</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(21,3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">1.4 Which of the following is not a statistical package?  </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> SPSS</label><br>
+    <label><input type="radio" name="item" value="2"> SAS</label><br>
+    <label><input type="radio" name="item" value="3"> eStat</label><br>
+    <label><input type="radio" name="item" value="4"> Word</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(21,4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+
+  </div>
+
+  <script>
+    for (var i=0; i < ans[21][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
+  </script>
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:200px" onclick="moveSection(140)"> &#10094;&#10094; &nbsp;&nbsp;<b>Table of Contents</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:200px" onclick="moveSection(142)"><b>Chapter 2</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+
