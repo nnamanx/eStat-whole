@@ -26,12 +26,15 @@
       <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td>
-          <a style="color:blue; font-weight:bold" href="../eLearning/kr/index.html" target="_blank"><span data-msgid="ebookLink"></span></a><p> 
+          <h2 style="color:blue;"><span data-msgid="ebookLink"></span></h2>
         </td>
         <td>
           <input type="image" src="eLearningH.png"  style="width:100px" onclick="myFunctionM()"> 
           <script>
-            function myFunctionM() { window.open("http://www.estat.me/estat/eLearning/kr/index.html"); }
+            function myFunctionM() { 
+              if (langNum < 1) window.open("http://www.estat.me/estat/eLearning/kr/eStatM/index.html"); 
+              else window.open("http://www.estat.me/estat/eLearning/en/eStatM/index.html"); 
+            }
           </script>
         </td>
       </tr>
@@ -50,7 +53,7 @@
     </ul>
   </div>
 
-  <div style="position:absolute; left:10px; top:610px">
+  <div style="position:absolute; left:10px; top:640px">
     <svg id="ScatterPlot2" width="380" height="300"> </svg> 
   </div>
 
@@ -62,19 +65,22 @@
       <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td>
-          <a style="color:blue; font-weight:bold" href="../eLearning/kr/indexH.html" target="_blank"><span data-msgid="ebookLink"></span></a>
+          <h2 style="color:blue;"><span data-msgid="ebookLink"></span></h2>
         </td>
         <td>
           <input type="image" src="eLearningH.png"  style="width:100px" onclick="myFunctionH()"> 
           <script>
-            function myFunctionH() { window.open("http://www.estat.me/estat/eLearning/kr/indexH.html"); }
+            function myFunctionH() { 
+              if (langNum < 1) window.open("http://www.estat.me/estat/eLearning/kr/eStatH/index.html");
+              else window.open("http://www.estat.me/estat/eLearning/en/eStatH/index.html"); 
+            }
           </script>
         </td>
       </tr>
     </table> 
     <ul width="130px">
       <li><a href="40Permutation.htm"> &#8544;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span data-msgid="Permutation"></span> - <span data-msgid="Combination"></span></a></li>
-      <li><a href="40Pascal.htm">      &#8544;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span data-msgid="PascalTriangle"></span> -<span data-msgid="BinomialTheorem"></span> </a></li>
+      <li><a href="40Pascal.htm">      &#8544;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span data-msgid="PascalTriangle"></span> - <span data-msgid="BinomialTheorem"></span> </a></li>
       <li><a href="63SampleEng.htm">   &#8545;&nbsp;&nbsp;&nbsp;&nbsp; <span data-msgid="StatisticalProb"></span></a></li>
       <li><a href="40AdditionRule.htm">&#8545;&nbsp;&nbsp;&nbsp;&nbsp; <span data-msgid="AdditionRule">Addition Rule</span></a></li>
       <li><a href="40MultiplicationRule.htm">&#8545; &nbsp;&nbsp;&nbsp; <span data-msgid="ConditionalProb">Conditional Probability</span></a></li>
