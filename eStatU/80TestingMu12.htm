@@ -119,13 +119,13 @@
 	<tr>
           <td></td>
 	  <td><span data-msgid="Sample Variance">Sample Variance</span></td>
-	  <td><span class="fontmath">s<sub>1</sub></span></td>
+	  <td><span class="fontmath">s<sub>1</sub><sup>2</sup></span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="var41"></td>
-	  <td><span class="fontmath">s<sub>2</sub></span></td>
+	  <td><span class="fontmath">s<sub>2</sub><sup>2</sup></span></td>
 	  <td>=</td>	
 	  <td><input type="text" class="textarea" size=6 id="var42"></td>
-	  <td><span class="fontmath">s<sub>d</sub></span></td>
+	  <td><span class="fontmath">s<sub>d</sub><sup>2</sup></span></td>
 	  <td>=</td>	
 	  <td><input type="text" class="textarea" size=6 id="varDiff"></td>
 	</tr>
@@ -302,7 +302,7 @@
         x = data;
         document.getElementById("nn41").value   = stat.n;    
         document.getElementById("xbar41").value = f2(stat.xbar);
-        document.getElementById("var41").value  = f2(Math.sqrt(stat.var));    
+        document.getElementById("var41").value  = f2(stat.var);    
       });
 
       d3.select("#data2").on("input", function() {
@@ -310,7 +310,7 @@
         y = data; 
         document.getElementById("nn42").value   = stat.n;    
         document.getElementById("xbar42").value = f2(stat.xbar);
-        document.getElementById("var42").value  = f2(Math.sqrt(stat.var));    
+        document.getElementById("var42").value  = f2(stat.var);    
       });
 
       updateData = function() {
@@ -428,7 +428,7 @@
             stdDiff = Math.sqrt(varDiff);
             document.getElementById("nDiff").value   = f3(x.length); 
             document.getElementById("avgDiff").value = f3(avgDiff); 
-            document.getElementById("varDiff").value = f3(stdDiff); 
+            document.getElementById("varDiff").value = f3(varDiff); 
           }
           document.getElementById("ansFormula").value = f3(stdDiff / nDiff);
           if (varDiff == 0) teststat = 0; 
