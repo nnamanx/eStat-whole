@@ -33,9 +33,15 @@ li a:hover {
     border-bottom: none; /* Prevent double borders */
 }.btn-group .button:hover {
     background-color: #3e8e41;
-}.sliderS {
-   width: 100px;
-}.slider-width{
+}
+.slider {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #707070;
+    -webkit-appearance: none;
+    background: #f7f7f7;
+}
+.slider-width{
     width: 200px;
 }section.range-slider {
     position: relative;
