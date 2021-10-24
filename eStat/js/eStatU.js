@@ -1622,6 +1622,50 @@ function showValueExponential1(newValue) {
             else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
             d3.select("#c3").node().value = f4(c);
           }
+          else if (radioType == 4) { 
+            document.getElementById("f").value  = f3(newValue/(300/gxmax));
+            a = parseFloat(d3.select("#f").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("a").value = a.toString();
+              document.getElementById("range21E").value = (300*a/gxmax).toString();
+            } 
+            else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = 0.00001;
+            document.getElementById("range21E").value = (300*a/gxmax).toString();
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("d").value = b.toString();
+              document.getElementById("range21E").value = (300*b/gxmax).toString();
+            } 
+            else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            document.getElementById("a6").value  = f3(newValue/(300/gxmax));
+            a = parseFloat(d3.select("#a6").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            b = gxmax;
+            document.getElementById("range22E").value = (300*b/gxmax).toString();
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("a6").value = b.toString();
+              document.getElementById("range21E").value = (300*b/gxmax).toString();
+            } 
+            else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+            d3.select("#c6").node().value = f4(c);
+          }
           drawExponentialGraph(lambda, a, b, c);      
 }
 // 
@@ -1673,6 +1717,49 @@ function showValueExponential2(newValue) {
             }
             else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
             d3.select("#c3").node().value = f4(c);
+          }
+          else if (radioType == 4) {
+            a = parseFloat(d3.select("#f").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            document.getElementById("g").value  = f3(newValue/(300/gxmax));
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("f").value = a.toString();
+              document.getElementById("range21E").value = (300*a/gxmax).toString();
+            }
+            else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = 0.00001;   
+            document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+            document.getElementById("d").value  = f3(newValue/(300/gxmax));
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("d").value = a.toString();
+              document.getElementById("range22E").value = (300*a/gxmax - 5).toString();
+            }
+            else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            a = parseFloat(d3.select("#a6").node().value); 
+            b = gxmax;
+            document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("a6").value = a.toString();
+              document.getElementById("range22E").value = (300*a/gxmax - 5).toString();;
+            }
+            else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
+            d3.select("#c6").node().value = f4(c);
           }
           drawExponentialGraph(lambda, a, b, c);    
 }// Exponential분포 inverse  그리기 - 단측
@@ -2249,6 +2336,43 @@ function showValueNormal1(newValue) {
             else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
             d3.select("#c3").node().value = f4(c);
           }
+          else if (radioType == 4) {
+            document.getElementById("f").value  = f3(mu + sigma*(newValue-400)/100);
+            a = parseFloat(d3.select("#f").node().value); 
+            if ( a < mu-4*sigma ) a = mu - 4*sigma;   
+            b = parseFloat(d3.select("#g").node().value);
+            if ( a > b ) {
+              c = 0;
+              a = b;
+            } 
+            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = mu - 4*sigma; 
+            document.getElementById("range21N").value = (400+100*(a-mu)/sigma).toString();
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > mu+4*sigma ) b = mu + 4*sigma;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+            }
+            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            document.getElementById("a6").value  = f3(mu + sigma*(newValue-400)/100);
+            a = parseFloat(d3.select("#a6").node().value);
+            b = mu + 4*sigma;
+            document.getElementById("range22N").value = (400+100*(b-mu)/sigma).toString();
+            if ( a > b ) {
+              c = 0;
+              b = a;
+            }
+            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+            d3.select("#c6").node().value = f4(c);
+          }
+
           drawNormalGraph(mu, sigma, a, b, c);     
 }
 //
@@ -2293,6 +2417,43 @@ function showValueNormal2(newValue) {
             }
             else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
             d3.select("#c3").node().value = f4(c);
+          }
+          else if (radioType == 4) {
+            a = parseFloat(d3.select("#f").node().value); 
+            document.getElementById("g").value  = f3(mu + sigma*(newValue-400)/100);
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > mu+4*sigma ) b = mu + 4*sigma;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+            }
+            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = mu - 4*sigma; 
+            document.getElementById("range21N").value = (400+100*(a-mu)/sigma).toString();
+            document.getElementById("d").value  = f3(mu + sigma*(newValue-400)/100);
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > mu+4*sigma ) b = mu + 4*sigma;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+            }
+            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            a = parseFloat(d3.select("#a6").node().value);
+            b = mu + 4*sigma;
+            document.getElementById("range22N").value = (400+100*(b-mu)/sigma).toString();
+            if ( b > mu+4*sigma ) b = mu + 4*sigma;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+            }
+            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
+            d3.select("#c6").node().value = f4(c);
           }
           drawNormalGraph(mu, sigma, a, b, c);      
 }   
@@ -2657,6 +2818,52 @@ function showValueT1(newValue) {
             else c = t_cdf(b, df, info) - t_cdf(a, df, info);
             d3.select("#c3").node().value = f4(c);
           }
+          else if (radioType == 4) {
+            document.getElementById("f").value  = f3((newValue-500)/100);
+            a = parseFloat(d3.select("#f").node().value); 
+            b = parseFloat(d3.select("#g").node().value);
+            if ( a < -5 ) a = - 5;   
+            if ( b > 5 ) b = 5;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("f").value = b.toString();
+              document.getElementById("range21T").value = (500+100*b).toString();
+            } 
+            else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = -5; 
+            document.getElementById("range21T").value = (500+100*a).toString();
+            b = parseFloat(d3.select("#d").node().value);
+            if ( a < -5 ) a = - 5;   
+            if ( b > 5 ) b = 5;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("d").value = b.toString();
+              document.getElementById("range21T").value = (500+100*b).toString();
+            } 
+            else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            document.getElementById("a6").value  = f3((newValue-500)/100);
+            a = parseFloat(d3.select("#a6").node().value);
+            b = 5;
+            document.getElementById("range22T").value = (500+100*b).toString();
+            if ( a < -5 ) a = - 5;   
+            if ( b > 5 ) b = 5;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("a6").value = b.toString();
+              document.getElementById("range21T").value = (500+100*b).toString();
+            } 
+            else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+            d3.select("#c6").node().value = f4(c);
+          }
           drawTdistGraph(df, a, b, c);       
 }
 //
@@ -2709,6 +2916,52 @@ function showValueT2(newValue) {
             }
             else c = t_cdf(b, df, info) - t_cdf(a, df, info);
             d3.select("#c3").node().value = f4(c);
+          }
+          else if (radioType == 4) {
+            a = parseFloat(d3.select("#f").node().value); 
+            if ( a < -5 ) a = - 5;   
+            document.getElementById("g").value  = f3((newValue-500)/100);
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > 5 ) b = 5;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("g").value = a.toString();
+              document.getElementById("range22T").value = (500+100*b).toString();
+            }
+            else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = -5;; 
+            document.getElementById("range21T").value = (500+100*a).toString();
+            document.getElementById("d").value  = f3((newValue-500)/100);
+            b = parseFloat(d3.select("#d").node().value);
+            if ( a < -5 ) a = - 5;   
+            if ( b > 5 ) b = 5;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("b2").value = a.toString();
+              document.getElementById("range22T").value = (500+100*b).toString();
+            }
+            else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            a = parseFloat(d3.select("#a6").node().value);
+            b = 5;
+            document.getElementById("range22T").value = (500+100*b).toString();
+            if ( a < -5 ) a = - 5;   
+            if ( b > 5 ) b = 5;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("a6").value = a.toString();
+              document.getElementById("range22T").value = (500+100*b).toString();
+            }
+            else c = t_cdf(b, df, info) - t_cdf(a, df, info);
+            d3.select("#c6").node().value = f4(c);
           }
           drawTdistGraph(df, a, b, c);
 }
@@ -3008,6 +3261,50 @@ function showValueChisq1(newValue) {
             else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
             d3.select("#c3").node().value = f4(c);
           }
+          else if (radioType == 4) {
+            document.getElementById("f").value  = f3(newValue/(300/gxmax));
+            a = parseFloat(d3.select("#f").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("f").value = b.toString();
+              document.getElementById("range21Chi").value = b.toString();
+            } 
+            else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = 0.00001;
+            document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("d").value = b.toString();
+              document.getElementById("range21Chi").value = (300*b/gxmax - 5).toString();
+            } 
+            else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            document.getElementById("a6").value  = f3(newValue/(300/gxmax));
+            a = parseFloat(d3.select("#a6").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            b = gxmax;
+            document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("a6").value = b.toString();
+              document.getElementById("range21Chi").value = b.toString();
+            } 
+            else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
+            d3.select("#c6").node().value = f4(c);
+          }
           drawChisqGraph(df, a, b, c);
 }//
 
@@ -3057,6 +3354,47 @@ function showValueChisq2(newValue) {
             }
             else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
             d3.select("#c3").node().value = f4(c);
+          }
+          else if (radioType == 4) {
+            a = parseFloat(d3.select("#f").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            document.getElementById("g").value  = f3(newValue/(300/gxmax));
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("g").value = a.toString();
+              document.getElementById("range22Chi").value = (300*a/gxmax - 5).toString();
+            }
+            else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = 0.00001;   
+            document.getElementById("range21Chi").value = (300*a/gxmax - 5).toString();
+            document.getElementById("d").value  = f3(newValue/(300/gxmax));
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("b2").value = a.toString();
+              document.getElementById("range22Chi").value = (300*a/gxmax - 5).toString();
+            }
+            else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            a = parseFloat(d3.select("#a6").node().value); 
+            b = gxmax;
+            document.getElementById("range22Chi").value = (300*b/gxmax - 5).toString();
+            if ( a > b ) {
+              c = 0;
+              b = a;
+            }
+            else c = chisq_cdf(b, df, info) - chisq_cdf(a, df, info);
+            d3.select("#c6").node().value = f4(c);
           }
           drawChisqGraph(df, a, b, c);
 }
@@ -3327,6 +3665,50 @@ function showValueF1(newValue) {
             else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
             d3.select("#c3").node().value = f4(c);
           }
+          else if (radioType == 4) {
+            document.getElementById("f").value  = f3(newValue/10);
+            a = parseFloat(d3.select("#f").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("f").value = b.toString();
+              document.getElementById("range21F").value = b.toString();
+            } 
+            else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = 0.00001;
+            document.getElementById("range21F").value = (100*a/gxmax).toString();
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("d").value = b.toString();
+              document.getElementById("range21F").value = (100*b/gxmax).toString();
+            } 
+            else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            document.getElementById("a6").value  = f3(newValue/10);
+            a = parseFloat(d3.select("#a6").node().value); 
+            if ( a < 0 ) a = 0.00001;   
+            b = gxmax;
+            document.getElementById("range22F").value = (100*b/gxmax).toString();
+            if ( a > b ) {
+              c = 0;
+              a = b;
+              document.getElementById("a6").value = b.toString();
+              document.getElementById("range21F").value = b.toString();
+            } 
+            else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
+            d3.select("#c6").node().value = f4(c);
+          }
           drawFGraph(df1, df2,  a, b, c);
 }
 // 
@@ -3377,6 +3759,49 @@ function showValueF2(newValue) {
             }
             else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
             d3.select("#c3").node().value = f4(c);
+          }
+          else if (radioType == 4) {
+            a = parseFloat(d3.select("#f").node().value); 
+            document.getElementById("g").value  = f3(newValue/10);
+            if ( a < 0 ) a = 0.00001;   
+            b = parseFloat(d3.select("#g").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("g").value = a.toString();
+              document.getElementById("range22F").value = b.toString();
+            }
+            else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
+            d3.select("#h").node().value = f4(c);
+          }
+          else if (radioType == 5) {
+            a = 0.00001;   
+            document.getElementById("range21F").value = (100*a/gxmax).toString();
+            document.getElementById("d").value  = f3(newValue/10);
+            b = parseFloat(d3.select("#d").node().value);
+            if ( b > gxmax ) b = gxmax;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("d").value = a.toString();
+              document.getElementById("range22F").value = (100*a/gxmax).toString();
+            }
+            else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
+            d3.select("#e").node().value = f4(c);
+          }
+          else if (radioType == 6) {
+            a = parseFloat(d3.select("#a6").node().value); 
+            b = gxmax;
+            document.getElementById("range22F").value = (100*b/gxmax).toString();;
+            if ( a > b ) {
+              c = 0;
+              b = a;
+              document.getElementById("a6").value = a.toString();
+              document.getElementById("range22F").value = (100*a/gxmax).toString();
+            }
+            else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
+            d3.select("#c6").node().value = f4(c);
           }
           drawFGraph(df1, df2,  a, b, c);
 }// F분포 inverse  그리기 - 단측

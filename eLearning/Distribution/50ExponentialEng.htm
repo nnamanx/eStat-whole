@@ -23,7 +23,7 @@
       <sup><small>0.1</small></sup>
       <input type="range" min="1" max="100" value="10" id="range1E" onchange="showValueExponential0(this.value)"/>
       <sup><small>10 </small></sup> 
-      <a class="menu" href="../Distribution/index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -32,8 +32,8 @@
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-    <input value="2"  min="0" max="300" type="range" id="range21E" onchange="showValueExponential1(this.value)"/>
-    <input value="221" min="0" max="300" type="range" id="range22E" onchange="showValueExponential2(this.value)"/>
+    <input class="slider" value="2"  min="0" max="300" type="range" id="range21E" onchange="showValueExponential1(this.value)"/>
+    <input class="slider" value="221" min="0" max="300" type="range" id="range22E" onchange="showValueExponential2(this.value)"/>
     </section>
 
     <form name="myForm"> 
@@ -288,8 +288,8 @@
           d3.select("#f").node().value = f3(f);
           d3.select("#g").node().value = f3(g);
           d3.select("#h").node().value = f4(h);
-          document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
-          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+          document.getElementById("range21E").value = (300*f/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*g/gxmax - 5).toString();
           drawExponentialGraph(lambda, f, g, h); 
       }    
       rad[4].onclick = function() {     // P(X < d) = e
@@ -306,7 +306,7 @@
           d3.select("#d").node().value = f3(d);
           d3.select("#e").node().value = f4(e);
           document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
-          document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
+          document.getElementById("range22E").value = (300*d/gxmax - 5).toString();
           drawExponentialGraph(lambda, 0, d, e);
       }
       rad[5].onclick = function() {     // P( Z > b) = c

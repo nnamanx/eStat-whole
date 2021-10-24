@@ -25,7 +25,7 @@
       <span data-msgid="Std Dev">Std Dev</span>&nbsp;
       &sigma;= <input type="text" class="textarea" value="1" size=6 id="sigma" onfocus="focus0()" onKeyUp="changeRangeMuSigma()"/> 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a class="menu" href="../Distribution/index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
+      <a class="menu" href="index.html"><b><span data-msgid="Menu">Menu</span></b></a>  
     </div>
     <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -34,8 +34,8 @@
     <svg id="chart" width="600" height="400"> </svg> 
 
     <section class="range-slider">
-      <input type="range" min="0" max="800" value="201" id="range21N" onchange="showValueNormal1(this.value)"/>
-      <input type="range" min="0" max="800" value="591" id="range22N" onchange="showValueNormal2(this.value)"/>
+      <input type="range" min="0" max="800" value="201" id="range21N" class="slider" onchange="showValueNormal1(this.value)"/>
+      <input type="range" min="0" max="800" value="591" id="range22N" class="slider" onchange="showValueNormal2(this.value)"/>
     </section>
  
      <form name="myForm"> 
@@ -179,8 +179,9 @@
       <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 
       <a href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution" target="_blank" >KhanAcademy </a> &nbsp; 
       <p>
- 
+
     </form>
+
     <div>
       <p>
       <div id="screenTable">
@@ -336,9 +337,6 @@
           sigma = 0.0001;
           d3.select("#sigma").node().value = f4(sigma);
         }
-        gxmin   = mu - 4*sigma;
-        gxmax   = mu + 4*sigma;
-        gxrange = gxmax - gxmin;
         a  = document.getElementById("a").value; 
         b  = document.getElementById("b").value;
         b2 = document.getElementById("b2").value;
@@ -375,7 +373,7 @@
         else if (radioType == 2) {     // P( Z < b) = c
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
-          a = mu - 4*sigma;   
+          a = gxmin;   
           b = parseFloat(d3.select("#b2").node().value);
           if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
           if ( a > b ) c = 0;
@@ -391,7 +389,7 @@
           bar.selectAll("line.lineb").remove();
           a = parseFloat(d3.select("#a3").node().value); 
           if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
-          b = mu + 4*sigma;
+          b = gxmax;
           if ( a > b ) c = 0;
           else c = 1 - stdnormal_cdf((a-mu)/sigma);
           d3.select("#a3").node().value = f3(a)
@@ -423,7 +421,7 @@
           if (e > 0.9999) e = 0.9999;
           if (e < 0.0001) e = 0.0001;
 //          document.getElementById("range3N").value  = f0(e*1000);
-          a = mu - 4*sigma;
+          a = gxmin;
           d = mu + sigma*stdnormal_inv(e, info);
           d3.select("#d").node().value = f3(d);
           d3.select("#e").node().value = f4(e);
