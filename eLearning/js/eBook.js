@@ -190,11 +190,13 @@
     ans[22][1] = 2;
     ans[22][2] = 1;
     ans[22][3] = 2;
-// 3.1 ②, 3.2 ③, 3.3 ④
-    ans[23][0] = 3;
+// 3.1 ②, 3.2 ③, 3.3 ④, 3.4 ③, 3.5 ①
+    ans[23][0] = 5;
     ans[23][1] = 2;
     ans[23][2] = 3;
     ans[23][3] = 4;
+    ans[23][4] = 3;
+    ans[23][5] = 1;
 // 4.1 ④, 4.2 ②, 4.3 ②,  4.4  ③ ,4.5 ①
     ans[24][0] = 5;
     ans[24][1] = 4;
@@ -424,6 +426,16 @@
     addrStr[123] = temp+JSON.stringify({"dataURL":"../Example/eBook/EX080103_WageByGender.csv","analysisVar":2,"groupVars":[1],"graphNum":31});
     addrStr[124] = "http://www.estat.me/estat/eStatU/05WordCloud.htm";
     addrStr[125] = "http://www.estat.me/estat/eStatU/02LineGraph.htm";
+    addrStr[126] = "http://www.estat.me/estat/eStatU/40Permutation.htm";
+    addrStr[127] = "http://www.estat.me/estat/eStatU/40AdditionRule.htm";
+    addrStr[128] = "http://www.estat.me/estat/eStatU/40Complementary.htm";
+    addrStr[129] = "http://www.estat.me/estat/eStatU/40DiscreteDistribution.htm";
+    addrStr[130] = "http://www.estat.me/estat/eStatU/40MultiplicationRule.htm";
+    addrStr[131] = "http://www.estat.me/estat/eStatU/40Pascal.htm";
+    addrStr[132] = "http://www.estat.me/estat/eStatU/43LawOfLarge.htm";
+    addrStr[133] = "http://www.estat.me/estat/eStatU/50NormalComparison.htm";
+
+
     // eStatM
     addrStr[141] = "http://www.estat.me/estat/eStatH/01BarChart.htm";
     addrStr[142] = "http://www.estat.me/estat/eStatH/05WordCloud.htm";
