@@ -2767,27 +2767,34 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k].style.border = "1px solid black";
         }
         cell[0].style.width = "110px";
-
         var totsum = 0;
+        for (k = 1; k < ndvalue + 1; k++) {
+            sum = 0;
+            for (g = 0; g < ngroup; g++) sum += dataSet[g][k - 1];
+            sumCol[k - 1] = sum;
+            totsum += sum;
+        }
         for (g = 0; g < ngroup; g++) {
             row = table.insertRow(g + 2);
             for (k = 0; k < ndvalue + 2; k++) {
                 cell[k] = row.insertCell(k)
                 cell[k].style.border = "1px solid black";
             }
-            cell[0].innerHTML = gvalueLabel[g];
+            cell[0].innerHTML = gvalueLabel[g]+"<br>"+svgStr[126][langNum]+"<br>"+svgStr[127][langNum]+"<br>"+svgStr[128][langNum];
             cell[0].style.textAlign = "center";
             cell[0].style.backgroundColor = "#eee";
             cell[0].style.width = "110px";
             sum = 0;
             for (k = 1; k < ndvalue + 1; k++) sum += dataSet[g][k - 1];
             sumRow[g] = sum;
-            totsum += sum;
             for (k = 1; k < ndvalue + 1; k++) {
-                cell[k].innerHTML = f0(dataSet[g][k - 1]).toString() + "<br>" + f1(100 * dataSet[g][k - 1] / sum).toString() + "%";
+                cell[k].innerHTML = f0(dataSet[g][k - 1]).toString() + "<br>" + f1(100 * dataSet[g][k - 1] / sum).toString() + "%" 
+                         + "<br>" + f1(100 * dataSet[g][k - 1] / sumCol[k-1]).toString() + "%"
+                         + "<br>" + f1(100 * dataSet[g][k - 1] / totsum).toString() + "%";
                 cell[k].style.textAlign = "right";
             }
-            cell[ndvalue + 1].innerHTML = f0(sum).toString() + "<br>" + (100).toString() + "%";
+            cell[ndvalue + 1].innerHTML = f0(sum).toString() + "<br>" + (f1(100.0)).toString() + "%"
+                         + "<br>" + f1(100 * sum / totsum).toString() + "%" + "<br>" + "&nbsp; ";
             cell[ndvalue + 1].style.textAlign = "right";
             cell[ndvalue + 1].style.backgroundColor = "#eee";
         } // endof g
@@ -2798,16 +2805,16 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k].style.border = "1px solid black";
             cell[k].style.backgroundColor = "#eee";
         }
-        cell[0].innerHTML = svgStr[23][langNum];
+        cell[0].innerHTML = svgStr[23][langNum] + "<br>" + svgStr[126][langNum]+"<br>"+svgStr[127][langNum];
         cell[0].style.textAlign = "center";
         for (k = 1; k < ndvalue + 1; k++) {
             sum = 0;
             for (g = 0; g < ngroup; g++) sum += dataSet[g][k - 1];
             sumCol[k - 1] = sum / totsum;
-            cell[k].innerHTML = f0(sum).toString() + "<br>" + f1(100 * sum / totsum).toString() + "%";
+            cell[k].innerHTML = f0(sum).toString() + "<br>" + f1(100 * sum / totsum).toString() + "%" + "<br>" + (f1(100.0)).toString() + "%";
             cell[k].style.textAlign = "right";
         }
-        cell[ndvalue + 1].innerHTML = f0(totsum).toString() + "<br>" + (100).toString() + "%";
+        cell[ndvalue + 1].innerHTML = f0(totsum).toString() + "<br>" + (f1(100.0)).toString() + "%" + "<br>" + (f1(100.0)).toString() + "%";
         cell[ndvalue + 1].style.textAlign = "right";
 
         // missing
@@ -10811,9 +10818,9 @@ function regressionTable(xvarName, yvarName, nobs, xavg, xstd, yavg, ystd, alpha
     cell[3].style.textAlign = "center";
 
     tobs = Math.sqrt(nobs[k] - 2) * corr[k] / Math.sqrt(1 - corr[k] * corr[k]);
-    console.log(nobs[k])
-    console.log(corr[k])
-    console.log(tobs)
+//    console.log(nobs[k])
+//    console.log(corr[k])
+//    console.log(tobs)
     pvalue = t_cdf(tobs, df, info);
     if (pvalue < 0.5) pvalue = 2 * pvalue;
     else pvalue = 2 * (1 - pvalue)

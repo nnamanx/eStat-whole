@@ -33,6 +33,7 @@ languageNumber = {
     'az': 16,
     'uz': 17,
     'ru': 18,
+    'tr': 19,
 };
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
@@ -144,7 +145,7 @@ $.message.ko = {
     "Table Save": "테이블 저장",
     "Table Print": "테이블 인쇄",
     "Frequency": "도수",
-    "(Sorting)": "(정렬)",
+    "Sorting": "정렬",
     "SortData": "정렬자료",
     "Raw Data": "원자료",
     "Descending": "내림차순",
@@ -402,7 +403,34 @@ $.message.ko = {
     "MultiplicationRule": "확률의 곱셈정리",
     "ConditionalProb":   "조건부확률",
     "JointProb":         "결합확률",
-    "DiscreteDist":      "이산확률변수의 분포",
+    "DiscreteDist":      "이산확률변량의 분포",
+    "Categorize":        "범주화",
+    "Recode":            "변량값 재지정",
+    "Compute":           "새변량 계산",
+    "SelectIf":          "데이터 선택",
+    "InfoValueLabel":    "*** 변량을 선택하고 변량명이나 변량값명을 입력하고 실행 버튼을 누르세요.",
+    "InfoSorting":       "*** 정렬할 변량을 3개까지 선택하고, 정렬방법을 선택한 후 실행 버튼을 누르세요.",
+    "InfoCategorize":    "*** 범주화 할 변량을 선택한 후, 구간시작과 구간너비를 입력하고, '범주리스트 확인' 후 실행 버튼을 누르세요.",
+    "InfoRecode":        "*** 변량값 재지정할 변량을 선택하고, 새 변량값을 입력하고 실행 버튼을 누르세요.",
+    "InfoRecode2":       "* 9개까지의 값을 재지정할 수 있습니다.",
+    "InfoCompute":       "*** 새로운 변량 계산을 위한 계산식을 아래의 버튼들을 이용해 만들고 실행 버튼을 누르세요.",
+    "InfoSelectIf":      "*** 데이터 선택을 위한 세 개까지의 변량을 선택하고, 각 변량의 조건식을 입력한 후 실행 버튼을 누르세요.",
+    "SortingVariable":   "정렬변량",
+    "SortingMethod":     "정렬방법",
+    "NewVariable":       "새변량",
+    "CategoryVariable":  "범주화 변량",
+    "CategoryListCheck": "범주리스트 확인",
+    "CategoryInterval":  "범주 구간",
+    "CategoryLabel":     "범주 이름",
+    "RecodeVariable":    "변량값 재지정 변량",
+    "CurrentValue":      "현재 변량값",
+    "NewValue":          "새 변량값",
+    "ComputeFormula":    "계산식",
+    "SelectVariable":    "선택변량",
+    "RelationOperator":  "관계연산자",
+    "SelectValue":       "값",
+    "MissingValue":      "결측값",
+
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -420,8 +448,8 @@ alertMsg[6][0] = "요약자료의 분석변량에 문자가 있어 그래프를 
 alertMsg[7][0] = "원시자료에서 두 개이상 선택된 변량에 대해서는 그래프를 그리거나 표를 만들 수 없습니다.";
 alertMsg[8][0] = "점그림은 자료 수가 200개 이하일때 가능합니다.";
 alertMsg[9][0] = "줄기와 잎 그림은 자료 수가 100개 이하일때 가능합니다.";
-alertMsg[10][0] = "분석변수가 선택되지 않았습니다.";
-alertMsg[11][0] = "분석변수/그룹변수가 선택되지 않았습니다.";
+alertMsg[10][0] = "분석변량이 선택되지 않았습니다.";
+alertMsg[11][0] = "분석변량/그룹변량이 선택되지 않았습니다.";
 alertMsg[12][0] = "분석변량에 문자가 있어 그래프를 그리거나 도수분포표를 출력할 수 없습니다.";
 alertMsg[13][0] = "";
 alertMsg[14][0] = "요약자료는 연속형 그래프나 가설검정에 적합치 않습니다";
@@ -448,9 +476,9 @@ alertMsg[40][0] = "입력된 분산이 숫자가 아닙니다. 다시 입력하�
 alertMsg[41][0] = "두 변량 (분석변량과 그룹변량) 자료에 대해서만 가설검정을 할 수 있습니다.";
 alertMsg[42][0] = "가설검정의 제목은 편집할 수 없습니다! ";
 alertMsg[43][0] = "단순 선형 회귀분석은 그룹이 없는 경우에 분석할 수 있습니다";
-alertMsg[44][0] = "분석변수에서 1st:지역명, 2nd:위도(latitude), 3rd:경도(longitude), 4th:분석값(선택)을 선택";
+alertMsg[44][0] = "분석변량에서 1st:지역명, 2nd:위도(latitude), 3rd:경도(longitude), 4th:분석값(선택)을 선택";
 alertMsg[45][0] = "GIS그래프를 그릴 수 없습니다. ";
-alertMsg[46][0] = "같은 변수번호를 선택하였습니다.";
+alertMsg[46][0] = "같은 변량번호를 선택하였습니다.";
 alertMsg[46][0] = "적어도 두 행의 자료가 필요합니다.";        // Bar Chart,  도수분포다각형
 alertMsg[47][0] = "도수에 문자 자료는 허용이 안됩니다.";      // Bar Chart
 alertMsg[48][0] = "문자 자료는 허용이 안됩니다.";             // Stem and Leaf Plot
@@ -460,12 +488,22 @@ alertMsg[51][0] = "계급과 도수는 숫자이어야 하고 자료수가 동�
 alertMsg[52][0] = "계급과 도수에 문자는 허용이 안됩니다.";    // 도수분포다각형
 alertMsg[53][0] = "계급구간의 크기는 동일해야 합니다.";       // 도수분포다각형
 alertMsg[54][0] = "두 자료수는 동일해야 합니다.";
-alertMsg[55][0] = "The same variable number is selected.";
-alertMsg[56][0] = "The same variable number is selected.";
-alertMsg[57][0] = "The same variable number is selected.";
-alertMsg[58][0] = "The same variable number is selected.";
-alertMsg[59][0] = "The same variable number is selected.";
-
+alertMsg[55][0] = "!!! 시트에 데이터가 없습니다.";
+alertMsg[56][0] = "!!! 변수가 선택되지 않았습니다.";
+alertMsg[57][0] = "!!! 구간시작과 구간너비를 입력하세요.";
+alertMsg[58][0] = "!!! 구간시작과 구간너비는 숫자이어야 합니다.";
+alertMsg[59][0] = "!!! 9개이상의 구간은 허용되지 않습니다. - 구간너비를 조절하세요";
+alertMsg[60][0] = "!!! 9개 이상의 변수값은 재지정할 수 없습니다.";
+alertMsg[61][0] = "!!! 값이 입력되지 않았습니다.";
+alertMsg[62][0] = "!!! 계산식을 입력하세요.";
+alertMsg[63][0] = "!!! 조건식을 만족하는 데이터가 없습니다.";
+alertMsg[64][0] = "";
+alertMsg[65][0] = ""; 
+alertMsg[66][0] = "";
+alertMsg[67][0] = "";
+alertMsg[68][0] = "";
+alertMsg[69][0] = "";
+        
 svgStr[1][0] = " 막대그래프";
 svgStr[2][0] = " 원그래프";
 svgStr[3][0] = " 도넛그래프";
@@ -590,7 +628,10 @@ svgStr[121][0]= "공분산";
 svgStr[122][0]= "파스칼의 삼각형";
 svgStr[123][0]= "결합확률";
 svgStr[124][0]= "조건부확률";
-svgStr[125][0]= "이산확률변수의 확률분포";
+svgStr[125][0]= "이산확률변량의 확률분포";
+svgStr[126][0]= "행 %";
+svgStr[127][0]= "열 %";
+svgStr[128][0]= "전체 %";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -771,7 +812,7 @@ $.message.en = {
     "Table Save": "Table Save",
     "Table Print": "Table Print",
     "Frequency": "Frequency",
-    "(Sorting)": "(Sorting)",
+    "Sorting": "Sorting",
     "SortData": "Sorted Data",
     "Raw Data": "Raw Data",
     "Descending": "Descending",
@@ -1031,7 +1072,32 @@ $.message.en = {
     "ConditionalProb":   "Conditional Probability",
     "JointProb":         "Joint Probability",
     "DiscreteDist":      "Discrete Distribution",
-
+    "Categorize":        "Categorize",
+    "Recode":            "Recode",
+    "Compute":           "Compute",
+    "SelectIf":          "Select If",
+    "InfoValueLabel":    "*** Select variable, enter variable name and / or value label.",
+    "InfoSorting":       "*** Select sorting variable, enter sorting method up to 3 variables.",
+    "InfoCategorize":    "*** Select variable for Category, enter 'Interval Start' and 'Interval Width'.",
+    "InfoRecode":        "*** Select variable for Recode, enter 'New Value'.",
+    "InfoRecode2":       "* Allow recoding up to 9 values.",
+    "InfoCompute":       "*** Create computing formula using buttons below.",
+    "InfoSelectIf":      "*** Select up to 3 variables, enter their conditions.",
+    "SortingVariable":   "Sorting Variable",
+    "SortingMethod":     "Sorting Method",
+    "NewVariable":       "New Variable",
+    "CategoryVariable":  "Categorize Variable",
+    "CategoryListCheck": "Category List Check",
+    "CategoryInterval":  "Category Interval",
+    "CategoryLabel":     "Category Label",
+    "RecodeVariable":    "Recode Variable",
+    "CurrentValue":      "Current Value",
+    "NewValue":          "New Value",
+    "ComputeFormula":    "Formula",
+    "SelectVariable":    "Variable<br>for Select",
+    "RelationOperator":  "Relation<br>Operator",
+    "SelectValue":       "Value",
+    "MissingValue":      "Missing value",
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1088,11 +1154,21 @@ alertMsg[51][1] = "Enter numbers / Nnumber of rows should be the same!!   Try ag
 alertMsg[52][1] = "Enter numbers in category and frequency.";
 alertMsg[53][1] = "Interval size is not the same !!   Try again.";
 alertMsg[54][1] = "X observation is not equal Y observation !!   Try again.";
-alertMsg[55][1] = "The same variable number is selected.";
-alertMsg[56][1] = "The same variable number is selected.";
-alertMsg[57][1] = "The same variable number is selected.";
-alertMsg[58][1] = "The same variable number is selected.";
-alertMsg[59][1] = "The same variable number is selected.";
+alertMsg[55][1] = "!!! No data on sheet.";
+alertMsg[56][1] = "!!! No variable selected";
+alertMsg[57][1] = "!!! Enter Interval Start and Interval Width";
+alertMsg[58][1] = "!!! Enter numeric Interval Start and Interval Width";
+alertMsg[59][1] = "!!! More than 9 interval - change Interval Width";
+alertMsg[60][1] = "!!! This variable has more than 9 values";
+alertMsg[61][1] = "!!! No value entered";
+alertMsg[62][1] = "!!! Enter formula";
+alertMsg[63][1] = "!!! No data which satisfies conditions.";
+alertMsg[64][1] = "";
+alertMsg[65][1] = ""; 
+alertMsg[66][1] = "";
+alertMsg[67][1] = "";
+alertMsg[68][1] = "";
+alertMsg[69][1] = "";
 
 svgStr[1][1] = " Bar Graph";
 svgStr[2][1] = " Pie Chart";
@@ -1219,6 +1295,9 @@ svgStr[122][1] = "Pascal Triangle";
 svgStr[123][1] = "Joint Probability";
 svgStr[124][1] = "Conditional";
 svgStr[125][1] = "Discrete Distribution";
+svgStr[126][1] = "Row %";
+svgStr[127][1] = "Col %";
+svgStr[128][1] = "Tot %";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1399,7 +1478,7 @@ $.message.ja = {
     "Table Save": "テーブル保存",
     "Table Print": "テーブル印刷",
     "Frequency": "度数",
-    "(Sorting)": "(並べ替え)",
+    "Sorting": "並べ替え",
     "SortData": "並べ替えデータ",
     "Raw Data": "元データ",
     "Descending": "降順",
@@ -1659,6 +1738,32 @@ $.message.ja = {
     "ConditionalProb":   "条件付確率",
     "JointProb":         "結合確率",
     "DiscreteDist":      "離散確率分布",
+    "Categorize":        "カテゴリー化",
+    "Recode":            "変量値の再指定",
+    "Compute":           "新しい変量の計算",
+    "SelectIf":          "データ選択",
+    "InfoValueLabel":    "*** 変量を選択し、変量名または変量値名を。",
+    "InfoSorting":       "*** ソートする変量を3つまで選択し、ソート方法を選択して実行ボタンを押します。",
+    "InfoCategorize":    "*** カテゴリー化する変量を選択したら、区間開始と区間幅を入力し、「カテゴリーリストを確認」して実行ボタンを押します。",
+    "InfoRecode":        "*** 変量値再割り当てする変数を選択し、新しい変量値を入力して実行ボタンを押します。",
+    "InfoRecode2":       "* 9つまでの値を上書きできます。",
+    "InfoCompute":       "*** 新しい変量計算のための計算式を下のボタンを使って作成し、実行ボタンを押してください。",
+    "InfoSelectIf":      "*** データ選択のための3つまでの変量を選択し、各変量の条件式を入力して実行ボタンを押してください。",
+    "SortingVariable":   "並べ替え",
+    "SortingMethod":     "ソート方法",
+    "NewVariable":       "新しい変量",
+    "CategoryVariable":  "カテゴリー化変量",
+    "CategoryListCheck": "カテゴリリストの確認",
+    "CategoryInterval":  "カテゴリ区間",
+    "CategoryLabel":     "カテゴリ名",
+    "RecodeVariable":    "変量値再指定変量",
+    "CurrentValue":      "現在の変量値",
+    "NewValue":          "新しい変量値",
+    "ComputeFormula":    "計算式",
+    "SelectVariable":    "選択変数",
+    "RelationOperator":  "関係演算子",
+    "SelectValue":       "値",
+    "MissingValue":      "缺測値"
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1707,6 +1812,29 @@ alertMsg[43][2] = "單純線形回歸1グループ";
 alertMsg[44][2] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][2] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][2] = "同一変数名選擇";
+alertMsg[47][2] = "周波数の文字データは許可されません!!!   もう一度やってみて。"; 
+alertMsg[48][2] = "文字データは許可されません!!!   もう一度やってみて。"; 
+alertMsg[49][2] = "観測回数は100回未満にすべきだ！   もう一度やってみてください。";
+alertMsg[50][2] = "開始間隔またはステップ間隔に数字を入力してください。";
+alertMsg[51][2] = "数字を入力してください。行数は同じでなければなりません。   もう一度やってみてください。";
+alertMsg[52][2] = "カテゴリと頻度に数字を入力してください」";
+alertMsg[53][2] = "インターバルサイズが同じではありません。   もう一度やってみてください。";
+alertMsg[54][2] = "Xの観測はYの観測と等しくない！！   もう一度やってみてください。";
+alertMsg[55][2] = "!!!シートにデータがありません。";
+alertMsg[56][2] = "!!!変数が選択されていません。";
+alertMsg[57][2] = "!!!開始間隔と幅を入力してください。";
+alertMsg[58][2] = "!!!インターバル開始とインターバル幅を数値で入力してください。";
+alertMsg[59][2] = "!!!9インターバル以上-インターバル幅を変更する";
+alertMsg[60][2] = "!!!この変数の値は9を超えます。";
+alertMsg[61][2] = "!!!値が入力されていません。";
+alertMsg[62][2] = "!!!数式を入力してください。";
+alertMsg[63][2] = "!!!条件を満たすデータがありません。";
+alertMsg[64][2] = "";
+alertMsg[65][2] = ""; 
+alertMsg[66][2] = "";
+alertMsg[67][2] = "";
+alertMsg[68][2] = "";
+alertMsg[69][2] = "";
 
 svgStr[1][2] = " 棒グラフ";
 svgStr[2][2] = " 円グラフ";
@@ -1827,12 +1955,15 @@ svgStr[116][2]= "檢定";
 svgStr[117][2]= "分散";
 svgStr[118][2] = "階級区間値";
 svgStr[119][2] = "カテゴリ";
-svgStr[120][2] = "Mode";
-svgStr[121][2] = "Covariance";
-svgStr[122][2] = "Pascal Triangle";
-svgStr[123][2] = "Joint Probability";
-svgStr[124][2] = "Conditional";
-svgStr[125][2] = "Discrete Distribution";
+svgStr[120][2] = "最頻値";
+svgStr[121][2] = "共分散";
+svgStr[122][2] = "パスカル三角形";
+svgStr[123][2] = "結合確率";
+svgStr[124][2] = "条件付き";
+svgStr[125][2] = "離散型分布";
+svgStr[126][2] = "行 %";
+svgStr[127][2] = "列 %";
+svgStr[128][2] = "全体 %";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -2012,7 +2143,7 @@ $.message.zhTW = {
     "Table Save": "儲存表格",
     "Table Print": "列印表格",
     "Frequency": "次數",
-    "(Sorting)": "(排序)",
+    "Sorting": "排序",
     "SortData": "排序資料",
     "Raw Data": "原資料",
     "Descending": "下降的",
@@ -2269,6 +2400,32 @@ $.message.zhTW = {
     "ConditionalProb":   "条件付確率",
     "JointProb":         "結合確率",
     "DiscreteDist":      "離散確率分布",
+    "Categorize":        "分類",
+    "Recode":            "覆蓋隨機值",
+    "Compute":           "新變體計算",
+    "SelectIf":          "數據選擇",
+    "InfoValueLabel":    "*** 選擇一個變量，輸入變量名稱或變量值名稱，然後單擊運行按鈕。",
+    "InfoSorting":       "*** 最多選擇 3 個要排序的變量，選擇一種排序方法，然後單擊“運行”按鈕。",
+    "InfoCategorize":    "*** 選擇要分類的變量後，輸入區間開始和區間寬度，“檢查類別列表”並單擊“運行”按鈕。",
+    "InfoRecode":        "*** 選擇一個要重新分配的變量，輸入一個新的隨機值，然後單擊運行按鈕。",
+    "InfoRecode2":       "* 您最多可以覆蓋九個值。",
+    "InfoCompute":       "*** 使用下面的按鈕創建用於計算新方差的公式，然後單擊運行按鈕。",
+    "InfoSelectIf":      "*** 最多選擇三個變量進行數據選擇，為每個變量輸入條件表達式，然後單擊運行按鈕。",
+    "SortingVariable":   "對齊方式",
+    "SortingMethod":     "排序方式",
+    "NewVariable":       "新變量",
+    "CategoryVariable":  "分類方差",
+    "CategoryListCheck": "檢查類別列表",
+    "CategoryInterval":  "類別區間",
+    "CategoryLabel":     "分類名稱",
+    "RecodeVariable":    "隨機值覆蓋變體",
+    "CurrentValue":      "當前隨機值",
+    "NewValue":          "新的隨機值",
+    "ComputeFormula":    "公式",
+    "SelectVariable":    "可選變量",
+    "RelationOperator":  "關係運算符",
+    "SelectValue":       "價值",
+    "MissingValue":      "缺失值",
 };
 // Chinese 
 appStr[1][3] = "../eStatH/index.html";
@@ -2317,6 +2474,29 @@ alertMsg[43][3] = "簡單線性回歸僅適用於一組";
 alertMsg[44][3] = "輸入1st:名稱, 2nd:緯度, 3rd:經度, 4th:分析變數(選項)";
 alertMsg[45][3] = "超過5個變數，不能繪製GIS圖。";
 alertMsg[46][3] = "同一変数名選擇";
+alertMsg[47][3] = "不允許使用頻率的文字數據！！   再試一次"; 
+alertMsg[48][3] = "不允許文字數據！！   再試一次"; 
+alertMsg[49][3] = "觀測次數應該少於100次！！   請再試一次。";
+alertMsg[50][3] = "在間隔開始或步驟中輸入數字。";
+alertMsg[51][3] = "輸入編號/行數必須相同！！   請再試一次。";
+alertMsg[52][3] = "在類別和頻率中輸入數字。";
+alertMsg[53][3] = "間隔大小不一樣！！   請再試一次。";
+alertMsg[54][3] = "X觀測不等於Y觀測！！   請再試一次。";
+alertMsg[55][3] = "!! 紙張上沒有數據。";
+alertMsg[56][3] = "!! 未選擇變量";
+alertMsg[57][3] = "!! 輸入間隔開始和間隔寬度";
+alertMsg[58][3] = "!! 輸入數字間隔的起始和間隔寬度";
+alertMsg[59][3] = "!! 大於 9 間隔 - 更改間隔寬度";
+alertMsg[60][3] = "!! 該變量具有超過 9 個值";
+alertMsg[61][3] = "!! 未輸入值";
+alertMsg[62][3] = "!! 輸入公式";
+alertMsg[63][3] = "!! 沒有滿足條件的數據。";
+alertMsg[64][3] = "";
+alertMsg[65][3] = ""; 
+alertMsg[66][3] = "";
+alertMsg[67][3] = "";
+alertMsg[68][3] = "";
+alertMsg[69][3] = "";
 
 svgStr[1][3] = " 長條圖";
 svgStr[2][3] = " 圓餅圖";
@@ -2437,12 +2617,15 @@ svgStr[116][3]= "檢定";
 svgStr[117][3]= "變異數";
 svgStr[118][3]= "階級區間値";
 svgStr[119][3] = "分類";
-svgStr[120][3] = "Mode";
-svgStr[121][3] = "Covariance";
-svgStr[122][3] = "Pascal Triangle";
-svgStr[123][3] = "Joint Probability";
-svgStr[124][3] = "Conditional";
-svgStr[125][3] = "Discrete Distribution";
+svgStr[120][3] = "最頻值";
+svgStr[121][3] = "公分散";
+svgStr[122][3] = "帕斯卡爾三角形";
+svgStr[123][3] = "結合概率";
+svgStr[124][3] = "有條件";
+svgStr[125][3] = "離散型分佈";
+svgStr[126][3] = "行 %";
+svgStr[127][3] = "列 %";
+svgStr[128][3] = "總計 %";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -2622,7 +2805,7 @@ $.message.fr = {
     "Table Save": "Sauvegarder le tableau",
     "Table Print": "Imprimer le tableau",
     "Frequency": "Fréquence",
-    "(Sorting)": "(Tri)",
+    "Sorting": "Tri",
     "SortData": "Tri",
     "Raw Data": "Donnée brute",
     "Descending": "Descendant",
@@ -2874,11 +3057,37 @@ $.message.fr = {
     "BinomialTheorem": "binôme de Newton",
     "PascalTriangle":  "Triangle de Pascal",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
+    "AdditionRule":      "Règle de probabilité d'addition",
+    "MultiplicationRule":"Règle de probabilité de multiplication",
+    "ConditionalProb":   "Probabilite conditionnelle",
+    "JointProb":         "Probabilité conjointe",
+    "DiscreteDist":      "Distribution discrète",
+    "Categorize":        "Classer par catégories",
+    "Recode":            "Recoder",
+    "Compute":           "Calculer",
+    "SelectIf":          "Sélectionner si",
+    "InfoValueLabel":    "*** Sélectionnez la variable, entrez le nom de la variable et/ou le libellé de la valeur.",
+    "InfoSorting":       "*** Sélectionnez la variable de tri, entrez la méthode de tri jusqu'à 3 variables.",
+    "InfoCategorize":    "*** Sélectionnez la variable pour la catégorie, entrez 'Interval Start' et 'Interval Width'.",
+    "InfoRecode":        "*** Sélectionnez la variable pour le recodage, entrez 'Nouvelle valeur'.",
+    "InfoRecode2":       "* Autoriser l'enregistrement jusqu'à 9 valeurs.",
+    "InfoCompute":       "*** Créez une formule de calcul à l'aide des boutons ci-dessous.",
+    "InfoSelectIf":      "*** Sélectionnez jusqu'à 3 variables, saisissez leurs conditions.",
+    "SortingVariable":   "Tri des variables",
+    "SortingMethod":     "Méthode de tri",
+    "NewVariable":       "Nouvelle variable",
+    "CategoryVariable":  "Catégoriser la variable",
+    "CategoryListCheck": "Vérification de la liste des catégories",
+    "CategoryInterval":  "Intervalle de catégorie",
+    "CategoryLabel":     "Étiquette de catégorie",
+    "RecodeVariable":    "Recoder la variable",
+    "CurrentValue":      "Valeur actuelle",
+    "NewValue":          "Nouvelle valeur",
+    "ComputeFormula":    "Formule",
+    "SelectVariable":    "Variable<br>pour Select",
+    "RelationOperator":  "Relation<br>Opérateur",
+    "SelectValue":       "Valeur",
+    "MissingValue":      "valeur manquante",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -2927,6 +3136,29 @@ alertMsg[43][4] = "La régression linéaire simple est seulement pour un groupe"
 alertMsg[44][4] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][4] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][4] = "Le même numéro de variable est sélectionné.";
+alertMsg[47][4] = "Les données de caractères en fréquence ne sont pas autorisées !!   Essayez encore."; 
+alertMsg[48][4] = "Les données de caractère ne sont pas autorisées !!   Essayez encore."; 
+alertMsg[49][4] = "Le nombre d'observations devrait être inférieur à 100 !!   Essayez encore une fois.";
+alertMsg[50][4] = "Entrez les nombres dans l'intervalle de début ou d'étape.";
+alertMsg[51][4] = "Entrez les nombres / Le nombre de lignes devrait être le même !!   Essayez encore une fois.";
+alertMsg[52][4] = "Inscrire les numéros dans la catégorie et la fréquence.";
+alertMsg[53][4] = "La taille de l'interval n'est pas la même !!   Essayez encore une fois.";
+alertMsg[54][4] = "X observation n'est pas égale Y observation !!   Essayez encore une fois.";
+alertMsg[55][4] = "!!! Pas de données sur la feuille.";
+alertMsg[56][4] = "!!! Aucune variable choisie";
+alertMsg[57][4] = "!!! Entrez l'intervalle de début et la largeur de l'intervalle";
+alertMsg[58][4] = "!!! Inscrire l'intervalle numérique de démarrage et la largeur de l'intervalle"
+alertMsg[59][4] = "!!! Plus de 9 intervalles - changer la largeur de l'intervalle";
+alertMsg[60][4] = "!!! Cette variable a plus de 9 valeurs";
+alertMsg[61][4] = "!!! Aucune valeur inscrite";
+alertMsg[62][4] = "!!! Inscrire la formule";
+alertMsg[63][4] = "!!! Aucune donnée satisfaisant aux conditions.";
+alertMsg[64][4] = "";
+alertMsg[65][4] = ""; 
+alertMsg[66][4] = "";
+alertMsg[67][4] = "";
+alertMsg[68][4] = "";
+alertMsg[69][4] = "";
 
 svgStr[1][4] = " Diagramme en barres";
 svgStr[2][4] = " Camembert";
@@ -3049,10 +3281,13 @@ svgStr[118][4]= "Valeur d'intervalle";
 svgStr[119][4]= "Catégorie";
 svgStr[120][4] = "Mode";
 svgStr[121][4] = "Covariance";
-svgStr[122][4] = "Pascal Triangle";
-svgStr[123][4] = "Joint Probability";
-svgStr[124][4] = "Conditional";
-svgStr[125][4] = "Discrete Distribution";
+svgStr[122][4] = "Triangle Pascal";
+svgStr[123][4] = "Probabilité conjointe";
+svgStr[124][4] = "Conditionnel";
+svgStr[125][4] = "Distribution discrète";
+svgStr[126][4] = "ligne %";
+svgStr[127][4] = "colonne %";
+svgStr[128][4] = "total %";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -3232,7 +3467,7 @@ $.message.de = {
     "Table Save": "Tabelle speichern",
     "Table Print": "Tabelle drucken",
     "Frequency": "Häufigkeit",
-    "(Sorting)": "(Sortieren)",
+    "Sorting": "Sortieren",
     "SortData": "Sortieren",
     "Raw Data": "Rohdaten",
     "Descending": "absteigend",
@@ -3481,14 +3716,37 @@ $.message.de = {
     "BinomialTheorem": "Zweistellige Logik",
     "PascalTriangle":  "Pascal-Dreieck",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Additionsregel der Wahrscheinlichkeit",
+    "MultiplicationRule":"Multiplikationsregel der Wahrscheinlichkeit",
+    "ConditionalProb":   "Bedingte Wahrscheinlichkeit",
+    "JointProb":         "Gemeinsame Wahrscheinlichkeit",
+    "DiscreteDist":      "Diskrete Verteilung",
+    "Categorize":        "Kategorisieren",
+    "Recode":            "Umcodieren",
+    "Compute":           "Berechnen",
+    "SelectIf":          "Wählen Sie wenn",
+    "InfoValueLabel":    "*** Variable auswählen, Variablennamen und / oder Wertelabel eingeben.",
+    "InfoSorting":       "*** Sortiervariable auswählen, Sortiermethode bis zu 3 Variablen eingeben.",
+    "InfoCategorize":    "*** Variable für Kategorie auswählen, 'Intervallstart' und 'Intervallbreite' eingeben.",
+    "InfoRecode":        "*** Variable für Recode auswählen, 'Neuer Wert' eingeben.",
+    "InfoRecode2":       "* Aufzeichnung von bis zu 9 Werten zulassen.",
+    "InfoCompute":       "*** Erstellen Sie eine Berechnungsformel mithilfe der Schaltflächen unten.",
+    "InfoSelectIf":      "*** Wählen Sie bis zu 3 Variablen aus, geben Sie ihre Bedingungen ein.",
+    "SortingVariable":   "Variablen sortieren",
+    "SortingMethod":     "Sortiermethode",
+    "NewVariable":       "Neue Variable",
+    "CategoryVariable":  "Variable kategorisieren",
+    "CategoryListCheck": "Kategorielistenprüfung",
+    "CategoryInterval":  "Kategorie Intervall",
+    "CategoryLabel":     "Kategorie-Label",
+    "RecodeVariable":    "Variable umcodieren",
+    "CurrentValue":      "Aktueller Wert",
+    "NewValue":          "Neuer Wert",
+    "ComputeFormula":    "Formel",
+    "SelectVariable":    "Variable<br>für Auswählen",
+    "RelationOperator":  "Beziehung<br>Betreiber",
+    "SelectValue":       "Wert",
+    "MissingValue":      "fehlender Wert",
 };
 // German 
 appStr[1][5] = "../eStatH/index.html";
@@ -3537,6 +3795,29 @@ alertMsg[43][5] = "Einfache lineare Regression ist nur für eine Gruppe";
 alertMsg[44][5] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][5] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][5] = "Die gleiche Variablennummer ist ausgewählt.";
+alertMsg[47][5] = "Zeichendaten in Häufigkeit sind nicht zulässig !! Versuchen Sie es erneut.";
+alertMsg[48][5] = "Zeichendaten sind nicht erlaubt !! Versuchen Sie es erneut.";
+alertMsg[49][5] = "Anzahl der Beobachtungen sollte unter 100 liegen!! Versuchen Sie es erneut.";
+alertMsg[50][5] = "Geben Sie Zahlen in Intervallstart oder -schritt ein.";
+alertMsg[51][5] = "Zahlen eingeben / NZeilen sollten gleich sein!! Versuchen Sie es erneut.";
+alertMsg[52][5] = "Geben Sie Zahlen in Kategorie und Häufigkeit ein.";
+alertMsg[53][5] = "Intervallgröße ist nicht gleich !! Versuchen Sie es erneut.";
+alertMsg[54][5] = "X-Beobachtung ist nicht gleich Y-Beobachtung !! Versuchen Sie es erneut.";
+alertMsg[55][5] = "!!! Keine Daten auf dem Blatt.";
+alertMsg[56][5] = "!!! Keine Variable ausgewählt";
+alertMsg[57][5] = "!!! Intervallstart und Intervallbreite eingeben";
+alertMsg[58][5] = "!!! Geben Sie den numerischen Intervallstart und die Intervallbreite ein";
+alertMsg[59][5] = "!!! Mehr als 9 Intervalle - Intervallbreite ändern";
+alertMsg[60][5] = "!!! Diese Variable hat mehr als 9 Werte";
+alertMsg[61][5] = "!!! Kein Wert eingegeben";
+alertMsg[62][5] = "!!! Formel eingeben";
+alertMsg[63][5] = "!!! Keine Daten, die Bedingungen erfüllen.";
+alertMsg[64][5] = "";
+alertMsg[65][5] = ""; 
+alertMsg[66][5] = "";
+alertMsg[67][5] = "";
+alertMsg[68][5] = "";
+alertMsg[69][5] = "";
 
 svgStr[1][5] = " Balkendiagramm";
 svgStr[2][5] = " Kreisdiagramm";
@@ -3657,12 +3938,15 @@ svgStr[116][5]= "test";
 svgStr[117][5]= "Varianz";
 svgStr[118][5]= "Intervallwert";
 svgStr[119][5] = "Kategorie";
-svgStr[120][5] = "Mode";
-svgStr[121][5] = "Covariance";
-svgStr[122][5] = "Pascal Triangle";
-svgStr[123][5] = "Joint Probability";
-svgStr[124][5] = "Conditional";
-svgStr[125][5] = "Discrete Distribution";
+svgStr[120][5] = "Modus";
+svgStr[121][5] = "Kovarianz";
+svgStr[122][5] = "Pascal-Dreieck";
+svgStr[123][5] = "Gemeinsame Wahrscheinlichkeit";
+svgStr[124][5] = "Bedingt";
+svgStr[125][5] = "Diskrete Verteilung";
+svgStr[126][5] = "Reihe %";
+svgStr[127][5] = "Säule %";
+svgStr[128][5] = "Gesamt %";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -3842,7 +4126,7 @@ $.message.es = {
     "Table Save": "Grabar Tabla",
     "Table Print": "Imprimir Tabla",
     "Frequency": "Frecuencia",
-    "(Sorting)": "(Ordenar)",
+    "Sorting": "Ordenar",
     "SortData": "Ordenar",
     "Raw Data": "Datos crudos",
     "Descending": "Descendiente",
@@ -4094,12 +4378,37 @@ $.message.es = {
     "BinomialTheorem": "Teorema de la transposición",
     "PascalTriangle":  "Triángulo de Pascal",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Regla de probabilidad de la suma",
+    "MultiplicationRule":"Regla de probabilidad de la multiplicación",
+    "ConditionalProb":   "La probabilidad condicional",
+    "JointProb":         "Probabilidad conjunta",
+    "DiscreteDist":      "Distribución discreta",
+    "Categorize":        "Clasificar por categorías",
+    "Recode":            "Recodificar",
+    "Compute":           "Calcular",
+    "SelectIf":          "Seleccionar si",
+    "InfoValueLabel":    "*** Seleccione la variable, ingrese el nombre de la variable y / o la etiqueta del valor.",
+    "InfoSorting":       "*** Seleccione la variable de clasificación, ingrese el método de clasificación hasta 3 variables.",
+    "InfoCategorize":    "*** Seleccione la variable para Categoría, ingrese 'Inicio del intervalo' y 'Ancho del intervalo'.",
+    "InfoRecode":        "*** Seleccione la variable para Recodificar, ingrese 'Nuevo valor'.",
+    "InfoRecode2":       "* Permitir grabar hasta 9 valores.",
+    "InfoCompute":       "*** Cree fórmulas informáticas con los botones siguientes.",
+    "InfoSelectIf":      "*** Seleccione hasta 3 variables, ingrese sus condiciones.",
+    "SortingVariable":   "Clasificación de variables",
+    "SortingMethod":     "Método de clasificación",
+    "NewVariable":       "Nueva variable",
+    "CategoryVariable":  "Categorizar variable",
+    "CategoryListCheck": "Verificación de lista de categorías",
+    "CategoryInterval":  "Intervalo de categoría",
+    "CategoryLabel":     "Etiqueta de categoría",
+    "RecodeVariable":    "Recodificar variable",
+    "CurrentValue":      "Valor actual",
+    "NewValue":          "Nuevo valor",
+    "ComputeFormula":    "Fórmula",
+    "SelectVariable":    "Variable <br> para seleccionar",
+    "RelationOperator":  "Relación <br> operador",
+    "SelectValue":       "Valor",
+    "MissingValue":      "valor que falta",
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -4148,6 +4457,29 @@ alertMsg[43][6] = "La regresión lineal simple es solo para un grupo";
 alertMsg[44][6] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][6] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][6] = "Se selecciona el mismo número de variable.";
+alertMsg[47][6] = "¡No se permiten datos de caracteres en Frecuencia! Inténtelo de nuevo.";
+alertMsg[48][6] = "¡No se permiten datos de caracteres! Inténtelo de nuevo.";
+alertMsg[49][6] = "¡¡El número de observaciones debe ser inferior a 100 !! Inténtelo de nuevo.";
+alertMsg[50][6] = "Introduzca números en el inicio del intervalo o en el paso.";
+alertMsg[51][6] = "¡Ingrese números / Nnúmero de filas debe ser el mismo! Vuelva a intentarlo.";
+alertMsg[52][6] = "Ingrese números en categoría y frecuencia";
+alertMsg[53][6] = "¡El tamaño del intervalo no es el mismo! Inténtelo de nuevo.";
+alertMsg[54][6] = "¡La observación X no es igual a la observación Y! Inténtalo de nuevo.";
+alertMsg[55][6] = "!!! No hay datos en la hoja.";
+alertMsg[56][6] = "!!! Ninguna variable seleccionada";
+alertMsg[57][6] = "!!! Ingrese el inicio del intervalo y el ancho del intervalo";
+alertMsg[58][6] = "!!! Ingrese el inicio del intervalo numérico y el ancho del intervalo";
+alertMsg[59][6] = "!!! Más de 9 intervalos - cambiar el ancho del intervalo";
+alertMsg[60][6] = "!!! Esta variable tiene más de 9 valores";
+alertMsg[61][6] = "!!! No se ha introducido ningún valor";
+alertMsg[62][6] = "!!! Ingrese la fórmula";
+alertMsg[63][6] = "!!! Ningún dato que cumpla las condiciones.";
+alertMsg[64][6] = "";
+alertMsg[65][6] = ""; 
+alertMsg[66][6] = "";
+alertMsg[67][6] = "";
+alertMsg[68][6] = "";
+alertMsg[69][6] = "";
 
 svgStr[1][6] = " Diagrama de barras";
 svgStr[2][6] = " Diagrama de tarta";
@@ -4268,12 +4600,15 @@ svgStr[116][6]= "prueba";
 svgStr[117][6]= "Varianza";
 svgStr[118][6]= "Valor de intervalo";
 svgStr[119][6]= "Categoria";
-svgStr[120][6] = "Mode";
-svgStr[121][6] = "Covariance";
-svgStr[122][6] = "Pascal Triangle";
-svgStr[123][6] = "Joint Probability";
-svgStr[124][6] = "Conditional";
-svgStr[125][6] = "Discrete Distribution";
+svgStr[120][6] = "Modo";
+svgStr[121][6] = "Covarianza";
+svgStr[122][6] = "Triángulo de Pascal";
+svgStr[123][6] = "Probabilidad conjunta";
+svgStr[124][6] = "Condicional";
+svgStr[125][6] = "Distribución discreta";
+svgStr[126][6] = "hilera %";
+svgStr[127][6] = "columna %";
+svgStr[128][6] = "total %";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -4453,7 +4788,7 @@ $.message.vi = {
     "Table Save": "Lưu bảng",
     "Table Print": "In bảng",
     "Frequency": "Tần số",
-    "(Sorting)": "(Sắp xếp)",
+    "Sorting": "Sắp xếp",
     "SortData": "Sắp xếp",
     "Raw Data": "Dữ liệu thô",
     "Descending": "S/x giảm dần",
@@ -4701,16 +5036,37 @@ $.message.vi = {
     "BinomialTheorem": "sự sắp xếp lại hai điều",
     "PascalTriangle":  "Tam giác Pascal",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Quy tắc bổ sung của xác suất",
+    "MultiplicationRule":"Quy tắc nhân của xác suất",
+    "ConditionalProb":   "Xác suất có điều kiện",
+    "JointProb":         "Xác suất chung",
+    "DiscreteDist":      "Phân phối rời rạc",
+    "Categorize":        "Phân loại",
+    "Recode":            "Mã hóa",
+    "Compute":           "Máy tính",
+    "SelectIf":          "Chọn Nếu",
+    "InfoValueLabel":    "*** Chọn biến, nhập tên biến và / hoặc nhãn giá trị.",
+    "InfoSorting":       "*** Chọn biến sắp xếp, nhập phương pháp sắp xếp tối đa 3 biến.",
+    "InfoCategorize":    "*** Chọn biến cho Danh mục, nhập 'Bắt ​​đầu khoảng thời gian' và 'Chiều rộng khoảng thời gian'.",
+    "InfoRecode":        "*** Chọn biến cho Mã hóa, nhập 'Giá trị Mới'.",
+    "InfoRecode2":       "* Cho phép ghi lên đến 9 giá trị.",
+    "InfoCompute":       "*** Tạo công thức tính toán bằng các nút bên dưới.",
+    "InfoSelectIf":      "*** Chọn tối đa 3 biến, nhập điều kiện của chúng.",
+    "SortingVariable":   "Sắp xếp các biến",
+    "SortingMethod":     "Phương pháp sắp xếp",
+    "NewVariable":       "Biến mới",
+    "CategoryVariable":  "Phân loại biến",
+    "CategoryListCheck": "Kiểm tra Danh sách Danh mục",
+    "CategoryInterval":  "Khoảng thời gian danh mục",
+    "CategoryLabel":     "Nhãn danh mục",
+    "RecodeVariable":    "Biến Recode",
+    "CurrentValue":      "Giá trị hiện tại",
+    "NewValue":          "Giá trị mới",
+    "ComputeFormula":    "Công thức",
+    "SelectVariable":    "Biến <br> cho Chọn",
+    "RelationOperator":  "Mối quan hệ <br> Nhà điều hành",
+    "SelectValue":       "Giá trị",
+    "MissingValue":      "thiếu giá trị",
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -4759,6 +5115,29 @@ alertMsg[43][7] = "Hồi quy tuyến tính đơn giản chỉ dành cho một nh
 alertMsg[44][7] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][7] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][7] = "Cùng một số biến được chọn";
+alertMsg[47][7] = "Dữ liệu ký tự trong Tần suất không được phép !! Hãy thử lại.";
+alertMsg[48][7] = "Dữ liệu ký tự không được phép !! Hãy thử lại.";
+alertMsg[49][7] = "Số lượng quan sát phải nhỏ hơn 100 !! Hãy thử lại.";
+alertMsg[50][7] = "Nhập các số trong khoảng thời gian bắt đầu hoặc bước.";
+alertMsg[51][7] = "Nhập số / Số hàng phải giống nhau !! Hãy thử lại.";
+alertMsg[52][7] = "Nhập số vào danh mục và tần suất.";
+alertMsg[53][7] = "Kích thước khoảng thời gian không giống nhau !! Hãy thử lại.";
+alertMsg[54][7] = "Quan sát X không bằng quan sát Y !! Hãy thử lại.";
+alertMsg[55][7] = "!!! Không có dữ liệu trên trang tính.";
+alertMsg[56][7] = "!!! Không có biến nào được chọn";
+alertMsg[57][7] = "!!! Nhập Khoảng thời gian Bắt đầu và Chiều rộng Khoảng thời gian";
+alertMsg[58][7] = "!!! Nhập khoảng thời gian bắt đầu bằng số và độ rộng khoảng cách";
+alertMsg[59][7] = "!!! Hơn 9 khoảng - thay đổi Chiều rộng Khoảng";
+alertMsg[60][7] = "!!! Biến này có nhiều hơn 9 giá trị";
+alertMsg[61][7] = "!!! Không có giá trị nào được nhập";
+alertMsg[62][7] = "!!! Nhập công thức";
+alertMsg[63][7] = "!!! Không có dữ liệu nào thỏa mãn điều kiện.";
+alertMsg[64][7] = "";
+alertMsg[65][7] = ""; 
+alertMsg[66][7] = "";
+alertMsg[67][7] = "";
+alertMsg[68][7] = "";
+alertMsg[69][7] = "";
 
 svgStr[1][7] = " B/đồ cột";
 svgStr[2][7] = " B/đồ Pie";
@@ -4879,12 +5258,15 @@ svgStr[116][7]= "kiểm tra";
 svgStr[117][7]= "phương sai";
 svgStr[118][7]= "Giá trị khoảng thời gian";
 svgStr[119][7]= "thể loại";
-svgStr[120][7] = "Mode";
-svgStr[121][7] = "Covariance";
-svgStr[122][7] = "Pascal Triangle";
-svgStr[123][7] = "Joint Probability";
-svgStr[124][7] = "Conditional";
-svgStr[125][7] = "Discrete Distribution";
+svgStr[120][7] = "Chế độ";
+svgStr[121][7] = "Hiệp phương sai";
+svgStr[122][7] = "Tam giác Pascal";
+svgStr[123][7] = "Xác suất chung";
+svgStr[124][7] = "Có điều kiện";
+svgStr[125][7] = "Phân phối rời rạc";
+svgStr[126][7] = "hàng ngang %";
+svgStr[127][7] = "cột%";
+svgStr[128][7] = "toàn bộ %";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -5064,7 +5446,7 @@ $.message.id = {
     "Table Save": "Simpan Tabel",
     "Table Print": "Cetak Tabel",
     "Frequency": "Frekuensi",
-    "(Sorting)": "(Mengurutkan)",
+    "Sorting": "Mengurutkan",
     "SortData": "Mengurutkan",
     "Raw Data": "Data Mentah",
     "Descending": "Mengurutkan dari Besar ke Kecil",
@@ -5316,12 +5698,37 @@ $.message.id = {
     "BinomialTheorem": "Teorema binomial",
     "PascalTriangle":  "Segitiga Pascal",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Aturan Penjumlahan Probabilitas",
+    "MultiplicationRule":"Aturan Probabilitas Perkalian",
+    "ConditionalProb":   "Probabilitas Bersyarat",
+    "JointProb":         "Probabilitas Bersama",
+    "DiscreteDist":      "Distribusi Diskrit",
+    "Categorize":        "Mengkategorikan",
+    "Recode":            "Kode ulang",
+    "Compute":           "Menghitung",
+    "SelectIf":          "Pilih Jika",
+    "InfoValueLabel":    "*** Pilih variabel, masukkan nama variabel dan / atau label nilai.",
+    "InfoSorting":       "*** Pilih variabel pengurutan, masukkan metode pengurutan hingga 3 variabel.",
+    "InfoCategorize":    "*** Pilih variabel untuk Kategori, masukkan 'Interval Start' dan 'Interval Width'.",
+    "InfoRecode":        "*** Pilih variabel untuk Recode, masukkan 'Nilai Baru'.",
+    "InfoRecode2":       "* Izinkan perekaman hingga 9 nilai.",
+    "InfoCompute":       "*** Buat rumus komputasi menggunakan tombol di bawah ini.",
+    "InfoSelectIf":      "*** Pilih hingga 3 variabel, masukkan kondisinya.",
+    "SortingVariable":   "Pengurutan Variabel",
+    "SortingMethod":     "Metode Penyortiran",
+    "NewVariable":       "Variabel Baru",
+    "CategoryVariable":  "Kategorikan Variabel",
+    "CategoryListCheck": "Pemeriksaan Daftar Kategori",
+    "CategoryInterval":  "Interval Kategori",
+    "CategoryLabel":     "Label Kategori",
+    "RecodeVariable":    "Pengodean Ulang Variabel",
+    "CurrentValue":      "Nilai sekarang",
+    "NewValue":          "Nilai baru",
+    "ComputeFormula":    "Rumus",
+    "SelectVariable":    "Variabel<br>untuk Pilihan",
+    "RelationOperator":  "Hubungan<br>Operator",
+    "SelectValue":       "Nilai",
+    "MissingValue":      "nilai yang hilang",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -5370,6 +5777,29 @@ alertMsg[43][8] = "Regresi Linear Sederhana hanya untuk satu grup";
 alertMsg[44][8] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][8] = "Tidak dapat menggambar Grafik GIS jika terdapat lebih dari lima variabel.";
 alertMsg[46][8] = "Nomor variabel yang sama dipilih.";
+alertMsg[47][8] = "Data karakter di Frekuensi tidak diperbolehkan!! Coba lagi.";
+alertMsg[48][8] = "Data karakter tidak diperbolehkan!! Coba lagi.";
+alertMsg[49][8] = "Jumlah pengamatan harus kurang dari 100!! Coba lagi.";
+alertMsg[50][8] = "Masukkan angka di awal interval atau langkah.";
+alertMsg[51][8] = "Masukkan angka / Njumlah baris harus sama!! Coba lagi.";
+alertMsg[52][8] = "Masukkan angka dalam kategori dan frekuensi.";
+alertMsg[53][8] = "Ukuran interval tidak sama!! Coba lagi.";
+alertMsg[54][8] = "Pengamatan X tidak sama dengan pengamatan Y!! Coba lagi.";
+alertMsg[55][8] = "!!! Tidak ada data di lembar.";
+alertMsg[56][8] = "!!! Tidak ada variabel yang dipilih";
+alertMsg[57][8] = "!!! Masukkan Awal Interval dan Lebar Interval";
+alertMsg[58][8] = "!!! Masukkan Numerik Interval Start dan Interval Width";
+alertMsg[59][8] = "!!! Lebih dari 9 interval - ubah Lebar Interval";
+alertMsg[60][8] = "!!! Variabel ini memiliki lebih dari 9 nilai";
+alertMsg[61][8] = "!!! Tidak ada nilai yang dimasukkan";
+alertMsg[62][8] = "!!! Masukkan rumus";
+alertMsg[63][8] = "!!! Tidak ada data yang memenuhi kondisi.";
+alertMsg[64][8] = "";
+alertMsg[65][8] = ""; 
+alertMsg[66][8] = "";
+alertMsg[67][8] = "";
+alertMsg[68][8] = "";
+alertMsg[69][8] = "";
 
 svgStr[1][8] = " Diagram Batang";
 svgStr[2][8] = " Diagram Pai";
@@ -5491,11 +5921,14 @@ svgStr[117][8]= "Varians";
 svgStr[118][8]= "Nilai interval";
 svgStr[119][8]= "kategori";
 svgStr[120][8] = "Mode";
-svgStr[121][8] = "Covariance";
-svgStr[122][8] = "Pascal Triangle";
-svgStr[123][8] = "Joint Probability";
-svgStr[124][8] = "Conditional";
-svgStr[125][8] = "Discrete Distribution";
+svgStr[121][8] = "Kovarians";
+svgStr[122][8] = "Segitiga Pascal";
+svgStr[123][8] = "Probabilitas Bersama";
+svgStr[124][8] = "Bersyarat";
+svgStr[125][8] = "Distribusi Diskrit";
+svgStr[126][8] = "baris %";
+svgStr[127][8] = "kolom %";
+svgStr[128][8] = "jumlah %";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -5675,7 +6108,7 @@ $.message.mn = {
     "Table Save": "Хүснэгт хадаглах",
     "Table Print": "Хүснэгт хэвлэх",
     "Frequency": "Давтамж",
-    "(Sorting)": "(Эрэмблэх)",
+    "Sorting": "Эрэмблэх",
     "SortData": "Эрэмблэх",
     "Raw Data": "Бүрэн болоогүй өгөгдөл",
     "Descending": "Буурч буй",
@@ -5925,12 +6358,37 @@ $.message.mn = {
     "BinomialTheorem": "Хоёртын теорем",
     "PascalTriangle":  "Паскаль гурвалжин",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Магадлалын нэмэх дүрэм",
+    "MultiplicationRule":"Магадлалын үржүүлэх дүрэм",
+    "ConditionalProb":   "Нөхцөлт магадлал",
+    "JointProb":         "Хамтарсан магадлал",
+    "DiscreteDist":      "Дискрет хуваарилалт",
+    "Categorize":        "Ангилах",
+    "Recode":            "Дахин кодлох",
+    "Compute":           "Тооцоолох",
+    "SelectIf":          "Хэрэв сонгоно уу",
+    "InfoValueLabel":    "*** Хувьсагчийг сонгоод, хувьсагчийн нэр ба/эсвэл утгын шошгыг оруулна уу.",
+    "InfoSorting":       "*** Эрэмбэлэх хувьсагчийг сонгоод 3 хүртэлх хувьсагчийг эрэмбэлэх аргыг оруулна уу.",
+    "InfoCategorize":    "*** Ангилалд хувьсагчийг сонгоод Интервалын эхлэл болон Интервалын өргөн-г оруулна уу.",
+    "InfoRecode":        "*** Дахин кодлох хувьсагчийг сонгоод 'Шинэ утга'-г оруулна уу.",
+    "InfoRecode2":       "* 9 хүртэлх утгыг бичихийг зөвшөөрөх.",
+    "InfoCompute":       "*** Доорх товчлууруудыг ашиглан тооцоолох томъёо үүсгэ.",
+    "InfoSelectIf":      "*** 3 хүртэлх хувьсагчийг сонгоод нөхцөлийг нь оруулна уу.",
+    "SortingVariable":   "Хувьсагчдыг эрэмбэлэх",
+    "SortingMethod":     "Ангилах арга",
+    "NewVariable":       "Шинэ хувьсагч",
+    "CategoryVariable":  "Хувьсагчийг ангилах",
+    "CategoryListCheck": "Ангиллын жагсаалтыг шалгах",
+    "CategoryInterval":  "Ангиллын интервал",
+    "CategoryLabel":     "Ангиллын шошго",
+    "RecodeVariable":    "Хувьсагчийг дахин кодлох",
+    "CurrentValue":      "Одоогийн үнэ цэнэ",
+    "NewValue":          "Шинэ үнэ цэнэ",
+    "ComputeFormula":    "Томъёо",
+    "SelectVariable":    "Сонгох хувьсагч<br>",
+    "RelationOperator":  "Харилцаа<br>оператор",
+    "SelectValue":       "Үнэ цэнэ",
+    "MissingValue":      "утга алга",
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -5979,6 +6437,29 @@ alertMsg[43][9] = "Энгийн шугаман регресс нь зөвхөн 
 alertMsg[44][9] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][9] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][9] = "Ижил хувьсагчийн дугаар сонгогдсон байна.";
+alertMsg[47][9] = "Давтамж дахь тэмдэгтийн өгөгдлийг зөвшөөрөхгүй !! Дахин оролдоно уу.";
+alertMsg[48][9] = "Тэмдэгтийн өгөгдлийг зөвшөөрөхгүй !! Дахин оролдоно уу.";
+alertMsg[49][9] = "Ажиглалтын тоо 100-аас бага байх ёстой !! Дахин оролдоно уу.";
+alertMsg[50][9] = "Интервалын эхлэл эсвэл алхамд тоо оруулна уу.";
+alertMsg[51][9] = "Тоо оруулна уу / Мөрний тоо ижил байх ёстой!! Дахин оролдоно уу.";
+alertMsg[52][9] = "Ангилал, давтамжийн дугаарыг оруулна уу.";
+alertMsg[53][9] = "Интервалын хэмжээ ижил биш байна !! Дахин оролдоно уу.";
+alertMsg[54][9] = "X ажиглалт нь Y ажиглалттай тэнцүү биш юм !! Дахин оролдоно уу.";
+alertMsg[55][9] = "!!! Хуудас дээр өгөгдөл байхгүй.";
+alertMsg[56][9] = "!!! Ямар ч хувьсагч сонгогдоогүй";
+alertMsg[57][9] = "!!! Интервалын эхлэл ба өргөнийг оруулна уу";
+alertMsg[58][9] = "!!! Тоон интервалын эхлэл ба интервалын өргөнийг оруулна уу";
+alertMsg[59][9] = "!!! 9-өөс дээш интервал - Интервалын өргөнийг өөрчлөх";
+alertMsg[60][9] = "!!! Энэ хувьсагч нь 9-өөс дээш утгатай байна";
+alertMsg[61][9] = "!!! Ямар ч утга оруулаагүй";
+alertMsg[62][9] = "!!! Томъёо оруулна уу";
+alertMsg[63][9] = "!!! Нөхцөлийг хангасан өгөгдөл байхгүй.";
+alertMsg[64][9] = ""; 
+alertMsg[65][9] = ""; 
+alertMsg[66][9] = ""; 
+alertMsg[67][9] = ""; 
+alertMsg[68][9] = "";
+alertMsg[69][9] = "";
 
 svgStr[1][9] = " Баганан график";
 svgStr[2][9] = " Бялуун график";
@@ -6099,12 +6580,15 @@ svgStr[116][9]= "Туршилт";
 svgStr[117][9]= "хэлбэлзэл";
 svgStr[118][9]= "Интервал утга";
 svgStr[119][9]= "ангилал";
-svgStr[120][9] = "Mode";
-svgStr[121][9] = "Covariance";
-svgStr[122][9] = "Pascal Triangle";
-svgStr[123][9] = "Joint Probability";
-svgStr[124][9] = "Conditional";
-svgStr[125][9] = "Discrete Distribution";
+svgStr[120][9] = "Гэрэм";
+svgStr[121][9] = "Ковариац";
+svgStr[122][9] = "Паскалын гурвалжин";
+svgStr[123][9] = "Хамтарсан магадлал";
+svgStr[124][9] = "Нөхцөлт";
+svgStr[125][9] = "Дискрет хуваарилалт";
+svgStr[126][9] = "мөр %";
+svgStr[127][9] = "багана %";
+svgStr[128][9] = "нийт %";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -6285,7 +6769,7 @@ $.message.zh = {
     "Table Save": "保存表格",
     "Table Print": "打印表格",
     "Frequency": "频数",
-    "(Sorting)": "(排序)",
+    "Sorting": "排序",
     "SortData": "排序",
     "Raw Data": "原始数据",
     "Descending": "递减的",
@@ -6543,6 +7027,32 @@ $.message.zh = {
     "DiscreteDist":      "Discrete Distribution",
     "WithoutReplacement": "不可回收提取",
     "WithReplacement":    "恢复提取",
+    "Categorize":        "分类",
+    "Recode":            "覆盖随机值",
+    "Compute":           "新变体计算",
+    "SelectIf":          "数据选择",
+    "InfoValueLabel":    "*** 选择一个变量，输入变量名称或变量值名称，然后单击运行按钮。",
+    "InfoSorting":       "*** 最多选择 3 个要排序的变量，选择一种排序方法，然后单击“运行”按钮。",
+    "InfoCategorize":    "*** 选择要分类的变量后，输入区间开始和区间宽度，“检查类别列表”并单击“运行”按钮。",
+    "InfoRecode":        "*** 选择一个要重新分配的变量，输入一个新的随机值，然后单击运行按钮。",
+    "InfoRecode2":       "* 您最多可以覆盖九个值。",
+    "InfoCompute":       "*** 使用下面的按钮创建用于计算新方差的公式，然后单击运行按钮。",
+    "InfoSelectIf":      "*** 多选择三个变量进行数据选择，为每个变量输入条件表达式，然后单击运行按钮。。",
+    "SortingVariable":   "对齐方式",
+    "SortingMethod":     "排序方式",
+    "NewVariable":       "新变量",
+    "CategoryVariable":  "分类方差",
+    "CategoryListCheck": "检查类别列表",
+    "CategoryInterval":  "类别区间",
+    "CategoryLabel":     "分类名称",
+    "RecodeVariable":    "随机值覆盖变体",
+    "CurrentValue":      "当前随机值",
+    "NewValue":          "新的随机值",
+    "ComputeFormula":    "公式",
+    "SelectVariable":    "可选变量",
+    "RelationOperator":  "关系运算符",
+    "SelectValue":       "价值",
+    "MissingValue":      "缺失值",
 
 };
 // Chinese Simplified
@@ -6592,6 +7102,30 @@ alertMsg[43][10] = "简单线性回归仅适用于一组";
 alertMsg[44][10] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][10] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][10] = "同一变量名選擇";
+alertMsg[47][10] = "频率中的字符数据不允许！！再试一次。";
+alertMsg[48][10] = "字符数据不允许！！再试一次。";
+alertMsg[49][10] = "观察次数应该小于 100 !!再试一次。";
+alertMsg[50][10] = "在间隔开始或步骤中输入数字。";
+alertMsg[51][10] = "输入数字/N行数应该是一样的！！再试一次。";
+alertMsg[52][10] = "按类别和频率输入数字。";
+alertMsg[53][10] = "间隔大小不一样！！再试一次。";
+alertMsg[54][10] = "X 观察不等于 Y 观察！！再试一次。";
+alertMsg[55][10] = "!!!工作表上没有数据";
+alertMsg[55][10] = "!! 纸张上没有数据。";
+alertMsg[56][10] = "!! 未选择变量";
+alertMsg[57][10] = "!! 输入间隔开始和间隔宽度";
+alertMsg[58][10] = "!! 输入数字间隔的起始和间隔宽度";
+alertMsg[59][10] = "!! 大于 9 间隔 - 更改间隔宽度";
+alertMsg[60][10] = "!! 该变量具有超过 9 个值";
+alertMsg[61][10] = "!! 未输入值";
+alertMsg[62][10] = "!! 输入公式";
+alertMsg[63][10] = "!! 没有满足条件的数据。";
+alertMsg[64][10] = "";
+alertMsg[65][10] = ""; 
+alertMsg[66][10] = "";
+alertMsg[67][10] = "";
+alertMsg[68][10] = "";
+alertMsg[69][10] = "";
 
 svgStr[1][10] = " 条形图";
 svgStr[2][10] = " 饼图";
@@ -6712,12 +7246,15 @@ svgStr[116][10]= "檢定";
 svgStr[117][10]= "方差";
 svgStr[118][10]= "阶级区间值";
 svgStr[119][10]= "分类";
-svgStr[120][10] = "Mode";
-svgStr[121][10] = "Covariance";
-svgStr[122][10] = "Pascal Triangle";
-svgStr[123][10] = "Joint Probability";
-svgStr[124][10] = "Conditional";
-svgStr[125][10] = "Discrete Distribution";
+svgStr[120][10] = "最頻值";
+svgStr[121][10] = "协方差";
+svgStr[122][10] = "帕斯卡三角";
+svgStr[123][10] = "联合概率";
+svgStr[124][10] = "有条件的";
+svgStr[125][10] = "离散分布";
+svgStr[126][10] = "行 %";
+svgStr[127][10] = "列 %";
+svgStr[128][10] = "总计 %";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -6872,7 +7409,7 @@ $.message.pt = {
     "Table Save": "Salvar a Tabela",
     "Table Print": "Imprimir a Tabela",
     "Frequency": "Frequência",
-    "(Sorting)": "(Ordenando)",
+    "Sorting": "Ordenando",
     "SortData": "Ordenando",
     "Raw Data": "Dados Brutos",
     "Descending": "Decrescente",
@@ -7126,12 +7663,37 @@ $.message.pt = {
     "BinomialTheorem": "Teorema Binomial",
     "PascalTriangle":  "Triângulo Pascal",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Regra de adição de probabilidade",
+    "MultiplicationRule":"Regra de probabilidade de multiplicação",
+    "ConditionalProb":   "Probabilidade Condicional",
+    "JointProb":         "Probabilidade conjunta",
+    "DiscreteDist":      "Distribuição Discreta",
+    "Categorize":        "Categorizar",
+    "Recode":            "Recodificar",
+    "Compute":           "Calcular",
+    "SelectIf":          "Selecione se",
+    "InfoValueLabel":    "*** Selecione a variável, insira o nome da variável e / ou rótulo do valor.",
+    "InfoSorting":       "*** Selecione a variável de classificação, insira o método de classificação de até 3 variáveis.",
+    "InfoCategorize":    "*** Selecione a variável para a categoria, digite 'Início do intervalo' e 'Largura do intervalo'.",
+    "InfoRecode":        "*** Selecione a variável para Recode, digite 'Novo Valor'.",
+    "InfoRecode2":       "* Permitir a gravação de até 9 valores.",
+    "InfoCompute":       "*** Crie fórmula de computação usando os botões abaixo.",
+    "InfoSelectIf":      "*** Selecione até 3 variáveis, insira suas condições.",
+    "SortingVariable":   "Variáveis ​​de classificação",
+    "SortingMethod":     "Método de Classificação",
+    "NewVariable":       "Nova Variável",
+    "CategoryVariable":  "Categorizar Variável",
+    "CategoryListCheck": "Verificação da lista de categorias",
+    "CategoryInterval":  "Intervalo de categoria",
+    "CategoryLabel":     "Etiqueta da categoria",
+    "RecodeVariable":    "Variável de recodificação",
+    "CurrentValue":      "Valor atual",
+    "NewValue":          "Novo valor",
+    "ComputeFormula":    "Fórmula",
+    "SelectVariable":    "Variável <br> para selecionar",
+    "RelationOperator":  "Relação <br> Operador",
+    "SelectValue":       "Valor",
+    "MissingValue":      "valor faltando",
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -7180,6 +7742,29 @@ alertMsg[43][11] = "Regressão Linear Simples é para um único grupo.";
 alertMsg[44][11] = "1o: Nome, 2o: latitude, 3o: longitude; 4o: Variável em Análise(opcional)";
 alertMsg[45][11] = "Não é possível desenhar o gráfico GIS para mais de cinco variáveis.";
 alertMsg[46][11] = "O mesmo número variável é selecionado.";
+alertMsg[47][11] = "Dados de caracteres em frequência não são permitidos !! Tente novamente.";
+alertMsg[48][11] = "Dados de personagem não são permitidos !! Tente novamente.";
+alertMsg[49][11] = "O número de observações deve ser inferior a 100 !! Tente novamente.";
+alertMsg[50][11] = "Insira os números no início ou etapa do intervalo.";
+alertMsg[51][11] = "Insira os números / O número de linhas deve ser o mesmo !! Tente novamente.";
+alertMsg[52][11] = "Digite os números na categoria e frequência.";
+alertMsg[53][11] = "O tamanho do intervalo não é o mesmo !! Tente novamente.";
+alertMsg[54][11] = "A observação X não é igual à observação Y !! Tente novamente.";
+alertMsg[55][11] = "!!! Não há dados na planilha.";
+alertMsg[56][11] = "!!! Nenhuma variável selecionada";
+alertMsg[57][11] = "!!! Insira o início do intervalo e a largura do intervalo";
+alertMsg[58][11] = "!!! Insira o início do intervalo numérico e a largura do intervalo";
+alertMsg[59][11] = "!!! Mais de 9 intervalos - altere a largura do intervalo";
+alertMsg[60][11] = "!!! Esta variável tem mais de 9 valores";
+alertMsg[61][11] = "!!! Nenhum valor inserido";
+alertMsg[62][11] = "!!! Insira a fórmula";
+alertMsg[63][11] = "!!! Nenhum dado que satisfaça as condições.";
+alertMsg[64][11] = "";
+alertMsg[65][11] = ""; 
+alertMsg[66][11] = "";
+alertMsg[67][11] = "";
+alertMsg[68][11] = "";
+alertMsg[69][11] = "";
 
 svgStr[1][11] = " Gráfico de Barras";
 svgStr[2][11] = " Gráfico de Setores";
@@ -7300,12 +7885,15 @@ svgStr[116][11]= "Teste";
 svgStr[117][11]= "Variância";
 svgStr[118][11]= "Valor do intervalo";
 svgStr[119][11]= "Categoria";
-svgStr[120][11] = "Mode";
-svgStr[121][11] = "Covariance";
-svgStr[122][11] = "Pascal Triangle";
-svgStr[123][11] = "Joint Probability";
-svgStr[124][11] = "Conditional";
-svgStr[125][11] = "Discrete Distribution";
+svgStr[120][11] = "Modo";
+svgStr[121][11] = "Covariância";
+svgStr[122][11] = "Triângulo de Pascal";
+svgStr[123][11] = "Probabilidade conjunta";
+svgStr[124][11] = "Condicional";
+svgStr[125][11] = "Distribuição Discreta";
+svgStr[126][11] = "fileira %";
+svgStr[127][11] = "coluna %";
+svgStr[128][11] = "total %";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -7485,7 +8073,7 @@ $.message.gr = {
     "Table Save": "Αποθήκευση Πίνακα",
     "Table Print": "Εκτύπωση Πίνακα",
     "Frequency": "Συχνότητα",
-    "(Sorting)": "(Ταξινόμηση)",
+    "Sorting": "Ταξινόμηση",
     "SortData": "Ταξινόμηση",
     "Raw Data": "Ακατέργαστα Δεδομμένα",
     "Descending": "Φθίνουσα Σειρά",
@@ -7739,14 +8327,37 @@ $.message.gr = {
     "BinomialTheorem": "Διωνυμικό θεώρημα",
     "PascalTriangle":  "Pascal Triangle",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Προσθήκη κανόνας πιθανοτήτων",
+    "MultiplicationRule":"Κανόνας πολλαπλασιασμού πιθανοτήτων",
+    "ConditionalProb":   "Πιθανότητα υπό όρους",
+    "JointProb":         "Κοινή πιθανότητα",
+    "DiscreteDist":      "Διακριτή διανομή",
+    "Categorize":        "Ταξινομώ",
+    "Recode":            "Ανακωδικοποίηση",
+    "Compute":           "Υπολογίζω",
+    "SelectIf":          "Επιλέξτε εάν",
+    "InfoValueLabel":    "*** Επιλέξτε μεταβλητή, εισαγάγετε όνομα μεταβλητής ή/και ετικέτα τιμής.",
+    "InfoSorting":       "*** Επιλέξτε μεταβλητή ταξινόμησης, εισαγάγετε μέθοδο ταξινόμησης έως 3 μεταβλητές.",
+    "InfoCategorize":    "*** Επιλέξτε μεταβλητή για Κατηγορία, εισαγάγετε Έναρξη Διαστήματος και Πλάτος Διαστήματος.",
+    "InfoRecode":        "*** Επιλέξτε μεταβλητή για Recode, πληκτρολογήστε Νέα τιμή.",
+    "InfoRecode2":       "* Να επιτρέπεται η εγγραφή έως και 9 τιμών.",
+    "InfoCompute":       "*** Δημιουργία υπολογιστικού τύπου χρησιμοποιώντας τα κουμπιά παρακάτω.",
+    "InfoSelectIf":      "*** Επιλέξτε έως 3 μεταβλητές, εισαγάγετε τις συνθήκες τους.",
+    "SortingVariable":   "Ταξινόμηση μεταβλητών",
+    "SortingMethod":     "Μέθοδος ταξινόμησης",
+    "NewVariable":       "Νέα μεταβλητή",
+    "CategoryVariable":  "Κατηγοριοποίηση μεταβλητής",
+    "CategoryListCheck": "Έλεγχος λίστας κατηγορίας",
+    "CategoryInterval":  "Διάστημα κατηγορίας",
+    "CategoryLabel":     "Ετικέτα κατηγορίας",
+    "RecodeVariable":    "Μεταβλητή επανακωδικοποίησης",
+    "CurrentValue":      "Τρέχουσα τιμή",
+    "NewValue":          "Νέα Αξία",
+    "ComputeFormula":    "Τύπος",
+    "SelectVariable":    "Μεταβλητή<br>για Επιλογή",
+    "RelationOperator":  "Σχέση<br>Χειριστής",
+    "SelectValue":       "Αξία",
+    "MissingValue":      "λείπει τιμή",
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -7795,6 +8406,30 @@ alertMsg[43][12] = "Η απλή γραμμική παλινδρόμηση είν
 alertMsg[44][12] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][12] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][12] = "The same variable number is selected.";
+alertMsg[47][12] = "Δεν επιτρέπονται τα δεδομένα χαρακτήρων στη συχνότητα !! Δοκιμάστε ξανά.";
+alertMsg[48][12] = "Δεν επιτρέπονται τα δεδομένα χαρακτήρων !! Δοκιμάστε ξανά.";
+alertMsg[49][12] = "Ο αριθμός των παρατηρήσεων θα πρέπει να είναι μικρότερος από 100 !! Δοκιμάστε ξανά.";
+alertMsg[50][12] = "Εισαγάγετε αριθμούς στην αρχή ή το βήμα διαστήματος.";
+alertMsg[51][12] = "Εισαγάγετε αριθμούς / Ο αριθμός των σειρών πρέπει να είναι ίδιος!! Δοκιμάστε ξανά.";
+alertMsg[52][12] = "Εισαγάγετε αριθμούς σε κατηγορία και συχνότητα.";
+alertMsg[53][12] = "Το μέγεθος του διαστήματος δεν είναι το ίδιο!! Δοκιμάστε ξανά.";
+alertMsg[54][12] = "Η παρατήρηση Χ δεν είναι ίση με την παρατήρηση Υ !! Δοκιμάστε ξανά.";
+alertMsg[55][12] = "!!! Δεν υπάρχουν δεδομένα στο φύλλο.";
+alertMsg[56][12] = "!!! Δεν έχει επιλεγεί μεταβλητή";
+alertMsg[57][12] = "!!! Εισαγάγετε την έναρξη διαστήματος και το πλάτος διαστήματος";
+alertMsg[58][12] = "!!! Εισαγάγετε αριθμητική έναρξη διαστήματος και πλάτος διαστήματος";
+alertMsg[59][12] = "!!! Περισσότερα από 9 μεσοδιαστήματα - αλλαγή πλάτους διαστήματος";
+alertMsg[60][12] = "!!! Αυτή η μεταβλητή έχει περισσότερες από 9 τιμές";
+alertMsg[61][12] = "!!! Δεν έχει καταχωρηθεί τιμή";
+alertMsg[62][12] = "!!! Εισαγάγετε τον τύπο";
+alertMsg[63][12] = "!!! Δεν υπάρχουν δεδομένα που να πληρούν τις προϋποθέσεις.";
+alertMsg[64][12] = "";
+alertMsg[65][12] = ""; 
+alertMsg[66][12] = "";
+alertMsg[67][12] = "";
+alertMsg[68][12] = "";
+alertMsg[69][12] = "";
+
 svgStr[1][12] = " Ραβδογράφημα ";
 svgStr[2][12] = " Κυκλικό Διάγραμμα";
 svgStr[3][12] = " Γράφημα Ντόνατ";
@@ -7914,12 +8549,15 @@ svgStr[116][12]= "Έλεγχος";
 svgStr[117][12]= "διαφορά";
 svgStr[118][12]= "Τιμή διαστήματος";
 svgStr[119][12]= "κατηγορία";
-svgStr[120][12] = "Mode";
-svgStr[121][12] = "Covariance";
-svgStr[122][12] = "Pascal Triangle";
-svgStr[123][12] = "Joint Probability";
-svgStr[124][12] = "Conditional";
-svgStr[125][12] = "Discrete Distribution";
+svgStr[120][12] = "Τρόπος";
+svgStr[121][12] = "Συνδιακύμανση";
+svgStr[122][12] = "Πασκάλ Τρίγωνο";
+svgStr[123][12] = "Κοινή πιθανότητα";
+svgStr[124][12] = "Υποθετικός";
+svgStr[125][12] = "Διακριτή Διανομή";
+svgStr[126][12] = "σειρά %";
+svgStr[127][12] = "στήλη %";
+svgStr[128][12] = "σύνολο %";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -8099,7 +8737,7 @@ $.message.ro = {
     "Table Save": "Salvare Tabel",
     "Table Print": "Printare Tabel",
     "Frequency": "Frecvență",
-    "(Sorting)": "(Sortare)",
+    "Sorting": "Sortare",
     "SortData": "Sortare",
     "Raw Data": "Date Brute",
     "Descending": "Descrescător",
@@ -8354,12 +8992,37 @@ $.message.ro = {
     "BinomialTheorem": "Teorema binomului",
     "PascalTriangle":  "Triunghiul Pascal",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Regula de adunare a probabilității",
+    "MultiplicationRule":"Regula probabilității înmulțirii",
+    "ConditionalProb":   "Probabilitate condițională",
+    "JointProb":         "Probabilitatea comună",
+    "DiscreteDist":      "Distribuție discretă",
+    "Categorize":        "Clasificați",
+    "Recode":            "Recodificare",
+    "Compute":           "Calcula",
+    "SelectIf":          "Selectați dacă",
+    "InfoValueLabel":    "*** Selectați variabila, introduceți numele variabilei și/sau eticheta valorii.",
+    "InfoSorting":       "*** Selectați variabila de sortare, introduceți metoda de sortare până la 3 variabile.",
+    "InfoCategorize":    "*** Selectați variabila pentru Categorie, introduceți Interval Start și Interval Width.",
+    "InfoRecode":        "*** Selectați variabila pentru Recode, introduceți o valoare nouă.",
+    "InfoRecode2":       "* Permite înregistrarea până la 9 valori.",
+    "InfoCompute":       "*** Creați o formulă de calcul folosind butoanele de mai jos.",
+    "InfoSelectIf":      "*** Selectați până la 3 variabile, introduceți condițiile acestora.",
+    "SortingVariable":   "Sortarea variabilelor",
+    "SortingMethod":     "Metoda de sortare",
+    "NewVariable":       "Variabilă nouă",
+    "CategoryVariable":  "Clasificați variabila",
+    "CategoryListCheck": "Verificarea listei de categorii",
+    "CategoryInterval":  "Intervalul categoriei",
+    "CategoryLabel":     "Etichetă de categorie",
+    "RecodeVariable":    "Recodificarea variabilă",
+    "CurrentValue":      "Valoarea curentă",
+    "NewValue":          "Valoare nouă",
+    "ComputeFormula":    "Formulă",
+    "SelectVariable":    "Variabilă<br>pentru Selectare",
+    "RelationOperator":  "Relație<br>Operator",
+    "SelectValue":       "Valoare",
+    "MissingValue":      "valoare lipsă",
 };
 // Romanian
 appStr[1][13] = "../eStatH/index.html";
@@ -8408,6 +9071,30 @@ alertMsg[43][13] = "Regresia liniară simplă este doar pentru o singură grou";
 alertMsg[44][13] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][13] = "Cannot draw GIS Diagramă if more than five variables.";
 alertMsg[46][13] = "Același număr variabil este selectat.";
+alertMsg[47][13] = "Datele de caractere în frecvență nu sunt permise!! Încercați din nou.";
+alertMsg[48][13] = "Datele de caractere nu sunt permise!! Încercați din nou.";
+alertMsg[49][13] = "Numărul de observații ar trebui să fie mai mic de 100!! Încercați din nou.";
+alertMsg[50][13] = "Introduceți numere în intervalul de început sau pas.";
+alertMsg[51][13] = "Introduceți numere/Numărul de rânduri ar trebui să fie același!! Încercați din nou.";
+alertMsg[52][13] = "Introduceți numere în categorie și frecvență.";
+alertMsg[53][13] = "Dimensiunea intervalului nu este aceeași!! Încercați din nou.";
+alertMsg[54][13] = "Observația X nu este egală cu observația Y!! Încercați din nou.";
+alertMsg[55][13] = "!!! Fără date pe foaie.";
+alertMsg[56][13] = "!!! Nicio variabilă selectată";
+alertMsg[57][13] = "!!! Introduceți intervalul de început și lățimea intervalului";
+alertMsg[58][13] = "!!! Introduceți intervalul numeric Start și lățimea intervalului";
+alertMsg[59][13] = "!!! Mai mult de 9 interval - modificați lățimea intervalului";
+alertMsg[60][13] = "!!! Această variabilă are mai mult de 9 valori";
+alertMsg[61][13] = "!!! Nicio valoare introdusă";
+alertMsg[62][13] = "!!! Introduceți formula";
+alertMsg[63][13] = "!!! Fără date care să îndeplinească condiții.";
+alertMsg[64][13] = "";
+alertMsg[65][13] = ""; 
+alertMsg[66][13] = "";
+alertMsg[67][13] = "";
+alertMsg[68][13] = "";
+alertMsg[69][13] = "";
+
 svgStr[1][13] = " Bar Diagramă";
 svgStr[2][13] = " Diagramă Radială";
 svgStr[3][13] = " Diagramă Inelară";
@@ -8527,12 +9214,15 @@ svgStr[116][13]= "Test";
 svgStr[117][13]= "Varianța";
 svgStr[118][13]= "Valoarea intervalului";
 svgStr[119][13]= "Categorie";
-svgStr[120][13] = "Mode";
-svgStr[121][13] = "Covariance";
-svgStr[122][13] = "Pascal Triangle";
-svgStr[123][13] = "Joint Probability";
-svgStr[124][13] = "Conditional";
-svgStr[125][13] = "Discrete Distribution";
+svgStr[120][13] = "Mod";
+svgStr[121][13] = "Covarianță";
+svgStr[122][13] = "Triunghiul Pascal";
+svgStr[123][13] = "Probabilitatea comună";
+svgStr[124][13] = "Condiţional";
+svgStr[125][13] = "Distribuție discretă";
+svgStr[126][13] = "rând %";
+svgStr[127][13] = "coloană %";
+svgStr[128][13] = "total %";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -8712,7 +9402,7 @@ $.message.th = {
     "Table Save": "บันทึกตาราง",
     "Table Print": "พิมพ์ตาราง",
     "Frequency": "ความถี่",
-    "(Sorting)": "(เรียงลำดับ)",
+    "Sorting": "เรียงลำดับ",
     "SortData": "เรียงลำดับ",
     "Raw Data": "ข้อมูลดิบ",
     "Descending": "จากมากไปหาน้อย",
@@ -8966,16 +9656,37 @@ $.message.th = {
     "BinomialTheorem": "ทฤษฎีบททวินาม",
     "PascalTriangle":  "สามเหลี่ยมปาสคาล",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "กฎความน่าจะเป็นเพิ่มเติม",
+    "MultiplicationRule":"กฎความน่าจะเป็นการคูณ",
+    "ConditionalProb":   "ความน่าจะเป็นแบบมีเงื่อนไข",
+    "JointProb":         "ความน่าจะเป็นร่วม",
+    "DiscreteDist":      "การกระจายแบบไม่ต่อเนื่อง",
+    "Categorize":        "จัดหมวดหมู่",
+    "Recode":            "ถอดรหัส",
+    "Compute":           "คำนวณ",
+    "SelectIf":          "เลือกถ้า",
+    "InfoValueLabel":    "*** เลือกตัวแปรป้อนชื่อตัวแปรและ / หรือป้ายกำกับค่า",
+    "InfoSorting":       "*** เลือกตัวแปรการเรียงลำดับ ป้อนวิธีการเรียงลำดับสูงสุด 3 ตัวแปร",
+    "InfoCategorize":    "*** เลือกตัวแปรสำหรับหมวดหมู่ ป้อนช่วงเวลาเริ่มต้นและความกว้างของช่วงเวลา",
+    "InfoRecode":        "*** เลือกตัวแปรสำหรับบันทึก ป้อนค่าใหม่",
+    "InfoRecode2":       "* อนุญาตให้บันทึกได้ถึง 9 ค่า",
+    "InfoCompute":       "*** สร้างสูตรการคำนวณโดยใช้ปุ่มด้านล่าง",
+    "InfoSelectIf":      "*** เลือกได้สูงสุด 3 ตัวแปร ป้อนเงื่อนไข",
+    "SortingVariable":   "การเรียงลำดับตัวแปร",
+    "SortingMethod":     "วิธีการเรียงลำดับ",
+    "NewVariable":       "ตัวแปรใหม่",
+    "CategoryVariable":  "จำแนกตัวแปร",
+    "CategoryListCheck": "ตรวจสอบรายการหมวดหมู่",
+    "CategoryInterval":  "ช่วงหมวดหมู่",
+    "CategoryLabel":     "ป้ายกำกับหมวดหมู่",
+    "RecodeVariable":    "ถอดรหัสตัวแปร",
+    "CurrentValue":      "มูลค่าปัจจุบัน",
+    "NewValue":          "ค่าใหม่",
+    "ComputeFormula":    "สูตร",
+    "SelectVariable":    "ตัวแปร<br>สำหรับการเลือก",
+    "RelationOperator":  "ความสัมพันธ์<br>โอเปอเรเตอร์",
+    "SelectValue":       "ค่า",
+    "MissingValue":      "ไม่มีค่า",
 };
 // Thai
 appStr[1][14] = "../eStatH/index.html";
@@ -9024,6 +9735,30 @@ alertMsg[43][14] = "การถดถอยเชิงเส้นสำหร
 alertMsg[44][14] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][14] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][14] = "เลือกหมายเลขตัวแปรเดียวกัน";
+alertMsg[47][14] = "ไม่อนุญาตให้ใช้ข้อมูลอักขระในความถี่ !! ลองอีกครั้ง";
+alertMsg[48][14] = "ไม่อนุญาตให้ใช้ข้อมูลตัวละคร !! ลองอีกครั้ง";
+alertMsg[49][14] = "จำนวนการสังเกตควรน้อยกว่า 100 !! ลองอีกครั้ง";
+alertMsg[50][14] = "ป้อนตัวเลขในช่วงเริ่มต้นหรือขั้นตอน";
+alertMsg[51][14] = "ป้อนตัวเลข / จำนวนแถวควรเท่ากัน!! ลองอีกครั้ง";
+alertMsg[52][14] = "ป้อนตัวเลขในหมวดหมู่และความถี่";
+alertMsg[53][14] = "ขนาดช่วงไม่เท่ากัน !! ลองอีกครั้ง";
+alertMsg[54][14] = "การสังเกต X ไม่เท่ากับการสังเกต Y !! ลองอีกครั้ง";
+alertMsg[55][14] = "!!! ไม่มีข้อมูลในชีต";
+alertMsg[56][14] = "!!! ไม่ได้เลือกตัวแปร";
+alertMsg[57][14] = "!!! ป้อนช่วงเริ่มต้นและความกว้างของช่วงเวลา";
+alertMsg[58][14] = "!!! ป้อนตัวเลขเริ่มต้นช่วงและความกว้างของช่วง";
+alertMsg[59][14] = "!!! มากกว่า 9 ช่วง - เปลี่ยนความกว้างของช่วง";
+alertMsg[60][14] = "!!! ตัวแปรนี้มีมากกว่า 9 ค่า";
+alertMsg[61][14] = "!!! ไม่มีการป้อนค่า";
+alertMsg[62][14] = "!!! ใส่สูตร";
+alertMsg[63][14] = "!!!ไม่มีข้อมูลที่ตรงตามเงื่อนไข";
+alertMsg[64][14] = "";
+alertMsg[65][14] = ""; 
+alertMsg[66][14] = "";
+alertMsg[67][14] = "";
+alertMsg[68][14] = "";
+alertMsg[69][14] = "";
+
 svgStr[1][14] = " แผนภูมิแท่ง";
 svgStr[2][14] = " แผนภูมิรูปวงกลม";
 svgStr[3][14] = " แผนภาพโดนัท";
@@ -9143,12 +9878,15 @@ svgStr[116][14] = "การทดสอบ";
 svgStr[117][14] = "ความแปรปรวน";
 svgStr[118][14] = "ค่าช่วงเวลา";
 svgStr[119][14] = "ประเภท";
-svgStr[120][14] = "Mode";
-svgStr[121][14] = "Covariance";
-svgStr[122][14] = "Pascal Triangle";
-svgStr[123][14] = "Joint Probability";
-svgStr[124][14] = "Conditional";
-svgStr[125][14] = "Discrete Distribution";
+svgStr[120][14] = "โหมด";
+svgStr[121][14] = "ความแปรปรวนร่วม";
+svgStr[122][14] = "สามเหลี่ยมปาสกาล";
+svgStr[123][14] = "ความน่าจะเป็นร่วม";
+svgStr[124][14] = "เงื่อนไข";
+svgStr[125][14] = "การกระจายแบบไม่ต่อเนื่อง";
+svgStr[126][14] = "แถว %";
+svgStr[127][14] = "คอลัมน์%";
+svgStr[128][14] = "ทั้งหมด %";
 
 svgStrU[1][14] = "การแจกแจงทวินาม";
 svgStrU[2][14] = "การทำซ้ำ";
@@ -9328,7 +10066,7 @@ $.message.pl = {
     "Table Save": "TZapisz tabelę",
     "Table Print": "Drukuj tabelę",
     "Frequency": "Częstotliwość",
-    "(Sorting)": "(Sortowanie)",
+    "Sorting": "Sortowanie",
     "SortData": "Sortowanie",
     "Raw Data": "Surowe dane",
     "Descending": "Malejąco",
@@ -9583,14 +10321,37 @@ $.message.pl = {
     "BinomialTheorem": "Dwumian newtona",
     "PascalTriangle":  "Trójkąt Pascala",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Dodatkowa zasada prawdopodobieństwa",
+    "MultiplicationRule":"Zasada mnożenia prawdopodobieństwa",
+    "ConditionalProb":   "Warunkowe prawdopodobieństwo",
+    "JointProb":         "Wspólne prawdopodobieństwo",
+    "DiscreteDist":      "Dystrybucja Dyskretna",
+    "Categorize":        "Kategoryzować",
+    "Recode":            "Przekoduj",
+    "Compute":           "Obliczać",
+    "SelectIf":          "Wybierz Jeśli",
+    "InfoValueLabel":    "*** Wybierz zmienną, wprowadź nazwę zmiennej i/lub etykietę wartości.",
+    "InfoSorting":       "*** Wybierz zmienną sortującą, wprowadź metodę sortowania do 3 zmiennych.",
+    "InfoCategorize":    "*** Wybierz zmienną dla kategorii, wprowadź początek interwału i szerokość interwału.",
+    "InfoRecode":        "*** Wybierz zmienną do zapisu, wprowadź nową wartość.",
+    "InfoRecode2":       "* Zezwól na rejestrację do 9 wartości.",
+    "InfoCompute":       "*** Utwórz formułę obliczeniową za pomocą przycisków poniżej.",
+    "InfoSelectIf":      "*** Wybierz maksymalnie 3 zmienne, wprowadź ich warunki.",
+    "SortingVariable":   "Sortowanie Zmiennych",
+    "SortingMethod":     "Metoda sortowania",
+    "NewVariable":       "Nowa Zmienna",
+    "CategoryVariable":  "Kategoryzuj Zmienną",
+    "CategoryListCheck": "Sprawdzenie Listy Kategorii",
+    "CategoryInterval":  "Przedział kategorii",
+    "CategoryLabel":     "Etykieta Kategorii",
+    "RecodeVariable":    "Przekoduj Zmienną",
+    "CurrentValue":      "Aktualna wartość",
+    "NewValue":          "Nowa wartość",
+    "ComputeFormula":    "Formuła",
+    "SelectVariable":    "Zmienna<br>do wyboru",
+    "RelationOperator":  "Relacja<br>Operator",
+    "SelectValue":       "Wartość",
+    "MissingValue":      "brakująca wartość",
 };
 
 // Polish
@@ -9640,6 +10401,30 @@ alertMsg[43][15] = "Prosta regresja liniowa dotyczy tylko jednej grupy";
 alertMsg[44][15] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][15] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][15] = "Wybrano ten sam numer zmiennej.";
+alertMsg[47][15] = "Dane znaków w częstotliwości są niedozwolone !! Spróbuj ponownie.";
+alertMsg[48][15] = "Dane znakowe są niedozwolone !! Spróbuj ponownie.";
+alertMsg[49][15] = "Liczba obserwacji powinna być mniejsza niż 100 !! Spróbuj ponownie.";
+alertMsg[50][15] = "Wprowadź liczby na początku przedziału lub kroku.";
+alertMsg[51][15] = "Wprowadź liczby / Liczba wierszy powinna być taka sama!! Spróbuj ponownie.";
+alertMsg[52][15] = "Wprowadź liczby w kategorii i częstotliwości.";
+alertMsg[53][15] = "Rozmiar interwału nie jest taki sam !! Spróbuj ponownie.";
+alertMsg[54][15] = "Obserwacja X nie jest równa obserwacji Y !! Spróbuj ponownie.";
+alertMsg[55][15] = "!!! Brak danych na arkuszu.";
+alertMsg[56][15] = "!!! Nie wybrano zmiennej";
+alertMsg[57][15] = "!!! Podaj początek interwału i szerokość interwału";
+alertMsg[58][15] = "!!! Wprowadź numeryczny początek interwału i szerokość interwału";
+alertMsg[59][15] = "!!! Więcej niż 9 interwałów - zmień szerokość interwału";
+alertMsg[60][15] = "!!! Ta zmienna ma więcej niż 9 wartości";
+alertMsg[61][15] = "!!! Nie wprowadzono wartości";
+alertMsg[62][15] = "!!! Wprowadź formułę";
+alertMsg[63][15] = "!!! Brak danych spełniających warunki.";
+alertMsg[64][15] = "";
+alertMsg[65][15] = ""; 
+alertMsg[66][15] = "";
+alertMsg[67][15] = "";
+alertMsg[68][15] = "";
+alertMsg[69][15] = "";
+
 svgStr[1][15] = " Wykres słupkowy";
 svgStr[2][15] = " Wykres kołowy";
 svgStr[3][15] = " Wykres pierścieniowy";
@@ -9759,12 +10544,16 @@ svgStr[116][15] = "Test";
 svgStr[117][15] = "Wariancja";
 svgStr[118][15] = "Wartość interwału";
 svgStr[119][15] = "Kategoria";
-svgStr[120][15] = "Mode";
-svgStr[121][15] = "Covariance";
-svgStr[122][15] = "Pascal Triangle";
-svgStr[123][15] = "Joint Probability";
-svgStr[124][15] = "Conditional";
-svgStr[125][15] = "Discrete Distribution";
+svgStr[120][15] = "Tryb";
+svgStr[121][15] = "Kowariancja";
+svgStr[122][15] = "Trójkąt Pascala";
+svgStr[123][15] = "Wspólne prawdopodobieństwo";
+svgStr[124][15] = "Warunkowy";
+svgStr[125][15] = "Dystrybucja dyskretna";
+svgStr[126][15] = "wiersz %";
+svgStr[127][15] = "kolumna %";
+svgStr[128][15] = "całkowity %";
+
 
 svgStrU[1][15] = "Rozkład dwumianowy";
 svgStrU[2][15] = "Powtórzenie";
@@ -9944,7 +10733,7 @@ $.message.az = {
     "Table Save": "cadvəli yadda saxlamaq",
     "Table Print": "cədvəli çap etmək",
     "Frequency": "tezlik",
-    "(Sorting)": "(Çeşidləmə)",
+    "Sorting": "Çeşidləmə",
     "SortData": "Çeşidləmə",
     "Raw Data": "Xam Məlumat",
     "Descending": "azalan",
@@ -10199,11 +10988,37 @@ $.message.az = {
     "BinomialTheorem": "Binom Teoremi",
     "PascalTriangle":  "Paskal Üçbucağı",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
+    "AdditionRule":      "Ehtimalın toplanması qaydası",
+    "MultiplicationRule":"Ehtimalın vurma qaydası",
+    "ConditionalProb":   "Şərti Ehtimal",
+    "JointProb":         "Birgə Ehtimal",
+    "DiscreteDist":      "Diskret paylama",
+    "Categorize":        "Kateqoriyalara",
+    "Recode":            "Yenidən kodla",
+    "Compute":           "Hesablama",
+    "SelectIf":          "Əgər seçin",
+    "InfoValueLabel":    "*** Dəyişən seçin, dəyişən adını və/yaxud dəyər etiketini daxil edin.",
+    "InfoSorting":       "*** Çeşidləmə dəyişənini seçin, 3 dəyişənə qədər çeşidləmə metodunu daxil edin.",
+    "InfoCategorize":    "*** Kateqoriya üçün dəyişəni seçin, interval başlanğıcını və interval enini daxil edin.",
+    "InfoRecode":        "*** Qeyd üçün dəyişəni seçin, yeni dəyər daxil edin.",
+    "InfoRecode2":       "* 9 dəyərə qədər qeyd etməyə icazə verin.",
+    "InfoCompute":       "*** Aşağıdakı düymələrdən istifadə edərək hesablama formulunu yaradın.",
+    "InfoSelectIf":      "*** 3 dəyişənə qədər seçin, onların şərtlərini daxil edin.",
+    "SortingVariable":   "Dəyişənlərin çeşidlənməsi",
+    "SortingMethod":     "Çeşidləmə üsulu",
+    "NewVariable":       "Yeni Dəyişən",
+    "CategoryVariable":  "Dəyişənləri kateqoriyalara ayırın",
+    "CategoryListCheck": "Kateqoriya siyahısı yoxlanışı",
+    "CategoryInterval":  "Kateqoriya intervalı",
+    "CategoryLabel":     "Kateqoriya etiketi",
+    "RecodeVariable":    "Dəyişənləri yenidən kodla",
+    "CurrentValue":      "Cari dəyər",
+    "NewValue":          "Yeni dəyər",
+    "ComputeFormula":    "Düstur",
+    "SelectVariable":    "Seçmək üçün<br>dəyişən",
+    "RelationOperator":  "Əlaqə<br>Operator",
+    "SelectValue":       "Dəyər",
+    "MissingValue":      "itkin dəyər",
 
 };
 // Azerbaijan
@@ -10253,6 +11068,30 @@ alertMsg[43][16] = "Adi xətti reqressiya yalnız bir qrup üçündür.";
 alertMsg[44][16] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][16] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][16] = "Xuddi shu o'zgaruvchan raqam tanlangan.";
+alertMsg[47][16] = "Tezlikdə xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
+alertMsg[48][16] = "Xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
+alertMsg[49][16] = "Müşahidələrin sayı 100-dən az olmalıdır !! Yenidən cəhd edin.";
+alertMsg[50][16] = "İnterval başlanğıcında və ya addımında nömrələri daxil edin.";
+alertMsg[51][16] = "Nömrələri daxil edin / Sətirlərin sayı eyni olmalıdır! Yenidən cəhd edin.";
+alertMsg[52][16] = "Kateqoriya və tezlikdə nömrələri daxil edin.";
+alertMsg[53][16] = "İnterval ölçüsü eyni deyil !! Yenidən cəhd edin.";
+alertMsg[54][16] = "X müşahidəsi Y müşahidəsinə bərabər deyil !! Yenidən cəhd edin.";
+alertMsg[55][16] = "!!! Vərəqdə məlumat yoxdur.";
+alertMsg[56][16] = "!!! Heç bir dəyişən seçilməyib";
+alertMsg[57][16] = "!!! Interval başlanğıcını və interval enini daxil edin";
+alertMsg[58][16] = "!!! Rəqəmsal interval başlanğıcını və interval enini daxil edin";
+alertMsg[59][16] = "!!! 9-dan çox interval - intervalın enini dəyişdirin";
+alertMsg[60][16] = "!!! Bu dəyişənin 9-dan çox qiyməti var";
+alertMsg[61][16] = "!!! Heç bir dəyər daxil edilmədi";
+alertMsg[62][16] = "!!! Formula daxil edin";
+alertMsg[63][16] = "!!! Şərtlərə cavab verən məlumat yoxdur.";
+alertMsg[64][16] = "";
+alertMsg[65][16] = ""; 
+alertMsg[66][16] = "";
+alertMsg[67][16] = "";
+alertMsg[68][16] = "";
+alertMsg[69][16] = "";
+
 svgStr[1][16] = " Sütun qrafiki";
 svgStr[2][16] = " dairə ";
 svgStr[3][16] = " Halqa qrafiki";
@@ -10372,12 +11211,15 @@ svgStr[116][16] = "Test";
 svgStr[117][16] = "Dispersiyası";
 svgStr[118][16] = "İnterval dəyəri";
 svgStr[119][16] = "Kateqoriya";
-svgStr[120][16] = "Mode";
-svgStr[121][16] = "Covariance";
-svgStr[122][16] = "Pascal Triangle";
-svgStr[123][16] = "Joint Probability";
-svgStr[124][16] = "Conditional";
-svgStr[125][16] = "Discrete Distribution";
+svgStr[120][16] = "Rejim";
+svgStr[121][16] = "Kovariasiya";
+svgStr[122][16] = "Paskal üçbucağı";
+svgStr[123][16] = "Birgə Ehtimal";
+svgStr[124][16] = "Şərti";
+svgStr[125][16] = "Diskret Dağıtım";
+svgStr[126][16] = "sıra %";
+svgStr[127][16] = "sütun %";
+svgStr[128][16] = "ümumi %";
 
 svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "təkrar";
@@ -10557,7 +11399,7 @@ $.message.uz = {
     "Table Save": "Jadvalni saqlash",
     "Table Print": "Jadval bosma",
     "Frequency": "Chastotasi",
-    "(Sorting)": "(Tartiblash)",
+    "Sorting": "Tartiblash",
     "SortData": "Tartiblash",
     "Raw Data": "Xom ma'lumot",
     "Descending": "Kamayishi",
@@ -10812,12 +11654,37 @@ $.message.uz = {
     "BinomialTheorem": "Binomial teorema",
     "PascalTriangle":  "Paskal uchburchagi",
     "Character":       "Emoji",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Ehtimollarni qo'shish qoidasi",
+    "MultiplicationRule":"Ehtimollarni ko'paytirish qoidasi",
+    "ConditionalProb":   "Shartli ehtimollik",
+    "JointProb":         "Qo'shma ehtimollik",
+    "DiscreteDist":      "Diskret taqsimot",
+    "Categorize":        "Kategoriyalash",
+    "Recode":            "Qayta kodlash",
+    "Compute":           "Hisoblash",
+    "SelectIf":          "Agar tanlang",
+    "InfoValueLabel":    "*** O'zgaruvchini tanlang, o'zgaruvchi nomini va/yoki qiymat yorlig'ini kiriting.",
+    "InfoSorting":       "*** Saralash o'zgaruvchisini tanlang, 3 tagacha o'zgaruvchiga saralash usulini kiriting.",
+    "InfoCategorize":    "*** Turkum uchun o'zgaruvchini tanlang, interval boshlanishi va interval kengligini kiriting.",
+    "InfoRecode":        "*** Yozuv uchun o'zgaruvchini tanlang, yangi qiymat kiriting.",
+    "InfoRecode2":       "* 9 tagacha qiymat yozishga ruxsat bering.",
+    "InfoCompute":       "*** Quyidagi tugmalar yordamida hisoblash formulasini yarating.",
+    "InfoSelectIf":      "*** 3 tagacha o'zgaruvchini tanlang, ularning shartlarini kiriting.",
+    "SortingVariable":   "O'zgaruvchilarni saralash",
+    "SortingMethod":     "Saralash usuli",
+    "NewVariable":       "Yangi o'zgaruvchi",
+    "CategoryVariable":  "O'zgaruvchini turkumlash",
+    "CategoryListCheck": "Kategoriyalar ro'yxatini tekshirish",
+    "CategoryInterval":  "Kategoriya oralig'i",
+    "CategoryLabel":     "Kategoriya yorlig'i",
+    "RecodeVariable":    "O'zgaruvchini qayta kodlash",
+    "CurrentValue":      "Joriy qiymat",
+    "NewValue":          "Yangi qiymat",
+    "ComputeFormula":    "Formula",
+    "SelectVariable":    "Tanlash uchun<br>o'zgaruvchi",
+    "RelationOperator":  "Aloqa<br>operator",
+    "SelectValue":       "Qiymat",
+    "MissingValue":      "etishmayotgan qiymat",
 };
 // Uzbekistan
 appStr[1][17] = "../eStatH/index.html";
@@ -10866,6 +11733,30 @@ alertMsg[43][17] = "Oddiy chiziqli regressiya faqat bitta guruhga tegishli";
 alertMsg[44][17] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][17] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][17] = "Xuddi shu o'zgaruvchan raqam tanlangan.";
+alertMsg[47][17] = "Chastada belgilar ma'lumotlariga ruxsat berilmagan !! Qayta urinib ko'ring.";
+alertMsg[48][17] = "Belgi ma'lumotlariga ruxsat berilmagan !! Qayta urinib ko'ring.";
+alertMsg[49][17] = "Kuzatuvlar soni 100 dan kam bo'lishi kerak !! Qayta urinib ko'ring.";
+alertMsg[50][17] = "Raqamlarni intervalli boshlash yoki qadamda kiriting.";
+alertMsg[51][17] = "Raqamlarni kiriting / Qatorlar soni bir xil bo'lishi kerak! Qayta urinib ko'ring.";
+alertMsg[52][17] = "Raqamlarni kategoriya va chastotaga kiriting.";
+alertMsg[53][17] = "Interval hajmi bir xil emas !! Qayta urinib ko'ring.";
+alertMsg[54][17] = "X kuzatuvi Y kuzatuviga teng emas !! Qayta urinib ko'ring.";
+alertMsg[55][17] = "!!! Varaqda ma'lumot yo'q.";
+alertMsg[56][17] = "!!! Hech qanday o'zgaruvchi tanlanmagan";
+alertMsg[57][17] = "!!! Interval boshlanishi va interval kengligini kiriting";
+alertMsg[58][17] = "!!! Raqamli intervalli boshlanish va interval kengligini kiriting";
+alertMsg[59][17] = "!!! 9 dan ortiq interval - interval kengligini o'zgartirish";
+alertMsg[60][17] = "!!! Bu o'zgaruvchi 9 dan ortiq qiymatga ega";
+alertMsg[61][17] = "!!! Hech qanday qiymat kiritilmagan";
+alertMsg[62][17] = "!!! Formulani kiriting";
+alertMsg[63][17] = "!!! Shartlarga javob beradigan ma'lumotlar yo'q.";
+alertMsg[64][17] = "";
+alertMsg[65][17] = ""; 
+alertMsg[66][17] = "";
+alertMsg[67][17] = "";
+alertMsg[68][17] = "";
+alertMsg[69][17] = "";
+
 svgStr[1][17] = " Bar grafigi";
 svgStr[2][17] = " Pie jadvali";
 svgStr[3][17] = " Donut grafigi";
@@ -10985,12 +11876,15 @@ svgStr[116][17] = "sinov";
 svgStr[117][17] = "dispersiya";
 svgStr[118][17] = "Interval qiymati";
 svgStr[119][17] = "toifasi";
-svgStr[120][17] = "Mode";
-svgStr[121][17] = "Covariance";
-svgStr[122][17] = "Pascal Triangle";
-svgStr[123][17] = "Joint Probability";
-svgStr[124][17] = "Conditional";
-svgStr[125][17] = "Discrete Distribution";
+svgStr[120][17] = "Rejim";
+svgStr[121][17] = "Kovariatsiya";
+svgStr[122][17] = "Paskal uchburchagi";
+svgStr[123][17] = "Qo'shma ehtimollik";
+svgStr[124][17] = "shartli";
+svgStr[125][17] = "Diskret taqsimot";
+svgStr[126][17] = "qator %";
+svgStr[127][17] = "ustun %";
+svgStr[128][17] = "jami %";
 
 svgStrU[1][17] = "Binominal Tarqatish";
 svgStrU[2][17] = "takrorlash";
@@ -11170,7 +12064,7 @@ $.message.ru = {
     "Table Save": "Сохранение таблицы",
     "Table Print": "Печать таблицы",
     "Frequency": "Частота",
-    "(Sorting)": "(Сортировка)",
+    "Sorting": "Сортировка",
     "SortData": "Сортировка",
     "Raw Data": "Необработанные данные",
     "Descending": "По убыванию",
@@ -11425,12 +12319,37 @@ $.message.ru = {
     "BinomialTheorem": "Биномиальная теорема",
     "PascalTriangle":  "Треугольник Паскаля",
     "Character":       "Эмодзи",
-    "AdditionRule":      "Addition Rule of Probability",
-    "MultiplicationRule": "Multiplication Rule of Probability",
-    "ConditionalProb":   "Conditional Probability",
-    "JointProb":         "Joint Probability",
-    "DiscreteDist":      "Discrete Distribution",
-
+    "AdditionRule":      "Правило сложения вероятности",
+    "MultiplicationRule":"Правило умножения вероятности",
+    "ConditionalProb":   "Условная возможность",
+    "JointProb":         "Совместная вероятность",
+    "DiscreteDist":      "Дискретное распределение",
+    "Categorize":        "Классифицировать",
+    "Recode":            "Перекодировать",
+    "Compute":           "Вычислить",
+    "SelectIf":          "Выбрать если",
+    "InfoValueLabel":    "*** Выберите переменную, введите имя переменной и / или метку значения.",
+    "InfoSorting":       "*** Выберите переменную сортировки, введите метод сортировки до 3-х переменных.",
+    "InfoCategorize":    "*** Выберите переменную для категории, введите начало интервала и ширину интервала.",
+    "InfoRecode":        "*** Выберите переменную для записи, введите новое значение.",
+    "InfoRecode2":       "* Разрешить запись до 9 значений.",
+    "InfoCompute":       "*** Создайте формулу вычисления с помощью кнопок ниже.",
+    "InfoSelectIf":      "*** Выберите до 3 переменных, введите их условия.",
+    "SortingVariable":   "Сортировка переменных",
+    "SortingMethod":     "Метод сортировки",
+    "NewVariable":       "Новая переменная",
+    "CategoryVariable":  "Категоризация переменной",
+    "CategoryListCheck": "Проверка списка категорий",
+    "CategoryInterval":  "Интервал категорий",
+    "CategoryLabel":     "Метка категории",
+    "RecodeVariable":    "Перекодировать переменную",
+    "CurrentValue":      "Текущая стоимость",
+    "NewValue":          "Новая ценность",
+    "ComputeFormula":    "Формула",
+    "SelectVariable":    "Переменная <br> для выбора",
+    "RelationOperator":  "Связь <br> Оператор",
+    "SelectValue":       "Ценить",
+    "MissingValue":      "отсутствующее значение",
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
@@ -11478,6 +12397,30 @@ alertMsg[43][18] = "Простая линейная регрессия прим�
 alertMsg[44][18] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
 alertMsg[45][18] = "Cannot draw GIS graph if more than five variables.";
 alertMsg[46][18] = "Выбран тот же номер переменной.";
+alertMsg[47][18] = "Символьные данные по частоте недопустимы !! Повторите попытку.";
+alertMsg[48][18] = "Символьные данные не допускаются !! Повторите попытку.";
+alertMsg[49][18] = "Количество наблюдений должно быть меньше 100 !! Попробуйте еще раз.";
+alertMsg[50][18] = "Введите числа в начало интервала или шаг.";
+alertMsg[51][18] = "Введите числа / Количество строк должно быть одинаковым !! Повторите попытку.";
+alertMsg[52][18] = "Введите номера по категории и частоте.";
+alertMsg[53][18] = "Размер интервала не тот !! Попробуйте еще раз.";
+alertMsg[54][18] = "X наблюдение не равно Y наблюдению !! Попробуйте еще раз.";
+alertMsg[55][18] = "!!! Нет данных на листе.";
+alertMsg[56][18] = "!!! Переменная не выбрана";
+alertMsg[57][18] = "!!! Введите начало интервала и ширину интервала";
+alertMsg[58][18] = "!!! Введите числовое начало интервала и ширину интервала";
+alertMsg[59][18] = "!!! Больше 9 интервала - изменить ширину интервала";
+alertMsg[60][18] = "!!! У этой переменной более 9 значений";
+alertMsg[61][18] = "!!! Значение не введено";
+alertMsg[62][18] = "!!! Введите формулу";
+alertMsg[63][18] = "!!! Нет данных, удовлетворяющих условиям.";
+alertMsg[64][18] = "";
+alertMsg[65][18] = ""; 
+alertMsg[66][18] = "";
+alertMsg[67][18] = "";
+alertMsg[68][18] = "";
+alertMsg[69][18] = "";
+
 svgStr[1][18] = " Столбиковая диаграмма";
 svgStr[2][18] = " Круговая диаграмма";
 svgStr[3][18] = " Пончик";
@@ -11597,12 +12540,15 @@ svgStr[116][18] = "Тест";
 svgStr[117][18] = "отклонение";
 svgStr[118][18] = "Значение интервала";
 svgStr[119][18] = "категория";
-svgStr[120][18] = "Mode";
-svgStr[121][18] = "Covariance";
-svgStr[122][18] = "Pascal Triangle";
-svgStr[123][18] = "Joint Probability";
-svgStr[124][18] = "Conditional";
-svgStr[125][18] = "Discrete Distribution";
+svgStr[120][18] = "Режим";
+svgStr[121][18] = "Ковариация";
+svgStr[122][18] = "Треугольник Паскаля";
+svgStr[123][18] = "Совместная вероятность";
+svgStr[124][18] = "Условный";
+svgStr[125][18] = "Дискретное распределение";
+svgStr[126][18] = "ряд %";
+svgStr[127][18] = "столбец %";
+svgStr[128][18] = "общий %";
 
 svgStrU[1][18] = "Биномиальное распределение";
 svgStrU[2][18] = "Повторение";
@@ -11719,4 +12665,669 @@ svgStrU[112][18] = "Восстановление извлечения";
 svgStrU[113][18] = "без заменыt";
 svgStrU[114][18] = "Линейный"; 
 
+// Turkish
+$.message.tr = {
+    "eStat : Stat Education SW": "eStat : Stat Təhsil SW",
+    "Filename": "Faylın adı",
+    "Selected Variables": "seçilmiş dəyişən",
+    "Cancel": "Ləğv etmək",
+    "Edit Variables": "dəyişənləri redaktə etmək",
+    "Level": "səviyyə",
+    "ElementaryLevel": "I",
+    "MiddleLevel": "O",
+    "HighLevel": "A",
+    "UniversityLevel": "U",
+    "Example": "nümunə",
+    "New Sheets": "yeni vərəqlər",
+    "csv Open": "csv aç",
+    "www Open": "www aç",
+    "json Open": "json aç",
+    "csv Save": "csv Yadda saxla",
+    "json Save": "json Yadda saxla",
+    "Print Sheet": "vərəqi çap et",
+    "Bar Graph": "Sütun qrafiki",
+    "Pie Chart": "dairə",
+    "Band Graph": "Zolaq qrafiki",
+    "Line": "xətti",
+    "Line Graph": "xətti qrafik",
+    "Dot Graph": "nöqtə qrafiki",
+    "Histogram": "Histogram",
+    "Stem & Leaf Plot": "saplaq və yarpaq sahəsi",
+    "maxStem": "** maksimum kök sayı <= 30 **",
+    "Box-Whisker Plot": "Qutu qrafiki",
+    "Scatterplot": "Səpələnmə diaqramı",
+    "Frequency Table": "tezlik cədvəli",
+    "Basic Statistics": "təsviri statistika",
+    "Testing Hypothesis &mu;": "Fərziyyənin yoxlanması &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Fərziyyənin yoxlanması &sigma;&#178;",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Fərziyyənin yoxlanması  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Fərziyyənin yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
+    "Analysis of Variance": "Dispersiya analizi",
+    "High School Stat Education": "Ali məktəb stat təhsil",
+    "University Stat Education": "Universitet stat təhsil",
+    "Elem Stat Graph Example": "İbtidai məktəb qrafik nümunəsi",
+    "Learning eStat w Example": "eStat ?",
+    "Vertical": "Şaquli",
+    "Horizontal": "Üfüqi",
+    "Vertical Separated Bar": "Şaquli Ayrılmış Sütun Qrafiki",
+    "Vertical Stacked Bar": "Şaquli üst-üstə Sütun qrafiki",
+    "Vertical Ratio Bar": "Şaquli nisbət sütun qrafiki",
+    "Vertical Side by Side Bar": "Şaquli Yanbayan Sütun Qrafiki",
+    "Vertical Two Sided Bar": "Şaquli iki tərəfli Sütun qrafiki",
+    "Horizontal Separated Bar": "Üfüqi Ayrılmış sütun Qrafiki",
+    "Horizontal Stacked Bar": "Üfüqi üst-üstə sütun qrafiki",
+    "Horizontal Ratio Bar": "Üfüqi nisbət bar qrafiki",
+    "Horizontal Side by Side Bar": "Üfüqi Yanaşı Sütun Qrafiki",
+    "Horizontal Two Sided Bar": "Üfüqi iki tərəfli sütun qrafiki",
+    "Doughnut Graph": "Halqa qrafiki",
+    "Two Sided Stem & Leaf Plot": "İki tərəfli saplaq və yarpaq diaqramı",
+    "Graph Save": "qrafiki yadda saxlamaq",
+    "Graph Print": "qrafiki çap etmək",
+    "Move to Table": "Cədvələ köçürün",
+    "Edit Title": "başlığı redaktə etmək",
+    "Table Save": "cadvəli yadda saxlamaq",
+    "Table Print": "cədvəli çap etmək",
+    "Frequency": "tezlik",
+    "Sorting": "Çeşidləmə",
+    "SortData": "Çeşidləmə",
+    "Raw Data": "Xam Məlumat",
+    "Descending": "azalan",
+    "Ascending": "artan",
+    "Mean": "Ədədi orta",
+    "Std Deviation": "standart kənarlaşma",
+    "MeanStd": "Ədədi ortan/standart kənarlaşma",
+    "DotMeanStd": "nöqtə qrafiki - Ədədi ortan/standart kənarlaşma",
+    "95CI": "95% İnam intervalı",
+    "RegressionAnalysis": "reqressiya analizi",
+    "ANOVA2": "İki üsulluq Dispersiya analizi",
+    "Regression": "reqressiya",
+    "RegressionLine": "reqressiya xətti",
+    "RegressionBand": "İnam zolağı",
+    "RegressionTable": "reqressiya analizi",	
+    "Frequency Polygon": "tezlik çoxbucaqlısı",
+    "Execute New Interval": "yeni intervalı icra etmək",
+    "Interval Start": "intervalın başlanğıcı",
+    "Interval Width": "intervalın eni",
+    "t-test": "t test",
+    "Z-test": "Z test",
+    "(if Z-test, enter &sigma;)": "(Z-testdirsə, &sigma; daxil edin.)",
+    "Significance Level": "Əhəmiyyət səviyyəsi",
+    "Execute": "icra etmək",
+    "(Confidence Interval)": "(İnam intervalı)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-testidirsə, Z<sub>&alpha;/2</sub> istifadə edin.)",
+    "&chi;<sup>2</sup> test": "&chi;&#178; test",
+    "Variance Assumption": "Dispersiya fərziyyəsi",
+    "Variance": "Dispersiya",
+    "F test": "F test",
+    "At least one pair of means is different": "Ən azı bir cüt ədədi orta fərqlidir",
+    "Main Title : ": "əsas başlıq",
+    "y title : ": "Y başlığı",
+    "x title : ": "X başlığı",
+    "Modify": "dəyişmək",
+    "Confirm": "Təsdiq etmək",
+    "Variable Name": "dəyişənin adı",
+    "Variable Value": "dəyişkən dəyəri",
+    "Value Label": "dəyər etiketi",
+    "* Less than nine value labels allowed.": "* Doqquz dəyərdən az etiketə icazə verilir..",
+    "Save": "Yadda saxla",
+    "Exit": "çıxmaq",
+    "eStatU UnivStatEdu": "eStatU - Universitet statistika təhsili SW",
+    "eStatH HighStatEdu": "eStatH - Ali məktəb statistika təhsili SW",
+    "MiddleStat": "Middle School Statistics",
+    "HighStat":   "High School Statistics",
+    "ebookLink":  "eBook Link (English)",
+    "Menu": "menyu",
+    "Binomial Experiment": "Binomial təcrübə",
+    "Binomial Distribution": "Binomial paylanma",
+    "Binomial Prob Table": "Binomial ehtimal cədvəli",
+    "Poisson Distribution": "Poisson Paylanması",
+    "Poisson Prob Table": "Poisson Ehtimal Cədvəli",
+    "Geometric Distribution": "həndəsi paylanma",
+    "Geometric Prob Table": "həndəsi ehtimal cədvəli",
+    "HyperGeometric Distribution": "hiper həndəsi paylanma",
+    "HyperGeometric Prob Table": "hiper həndəsi ehtimal cədvəli",
+    "Exponential Distribution": "qüvvətli paylanma",
+    "Normal Experiment": "normal təcrübə",
+    "Normal Distribution": "normal paylanma",
+    "Normal Approx": "normal təxmin",
+    "t Distribution": "t Paylanma",
+    "ChiSquare Distribution": "&chi;&#178; Paylanma",
+    "F Distribution": "F Paylanma",
+    "Sampling": "nümunə götürülməsi",
+    "Population vs Sample": "Populyasiya vs Nümunə",
+    "Population": "Populyasiya",
+    "Sample": "nümunə",
+    "Exponential": "qüvvət(0.3)",
+    "Uniform": "Vahid paylanma(0,1)",
+    "UniformDist": "Vahid paylanmam",
+    "Sample05": "nümunə götürülməsi 5%",
+    "Sample10": "nümunə götürülməsi 10%",
+    "Sample20": "nümunə götürülməsi 20%",
+    "Statistics/BoxPlot": "statistika/Qutu qrafiki",
+    "StatisticalProb":     "Statistik ehtimal",
+    "Law of Large Number": "böyük rəqəmlər qanunu",
+    "Dist of Sample Means": "nümunə ədədi ortaların paylanması",
+    "Sampling Distribution": "nümunə götürülməsi paylanma",
+    "Sample Size": "nümunə ölçüsü",
+    "Confidence Interval": "İnam intervalı",
+    "Confidence Interval Simulation": "İnam intervalı Simulyasiya",
+    "Confidence Interval Mu": "Hesablama : &mu;",
+    "Mu Confidence Interval": "Hesablama : &mu;",
+    "Confidence Interval Sigma": "Hesablama : &sigma;&#178;",
+    "Confidence Interval P": "Hesablama : p",
+    "Estimation Accuracy": "Hesablama dəqiqliyi",
+    "Repetition": "təkrar",
+    "Confidence Level": "İnam sərhədi",
+    "Testing Hypothesis mu_titleAB": "Fərziyyənin yoxlanması Ədədi orta",
+    "Testing Hypothesis mu_title": "Fərziyyənin yoxlanması Ədədi orta",
+    "Testing Hypothesis sigma_title": "Fərziyyənin yoxlanması Dispersiya",
+    "Testing Hypothesis P_title": "Fərziyyənin yoxlanması Proporsiyanın",
+    "Testing Hypothesis mu12_title": "Fərziyyənin yoxlanması iki ədədi ortanın",
+    "Testing Hypothesis sigma12_title": "Fərziyyənin yoxlanması iki Dispersiya",
+    "Testing Hypothesis P12_title": "Fərziyyənin yoxlanması ike Proporsiyanın",
+    "Testing Hypothesis muA":  "Fərziyyənin yoxlanması &mu; - C, &beta;",
+    "Testing Hypothesis muAB": "Fərziyyənin yoxlanması &mu; - C, n",
+    "Testing Hypothesis mu": "Fərziyyənin yoxlanması &mu;",
+    "Testing Hypothesis sigma": "Fərziyyənin yoxlanması &sigma;&#178;",
+    "Testing Hypothesis P": "Fərziyyənin yoxlanması p",
+    "Testing Hypothesis mu12": "Fərziyyənin yoxlanması &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "Fərziyyənin yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
+    "Testing Hypothesis P12": "Fərziyyənin yoxlanması p<sub>1</sub>, p<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "Fərziyyənin yoxlanması ANOVA",
+    "Testing Independence": "Kateqoriyalara aiddir: asılı olmama testi",
+    "CategoryD": "Kateqoriya",
+    "Category": "Kateqoriya",
+    "Correlation Coefficient": "Korrelyasiya əmsalı",
+    "Regression Experiment": "reqressiya təcrübəsi",
+    "Hypothesis": "Fərziyyə",
+    "Test Type": "Test növü",
+    "Z-test": "Z test",
+    "t-test": "t test",
+    "Chi-test": "&chi;&#178; test",
+    "F-test": "F test",
+    "Sampling Type": "nümunə götürülməsinin növü",
+    "Independent Sample": "asılı olmayan nümunə",
+    "Paired Sample": "cütlü nümunə",
+    "Sample Data": "məlumat nümunəsi",
+    "input either sample data": "csv / bsv istifadə edərək növbəti qutularda nümunə məlumatlarını və ya nümunə statistikasını daxil edin",
+    "input data": "Məlumat daxil edin",
+    "Sample Statistics": "nümunə statistikası",
+    "Sample Mean": "nümumənin ədədi ortası",
+    "Sample Variance": "Nümunənin dispersiyası",
+    "Sample Proportion": "Nümunənin proposiyası",
+    "if Z-test-1": "(Z-testdirsə, populyasiya dispersiyasını daxil edin &sigma;&#178;)",
+    "if Z-test-2": "(Z-testdirsə, z<sub>&alpha;/2 </sub> istifadə edin)",
+    "At least one pair": "Ən azı bir cüt ədədi orta fərqlidir",
+    "Row-Col-0": "sətir və sütun dəyişənləri asılı olmayandır",
+    "Row-Col-1": "sətir və sütun dəyişənləri asılıdır",
+    "Enter any number of row": "(Sol üst hücrədən müşahidəni daxil edin)",
+    "Row": "sətir",
+    "Column": "sütun",
+    "Probability": "ehtimal",
+    "Show Probability": "ehtimalı göstərin",
+    "Regression Line": "reqressiya xətti",
+    "Erase All": "hamısını sil",
+    "Add Point": "nöqtə əlavə edin",
+    "Erase Point": "silmək nöqtəsi",
+    "Reference Site": "rəy saytı",
+    "Lot Size": "ərazi ölçüsü",
+    "Defect Size": "qüsur ölçüsü",
+    "If typed": "Nömrəni yazdıqdan sonra [İcra et] və ya [Enter] vurun",
+    "Stat/BoxPlot": "statistika/Qutu qrafiki",
+    "Mean": "Ədədi orta",
+    "Std Dev": "standart kənarlaşma",
+    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
+    "OneGroup": "(bir qrup)",
+    "AnalysisVar": "Analiz dəyişəni",
+    "AnalysisVar2": "Y dəyişənin",
+    "GroupVar": "Grup",
+    "GroupVar2": "X dəyişənin",
+    "GroupVar3": "Vuruq1",
+    "GroupVar4": "Vuruq2",
+    "AnalysisVarMu12": "Analizi(or X1) dəyişənin",
+    "GroupVarMu12": "Grup(or X2) dəyişənin",
+    "PairedMu12": " X1, X2 : cütlü dəyişən",
+    "SizeVar": "ölçü dəyişəni",
+    "RegressionBand": "İnam zolağı",
+    "RegressionTable": "reqressiya analizi",
+    "RegressionResidual": "qalıqların qrafiki",
+    "RegressionResidualLeverage": "qalıqların vs kaldıraç",
+    "RegressionCook": "Kuk məsafəsi",
+    "RegressionQQ": "qalıqların Q-Q Süjet",
+    "HistogramNormal": "Histogram",
+    "HistogramChisq": "normallıq testi",
+    "HistogramNormalQQ": "Normal Q-Q Süjet",
+    "PopulationStd": "Populyasiya standart kənarlaşması",
+    "Type1Error": "1-turdagi xato",
+    "Type2Error": "2-turdagi xato",
+    "AnovaTable": "Dispersiya analizi cədvəli",
+    "AnovaMeanGraph": "Orta etimad intervalı",
+    "MultipleComparison": "çoxsaylı müqayisə",
+    "ComparisonGraph": "Müqayisə qrafiki",
+    "AnovaResidual": "standart qalıq Süjet",
+    "AnovaQQ": "qalıq Q-Q Süjet",
+    "TestingFit": "kategoriyali : Uyğunluğun keyfiyyəti testi",
+    "FitTest0": "Müşahidə olunan və nəzəri bölgülər eynidır",
+    "FitTest1": "Müşahidə olunan və nəzəri bölgülər fərqlidir",
+    "ObservedFreq": "müşahidə olunmuş tezlik O",
+    "ExpectedProb": "gözlənilən ehtimal p",
+    "ExpectedFreq": "gözlənilən tezlik E(>5)",
+    "InputFitData": "Sol üst hücrədən müşahidəni daxil edin",
+    "ExecuteTable": "statistika",
+    "MeanDotGraph": "İnam intervalı qrafiki",
+    "ScatterRegression": "Səpələnmə diaqramı",
+    "Factor": "Vuruq",
+    "Interaction": "qarşılıqlı əlaqə",
+    "NoInteraction": "qarşlıqlı əlaqə yoxdur",
+    "ExistInteraction": "qarşılıqlı əlaqə mövcuddur",
+    "eStatLecture": "eStat operatsiya ma'ruzasi",
+    "NonParametricMu12_title": "Parametrik emas : Wilcoxon Reytinq cəmi Test", 
+    "NonParametricMu12": "Parametrik emas : Wilcoxon Reytinq cəmi Test : joylashuv parametrlari M<sub>1</sub>, M<sub>2</sub>", 
+    "WilcoxonTest": "Parametrik emas : Reytinq cəmi Test",
+    "Sample Range": "Reytinq cəmi",
+    "DistributionTable": "paylanma cədvəli",
+    "SignedRankTestDist": "Wilcoxon Signed Reytinq cəmi Dist.",
+    "WilcoxonTestDist": "Wilcoxon Reytinq cəmi Distribution",
+    "KruskalTestDist": "Kruskal-Wallis H Distribution",
+    "FriedmanTestDist": "Friedman S Distribution",
+    "SignedRankTest": "Parametrik emas : işarə Reytinq Cəmi Test",
+    "SignTest": "Parametrik emas : işarə sınağı",
+    "SignCount": "işarələrin sayı",
+    "KruskalTest": "Parametrik emas : Kruskal-Wallis Test",
+    "KruskalTestANOVA": "Parametrik emas : Kruskal-Wallis Test",
+    "Total": "Cəm",
+    "FriedmanTest": "Parametrik emas : Friedman Test",
+    "FriedmanTestANOVA": "Parametrik emas : Friedman Test",
+    "Block": "Blok",
+    "Treatment": "rəftar",
+    "At least one locations is different": "Ən azı bir cüt lokasiya fərqlidir",
+    "SignCondition": "Agar n ≤ 100 Binomial Test,  n > 100 Normal Təxmin Test",
+    "WilcoxonSignCondition": "Agar n ≤ 20 Wilcoxon Reytinq Cəmi Test,  n > 20 Normal Təxmin Test",
+    "WilcoxonRankCondition": "Agar n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Reytinq Cəmi Test,  n>25 Normal Təxmin Test",
+    "KruskalCondition": "Agar n ≤ 10 H Paylanma Test, yana &chi;&#178; Təxmin test",
+    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "VariableSelect2": "* dəyişənin seçimi : O'zgaruvchan nomni bosing yoki RHS tanlash oynasidan foydalaning",
+    "VariableSelect3": "dəyişənin seçimi",
+    "VariableSelect4": "Ko'proq tahlil o'zgaruvchini tanlash mumkin",
+    "VariableSelect5": "Ko'proq X o'zgaruvchini tanlash mumkin",
+    "SummaryData": "xulosa ma'lumotlari",
+    "RawData": "Xam Məlumat",
+    "MultiSelect": "",
+    "DataType": "(O'zgaruvchilarni chertish nomi bilan tanlang)",
+    "by": "tomonidan",
+    "NameVar": "nom o'zgaruvchisi",
+    "n_variance": "n-1 formula",
+    "RandomNumber": "təsadüfi rəqəm",
+    "RealNumber":     "həqiqi ədəd",
+    "IntegerNumber":  "tam",
+    "NumberData":     "məlumatların sayı",
+    "NumberDigit":    "onluq rəqəm",
+    "NormalTable":    "normal paylanma jadval",
+    "Percentile":     "faiz cədvəli",
+    "PercentileValue": "faiz",
+    "StudentRangeDist": "HSD Tələbəli İnterval Paylanması",
+    "copy link": "havola nusxasi",
+    "WithoutReplacement": "almashtirishsiz",
+    "WithReplacement":    "Bərpa hasilatı",
+    "Replacement":     "Bərpa hasilatı",
+    "NonReplacement":  "almashtirishsiz",
+    "WordCloud":       "Söz Buludu (İngilis dili)",
+    "oneColor":        "rəng",
+    "defaultColor":    "standart rəng",
+    "RelativeFreq":    "nisbiy tezlik",
+    "MarginOfError":   "Xəta həddi",
+    "Permutation":     "İcazə",
+    "PermutationSame": "Eyni şey ilə icazə",
+    "Combination":     "Kombinasiya",
+    "NumberOfCase":    "İşlərin sayı",
+    "BinomialTheorem": "Binom Teoremi",
+    "PascalTriangle":  "Paskal Üçbucağı",
+    "Character":       "Emoji",
+    "AdditionRule":      "Ehtimalın toplanması qaydası",
+    "MultiplicationRule":"Ehtimalın vurma qaydası",
+    "ConditionalProb":   "Şərti Ehtimal",
+    "JointProb":         "Birgə Ehtimal",
+    "DiscreteDist":      "Diskret paylama",
+    "Categorize":        "Kateqoriyalara",
+    "Recode":            "Yenidən kodla",
+    "Compute":           "Hesablama",
+    "SelectIf":          "Əgər seçin",
+    "InfoValueLabel":    "*** Dəyişən seçin, dəyişən adını və/yaxud dəyər etiketini daxil edin.",
+    "InfoSorting":       "*** Çeşidləmə dəyişənini seçin, 3 dəyişənə qədər çeşidləmə metodunu daxil edin.",
+    "InfoCategorize":    "*** Kateqoriya üçün dəyişəni seçin, interval başlanğıcını və interval enini daxil edin.",
+    "InfoRecode":        "*** Qeyd üçün dəyişəni seçin, yeni dəyər daxil edin.",
+    "InfoRecode2":       "* 9 dəyərə qədər qeyd etməyə icazə verin.",
+    "InfoCompute":       "*** Aşağıdakı düymələrdən istifadə edərək hesablama formulunu yaradın.",
+    "InfoSelectIf":      "*** 3 dəyişənə qədər seçin, onların şərtlərini daxil edin.",
+    "SortingVariable":   "Dəyişənlərin çeşidlənməsi",
+    "SortingMethod":     "Çeşidləmə üsulu",
+    "NewVariable":       "Yeni Dəyişən",
+    "CategoryVariable":  "Dəyişənləri kateqoriyalara ayırın",
+    "CategoryListCheck": "Kateqoriya siyahısı yoxlanışı",
+    "CategoryInterval":  "Kateqoriya intervalı",
+    "CategoryLabel":     "Kateqoriya etiketi",
+    "RecodeVariable":    "Dəyişənləri yenidən kodla",
+    "CurrentValue":      "Cari dəyər",
+    "NewValue":          "Yeni dəyər",
+    "ComputeFormula":    "Düstur",
+    "SelectVariable":    "Seçmək üçün<br>dəyişən",
+    "RelationOperator":  "Əlaqə<br>Operator",
+    "SelectValue":       "Dəyər",
+    "MissingValue":      "Eksik değer",
+};
+
+// Turkish
+appStr[1][19] = "../eStatH/index.html";
+appStr[2][19] = "../eStatU/index.html";
+appStr[3][19] = "../eStatE/index_en.html";
+appStr[4][19] = "../eHelp/index_en.html";
+appStr[5][19] = "index.html";
+appStr[6][19] = "../eLearning/en/index.html";
+alertMsg[1][19] = "seçilmiş dəyişənlərdən birində məlumat yoxdur.";
+alertMsg[2][19] = "seçilmiş dəyişənlərdən birində məlumat yoxdur. ";
+alertMsg[3][19] = "seçilmiş dəyişən haqqında məlumat çatışmazlığı.";
+alertMsg[4][19] = "Əgər seçilmiş dəyişənlərin muşahidələri müxtəlifdirsə, analizə icazə verilmir.";
+alertMsg[5][19] = "THəddən çox qrup! Ekranın ölçüsünə görə qrafiklər üst-üstə düşə bilər..";
+alertMsg[6][19] = "Xülasə məlumatlarındakı analiz dəyişəninində simvol varsa, statistik analiz və ya cədvəl yaratmağa icazə verilmir..";
+alertMsg[7][19] = "Xam məlumatlardan üçdən çox dəyişən seçilibsə, analizə icazə verilmir.";
+alertMsg[8][19] = "Müşahidələrin sayı 200-dən az olduqda nöqtə qrafikinə icazə verilir.";
+alertMsg[9][19] = "Müşahidələrin sayı 100-dən az olduqda kök və yarpaq diaqramına icazə verilir.";
+alertMsg[10][19] = "Analiz dəyişəni seçilməyib.";
+alertMsg[11][19] = "Analiz/Qrup dəyişənləri seçilməyib.";
+alertMsg[12][19] = "Təhlil dəyişənində simvol varsa, analizə icazə verilmir.";
+alertMsg[13][19] = "";
+alertMsg[14][19] = "davamlı qrafiklər və fərziyyələrin testi üçün xülasə məlumatlarına icazə verilmir.";
+alertMsg[16][19] = "fərziyyəni yoxlamaq üçün yalnız iki qrupa icazə verilir.";
+alertMsg[17][19] = "Səpələnmə diaqramı ən azı x dəyişənini və y dəyişənini tələb edir.";
+alertMsg[18][19] = "Səpələnmə diaqramında üçdən çox dəyişənə icazə verilmir.";
+alertMsg[19][19] = "Məlumatlarda simvol varsa, analizə icazə verilmir.";
+alertMsg[20][19] = "Məlumatlarda simvol varsa, reqressiya təhlili edilə bilməz.";
+alertMsg[21][19] = "Əgər məlumat əksikliyi varsa, yadda saxlamağa icazə verilmir.";
+alertMsg[22][19] = "Mənfi rəqəm varsa, sütun qrafiki çəkilə bilməz.";
+alertMsg[25][19] = "Yalnız bir qrup varsa, üst-üstə sütun qrafikinə icazə verilmir.";
+alertMsg[27][19] = "IYalnız bir qrup varsa, nisbət sütun qrafikinə icazə verilmir.";
+alertMsg[29][19] = "Yalnız bir qrup varsa, yanaşı sütun qrafikinə icazə verilmir.";
+alertMsg[31][19] = "Yalnız bir qrup varsa, ikitərfli sütun qrafikinə icazə verilmir.";
+alertMsg[32][19] = "Mənfi rəqəm varsa, dairə qrafiki çəkilə bilməz.";
+alertMsg[33][19] = "Mənfi rəqəm varsa, halqa qrafiki çəkilə bilməz.";
+alertMsg[34][19] = "Mənfi rəqəm varsa, zolaq qrafiki çəkilə bilməz.";
+alertMsg[35][19] = "Mənfi rəqəm varsa, tezlik cədvəli çəkilə bilməz.";
+alertMsg[36][19] = "Bu sütun qrafiki yalnız iki qrup üçündür.";
+alertMsg[37][19] = "Bu fərziyyə yoxlanışı yalnız bir dəyişən üçündür.";
+alertMsg[38][19] = "mu rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
+alertMsg[39][19] = "Standart kənarlaşma ya sıfır, ya da rəqəm deyil. Yenidən cəhd edin!";
+alertMsg[40][19] = "Giriş dispersiyası rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
+alertMsg[41][19] = "Bu fərziyyə yoxlanışı yalnız iki dəyişən üçündür. Qrup dəyişənlərinin yalnız iki qrupu olmalıdır.";
+alertMsg[42][19] = "Fərziyyə yoxlanışının başlığının redaktəsinə icazə verilmir.";
+alertMsg[43][19] = "Adi xətti reqressiya yalnız bir qrup üçündür.";
+alertMsg[44][19] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
+alertMsg[45][19] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[46][19] = "Xuddi shu o'zgaruvchan raqam tanlangan.";
+alertMsg[47][19] = "Tezlikdə xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
+alertMsg[48][19] = "Xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
+alertMsg[49][19] = "Müşahidələrin sayı 100-dən az olmalıdır !! Yenidən cəhd edin.";
+alertMsg[50][19] = "İnterval başlanğıcında və ya addımında nömrələri daxil edin.";
+alertMsg[51][19] = "Nömrələri daxil edin / Sətirlərin sayı eyni olmalıdır! Yenidən cəhd edin.";
+alertMsg[52][19] = "Kateqoriya və tezlikdə nömrələri daxil edin.";
+alertMsg[53][19] = "İnterval ölçüsü eyni deyil !! Yenidən cəhd edin.";
+alertMsg[54][19] = "X müşahidəsi Y müşahidəsinə bərabər deyil !! Yenidən cəhd edin.";
+alertMsg[55][19] = "!!! Sayfada veri yok.";
+alertMsg[56][19] = "!!! Değişken seçilmedi";
+alertMsg[57][19] = "!!! Aralık başlangıcını ve aralık genişliğini girin";
+alertMsg[58][19] = "!!! Sayısal aralık başlangıcını ve aralık genişliğini girin";
+alertMsg[59][19] = "!!! 9'dan fazla aralık - aralık genişliğini değiştir";
+alertMsg[60][19] = "!!! Bu değişken 9'dan fazla değere sahip";
+alertMsg[61][19] = "!!! Değer girilmedi";
+alertMsg[62][19] = "!!! Formülü giriniz";
+alertMsg[63][19] = "!!! Koşulları karşılayan veri yok.";
+alertMsg[64][19] = "";
+alertMsg[65][19] = ""; 
+alertMsg[66][19] = "";
+alertMsg[67][19] = "";
+alertMsg[68][19] = "";
+alertMsg[69][19] = "";
+
+svgStr[1][19] = " Sütun qrafiki";
+svgStr[2][19] = " dairə ";
+svgStr[3][19] = " Halqa qrafiki";
+svgStr[4][19] = " Zolaq qrafiki";
+svgStr[5][19] = " xətti qrafik";
+svgStr[6][19] = " nöqtə qrafiki";
+svgStr[7][19] = " Qutu qrafiki";
+svgStr[8][19] = " saplaq və yarpaq sahəsi";
+svgStr[9][19] = " Histogram";
+svgStr[10][19] = " Səpələnmə diaqramı";
+svgStr[11][19] = " Fərziyyənin yoxlanması: Populyasiya ortası";
+svgStr[12][19] = " Fərziyyənin yoxlanması: Populyasiya Dispersiyası";
+svgStr[13][19] = " Fərziyyənin yoxlanması: İki populyasiya ədədi ortası";
+svgStr[14][19] = " Fərziyyənin yoxlanması: İki populyasiya dispersiyası";
+svgStr[15][19] = " Dispersiya analizi";
+svgStr[16][19] = "tezlik";
+svgStr[17][19] = "nisbət";
+svgStr[18][19] = "Grup ";
+svgStr[19][19] = " ";
+svgStr[20][19] = "<h3>Xülasə məlumatları <br> Tezlik Cədvəli</h3>";
+svgStr[21][19] = "qrup dəyişəni";
+svgStr[22][19] = "sətir dəyişəni";
+svgStr[23][19] = "Cəm";
+svgStr[24][19] = "doira hajmi";
+svgStr[25][19] = "<h3>tezlik cədvəli</h3>";
+svgStr[26][19] = "Analiz dəyişəni";
+svgStr[27][19] = "dəyişkən dəyəri";
+svgStr[28][19] = "dəyər etiketi";
+svgStr[29][19] = "tezlik";
+svgStr[30][19] = "nisbiy tezlik";
+svgStr[31][19] = "<h3>Kəsişən Cədvəl</h3>";
+svgStr[32][19] = "sütun dəyişəni";
+svgStr[33][19] = "sətir dəyişəni";
+svgStr[34][19] = "Ədədi orta"
+svgStr[35][19] = "standart kənarlaşma"
+svgStr[36][19] = "<h3> Histogram<br>tezlik cədvəli</h3>";
+svgStr[37][19] = "qrup adı";
+svgStr[38][19] = "interval";
+svgStr[39][19] = "saplaq";
+svgStr[40][19] = " yarpaq";
+svgStr[41][19] = "Grup 1  yarpaq";
+svgStr[42][19] = "Grup 2  yarpaq"
+svgStr[43][19] = "<h3>Ta'rif statistikasi</h3>";
+svgStr[44][19] = "müşahidə";
+svgStr[45][19] = "Minimum";
+svgStr[46][19] = "Median";
+svgStr[47][19] = "Makximum";
+svgStr[48][19] = "Cəm";
+svgStr[49][19] = "<h3>normallıq testi</h3>";
+svgStr[50][19] = "gözlənilən tezlik > 5 <br> tavsiya eting";
+svgStr[51][19] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][19] = "Məlumat<br>müşahidə olunmuş tezlik<br>(O<sub>i</sub>)";
+svgStr[53][19] = "Normal paylanma<br>gözlənilən ehtimal<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][19] = "Normal paylanma<br>gözlənilən tezlik<br>(E<sub>i</sub>)";
+svgStr[55][19] = "interval<br>&chi;&#178; qiymati<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][19] = "cəm &chi;&#178; qiymati";
+svgStr[57][19] = "Ehtimal Histogram va Normal Paylanma";
+svgStr[58][19] = "Normal Q-Q Süjet";
+svgStr[59][19] = "Normal Kvant";
+svgStr[60][19] = "Korrelyasiya əmsalı";
+svgStr[61][19] = "Təyinetmə əmsalı";
+svgStr[62][19] = "standart xəta";
+svgStr[63][19] = "dəyişənin";
+svgStr[64][19] = "dəyişənin adı";
+svgStr[65][19] = "mustaqil dəyişənin";
+svgStr[66][19] = "qaram dəyişənin";
+svgStr[67][19] = "Parametr";
+svgStr[68][19] = "hesablanmış qiymət";
+svgStr[69][19] = "qiymati";
+svgStr[70][19] = "kəsişmə";
+svgStr[71][19] = "bucaq";
+svgStr[72][19] = "Vuruq";
+svgStr[73][19] = "kvadratlar cəmi";
+svgStr[74][19] = "sərbəstlik dərəcəsi";
+svgStr[75][19] = "orta kvadratlar";
+svgStr[76][19] = "reqressiya";
+svgStr[77][19] = "xəta";
+svgStr[78][19] = "Cəm";
+svgStr[79][19] = "<h3>Reqressiya Analizi</h3>";
+svgStr[80][19] = "standart qalıq Q-Q Süjet";
+svgStr[81][19] = "standart qalıq";
+svgStr[82][19] = "Normal Kvant";
+svgStr[83][19] = "qalıqların qrafiki";
+svgStr[84][19] = "ehtimal olunmuş dəyər";
+svgStr[85][19] = "İki üsulluq Dispersiya analizi";
+svgStr[86][19] = "İnam intervalı qrafiki";
+svgStr[87][19] = "qalıq";
+svgStr[88][19] = "ikki o'lchovli statistika";
+svgStr[89][19] = "səpələnmə diaqramı matrisi";
+svgStr[90][19] = "çoxsaylı müqayisə";
+svgStr[91][19] = "Statistika";
+svgStr[92][19] = "Vuruq";
+svgStr[93][19] = "səviyyə";
+svgStr[94][19] = "cütlü nümunə grafiki";
+svgStr[95][19] = "standart qalıq vs bashorat qilish grafiki";
+svgStr[96][19] = "standart qalıq vs kaldıraç grafiki";
+svgStr[97][19] = "Kuk məsafəsi grafiki";
+svgStr[98][19] = "Kuk məsafəsi";
+svgStr[99][19] = "Məlumat sıralaması";
+svgStr[100][19] = "ədədi orta fərqi";
+svgStr[101][19] = "Ədədi ortanın yoxlanması";
+svgStr[102][19] = "rəftar";
+svgStr[103][19] = "qarşılıqlı əlaqə";
+svgStr[104][19] = "Sətir cəmi";
+svgStr[105][19] = "Sütun cəmi";
+svgStr[106][19] = "çoxsaylı korrelyasiya əmsalı";
+svgStr[107][19] = "<h3>Korrelyasiya analizi</h3>";
+svgStr[108][19] = "Korrelyasiya matrisi";
+svgStr[109][19] = "Vuruq A - Vuruq B Ədədi orta grafiki";
+svgStr[110][19] = "ling";
+svgStr[111][19] = "Geographic Information Graph";
+svgStr[112][19] = "təyin intervalı";
+svgStr[113][19] = "Ədədi orta - standart kənarlaşma grafiki";
+svgStr[114][19] = "Populyasiya Dispersiyası";
+svgStr[115][19] = "fərziyyə";
+svgStr[116][19] = "Test";
+svgStr[117][19] = "Dispersiyası";
+svgStr[118][19] = "İnterval dəyəri";
+svgStr[119][19] = "Kateqoriya";
+svgStr[120][19] = "Rejim";
+svgStr[121][19] = "Kovariasiya";
+svgStr[122][19] = "Paskal üçbucağı";
+svgStr[123][19] = "Birgə Ehtimal";
+svgStr[124][19] = "Şərti";
+svgStr[125][19] = "Diskret Dağıtım";
+svgStr[126][19] = "sıra %";
+svgStr[127][19] = "sütun %";
+svgStr[128][19] = "ümumi %";
+
+svgStrU[1][19] = "Binomial paylanma";
+svgStrU[2][19] = "təkrar";
+svgStrU[3][19] = "Ədədi orta";
+svgStrU[4][19] = "standart kənarlaşma";
+svgStrU[5][19] = "Poisson Paylanması";
+svgStrU[6][19] = "həndəsi paylanma";
+svgStrU[7][19] = "hiper həndəsi paylanma";
+svgStrU[8][19] = "Populyasiya";
+svgStrU[9][19] = "Nümunə paylanması";
+svgStrU[10][19] = "böyük rəqəmlər qanunu";
+svgStrU[11][19] = "Quyruq";
+svgStrU[12][19] = "baş";
+svgStrU[13][19] = "tanga baş";
+svgStrU[14][19] = "Başların sayı";
+svgStrU[15][19] = "Sınaqların sayı";
+svgStrU[16][19] = "nümunə ədədi ortaların paylanması";
+svgStrU[17][19] = "təkrar";
+svgStrU[18][19] = "standart xəta";
+svgStrU[19][19] = "Populyasiya ortası";
+svgStrU[20][19] = "İnam intervalı";
+svgStrU[21][19] = "hesablama dəqiqliyi";
+svgStrU[22][19] = "nümumənin ədədi ortası";
+svgStrU[23][19] = "[TestStat]";
+svgStrU[24][19] = "Paylanma";
+svgStrU[25][19] = "H\u2080 rədd et";
+svgStrU[26][19] = "H\u2080 qəbul et";
+svgStrU[27][19] = "p-dəyər";
+svgStrU[28][19] = "[Qərar] ";
+svgStrU[29][19] = "[Dispersiya analizi]";
+svgStrU[30][19] = "Dispersiya analizi";
+svgStrU[31][19] = "reqressiya";
+svgStrU[32][19] = "sətir dəyişəni";
+svgStrU[33][19] = "sütun dəyişəni";
+svgStrU[34][19] = "Ədədi orta"
+svgStrU[35][19] = "standart kənarlaşma"
+svgStrU[36][19] = "<h3> Histogram<br>tezlik cədvəli</h3>";
+svgStrU[37][19] = "Grup adı";
+svgStrU[38][19] = "Interval";
+svgStrU[39][19] = "saplaq";
+svgStrU[40][19] = " yarpaq";
+svgStrU[41][19] = "Grup 1  yarpaq";
+svgStrU[42][19] = "Grup 2  yarpaq"
+svgStrU[43][19] = "<h3>təsviri statistika</h3>";
+svgStrU[44][19] = "müşahidə ";
+svgStrU[45][19] = "Minimum";
+svgStrU[46][19] = "Median";
+svgStrU[47][19] = "Makximum";
+svgStrU[48][19] = "Cəm";
+svgStrU[49][19] = "qüvvət";
+svgStrU[50][19] = "Vahid paylanma";
+svgStrU[51][19] = "hesablama dəqiqliyi";
+svgStrU[52][19] = "- Bosish orqali nuqtalar yarating, so'ngra eStat regressiya chizig'ini topadi.";
+svgStrU[53][19] = "- Nuqtani siljiting yoki o'chiring. Regressiya chizig'ining o'zgarishini tomosha qiling.";
+svgStrU[54][19] = "[nümunə statistikası] ";
+svgStrU[55][19] = "[nümunə 1 statistikası] ";
+svgStrU[56][19] = "[nümunə 2 statistikası] ";
+svgStrU[57][19] = "İnam sərhədi";
+svgStrU[58][19] = "sətir və sütun dəyişənləri asılı olmayandır";
+svgStrU[59][19] = "sətir və sütun dəyişənləri asılıdır";
+svgStrU[60][19] = "müşahidə olunmuş paylanma";
+svgStrU[61][19] = "Nəzəri paylanma";
+svgStrU[62][19] = "Uyğunluğun keyfiyyəti testi";
+svgStrU[63][19] = "Wilcoxon Reytinq Cəmi Test";
+svgStrU[64][19] = "Wilcoxon Reytinq Cəmi Test cədvəl";
+svgStrU[65][19] = "Kruskal-Wallis Test";
+svgStrU[66][19] = "Kruskal-Wallis H paylanması";
+svgStrU[67][19] = "Kruskal-Wallis H Statistika";
+svgStrU[68][19] = "Wilcoxon işarə Reytinq Cəmi Test";
+svgStrU[69][19] = "işarə Test";
+svgStrU[70][19] = "Friedman Test";
+svgStrU[71][19] = "Friedman S Statistika";
+svgStrU[72][19] = "Friedman S paylanması";
+svgStrU[73][19] = "t dəyər (yoki Z)";
+svgStrU[74][19] = "ChiSq dəyər";
+svgStrU[75][19] = "Nümunənin dispersiyası";
+svgStrU[76][19] = "nümunə ədədi ortalarının fərqi";
+svgStrU[77][19] = "Nümunə dispersiyasının nisbəti";
+svgStrU[78][19] = "Dispersiya fərziyyəsi";
+svgStrU[79][19] = "Xülasə məlumatları";
+svgStrU[80][19] = "çoxsaylı seçim";
+svgStrU[81][19] = "İki qrupa qədər seçin";
+svgStrU[82][19] = "X dəyişənin";
+svgStrU[83][19] = "Y dəyişənin";
+svgStrU[84][19] = "tomonidan";
+svgStrU[85][19] = "Yo'q Grup dəyişənin";
+svgStrU[86][19] = "seçilmiş məlumat: ";
+svgStrU[87][19] = "Xam Məlumat";
+svgStrU[88][19] = "Dəyişənin adını tıklayaraq dəyişənləri seçin";
+svgStrU[89][19] = "çatışmayan müşahidələr";
+svgStrU[90][19] = "Reytinq cəmi";
+svgStrU[91][19] = "Longitude";
+svgStrU[92][19] = "Latitude";
+svgStrU[93][19] = "Ən azı bir cüt lokasiya fərqlidir";
+svgStrU[94][19] = "Wilcoxon işarə Reytinq Cəmi Paylanma";
+svgStrU[95][19] = "cütlü dəyişən";
+svgStrU[96][19] = "cütlü nümunə";
+svgStrU[97][19] = "asılı olmama testi";
+svgStrU[98][19] = "Simulyasiya";
+svgStrU[99][19] = "təsadüfi rəqəm";
+svgStrU[100][19] = "Normal Paylanma";
+svgStrU[101][19] = "t Paylanman";
+svgStrU[102][19] = "&chi;&#178; Paylanma";
+svgStrU[103][19] = "F Paylanma";
+svgStrU[104][19] = "HSD Tələbəli İnterval Paylanması";
+svgStrU[105][19] = "birinchi kvartil";
+svgStrU[106][19] = "uchinchi kvartil";
+svgStrU[107][19] = "kvartil oralig'i";
+svgStrU[108][19] = "o'zgaruvchanlik koeffitsienti";
+svgStrU[109][19] = "To'plangan nisbiy chastota (%)";
+svgStrU[110][19] = "Uniform Distribution butun sonlarining maksimal soni";
+svgStrU[111][19] = "Sichqoncha yordamida nuqtani siljiting";
+svgStrU[112][19] = "Bərpa hasilatı";
+svgStrU[113][19] = "almashtirishsiz";
+svgStrU[114][19] = "xətti"; 
 

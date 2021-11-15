@@ -93,8 +93,6 @@ $("#copylink").click(function() {
     $(".ui-dialog-titlebar").css("display", "none");
     $("#copylinkText").height($("#copylinkText").prop("scrollHeight")+12);    
     $("#copylinkPopup").dialog('open');
-
-
 });
 
 
@@ -103,7 +101,7 @@ $("#copylink").click(function() {
 */
 
 function highlight_datapoint() {
-	console.log("Click Here!");
+//	console.log("Click Here!");
         k = $(this).data('sheetrowid');	
 	datasheet.selectCell(k, 0, k, 0, true);
 	datasheet.selectRows(k);
@@ -121,9 +119,9 @@ function highlight_datapoint() {
 }
 
 
-/*
-* Global variables
-*/
+//
+// Global variables
+//
 var chart = d3.select("#SVG");
 // 기본 버튼 칼러색 설정
 var buttonColorB = "#E0FFFF";
@@ -143,6 +141,7 @@ var svgWidth, svgHeight, margin, graphWidth, graphHeight;
 var svgWidth2, svgHeight2;
 var title, graphNum;
 var str, gstr, xstr, ystr, varListStr;
+var str1, str2, str3, str4 ;
 var langNum = 0;
 var rowMax = 9999; // 시트행 최대
 var colMax = 20; // 시트열 최대
@@ -157,23 +156,24 @@ var mTitle = new Array(graphNumMax);
 var yTitle = new Array(graphNumMax);
 var xTitle = new Array(graphNumMax);
 // datasheet raw variable
+var MISSING = "99999999"; 
 var numCol, numRow;
-var robs = new Array(colMax);
-var rvarName = new Array(colMax);
+var robs        = new Array(colMax);
+var rvarName    = new Array(colMax);
 var defaultColHeaders = Array(colMax).fill(1).map((x,y) => "V" + (x+y));
-var rvarDeci = new Array(colMax);
-var rvalueNum = new Array(colMax);
-var rvar = new Array(colMax); // 2차원 배열로 아래에 정의
-var rvalue = new Array(colMax); // 2차원 배열로 아래에 정의
+var rvarDeci    = new Array(colMax);
+var rvalueNum   = new Array(colMax);
+var rvar        = new Array(colMax); // 2차원 배열로 아래에 정의
+var rvalue      = new Array(colMax); // 2차원 배열로 아래에 정의
 var rvalueLabel = new Array(colMax); // 2차원 배열로 아래에 정의
 // 분석-그룹변수 변수리스트
 var analysisSelectMain, groupSelectMain, option;    // top1
 var groupSelect, sizeSelect;                        // scatter plot
 // selected variable for analysis
 var selected, selected_point, numOfSelectedColumns, selectedVars;
-var tdobs   = new Array(colMax);
-var missing = new Array(colMax); // missing data
-var mdobs   = new Array(colMax); // missing data 제거후 obs
+var tdobs        = new Array(colMax);
+var missing      = new Array(colMax); // missing data
+var mdobs        = new Array(colMax); // missing data 제거후 obs
 var tdvarNumber  = new Array(colMax);
 var tdvarName    = new Array(colMax);
 var tdvalueNum   = new Array(colMax);
@@ -201,18 +201,18 @@ for (j = 0; j < colMax; j++) {
     }
 };
 // Sorting freq and Ascend/Descend Indexing Label
-var dataR = new Array(rowMax);
-var dataA = new Array(rowMax);
-var dataD = new Array(rowMax);
-var indexR = new Array(rowMax);
-var indexA = new Array(rowMax);
-var indexD = new Array(rowMax);
+var dataR   = new Array(rowMax);
+var dataA   = new Array(rowMax);
+var dataD   = new Array(rowMax);
+var indexR  = new Array(rowMax);
+var indexA  = new Array(rowMax);
+var indexD  = new Array(rowMax);
 var vlabelR = new Array(rowMax);
 var vlabelA = new Array(rowMax);
 var vlabelD = new Array(rowMax);
 // dependent variable
 var dobs, dvarNumber, dvarName, ndvalue;
-var dvar = new Array(rowMax);
+var dvar    = new Array(rowMax);
 var dvalueNum = new Array(rowMax);
 var dataValue = new Array(rowMax);
 var dvalueLabel = new Array(rowMax);
@@ -408,10 +408,6 @@ if (levelNum == "1") { // 초등
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
 
-
-
-
-
 // =================================================================
 // 시트 컨트롤
 // =================================================================
@@ -442,12 +438,6 @@ datasheet = new Handsontable(container, {
     fragmentSelection: false,
 });
 initEventControl(datasheet);
-
-
-
-
-
-
 
 // 새 시트
 d3.select("#new").on("click", function() {
@@ -519,7 +509,7 @@ function initEventControl(datasheet) {
     datasheet.addHook('afterCreateRow', turnOnDatasheetChangeFlag);
     datasheet.addHook('afterCreateCol', turnOnDatasheetChangeFlag);
     datasheet.addHook('afterCut',       turnOnDatasheetChangeFlag);
-
+    // turn on data sheet change flag
     function turnOnDatasheetChangeFlag() {
 	isDatasheetChanged = true;
     }
@@ -533,81 +523,7 @@ function initEventControl(datasheet) {
         // } else {
         //     datasheet.setCellMeta(row, col, "className", "htRight");
         // }
-	
-        for (j = 0; j < colMax; j++) {
-            rvar[j]  = datasheet.getDataAtCol(j);
-            robs[j]  = 0;
-            missing[j] = 0;
-            for (i = 0; i < rowMax; i++) {
-                if (rvar[j][i] != null) {
-                  robs[j]++;
-                  //***** missing
-                  if ( rvar[j][i] == "" ) {
-                    rvar[j][i] = "99999999"; 
-                    missing[j]++;  // missing count
-                  }
-                }
-            }
-            // 소수점이하 자리수 체크
-            rvarDeci[j] = 0;
-            for (i = 0; i < robs[j]; i++) {
-                if (rvar[j][i] == null) continue;
-                m = rvar[j][i].indexOf(".");
-                if (m > -1) {
-                    k = rvar[j][i].length - (m + 1);
-                    if (k > rvarDeci[j]) rvarDeci[j] = k;
-                }
-            } // endof i
-        }
-        // 각 변량별 최대 관찰값
-        numRow = robs[0];
-        for (j = 1; j < colMax; j++) { // numRow는 각행의 최대
-          if (numRow < robs[j]) numRow = robs[j];
-        }
-        // 한 열의 모든 값이 missing이나 null이면 null 처리
-        for (j = 0; j < colMax; j++) {
-            k = 0
-            for (i = 0; i < numRow; i++) {
-              if (rvar[j][i] == "99999999" || rvar[j][i] == null) k++;
-            }
-            if (numRow == k) {
-              for (i=0; i < numRow; i++) rvar[j][i] = null;
-            }
-        }
-        // Recalculate 행의 수
-        for (j = 0; j < colMax; j++) {
-            robs[j] = 0;
-            for (i = 0; i < numRow; i++) {
-              if (rvar[j][i] != null) robs[j]++;
-            }
-        }
-        // 사각형 열의 수 계산 : 
-        for (j = 0; j < colMax; j++) {
-            if (robs[j] > 0) numCol = j+1;  
-        }
-        for (j = 0; j < numCol; j++) { // empty column check
-            if (robs[j] == 0) {
-                alert("Empty columns is not allowed !!!");
-                return;
-            }
-        }
-        // 최대 행보다 작은 행의 수를 갖는 열의 셀들 missing 처리
-        for (j = 0; j < numCol; j++) {
-          if (robs[j] < numRow) {
-            for (i = 0; i < numRow; i++) 
-              if (rvar[j][i] == null) rvar[j][i] = "99999999";
-          }
-          robs[j] = numRow;
-          missing[j] = 0;
-          for (i = 0; i < numRow; i++) 
-              if (rvar[j][i] == "99999999") missing[j]++;
-        }
-        // 각 변량별 값 계산
-        for (j = 0; j < numCol; j++) {
-            for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
-            rvalueNum[j] = sortAscendAlpha(robs[j], dataA, dataValue, dvalueFreq);
-            for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
-        }
+	updateInternalArray();
         datasheet.render();
         // 선택된 변수 초기화 -- 데이터의 변화가 있을때만 집행 
 	if(checkPastColSelection == false) { // 만일 마우스로 변수 선택만 했을 경우는 초기화 안함 2019.5.12
@@ -622,7 +538,6 @@ function initEventControl(datasheet) {
     datasheet.addHook('afterOnCellMouseUp', function(event, coords) {
         //	  console.log(coords);
         //	  console.log(coords.row+" "+coords.col);
-
 	if(isDatasheetChanged) {
 	    syncDatasheetWithInternalDataArray();
 	    isDataSheetChanged = false;
@@ -657,7 +572,7 @@ function initEventControl(datasheet) {
                 tdvalueNum[numVar + j] = rvalueNum[k];
                 tdvarName[numVar + j]  = rvarName[k];
                 // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
-                for (m = 0; m < robs[k]; m++) {
+                for (m = 0; m < numRow; m++) {
                     tdvalue[numVar + j][m] = rvalue[k][m];
                     tdvalueLabel[numVar + j][m] = rvalueLabel[k][m];
                     tdvar[numVar + j][m] = rvar[k][m];
@@ -743,34 +658,7 @@ function updateCellMeta() {
     datasheet.getSettings().colWidths = colWidth;
     datasheet.render();
 }
-// update global data variables:
-// rvar, rvarName, robs, numRow, numCol, rvalue
-//
-function updateGlobalDataVariables() {
-    // 새 파일 값으로 변량 입력 : To be finished with system file
-    for (j = 0; j < colMax; j++) {
-        rvar[j] = datasheet.getDataAtCol(j);
-        rvarName[j] = datasheet.getColHeader(j);
-        robs[j] = 0;
-        for (i = 0; i < rowMax; i++) {
-            if (rvar[j][i] == null || rvar[j][i] == "") {} else robs[j]++;
-        }
-    }
-    // 각 변량별 변량값 계산  To be finished with system file
-    numRow = robs[0];
-    numCol = 0;
-    for (j = 0; j < colMax; j++) {
-        if (robs[j] != 0) {
-            numCol++;
-            for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
-            rvalueNum[j] = sortAscendAlpha(robs[j], dataA, dataValue, dvalueFreq);
-            for (k = 0; k < rvalueNum[j]; k++) {
-                rvalue[j][k] = dataValue[k];
-                rvalueLabel[j][k] = null; // 시스템 파일 읽으면 정정 요
-            }
-        }
-    }
-}
+
 /*
  * open an example
  *
@@ -792,12 +680,9 @@ function openExample(examplePath, callback = undefined) {
     estatapp.dataURL = url;
     readFromURL(url, callback);
 }
-
-
-/*
- *  read data from URL
- *
- */
+//
+//  read data from URL
+//
 $("#button_readFromURL").click(function() {
     $("#dialog_readFromURL").dialog("open");
 });
@@ -816,11 +701,9 @@ function readFromURL(url, callback = undefined) {
 	if (callback !== undefined) callback();
     });
 }
-
-
-/*
- * import a CSV file
- */
+//
+// import a CSV file
+//
 $("#icon_importCSV").click(function() {
     $("#input_importCSV").click();
 });
@@ -837,6 +720,7 @@ function importCSV(evt) {
     fr.readAsText(evt.target.files[0]);
     $("#input_importCSV").val("");
 }
+
 function updateDatasheetWithArrayOfRows(data, colHeaders) {
     datasheet.destroy();
     datasheet = new Handsontable(container, {
@@ -857,13 +741,79 @@ function updateDatasheetWithArrayOfRows(data, colHeaders) {
     });
     // initialize
     updateCellMeta();
+    for ( j = 0; j < colMax; j++) {
+      rvarName[j] = datasheet.getColHeader(j);
+      for ( i = 0; i < rowMax; i++) rvar[j][i] = data[i][j];
+    }
+    updateInternalArray();
     variableSelectClear();
     graphTitle(); // set default graph title
     document.getElementById("separate1").click();  // defalut는 막대그래프
     initEventControl(datasheet);
-    updateGlobalDataVariables();
     updateVarList();
 }
+//
+// update global variables using rvar
+// =>   robs, numRow, numCol, rvalue
+function updateInternalArray(){
+        // 각 변수별 observation
+        for (j = 0; j < colMax; j++) {
+            robs[j]  = 0;
+            for (i = 0; i < rowMax; i++) {
+                if (rvar[j][i] != null) {
+                  robs[j]++;
+                }
+            }
+            // 소수점이하 자리수 체크
+            rvarDeci[j] = 0;
+            for (i = 0; i < robs[j]; i++) {
+                if (rvar[j][i] == null) continue;
+                m = rvar[j][i].indexOf(".");
+                if (m > -1) {
+                    k = rvar[j][i].length - (m + 1);
+                    if (k > rvarDeci[j]) rvarDeci[j] = k;
+                }
+            } // endof i
+        }
+        // 각 변량별 최대 관찰값
+        numRow = robs[0];
+        for (j = 1; j < colMax; j++) { // numRow는 각행의 최대
+          if (numRow < robs[j]) numRow = robs[j];
+        }
+        // 데이터 사각형 열의 수 계산 : 
+        for (j = 0; j < colMax; j++) {
+            if (robs[j] > 0) numCol = j+1;  
+        }
+        // Missing 지정
+        missing[j] = 0;
+        for (j = 0; j < numCol; j++) {
+            for (i = 0; i < numRow; i++) {
+                //***** missing
+                if ( rvar[j][i] == "" || rvar[j][i] == undefined || rvar[j][i] == null) {
+                    rvar[j][i] = MISSING; 
+                    missing[j]++;  // missing count
+                }  
+            }
+        }
+        // Recalculate 행의 수
+        for (j = 0; j < numCol; j++) {
+            robs[j] = 0;
+            for (i = 0; i < numRow; i++) {
+              if (rvar[j][i] != MISSING) robs[j]++;
+            }
+            if (robs[j] == 0) {  // empty column check
+                alert("Empty columns is not allowed !!!");
+                return;
+            }
+        }
+        // 각 변량별 값 계산
+        for (j = 0; j < numCol; j++) {
+            for (i = 0; i < robs[j]; i++) dataA[i] = rvar[j][i];
+            rvalueNum[j] = sortAscendAlpha(robs[j], dataA, dataValue, dvalueFreq);
+            for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
+        }
+}
+
 function updateVarList() {
     // top1 분석변수 선택리스트
     analysisSelectMain = document.getElementById("analysisSelectMain");
@@ -941,22 +891,15 @@ function updateDatasheetWith(dataobj) {
     });
     // initialize
     updateCellMeta();
+    rvarName = dataobj.rvarName;
+    for (j = 0; j < colMax; j++) {
+        rvar[j] = datasheet.getDataAtCol(j);
+    }
+    updateInternalArray();
     variableSelectClear();
     document.getElementById("separate1").click();  // defalut는 막대그래프
     graphTitle(); // set default graph title
     initEventControl(datasheet);
-    // 새 파일 값으로 변량 입력 : To be finished with system file
-    for (j = 0; j < colMax; j++) {
-        rvar[j] = datasheet.getDataAtCol(j);
-    }
-    // 기타 시스템 변수 불러오기
-    rvarName = dataobj.rvarName;
-    robs = dataobj.robs;
-    rvalueNum = dataobj.rvalueNum;
-    rvalue = dataobj.rvalue;
-    rvalueLabel = dataobj.rvalueLabel;
-    numCol = dataobj.numCol;
-    numRow = dataobj.numRow;
 }
 // crop a sheet data with empty cells to a complete rectangular data
 function cropData(data) {
@@ -1202,8 +1145,6 @@ function selectGroupVariable(varid) {
 
     estatapp.groupVars = tdvarNumber.slice(1, numVar);
 }
-
-
 
 // 산점도 그룹변량 선택 
 document.getElementById("groupSelect").onchange = function() {
@@ -3620,14 +3561,17 @@ $(".dialog").dialog({
     modal: true,
     width: 'auto',
 });
-// 시트 변량편집 버튼 : V1 (jj=0) 만 해당
+// 시트 EditVar - ValueLabel 버튼 : V1 (jj=0) 만 해당
+// 각 모듈 varlist 생성
 d3.select("#variableBtn").on("click", function() {
     jj = 0;
-    document.getElementById("varlist").value = 1;
+    // dialog open
     $("#sub14").dialog("open");
+    openEditVar('valueLabel')
     selectVarInit();
 })
-// 편집창 varlist에 이벤트 발생시 update 처리 함수 --------------------------
+
+// 편집창 EditVar - ValueLabel varlist에 이벤트 발생시 update 처리 함수 --------------------------
 $("#varlist").change(selectVarUpdate);
 function selectVarUpdate() {
     // 변량값명을 rvaluelabel에 입력  : rvalueNum[jj]가 증가할 수도 있음
@@ -3648,16 +3592,17 @@ function selectVarUpdate() {
     jj = parseInt(document.getElementById("varlist").value) - 1;
     selectVarInit();
 } // endof selectVarUpdate()  ---------------------------------------------
-// 편집창 varlist에 초기값 표시 함수 ---------------------------------------
+// 편집창 EditVar - ValueLabel varlist에 초기값 표시 함수 ---------------------------------------
 function selectVarInit() {
+    if (typeof(numRow) == 'undefined') return;
     // 변량명 초기화
     d3.select("#vname").node().value = rvarName[jj];
     // 편집창 셀에 변량값 입력
     for (k = 0; k < maxNumEdit; k++) {
         str1 = "#cell" + (k + 1).toString() + (1).toString();
         str2 = "#cell" + (k + 1).toString() + (2).toString();
-        if (rvalue[jj][k] == "99999999") { // missing
-            d3.select(str1).node().value = null;           
+        if (rvalue[jj][k] == MISSING) { // missing
+            d3.select(str1).node().value = "MISSING";           
             d3.select(str2).node().value = null;           
             continue; 
         }
@@ -3670,16 +3615,20 @@ function selectVarInit() {
         }
     }
 } // endof selectVarInit -------------------------------------------------
-// 변량편집 저장 (최종 편집 변량에 적용)
+// 변량편집 EditVar - ValueLabel 저장 (최종 편집 변량에 적용)
 d3.select("#vconfirm").on("click", function() {
+    if (typeof(numRow) == 'undefined') return;
     selectVarUpdate();
     datasheet.updateSettings({
         colHeaders: rvarName
     });
 })
-// 변량편집 나가기
+// 변량편집 EditVar - ValueLabel 나가기
 d3.select("#vcancel").on("click", function() {
     var j, k, m;
+    if (typeof(numRow) == 'undefined') {
+      $("#sub14").dialog("close");
+    }
     selectVarUpdate();
     datasheet.updateSettings({
         colHeaders: rvarName
@@ -3695,9 +3644,1292 @@ d3.select("#vcancel").on("click", function() {
       }
     }
     updateVarList();
+    var list = document.getElementById("varlist");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
     document.getElementById(strGraph[graphNum]).click();  // Redraw Graph - defalut는 막대그래프
     $("#sub14").dialog("close");
 })
+// Edit Variable - Sorting ------------------------------------------------------------
+// varlistSorting1,2,3에 이벤트 발생시 update 처리 함수 
+var sortVar1 = -1;
+var sortVar2 = -1;
+var sortVar3 = -1;
+var maxNumber1, maxNumber2, maxNumber3;
+$("#varlistSorting1").change(selectVarUpdateSorting1);
+$("#varlistSorting2").change(selectVarUpdateSorting2);
+$("#varlistSorting3").change(selectVarUpdateSorting3);
+function selectVarUpdateSorting1() {
+    sortVar1 = parseInt(document.getElementById("varlistSorting1").value) - 1;
+    // maximum digit of the variable
+    maxDigit = 0;
+    for (i = 0; i < numRow; i++) {
+      if (rvar[sortVar1][i] == MISSING) continue;
+      if (rvar[sortVar1][i].length > maxDigit) maxDigit = rvar[sortVar1][i].length;
+    }
+    maxNumber1 = "";
+    for (k = 0; k < maxDigit; k++) maxNumber1 = "9" + maxNumber1;
+} 
+function selectVarUpdateSorting2() {
+    sortVar2 = parseInt(document.getElementById("varlistSorting2").value) - 1;
+    // maximum digit of the variable
+    var maxDigit = 0;
+    for (i = 0; i < numRow; i++) {
+      if (rvar[sortVar2][i] == MISSING) continue;
+      if (rvar[sortVar2][i].length > maxDigit) maxDigit = rvar[sortVar2][i].length;
+    }
+    maxNumber2 = "";
+    for (k = 0; k < maxDigit; k++) maxNumber2 = "9" + maxNumber2;
+} 
+function selectVarUpdateSorting3() {
+    sortVar3 = parseInt(document.getElementById("varlistSorting3").value) - 1;
+    // maximum digit of the variable
+    var maxDigit = 0;
+    for (i = 0; i < numRow; i++) {
+      if (rvar[sortVar3][i] == MISSING) continue;
+      if (rvar[sortVar3][i].length > maxDigit) maxDigit = rvar[sortVar3][i].length;
+    }
+    maxNumber3 = "";
+    for (k = 0; k < maxDigit; k++) maxNumber3 = "9" + maxNumber3;
+} 
+// Sorting Method
+var sortMethod1  = 0;
+var sort1        = document.sortingForm1.sortingType1;
+sort1[0].onclick = function() { sortMethod1 = 0; }  
+sort1[1].onclick = function() { sortMethod1 = 1; }  
+// Sorting Method
+var sortMethod2  = 0;
+var sort2        = document.sortingForm2.sortingType2;
+sort2[0].onclick = function() { sortMethod2 = 0; }  
+sort2[1].onclick = function() { sortMethod2 = 1; }  
+// Sorting Method
+var sortMethod3  = 0;
+var sort3        = document.sortingForm3.sortingType3;
+sort3[0].onclick = function() { sortMethod3 = 0; }  
+sort3[1].onclick = function() { sortMethod3 = 1; }  
+// 숫자인 경우 왼쪽에 0을 넣어 string화
+function formatNumberLength(num, length) {
+    var r = "" + num;
+    while (r.length < length) {
+        r = "0" + r;
+    }
+    return r;
+}
+// Execute Sorting by index
+d3.select("#executeSorting").on("click", function() {
+    // sort by index
+    var reverse1, reverse2, reverse3;
+    document.getElementById("sortingWarning").innerHTML = "";
+    document.getElementById("sortingWarning").style.display = "none"; 
+    // No selection or no value
+    if ( sortVar1 < 0  && sortVar2 < 0 && sortVar3 < 0 ) {
+      document.getElementById("sortingWarning").innerHTML = alertMsg[56][langNum];
+      document.getElementById("sortingWarning").style.display = "block"; 
+      return;  
+    }
+    for (i = 0; i < numRow; i++) {
+      for (j = 0; j < numCol; j++) {
+        if (rvar[j][i] == MISSING) tdvar[j][i] = null
+        else tdvar[j][i] = rvar[j][i];
+      }
+    }
+    if (sortVar1 >= 0 && sortVar2 < 0 && sortVar3 < 0) {  
+       if (sortMethod1 == 0) {     
+         for (i = 0; i < numRow; i++) dataA[i] = formatNumberLength(tdvar[sortVar1][i],maxNumber1); 
+       }
+       else {
+         for (i = 0; i < numRow; i++) {
+           reverse1 = (parseFloat(maxNumber1)- parseFloat(tdvar[sortVar1][i])).toString();
+           dataA[i] = formatNumberLength(reverse1,maxNumber1); 
+         }
+       }
+    }
+    else if (sortVar1 >= 0 && sortVar2 >= 0 && sortVar3 < 0) {
+       if (sortMethod1 == 0 && sortMethod2 == 0) {     
+         for (i = 0; i < numRow; i++) dataA[i] = formatNumberLength(tdvar[sortVar1][i],maxNumber1) + formatNumberLength(tdvar[sortVar2][i],maxNumber2); 
+       }
+       else if (sortMethod1 == 0 && sortMethod2 == 1) {
+         for (i = 0; i < numRow; i++) {
+           reverse2 = (parseFloat(maxNumber2)- parseFloat(tdvar[sortVar2][i])).toString();
+           dataA[i] = formatNumberLength(tdvar[sortVar1][i],maxNumber1) + formatNumberLength(reverse2,maxNumber2); 
+         }
+       }
+       else if (sortMethod1 == 1 && sortMethod2 == 0) {
+         for (i = 0; i < numRow; i++) {
+           reverse1 = (parseFloat(maxNumber1)- parseFloat(tdvar[sortVar1][i])).toString();
+           dataA[i] = formatNumberLength(reverse1,maxNumber1) + formatNumberLength(tdvar[sortVar2][i],maxNumber2); 
+         }
+       }
+       else if (sortMethod1 == 1 && sortMethod2 == 1) {
+         for (i = 0; i < numRow; i++) {
+           reverse1 = (parseFloat(maxNumber1)- parseFloat(tdvar[sortVar1][i])).toString();
+           reverse2 = (parseFloat(maxNumber2)- parseFloat(tdvar[sortVar2][i])).toString();
+           dataA[i] = formatNumberLength(reverse1,maxNumber1) + formatNumberLength(reverse2,maxNumber2); 
+         }
+       }
+    }
+    else if (sortVar1 >= 0 && sortVar2 >= 0 && sortVar3 >= 0) {
+       if (sortMethod1 == 0 && sortMethod2 == 0 && sortMethod3 == 0) {     
+         for (i = 0; i < numRow; i++) dataA[i] = formatNumberLength(tdvar[sortVar1][i],maxNumber1) + formatNumberLength(tdvar[sortVar2][i],maxNumber2) + formatNumberLength(tdvar[sortVar3][i],maxNumber3); 
+       }
+       else if (sortMethod1 == 0 && sortMethod2 == 1 && sortMethod3 == 0) {
+         for (i = 0; i < numRow; i++) {
+           reverse2 = (parseFloat(maxNumber2)- parseFloat(tdvar[sortVar2][i])).toString();
+           dataA[i] = formatNumberLength(tdvar[sortVar1][i],maxNumber1) + formatNumberLength(reverse2,maxNumber2) + formatNumberLength(tdvar[sortVar3][i],maxNumber3);  
+         }
+       }
+       else if (sortMethod1 == 1 && sortMethod2 == 0 && sortMethod3 == 0) {
+         for (i = 0; i < numRow; i++) {
+           reverse1 = (parseFloat(maxNumber1)- parseFloat(tdvar[sortVar1][i])).toString();
+           dataA[i] = formatNumberLength(reverse1,maxNumber1) + formatNumberLength(tdvar[sortVar2][i],maxNumber2) + formatNumberLength(tdvar[sortVar3][i],maxNumber3);  
+         }
+       }
+       else if (sortMethod1 == 1 && sortMethod2 == 1 && sortMethod3 == 0) {
+         for (i = 0; i < numRow; i++) {
+           reverse1 = (parseFloat(maxNumber1)- parseFloat(tdvar[sortVar1][i])).toString();
+           reverse2 = (parseFloat(maxNumber2)- parseFloat(tdvar[sortVar2][i])).toString();
+           dataA[i] = formatNumberLength(reverse1,maxNumber1) + formatNumberLength(reverse2,maxNumber2) + formatNumberLength(tdvar[sortVar3][i],maxNumber3); ; 
+         }
+       }
+       else if (sortMethod1 == 0 && sortMethod2 == 0 && sortMethod3 == 1) {     
+         for (i = 0; i < numRow; i++) {
+           reverse3 = (parseFloat(maxNumber3)- parseFloat(tdvar[sortVar3][i])).toString();
+           dataA[i] = formatNumberLength(tdvar[sortVar1][i],maxNumber1) + formatNumberLength(tdvar[sortVar2][i],maxNumber2) + formatNumberLength(reverse3,maxNumber3); 
+         }
+       }
+       else if (sortMethod1 == 0 && sortMethod2 == 1 && sortMethod3 == 1) {
+         for (i = 0; i < numRow; i++) {
+           reverse2 = (parseFloat(maxNumber2)- parseFloat(tdvar[sortVar2][i])).toString();
+           reverse3 = (parseFloat(maxNumber3)- parseFloat(tdvar[sortVar3][i])).toString();
+           dataA[i] = formatNumberLength(tdvar[sortVar1][i],maxNumber1) + formatNumberLength(reverse2,maxNumber2) + formatNumberLength(reverse3,maxNumber3); ; 
+         }
+       }
+       else if (sortMethod1 == 1 && sortMethod2 == 0 && sortMethod3 == 1) {
+         for (i = 0; i < numRow; i++) {
+           reverse1 = (parseFloat(maxNumber1)- parseFloat(tdvar[sortVar1][i])).toString();
+           reverse3 = (parseFloat(maxNumber3)- parseFloat(tdvar[sortVar3][i])).toString();
+           dataA[i] = formatNumberLength(reverse1,maxNumber1) + formatNumberLength(tdvar[sortVar2][i],maxNumber2) + formatNumberLength(reverse3,maxNumber3); ; 
+         }
+       }
+       else if (sortMethod1 == 1 && sortMethod2 == 1 && sortMethod3 == 1) {
+         for (i = 0; i < numRow; i++) {
+           reverse1 = (parseFloat(maxNumber1)- parseFloat(tdvar[sortVar1][i])).toString();
+           reverse2 = (parseFloat(maxNumber2)- parseFloat(tdvar[sortVar2][i])).toString();
+           reverse3 = (parseFloat(maxNumber3)- parseFloat(tdvar[sortVar3][i])).toString();
+           dataA[i] = formatNumberLength(reverse1,maxNumber1) + formatNumberLength(reverse2,maxNumber2) + formatNumberLength(reverse3,maxNumber3);  
+         }
+       }
+    }
+    sortAscendIndex(numRow, dataA, indexA) 
+    for (j = 0; j < numCol; j++) {
+        for (i = 0; i < numRow; i++) {
+            if (tdvar[j][indexA[i]] == null) rvar[j][i] = MISSING;
+            else rvar[j][i] = tdvar[j][indexA[i]];
+        }
+    }
+    // dump tdvar[][] => rvar[][]
+    for (j = 0; j < numCol; j++) {
+      for (i = 0; i < numRow; i++) {
+        if (rvar[j][i] == MISSING) data[i][j] = null;
+        else data[i][j] = rvar[j][i];
+      }
+    }
+    // 시트 업데이트
+    datasheet.updateSettings({
+        data: data, 
+        colHeaders: rvarName,
+    });
+    datasheet.selectCell(0, 0); // 커서 위치를 (0,0)으로
+    variableSelectClear();
+    updateVarList();
+    document.getElementById("loadFileName").value = "Untitled.csv";
+}) // endof sorting
+// EditVar - Sorting 나가기
+d3.select("#cancelSorting").on("click", function() {
+    clearSortingBox();
+    if (typeof(numRow) == 'undefined') {
+      $("#sub14").dialog("close");
+    }
+    openEditVar('valueLabel')
+    $("#sub14").dialog("close");
+})
+function clearSortingBox() {
+    document.getElementById("varlistSorting1").value = 0;
+    document.getElementById("varlistSorting2").value = 0;
+    document.getElementById("varlistSorting3").value = 0;
+    sort1[0].click();
+    sort2[0].click();
+    sort3[0].click();
+    document.getElementById("sortingWarning").innerHTML = "";
+    document.getElementById("sortingWarning").style.display = "none"; 
+    var list = document.getElementById("varlistSorting1");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+    list = document.getElementById("varlistSorting2");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+    list = document.getElementById("varlistSorting3");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+}
+// Edit Variable - Category ------------------------------------------------------------
+// varlistCategory에 이벤트 발생시 update 처리 함수 
+var categoryVar = -1;
+var maxNoInterval = 9;
+var numInterval;
+var intervalBegin = new Array(maxNoInterval);
+var intervalEnd   = new Array(maxNoInterval);
+document.getElementById("newCategoryVar").disabled  = true;
+for (i = 0; i < 9; i++) {
+      str1 = "category"+(i+1).toString()+"1";
+      str2 = "category"+(i+1).toString()+"2";
+      str3 = "category"+(i+1).toString()+"3";
+      document.getElementById(str1).disabled = true;
+      document.getElementById(str2).disabled = true;
+      document.getElementById(str3).disabled = true;
+}
+$("#varlistCategory").change(selectVarUpdateCategory);
+function selectVarUpdateCategory() {
+    categoryVar = parseInt(document.getElementById("varlistCategory").value) - 1;
+    tobs = 0;
+    for (i = 0; i < numRow; i++) {
+      if (rvar[categoryVar][i] != MISSING) {
+         tobs++;
+         tdata[i] = parseFloat(rvar[categoryVar][i]);
+      }
+    }
+    TotalStat(tobs, tdata, tstat); 
+    document.getElementById("minimumValue").value = tstat[3]; // mini
+    document.getElementById("maximumValue").value = tstat[7]; // maxi
+    document.getElementById("minimumValue").disabled = true;
+    document.getElementById("maximumValue").disabled = true;
+} 
+
+// Category List Check
+d3.select("#categoryList").on("click", function() {
+   for (i = 0; i < maxNoInterval; i++) {
+      str1 = "category"+(i+1).toString()+"1";
+      str2 = "category"+(i+1).toString()+"2";
+      str3 = "category"+(i+1).toString()+"3";
+      str4 = "category"+(i+1).toString()+"4";
+      document.getElementById(str1).value = "";
+      document.getElementById(str2).value = "";
+      document.getElementById(str3).value = "";
+      document.getElementById(str4).value = "";
+   }
+   var minValue = tstat[3]; // mini
+   var maxValue = tstat[7]; // maxi
+   var intervalStart =  document.getElementById("intervalStart").value;
+   var intervalWidth =  document.getElementById("intervalWidth").value;
+   if ( intervalStart == "" || intervalWidth == "" ) {
+      document.getElementById("categoryListWarning").innerHTML = alertMsg[57][langNum];
+      document.getElementById("categoryListWarning").style.display = "block"; 
+      return;
+   }
+   if ( isNaN(intervalStart) || isNaN(intervalWidth) ) {
+      document.getElementById("categoryListWarning").innerHTML = alertMsg[58][langNum]; // Enter numeric Interval Start and Interval Width"
+      document.getElementById("categoryListWarning").style.display = "block"; 
+      return;
+   }
+   intervalStart =  parseFloat(intervalStart);
+   intervalWidth =  parseFloat(intervalWidth);
+   if ( intervalStart > minValue ) {
+      document.getElementById("intervalStart").value = minValue;
+      intervalStart = minValue;
+   }
+   for (i = 1; i < maxNoInterval; i++) {
+     intervalBegin[i] = "";
+     intervalEnd[i]   = "";     
+   }
+   intervalBegin[0]  = intervalStart;
+   intervalEnd[0]    = intervalBegin[0] + intervalWidth;
+   for (i = 1; i < maxNoInterval; i++) {
+     intervalBegin[i] = intervalBegin[i-1] + intervalWidth;
+     intervalEnd[i]   = intervalEnd[i-1] + intervalWidth;
+     numInterval = i+1;
+     if (intervalEnd[i] > maxValue) break;
+   }
+   document.getElementById("categoryListWarning").innerHTML = "";
+   document.getElementById("categoryListWarning").style.display = "none"; 
+   if (numInterval == 9 && intervalEnd[8] < maxValue ) {
+      document.getElementById("categoryListWarning").innerHTML = alertMsg[59][langNum]; // More than 9 interval - change Interval Width
+      document.getElementById("categoryListWarning").style.display = "block"; 
+   }
+   var temp = "V"+(categoryVar+1).toString();
+   for (i = 0; i < numInterval; i++) {
+      str1 = "category"+(i+1).toString()+"1";
+      str2 = "category"+(i+1).toString()+"2";
+      str3 = "category"+(i+1).toString()+"3";
+      str4 = "category"+(i+1).toString()+"4";
+      document.getElementById(str1).value = intervalBegin[i];
+      document.getElementById(str2).value = temp;
+      document.getElementById(str3).value = intervalEnd[i];
+      document.getElementById(str4).value = "["+intervalBegin[i]+", "+intervalEnd[i]+")";
+      rvalueLabel[numCol][i] = document.getElementById(str4).value;
+   }
+})
+
+// Execute Category
+d3.select("#executeCategory").on("click", function() {
+    document.getElementById("categoryWarning").innerHTML = "";
+    document.getElementById("categoryWarning").style.display = "none"; 
+    // No selection or no value
+    if ( categoryVar < 0 ) {
+      document.getElementById("categoryWarning").innerHTML = alertMsg[56][langNum]; // No variable selected
+      document.getElementById("categoryWarning").style.display = "block"; 
+      return;  
+    }
+    for (i = 0; i < numRow; i++) {
+      for (j = 0; j < numCol; j++) tdvar[j][i] = rvar[j][i];
+      if ( tdvar[categoryVar][i] == MISSING ) {
+        tdvar[numCol][i] = MISSING;
+      }
+      else {
+        for (k = 0; k < numInterval; k++) {
+          if ( tdvar[categoryVar][i] < intervalEnd[k] )  { tdvar[numCol][i] = (k+1).toString(); break;}
+        }
+      }
+    }
+    str2 = document.getElementById("newCategoryVarName").value;
+    if (str2 == "") rvarName[numCol] = "V"+(numCol+1).toString();
+    else rvarName[numCol] = str2;
+    // find new rvalue[numCol] 
+    for (i = 0; i < numRow; i++) dataA[i] = tdvar[numCol][i];
+    rvalueNum[numCol] = sortAscendAlpha(numRow, dataA, dataValue, dvalueFreq);
+    for (k = 0; k < rvalueNum[numCol]; k++) rvalue[numCol][k] = dataValue[k];
+    robs[numCol] = numRow;
+
+    // 새 category 변수 dump to rvar[][]
+    for (i = 0; i < numRow; i++) {
+        rvar[numCol][i] = tdvar[numCol][i];
+        if (rvar[numCol][i] == MISSING) data[i][numCol] = null;
+        else data[i][numCol] = rvar[numCol][i];
+    }
+    numCol++;
+    // 시트 업데이트
+    datasheet.updateSettings({
+        data: data, 
+        colHeaders: rvarName,
+    });
+    datasheet.selectCell(0, 0); // 커서 위치를 (0,0)으로
+    variableSelectClear();
+    updateVarList();
+}) // endof Category
+// Category 나가기
+d3.select("#cancelCategory").on("click", function() {
+    clearCategoryBox()
+    if (typeof(numRow) == 'undefined') {
+      $("#sub14").dialog("close");
+    }
+    openEditVar('valueLabel')
+    $("#sub14").dialog("close");
+})
+function clearCategoryBox(){
+    document.getElementById("categoryWarning").innerHTML = "";
+    document.getElementById("categoryWarning").style.display = "none"; 
+    document.getElementById("categoryListWarning").innerHTML = "";
+    document.getElementById("categoryListWarning").style.display = "none"; 
+    document.getElementById("newCategoryVar").value = "";
+    document.getElementById("newCategoryVarName").value = "";
+    document.getElementById("varlistCategory").value = 0;
+    var list = document.getElementById("varlistCategory");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+    document.getElementById("minimumValue").value  = "";
+    document.getElementById("maximumValue").value  = "";
+    document.getElementById("intervalStart").value = "";
+    document.getElementById("intervalWidth").value = "";
+    for (i = 0; i < numInterval; i++) {
+      str1 = "category"+(i+1).toString()+"1";
+      str2 = "category"+(i+1).toString()+"2";
+      str3 = "category"+(i+1).toString()+"3";
+      str4 = "category"+(i+1).toString()+"4";
+      document.getElementById(str1).value = "";
+      document.getElementById(str2).value = "";
+      document.getElementById(str3).value = "";
+      document.getElementById(str4).value = "";
+    }
+}
+// Edit Variable - Recode ------------------------------------------------------------
+// varlistRecode에 이벤트 발생시 update 처리 함수 
+var recodeVar = -1;
+var newValue = new Array(colMax);
+for (i = 0; i < 9; i++) {
+    str1 = "recode"+(i+1).toString()+"1";
+    document.getElementById(str1).disabled = true;
+}
+$("#varlistRecode").change(selectVarUpdateRecode);
+function selectVarUpdateRecode() {
+    document.getElementById("recodeVarWarning").innerHTML = "";
+    document.getElementById("recodeVarWarning").style.display = "none"; 
+    recodeVar = parseInt(document.getElementById("varlistRecode").value) - 1;
+    if (rvalueNum[recodeVar] > 9) {
+      document.getElementById("recodeVarWarning").innerHTML = alertMsg[60][langNum]; // This variable has more than 9 values
+      document.getElementById("recodeVarWarning").style.display = "block"; 
+      return;
+    }
+    for (i = 0; i < 9; i++) {
+      str1 = "recode"+(i+1).toString()+"1";
+      str2 = "recode"+(i+1).toString()+"2";
+      document.getElementById(str1).value = "";
+      document.getElementById(str2).value = "";
+    }    
+    for (i = 0; i < rvalueNum[recodeVar]; i++) {
+      str1 = "recode"+(i+1).toString()+"1";
+      if (rvalue[recodeVar][i] == MISSING) document.getElementById(str1).value = "";
+      else document.getElementById(str1).value = rvalue[recodeVar][i];
+    }
+} 
+
+// Execute Recode
+d3.select("#executeRecode").on("click", function() {
+    document.getElementById("recodeWarning").innerHTML = "";
+    document.getElementById("recodeWarning").style.display = "none"; 
+    // No selection or no value
+    if ( recodeVar < 0 ) {
+      document.getElementById("recodeWarning").innerHTML = alertMsg[56][langNum]; // No variable selected
+      document.getElementById("recodeWarning").style.display = "block"; 
+      return;  
+    }
+    var checkBlank = true;
+    for (i = 0; i < rvalueNum[recodeVar]; i++) {
+      str2 = "recode"+(i+1).toString()+"2";
+      newValue[i] = document.getElementById(str2).value 
+      if (newValue[i] != "") checkBlank = false;
+    }
+    if (checkBlank) {
+      document.getElementById("recodeWarning").innerHTML = alertMsg[61][langNum]; // No value entered
+      document.getElementById("recodeWarning").style.display = "block"; 
+      return;  
+    }
+    for (i = 0; i < numRow; i++) {
+      for (j = 0; j < numCol; j++) tdvar[j][i] = rvar[j][i];
+      if ( tdvar[recodeVar][i] == MISSING ) {
+        tdvar[numCol][i] = MISSING;
+      }
+      else {
+        for (k = 0; k < rvalueNum[recodeVar]; k++) {
+          if ( tdvar[recodeVar][i] == rvalue[recodeVar][k] )  { tdvar[numCol][i] = newValue[k]; break;}
+        }
+      }
+    }
+    str2 = document.getElementById("newRecodeVarName").value;
+    if (str2 == "") rvarName[numCol] = "V"+(numCol+1).toString();
+    else rvarName[numCol] = str2;
+    // values of recode var
+    for (i = 0; i < numRow; i++) dataA[i] = tdvar[numCol][i];
+    rvalueNum[numCol] = sortAscendAlpha(numRow, dataA, dataValue, dvalueFreq);
+    for (k = 0; k < rvalueNum[numCol]; k++) rvalue[numCol][k] = dataValue[k];
+    // 새 recode 변수 dump to rvar[][]
+    for (i = 0; i < numRow; i++) {
+        rvar[numCol][i] = tdvar[numCol][i];
+        if (rvar[numCol][i] == MISSING || rvar[numCol][i] == 'MISSING' ) data[i][numCol] = null;
+        else data[i][numCol] = rvar[numCol][i];
+    }
+    numCol++;
+    // 시트 업데이트
+    datasheet.updateSettings({
+        data: data, 
+        colHeaders: rvarName,
+    });
+    datasheet.selectCell(0, 0); // 커서 위치를 (0,0)으로
+    variableSelectClear();
+    updateVarList();
+}) // endof Recode
+// EditVar - Recode 나가기
+d3.select("#cancelRecode").on("click", function() {
+    clearRecodeBox();
+    if (typeof(numRow) == 'undefined') {
+      $("#sub14").dialog("close");
+    }
+    openEditVar('valueLabel')
+    $("#sub14").dialog("close");
+})
+function clearRecodeBox(){
+    document.getElementById("recodeVarWarning").innerHTML = "";
+    document.getElementById("recodeVarWarning").style.display = "none"; 
+    document.getElementById("recodeWarning").innerHTML = "";
+    document.getElementById("recodeWarning").style.display = "none"; 
+    document.getElementById("newRecodeVar").value = "";
+    document.getElementById("newRecodeVarName").value = "";
+    document.getElementById("varlistRecode").value = 0;
+    var list = document.getElementById("varlistRecode");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+    for (i = 0; i < 9; i++) {
+      str1 = "recode"+(i+1).toString()+"1";
+      str2 = "recode"+(i+1).toString()+"2";
+      document.getElementById(str1).value = "";
+      document.getElementById(str2).value = "";
+    }    
+}
+
+// Edit Variable - Compute ------------------------------------------------------------
+var numComputeVar = 0;
+// varlistCategory에 이벤트 발생시 update 처리 함수 
+$("#varlistCompute").change(selectVarUpdateCompute);
+function selectVarUpdateCompute() {
+    var computeVar = document.getElementById("varlistCompute").value;
+    newValue[numComputeVar] = computeVar;
+    numComputeVar++;
+    str1 = str1 + "V" + computeVar;
+    for (j = 0; j < numCol; j++) {
+      if (computeVar == (j+1)) { str2 = str2 + "parseFloat(rvar["+j+"][i])"; break; }
+    }
+    document.getElementById("computeFormula").value = str1;
+} 
+// button들에 이벤트 발생시
+d3.select("#n1").on("click", function() {
+    str1 = str1 + "1";
+    str2 = str2 + "1";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n2").on("click", function() {
+    str1 = str1 + "2";
+    str2 = str2 + "2";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n3").on("click", function() {
+    str1 = str1 + "3";
+    str2 = str2 + "3";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n4").on("click", function() {
+    str1 = str1 + "4";
+    str2 = str2 + "4";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n5").on("click", function() {
+    str1 = str1 + "5";
+    str2 = str2 + "5";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n6").on("click", function() {
+    str1 = str1 + "6";
+    str2 = str2 + "6";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n7").on("click", function() {
+    str1 = str1 + "7";
+    str2 = str2 + "7";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n8").on("click", function() {
+    str1 = str1 + "8";
+    str2 = str2 + "8";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n9").on("click", function() {
+    str1 = str1 + "9";
+    str2 = str2 + "9";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#n0").on("click", function() {
+    str1 = str1 + "0";
+    str2 = str2 + "0";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#ndot").on("click", function() {
+    str1 = str1 + ".";
+    str2 = str2 + ".";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#nplus").on("click", function() {
+    str1 = str1 + "+";
+    str2 = str2 + "+";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#nminus").on("click", function() {
+    str1 = str1 + "-";
+    str2 = str2 + "-";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#nmult").on("click", function() {
+    str1 = str1 + "*";
+    str2 = str2 + "*";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#ndivide").on("click", function() {
+    str1 = str1 + "/";
+    str2 = str2 + "/";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#nopen").on("click", function() {
+    str1 = str1 + "(";
+    str2 = str2 + "(";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#nclose").on("click", function() {
+    str1 = str1 + ")";
+    str2 = str2 + ")";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#nlog").on("click", function() {
+    str1 = str1 + "LOG";
+    str2 = str2 + "Math.log";
+    document.getElementById("computeFormula").value = str1;
+})
+d3.select("#nexp").on("click", function() {
+    str1 = str1 + "EXP";
+    str2 = str2 + "Math.exp";
+})
+d3.select("#nsqrt").on("click", function() {
+    str1 = str1 + "SQRT";
+    str2 = str2 + "Math.sqrt";
+    document.getElementById("computeFormula").value = str1;
+})
+// Execute Compute
+d3.select("#executeCompute").on("click", function() {
+    document.getElementById("computeWarning").innerHTML = "";
+    document.getElementById("computeWarning").style.display = "none"; 
+    // No selection or no value
+    if ( document.getElementById("computeFormula").value == "" ) {
+      document.getElementById("computeWarning").innerHTML = alertMsg[62][langNum]; // Enter formula
+      document.getElementById("computeWarning").style.display = "block"; 
+      return;  
+    }
+    for (i = 0; i < numRow; i++) {
+      for (j = 0; j < numCol; j++) tdvar[j][i] = rvar[j][i];
+      var checkMissing = false;
+      for (j = 0; j < numComputeVar; j++) {
+         if(tdvar[newValue[j]][i] == MISSING) {checkMissing = true; break;}
+      }
+      if (checkMissing) tdvar[numCol][i] = MISSING;
+      else tdvar[numCol][i] = (eval(str2)).toString();
+    }
+    str2 = document.getElementById("newComputeVarName").value;
+    if (str2 == "") rvarName[numCol] = "V"+(numCol+1).toString();
+    else rvarName[numCol] = str2;
+    // find new rvalue[numCol] 
+    for (i = 0; i < numRow; i++) dataA[i] = tdvar[numCol][i];
+    rvalueNum[numCol] = sortAscendAlpha(numRow, dataA, dataValue, dvalueFreq);
+    for (k = 0; k < rvalueNum[numCol]; k++) rvalue[numCol][k] = dataValue[k];
+    // 새 compute 변수 dump to rvar[][]
+    for (i = 0; i < numRow; i++) {
+        rvar[numCol][i] = tdvar[numCol][i];
+        if (rvar[numCol][i] == MISSING) data[i][numCol] = null;
+        else data[i][numCol] = rvar[numCol][i];
+    }
+    numCol++;
+    // 시트 업데이트
+    datasheet.updateSettings({
+        data: data, 
+        colHeaders: rvarName,
+    });
+    datasheet.selectCell(0, 0); // 커서 위치를 (0,0)으로
+    variableSelectClear();
+    updateVarList();
+}) // endof Compute
+// EditVar - Compute 나가기
+d3.select("#cancelCompute").on("click", function() {
+    clearComputeBox();
+    if (typeof(numRow) == 'undefined') {
+      $("#sub14").dialog("close");
+    }
+    openEditVar('valueLabel')
+    $("#sub14").dialog("close");
+})
+function clearComputeBox(){
+    document.getElementById("computeFormula").value = "";
+    document.getElementById("varlistCompute").value = 1;
+    document.getElementById("computeWarning").innerHTML = "";
+    document.getElementById("computeWarning").style.display = "none"; 
+    document.getElementById("newComputeVar").value     = "";
+    document.getElementById("newComputeVarName").value = "";
+    document.getElementById("computeFormula").value    = "";
+    var list = document.getElementById("varlistCompute");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+}
+// Edit Variable - Select If ------------------------------------------------------------
+// varlistSelectIf1,2,3에 이벤트 발생시 update 처리 함수 
+var selectVar1 = -1;
+var selectVar2 = -1;
+var selectVar3 = -1;
+$("#varlistSelectIf1").change(selectVarUpdateSelectIf1);
+$("#varlistSelectIf2").change(selectVarUpdateSelectIf2);
+$("#varlistSelectIf3").change(selectVarUpdateSelectIf3);
+function selectVarUpdateSelectIf1() {
+    selectVar1 = parseInt(document.getElementById("varlistSelectIf1").value) - 1;
+} 
+function selectVarUpdateSelectIf2() {
+    selectVar2 = parseInt(document.getElementById("varlistSelectIf2").value) - 1;
+} 
+function selectVarUpdateSelectIf3() {
+    selectVar3 = parseInt(document.getElementById("varlistSelectIf3").value) - 1;
+} 
+// Execute Select If
+d3.select("#executeSelectIf").on("click", function() {
+    var selectOperator1 = parseInt(document.getElementById("varlistOperatorSelectIf1").value);
+    var selectOperator2 = parseInt(document.getElementById("varlistOperatorSelectIf2").value);
+    var selectOperator3 = parseInt(document.getElementById("varlistOperatorSelectIf3").value);
+    var selectIfValue1  = document.getElementById("selectIf1").value;
+    var selectIfValue2  = document.getElementById("selectIf2").value;
+    var selectIfValue3  = document.getElementById("selectIf3").value;
+    var check1, check2, check3;
+    document.getElementById("selectIfWarning").innerHTML = "";
+    document.getElementById("selectIfWarning").style.display = "none"; 
+    // No selection or no value
+    if ( selectVar1 < 0  && selectVar2 < 0 && selectVar3 < 0 ) {
+      document.getElementById("selectIfWarning").innerHTML = alertMsg[56][langNum]; // No variable selected
+      document.getElementById("selectIfWarning").style.display = "block"; 
+      return;  
+    }
+    var tnumRow = 0;
+    if (selectVar1 >= 0 && selectVar2 < 0 && selectVar3 < 0) {  
+      if ( selectIfValue1 == "" ) {
+        document.getElementById("selectIfWarning").innerHTML = alertMsg[61][langNum]; // No value entered
+        document.getElementById("selectIfWarning").style.display = "block"; 
+        return;  
+      }
+      for (i = 0; i < numRow; i++) {
+        if (rvar[selectVar1][i] == MISSING) continue;
+        check1 = false;
+        switch (selectOperator1) {
+          case 1:
+            if (rvar[selectVar1][i] == selectIfValue1) check1 = true;
+            break;
+          case 2:
+            if (rvar[selectVar1][i] < selectIfValue1)  check1 = true;
+            break;
+          case 3:
+            if (rvar[selectVar1][i] <= selectIfValue1) check1 = true;
+            break;
+          case 4:
+            if (rvar[selectVar1][i] > selectIfValue1)  check1 = true;
+            break;
+          case 5:
+            if (rvar[selectVar1][i] >= selectIfValue1) check1 = true;
+            break;
+          case 6:
+            if (rvar[selectVar1][i] != selectIfValue1) check1 = true;
+            break;
+        }
+        if (check1) {
+            for (j = 0; j < numCol; j++) tdvar[j][tnumRow] = rvar[j][[i]];
+            tnumRow++
+        }
+      }  // endof for i      
+    }
+    else if (selectVar1 >= 0 && selectVar2 >= 0 && selectVar3 < 0) {
+      if ( selectIfValue1 == "" || selectIfValue2 == "" ) {
+        document.getElementById("selectIfWarning").innerHTML = alertMsg[61][langNum]; // No value entered
+        document.getElementById("selectIfWarning").style.display = "block"; 
+        return;  
+      }
+      for (i = 0; i < numRow; i++) {
+        if (rvar[selectVar1][i] == MISSING || rvar[selectVar2][i] == MISSING) continue;
+        check1 = false;
+        switch (selectOperator1) {
+          case 1:
+            if (rvar[selectVar1][i] == selectIfValue1) check1 = true;
+            break;
+          case 2:
+            if (rvar[selectVar1][i] <  selectIfValue1) check1 = true;
+            break;
+          case 3:
+            if (rvar[selectVar1][i] <= selectIfValue1) check1 = true;
+            break;
+          case 4:
+            if (rvar[selectVar1][i] >  selectIfValue1) check1 = true;
+            break;
+          case 5:
+            if (rvar[selectVar1][i] >= selectIfValue1) check1 = true;
+            break;
+          case 6:
+            if (rvar[selectVar1][i] != selectIfValue1) check1 = true;
+            break;
+        }
+        check2 = false;
+        switch (selectOperator2) {
+          case 1:
+            if (rvar[selectVar2][i] == selectIfValue2) check2 = true;
+            break;
+          case 2:
+            if (rvar[selectVar2][i] <  selectIfValue2) check2 = true;
+            break;
+          case 3:
+            if (rvar[selectVar2][i] <= selectIfValue2) check2 = true;
+            break;
+          case 4:
+            if (rvar[selectVar2][i] >  selectIfValue2) check2 = true;
+            break;
+          case 5:
+            if (rvar[selectVar2][i] >= selectIfValue2) check2 = true;
+            break;
+          case 6:
+            if (rvar[selectVar2][i] != selectIfValue2) check2 = true;
+            break;
+        }
+        if (check1 && check2) {
+            for (j = 0; j < numCol; j++) tdvar[j][tnumRow] = rvar[j][[i]];
+            tnumRow++
+        }
+      }  // endof for i      
+    }
+    else if (selectVar1 >= 0 && selectVar2 >= 0 && selectVar3 >= 0) {
+      if ( selectIfValue1 == "" || selectIfValue2 == "" || selectIfValue3 == "" ) {
+        document.getElementById("selectIfWarning").innerHTML = alertMsg[61][langNum]; // No value entered
+        document.getElementById("selectIfWarning").style.display = "block"; 
+        return;  
+      }
+      for (i = 0; i < numRow; i++) {
+        if (rvar[selectVar1][i] == MISSING || rvar[selectVar2][i] == MISSING || rvar[selectVar3][i] == MISSING) continue;
+        check1 = false;
+        switch (selectOperator1) {
+          case 1:
+            if (rvar[selectVar1][i] == selectIfValue1) check1 = true;
+            break;
+          case 2:
+            if (rvar[selectVar1][i] <  selectIfValue1) check1 = true;
+            break;
+          case 3:
+            if (rvar[selectVar1][i] <= selectIfValue1) check1 = true;
+            break;
+          case 4:
+            if (rvar[selectVar1][i] >  selectIfValue1) check1 = true;
+            break;
+          case 5:
+            if (rvar[selectVar1][i] >= selectIfValue1) check1 = true;
+            break;
+          case 6:
+            if (rvar[selectVar1][i] != selectIfValue1) check1 = true;
+            break;
+        }
+        check2 = false;
+        switch (selectOperator2) {
+          case 1:
+            if (rvar[selectVar2][i] == selectIfValue2) check2 = true;
+            break;
+          case 2:
+            if (rvar[selectVar2][i] <  selectIfValue2) check2 = true;
+            break;
+          case 3:
+            if (rvar[selectVar2][i] <= selectIfValue2) check2 = true;
+            break;
+          case 4:
+            if (rvar[selectVar2][i] >  selectIfValue2) check2 = true;
+            break;
+          case 5:
+            if (rvar[selectVar2][i] >= selectIfValue2) check2 = true;
+            break;
+          case 6:
+            if (rvar[selectVar2][i] != selectIfValue2) check2 = true;
+            break;
+        }
+        check3 = false;
+        switch (selectOperator2) {
+          case 1:
+            if (rvar[selectVar3][i] == selectIfValue3) check3 = true;
+            break;
+          case 2:
+            if (rvar[selectVar3][i] <  selectIfValue3) check3 = true;
+            break;
+          case 3:
+            if (rvar[selectVar3][i] <= selectIfValue3) check3 = true;
+            break;
+          case 4:
+            if (rvar[selectVar3][i] >  selectIfValue3) check3 = true;
+            break;
+          case 5:
+            if (rvar[selectVar3][i] >= selectIfValue3) check3 = true;
+            break;
+          case 6:
+            if (rvar[selectVar3][i] != selectIfValue3) check3 = true;
+            break;
+        }
+        if (check1 && check2 && check3) {
+            for (j = 0; j < numCol; j++) tdvar[j][tnumRow] = rvar[j][[i]];
+            tnumRow++
+        }
+      }  // endof for i      
+    }
+    // select if 에 맞는 데이터가 없으면
+    if (tnumRow == 0) {
+      document.getElementById("selectIfWarning").innerHTML = alertMsg[63][langNum]; // No data which satisfies conditions.
+      document.getElementById("selectIfWarning").style.display = "block"; 
+      return;
+    }
+    // Clear data
+    for (j = 0; j < numCol; j++) { 
+      for (i = 0; i < numRow; i++) {
+        data[i][j] = null;
+      }
+    }
+    numRow = tnumRow;
+    // find new rvalue[j]
+    for (j = 0; j < numCol; j++) { 
+      for (i = 0; i < rvalueNum[j]; i++) {
+        rvalue[j][i] = null;
+      }
+      for (i = 0; i < numRow; i++) {
+        dataA[i] = tdvar[j][i];
+      }
+      rvalueNum[j] = sortAscendAlpha(numRow, dataA, dataValue, dvalueFreq);
+      for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
+    }
+    // dump tdvar[][] => rvar[][]
+    for (j = 0; j < numCol; j++) {
+      for (i = 0; i < numRow; i++) {
+        rvar[j][i] = tdvar[j][i]
+        if (rvar[j][i] == MISSING) data[i][j] = null;
+        else data[i][j] = rvar[j][i];
+      }
+    }
+    // 시트 업데이트
+    datasheet.updateSettings({
+        data: data, 
+        colHeaders: rvarName,
+    });
+    datasheet.selectCell(0, 0); // 커서 위치를 (0,0)으로
+    variableSelectClear();
+    updateVarList();
+    document.getElementById("loadFileName").value = "Untitled.csv";
+}) // endof select If
+// EditVar - SelectIf 나가기
+d3.select("#cancelSelectIf").on("click", function() {
+    clearSelectIfBox();
+    if (typeof(numRow) == 'undefined') {
+      $("#sub14").dialog("close");
+    }
+    openEditVar('valueLabel')
+    $("#sub14").dialog("close");
+})
+function clearSelectIfBox() {
+    document.getElementById("varlistSelectIf1").value = 0;
+    document.getElementById("varlistSelectIf2").value = 0;
+    document.getElementById("varlistSelectIf3").value = 0;
+    document.getElementById("selectIf1").value = "";
+    document.getElementById("selectIf2").value = "";
+    document.getElementById("selectIf3").value = "";
+    document.getElementById("selectIfWarning").innerHTML = "";
+    document.getElementById("selectIfWarning").style.display = "none"; 
+    var list = document.getElementById("varlistSelectIf1");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+    list = document.getElementById("varlistSelectIf2");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+    list = document.getElementById("varlistSelectIf3");
+    while (list.firstChild) {
+      list.removeChild(list.lastChild);
+    }
+    document.getElementById("varlistOperatorSelectIf1").value = "";
+    document.getElementById("varlistOperatorSelectIf2").value = "";
+    document.getElementById("varlistOperatorSelectIf3").value = "";
+    document.getElementById("selectIf1").value = "";
+    document.getElementById("selectIf2").value = "";
+    document.getElementById("selectIf3").value = "";
+}
+// EditVar Tab 처리
+function openEditVar(eventName) {
+  var opt, temp, tempStr; 
+  if (eventName == 'valueLabel') {
+    document.getElementById('valueLabel').style.display = "block";
+    document.getElementById('sorting').style.display    = "none";
+    document.getElementById('compute').style.display    = "none";
+    document.getElementById('category').style.display   = "none";
+    document.getElementById('recode').style.display     = "none";
+    document.getElementById('selectIf').style.display   = "none";
+    document.getElementById('valueLabelBtn').style.background = "#dad8d8";
+    document.getElementById('sortingBtn').style.background    = "#f1f1f1";
+    document.getElementById('categoryBtn').style.background   = "#f1f1f1";
+    document.getElementById('recodeBtn').style.background     = "#f1f1f1";
+    document.getElementById('computeBtn').style.background    = "#f1f1f1";
+    document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
+    document.getElementById("valueLabelWarning").innerHTML = "";
+    document.getElementById("valueLabelWarning").style.display = "none"; 
+    if (typeof(numRow) == 'undefined') {
+      document.getElementById("valueLabelWarning").innerHTML = alertMsg[55][langNum];
+      document.getElementById("valueLabelWarning").style.display = "block"; 
+    }
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlist").appendChild(opt);
+    }
+    document.getElementById("varlist").value = 1;
+  }
+  else if (eventName == 'sorting') {
+    document.getElementById('valueLabel').style.display = "none";
+    document.getElementById('sorting').style.display    = "block";
+    document.getElementById('compute').style.display    = "none";
+    document.getElementById('category').style.display   = "none";
+    document.getElementById('recode').style.display     = "none";
+    document.getElementById('selectIf').style.display   = "none";
+    document.getElementById('valueLabelBtn').style.background = "#f1f1f1";
+    document.getElementById('sortingBtn').style.background    = "#dad8d8";
+    document.getElementById('categoryBtn').style.background   = "#f1f1f1";
+    document.getElementById('recodeBtn').style.background     = "#f1f1f1";
+    document.getElementById('computeBtn').style.background    = "#f1f1f1";
+    document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
+    document.getElementById("sortingWarning0").innerHTML = "";
+    document.getElementById("sortingWarning0").style.display = "none"; 
+    if (typeof(numRow) == 'undefined') {
+      document.getElementById("sortingWarning0").innerHTML = alertMsg[55][langNum];
+      document.getElementById("sortingWarning0").style.display = "block"; 
+    }
+    // Sorting 1
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistSorting1").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistSorting1").appendChild(opt);
+    }
+    document.getElementById("varlistSorting1").value = 0;
+    // Sorting 2
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistSorting2").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistSorting2").appendChild(opt);
+    }
+    document.getElementById("varlistSorting2").value = 0;
+    // Sorting 3
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistSorting3").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistSorting3").appendChild(opt);
+    }
+    document.getElementById("varlistSorting3").value = 0;
+  }
+  else if (eventName == 'category') {
+    document.getElementById('valueLabel').style.display = "none";
+    document.getElementById('sorting').style.display    = "none";
+    document.getElementById('compute').style.display    = "none";
+    document.getElementById('category').style.display   = "block";
+    document.getElementById('recode').style.display     = "none";
+    document.getElementById('selectIf').style.display   = "none";
+    document.getElementById('valueLabelBtn').style.background = "#f1f1f1";
+    document.getElementById('sortingBtn').style.background    = "#f1f1f1";
+    document.getElementById('categoryBtn').style.background   = "#dad8d8";
+    document.getElementById('recodeBtn').style.background     = "#f1f1f1";
+    document.getElementById('computeBtn').style.background    = "#f1f1f1";
+    document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
+    document.getElementById("categoryWarning0").innerHTML = "";
+    document.getElementById("categoryWarning0").style.display = "none"; 
+    if (typeof(numRow) == 'undefined') {
+      document.getElementById("categoryWarning0").innerHTML = alertMsg[55][langNum];
+      document.getElementById("categoryWarning0").style.display = "block"; 
+    }
+    document.getElementById("newCategoryVar").value     = "V" + (numCol+1).toString();
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistCategory").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistCategory").appendChild(opt);
+    }
+    document.getElementById("varlistCategory").value = 0;
+  }
+  else if (eventName == 'recode') {
+    document.getElementById('valueLabel').style.display = "none";
+    document.getElementById('sorting').style.display    = "none";
+    document.getElementById('compute').style.display    = "none";
+    document.getElementById('category').style.display   = "none";
+    document.getElementById('recode').style.display     = "block";
+    document.getElementById('selectIf').style.display   = "none";
+    document.getElementById("newRecodeVar").value       = "V" + (numCol+1).toString();
+    document.getElementById("newRecodeVar").disabled    = true;
+    document.getElementById('valueLabelBtn').style.background = "#f1f1f1";
+    document.getElementById('sortingBtn').style.background    = "#f1f1f1";
+    document.getElementById('categoryBtn').style.background   = "#f1f1f1";
+    document.getElementById('recodeBtn').style.background     = "#dad8d8";
+    document.getElementById('computeBtn').style.background    = "#f1f1f1";
+    document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
+    document.getElementById("recodeWarning0").innerHTML = "";
+    document.getElementById("recodeWarning0").style.display = "none"; 
+    if (typeof(numRow) == 'undefined') {
+      document.getElementById("recodeWarning0").innerHTML = alertMsg[55][langNum];
+      document.getElementById("recodeWarning0").style.display = "block"; 
+    }
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistRecode").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistRecode").appendChild(opt);
+    }
+    document.getElementById("varlistRecode").value = 0;
+  }
+  else if (eventName == 'compute') {
+    str1 = "";
+    str2 = "";
+    document.getElementById('valueLabel').style.display = "none";
+    document.getElementById('sorting').style.display    = "none";
+    document.getElementById('compute').style.display    = "block";
+    document.getElementById('category').style.display   = "none";
+    document.getElementById('recode').style.display     = "none";
+    document.getElementById('selectIf').style.display   = "none";
+    document.getElementById("newComputeVar").value      = "V" + (numCol+1).toString();
+    document.getElementById("newComputeVar").disabled   = true;
+    document.getElementById("computeFormula").value     = str1;
+    document.getElementById('valueLabelBtn').style.background = "#f1f1f1";
+    document.getElementById('sortingBtn').style.background    = "#f1f1f1";
+    document.getElementById('categoryBtn').style.background   = "#f1f1f1";
+    document.getElementById('recodeBtn').style.background     = "#f1f1f1";
+    document.getElementById('computeBtn').style.background    = "#dad8d8";
+    document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
+    document.getElementById("computeWarning0").innerHTML = "";
+    document.getElementById("computeWarning0").style.display = "none"; 
+    if (typeof(numRow) == 'undefined') {
+      document.getElementById("computeWarning0").innerHTML = alertMsg[55][langNum];
+      document.getElementById("computeWarning0").style.display = "block"; 
+    }
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("variable");
+    opt.appendChild(temp);
+    document.getElementById("varlistCompute").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistCompute").appendChild(opt);
+    }
+    document.getElementById("varlistCompute").value = 0;
+  }
+  else if (eventName == 'selectIf') {
+    document.getElementById('valueLabel').style.display = "none";
+    document.getElementById('sorting').style.display    = "none";
+    document.getElementById('compute').style.display    = "none";
+    document.getElementById('category').style.display   = "none";
+    document.getElementById('recode').style.display     = "none";
+    document.getElementById('selectIf').style.display   = "block";
+    document.getElementById('valueLabelBtn').style.background = "#f1f1f1";
+    document.getElementById('sortingBtn').style.background    = "#f1f1f1";
+    document.getElementById('categoryBtn').style.background   = "#f1f1f1";
+    document.getElementById('recodeBtn').style.background     = "#f1f1f1";
+    document.getElementById('computeBtn').style.background    = "#f1f1f1";
+    document.getElementById('selectIfBtn').style.background   = "#dad8d8";
+    document.getElementById("selectIfWarning0").innerHTML = "";
+    document.getElementById("selectIfWarning0").style.display = "none"; 
+    document.getElementById("varlistOperatorSelectIf1").value = 0;
+    document.getElementById("varlistOperatorSelectIf2").value = 0;
+    document.getElementById("varlistOperatorSelectIf3").value = 0;
+    if (typeof(numRow) == 'undefined') {
+      document.getElementById("selectIfWarning0").innerHTML = alertMsg[55][langNum];
+      document.getElementById("selectIfWarning0").style.display = "block"; 
+    }
+    // Select If 1
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistSelectIf1").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistSelectIf1").appendChild(opt);
+    }
+    document.getElementById("varlistSelectIf1").value = 0;
+    // SelectIf 2
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistSelectIf2").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistSelectIf2").appendChild(opt);
+    }
+    document.getElementById("varlistSelectIf2").value = 0;
+    // SelectIf 3
+    opt = document.createElement("option")
+    opt.setAttribute("value", "0"); 
+    temp = document.createTextNode("--");
+    opt.appendChild(temp);
+    document.getElementById("varlistSelectIf3").appendChild(opt);
+    for ( i = 0; i < numCol; i++) { 
+      opt = document.createElement("option")
+      tempStr = (i+1).toString();
+      opt.setAttribute("value", tempStr); 
+      tempStr = "V"+(i+1).toString();
+      if (rvarName[i] != tempStr) tempStr = tempStr+": "+rvarName[i];
+      temp = document.createTextNode(tempStr);
+      opt.appendChild(temp);
+      document.getElementById("varlistSelectIf3").appendChild(opt);
+    }
+    document.getElementById("varlistSelectIf3").value = 0;
+  }
+}
+
 // Language Selector
 languageNumber = {
     'ko': 0,    'en': 1,    'ja': 2,    'zh': 10,
@@ -3716,6 +4948,7 @@ languageNumber = {
     'az': 16,
     'uz': 17,
     'ru': 18,
+    'tr': 19,
 }
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");

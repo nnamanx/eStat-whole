@@ -27,7 +27,6 @@
       gtag('js', new Date());
       gtag('config', 'UA-117441368-1');
     </script>
-    
   </head>
 
   <body>
@@ -203,6 +202,7 @@
 	      <option value="ru">Russian</option>
 	      <option value="es">Spanish</option>
 	      <option value="th">Thai</option>
+	      <option value="tr">Turkish</option>
 	      <option value="uz">Uzbek</option>
 	      <option value="vi">Vietnamese</option>
 	    </select>
@@ -368,7 +368,7 @@
 
 	    <div id="sub2"  class="option-group">
 	      <form action="#" name="myForm2" class="option-group">
-		&nbsp;<span data-msgid="(Sorting)">(정렬)</span>
+		&nbsp;<span data-msgid="Sorting">(정렬)</span>
 		<input type="radio" name = "type2" value="1" id="raw" checked><span data-msgid="Raw Data">  원자료</span>
 		<input type="radio" name = "type2" value="2" id="descend">    <span data-msgid="Descending">내림차순</span>
 		<input type="radio" name = "type2" value="3" id="ascend">     <span data-msgid="Ascending">올림차순</span>
@@ -863,19 +863,20 @@
 	<p>Ex: https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/iris.csv</p>
       </div>
 
-      <div class="dialog" id="sub14" style="display: none;"> <!-- 변수정보 편집 -->
+<div class="dialog" style="display:none;" id="sub14">
+  <button id="valueLabelBtn" style="width:130px;" onclick="openEditVar('valueLabel')"><span data-msgid="Value Label">Value Label</span></button> &nbsp;
+  <button id="sortingBtn"    style="width:130px;" onclick="openEditVar('sorting')">   <span data-msgid="Sorting">Sorting</span>     </button> &nbsp;
+  <button id="categoryBtn"   style="width:130px;" onclick="openEditVar('category')">  <span data-msgid="Categorize">Category</span> </button> &nbsp;
+  <button id="recodeBtn"     style="width:130px;" onclick="openEditVar('recode')">    <span data-msgid="Recode">Recode</span>       </button> &nbsp;
+  <button id="computeBtn"    style="width:130px;" onclick="openEditVar('compute')">   <span data-msgid="Compute">Compute</span>     </button> &nbsp;
+  <button id="selectIfBtn"   style="width:130px;" onclick="openEditVar('selectIf')">  <span data-msgid="SelectIf">Select If</span>  </button> &nbsp;
+  <p>
+  <!-- Value Label ------------------------------------------------------------------------->
+  <div id="valueLabel" style="display:block;">
+    <h4><span data-msgid="Value Label">Value Label</span> &nbsp;&nbsp; <span id="valueLabelWarning" style="color:red;"></span></h4>
+    <span style="color:blue;" data-msgid="InfoValueLabel"></span>
 	<div>
 	  <select id="varlist">
-	    <option value="1">V1</option>
-	    <option value="2">V2</option>
-	    <option value="3">V3</option>
-	    <option value="4">V4</option>
-	    <option value="5">V5</option>
-	    <option value="6">V6</option>
-	    <option value="7">V7</option>
-	    <option value="8">V8</option>
-	    <option value="9">V9</option>
-	    <option value="10">V10</option>
 	  </select>
 	  &nbsp; <span data-msgid="Variable Name">변량명</span>
 	  <input type="text" size=10 id="vname" >
@@ -947,15 +948,533 @@
 	</table>
 	<h5>&nbsp;&nbsp; <span data-msgid="* Less than nine value labels allowed.">* 9개 이하의 변량값명을 지정할 수 있음</span> </h5>
 	&nbsp;&nbsp;
-	<button type="button" id="vconfirm" size="10" >
+	<button style="width:130px" type="button" id="vconfirm" size="10" >
 	  <span data-msgid="Save">저장</span>
 	</button>
 	&nbsp;&nbsp;
-	<button type="button" id="vcancel" size="10" >
-	  <span data-msgid="Exit">나가기</span>
+	<button style="width:130px" type="button" id="vcancel" size="10" >
+	  <span data-msgid="Exit">Cancel</span>
 	</button>
-      </div>
-    </div>
+    <br>
+  </div> <!-- end of valueLabel --->
+
+  <!-- Sorting ------------------------------------------------------------------------->
+  <div id="sorting" style="display:none;">
+  <h4><span data-msgid="Sorting">Sorting</span> &nbsp;&nbsp; <span id="sortingWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoSorting"></span>
+    <table>
+      <tr>
+        <th><span data-msgid="SortingVariable"></span></th>
+        <th><span data-msgid="SortingMethod"></span></th>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSorting1">
+	  </select>
+        </td>
+	<td>
+          <form name="sortingForm1">&nbsp;&nbsp;&nbsp; 
+            <input type="radio" name = "sortingType1" value="1" checked> <span data-msgid="Ascending"></span>     
+            <input type="radio" name = "sortingType1" value="2" > <span data-msgid="Descending"></span>     
+          </form>   
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSorting2">
+	  </select>
+        </td>
+	<td>
+          <form name="sortingForm2">&nbsp;&nbsp;&nbsp; 
+            <input type="radio" name = "sortingType2" value="1" checked> <span data-msgid="Ascending"></span>     
+            <input type="radio" name = "sortingType2" value="2" > <span data-msgid="Descending"></span>
+          </form>   
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSorting3">
+	  </select>
+        </td>
+	<td>
+          <form name="sortingForm3">&nbsp;&nbsp;&nbsp; 
+            <input type="radio" name = "sortingType3" value="1" checked> <span data-msgid="Ascending"></span>     
+            <input type="radio" name = "sortingType3" value="2" > <span data-msgid="Descending"></span>
+          </form>   
+        </td>
+      </tr>
+    </table>
+    <p>
+    <button style="width:130px" type="button" id="executeSorting" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelSorting" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="sortingWarning" style="color:red;"></span>
+  </div> <!-- end of sorting --->
+
+  <!-- Categorize ------------------------------------------------------------------------->
+  <div id="category" style="display:none;">
+  <h4><span data-msgid="Categorize">Categorize</span>  &nbsp;&nbsp; <span id="categoryWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoCategorize"></span>
+    <table>
+      <tr>
+        <th colspan="2"><span data-msgid="NewVariable"></span></th>
+        <th><span data-msgid="CategoryVariable"></span></th>
+      </tr>
+      <tr>
+	<td>
+          <input type="text" size=1 id="newCategoryVar" >
+        </td>
+	<td>
+          <span data-msgid="Variable Name"></span> &nbsp; <input type="text" size=8 id="newCategoryVarName" >
+        </td>
+	<td>
+	  <select id="varlistCategory">
+	  </select>
+        </td>
+        <td>min = <input type="text" size=4 id="minimumValue" style="text-align:center;"></td>
+        <td>max = <input type="text" size=4 id="maximumValue" style="text-align:center;"></td>
+      </tr>
+      <tr>
+	<td></td>
+        <td style="text-align:right;"><span data-msgid="Interval Start"></span></td>
+	<td>
+          <input type="text" size=5 value="" id="intervalStart" style="text-align:center;"> 
+        </td>
+        <td style="text-align:left;"><span style="color:blue;"> ≤ min </span></td>
+      </tr>
+      <tr>
+	<td></td>
+        <td style="text-align:right;"><span data-msgid="Interval Width"></span></td>
+	<td>
+          <input type="text" size=5 value="" id="intervalWidth" style="text-align:center;"> 
+        </td>
+        <td style="text-align:left;"><span style="color:blue;"> ≤ 9 </span><span style="color:blue;" data-msgid="CategoryD"></span></td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" id="categoryList" size="10" ><span data-msgid="CategoryListCheck"></span></button>
+    &nbsp;&nbsp;<span id="categoryListWarning" style="color:red;"></span>
+    <table>
+	  <tbody>
+	    <tr>
+              <th></th>
+	      <th>&nbsp;&nbsp; </th>
+	      <th>#&nbsp;&nbsp;</th>
+              <th colspan="5"><span data-msgid="CategoryInterval"></span></th>
+              <th></th>
+              <th></th>
+	      <th><span data-msgid="CategoryLabel"></span></th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td> 1&nbsp; </td>
+	      <td><input type="text" size=5 id="category11" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category12" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category13" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category14" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td> 2&nbsp;</td>
+	      <td><input type="text" size=5 id="category21" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category22" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category23" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category24" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td> 3&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="category31" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category32" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category33" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category34" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>4</td>
+	      <td><input type="text" size=5 id="category41" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category42" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category43" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category44" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>5</td>
+	      <td><input type="text" size=5 id="category51" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category52" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category53" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category54" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>6</td>
+	      <td><input type="text" size=5 id="category61" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category62" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category63" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category64" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>7</td>
+	      <td><input type="text" size=5 id="category71" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category72" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category73" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category74" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>8</td>
+	      <td><input type="text" size=5 id="category81" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category82" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category83" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category84" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>9</td>
+	      <td><input type="text" size=5 id="category91" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category92" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category93" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category94" ></td>
+	    </tr>
+	  </tbody>
+    </table>
+    <p>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="executeCategory" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelCategory" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="categoryWarning" style="color:red;"></span>
+  </div>
+
+  <!-- Recode ------------------------------------------------------------------------->
+  <div id="recode" style="display:none;">
+  <h4><span data-msgid="Recode">Recode</span> &nbsp;&nbsp; <span id="recodeWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoRecode"></span>
+    <table>
+      <tr>
+        <th style="text-align:left" colspan="2"><span data-msgid="NewVariable"></span></th>
+        <th style="text-align:left"><span data-msgid="RecodeVariable"></span></th>
+      </tr>
+      <tr>
+	<td>
+          <input type="text" size=1 id="newRecodeVar" >
+        </td>
+	<td>
+          <span data-msgid="Variable Name"></span> &nbsp; <input type="text" size=8 id="newRecodeVarName" >
+        </td>
+	<td>
+	  <select id="varlistRecode">
+	  </select>
+        </td>
+        <td colspan="3" style="color:blue;"><span data-msgid="InfoRecode2"></span></td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;<span id="recodeVarWarning" style="color:red;"></span>
+    <table>
+	  <tbody>
+	    <tr>
+	      <th>&nbsp;&nbsp; </th>
+	      <th>#&nbsp;&nbsp;</th>
+              <th><span data-msgid="CurrentValue"></span></th>
+              <th></th>
+	      <th><span data-msgid="NewValue"></span></th>
+              <td style="color:blue">(<span data-msgid="MissingValue"></span>: "MISSING")</td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td> 1&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="recode11" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode12"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td> 2&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="recode21" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode22"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td> 3&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="recode31" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode32"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>4</td>
+	      <td><input type="text" size=5 id="recode41" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode42"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>5</td>
+	      <td><input type="text" size=5 id="recode51" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode52"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>6</td>
+	      <td><input type="text" size=5 id="recode61" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode62"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>7</td>
+	      <td><input type="text" size=5 id="recode71" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode72"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>8</td>
+	      <td><input type="text" size=5 id="recode81" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode82"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>9</td>
+	      <td><input type="text" size=5 id="recode91" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode92"><th>
+	    </tr>
+	  </tbody>
+    </table>
+    <p>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="executeRecode" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelRecode" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="recodeWarning" style="color:red;"></span>
+  </div>
+
+  <!-- Compute ------------------------------------------------------------------------->
+  <div id="compute" style="display:none;">
+  <h4><span data-msgid="Compute">Compute</span> &nbsp;&nbsp; <span id="computeWarning0" style="color:red;"></span></h4>
+    <table>
+      <tr>
+        <th colspan="2"><span data-msgid="NewVariable"></span></th>
+	<td>
+          <input type="text" size=1 id="newComputeVar" >
+        </td>
+	<td>
+          <span data-msgid="Variable Name"></span> &nbsp; <input type="text" size=8 id="newComputeVarName" >
+        </td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="color:blue;" data-msgid="InfoCompute"></span> <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="color:blue;"> Ex: 2*V1 + 3*V2 + LOG(V3)</span><br>
+    <table>
+      <tr>
+        <th><span data-msgid="ComputeFormula"></span></th>
+	<td>
+          <input type="text" size=60 id="computeFormula" >
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td>
+	  <select id="varlistCompute">
+	  </select>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td><button type="button" id="n1" size="4" >1</button></td>
+	<td><button type="button" id="n2" size="4" >2</button></td>
+	<td><button type="button" id="n3" size="4" >3</button></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td><button type="button" id="nplus" size="4" >+</button></td>
+	<td><button type="button" id="nlog" size="4" >LOG </button></td>
+      </tr>
+      <tr>
+        <td></td>
+	<td></td>
+        <td></td>
+	<td><button type="button" id="n4" size="4" >4</button></td>
+	<td><button type="button" id="n5" size="4" >5</button></td>
+	<td><button type="button" id="n6" size="4" >6</button></td>
+        <td></td>
+	<td><button type="button" id="nminus" size="4" >-</button></td>
+	<td><button type="button" id="nexp" size="4" >EXP </button></td>
+      </tr>
+      <tr>
+        <td></td>
+	<td></td>
+        <td></td>
+	<td><button type="button" id="n7" size="4" >7</button></td>
+	<td><button type="button" id="n8" size="4" >8</button></td>
+	<td><button type="button" id="n9" size="4" >9</button></td>
+        <td></td>
+	<td><button type="button" id="nmult" size="4" >*</button></td>
+	<td><button type="button" id="nsqrt" size="4" >SQRT</button></td>
+      </tr>
+      <tr>
+        <td></td>
+	<td></td>
+        <td></td>
+	<td><button type="button" id="n0" size="4" >0</button></td>
+	<td><button type="button" id="ndot" size="4" >∙</button></td>
+        <td></td>
+        <td></td>
+	<td><button type="button" id="ndivide" size="4" >/</button></td>
+	<td><button type="button" id="nopen" size="4" >(</button></td>
+	<td><button type="button" id="nclose" size="4" >)</button></td>
+      </tr>
+    </table>
+    <p>
+    <button style="width:130px" type="button" id="executeCompute" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelCompute" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="computeWarning" style="color:red;"></span>
+  </div>
+
+  <!-- Select If ------------------------------------------------------------------------->
+  <div id="selectIf" style="display:none;">
+  <h4><span data-msgid="SelectIf">Select If</span> &nbsp;&nbsp; <span id="selectIfWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoSelectIf"></span>
+    <table>
+      <tr>
+        <th><span data-msgid="SelectVariable"></span></th>
+        <th><span data-msgid="RelationOperator"></span></th>
+        <th><span data-msgid="SelectValue"></span></th>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSelectIf1">
+	  </select>
+        </td>
+	<td>
+	  <select id="varlistOperatorSelectIf1">
+	    <option value="1"> = </option>
+	    <option value="2"> < </option>
+	    <option value="3"> ≤ </option>
+	    <option value="4"> > </option>
+	    <option value="5"> ≥ </option>
+	    <option value="6"> ≠ </option>
+	  </select>
+        </td>
+	<td>
+          <input type="text" size=8 value="" id="selectIf1">
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSelectIf2">
+	  </select>
+        </td>
+	<td>
+	  <select id="varlistOperatorSelectIf2">
+	    <option value="1"> = </option>
+	    <option value="2"> < </option>
+	    <option value="3"> ≤ </option>
+	    <option value="4"> > </option>
+	    <option value="5"> ≥ </option>
+	    <option value="6"> ≠ </option>
+	  </select>
+        </td>
+	<td>
+          <input type="text" size=8 value="" id="selectIf2">
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSelectIf3">
+	  </select>
+        </td>
+	<td>
+	  <select id="varlistOperatorSelectIf3">
+	    <option value="1"> = </option>
+	    <option value="2"> < </option>
+	    <option value="3"> ≤ </option>
+	    <option value="4"> > </option>
+	    <option value="5"> ≥ </option>
+	    <option value="6"> ≠ </option>
+	  </select>
+        </td>
+	<td>
+          <input type="text" size=8 value="" id="selectIf3">
+        </td>
+      </tr>
+    </table>
+    <p>
+    <button style="width:130px" type="button" id="executeSelectIf" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelSelectIf" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="selectIfWarning" style="color:red;"></span>
+  </div>
+
+</div> <!-- end of dialog --->
+
 
     <script src="js/app.js"> </script>
   </body>
