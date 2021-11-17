@@ -6076,3 +6076,16 @@ function drawTitle(mTitle, yTitle, xTitle) {
             .attr("transform", "rotate(-90 30 100)")
   }
 }
+// eStatU 공유를 위한 함수  eStatH, Distribution
+var indexLoc = localStorage['myKey'];
+function menuLoc() {
+    console.log(indexLoc)
+    // Create anchor element.
+    var a = document.createElement('a'); 
+    // Set the href property.
+    a.href = indexLoc; 
+    a.id   = "menu";
+    // Append the anchor element to the body.
+    document.body.appendChild(a);
+    document.getElementById("menu").click()
+}

@@ -2,56 +2,41 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/estat/eStat/css/eBook.css">
+    <script src="../../eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="../../eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="../../eStat/lib/DistributionsUtil.js" ></script>
+    <script src="../../eStat/js/language.js" ></script>
+    <script src="../../eStat/js/eStatU.js"></script>
 </head>
 <body>
-
 <h3>Statistical Distribution</h3>
-<div>
     <table>
       <tbody>
         <tr><td><b>Discrete Distribution</b></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/42BinomialEng.htm">Binomial Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/44PoissonEng.htm">Poisson Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/45GeometricEng.htm">Geometric Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/46HyperGeoEng.htm">Hypergeometric Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/42BinomialEng.htm">Binomial Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/44PoissonEng.htm">Poisson Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/45GeometricEng.htm">Geometric Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/46HyperGeoEng.htm">Hypergeometric Distribution</a></td></tr>
         <tr><td> &nbsp;</td></tr>
         <tr><td><b>Continuous Distribution</b></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/52NormalEng.htm">Normal Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/50ExponentialEng.htm">Exponential Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/54TdistEng.htm">t Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/56ChisqEng.htm">ChiSquare Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/58FdistEng.htm">F Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/995StudentRangeDist.htm">Studentized Range Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/52NormalEng.htm">Normal Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/50ExponentialEng.htm">Exponential Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/54TdistEng.htm">t Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/56ChisqEng.htm">ChiSquare Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/58FdistEng.htm">F Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/995StudentRangeDist.htm">Studentized Range Distribution</a></td></tr>
         <tr><td> &nbsp;</td></tr>
         <tr><td><b>Nonparametric Distribution</b></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/950SignedRankDist.htm">Wilcoxon Signed Rank Sum Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/960RankSumDist.htm">Wilcoxon Rank Sum Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/980KruskalDist.htm">Kruskal-Wallis H Distribution</a></td></tr>
-        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../Distribution/990FriedmanDist.htm">Friedman S Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/950SignedRankDist.htm">Wilcoxon Signed Rank Sum Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/960RankSumDist.htm">Wilcoxon Rank Sum Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/980KruskalDist.htm">Kruskal-Wallis H Distribution</a></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../eStatU/990FriedmanDist.htm">Friedman S Distribution</a></td></tr>
       </tbody>
     </table>
-</div>
-<!--
-<div class="leftmenu">
-    <ul>
-      <li><a href="../index_en.html">Introduction</a></li>
-      <li><a href="../01English/01chapter.html">Chapter 1</a></li>
-      <li><a href="../01English/02chapter.html">Chapter 2</a></li>
-      <li><a href="../01English/03chapter.html">Chapter 3</a></li>
-      <li><a href="../01English/04chapter.html">Chapter 4</a></li>
-      <li><a href="../01English/05chapter.html">Chapter 5</a></li>
-      <li><a href="../01English/06chapter.html">Chapter 6</a></li>
-      <li><a href="../01English/07chapter.html">Chapter 7</a></li>
-      <li><a href="../01English/08chapter.html">Chapter 8</a></li>
-      <li><a href="../01English/09chapter.html">Chapter 9</a></li>
-      <li><a href="../01English/10chapter.html">Chapter 10</a></li>
-      <li><a href="../01English/11chapter.html">Chapter 11</a></li>
-      <li><a href="../01English/12chapter.html">Chapter 12</a></li>
-      <li class="hoverBackground">Distribution</a></li>
-    </ul>
-</div>
--->
 </body>
+<script>
+  localStorage['myKey'] = "../eLearning/Distribution/index.html";
+</script>
 </html>
 
