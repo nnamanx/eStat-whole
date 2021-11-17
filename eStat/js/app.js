@@ -509,9 +509,10 @@ function initEventControl(datasheet) {
     datasheet.addHook('afterCreateRow', turnOnDatasheetChangeFlag);
     datasheet.addHook('afterCreateCol', turnOnDatasheetChangeFlag);
     datasheet.addHook('afterCut',       turnOnDatasheetChangeFlag);
-    // turn on data sheet change flag
+
     function turnOnDatasheetChangeFlag() {
 	isDatasheetChanged = true;
+        syncDatasheetWithInternalDataArray();
     }
     
     function syncDatasheetWithInternalDataArray(change, source) {
@@ -523,7 +524,74 @@ function initEventControl(datasheet) {
         // } else {
         //     datasheet.setCellMeta(row, col, "className", "htRight");
         // }
-	updateInternalArray();
+	
+        for (j = 0; j < colMax; j++) {
+            rvar[j]  = datasheet.getDataAtCol(j);
+            robs[j]  = 0;
+            for (i = 0; i < rowMax; i++) {
+                if (rvar[j][i] == null || rvar[j][i] == "") rvar[j][i] = null;
+                else robs[j]++;
+            }
+            // 소수점이하 자리수 체크
+            rvarDeci[j] = 0;
+            for (i = 0; i < robs[j]; i++) {
+                if (rvar[j][i] == null) continue;
+                m = rvar[j][i].indexOf(".");
+                if (m > -1) {
+                    k = rvar[j][i].length - (m + 1);
+                    if (k > rvarDeci[j]) rvarDeci[j] = k;
+                }
+            } // endof i
+        }
+        // 각 변량별 최대 관찰값
+        numRow = robs[0];
+        for (j = 1; j < colMax; j++) { // numRow는 각행의 최대
+          if (numRow < robs[j]) numRow = robs[j];
+        }
+        // 한 열의 모든 값이 missing이나 null이면 null 처리
+        for (j = 0; j < colMax; j++) {
+            k = 0
+            for (i = 0; i < numRow; i++) {
+              if (rvar[j][i] == MISSING || rvar[j][i] == null) k++;
+            }
+            if (numRow == k) {
+              for (i=0; i < numRow; i++) rvar[j][i] = null;
+            }
+        }
+        // Recalculate 행의 수
+        for (j = 0; j < colMax; j++) {
+            robs[j] = 0;
+            for (i = 0; i < numRow; i++) {
+              if (rvar[j][i] != null) robs[j]++;
+            }
+        }
+        // 사각형 열의 수 계산 : 
+        for (j = 0; j < colMax; j++) {
+            if (robs[j] > 0) numCol = j+1;  
+        }
+        // 사각형 범위에서 Missing count
+        for (j = 0; j < numCol; j++) {
+            missing[j] = 0;
+            for (i = 0; i < numRow; i++) {
+                if ( rvar[j][i] == "" || rvar[j][i] == undefined || rvar[j][i] == null) {
+                    rvar[j][i] = MISSING; 
+                    missing[j]++;  // missing count
+                }  
+            }
+        }
+        // empty column check
+        for (j = 0; j < numCol; j++) { 
+            if (robs[j] == 0) {
+                alert("Empty columns is not allowed !!!");
+                return;
+            }
+        }
+        // 각 변량별 값 계산
+        for (j = 0; j < numCol; j++) {
+            for (i = 0; i < numRow; i++) dataA[i] = rvar[j][i];
+            rvalueNum[j] = sortAscendAlpha(robs[j], dataA, dataValue, dvalueFreq);
+            for (k = 0; k < rvalueNum[j]; k++) rvalue[j][k] = dataValue[k];
+        }
         datasheet.render();
         // 선택된 변수 초기화 -- 데이터의 변화가 있을때만 집행 
 	if(checkPastColSelection == false) { // 만일 마우스로 변수 선택만 했을 경우는 초기화 안함 2019.5.12
@@ -572,7 +640,7 @@ function initEventControl(datasheet) {
                 tdvalueNum[numVar + j] = rvalueNum[k];
                 tdvarName[numVar + j]  = rvarName[k];
                 // tdvalue 와 rvalue가 메모리 공유하는 문제로 분리
-                for (m = 0; m < numRow; m++) {
+                for (m = 0; m < robs[k]; m++) {
                     tdvalue[numVar + j][m] = rvalue[k][m];
                     tdvalueLabel[numVar + j][m] = rvalueLabel[k][m];
                     tdvar[numVar + j][m] = rvar[k][m];
@@ -785,8 +853,8 @@ function updateInternalArray(){
             if (robs[j] > 0) numCol = j+1;  
         }
         // Missing 지정
-        missing[j] = 0;
         for (j = 0; j < numCol; j++) {
+            missing[j] = 0;
             for (i = 0; i < numRow; i++) {
                 //***** missing
                 if ( rvar[j][i] == "" || rvar[j][i] == undefined || rvar[j][i] == null) {
@@ -3589,12 +3657,13 @@ function selectVarUpdate() {
     }
     // 변량명을 rvarName에 입력
     rvarName[jj] = d3.select("#vname").node().value;
+    // 앞의 것 저장하고 새 varlist 준비
     jj = parseInt(document.getElementById("varlist").value) - 1;
     selectVarInit();
 } // endof selectVarUpdate()  ---------------------------------------------
 // 편집창 EditVar - ValueLabel varlist에 초기값 표시 함수 ---------------------------------------
 function selectVarInit() {
-    if (typeof(numRow) == 'undefined') return;
+    if (numRow == 0 || typeof(numRow) == 'undefined') return;
     // 변량명 초기화
     d3.select("#vname").node().value = rvarName[jj];
     // 편집창 셀에 변량값 입력
@@ -3602,7 +3671,7 @@ function selectVarInit() {
         str1 = "#cell" + (k + 1).toString() + (1).toString();
         str2 = "#cell" + (k + 1).toString() + (2).toString();
         if (rvalue[jj][k] == MISSING) { // missing
-            d3.select(str1).node().value = "MISSING";           
+            d3.select(str1).node().value = null;           
             d3.select(str2).node().value = null;           
             continue; 
         }
@@ -3617,7 +3686,7 @@ function selectVarInit() {
 } // endof selectVarInit -------------------------------------------------
 // 변량편집 EditVar - ValueLabel 저장 (최종 편집 변량에 적용)
 d3.select("#vconfirm").on("click", function() {
-    if (typeof(numRow) == 'undefined') return;
+    if (numRow == 0 || typeof(numRow) == 'undefined') return;
     selectVarUpdate();
     datasheet.updateSettings({
         colHeaders: rvarName
@@ -3626,7 +3695,7 @@ d3.select("#vconfirm").on("click", function() {
 // 변량편집 EditVar - ValueLabel 나가기
 d3.select("#vcancel").on("click", function() {
     var j, k, m;
-    if (typeof(numRow) == 'undefined') {
+    if (numRow == 0 || typeof(numRow) == 'undefined') {
       $("#sub14").dialog("close");
     }
     selectVarUpdate();
@@ -3897,9 +3966,9 @@ function selectVarUpdateCategory() {
     categoryVar = parseInt(document.getElementById("varlistCategory").value) - 1;
     tobs = 0;
     for (i = 0; i < numRow; i++) {
-      if (rvar[categoryVar][i] != MISSING) {
+      if (rvar[categoryVar][i] != MISSING ) {
+         tdata[tobs] = parseFloat(rvar[categoryVar][i]);
          tobs++;
-         tdata[i] = parseFloat(rvar[categoryVar][i]);
       }
     }
     TotalStat(tobs, tdata, tstat); 
@@ -4648,7 +4717,7 @@ function openEditVar(eventName) {
     document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
     document.getElementById("valueLabelWarning").innerHTML = "";
     document.getElementById("valueLabelWarning").style.display = "none"; 
-    if (typeof(numRow) == 'undefined') {
+    if (numRow == 0 || typeof(numRow) == 'undefined') {
       document.getElementById("valueLabelWarning").innerHTML = alertMsg[55][langNum];
       document.getElementById("valueLabelWarning").style.display = "block"; 
     }
@@ -4679,7 +4748,7 @@ function openEditVar(eventName) {
     document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
     document.getElementById("sortingWarning0").innerHTML = "";
     document.getElementById("sortingWarning0").style.display = "none"; 
-    if (typeof(numRow) == 'undefined') {
+    if (numRow == 0 || typeof(numRow) == 'undefined') {
       document.getElementById("sortingWarning0").innerHTML = alertMsg[55][langNum];
       document.getElementById("sortingWarning0").style.display = "block"; 
     }
@@ -4753,7 +4822,7 @@ function openEditVar(eventName) {
     document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
     document.getElementById("categoryWarning0").innerHTML = "";
     document.getElementById("categoryWarning0").style.display = "none"; 
-    if (typeof(numRow) == 'undefined') {
+    if (numRow == 0 || typeof(numRow) == 'undefined') {
       document.getElementById("categoryWarning0").innerHTML = alertMsg[55][langNum];
       document.getElementById("categoryWarning0").style.display = "block"; 
     }
@@ -4792,7 +4861,7 @@ function openEditVar(eventName) {
     document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
     document.getElementById("recodeWarning0").innerHTML = "";
     document.getElementById("recodeWarning0").style.display = "none"; 
-    if (typeof(numRow) == 'undefined') {
+    if (numRow == 0 || typeof(numRow) == 'undefined') {
       document.getElementById("recodeWarning0").innerHTML = alertMsg[55][langNum];
       document.getElementById("recodeWarning0").style.display = "block"; 
     }
@@ -4833,7 +4902,7 @@ function openEditVar(eventName) {
     document.getElementById('selectIfBtn').style.background   = "#f1f1f1";
     document.getElementById("computeWarning0").innerHTML = "";
     document.getElementById("computeWarning0").style.display = "none"; 
-    if (typeof(numRow) == 'undefined') {
+    if (numRow == 0 || typeof(numRow) == 'undefined') {
       document.getElementById("computeWarning0").innerHTML = alertMsg[55][langNum];
       document.getElementById("computeWarning0").style.display = "block"; 
     }
@@ -4872,7 +4941,7 @@ function openEditVar(eventName) {
     document.getElementById("varlistOperatorSelectIf1").value = 0;
     document.getElementById("varlistOperatorSelectIf2").value = 0;
     document.getElementById("varlistOperatorSelectIf3").value = 0;
-    if (typeof(numRow) == 'undefined') {
+    if (numRow == 0 || typeof(numRow) == 'undefined') {
       document.getElementById("selectIfWarning0").innerHTML = alertMsg[55][langNum];
       document.getElementById("selectIfWarning0").style.display = "block"; 
     }
