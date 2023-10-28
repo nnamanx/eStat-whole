@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>eStatBookU</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+  <h2>『eStat』 Statistics and Data Science </b></h2>
+     <a href="#author"><u>Author</u></a> &nbsp;&nbsp;&nbsp;
+     <a href="#preface"><u>Preface</u></a> 
+  <h4>
+      <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+  </h4>
+     This book introduces elementary statistical analysis and data science using an educational software 『eStat』 designed for students in undergraduate level.
+     <br>『eStat』 is a web-based freeware for statistics education which can be used anytime and anywhere using PC, tablet, or mobile phone.
+     <br>   
+     <input class="qrBtn" type="image" src="/estat/eStat/QR/eStat.svg" width="100" height="100" onclick="window.open(addrStr[0])">
+        <a href="../eStatBasicOperation.html" target="_blank"><b><u>Basic Operation of 『eStat』</u></b></a> &nbsp;&nbsp;&nbsp;
+        <a href="../eStatBasicOperation.pdf"  target="_blank"><b><u>[pdf]</u></b></a> &nbsp;&nbsp;&nbsp;
+        <a href="https://www.youtube.com/watch?v=jjfCqdDZZ6Q" target="_blank"><b><u>[Video]</u></b></a><br>
+        <p style="color:blue">Project Leader: Professor Jung Jin Lee, Soongsil University, Korea, ADA University, Azerbaijan<br>
+        Contact: jjlee@ssu.ac.kr
+     <br>
+     <span style="color:red">
+       This work is in the public domain. Therefore, it can be copied and reproduced without limitation. 
+       However, we would appreciate a citation where possible. (http://www.estat.me).</span>
+     <p>
+
+  <h3 id="tableContent">Table of Contents</h3>
+
+  <h4><a href="chapter01.html">Chapter 1  Statistics and Data Science</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book01.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  1.1 Statistics and Data Science <br>
+  1.2 Population and Sample <br>
+  1.3 Variables and Data <br>
+  1.4 Softwares for Statistical Analysis<br>
+
+  <h4><a href="chapter02.html">Chapter 2  Visualization of Qualitative Data</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book02.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  2.1 Visualization of Qualitative Data <br>
+  2.2 Visualization of Summary Data <br>
+  2.3 Visualization of Raw Data<br>
+  2.4 Word Cloud<br>
+
+  <h4><a href="chapter03.html">Chapter 3  Visualization of Quantitative Data</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book03.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  3.1 Visualization of Quantitative Data<br>
+  3.2 Visualization of Single Quantitative Variable<br>
+  3.3 Visualization of Two Quantitative Variables  <br>
+  
+  <h4><a href="chapter04.html">Chapter 4  Data Summary with Tables and Measure</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book04.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  4.1 Frequency Table for Single Variable<br>
+  4.2 Contingency Table for Two Variables<br>
+  4.3 Summary Measures for Quantitative Variable<br>
+
+  <h4><a href="chapter05.html">Chapter 5  Probability Distribution</a> &nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book05.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  5.1 Definition of Probability<br>
+  5.2 Calculation of Probability<br>
+  5.3 Discrete Random Variable<br>
+  5.4 Continuous Random Variable<br>
+  
+  <h4><a href="chapter06.html">Chapter 6  Sampling Distributions and Estimation</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book06.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  6.1 Simple Random Sampling<br>
+  6.2 Sampling Distribution of Sample Means and Estimation of Population Mean<br>
+  6.3 Sampling Distribution of Sample Variance and Estimation of Population Variance<br>
+  6.4 Sampling Distribution of Sample Proportion and Estimation of Population Proportion <br>
+  6.5 Determination of Sample Size <br>
+  
+  <h4><a href="chapter07.html">Chapter 7  Testing Hypothesis for Single Population Parameters</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book07.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  7.1 Testing Hypothesis for a Population Mean <br>
+  7.2 Testing Hypothesis for a Population Variance <br>
+  7.3 Testing Hypothesis for a Population Proportion <br>
+  7.4 Testing Hypothesis with α and β simultaneously <br>
+  
+  <h4><a href="chapter08.html">Chapter 8  Testing Hypothesis for Two Population Parameters</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf//book08.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  8.1 Testing Hypothesis for Two Population Means<br>
+  8.2 Testing Hypothesis for Two Population Variances<br> 
+  8.3 Testing Hypothesis for Two Population Proportions<br> 	
+  
+  <h4><a href="chapter09.html">Chapter 9  Testing Hypothesis for Several Population Means</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book09.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  9.1 Analysis of Variance for Experiments of Single Factor <br>
+  9.2 Experimental Design for Sampling<br>
+  9.3 Analysis of Variance for Experiments of Two Factors <br>
+
+  <h4><a href="chapter10.html">Chapter 10  Nonparametric Testing Hypothesis</a>&nbsp;&nbsp;&nbsp;
+      <a href="../pdf/book10.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  10.1 Nonparametric Test for Location Parameter of Single Population <br>
+  10.2 Nonparametric Test for Location Parameters of Two Populations <br>
+  10.3 Nonparametric Test for Locations Parameters of Several Populations<br> 
+  
+  <h4><a href="chapter11.html">Chapter 11  Testing Hypothesis for Categorical Data</a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book11.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  11.1 Goodness of Fit Test <br>
+  11.2 Testing Hypothesis for Contingency Table<br>
+
+  <h4><a href="chapter12.html">Chapter 12  Correlation and Regression Analysis</a>&nbsp;&nbsp;&nbsp; 
+      <a href="./pdf/book12.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  12.1 Correlation Analysis<br> 
+  12.2 Simple Linear Regression Analysis <br>
+  12.3 Multiple Linear Regression Analysis <br>
+
+  <h4><a href="chapter13.html">Chapter 13  Time Series Analysis</a>&nbsp;&nbsp;&nbsp; 
+      <a href="./pdf/book13.pdf" target="_blank"><u>[book]</u></a>
+  </h4>
+  13.1 What is Time Series Analysis?<br> 
+  13.2 Smoothing of Time Series<br> 
+  13.3 Transformation of Time Series<br> 
+  13.4 Regression Model and Forecasting<br> 
+  13.5 Exponential Smoothing Model and Forecasting<br> 
+  13.6 Seasonal Models and Forecasting<br> 
+
+  <h3 id="author"> Authors of eBook and developers of 『eStat』</h3> 
+        <input type="image" src="./Figure/JJLee_Photo.jpg" width="100" HEIGHT="125">
+        <b> Jung Jin Lee</b></br>  
+        Emeritus Professor, Soongsil University, Korea<br>
+        Professor, ADA University, Azerbaijan<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Case Western Reserve University<br>
+        President, Korean Statistical Society<br>
+        Vice President, International Association for Statistical Computing<br>
+        Council Member, International Statistical Institute (ISI)
+  <p>
+        <input type="image" src="./Figure/TRLee_Photo.gif" width="100" HEIGHT="125">
+        <b> Tae Rim Lee</b><br> 
+        Emeritus Professor, Korea National Open University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Choongang University<br>
+        Vice President, Korean Statistical Society<br>
+        Vice President, International Association for Statistics Education<br>
+        Vice President, International Biometric Society<br>
+  <p>
+        <input type="image" src="./Figure/KangGeunSeog.png" width="100" HEIGHT="125">
+        <b> Geunseog Kang</b><br> 
+        Emeritus Professor, Soongsil University, Korea<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., University of Wisconsin - Madison<br>
+  <p>
+        <input type="image" src="./Figure/KimSungSoo.gif" width="100" HEIGHT="125">
+        <b> Sung Soo Kim</b><br> 
+        Professor, Korea National Open University<br>
+        B.S., M.S., Ph.D., Seoul National University<br>
+  <p>
+        <input type="image" src="./Figure/ParkHeonJin.jpg" width="100" HEIGHT="125">
+        <b> Heon Jin Park</b><br> 
+        Professor, Inha University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Iowa Stat University<br>
+        President, Korean Data Mining Society<br>
+  <p>
+        <input type="image" src="./Figure/SimSongYong.gif" width="100" HEIGHT="125">
+        <b> Song Yong Sim</b><br> 
+        Hallym University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., University of Wisconsin - Madison<br>
+  <p>
+        <input type="image" src="./Figure/LeeYoonDong.jpg" width="100" HEIGHT="125">
+        <b> Yoon Dong Lee</b><br> 
+        Professor, Sogang University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Iowa State University<br>
+  <p>
+        <input type="image" src="./Figure/YouHyunJo.jpg" width="100" HEIGHT="125">
+        <b> Hyun Jo You</b><br> 
+        Professor, Seoul National University<br>
+        B.S., M.S., Ph.D, Seoul National University<br>
+        Ph.D. Soongsil University<br>
+
+  <h3 id="preface">Preface </h3> 
+      Over the last half century, Computer Science has been evolved at a tremendous rate, bringing about previously unimaginable changes in many areas of our society and enriching our lives. Recent merging of Computer Sciences with Communication Technologies has created a digital revolution called the 4th industrial revolution that will lead for another future change.
+      <p>The 4th Industrial Revolution aims at super-connectedness, super-intelligence and super-forecasting and many new changes will occur in our lives revolutionary. The revolution would help us to solve many problems, but it would also give us new challenges to be solved at the same time. The biggest challenge is analysis and utilization of Big Data.
+      <p>The analysis of Big Data can be done by multi-disciplinary areas such as Statistics, Computer Science and Management etc which is called Data Science.
+         Data Science is primarily based on traditional statistical methods which have been applied now in almost all fields of study such as natural science, engineering, medicine, agriculture, economics, business administration, and sociology etc.
+      <p>
+      <p>Data Science requires lots of data manipulation using computer software. However, statistical softwares such as R, SAS and SPSS which are widely used require some training from professionals. Authors of this book have been developed 『eStat』 for years which can help all level of students to learn Statistics easily and to introduce Data Science by using the software.
+      <p>
+      <p> This book introduces basic statistical methods which are widely used in many areas and enables user to practice the methods using 『eStat』. We hope this book will serve as a useful primer for those interested in Statistics and Data Science.
+      <p>
+      <p>Part I (Chapter 1 through 4) describes how to visualize data and summarize data using 『eStat』. This part can be easily understood and utilized by secondary school students. Part II (Chapter 5 and 6) describes probabilities, probability distribution functions, and estimations. Part III  (Chapter 7 to 11) describes testing hypothesis for parameters of single and multiple populations. Chapters 7 to 9 describe traditional parametric hypothesis tests, Chapter 10 describes non-parametric hypothesis tests, and Chapter 11 describes hypothesis tests of categorical data. Part IV (Chapter 12) describes correlation and regression analysis.
+      <p>
+      <p>I appreciate all of you who have developed 『eStat』 together over the past few years. I appreciate also to all internet communities who have helped us during the development of『eStat』. Special thanks should be given to Ms. Kamala Omarova for her careful reading of this manuscipt. 
+      <p>
+      <p>
+      <p> Spring 2020<p>
+      <p> Project Leader: Jung Jin Lee
+
+</body>
+</html>
+

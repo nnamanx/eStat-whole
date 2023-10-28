@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 3</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>3.4 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+
+    <h6 class="textL30M30">3.1 A class of students is as tall as follows. What is this data called?</h6> 
+    <p>
+    <div class="textLeft">  170 173 168 175 181 185 176 177</div>
+    <p>
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> discrete data</label><br>
+      <label><input type="radio" name="item" value="2"> summary data</label><br>
+      <label><input type="radio" name="item" value="3"> raw data</label><br>
+      <label><input type="radio" name="item" value="4"> continuous data</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">3.2  Which of the following graphs is used for quantitative data visualization?  </h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> bar graph</label><br>
+      <label><input type="radio" name="item" value="2"> histogram</label><br>
+      <label><input type="radio" name="item" value="3"> pie chart</label><br>
+      <label><input type="radio" name="item" value="4"> band graph</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">3.3  Which of the following graphs is NOT used for visualization of quantitative data? </h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> stem and leaf plot</label><br>
+      <label><input type="radio" name="item" value="2"> histogram</label><br>
+      <label><input type="radio" name="item" value="3"> pie chart</label><br>
+      <label><input type="radio" name="item" value="4"> dot graph</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">3.4 What is the graph of displaying data with the last number of quantitative data as a leaf and the front part as a stem?  </h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> dot graph</label><br>
+      <label><input type="radio" name="item" value="2"> histogram</label><br>
+      <label><input type="radio" name="item" value="3"> scatter plot</label><br>
+      <label><input type="radio" name="item" value="4"> stem and leaf plot</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">3.5  What is the graph used for visualization of two quantitative variable? </h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> scatter plot</label><br>
+      <label><input type="radio" name="item" value="2"> histogram</label><br>
+      <label><input type="radio" name="item" value="3"> stem and leaf plot</label><br>
+      <label><input type="radio" name="item" value="4"> bar graph</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+      <p class="textL30M30">3.1  Consider the data at the following location of  『eStat』.
+      <p>
+      <p class="textLeft">[Ex] ⇨ eBook ⇨ Ch3_Ex_Mixed_Survey.csv.
+      <p>
+      <div class="textL50M30">1) Draw a dot graph, a histogram, a stem and leaf plot of the age. </div>
+      <div class="textL50M30">2) Draw a dot graph, a histogram, a stem and leaf plot of the age by gender.</div>
+      <div class="textL50M30">3) Draw a scatter plot of the income (Y) and the age (X) by gender and save it as a file. </div>
+      <p>
+      <p class="textIndentL30M30">3.2  Conduct a survey for students who are currently taking the Data Science (or any other course) to investigate their gender, height, and weight. 
+      <p>
+      <div class="textL50M30">1) Make a file in CSV format on gender, height, and weight.</div>
+      <div class="textL50M30">2) Load the data file in 1) to 『eStat』 system and draw a dot graph, a histogram, a stem and leaf plot of the height and save them as graph files.</div>
+      <div class="textL50M30">3) Draw a dot graph, a histogram, a stem and leaf plot of the height by gender and save them as graph files.</div>
+      <div class="textL50M30">4) Draw a scatter plot of the height and the weight by gender and save it as a graph file.  </div>
+      <div class="textL50M30">5) Load the saved graphs into the MS Word and prepare a survey report for the students of Data Science.</div>
+      <p>
+      <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/CH3_EX_MIXED SURVEY.svg" onclick="window.open(addrStr[6])">     
+  </div>
+
+  <script src="./js/exercise03.js"></script>
+
+</body>
+</html>
+

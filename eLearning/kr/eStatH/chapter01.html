@@ -7,109 +7,36 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>1장</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../indexH.html">목차</a></li>
-            <li><a href="../eStatH/chapter01.html">1장 경우의 수</a></li>
-            <li><a href="../eStatH/chapter02.html">2장 확률</a></li>
-            <li><a href="../eStatH/chapter03.html">3장 확률변수와 확률분포</a></li>
-            <li><a href="../eStatH/chapter04.html">4장 통계적 추정</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>1장 경우의 수</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(150)"> &#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(152)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
         <h1>&nbsp; 🎲 🎴 ♥ ♦ ♣ ♠ </h1>
         <h4>
         <a href="#0101"><u>1.1  순열과 조합</u></a> <p>
         <a href="#0102"><u>1.2  이항정리</u></a> <p>
-        <a href="../eStatH/chapter01.pdf" target="_blank"><u>[1장 pdf]</u></a>
+        <a href="./pdf/chapter01.pdf" target="_blank"><u>[1장 pdf]</u></a>
         </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
         <p>-  우리 일상생활에서는 적절한 의사 결정을 해야 하는 상황이 많이 발생한다. 
               합리적인 의사결정을 위해서는 가능한 경우를 파악하여 여러 가지 대안을 분석해야 한다. 
+        <p>-
               관찰되는 자료에는 일정한 유형과 규칙이 있는 경우가 많다. 이때 모든 가능한 경우를 파악하는데
               순열과 조합이 많이 이용된다. 
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -120,27 +47,13 @@
   <h3 id="0101">1.1 순열과 조합</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ 생각열기</h4>
           <b>회원이 10명인 한 자전거 동호회에서 앞으로 1년간 모임을 운영을 사람을 뽑고자 한다.
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
+      <h4>💎 탐구</h4>
           <b>1) 회원 중에서 회장 1명과 부회장 1명을 뽑는 경우는 얼마나 될까? <br>
              2) 단지 대표 2명을 뽑는 경우의 수는 얼마나 될까?   
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -148,16 +61,16 @@
       <p>회원 10명 중에서 회장 1명을 뽑는 경우의 수는 10가지이다. 회장을 뽑은 후 부회장을 뽑는 
          경우의 수는 회장으로 뽑힌 사람을 제외해야 하므로 9가지이다. 따라서 회장 1명과 부회장 1명을
          뽑는 전체 경우의 수는  10 × 9 = 90 이다. 이를 10명 중 2명을 순서를 생각하여 선택하는 
-         <b>순열</b>이라 부르고 \({}_{10} P_{2} \)로 표시한다. <그림 1.1>의 윗부분이 90가지 
+         <b>순열</b>이라 부르고 \({}_{10} P_{2} \)로 표시한다. &lt;그림 1.1&gt;의 윗부분이 90가지 
          경우의 수를 보여준다.
       <p>
-      <img class="imgFig600600" src="../FigureH/HFig0101.png">
+      <img class="imgFig600600" src="./Figure/HFig0101.png">
       <div class="figText">&lt;그림 1.1&gt; 10명중 2명을 뽑는 순열과 조합 경우의 수</div>
       <p>
          단지 대표 2명을 뽑는 것은 위의 경우에서 회장과 부회장으로 뽑힌 두 사람의 직책을
          구분하지 않는 경우로 볼 수 있어 전체 경우의 수는 \(\frac{{}_{10} P_{2}}{2}\) = 45 이다. 
          이를 10명 중 2명을 순서를 생각하지 않고 선택하는 <b>조합</b>으로 부르고 
-         \({}_{10} C_{2}\)로 표시한다. <그림 1.1>의 아래 부분이 45가지 경우의 수를 보여준다.  
+         \({}_{10} C_{2}\)로 표시한다. &lt;그림 1.1&gt;의 아래 부분이 45가지 경우의 수를 보여준다.  
       <p>10명을 모두 나열하는 경우의 수는 다음과 같고 이를 10! (10 팩토리얼로 읽음)로 표시한다. 
       <div class="textLeft">
          10! = 10 × 9 × \(\cdots \) × 2 ×1  = 3628800
@@ -214,50 +127,37 @@
   </div>
   <p>
   <div class="mainTable">
-      <p>순열과 조합을 수작업이나 계산기를 이용하여 계산하려면 쉽지 않은데『eStatH』를 이용하면 
+      <p>순열과 조합을 수작업이나 계산기를 이용하여 계산하려면 쉽지 않은데 『eStatH』를 이용하면 
          간편히 계산할 수 있다.
   </div>
   <p>
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTableGrey">
       <p><h5>🎲 예제 1.1</h5>
-        『eStat』을 이용하여 10명의 자전거 회원 중에서 2명을 선택하는 순열과 조합을 계산하여 보자. 
+        『eStatH』를 이용하여 10명의 자전거 회원 중에서 2명을 선택하는 순열과 조합을 계산하여 보자. 
       <h5>풀이</h5>
-         『eStatH』 메뉴에서 ‘순열 - 조합’을 선택하면 <그림 1.2>와 같은 창이 나타난다. 
+         『eStatH』 메뉴에서 ‘순열 - 조합’을 선택하면 &lt;그림 1.2&gt;와 같은 창이 나타난다. 
          여기에서 \(n\)=10과 \(r\)=2를 입력하면 바로 순열과 조합이 계산된다.
-      <p>\(n\)이 10보다 작고 \(r\)이 2인 경우에 [실행] 버튼을 누르면 모든 경우의 수에 대한 그림을 보여준다(<그림 1.1>).
+      <p>\(n\)이 10보다 작고 \(r\)이 2인 경우에 [실행] 버튼을 누르면 모든 경우의 수에 대한 그림을 보여준다(&lt;그림 1.1&gt;).
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0102.png">
-            <div class="figText">&lt;그림 1.2&gt; 순열과 조합의 계산</div>
-          </td>
-        </tr>
-      </table>
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[순열 및 조합]</b>
+      <p>
+         <iframe src="./example/010101/010101.html" width="700" height="730"> </iframe>
+      <p>
+      <div class="figText">&lt;그림 1.2&gt; 순열과 조합의 계산</div>
+      <p>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
 
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 1.1</h5>
-          </td>
-          <td>
+        <h5>⏱ 문제 1.1</h5>
             어느 학급에 30명의 학생이 있다.
             <div class="textL20M20">1) 이 중에서 3명의 대의원을 선출하는 경우의 수는?
             </div>
             <div class="textL20M20">2) 회장 1명, 부회장 1명, 총무 1명을 뽑는 경우의 수는? 
             </div>
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
  
@@ -271,26 +171,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>가. 원순열</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
-          <b>10명의 자전거 회원들이 원형 식탁에 않아 식사를 하려고 한다. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>⭐ 생각열기</h4>
+          <b>10명의 자전거 회원들이 원형 식탁에 앉아 식사를 하려고 한다. </b>
+      <h4>💎 탐구</h4>
           <b>10명을 일렬로 나열하는 경우의 수는 10! 인데 원형 식탁에 않는 경우도 마찬가지일까? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -353,20 +237,12 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 1.2</h5>
-          </td>
-          <td>
+        <h5>⏱ 문제 1.2</h5>
             한 중국집의 회전 식탁에 탕수육, 잡채, 군만두, 자장면, 볶음밥 등을 놓고자 한다. 
             <div class="textL20M20">1) 요리를 배치하는 경우의 수는? 
             </div>
             <div class="textL20M20">2) 자장면과 볶음밥을 인접하게 배치하는 경우의 수는?
             </div>
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -376,26 +252,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>나. 중복순열</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>나의 여행 가방은 숫자 0에서 9까지 적혀있는 세 개의 굴림쇠를 이용하여 비밀번호를 설정하도록 되어있다.  </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>세 개의 숫자로 비밀번호를 설정하는 경우의 수는 얼마일까?</b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -441,38 +301,24 @@
       </div>
       <p>
       <div class="textL20M20">
-        2)『eStatH』‘순열 조합’ 메뉴의 <그림 1.3>과 같은 선택 창에서 \(n\)을 4,
+        2) 『eStatH』 ‘순열 조합’ 메뉴의 &lt;그림 1.3&gt;과 같은 선택 창에서 \(n\)을 4,
            \(r\)을 5로 선택하고 [실행]버튼을 클릭하면 중복순열을 계산할 수 있다.
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0103.png">
-            <div class="figText">&lt;그림 1.3&gt; 중복순열의 계산</div>
-          </td>
-        </tr>
-      </table>
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[순열 및 조합]</b>
+      <p>
+         <iframe src="./example/010102/010102.html" width="700" height="380"> </iframe>
+      <p>
+         <div class="figText">&lt;그림 1.3&gt; 중복순열의 계산</div>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
+
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 1.3</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 1.3</h5>
             한 카드회사의 고객은 0부터 9까지의 숫자를 이용하여 여섯 자리의 비밀번호를 만들어야 한다. 전체 만들 수 있는 비밀번호의 경우의 수는?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -481,32 +327,16 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>다. 같은 것이 있는순열</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>검은 공 세 개와 빨간 공 두 개를 일렬로 배열하고자 한다.  </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>다섯 개의 공을 배열하는 전체 경우의 수가 \({}_5 P_5 \) = 5! = 120 일까? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
       <p>세 개의 검은 공을 B, B, B 두 개의 빨간 공을 R, R로 표시하자. 각각의 공이 모두 다르다면 120개의 
          서로 다른 공의 순열이 생긴다. 하지만 검은 공 세 개와 빨간 공 두 개가 서로 같으므로 120개의 순열 중 
-         구별할 수 없는 경우가 생긴다. 예를 들어, 검은 공을 \(B_1 \), \(B_2 \), \(B_3 \), 빨간 공을 
+         구별할 수 없는 경우가 생긴다. 예를 들어, 검은 공을 \(B_1 \), \(B_2 \), \(B_3 \) 빨간 공을 
          \(R_1 \), \(R_2 \)로
          표시하여 순열을 생각하면 다음과 같은 12가지의 순열은 모두 동일한 B, B, B, R, R 이라는 순열이다. 
       <p>
@@ -573,57 +403,35 @@
       <div class="textLeft">\(\frac{7!}{4! × 3!} = \frac{5040}{24 × 6} = 35 \)
       </div>
       <p>
-      <div class="textL20M20">2) 『eStatH』 ‘순열 조합’ 메뉴의 <그림 1.4>와 같은 선택 창에서
+      <div class="textL20M20">2) 『eStatH』 ‘순열 조합’ 메뉴의 &lt;그림 1.4&gt;와 같은 선택 창에서
         \(n\)을 7, \(p\)를 4, \(q\)를 3으로 선택하고 [실행]버튼을 클릭하면 같은 것이 있는 순열을
         계산할 수 있다.
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>
-            <img class="imgFig600600" src="../FigureH/HFig0104.png">
-            <div class="figText">&lt;그림 1.4&gt; 같은 것이 있는 순열의 계산</div>
-          </td>
-        </tr>
-      </table>
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[순열 및 조합]</b>
+      <p>
+         <iframe src="./example/010103/010103.html" width="700" height="380"> </iframe>
+      <p>
+         <div class="figText">&lt;그림 1.4&gt; 같은 것이 있는 순열의 계산</div>
+      <p>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
+
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 1.4</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 1.4</h5>
             STATISTICS이라는 단어에 포함된 문자를 모두 사용하여 만들 수 있는 순열의 수를 구하라.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 1.5</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>프로 야구 한국 시리즈는 7전 4선승제이다. 한국 시리즈에 오른 A, B 두 팀 중에서 A팀이 7차전에서 승리하여 우승하는 경우의 수를 구하라. 매 게임에 무승부는 없다고 가정하자.
-          </td>
-        </tr>
-      </table>
+        <h5>⏱ 문제 1.5</h5>
+            프로 야구 한국 시리즈는 7전 4선승제이다. 한국 시리즈에 오른 A, B 두 팀 중에서 A팀이 7차전에서 승리하여 우승하는 경우의 수를 구하라. 매 게임에 무승부는 없다고 가정하자.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -632,24 +440,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>라 중복조합</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p><b>여행지에 가보니 빨강, 초록, 파랑색 세 가지 예쁜 연필이 있다. 이 연필을 구입하여 친구 4명에게 선물하고자 한다.  </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p><b>네 개의 연필을 구입하는 경우의 수는 얼마일까? </b>
-        </td>
-      </tr>
-    </table>
+      <h4>⭐ 생각열기</h4>
+          <b>여행지에 가보니 빨강, 초록, 파랑색 세 가지 예쁜 연필이 있다. 이 연필을 구입하여 친구 4명에게 선물하고자 한다.  </b>
+      <h4>💎 탐구</h4>
+          <b>네 개의 연필을 구입하는 경우의 수는 얼마일까? </b>
   </div>
   <p>
   <div class="mainTable">
@@ -742,36 +536,24 @@
       <div class="textLeft"> \({}_5 H_{3} = \frac{(5+3-1)!}{3! × (5-1)!} = \frac{5040}{6 × 24} = 35 \)
       </div>
       <p>
-      <div class="textL20M20">2) 『eStatH』 ‘순열 조합’ 메뉴의 <그림 1.5>와 같은 선택 창에서 
+      <div class="textL20M20">2) 『eStatH』 ‘순열 조합’ 메뉴의 &lt;그림 1.5&gt;와 같은 선택 창에서 
         \(n\)을 5, \(r\)을 3으로 선택하고 [실행]버튼을 클릭하면 중복조합을 계산할 수 있다.
       </div>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0105.png">
-            <div class="figText">&lt;그림 1.5&gt; 중복조합의 계산</div>
-          </td>
-        </tr>
-      </table>
+      <p>
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[순열 및 조합]</b>
+      <p>
+         <iframe src="./example/010104/010104.html" width="700" height="380"> </iframe>
+      <p>
+         <div class="figText">&lt;그림 1.5&gt; 중복조합의 계산</div>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
+
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 1.6</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>상자에 들어있는 세 종류의 과자를 중복을 허용하여 다섯 명에게 나누어주는 경우의 수는?
-          </td>
-        </tr>
-      </table>
+        <h5>⏱ 문제 1.6</h5>
+            상자에 들어있는 세 종류의 과자를 중복을 허용하여 다섯 명에게 나누어주는 경우의 수는?
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -781,31 +563,17 @@
   <h3 id="0102">1.2 이항정리</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p><b>세 개의 주머니에 은구슬과 금구슬이 각각 하나 들어있다. 은구슬에는 \(a\)라는 문자가 
+      <h4>⭐ 생각열기</h4>
+          <b>세 개의 주머니에 은구슬과 금구슬이 각각 하나 들어있다. 은구슬에는 \(a\)라는 문자가 
              적혀 있고 금구슬에는 \(b\)라는 문자가 적혀 있다. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <div class="textL20M20">
             <b>1) 각 주머니에서 하나씩 구슬을 뽑아 적힌 문자를 곱해 보려고 한다. 나타나는 전체 경우의 수는 얼마일까? </b><br>
           </div>
           <div class="textL20M20">
             <b>2) 이 중에서 금구슬을 두 번 뽑은 \(ab^2\)가 되는 경우의 수를 조합으로 표시할 수 있을까?</b>
-          </b>
-        </td>
-      </tr>
-    </table>
+            </b>
+          </div>
   </div>
   <p>
 
@@ -871,7 +639,7 @@
          이 중에서 \(ab^2 \)가 되는 경우의 수는 세 가지({은,금,금}, {금,은,금}, {금,금,은})로서 
          세 주머니에서 금구슬을 두 번 뽑는 조합의 수인 \({}_3 C_{2}\) = 3 과 같다.
       <p>
-         마찬가지로 항 \(a^3 , a^2 b, b^3 \)의 경우의 수는 \({}_3 C_{0} , {}_3 C_{1} , {}_3 C_{3} \)가 된다.
+         마찬가지로 항 \(a^3 ,\; a^2 b,\; b^3 \)의 경우의 수는 \({}_3 C_{0} ,\; {}_3 C_{1} ,\; {}_3 C_{3} \)가 된다.
       <p>
          위의 실험은 다항식 \((a+b)^3\)을 전개할 때 나타나는 항과 동일하다
       $$ 
@@ -897,13 +665,13 @@
           (a+b)^n ~=~{}_n C_{0}a^n +{}_n C_{1}a^{n-1} b + \cdots + {}_n C_{r}a^{n-r}b^r + \cdots + {}_n C_{n}b^n
         \end{align}
       $$
-        이것을 이항정리라고 하고 각 항의 계수
+        이것을 <b>이항정리</b>라고 하고 각 항의 계수
       $$ 
         \begin{align} 
           {}_n C_{0} , {}_n C_{1} , \cdots , {}_n C_{r} , \cdots .  {}_n C_{n}
         \end{align}
       $$
-        을 이항계수라 하고 \({}_n C_{r}a^{n-r}b^r \)를 전개식의 일반항이라고 한다.
+        을 <b>이항계수</b>라 하고 \({}_n C_{r}a^{n-r}b^r \)를 전개식의 <b>일반항</b>이라고 한다.
   </div>
   <p>
   <div class="mainTableYellow">
@@ -919,7 +687,7 @@
   <p>
   <div class="mainTable">
       <p>
-         \((a+b)^n\)의 이항계수를 각 \(n\)=1,2,3, ... 에 대해 <그림 1.6>과 같이 삼각형 형태로 
+         \((a+b)^n\)의 이항계수를 각 \(n\)=1,2,3, ... 에 대해 &lt;그림 1.6&gt;과 같이 삼각형 형태로 
          배열한 것을 <b>파스칼의 삼각형</b>이라고 한다.
       <p>
          파스칼의 삼각형에서 각 단계의 배열은 대칭이다. 이는 두 항 \(a^{n-r}b^r \)과
@@ -928,155 +696,36 @@
          또 각 단계에서 이웃하는 두 수의 합은 그 다음 단계에서 두수의 중앙에 있는 수와 같음을 
          알 수 있는데 이는 \({}_n C_{r} = {}_{n-1} C_{r-1} + {}_{n-1} C_{r}\)이기 때문이다.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Pascal.svg" onclick="window.open(addrStr[165])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0106.png">
-            <div class="figText">&lt;그림 1.6&gt; 파스칼의 삼각형</div>
-          </td>
-        </tr>
-      </table>  
   </div>
   <p>
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTableGrey">
       <p><h5>🎲 예제 1.6</h5>
-        『eStat』을 이용하여 \(n\) = 8 인 경우의 파스칼 삼각형을 그리고 이항정리를 살펴보자.
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Pascal.svg" onclick="window.open(addrStr[165])">
-          </td>
-          <td>
-            <h5>풀이</h5>
-            <p>
-               왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘이항정리 – 파스칼의 삼각형’을 선택하면 <그림 1.6>과
-               같은 \(n\) = 8인 경우의 파스칼의 삼각형과 전개식이 나타난다. 
-            <p>다른 \(n\)에 대한 파스칼의 삼각형을 보려면 \(n\)값을 입력하고 [실행] 버튼을 누르면 된다. 
-          </td>
-        </tr>
-      </table>
+         『eStatH』를 이용하여 \(n\) = 8 인 경우의 파스칼 삼각형을 그리고 이항정리를 살펴보자.
+      <h5>풀이</h5>
+          『eStatH』 메뉴에서 ‘이항정리 – 파스칼의 삼각형’을 선택하면 &lt;그림 1.6&gt;과
+          같은 \(n\) = 8인 경우의 파스칼의 삼각형과 전개식이 나타난다. 
+      <p>다른 \(n\)에 대한 파스칼의 삼각형을 보려면 \(n\)값을 입력하고 [실행] 버튼을 누르면 된다. 
+
+      <!---*** html for Pascal Triangle ***----------->
+      <b>[파스칼의 삼각형]</b>
+      <p>
+         <iframe src="./example/010201/010201.html" width="700" height="600"> </iframe>
+      <p> 
+         <div class="figText">&lt;그림 1.6&gt; 파스칼의 삼각형</div>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 1.7</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40Pascal.svg" onclick="window.open(addrStr[165])">
-          </td>
-          <td>
-            <p>파스칼의 삼각형을 이용하여 \((a+b)^5 \)을 전개하라.
-          </td>
-        </tr>
-      </table>
+        <h5>⏱ 문제 1.7</h5>
+            파스칼의 삼각형을 이용하여 \((a+b)^5 \)을 전개하라.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40Pascal.svg" onclick="window.open(addrStr[165])">
     </div>
     <p>
 
-  <!------------------------------------------------------------------------------------------------->
-  <p>
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+  <iframe src="./exercise/exercise01.html" width="750" height="700" ></iframe>
 
-  <h6 class="textL30M30">1.1  4명의 학생이 원탁에 앉는 경우의 수는? </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 1</label><br>
-    <label><input type="radio" name="item" value="2"> 2</label><br>
-    <label><input type="radio" name="item" value="3"> 24</label><br>
-    <label><input type="radio" name="item" value="4"> 6</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(31,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">1.2 10개의 숫자 0,1,2,..., 9 중에서 중복을 허용하여 만들 수 있는 네 자리의 비밀번호를 만들 수 있느 경우의 수는 얼마인가? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 1000</label><br>
-    <label><input type="radio" name="item" value="2"> 10000</label><br>
-    <label><input type="radio" name="item" value="3"> 264256</label><br>
-    <label><input type="radio" name="item" value="4"> 21474838</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(31,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">1.3 영어 단어 mathematics에 있는 문자를 일렬로 배열하는 경우의 수는?  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 1663200</label><br>
-    <label><input type="radio" name="item" value="2"> 4989600</label><br>
-    <label><input type="radio" name="item" value="3"> 415800</label><br>
-    <label><input type="radio" name="item" value="4"> 34650</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(31,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">1.4 한 진공관에 전기가 들어오고 나가는 것을 숫자 1과 0으로 표시할 수 있다. 
-      진공관 8개 다발로 표시할 수 있는 경우의 수는?  </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 8</label><br>
-    <label><input type="radio" name="item" value="2"> 128</label><br>
-    <label><input type="radio" name="item" value="3"> 256</label><br>
-    <label><input type="radio" name="item" value="4"> 512</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(31,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">1.5 \((a+b)^6\)의 전개식에서 \(a^2 b^4\)의 계수는?   </h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> 15</label><br>
-    <label><input type="radio" name="item" value="2"> 20</label><br>
-    <label><input type="radio" name="item" value="3"> 6</label><br>
-    <label><input type="radio" name="item" value="4"> 1</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(31,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[31][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(150)">&#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(152)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-
-</div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
 
 </body>
 </html>

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="RegressionAnalysis2"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="RegressionAnalysis2"></span></b>
+    </div>
+    <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X1 <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data2"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X2 <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data3"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X3 <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data4"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="ytitle"></td>
+          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="xtitle"></td>
+ 	</tr>
+    </table>   
+    <br>
+    <button type="button" id="executeRegression" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="600"> </svg> 
+    <br>
+    &nbsp; 
+    <button type="button" id="scatterplotMatrix" >
+	<span data-msgid="ScatterplotMatrix"></span>
+    </button>
+    &nbsp; &nbsp;
+    <button type="button" id="regressResidual" >
+	<span data-msgid="RegressionResidual">잔차와 예측값 산점도</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="regressQQ" >
+	<span data-msgid="RegressionQQ">잔차 Q-Q 산점도</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/estat/eStatU/js/32RegressionAnalysis2.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data1").value = "0.291,0.291,0.288,0.464,0.532,0.557,0.441,0.515,0.603,0.628,0.956,0.775,0.727,0.704,1.084";
+        stat = simplestat("#data1");  
+        yydata = data; 
+        yobs = stat.n;
+      document.getElementById("data2").value = "21.0,21.8,22.3,26.6,27.1,27.4,27.9,27.9,29.7,32.7,32.7,33.7,34.7,35.0,40.6";
+        stat = simplestat("#data2");  
+        x1data = data;  
+        x1obs = stat.n;
+      document.getElementById("data3").value = "21.33,19.81,19.20,21.94,24.68,25.29,20.11,22.86,21.03,22.55,25.90,26.21,21.64,19.50,21.94";
+        stat = simplestat("#data3");  
+        x2data = data;  
+        x2obs = stat.n;
+  </script>
+
+</body>
+</html>

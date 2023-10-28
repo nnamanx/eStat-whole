@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title data-msgid="Geometric Distribution">Geometric Distribution</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Geometric Distribution">Geometric Distribution</span></b> 
+    </div>
+    <br>
+    <svg id="chart" width="500" height="350"> </svg>
+    <br>
+    <button type="button" id="executeGeometric" >
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;
+      p = <input type="text" class="textarea" value="0.5" size=3 id="geoP">
+      <sup><small> 0 </small></sup> 
+    <input type="range" min="2" max="99" value="50" id="rangeGeoP" onchange="showValueGeoP(this.value, valueLabel, geometricP)"/>
+      <sup><small> 1 </small></sup>  &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;
+    <label><input type="checkbox" value="freq2" id=freqGeometric>
+      <span data-msgid="Show Probability">Show Probability<span>
+    </label>
+    <p>
+
+    <table class="stat">
+        <tr>
+          <td><span data-msgid="Probability"></span></td>
+          <td>
+              P( <input type="number" min="0" max="29" size=3 id="a1" class="inputNumber60" />
+              &nbsp;  &le; &nbsp;  X &nbsp; &le; &nbsp; 
+              <input type="number" min="1" max="25" size=3 id="b1" class="inputNumber60" onKeyUp="calculateC1()"/> )
+          </td>
+          <td>=</td>
+          <td><input type="text" size=3 class="inputNumber60" id="c1"/></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            P( X &nbsp; &le; &nbsp; 
+            <input type="number" min="1" max="25" size=3 id="b2" class="inputNumber60" onKeyUp="calculateC2()" /> )
+          </td>
+          <td>=</td>
+          <td><input type="text" size=3 class="inputNumber60"  id="c2"/></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+              P( X &nbsp; &ge; &nbsp; 
+              <input type="number" min="1" max="25" size=3 id="a3" class="inputNumber60" onKeyUp="calculateC3()" /> )
+          </td>
+          <td>=</td>
+          <td><input type="text" size=3 class="inputNumber60" id="c3"/></td>
+        </tr>
+    </table>
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
+    <span data-msgid="Reference Site">Reference</span>   &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Geometric_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/GeometricDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="https://stattrek.com/statistics/dictionary.aspx?definition=geometric_distribution" target="_blank" >StatTrek </a> &nbsp; 
+
+  </div>
+  <div width="650" style="position:absolute; left:520px; top:20px;"> 
+      &nbsp;&nbsp;
+    <button type="button" id="geometricT" >
+        <span data-msgid="Geometric Prob Table">Geometric Prob Table</span>
+    </button>  
+    &nbsp;&nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <p>
+    <div id="screenTable">
+        <div id="loc">
+        </div>
+    </div>
+  </div>
+
+  <script src="/estat/eStatU/js/45GeometricEng.js"> </script>
+</body>
+</html>

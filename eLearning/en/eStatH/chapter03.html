@@ -7,109 +7,33 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>Chapter 3</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
-    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatH/index.html">Table of Contents</a></li>
-            <li><a href="../eStatH/chapter01.html">1. Number of Cases</a></li>
-            <li><a href="../eStatH/chapter02.html">2. Probability</a></li>
-            <li><a href="../eStatH/chapter03.html">3. Random Variable and Probability Distribution</a></li>
-            <li><a href="../eStatH/chapter04.html">4. Estimation</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
   <!--***********************************************************************-->
   <h1>Chapter 3. Random Variable and Probability Distribution</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(152)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(154)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
         <h1>&nbsp; 🎯 🎲 🎰 🎮</h1>        
         <h4>
         <a href="#0301"><u>3.1  Random Variable</u></a> <p>
         <a href="#0302"><u>3.2  Probability Distribution of Discrete Random Variable</u></a> <p>
         <a href="#0303"><u>3.3  Probability Distribution of Continuous Random Variable</u></a> <p>
         <a href="#0304"><u>3.4  Binomial Distribution</u></a> <p>
-        <a href="#0305"><u>3.5  Binomial Distribution</u></a> <p>
-        <a href="../eStatH/chapter03.pdf" target="_blank"><u>[3장 pdf]</u></a>
+        <a href="#0305"><u>3.5  Normal Distribution</u></a> <p>
+        <a href="./pdf/chapter03.pdf" target="_blank"><u>[Chapter 3 pdf]</u></a>
         </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
         <p>Probability calculation for certain types of events is widely used in our daily lives. Let's discuss what is a random variable and how to calculate the probability of binomial distribution and normal distribution which are particularly commonly used.
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -120,44 +44,29 @@
   <h3 id="0301">3.1 Random Variable </h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
-          <b>The sample space that can appear by tossing a coin twice is as follows. 
+      <h4>⭐ Think</h4>
+          <b>The sample space that can appear by tossing a coin twice is as follows: 
              <div class="textLeft"> \(S\) = {TT, TH, HT, HH}
              </div>
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>Which probabilities of various events in the sample space is used a lot in real problem?
-        </td>
-      </tr>
-    </table>
+      <h4>💎 Explore</h4>
+          Which probabilities of various events in the sample space is used a lot in real problem?
   </div>
   <p>
 
   <div class="mainTable">
-      <p>If there are only two possible outcomes in a trial, it is often observed around us to count the number of one outcome when the trial is repeated several times as follows.
+      <p>If there are only two possible outcomes in a trial, it is often observed around us to count the number of one outcome when the trial is repeated several times as follows:
       <p>
       <div class="textL20M20">
-        &nbsp;&nbsp; - Select 10 products produced in a factory and inspect whether they are ‘good’ or ‘defective’ and count the number of defectives out of 10 products.
+        &nbsp;&nbsp; - Select 10 products produced in a factory and inspect whether they are 'good' or 'defective' and count the number of defectives out of 10 products.
       </div>
       <div class="textL20M20">
         &nbsp;&nbsp; - Survey 10 voters whether they like or dislike a particular candidate in an election and count the number of voters who like the particular candidate. 
       </div>
       <p>
-      <p>Probabilities can be obtained for various events in the sample space, but what we are more interested in is the events for the number of heads and their probabilities such as tossing a coin two times as follows.
+      <p>Probabilities can be obtained for various events in the sample space, but what we are more interested in is the events for the number of heads and their probabilities such as tossing a coin two times as follows:
       <p>
-      <table>
+      <table style="width:600px">
         <tr>
           <td style="width:250px">Event of no head </td>
           <td>[TT]</td>
@@ -177,10 +86,10 @@
       <p>
          If \(X\) is the number of heads of the coin, the possible number of \(X\) is 0, 1, and 2. 
          In other words, \(X\) is one-to-one correspondence from each element in the sample space 
-         \(S\) to one number as follows.
+         \(S\) to one number as follows:
       <p>
-          <table> 
-            <tr> <th class="thGrey">Sample space</th>   <th class="thGrey">\(X\) = umber of heads when tossing a coin two times</th>  </tr>
+          <table style="width:600px"> 
+            <tr> <th class="thGrey">Sample space</th>   <th class="thGrey">\(X\) = Number of heads when tossing a coin two times</th>  </tr>
             <tr> <td class="tdCenter">{TT}</td>         <td class="tdCenter">0</td>    </tr>
             <tr> <td class="tdCenter">{TH}<br>{HT}</td> <td class="tdCenter">1</td>    </tr>
             <tr> <td class="tdCenter">{HH</td>          <td class="tdCenter">2</td>    </tr>
@@ -223,22 +132,13 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.1</h4> <p>
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.1</h4> <p>
                In the next experiments, distinguish whether the random variable \(X\) is a discrete random variable or a continuous random variable.
             <p>
                1) Number of typhoons \(X\) passing through Korea in a year<br>
                2) Annual precipitation \(X\) in Seoul<br>
                3) The number of goals\(X\)  in a soccer game<br>
                4) Height \(X\) of the first-year male high school students
-         </td>
-        </tr>
-      </table>
     </div>
     <p>
 
@@ -246,30 +146,13 @@
   <h3 id="0302">3.2  Probability Distribution of Discrete Random Variable</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>When a coin is tossed twice, if \(X\) is the number of heads, the possible values of 
              \(X\) is 0, 1, and 2. 
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
-          <div class="textL20M20">
+      <h4>💎 Explore</h4>
             If we arrange all the probabilities for the possible numbers 0, 1, and 2 of \(X\)
             in a table, what does it look like?
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -280,9 +163,9 @@
          \(P(X=0) = \frac{1}{4}\). Similarly, the probability of events which has one head, 
          P({TH, HT}) = \(\frac{2}{4}\), as \(P(X=1) = \frac{2}{4}\), and the probability of event
          which has two heads, P({HH}) = \(\frac{1}{4}\)\(\frac{1}{4}\), as \(P(X=2) = \frac{1}{4}\).
-         These probabilities can be summarized in a table as follows. 
+         These probabilities can be summarized in a table as follows: 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey">Sample space</th> 
               <th class="thGrey">\(X\) = Number of heads</th>
@@ -309,7 +192,7 @@
          probabilities that \(X\) has a certain value \(x\), \(P(X=x)\), as shown in this table. 
          The above probability distribution can be expressed graphically as in &lt;Figure 3.1&gt;.
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0301.png">
+         <img class="imgFig600600" src="./Figure/Fig0301.png">
          <div class="textLeft">&lt;Figure 3.1&gt; robability distribution of a discrete random variable </div>
       <p>
          In general, if a discrete random variable \(X\) can have values \(x_1 , x_2 , \cdots , x_n\)
@@ -317,7 +200,7 @@
          it can be summarized as one-to-one relation as follows and it is called the
          <b>probability distribution of \(X\)</b>. 
       <p>
-          <table> 
+          <table style="width:700px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">\(x_1\)</td>
@@ -354,7 +237,7 @@
       <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Properties of probability distribution function</b>
       <p>
          The probability distribution function \(P(X = x_i ) = p_i\) (\(i=1,2, ... , n\))
-         of a discrete random variable \(X\) has the following properties.
+         of a discrete random variable \(X\) has the following properties:
       <p>
       <div class="textLeft">
          1) \( 0 \le p_i \le 1\) <br>
@@ -378,7 +261,7 @@
          2) Find \(P(1 \le X \le 2)\). 
       <h5>Solution</h5>
       <p>
-         1) \(X\) can have values 0, 1, 2 and their probabilities are as follows. 
+         1) \(X\) can have values 0, 1, 2 and their probabilities are as follows: 
       <p>
       <div class="textLeft">
          \(P(X = 0) = \frac{{}_3 C_2 × {}_2 C_0}{{}_5 C_2} = \frac{3}{10}\) <br>
@@ -386,9 +269,9 @@
          \(P(X = 2) = \frac{{}_3 C_0 × {}_2 C_2}{{}_5 C_2} = \frac{1}{10}\) <br>
       </div>    
       <p>
-         Therefore, the probability distribution of \(X\) is represented in a table as follows. 
+         Therefore, the probability distribution of \(X\) is represented in a table as follows: 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -405,82 +288,50 @@
             </tr>
           </table>
       <p>
-         If you select ‘Discrete Distribution’ from 『eStatH』 menu, data input window such as 
-         in &lt;Figure 3.2&gt; appear. Enter the data here as shown in the figure and click 
-         [Execute] button to display the probability distribution graph as shown in &lt;Figure 3.3&gt;. 
-      <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
-          </td>
-          <td>
-            <p>
-            <img class="imgFig600600" src="../FigureH/Fig0302.png">
-            <div class="figText">&lt;Figure 3.2&gt; Data input for a discrete distribution</div>
-          </td>
-        </tr>
-      </table>
-      <p>
-         <img class="imgFig600600" src="../FigureH/Fig0303.png">
-         <div class="textLeft">&lt;Figure 3.3&gt; Graph of a discrete distribution using 『eStatH』</div>
-      <p>
          2) \(P(1 \le X \le 2) = P(X=1) + P(X=2) = \frac{6}{10} + \frac{1}{10} = \frac{7}{10}\)
+      <p>
+      <!-----*** html for Discrete Distribution ***----------------------->
+      <b>[<span data-msgid="DiscreteDist">Discrete Distribution</span>]</b>
+      <p>
+            If you select 'Discrete Distribution' from 『eStatH』 menu, data input window such as 
+            in &lt;Figure 3.2&gt; appears. Enter the data here as shown in the figure and click 
+            [Execute] button to display the probability distribution graph as shown in &lt;Figure 3.3&gt;. 
+      <p>
+          <iframe src="./example/030201/030201.html" width="800" height="850"> </iframe>
+      <p>
+          <div class="textLeft">&lt;Figure 3.3&gt; Graph of a discrete distribution using 『eStatH』</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.2</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.2</h4> <p>
             Let a random variable \(X\) be the number of heads when a coin is tossed three times. 
             Find the probability distribution of \(X\) and draw a graph. 
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
     </div>
     <p>
 
   <!------------------------------------------------------------------------------------------------->
   <h4>A. Mean and standard deviation of a discrete random variable</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <b>If \(X\) = ‘the number of heads’ when a coin tossed twice, \(X\) can have values
+      <h4>⭐ Think</h4>
+          <b>If \(X\) = 'the number of heads' when a coin tossed twice, \(X\) can have values
              0, 1, and 2 and their probabilities are \(\frac{1}{4}, \frac{2}{4}\) and \( \frac{1}{4}\) respectively.  
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
+      <h4>💎 Explore</h4>
           <b>1) What would be a good representative value of \(X\)? <br>
              2) What would be a good measure of dispersion for possible values of \(X\)?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
       <p>
-         The probability distribution of the random variable \(X\) = ‘the number of heads’ 
-         when a coin tossed twice is as follows. 
+         The probability distribution of the random variable \(X\) = 'the number of heads' 
+         when a coin tossed twice is as follows: 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -499,7 +350,7 @@
       <p>
          This probability distribution is similar to the frequency table of three possible values 0, 1, and 2 with the relative frequency. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey">Value</th> 
               <th class="thGrey">Frequency</th>
@@ -527,7 +378,7 @@
             </tr>
           </table>
       <p>
-         The mean \(\mu\) of these numbers 0, 1, 1, 2 and the variance \(\sigma^2\) are as follows. 
+         The mean \(\mu\) of these numbers 0, 1, 1, 2 and the variance \(\sigma^2\) are as follows: 
       <p>
       <div class="textLeft">
          Mean \(\qquad \mu = \frac{0+1+1+2}{4} = 0×\frac{1}{4} + 1×\frac{2}{4} + 2×\frac{1}{4} = 1\) <p>
@@ -541,7 +392,7 @@
          and their probabilities are \(p_1 , p_2 , \cdots , p_n\) respectively, then the 
          probability distribution is as follows
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">\(x_1\)</td>
@@ -562,7 +413,7 @@
       <p>
          The mean or expectation of the random variable \(X\) denoted as \(E(X)\) or \( \mu \),
          the variance denoted as  \(V(X)\) or \(\sigma^2 \) and the standard deviation denoted as 
-         \(\sigma(X)\) or \(\sigma\) are calculated as follows. 
+         \(\sigma(X)\) or \(\sigma\) are calculated as follows: 
       <p>
       <div class="textLeft">
          \(E(X) = \mu = \sum_{i=1}^{n} x_i p_i\) <p>
@@ -583,7 +434,7 @@
       <p><h5>🎲 Example 3.3</h5>
         Find the mean, variance and standard deviation of the probability distribution in [Example 3.2]. Check the result using 『eStatH』. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -602,7 +453,7 @@
       <p>
       <h5>Solution</h5>
       <p>
-         The mean, variance and standard deviation of the random variable \(X\) are as follows. 
+         The mean, variance and standard deviation of the random variable \(X\) are as follows: 
       <p>
       <div class="textLeft">
          \(E(X) = 0×\frac{3}{10} + 1×\frac{6}{10} + 2×\frac{1}{10} = \frac{8}{10} = 0.8\) <p>
@@ -616,24 +467,15 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.3</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 3.3</h5>
             When a coin is tossed three times, find the probability distribution by setting the random variable as the number of heads. Find the mean, variance, and standard deviation of this probability distribution.
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
 
   <div class="mainTable">
       <p>
-         If we expand the variance of a discrete random variable, \(V(X) = \sigma^2 = \sum_{i=1}^{n} (x_i - \mu)^2 p_i\), it becomes as follows.
+         If we expand the variance of a discrete random variable, \(V(X) = \sigma^2 = \sum_{i=1}^{n} (x_i - \mu)^2 p_i\), it becomes as follows:
       <p>
       <div class="textLeft">
          \(V(X) = (x_{1} - \mu )^{2} p_{1} + (x_{2} - \mu )^{2} p_{2} + \cdots +(x_{n}- \mu )^{2} p_{n} \) <br>
@@ -644,13 +486,13 @@
          \( = E(X^{2} )-E(X)^{2} \)
       </div>
       <p>
-         Therefore, the variance of a random variable \(X\) can be calculated using a short cut formula as follows.
+         Therefore, the variance of a random variable \(X\) can be calculated using a short cut formula as follows:
       <p>
       <div class="textLeft">
          \(V(X) = E(X^{2} )-E(X)^{2} \)
       </div>
       <p>
-         Using this short cut formula, the variance of [Example 3.3] can be calculated as follows. 
+         Using this short cut formula, the variance of [Example 3.3] can be calculated as follows: 
       <p>
       <div class="textLeft">
          \(V(X) = (0^{2} × \frac{3}{10} + 1^{2} ×\frac{6}{10} + 2^{2} ×\frac{1}{10} ) - (0.8)^2 = 0.36 \)
@@ -678,9 +520,9 @@
       <h5>Solution</h5>
       <p>
          The possible values of the random variable \(X\) are 1, 2, 3, 4, 5, 6 and the 
-         probability distribution of \(X\) is as follows. 
+         probability distribution of \(X\) is as follows: 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">1</td>
@@ -703,7 +545,7 @@
             </tr>
           </table>
       <p>
-         The mean, variance using a short cut formula and standard deviation are as follows. 
+         The mean, variance using a short cut formula and standard deviation are as follows: 
       <p>
       <div class="textLeft">
          \(E(X) = 1×\frac{1}{6} + 2×\frac{1}{6}+ 3×\frac{1}{6}+ 4×\frac{1}{6}+ 5×\frac{1}{6}+ 6×\frac{1}{6} = \frac{21}{6} = 3.5\) <p>
@@ -715,45 +557,27 @@
          \(\sigma(X) = \sqrt{2.916} = 1.708\)
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
-          </td>
-          <td>
-            <p>
-            If you select 'Discrete Distribution' from 『eStatH』 menu and enter data as shown
-            in &lt;Figure 3.4&gt;, the graph as shown in &lt;Figure 3.5&gt; and the mean, 
-            variance and standard deviation appear. A slightly different value originated 
-            from the computing error for the number of decimal places.
-            <p>
-            <img class="imgFig600600" src="../FigureH/Fig0304.png">
-            <div class="figText">&lt;Figure 3.4&gt; Data input for a discrete distribution </div>
-          </td>
-        </tr>
-      </table>
-       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0305.png">
-            <div class="figText">&lt;Figure 3.5&gt; Discrete distribution with mean, variance and standard deviation </div>
+         If you select 'Discrete Distribution' from 『eStatH』 menu and enter data as shown
+         in &lt;Figure 3.4&gt;, the graph as shown in &lt;Figure 3.5&gt; and the mean, 
+         variance and standard deviation appear. A slightly different value originated 
+         from the computing error for the number of decimal places.
+      <p>
+      <!-----*** html for Discrete Distribution ***----------------------->
+      <b>[<span data-msgid="DiscreteDist">Discrete Distribution</span>]</b>
+      <p>
+         <iframe src="./example/030202/030202.html" width="800" height="850"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 3.5&gt; Discrete distribution with mean, variance and standard deviation </div>
+      <p>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.4</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 3.4</h5>
             When a coin is tossed three times, find the probability distribution by setting 
             the random variable \(X\) as the number of heads. Use 『eStatH』 to find the mean, 
             variance, standard deviation and the graph of this probability distribution.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -762,22 +586,11 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>B. Mean and standard deviation of  \(a X + b\)</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:120px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <b>When a coin tossed twice, the random variable \(X\) = ‘number of heads’ can 
+      <h4>⭐ Think</h4>
+          <b>When a coin tossed twice, the random variable \(X\) = 'number of heads' can 
              have values 0, 1, 2 and their probabilities are \(\frac{1}{4}, \frac{2}{4}, \frac{1}{4}\)  respectively.  
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
+      <h4>💎 Explore</h4>
           <b>
              <div class="textL20M20">
                1) If 100 dollars is paid for each head, how much value can be expected in this game and how is the variance of the prize money?
@@ -786,19 +599,16 @@
                2) If 50 dollars is basically paid and 100 dollars is paid for each head, how much value can be expected in this game and how is the variance of the prize money?
              </div>
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
       <p>
-         If \(X\) = ‘the number of heads’ when a coin tossed twice, the above game is the same 
+         If \(X\) = 'the number of heads' when a coin is tossed twice, the above game is the same 
          as the problem to examine the probability distribution of 1) \(Y = 100X\) and 
          2) \(Z = 50 + 100X\). The probability distribution of the random variable \(X\) is 
          as follows and  \(E(X)\) = 1, \(V(X)\) = 0.5, \(\sigma(X)\) = 0.707.
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -815,9 +625,9 @@
             </tr>
           </table>
       <p>
-         1) The probability distribution of  \(Y = 100X\) is as follows. 
+         1) The probability distribution of  \(Y = 100X\) is as follows: 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(Y = 100X\)</th>
               <td class="tdCenter">0</td>
@@ -834,7 +644,7 @@
             </tr>
           </table>
       <p>
-         Therefore, the expectation \(E(Y)\), variance \(V(Y)\) and standard deviation \(\sigma(Y)\)  are as follows. 
+         Therefore, the expectation \(E(Y)\), variance \(V(Y)\) and standard deviation \(\sigma(Y)\)  are as follows: 
       <p>
       <div class="textLeft">
          \(E(Y) = 0×\frac{1}{4} + 100×\frac{2}{4} + 200×\frac{1}{4} = 100\) <p>
@@ -845,9 +655,9 @@
          That is, \(E(Y) = 100 E(X)\), \(V(Y) = 100^2 V(X)\), \(\sigma(Y) = 100 \sigma(X)\).
       <p>
       <p>
-         2) he probability distribution of  \(Z = 50 + 100X\) is as follows. 
+         2) he probability distribution of  \(Z = 50 + 100X\) is as follows: 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(Z = 50 + 100X\)</th>
               <td class="tdCenter">50</td>
@@ -864,7 +674,7 @@
             </tr>
           </table>
       <p>
-         Therefore, the expectation \(E(Z)\), variance \(V(Z)\), standard deviation \(\sigma(Z)\) are as follows.
+         Therefore, the expectation \(E(Z)\), variance \(V(Z)\), standard deviation \(\sigma(Z)\) are as follows:
       <p>
       <div class="textLeft">
          \(E(Z) = 50×\frac{1}{4} + 150×\frac{2}{4} + 250×\frac{1}{4} = 150\) <p>
@@ -880,7 +690,7 @@
          In general, assume that the probability distribution of a discrete random variable \(X\)
          is as follows and its mean, variance and standard deviation are \(E(X) = \mu\), \(V(X) = \sigma^2\), \(\sigma(X) = \sigma\)  respectively. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">\(x_1\)</td>
@@ -899,9 +709,9 @@
             </tr>
           </table>
       <p>
-         The probability distribution of \(Y = aX + b\) is as follows. 
+         The probability distribution of \(Y = aX + b\) is as follows: 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(Y = aX + b\)</th>
               <td class="tdCenter">\(y_1 = ax_1 + b\)</td>
@@ -921,7 +731,7 @@
           </table>
       <p>
         Therefore, the expectation \(E(Y)\), variance \(V(Y)\) and standard deviation 
-        \(\sigma(Y)\) are as follows. 
+        \(\sigma(Y)\) are as follows: 
       <p>
       <div class="textLeft">
          \(E(Y) = (ax_1 + b)p_1 + (ax_2 + b)p_2 + \cdots + (ax_n + b)p_n \) <br>
@@ -935,7 +745,7 @@
       <p>
          If the mean, variance, standardard deviation of a random variable \(X\) are
          \(E(X) = \mu\), \(V(X) = \sigma^2\), \(\sigma(X) = \sigma\)  respectively, then the mean,
-          variance and standard deviation of \(Y = aX + b\) are as follows.
+          variance and standard deviation of \(Y = aX + b\) are as follows:
       <p>
       <div class="textLeft">
          \(E(Y) = a E(X) + b = a \mu + b\)<p>
@@ -950,7 +760,7 @@
   <div class="mainTableYellow">
       <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Mean, variance and standard deviation of \(Y = aX + b\)</b>
       <p>
-         If \(X\) is a random variable and \( a, b \) are constants, the expectation variance and standard deviation of  \(Y = aX + b\) are as follows.
+         If \(X\) is a random variable and \( a, b \) are constants, the expectation variance and standard deviation of  \(Y = aX + b\) are as follows:
       <p>
       <div class="textLeft">
          \(E(Y) = a E(X) + b = a \mu + b\)<p>
@@ -964,17 +774,11 @@
   <h3 id="0303">3.3 Probability Distribution of Continuous Random Variable</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
-          <b>The delivery time to the house by ordering a pizza at a shop were examined 30 times as follows. </b>
+      <h4>⭐ Think</h4>
+          <b>The delivery time to the house by ordering a pizza at a shop were examined 30 times is as follows: </b>
           <p>
           <div class="textLeft">[Data 3.1] Pizza delivery time to the house (unit: minute)</div>
-          <table> 
+          <table style="width:530px"> 
             <tr>
               <td class="tdCenter">
                 15 27 37  9 16 26 17 22 30 23 13 19 22 14 16 
@@ -982,14 +786,7 @@
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <div class="textL20M20">
             <b> 1) What is the probability that the pizza will be delivered between 10 and 20 minutes?</b>
           </div>
@@ -999,9 +796,6 @@
           <div class="textL20M20">
             <b> 3) How to obtain the probability that pizza is delivered to a more detailed time interval? </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1009,14 +803,11 @@
       <p>
          Using 『Histogram – Frequency Table』 of 『eStatH』, the histogram of pizza delivery time is as &lt;Figure 3.6&gt; if the class interval starts at 0 and the interval size is 10 minutes. It can be seen that the probability that the pizza is delivered between 10 and 20 minutes is 0.47.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0306.png">
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
+            <img class="imgFig600600" src="./Figure/Fig0306.png">
             <div class="textLeft">&lt;Figure 3.6&gt; Histogram of the pizza delivery times – interval size is 10 minutes</div>
+         </div>
             <p>
             <div class="textLeft">[Table 3.1] Frequency table of the pizza delivery times – interval size is 10 minutes</div>
             <table> 
@@ -1030,20 +821,12 @@
               <tr> <td class="tdCenter">20.00 ≤ x < 30.00</td> <td class="tdCenter">13</td> <td class="tdCenter">0.43</td> </tr>
               <tr> <td class="tdCenter">30.00 ≤ x < 40.00</td> <td class="tdCenter"> 2</td> <td class="tdCenter">0.07</td> </tr>
               <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">1.00</th>  </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
       <p>
-         If the interval of the histogram starts at 5 and the interval size is 5 minutes, the histogram becomes as &lt;Figure 3.7&gt;. It can be seen that the probability that the pizza will be delivered between 15 and 20 minutes is 0.30.
+         If the interval of the histogram starts at 5 and the interval size is 5 minutes, 
+         the histogram becomes as &lt;Figure 3.7&gt;. It can be seen that the probability in which 
+         the pizza will be delivered between 15 and 20 minutes is 0.30.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0307.png">
+            <img class="imgFig600600" src="./Figure/Fig0307.png">
             <div class="textLeft">&lt;Figure 3.7&gt; Histogram of the pizza delivery times – interval size is 5 minutes</div>
             <p>
             <div class="textLeft">[Table 3.2] Frequency table of the pizza delivery times – interval size is 5 minutes</div>
@@ -1061,27 +844,23 @@
               <tr> <td class="tdCenter">30.00 ≤ x < 35.00</td> <td class="tdCenter"> 1</td> <td class="tdCenter">0.03</td> </tr>
               <tr> <td class="tdCenter">35.00 ≤ x < 40.00</td> <td class="tdCenter"> 1</td> <td class="tdCenter">0.03</td> </tr>
               <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">1.00</th>  </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
       <p>
          In order to obtain the probability of a more detailed interval, a more detailed histogram 
          such as &lt;Figure 3.8&gt; and its frequency table are required as shown below. However, 
          for such a histogram, more data must be collected, and it is cumbersome to redraw the 
          histogram every time to calculate the desired probability.
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0308.png">
+         <img class="imgFig600600" src="./Figure/Fig0308.png">
          <div class="textLeft">&lt;Figure 3.8&gt; Histogram with detailed interval</div>
       <p>
          There are many continuous data around us as the histogram above in which many data are 
          located around the mean, data are symmetrical about the mean, and their shape looks 
-         like a bell. In order to easily find the probability for all data of this type, 
+         like a bell. In order to easily find the probability for all of this type data, 
          mathematicians searched for a function that can describe these kinds of histograms. 
          This function has the same shape as in &lt;Figure 3.9&gt; and is called the 
          <b>normal distribution function</b>. It is explained in detail in Section 3.5.
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0309.png">
+         <img class="imgFig600600" src="./Figure/Fig0309.png">
          <div class="textLeft">&lt;Figure 3.9&gt; Normal distribution function</div>
       <p>
          If the probability distribution function of a continuous random variable can be 
@@ -1101,7 +880,7 @@
       <div class="textL20M20">
         2) The sum of the total probabilities should equal to 1. 
            That is, if the domain of the function \(f(x)\) is an interval [\(\alpha, \beta\)], 
-           the area of the function \(f(x)\) on the domain should be 1 as follows.
+           the area of the function \(f(x)\) on the domain should be 1 as follows:
       </div>
            <p>
            <div class="textLeft">
@@ -1118,7 +897,7 @@
               \(P( a \le X \le b) = \int_a ^b f(x)dx \)
             </div>
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0310.png">
+            <img class="imgFig600600" src="./Figure/Fig0310.png">
             <div class="textLeft">&lt;Figure 3.10&gt; The probability that a continuous random variable \(X\) is in the interval \([a,b]\)</div>
   </div>
   <p>
@@ -1126,14 +905,14 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Example 3.5</h4>
-         Suppose the delivery time from ordering a pizza to arriving  home can be any 
+         Suppose the delivery time from ordering a pizza to its arrival home can be any 
          time between 10 and 30 minutes. If \(X\) is the random variable of 'delivery time to home',
          find the probability distribution function of \(X\) and draw its graph. 
          Find the probability that the delivery time is in between 15 and 20 minutes.
       <h5>Solution</h5>
       <p>
          Since \(X\) can be any number between 10 and 30, the probability distribution function 
-         is as follows. 
+         is as follows: 
       $$ 
          \begin{align}
            f(x) &= \frac{1}{(30-10)}, 10 \le x \le 30\\
@@ -1146,78 +925,45 @@
          &lt;Figure 3.11&gt;, so the calculation of the probability (area) is 
          (20-15) × (1/20) = 0.25. 
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0311.png">
+         <img class="imgFig600600" src="./Figure/Fig0311.png">
          <div class="textLeft">&lt;Figure 3.11&gt; Calculation of \(P(15 \le X \le 20)\) in Uniform(10,30)</div>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.5</h4> <p>
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.5</h4> <p>
                If the probability distribution function of a continuous random variable \(X\) is 
                 \(f(x) = 2x, (0 \le x \le 1)\), find the followings. 
             <p>
             1) \(P(0 \le X \le \frac{1}{4})\)<br>
             2) \(P(\frac{1}{4} \le X \le 1)\)
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.6</h4> <p>
-          </td>
-          <td>
+        <h4>⏱ Practice 3.6</h4> <p>
             If the probability distribution function of a continuous random variable \(X\) is
             \(f(x) = ax, (0 \le x \le 2)\), find the followings. (\(a\) is a constant)
             <p>
             1) constant \(a\) <br>
             2) \(P(0 \le X \le \frac{1}{4})\)<br>
             3) \(P(\frac{1}{4} \le X \le 1)\)
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
     <!-------------------------------------------------------------------------->
 
 <!-------------------------------------------------------------------------------->
-  <h3 id="0304">3.4  Binomial Theorem</h3>
+  <h3 id="0304">3.4  Binomial Distribution</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>It is said that the defect rate of products produced in one factory is 0.1. 
              Consider a random variable which is the number of defective products when three products are inspected.
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           What is the probability distribution function of the random variable  \(X\)?
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1226,9 +972,9 @@
          When a product is inspected, if it is a good product, we denote it as G, 
          and if it is a defective product, we denote it as B. When three products are inspected, 
          possible events of the sample space, possible values of the random variable \(X\)
-         which is the number of defective products and their probabilities are as follows.
+         which is the number of defective products and their probabilities are as follows:
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey">Sample space</th>
               <th class="thGrey">\(X\) = Number of defectives</th>
@@ -1261,7 +1007,7 @@
          When the number of defectives is 2, the number of cases is three which is from \({}_3 C_2\).
          When the number of defectives is 3, the number of cases is 1 which is from \({}_3 C_3\). 
          Therefore the probability distribution function of the random variable \(X\) can be 
-         expressed as follows.
+         expressed as follows:
       $$
          P(X=x) = {}_3 C_x  (0.1)^x (0.9)^{3-x} \quad (x=0,1,2,3)
       $$
@@ -1277,28 +1023,28 @@
          with a half chance. We examine the distribution of scores after the second stage 
          when 100 balls are dropped. 
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_41Binomial.svg" onclick="window.open(addrStr[148])">
-          </td>
-          <td>
-            <p>
-            <img class="imgFig600600" src="../FigureH/Fig0312.png">
-            <div class="figText">&lt;Figure 3.12&gt; Simulation of binomial distribution using 『eStatH』</div>
-          </td>
-        </tr>
-      </table>
+  </div>
+  <div class="mainTableGrey">
       <p>
+      <!------------*** html for Binomial Experiment ***------------------->       
+      <b>[<span data-msgid="Binomial Experiment">Binomial Experiment</span>]</b>
+      <p>
+      <iframe src="./example/030401/030401.html" width="800" height="750"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 3.12&gt; Simulation of binomial distribution using 『eStatH』</div>
+  </div>
+  <p>
+
+  <div class="mainTable">
          What these examples have in common is that there are two possible outcomes of one trial
          such as {good, defective}, {head, tail}, {approval, opposition}, etc and that 
          this trial is repeated several times. However, the probability of outcomes in each trial
-         is different. The trial with two possible outcomes (‘binary’) is called the 
+         is different. The trial with two possible outcomes ('binary') is called the 
          <b>Bernoulli trial</b>, and the outcome of interest among the two is often called 
          'success' and the rest is called 'failure'. When the Bernoulli trial with probability 
          of 'success' \(p\) is repeated \(n\) times independently, if \(X\) is the random variable
-         of counting the number of ‘success’, \(X\) can have values 0, 1, 2, ... , \(n\) and 
-         the probability distribution function of \(X\) is as follows.
+         of counting the number of 'success', then \(X\) can have values 0, 1, 2, ... , \(n\) and 
+         the probability distribution function of \(X\) is as follows:
       $$
          P(X = x) = {}_n C_x p^x (1-p)^{n-x} \quad (x=0,1,2, ... , n)
       $$
@@ -1306,7 +1052,7 @@
          \(B(n,p)\) and, if we denote \(q=1-p\), the binomial distribution can be expressed
           as the following table. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th>\(X\)</th>
               <td class="tdCenter">0</td>
@@ -1338,27 +1084,21 @@
       $$
          The following is a graph of the binomial distribution for various values of \(n\) and \(p\).
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
-            <img class="imgFig600600" src="../FigureH/Fig0313.png">
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
+            <img class="imgFig600600" src="./Figure/Fig0313.png">
             <div class="figText">&lt;Figure 3.13&gt; Binomial distribution for various values of \(n\) and \(p\).</div>
-          </td>
-        </tr>
-      </table>
+         </div>
+      <p>
    </div>
   <p>
   <div class="mainTableYellow">
-      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Binomial distribution</b>
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Binomial Distribution</b>
       <p>
          When the Bernoulli trial with probability of 'success' \(p\) is repeated \(n\) times 
-         independently, if \(X\) is the random variable of counting the number of ‘success’, 
-         \(X\) can have values 0, 1, 2, ... , \(n\) and the probability distribution function of \(X\)
-         is a binomial distribution \(B(n,p)\) as follows.
+         independently, if \(X\) is the random variable of counting the number of 'success', 
+         then \(X\) can have values 0, 1, 2, ... , \(n\) and the probability distribution function of \(X\)
+         is a binomial distribution \(B(n,p)\) as follows:
       $$
          f(x) = {}_n C_x p^x (1-p)^{n-x} \quad (x=0,1,2, ... , n)
       $$
@@ -1368,58 +1108,50 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Example 3.6</h4>
-         In this year baseball season, there are four more games for the team "Tiger" to play with the team "Bear". It is known that ‘Tiger’ team has a 60% chance of winning every game.
+         In this year baseball season, there are four more games for the team "Tiger" to play with the team "Bear". It is known that 'Tiger' team has a 60% chance of winning every game.
       <p>
       <div class="textL20M20">
-         1) Let the random variable \(\small X\) be the number of games in which ‘Tiger’ wins among 4 games. 
+         1) Let the random variable \(\small X\) be the number of games in which 'Tiger' wins among 4 games. 
             Suppose that there is no draw game. Find the probability distribution of \(\small X\).
       </div>
       <div class="textL20M20">
          2) Use 『eStatH』 to find this probability distribution.
       </div>
       <h5>Solution</h5>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>Each game can be considered as a Bernoulli trial of ‘Win’ or ‘Loss’ and the trial 
-               is repeated four times. If ‘Win’ is denoted by O and ‘Loss’ is denoted by X, 
-               then there are \(2^4 = 16\) possible elements in the sample space as follows. 
-            <p>
-               S = {‘XXXX’,‘OXXX’,‘XOXX’,‘XXOX’,‘XXXO’,‘OOXX’,‘OXOX’,‘OXXO’,
-                 ‘XOOX’,‘XOXO’,‘XXOO’,‘OOOX’,‘OOXO’,‘OXOO’,‘XOOO’,‘XXXX’}
-           </td>
-        </tr>
-      </table>
+      <p>1) Each game can be considered as a Bernoulli trial of 'Win' or 'Loss' and the trial 
+               is repeated four times. If 'Win' is denoted by O and 'Loss' is denoted by X, 
+               then there are \(2^4 = 16\) possible elements in the sample space as follows: 
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 S = {'XXXX','OXXX','XOXX','XXOX','XXXO','OOXX','OXOX','OXXO',
+               <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 'XOOX','XOXO','XXOO','OOOX','OOXO','OXOO','XOOO','XXXX'}
       <p>
-            The probability that ‘Tiger’ will lose four times, {‘XXXX’}, is (0.4)×(0.4)×(0.4)×(0.4) = \((0.4)^4\).  
-            <br>
-            The probability that ‘Tiger’ will lose three times and win   one time is    
+         The probability that 'Tiger' will lose four times, {'XXXX'}, is (0.4)×(0.4)×(0.4)×(0.4) = \((0.4)^4\).  
+      <br>
+         The probability that 'Tiger' will lose three times and win   one time is    
                (0.6)×(0.4)×(0.4)×(0.4).<br>
-            There are four cases of winning one time, {‘OXXX’, ‘XOXX’, ‘XXOX’, ‘XXXO’} which are 
+            There are four cases of winning one time, {'OXXX', 'XOXX', 'XXOX', 'XXXO'} which are 
             the same number of cases in which O is seated in one when there are four seats. 
-            So the probability that ‘Tiger’ will win once is  \({}_4 C_1\). Therefore, the total 
-            probability of winning one game is as follows.
+            So, the probability that 'Tiger' will win once is  \({}_4 C_1\). Therefore, the total 
+            probability of winning one game is as follows:
                \({}_4 C_1 (0.6)(0.4)^3 \)
-            <br>
-            The probability that ‘Tiger’ will lose two times and win also two times is
+      <br>
+         The probability that 'Tiger' will lose two times and win also two times is
                (0.6)×(0.6)×(0.4)×(0.4).
             There are six cases of winning two times, 
-            {‘OOXX’, ‘OXOX’, ‘OXXO’, ‘XOOX’, ‘XOXO’, ‘XXOO’} which are \({}_4 C_2\). 
-            So the probability of winning two games is as follows.
+            {'OOXX', 'OXOX', 'OXXO', 'XOOX', 'XOXO', 'XXOO'} which are \({}_4 C_2\). 
+            So the probability of winning two games is as follows:
                \({}_4 C_2 (0.6)^2 (0.4)^2 \)
-            <br> 
-            Similarly, the probability of winning three games is as follows.
+      <br> 
+         Similarly, the probability of winning three games is as follows:
                \({}_4 C_3 (0.6)^3 (0.4) \)
-            <br> 
-            The probability of winning four games is (0.6)×(0.6)×(0.6)×(0.6) 
-        <p>
-           If we summarize, the probability distribution of the random variable  \(X\) 
-           which is the number of games in which ‘Tiger’ wins is as follows.
-        <p>
-            <table> 
+      <br> 
+         The probability of winning four games is (0.6)×(0.6)×(0.6)×(0.6) 
+      <p>
+         If we summarize, the probability distribution of the random variable  \(X\) 
+            which is the number of games in which 'Tiger' wins is as follows:
+      <p>
+            <table style="width:600px"> 
               <tr>
                 <th>\(X\)</th>
                 <td class="tdCenter">0</td>
@@ -1440,60 +1172,38 @@
               </tr>
             </table>
       <p>
-         Select ‘Binomial Distribution’ from the menu of 『eStatH』 and enter  \(n\)= 4,  \(p\)= 0.6. 
-         If you click [Execute] button, a binomial distribution graph such as &lt;Figure 3.14&gt;
-        appears.
+            2) Select 'Binomial Distribution' from the menu of 『eStatH』 and enter  \(n\)= 4,  \(p\)= 0.6. 
+            If you click [Execute] button, a binomial distribution graph such as &lt;Figure 3.14&gt;
+            appears.
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0314.png">
-         <div class="textLeft">&lt;Figure 3.14&gt; Binomial distribution when \(n\)= 4,  \(p\)= 0.6</div>
+      <!--------***  html for Binomial Distribution ***---------------------->
+      <b>[<span data-msgid="Binomial Distribution">Binomial Distribution</span>]</b> 
       <p>
-         There are sliding bars of \(n\) and \(p\) and a probability calculation box under 
-         the graph, so put the desired value and press the [Enter] key to calculate the value.
+      <iframe src="./example/030402/030402.html" width="800" height="600"> </iframe>
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0315.png">
-         <div class="textLeft">&lt;Figure 3.15&gt; Binomial probability calculation by providing intervals</div>
+      <div class="textLeft">&lt;Figure 3.15&gt; Binomial probability table</div>
       <p>
-         To the right of the graph, a table of binomial distributions is shown. In addition to 
-         \(P(X = x)\), this table shows the cumulative probabilities \(P(X \le x)\) and 
-         \(P(X \ge x)\) to facilitate various probability calculations. If you select a new 
-         \(n\) and \(p\) and click [Execute] button, new binomial distribution table for this 
-         value is added below.
+            There are sliding bars of \(n\) and \(p\) and a probability calculation box under 
+            the graph, so put the desired value and press the [Enter] key to calculate the value.
       <p>
-            <table> 
-              <tr>
-                <td class="tdCenter">\(n = 4\)</td>
-                <td class="tdCenter">\(p = 0.600\)</td>
-                <td class="tdCenter"></td>
-                <td class="tdCenter"></td>
-              </tr>
-              <tr> <td class="tdCenter">0</td> <td class="tdCenter">0.0256</td> <td class="tdCenter">0.0256</td> <td class="tdCenter">1.0000</td> </tr>
-              <tr> <td class="tdCenter">1</td> <td class="tdCenter">0.1536</td> <td class="tdCenter">0.1792</td> <td class="tdCenter">0.9744</td> </tr>
-              <tr> <td class="tdCenter">2</td> <td class="tdCenter">0.3456</td> <td class="tdCenter">0.5248</td> <td class="tdCenter">0.8208</td> </tr>
-              <tr> <td class="tdCenter">3</td> <td class="tdCenter">0.3456</td> <td class="tdCenter">0.8704</td> <td class="tdCenter">0.4752</td> </tr>
-              <tr> <td class="tdCenter">4</td> <td class="tdCenter">0.1296</td> <td class="tdCenter">1.0000</td> <td class="tdCenter">0.1296</td> </tr>
-            </table>
+            To the right of the graph, a table of binomial distributions is shown. In addition to 
+            \(P(X = x)\), this table shows the cumulative probabilities \(P(X \le x)\) and 
+            \(P(X \ge x)\) to facilitate various probability calculations. If you select a new 
+            \(n\) and \(p\) and click [Execute] button, new binomial distribution table for this 
+            value is added below.
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.7</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.7</h4> <p>
                The defect rate of an electronic component produced in one factory is 5%. Use 『eStatH』to find the following probabilities when there is a box containing 50 of these components.
             <p>
                1) What's the probability that there is no defective product? <br>
                2) What is the probability that there are 1, 2 or 3 defective products?<br>
                3) What is the probability of having more than three (≥) defective products?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
     </div>
     <p>
 
@@ -1503,11 +1213,11 @@
   <p>
   <div class="mainTable">
       <p>
-         If a Bernoulli trial with the probability of ‘success’ \(p\) and of ‘failure’ \(q=1-p\)
-         is repeated three times, the random variable \(X\) which counts the number of  ‘success’ 
+         If a Bernoulli trial with the probability of 'success' \(p\) and of 'failure' \(q=1-p\)
+         is repeated three times, the random variable \(X\) which counts the number of  'success' 
          is the following binomial distribution.  
       <p>
-          <table> 
+          <table style="width:700px"> 
             <tr>
               <th>\(X\)</th>
               <td class="tdCenter">0</td>
@@ -1527,7 +1237,7 @@
           </table>
       <p>
          The random variable  has the mean \(E(X)\), the variance \(V(X)\) and the standard 
-         deviation \(\sigma(X)\) as follows. 
+         deviation \(\sigma(X)\) as follows: 
       <p>
       <div class="textLeft">
          \(E(X) = 0×q^3 + 1×3pq^2 + 2×3p^2 q + 3×p^3 = 3p\) <p>
@@ -1536,9 +1246,9 @@
       </div>
       <p>
          In general, if a random variable \(X\) follows the binomial distribution, \(B(n,p)\), 
-         then its probability distribution is as follows. 
+         then its probability distribution is as follows: 
       <p>
-          <table> 
+          <table style="width:700px"> 
             <tr>
               <th>\(X\)</th>
               <td class="tdCenter">0</td>
@@ -1591,20 +1301,21 @@
       <p>
          It is a binomial distribution with \(n\) = 10 and \(p\) = 0.2.  
       <p>  
-         1) Probability that three customers will subscribe the insurance is as follows.
+         1) Probability that three customers will subscribe the insurance is as follows:
       <p>
       <div class="textLeft">
         \( P(X=3) = {}_{10} C_3 (0.2)^3 (1-0.2)^{10-3} = 0.2013 \)
       </div>
       <p>
          2) It is better to use the probability of complementary event to calcuate the 
-            probability that two or more people (≥) will subscribe the insurance as follows.  
+            probability that two or more people (≥) will subscribe the insurance as follows:  
       <p>
       <div class="textLeft">
-        \( P(X ≥ 2) = 1 - P(X=0) - P(X=1) = 1 - {}_{10} C_0 (0.2)^0 (1-0.2)^{10-0} - {}_{10} C_1 (0.2)^1 (1-0.2)^{10-1} = 1 - 0.1074 - 0.2684  = 0.6242 \)
+        \( P(X ≥ 2) = 1 - P(X=0) - P(X=1) = 1 - {}_{10} C_0 (0.2)^0 (1-0.2)^{10-0} - {}_{10} C_1 (0.2)^1 (1-0.2)^{10-1} \)<br>
+        \( = 1 - 0.1074 - 0.2684  = 0.6242 \)
       </div>
       <p>
-         3) is as follows. \(q=1-p\)
+         3) It is as follows: \(q=1-p\)
       <p>
       <div class="textLeft">
          \(E(X) = np = 10 × 0.2 = 2\) <p>
@@ -1612,27 +1323,18 @@
          \(\sigma(X) = \sqrt{1.6} = 1.265\) 
       </div>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
-            Select ‘Binomial Distribution’ In the menu of 『eStatH』 and select \(n\) = 10, \(p\) = 0.2. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
+            Select 'Binomial Distribution' in the menu of 『eStatH』 and select \(n\) = 10, \(p\) = 0.2. 
             If you click [Execute] button, the graph as in &lt;Figure 3.16&gt; appears. 
-            You can check the probability of 1) if you check the ‘probability’ here. 
+            You can check the probability of 1) if you check the 'probability' here. 
            <p>
-           <img class="imgFig600600" src="../FigureH/Fig0316.png">
+           <img class="imgFig600600" src="./Figure/Fig0316.png">
            <div class="textLeft">&lt;Figure 3.16&gt; Binomial distribution with \(n\)= 10,  \(p\)= 0.2</div>
-          </td>
-        </tr>
-      </table>
-      <p>
-         You can check the answer of 2) \(P(X ≥ 2)\) = 0.6242 from the binomial table on the 
-         right hand side as follows. 
-      <p>
-            <table> 
+           <p>
+           You can check the answer of 2) \(P(X ≥ 2)\) = 0.6242 from the binomial table on the 
+           right hand side as follows: 
+           <p>
+            <table style="width:400px"> 
               <tr>
                 <td class="tdCenter">\(n = 10\)</td>
                 <td class="tdCenter">\(p = 0.200\)</td>
@@ -1656,23 +1358,14 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.8</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 3.8</h5>
                In a presidential election, the approval rating of a particular candidate was 40%. In order to establish an election strategy, we will meet 20 voters this morning to see if they support the particular candidate. 
                Calculate the following probabilities directly and check them using 『eStatH』. Assume that no person abstained.
             <p>
                1) What is the probability that 8 out of 20 will support the particular candidate? <br>
                2) What is the probability that 5 or more (≥) and 12 or less (≤) will support?<br>
                3) On average, how many people will support the candidate? What's the standard deviation?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -1689,32 +1382,16 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>B. Law of large number</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>Consider an experiment which rolls a dice \(n\) times in which the mathematical 
              probability of each side is \(\frac{1}{6}\). If \(X\) is a random variable 
              which counts the number of single dot on the upper side, \(X\) follows the 
              binomial distribution \(B(n, \frac{1}{6})\). 
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
-          <b>When you roll a dice \(n\) times, let’s compare the relative frequency 
+      <h4>💎 Explore</h4>
+          <b>When you roll a dice \(n\) times, let's compare the relative frequency 
              \(\frac{X}{n}\) with the mathematical probability \(\frac{1}{6}\).
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -1723,7 +1400,7 @@
          \(\frac{1}{6}\) is a reasonable model. When you roll a dice \(n\) times, the 
          probability that the difference between the relative frequency, \(\frac{X}{n}\),
          and the mathematical probability, \(\frac{1}{6}\), is less than a small value 
-         \(\epsilon\) can be written as follows. 
+         \(\epsilon\) can be written as follows: 
       <p>
       $$ 
         \begin{align}
@@ -1735,17 +1412,13 @@
       <div class="textLeft">
       </div>
       <p>
-         If \(\epsilon\) = 0.1, the above formula become as follows.
+         If \(\epsilon\) = 0.1, the above formula becomes as follows:
       $$ 
            P ( \left | \frac{X}{n} - \frac{1}{6} \right | < 0.1 ) =  P \left [ n( \frac{1}{6} - 0.1 ) < X < n( \frac{1}{6} + 0.1 ) \right]
       $$
          If the number of rolls \(n\) is 10, 20, 50, 100, then the above formula becomes 
          as follows and its probability can be calculated using  \(B(n, \frac{1}{6})\)  in 『eStatH』.
       <p>
-      <table>
-        <tr>
-          <td style="width:300px">
-            <p>
             <div class="textLeft">
                \(n = 10\)<p>
                \(P \left [ 10( \frac{1}{6} - 0.1 ) < X < 10( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -1753,18 +1426,9 @@
                \(= P(X=1) + P(X=2) \) <br>
                \(= 0.6137 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0317.png">
+            <img class="imgFig600600" src="./Figure/Fig0317.png">
             <div class="textLeft">&lt;Figure 3.17&gt;  『eStatH』 \(B(10,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
-      <table>
-        <tr>
-          <td style="width:400px">
-            <p>
             <div class="textLeft">
                \(n = 20\)<p>
                \(P \left [ 20( \frac{1}{6} - 0.1 ) < X < 20( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -1772,18 +1436,9 @@
                \(= P(X=2)+P(X=3)+ P(X=4)+P(X=5) \)  <br>
                \(= 0.7677 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0318.png">
+            <img class="imgFig600600" src="./Figure/Fig0318.png">
             <div class="textLeft">&lt;Figure 3.18&gt;  『eStatH』 \(B(20,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
-      <table>
-        <tr>
-          <td style="width:300px">
-            <p>
             <div class="textLeft">
                \(n = 50\)<p>
                \(P \left [ 50( \frac{1}{6} - 0.1 ) < X < 50( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -1791,18 +1446,9 @@
                \(= P(X=4) + P(X=5) + \cdots + P(X=13) \) <br>
                \(= 0.9454 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0319.png">
+            <img class="imgFig600600" src="./Figure/Fig0319.png">
             <div class="textLeft">&lt;Figure 3.19&gt;  『eStatH』 \(B(50,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
-      <table>
-        <tr>
-          <td style="width:300px">
-            <p>
             <div class="textLeft">
                \(n = 100\)<p>
                \(P \left [ 100( \frac{1}{6} - 0.1 ) < X < 100( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -1810,13 +1456,8 @@
                \(= P(X=7) + P(X=8) + \cdots + P(X=26) \) <br>
                \(= 0.9925 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0320.png">
+            <img class="imgFig600600" src="./Figure/Fig0320.png">
             <div class="textLeft">&lt;Figure 3.20&gt;  『eStatH』 \(B(100,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
          As you noticed here, the probability \( P ( \left | \frac{X}{n} - \frac{1}{6} \right | < 0.1 )\)
          is close to 1 as \(n\) increases. 
@@ -1830,61 +1471,38 @@
   <div class="mainTableYellow">
       <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Law of large number</b>
       <p>
-         Consider a Bernoulli trial with ‘success’ probability of \(p\) and let a random 
-        variable \(X\) be the number of ‘success’ when the trial is repeated \(n\) times. 
+         Consider a Bernoulli trial with 'success' probability of \(p\) and let a random 
+        variable \(X\) be the number of 'success' when the trial is repeated \(n\) times. 
         Ther relative frequency \(\frac{X}{n}\) is close to \(p\) if \(n\) is sufficiently large. 
    </div>
   <p>
   <!------------------------------------------------------------------------------------------------->
-  <div class="mainTable">
+  <div class="mainTableGrey">
       <p>
          &lt;Figure 3.21&gt; shows that \( P ( \left | \frac{X}{n} - \frac{1}{6} \right | < \epsilon )\)
-         is close to 1 when \(\epsilon\) = 0.05 if \(n\)  is increasing up to 1000 by suing 『eStatH』.
+         is close to 1 when \(\epsilon\) = 0.05 if \(n\)  is increasing up to 1000 by using 『eStatH』.
          You can change \(p\) and \(\epsilon\) using the slide bars. 
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_43LawOfLarge.svg" onclick="window.open(addrStr[166])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0321.png">
-            <div class="textLeft">&lt;Figure 3.21&gt;Simulation experiment of law of large number using 『eStatH』</div>
-          </td>
-        </tr>
-      </table>
+      <!--------***  html for Law of Large Number ***---------------------->
+      <iframe src="./example/030403/030403.html" width="800" height="600"> </iframe>
+      <p>
+      <div class="textLeft">&lt;Figure 3.21&gt;Simulation experiment of law of large number using 『eStatH』</div>
+      <p>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
  
 <!-------------------------------------------------------------------------------->
   <h3 id="0305">3.5  Normal Distribution</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ Think</h4>
+          <b>The histogram of delivery times to the house investigated randomly when pizza is ordered are as follows:  </b>
           <p>
-          <b>The histogram of delivering times to the house investigated randomly when pizza is ordered are as follows.  </b>
-          <p>
-            <img class="imgFig600600" src="../FigureH/Fig0322.png">
+            <img class="imgFig600600" src="./Figure/Fig0322.png">
             <div class="textLeft">&lt;Figure 3.22&gt; Histogram using many data of pizza delivery time</div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           1) What are the characteristics of this histogram?<br>
           2) What is the mathematical function that can describe this histogram?
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1895,29 +1513,22 @@
          This function was first discovered by Abraham de Moivre (1667-1754), and then 
          widely applied to physics and astronomy by German mathematician Karl Friedrich 
          Gauss (1777-1855). This function is called the <b>normal distribution function</b> 
-         or the <b>Gaussian distribution function</b>, and the equation and graph are as follows.
+         or the <b>Gaussian distribution function</b>, and the equation and graph are as follows:
       <p>
-      <table>
-        <tr>
-          <td>
             $$
-              f(x) = \frac{1}{\sqrt{ 2\pi} \sigma } exp \left[ - \frac{(x-\mu)^2} {2 \sigma^2} \right] \qquad - ∞ < x < ∞ 
+              f(x) = \frac{1}{\sqrt{ 2\pi} \sigma } e^{ \left[ - \frac{(x-\mu)^2}{2 \sigma^2} \right]} \qquad  - ∞ < x < ∞ 
             $$
-            <br>
             where \(\mu\) is a constant, \(\sigma\) is a positive constant, \(e\) is the irrational number as 
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0323.png">
+            <img class="imgFig600600" src="./Figure/Fig0323.png">
             <div class="textLeft">&lt;Figure 3.23&gt; Probability distribution function of the normal distribution </div>
-          </td>
-        </tr>
-      </table>
       <p>
          The mean and standard deviation of the normal distribution are \(\mu\) and \(\sigma\) 
          respectively. If a random variable \(X\) follows the normal distribution with the mean
          \(\mu\) and standard deviation \(\sigma\), that is the variance of \(\sigma^2\), 
          it is denoted as \(N(\mu, \sigma^2 )\). 
       <p>
+  </div>
+  <div class="mainTableGrey">
          &lt;Figure 3.24&gt; is the graph of three normal distributions with different mean 
          and variance such as \(N(-2, 0.5^2 )\), \(N(0, 1)\) and \(N(2, 2^2 )\). It can be 
          observed that all of them are symmetrical around the mean. If the variance increases, 
@@ -1925,33 +1536,19 @@
          distribution becomes sharp. This is because the total area under the normal distribution 
          function must be 1.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_50NormalComparison.svg" onclick="window.open(addrStr[167])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0324.png">
-            <div class="textLeft">&lt;Figure 3.24&gt; Comparison of three graphs of normal distribution,  \(N(-2, 0.5^2 )\), \(N(0, 1)\), \(N(2, 2^2 )\)</div>
-          </td>
-        </tr>
-      </table>
+      <!-------------*** html for Normal Comparison ***---------------------------------->
+      <b>[<span data-msgid="Normal Distribution"></span> <span data-msgid="ComparisonGraph"></span>]</b> 
+      <p>
+         <iframe src="./example/030501/030501.html" width="800" height="650"> </iframe>
+      <p>  
+         <div class="textLeft">&lt;Figure 3.24&gt; Comparison of three graphs of normal distribution,  \(N(-2, 0.5^2 )\), \(N(0, 1)\), \(N(2, 2^2 )\)</div>
       <p>
          &lt;Figure 3.25&gt; is the graph of three-normal distributions \(N(-3, 1)\), \(N(0, 1)\) and  \(N(3, 1)\) 
          in which the mean is different from each other and the variance is all 1. If the mean 
          is different, the graph of the same shape is moved horizontally.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_50NormalComparison.svg" onclick="window.open(addrStr[167])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0325.png">
+            <img class="imgFig600600" src="./Figure/Fig0325.png">
             <div class="textLeft">&lt;Figure 3.25&gt; Comparison of three graphs of normal distribution,  \(N(-3, 1)\), \(N(0, 1)\), \(N(3, 1)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
          &lt;Figure 3.26&gt; is the graph of three-normal distributions \(N(0, 0.5^2 )\), \(N(0, 1)\) and \(N(0, 3^2 )\) 
          in which all means are zero and variances are different. It can be observed that 
@@ -1959,17 +1556,8 @@
          becomes flat as the variance increases, and the normal distribution becomes sharp 
          as the variance decreases.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_50NormalComparison.svg" onclick="window.open(addrStr[167])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0326.png">
+            <img class="imgFig600600" src="./Figure/Fig0326.png">
             <div class="textLeft">&lt;Figure 3.26&gt; Comparison of three graphs of normal distribution,  \(N(0, 0.5^2 )\), \(N(0, 1)\), \(N(0, 3^2 )\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
   </div>
   <p>
@@ -1977,7 +1565,7 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableYellow">
       <p>
-         <b>The characteristics of the normal distribution</b> are summarized as follows.
+         <b>The characteristics of the normal distribution</b>
       <p>
       <div class="textL20M20">
          1) It is a bell-shaped function symmetrical with respect to a straight line \(x = \mu\),
@@ -2018,7 +1606,7 @@
          \(P(a \le X \le b)\), when \(X\) follows the normal distribution \(N(\mu, \sigma^2 )\)
          is the area of the function \(f(x)\) enclosed between the x-axis and interval \([a, b]\)
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0327.png">
+            <img class="imgFig600600" src="./Figure/Fig0327.png">
             <div class="textLeft">&lt;Figure 3.27&gt; Probability  \(P(a \le X \le b)\) of the normal distribution</div>
       <p>
          Mathematically, this area should be obtained as the following definite integral, but it is only possible to use a computer because the function  is impossible to integrate.
@@ -2034,7 +1622,7 @@
          If a random variable \(X\) follows \(N(\mu, \sigma^2 )\), the transformed variable
          \(Z = \frac{X - \mu}{\sigma}\) follows a normal distribution with mean 0 and 
          standard deviation 1, \(N(0,1)\). This fact implies that if we can find all 
-         probabilities of \(N(0,1)\). we can find the probabilities of any normal distribution. 
+         probabilities of \(N(0,1)\), we can find the probabilities of any normal distribution. 
          Therefore, \(N(0,1)\) is specifically called the <b>standard normal distribution</b>
          or <b>\(Z\) distribution</b>. The transformation \(Z = \frac{X - \mu}{\sigma}\) that turns 
          a random variable \(X\) into \(Z\) is called the <b>standardized transformation</b>.
@@ -2058,33 +1646,32 @@
          using 『eStatH』.
       <p>
             <div class="textLeft">[Table 3.3] Cumulated probability of standard normal distribution in 『eStatH』 </div>
-            <img class="imgFig600600" src="../FigureH/Table0304.png">
+            <img class="imgFig600600" src="./Figure/Table0304.png">
       <p>
          In 『eStatH』, it is easy to calculate the probability for the interval \([a, b]\)
          of any normal distribution, \(P(a \le X \le b)\), and the percentile \(x\)
          for a given cumulated probability \(p\), that is \(P(X \le x) = p\), as shown 
          in &lt;Figure 3.28&gt;. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0328.png">
-            <div class="textLeft">&lt;Figure 3.28&gt; Normal probability calculation using 『eStatH』</div>
-          </td>
-        </tr>
-      </table>
+      <!--------*** html for Normal Distribution ***-------------------------->
+      <b>[<span data-msgid="Normal Distribution">Normal Distribution</span>]</b> 
+      <p>
+         <iframe src="./example/030502/030502.html" width="800" height="780"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 3.28&gt; Normal probability calculation using 『eStatH』</div>
       <p>
          In 『eStatH』, the probability of an interval can be calculated from \(\mu - 4 \sigma\) to \(\mu + 4 \sigma\). 
          The probability which is less than \(\mu - 4\sigma\) or greater than \(\mu + 4\sigma\)
          is 0.0000. [Table 3.4] is the percentile table of the standard normal distribution of 『eStatH』.
       <p>
-            <div class="textLeft">[Table 3.4] Percentile of standard normal distribution in 『eStatH』</div>
-            <img class="imgFig600600" src="../FigureH/Table0304.png">
+         <div class="textLeft">[Table 3.4] Percentile of standard normal distribution in 『eStatH』</div>
+         <img class="imgFig600600" src="./Figure/Table0304.png">
   </div>
   <p>
+
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTableGrey">
       <p><h5>🎲 Example 3.9</h5>
@@ -2105,18 +1692,10 @@
       <div class="textL20M20">3) \(P(Z ≥ 1.96) = 1 - P(Z ≤ 1.96) = 1 - 0.975 = 0.025 \)
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
             <p>When using 『eStatH』 for 1), select the second option under the graph, enter 1.96, and click [Execute] button.
             <p>In the same way, 2) is calculated by entering -1.96 and 1.96 in the first option under the graph.
             <p>3) is calculated by selecting the third option under the graph and entering 1.96.
-          </td>
-        </tr>
-      </table>
       <p>
   </div>
   <!------------------------------------------------------------------------------------------------->
@@ -2125,7 +1704,7 @@
   <div class="mainTableGrey">
       <p><h5>🎲 Example 3.10</h5>
          If \(Z\) is the standard normal random variable, find \(x\) which satisfies 
-         the following formula and cofirm it using 『eStatH』.
+         the following formula and confirm it using 『eStatH』.
       <p>
          1) \(P(Z ≤ x) = 0.90\)       <br>
          2) \(P(-x ≤ Z ≤ x) = 0.99\) <br>
@@ -2135,70 +1714,42 @@
       <div class="textL20M20">1) In the standard normal distribution table, you can look up the value of \(x\) as 1.28 approximately. 
       </div>
       <p>
-      <div class="textL20M20">2) The \(x\) at which both ends become 0.005 is 2.575. 
+      <div class="textL20M20">2) The \(x\) in which both ends become 0.005 is 2.575. 
       </div>
       <p>
       <div class="textL20M20">3) It is the same as looking up \(P(Z ≤ x) = 0.95\), \(x\) is 1.645 in the table.
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p>When using 『eStatH』 for 1), enter \(p\) = 0.90 in the right box in the fifth option under the graph and click [Execute] button. It can be seen that the correct 90% percentile is 1.282.  
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
+            <p>When using 『eStatH』 for 1) enter \(p\) = 0.90 in the right box in the fifth option under the graph and click [Execute] button. It can be seen that the correct 90% percentile is 1.282.  
             <p>
-            <img class="imgFig600600" src="../FigureH/Fig0328A.png">
-          </td>
-        </tr>
-      </table>
-           <p>For 2), use the fourth option under the graph, enter \(p\) = 0.99 in the right box and click [Execute] button. It can be seen that the correct bilateral percentile are –2.5758 and 2.576.
-           <p>For 3), use the 6th option under the graph, enter \(p\) = 0.05 in the box on the right and click [Execute] button. It can be seen that the correct right 5% percentile is 1.645.
-          </td>
-        </tr>
-      </table>
-      <p>
+            <img class="imgFig600600" src="./Figure/Fig0328A.png">
+            <p>For 2) use the fourth option under the graph, enter \(p\) = 0.99 in the right box and click [Execute] button. It can be seen that the correct bilateral percentile are –2.5758 and 2.576.
+            <p>For 3) use the 6th option under the graph, enter \(p\) = 0.05 in the box on the right and click [Execute] button. It can be seen that the correct right 5% percentile is 1.645.
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.9</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
+        <h5>⏱ Practice 3.9</h5>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
             <p>If \(Z\) is the standard normal random variable, find the following probabilities using the standard normal distribution table and confirm it using 『eStatH』.
             <p>
               1) \(P(-1 ≤ Z ≤ 1)\) <br>
               2) \(P(-2 ≤ Z ≤ 2)\) <br>
               3) \(P(-3 ≤ Z ≤ 3)\) 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.10</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p>If \(Z\) is the standard normal random variable, find \(x\) which satisfies the following formula and cofirm it using 『eStatH』.
+        <h5>⏱ Practice 3.10</h5>
+            If \(Z\) is the standard normal random variable, find \(x\) which satisfies the following formula and cofirm it using 『eStatH』.
             <p>
-              1) \(P(Z ≤ x) = 0.90  \) <br>
-              2) \(P(-x ≤ Z ≤ x) = 0.99 \) <br>
-              3) \(P(Z ≥ x) = 0.05\) 
-          </td>
-        </tr>
-      </table>
+              1) \(P(Z ≤ x) = 0.99  \) <br>
+              2) \(P(-x ≤ Z ≤ x) = 0.95 \) <br>
+              3) \(P(Z ≥ x) = 0.01\) 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -2209,10 +1760,10 @@
          95%, 97.5%, and 99.5% from the left of the standard normal distribution. 
          &lt;Figure 3.30&gt; shows the 95% and 99% probabilities when both ends are equally excluded..
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0329.png">
+            <img class="imgFig600600" src="./Figure/Fig0329.png">
             <div class="textLeft">&lt;Figure 3.29&gt; 95%, 97.5%, 99.5% percentiles of standard normal distribution<br> \(\small P(Z \le 1.645) = 0.95, P(Z \le 1.96) = 0.975, P(Z \le 2.575) = 0.995\)  </div>
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0330.png">
+            <img class="imgFig600600" src="./Figure/Fig0330.png">
             <div class="textLeft">&lt;Figure 3.30&gt; Middle 95%, 99% percentiles of standard normal distribution<br> \(\small P(-1.96 \le Z \le 1.96) = 0.95,  P(-2.575 \le Z \le 2.575) = 0.99\)</div>
       <p>
          Using the standard normal distribution table, you can find the probability of 
@@ -2226,7 +1777,7 @@
       <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Calculation of probability on interval \([a, b]\) in normal distribution</b>
       <p>
          If the random variable \(X\) is the normal distribution with mean \(\mu\) and 
-         variance \(\sigma^2\), the probability of the interval \([a, b]\) of \(X\), \(P(a \le X \le b)\)  is as follows.
+         variance \(\sigma^2\), the probability of the interval \([a, b]\) of \(X\), \(P(a \le X \le b)\)  is as follows:
       $$
          P(a \le X \le b) = P(\frac{a-\mu}{\sigma} \le Z \le \frac{b-\mu}{\sigma} )
       $$
@@ -2236,14 +1787,14 @@
   <div class="mainTableGrey">
       <p><h5>🎲 Example 3.11</h5>
          Find the following probability when the midterm score of the Statistics course, \(X\),
-         follows a normal distribution with a mean of 70 point and a standard deviation of 10 point. Check the calculated value using 『eStatH』.
+         follows a normal distribution with a mean of 70 point and a standard deviation of 10 points. Check the calculated value using 『eStatH』.
       <p>
          1) \(P(X \le 94.3)\) <br>
          2) \(P(X \ge 57.7)\) <br>
          3) \(P(57.7 \le X \le 94.3)\)
       <h5>Solution</h5>
       <p>
-         The probability calculation of each question is as follows. 
+         The probability calculation of each question is as follows: 
       <div class="textL20M20">
         1) \( P(X \le 94.3) = P( \frac{X-70}{10} \le \frac{94.3-70}{10}) = P(Z \le 2.43) = 0.9925 \)
       </div>
@@ -2253,25 +1804,17 @@
       </div>
       <p>
       <div class="textL20M20">
-        3) \( P(57.7 \le X \le 94.3) = P( \frac{57.7-70}{10} \le \frac{X-70}{10} \le \frac{94.3-70}{10} ) = P(-1.23 \le Z \le2.43) = 0.8832 \)
+        3) \( P(57.7 \le X \le 94.3) = P( \frac{57.7-70}{10} \le \frac{X-70}{10} \le \frac{94.3-70}{10} ) = P(-1.23 \le Z \le2.43)\)<br>
+           \( = 0.8832 \)
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p>To obtain the probability of a normal distribution using 『eStatH』, first enter the mean as 70 and the standard deviation as 10 on the screen of &lt;Figure 3.31&gt;. 
-            <p>For 1), enter the value of 94.3 in the second option under the graph and click [Execute] button.
-            <p>In a similar way, for 2), enter 57.7 in the third option to calculate.
-            <p>For 3), enter the interval as [57.7, 94.3] in the first option and click [Execute] button. 
-          </td>
-        </tr>
-      </table>
-      <p>
-            <img class="imgFig600600" src="../FigureH/Fig0331.png">
-            <div class="textLeft">&lt;Figure 3.31&gt; Calculation of probability in normal distribution</div>
+            To obtain the probability of a normal distribution using 『eStatH』, first enter the mean as 70 and the standard deviation as 10 on the screen of &lt;Figure 3.31&gt;. 
+            <p>For 1) enter the value of 94.3 in the second option under the graph and click [Execute] button.
+            <p>In a similar way, for 2) enter 57.7 in the third option to calculate.
+            <p>For 3) enter the interval as [57.7, 94.3] in the first option and click [Execute] button. 
+            <p>
+            <img class="imgFig600600" src="./Figure/Fig0331.png">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
@@ -2298,42 +1841,27 @@
            [70 – 1.96 × 10, 70 + 1.96 × 10], that is, [50.4, 89.6].
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
             <p>To obtain the percentile of a normal distribution using 『eStatH』, first enter the mean as 70 and the standard deviation as 10 on the screen of &lt;Figure 3.32&gt;. 
-            <p>For 1), enter 0.95 in the right box of the fifth option under the graph and click [Execute] button, the 95% percentile 86.449 appears.
-            <p>For 2), enter 0.95 in the right box of the fourth option under the graph screen and click [Execute] button to display both 95% percentiles [50.400, 89.600]. 
-          </td>
-        </tr>
-      </table>
-      <p>
-            <img class="imgFig600600" src="../FigureH/Fig0331.png">
+            <p>For 1) enter 0.95 in the right box of the fifth option under the graph and click [Execute] button, the 95% percentile 86.449 appears.
+            <p>For 2) enter 0.95 in the right box of the fourth option under the graph screen and click [Execute] button to display both 95% percentiles [50.400, 89.600]. 
+            <p>
+            <img class="imgFig600600" src="./Figure/Fig0331.png">
             <div class="textLeft">&lt;Figure 3.32&gt; Calculation of percentile in normal distribution</div>
+       <p>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.11</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p> It is said that the weight of melons follows a normal distribution with a mean of 250g and a standard deviation of 12g. Find the following probabilities and check the calculation using 『eStatH』.
+        <h5>⏱ Practice 3.11</h5>
+            It is said that the weight of melons follows a normal distribution with a mean of 250g and a standard deviation of 12g. Find the following probabilities and check the calculation using 『eStatH』.
             <p>
               1) Find the probability that the weight of the melon is less than 260g. <br>
               2) Find the probability that the weight of the melon is greater than 240g. <br>
               3) Find the probability that the weight of the melon is greater than 240g and less than 260g.<br>
               4) Find the weight corresponding to the top 10% of melons.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -2351,17 +1879,11 @@
           the normal distribution with the mean \(np=50 \times 0.5 = 25\)  and variance 
           \(np=50 \times 0.5 \times 0.5 = 12.5\).
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0333.png">
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
+            <img class="imgFig600600" src="./Figure/Fig0333.png">
             <div class="textLeft">&lt;Figure 3.33&gt;  Normal approximation of binomial when  \(n\) = 50, \(p\) = 0.5</div>
-          </td>
-        </tr>
-      </table>
+         </div>
   </div>
   <p>
   <!------------------------------------------------------------------------------------------------->
@@ -2380,7 +1902,7 @@
          can be approximated using the normal distribution. Since the mean of this binomial
          distribution is \(np\) = 100×0.05 = 5, and the variance is 
          \(np(1-p)\) = 100×0.05×(1-0.05) = 4.75, 
-         the probability calculation using the normal distribution \(N(5,4.75)\) is as follows.
+         the probability calculation using the normal distribution \(N(5,4.75)\) is as follows:
       <p>
          1) \(P(X \le 2) = P(Z \le \frac{2-5}{\sqrt {4.75}} ) = P(Z \le 1.376) = 0.0845\)
       <p>
@@ -2390,291 +1912,18 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <p>
-            <h5>⏱ Practice 3.12</h5>
-          </td>
-          <td>
-            <p>
-               In one presidential election, a particular candidate's approval rating was found to be 40%. To develop an election strategy, we will meet with 100 voters today to see if they support the particular candidate. Find the following probability and check it using 『eStatH』. But assume that there is no abstention.
+        <h5>⏱ Practice 3.12</h5>
+               In one presidential election, a particular candidate's approval rating was found to be 40%. 
+               To develop an election strategy, we will meet with 100 voters today to see if they support 
+               the particular candidate. Find the following probability and check it using 『eStatH』. 
+               Assume that there is no abstention.
                1) What is the probability that 40 or more (≥) and less than (≤) 50 out of 100 voters will support it? <br>
                2) What is the probability that more than 20 people (≥) will support it?
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
+    <iframe src="./exercise/exercise03.html" width="750" height="700" ></iframe>
 
-
-  <div class="mainTablePink">
-    <h4> Exercise </h4>
-    <p style="color:blue">*** Select an answer and click [SUBMIT] button.</p>
-
-  <h6 class="textL30M30">3.1  Which one is an appropriate function as a probability distribution function?  </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> \(f(x) = \frac{x}{5} \;\;(x=-1,0,1,2,3)\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(f(x) = \frac{5-x}{14} \;\;(x=0,1,2,3)\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(f(x) = x^2 - 1 \;\;(x=0,1,2,3) \)</label><br>
-    <label><input type="radio" name="item" value="4"> \(f(x) = x^3 - x^2 + 5 \;\;(x=0,1,2,3)\)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">3.2 Which one is not the property of a probability distribution function? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> \(f(x) \ge 0\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\int_{-∞}^{∞} f(x)dx = 1 \)</label><br>
-    <label><input type="radio" name="item" value="3"> \(P(a \le X \le b) = \int_a ^b f(x) dx\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\int_{-∞}^{∞} x f(x)dx = 1 \)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">3.3 If a random variable \(X\) has values 0, 1, 2, 3 and its probability
-         distribution function is f(x) = \(\frac{x}{6}\), what is the mean of the random variable \(X\)? 
-  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> \(\frac{5}{3}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{6}{3}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{7}{3}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{8}{3}\)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">3.4  If a continuous random variable \(X\) has the probability distribution function \(f(x)\) and it is defined on all real number, which one of the followings is not correct? </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> \(f(x) \ge 0\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\int_{-∞}^{∞} f(x)dx = 1 \)</label><br>
-    <label><input type="radio" name="item" value="3"> \(P(a \le X \le b) = \int_a ^b f(x) dx\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\int_{0}^{∞} x f(x)dx = \frac{1}{2} \)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">3.5 If a probability distribution function of a random variable \(X\)
-       is as follows. What are the mean \(E(X)\) and standard deviation \(σ(X)\)?   
-  </h6>
-          <table> 
-            <tr>
-              <th class="thGrey" style="width:150px">\(X\)</th>
-              <td class="tdCenter">0</td>
-              <td class="tdCenter">1</td>
-              <td class="tdCenter">2</td>
-              <th>Total</th>
-            </tr>
-            <tr>
-              <th class="thGrey">\(P(X=x)\)</th>
-              <td class="tdCenter">\(\frac{3}{10}\)</td>
-              <td class="tdCenter">\(\frac{6}{10}\)</td>
-              <td class="tdCenter">\(\frac{1}{10}\)</td>
-              <th>1</th>
-            </tr>
-          </table>
-
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> E(X)=0.8, σ(X)=0.6</label><br>
-    <label><input type="radio" name="item" value="2"> E(X)=0.6, σ(X)=0.8</label><br>
-    <label><input type="radio" name="item" value="3"> E(X)=0.7, σ(X)=0.1</label><br>
-    <label><input type="radio" name="item" value="4"> E(X)=0.1, σ(X)=0.7</label><br>
-
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  <h6 class="textL30M30">3.6  Let the random variable X be the number of dots, 1, 2, ... , 6, 
-       which are appeared on the top when you roll a dice. Find the mean of the random variable  \(X\).
-  </h6>
-  <form name="Q6">
-    <label><input type="radio" name="item" value="1"> 2  </label><br>
-    <label><input type="radio" name="item" value="2"> 2.5</label><br>
-    <label><input type="radio" name="item" value="3"> 3  </label><br>
-    <label><input type="radio" name="item" value="4"> 3.5</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,6,Q6)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ6">
-  </form>
-
-  <h6 class="textL30M30">3.7  Let the random variable \(X\) be the number of dots when you roll a dice. What is the expected value of the squared value of each \(X\)? </h6>
-  <form name="Q7">
-    <label><input type="radio" name="item" value="1"> \(\frac{23}{6}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{41}{6}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{53}{6}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{91}{6}\)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,7,Q7)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ7">
-  </form>
-
-  <h6 class="textL30M30">3.8 If a random variable X has \(E(X)\)=5 and \(E(X^2)\)=25,
-      what is the variance of \(X\), \(V(X)\)? 
-  </h6>
-  <form name="Q8">
-    <label><input type="radio" name="item" value="1"> 5</label><br>
-    <label><input type="radio" name="item" value="2"> 0</label><br>
-    <label><input type="radio" name="item" value="3"> 5</label><br>
-    <label><input type="radio" name="item" value="4"> 25</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,8,Q8)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ8">
-  </form>
-
-  <h6 class="textL30M30">3.9 If a random variable \(X\) is multiplied by 5 for each value of \(X\),
-        the standard deviation becomes what?  </h6>
-  <form name="Q9">
-    <label><input type="radio" name="item" value="1"> 5 times</label><br>
-    <label><input type="radio" name="item" value="2"> 1/5 times</label><br>
-    <label><input type="radio" name="item" value="3"> 10 times</label><br>
-    <label><input type="radio" name="item" value="4"> 1/10 times</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,9,Q9)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ9">
-  </form>
-
-  <h6 class="textL30M30">3.10  Midterm scores of a math class have the mean 24 and standard deviation 3. If each midterm score is multiplied by 2 and add 10 points, what are the mean and standard deviation of the new midterm scores?  </h6>
-  <form name="Q10">
-    <label><input type="radio" name="item" value="1"> 24, 3</label><br>
-    <label><input type="radio" name="item" value="2"> 48, 3</label><br>
-    <label><input type="radio" name="item" value="3"> 48, 6</label><br>
-    <label><input type="radio" name="item" value="4"> 58, 6</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,10,Q10)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ10">
-  </form>
-
-  <h6 class="textL30M30">3.11 If a random variable \(X\) has the mean of 20, what is the mean of \(Y=2X+3\)?   </h6>
-  <form name="Q11">
-    <label><input type="radio" name="item" value="1"> 20</label><br>
-    <label><input type="radio" name="item" value="2"> 40</label><br>
-    <label><input type="radio" name="item" value="3"> 23</label><br>
-    <label><input type="radio" name="item" value="4"> 43</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,11,Q11)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ11">
-  </form>
-
-  <h6 class="textL30M30">3.12 If a random variable \(X\) has the variance of 2, what is the variance of \(Y=2X+3\)? </h6>
-  <form name="Q12">
-    <label><input type="radio" name="item" value="1"> 2</label><br>
-    <label><input type="radio" name="item" value="2"> 3</label><br>
-    <label><input type="radio" name="item" value="3"> 8</label><br>
-    <label><input type="radio" name="item" value="4"> 18</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,12,Q12)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ12">
-  </form>
-
-  <h6 class="textL30M30">3.13  Which one the followings is wrong?  </h6>
-  <form name="Q13">
-    <label><input type="radio" name="item" value="1"> E(aX＋b)=aE(X)＋b</label><br>
-    <label><input type="radio" name="item" value="2"> E(X＋Y)=E(X)＋E(Y)</label><br>
-    <label><input type="radio" name="item" value="3"> V(aX＋b)=\(a^2\)V(X)</label><br>
-    <label><input type="radio" name="item" value="4"> V(aX＋b)=\(a^2\)V(X)+b</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,13,Q13)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ13">
-  </form>
-
-  <h6 class="textL30M30">3.14 What is the mean and variance of binomial distribution  \(B(100, \frac{1}{6})\)?  </h6>
-  <form name="Q14">
-    <label><input type="radio" name="item" value="1"> 20, 4</label><br>
-    <label><input type="radio" name="item" value="2"> 100, 16</label><br>
-    <label><input type="radio" name="item" value="3"> 100, 4</label><br>
-    <label><input type="radio" name="item" value="4"> 20, 16</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,14,Q14)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ14">
-  </form>
-
-  <h6 class="textL30M30">3.15 What is the variance of the binomial distribution which has the distribution function as  \(f(x) = {}_4 C_x (0.2)^x (1-0.2)^{4-x}\)?  </h6>
-  <form name="Q15">
-    <label><input type="radio" name="item" value="1"> 0.16</label><br>
-    <label><input type="radio" name="item" value="2"> 0.8</label><br>
-    <label><input type="radio" name="item" value="3"> 0.32</label><br>
-    <label><input type="radio" name="item" value="4"> 0.64</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,15,Q15)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ15">
-  </form>
-
-  <h6 class="textL30M30">3.16 There are 10 multiple choice questions where there is one correct answer among four possible answers. If a person chooses one answer randomly in each question, what is the probability that he would choose four correct answers? </h6>
-  <form name="Q16">
-    <label><input type="radio" name="item" value="1"> 0.0162</label><br>
-    <label><input type="radio" name="item" value="2"> 0.0487</label><br>
-    <label><input type="radio" name="item" value="3"> 0.1460</label><br>
-    <label><input type="radio" name="item" value="4"> 0.2050</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,16,Q16)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ16">
-  </form>
-
-  <h6 class="textL30M30">3.17 If a normal distribution has the mean  and standard deviation , what is the probability of the interval \(\mu ± 3 \sigma \)?  </h6>
-  <form name="Q17">
-    <label><input type="radio" name="item" value="1"> 99.73% approximately</label><br>
-    <label><input type="radio" name="item" value="2"> 97.73% approximately</label><br>
-    <label><input type="radio" name="item" value="3"> 95.73% approximately</label><br>
-    <label><input type="radio" name="item" value="4"> 68.73% approximately</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,17,Q17)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ17">
-  </form>
-
-  <h6 class="textL30M30">3.18 The entrance examination scores of a company follows a normal distribution with the mean 400 and standard deviation 50. What is the probability that a score belongs to the interval between 450 and 500 ? </h6>
-  <form name="Q18">
-    <label><input type="radio" name="item" value="1"> 80% approximately</label><br>
-    <label><input type="radio" name="item" value="2"> 50% approximately</label><br>
-    <label><input type="radio" name="item" value="3"> 30% approximately</label><br>
-    <label><input type="radio" name="item" value="4"> 14% approximately</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,18,Q18)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ18">
-  </form>
-
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[33][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(152)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(154)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-</div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
 
 </body>
 </html>

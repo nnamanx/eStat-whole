@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 7</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>7.5 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+    <h6 class="textL30M30">7.1 What is the type 1 error? </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> Error rejecting the null hypothesis when it is true</label><br>
+      <label><input type="radio" name="item" value="2"> Error accepting the null hypothesis when it is true</label><br>
+      <label><input type="radio" name="item" value="3"> Error rejecting the null hypothesis when it is not true</label><br>
+      <label><input type="radio" name="item" value="4"> Error accepting the null hypothesis when it is true</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">7.2 Which hypothesis is accepted when the null hypothesis is rejected?</h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> null hypothesis</label><br>
+      <label><input type="radio" name="item" value="2"> significant hypothesis</label><br>
+      <label><input type="radio" name="item" value="3"> alternative hypothesis</label><br>
+      <label><input type="radio" name="item" value="4"> basic hypothesis</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+   
+    <h6 class="textL30M30">7.3  Which of the following statements is true? </h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> The conclusion about a statistical test is always absolute.</label><br>
+      <label><input type="radio" name="item" value="2"> Rejecting null hypothesis implies we accept the alternative hypothesis.</label><br>
+      <label><input type="radio" name="item" value="3"> In order to reduce the type 1 error, significance level of 0.05 is better than 0.01.</label><br>
+      <label><input type="radio" name="item" value="4"> In order to reduce the type 1 error, significance level of 0.01 is better than 0.05.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">7.4  What is the meaning of the significance level &alpha; = 0.05? </h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> 5% of decisions to reject the null hypothesis when it is true if the same test method was repeated repeatedly</label><br>
+      <label><input type="radio" name="item" value="2"> 5% of decisions to reject the alternative hypothesis when it is true if the same test method was repeated repeatedly</label><br>
+      <label><input type="radio" name="item" value="3"> The probability of accepting the null hypothesis is 0.05.</label><br>
+      <label><input type="radio" name="item" value="4"> The probability of accepting the alternative hypothesis is 0.05.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">7.5  What is the critical value to reject the null hypothesis if the alternative hypothesis is right sided when the sampling distribution to test the population mean is the standard normal distribution?</h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> 2.58</label><br>
+      <label><input type="radio" name="item" value="2"> 1.64</label><br>
+      <label><input type="radio" name="item" value="3"> 2.33</label><br>
+      <label><input type="radio" name="item" value="4"> 1.96</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+    <h6 class="textL30M30">7.6  If the null hypothesis is \(\small H_0 ; \mu = \mu_0 \), 
+       what is the two-sided alternative hypothesis? </h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> \(\small H_1 ; \mu > \mu_0 \)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small H_1 ; \mu < \mu_0 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small H_1 ; \mu = \mu_0 \)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small H_1 ; \mu \ne \mu_0 \)</label><br>
+     <p>
+      <input type="button" value="Submit" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">7.7  The following lists the sequence of a statistical hypothesis test. What's the right order? 
+     a. Set a hypothesis. 
+     b. Determine the significance level.
+     c. Determine whether or not to accept the hypothesis.
+     d. Calculate the test statistic.
+     e. Find the rejection region
+    </h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> a→d→e→b→c</label><br>
+      <label><input type="radio" name="item" value="2"> a→d→b→e→c</label><br>
+      <label><input type="radio" name="item" value="3"> b→e→d→a→c</label><br>
+    <label><input type="radio" name="item" value="4"> a→c→b→d→e</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+   
+    <h6 class="textL30M30">7.8  Which of the following statements is incorrect? </h6>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> The rejection of the null hypothesis means accepting the alternative hypothesis.</label><br>
+      <label><input type="radio" name="item" value="2"> The maximum allowable probability of the type 1 error is the significance level.</label><br>
+      <label><input type="radio" name="item" value="3"> Error accepting the null hypothesis when it is false is the type 1 error.</label><br>
+      <label><input type="radio" name="item" value="4"> Error accepting the alternative hypothesis when it is false is the type 2 error.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">7.9  If \(\small H_0 ; \sigma^2 = \sigma^2_0 \), what is the decision rule 
+       of the two sided test with the significance level of &alpha;?</h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha; }^{2}\), reject \(\small H_0\)</label><br>
+      <label><input type="radio" name="item" value="2"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} < \chi_{n-1: &alpha; }^{2}\), reject \(\small H_0\)</label><br>
+      <label><input type="radio" name="item" value="3"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha;/2 }^{2}\), reject \(\small H_0\)</label><br>
+      <label><input type="radio" name="item" value="4"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha;/2 }^{2}\) or \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: 1-&alpha;/2 }^{2}\), reject \(\small H_0\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">7.10 When a coin was thrown 10,000 times to check whether it was normal, the front and back came out 5020 times and 4980 times. What is the hypothesis you want to test?</h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> \(\small H_0 : \mu = 10000\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small H_0 : \mu > 5000\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small H_0 : p >  0.5\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small H_0 : p \ne 0.5\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+
+    <h6 class="textL30M30">7.11 What is the power of a test?</h6> 
+    <form name="Q11">
+      <label><input type="radio" name="item" value="1"> &alpha;</label><br>
+      <label><input type="radio" name="item" value="2"> 1-&alpha;</label><br>
+      <label><input type="radio" name="item" value="3"> &beta;</label><br>
+      <label><input type="radio" name="item" value="4"> 1-&beta;</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ11">
+    </form>
+  
+    <h6 class="textL30M30">7.12 What is the operating characteristic probability?</h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> &alpha;</label><br>
+      <label><input type="radio" name="item" value="2"> 1-&alpha;</label><br>
+      <label><input type="radio" name="item" value="3"> &beta;</label><br>
+      <label><input type="radio" name="item" value="4"> 1-&beta;</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+      <div class="textL30M30">
+        7.1  Assume that the distribution of a population is a normal distribution with the standard deviation 
+           of 50. The sample mean of 25 samples randomly selected from the population is 70. Test the 
+           hypothesis \(\small H_0 : \mu = 100 , H_1 : \mu \ne 100 \)  with the significance level of 0.01 
+           and obtain the \(p\)-value.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.2  A bolt manufacturer claims that the average of bolt length is 4.5 cm, the standard deviation is 0.020 cm and it is normally distributed. When 16 samples were taken randomly, the sample mean was 4.512. Can you say that the actual average length of the bolt is different from that of the manufacturer’s claim? Assume that the significance level is 0.01.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.3  The amount of water needed in the process of producing a compound with distilled water added to any component in a fixed amount depends on the purity of the component. In the manufacturer's experience, the water requirement for a normal production is 6 liters and the standard deviation is 1 liter. A sample mean from samples of nine products was 7 liters. Can products be considered as a normal production at the significance level of 0.05?
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.4  A psychologist is working on physically disabled workers. Based on the past experience, the psychologist believed that the average social (relationship) score of these disabled workers was greater than 80. Twenty employees were sampled from the score population to obtain the following result:
+      </div>
+      <p> 
+      <div class="textLeft">99, 69, 91, 97, 70, 99, 72, 74, 74, 76, </div>
+      <div class="textLeft">96, 97, 68, 71, 99, 78, 76, 78, 83, 66. </div>
+      <p>
+      <div class="textL30">
+        The psychologist wants to know if the average social score of the population is right. Assume that the population follows a normal distribution and its standard deviation is 10. Test with the significance level of 0.05.
+      </div>
+      <p>
+      <div class="textL30M30">
+      7.5  The following is the weights of the 10 employees randomly selected who are working in the shipping department of a wholesale food company.
+      </div>
+      <p>  
+        <div class="textLeft">154, 154, 186, 243, 159, 174, 183, 163, 192, 181  (unit pound) </div>
+      <p>
+      <div class="textL30">
+        Based on this data, can you say that the average weight of employees working in the shipping department is greater than 160 pound? Use the significance level of 5%.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.6  A company that makes tar on a roof wants an average of less than 3 percent of impurities. By sampling 30 barrels of tar, can this data suggest that the population mean is less than 3% when the proportion of impurities is as follows? Use the significance level of 5%.
+      </div>
+        <p> 
+        <div class="textLeft">3 3 1 1 0.5    2 2 4 5 4    5 3 1 3 1 </div>
+        <div class="textLeft">4 1 1 4 2      5 3 1 1 1    0.75 1.5 3 3 2 </div>
+        <p>
+      <div class="textL30M30">
+        7.7  In a large manufacturer, the manager of the company claims that the average adaptation score of all unskilled workers is greater than 60. In order to check this claim, 40 unskilled workers were randomly selected and their test scores of adaptation scores were as follows.
+      </div>
+        <p>      
+        <div class="textLeft">73 57 96 78 74 42 55 44 91 91  50 65 46 63 82 60 97 79 85 79 </div>
+        <div class="textLeft">92 50 42 46 86 81 81 83 64 76  40 57 78 66 84 96 94 70 70 81 </div>
+        <p>      
+        <div class="textL30">If the population variance is 280, test the hypothesis at the significance level of 0.05 
+          whether the manager's argument is correct. What is the \(p\)-value?
+        </div>
+        <p>
+      <div class="textL30M30">
+        7.8  Existing tires of a company have an average life span of 54,000 km and a standard deviation of 10,000 km. Two researchers conducted a performance test for new tires independently. The first researcher tested 25 tires and obtained an average life span of 48,000 km, while the second researcher tested 100 to get 50,000 km. Which test result gives more reliable statistical evidence that the average life span of a new tire is less than the existing one? Assume that the standard deviation has not changed.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.9  Suppose \(n\) = 100 and \(\sigma\) = 8.4 are given to test the hypothesis \(\small H_0 : \mu = 75.0 , H_1 : \mu \lt 75.0 \).
+      </div>
+        <p>
+        <div class="textL50M30">1) If the null hypothesis is rejected when the sample mean is less than 73.0, what is the probability of the type 1 error?
+        </div>
+        <div class="textL50M30">2) If we test the alternative hypothesis \(\small H_1 : \mu \gt 75 \)  and the decision rule is the same as above, what is the probability of the type 1 error?
+        </div>
+        <p>
+      <div class="textL30M30">
+        7.10 A random variable follows a normal distribution N(&mu;, 4). Test the hypothesis \(\small H_0 : \mu = 0 \) 
+           with the significance level of 0.10 if \(n\) = 25 and \(\small \overline x\) = 0.28. Does the 90% confidence interval include &mu; = 0?
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.11 A sample of size 21 was randomly taken from a population that follows the normal distribution 
+           and its sample variance was 10. Test the null hypothesis \(\small H_0 : \sigma^2 \) = 15 and the alternative hypothesis \(\small H_1 : \sigma^2 \) ≠ 15 with the significance level of 0.05.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.12 If the variance of diameters of metal washer products is less than \( 0.000005^2\), then the production process is under control. 
+           31 samples were randomly selected from the assembly line and its variance is \( 0.000006^2\). According to this data, is the assembly process out of control with the significance level of 0.05? What assumptions do you need to get an answer?
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.13 For a manufacturer to make a product, the variance of tensile strength of the synthetic fiber must be less than or equal to five. When 25 samples are randomly selected from the new shipment and the variance is seven. Does this data provide sufficient evidence for the manufacturer to reject the shipment? Assume the significance level of 0.05 and that the tensile strength of the fiber follows approximately a normal distribution.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.14 In a process of filling the container, the average weight is set to 8g and 
+           the variance of the weight shall be \(\sigma^2\) = 4g to satisfy the given tolerances. 
+           25 container samples were randomly selected and its standard deviation was 2.8g. 
+      </div>
+        <p>
+        <div class="textL50M30">
+        1) If the weight is assumed to follow a normal distribution, is the population variance greater than the prescribed value \(\sigma^2\)? 
+           Test at the significance level of 0.01.
+        </div>
+        <div class="textL50M30">
+        2) What is the range of sample variances that can not be rejected? Are these values symmetrical to the prescribed value of 2g? Why is that?
+        </div>
+      <p>
+      <div class="textL30M30">
+        7.15 A university wants to build a student parking lot. School authorities think more than 20 percent of students go to school by car. 250 students are randomly selected and 65 of them said that they go to school by car. Test at the significance level of 0.05 whether the school authorities' thinking is correct.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.16 The accountant of a company thinks that more than 20% of the statement of expenses includes at least one mistake. 400 statements of expenses were randomly selected and found at least one mistake in 100 statements. Test whether the accountant's belief is correct with the significance level of 0.05.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.17 A researcher met 200 office workers of a company who changed their job last year. Thirty of them stated that they changed their work, because they could not expect for promotion. Can you say that less than 20% of the employees were changed their job, because of their promotion? The significance level is 0.05.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.18 A statistician threw coins 24,000 times, with 12012 front and 11988 back. Does this data support the null hypothesis that there is 0.5 chance that the front face will appear? Test at the significance level of 0.05.
+      </div>
+      <p>
+      <div class="textL30M30">
+        7.19 A high school student made dice from wood. It doesn't look like a cube, so it's not one-sixth of a chance of six at the top. I rolled the dice 18,000 times and got 3,126 of six at the top. 
+      </div>
+        <p>
+        <div class="textL50M30">1) Determine whether these 3126 occurrences are statistically significant by obtaining the \(p-value\).
+        </div>
+        <div class="textL50M30">2) Since it is too much to demand that a hand-made dice have an exact one-sixth chance of producing six, we decided to allow the error of 0.01 chance to be a fair dice. Using the above sample experiment, obtain a confidence interval for the probability of a 6 and determine whether it is acceptable to be viewed as a fair dice (Note: It is difficult to distinguish between the statistical significance and the practical significance by relying solely on testing hypothesis.)
+        </div>
+        <p>
+      ** Obtain a power function for each of the following situations and draw a graph:
+      <p>
+      7.20  \(\small H_0 : \mu = 51 , H_1 : \mu < 51 , n = 25, \sigma = 3 , \alpha = 0.05 \).
+      <p>
+      7.21  \(\small H_0 : \mu = 516 , H_1 : \mu > 516 , n = 16, \sigma = 32 , \alpha = 0.05 \).
+      <p>
+      7.22  \(\small H_0 : \mu = 3 , H_1 : \mu \ne 3 , n = 100, \sigma = 1 , \alpha = 0.05 \).
+      <p>
+      7.23  \(\small H_0 : \mu = 4.25 , H_1 : \mu > 4.25 , n = 81, \sigma = 1.8 , \alpha = 0.01 \).
+      <p>
+      7.24 On question 7.21, find \(n, C\),  and the decision rule when  &beta; = 0.10 and  \(\mu_1\) =  520. 
+      <p>
+      7.25 On question 7.23, find \(n, C\),  and the decision rule when  &beta; = 0.05 and \(\mu_1\)  =  4.52. 
+      <p>
+      7.26 On question 7.23, find \(n, C\),  and the decision rule when  &beta; = 0.03 and \(\mu_1\)  =  5.
+      <p>
+      <div class="textL30M30">
+        7.27 The standard deviation of the resistance of a wire made by a factory is known to be 0.02 ohms. 
+           An electronics company has decided not to buy the wire if there is sufficient evidence that the 
+           average resistance of the wire is greater than 0.4 ohms. The company's management adheres to the policy 
+           of the significance level &alpha; = 0.05 and the sample size \(n\) = 100 in statistical tests.
+      </div>
+        <p>
+        <div class="textL50M30">1) Describe the proper null and alternative hypothesis.
+        </div>
+        <div class="textL50M30">2) Describe the type 1 and type 2 errors.
+        </div>
+        <div class="textL50M30">3) Obtain the rejection region of the test.
+        </div>
+        <div class="textL50M30">4) Draw the power function and operating characteristic curve.
+        </div>
+        <p>
+      <div class="textL30M30">
+        7.28 In order to test whether the coins were fair, the following decision criteria were established:
+      </div>
+        <div class="textL50M30">①  If the number of fronts when a coin thrown 100 times is in between 40 and 60, the null hypothesis is adopted. 
+        </div>
+        <div class="textL50M30">②  In other cases, the null hypothesis is rejected.
+        </div>
+        <p>
+        <div class="textL50M30">1) What is the null and alternative hypothesis?
+        </div>
+        <div class="textL50M30">2) What is the probability of the type 1 error in this test?
+        </div>
+        <div class="textL50M30">3) Mark the critical value of this test using the standard normal distribution.
+        </div>
+        <div class="textL50M30">4) Calculate the probability of the type 2 error when \(p\) = 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 and 0.9.
+        </div>
+      <p>
+  </div>
+
+  <script src="./js/exercise07.js"></script>
+
+</body>
+</html>
+

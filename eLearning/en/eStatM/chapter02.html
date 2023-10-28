@@ -7,113 +7,37 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>Chapter 2</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
-    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">Table of Contents</a></li>
-            <li><a href="../eStatM/chapter01.html">1. Statistics</a></li>
-            <li><a href="../eStatM/chapter02.html">2. Visualization of Qualitative Data</a></li>
-            <li><a href="../eStatM/chapter03.html">3. Visualization of Qunatitative Data</a></li>
-            <li><a href="../eStatM/chapter04.html">4. Measure of Central Tendency and Dispersion</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
   <!--***********************************************************************-->
   <h1>Chapter 2. Visualization of Qualitative Data</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 1</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:420px">
         <h1>&nbsp; 📊 🍕 🌈 ⛅</h1>        
         <h4>
         <a href="#0201"><u>2.1 Bar/ Pie/ Rainbow/ Band Graph</u></a> <p>
         <a href="#0202"><u>2.2 Line Graph</u></a> <p>
         <a href="#0203"><u>2.3 Word Cloud</u></a> <p>
-        <a href="../eStatM/chapter02.pdf" target="_blank"><u>[Chapter 2. pdf]</u></a> 
+        <a href="./pdf/chapter02.pdf" target="_blank"><u>[Chapter 2. pdf]</u></a> 
         </h4>
-      </td>
-      <td>
         <p>In the case of categorical data, the following graphs are drawn and analyzed.
-        <p> - bar graph 
+        <br> - bar graph 
         <br> - pie graph
         <br> - rainbow graph
         <br> - band graph
         <br> - line graph
         <p>The data in the form of words are analyzed by drawing a word cloud.
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -124,13 +48,7 @@
   <h3 id="0201">2.1  Bar/ Pie/ Rainbow/ Band Graph</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The frequency table that surveyed 20 students in an elementary school class 
              for their favorite sports is as follows:</b>
           <p>
@@ -143,18 +61,8 @@
             <tr> <td class="tdCenter">Volleyball</td> <td class="tdCenter">2</td>    </tr>
             <tr> <td class="tdCenter">Golf</td> <td class="tdCenter">1</td>    </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>What are some graphs that can be easily observed what a favorite sport is like? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -172,77 +80,71 @@
          of a rectangular bar. Spacing between the bars is used to emphasize that 
          it is categorical data such as in &lt;Figure 2.1&gt;.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0201.png">
+         <img class="imgFig600600" src="./Figure/Fig0201.png">
          <div class="textLeft">&lt;Figure 2.1&gt; Bar graph for favorite sports</div>
       <p>
          A <b>pie graph</b> is a graph in which the frequency of each category in the 
          whole data is divided into pie slices. For better comparison of proportions, draw the circle pieces in the order of the largest category in a clockwise direction.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0202.png">
+         <img class="imgFig600600" src="./Figure/Fig0202.png">
          <div class="textLeft">&lt;Figure 2.2&gt; Pie graph for favorite sports</div>
       <p>
          A <b>rainbow graph</b> is a modified form of a pie graph and is a graph in which the frequency of each category is divided into raibow pieces and displayed in the total data. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0203.png">
+         <img class="imgFig600600" src="./Figure/Fig0203.png">
          <div class="textLeft">&lt;Figure 2.3&gt; Rainbow graph for favorite sports</div>
       <p>
          A <b>band graph</b> is a modified form of a pie graph, and is a graph in which the 
          frequency of each category is divided into rectangle pieces and displayed
          in the total data. It is also possible to sort in the order of the largest
          value of the category, but to distinguish it from the pie graph, the 
-         rectangle pieces are drawn in the order of the categories of the data 
-         in 『eStatH』.
+         rectangle pieces are drawn in the order of the categories of the data.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0204.png">
+         <img class="imgFig600600" src="./Figure/Fig0204.png">
          <div class="textLeft">&lt;Figure 2.4&gt; Band graph for favorite sports</div>
   </div>
   <p>
 
-    <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 2.1</h4>
-        Using 『eStatH』, draw a bar graph, pie graph, and band graph for favorite sports and observe which sports students like the most.
+        Draw a bar graph, pie graph, and band graph for favorite sports and observe which sports students like the most.
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
-          </td>
-          <td>
-            <p>
-               If you select ‘Bar Graph - Pie - Band Graph’ from the 『eStatH』 menu using 
-               the QR on the left, the data input window as shown in &lt;Figure 2.5&gt; appears.
-            <p>
-               Enter the desired title for 'Main Title', 'y title', and 'x title' and 
-               enter 'Category' and 'Frequency'.
-            <p>
+      <p>
+         Enter the desired title for 'Main Title', 'y title', and 'x title' and 
+         enter 'Category' and 'Frequency' as in &lt;Figure 2.5&gt;. 
+      <p>
                Click the [Bar Graph] button to display a bar graph as in &lt;Figure 2.1&gt;. 
                You can also draw the bar graph again by selecting the color of the desired 
-               category. If you select the icon for each category on the far right and check
+               category. If you select the Emoji icon for each category on the far right and check
                ‘Emoji’ under the graph, a bar graph like &lt;Figure 2.6&gt; appears.
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0205.png">
-         <div class="textLeft">&lt;Figure 2.5&gt; Data input for favorite sports</div>
+      <!-------------***  Bar/Pie/Rainbow/Band html ***----------------------->
+         <iframe src="./example/0201/0201.html" width="700" height="1050"> </iframe>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0206.png">
-         <div class="textLeft">&lt;Figure 2.6&gt; ar graph with Imoji icons for each category </div>
+         <div class="textLeft">&lt;Figure 2.5&gt; Data input and Bar graph for favorite sports data</div>
       <p>
-         In a similar way, the frequency can be displayed on the bar as shown in &lt;Figure 2.7&gt;.
+         <img class="imgFig600600" src="./Figure/Fig0206.png">
+         <div class="textLeft">&lt;Figure 2.6&gt; Bar graph with Emoji icons for each category </div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0207.png">
+         In a similar way, if you check 'Frequency the frequency can be displayed on the bar as shown in &lt;Figure 2.7&gt;.
+      <p>
+         <img class="imgFig600600" src="./Figure/Fig0207.png">
          <div class="textLeft">&lt;Figure 2.7&gt; Bar graph with frequencies </div>
       <p>
          By using the (Soring) option under the graph, you can sort the bars in descending
          or ascending order of frequency as in &lt;Figure 2.8&gt; or &lt;Figure 2.9&gt;.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0208.png">
+         <img class="imgFig600600" src="./Figure/Fig0208.png">
          <div class="textLeft">&lt;Figure 2.8&gt; Bar graph in descending order of frequencies</div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0209.png">
+         <img class="imgFig600600" src="./Figure/Fig0209.png">
          <div class="textLeft">&lt;Figure 2.9&gt; Bar graph in ascending order of frequencies </div>
+      <p>
+        Click the [Pie Graph] button to display a pie graph as in &lt;Figure 2.2&gt;. 
+      <p>
+        Click the [Rainbow Graph] button to display a rainbow graph as in &lt;Figure 2.3&gt;. 
+      <p>
+        Click the [Band Graph] button to display a band graph as in &lt;Figure 2.4&gt;. 
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -250,7 +152,7 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 2.2</h4>
-         Thhe fruits that elementary school students liked were as follows: 
+         The fruits that elementary school students liked were as follows: 
           <p>
           <div class="textLeft">[Table 2.2] Fruits that students liked</div>
           <table> 
@@ -264,46 +166,33 @@
             <tr> <td class="tdCenter">Watermelon</td> <td class="tdCenter">13</td>    </tr>
             <tr> <td class="tdCenter">Pineapple</td>  <td class="tdCenter"> 5</td>    </tr>
           </table>
-      <p>Let's draw a bar graph using 『eStatH』.
+      <p>Draw Bar graph, Pie chart, Rainbow chart and Line graph using 『eStat』.
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
-          </td>
-          <td>
-            <p>If you select ‘Bar Graph – Pie Graph - Band Graph’ from the 『eStatH』 menu 
-               using the QR on the left, the data input window as shown in &lt;Figure 2.10&gt; 
-               appears.
-            <p>Enter the desired title for 'Main Title', 'y title', and 'x title' and 
-               enter 'Category' and 'Frequency'. Select each fruit imoji icon on the far right.
+      <br>
+               Enter the desired title for 'Main Title', 'y title', and 'x title' and 
+               enter 'Category' and 'Frequency' in &lt;Figure 2.10&gt;. Select each fruit imoji icon on the far right.
             <p>Click the [Bar Graph] button and when the graph appears, check the 'Emoji' 
                below the graph. You can also draw the bar graph again by selecting 
                the color of the desired category.
-          </td>
-        </tr>
-      </table>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
+            <img class="imgFig600600" src="./Figure/Fig0210.png">
+            <div class="textLeft">&lt;Figure 2.10&gt; Data input for favorite fruits </div>
+         </div>
       <p>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0210.png">
-         <div class="textLeft">&lt;Figure 2.10&gt; Data input for favorite fruits </div>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0211.png">
+         <img class="imgFig600600" src="./Figure/Fig0211.png">
          <div class="textLeft">&lt;Figure 2.11&gt; Bar graph for favorite fruits with imoji</div>
+      <p>
+         Click the [Pie Chart], [Rainbow Chart] and [Band Graph] button to display pie chart, rainbow chart, 
+         and band graph. 
      </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 2.1</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 2.1</h4> 
+        <p>
             According to the United Nations 2018 estimates, World largest  10 cities 
             (mixture of city, metropolitan and urban area) are as follows: 
             <p>
@@ -321,23 +210,16 @@
               <tr> <td class="tdCenter">Beijing (China)</td> <td class="tdCenter">19.6</td>   </tr>
               <tr> <td class="tdCenter">Dhaka (Bangladesh)</td> <td class="tdCenter">19.6</td>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
-      <p>Draw a bar graph, pie graph, rainbow graph and band graph using 『eStatH』 to find out the characteristics.
+      <p>Draw a bar graph, pie graph, rainbow graph and band graph to find out the characteristics.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
+      <p>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 2.2</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_01BarChart.svg" onclick="window.open(addrStr[141])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 2.2</h4> 
+        <p>
             A summary of the survey of prospective jobs of elementary school students 
             is as follows: 
             <p>
@@ -352,10 +234,9 @@
               <tr> <td class="tdCenter">Sportsman</td>       <td class="tdCenter">43</td>   </tr>
               <tr> <td class="tdCenter">Police</td>          <td class="tdCenter">26</td>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
-      <p>Use 『eStatH』 to draw a bar graph, a pie graph, rainbow graph and band graph to identify the characteristics.  
+      <p>Draw a bar graph, a pie graph, rainbow graph and band graph to identify the characteristics.  
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
+      <p>
     </div>
     <p>
 
@@ -363,14 +244,9 @@
   <h3 id="0202">2.2 Line Graph</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ Think</h4>
           <b>The following table shows the population of Korea, surveyed at approximately five-year intervals from 1925 to 2019.</b>
-          <p>
+      <p>
             <div class="textLeft">[Table 2.5] Population of Korea </div>
             <table> 
               <tr> <th class="thGrey">Year</th> <th class="thGrey">Population (unit 10,000)</th>  </tr>
@@ -395,19 +271,9 @@
               <tr> <td class="tdCenter">2015</td>      <td class="tdCenter">5106</td>   </tr>
               <tr> <td class="tdCenter">2019</td>      <td class="tdCenter">5178</td>   </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>What kind of graph can easily observe the data measured over time?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -419,7 +285,7 @@
          with a line. It is similar to a bar graph, but the change in data over time can be 
          observed.
       <p>
-           <img class="imgFig600600" src="../FigureM/Fig0212.png">
+           <img class="imgFig600600" src="./Figure/Fig0212.png">
            <div class="textLeft">&lt;Figure 2.12&gt; Line graph of Korea’s population</div>
       <p>
          Observing the line graph of Korea's population, it can be seen that it was increased
@@ -430,29 +296,21 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 2.3</h4>
-        Using 『eStatH』, draw and observe a line graph for the Korean population in [Table 2.5].
+         Draw and observe a line graph for the Korean population in [Table 2.5].
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
-          </td>
-          <td>
-            <p>If you select ‘Line Graph’ from the 『eStatH』 menu using the QR on the left, 
-               a data input window as shown in &lt;Figure 2.13&gt; appears.
-            <p>Enter the ‘main title’, ‘y title’, and ‘x title’ as shown in the figure,
-               enter the number of population by year in ‘Line 1’, the variable name next to it,
-               and year data in ‘X’.
-            <p>If you click the [Execute] button, a line graph as shown in &lt;Figure 2.12&gt; appears. You can also draw a line graph again by selecting the color of each line variable.
-
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0213.png">
-         <div class="textLeft">&lt;Figure 2.13&gt; Data input for Line Graph</div>
+          Enter the ‘main title’, ‘y title’, ‘x title’ as shown in &lt;Figure 2.13&gt;, and 
+          enter the number of population by year in ‘Line 1’, the variable name next to it,
+          and year data in ‘X’.
+      <p>If you click the [Execute] button, a line graph as shown in &lt;Figure 2.12&gt; appears. 
+         You can also draw a line graph again by selecting the color of each line variable.
+      <p>
+      <!-------------***   Line Graph html  ***----------------------------->
+         <iframe src="./example/0202/0202.html" width="700" height="900"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 2.13&gt; Data input for Line Graph and result</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
   <div class="mainTable">
@@ -464,7 +322,7 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 2.4</h4>
-        Using 『eStatH』, draw and observe the line graph for the average temperature of Spring, 
+        Draw and observe the line graph for the average temperature of Spring, 
         Summer, Fall, and Winter season in Korea such as in [Table 2.6] on one graph.
       <p>
             <div class="textLeft">[Table 2.6] Average temperature of each season in Korea (unit: degree in Celsius)   </div>
@@ -512,28 +370,16 @@
             </table>
 
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
-          </td>
-          <td>
-            <p>If you select ‘Line Graph’ from the 『eStatH』 menu using the QR on the left, 
-               the data input window as shown in &lt;Figure 2.14&gt; appears.
-            <p>Enter the 'main title', 'y title', and 'x title' as shown in the figure, 
-               and enter the Spring, Summer, Fall, and Winter temperatures from 'Line 1' to 'Line 4'.Enter each variable name as Spring, Summer, Fall, Winter, and enter year data in 'X'.
-            <p>If you click the [Execute] button, a line graph as shown in 
-               &lt;Figure 2.15&gt; appears. You can also draw a line graph again by 
-               selecting the color of each line.
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0214.png">
-         <div class="textLeft">&lt;Figure 2.14&gt; Data input of average temperature by season for a line graph</div>
+          Enter the 'main title', 'y title', and 'x title' as shown in &lt;Figure 2.14&gt;, 
+          and enter the Spring, Summer, Fall, and Winter temperatures from 'Line 1' to 'Line 4'.Enter each variable name as Spring, Summer, Fall, Winter, and enter year data in 'X'.
+      <br>If you click the [Execute] button, a line graph as shown in 
+          &lt;Figure 2.15&gt; appears. You can also draw a line graph again by 
+          selecting the color of each line.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0215.png">
-         <div class="textLeft">&lt;Figure 2.15&gt; Line graph of average temperature by season in Korea</div>
+         <iframe src="./example/0203/0203.html" width="700" height="900"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 2.15&gt; Data input of average temperature by season and its line graph</div>
       <p>
          Looking at the line graph of the average temperature by season, it can be seen 
          that the average temperature is gradually increasing, especially in Winter.
@@ -543,18 +389,12 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 2.3</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Exercise 2.3</h4> 
+        <p>
               The following table shows the average life expectancy of Koreans surveyed 
-              every 10 years from 1970 to 2020. Draw a line graph using 『eStatH』 to find out 
+              every 10 years from 1970 to 2020. Draw a line graph to find out 
               the characteristics.
-            <p>
+        <p>
             <div class="textLeft">[Table 2.7] Average life expectancy of Koreans </div>
             <table> 
               <tr> <th class="thGrey">Year</th> <th class="thGrey">Average life expentancy</th>  </tr>
@@ -565,22 +405,17 @@
               <tr> <td class="tdCenter">2010</td>      <td class="tdCenter">80.2</td>   </tr>
               <tr> <td class="tdCenter">2020</td>      <td class="tdCenter">81.3</td>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_02LineGraph.svg" onclick="window.open(addrStr[168])">     
+            <p>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 2.4</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_02LineGraph.svg" onclick="window.open(addrStr[168])">     
-          </td>
-          <td>
-            The table below shows the amount of imports and exports of Korea from 2001 to 2020. Draw a line graph using 『eStatH』 to find out the characteristics.
+        <h4>⏱ Exercise 2.4</h4>
+        <p>
+            The table below shows the amount of imports and exports of Korea from 2001 to 2020. Draw a line graph 
+            to find out the characteristics.
             <p>
             <div class="textLeft">[Table 2.8] Amount of imports and exports of Korea (unit: billion dollars)  </div>
             <table> 
@@ -606,9 +441,7 @@
               <tr> <td class="tdCenter">2019</td> <td class="tdCenter">5422</td> <td class="tdCenter">5033</td> </tr>
               <tr> <td class="tdCenter">2020</td> <td class="tdCenter">5125</td> <td class="tdCenter">4676</td> </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_02LineGraph.svg" onclick="window.open(addrStr[168])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -618,40 +451,18 @@
   <h3 id="0203">2.3 Word Cloud</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The following is Wikipedia's explanation of the 4th industrial revolution.</b>
           <p>
             <div class="textLeft">[Table 2.9] Wikipedia's explanation of the 4th industrial revolution.</div>
-            <table> 
-              <tr> 
-                <td>
                   The Fourth Industrial Revolution (4IR or Industry 4.0) is the ongoing 
                   automation of traditional manufacturing and industrial practices, 
                   using modern smart technology. Large-scale machine-to-machine communication 
                   (M2M) and the internet of things (IoT) are integrated for increased automation,
                   improved communication and self-monitoring, and production of smart machines
                   that can analyze and diagnose issues without the need for human intervention.[1]
-                </td>
-              <tr>
-            </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
           <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
           <b>What words are important to explain the 4th industrial revolution? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -662,7 +473,7 @@
          inclination, or color. &gt;Figure 2.16&gr; is a word cloud for the explanation of 
          the 4th industrial revolution above.
       <p>
-           <img class="imgFig600600" src="../FigureM/Fig0216.png">
+           <img class="imgFig600600" src="./Figure/Fig0216.png">
            <div class="textLeft">&lt;Figure 2.16&gt; Word cloud for Wikipedia’s explation of the 4th industrial revolution</div>
       <p>
          The word cloud is useful for quickly recognizing the most prominent words in 
@@ -678,49 +489,32 @@
   </div>
   <p>
 
-    <!------------------------------------------------------------------------------------------------->
-    <div class="mainTableGrey">
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
       <p><h4>🎲 Practice 2.5</h4>
-        Draw and observe the word cloud for the 4th industrial revolution in [Table 2.9] using 『eStatH』.
+        Draw and observe the word cloud for the 4th industrial revolution in [Table 2.9].
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_05WordCloud.svg" onclick="window.open(addrStr[142])">     
-          </td>
-          <td>
-            <p>If you select ‘Word Cloud’ from the 『eStatH』 menu using the QR on the left, 
-               a window for data input as shown in &lt;Figure 2.17&gt; appears. 
-            <p>After copying the sentences in [Table 2.9], click the [Execute] button, 
-               and a word cloud as shown in &lt;Figure 2.16&gt; appears.
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0217.png">
-         <div class="textLeft">&lt;Figure 2.17&gt; Data input for word cloud</div>
-    </div>
-    <!------------------------------------------------------------------------------------------------->
-    <p>
+          After copying the sentences in [Table 2.9] for data input as shown in t&lt;Figure 2.17&gt;, click the [Execute] button, 
+          and a word cloud as shown in &lt;Figure 2.16&gt; appears.
+
+      <!--------*** Word cloud html ***------------------------------------->
+      <p> 
+         <iframe src="./example/0204/0204.html" width="800" height="900"> </iframe>
+      <p>
+      <div class="textLeft">&lt;Figure 2.17&gt; Data input for word cloud</div>
+      <p>
+  </div>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 2.5</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_05WordCloud.svg" onclick="window.open(addrStr[142])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Exercise 2.5</h4> 
+        <p>
               The following are excerpts from US President John F. Kennedy's inaugural address. 
               Create a word cloud for this inaugural address and analyze the key words.
-            <p>
+        <p>
             <div class="textLeft">[Table 2.11] Inaugral address of US President John F. Kennedy</div>
-            <table> 
-              <tr> 
-                <td>
-                  In the long history of the world, only a few generations have been granted 
+                      In the long history of the world, only a few generations have been granted 
                   the role of defending freedom in its hour of maximum danger. I do not shrink 
                   from this responsibility--I welcome it. I do not believe that any of us would
                   exchange places with any other people or any other generation. The energy, 
@@ -729,95 +523,13 @@
                   And so, my fellow Americans: ask not what your country can do for you--ask 
                   what you can do for your country. My fellow citizens of the world: ask not 
                   what America will do for you, but what together we can do for the freedom of man.
-                </td>
-              <tr>
-            </table>
-          </td>
-        </tr>
-      </table>
+        <p>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_05WordCloud.svg" onclick="window.open(addrStr[142])">     
+            <p>
     </div>
     <p>
 
-
-
-  <div class="mainTablePink">
-    <h4> Exercise </h4>
-    <p style="color:blue">*** Select an answer and click [SUBMIT] button.
-
-  <h6 class="textL30M30">2.1 What is the name of the table by organizing the data as follows? </h6>
-           <table> 
-              <tr> <th class="thGrey">Gender</th> <th class="thGrey">Number of students</th>  </tr>
-              <tr> <td class="tdCenter">Male</td>      <td class="tdCenter">6</td>   </tr>
-              <tr> <td class="tdCenter">Female</td>      <td class="tdCenter">4</td>   </tr>
-            </table>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> student table</label><br>
-    <label><input type="radio" name="item" value="2"> frequency table</label><br>
-    <label><input type="radio" name="item" value="3"> organizing table</label><br>
-    <label><input type="radio" name="item" value="4"> transcript표</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(22,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">2.2 Which of the following graphs is used for visualizing qualitative data?</h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> stem and leaf plot</label><br>
-    <label><input type="radio" name="item" value="4"> scatter plot</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(22,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">2.3 Which of the following graphs is not used for visualizing qualitative data?   </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> pie graph</label><br>
-    <label><input type="radio" name="item" value="4"> band graph</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(22,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[22][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 1</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;&#10095;</button>
- </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+    <iframe src="./exercise/exercise02.html" width="750" height="700" ></iframe>
 
 </body>
 </html>

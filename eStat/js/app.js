@@ -142,7 +142,7 @@ var svgWidth2, svgHeight2;
 var title, graphNum;
 var str, gstr, xstr, ystr, varListStr;
 var str1, str2, str3, str4 ;
-var langNum = 0;
+
 var rowMax = 9999; // 시트행 최대
 var colMax = 20; // 시트열 최대
 var buffer = 20; // 우측 y선과 범례와  간격
@@ -345,6 +345,7 @@ var SeparateBar, StackBar, RatioBar, SideBar, BothBar;
 var PieChart, DonutGraph, BandGraph, LineGraph, FreqTable;
 var DotGraph, Histogram, BoxGraph, StemLeaf, StemBoth, StatTable, Scatter;
 var THmean1, THmean12, THsigma1, THsigma12, THanova;
+var comparison;
 var checkFreq, checkBandFreq, checkMissing, checkSave;
 var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkPairedT; // Paired T-test
@@ -357,23 +358,46 @@ var checkNumVar;
 var checkAlphabetic;
 var checkRBD, checkDataRBD; // Radomized Block Design
 var checkScatterMatrix;
+//var eStatVersion = new Date('2021-12-25');
+// localStorage['installDate'] = eStatVersion;
 
 // 그래프 초기화
 graphNum = 1;
 document.getElementById("separate1").click();
-/*
-variableSelectClear();
-document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
-document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
-*/
+
+// 언어 컨트롤
+    var lang = localStorage.getItem("lang");
+    $('#select_language').val(lang);
+    setLanguage(lang);
+    $('#select_language').change(function() {
+      lang = $("#select_language option:selected").val();
+      setLanguage(lang);
+    });
+
 // 학습수준 컨트롤
-var levelNum = localStorage.getItem("level");
+    var win2, win3;
+    var levelNum = localStorage.getItem("level");
+    if (levelNum == "2") {
+      win2 = window.open("/estat/eStatM/index.html", "_blank");
+      win3 = window.open(appStr[6][langNum], "_blank");
+    }
+    else if (levelNum == "3") {
+      win2 = window.open("/estat/eStatH/index.html", "_blank");
+      win3 = window.open(appStr[7][langNum], "_blank");
+    }
+    else if (levelNum == "4") {
+      win2 = window.open("/estat/eStatU/index.html", "_blank");
+      win3 = window.open(appStr[8][langNum], "_blank");
+    }
+
+/*
 if (levelNum == null) levelNum = "4";
 document.myForm1.type1.value = parseInt(levelNum);
 if (levelNum == "1") { // 초등
     document.getElementById("tool-group-graph-numeric").style.display = "none"; // 연속형 그래프 감추기
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
     document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
+    document.getElementById("estatM").style.display = "none"; // 중등 모듈 감추기
     document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -384,6 +408,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
     document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -393,6 +418,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정
+    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등모듈 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -402,12 +428,13 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "inline-block"; // 가설검정
+    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등모듈 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-
+*/
 // =================================================================
 // 시트 컨트롤
 // =================================================================
@@ -438,6 +465,15 @@ datasheet = new Handsontable(container, {
     fragmentSelection: false,
 });
 initEventControl(datasheet);
+
+// Home
+d3.select("#home").on("click", function() {
+    levelNum = "0";
+    localStorage.setItem("level", levelNum);
+    win2.close();
+    win3.close();
+    window.open("/estat/eStat/index.html", "_self");
+}) // endof home
 
 // 새 시트
 d3.select("#new").on("click", function() {
@@ -960,6 +996,7 @@ function updateDatasheetWith(dataobj) {
     // initialize
     updateCellMeta();
     rvarName = dataobj.rvarName;
+    rvalueLabel = dataobj.rvalueLabel;   // inserted Sep 30, 2022
     for (j = 0; j < colMax; j++) {
         rvar[j] = datasheet.getDataAtCol(j);
     }
@@ -1286,8 +1323,8 @@ d3.select("#debugBtn").on("click", function() {
 // 버튼, 라디오버튼, 체크박스 클릭
 // =================================================================
 // 학습수준 버튼
-var rad1 = document.myForm1.type1;
 /*
+var rad1 = document.myForm1.type1;
 rad1[0].onclick = function() { // 초등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
@@ -1296,13 +1333,13 @@ rad1[0].onclick = function() { // 초등
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
     document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estatM").style.display = "none"; // 중둥 모듈 감추기
     document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-*/
-rad1[0].onclick = function() { // 중등
+rad1[1].onclick = function() { // 중등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1310,12 +1347,13 @@ rad1[0].onclick = function() { // 중등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
-    document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
+    document.getElementById("estatH").style.display = "none"; // 고등 모듈
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-rad1[1].onclick = function() { // 고등
+rad1[2].onclick = function() { // 고등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1323,12 +1361,13 @@ rad1[1].onclick = function() { // 고등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등 모듈 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-rad1[2].onclick = function() { // 대학
+rad1[3].onclick = function() { // 대학
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1336,11 +1375,14 @@ rad1[2].onclick = function() { // 대학
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "inline-block"; // 가설검정
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등 모듈 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
+*/
+
 // 분리형 막대그래프 : 주메뉴
 d3.select("#separate1").on("click", function() {
     graphNum = 1;
@@ -1973,7 +2015,26 @@ d3.select("#HistMean").on("click", function() {
         removeHistMean();
     }
 })
-// 히스토그램 도수표시
+// 히스토그램 Y축 도수 or % 표시
+var checkFreqPercentY = true;
+var checkDensity = false
+var a = document.myFormH.typeH;
+a[0].onclick = function() { 
+    checkFreqPercentY = true;  
+    checkDensity = false;
+    drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName);
+}  
+a[1].onclick = function() { 
+    checkFreqPercentY = false; 
+    checkDensity = false;
+    drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName);
+} 
+a[2].onclick = function() { 
+    checkFreqPercentY = false; 
+    checkDensity = true;
+    drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName);
+} 
+// 히스토그램 도수 또는 % 표시
 d3.select("#HistFreq").on("click", function() {
     if (Histogram == false) return;
     if (this.checked) {
@@ -2004,7 +2065,7 @@ d3.select("#HistTable").on("click", function() {;
 // 새 구간으로 히스토그램 업데이트
 d3.select("#HistRedraw").on("click", function() {
     if (Histogram == false) return;
-    chart.selectAll("*").remove(); // 전화면 제거
+//    chart.selectAll("*").remove(); // 전화면 제거
     var start = parseFloat(d3.select("#HistInit").node().value); // 시작값
     xstep = parseFloat(d3.select("#HistStep").node().value); // 구간너비
     if (start > tstat[3]) start = tstat[3];
@@ -2305,8 +2366,15 @@ d3.select("#executeTH8").on("click", function() {
     if (document.myForm81.type1.value == "2")      {testType = 2}
     else if (document.myForm81.type1.value == "1") {testType = 1}
     // alpha
-    if (document.myForm82.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha8").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha8").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha8").value = alpha;
+    }
     // confidence
     if (document.myForm82.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2414,8 +2482,15 @@ d3.select("#executeTH8NP").on("click", function() {
     else if (document.myForm80.type0.value == "2") h1Type = 2;
     else if (document.myForm80.type0.value == "3") h1Type = 3;
     // alpha
-    if (document.myForm82.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha8").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha8").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha8").value = alpha;
+    }
     // confidence
     if (document.myForm82.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2576,8 +2651,15 @@ d3.select("#executeTH9").on("click", function() {
     else if (document.myForm90.type0.value == "2") h1Type = 2;
     else if (document.myForm90.type0.value == "3") h1Type = 3;
     // alpha
-    if (document.myForm92.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha9").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha9").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha9").value = alpha;
+    }
     // confidence
     if (document.myForm92.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2736,8 +2818,15 @@ d3.select("#executeTH10").on("click", function() {
     if (document.myForm101.type1.value == "1")      {testType = 1; hypoType = 41}
     else if (document.myForm101.type1.value == "2") {testType = 2; hypoType = 42}
     // alpha
-    if (document.myForm102.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha10").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha10").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha10").value = alpha;
+    }
     // confidence
     if (document.myForm102.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2922,8 +3011,15 @@ d3.select("#executeTH10NP").on("click", function() {
     else if (document.myForm100.type0.value == "2") h1Type = 2;
     else if (document.myForm100.type0.value == "3") h1Type = 3;
     // alpha
-    if (document.myForm102.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha10").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha10").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha10").value = alpha;
+    }
     // confidence
     if (document.myForm102.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3043,8 +3139,15 @@ d3.select("#executeTH11").on("click", function() {
     else if (document.myForm110.type0.value == "2") h1Type = 2;  // 우측
     else if (document.myForm110.type0.value == "3") h1Type = 3;  // 좌측
     // alpha
-    if (document.myForm112.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha11").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha11").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha11").value = alpha;
+    }
     // confidence
     if (document.myForm112.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3184,8 +3287,15 @@ d3.select("#executeTH12").on("click", function() {
     graphNum = 34;
     chart.selectAll("*").remove();
     // siginificancelevel
-    if (document.myForm122.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha12").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha12").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha12").value = alpha;
+    }
     // confidence
     if (document.myForm122.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3202,10 +3312,36 @@ d3.select("#executeTH12").on("click", function() {
     // 1원분산분석표 그리기
     statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     AnovaTable(gvarName,dvarName,nobs,avg,stdnm1,statF);
-    multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
     graphNum = 33;
 })
+// 1원분산분석 다중비교 실행
+d3.select("#multipleComparison1").on("click", function() {
+    // siginificancelevel
+    alpha = parseFloat(d3.select("#alpha12").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha12").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha12").value = alpha;
+    }
+    // confidence
+    if (document.myForm122.type3.value == "1") confidence = 0.95;
+    else confidence = 0.99;
+    // LSD=1 or HSD5%=2 or HSD1%=3
+    if (document.myForm123.type4.value == "1") comparison = 1;
+    else if (document.myForm123.type4.value == "2") comparison = 2;
+    else comparison = 3;
+    // 1원분산분석표 그리기
+    statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
+    if (comparison == 1) multipleComparisonTableLSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
+    else if (comparison == 2) {alpha=0.05; multipleComparisonTableHSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);}
+    else {alpha=0.01; multipleComparisonTableHSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg)};
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+})
+
 // Kruskal-Wallis 1원분산분석 실행
 d3.select("#executeTH12NP").on("click", function() {
     graphNum = 34;
@@ -3213,8 +3349,15 @@ d3.select("#executeTH12NP").on("click", function() {
     hypoType  = 98;  // 크루스칼검정
     h1Type    = 2;   // 우측검정
     // siginificancelevel
-    if (document.myForm122.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha12").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha12").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha12").value = alpha;
+    }
     // confidence
     if (document.myForm122.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3571,13 +3714,25 @@ d3.select("#regressQQ").on("click", function() {
     document.getElementById("regressBand").disabled = true;
     regressionQQ(tobs,yhat,stdResidual);
 })
+// eStatM 메뉴
+d3.select("#estatM").on("click", function() {
+    window.open("../eStatM/index.html");
+})
 // eStatH 메뉴
 d3.select("#estatH").on("click", function() {
-    window.open(appStr[1][langNum]);
+    window.open("../eStatH/index.html");
 })
 // eStatU 메뉴
 d3.select("#estatU").on("click", function() {
-    window.open(appStr[2][langNum]);
+/*
+   var eStatVersion = localStorage['installDate'];
+   var tempStorage = localStorage['temp'];
+   let currentDate = new Date();  // 날짜
+   console.log(currentDate);
+   if (tempStorage === undefined) console.log("tempStorage is undefined");
+   console.log(eStatVersion);
+*/
+   window.open(appStr[2][langNum]);
 })
 // eStatE 메뉴
 d3.select("#estatE").on("click", function() {
@@ -4997,47 +5152,4 @@ function openEditVar(eventName) {
     }
     document.getElementById("varlistSelectIf3").value = 0;
   }
-}
-
-// Language Selector
-languageNumber = {
-    'ko': 0,    'en': 1,    'ja': 2,    'zh': 10,
-    'zhTW': 3,
-    'fr': 4,
-    'de': 5,
-    'es': 6,
-    'vi': 7,
-    'id': 8,
-    'mn': 9,
-    'pt': 11,
-    'gr': 12,
-    'ro': 13,
-    'th': 14,
-    'pl': 15,
-    'az': 16,
-    'uz': 17,
-    'ru': 18,
-    'tr': 19,
-}
-$(document).ready(function() {
-    var lang = localStorage.getItem("lang");
-    if(lang == null) {
-	var navLang = navigator.language || navigator.userLanguage;
-	lang = navLang.split("-")[0];
-    }
-    $('#select_language').val(lang);
-    setLanguage(lang);
-});
-$('#select_language').change(function() {
-    var lang = $("#select_language option:selected").val();
-    setLanguage(lang);
-});
-function setLanguage(lang) {
-    langNum = languageNumber[lang];
-    localStorage.setItem("lang", lang);
-    $('[data-msgid]').each(function() {
-        var $this = $(this);
-        $this.html($.message[lang][$this.data('msgid')]);
-    });
-    graphTitle()
 }

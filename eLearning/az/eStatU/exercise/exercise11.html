@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 11</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>11.3 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+    <h6 class="textL30M30">11.1 What tests do you need to investigate whether the sample data follow a theoretical distribution? </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> Goodness of fit test</label><br>
+      <label><input type="radio" name="item" value="2"> ndependence test</label><br>
+      <label><input type="radio" name="item" value="3"> Test for population proportion</label><br>
+      <label><input type="radio" name="item" value="4"> Test for two population means</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">11.2 In order to test whether sample data of a continuous variable follow a distribution, what is the first necessary work for the goodness of fit test?</h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> log transformation</label><br>
+      <label><input type="radio" name="item" value="2"> frequency distribution of interval</label><br>
+      <label><input type="radio" name="item" value="3"> [0,1] transformation </label><br>
+      <label><input type="radio" name="item" value="4"> frequency distribution</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">11.3 How do you test the hypothesis that the two categorical variables of a sample from a population have no relation?</h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> Goodness of fit test</label><br>
+      <label><input type="radio" name="item" value="2"> Independence test</label><br>
+      <label><input type="radio" name="item" value="3"> Test for population proportion</label><br>
+      <label><input type="radio" name="item" value="4"> Test for homogeneity</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">11.4 How do you test the hypothesis that the samples from two categorical populations have the same distribution?</h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> Goodness of fit test</label><br>
+      <label><input type="radio" name="item" value="2"> Independence test</label><br>
+      <label><input type="radio" name="item" value="3"> Test for population proportion</label><br>
+      <label><input type="radio" name="item" value="4"> Test for homogeneity</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">11.5 Which of the following statistical distributions ise used to test for a contingency table? </h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> t-distribution</label><br>
+      <label><input type="radio" name="item" value="2"> chi-square distribution</label><br>
+      <label><input type="radio" name="item" value="3"> binomial distribution</label><br>
+      <label><input type="radio" name="item" value="4"> normal distribution</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+    <div class="textL30M30">
+      <p>
+      11.1 300 customers selected randomly are asked on which day of the week 
+      they usually went to the grocery store and received the following votes. Can you 
+      conclude that the percentage of days customers prefer is different? Use the 5% 
+      significance level. Check the test result using 『eStatU』.
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Day</th><th>Number of Customers</th>
+         </tr>
+         <tr> <td class="tdCenter">Mon</td>    <td class="tdCenter">10</td> </tr>
+         <tr> <td class="tdCenter">Tue</td>    <td class="tdCenter">20</td> </tr>
+         <tr> <td class="tdCenter">Wed</td>    <td class="tdCenter">40</td> </tr>
+         <tr> <td class="tdCenter">Thr</td>    <td class="tdCenter">40</td> </tr>
+         <tr> <td class="tdCenter">Fri</td>    <td class="tdCenter">80</td> </tr>
+         <tr> <td class="tdCenter">Sat</td>    <td class="tdCenter">60</td> </tr>
+         <tr> <td class="tdCenter">Sun</td>    <td class="tdCenter">50</td> </tr>
+         <tr> <td class="tdCenter"><b>Total</b></td>  <td class="tdCenter"><b>300v</td> </tr>
+      </table>
+      <p>
+      11.2 The market shares of toothpaste brands A, B, C and D are known to be 0.3, 
+      0.6, 0.08, and 0.02 respectively. The result of a survey of 600 people for the 
+      toothpaste brands are as follows. Can you conclude from these data that the existing 
+      market share is incorrect? Use  and check your test result using 『eStatU』.
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Brand</th><th>Number of Customers</th>
+         </tr>
+         <tr> <td class="tdCenter">A</td>      <td class="tdCenter">192</td> </tr>
+         <tr> <td class="tdCenter">B</td>      <td class="tdCenter">342</td> </tr>
+         <tr> <td class="tdCenter">C</td>      <td class="tdCenter">44</td> </tr>
+         <tr> <td class="tdCenter">D</td>      <td class="tdCenter">22</td> </tr>
+         <tr> <td class="tdCenter"><b>Total</b></td>  <td class="tdCenter"><b>600</b></td> </tr>
+      </table>
+      <p>
+      11.3 The following table shows the distribution by score by conducting an aptitude 
+      test on 223 workers at a plant. The mean and variance from the sample data are 75 
+      and 386 respectively. Test whether the scores of the aptitude test follow a normal 
+      distribution. Use  and check your test result using 『eStatU』.
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Score interval</th><th>Number of Workers</th>
+         </tr>
+         <tr> <td class="tdCenter">    X < 40</td>      <td class="tdCenter">10</td> </tr>
+         <tr> <td class="tdCenter">40 \(\le\) X < 50</td>      <td class="tdCenter">12</td> </tr>
+         <tr> <td class="tdCenter">50 \(\le\) X < 60</td>      <td class="tdCenter">17</td> </tr>
+         <tr> <td class="tdCenter">60 \(\le\) X < 70</td>      <td class="tdCenter">37</td> </tr>
+         <tr> <td class="tdCenter">70 \(\le\) X < 80</td>      <td class="tdCenter">55</td> </tr>
+         <tr> <td class="tdCenter">80 \(\le\) X < 90</td>      <td class="tdCenter">51</td> </tr>
+         <tr> <td class="tdCenter">90 \(\le\) X < 100</td>     <td class="tdCenter">34</td> </tr>
+         <tr> <td class="tdCenter">    X \(\ge\) 100</td>  <td class="tdCenter"> 7</td> </tr>
+         <tr> <td class="tdCenter"><b>Total</b></td>  <td class="tdCenter"><b>223</b></td> </tr>
+      </table>
+      <p>
+      11.4 The following data shows the highest temperature of a city during the month of 
+      August. Test whether the temperature data follow a normal distribution with the 5% 
+      significance level. (Unit: °C)
+      <p>
+      <div class="textLeft">
+         29, 29, 34, 35, 35, 31, 32, 34, 38, 34, 33, 31, 31, 30, 34, 35, 
+      </div>
+      <div class="textLeft">
+         34, 32, 32, 29, 28, 30, 29, 31, 29, 28, 30, 29, 29, 27, 28.
+      </div>
+      <p>
+      11.5 For market research, a company obtained data on the educational level and 
+      socio-economic status of 375 housewives and summarized a contingency table as 
+      follows. Test the null hypothesis that social and economic status and educational 
+      level are independent at the significance level of 0.05. Check the test result using 『eStatU』.
+      <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Socio-economic status</th>
+           <th>Elementary</th>
+           <th>Middle</th>
+           <th>High</th>
+           <th>College</th>
+           <th>Above</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 1</td>
+           <td class="tdCenter">10</td>
+           <td class="tdCenter"> 7</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 4</td>
+           <td class="tdCenter"> 1</td>
+           <td class="tdCenter">25</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 2</td>
+           <td class="tdCenter">14</td>
+           <td class="tdCenter">10</td>
+           <td class="tdCenter"> 7</td>
+           <td class="tdCenter"> 4</td>
+           <td class="tdCenter"> 2</td>
+           <td class="tdCenter">37</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 9</td>
+           <td class="tdCenter">25</td>
+           <td class="tdCenter">13</td>
+           <td class="tdCenter">18</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter">68</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 4</td>
+           <td class="tdCenter"> 7</td>
+           <td class="tdCenter"> 9</td>
+           <td class="tdCenter">38</td>
+           <td class="tdCenter">44</td>
+           <td class="tdCenter"> 6</td>
+           <td class="tdCenter">104</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 5</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 8</td>
+           <td class="tdCenter">14</td>
+           <td class="tdCenter">18</td>
+           <td class="tdCenter">62</td>
+           <td class="tdCenter">105</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 6</td>
+           <td class="tdCenter"> 2</td>
+           <td class="tdCenter"> 3</td>
+           <td class="tdCenter"> 8</td>
+           <td class="tdCenter">10</td>
+           <td class="tdCenter">13</td>
+           <td class="tdCenter">36</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"><b>Total</b></td>
+           <td class="tdCenter"><b>45</b></td>
+           <td class="tdCenter"><b>62</b></td>
+           <td class="tdCenter"><b>83</b></td>
+           <td class="tdCenter"><b>98</b></td>
+           <td class="tdCenter"><b>87</b></td>
+           <td class="tdCenter"><b>375</b></td>
+         </tr>
+      </table>
+      <p>
+      11.6 Government agencies surveyed workers who wanted to get a job and classified 
+      532 respondents according to the gender and technical level as follows. Does these 
+      data provide sufficient evidence that the technical level and gender are related? Use  
+      and check your test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Technical Level</th>
+           <th>Male</th>
+           <th>Female</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Skilled worker</td>
+           <td class="tdCenter">106</td>
+           <td class="tdCenter">6</td>
+           <td class="tdCenter">112</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Semi-skilled worker</td>
+           <td class="tdCenter">93</td>
+           <td class="tdCenter">39</td>
+           <td class="tdCenter">132</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Unskilled worker</td>
+           <td class="tdCenter">215</td>
+           <td class="tdCenter">73</td>
+           <td class="tdCenter">288</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"><b>Total</b></td>
+           <td class="tdCenter"><b>414</b></td>
+           <td class="tdCenter"><b>118</b></td>
+           <td class="tdCenter"><b>532</b></td>
+         </tr>
+      </table>
+      <p>
+      11.7 A guidance counselor surveyed 110 high school students for reading and 
+      watching TV. The following table was obtained by classifying each item as high and 
+      low. At the significance level of 0.05, are these data sufficient to claim that the 
+      reading and TV viewing are related? Check the test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th></th>
+           <th>Reading High</th>
+           <th>Reading Low</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">TV viewing High</td>
+           <td class="tdCenter">40</td>
+           <td class="tdCenter">18</td>
+           <td class="tdCenter">58</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">TV viewing Low</td>
+           <td class="tdCenter">41</td>
+           <td class="tdCenter">11</td>
+           <td class="tdCenter">52</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"><b>Total</b></td>
+           <td class="tdCenter"><b>81</b></td>
+           <td class="tdCenter"><b>29</b></td>
+           <td class="tdCenter"><b>110</b></td>
+         </tr>
+      </table>
+      <p>
+      11.8 165 defective products produced in two plants operated by the same company 
+      were classified depending on whether they were due to low occupational awareness 
+      or low quality raw materials by each plant. Test the null hypothesis that the cause of 
+      the defect and production plant are independent with the significance level of 0.05. 
+      Check the test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Cause of Defect</th>
+           <th>Plant A</th>
+           <th>Plant B</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Low occupational awareness</td>
+           <td class="tdCenter">21</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">93</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Low quality raw materials</td>
+           <td class="tdCenter">46</td>
+           <td class="tdCenter">26</td>
+           <td class="tdCenter">72</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"><b>Total</b></td>
+           <td class="tdCenter"><b>67</b></td>
+           <td class="tdCenter"><b>98</b></td>
+           <td class="tdCenter"><b>165</b></td>
+         </tr>
+      </table>
+      <p>
+      11.9 To evaluate the effectiveness of typing training, 110 documents by company 
+      employees who received type training and 120 documents by employees who did not 
+      receive typing training were evaluated. Evaluated documents are classified as good, 
+      normal, and low. The following table shows a classification of the evaluation for total 
+      230 documents according to whether or not they received training. Test the null 
+      hypothesis that typing training and document evaluation are independent. Use  and 
+      check your test result using 『eStatU』.
+      <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th></th>
+           <th>Good</th>
+           <th>Normal</th>
+           <th>Low</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Typing training</td>
+           <td class="tdCenter">48</td>
+           <td class="tdCenter">39</td>
+           <td class="tdCenter">23</td>
+           <td class="tdCenter">110</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">No typing training</td>
+           <td class="tdCenter">12</td>
+           <td class="tdCenter">36</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">120</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"><b>Total</b></td>
+           <td class="tdCenter"><b>60</b></td>
+           <td class="tdCenter"><b>75</b></td>
+           <td class="tdCenter"><b>95</b></td>
+           <td class="tdCenter"><b>230</b></td>
+         </tr>
+      </table>
+      <p>
+      11.10 A company with three large plants applied different working conditions and 
+      wage systems to three plants to ask them for satisfaction with the new system six 
+      months later. 250 workers from each of three plants were randomly selected and the 
+      survey results were as follows. Is there sufficient evidence that workers at each plant 
+      have different satisfaction levels?  Test with the significance level of 0.05. Check the 
+      test result using 『eStatU』.
+      <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Plant</th>
+           <th>Very satisfied</th>
+           <th>Satisfied</th>
+           <th>Average</th>
+           <th>Not Satisfied</th>
+           <th>Total</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Plant 1</td>
+           <td class="tdCenter">135</td>
+           <td class="tdCenter"> 70</td>
+           <td class="tdCenter"> 25</td>
+           <td class="tdCenter"> 20</td>
+           <td class="tdCenter">250</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Plant 2</td>
+           <td class="tdCenter">145</td>
+           <td class="tdCenter"> 80</td>
+           <td class="tdCenter"> 15</td>
+           <td class="tdCenter"> 10</td>
+           <td class="tdCenter">250</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Plant 3</td>
+           <td class="tdCenter">140</td>
+           <td class="tdCenter"> 75</td>
+           <td class="tdCenter"> 20</td>
+           <td class="tdCenter"> 15</td>
+           <td class="tdCenter">250</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"><b>Total</b></td>
+           <td class="tdCenter"><b>420</b></td>
+           <td class="tdCenter"><b>225</b></td>
+           <td class="tdCenter"><b> 60</b></td>
+           <td class="tdCenter"><b> 45</b></td>
+           <td class="tdCenter"><b>750</b></td>
+         </tr>
+      </table>
+
+  <div class="mainTablePink">
+  </div>
+
+  <script src="./js/exercise11.js"></script>  
+ 
+</body>
+</html>
+

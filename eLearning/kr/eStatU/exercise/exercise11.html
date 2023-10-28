@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 11</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+    <div class="mainTablePink">
+
+    <h6 class="textL30M30">11.1 표본의 데이터가 한 이론 분포를 따르는지 조사하려면 어떠한 검정이 필요한가? </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> 적합성검정</label><br>
+      <label><input type="radio" name="item" value="2"> 독립성검정</label><br>
+      <label><input type="radio" name="item" value="3"> 두 모비율 검정</label><br>
+      <label><input type="radio" name="item" value="4"> 두 모평균 검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">11.2 표본 추출된 연속형 데이터가 한 이론 분포를 따른다는 적합성검정을 위해 먼저 필요한 작업은? </h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> 로그변환</label><br>
+      <label><input type="radio" name="item" value="2"> 구간별 도수분포</label><br>
+      <label><input type="radio" name="item" value="3"> [0,1] 변환 </label><br>
+      <label><input type="radio" name="item" value="4"> 도수분포</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+    <h6 class="textL30M30">11.3 한 모집단에서 추출된 표본의 두 이산형 변량에 대한 교차표에서 ‘행변량과 열변량은 아무런 관련이 없다’라는 가설을 검정하는 방법은? </h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> 적합성검정</label><br>
+      <label><input type="radio" name="item" value="2"> 독립성검정</label><br>
+      <label><input type="radio" name="item" value="3"> 두 모비율 검정</label><br>
+      <label><input type="radio" name="item" value="4"> 동질성검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">11.4 두 모집단에서 각각 추출된 이산형 표본의 교차표에서 두 모집단의 분포가 같은지 가설을 검정하는 방법은?</h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> 적합성검정</label><br>
+      <label><input type="radio" name="item" value="2"> 독립성검정</label><br>
+      <label><input type="radio" name="item" value="3"> 두 모비율 검정</label><br>
+      <label><input type="radio" name="item" value="4"> 동질성검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">11.5 다음 중 교차표의 검정에 사용되는 통계분포는 어느 것인가?  </h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> t 분포</label><br>
+      <label><input type="radio" name="item" value="2"> 카이제곱분포</label><br>
+      <label><input type="radio" name="item" value="3"> 이항분포</label><br>
+      <label><input type="radio" name="item" value="4"> 정규분포</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+  </div>
+
+  <script src="./js/exercise11.js"></script>   
+ 
+</body>
+</html>
+

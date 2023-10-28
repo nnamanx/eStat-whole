@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 5</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h2>Chapter 5. Probability Distribution</h2> 
+  <h6>
+    <a href="./pdf/book05.pdf" target="_blank"><u>[book]</u></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+  </h6>
+	      <ul>
+                <li><a href="#0501">5.1 Definition of Probability</a></li>
+                <li><a href="#0502">5.2 Calculation of Probability</a></li>
+                <li><a href="#0503">5.3 Discrete Random Variable</a></li>
+                <li><a href="#0504">5.4 Continuous Random Variable</a></li>
+	      </ul>
+  <p>
+
+  <h3>CHAPTER OBJECTIVES </h3> 
+      Similar events occur repeatedly in our everyday life. We describe a chance of the event using a concept of the probability.
+      In this chapter, we describe a definition of the probability in Section 5.1. Several rules of calculating the probability is described in Section 5.2.
+      There are many possible events in our everyday life which we can calculate the probability of the event. We focus on events which occur frequently and can be modeled as a random variable. Probability of all possible events of the random variable is called a probability distribution function. 
+      <br>In section 5.3, probability distributions of the discrete random variable such as Binomial Distribution,
+         Poisson Distribution, Geometric Distribution, Hypergeometric Distribution are described. 
+      In section 5.4, probability distributions of continuous random variables such as  Normal Distribution, and Exponential Distribution are described.
+  <p>
+  <h3 id="0501">5.1 Definition of Probability</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0501.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/F-pJi4L3fMw" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <p>Similar events occur repeatedly or are carried out in our everyday life. Let us consider following examples.
+    <div class="textL30M10">
+      -  A machine produces products repeatedly at a production plant. The product can be either a normal product or a defective product, but it is not known in advance.
+    </div>
+    <div class="textL30M10">
+      -  I have ordered pizza at home every Sunday. It usually takes about 30 minutes for a pizza to be delivered to the house, but the exact time is not known.
+    </div>
+    <p>These examples have common characteristics as follows.
+    <div class="textL30M10">
+      -  There is repetition of similar events, such as the production of products or pizza deliveries.
+    </div>
+    <div class="textL30M10">
+      -  We know all possible outcomes of events that the product will be defective or normal, and the pizza delivery time will be 10 minute, 20 minutes, 30 minutes and so on.
+    </div>
+    <div class="textL30M10">
+      -  But we do not know which outcome exactly will happen. 
+    </div>
+    <p>Events with these three characteristics are subject to study and to apply statistics. 
+    <p>An experiment in which a particular outcome occurs among known possible outcomes is called a <b>statistical experiment</b>. In a statistical experiment, the resulting outcome is uncertain and is determined by chance. For example, if you throw a coin, possible outcomes are either the head or tail, but the resulting outcome will come out by chance, so the experiment of tossing a coin is a statistical experiment. If a production plant produces products at one machine and their possible outcomes are either defective or normal, then the experiment of producing a product is a statistical experiment. Also, a pizza delivery time to your home which takes between 20 and 60 minutes is a statistical experiment.
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Statistical experiment</b>
+      <p>An experiment in which a particular outcome occurs among known possible outcomes. The outcome is uncertain
+         and is determined by chance. 
+    </div>
+    <p>In a statistical experiment, the set of all possible outcomes is referred to as a <b>sample space</b>, 
+       and a subset of this sample space is referred to as an <b>event</b>. The sample space is usually denoted by S, and events of the sample space are denoted by English capital letters as A, B, and C ... 
+       In the example above that a machine produces a product, the sample space is S = {normal, defective} and a subset of the sample space such as A = {defective} is an event. 
+       As such, when the number of elements in a sample space is either finite or countably infinite, it is called a <b>discrete sample space</b>. 
+       In a statistical experiment of the pizza delivery time to home, the sample space is all possible time between 20 minutes and 60 minutes, i.e. S = { (20,60) }. 
+       Delivery time between 20 minutes and 30 minutes ({20,30}) is called an event. As such, when the number of elements in a sample space is uncountably infinite, it is called a <b>continuous sample space</b>.
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Sample space and event</b>
+      <p>A set of all possible outcomes in a statistical experiment is referred to as a <b>sample space</b>. 
+         If the number of elements in a sample space is finite or countably infinite, it is called a <b>discrete sample space</b>. 
+         If the number of elements in a sample space is uncountably infinite, it is called a <b>continuous sample space</b>.
+      <p>A subset of the sample space is referred to as an <b>event</b>.
+      <p>
+         A concept of probability is used to indicate the possibility of an event occurring in a statistical experiment. 
+         The <b>probability</b> is a representation of the likelihood of an event occurring using a number between 0 and 1. 
+         If an event is likely to occur, the probability is expressed as a number close to 1. If it is unlikely to occur, the probability is expressed as a number close to zero. Specifically, there are several ways to define the probability of an event using a number between zero and one. We introduce two definitions of the probability, one is a classical definition and the other is a relative definition of the probability.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Classical definition of probability</b>
+      <p>Assume that all elements in sample space are likely to occur equally. The probability of an event A will occur, denoted as P(A), in case of the discrete sample space is defined as follows: 
+      $$ \small
+        P(A) = \frac {\text {Number of elements belonging to an event A}} {\text {Total number of elements in sample space}}    
+      $$
+      <p>The probability of an event A will occur in case of the continuous sample space is defined as follows.
+      $$ \small
+        P(A) = \frac {\text {Measurement of elements belonging to an event A}} {\text {Measurement of the total elements of a sample space} }    
+      $$
+      where measurement here can be the length, area and volume etc.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.1.1</b>
+      An office worker went on a business trip to a city and there are two restaurants (Restaurant A and B) near his lodging. He was hesitating about which restaurant to go, and threw a dice to count the number of points that appear on the top. If  he had odd numbers, he would go to the Restaurant A, and if he had even numbers, he would go to the Restaurant B. What is the probability that the Restaurant A would be picked?
+      <p>
+      <b>Answer</b>
+      <p>
+      The sample space in this statistical experiment, which counts the number of points on the top by throwing a dice, is {1, 2, 3, 4, 5, 6}, and the number of odd events is {1, 3, 5}, so there are three elements. Therefore, the probability that restaurant A will be selected is 3/6 = 1/2.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.1.2</b>
+      I ordered a pizza from home every Sunday. The time it takes for a pizza to be delivered my home has the same possibility for any time from 10 to 30 minutes (you may have a decimal number). What is the probability that a pizza will be delivered between 20 and 25 minutes?
+      <p>
+      <b>Answer</b>
+      <p>
+      The sample space in this example is all values from 10 to 30 minutes collectively { (10,30) }, and where a pizza is delivered between 20 and 25 minutes is the event { (20,25) }. Therefore, the probability of this event is \( \small \frac {(25-20)} { (30-10)}  = 0.25 \) by measuring the distance of the interval.
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div>
+      The classical definition of the probability does not usually have a major problem in calculating the probability of a real problem. However, in the classical definition of the probability, it may not be possible to assume that all elements of the sample space are likely to occur. For example, tossing a coin usually results in ‘Head' and 'Tail' but can be very rarely ’Edge’. Considering this, the assumption that the sample space {'Head’, 'Tail' and 'Edge'} does not make sense that at this time each element of the sample space is likely to occur equally. The relative frequency definition of the probability is to solve these problems.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Relative frequency definition of probability</b>
+      <p>The probability that an event A will occur, denoted by P(A), is the rate at which the event A occurs when many statistical experiments are conducted under the same condition repeatedly. 
+    </div>
+    <p>
+
+    <div class="mainTable">
+      <p>If this definition is used, it can be explained that the coin tossing stands as an 'Edge.' If a coin has been thrown 10,000 times and 'Head' is appeared 4980 times, 'Tail' 5018 times, 'Edge' twice, then P({Head}) = 4980/10000, P({Tail}) = 5018/10000, P({Edge}) = 2/10000. 
+         More iterative runs make the definition of the probability using the relative frequency almost approximates to the probability values by the classical definition. 
+    </div>
+    <p>
+    <div class="mainTableGrey">
+      <p>&lt;Figure 5.1.1&gt; shows a simulation of a coin toss experiment using 『eStatU』 which shows the probability of ‘Head’ occurrence converges to one-half. This convergence of the probability is called the <b>law of large numbers</b>.
+      <p>
+      <!------------*** html for  Statistical Probability ***----------------->
+      <b>[<span data-msgid="StatisticalProb">Statistical Probability</span>]</b> 
+      <p>
+      <iframe src="./example/050101/050101.html" width="700" height="770"> </iframe>
+      <div class="figText">&lt;Figure 5.2.2&gt; Simulation of toosing a coin </div>
+    </div>
+    <p>
+
+  <h3 id="0502">5.2 Calculation of Probability</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0502.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/CNga9xRKVwg" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      <p>In order to calculate the probability of an event in a discrete sample space, the number of elements 
+         in the sample space and the number of elements included in the event should be counted. 
+         If all possible outcomes of the sample space is not large, the probability can be simply calculated, 
+         but it is generally not easy to count the number of all possible outcomes. Effective methods 
+         for counting the number of complex cases include the permutation and combination.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Permutation</b>
+      <p>The number of cases to select r objects out of n objects considering the order is called the 
+         <b>permutation</b> and is calculated as follows:   
+      \[
+        _{n} P_{r} =  n (n-1) (n-2)  \cdots (n-r+1) = \frac {n!} {(n-r)!}
+      \]
+      Therefore, the number of cases to list all n objects is as follows: 
+      $$ 
+        _{n} P_{n} = n(n-1)(n-2) \cdots 2 \cdot 1 = n!
+      $$
+      Note: 0! = 1
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Combination</b>
+      <p>The number of cases to select r objects out of n objects without considering the order is called the 
+         <b>combination</b> and is calculated as follows.
+      $$ 
+        _{n} C_{r} = \frac { _{n} P_{r} } {r!} = \frac {n!} {r!(n-r)!}
+      $$
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.2.1</b>
+      Four people A, B, C and D are intended to be placed on four side-by-side chairs. Calculate the total number of cases in which four people are placed, and the number of cases in which A is placed on the leftmost. What is the probability that A is placed on the leftmost side?
+      <p>
+      <b>Answer</b>
+      <p>
+      The number of elements in the sample space in this example is as follows.
+      $$ \small 
+        \begin{multline}
+          \shoveleft\text { (number of people that can be placed on the leftmost) } × \\ 
+          \shoveleft\text { (number of people except left who can be placed in the second position) } × \\
+          \shoveleft\text { (number of people who can be placed in the third place except for two left people) } × \\
+          \shoveleft\text { (number of people, excluding the three on the left, who can be positioned to the right) } \\
+          \shoveleft = 4 × 3 × 2 × 1 = 4! = 24 
+        \end{multline}
+      $$
+      The event in which A is placed on the left is the number of people placed in the second, third, and right positions except A, so 3×2×1 = 3!. Therefore, the probability that A will be placed to the left is as follows.
+      <p>
+      \( \qquad \small
+        \frac {3!} {4!} = \frac {6} {24} = 0.25
+      \)
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.2.2</b> 
+      A company has four security guards (A, B, C, D). Each morning, two of these guards are randomly selected, one at the front gate and the other at the rear guard. Obtain the total number of cases in which four people are placed at the front and rear gates and the number of cases in which A is placed at the front gate. What is the probability that A will be placed at the front gate?
+      <p>
+      <b>Answer</b>
+      <p>
+      The number of elements in the sample space in this problem is as follows.
+      <p>
+        \( \qquad \small \text { (number of people who can be placed at the front gate) } × \) <br> 
+        \( \qquad \small \text { (number of people who can be placed in the rear except those placed in the front) } \) <br>
+        \( \qquad \small = 4 × 3 = {}_{4}P_{2} = 12 \)
+      <p>
+      The number of elements in the event where A will be placed at the front gate is \( _{3} P_{1} = 3 \), since A can be placed at the front gate and one of the other three can be placed at the rear gate. 
+      That is, the probability that A will be placed at the front gate one day is as follows.
+      <p>
+        \( \qquad \small
+          \frac { {}_{3}P_{1}} { {}_{4}P_{2}} = \frac {3 \times 1}  {4 \times 3} = \frac {1} {4} 
+        \)
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      There are several calculation rules for calculating complex probabilities other than the permutation and the combination. Let us consider the examples below to explain the rules.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.2.3</b> 
+        Out of 40 sophomores in a Statistics Department this semester, 25 students are taking Economics, 30 students are taking Political Science and 20 students are taking both courses. When I meet one of the sophomores, what is the probability of this student taking either Economics or Political Science (that is one or both)?
+      <p>
+      <b>Answer</b>
+      <p>
+         Since there are 25 students who take Economics and 20 students taking both courses, 25 - 20 = 5 students take only Economics. Also, since there are 30 students who take Political Science, 30 - 20 = 10 students take only Political Science. Thus, as shown in &lt;Figure 5.2.1&gt;, the number of students taking either Economics or Political Science is 5 + 10 + 20 = 35. Therefore, the probability of students taking either Economics or Political Science is 35 / 40.
+      <p>
+         <img class="imgFig400300" src="./Figure/Fig050201.png">
+         <div class="figText">&lt;Figure 5.2.1&gt; Students who take either economics or political science</div>
+      <p>
+        Consider the case of students taking both Economics (A) and Political Science (B). The event that a student takes both courses are denoted as A ∩ B and is called an intersection event of A and B (&lt;Figure 5.2.2&gt;).
+      <p>
+        <img class="imgFig400300" src="./Figure/Fig050202.gif">
+        <div class="figText">&lt;Figure 5.2.2&gt; Intersection events A ∩ B</div>
+      <p>
+        The event that a student takes either Economics or Political Science (one or both) is denoted as A ∪ B and is called an union event of A and B (&lt;Figure 5.2.3&gt;). 
+      <p>
+        <img class="imgFig400300" src="./Figure/Fig050203.gif">
+        <div class="figText">&lt;Figure 5.2.3&gt; Union Event A ∪ B</div>
+      <p>
+        Probabilities of these events on this example are as follows: 
+      <p>
+        <div class="textL40">
+          P(A) = 25 / 40 = 0.625 <br>
+          P(B) = 30 / 40 = 0.750 <br>
+          P(A ∩ B) = 20 / 40 = 0.500<br>
+          P(A ∪ B) = 35 / 40 = 0.875<br>
+        </div>
+      <p>
+        The probability of P(A ∪ B) can also be calculated as follows if you look at the &lt;Figure 5.2.1&gt;.
+      <p>
+        <div class="textL40">
+          P(A ∪ B) = P(A) ＋ P(B) － P(A ∩ B) = 25/40 ＋ 30/40 － 20/40  = 0.625 + 0.750 - 0.500 = 0.875
+        </div>
+      <p>
+        That is, the probability of taking either Economics or Political Science, P(A ∪ B), can be calculated by adding the probability of taking each course and then by subtracting the probability of taking both courses.
+      <p>
+      <!---*** html for Addition Rule ***--------------------------------------------->
+      <b>[<span data-msgid="AdditionRule">Addition Rule of Probability</span>]</b> 
+      <p>
+      <iframe src="./example/050201/050201.html" width="700" height="700"> </iframe>
+      <div class="figText">&lt;Figure 5.2.4&gt; Addition Rule of Probability</div>
+    </div>
+    <p>
+    <div class="mainTable">
+      <p>The rule discussed on [Example 5.2.3] is called the addition rule of probability. 
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableYellow">
+      <b>Addition Rule of Probability</b>
+      <p> 
+        $$\ P(A ∪ B) = P(A) + P(B) - P(A ∩ B) $$
+      <p>
+        If  A ∩ B = ∅, then the rule becomes as follows:  
+      <p>
+        $$ P(A ∪ B) = P(A) + P(B)$$
+      <p>
+        In this case, the events A and B are called <b>mutually exclusive events</b>. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.2.4</b>
+      In [Example 5.2.3], if there are 10 students taking Economics, 20 students taking Political Science, and if there are no students taking both courses, what is the probability of a student is taking either Economics or Political Science?
+      <p>
+      <b>Answer</b>
+      <p>
+      In this case, because there are no students taking both courses, the events in which they take Economics (A) and Political Science (B) are mutually exclusive. Thus, the probability to take either Economics or Political Science, P(A U B), is as follows: 
+      <p>
+      <div class="textL40">
+        P(A U B) = P(A) + P(B) = 10/40 + 20/40 = 0.75
+      </div>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div>
+      <p>Let us consider the example below to find out the multiplication rule of probability. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.2.5</b>
+        Students of ADA University come from either Baku or a province. Among the 30 sophomores in the Department of Economics, there are 10 males and 20 females, one of males and five of females are from the province.
+      <p>
+      <div class="textL20M20">1) When selecting a student, what is the probability that the student is from the province? </div>
+      <div class="textL20M20">2) When I selected a student, the student was female. What is the probability that this student is from the province? </div>
+      <div class="textL20M20">3) When I selected a student, the student was from the province. What is the probability of this student being a male? </div>
+      <div class="textL20M20">4) When selecting a student, what is the probability that the student is male and from Baku? </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        To solve this problem, it is convenient to organize the information given into a cross table as shown below.
+      <p>
+      <table class="tableL2"> 
+        <tr> 
+          <th style="width:70px"></td>
+          <th style="width:70px">Baku</td>
+          <th style="width:70px">Province</td>
+          <th style="width:70px">Total</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Male</td>
+          <td class="tdRight"></td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">10</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Female</td>
+          <td class="tdRight"></td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">20</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Total</td>
+          <td class="tdRight">24</td>
+          <td class="tdRight">6</td>
+          <td class="tdRight">30</td>
+        </tr>
+      </table>
+      <p>
+        If we calculate and insert the blanks on the above table, it is as follows. Let us call the event of male as M, the female as F, from Baku as B, from the province as C.
+      <p>
+      <table class="tableL2"> 
+        <tr> 
+          <th style="width:70px"></td>
+          <th style="width:70px">Baku(B)</td>
+          <th style="width:70px">Province(C)</td>
+          <th style="width:70px">Total</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Male(M)</td>
+          <td class="tdRight">9</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">10</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Female(F)</td>
+          <td class="tdRight">15</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">20</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Total</td>
+          <td class="tdRight">24</td>
+          <td class="tdRight">6</td>
+          <td class="tdRight">30</td>
+        </tr>
+      </table>
+      <p>
+      <p class="textL20M20">1) \(\small P(C) = \) 6/30. 
+      <p class="textL20M20">2) The probability that this student is from the province among females is 5/20. 
+                                  This probability is denoted as \(\small P(C∣F) \) and is called a conditional probability. 
+      <p class="textL20M20">3) The probability of a male from the province is \(\small P(M∣C) = \) 1/6. 
+      <p class="textL20M20">4) The probability is \(\small P(M ∩ B) \) and the cross table shows that the answer is 9/30. 
+                                  Alternatively, the probability of being a male among all students can be first obtained as \(\small P(M) = \) (10/30) 
+                                  and then multiplied by the conditional probability of being from Baku among males, \(\small P(B∣M) \) = 9/10. Namely
+      <p>
+        \( \qquad \small
+         P(M ∩ B) = P(M) P(B∣M) = (10/30) \times (9/10) = 9/30
+        \)
+      <p>
+        This expression shows that the conditional probability \(\small P(B∣M) \) can be calculated by dividing \(\small P(M ∩ B) \) by \(\small P(M) \). 
+      <p>
+        \( \qquad \small
+         P(B ∣ M) = \frac {P(M ∩ B)} {P(M)} = \frac { 9/30} {10/30} = \frac {9} {10}
+        \)
+      <p>
+        In addition, the probability \( \small P(M ∩ B) \) can be obtained first by the probability of being a student from Baku, 
+        \(\small P(B) = \) 24/30, and then multiplied by the probability of being a male from Baku (\(\small P(M∣B) = \) 9/24). 
+      <p>
+        \( \qquad \small
+          P(M ∩ B) = P(B) P(M∣B) = (24/30) × (9/24)
+        \)
+      <p>
+      <!-----*** html for Multiplication Rule ***---------------------------------------------------------->
+      <b>[<span data-msgid="ConditionalProb">Multiplication Rule of Probability</span>]</b> 
+      <p> You can calculate the conditional probabilities and their graphs using eStat as follows:
+      <p>
+         <iframe src="./example/050202/050202.html" width="700" height="1000"> </iframe>
+         <div class="figText">&lt;Figure 5.2.5&gt; Multiplication Rule of Probability</div>
+    </div>
+
+    <div>
+      Conditional probability is generally defined as follows.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableYellow">
+      <b>Conditional Probability</b>
+      <p>
+      $$ \small
+        P(A ∣ B) = \frac {P(A ∩ B)} {P(B)}  \qquad \qquad  \textrm{if} \quad P(B) ≠ 0       
+      $$
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div>
+      <p>In the above example, the probability of an intersection event is expressed by multiplying the probabilities of other events 
+      and it is called the <b>multiplication rule of probability</b>. 
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableYellow">
+      <b>Multiplication Rule of Probability</b>
+      <p>
+      $$ \small
+        P(A ∩ B) = P(A) P(B∣A)       
+      $$
+      If  \(\small P(B∣A) = P(B) \), then the rule becomes as follows:  
+      $$ \small
+        P(A ∩ B) = P(A) P(B)                               
+      $$
+      In this case, the events \(\small A\) and \(\small B\) are called <b>independent events</b>.
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.2.6</b>
+      Tiger team of professional baseball has the probability of 0.7 to beat Lion team recently. What is the probability that Tiger is winning both games in this evening’s double match? Assume that winning one game does not affect winning the next.
+      <p>
+      <b>Answer</b>
+      <p>
+      Let us call the event that the Tiger wins the first game is \(\small A\) and the event that the Tiger wins the second game is \(\small B\). 
+      Since A and B are independent of each other, the probability that the Tiger is winning both games is as follows.
+      <p>
+        \( \qquad \small
+          P(A ∩ B) = P(A) P(B) = 0.7 × 0.7 = 0.49
+        \)
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.2.7</b>
+        The following is a table of 30 second-year students by gender and region of origin. Are the events of male and Baku origin independent of each other?
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th style="width:100px"></td>
+          <th style="width:100px">Baku(B)</td>
+          <th style="width:100px">Province(C)</td>
+          <th style="width:100px">Total</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Male(M)</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">10</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Female(F)</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">20</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Total</td>
+          <td class="tdRight">15</td>
+          <td class="tdRight">15</td>
+          <td class="tdRight">30</td>
+        </tr>
+      </table>
+      <p>
+      <b>Answer</b>
+      <p>
+      Let us call the event of male as \(\small M \), female as \(\small F\), from Baku as \(\small B\), and from province as \(\small C \). 
+      From the table, probabilities of \(\small P(M ∩ B) \), \(\small P(M) \) and \(\small P(B) \) are as follows: 
+      <p>
+        \( \qquad \small
+          P(M ∩ B) = 5/30 \qquad
+          P(M) = 10/30 \qquad
+          P(B) = 15/30
+        \)
+      <p>
+        Therefore, the following relationship is satisfied:
+      <p>
+        \( \qquad \small
+          P(M ∩ B) = P(M) P(B)
+        \)
+      <p>
+        The events of male and Baku origin are independent of each other. Note that 
+      <p>
+        \( \qquad \small
+          P(M∣B) = 5/15 = 1/3 \qquad
+          P(M)=10/30 \qquad
+          \text{so, } \;\; P(M∣B) = P(M). 
+        \)
+      <p>
+        In this case, all events of both \(\small M \) and \(\small C \) , \(\small F \)  and \(\small B \) , \(\small F  \) and \(\small C \)  are 
+        independent of each other. We call the two attributes, gender and region are independent of each other. 
+        In [Example 5.2.5], gender and region are not independent of each other.
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div>
+      <p>The following is an example of how to calculate the probability of a complementary event.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.2.8</b>
+        There is a box of six products, two of which are defective. What is the probability that at least one defective product will be found when three have been extracted for product testing? Assume that the product is extracted once for inspection without replacement.
+      <p>
+      <b>Answer</b>
+      <p>
+        The probability of finding one defective in the three product tests is as follows.
+      <p>
+        \( \qquad \small
+          \frac { _4 C_2 \times _2 C_1 } {_6 C_3 }   = \frac {3}{5}. 
+        \)
+      <p>
+        The probability of finding two defective products is as follows.
+      <p>
+        \( \qquad \small
+          \frac { _4 C_1 \times _2 C_2 } {_6 C_3 }   = \frac {1}{5}. 
+        \)
+      <p>
+        Thus, the probability that at least one defect will be found is 3/5 + 1/5 = 4/5. 
+        Another way to calculate this probability is to obtain the probability of an event in which there will be no defect (this is called a complementary event) and then, subtract it from 1. In other words, the probability that at least one defective product can be calculated as follows.
+      <p>
+        \( \qquad \small
+       1 - \frac { _4 C_3 } {_6 C_3 }   = 1 - \frac {4}{20} = \frac {4}{5}. 
+        \)
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      The method used in the above example is called a rule of probability calculation using a complementary event, and is often used to obtain the probability that the word 'at least' is contained. &lt;Figure 5.2.6&gt; is a picture of a complementary event.
+      <p>
+        <img class="imgFig400300" src="./Figure/Fig050204.gif">
+        <div class="figText">&lt;Figure 5.2.6&gt; Complementary event</div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTableYellow">
+      <b>Probability of a complementary event</b>
+      <p>
+      if \(\small A^C \) denotes a complementary event of the event \(\small A \), then \(\small P(A^C ) \) can be calculated as follows.
+      $$ \small
+        P(A^C) = 1 - P(A)	
+      $$
+    </div>
+    <p>
+
+  <h3 id="0503">5.3 Discrete Random Variable</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0503.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/DDISKMo7Iho" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      <p>In case of statistical experiments which are frequently observed around us, there are many 
+         similar probability calculations. For example, the problem of tossing coins several times 
+         to see how many times the head comes out is similar to counting how many defective products are made 
+         from a product line. This problem is also similar to counting the number of voters 
+         who support a particular candidate for the presidential election. In this section, 
+         the probability calculations as the previous examples, in general the discrete sample spaces are discussed.
+      <p>Consider a statistical experiment in which a coin is thrown repeatedly two times. If the coin is ideal, the sample space for this experiment is {'Tail-Tail', 'Tail-Head', 'Head-Tail', 'Head-Head’}. The probability of an event in which each element of the sample space is produced is 1/4 by the classical definition. In most cases, the fact that we are interested in this example will be counting the number of heads or tails. If \(\small X\) is defined as 'the number of heads' in this experiment, the possible value of \(\small X\) can be 0, 1, or 2 and we are interested in calculating probabilities that \(\small X\)=0, \(\small X\)=1 or \(\small X\)=2. As such, a function that corresponds to one real number between [0,1] for each element of the sample space is called a random variable (see Table 5.3.1).
+    </div>
+
+    <p class="textLeft">Table 5.3.1 Random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice' 
+    <table style="width:600px"> 
+        <tr>
+          <th style="width:300px">Sample space</th>
+          <th style="width:300px">\(\small X\) = 'Number of Heads’</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Tail-Tail<br>Tail-Head<br>Head-Tail<br>Head-Head</td>
+          <td class="tdCenter">0<br>1<br>1<br>2</td>
+        </tr>
+    </table>
+    <p>
+
+    <div class="mainTable">
+      When possible values of a random variable are finite or countably infinite, it is called a discrete random variable. If possible values of a random variable are uncountably infinite, it is called a continuous random variable and discussed in more detail in Section 5.4.
+    </div>
+    <p>
+    <div class="mainTableYellow">
+      <b>Random Variable</b>
+      <p>
+      <b>Random variable</b> is a function from the sample space to a real number. 
+      <p>
+      When possible values of a random variable are finite or countably infinite, it is called a <b>discrete random variable</b>. 
+      If possible values of a random variable are uncountably infinite, it is called a <b>continuous random variable</b>.
+    </div>
+    <p>
+
+    <div class="mainTable">
+      The probability that the random variable \(\small X\) defined as in Table 5.3.1 will be zero, denoted as \(\small P(X=0)\), is 1/4, 
+      because it is the probability of an event {Tail-Tail}. The probability that \(\small X\) being 1, \(\small P(X=1)\), is 2/4, because, P({Tail-Head, Head-Tail}) is 2/4. Also, the probability that \(\small X\) being 2, \(\small P(X=2)\), is 1/4 because P({Head-Head}) is 1/4. The probabilities for each value of the random variable \(\small X\) can be summarized as shown in Table 5.3.2, and it is called a probability distribution function of \(\small X\) usually denoted as f(x). &lt;Figure 5.3.1&gt; is a graph of f(x).
+    </div>
+    <p>
+
+    <p class="textLeft">Table 5.3.2  Probability distribution function of \(\small X\) = 'Number of Heads’ when tossing a coin twice' 
+ 
+    <table style="width:600px"> 
+        <tr>
+          <th style="width:300px; text-align:left">1) Table style of the probability distribution function </th>
+          <th style="width:300px; text-align:left">2) Function style of the probability distribution function </th>
+        </tr>
+        <tr>
+          <td class="tdCenter">
+            <p>
+            <table style="width:200px"> 
+              <tr>
+                <td class="tdCenter" style="width:100px">\(\small X = x\)</td>
+                <td class="tdCenter" style="width:100px">\(\small P(X = x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2</td>
+                <td class="tdCenter">1/4<br>2/4<br>1/4</td>
+              </tr>
+            </table>
+          </td>
+          <td class="tdCenter">
+            $$ \small
+              \begin{align}
+                f(x) &= 1/4, \qquad \text{if } x = 0 \\
+                     &= 2/4, \qquad \text{if } x = 1 \\
+                     &= 1/4, \qquad \text{if } x = 2 \\
+              \end{align}
+            $$
+          </td>
+        </tr>
+    </table>
+
+    <p>
+      <img class="imgFig400300" src="./Figure/Fig050301.png">
+      <div class="figText">&lt;Figure 5.3.1&gt; Probability distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice'</div>
+    <p>        
+
+    <div class="mainTable">
+      The cumulative probability of \(\small P(X \le x)\) as the value of random variable \(\small X\) increases is referred to as a cumulative distribution function and denoted as F(x). In the previous example, the cumulative distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice' is shown as in Table 5.3.3.
+    </div>
+    <p>
+
+    <p class="textLeft">Table 5.3.3  Cumulative distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice'</p>
+    <table style="width:600px"> 
+        <tr>
+          <th style="width:300px">1) Table style of the cumulative distribution function </td>
+          <th style="width:300px">2) Function style of the cumulative distribution function </td>
+        </tr>
+        <tr>
+          <td class="tdCenter">
+            <p>
+            <table style="width:200px"> 
+              <tr>
+                <td class="tdCenter" style="width:100px">\(\small X = x\)</td>
+                <td class="tdCenter" style="width:100px">\(\small P(X \le x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2</td>
+                <td class="tdCenter">1/4<br>3/4<br>4/4=1</td>
+              </tr>
+            </table>
+          </td>
+          <td class="tdCenter">
+            $$ 
+              \begin{align}
+                F(x) &= 0,   \qquad\quad \text{if } x < 0 \\
+                     &= 1/4, \qquad \text{if } 0 \le x < 1 \\
+                     &= 3/4, \qquad \text{if } 1 \le x < 2 \\
+                     &= 1,   \qquad\quad \text{if } 2 \le x
+              \end{align}
+            $$
+          </td>
+        </tr>
+    </table>
+    <p>
+      <img class="imgFig400300" src="./Figure/Fig050302.png">
+      <div class="figText">&lt;Figure 5.3.2&gt; Cumulative distribution function of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice'</div>
+    <p>        
+ 
+    <div class="mainTableYellow">
+      <b>Probability Distribution Function</b> 
+      <p>If probability for each value of the random variable \(X\) is summarized as a function, 
+         it is called a <b>probability distribution function</b> of \(X\) and usually denoted as f(x).
+      <p>The cumulative probability of \(P(X \le x)\) as the value of random variable \(X\) increases 
+         is referred to as a <b>cumulative distribution function</b> and denoted as F(x).
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.1</b>
+      There are 200 families living in a village. The number of visits to hospitals by each household over the past year is as follows. Obtain the probability distribution function and the cumulative distribution function of the random variable \(\small X\) = 'hospital visit count'.
+      <p>
+      <table style="width:350px"> 
+        <tr>
+          <td class="tdCenter" style="width:100px">Hospital visit</td>
+          <td class="tdCenter" style="width:50px">0</td>
+          <td class="tdCenter" style="width:50px">1</td>
+          <td class="tdCenter" style="width:50px">2</td>
+          <td class="tdCenter" style="width:50px">3</td>
+          <td class="tdCenter" style="width:50px">4</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Houshold</td>
+          <td class="tdCenter">74</td>
+          <td class="tdCenter">80</td>
+          <td class="tdCenter">30</td>
+          <td class="tdCenter">10</td>
+          <td class="tdCenter">6</td>
+        </tr>
+      </table>
+
+      <p>
+      <b>Answer</b>
+      <p>
+      1) Probability distribution function 
+      <p>
+            <table style="width:300px"> 
+              <tr>
+                <th class="thGrey" style="width:150px">\(\small X = x\)</td>
+                <th class="thGrey" style="width:150px">\(\small P(X = x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2<br>3<br>4</td>
+                <td class="tdCenter">0.37<br>0.40<br>0.15<br>0.05<br>0.03</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">Total</td>
+                <td class="tdCenter">1.00</td>
+              </tr>
+            </table>
+      <p>
+      2) Cumulative distribution function 
+      <p>
+            <table style="width:300px"> 
+              <tr>
+                <th class="thGrey" style="width:150px">\(\small X = x\)</td>
+                <th class="thGrey" style="width:150px">\(\small P(X \le x)\)</td>
+              </tr>
+              <tr>
+                <td class="tdCenter">0<br>1<br>2<br>3<br>4</td>
+                <td class="tdCenter">0.37<br>0.77<br>0.92<br>0.97<br>1.00</td>
+              </tr>
+            </table>
+      <p>
+            If you select [Discrete Distribution] from 『eStatU』 menu, data input window appears as follows. 
+            Enter the data here as shown in the figure and click 
+            [Execute] button to display the probability distribution graph as in &lt;Figure 5.3.3&gt;. 
+      <p>
+      <!-----*** html for Discrete Distribution ***----------------------->
+      <b>[<span data-msgid="DiscreteDist">Discrete Distribution</span>]</b>
+      <p>
+         <iframe src="./example/050301/050301.html" width="800" height="850"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 5.3.3&gt; Graph of a discrete distribution using 『eStatU』</div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      If possible values of a discrete random variable \(\small X\) are \( x_1 , x_2 , ... , x_n \), a mean and variance of \(\small X\) are also used as measures of the central tendency and dispersion. 
+      The mean of \(\small X\) called an expectation of \(\small X\), denoted \(E(X)\) or \mu, and the variance of \(\small X\), denoted as \(\small V(X)\) or \( \sigma_X^2 \) , are defined as follows: 
+      The standard deviation of \(\small X\), denoted &sigma; , is the square root of the variance \(\small X\).
+    </div>
+    <p>  
+
+    <div class="mainTableYellow">
+      <b>Expectation and Variance of \(X\)</b>
+      <p>
+      $$ 
+        \begin{align}
+         E(X) &= \mu  = \sum _{i=1} ^{n} x_{i} P(\textrm{X}= x_{i} ) \\
+         V(X) &= \sigma^2 = \sum_{i=1} ^{n} ( x_i - \mu )^2  P(\textrm{X}= x_i ) =  \sum_{i=1}^{n} x_i  ^2 P(\textrm{X}= x_i ) - \mu^2 
+        \end{align}
+      $$
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.2</b>
+      Find the expected value and variance of the random variable \(\small X\) = 'Number of Heads’ when tossing a coin twice' which described in Table 5.3.2. 
+      <p>
+      <b>Answer</b>
+      <p>
+      Expectation and variance of \(\small X\) are as follows: 
+      <p>
+      $$ \small
+        \begin{align}
+          E(X) &= \mu = \sum_{i=1}^{n} x_{i} \text{P(X } = x_{i} ) = 0 \times \frac{1}{4} + 1 \times \frac{2}{4} + 2 \times \frac{1}{4} = 1 \\
+          V(X) &= \sigma^2 = \sum_{i=1}^{n} x_{i}^{2} \textrm{ P(X} = x_{i} )- \mu^{2} = 0^{2} \times \frac{1}{4} + 1^{2} \times \frac{2}{4} + 2^{2} \times \frac{1}{4} - 1^{2} = \frac{1}{2}
+        \end{align}
+      $$
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      When knowing the expected value \(E(X)\) and variance \(\small V(X)\) of a random variable \(\small X\), 
+      it is often necessary to obtain the expected value and variance of \(aX + b\) where \(a\) and \(b\) are constants. 
+      The expected value and variance of the new random variable \(aX + b\) are as follows: 
+      This formula applies equally to a continuous random variable.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Expectation and variance of \( a X + b \) where \( a,b \) are constant.</b>
+      <p>
+      $$ 
+        \begin{align}
+        E(aX + b) &= a E(X) + b \\
+        V(aX + b) &= a^2 V(X)
+        \end{align}
+      $$
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.3</b>
+      The mean of midterm exam scores in a Statistics course was 60 points and the variance was 100. In order to adjust the scores, professor is thinking of following alternatives. Find the mean and variance of each alternative.
+      <p>
+      <div class="textL20M20"> 1) Add 20 points to each student's score. </div>
+      <div class="textL20M20"> 2) Each student's score is multiplied by 1.4. </div>
+      <div class="textL20M20"> 3) Multiply each student's score by 1.2 and add 10 points. </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        The random variable \(\small X\) is the mid-term score and its mean and variance are \(\small E(X)\) = 60 and \(\small V(X)\) = 100.
+      <p class="textL20M20"> 1) The mean and variance of the new random variable \(\small X\) + 20 are as follows.
+      <p>
+        \(\qquad \small E(X ＋ 20) = E(X) ＋ 20 = 60 ＋ 20 \)
+        \(\qquad \small V(X ＋ 20) = V(X) = 100\)
+      <p>
+      <div class="textL20">In other words, if you add 20 points to each score, the mean is increased 20 points but there is no change on the variance.  </div>
+      <p class="textL20M20"> 2) The mean and variance of the new random variable 1.4\(\small X\) are as follows.
+      <p>
+        \(\qquad \small E(1.4X) = 1.4 E(X) = 1.4 × 60 = 84\) 
+        \(\qquad \small V(1.4X) = 1.4^2 V(X) = 1.96 × 100 = 196 \)
+      <p>
+      <div class="textL20">In other words, if you multiply 1.4 to each score, the mean is increased 1.4 times and 
+        the variance is increased  \(\small 1.4^2\)= 1.96 times.  </div>
+      <p class="textL20M20"> 3) The mean and variance of the new random variable 1.2X + 10 are as follows: 
+      <p>
+        \(\qquad \small E(1.2X ＋ 10) = 1.2 E(X) ＋ 10 = 1.2 × 60 ＋ 10 = 82 \)
+        \(\qquad \small V(1.2X ＋ 10) = 1.2^2 V(X) = 1.44 × 100 = 144 \)
+      <p>
+      <div class="textL20">In other words, adding 10 points after multiplying by 1.2 increases the mean by 1.2 times and
+          the variance by  \(\small 1.2^2\)= 1.44 times. Note that adding scores will change the mean, but not the variance. </div>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      Let the mean of random variable \(\small X\) be \mu and the standard deviation &sigma;. Then \(Z = \frac{X-\mu}{\sigma}\) is a new random variable with the mean of 0 and the variance of 1. 
+      This new random variable is referred to as a <b>standardized random variable</b>.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Standardized random variable</b>
+      <p>
+      If the mean of a random variable \(X\) is \mu, and the standard deviation is &sigma;,  
+      then \(Z = \frac{X-\mu}{\sigma}\) is a new random variable with the mean of 0 and the variance of 1. 
+      This new random variable is referred to as a <b>standardized random variable</b>.
+    </div>
+    <p>
+
+    <div class="mainTable">
+      Let us discuss about binomial, Poisson, geometrical, and hyper-geometrical distributions  which are used widely as discrete probability distributions.
+    </div>
+
+  <h4>5.3.1 Binomial Distribution</h4>
+  <p>
+  <h6>
+      <a href="./pdf/050301.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/HtpDnuM12ys" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Examples that are similar to experiments which examine how many times the head comes out by tossing coins are observed around us. Let us take a look at following examples.
+    </div>
+    <p>
+    <div class="textL30M10">-  Products produced in a factory machine are inspected and classified as either defective or normal. </div>
+    <div class="textL30M10">-  In an election survey, ask voters whether they would vote for a candidate (pro) or not (con).  </div>
+    <p>
+    <div class="mainTable">
+      In these examples there are two possible outcomes such as {defective, normal} and {pro, con} in each experiment and this experiment is repeated, but we do not know what the outcome of each experiment. Each experiment which has two possible outcomes is specifically called a Bernoulli trial, and one outcome of interest in the two is often referred to as 'success' and the other outcome as 'failure'. This Bernoulli trial is usually repeated several times and the number of ‘success’ is counted as following. 
+    </div>
+    <p>
+    <div class="textL30M10">-  Throw a coin five times and examine the number of heads. </div>
+    <div class="textL30M10">-  Inspect 100 products produced in a factory and count the number of defective products. </div>
+    <div class="textL30M10">-  Count the number of voters in favor of a particular candidate for the presidential election among 50 eligible voters. </div>
+    <p>
+    <div class="mainTable"> 
+      Counting the number of success on repeated Bernoulli trials can be simulated using the module of ‘Binomial Experiment’ in 『eStatU』. In this module, a ball is dropped from the top and if it hits a blue box, it has one-half chance to fall to the left (get zero point) or right (get one point). The dropped ball again falls to the left and right with a 1/2 chance such as &lt;Figure 5.3.3&gt;. The same experiment is repeated 100 times (drop 100 balls), and we examine the number of balls which got points 0, 1, and 2. It is similar to tossing a coin two times and counting the number of heads.
+    </div>
+    <p>
+
+    <div class="mainTableGrey">
+      <p>
+      <!------------*** html for Binomial Experiment ***------------------->       
+      <b>[<span data-msgid="Binomial Experiment">Binomial Experiment</span>]</b>
+      <p>
+      <iframe src="./example/050302/050302.html" width="800" height="750"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 5.3.3&gt; Simulation of Binomial distribution</div>
+    </div>
+    <p>   
+    <div class="mainTable">
+      The 'counting of success' when performing the independently repeated Bernoulli trial with the same probability of success is called a binary random variable, and its distribution is called a binomial distribution. The probability calculation of the binomial distribution will be found by the example below.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.4</b>
+      Four more games will be played by the Tiger baseball team this season. If the Tiger team has a 60% chance of winning every game, what is the probability of the followings.
+      <p>
+      <div class="textL20M20">1) losing all of them? </div>
+      <div class="textL20M20">2) winning only once? </div>
+      <div class="textL20M20">3) winning twice?	 </div>
+      <div class="textL20M20">4) winning three times?  </div>
+      <div class="textL20M20">5) winning all four times? </div>
+      <div class="textL20M20">6) Find the probability distribution function of the random variable \(\small X\) = ‘the number of games the tiger wins’. </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      This problem is the enforcement of Bernoulli trial in each game of 'win' and 'fail'. This Bernoulli trial is repeated four times. The sample space is all about winning or losing game and there are  elements shown as follows by marking the winning in O and the losing in X.
+      <p class="textL30">
+        S = {‘XXXX’, ‘OXXX’, ‘XOXX’, ‘XXOX’, ‘XXXO’, ‘OOXX’, ‘OXOX’, ‘OXXO’, ‘XOOX’, ‘XOXO’, ‘XXOO’, ‘OOOX’, ‘OOXO’, ‘OXOO’, ‘XOOO’, ‘OOOO’}
+      <p>
+      <p class="textL20M20">1) The event that the Tiger will lose all games is {'XXXX'} and the probability of this event is (0.4)×(0.4)×(0.4)×(0.4) = \(\small (0.4)^4\). 
+      <p class="textL20M20">2) There are four events that the Tiger is winning once and losing three times such as {‘OXXX’, ‘XOXX’, ‘XXOX’, ‘XXXO’}. 
+          These four cases are equal to the number of O's in a single seat when there are four seats which is \(\small{}_4C_1\). 
+          Since the probability of each event is (0.6)×(0.4)×(0.4)×(0.4), the probability of the Tiger winning once is \(\small{}_4C_1 (0.6)(0.4)^3\). 
+      <p class="textL20M20">3) There are six events that the Tiger is winning two times and losing two times such as {‘OOXX’, ‘OXOX’, ‘OXXO’, ‘XOOX’, ‘XOXO’, ‘XXOO’}. 
+          These six cases are equal to the number of O's in two seats when there are four seats which is \(\small{}_4C_2\). 
+          Since the probability of each event is (0.6)×(0.6)×(0.4)×(0.4), the probability of the Tiger winning twice is \(\small{}_4C_2 (0.6)^2(0.4)^2\). 
+      <p class="textL20M20">4) There are four events that the Tiger is winning three times and losing one time such as {‘OOOX’, ‘OOXO’, ‘OXOO’, ‘XOOO’}. 
+          These four cases are equal to the number of O's in three seats when there are four seats which is \(\small{}_4C_3\). 
+          Since the probability of each event  is (0.6)×(0.6)×(0.6)×(0.4), the probability of the Tiger winning three times is \(\small{}_4C_3 (0.6)^3(0.4)^1\). 
+      <p class="textL20M20">5) There is one event that the Tiger is winning four times such as {‘OOOO’}. 
+          This one case is equal to the number of O's in four seats when there are four seats which is \(\small{}_4C_4\). 
+          Since the probability of each event  is (0.6)×(0.6)×(0.6)×(0.6), the probability of the Tiger winning all four times is \(\small{}_4C_4 (0.6)^4\). 
+      <p class="textL20M20">6) The probability distribution function of the random variable X = ‘the number of games the Tiger wins’ is a summary of the above probabilities.
+      <table style="width:350px"> 
+        <tr>
+          <th class="thGrey" style="width:100px">\(\small X = x \)</td>
+          <th class="thGrey" style="width:250px">\(\small P(X=x) \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">0</td>
+          <td class="tdCenter">\(\small {}_{4}C_0 (0.4)^4          = 0.0256 \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">\(\small {}_{4}C_1 (0.6) (0.4)^3    = 0.1536 \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2</td>
+          <td class="tdCenter">\(\small {}_{4}C_2 (0.6)^2 (0.4)^2  = 0.3456 \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">\(\small {}_{4}C_3 (0.6)^3 (0.4)    = 0.3456 \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">4</td>
+          <td class="tdCenter">\(\small {}_{4}C_4 (0.6)^4          = 0.1296 \)</td>
+        </tr>
+      </table>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.5</b>
+      By using 『eStatU』, find the probability and the probability distribution function of [Example 5.3.4].
+      <p>
+      <b>Answer</b>
+      <p>
+      Select [Binomial Distribution] from the menu of 『eStatU』 and enter \(\small n = 4, p = 0.6\) and press the [Execute] button to display a binomial function graph as shown in &lt;Figure 5.3.4&gt;. Table 5.3.4 shows the table when you click the [Binomial Prob Table] button. This table makes it easy to obtain Binomial distribution probabilities from [Example 5.3.4].
+      <p>
+
+      <!--------***  html for Binomial Distribution ***---------------------->
+      <b>[<span data-msgid="Binomial Distribution">Binomial Distribution</span>]</b> 
+      <p>
+      <iframe src="./example/050303/050303.html" width="800" height="600"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 5.3.4&gt;  『eStatU』 Binomial distribution graph when \(\small n = 4, p = 0.6\) </div>
+      <p>
+            There are sliding bars of \(n\) and \(p\) and a probability calculation box under 
+            the graph, so put the desired value and press the [Enter] key to calculate the value.
+      <p>
+            To the right of the graph, a table of binomial distributions is shown. In addition to 
+            \(P(X = x)\), this table shows the cumulative probabilities \(P(X \le x)\) and 
+            \(P(X \ge x)\) to facilitate various probability calculations. If you select a new 
+            \(n\) and \(p\) and click [Execute] button, new binomial distribution table for this 
+            value is added below.
+      <p>
+
+      <p class="textLeft">Table 5.3.4   『eStatU』 Binomial distribution table when \(\small n = 4, p = 0.6\)</p>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey">\(n = 4\)</th>
+          <th class="thGrey">\(p = 0.600\)</th>
+        </tr>
+        <tr> 
+          <th class="thGrey" style="width:100px">\(x\)</th>
+          <th class="thGrey" style="width:100px">\(\small P(X = x)\)</th>
+          <th class="thGrey" style="width:100px">\(\small P(X \le x)\)</th>
+          <th class="thGrey" style="width:100px">\(\small P(X \ge x)\)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">0</td>
+          <td class="tdCenter">0.0256</td>
+          <td class="tdCenter">0.0256</td>
+          <td class="tdCenter">1.0000</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">0.1536</td>
+          <td class="tdCenter">0.1792</td>
+          <td class="tdCenter">0.9744</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2</td>
+          <td class="tdCenter">0.3456</td>
+          <td class="tdCenter">0.5248</td>
+          <td class="tdCenter">0.8208</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">0.3456</td>
+          <td class="tdCenter">0.8704</td>
+          <td class="tdCenter">0.4752</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">4</td>
+          <td class="tdCenter">0.1296</td>
+          <td class="tdCenter">1.0000</td>
+          <td class="tdCenter">0.1296</td>
+        </tr>
+      </table>
+    </div>
+
+
+
+
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      In general, the probability of ‘success’ when a Bernoulli trial is repeated n times, i.e., the probability of the binomial distribution, is as the following definition.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Binomial Distribution</b>
+      <p>
+      If the probability of success is \(p\) in a Bernoulli trial and the trial is repeated \(n\) times independently, 
+      the probability distribution function that the random variable \(X\) = the number of success’ is \(x\) 
+      is as follows:  It is called a <b>binomial distribution</b> and denoted as \(B(n,p)\).
+      $$ 
+        f(x) = {}_n C_x  p^x (1-p)^{n-x} , \qquad  x = 0,1,2, ... , n
+      $$
+      The expectation and variance of the binomial distribution are as follows.
+      $$ 
+        E(X) = np, V(X) = np(1-p)
+      $$
+    </div>
+    <p>
+
+    <div class="mainTable">
+      In the binomial distribution function, \(n\) (number of trials) and  \(p\) (success probability) are called parameters. 
+      &lt;Figure 5.3.5&gt; shows a binomial distribution of different  \(n\) and  \(p\).
+    </div>
+    <p>
+      <img class="imgFig600540" src="./Figure/Fig050305.png">
+      <div class="figText">&lt;Figure 5.3.5&gt; Binomial distribution for various n and p</div>
+    <p> 
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.6</b>
+        Past experience shows that a salesperson from an insurance company has a 20% chance of insuring a customer when he meets. The salesperson is scheduled to meet 10 customers this morning. Calculate the following probabilities directly and check using  『eStatU』.
+      <p>
+        <div class="textL20M20">1) What is the probability that three customers will get insurance? </div>
+        <div class="textL20M20">2) What is the probability that two or more customers will get insurance?</div>
+        <div class="textL20M20">3) How many people on average would sign up? And what is its standard deviation? </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        This is a Binomial distribution with \(n = 10, p = 0.2\).
+      <p>
+      <div class="textL20M20">1) The probability that three customers will get insurance is as follows: </div>
+      <p>
+        \( \qquad \quad \small
+          P(X=3) = {}_{10} C_3 (0.2)^3 (1-0.2)^{10-3} = 0.2013
+        \)
+      <p>
+      <div class="textL20M20">2) The probability that two or more customers will get insurance may use the complement event as follows: </div>
+      <p>
+        $$ \small
+          \begin{multline}
+          \shoveleft P(X \ge 2) = 1 - P(X=0) - P(X=1) \\
+          \shoveleft = 1 - {}_{10} C_0 (0.2)^0 (1-0.2)^10 - {}_{10} C_1 (0.2)^1 (1-0.2)^10-1 = 1 - 0.1074 - 0.2684  = 0.6242\\
+          \end{multline}
+        $$
+      <div class="textL20M20">3) Expectation and standard deviation are as follows: </div>
+      <p>
+        \( \qquad \quad \small E(X) = np = 10 × 0.2 = 2 \) <br>
+        \( \qquad \quad \small V(X) = np(1-p) = 10 × 0.2 × 0.8 = 1.6 \) <br>
+        \( \qquad \quad \small \sigma(X) = 1.265  \)
+      <p>
+        Select ‘Binomial Distribution’ from the menu of 『eStatU』, enter \(n=10, p=0.2\), and click on the [Execute] button to display the graph shown in &lt;Figure 5.3.6&gt;. Checking 'Show Probability' option shows the probability on each bar where you can see the values in the above calculations.
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[82])">
+            <img class="imgFig600540" src="./Figure/Fig050306.svg">
+            <div class="figText">&lt;Figure 5.3.6&gt;  『eStatU』 Binomial distribution when \(n = 10, p = 0.2\) </div>
+         </div>
+      <p>
+      Pressing the [Binary Prob Table] button will show the Binomial distribution table shown in Table 5.3.6. 
+      From here you can see that \(\small P(X \ge 2)\) = 0.6242
+      <p>
+      <p class="textLeft">Table 5.3.5  『eStatU』 Binomial Distribution Table when \(n = 10, p = 0.2\) </p>
+      <table style="width:400px"> 
+      <tr> 
+        <th class="thGrey">\(n = 10\)</th>
+        <th class="thGrey">\(p = 0.200\)</th>
+      </tr>
+      <tr> 
+        <th class="thGrey" style="width:100">\(x\)</th>
+        <th class="thGrey" style="width:100">\(\small P(X = x)\)</th>
+        <th class="thGrey" style="width:100">\(\small P(X \le x)\)</th>
+        <th class="thGrey" style="width:100">\(\small P(X \ge x)\)</th>
+      </tr>
+      <tr>
+        <td class="tdCenter">0</td>
+        <td class="tdCenter">0.1074</td>
+        <td class="tdCenter">0.1074</td>
+        <td class="tdCenter">1.0000</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">1</td>
+        <td class="tdCenter">0.2684</td>
+        <td class="tdCenter">0.3758</td>
+        <td class="tdCenter">0.8926</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">2</td>
+        <td class="tdCenter">0.3020</td>
+        <td class="tdCenter">0.6778</td>
+        <td class="tdCenter">0.6242</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">3</td>
+        <td class="tdCenter">0.2013</td>
+        <td class="tdCenter">0.8791</td>
+        <td class="tdCenter">0.3222</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">4</td>
+        <td class="tdCenter">0.0881</td>
+        <td class="tdCenter">0.9672</td>
+        <td class="tdCenter">0.1209</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">5</td>
+        <td class="tdCenter">0.0264</td>
+        <td class="tdCenter">0.9936</td>
+        <td class="tdCenter">0.0328</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">6</td>
+        <td class="tdCenter">0.0055</td>
+        <td class="tdCenter">0.9991</td>
+        <td class="tdCenter">0.0064</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">7</td>
+        <td class="tdCenter">0.0008</td>
+        <td class="tdCenter">0.9999</td>
+        <td class="tdCenter">0.0009</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">8</td>
+        <td class="tdCenter">0.0001</td>
+        <td class="tdCenter">1.0000</td>
+        <td class="tdCenter">0.0001</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">9</td>
+        <td class="tdCenter">0.0000</td>
+        <td class="tdCenter">1.0000</td>
+        <td class="tdCenter">0.0000</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">10</td>
+        <td class="tdCenter">0.0000</td>
+        <td class="tdCenter">1.0000</td>
+        <td class="tdCenter">0.0000</td>
+      </tr>
+      </table>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+        <b>Practice 5.3.1</b>
+            It is said that 60% of car drivers usually use a seat belt. When you select 15 drivers randomly, find the following probabilities for the number of drivers who normally use the seat belt. Check the calculation using 『eStatU』.
+            <p>
+            <div class="textL20M20M20">1) Probability of 10 or more drivers. </div>
+            <div class="textL20M20M20">2) Probability of 8 or less drivers.  </div>
+            <div class="textL20M20M20">3) Probability of at least 11 drivers.</div>
+            <div class="textL20M20M20">4) Probability of at least 7 drivers. </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[82])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      If the value of \(n\) increases, it is not easy to calculate the probability of Binomial probability distribution even with a calculator. 
+      In 『eStatU』, the probability of a case \(n \le 100\)  is readily available.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.7</b>
+      The defect rate of electronic parts produced in a factory is 5 percent. When you have a box containing 50 of these parts, use 『eStatU』 to obtain the following probabilities.
+      <p>
+      <div class="textL20M20M20">1) What is the probability of having no defective product?
+      </div>
+      <div class="textL20M20M20">2) What is the probability of having 1 to 3 defective products?
+      </div>
+      <div class="textL20M20M20">3) What is the probability of having more than three defective products?
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        When you select \(n=50, p=0.05\) from the ‘Binomial Distribution’ of 『eStatU』 and click on the [Execute] button, the graph such as &lt;Figure 5.3.7&gt; appears. If you click the [Binomial Prob Table] button, then Table 5.3.6 appears. 
+      <p>
+        1) You can check \(\small P(X=0)\) = 0.0769 easily from the table. 
+      <p>
+        <img class="imgFig600600" src="./Figure/Fig050307.svg">
+        <div class="figText">&lt;Figure 5.3.7&gt;  『eStatU』 Binomial Distribution when \(n = 50, p = 0.05\)</div>
+      <p>
+      <div class="textLeft">Table 5.3.6  『eStatU』 Binomial Distribution Table when \(n = 50, p = 0.05\) (in part)</div>
+      <p>
+      <table style="width:400px"> 
+       <tr> 
+        <th class="thGrey">\(n = 50\)</th>
+        <th class="thGrey">\(p = 0.050\)</th>
+      </tr>
+      <tr> 
+        <th class="thGrey" style="width:100px">\(x\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X = x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \le x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \ge x)\)</th>
+      </tr>
+      <tr>
+        <td class="tdCenter">0</td>
+        <td class="tdCenter">0.0769</td>
+        <td class="tdCenter">0.0769</td>
+        <td class="tdCenter">1.0000</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">1</td>
+        <td class="tdCenter">0.2025</td>
+        <td class="tdCenter">0.2794</td>
+        <td class="tdCenter">0.9231</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">2</td>
+        <td class="tdCenter">0.2611</td>
+        <td class="tdCenter">0.5405</td>
+        <td class="tdCenter">0.7206</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">3</td>
+        <td class="tdCenter">0.2199</td>
+        <td class="tdCenter">0.7604</td>
+        <td class="tdCenter">0.4595</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">4</td>
+        <td class="tdCenter">0.1360</td>
+        <td class="tdCenter">0.8964</td>
+        <td class="tdCenter">0.2396</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+      </tr>
+      </table>
+      <p>
+      <div class="textL20M20">2) The probability of having 1 to 3 defective products is \(P( 1 \le  X \le 3)\) and it can be calculated as follows: 
+      </div>
+      <p>
+        \( \qquad \small
+          P( 1 \le  X \le 3) = P( X \le  3) - P( X \le 0)  = 0.7604 – 0.0769 = 0.6835 
+        \)
+      <p>
+      <div class="textL20">
+        You may calculate this probability as \(\small P(X=1) + P(X=2) + P(X=3)\). 
+      </div>
+      <p>
+      <div class="textL20M20">3) The probability of having more than three defective products can be calculated by using the Table 5.3.6 as P(X \ge 3) = 0.4595. You may calculate this probability by using the complementary event as follows: 
+      </div>
+      <p>
+        \( \qquad  \small
+          P(X \ge 3) = 1 - P( X \le 2) = 1 – 0.5405 = 0.4595  
+        \)
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+        <b>Practice 5.3.2</b>
+            A salesperson found that there was a 30% chance of selling a product when a customer visited. 
+            If one day ten customers visit this salesman, calculate following probabilities using 『eStatU』.
+            <p>
+            <div class="textL20M20">1) Exactly how likely is it to sell three products?
+            </div>
+            <div class="textL20M20">2) What is the probability of selling three or more products?
+            </div>
+            <div class="textL20M20">3) What is the probability of selling less than 3 products?
+            </div>
+            <div class="textL20M20">4) What are the odds that none of them could be sold?
+            </div>
+            <div class="textL20M20">5) What is the probability of selling 5 products?
+            </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[82])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      If the number of trials \(n\) of the Binomial Distribution is greater than 100, the probability calculation can not be obtained even using 『eStatU』.
+      In such cases, you can use a normal approximation with the mean \(np\) and variance \(np(1-p)\) which is described in Section 5.4.2.
+    </div>
+
+  <h4>5.3.2 Poisson Distribution </h4>
+  <p>
+  <h6>
+      <a href="./pdf/050302.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/ljIcZIJSTQo" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable"> 
+      Consider the following examples that are frequently observed in many areas around us.
+    </div>
+    <p>
+    <div class="textL30M10">
+     - The number of calls made to an office of the Economics Department between 9 am and 10 am daily for one month.
+    </div>
+    <div class="textL30M10">
+     - The number of traffic accidents occurring at a certain intersection every day is investigated for one year.
+    </div>
+    <div class="textL30M10">
+     - The number of defective spots per each one square meter of the fabric is investigated for 100 square meters.
+    </div>
+    <div class="textL30M10">
+     - The number of typing errors that occur on each page of a book.
+    </div>
+    <div class="textL30M10">
+     - The number of accidents occurring during a week in a factory for one year
+    </div>
+    <p>
+    <div class="mainTable">
+      What these statistical experiments have in common is to investigate the number of events per unit time or unit area. A random variable that represents this 'occurrence of events per unit time or unit area' is called a Poisson random variable and its distribution is called a Poisson distribution. 
+      <p>Probability of the Poisson distribution can be calculated using the following formula.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Poisson Distribution</b>
+      <p>
+      The distribution of a Poisson random variable \(X\) = 'Occurrence of success event per unit time or unit area'
+      is as follows when the average number of success is &lambda;. 
+      $$
+        f(x) = \frac { e^{-\lambda} \lambda^x } { x! } , \qquad x = 0, 1, 2, ...
+      $$
+      <p>
+      The expectation and variance of the Poisson random variable are as follows.
+      $$
+        E(X) = \lambda, \quad V(X) = \lambda
+      $$
+    </div>
+    <p>
+
+    <div class="mainTable">
+      The average number of success &lambda; in the Poisson distribution function is called a parameter of the Poisson distribution. 
+      Note that the mean and variance of the Poisson distribution are the same as &lambda. 
+      &lt;Figure 5.3.8&gt; to &lt;Figure 5.3.11&gt; show the Poisson distributions for different values of &lambda; by using 『eStatU』.
+      <p>
+         <img class="imgFig600600" src="./Figure/Fig050308.png">
+         <div class="figText">&lt;Figure 5.3.8&gt; Poisson Distribution when &lambda; = 0.4  </div>
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig050309.png">
+      <div class="figText">&lt;Figure 5.3.9&gt; Poisson Distribution when &lambda; = 1.0  </div>
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig050310.png">
+      <div class="figText">&lt;Figure 5.3.10&gt; Poisson Distribution when &lambda; = 1.5  </div>
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig050311.png">
+      <div class="figText">&lt;Figure 5.3.11&gt; Poisson Distribution when &lambda; = 2.0  </div>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.8</b>
+      Assume that cars arriving at a highway toll gate per one minute during rush hour is the Poisson distribution with an average of five cars. One day, if you observe the toll gate for one minute during rush hour, calculate the following probabilities.
+      <p>
+      <div class="textL20M20">1) What is the probability that none of cars will arrive?
+      </div>
+      <div class="textL20M20">2) What is the probability of five cars arriving?
+      </div>
+      <div class="textL20M20">3) What is the probability of more than two cars arriving?
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      Let \(\small X\) be the Poisson random variable with &lambda; = 5. 
+      <p>
+        1) \(\small P(X = 0) = f(0) = \frac { e^{-5} {5}^{0} } { 0! } \)  = 0.0067 
+      <p>
+        2) \(\small P(X = 5) = f(5) = \frac { e^{-5} {5}^{5} } { 5! } \)  = 0.1755
+      <p>
+        3) \(\small P(X \ge 2) = 1 - P(X \le 1) = 1 - P(X=0) - P(X=1) \) = 1 - 0.0067 - 0.0337 = 0.9596 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.9</b>
+      Assume that the average number of Typhoons passing through the southern part of the country per year is a Poisson distribution with &lambda; = 2.5. 
+      Check the following probabilities using 『eStatU』.
+      <p>
+      <div class="textL20M20">1) What is the probability that a Typhoon will pass once this year?
+      </div>
+      <div class="textL20M20">2) What is the probability that Typhoons will pass twice or three times or four times this year?
+      </div>
+      <div class="textL20M20">3) What is the probability that Typhoons will pass more than once this year?
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+         Select [Poisson distribution] from the menu of 『eStatU』 and select &lambda; = 2.5. Then click on the [Execute] button to display a graph such as &lt;Figure 5.3.12&gt; and click  the [Poisson Prob Table] button to see the Table 5.3.7.
+
+      <!----------***  html for Poisson Distribution   ***--------------------->
+      <p>
+      <b>[<span data-msgid="Poisson Distribution">Poisson Distribution</span>]</b> 
+      <p> 
+      <iframe src="./example/050304/050304.html" width="800" height="600"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 5.3.12&gt;  『eStatU』 Poisson Distribution when &lambda; = 2.5</div>
+      <p>
+         <div class="textLeft">Table 5.3.7 Poisson Distribution when &lambda; = 2.5</div>
+      <p>
+      <table style="width:400px"> 
+      <tr> 
+        <th class="thGrey">&lambda; = 2.5</th>
+      </tr>
+      <tr> 
+        <th class="thGrey" style="width:100px">\(x\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X = x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \le x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \ge x)\)</th>
+      </tr>
+      <tr>
+        <td class="tdCenter">0</td>
+        <td class="tdCenter">0.0821</td>
+        <td class="tdCenter">0.0821</td>
+        <td class="tdCenter">1.0000</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">1</td>
+        <td class="tdCenter">0.2052</td>
+        <td class="tdCenter">0.2873</td>
+        <td class="tdCenter">0.9179</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">2</td>
+        <td class="tdCenter">0.2565</td>
+        <td class="tdCenter">0.5438</td>
+        <td class="tdCenter">0.7127</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">3</td>
+        <td class="tdCenter">0.2138</td>
+        <td class="tdCenter">0.7576</td>
+        <td class="tdCenter">0.4562</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">4</td>
+        <td class="tdCenter">0.1336</td>
+        <td class="tdCenter">0.8912</td>
+        <td class="tdCenter">0.2424</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+      </tr>
+      </table>
+      <p>
+        1) \(\small P(X=1)\) = 0.2052.
+      <p>
+        2) \(\small P( 2 \le X \le  4)\) can be calculated as follows: 
+      <p>
+        \(\qquad \small P( 2 \le X \le 4 ) = P( X \le 4) - P( X \le 1) \)= 0.8912 – 0.2873 = 0.6039
+        <div class="textL20">This event can be calculated as \(\small P(X=2) + P(X=3) + P(X=4)\). </div>
+      <p>
+      <div class="textL20M20">3) If you use Table 5.3.7, \(\small P(X \ge 2)\) = 0.7127. Then the probability can be calculated by using the complementary event as follows: 
+      </div>
+      <p>
+        \(\qquad \small P(X \ge  2) = 1 - P( X \le 1) \)= 1 – 0.2873 = 0.7127 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+        <b>Practice 5.3.3</b>
+            The number of defects per 1 square meter of the fabric follows a Poisson distribution with the average number of defects &lambda; = 0.2. 
+            When 1 square meter of the fabric is investigated for quality inspection, find the following probabilities using 『eStatU』.
+            <p>
+            <div class="textL20M20">1) What is the probability that the number of defects is zero?
+            </div>
+            <div class="textL20M20">2) What is the probability that the number of defects is greater than 2?
+            </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU440_Poisson.svg" onclick="window.open(addrStr[83])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      Binomial distribution and Poisson distribution are very closely related. Mathematically, if \(n\) is very large and \(p\) is very small, 
+      the binomial distribution function converges to the Poisson distribution function. If you are interested in proofing this theory in detail, 
+      please refer to a book of mathematical statistics.
+    </div>
+
+  <h4>5.3.3 Geometric Distribution</h4>
+  <p>
+  <h6>
+      <a href="./pdf/050303.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/SPWZNCW2mdg" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      The binomial distribution is a probability distribution which counts the number of heads when a coin is thrown n times. On the other hand, the number of trials until the head of a coin appears may be of interest. Let us consider the following examples.
+    </div>
+    <p>
+    <div class="textL30M10">-  A candidate has 40 percent approval rating in an election. When interviewing voters to hear opinions, what is the probability of meeting one person who abstains from voting the candidate at the fifth trial?
+    </div>
+    <div class="textL30M10">-  The defect rate in products of a factory is said to be about 5%. If you continue to inspect the product until you find a defect product to investigate the cause, what is the probability of finding it at the 10th trial? 
+    </div>
+    <p>
+    <div class="mainTable">
+      In these examples, as with the binomial distribution, we don't know what the outcome of each trial will be, but there are only two possible outcomes such as {pro, con} and {defective, normal}. If we denote one outcome of interest as ‘success’ and the other as ‘failure’, the experiment is the repetition of Bernoulli trials until we have one ‘success’. 'The number of Bernoulli trials until success' is called a <b>geometric random variable</b> and its distribution is called a <b>geometrical distribution</b>. 
+      <p>
+      The probability of success \(p\) in the geometrical distribution is called a parameter of the geometric distribution. 
+      The probability distribution function of the geometric distribution is as follows: 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Geometric Distribution</b>
+      <p>
+      When the probability of 'success' in a Bernoulli trial is \(p\) and \(X\) is the number of Bernoulli trials 
+      until the first success, the probability distribution of \(X\) is called a geometric distribution and 
+      its probability distribution function is as follows.
+      $$
+        f(x) = (1-p)^{x-1} p, \qquad x=1,2, ...
+      $$
+      <p>
+      The expectation and variance of the geometric random variable are as follows.
+      $$ 
+        E(X) =  \frac {1}{p}, \quad  V(X) = \frac {1-p}{p^2 }
+      $$
+    </div>
+    <p>
+
+    <div class="mainTable">
+      &lt;Figure 5.3.13&gt; to &lt;Figure 5.3.15&gt; show the distribution of geometric distribution for different values of \(p\).
+      <p>
+       <img class="imgFig600600" src="./Figure/Fig050313.svg">
+       <div class="figText">&lt;Figure 5.3.13&gt; Geometric distribution when \(p\) = 0.2</div>
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig050314.svg">
+      <div class="figText">&lt;Figure 5.3.14&gt; Geometric distribution when \(p\) = 0.5</div>
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig050315.svg">
+      <div class="figText">&lt;Figure 5.3.15&gt; Geometric distribution when \(p\) = 0.8</div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.10</b>
+      A candidate has 60% approval rating in an election. When interviewing voters to hear the opinions of those who oppose the candidate, calculate the following probabilities.
+      <p>
+      <div class="textL20M20">1) What is the probability of finding someone who is opposed in the first interview?
+      </div>
+      <div class="textL20M20">2) What is the probability of finding someone who is opposed in the fifth interview?
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        The probability of meeting opposed person is 0.4. Let \(\small X\) be the geometric random variable with \(p\) = 0.4. 
+      <p>
+        1) \(\small P(X = 1) = f(1) = \small (1-0.4)^{1-1} 0.4 \)  = 0.4
+      <p>
+        2) \(\small P(X = 5) = f(5) = \small (1-0.4)^{5-1} 0.4 \)  = 0.0518
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.11</b>
+      The defect rate of a product produced by a factory is said about 5 percent. Use  『eStatU』 to obtain the following probabilities when continuing to inspect the product until it finds a defective product to investigate the cause of defective.
+      <p>
+      <div class="textL20M20">
+        1) The probability of finding a defective product at the third trial.
+      </div>
+      <div class="textL20M20">
+        2) The probability of finding a defective product at the third and more trial.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+         Select [Geometric Distribution] from the 『eStatU』 menu, select parameter \(p\) = 0.05, and click the [Execute] button to display the graph shown in &lt;Figure 5.3.16&gt;, and click the [Geometric Prob Table] button to display Table 5.3.8.
+      <p>
+      <!-------------------- html for Geometric --------------------------------------->
+      <b>[<span data-msgid="Geometric Distribution">Geometric Distribution</span>]</b>  
+      <p>
+         <iframe src="./example/050305/050305.html" width="800" height="600"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 5.3.16&gt; Geometric distribution when \(p\) = 0.05</div>
+      <p>
+         <div class="textLeft">Table 5.3.8  Part of Geometric distribution when \(p\) = 0.05</div>
+      <p>
+      <table style="width:400px"> 
+      <tr> 
+        <th class="thGrey">\(p\) = 0.05</th>
+      </tr>
+      <tr> 
+        <th class="thGrey" style="width:100px">\(x\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X = x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \le x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \ge x)\)</th>
+      </tr>
+      <tr>
+        <td class="tdCenter">1</td>
+        <td class="tdCenter">0.0500</td>
+        <td class="tdCenter">0.0500</td>
+        <td class="tdCenter">1.0000</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">2</td>
+        <td class="tdCenter">0.0475</td>
+        <td class="tdCenter">0.0975</td>
+        <td class="tdCenter">0.9500</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">3</td>
+        <td class="tdCenter">0.0451</td>
+        <td class="tdCenter">0.1426</td>
+        <td class="tdCenter">0.9025</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">4</td>
+        <td class="tdCenter">0.0429</td>
+        <td class="tdCenter">0.1855</td>
+        <td class="tdCenter">0.8574</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">5</td>
+        <td class="tdCenter">0.0407</td>
+        <td class="tdCenter">0.2262</td>
+        <td class="tdCenter">0.8145</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+        <td class="tdCenter">\(\cdots\)</td>
+      </tr>
+      </table>
+      <p>
+        1) We can easily find \(\small P(X=3)\) = 0.0451.
+      <p>
+        2) We can easily find \(\small P(X \ge  3)\) = 0.9025. 
+        <div class="textL20">We can use the complementary probability as follows: </div> 
+      <p>
+         \(\qquad \small P(X \ge 3) = 1 - P( X \le  2)\) = 1 – 0.0975 = 0.9025 
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+            <b>Practice 5.3.4</b>
+            The defect rate of products produced in a factory is about 1 percent. Use 『eStatU』 to obtain the following probabilities when continuing to inspect the product until it finds a defective product to investigate the cause of defective.
+            <p>
+            <div class="textL20M20">
+              1) The probability of finding a defective product at the second trial.
+            </div>
+            <div class="textL20M20">
+              2) The probability of finding a defective product at the third or more trial.
+            </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU450_Geometric.svg" onclick="window.open(addrStr[84])">
+    </div>
+
+  <h4>5.3.4 Hypergeometric Distribution</h4>
+  <p>
+  <h6>
+      <a href="./pdf/050304.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/WRVXMF0xlm0" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Consider a statistical experiment to examine products in a factory to determine whether a box of the products includes defects or not. For example, consider a box consisting of 20 products and 15 of them are normal products and 5 are defective products. When three of the 20 products are sampled, the probability of having two normal products and one defective product can be calculated using the combination studied in section 5.1 as follows.
+    </div>
+    <p>
+    $$
+     \frac { { }_{15} C_2 \times {}_{5} C_1  } { {}_{20} C_3 } 
+    $$
+    <div class="mainTable">
+      A random variable that counts the number of ‘success’ in a finite population  consisting of only ‘success’ and ‘failure’ is called a hypergeometric random variable and its distribution is called a hypergeometric distribution. The probability distribution function of the hypergeometric distribution is as follows.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Hypergeometric Distribution</b>
+      <p>
+        Consider a population of size \(N\) which consists of \(D\) ‘success’ and \(N-D\) ‘failure’.  
+        If we collect a sample of size  without replacement and \(X\) is the number of ‘success’ in the sample, 
+        then the distribution of \(X\) is called hypergeometric distribution and its probability distribution 
+        function is as follows.
+      $$
+        \frac { {}_{D} C_x \times {}_{N-D} C_{n-x}  } { {}_{N} C_{n} } 
+      $$
+      If we let \(p = \frac{D}{N}\), the expectation and variance of the hypergeometric random variable are as follows.
+      $$
+        E(X) = np , \quad V(X) = np(1-p) \frac{N-n}{N-1}
+      $$
+    </div>
+    <p>
+
+    <div class="mainTable">
+      In the hypergeometric probability distribution function,\(N, D, n\)  are called parameters of the distribution and &lt;Figure 5.3.17&gt; to &lt;Figure 5.3.19&gt; show the distributions for various parameters. 
+    </div>
+    <p>
+       <img class="imgFig600600" src="./Figure/Fig050317.svg">
+       <div class="figText">&lt;Figure 5.3.17&gt; Hypergeometric distribution when \(N = 30, D = 5, n = 10 \)</div>
+    <p>
+       <img class="imgFig600600" src="./Figure/Fig050318.svg">
+         <div class="figText">&lt;Figure 5.3.18&gt; Hypergeometric distribution when \(N = 100, D = 5, n = 10 \)</div>
+    <p>
+       <img class="imgFig600600" src="./Figure/Fig050319.svg">
+       <div class="figText">&lt;Figure 5.3.19&gt; Hypergeometric distribution when \(N = 100, D = 5, n = 20 \)</div>
+    <p>    
+    <div class="mainTable">
+      Be aware that when the size of population \(N\) is very large or when we select the sample with replacement, the number of ‘success’ in the sample will follow the binomial distribution. If the size of population is finite and the sample is selected without replacement, the number of ‘success’ in the sample follows the hypergeometric distribution. Note that, when the number of products is finite and a selected product is not replaced, the failure rate changes.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.3.12</b>
+      Sample of size 3 is selected from a box containing 20 tobacco products of which there are 15 normal products and 5 defective products. What is the probability of having one, two, or three defective products in the sample?
+      <p>
+      <b>Answer</b>
+      <p>
+      These probability calculations have already been studied using combinations in section 5.1. 
+      This is the hypergeometric distribution with \(N\) = 20, \(D\) = 15, \(n\) = 3, so the probabilities are as follows.
+      <p>
+      $$ \small
+        \begin{multline}
+        \shoveleft P(X=1) = \frac { {}_{15} C_{2} \times  {}_{5} C_{1} } {{}_{20} C_{3}} = \frac {15 \times 10} {1140} = 0.460 \\  
+        \shoveleft P(X=2) = \frac { {}_{15} C_{1} \times  {}_{5} C_{2} } {{}_{20} C_{3}} = \frac {105 \times 5} {1140} = 0.132 \\  
+        \shoveleft P(X=3) = \frac { {}_{15} C_{0} \times  {}_{5} C_{3} } {{}_{20} C_{3}} = \frac {455 \times 1} {1140} = 0.099 \\  
+        \end{multline}
+      $$
+    </div>
+    <p>
+ 
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTableGrey">
+      <b>Example 5.3.13</b>
+        Use  『eStatU』 to obtain the probability of [Example 5.3.12].
+      <p>
+      <b>Answer</b>
+      <p>
+        Select [Hypergeometric Distribution] from the menu of 『eStatU』, select \(N = 20, D = 15, n = 3 \) and click on the [Execute] button to display a graph such as &lt;Figure 5.3.20&gt;. If you click the [Hypergeometric Prob Table] button, Table 5.3.9 appears. This table shows the probabilities of \(\small P(X=0), P(X=1), P(X=2)\), and \(\small P(X=3)\).
+      <p>
+      <!---- *** HyperGeometric Distribution ***--->
+      <b>[<span data-msgid="HyperGeometric Distribution">HyperGeometric Distribution</span>]</b> 
+      <p>
+         <iframe src="./example/050306/050306.html" width="800" height="600"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 5.3.20&gt; Hypergeometric distribution when \(N = 20, D = 5, n = 3 \)</div>
+      <p>
+         <div class="textLeft">Table 5.3.9 Hypergeometric distribution when \(N = 20, D = 5, n = 3 \)</div>
+      <p>
+      <table style="width:400px"> 
+      <tr> 
+        <th class="thGrey">\(\small N = 20\)</th>
+        <th class="thGrey">\(\small D = 5 \)</th>
+        <th class="thGrey">\(\small n = 3 \)</th>
+      </tr>
+      <tr> 
+        <th class="thGrey" style="width:100px">\(x\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X = x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \le x)\)</th>
+        <th class="thGrey" style="width:100px">\(\small P(X \ge x)\)</th>
+      </tr>
+      <tr>
+        <td class="tdCenter">0</td>
+        <td class="tdCenter">0.3991</td>
+        <td class="tdCenter">0.3991</td>
+        <td class="tdCenter">1.0000</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">1</td>
+        <td class="tdCenter">0.4605</td>
+        <td class="tdCenter">0.8596</td>
+        <td class="tdCenter">0.6009</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">2</td>
+        <td class="tdCenter">0.1316</td>
+        <td class="tdCenter">0.9912</td>
+        <td class="tdCenter">0.1404</td>
+      </tr>
+      <tr>
+        <td class="tdCenter">3</td>
+        <td class="tdCenter">0.0088</td>
+        <td class="tdCenter">1.0000</td>
+        <td class="tdCenter">0.0088</td>
+      </tr>
+      </table>
+      <p>
+    </div>
+    <p>  
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+        <b>Practice 5.3.5</b>
+            Sample of size 5 is selected from a box containing 20 cookie products of which there are 17 normal products and 3 defective products. 
+            Find the probability of having one, two, or three defective products in the sample using 『eStatU』.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU460_HyperGeo.svg" onclick="window.open(addrStr[85])">
+    </div>
+
+  <h3 id="0504">5.4 Continuous Random Variable</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0504.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/hBynC_wR19E" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Consider a statistical experiment that measures how long it takes for an office worker to get to work from home. 
+      Past experience shows that the commuting time usually takes about 30 minutes to get to the work place if the traffic is not congested. 
+      While the result of this experiment will have a real number near 30 minutes, we can assume generally that the sample space is larger than zero, and define a random variable \(\small X\) as the 'commuting time to work place'. 
+      As such, if a random variable has an infinite number of possible values and it is uncountable, it is called a <b>continuous random variable</b>.
+      <p>In case of the continuous random variable, calculating probability at each value of the random variable is meaningless, because there are infinite possible values and the probability at each value is considered zero. Instead of calculating the probability at a single value, the probability of an interval is of interest in case of the continuous random variable. For example, 'What is the probability of a commuting time between 25 and 35 minutes?' In order to obtain this probability, we can divide the sample space of the commuting time into several intervals and count the number of their frequencies and probabilities for 100 days as in Table 5.4.1. &lt;Figure 5.4.1&gt; is a histogram of this table.
+    </div>
+    <p>
+    <p class="textLeft">Table 5.4.1  Frequency table of the commuting time for 100 days \(\small X\) = ‘commuting time’ (unit: minute)
+    <table style="width:500px"> 
+    <tr> 
+      <th class="thGrey" style="width:200px">Interval \((a \le X \lt b)\) </th>
+      <th class="thGrey" style="width:150px">Frequency</th>
+      <th class="thGrey" style="width:150px">Probability</th>
+    </tr>
+    <tr>
+      <td class="tdCenter">\( 10 \le X \lt 30 \) <br>\( 30 \le X \lt 50 \) <br>\( 50 \le X \lt 60 \) <br> \( 60 \le X \lt 70 \) <br> \( 70 \le X \lt 90 \) </td>
+      <td class="tdRight">5<br>30<br>40<br>20<br>5</td>
+      <td class="tdRight">5/100<br>30/100<br>40/100<br>20/100<br> 5/100</td>
+    </tr>
+    <tr>
+      <td class="tdCenter">Total</td>
+      <td class="tdRight">100 (days)</td>
+      <td class="tdRight">1</td>
+    </tr>
+    </table>
+    <p>
+    <img class="imgFig400300" src="./Figure/Fig050401.png">
+    <div class="figText">&lt;Figure 5.4.1&gt; Histogram of \(\small X\) = ‘commuting time’ </div>
+    <p>
+    <div class="mainTable">
+      Using this frequency table, the probability of commuting time between 30 and 60 minutes can be calculated as follows.
+      <p>
+      $$ P(30 \le X \lt 60) = 30/100 + 40/100 = 70/100 $$
+    </div>
+    <p>
+    <div class="mainTable">
+      However, if you use this table, you can not calculate, for example, the probability of the commuting time between 25 and 35 minutes. 
+      In order to calculate this probability, calculation will require a detail frequency table and a histogram such as &lt;Figure 5.4.2&gt; which has narrower intervals by obtaining more data. 
+      If you increase the number of data and make the width of the interval close to zero, this histogram will be approximated to a continuous function as shown in &lt;Figure 5.4.3&gt;. 
+      This function is called a <b>probability distribution function of the continuous random variable</b>. As shown in this Figure, many real world data have a bell shape, large amount of data are observed near the mean, symmetrical about the mean. It is called a normal distribution.
+    </div>
+    <p>
+      <img class="imgFig400300" src="./Figure/Fig050402.png">
+      <div class="figText">&lt;Figure 5.4.2&gt; Histogram with narrower intervals on many data</div>
+    <p>
+      <img class="imgFig400300" src="./Figure/Fig050403.png">
+      <div class="figText">&lt;Figure 5.4.3&gt; Probability distribution function of a continuous random variable</div>
+    <p>
+    <div class="mainTable">
+      If the probability distribution function of a continuous random variable can be expressed as a mathematical function f(x), 
+      the desired probability can be obtained without finding the frequency table and histogram.
+      The probability of the random variable \(\small X\) at interval (\(a,b) \), denoted as \(P( a \lt X \lt b)\), can be obtained as the area between 
+      (\(a,b) \) of f(x) as &lt;Figure 5.4.4&gt; which is the integral over (\(a,b) \) as follows: 
+      $$
+        P(a \lt X \lt b)=  \int_{a} ^{b} {} f(x)dx
+      $$
+    </div>
+    <p>
+      <img class="imgFig400300" src="./Figure/Fig050404.png">
+      <div class="figText">&lt;Figure 5.4.4&gt; \(P(a \lt X \lt b)\) of the continuous random variable \(\small X\)</div>
+    <p>			
+    <div class="mainTable">
+      The area under this function f(x) should be 1, because the addition of all probabilities is 1. 
+      $$
+        P(-&infin; \lt X \lt &infin;)=  \int_{-&infin;} ^{&infin;} {} f(x)dx = 1
+      $$
+      The integral over (\(a,b\) ) of a function f(x) is generally difficult to obtain. 
+      For a normal distribution function, we use a table to calculate the probability which is discussed in Section 5.4.1. 
+      The following is an example to calculate the probability of the uniform distribution. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.4.1</b>
+        The delivery time to order a pizza and getting home have the same possibility as any time between 10 to 30 minutes (it is called a uniform distribution). Let the random variable X be the time takes to deliver a pizza to home. Find a probability distribution function of X and draw a graph. Find the probability of the delivery time between 15 and 20 minutes.
+      <p>
+      <b>Answer</b>
+      <p>
+        Since the random variable \(\small X\) has the same possibility as any number between 10 and 30, the probability distribution function (uniform distribution) is as follows.
+      <p>
+        \( \quad \small
+          f(x) = \Big\{ \array { \frac {1}{30-10}, &\quad \text{if  10 < }x \text { < 30} \cr 0, &\qquad \text{elsewhere}  }
+        \)
+      <p>
+       &lt;Figure 5.4.5&gt; is the shape of this probability distribution function and it is called a uniform distribution between 10 and 30 denoted as Uniform(10,30). 
+      <p>
+        <img class="imgFig300100" src="./Figure/Fig050405.png">
+        <div class="figText">&lt;Figure 5.4.5&gt; Uniform distribution on (10,30) and the probability of \(P(15 \lt X \lt 20)\) </div>
+      <p>   
+        The probability of the delivery time between 15 and 20 minutes is the area of the shaded rectangle of the &lt;Figure 5.4.5&gt; which can be calculated as follows.
+      <p>
+        \( \quad \small
+          P(15 \lt X \lt 20) = (20 - 15) × \frac {1}{20} = 0.25 
+        \)
+    </div>
+
+  <h4>5.4.1 Normal Distribution</h4>
+  <p>
+  <h6>
+      <a href="./pdf/050401.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/GQ43bFGRcU8" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+    <div class="mainTable">
+      In real life, there are many continuous data that appear in the form of bell-shape as in &lt;Figure 5.4.3&gt;. The graph shows that large amount of data are located around their mean, fewer data located as it moves away from the mean, and is symmetrical around the mean. This type of data is called a normal distribution. Data obtained from measurements such as the height, weight, and length of bolt often follow the normal distribution. &lt;Figure 5.4.6&gt; shows a simulation of data which follow a normal distribution with the mean 0 and variance 1 using 『eStatU』.
+    </div>
+    <p>
+    <div class="mainTableGrey">
+      <p>
+      <!------ html for Normal Simulation --------------------------------------------------------------->
+      <b>[<span data-msgid="Normal Experiment">Normal Experiment</span>]</b> 
+      <p>
+         <iframe src="./example/050401/050401.html" width="800" height="600"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 5.4.6&gt; Simulation of data which follow N(0,1) using  『eStatU』 </div>
+    </div>
+    <p>
+
+    <div class="mainTable">
+      To make it easier to calculate probability for this type of data in the form of a normal distribution, many mathematicians tried to find a function to describe this distribution type. Abraham de Moivre (1667-1754) was the first who discovered the function, and then Carl Friedrich Gauss (1777-1855) extensively applied to physics and astronomy. This function is called a normal distribution function or a Gaussian distribution function and the functional form is as follows.
+      $$
+        f(x) = \frac{1}{\sqrt{2 &pi;} \, \sigma } exp \{ - \frac {(x-\mu)^2 } {2 \sigma^2} \}
+      $$
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Normal Distribution</b>
+      <p>
+        A normal distribution function or a Gaussian distribution function is as follows.
+      $$
+        f(x) = \frac{1}{\sqrt{2 &pi;} \, \sigma } exp \{ - \frac {(x-\mu)^2 } {2 \sigma^2} \}
+      $$
+      This distribution function has two parameters &mu; and &sigma;, each representing the mean and standard deviation of the normal distribution. 
+    </div>
+    <p>
+
+    <div class="mainTable">
+      This distribution function has two parameters &mu; and &sigma;, each representing the mean and standard deviation of the normal distribution. 
+      If \(\small X\) is a normal random variable with mean &mu; and variance \(\sigma^2\) , 
+      it is often denoted by a symbol \(\small X\) ～ \(N(\mu, \sigma^2)\). 
+    </div>
+    <p>
+  <div class="mainTableGrey">
+         &lt;Figure 5.4.7&gt; is the graph of three normal distributions with different mean 
+         and variance such as \(N(-2, 0.5^2 )\), \(N(0, 1)\) and \(N(2, 2^2 )\). It can be 
+         observed that all of them are symmetrical around the mean. If the variance increases, 
+         the normal distribution becomes flat and, if the variance decreases, the normal 
+         distribution becomes sharp. This is because the total area under the normal distribution 
+         function must be 1.
+      <p>
+      <!-------------*** html for Normal Comparison ***---------------------------------->
+      <b>[<span data-msgid="Normal Distribution"></span> <span data-msgid="ComparisonGraph"></span>]</b> 
+      <p>
+         <iframe src="./example/050402/050402.html" width="800" height="650"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 5.4.7&gt; Three Normal distribution N(-2,0.25), N(0,1), N(2,4)</div>
+      <p>
+         The following graph shows three-normal distributions \(N(-3, 1)\), \(N(0, 1)\) and  \(N(3, 1)\) 
+         in which the mean is different from each other and the variance is all 1. If the mean 
+         is different, the graph of the same shape is moved horizontally.
+      <p>
+      <table>
+        <tr>
+          <td>
+            <img class="imgFig600600" src="./Figure/Fig0325.png">
+            <div class="textLeft">Comparison of three graphs of normal distribution,  \(N(-3, 1)\), \(N(0, 1)\), \(N(3, 1)\)</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+         The following graph shows three-normal distributions \(N(0, 0.5^2 )\), \(N(0, 1)\) and \(N(0, 3^2 )\) 
+         in which all means are zero and variances are different. It can be observed that 
+         all of them are symmetrical around the average 0, and that the normal distribution 
+         becomes flat as the variance increases, and the normal distribution becomes sharp 
+         as the variance decreases.
+      <p>
+      <table style="width:700px">
+        <tr>
+          <td>
+            <img class="imgFig600600" src="./Figure/Fig0326.png">
+            <div class="textLeft">Comparison of three graphs of normal distribution,  \(N(0, 0.5^2 )\), \(N(0, 1)\), \(N(0, 3^2 )\)</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+  </div>
+  <p>
+
+    <div class="mainTableYellow">
+        <b>Characteristics of the normal distribution</b> can be summarized as following.
+      <p>
+      <div class="textL20M20">
+        1) It is a continuous function in the shape of a bell.
+      </div>
+      <div class="textL20M20">
+        2) It is symmetrical with respect to the mean &mu;. So the probability of the left and right side of the mean is 0.5 each.
+      </div>
+      <div class="textL20M20">
+        3) There are infinite number of normal distributions according to the value of &mu; and &sigma;.
+      </div>
+      <div class="textL20M20">
+        4) The probability of the interval [ &mu; - &sigma; , &mu; + &sigma; ] is 0.68, and the probability of the interval [ &mu; - 2 &sigma; , &mu; + 2 &sigma; ] is 0.95, 
+           and the probability of the interval [ &mu; - 3 &sigma; , &mu; + 3 &sigma; ] is 0.997. 
+           It implies that the Normal random variable has the most of values (99.7%) around the interval of (mean) &plusmn; 3 (standard deviation) and there are a few values outside of this interval.
+      </div>
+    </div>
+    <p>
+
+    <h4> Probability Calculation of the Normal Distribution</h4>
+    <p>
+    <div class="mainTable">
+      The normal distribution is the most frequently used distribution in statistics. If \(\small X\) is a normal random variable with mean &mu; and variance \(\sigma^2\) , 
+      it requires a probability calculation in the interval \( (a,b) \). As described earlier, the probability of \(\small X\) on the interval \( (a,b) \), 
+      is the area of f(x) surrounding the X-axis and interval \( (a,b) \) as shown in &lt;Figure 5.4.8&gt;.
+      <p>
+        <img class="imgFig400300" src="./Figure/Fig050408.png">
+        <div class="figText">&lt;Figure 5.4.8&gt; Probability of \(\small X\) on the interval \( (a,b) \)</div>
+      <p>
+      Mathematically, this area must be obtained with the following definite integral over \( (a,b) \), but it is impossible to calculate by hand and can only be calculated using a computer.
+      $$
+        P(a \lt X \lt b)=  \int_{a} ^{b} {} \frac{1}{\sqrt{2 &pi;} \, \sigma } exp \{ - \frac {(x-\mu)^2 } {2 \sigma^2} \}dx
+      $$
+      If X is a normal random variable with the mean &mu; and variance \(\sigma^2\), a standardized random variable \(Z =  \frac {X - \mu}{\sigma} \)  is 
+      a normal random variable with the mean 0 and variance 1, i.e., \(Z &sim;  N(0,1)\). This fact implies that, 
+      if we can find probabilities of all types of intervals in N(0,1) distribution, then we can also find probabilities of all types of intervals in \(N(\mu, \sigma^2 )\). 
+      Therefore, \(N(0,1)\) is called a standard normal distribution or simply \(\small Z\) distribution. 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 5.4.1]&nbsp;&nbsp; Distribution of the Standardized Normal Random Variable</b>
+      <p>
+      If \(X\) is a normal random variable with the mean &mu; and variance \(\sigma^2\), i.e. 
+      \(X &sim; N(\mu,\sigma^2) \), then the standardized random variable \(Z\), \( \frac{X-\mu}{\sigma} \) 
+      follows a Normal distribution with the mean 0 and variance 1, i.e. \( Z &sim; N(0,1) \)	
+    </div>
+    <p>
+
+    <div class="mainTable">
+      For the standard normal distribution function, the probability \(P(Z \lt z)\) which is the area from the left end(-&infin;) 
+      to the value z is calculated by using a computer and summarized as Table 5.4.2. 
+      It is called the standard normal distribution table and Table 5.4.2 is a part of this table obtained using 『eStatU』. 
+      This table covers values of z between –3.99 and 3.99 by increment of 0.01 and four decimal digits of the probability 
+      for an interval (-&infin;, z) in the standard normal distribution is calculated. Calculation of the probability 
+      by using this table is usually enough approximation for practical application.
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <div class="figText">Table 5.4.2  Standard normal distribution table by using 『eStatU』 </div>
+            <img class="imgFig600400" src="./Figure/Table050402.png">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <div class="mainTableGrey">
+      <p>
+      In 『eStatU』, the calculation of probability \( P( a \lt X \lt b ) \) for the interval \((a , b)\) of any normal distribution \( N(\mu,\sigma^2) \) can be done as in &lt;Figure 5.4.9&gt;, 
+      and the percentile \(x\) for a given probability \(p\), which is \(P( X \lt x) = p\), can also be easily calculated. 
+      In 『eStatU』, the probability of any interval on [&mu; - 4&sigma;, &mu; + 4&sigma; ] can be calculated. 
+      <p>
+      <!--------*** html for Normal Distribution ***-------------------------->
+      <b>[<span data-msgid="Normal Distribution">Normal Distribution</span>]</b> 
+      <p>
+         <iframe src="./example/050403/050403.html" width="800" height="800"> </iframe>
+      <p>
+        <div class="figText">&lt;Figure 5.4.9&gt; Normal probability calculation using 『eStatU』 </div>
+      <p>
+        The probability of \(P(Z \lt z)\) is near 0 if z is less than &mu; - 4&sigma; and is 1 if z is greater than &mu; + 4&sigma;. 
+        Table 5.4.3 shows percentiles of the standard normal distribution by using 『eStatU』.
+      <p>
+        <div class="figText">Table 5.4.3 Percentiles of standard normal distribution by using 『eStatU』  </div>
+        <img class="imgFig600400" src="./Figure/Table050403.png">
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.4.2</b>
+        When \(\small Z\) is a standard normal random variable, find the following probability using standard normal distribution table. 
+        Then use 『eStatU』 to confirm the probability.
+      <p>
+      1) \(\small P(Z \lt 1.96)\) <br>
+      2) \(\small P(-1.96 \lt Z \lt 1.96)\) <br>
+      3) \(\small P(Z \gt 1.96)\) 
+      <p>
+      <b>Answer</b>
+      <p>
+        By using standard normal distribution table,
+      <p>
+        1) \(\small P(Z \lt 1.96)\) = 0.975.  <br>
+        2) \(\small P(-1.96 \lt Z \lt 1.96) = P(Z \lt 1.96) - P(Z \lt -1.96)\) = 0.975 - 0.025 = 0.95 <br>
+        3) \(\small P(Z \gt 1.96) = 1 - P(Z \lt 1.96)\) = 1 - 0.975 = 0.025 
+      <p>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+            By using normal distribution module of 『eStatU』 (&lt;Figure 5.4.9&gt;),
+            <div class="textL20M20">
+              1) Enter 1.96 on the second option below the graph, then click the [Execute] button. The answer is shown at the yellow box in the right hand side
+            </div>
+            <div class="textL20M20">
+              2) Enter an interval from -1.96 and 1.96 on the first option below the graph, then click the [Execute] button.
+            </div>
+            <div class="textL20M20">
+              3) Enter 1.96 on the third option below the graph, then click the [Execute] button. The answer is shown at the yellow box in the right hand side
+            </div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.4.3</b>
+      When \(\small Z\) is a standard normal random variable, obtain x that satisfies the following formula by using percentile table of the standard normal distribution. Then use 『eStatU』 to find this value x.
+      <p>
+      <div class="textL20M20">
+        1) \(\small P(Z \lt x)\) = 0.90
+      </div>
+      <div class="textL20M20">
+        2) \(\small P(-x \lt Z \lt x)\) = 0.99
+      </div>
+      <div class="textL20M20">
+        3) \(\small P(Z \gt x)\) = 0.05
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        By using percentile table of the standard normal distribution,
+      <p>
+      <div class="textL20M20">
+        1) The value of x is 1.2826 
+      </div>
+      <div class="textL20M20">
+        2) The percentile of 0.995 is 2.575.
+      </div>
+      <div class="textL20M20">
+        3) The value of x is 1.645. 
+      </div>
+      <p>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+            By using normal distribution module of 『eStatU』 (&lt;Figure 5.4.9&gt;),
+            <div class="textL20M20">
+              1) Enter \(p =\) 0.90 at the right box of the fifth option below the graph, then click the [Execute] button. It shows that the exact 90 percentile is 1.282 at the yellow box.
+            </div>
+            <div class="textL20M20">
+              2) Enter \(p =\) 0.99 at the right box of the fourth option below the graph, then click the [Execute] button. You can see that the exact two-sided value is –2.576 and 2.576 at the yellow boxes .
+            </div>
+            <div class="textL20M20">
+              3) Enter \(p =\) 0.05 at the right box of the sixth option below the graph, then click the [Execute] button. It shows that the right 5 percentile is 1.645 at the yellow box.
+            </div>
+    </div>
+    <p>
+ 
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+       <b>Practice 5.4.1</b>
+            When \(\small Z\) is a standard normal random variable, find following probabilities using 『eStatU』.
+            <p>
+            <div class="textL20M20">1) Calculate the probability that \(\small Z\) is beween 0 and 1.5. </div>
+            <div class="textL20M20">2) Calculate the probability that \(\small Z\) is between –1.5 and 0.</div>
+            <div class="textL20M20">3) \(\small P(Z \lt -1.5)\)</div>
+            <div class="textL20M20">4) \(\small P(Z \gt 1.5)\)</div>
+            <div class="textL20M20">5) \(\small P(Z \gt -1.5)\)</div>
+            <div class="textL20M20">6) \(\small P(Z \lt 1.5)\)</div>
+            <div class="textL20M20">7) \(\small P(-1.5 \lt Z \lt 1.5)\)</div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+        <b>Practice 5.4.2</b>
+            When Z is a standard normal random variable, find x that satisfies the following formula using 『eStatU』.
+            <p>
+            <div class="textL20M20">1) \(\small P(Z \lt x)\) = 0.80 </div>    
+            <div class="textL20M20">2) \(\small P(-x \lt Z \lt x)\) = 0.80 </div>     
+            <div class="textL20M20">3) \(\small P(Z \gt x)\) = 0.80 </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      It is recommended that you remember probabilities of some intervals in the standard normal distribution which are frequently used. &lt;Figure 5.4.10&gt; shows percentiles that cumulated probabilities become 95%, 97.5%, and 99.5% from the left end of the standard normal distribution.
+    </div>
+    <p>
+      <img class="imgFig400300" src="./Figure/Fig050410.png">
+      <div class="figText">&lt;Figure 5.4.10&gt; Percentile with a cumulative probability of 95%, 97.5%, and 99.5% from the left end of N(0,1)</div>
+    <p>
+    <div class="mainTable">
+      &lt;Figure 5.4.11&gt; shows a value of 95% and 99% when two ends are excluded equally.
+    </div>
+    <p>
+      <img class="imgFig400300" src="./Figure/Fig050411.png">
+      <div class="figText">&lt;Figure 5.4.11&gt; Percentile with a probability of 95%, 97.5%, and 99.5% when the two ends are excluded equally in N(0,1).
+                      <br>  i.e., \(P(-1.96 \lt Z \lt 1.96)\) = 0.95,  \(P(-2.575 \lt Z \lt 2.575)\) = 0.99
+      </div>
+    <p>
+    <div class="mainTable">
+      The probability of a normal distribution in general can be obtained by using standard normal distribution table. As we studied, 
+      if \(\small X\) is a normal random variable with the mean &mu; and variance \(\sigma^2\), \(Z = \frac{X-\mu}{\sigma}\) follows the standard normal distribution. 
+      Therefore, the probability \( P( a \lt X \lt b ) \) of the interval \(( a, b )\) of \(\small X\) can be obtained from the standard normal distribution as follows.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 5.4.1]&nbsp;&nbsp; Calculation of Normal Probability</b>
+      <p>
+        When \(X\) is a normal random variable with a mean &mu; and variance \(\sigma^2\), 
+        \(Z = \frac{X-\mu}{\sigma}\) follows the standard normal distribution. 
+        Therefore, the probability \(P( a \lt X \lt b ) \) of the interval \( (a,b) \)  of \(X\) is as follows: 
+      $$ 
+        P( a \lt X \lt b ) = P( \frac {a - \mu}{\sigma} \lt Z \lt \frac {b - \mu}{\sigma}  ) 
+      $$
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+     <b>Example 5.4.4</b>
+       If mid-term scores (\\small (X)\) of a statistics course follow a normal distribution with the average of 70 points and the standard deviation of 10, calculate following probabilities. Check the calculated values by using 『eStatU』.
+     <p>
+       1) \(\small  P(X \lt 94.3) \) <br>
+       2) \(\small  P(X \gt 57.7) \) <br>
+       3) \(\small  P(57.7 \lt X \lt 94.3) \)
+     <p>
+     <b>Answer</b>
+     <p>
+       By using transformation to the standardized normal random variable, probability calculations are as follows: 
+     <p>
+       1) \(\small  P (X \lt 94.3) = P( \frac {X - 70}{10} \lt \frac {94.3 - 70}{10}  ) = P( Z \lt 2.43) = 0.9925 \)  
+       <br>
+       2) \(\small  P (X \gt 57.7) = P( \frac {X - 70}{10} \gt \frac {57.7 - 70}{10}  ) = P( Z \gt -1.23 = 0.8907\)
+       <br>
+       3) \(\small  P (57.7 \lt X \lt 94.3) = P( \frac {57.7 - 70}{10} \lt \frac {X - 70}{10} \lt \frac {94.3 - 70}{10}  ) = P(-1.23 \lt Z \lt 2.43 ) = 0.8832 \)
+     <p>                    
+       By using 『eStatU』, to obtain a probability of the normal distribution , enter the mean as 70 and the standard deviation as 10 at the top of the screen as &lt;Figure 5.4.12&gt;. 
+     <p>                    
+       <div class="textL20M20">
+         1) Enter 94.3 at the second option below the graph and then click the [Execute] button.
+       </div>
+       <p>
+          <div class="QRFigure">
+             <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+             <img class="imgFig600600" src="./Figure/Fig050412.png">
+             <div class="figText">&lt;Figure 5.4.12&gt; Probability calculation of \( N(70,10^2 )\) distribution </div>
+          </div>
+       <p>
+       <div class="textL20M20">
+         2) Enter 57.7 at the third option below the graph and then click the [Execute] button.
+       </div>
+       <p>
+       <div class="textL20M20">
+         3) Enter the interval as (57.7, 94.3) at the first option below the graph and then click the [Execute] button.
+       </div>
+       <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.4.5</b>
+        In [Example 5.4.4], obtain the following percentiles by using normal probability table and also by using 『eStatU』.
+      <p>
+        1) What is the 95% percentile of the mid-term test scores?
+      <br>
+        2) What is the 95% percentile of two-sided type of the mid-term scores?
+      <p>
+      <b>Answer</b>
+      <p>
+        By using normal probability table, percentile calculations are as follows: 
+      <p>
+      <div class="textL20M20">
+        1) The 95 percentile z, \(\small P(Z \lt z) = 0.95\), in the N(0,1) probability table is 1.645, so the percentile in the \(\small  N(70,10^2 )\) is 70 + 1.645 × 10 = 86.45. 
+      </div>
+      <div class="textL20M20">
+        2) The 95 percentile z of two-sided type, \(\small P(z \lt Z \lt z) = 0.95\) , in the \(\small N(0,1)\) table, can be calculated from \(P(Z \lt z) = 0.975\) which is 1.96. 
+           So the two-sided 95% percentile interval is [70 – 1.96 × 10, 70 + 1.96 × 10], i.e., (50.4, 89.6). 
+      </div>
+      <p>
+      By using 『eStatU』, to obtain the probability of normal distribution , enter the mean as 70 and the standard deviation as 10 at the top of the screen as &lt;Figure 5.4.13&gt;.
+      <p>
+      <div class="textL20M20">
+        1) Enter 0.95 at the box of the fifth option below the graph and click the [Execute] button to display the 95 percentile as 86.449.
+      </div>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+            <img class="imgFig600600" src="./Figure/Fig050413.png">
+            <div class="figText">&lt;Figure 5.4.13&gt; Percentile calculation of \( N(70,10^2 )\) distribution </div>
+         </div>
+      <p>
+      <div class="textL20M20">
+        2) Enter 0.95 at the box of the fourth option below the graph and click the [Execute] button to display the two-sided 95 percentile as (50.400, 89.600).
+      </div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+        <b>Practice 5.4.3</b>
+            The length of time a customer waits to receive a service at a bank follows a normal distribution with an average of 5 minutes and standard deviation of 1 minute. Calculate the following probability using 『eStatU』.
+            <p>
+            <div class="textL20M20">1) The probability that a customer waits between 2 and 3 minutes. </div>
+            <div class="textL20M20">2) The probability that a customer will wait less than 1 minute. </div>
+            <div class="textL20M20">3) The probability that a customer waits at least 7 minutes to receive a service. </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+        <b>Practice 5.4.4</b>
+            If total scores earned by students in a Statistics course follow a normal distribution with the average of 75 points and standard deviation of 10, find the following scores using 『eStatU』.
+            <p>
+            <div class="textL20M20">1) Top 10% of the scores that will get A grade. What is the minimum score to get A grade? </div>
+            <div class="textL20M20">2) Top 30% to 10% of the scores will get B grade. What is the score range to get B grade? </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+  <h4>Normal Approximation of Binomial Distribution</h4>
+    <div class="mainTable">
+      In case of large \(n\) (approximately 100 or more) in a binomial distribution with \(n\) and \(p\),
+      a direct probability calculation is not possible. In such cases, a normal distribution with the average 
+      \(np\) and variance \(np(1-p)\) is used to calculate an approximated probability as shown in the 
+      following example.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 5.4.6</b>
+      The defect rate of products produced in a factory is 5 percent. One day, a sample of 100 products was collected. Answer the following questions.
+      <div class="textL20M20">
+        1) What is the probability that there are less than two defective products? 
+      </div>
+      <div class="textL20M20">
+        2) What is the probability that there are defective products between 3 and 7?
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      If the number of defective products is \(\small X\), \(\small X\) is a binomial distribution with 
+      \(n = 100, p = 0.05\). When \(n\) is this large, we calculate the probability approximately using 
+      normal distribution. Since the mean of this binomial distribution is \(np\) = 100 × 0.05 = 5, and 
+      the variance is \(np(1-p)\) = 100 × 0.05 x (1-0.05) = 4.75, we use the normal distribution 
+      \(\small N(5, 4.75)\) to calculate the probability approximately as follows.
+      <p>
+      1) \( \small P( X \lt 2) = P( Z \lt \frac{2-5}{\sqrt{4.75}} ) = P(Z \lt -1.376) = 0.0845 \)
+      <br>
+      2)  \( \small P( 3 \lt X \lt 7) = P( \frac{3-5}{\sqrt{4.75}} \lt Z \lt \frac{7-5}{\sqrt{4.75}} ) = P( -0.918 \lt Z \lt 0.918) = 0.642 \) 
+      <p>
+    </div>
+
+  <h4>5.4.2 Exponential Distribution </h4> 
+  <p>
+  <h6>
+      <a href="./pdf/050402.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/kYBBzATB9VI" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Most of continuous data obtained in real life follow a normal distribution, but sometimes it is not the case. Let's take a look at the following examples.
+      <p>
+      <div class="textL30M10">
+        -  Inter-arrival time of coming calls between 9 am and 10 am in an office. 
+      </div>
+      <div class="textL30M10">
+        -  Time interval between defective products appearing in a factory production line. 
+      </div>
+      <p>
+      These examples appear when events occur at the same rate at a given time (e.g., three calls per hour, etc.). 
+      If the average number of events per unit hour is &lambda; and \(\small X\) is the random variable of the time between events, then \(\small X\) is an <b>exponential random variable</b>. 
+      &lambda;  is a parameter of the exponential distribution and the formula for the exponential probability distribution function is as follows: 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Exponential Distribution</b>
+      <p>
+      When the average number of events per unit hour is &lambda; and the random variable \(X\) is the time 
+      between events, the probability distribution function of \(X\) is as follows.
+      <p>
+      $$ 
+        f(x) = \lambda \, exp(-\lambda  x ), \qquad  x \gt 0 
+      $$
+      It is called an <b>exponential distribution</b> and its expectation and variance are as follows.
+      $$ 
+        E(X) = \frac{1}{\lambda } , \quad V(X) = \frac{1}{\lambda^2}  	
+      $$
+    </div>
+    <p>
+
+    <div class="mainTable">
+      The exponential distribution is similar to the geometric distribution in discrete probability distributions. &lt;Figure 5.4.14&gt; and &lt;Figure 5.4.15&gt; show the exponential distribution function for different parameters.
+    </div>
+    <p>
+       <img class="imgFig600540" src="./Figure/Fig050414.png">
+       <div class="figText">&lt;Figure 5.4.14&gt; Exponential distribution when &lambda; = 1.0 </div>
+    <p>
+       <img class="imgFig600540" src="./Figure/Fig050415.png">
+       <div class="figText">&lt;Figure 5.4.15&gt; Exponential distribution when &lambda; = 5.0 </div>
+    <p>
+
+    <div class="mainTable">
+      『eStatU』 can easily calculate a probability for various values of the exponential distribution.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 5.4.7</b>
+      If the life span of a product has the average of 10 hours and follows an exponential distribution, obtain the following probabilities using 『eStatU』. 
+      <p>
+      <div class="textL20M20">1) What is the probability of a product having a lifespan of less than 5 hours? </div>
+      <div class="textL20M20">2) What is the probability of a product having a lifespan more than 10 hours? </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      In 『eStatU』, select [Exponential Distribution] and enter &lambda; = 10. Click the [Execute] button to reveal the graph shown as &lt;Figure 5.4.16&gt;.
+      <p>
+      <!----*** html for eStatU Exponential Distribution ***-------------->
+      <b>[<span data-msgid="Exponential Distribution">Exponential Distribution</span>]</b> 
+      <p>
+         <iframe src="./example/050404/050404.html" width="800" height="800"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 5.4.16&gt; Exponential distribution when &lambda; = 10.0 </div>
+      <p>
+      <div class="textL20M20">
+        1) Enter 5 at the box of the second option below the distribution graph as &lt;Figure 5.4.16&gt; and click the [Execute] button. The probability is 0.3935.
+      </div>
+      <div class="textL20M20">
+        2) Similarly, enter 10 at the box of the third option below the distribution graph as &lt;Figure 5.4.16&gt; and click the [Execute] button. The probability is 0.3679.
+      </div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 5.4.5</b>
+            A product has an average life expectancy of 1000 hours and follows an exponential distribution. Use 『eStatU』  to obtain the following probabilities. 
+            <p>
+            <div class="textL20M20">1) What is the probability that the lifespan of the product is less than 700 hours? </div>
+            <div class="textL20M20">2) What is the probability that the product has a lifespan of 1000 hours or more? </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU500_Exponential.svg" onclick="window.open(addrStr[86])">
+    </div>
+    <p>
+  <iframe src="./exercise/exercise05.html" width="800" height="550" ></iframe>
+</body>
+</html>
+

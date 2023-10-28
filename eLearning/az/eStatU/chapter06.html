@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 6</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h2>Chapter 6. Sampling Distribution and Estimation</h2> 
+  <h6>
+      <a href="./pdf/book06.pdf" target="_blank"><u>[book]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+  </h6>
+	      <ul>
+                <li><a href="#0601">6.1 Simple Random Sampling</a></li>
+                <li><a href="#0602">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="#0603">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="#0604">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="#0605">6.5 Determination of the Sample Size  </a></li>
+	      </ul>
+
+  <h3 id="0601">6.1 Simple Random Sampling</h3>
+  <h6>
+      <a href="./pdf/0601.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/9y_TRAs08bk" target="_blank"><u>[video]</u></a>
+  </h6>
+
+    <div class="mainTable">
+      <p>Since a population is generally very large, a survey of the entire population takes lots of time and money. Hence we are trying to estimate characteristics of the population using a set of samples. Estimation of population characteristics using samples is called an inferential statistics. However, there may be some difference between the characteristic of the population and the characteristic of the sample. In order to reduce the difference, several methods of sampling have been studied. The most commonly used one is a simple random sampling which collects samples with the same probability of all elements of the population being selected. 
+    </div>
+    <p>
+    <div class="mainTableYellow">
+      <b>Simple Random Sampling</b>
+      <p>
+      Samples are collected so that all elements of the population are likely to be selected equally.
+    </div>
+    <p>
+
+    <div class="mainTable">
+      In case of the simple random sampling, there are two possible ways to collect samples. One is to include an element selected once again in the population (with replacement), and the other is not to include the selected element back into the population (without replacement). However, in practice, almost all sampling is made without replacement.
+      <p>
+      Some tools may be needed to ensure that each element of the population is selected equally. 
+      We usually use a random number table which is a table of numbers from 0 to 9 without special regularity or 
+      partiality. Recently, a random number generator by using a computer which uses the uniform distribution 
+      on [0, 1] is widely used to produce a random number. 『eStatU』 provide random number generators for Uniform, 
+      Normal and two dimensional Normal distributions.
+    </div>
+    <p>
+
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.1.1</b>
+      A class has 50 students. Select three of 50 students as samples without replacement by using 『eStatU』. 
+      <p>
+      <b>Answer</b>
+      <p>
+      In order to select three samples randomly from 50 students, a list of students which assigned serial numbers 
+      from one to fifty must be made first. In order to collect samples, select [Random Number Generator] in 『eStatU』 menu.
+      Enter (1 and 50) at the box of ‘Uniform’, ‘Integer (without replacement)’, enter 3 at the box of ‘Number of Data’ and click 
+      the [Execute] button as shown in &lt;Figure 6.1.1&gt;. These are the random numbers to select students, 
+      but your computer might generate different numbers, because it depends on computer.
+      <p>
+      <!--------*** html for random number generator ***------------------------------>
+      <b>[<span data-msgid="RandomNumber">Random Number Generation</span>]</b> 
+      <p>
+      <iframe src="./example/060101/060101.html" width="800" height="450"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 6.1.1&gt;  『eStatU』 Uniform random number</div>
+      <p>
+      If you read the three numbers from located above, you will choose these student numbers as samples. 
+      <p>Generated random numbers may have same numbers. If it is a sampling without replacement, discard the following same number. 
+    </div>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 6.1.1</b>
+            In a university, a survey was planned for students and the list of students which has an id numbered
+            1 to 1000 was made. Select ten students randomly using 『eStatU』 without replacement. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU110_RandomNum.svg" onclick="window.open(addrStr[78])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+
+  <h3 id="0602">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</h3>
+  <p>
+  <h6>
+      <a href="./pdf/060201.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/uVXqqTDdYa8" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+    <div class="mainTable">
+      The purpose of statistical experiments or surveys is to find out some information about a population. Information about the population usually refers to a characteristic value of the population, such as the mean and variance which are called parameters. Since it is so difficult or costly to investigate the population parameters, they are usually estimated by using characteristic values of a set of samples such as the sample mean and sample variance. &lt;Figure 6.2.1&gt; is a simulation to show the relationship between population data of size 10,000 and sample data (approximately 10%) using 『eStatU』 which shows characteristic values of a population are similar to characteristic values of a set of samples.
+    </div>
+    <p>
+    <div class="mainTableGrey">
+      <p>
+      <!------*** html for Population and Sample simulation ***-------------------->
+      <b>[<span data-msgid="Population vs Sample">Population vs Sample</span>]</b>
+      <p> 
+      <iframe src="./example/060201/060201.html" width="700" height="730"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 6.2.1&gt; Simulation to show the relationship between population data and sample data</div>
+    </div>
+    <p>
+
+    <div class="mainTable">
+      Characteristic values of a set of samples are called sample statistic and the distribution of the sample statistic is called a sampling distribution. The sampling distribution identifies the relationship between the sample statistic and the population parameter and it makes possible to estimate and test a population parameter. In this section, let's first look at the sampling distribution of sample means and find out how to estimate the population mean.
+    </div>
+    <p>
+
+    
+  <h4>6.2.1 Sampling Distribution of Sample Means</h4>
+  <p>
+    <div class="mainTable">
+      The following example is to find out the sampling distribution of sample means.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.2.1</b>
+      Suppose there is a population consisting of five salesman from a company. (Although such a small population does not actually need to be sampled, this is an example to illustrate the sampling distribution of sample means). Consider the number of years of service at this company as a characteristic value of the population and data of five salesman are as follows.
+      <p>
+      <div class="textLeft">6, 2, 4, 8, 10
+      </div>
+      <p>
+      <div class="textL20M20">1) Obtain the mean and variance of this population.
+      </div>
+      <div class="textL20M20">2) Obtain all possible samples of size two by simple random sampling with replacement from this population and calculate means of each sample. In addition, calculate the mean and variance of all these possible sample means and compare them with the mean and variance of the population.
+      </div>
+      <div class="textL20M20">3) Prepare a frequency distribution of all possible sample means and draw a bar graph. Compare this bar graph with the bar graph of the population distribution. 
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">1) The mean and variance of the population is  &mu; = 6, \( &sigma;^2 \) = 8.
+      </div>
+      <div class="textL20M20">2) The number of all possible samples with replacement is 5 × 5 = 25. Table 6.2.1 shows all possible samples and their sample means (\(\small  \overline x \)). 
+      </div>
+      <p>
+      <div class="textLeft">Table 6.2.1 All possible samples of size 2 with replacement from the population and their sample means
+      </div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Sample</th> 
+          <th class="thGrey" style="width:200px">Sample Mean \(\small  \overline X \)</th>
+        </tr>
+        <tr> <td class="tdCenter">2, 2  </td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">2, 4  </td> <td class="tdCenter">3</td> </tr>
+        <tr> <td class="tdCenter">2, 6  </td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">2, 8  </td> <td class="tdCenter">5</td> </tr>
+        <tr> <td class="tdCenter">2,10 </td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">4, 2  </td> <td class="tdCenter">3</td> </tr>
+        <tr> <td class="tdCenter">4, 4  </td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">4, 6  </td> <td class="tdCenter">5</td> </tr>
+        <tr> <td class="tdCenter">4, 8  </td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">4,10 </td> <td class="tdCenter">7</td> </tr>
+        <tr> <td class="tdCenter">6, 2  </td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">6, 4  </td> <td class="tdCenter">5</td> </tr>
+        <tr> <td class="tdCenter">6, 6  </td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">6, 8  </td> <td class="tdCenter">7</td> </tr>
+        <tr> <td class="tdCenter">6,10 </td> <td class="tdCenter">8</td> </tr>
+        <tr> <td class="tdCenter">8, 2  </td> <td class="tdCenter">5</td> </tr>
+        <tr> <td class="tdCenter">8, 4  </td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">8, 6  </td> <td class="tdCenter">7</td> </tr>
+        <tr> <td class="tdCenter">8, 8  </td> <td class="tdCenter">8</td> </tr>
+        <tr> <td class="tdCenter">8,10 </td> <td class="tdCenter">9</td> </tr>
+        <tr> <td class="tdCenter">10,2 </td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">10,4 </td> <td class="tdCenter">7</td> </tr>
+        <tr> <td class="tdCenter">10,6 </td> <td class="tdCenter">8</td> </tr>
+        <tr> <td class="tdCenter">10,8 </td> <td class="tdCenter">9</td> </tr>
+        <tr> <td class="tdCenter">10,10</td> <td class="tdCenter">10</td> </tr>
+      </table>
+      <p>
+      <div class="textL20">
+        Some of these sample means are exactly the same as the population mean &mu; = 6, but some others such as 2 or 10 are significantly different. 
+        The mean of all possible 25 sample means (indicated by \(\small  &mu;_{\overline X} \)) in Table 6.2.1 is also 6 and 
+        the variance (indicated by \(\small  &sigma;_{\overline X}^2 \)) is 4 as follows: 
+      </div>
+      <p>
+      \( \qquad \small \mu_{\overline X} = \frac { 2 + 3×2 + 4×3 + 5×4 + 6×5 + 7×4 + 8×3 + 9×2 + 10} { 25} = 6 \) <br>
+      \( \qquad \small \sigma_{\overline X}^2 = \frac {(2-6)^{2} +(3-6)^{2} \times 2 + (4-6)^{2} \times 3 + (5-6)^{2} \times 4 + (6-6)^{2} \times 5 + (7-6)^{2} \times 4 + (8-6)^{2} \times 3 + (9-6)^{2} \times 2 + (10-6)^{2}} {25} = 4 \)
+      <p>
+      <div class="textL20">
+         What can be observed here is that the mean of all 25 possible sample means is the same as the population mean. 
+         This fact explained that the sample mean \(\small \overline X\) is an unbiased estimator of the population mean &mu;. 
+         In addition, the variance of the sample means \(\small  &sigma;_{\overline X}^2 \) is the population variance \( &sigma;^2 \) divided by the sample size (\(n\)=2).
+      </div>
+      <p>
+      <div class="textL20M20">3) Table 6.2.2 shows the frequency distribution of sample means in Table 6.2.1. The frequency distribution of all possible sample means is called a sampling distribution of sample means when n = 2. &lt;Figure 6.2.2&gt; shows a bar graph of the population distribution and &lt;Figure 6.2.3&gt; shows the distribution of all possible sample means. As shown in the table, the population mean is 6 and some of sample means are the same or close to the population mean, but some of sample means are much more different from 6. However, you can see that all possible sample means are concentrated around the population mean 6 and, as discussed in 2), the average of all 25 sample means is 6. Also the distribution of all possible sample means is symmetrical about the population mean 6. 
+      </div>
+      <p>
+        <div class="textLeft">Table 6.2.2  Frequency table of sample means</div>
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Sample Mean</th>
+          <th class="thGrey" style="width:200px">Frequency</th>
+          <th class="thGrey" style="width:200px">Relative Frequency</th>
+        </tr>
+        <tr> <td class="tdCenter">2</td>  <td class="tdCenter">1</td>  <td class="tdCenter">0.04</td> </tr>
+        <tr> <td class="tdCenter">3</td>  <td class="tdCenter">2</td>  <td class="tdCenter">0.08</td> </tr>
+        <tr> <td class="tdCenter">4</td>  <td class="tdCenter">3</td>  <td class="tdCenter">0.12</td> </tr>
+        <tr> <td class="tdCenter">5</td>  <td class="tdCenter">4</td>  <td class="tdCenter">0.16</td> </tr>
+        <tr> <td class="tdCenter">6</td>  <td class="tdCenter">5</td>  <td class="tdCenter">0.20</td> </tr>
+        <tr> <td class="tdCenter">7</td>  <td class="tdCenter">4</td>  <td class="tdCenter">0.16</td> </tr>
+        <tr> <td class="tdCenter">8</td>  <td class="tdCenter">3</td>  <td class="tdCenter">0.12</td> </tr>
+        <tr> <td class="tdCenter">9</td>  <td class="tdCenter">2</td>  <td class="tdCenter">0.08</td> </tr>
+        <tr> <td class="tdCenter">10</td> <td class="tdCenter">1</td>  <td class="tdCenter">0.04</td> </tr>
+        <tr> <td class="tdCenter"></td>   <td class="tdCenter">25</td> <td class="tdCenter">1.00</td> </tr>
+      </table>
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig060202.png">
+      <div class="figText">&lt;Figure 6.2.2&gt; Population distribution</div>
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig060203.png">
+      <div class="figText">&lt;Figure 6.2.3&gt; Sampling distribution of ’s</div>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTableYellow">
+      <b>Parameter, Estimator and Estimate </b>
+      <p>
+        The population mean is a single value, but there are many possible sample means. 
+        The population mean &mu; is called a <b>parameter</b>, which is a characteristic value of the population, 
+        and the sample mean is a random variable that can have many different values and is usually expressed with a capital letter such as \(\small  \overline X \)
+        which is called an <b>estimator</b> of the parameter &mu;. An observed sample mean, marked \(\small  \overline x \) with a lowercase letter, is called an <b>estimate</b> of &mu;.
+      <p>An <b>estimator</b> of the population variance \( &sigma;^2 \) is the sample variance \( S^2 \) and its observed value which is an <b>estimate</b> of \( S^2 \) is denoted as \( s^2 \).
+      <p>
+    </div>
+    <p>
+    <div class="mainTable">
+      <p>The relationship between the population mean and all possible sample means in [Example 6.2.1] is observed even if the population has a different shape of distribution. If the population is very large, it is not possible to find all possible samples as shown in [Example 6.2.1] and to find a distribution of sample means. Therefore, the following theoretical research has been developed.
+      <p>If a population is normally distributed with \( N(&mu;, &sigma;^2 ) \), 
+         the distribution of all possible sample means is exactly a normal distribution such as 
+         \( N(&mu;, \frac {&sigma;^2 }{n} ) \). 
+         If the population is an infinite population with the mean &mu; and variance \( &sigma;^2 \), 
+         then the distribution of all possible sample means is approximately a normal distribution 
+         such as \( N(&mu;, \frac {&sigma;^2 }{n} ) \) if the sample size is large enough. 
+         This is referred to as the Central Limit Theorem, which is a key theory in statistics, specifically summarized as follows.
+    </div>
+    <p>
+    <div class="mainTableYellow">
+      <b>[Theorem 6.2.1]&nbsp;&nbsp; Central Limit Theorem</b>
+      <p>
+      Suppose a population is not a normal distribution and its mean and variance are &mu; and \( &sigma;^2 \). If we select samples of size  with replacement, the distribution of all possible sample means has following characteristics:
+      <p>
+      <div class="textL20M20">1) The average of all possible sample means, \(\small  &mu;_{\overline X} \), is equal to the population mean &mu;.  (i.e., \(\small  &mu;_{\overline X} = &mu; \) ) 
+      </div>
+      <div class="textL20M20">2) The variance of all possible sample means, \(\small  &sigma;_{\overline X}^2 \), is the population variance divided by \(n\). (i.e., \(\small  &sigma;_{\overline X}^2 = \frac {&sigma;^2}{n} \) ) 
+      </div>
+      <div class="textL20M20">3) The distribution of all possible sample means is approximately a normal distribution. 
+      </div>
+      <p>
+      The above facts can be briefly written as \(\small  \overline {X} \sim N(&mu;, \frac {&sigma;^2}{n} ) \).        
+      <p>
+    </div>
+    <p>
+    <div class="mainTable">
+      The central limit theorem is very important as a theory underlying modern statistics. 
+      &lt;Figure 6.2.4&gt; shows a simulation using 『eStatU』 that, when a population is a normal distribution,
+      the distribution of sample means is also normal, but variances become smaller as the sample size increases. . 
+      <p>
+    </div>
+    <p>
+    <div class="mainTableGrey">
+      <p>
+      <!-----------***  html for  CLT  ***------------------------------------------------------>
+      <b>[<span data-msgid="Dist of Sample Means">Sampling Distribution of Sample Means</span>]</b> 
+      <p>
+      <iframe src="./example/060202/060202.html" width="700" height="730"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 6.2.4&gt; Sampling distribution of sample means with different sample sizes when population is not a normal distribution </div>
+      <p>
+      &lt;Figure 6.2.5&gt; shows a simulation using 『eStatU』 that, although a population is skewed 
+      from its mean, the distribution of sample means is closer to normal as the sample size increases. 
+      <p>
+            <img class="imgFig600600" src="./Figure/Fig060205.png">
+            <div class="figText">&lt;Figure 6.2.5&gt; 『eStatU』 Simulation of the central limit theorem </div>
+      <p>
+    </div>
+    <p>
+
+  <h4>6.2.2 Estimation of the Population Mean</h4>
+  <p>
+  <h6>
+      <a href="./pdf/060202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/l5tBWw6E4cM" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      When a sample survey is conducted, only one set of samples is selected from the population to estimate a characteristic value of the population, such as the population mean. In general, we consider the sample mean of selected samples as an estimate of the population mean. Do you think this sample mean can estimate the population mean well even if it is only one set of samples? 
+      <p>This is a basic question on the estimation that everyone can think about at least once. 
+         The sampling distribution of all possible sample means which we studied in the previous section 
+         is the answer to this question. That is, whatever a population distribution is, if the sample size
+         is large enough, all possible sample means are clustered around the population mean in the form 
+         of a normal distribution. Therefore, the sample mean obtained from one set of samples is usually
+         close to the population mean. Even in the worst case, the difference between the population mean 
+         and sample mean, known as an error, is not so significant, and it is possible to estimate the 
+         population mean by using the sample mean. The larger the sample size, the more sample means are 
+         concentrated around the population mean based on the central limit theorem and hence 
+         we can reduce the error of the estimation.
+    </div>
+    <p>
+
+    <h4>Point Estimation of the Population Mean</h4>
+    <p>
+    <div class="mainTable">
+      A value of one observed sample mean is called a <b>point estimate</b> of the population mean.
+      <p>In general, the sample statistic used to estimate a population parameter must have good characteristics, so that the estimate can be accurate. 
+         If the average of all possible sample statistics is equal to the population parameter, then the sample statistic has a good chance to estimate the population parameter and it is called an unbiased estimator. In the previous section we found that a sample mean is an <b>unbiased estimator</b> of the population mean. 
+      <p>If the value of a sample statistic becomes closer and closer to the population parameter when the sample size grows, 
+         the sample statistic is called a <b>consistent estimator</b>. The variance of all possible sample means is closer to zero as the sample size increases by the central limit theorem studied in the previous section, so the sample mean is closer to the population mean. Therefore, the sample mean is a consistent estimator of the population mean. 
+      <p>If a sample statistic has the least variance when there are several unbiased estimators for the population parameter, 
+         it is called an <b>efficient estimator</b>. The sample mean is also an efficient estimator. Consequently, a sample mean has all good characteristics necessary to estimate the population mean.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Point Estimate, Unbiased, Consistent, and Efficient Estimator</b>
+      <p>A value of one observed sample mean is called a <b>point estimate</b> of the population mean.
+      <p>If the average value of all possible sample statistics is equal to the population parameter, 
+         then the sample statistic is called an <b>unbiased estimator</b> of the population parameter. 
+         The sample mean is an unbiased estimator of the population mean. 
+      <p>When a sample size grows, if the value of the sample statistic becomes closer and closer to the population parameter, 
+         the sample statistic is called a <b>consistent estimator</b>. The sample mean is a consistent estimator of the population mean. 
+      <p>If a sample statistic has the least variance when there are several unbiased estimators for the population parameter, 
+         it is called an <b>efficient estimator</b>. The sample mean is an efficient estimator. 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.2.2]</b>&nbsp;&nbsp; Point estimation of the population mean &mu; is the sample mean \(\small  \overline X \)   
+      <p>(Note that \(\small  \overline X \) is an unbiased, consistent, efficient estimator of &mu;). 
+    </div>
+    <p>
+
+    <h4>Interval Estimation of the Population Mean – Known Population Variance</h4>
+    <p>
+    <div class="mainTable">
+      <p>In contrast to the point estimate for the population mean, estimating population mean by using an interval is called an <b>interval estimation</b>. 
+         If the population is a normal distribution with the mean &mu;  and variance \(&sigma;^2 \), 
+         the distribution of all possible sample means is a normal distribution with the mean &mu; and variance \(\frac {&sigma;^2}{n} \), 
+         so the probability that one sample mean will be included in the interval \( &mu; &plusmn; 1.96 \times \frac {&sigma;}{\sqrt{n}} \) is 95% as follows.
+      $$\small  
+        P(\mu - 1.96 \times \frac {&sigma;}{\sqrt{n}} < \overline X < \mu + 1.96 \times \frac {&sigma;}{\sqrt{n}} ) = 0.95
+      $$
+      We can rewrite this formula as follows.
+      $$\small 
+        P(\overline X - 1.96 \times \frac {&sigma;}{\sqrt{n}} < \mu < \overline X + 1.96 \times \frac {&sigma;}{\sqrt{n}} ) = 0.95
+      $$
+      Assuming &sigma; is known, the meaning of the above formula is that 95% of intervals obtained by applying the formula 
+      \(\small  [ \overline {X} - 1.96 \times \frac {&sigma;}{\sqrt{n}}, \overline {X} + 1.96 \times \frac {&sigma;}{\sqrt{n}} ] \) 
+      for all possible sample means include the population mean. The formula of this interval is referred to as the 95% confidence interval of the population mean.
+      $$\small 
+        \left[ \overline {X} - 1.96 \times \frac {&sigma;}{\sqrt{n}}, \overline {X} + 1.96 \times \frac {&sigma;}{\sqrt{n}} \right]
+      $$
+      <p>Generally, since \(\small  \overline {X} \sim N(&mu;, \frac {&sigma;^2}{n} ) \), the standardized random variable of \(\small \overline X \),
+         \(\small Z = \frac {\overline X - \mu}{\frac {\sigma}{\sqrt n}} \), follows the standard normal distribution \(N(0,1)\). 
+         Therefore, the following probability of the standard normal random variable \(Z\) is \(1-&alpha;\) . 
+      $$\small 
+        P \left( -z_{\alpha/2} < \frac {\overline{X} - \mu } {\sigma/\sqrt{n}} < z_{\alpha/2} \right) = P ( -z_{\alpha/2} < Z < z_{\alpha/2} ) =  1 - \alpha
+      $$
+      This formula can be written as follows: 
+      $$\small 
+        P \left( \mu - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} <  \overline X  < \mu + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right) =  1 - \alpha
+      $$
+      This formula can also be written as follows: 
+      $$\small 
+        P \left( \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} <  \mu  < \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right) =  1 - \alpha
+      $$
+      The confidence interval for the population mean &mu; is as follows if the population is normally distributed and the population variance \( \sigma^2 \) is known.
+    </div>
+    <p>
+ 
+    <div class="mainTableYellow">
+      <b>[Theorem 6.2.3]&nbsp;&nbsp; 100(1-&alpha;)% Confidence Interval for Population Mean &mu;</b>
+      <p>
+      Assume a population is a normal distribution and the population variance  is known.  
+      $$\small 
+        \left[ \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} , \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right]
+      $$
+    </div>
+    <p>
+	
+    <div class="mainTable">
+      <p>100(1-&alpha;)% here is called a <b>confidence level</b>, which refers to the probability of intervals that will include 
+         the population mean among all possible intervals calculated by the confidence interval formula. Usually, we use 0.01 or 0.05 for &alpha;.
+         \( z_{&alpha;} \) is the upper &alpha; percentile of the standard normal distribution. 
+         In other words, if \(Z\) is the random variable which follows the standard normal distribution, 
+         the probability that \(Z\) is greater than \( z_{&alpha;} \) is &alpha;, i.e., 
+      $$
+        P(Z > z_{&alpha;} ) = &alpha;
+      $$
+      For example, \( z_{0.025;} \) = 1.96, \( z_{0.95} \) = -1.645, \( z_{0.005} \) = 2.575.  
+      <p>&lt;Figure 6.2.6&gt; shows a simulation of the 95% confidence interval for the population mean by extracting 100 sets of samples with the sample size \(n\) = 20 
+         from a population of 10,000 numbers which follow the standard normal distribution N(0,1). 
+         In this case, 96 of the 100 confidence intervals contain the population mean 0. 
+         This result might be different on your computer, because the program use a random number generator which depends on computer. 
+         Whenever we repeat these experiments, the result may also vary slightly.
+      <p>
+    </div>
+    <p>
+    <div class="mainTableGrey">
+      <p>
+      <!----***   html for confidence interval Simulation  ***--------------------------------------->
+      <b>[<span data-msgid="Confidence Interval Simulation">Confidence Interval Experiment</span>]</b> 
+      <p>
+      <iframe src="./example/060203/060203.html" width="700" height="750"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 6.2.6&gt;  『eStatU』 Simulation of the 95% confidence interval</div>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.2.2</b>
+      The average starting salary per month of college graduates was 275 (unit: 10,000 KRW) after a simple random sampling of 100 college graduates this year. Assume that the starting salary for all college graduates is a normal distribution and its standard deviation is 5. 
+      <p>
+      <div class="textL20M20">1) What is the point estimate of the average starting salary of all college graduates.
+      </div>
+      <div class="textL20M20">2) Estimate a 95% confidence interval of the average starting salary of college graduates.
+      </div>
+      <div class="textL20M20">3) Estimate a 99% confidence interval of the average starting salary of college graduates. Compare the width of this interval to the 95% confidence interval.
+      </div>
+      <div class="textL20M20">4) If the sample size is increased to 400 and its average is the same, estimate a 95% confidence interval of the average starting salary for all college graduates. Compare the width of the interval to question 2).
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">1) Point estimation of the average starting salary is the sample mean which is 275 (unit: 10,000 KRW). 
+      </div>
+      <p>
+      <div class="textL20M20">2) Since the 95％ confidence interval implies &alpha; = 0.05, z value is as follows.
+      </div>
+      <p>
+      \( \qquad \small  z_{&alpha;/2} = z_{0.05/2} = 1.96 \)
+      <p>
+      <div class="textL20">Therefore, the 95％ confidence interval is as follows.
+      </div>
+      <p>
+      \( \qquad \small \left[ \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} , \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right] \) <br>
+      \( \qquad \small  ⇔ [ 275 － 1.96 \frac{5}{10}, 275 ＋ 1.96 \frac{5}{10} ] \) <br>
+      \( \qquad \small  ⇔ [274.02, 275.98] \)
+      <p>
+      <div class="textL20M20">3) Since the 99％ confidence interval implies  = 0.01, z value is as follows.
+      </div>
+      <p>
+      \( \qquad \small z_{&alpha;/2} = z_{0.01/2} = 2.575 \)
+      <p>
+      <div class="textL20">Hence, the 99％ confidence interval is as follows: 
+      </div>
+      <p>
+      \( \qquad \small  ⇔ [ 275 － 2.575 \frac{5}{10}, 275 ＋ 2.575 \frac{5}{10} ] \) <br>
+      \( \qquad \small  ⇔ [273.71, 276.29] \)
+      <p>
+      <div class="textL20">Therefore, if the confidence level is increasing, the width of the confidence interval becomes wider.
+      </div>
+      <p>
+      <div class="textL20M20">4) If the sample size is 400, the 95％ confidence interval is as follows: 
+      </div>
+      <p>
+      \( \qquad \small  ⇔ [ 275 － 1.96 \frac{5}{20}, 275 ＋ 1.96 \frac{5}{20} ] \) <br>
+      \( \qquad \small  ⇔ [274.51, 275.49] \)
+      <p>
+      <div class="textL20">Therefore, if the sample size is increasing, the width of the confidence interval becomes narrower which is more accurate. 
+      </div>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+      <b>Practice 6.2.1</b>
+      The quality manager of a large manufacturer wants to know the average weight of raw materials. 25 samples were collected by simple random sampling and their sample mean was 60 kg. Assume the population standard deviation is 5 kg. Use 『eStatU』 to answer the followings.
+      <p>
+      <div class="textL20M20">1) What is the point estimation of the population mean weight of raw materials. 
+      </div>
+      <div class="textL20M20">2) Estimate a 95% confidence interval of the population mean weight of raw materials. 
+      </div>
+      <div class="textL20M20">3) Estimate a 99% confidence interval of the population mean weight of raw materials. Compare the width of this interval to the 95% confidence interval.
+      </div>
+      <div class="textL20M20">4) If the sample size is increased to 100 and its average is the same, estimate a 95% confidence interval of the population mean weight of raw materials. Compare the width of the interval to question 2).
+      </div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <h4>Interval Estimation of the Population Mean – Unknown Population Variance</h4>
+    <p>
+    <div class="mainTable">
+      <p>One problem in estimating the unknown population mean by using the formula of the confidence interval in the previous section is that either the population variance may not be known or the population is not normally distributed. If the sample size is large enough, a confidence interval of the population mean can be obtained approximately using the sample variance instead of the population variance on the previous formula. However, if the sample size is small and the sample variance is used, a confidence interval based on the t distribution should be used. 
+      <p>The \(t\) distribution was studied by a statistician W. S. Gosset, who worked for a brewer in Ireland, and published his study result in 1907 under the alias Student. 
+         So \(t\) distribution is often referred to as Student's \(t\) distribution. The \(t\) distribution is not just a single distribution, 
+         but it is a family of distributions under a parameter called a degree of freedom, 1,2, ... , 30, ... and denoted as \(t_1 ,t_2 , ... , t_{30} , ... \)
+      <p>
+         The shape of the \(t\) distribution is symmetrical about zero (y axis), similar to the standard normal 
+         distribution, but it has a tail that is flat and longer than the standard normal distribution. 
+         &lt;Figure 6.2.7&gt; shows the standard normal distribution N(0,1) and \(t\) distribution with 3 degrees of freedom at the same time by using the \(t\) distribution module of 『eStatU』.
+      <p>
+         <div class="QRFigure">
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU540_T.svg" onclick="window.open(addrStr[89])">
+           <img class="imgFig600400" src="./Figure/Fig060207.png">
+           <div class="figText">&lt;Figure 6.2.7&gt; Comparison of \(t_3\) and N(0,1)</div>
+         </div>
+    </div>
+    <p>
+    <div class="mainTable">
+      <p>The \(t\) distribution is closer to the standard normal distribution as degrees of freedom increase above 30. 
+         This is why a confidence interval can be obtained approximately by using the standard normal distribution if the sample size is greater than 30. 
+         Denote \(t_{n:&alpha;}\) as the 100(1-&alpha;)% percentile of the \(t\) distribution with \(n\) degrees of freedom. 
+         For example, \(t_{7:0.05}\) is the 100(1-0.05)=95% percentile of the \(t\) distribution and its value is 1.895 as &lt;Figure 6.2.8&gt;. 
+         In the standard normal distribution, this value was 1.645. Since the \(t\) distribution is symmetrical, \(t_{n:&alpha;} = -t_{n:1-&alpha;}\). 
+      <p>In order to find a percentile value of the \(t_{7}\)  distribution using 『eStatU』, click on '\(t\) distribution' in the main menu of 『eStatU』 
+         and then set the degree of freedom (df) to 7, and set the probability value in the fifth option below the \(t\) distribution graph to 0.95, 
+         then \(t_{7:0.05}\) = 1.895 will appear as in &lt;Figure 6.2.8&gt;.  
+      <p>     
+    </div>
+    <p>
+      <!--------------*** html for t-distribution ***---------------------------------------------->
+         <b>[<span data-msgid="t Distribution">t Distribution</span>]</b>
+      <p>
+         <iframe src="./example/060204/060204.html" width="700" height="800"> </iframe>
+      <p>
+          <div class="figText">&lt;Figure 6.2.8&gt; Upper 5 percentile of \(t_7\) distribution  = 1.8946</div>
+      <p>
+    <p>
+    <div class="mainTable">
+      <p>
+         Consider the interval estimation of the population mean when you do not know the population variance, but assume that the population is a normal distribution.  
+         If \( X_1 , X_2 , ... , X_n \) is the random sample of size \(n\) from the normal population, 
+         then it can be shown that the distribution of \( \frac {\overline X -\mu}{S/\sqrt{n}} \), where &sigma; is replaced with S, 
+         is the \(t\) distribution with \( n-1 \) degrees of freedom. 
+      $$\small 
+        \frac {\overline X -\mu}{\frac{S}{\sqrt{n}}} \sim t_{n-1}
+      $$
+      Hence the probability of the (1 - &alpha;)% interval is as follows.
+      $$\small 
+        P \left( -t_{n-1;\alpha/2} < \frac {\overline{X} - \mu } {S\sqrt{n}} < t_{n-1:\alpha/2} \right) = 1 - \alpha
+      $$
+      The left hand side of the above formula can be summarized as the confidence interval for the population mean when the population variance is unknown as follows: 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.2.4]&nbsp;&nbsp;100(1-&alpha;)% Confidence Interval for Population Mean &mu;</b>
+      <p>
+      Assume a population is a normal distribution and the population variance \(&sigma;^2\) is unknown.  
+      $$\small 
+        \left[ \overline X - t_{n-1:\alpha/2} \frac {S} {\sqrt{n}} , \overline X + t_{n-1:\alpha/2} \frac {S} {\sqrt{n}} \right] 
+      $$
+      <p>where \(n\) is the sample size and \(S\) is the sample standard deviation.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.2.3</b>
+      Suppose we do not know the population variance in Example 6.2.2. If the sample size is 25 and the sample standard deviation is 5 (unit: 10,000 KRW), estimate the mean of the starting salary of college graduates at the 95% confidence level.
+      <p>
+      <b>Answer</b>
+      <p>
+      Since we do not know the population variance, \(t\) distribution should be used for interval estimation of the population mean. 
+      <p>Since \( t_{n-1:\alpha/2} = t_{25-1:0.05/2} = t_{25-1:0.025} = 2.0639 \), the 95% confidence interval of the population mean is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft \left[ \overline X - t_{n-1:\alpha/2} \frac {S} {\sqrt{n}} , \overline X + t_{n-1:\alpha/2} \frac {S} {\sqrt{n}} \right] \\
+        \shoveleft ⇔ [ 275 － 2.0639(5/5) , 275 ＋ 2.0639(5/5) ] \\
+        \shoveleft ⇔ [ 272.9361, 277.0639 ]
+        \end{multline}
+      $$
+      Note that the smaller the sample size, the wider the interval width. 
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.2.4</b>
+      The following data shows a simple random sampling of 10 new male students in a college this year to investigate their heights. Use 『eStatU』 to make a 95% confidence interval of the height of the college freshmen.
+      <p class="textLeft">
+        171  172  185  169  175  177  174  179  168  173
+      <p>
+      <b>Answer</b>
+      <p>
+         Click [Estimation : μ Confidence Interval] on the menu of 『eStatU』 and enter data at the [Sample Data] box as &lt;Figure 6.2.9&gt;. 
+         Then the confidence intervals [170.68, 177.92] are calculated using the \(t_9\) distribution.
+      <p>
+         In this  『eStatU』 module, confidence intervals can be obtained by entering the sample sizes, sample mean, and sample variance without entering data.
+      <p>
+      <!--------------*** html for Confidence Interval Mu ***---------------------------------------------->
+         <b>[<span data-msgid="Confidence Interval Mu"></span> <span data-msgid="Confidence Interval"></span>]</b>
+      <p>
+         <iframe src="./example/060205/060205.html" width="700" height="700"> </iframe>
+      <p>
+
+         In this module of 『eStatU』, a simulation experiment to investigate the size of the confidence interval can be done by changing 
+         the sample size \(n\) and the confidence level 1 - &alpha;  as in &lt;Figure 6.2.10&gt;. 
+         If you increase \(n\), the interval size becomes narrower. If you increase 1 - &alpha;, the interval size becomes wider.
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 6.2.2</b>
+            In [Practice 6.2.1], suppose you do not know the population standard deviation and the sample standard deviation is 5 kg. Answer the same questions in [Practice 6.2.1] using 『eStatU』. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU650_ConfIntMu.svg" onclick="window.open(addrStr[96])">
+      <p>
+    </div>
+
+  <h3 id="0603">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</h3>
+  <p>
+  <h6>
+      <a href="./pdf/060301.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/tp65U_JACQg" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+    <div class="mainTable">
+      <p>If we know the relationship between the population variance and the sample variance, it is possible to estimate the population variance. In this section, the distribution of all possible sample variances is discussed in section 6.3.1 and the estimation of the population variance using the sample variance is discussed in section 6.3.2.
+    </div>
+    <p>
+
+  <h4>6.3.1 Sampling Distribution of Sample Variances</h4>
+  <p>
+    <div class="mainTable">
+      Consider the following example to understand the sampling distribution of sample variances.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.3.1</b>
+      Let's consider the data again in Example 6.2.1 which is the number of years of service for five salespeople in a company. 
+      <p class="textLeft">
+      6, 2, 4, 8, 10
+      <p>
+      <div class="textL20M20">1) Calculate the population variance.
+      </div>
+      <div class="textL20M20">2) Find all possible samples of size 2 with replacement and calculate the sample variance of each sample. In addition, calculate the average and variance of all sample variances and compare them to the population variance.
+      </div>
+      <div class="textL20M20">3) Find the frequency distribution of all possible sample variances and draw its bar graph.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">1) The population mean is  &mu; = 6 and the population variance is \( &sigma;^2\) = 8. 
+      </div>
+      <p>
+      <div class="textL20M20">2) All possible samples of size 2 with replacement from the population and the sample variance of each sample are as in Table 6.3.1.
+      </div>
+      <p>
+        <div class="textLeft">Table 6.3.1 All possible samples of size 2 with replacement from the population  and the sample variance of each sample</div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Sample</th>
+          <th class="thGrey" style="width:200px">Sample Variance \( s^2\)</th>
+        </tr>
+        <tr> <td class="tdCenter">2, 2  </td> <td class="tdCenter"> 0</td> </tr>
+        <tr> <td class="tdCenter">2, 4  </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">2, 6  </td> <td class="tdCenter"> 8</td> </tr>
+        <tr> <td class="tdCenter">2, 8  </td> <td class="tdCenter">18</td> </tr>
+        <tr> <td class="tdCenter">2,10 </td> <td class="tdCenter">32</td> </tr>
+        <tr> <td class="tdCenter">4, 2  </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">4, 4  </td> <td class="tdCenter"> 0</td> </tr>
+        <tr> <td class="tdCenter">4, 6  </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">4, 8  </td> <td class="tdCenter"> 8</td> </tr>
+        <tr> <td class="tdCenter">4,10 </td> <td class="tdCenter">18</td> </tr>
+        <tr> <td class="tdCenter">6, 2  </td> <td class="tdCenter"> 8</td> </tr>
+        <tr> <td class="tdCenter">6, 4  </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">6, 6  </td> <td class="tdCenter"> 0</td> </tr>
+        <tr> <td class="tdCenter">6, 8  </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">6,10 </td> <td class="tdCenter"> 8</td> </tr>
+        <tr> <td class="tdCenter">8, 2  </td> <td class="tdCenter">18</td> </tr>
+        <tr> <td class="tdCenter">8, 4  </td> <td class="tdCenter"> 8</td> </tr>
+        <tr> <td class="tdCenter">8, 6  </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">8, 8  </td> <td class="tdCenter"> 0</td> </tr>
+        <tr> <td class="tdCenter">8,10 </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">10,2 </td> <td class="tdCenter">32</td> </tr>
+        <tr> <td class="tdCenter">10,4 </td> <td class="tdCenter">18</td> </tr>
+        <tr> <td class="tdCenter">10,6 </td> <td class="tdCenter"> 8</td> </tr>
+        <tr> <td class="tdCenter">10,8 </td> <td class="tdCenter"> 2</td> </tr>
+        <tr> <td class="tdCenter">10,10</td> <td class="tdCenter"> 0</td> </tr>
+      </table>
+      <p>
+      <div class="textL20">
+        As discussed in [Example 6.2.1], the sample variance is also a random variable that can have many values, 
+        so it is denoted as \( S^2\) and the observed sample variance as \( s^2\). 
+        Table 6.3.1 shows that some of these sample variances are exactly the same as the population variance \( &sigma;^2\) = 8, 
+        others such as 0 or 32 are significantly different from 8. The average of all possible sample variances, 
+        denoted as \( \mu_{s^2}\), is as follows.
+        <p>
+         \( \qquad \small \mu_{s^2} = \frac {0 \times 5 + 2 \times 8 + 8 \times 6 + 18 \times 4 + 32 \times 2} {25} = 8 \)
+        <p>
+        Note that the average of all possible sample variances is the same as the population variance which means the sample variance is an unbiased estimate of the population variance.
+      </div>
+      <p>
+      <div class="textL20M20">3) Table 6.3.2 shows the frequency distribution of all possible sample variances 
+          and &lt;Figure 6.3.1&gt; is its bar graph. This is called the sampling distribution of sample 
+          variances. The fact that can be observed in this Figure is that there are many small sample variances 
+          and there are few large sample variances. In addition, the average of all sample variances,
+          \(\mu_{S^2} \), is equal to the population variance \(\sigma^2 \). In other words, the sample variance is an unbiased estimate of the population variance.
+      </div>
+      <p>
+        <div class="textLeft">Table 6.3.2 Frequency table of sample variances</div>
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Sample Variance</th>
+          <th class="thGrey" style="width:200px">Frequency</th>
+          <th class="thGrey" style="width:200px">Relative Frequency</th>
+        </tr>
+        <tr> <td class="tdCenter">0</td>  <td class="tdCenter">5</td>  <td class="tdCenter">0.20</td> </tr>
+        <tr> <td class="tdCenter">2</td>  <td class="tdCenter">8</td>  <td class="tdCenter">0.32</td> </tr>
+        <tr> <td class="tdCenter">8</td>  <td class="tdCenter">6</td>  <td class="tdCenter">0.24</td> </tr>
+        <tr> <td class="tdCenter">18</td> <td class="tdCenter">4</td>  <td class="tdCenter">0.16</td> </tr>
+        <tr> <td class="tdCenter">32</td> <td class="tdCenter">2</td>  <td class="tdCenter">0.08</td> </tr>
+        <tr> <td class="tdCenter">total</td> <td class="tdCenter">25</td>  <td class="tdCenter">1.00</td> </tr>
+      </table>
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig060301.png">
+      <div class="figText">&lt;Figure 6.3.1&gt; Sampling distribution of sample variances</div>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      <p>As observed in the above example, the sampling distribution of the sample variances is 
+      an asymmetric distribution with many small sample variances and a few large sample variances. 
+      In general, when the population is normally distributed and the population variance is \(&sigma;^2\), 
+      all possible sample variances scaled by a constant follow the chi-square \(&chi;^2\) distribution. 
+      More accurately, the sample statistic
+      $$
+       \frac {(n-1)S^2}{\sigma^2}
+      $$
+      follows a chi-square distribution with \(n-1\) degrees of freedom. 
+      <p>
+      This chi-square distribution is a family of distributions depending on the degree of freedom, 
+      such as \(&chi;^2_{1} , &chi;^2_{2} , ... , &chi;^2_{27} , ...\) etc. The chi-square distribution 
+      is an asymmetrical distribution as &lt;Figure 6.3.2&gt;. If the degree of freedom is small, 
+      the shape of the chi-square distribution is much skewed to the right. 
+      <p>
+
+      <img class="imgFig400300" src="./Figure/Fig060302.png">
+      <div class="figText">&lt;Figure 6.3.2&gt; Chi-square distributions for different degrees of freedoms</div>
+      <p>
+      A cumulated probability and a percentile of the chi-square distribution can be calculated by using 『eStatU』 as in &lt;Figure 6.3.3&gt;.  
+      <p>
+      <!---- *********** html for pop variance confidence interval ********** ----------------------->
+      <b>[<span data-msgid="Confidence Interval Sigma"> </span><span data-msgid="Confidence Interval"></span>]</b>
+      <p>
+      <iframe src="./example/060300/060300.html" width="700" height="730"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 6.3.3&gt;  『eStatU』 Chi-square distribution</div>
+      <p>  
+      The sampling distribution of all sample variances is summarized as follows: 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.3.1]&nbsp;&nbsp; The sampling distribution of sample variances</b>
+      <p>
+      When the population is normally distributed and the sample of size \(n\) is selected randomly 
+      with replacement, the distribution of all sample variances multiplied by a specific constant follows 
+      the chi-square distribution with \(n-1\) degrees of freedom as follows.
+      $$
+       \frac {(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}
+      $$
+    </div>
+
+  <h4>6.3.2 Estimation of the Population Variance</h4>
+  <p>
+  <h6>
+      <a href="./pdf/060302.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/VwHehPGGBx4" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      <p> Examples of estimating the population variance are as follows.
+      <p>
+      <div class="textL30M10">
+        -  Two companies supply bolts to an automobile maker. Bolts are defective if they are too large or too small in diameter. The automobile maker wants to know the variance of bolt diameters supplied by each bolt company and use them as data for selecting the better one. 
+      </div>
+      <div class="textL30M10">
+        -  In order to evaluate the difficulty of the college entrance exam conducted this year, the variance of exam scores is calculated and compared with the variance of exam scores in previous year.
+      </div>
+      <p>
+      In order to estimate the population variance, the sampling distribution of all possible sample variances 
+      should be used. As discussed in [Example 6.3.1], for an infinite population, the mean of all possible 
+      sample variances is the population variance. That is, the sample variance \(S^2\) is an unbiased estimator 
+      of the population variance \(&sigma;^2\). Therefore, the sample variance is used to estimate the population
+      variance. In addition, estimation of the population standard deviation \(&sigma;\) uses the sample standard 
+      deviation \(S\), but it should be noted that the sample standard deviation is not an unbiased estimator of 
+      the population standard deviation. However, as the sample size increases, there is no significant error 
+      in using \(S\) as an estimator of \(&sigma;\).
+    </div>
+    <p>
+           
+    <div class="mainTableYellow">
+      <b>[Theorem 6.3.2]</b>
+      <b> Point estimation of the population variance \(&sigma;^2\)</b><br>
+      ⇒ Sample variance \(S^2\)  (\(S^2\) is an unbiased estimator of \(&sigma;^2\))
+      <p>
+      <b>Point estimation of the population standard deviation \(&sigma;\)</b><br>
+      ⇒ Sample standard deviation \(s\)  (\(s\) is not an unbiased estimator of \(&sigma;\)) 
+      <p>
+    </div>
+    <p>
+
+    <div class="mainTable">
+      In the previous section, when a population was normally distributed, we found that the sample variance 
+      multiplied by a constant, \( \frac {(n-1)S^2}{\sigma^2} \), follows the chi-square  distribution with 
+      \(n-1\) degrees of freedom. Using this, we can find the confidence interval of the population variance 
+      \(&sigma;^2\) as follows: 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.3.3]</b> 
+      <b>100(1-&alpha;)% Confidence interval of the population variance \(&sigma;^2\)</b>
+      <p>Assume that a population is normally distributed.
+      $$
+        \left[ \frac {(n-1)S^2}{\chi^2_{n-1: &alpha;/2} }, \frac {(n-1)S^2}{\chi^2_{n-1: 1-&alpha;/2} } \right]
+      $$
+      where \(S^2\) is the sample variance, \(&chi;^2_{k:p}\) is the 100\((1-p)\) percentile of the chi-square 
+      distribution with \(k\) degrees of freedom. 
+      <p>
+      <b>100(1-&alpha;)% Confidence interval of the population standard deviation \(&sigma;\)</b>
+      <p>Assume a population is normally distributed and the sample size is large.
+      $$
+        \left[ \sqrt { \frac {(n-1)S^2}{\chi^2_{n-1: &alpha;/2} } }, \sqrt { \frac {(n-1)S^2}{\chi^2_{n-1: 1-&alpha;/2} } }\right]
+      $$
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.3.2</b>
+      A survey for the starting salary of 25 college graduates this year shows the sample standard deviation is 5 (unit: 10000 won). Find point estimation and 95% confidence interval of the population variance and the population standard deviation of the starting salary. Assume that the population is normally distributed.
+      <p>
+      <b>Answer</b>
+      <p>
+      The point estimate of the population variance for the starting salary of college graduate is 
+      the sample variance, so \(s^2 = 5^2 =\) 25. Since the point estimate of the population standard deviation 
+      is the sample standard deviation, so  \(s =\) 5. 
+      <p>The 95% confidence interval of the population variance is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft \left[ \frac {(n-1)S^2}{\chi^2_{25-1: 0.05/2} }, \frac {(n-1)S^2}{\chi^2_{25-1: 1-0.05/2} } \right] \\
+        \shoveleft ⇒ \left[ \frac {(25-1)5^2}{39.364}, \frac {(25-1)5^2}{12.401} \right] \\
+        \shoveleft ⇒ \left[ 15.242, 48.383 \right]
+        \end{multline}
+      $$
+      The 95% confidence interval of the population standard deviation is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft ⇒ \left[ \sqrt{15.242}, \sqrt{48.383} \right] \\
+        \shoveleft ⇒ \left[ 3.904, 6.956 \right]
+        \end{multline}
+      $$
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.3.3</b>
+      The height data of 10 male samples from freshmen in a college is as follows: 
+      <p>
+      <p class="textLeft">  171  172  185  169  175  177  174  179  168  173
+      <p>
+      Using 『eStatU』, find a 95% confidence interval for estimating the population variance of college freshmen.
+      <p>
+      <b>Answer</b>
+      <p>
+      On the menu of 『eStatU』, click [Estimation : \(&sigma;^2\) Confidence Interval] and enter data in the 
+      [Sample Data] box as shown in &lt;Figure 6.3.4&gt;. The system will show the confidence interval 
+      [12.10, 85.21] immediately by using the chi-square distribution.
+      <p>
+      <!---- *********** html for pop variance confidence interval ********** ----------------------->
+      <b>[<span data-msgid="Confidence Interval Sigma"> </span><span data-msgid="Confidence Interval"></span>]</b>
+      <p>
+         <iframe src="./example/060301/060301.html" width="700" height="730"> </iframe>
+      <p>
+        In this module of 『eStatU』, a simulation experiment to investigate the size of the confidence interval 
+        can be done by changing the sample size \(n\) and the confidence level 1 - &alpha; 
+        as in &lt;Figure 6.3.5&gt;. If you increase \(n\), the interval size becomes narrower. 
+        If you increase 1 - &alpha;, the interval size becomes wider.   
+      <p>
+        You can enter only the sample size and sample variance to calculate the confidence interval in this 『eStatU』 module without entering data. 
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 6.3.1</b>
+            A team of health researchers wants to measure the average amount of oxygen consumed after a certain standard exercise for men between ages of 17 and 21. Data of a simple random sampling of 10 persons are as follows.
+            <p>
+            <p class="textLeft">   2.87  2.05  2.90  2.41  2.93  2.94  2.26  2.21  2.20  2.88 
+            <p>
+            Use 『eStatU』 to find a 95% confidence interval of the population variance of oxygen consumed. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU660_ConfIntSigma.svg" onclick="window.open(addrStr[98])">
+    </div>
+
+  <h3 id="0604">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion </h3>
+  <p>
+  <h6>
+      <a href="./pdf/060401.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/flhKiXkixCE" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+    <div class="mainTable">
+      <p>If we know the relationship between the population proportion and sample proportion, it is possible to estimate the population proportion. In this section, the distribution of all possible sample proportions is discussed in section 6.4.1 and the estimation of the population proportion using the sample proportion is discussed in section 6.4.2.
+    </div>
+    <p>
+
+  <h4>6.4.1 Sampling Distribution of Sample Proportions</h4>
+  <p>
+    <div class="mainTable">
+      <p>Consider the sampling distribution of all possible sample proportions by using the following example.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.4.1</b>
+      Consider a population consists of only 10 employees of a company. When employees' satisfaction level for the company is investigated and the satisfaction is expressed as 1, the complaint is 0 as follows.
+      <p>
+      <p class="textLeft">    1 0 1 1 0 1 1 0 0 1
+      <p>
+        That is, the population proportion \(p\) of the satisfaction is 0.6 (6 ‘1’s out of 10). 
+        Consider all possible samples of size 5 with replacement to obtain a sampling distribution of 
+        sample proportions. (It is to illustrate the sample variance of sample proportions, 
+        although it is not necessary to extract samples from such a small population.)
+      <p>
+      <b>Answer</b>
+      <p>
+      <p>The population proportion is  \(p\) = 0.6 and the distribution of ‘1’ and ‘0’ in the population consisting of 10 persons is as &lt;Figure 6.4.1&gt;. 
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig060401.png">
+      <div class="figText">&lt;Figure 6.4.1&gt; Population distribution of employees’ satisfaction, no for 0 or yes for 1</div>
+      <p>
+        Total number of possible samples of size 5 with replacement is 10×10×10×10×10 = 100000 and the number 
+        of cases of possible sample proportions are as in Table 6.4.1. 
+      <p>
+        <div class="textLeft">Table 6.4.1 All possible sample cases</div>
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:300px">Sample Case</th>
+          <th class="thGrey" style="width:300px">Number of Cases</th>
+        </tr>
+        <tr> <td class="tdCenter">all unsatisfactory (0,0,0,0,0)</td> <td class="tdCenter">\(\small {}_{5}C_{0}\)×4×4×4×4×4 =   1024</td> </tr>
+        <tr> <td class="tdCenter">1 satisfactory (0,0,0,0,1)</td>     <td class="tdCenter">\(\small {}_{5}C_{1}\)×4×4×4×4×6 =   7680</td> </tr>
+        <tr> <td class="tdCenter">2 satisfactory (0,0,0,1,1)</td>     <td class="tdCenter">\(\small {}_{5}C_{2}\)×4×4×4×6×6 =  23040</td> </tr>
+        <tr> <td class="tdCenter">3 satisfactory (0,0,1,1,1)</td>     <td class="tdCenter">\(\small {}_{5}C_{3}\)×4×4×6×6×6 =  34560</td> </tr>
+        <tr> <td class="tdCenter">4 satisfactory (0,1,1,1,1)</td>     <td class="tdCenter">\(\small {}_{5}C_{4}\)×4×6×6×6×6 =  25920</td> </tr>
+        <tr> <td class="tdCenter">5 satisfactory (1,1,1,1,1)</td>     <td class="tdCenter">\(\small {}_{5}C_{5}\)×6×6×6×6×6 =   7776</td> </tr>
+        <tr> <td class="tdCenter">Total</td> <td class="tdCenter">100000</td> </tr>
+      </table>
+      <p>
+      If the sample proportion (\(\hat p\)) is obtained from each case, the sampling distribution of all possible sample proportions is as Table 6.4.2. The cases of three satisfactory (the sample proportion of 0.6) are most likely.
+      <p>
+        <div class="textLeft">Table 6.4.2. Sampling Distribution of Sample Proportions</div>
+      <p>
+      <table style="width:650px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Sample Case</th>
+          <th class="thGrey" style="width:150px">Sample Proportion \(\hat p\)</th>
+          <th class="thGrey" style="width:150px">Frequency</th>
+          <th class="thGrey" style="width:150px">Relative Frequency</th>
+        </tr>
+        <tr> <td class="tdCenter">all unsatisfactory (0,0,0,0,0)</td> <td class="tdCenter">0.0</td> <td class="tdCenter"> 1024</td>  <td class="tdCenter">0.01024</td> </tr>
+        <tr> <td class="tdCenter">1 satisfactory (0,0,0,0,1)</td>     <td class="tdCenter">0.2</td> <td class="tdCenter"> 7680</td>  <td class="tdCenter">0.07680</td> </tr>
+        <tr> <td class="tdCenter">2 satisfactory (0,0,0,1,1)</td>     <td class="tdCenter">0.4</td> <td class="tdCenter">23040</td>  <td class="tdCenter">0.23040</td> </tr>
+        <tr> <td class="tdCenter">3 satisfactory (0,0,1,1,1)</td>     <td class="tdCenter">0.6</td> <td class="tdCenter">34560</td>  <td class="tdCenter">0.34560</td> </tr>
+        <tr> <td class="tdCenter">4 satisfactory (0,1,1,1,1)</td>     <td class="tdCenter">0.8</td> <td class="tdCenter">25920</td>  <td class="tdCenter">0.25920</td> </tr>
+        <tr> <td class="tdCenter">5 satisfactory (1,1,1,1,1)</td>     <td class="tdCenter">1.0</td> <td class="tdCenter"> 7776</td>  <td class="tdCenter">0.07776</td> </tr>
+        <tr> <td class="tdCenter"></td>                               <td class="tdCenter">Total</td> <td class="tdCenter">100000</td>  <td class="tdCenter">1.00000</td> </tr>      </table>
+      <p>
+      &lt;Figure 6.4.2&gt; shows the sampling distribution of all possible sample proportions. If the sample size is larger, sample proportions are symmetrical around the population proportion 0.6 which is similar to that of sample means, and is close to a normal distribution.
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig060402.png">
+      <div class="figText">&lt;Figure 6.4.2&gt; Sampling distribution of sample proportions</div>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
+    <div class="mainTable">
+      When the sample size is large, the sampling distribution of all possible sample means in general is as follows: 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.4.1]&nbsp;&nbsp; Sampling distribution of sample proportions </b>
+      <p>
+        Assume the population is infinite and the population proportion is \(p\). If \(\hat p\) is the sample 
+        proportion and the sample size \(n\) is large, the sampling distribution of all possible sample proportions 
+        is approximately a normal distribution with the mean \(p\) and variance \(\frac {p(1-p)}{n}\) .
+      $$
+        \hat p  \sim N \left( p, \frac{p(1-p)}{n} \right)
+      $$
+    </div>
+    <p>
+
+    <div class="mainTable">
+      If the population size is \(N\) which is finite and the sampling is without replacement, the variance of  
+      \(\hat p\) becomes \(\frac{p(1-p)}{n} \frac{N-n}{N-1}\). The term \(\frac{N-n}{N-1}\) is called the 
+      finite population correction factor. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.4.2</b>
+      Let's say 3% of semiconductors made in a semiconductor factory are defective. When 300 samples were taken without replacement, the sample proportion for defective products was 2%. Find out where this sample proportion is located among all possible sample proportions. What is the probability that the sample proportion is greater than 2%?
+      <p>
+      <b>Answer</b>
+      <p>
+      Since the sampling distribution of the sample proportions is approximately normal distribution,
+      \(\hat p  \sim N \left( p, \frac{p(1-p)}{n} \right) \), the probability can be calculated as follows: 
+      <p>
+      \( \quad \small  P(\hat p \gt 0.02) = P( Z \gt \frac{0.02-0.03}{0.00985} ) = P(Z \gt -1.02) = 1 - P(Z \le  -1.02)
+             = 1 - 0.1539 = 0.8461 \)
+      <p>
+    </div>
+
+  <h4>6.4.2 Estimation of the Population Proportion</h4>
+  <p>
+  <h6>
+      <a href="./pdf/060402.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/HpVrvVEIGQk" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      <p>
+      Some practical examples to estimate the population proportion are as follows.
+      <div class="textL30M10">
+        -  What is the approval rating of a particular political party in this year's election?
+      </div>
+      <div class="textL30M10">
+        -  What is the percentage of the current unemployment rate?
+      </div>
+      <div class="textL30M10">
+        -  What percentage of defective products we would have if we imported 10,000 car accessories?
+      </div>
+      <p>
+       Assume that the proportion of a population is \(p\). As discussed in Section 6.1, since the sample 
+       proportion, \(\hat p\), meets all the criteria of a good estimator when estimating the population 
+       proportion \(p\), the sample proportion is used to estimate the population proportion. 
+       The sampling distribution of all possible sample proportions is approximately a normal distribution 
+       with the mean \(p\) and variance \(\frac{p(1-p)}{n}\) and the standard error of the sample proportions is
+       \(\sqrt{\frac{p(1-p)}{n}}\). But, since the population proportion \(p\) is unknown, we use 
+       \(\sqrt{\frac{\hat p(1- \hat p)}{n}}\) as an estimate of the standard error of the sample proportions.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.4.2]&nbsp;&nbsp; Point estimate of the population proportion \(p\) </b>
+      <p>
+      ⇒ The sample proportion \(\hat p\). 
+      <p>
+        The sample proportion (\(\hat p\)) is an unbiased, efficient and consistent estimator of the population 
+        proportion \(p\) and the estimate of the standard error of \(\hat p\) is \(\sqrt{\frac{\hat p(1- \hat p)}{n}}\). 
+      <p>
+    </div>
+    <p>
+
+    <div class="mainTable">
+      From the fact that the distribution of the sample proportion \(\hat p\) is approximated to a normal 
+      distribution, interval estimation of the population proportion \(p\) can be done as follows.
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.4.3]&nbsp;&nbsp; Interval estimation of the population proportion </b>
+      <p>
+      If the population proportion is \(p\), 100(1-&alpha;)% confidence interval of \(p\) when the sample size
+      \(n\) is large is as follows.
+      $$
+        \left[ \hat p - z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} },  \hat p + z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} } \right]
+      $$
+      <p>Criteria of large sample size \(n\) are \( n \hat p &gt; 5 , n (1- \hat p ) &gt; 5 \).
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.4.3</b>
+      A student running for the president of a student body in a university had a survey of 200 students to find out his approval ratings, and found that 120 students supported him. Find a point estimate of his approval rating in the population, and find a 95% confidence interval. Check the interval estimation using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+      The point estimate of the population approval rating is the sample proportion.
+      <p>
+      \( \qquad \quad \small \hat p = \frac {120}{200} = 0.6 \)
+      <p>
+      The 95% confidence interval is as follows: 
+      $$  \small
+        \begin{multline}
+        \shoveleft \left[ \hat p - z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} },  \hat p + z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} } \right] \\
+        \shoveleft ⇔ \left[ 0.6 - 1.96 \sqrt{\frac{0.6(1-0.6)}{200} }, 0.6 + 1.96 \sqrt{\frac{0.6(1-0.6)}{200} } \right] \\
+        \shoveleft ⇔ \left[ 0.532 , 0.668 \right]
+        \end{multline}
+      $$
+      In 『eStatU』, enter data in the [Sample Data] box as shown in &lt;Figure 6.4.3&gt; and click the [Execute] 
+      button to calculate the confidence interval [0.5321, 0.6679] using the normal distribution.
+      <p>
+      <!---   ************ html for Estimation of proportion ************  ---->
+      <b>[<span data-msgid="Confidence Interval P"></span> <span data-msgid="Confidence Interval"></span>]</b>
+      <p>
+         <iframe src="./example/060401/060401.html" width="700" height="650"> </iframe>
+      <p>
+        In this module of 『eStatU』, a simulation experiment to investigate the size of the confidence interval 
+        can be done by changing the sample size \(n\) and the confidence level 1 - &alpha; as in &lt;Figure 6.4.4&gt;. 
+        If you increase \(n\), the interval size becomes narrower. If you increase 1 - &alpha;, the interval size
+        becomes wider.   
+      <p> 
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 6.4.1</b>
+            200 workers were selected to investigate the causes of worker turnover. Of the 200, 140 said they moved because they could not reconcile with their superiors. Find a 95% confidence interval in the mobile rate for those who have transferred using 『eStatU』.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU670_ConfIntP.svg" onclick="window.open(addrStr[99])">
+    </div>
+
+  <h3 id="0605">6.5 Determination of the Sample Size</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0605.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/KmwDF6NGkBo" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Until now, we have studied the estimation of a population parameter using a given sample. However, it is often necessary to first determine how large a sample should be before obtaining such a sample. This problem is closely related to the precision of the estimate. We could see in the previous section that the width of the confidence interval was reduced if the sample size is larger. However, as sampling is costly, it usually determines the minimum sample size required to achieve this precision that would satisfy the researcher.
+    </div>
+    <p>
+
+  <h4>6.5.1 Determination of the Sample Size to Estimate the Population Mean</h4>
+  <p>
+    <div class="mainTable">
+      The 100(1-&alpha;)% confidence interval of a population mean &mu; is as follows as explained in section 6.2. 
+      $$\small 
+        \left[ \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} ,\; \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right]
+      $$
+      The term \( z_{\alpha/2} \frac {\sigma} {\sqrt{n}}\) which is the half size of the confidence interval 
+      is called the <b>maximum allowable error bound</b> to estimate the population mean and is denoted as \(d\).
+      <p>
+      If the maximum allowable error bound and the confidence level 1-&alpha; are given, the sample size can be 
+      determined by solving the following equation.
+      $$
+        z_{\alpha/2} \frac {\sigma} {\sqrt{n}} = d
+      $$
+      The solution of \(n\) in the above equation is as follows.
+      $$
+        n = {\left( \frac { z_{\alpha/2} {\sigma} } {d} \right)}^2
+      $$
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.5.1]&nbsp;&nbsp; Determination of the sample size to estimate the population mean</b>
+      <p>
+      If the maximum allowable error bound \(d\) and the confidence level 1-\(\alpha\) are given, 
+      the sample size \(n\) can be determined as follows: 
+      $$
+        n = {\left( \frac { z_{\alpha/2} {\sigma} } {d} \right)}^2
+      $$
+    </div>
+    <p>
+
+    <div class="mainTable">
+      Since the population standard deviation &sigma; in the above equation is usually unknown, 
+      the estimated value from past experience or from data obtained by a preliminary survey is used. 
+      The estimation of the population standard deviation &sigma; through a preliminary survey 
+      can be done by using the range as follows: 
+      $$
+        \hat \sigma = \frac {range}{4} = \frac {max - min}{4}
+      $$
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.5.1</b>
+      The expected life of light bulbs produced at a plant has a standard deviation 100 hours. In order to estimate the average life of a bulb at the 95% confidence level, determine the sample size to be within 20 hours of the allowable error bound. Check this calculation using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+      \( \qquad \small  n = {\left( \frac { z_{\alpha/2} {\sigma} } {d} \right)}^2 = {\left( \frac { 1.96 \times 100} {20} \right)}^2 = 9.8^2 = 96.04 \)
+      <p>
+      Hence the sample size is 96 approximately. 
+      <p>
+      In  『eStatU』, select the menu [Estimation : &mu; - Sample Size]. Enter the margin of Error 
+      \(d\) = 20, the population standard deviation &sigma; = 100 and confidence level 1-&alpha; = 0.95 
+      as in &lt;Figure 6.5.1&gt;, then click the [Execute] button to calculate the sample size \(n\). 
+      <p>
+      <!---   ************ html for Determination N of mu ************  ---->
+      <b>[<span data-msgid="Confidence Interval Mu"> </span> - <span data-msgid="Sample Size"></span> n]</b>
+      <p>
+         <iframe src="./example/060501/060501.html" width="700" height="250"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 6.5.1&gt; Determination of sample size for estimating population mean</div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 6.5.1</b>
+            A company with 10,000 workers wants to estimate the average time it takes to commute. 
+            The surveyor wants to estimate that the maximum margin error bound is less than 5 minutes at 
+            the 95% confidence level. If the estimate of the population variance obtained from the preliminary study 
+            was \(&sigma;^2\) = 25, what size of the sample should be extracted?
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU65N_ConfIntMuN.svg" onclick="window.open(addrStr[97])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+
+  <h4>6.5.2 Determination of the Sample Size to Estimate the Population Proportion</h4> 
+  <p>
+    <div class="mainTable">
+      <p>As explained in section 6.4, the 100(1-&alpha;)% confidence interval of a population proportion
+      \(p\) is as follows.
+      $$
+        \left[ \hat p - z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} },  \hat p + z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} } \right]
+      $$
+      <p>The term \(z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} }\) which is the half size of 
+      the confidence interval is called the <b>maximum allowable error bound</b> to estimate 
+      the population proportion and is denoted as \(d\).
+      <p>Therefore, if the maximum allowable error bound \(d\) and the confidence level 1-&alpha; are given, 
+      the sample size can be determined by solving the following equation. 
+      $$
+        z_{&alpha;/2} \sqrt{\frac{\hat p (1-\hat p)}{n} } = d
+      $$
+      The solution of the above equation is as follows.
+      $$
+        n = \hat p (1-\hat p) ( {\frac{z_{&alpha;/2}}{d}}  )^2 
+      $$
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>[Theorem 6.5.2]&nbsp;&nbsp; Determination of the sample size to estimate the population proportion.</b>
+      <p>
+      If the maximum allowable error bound \(d\) and the confidence level 1 - &alpha; are given, 
+      the sample size  can be determined as follows:  
+      $$
+        n = \hat p (1-\hat p) ( {\frac{z_{&alpha;/2}}{d}} )^2 
+      $$
+    </div>
+    <p>
+        
+    <div class="mainTable">
+      In the above equation, the value of the sample proportion \(\hat p\) is usually used by the value of 
+      past experience or preliminary investigation. If there is no information about the population proportion, 
+      the value of 0.5 is usually used. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.5.2</b>
+      For this year presidential election, a survey for estimating the 95% confidence interval of a candidate's approval rating is conducted. Determine the size of the sample to be within 2.5% of the maximum allowable error bound. Check this calculation using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+      Since we do not have any information on the population proportion, assume \(\hat p\) = 0.5. 
+      Then the sample size  can be calculated as follows: 
+      <p>
+      \( \qquad \small  n = \hat p (1-\hat p) ( {\frac{z_{&alpha;/2}}{d}})^2  = 0.5(1-0.5)\frac{1.96^2}{0.025^2} = 1536.6 \)
+      <p>
+      Therefore, samples must be extracted with at least 1537 persons to limit the error bound to 2.5%. 
+      Various opinion polls conducted nationwide often show that the size of the sample is around 1,500 
+      which implies that the margin of error does not exceed 3 percent.
+      <p>
+      In 『eStatU』, select the menu [Estimation : \(p\) - Sample Size \(n\)]. Enter the margin of Error
+      \(d\) = 0.025, the estimate of the sample proportion \(\hat p\) = 0.5 (since we don’t know \(\hat p\), 
+      it is an estimate), and the confidence level 1 - &alpha; = 0.95 as in &lt;Figure 6.5.2&gt;, then 
+      click the [Execute] button to calculate the sample size . 
+      <p>
+      <!---   ************ html for Determination N of proportion ************  ---->
+      <b>[<span data-msgid="Confidence Interval P"> </span> - <span data-msgid="Sample Size"></span> n]</b>
+      <p>
+         <iframe src="./example/060502/060502.html" width="700" height="250"> </iframe>
+      <p>
+            <div class="figText">&lt;Figure 6.5.2&gt; Determination of sample size for estimating</div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 6.5.2</b>
+            When a university opens an online lecture this semester, it tries to estimate the percentage of 
+            students enrolled in this online class as 95 percent confidence intervals. How many students 
+            should be surveyed to keep the maximum allowable error bound within 0.02? 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU67N_ConfIntPN.svg" onclick="window.open(addrStr[100])">
+    </div>
+    <p>
+
+  <iframe src="./exercise/exercise06.html" width="800" height="550" ></iframe>
+</body>
+</html>
+

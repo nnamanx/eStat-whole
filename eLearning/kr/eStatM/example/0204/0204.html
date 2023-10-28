@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title data-msgid="Word Cloud">Word Cloud</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+  </head>
+  <body>
+
+  <div width="640" height="640" style="position:absolute; left:10px; top:0px"> 
+    <br>
+
+    <div class="title">
+      <b>&nbsp; <span data-msgid="WordCloud">Word Cloud</span></b> 
+    </div>
+
+    <p> 
+      <!--------Word cloud html ------------------------------------------------------------------------->
+      <p> 
+      <b>[<span data-msgid="input data">Data Input</span>]</b> 
+      &nbsp;
+      <button type="button" id="eraseWordData" style="width:140px;"><span data-msgid="Erase All"></span></button>
+      <p>
+      <textarea id="textarea" name="textarea" rows="10" cols="99"></textarea>  
+      <p> 
+      <button type="button" id="executeWord" style="width:140px;">
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <svg id="chartWord" width="750" height="540" style="border-style:solid;"> </svg> 
+      <p> 
+      <button type="button" id="saveGraphWord" style="width:140px;">
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+  </div>
+
+  <script src="/estat/eStatU/js/05WordCloud.js"> </script>
+  <script>
+      document.getElementById("textarea").value = "The Fourth Industrial Revolution (4IR or Industry 4.0) is the ongoing automation of traditional manufacturing and industrial practices, using modern smart technology. Large-scale machine-to-machine communication (M2M) and the internet of things (IoT) are integrated for increased automation, improved communication and self-monitoring, and production of smart machines that can analyze and diagnose issues without the need for human intervention.[1]"; 
+  </script>
+
+  </body>
+</html>

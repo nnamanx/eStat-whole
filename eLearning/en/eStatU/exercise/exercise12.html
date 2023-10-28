@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 12</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>12.4 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+    <h6 class="textL30M30">12.1 The variables X and Y have a strong relationship with a quadratic equation () as shown in the following table. What is their sample correlation coefficient?</h6>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th>X</th><th>Y</th>
+        </tr>
+        <tr> <th>...</th> <th>...</th> </tr>
+        <tr> <th>-3</th>  <th>9</th> </tr>
+        <tr> <th>-2</th>  <th>4</th> </tr>
+        <tr> <th>-1</th>  <th>1</th> </tr>
+        <tr> <th>0</th>   <th>0</th> </tr>
+        <tr> <th>1</th>   <th>1</th> </tr>
+        <tr> <th>2</th>   <th>4</th> </tr>
+        <tr> <th>3</th>   <th>9</th> </tr>
+        <tr> <th>...</th> <th>...</th> </tr>
+      </table>
+      <p>
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> 1</label><br>
+      <label><input type="radio" name="item" value="2"> 0</label><br>
+      <label><input type="radio" name="item" value="3"> -1</label><br>
+      <label><input type="radio" name="item" value="4"> 1/2</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+   
+    <h6 class="textL30M30">12.2 Which is a wrong description of the sample correlation coefficient \(r\)? </h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> \(-1 < r < 1\)</label><br>
+      <label><input type="radio" name="item" value="2"> if \( r = 1 \), perfect negative correlation</label><br>
+      <label><input type="radio" name="item" value="3"> if \( r = 0 \), no linear correlation</label><br>
+      <label><input type="radio" name="item" value="4"> if \( r < 0 \), negative correlation</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+   
+    <h6 class="textL30M30">12.3 Which is a right description of the sample correlation coefficient \(r\)?<h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> if \( r > 1 \), there is strong positive correlation between \(x\) and \(y\).</label><br>
+      <label><input type="radio" name="item" value="2"> if \( | r | \) closes to 0, there exist a weak linear correlation between \(x\) and \(y\).</label><br>
+      <label><input type="radio" name="item" value="3"> If \( r  \) is negative, then \(y\) is increasing when \(x\) increases. </label><br>
+      <label><input type="radio" name="item" value="4"> If \( r  \) is near -1, there exist a weak linear correlation between \(x\) and \(y\).</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+  
+    <h6 class="textL30M30">12.4 If the sample correlation coefficient between \(x\)  and \(y\) is \(r\), what is the sample correlation coefficient between \(2x\)  and \(3y +1\)? </h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> \(r\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(2r\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(3r\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(3r+1\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+  
+    <h6 class="textL30M30">12.5 Find the sample correlation coefficient between \(x\) and \(y\) of the following data.</h6>
+        <p>
+        <table style="width:300px"> 
+          <tr> 
+            <th>\(x\)</th><th>\(y\)</th>
+          </tr>
+          <tr> <td class="tdCenter">10</td>  <td class="tdCenter">2</td> </tr>
+          <tr> <td class="tdCenter">20</td>  <td class="tdCenter">4</td> </tr>
+          <tr> <td class="tdCenter">30</td>  <td class="tdCenter">6</td> </tr>
+          <tr> <td class="tdCenter">40</td>  <td class="tdCenter">8</td> </tr>
+        </table>
+        <p>
+    <form name="Q5">
+        <label><input type="radio" name="item" value="1"> 1</label><br>
+        <label><input type="radio" name="item" value="2"> 0.3</label><br>
+        <label><input type="radio" name="item" value="3"> 0.4</label><br>
+        <label><input type="radio" name="item" value="4"> 0.5</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ5">
+    </form>
+    
+    <h6 class="textL30M30">12.6 If the correlation coefficient of two variables \(x, y\) is 0, what is the right description? </h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> There is no linear relationship between two variables \(x, y\).</label><br>
+      <label><input type="radio" name="item" value="2"> There is a linear relationship between two variables \(x, y\)</label><br>
+      <label><input type="radio" name="item" value="3"> Two variables \(x, y\) has a strong relationship.</label><br>
+      <label><input type="radio" name="item" value="4"> Two variables \(x, y\) has a strong linear relationship.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+   
+    <h6 class="textL30M30">12.7 Which one of the following descriptions on the sample correlation coefficient \(r\) is not right?</h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> \(r\) is a random variable.</label><br>
+      <label><input type="radio" name="item" value="2"> \(-1 \le r \le 1\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(r\) is a measure of linear relationship between two variables.</label><br>
+      <label><input type="radio" name="item" value="4"> Distribution of \(r\) is a normal distribution.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+  
+    <h6 class="textL30M30">12.8 Find the sample correlation coefficient between \(x\)  and \(y\) of the following data.</h6> 
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th>\(x\)</th><th>\(y\)</th>
+        </tr>
+        <tr> <td class="tdCenter">1</td>  <td class="tdCenter">5</td> </tr>
+        <tr> <td class="tdCenter">2</td>  <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">3</td>  <td class="tdCenter">3</td> </tr>
+        <tr> <td class="tdCenter">4</td>  <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">5</td>  <td class="tdCenter">1</td> </tr>
+      </table>
+      <p>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> -1</label><br>
+      <label><input type="radio" name="item" value="2"> -1/2</label><br>
+      <label><input type="radio" name="item" value="3"> 0</label><br>
+      <label><input type="radio" name="item" value="4"> 1/2</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+  
+    <h6 class="textL30M30">12.9 If \(X\) and \(Y\) are independent, what is the sample correlation coefficient \(r\)?</h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> 1</label><br>
+      <label><input type="radio" name="item" value="2"> 1/2</label><br>
+      <label><input type="radio" name="item" value="3"> 0</label><br>
+      <label><input type="radio" name="item" value="4"> -1/2</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+   
+    <h6 class="textL30M30">12.10 Which one of the followings is not right for description of the sample correlation coefficient \(r\) between \(X\) and \(Y\)?</h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> \(-1 \le r \le 1\)</label><br>
+      <label><input type="radio" name="item" value="2"> Distribution of \(r\) is a normal distribution.</label><br>
+      <label><input type="radio" name="item" value="3"> \(r\) is a random variable.</label><br>
+      <label><input type="radio" name="item" value="4"> The formula to calculate \(r\) is \(\small r = \frac{\sum (x_i -\overline x)(y_i - \overline y)}{\sqrt{{\sum(x_i -   \overline x)^2}{\sum(y_i - \overline y)^2}}}\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+  
+    <h6 class="textL30M30">12.11 Which one of the followings has positive correlation? </h6>
+    <form name="Q11">
+      <label><input type="radio" name="item" value="1"> height of mountain and pressure</label><br>
+      <label><input type="radio" name="item" value="2"> weight and height</label><br>
+      <label><input type="radio" name="item" value="3"> monthly income and Engel's coefficient</label><br>
+      <label><input type="radio" name="item" value="4"> amount of production and price</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ11">
+    </form>
+  
+    <h6 class="textL30M30">12.12 Find the sample covariance between \(x\) and \(y\) of the following data.</h6> 
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th>\(x\)</th><th>\(y\)</th>
+        </tr>
+        <tr> <td  class="tdCenter">1</td>  <td  class="tdCenter">5</td> </tr>
+        <tr> <td  class="tdCenter">2</td>  <td  class="tdCenter">5</td> </tr>
+        <tr> <td  class="tdCenter">3</td>  <td  class="tdCenter">5</td> </tr>
+        <tr> <td  class="tdCenter">4</td>  <td  class="tdCenter">5</td> </tr>
+      </table>
+      <p>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> 1</label><br>
+      <label><input type="radio" name="item" value="2"> 0</label><br>
+      <label><input type="radio" name="item" value="3"> 0.5</label><br>
+      <label><input type="radio" name="item" value="4"> -1</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+  
+    <h6 class="textL30M30">12.13 Find the sample covariance between \(x\) and \(y\) of the following data.<h6>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th>\(x\)</th><th>\(y\)</th>
+        </tr>
+        <tr> <td  class="tdCenter">1</td>  <td  class="tdCenter">6</td> </tr>
+        <tr> <td  class="tdCenter">2</td>  <td  class="tdCenter">8</td> </tr>
+        <tr> <td  class="tdCenter">3</td>  <td  class="tdCenter">10</td> </tr>
+        <tr> <td  class="tdCenter">4</td>  <td  class="tdCenter">12</td> </tr>
+        <tr> <td  class="tdCenter">5</td>  <td  class="tdCenter">14</td> </tr>
+      </table>
+      <p>
+    <form name="Q13">
+      <label><input type="radio" name="item" value="1"> 3</label><br>
+      <label><input type="radio" name="item" value="2"> 4</label><br>
+      <label><input type="radio" name="item" value="3"> 10</label><br>
+      <label><input type="radio" name="item" value="4"> 20</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(13,Q13)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ13">
+    </form>
+  
+    <h6 class="textL30M30">12.14 If the standard deviations of the \(X\) and \(Y\) variables
+        are 4.06 and 2.65 respectively, the covariance is 10.50, what is the sample correlation coefficient \(r\)? </h6>
+    <form name="Q14">
+      <label><input type="radio" name="item" value="1"> 10.759</label><br>
+      <label><input type="radio" name="item" value="2"> 0.532</label><br>
+      <label><input type="radio" name="item" value="3"> 1.025</label><br>
+      <label><input type="radio" name="item" value="4"> 0.976</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(14,Q14)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ14">
+    </form>
+
+    <h6 class="textL30M30">12.15 Find the regression line between \(x\) and \(y\) using the following data.</h6>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th>\(x\)</th><th>\(y\)</th>
+        </tr>
+        <tr> <td  class="tdCenter">1</td>  <td  class="tdCenter">1</td> </tr>
+        <tr> <td  class="tdCenter">2</td>  <td  class="tdCenter">4</td> </tr>
+        <tr> <td  class="tdCenter">3</td>  <td  class="tdCenter">7</td> </tr>
+        <tr> <td  class="tdCenter">4</td>  <td  class="tdCenter">10</td> </tr>
+        <tr> <td  class="tdCenter">5</td>  <td  class="tdCenter">13</td> </tr>
+      </table>
+      <p>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> \(y-7 = 3(x-3)\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(y-7 = 2(x-3)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(y-3 = 3(x-7)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(y-3 = 2(x-7)\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+  
+    <h6 class="textL30M30">12.16  If we know the sample correlation coefficient \(r\) 
+      and the standard deviations of \(X\) and \(Y\), \(s_x\)  and \(s_y\)  respectively, 
+      what is the regression line equation? </h6>
+    <form name="Q16">
+      <label><input type="radio" name="item" value="1"> \(\small y = \overline y +\frac{s_y}{s_x} r(x-\overline x)\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small y = \overline x +\frac{s_y}{s_x} r(y-\overline y)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small y = \overline y +\frac{s_x}{s_y} r(x-\overline x)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small y = \overline x +\frac{s_x}{s_y} r(y-\overline y)\)</label><br>
+     <p>
+      <input type="button" value="Submit" onClick="radio(16,Q16)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ16">
+    </form>
+   
+    <h6 class="textL30M30">12.17 If the sample correlation coefficient of two random variables 
+      \(x\) and \(y\) is \(r\) = 0.5, the sample means are \(\small \overline x = 10, \overline y = 14\), 
+      and the sample standard deviations are \(s_x = 2, s_y = 3\), what is the regression line 
+      of \(y\) on \(x\)? </h6>
+    <form name="Q17">
+      <label><input type="radio" name="item" value="1"> \(y = \frac{3}{4} +\frac{13}{2}\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(y = \frac{3}{4} -\frac{13}{4}\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(y = \frac{3}{x} -1\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(y = \frac{3}{4}x +1\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(17,Q17)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ17">
+    </form>
+  
+    <h6 class="textL30M30">12.18 Find the regression coefficient  of the regression line  using the following data.</h6>
+    <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th></th><th>sample mean</th><th>sample standard deviation</th><th>correlation coefficient</th>
+        </tr>
+        <tr> <td  class="tdCenter">\(X\)</td>  <td  class="tdCenter">40</td> <td  class="tdCenter">4</td> <td  class="tdCenter">0.75</td></tr>
+        <tr> <td  class="tdCenter">\(Y\)</td>  <td  class="tdCenter">30</td> <td  class="tdCenter">3</td> </tr>
+      </table>
+      <p>
+    <form name="Q18">
+      <label><input type="radio" name="item" value="1"> 0.56</label><br>
+      <label><input type="radio" name="item" value="2"> 0.07</label><br>
+      <label><input type="radio" name="item" value="3"> 1.00</label><br>
+      <label><input type="radio" name="item" value="4"> 1.53</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(28,Q18)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ18">
+    </form>
+  
+    <h6 class="textL30M30">12.19 Which one of the following statements is true about 
+        the regression line of two variables \(\small X\) and \(\small Y\), the regression line of
+        \(\small Y\) on \(\small X\) and the regression line of \(\small X\) on \(\small Y\)? </h6>
+    <form name="Q19">
+      <label><input type="radio" name="item" value="1"> The two regression lines are always consistent.</label><br>
+      <label><input type="radio" name="item" value="2"> The two regression lines are always parallel.</label><br>
+      <label><input type="radio" name="item" value="3"> The two regression lines meet at one point (\(\small \overline X, \overline Y\))  and do not match.</label><br>
+      <label><input type="radio" name="item" value="4"> The two regression lines are always perpendicular.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(19,Q19)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ19">
+    </form>
+  
+    <h6 class="textL30M30">12.20  Find the regression coefficient \(b\) of the regression line \(\small Y = a + bX\) using the following data.</h6>
+        <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th></th><th>sample mean</th><th>sample standard deviation</th><th>correlation coefficient</th>
+        </tr>
+        <tr> <td  class="tdCenter">\(\small X\)</td>  <td  class="tdCenter">12</td> <td  class="tdCenter">3</td> <td  class="tdCenter">0.6</td></tr>
+        <tr> <td  class="tdCenter">\(\small Y\)</td>  <td  class="tdCenter">13</td> <td  class="tdCenter">4</td> </tr>
+      </table>
+      <p>
+    <form name="Q20">
+      <label><input type="radio" name="item" value="1"> 0.6</label><br>
+      <label><input type="radio" name="item" value="2"> 0.7</label><br>
+      <label><input type="radio" name="item" value="3"> 0.8</label><br>
+      <label><input type="radio" name="item" value="4"> 0.9</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(20,Q20)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ20">
+    </form>
+  
+    <h6 class="textL30M30">12.21 Which one is a wrong explanation about the regression coefficient \(b\)
+      and the sample correlation coefficient \(r\)? </h6>
+    <form name="Q21">
+      <label><input type="radio" name="item" value="1"> If \(b = 0\), \(r = 0\) (no correlation)</label><br>
+      <label><input type="radio" name="item" value="2"> If \(b > 0\), \(r > 0\) (positive correlation)</label><br>
+      <label><input type="radio" name="item" value="3"> If \(b = 1\), \(r = 1\) (perfect correlation)</label><br>
+      <label><input type="radio" name="item" value="4"> If \(b < 0\), \(r < 0\) (negative correlation)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(21,Q21)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ21">
+    </form>
+  
+    <h6 class="textL30M30">12.22 If a regression line is \(\small Y = 4 + 0.4X\) and the sample 
+        standard deviations of \(\small X\) and \(\small Y\) are 4, 2 respectively, what is the value of 
+        the sample correlation coefficient \(r\)?</h6>
+    <form name="Q22">
+      <label><input type="radio" name="item" value="1"> 1</label><br>
+      <label><input type="radio" name="item" value="2"> 0.8</label><br>
+      <label><input type="radio" name="item" value="3"> 0.5</label><br>
+      <label><input type="radio" name="item" value="4"> 0.4</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(22,Q22)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ22">
+    </form>
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+
+  <div class="mainTablePink">
+    <div class="textL30M30">
+      12.1 A survey was conducted on the level of education(\(\small X\), the period after graduating 
+      a high school, unit: year) for 10 businessmen and annual income (\(\small Y\), unit: one 
+      thousand USD) after graduating from the high school.
+    </div>
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>id</th>
+           <th>Education period <br>(\(\small X\))</th>
+           <th>Annual income <br>(\(\small Y\))</th>
+         </tr>
+         <tr> <td class="tdCenter">1</td>  <td class="tdCenter">4</td> <td class="tdCenter">50</td> </tr>
+         <tr> <td class="tdCenter">2</td>  <td class="tdCenter">2</td> <td class="tdCenter">37</td> </tr>
+         <tr> <td class="tdCenter">3</td>  <td class="tdCenter">0</td> <td class="tdCenter">35</td> </tr>
+         <tr> <td class="tdCenter">4</td>  <td class="tdCenter">3</td> <td class="tdCenter">45</td> </tr>
+         <tr> <td class="tdCenter">5</td>  <td class="tdCenter">4</td> <td class="tdCenter">57</td> </tr>
+         <tr> <td class="tdCenter">6</td>  <td class="tdCenter">4</td> <td class="tdCenter">49</td> </tr>
+         <tr> <td class="tdCenter">7</td>  <td class="tdCenter">5</td> <td class="tdCenter">60</td> </tr>
+         <tr> <td class="tdCenter">8</td>  <td class="tdCenter">5</td> <td class="tdCenter">47</td> </tr>
+         <tr> <td class="tdCenter">9</td>  <td class="tdCenter">2</td> <td class="tdCenter">39</td> </tr>
+         <tr> <td class="tdCenter">10</td> <td class="tdCenter">2</td> <td class="tdCenter">50</td> </tr>
+      </table>
+      <p>
+    <div class="textL50M30">         
+      1) Draw a scatter plot of data and interpret.
+    </div>
+    <div class="textL50M30">         
+      2) Calculate the sample correlation coefficient. 
+    </div>
+    <div class="textL50M30">         
+      3) Apply the regression analysis with annual income as the dependent variable and the level of education as the independent variable.
+    </div>
+    <p>
+    <div class="textL30M30">
+      12.2 The following data shows studying time for a week (\(\small X\)) and the grade (\(\small Y\)) of six students.
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> <th>Studying time (\(\small X\))</th> <th>Grade (\(\small Y\))</th> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">2.0</td> </tr>
+         <tr> <td class="tdCenter">28</td> <td class="tdCenter">2.7</td> </tr>
+         <tr> <td class="tdCenter">13</td> <td class="tdCenter">1.3</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">1.9</td> </tr>
+         <tr> <td class="tdCenter"> 4</td> <td class="tdCenter">0.9</td> </tr>
+         <tr> <td class="tdCenter">10</td> <td class="tdCenter">1.7</td> </tr>
+      </table>
+    <p>
+    <div class="textL50M30">         
+      1) Find a regression line and 95% confidence interval for  (it is a further grade score that is expected to be raised when a student studies one more hour a week.)
+    </div>
+    <div class="textL50M30">         
+      2) Calculate a 99% confidence interval in the average score of a student who studies an average of 12 hours a week.
+    </div>
+    <div class="textL50M30">         
+      3) Test for hypothesis \(\small H_0 : \beta = 0.10 , H_1 : \beta < 0.10\),   (significance level &alpha; = 0.01).
+    </div>
+    <p>
+    <div class="textL30M30">
+      12.3 A professor of statistics argues that a student’s final test score can be predicted 
+      from his/her midterm. Five students were randomly selected and their mid-term and final exam 
+      scores are as follows: 
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> <th>id</th> <th>Midterm (\(\small X\))</th> <th>Final (\(\small Y\))</th> </tr>
+         <tr> <td class="tdCenter">1</td> <td class="tdCenter">92</td> <td class="tdCenter">87</td> </tr>
+         <tr> <td class="tdCenter">2</td> <td class="tdCenter">65</td> <td class="tdCenter">71</td> </tr>
+         <tr> <td class="tdCenter">3</td> <td class="tdCenter">75</td> <td class="tdCenter">75</td> </tr>
+         <tr> <td class="tdCenter">4</td> <td class="tdCenter">83</td> <td class="tdCenter">84</td> </tr>
+         <tr> <td class="tdCenter">5</td> <td class="tdCenter">95</td> <td class="tdCenter">93</td> </tr>
+      </table>
+    <p> 
+    <div class="textL50M30">         
+      1) Draw a scatter plot of this data with mid-term score on X axis and final score on Y axis. 
+         What do you think is the relationship between mid-term and final scores?
+    </div>
+    <div class="textL50M30">         
+      2) Find the regression line and analyse the result. 
+    </div>
+    <p>
+    <div class="textL30M30">
+      12.4 An economist argues that there is a clear relationship between coffee and sugar prices. 
+      'When people buy coffee, they will also buy sugar. Isn't it natural that the higher the 
+      demand, the higher the price?' We collected the following sample data to test his theory.
+    </div>
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Year</th>
+           <th>Coffee price</th>
+           <th>Sugar Price</th>
+         </tr>
+         <tr> <td class="tdCenter">1985</td> <td class="tdCenter">0.68</td> <td class="tdCenter">0.245</td> </tr>
+         <tr> <td class="tdCenter">1986</td> <td class="tdCenter">1.21</td> <td class="tdCenter">0.126</td> </tr>
+         <tr> <td class="tdCenter">1987</td> <td class="tdCenter">1.92</td> <td class="tdCenter">0.092</td> </tr>
+         <tr> <td class="tdCenter">1988</td> <td class="tdCenter">1.81</td> <td class="tdCenter">0.086</td> </tr>
+         <tr> <td class="tdCenter">1989</td> <td class="tdCenter">1.55</td> <td class="tdCenter">0.101</td> </tr>
+         <tr> <td class="tdCenter">1990</td> <td class="tdCenter">1.87</td> <td class="tdCenter">0.223</td> </tr>
+         <tr> <td class="tdCenter">1991</td> <td class="tdCenter">1.56</td> <td class="tdCenter">0.212</td> </tr>
+      </table>
+    <p>
+    <div class="textL50M30">         
+      1) Prepare a scatter plot with the coffee price on \(\small X\) axis and sugar price on \(\small Y\) axis. 
+         Is this data true to this economist's theory?
+    </div>
+    <div class="textL50M30">         
+      2) Test this economist's theory by using a regression analysis. 
+    </div>
+    <p>
+    <div class="textL30M30">
+      12.5 A rope manufacturer thinks that the strength of the rope is proportional to the nylon 
+      content of the rope. Ten ropes are randomly selected and their data are as follows:
+    </div>
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>% Nylon (\(\small X\))</th>
+           <th>AStrength (psi) (\(\small Y\))</th>
+         </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">260</td> </tr>
+         <tr> <td class="tdCenter">10</td> <td class="tdCenter">360</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">490</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">510</td> </tr>
+         <tr> <td class="tdCenter">30</td> <td class="tdCenter">600</td> </tr>
+         <tr> <td class="tdCenter">30</td> <td class="tdCenter">600</td> </tr>
+         <tr> <td class="tdCenter">40</td> <td class="tdCenter">680</td> </tr>
+         <tr> <td class="tdCenter">50</td> <td class="tdCenter">820</td> </tr>
+         <tr> <td class="tdCenter">60</td> <td class="tdCenter">910</td> </tr>
+         <tr> <td class="tdCenter">70</td> <td class="tdCenter">990</td> </tr>
+      </table>
+      <p>         
+    <div class="textL50M30">         
+      1) Draw a scatter plot with the % Nylon on X axis and strength on Y axis. Find a regression line using the least squares method. 
+         Draw this estimated regression line on the scatter plot.
+    </div>
+    <div class="textL50M30">         
+      2) Estimate the strength of a rope in case of 33% nylon.
+    </div>
+    <div class="textL50M30">         
+      3) Estimate the strength of a rope in case of 66% nylon.
+    </div>
+    <div class="textL50M30">         
+      4) The strength of two ropes in case of 20% nylon on the data are different. How can you explain this variation in a regression model?
+    </div>
+    <div class="textL50M30">         
+      5) Estimate the strength of a rope in case of 0% nylon. Why is this estimate different from the observed value of 260?
+    </div>
+    <div class="textL50M30">         
+      6) Obtain a 95% confidence interval for the strength of the 0% nylon rope.
+    </div>
+    <div class="textL50M30">         
+      7) If the observed strength of the 0% nylon rope was outside the confidence interval in 6), how would you interpret this result?
+    </div>
+
+    <p>
+    <div class="textL30M30">
+      12.6 A health scientist randomly selected 20 people to determine the effects of smoking and 
+      obesity on their physical strength and examined the average daily smoking rate (\(x_1\), 
+      number/day), the ratio of weight by height (\(x_2\), kg/m), and the time to continue to exercise 
+      with a certain intensity (\(y\), in hours). Test whether smoking and obesity can affect your 
+      exercising time with a certain intensity. Apply a multiple regression model by using   『eStat』.
+    </div>
+      <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>smoking rate<br>\(x_1\)</th>
+           <th>ratio of weight by height<br>\(x_2\)</th>
+           <th>Atime to continue to exercise<br>\(y\)</th>
+         </tr>
+         <tr> <td class="tdCenter">24</td> <td class="tdCenter">53</td> <td class="tdCenter">11</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">47</td> <td class="tdCenter">22</td> </tr>
+         <tr> <td class="tdCenter">25</td> <td class="tdCenter">50</td> <td class="tdCenter"> 7</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">52</td> <td class="tdCenter">26</td> </tr>
+         <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">40</td> <td class="tdCenter">22</td> </tr>
+         <tr> <td class="tdCenter">18</td> <td class="tdCenter">44</td> <td class="tdCenter">15</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">46</td> <td class="tdCenter"> 9</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">23</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">56</td> <td class="tdCenter">15</td> </tr>
+         <tr> <td class="tdCenter"> 6</td> <td class="tdCenter">40</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">27</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">47</td> <td class="tdCenter">14</td> </tr>
+         <tr> <td class="tdCenter">18</td> <td class="tdCenter">41</td> <td class="tdCenter">13</td> </tr>
+         <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">38</td> <td class="tdCenter">21</td> </tr>
+         <tr> <td class="tdCenter">10</td> <td class="tdCenter">51</td> <td class="tdCenter">20</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">43</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter">12</td> <td class="tdCenter">38</td> <td class="tdCenter">15</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">36</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">43</td> <td class="tdCenter">12</td> </tr>
+         <tr> <td class="tdCenter">12</td> <td class="tdCenter">45</td> <td class="tdCenter">16</td> </tr>
+      </table>
+    <p>         
+    <div class="textL30M30">
+      12.7 The price of old watches in an antique auction is said to be determined by the year of 
+      making the watch and the number of bidders. In order to see if this is true, the 32 recently 
+      auctioned alarm clocks were examined for the elapsed period (in years) after manufacture, the 
+      number of bidders and the auction price (in 1,000USD) as follows: Test the hypothesis that 
+      the auction price of the alarm clock increases with the increase in the number of bidders 
+      using the multiple linear regression model. (significance level: 0.05)
+    </div>
+    <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Elapsed Period<br>\(x_1\)</th>
+           <th>Number of bidders<br>\(x_2\)</th>
+           <th>Auction Price<br>\(y\)</th>
+         </tr>
+         <tr> <td class="tdCenter">127</td> <td class="tdCenter">13</td> <td class="tdCenter">1235</td> </tr>
+         <tr> <td class="tdCenter">115</td> <td class="tdCenter">12</td> <td class="tdCenter">1080</td> </tr>
+         <tr> <td class="tdCenter">127</td> <td class="tdCenter"> 7</td> <td class="tdCenter"> 845</td> </tr>
+         <tr> <td class="tdCenter">150</td> <td class="tdCenter"> 9</td> <td class="tdCenter">1522</td> </tr>
+         <tr> <td class="tdCenter">156</td> <td class="tdCenter"> 6</td> <td class="tdCenter">1047</td> </tr>
+         <tr> <td class="tdCenter">182</td> <td class="tdCenter">11</td> <td class="tdCenter">1979</td> </tr>
+         <tr> <td class="tdCenter">156</td> <td class="tdCenter">12</td> <td class="tdCenter">1822</td> </tr>
+         <tr> <td class="tdCenter">132</td> <td class="tdCenter">10</td> <td class="tdCenter">1253</td> </tr>
+         <tr> <td class="tdCenter">137</td> <td class="tdCenter"> 9</td> <td class="tdCenter">1297</td> </tr>
+         <tr> <td class="tdCenter">113</td> <td class="tdCenter"> 9</td> <td class="tdCenter"> 946</td> </tr>
+         <tr> <td class="tdCenter">137</td> <td class="tdCenter">15</td> <td class="tdCenter">1713</td> </tr>
+         <tr> <td class="tdCenter">117</td> <td class="tdCenter">11</td> <td class="tdCenter">1024</td> </tr>
+         <tr> <td class="tdCenter">137</td> <td class="tdCenter"> 8</td> <td class="tdCenter">1147</td> </tr>
+         <tr> <td class="tdCenter">153</td> <td class="tdCenter"> 6</td> <td class="tdCenter">1092</td> </tr>
+         <tr> <td class="tdCenter">117</td> <td class="tdCenter">13</td> <td class="tdCenter">1152</td> </tr>
+         <tr> <td class="tdCenter">126</td> <td class="tdCenter">10</td> <td class="tdCenter">1336</td> </tr>
+         <tr> <td class="tdCenter">170</td> <td class="tdCenter">14</td> <td class="tdCenter">2131</td> </tr>
+         <tr> <td class="tdCenter">182</td> <td class="tdCenter"> 8</td> <td class="tdCenter">1550</td> </tr>
+         <tr> <td class="tdCenter">162</td> <td class="tdCenter">11</td> <td class="tdCenter">1884</td> </tr>
+         <tr> <td class="tdCenter">184</td> <td class="tdCenter">10</td> <td class="tdCenter">2041</td> </tr>
+         <tr> <td class="tdCenter">143</td> <td class="tdCenter"> 6</td> <td class="tdCenter"> 854</td> </tr>
+         <tr> <td class="tdCenter">159</td> <td class="tdCenter"> 9</td> <td class="tdCenter">1483</td> </tr>
+         <tr> <td class="tdCenter">108</td> <td class="tdCenter">14</td> <td class="tdCenter">1055</td> </tr>
+         <tr> <td class="tdCenter">175</td> <td class="tdCenter"> 8</td> <td class="tdCenter">1545</td> </tr>
+         <tr> <td class="tdCenter">108</td> <td class="tdCenter"> 6</td> <td class="tdCenter"> 729</td> </tr>
+         <tr> <td class="tdCenter">179</td> <td class="tdCenter"> 9</td> <td class="tdCenter">1792</td> </tr>
+         <tr> <td class="tdCenter">111</td> <td class="tdCenter">15</td> <td class="tdCenter">1175</td> </tr>
+         <tr> <td class="tdCenter">187</td> <td class="tdCenter"> 8</td> <td class="tdCenter">1593</td> </tr>
+         <tr> <td class="tdCenter">111</td> <td class="tdCenter"> 7</td> <td class="tdCenter"> 785</td> </tr>
+         <tr> <td class="tdCenter">115</td> <td class="tdCenter"> 7</td> <td class="tdCenter"> 744</td> </tr>
+         <tr> <td class="tdCenter">194</td> <td class="tdCenter"> 5</td> <td class="tdCenter">1356</td> </tr>
+         <tr> <td class="tdCenter">168</td> <td class="tdCenter"> 7</td> <td class="tdCenter">1262</td> </tr>
+      </table>
+
+  </div>
+
+  <script src="./js/exercise12.js"></script>   
+ 
+</body>
+</html>
+

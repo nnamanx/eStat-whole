@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 4</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">4.1 Which of the following data has a mean of 28 and a median of 30?  </h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
+    <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
+    <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
+    <label><input type="radio" name="item" value="4"> 12, 40, 20, 40 </label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">4.2 Six statistical scores are 70, 60, 80, 90, 90, 70. What is the median of these scores?</h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 70</label><br>
+    <label><input type="radio" name="item" value="2"> 75</label><br>
+    <label><input type="radio" name="item" value="3"> 80</label><br>
+    <label><input type="radio" name="item" value="4"> 90</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">4.3 Which of the following properties of the mean is incorrect?  </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> The mean is greatly affected by an extreme value.</label><br>
+    <label><input type="radio" name="item" value="2"> The sum of deviations from the mean is not zero.</label><br>
+    <label><input type="radio" name="item" value="3"> The sum of squares of deviations about the mean is not greater than the sum of squares of deviations of any other number.</label><br>
+    <label><input type="radio" name="item" value="4"> It is the mean that minimizes the sum of squares of deviations.</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">4.4 What is the variance of the following numbers? </h6>
+      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8, 10, 11, 12, 14 </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> 11</label><br>
+    <label><input type="radio" name="item" value="2"> 8</label><br>
+    <label><input type="radio" name="item" value="3"> 4</label><br>
+    <label><input type="radio" name="item" value="4"> 2</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">4.5 The X and Y data are as follows:</h6>
+      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X: 1, 2, 3, 4, 5, 6 </h6>
+      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y: 2, 4, 6, 8, 10, 12 </h6>
+      <h6> What is their correlation coefficient between X and Y? </h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 0</label><br>
+    <label><input type="radio" name="item" value="2"> 0.5</label><br>
+    <label><input type="radio" name="item" value="3"> 1</label><br>
+    <label><input type="radio" name="item" value="4"> -1</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ5">
+  </form>
+
+  </div>
+
+  <script src="./js/exercise04.js"></script>   
+
+  <script>
+    // Multiple Choice Question Answers
+    var nQuestion = 5+1;
+    var ans   = new Array(nQuestion);
+    var ansID = new Array(nQuestion);
+    for (var i = 1; i < nQuestion; i++) ansID[i] = "ansQ"+i; 
+    for (var i = 1; i < nQuestion; i++) document.getElementById(ansID[i]).disabled = true;
+
+    // 4.1 ④, 4.2 ②, 4.3 ②,  4.4  ③ ,4.5 ①
+    ans[0] = 5;
+    ans[1] = 4;
+    ans[2] = 2;
+    ans[3] = 2;
+    ans[4] = 3;
+    ans[5] = 1;
+  </script>
+ 
+</body>
+</html>
+

@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Seasonal"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="TimeSeries"></span> <span data-msgid="Forecasting"></span> : <span data-msgid="HoltWinter"></span></b><br>
+      <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Y(t+h) = (L(t) + h × b(t)) × S(t+h-m(k+1)) </b>
+    </div>
+    <p>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=73 id="data2"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="ytitle"></td>
+ 	</tr>
+    </table>
+    <table>   
+	<tr>
+          <td>&nbsp;&nbsp;</td>
+          <td><b><span data-msgid="Nseason"></span></b></td>
+          <td>&nbsp;&nbsp;L = </td>
+          <td><input type="number" min="2" max="12" value="4" id="ma1N" style="text-align:center"> <span style="color:red;">( 2 ≤ L ≤ 12)</span></td>
+        </tr>
+    </table>
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td>
+             <button type="button" id="execute" style="width:90px;">
+             <span data-msgid="Execute">Execute</span>
+            </button>
+          </td>
+ 	  <td>&nbsp;&nbsp;<span data-msgid="NumberData"></span></td>         
+	  <td><span class="fontmath">n<sub>Y</sub></span></td>
+	  <td><input type="text" class="textarea" size=4 id="nn41"> <span style="color:red;">( ≤ 120)</span></td>      
+          <td>&nbsp;&nbsp;</td>
+          <td><button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button></td>
+	</tr>
+      </tbody>
+    </table>
+    <svg id="chart" width="620" height="400"> </svg> 
+    <table>
+      <tbody>
+	<tr>
+ 	  <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>               
+          <td></td>
+          <td><span data-msgid="ForecastingPeriod"></span></td>
+          <td><input type="number" min="0" max="12" value="0" id="nn42" style="text-align:center" onchange="clearScreen()">
+              <span style="color:red;">( ≤ L)</span>
+          </td>
+          <td>
+              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
+              &nbsp;&nbsp;&nbsp;
+              <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
+          </td>
+        </tr>
+	<tr>
+          <td colspan="3">&nbsp;&nbsp;<span data-msgid="HoltWinter"></span></td>
+          <td></td>
+          <td>RMSE = <input type="text" class="textarea" size=6 id="mse" style="text-align: right;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltLevel"></span> </td>
+          <td>α = <input type="text" size=5 value="0.3" style="text-align:center" id="holtAlpha" onchange="redrawModel1()"></td>
+          <td><span style="color:red;">0 < α < 1</span></td>
+          <td> l₀ = &nbsp;<input type="text" size=5 style="text-align:center" id="holtL0" onchange="redrawModel1()"></td>
+          <td><span style="color:blue" data-msgid="Default"></span>: <span style="color:blue" data-msgid="DeseasonIntercept"></span></td>
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltTrend"></span></td>
+          <td>β = <input type="text" size=5 value="0.3" style="text-align:center" id="holtBeta" onchange="redrawModel1()"></td>
+          <td><span style="color:red;">0 < β < 1</span></td>
+          <td> b₀ = &nbsp;<input type="text" size=5 style="text-align:center" id="holtT0" onchange="redrawModel1()"></td>
+          <td><span style="color:blue" data-msgid="Default"></span>: <span style="color:blue" data-msgid="DeseasonSlope"></span></td>
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span data-msgid="Seasonal"></span></td>
+          <td>&gamma; = <input type="text" size=5 value="0.3" style="text-align:center" id="holtGamma" onchange="redrawModel1()"></td>
+          <td><span style="color:red;">0 < γ < 1</span></td>
+          <td>s₀₁ = <input type="text" size=5 style="text-align:center" id="holtS01" onchange="redrawModel1()"></td>
+          <td><span style="color:blue" data-msgid="Default"></span>: <span style="color:blue" data-msgid="SeasonalIndex"></span>, <span style="color:blue">Y=TSI</span></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₂ = <input type="text" size=5 style="text-align:center" id="holtS02" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₃ = <input type="text" size=5 style="text-align:center" id="holtS03" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₄ = <input type="text" size=5 style="text-align:center" id="holtS04" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₅ = <input type="text" size=5 style="text-align:center" id="holtS05" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₆ = <input type="text" size=5 style="text-align:center" id="holtS06" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₇ = <input type="text" size=5 style="text-align:center" id="holtS07" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₈ = <input type="text" size=5 style="text-align:center" id="holtS08" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₉ = <input type="text" size=5 style="text-align:center" id="holtS09" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₁₀ = <input type="text" size=5 style="text-align:center" id="holtS10" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₁₁ = <input type="text" size=5 style="text-align:center" id="holtS11" onchange="redrawModel1()"></td>
+        </tr>
+	<tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>s₀₁₂ = <input type="text" size=5 style="text-align:center" id="holtS12" onchange="redrawModel1()"></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+  </div>
+
+  <div width="250" style="position:absolute; left:640px; top:120px;"> 
+    &nbsp;&nbsp;
+    <p>
+    <div id="screenTable" >
+      <div id="loc">
+      </div>
+    </div>
+  </div>
+
+  <script src="/estat/eStatU/js/38TimeseriesHoltWinter.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data2").value = "75,60,54,59,86,65,63,80,90,72,66,85,100,78,72,93";
+        stat = simplestat("#data2");  
+        ydata = data; 
+        yobs = stat.n;
+      document.getElementById("mtitle").value = "Sales by Quarter";
+      document.getElementById("ytitle").value = "million US$";
+  </script>
+
+</body>
+</html>

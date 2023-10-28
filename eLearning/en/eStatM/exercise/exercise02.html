@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+  <h3>Exercise</h3>
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">2.1 What is the name of the table by organizing the data as follows? </h6>
+           <table> 
+              <tr> <th class="thGrey">Gender</th> <th class="thGrey">Number of students</th>  </tr>
+              <tr> <td class="tdCenter">Male</td>      <td class="tdCenter">6</td>   </tr>
+              <tr> <td class="tdCenter">Female</td>      <td class="tdCenter">4</td>   </tr>
+            </table>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> student table</label><br>
+    <label><input type="radio" name="item" value="2"> frequency table</label><br>
+    <label><input type="radio" name="item" value="3"> organizing table</label><br>
+    <label><input type="radio" name="item" value="4"> transcript표</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">2.2 Which of the following graphs is used for visualizing qualitative data?</h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> stem and leaf plot</label><br>
+    <label><input type="radio" name="item" value="4"> scatter plot</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">2.3 Which of the following graphs is not used for visualizing qualitative data?   </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> pie graph</label><br>
+    <label><input type="radio" name="item" value="4"> band graph</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  </div>
+
+  <script src="./js/exercise02.js"></script>   
+
+    // Multiple Choice Question Answers
+    var nQuestion = 3+1;
+    var ans   = new Array(nQuestion);
+    var ansID = new Array(nQuestion);
+    for (var i = 1; i < nQuestion; i++) ansID[i] = "ansQ"+i; 
+    for (var i = 1; i < nQuestion; i++) document.getElementById(ansID[i]).disabled = true;
+
+    // 2.1 ②, 2.2 ①, 2.3 ②,
+    ans[0] = 3;
+    ans[1] = 2;
+    ans[2] = 1;
+    ans[3] = 2;
+  </script>
+
+</body>
+</html>
+

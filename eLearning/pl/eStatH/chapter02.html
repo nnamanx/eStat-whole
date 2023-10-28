@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <!--***********************************************************************-->
+  <h1>Chapter 2. Probability</h1> 
+  <p>
+        <h1>&nbsp; 🎯 🎲 🎰 🎮</h1>        
+        <h4>
+        <a href="#0201"><u>2.1  Probability</u></a> <p>
+        <a href="#0202"><u>2.2  Addition Rule of Probability</u></a> <p>
+        <a href="#0203"><u>2.3  Conditional Probability and Multiplication Rule of Probability</u></a> <p>
+        <a href="./pdf/chapter02.pdf" target="_blank"><u>[Chapter 2 pdf]</u></a> 
+        </h4>
+        <p>Probability is the quantification of the likelihood that an event will occur on a scale between 0 and 1. Probability is widely used in decision making or future prediction by calculating probabilities for various situations.
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0201">2.1 Probability</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>- When a coin is tossed, a head or a tail appears. <br>
+             - If a product is manufactured in one factory and inspected, it is either good or defective. 
+          </b>
+      <h4>💎 Explore</h4>
+          <b>What are common characteristics such as the above examples that appear frequently in our daily life?</b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         Tossing a coin, inspecting a product, and similar things are often repeated 
+         around us. We know that the possible consequences of these things are either
+         'head' or 'tail', 'good' or 'defective', but we don't know what the outcome
+          will be. An experiment or observation in which similar things are repeated 
+          and all possible outcomes are known, but one outcome is determined by chance
+         is called the <b>trial</b>.
+      <p>
+         The set of all possible outcomes that can occur in a trial is called the 
+         <b>sample space</b>, and a subset of this sample space is called the 
+         <b>event</b>. An event made up of one element is called the <b>basic event</b>.
+      <p>
+         The sample space is usually denoted by \(S\), and events are denoted by 
+         uppercase English letters, \(A, B, C, ...\), etc. For example, in a coin 
+         tossing  trial, when 'head' is H and 'tail' is T, the sample space is as follows:
+      <p>
+      <div class="textLeft"> \(S\) = {H, T}
+      </div>
+      <p>
+         Events of 'head' and 'tail' are denoted as follows: 
+      <p>
+      <div class="textLeft"> \(A\) = {H}, \(B\) = {T}
+      </div>
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.1</h5>
+         When you roll a single dice, find the followings.<br>
+         1) Sample space \(S\) <br>
+         2) Event\(A\) with odd numbers
+      <h5>Solution</h5>
+         1) The sample space for rolling a single dice is as follows:
+      <p>
+         <div class="textLeft"> \(S\) = {1, 2, 3, 4, 5, 6} 
+         </div>           
+      <p>
+         2) The event with odd numbers is as follows: 
+      <p>
+         <div class="textLeft"> \(A\) = {1, 3, 5} 
+         </div>           
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.2</h5>
+         When one product is inspected, the result is marked as 'good' (O) or 
+         'defective' (X). If you inspect two products, find the followings. 
+      <p>
+         1) Sample space \(S\)<br>
+         2) Event \(A\)  with one 'good' and one 'defective'
+      <p>
+      <h5>Solution</h5>
+         1) The sample space for inspecting two products is as follows: <br>
+      <p>
+         <div class="textLeft"> \(S\) = {OO, OT, TO, TT} 
+         </div>           
+      <p>
+         2) The event \(A\) with one 'good' and one 'defective' is as follows: 
+      <p>
+         <div class="textLeft"> \(A\) = {OT, TO} 
+         </div>           
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.1</h5>
+            When a coin is tossed, let H be the event that the coin comes up 'head', and T be the event that it comes up 'tail'. If you toss a coin twice, find the followings.
+            <p>
+               1) Sample space \(S\)<br>
+               2) Event \(A\) in which 'head' appears once
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+       <h5>⏱ Practice 2.2</h5>
+               When a dice is rolled twice, find the followings.
+            <p>
+               1) Sample space \(S\)<br>
+               2) Event \(A\) in which the same number of dots appears twice<br>
+               3) Event \(B\) in which the sum of the dots appeared in each roll is less than 3 or equal to 3. 
+    </div>
+    <p>
+  <div class="mainTable">
+      <p>
+         With respect to two events \(A\) and \(B\) in the sample space \(S\), 
+         the event in which \(A\) or \(B\) occurs is denoted by \(A \cup B\), 
+         and the event in which \(A\) and \(B\) occurs simultaneously denoted by \(A \cap B\).
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig0201.png">
+      <div class="figText">&lt;Figure 2.1&gt; Event \(A \cup B\) and event \(A \cap B\)</div>
+      <p>
+         If event \(A\) and \(B\) do not occur simultaneously which is \(A \cap B\)= &oslash;, 
+         two events are called <b>mutually exclusive</b>.          
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig0202.png">
+      <div class="figText">&lt;Figure 2.2&gt; Mutually exclusive events \(A\) and \(B\)</div>
+      <p>
+         When there is an event \(A\), the event in which \(A\) does not occur is 
+         called the <b>complementary event</b> of \(A\) and denoted by \(A^C\). 
+         Since \(A\) and \(A^C\) cannot occur at the same time, that is 
+         \(A \cap A^C\)= &oslash;,  the events \(A\) and \(A^C\) are mutually exclusive.
+      <p>
+      <img class="imgFig600600" src="./Figure/Fig0203.png">
+      <div class="figText">&lt;Figure 2.3&gt; Event \(A\) and complementary event \(A^C\)</div>
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.3</h5>
+         When a dice is rolled, an event that has an odd number of dots is called \(A\)
+         and an event that has the number of dots which is greater than or equal to 3 
+         is called \(A\). Find the following events. 
+      <p>
+         1) \(A \cup B\) <br>
+         2) \(A \cap B\) <br>
+         3) \(A^C\)
+      <h5>Solution</h5>
+         The sample space by rolling a dice is \(S\)  = {1, 2, 3, 4, 5, 6}, event \(A\)
+         is {1, 3, 5}, and event \(B\) is {1, 2, 3}. 
+      <p>
+         1) \(A \cup B\) = {1, 2, 3, 5} <br>
+         2) \(A \cap B\) = {1, 3}<br>
+         3) \(A^C\) = {2, 4, 6}
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.3</h5>
+               When a coin is tossed twice, \(A\) is an event in which 'head' appears 
+               more than once and \(B\) is an event in which 'tail' appears more than
+               once. Are the two events mutually exclusive?
+    </div>
+    <p>
+
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4>A. Statistical Probability</h4>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>If you toss a coin, the likelihood of getting head (H) or tail (T) seems to be half and half. Probability is a numerical representation of this likelihood. Is it correct to define the probability of getting head as a half?
+          </b>
+      <h4>💎 Explore</h4>
+          <b>Let's toss a coin 10, 50, or 100 times to find the number of heads and check their relative frequencies of head whether it is a half or not.</b>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>An example of finding the relative frequency by actually tossing a coin 10, 50, or 100 times and writing down the number of heads is as follows:
+      <table class="tableCenter"> 
+        <tr>
+          <th style="width:200px">Number of tosses (\(n\))</td>
+          <td class="tdCenter" style="width:100px">10</td>
+          <td class="tdCenter" style="width:100px">50</td>
+          <td class="tdCenter" style="width:100px">100</td>
+        </tr>
+        <tr>
+          <th class="tdCenter">Number of heads (\(x\))</td>
+          <td class="tdCenter">4</td>
+          <td class="tdCenter">23</td>
+          <td class="tdCenter">51</td>
+        </tr>
+        <tr>
+          <th class="tdCenter">Relative frequency (\(\frac{x}{n}\))</td>
+          <td class="tdCenter">0.40</td>
+          <td class="tdCenter">0.46</td>
+          <td class="tdCenter">0.51</td>
+        </tr>
+      </table>
+      <p>
+         When the number of tosses is small, the relative frequency of the number
+         of heads may not be 0.5. However, as the number of tosses of a coin increases,
+         the relative frequency approaches 0.5. If you experiment more with the number
+         of tossing a coin using a computer, it can be seen that the relative frequency
+         gradually approaches 0.5 as shown in &lt;Figure 2.4&gt;. This relative 
+         frequency is called the <b>statistical probability</b> of an event that
+         a coin comes up head.
+      <p>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.4</h5>
+        Let's experiment a coin tossing simulation using 『eStatH』
+      <h5>Solution</h5>
+      <p>
+               If you select 'Statistical Probability' from 『eStatH』 menu, 
+               a window as shown in &lt;Figure 2.4&gt; appears. If you enter \(n\) = 10000 
+               and click [Execute] button, the coin tossing will be executed 10,000 times,
+               and you can observe the relative frequency of the number of heads of the 
+               coin.
+      <p>
+      <!------------*** html for  Statistical Probability ***----------------->
+      <b>[<span data-msgid="StatisticalProb">Statistical Probability</span>]</b> 
+      <p>
+         <iframe src="./example/020101/020101.html" width="700" height="770"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 2.4&gt; Simulation experiment for tossing a coin in 『eStatH』</div>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.4</h5>
+            If a dice is made perfectly, the probability of getting each side 
+               when you roll the dice is likely \(\frac{1}{6}\). Roll the dice 12, 36, 
+               or 120 times to see if it is \(\frac{1}{6}\) really.
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTable">
+      <p>
+         In general, the probability of an event \(A\), denoted as \(P(A)\), is 
+         expressed as a numerical value between 0 and 1. Let \(n_A\) be the number 
+         of times an event \(A\) occurs when the trial is repeated \(n\) times. 
+         As the number of trials increases sufficiently, if the relative frequency 
+         \(\frac{n_A}{n}\) approaches a constant value \(p\), this value is called 
+         the <b>statistical probability</b> of the event \(A\) which is denoted as 
+         \(P(A) = \frac{n_A}{n}\).
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Statistical probability  </b>
+      <p>
+         Let \(n_A\) be the number of times an event \(A\) occurs when a trial is repeated
+         \(n\) times. As the number of trials increases sufficiently, if the relative 
+         frequency \(\frac{n_A}{n}\) approaches a constant value \(p\), this value is 
+         called the <b>statistical probability</b> of the event \(A\) which is denoted as 
+         \(P(A) = \frac{n_A}{n}\).  
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.5</h5>
+         The demographic structure of Korea by age in 2020 is as follows:
+        <p>
+        <table class="tableCenter"> 
+          <tr> 
+            <th class="thGrey">Age</th>
+            <th class="thGrey">Population (unit 1000)</th>
+            <th class="thGrey">Relative frequency</th>
+          </tr>
+          <tr>
+            <td class="tdCenter" style="width:150px">0 - 14</td>
+            <td class="tdCenter" style="width:150px">6300</td>
+            <td class="tdCenter" style="width:150px">0.124</td>
+          </tr>
+          <tr>
+            <td class="tdCenter">15 - 64</td>
+            <td class="tdCenter">37,360</td>
+            <td class="tdCenter">0.736</td>
+          </tr>
+          <tr>
+            <td class="tdCenter">65 and over</td>
+            <td class="tdCenter">7,070</td>
+            <td class="tdCenter">0.139</td>
+          </tr>
+        </table>
+        Find the probability that one randomly chosen Korean is over 65 years of age.
+      <h5>Solution</h5>
+        In 2020, there are 7.07 million Koreans aged 65 and over, and the relative frequency is 0.139. In other words, the statistical probability of meeting a person over 65 in Korea is 0.139.
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.5</h5>
+            Youths aged between 13 and 18 was interviewed whether they are physically healthy or not in 2017 and the result is as follows: 
+          <p>
+          <table class="tableCenter"> 
+            <tr> 
+              <th class="thGrey">Are you healthy</th>
+              <th class="thGrey">Relative frequency</th>
+            </tr>
+            <tr>
+              <td class="tdCenter" style="width:150px">not at all healthy</td>
+              <td class="tdCenter" style="width:150px">0.001</td>
+            </tr>
+            <tr>
+              <td class="tdCenter" style="width:150px">not so healthy</td>
+              <td class="tdCenter" style="width:150px">0.021</td>
+            </tr>
+            <tr>
+              <td class="tdCenter" style="width:150px">healthy</td>
+              <td class="tdCenter" style="width:150px">0.496</td>
+            </tr>
+            <tr>
+              <td class="tdCenter" style="width:150px">very healthy</td>
+              <td class="tdCenter" style="width:150px">0.482</td>
+            </tr>
+          </table>
+            Find the probability that one randomly selected youth aged between 13 and 18 is healthy.
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTable">
+      <p>It is not easy to define the probabilities of all events using statistical probabilities and use them for decision-making in reality. In order to apply the probability easily to the real problem, a mathematical probability based on the model was studied. 
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <h4>B. Mathematical Probability</h4>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>A dice is made in the shape of a cube, with one to six dots drawn on each side. </b>
+      <h4>💎 Explore</h4>
+          <b>Since a dice was made in the shape of a cube, the probability of each side when the dice was rolled would be equal to 1/6. There are many games that use this dice, but are these games fair?</b>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         In order to obtain the statistical probability of each side of the dice, 
+         numerous trials of rolling the dice are required. The statistical probability
+         obtained through sufficient trials will be close to 1/6. However, it is not easy
+         in reality to do many trials to find the probability of one event.
+      <p>
+         If one dice is rolled, the sample space is {1, 2, 3, 4, 5, 6}. Assume that 
+         each element in the sample space has the same likelihood of occurrence. 
+         The probability of each element can be said to be 1/6. A mathematical probability
+         is defined as the likelihood of an event under the rational assumption that 
+         each element in the sample space is equally likely to appear. When making 
+         decisions about real problems, this mathematical probability is used a lot.
+      <p>
+         In general, assuming that each element of the sample space \(S\) in a trial 
+         has the same probability of occurrence, the mathematical probability that
+         an event \(A\) will occur denoted as \(P(A)\)  is defined as follows:
+      <p>
+      <div class="textLeft">
+         \(P(A) = \frac{n(A)}{n(S)}\) <br>
+         \(n(S)\) is the number of elements in the sample space<br>
+         \(n(A)\) is the number of elements in event \(A\)
+      </div>
+      <p>
+         In general, the statistical probability \(p\) of an event \(A\) approaches to 
+         the mathematical probability if the number of trials is large enough.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Mathematical probability  </b>
+      <p>
+         Assume that each element of the sample space \(S\) in a trial has the same 
+         probability of occurrence. The mathematical probability that an event \(A\)
+         will occur denoted as \(P(A)\) is defined as follows: 
+      <div class="textLeft">
+         \(P(A) = \frac{n(A)}{n(S)}\) <br>
+         \(n(S)\) is the number of elements in the sample space<br>
+         \(n(A)\) is the number of elements in event \(A\)
+      </div>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.6</h5>
+        An office worker went on a business trip to a city, and there were two restaurants 
+        (Restaurant 1 and Restaurant 2) near his accommodation. He hesitated about which restaurant 
+        to go. He rolled a dice and counted the number of dots that appear on the top. If an odd number came up, he decided to go to Restaurant 1, and if it was even, he decided to go to Restaurant 2. What is the probability that Restaurant 1 would be chosen?
+      <h5>Solution</h5>
+        The sample space of rolling a dice trial which counts the number of dots 
+        appearing on the top is \(S\) = {1, 2, 3, 4, 5, 6}. The event of odd numbers is
+        \(A\)  = {1, 3, 5}. The number of elements in the sample space is \(n(S)\) = 6 
+        and the number of elements in the event \(A\) is \(n(A)\) = 3. Therefore, 
+        the probability of Restaurant 1 being selected is as follows: 
+      <p>
+      <div class="textLeft">
+         \(P(A) = \frac{n(A)}{n(S)} = \frac{3}{6} = 0.5\)
+      </div>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.7</h5>
+        In a production plant which produces a product, you want to take out 3 products from a box containing 10 products at the same time and inspect the products. If there are 8 good products and 2 defective products in this box, find the probability of getting 2 good products and 1 defective product.
+      <h5>Solution</h5>
+        The number of all cases which take out 3 out of 10 products is as follows:
+      <p>
+      <div class="textLeft">
+        \({}_{10} C_ 3 = 120\) 
+      </div>
+      <p>
+        If \(S\) is the sample space, \(n(S)\)= 120이다.
+      <p>
+        If the event in which there are 2 good products and 1 defective product is \(A\), 
+        then \(n(A)\) is as follows:
+      <div class="textLeft">
+        \(n(A) = {}_8 C_ 2 × {}_2 C_1 = 56\) 
+      </div>
+      <p>Hence, the probability of the event \(A\) is as follows: 
+      <p>
+      <div class="textLeft">
+         \(P(A) = \frac{n(A)}{n(S)} = \frac{56}{120}\)
+      </div>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.6</h5>
+            Let the event \(A\) be that an odd number of dots is appeared in a 
+               single dice roll. Find the mathematical probability that the event \(A\)
+               will occur.
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.7</h5>
+            When two different dice are rolled at the same time, find the mathematical probability that the sum of the dots appeared on the top of each dice is less than 5.
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4>C. Basic Properties of Probability</h4>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>Can an event have a probability more than 1? Or could it be less than zero? </b>
+      <h4>💎 Explore</h4>
+          <b>Probability is a number from 0 to 1 indicating the likelihood that an event will occur.</b>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         Let's examine properties of the mathematical probability when each element
+         in the sample space has the same probability of occurrence. Since an event 
+         \(A\) is a subset of the sample space \(S\), \(n(S)\)  should be greater than
+         or equal to \(n(A)\) which should be greater than 0 as follows: 
+      <div class="textLeft">
+         \(0 \le n(A) \le n(S)\)
+      </div>
+      <p>
+         If we divide each term by \(n(S)\), it becomes as follows: 
+      <div class="textLeft">
+         \(0 \le \frac{n(A)}{n(S)} \le 1\)
+      </div>
+      <p>
+         Therefore, 
+      <div class="textLeft">
+         \(0 \le P(A) \le 1\)
+      </div>
+      <p>
+        If \(A\) is equal to the sample space \(S\), then 
+      <div class="textLeft">
+         \(P(S) = \frac{n(S)}{n(S)} = 1\).
+      </div>
+      <p>
+         If \(A\) is an empty set ∅, then 
+      <div class="textLeft">
+         \(P(∅) = \frac{n(∅)}{n(S)} = 0\).
+      </div>
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Basic properties of probability</b>
+      <p>
+         Assume that each element in the sample space \(S\) has the same probability of 
+         occurrence and \(A\) is an event in the sample space.
+      <p>
+         1) \(0 \le P(A) \le 1\) <br>
+         2) \(P(S) = 1\) <br>
+         3) \(P(∅) = 0\)
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.8</h5>
+        You want to place four people A, B, C, and D on four chairs next to each other. Find the 
+        total number of cases in which four people are placed and the number of cases in which 
+        A is placed on the leftmost. What is the probability that A is placed to the leftmost?
+      <h5>Solution</h5>
+        The number of elements in the sample space in this problem is as follows: 
+      <p>
+      <div class="textLeft">
+         (Number of people who can be placed on the far left)<br>
+       × (Number of people who can be placed in the second position, excluding the left)<br>
+       × (Number of people who can be placed in the third position except for the two on the left)<br>
+       × (Number of people who can be placed on the right except for the three on the left)<br>
+         = 4 × 3 × 2 × 1 = 4! = 24
+      </div> 
+      <p>      
+         The event \(A\) in which \(A\) is placed on the leftmost is the number 
+         of placing the remaining 3 people are in the second, third and right positions 
+         except for A, so 3×2×1 = 3!. Therefore, the probability that A is placed
+          on the leftmost is as follows:
+      <p>
+      <div class="textLeft">
+         \( \frac{3!}{4!} = \frac{6}{24} = 0.25 \)
+      </div>     
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.8</h5>
+            A company has 4 security guards (A, B, C, D). Every morning, two of these guards 
+            are randomly selected and one of them is assigned to the front door and the other to be 
+            at the back door. Find the total number of cases where 4 people are placed at the front and rear doors, and the number of cases where A is placed at the front door. What is the probability that A will be placed at the front door?
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+
+
+<!---*******************************************************************************--->
+  <h3 id="0202">2.2 Addition Rule of Probability</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>A survey of 50 middle school students found that 30 students watched the soccer game between Korea and Japan during the last Olympics on TV and 20 students watched the volleyball game. There were 10 students who watched both the soccer and volleyball game. </b>
+      <h4>💎 Explore</h4>
+          <b>What is the probability of a student who watched either the soccer or volleyball?
+          </b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         If the event where a student watched the soccer game is \(A\) and the volleyball
+         is \(B\), the event of watching either the soccer or volleyball is \(A \cup B\). 
+         Denote the number of element in each event of \(A\), \(B\) and  \(A \cup B\) 
+         as \(n(A)\), \(n(B)\) and  \(n(A \cup B)\) respectively, then they satisfy 
+         the following relation. 
+      <p>
+      <div class="textLeft">
+         \( n(A \cup B) = n(A) + n(B) - n(A \cap B) \)
+      </div>     
+      <p>
+         If we divide both sides by \(n(S)\), it becomes as follows:
+      <p>
+      <div class="textLeft">
+         \( \frac {n(A \cup B)}{n(S)} = \frac {n(A)}{n(S)} + \frac{n(B)}{n(S)} - \frac{n(A \cap B)}{n(S)} \)
+      </div>     
+      <p>
+         Therefore, the probability that either the event  \(A\) or event \(B\) occurs, 
+         denoted as \(P(A \cup B)\), is as follows:  
+      <p>
+      <div class="textLeft">
+         \( P(A \cup B) = P(A) + P(B) - P(A \cap B) \)
+      </div>     
+      <p>
+         This is called the <b>addition rule of probability</b>. In the above example, 
+         it becomes as follows: 
+      <p>
+      <div class="textLeft">
+         \( P(A \cup B) = \frac{30}{50} + \frac{20}{50} - \frac{10}{50} = \frac{40}{50} \)
+      </div>     
+      <p>
+         If two events \(A\) and \(B\) are mutually exclusive, then \(P(A \cap B)\)= 0 
+         and the addition rule becomes as follows:
+      <p>
+      <div class="textLeft">
+         \( P(A \cup B) = P(A) + P(B) \)
+      </div>     
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Addition rule of probability</b>
+      <p>
+         The probability of either the event \(A\) or event \(B\) occurs, \(P(A \cup B)\), is as follows:
+      <p>
+      <div class="textLeft">
+         \( P(A \cup B) = P(A) + P(B) - P(A \cap B) \)
+      </div>     
+      <p>
+         If two events \(A\) and \(B\) are mutually exclusive, then \(P(A \cap B)\) = 0 
+         and the addition rule becomes as follows:
+      <p>
+      <div class="textLeft">
+         \( P(A \cup B) = P(A) + P(B) \)
+      </div>
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Example 2.9</h4>
+        Let us practice the addition rule of probability in the above example using 『eStatH』.
+      <h5>Solution</h5>
+      <p>
+         If you select 'Addition Rule of Probability' from 『eStatH』 menu, a window 
+         such as in &lt;Figure 2.5&gt; appears. Enter  \(P(A)\) = 0.6, \(P(B)\) = 0.4, \(P(A \cap B)\) = 0.2
+         and click [Execute] button to observe the graph of the addition rule of 
+         probability. We can examine the addition rule by changing  \(P(A)\), \(P(B)\) and \(P(A \cap B)\) 
+         using the slide bars.
+      <p>
+      <!---*** html for Addition Rule ***--------------------------------------------->
+      <b>[<span data-msgid="AdditionRule">Addition Rule of Probability</span>]</b> 
+      <p>
+         <iframe src="./example/020201/020201.html" width="700" height="700"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 2.5&gt; Addition rule of probability</div>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h4>⏱ Practice 2.9</h4> <p>
+            Among 80 first-year students of business administration at a university, 50 students took economics, 30 students took political science, and 20 students took both courses. If you meet a first-year business administration student, what is the probability that this student will be taking either economics or political science?
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40AdditionRule.svg" onclick="window.open(addrStr[161])">
+    </div>
+    <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4>A. Probability of Complementary Event</h4>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>The probability of getting the number 1 or 2 when a dice is rolled is \(\frac{2}{6}\).  </b>
+      <h4>💎 Explore</h4>
+          <b>What is the probability of getting remaining numbers 3, 4, 5, 6?</b>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         The sample space of rolling a dice is \(S\) = {1, 2, 3, 4, 5, 6}. 
+         If the event in which the number of dots appeared is 1 or 2 is \(A\) = {1, 2}, 
+         the event of remaining numbers 3, 4, 5, 6 is called the <b>complementary event</b> 
+         and is denoted as \(A^C\) = {3, 4, 5, 6}. Since the event \(A\) and the 
+         complementary event \(A^C\) are mutually exclusive, the addition rule 
+         becomes as follows: 
+      <p>
+      <div class="textLeft">
+         \(P(A \cup A^C ) = P(A) + P(A^C)\)
+      </div>
+      <p>
+         Since \(P(A \cup A^C ) = P(S) = 1\), The probability of the complementary event 
+         \(P(A^C )\) becomes as follows: 
+      <p>
+      <div class="textLeft">
+         \(P(A^C ) = 1 - P(A)\)
+      </div>
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Probability of the complementary event</b>
+      <p>
+         If \(A^C\) is the complementary event of \(A\), the probability of \(A^C\) is as follows: 
+      <p>
+      <div class="textLeft">
+         \(P(A^C ) = 1 - P(A)\)
+      </div>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableGrey">
+      <p><h5>🎲 Example 2.10</h5>
+         Consider a box with 6 products, and 2 of them are defective. What is the probability that at least one defective item is found when three items are sampled for product inspection? Assume that the product once sampled for inspection is not put back in again (without replacement).
+      <h5>Solution</h5>
+         The probability that one defective product was found in 3 product inspections 
+         is as follows:
+      <p>
+      <div class="textLeft">
+         \( \frac{{}_4 C_2 × {}_2 C_1}{ {}_6 C_3 }  = \frac{3}{5} \) 
+      </div>
+      <p>
+         Also, the probability of finding two defective products is as follows:
+      <p>
+      <div class="textLeft">
+         \( \frac{{}_4 C_1 × {}_2 C_2}{ {}_6 C_3 }  = \frac{4}{20} = \frac{1}{5} \) 
+      </div>
+      <p>
+         Therefore, the probability of finding at least one defective product is
+          \(\frac{3}{5} ＋ \frac{1}{5} = \frac{4}{5} \). 
+      <p>
+         Another way to find this probability is to find the probability of an event in which there will be no defective items (this is called the complementary event of an event in which at least one defective item is found) and subtract it from 1. That is, the probability that at least one defective product is found is as follows:
+      <p>
+      <div class="textLeft">
+         \( 1 - \frac{{}_4 C_3 } { {}_6 C_3 }  = 1 - \frac{4}{20} = \frac{4}{5} \) 
+      </div>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h5>⏱ Practice 2.10</h5>
+            When a family of 6 including the parents eat at the round table, what is the probability that the parents are not adjacent?
+    </div>
+    <p>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+
+
+<!---*******************************************************************************--->
+  <h3 id="0203">2.3 Conditional Probability and Multiplication Rule of Probability</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>Out of 40 third-year high school students, 24 were male students and 16 were female students. 8 male students and 4 female students wear glasses. </b>
+      <h4>💎 Explore</h4>
+          <b>
+          <div class="textL20M20">
+             1) What is the probability of being a male student when choosing one of these high school students randomly?<br>
+          </div>
+          <div class="textL20M20">
+             2) When a student is randomly selected, what is the probability that this student is a male student and wears glasses?<br>
+          </div>
+          <div class="textL20M20">
+             3) If one of the male students was randomly selected, what is the probability that this student wore glasses?
+          </div>
+          </b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+     <p>
+        The number of events given in this problem can be summarized in the following 
+        table by denoting the event of male student as \(A\), the event of female student
+        as \(F\), the event of wearing glasses as \(B\), and the event of not wearing 
+        glasses as \(N\).
+     <p>
+     <table style="width:600px;"> 
+        <tr> 
+          <th></th>
+          <th>Wearing Glasses (\(B\))</th>
+          <th>Not Wearing Glasses (\(N\))</th>
+          <th>Total</th>
+        </tr>
+        <tr> 
+          <th>Male (\(A\))</th>
+          <td class="tdCenter">\(n(A \cap B) = 8\)</td>
+          <td></td>
+          <th>\(n(A) = 24\)</th>
+        </tr>
+        <tr> 
+          <th>Female (\(F\))</th>
+          <td class="tdCenter">\(n(F \cap B) = 4\)</td>
+          <td></td>
+          <th>\(n(F) = 16\)</th>
+        </tr>
+        <tr> 
+          <th>Total</th>
+          <th></th>
+          <th></th>
+          <th>\(n(S) = 40\)</th>
+        </tr>
+      </table>
+     <p>
+         The above table makes it easy to calculate the number of events not given by the problem as follows:
+     <p>
+     <table style="width:600px;"> 
+        <tr> 
+          <th></th>
+          <th>Wearing Glasses (\(B\))</th>
+          <th>Not Wearing Glasses (\(N\))</th>
+          <th>Total</th>
+        </tr>
+        <tr> 
+          <th>Male (\(A\))</th>
+          <td class="tdCenter">\(n(A \cap B) = 8\)</td>
+          <td class="tdCenter">\(n(A \cap N) = 16\)</td>
+          <th>\(n(A) = 24\)</th>
+        </tr>
+        <tr> 
+          <th>Female(\(F\))</th>
+          <td class="tdCenter">\(n(F \cap B) = 4\)</td>
+          <td class="tdCenter">\(n(F \cap N) = 12\)</td>
+          <th>\(n(F) = 16\)</th>
+        </tr>
+        <tr> 
+          <th>Total</th>
+          <th>\(n(B) = 12\)</th>
+          <th>\(n(N) = 28\)</th>
+          <th>\(n(S) = 40\)</th>
+        </tr>
+      </table>
+      <p>
+         1) If you randomly select one of the high school students, the probability of being a male student is as follows:
+      <div class="textLeft">
+         \( P(A) = \frac{n(A)}{n(S)}  = \frac{24}{40}\) 
+      </div>
+      <p>
+         2) If you randomly select a student, the probability that this student is a male student and wears glasses is as follows:
+      <div class="textLeft">
+         \( P(A \cap B ) = \frac{n(A \cap B)}{n(S)} = \frac{8}{40} \) 
+      </div>
+      <p>
+         3) When one of the male students is randomly selected, the probability that 
+            this student wears glasses is denoted as a symbol \(P(B|A)\), and, 
+            since the event of a male student \(M\) can be viewed as a sample space,
+            it is calculated as follows:
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = \frac{n(A \cap B)}{n(A)}  = \frac{8}{24} \) 
+      </div>
+      <p>
+         \(P(B|A)\) is called the <b>conditional probability</b> of wearing glasses (\(B\))
+         when a male student is selected (\(A\)).
+      <p>
+         If \(S\) is a sample space of a statistical experiment, the conditional 
+         probability of the event \(B\) when the event \(A\) occured is as follows: 
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = \frac{n(A \cap B)}{n(A)} \) 
+      </div>
+      <p>
+         If we divide both numerator and denominator by \(n(S)\), the conditional 
+         probability becomes as follows: 
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = \frac{\frac{n(A \cap B)}{n(S)}}{\frac{n(A)}{n(S)}} = \frac{P(A \cap B)}{P(A)} \) 
+      </div>
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp;  Conditional probability</b>
+      <p>
+         The conditional probability of the event \(B\) when the event \(A\) occurred is as follows: 
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = \frac{P(A \cap B)}{P(A)} \)  (Note \(P(A) \ne 0) \)
+      </div>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         In the table above, the probabilities of two events occurring at the same 
+         time are summarized as follows: This is called a <b>joint probability table</b>.
+      <p>
+      <table style="width:600px;"> 
+        <tr> 
+          <th></th>
+          <th>Wearing Glasses (\(B\))</th>
+          <th>Not Wearing Glasses (\(N\))</th>
+          <th>Total</th>
+        </tr>
+        <tr> 
+          <th>Male (\(A\))</th>
+          <td class="tdCenter">\(P(A \cap B) = \frac{8}{40}\)</td>
+          <td class="tdCenter">\(P(A \cap N) = \frac{16}{40}\)</td>
+          <th>\(P(A) = \frac{24}{40}\)</th>
+        </tr>
+        <tr> 
+          <th>Female(\(F\))</th>
+          <td class="tdCenter">\(P(F \cap B) = \frac{4}{40}\)</td>
+          <td class="tdCenter">\(P(F \cap N) = \frac{12}{40}\)</td>
+          <th>\(P(F) = \frac{16}{40}\)</th>
+        </tr>
+        <tr> 
+          <th>Total</th>
+          <th>\(P(B) = \frac{12}{40}\)</th>
+          <th>\(P(N) = \frac{28}{40}\)</th>
+          <th>\(P(S) = 1\)</th>
+        </tr>
+      </table>
+      <p>
+         In this table, the probability \(P(A \cap B) = \frac{8}{40}\) can be calculated by multiplying the probability of male students  \(P(A) = \frac{24}{40}\)
+         with the conditional probability \( P(B|A) = \frac{8}{24} \).
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(A) × P(B|A) = \frac{24}{40} × \frac{8}{24} = \frac{8}{40}\) 
+      </div>
+      <p>
+         It is called the <b>multiplication rule of probability</b>. This formula can be 
+         derived if you multiply \(P(A)\) on both side of the definition of the 
+         conditional probability \( P(B|A) = \frac{P(A \cap B)}{P(A)} \).
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B ) = P(A) × P(B|A)  \) 
+      </div>
+      <p>
+         The probability \(P(A \cap B) = \frac{8}{40}\) can be calculated by multiplying
+         the probability of wearing glasses \(P(B) = \frac{12}{40}\) with the 
+         conditional probability \( P(A|B) = \frac{8}{12} \).
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(B) × P(A|B) = \frac{12}{40} × \frac{8}{12} = \frac{8}{40}\) 
+      </div>
+      <p>
+         In general, the multiplication rule of probability is as follows: 
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Multiplication rule of probability</b>
+      <p>
+         The multiplication rule of two events \(A\) and \(B\) is as follows: 
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(A) × P(B|A) \quad \)  (\(P(A) \ne 0) \) <br>
+         \( P(A \cap B) = P(B) × P(A|B) \quad \)  (\(P(B) \ne 0) \) 
+      </div>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         Suppose that the joint probability table on gender of students and wearing glasses is as follows:
+      <p>
+      <table style="width:600px;"> 
+        <tr> 
+          <th></th>
+          <th>Wearing Glasses (\(B\))</th>
+          <th>Not Wearing Glasses (\(N\))</th>
+          <th>Total</th>
+        </tr>
+        <tr> 
+          <th>Male (\(A\))</th>
+          <td class="tdCenter">\(P(A \cap B) = \frac{12}{40}\)</td>
+          <td class="tdCenter">\(P(A \cap N) = \frac{12}{40}\)</td>
+          <th>\(P(A) = \frac{24}{40}\)</th>
+        </tr>
+        <tr> 
+          <th>Female(\(F\))</th>
+          <td class="tdCenter">\(P(F \cap B) = \frac{8}{40}\)</td>
+          <td class="tdCenter">\(P(F \cap N) = \frac{8}{40}\)</td>
+          <th>\(P(F) = \frac{16}{40}\)</th>
+        </tr>
+        <tr> 
+          <th>Total</th>
+          <th>\(P(B) = \frac{20}{40}\)</th>
+          <th>\(P(N) = \frac{20}{40}\)</th>
+          <th>\(P(S) = 1\)</th>
+        </tr>
+      </table>
+      <p>
+         Here, the probability of all students wearing glasses 
+         \(P(B) = \frac{20}{40} = \frac{1}{2}\) is the same as that of male students 
+         \( P(B|A) = \frac{12}{24} = \frac{1}{2} \). 
+         If the occurrence of an event \(A\) does not affect the probability that 
+        the event \(B\) will occur, that is, 
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = P(B)\) 
+      </div>
+      <p>
+         it is said that two events \(A\) and \(B\) are <b>independent</b> of each other.
+         On the other hand, if two events \(A\) and \(B\) are not independent, it is said 
+         two events are dependent.
+      <p>
+         If two events \(A\) and \(B\) are independent, the rule of multiplication 
+         becomes as follows:
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(A) × P(B|A) = P(A) × P(B) \) 
+      </div>
+      <p>
+         Inversely, if  \( P(A \cap B) = P(A) × P(B) \) and \(P(A) \ne 0\), the conditional probability becomes as follows: 
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A) × P(B)}{P(A)} = P(B)\) 
+      </div>
+      <p>
+         Therefore, two events \(A\) and \(B\) are independent.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <p><b><span style="font-size:1.5em">✨</span>&nbsp;&nbsp; Multiplication rule of probability when two events are independent</b>
+      <p>
+         A necessary and sufficient condition that two events \(A\) and \(B\) are independent is as follows:
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(A) × P(B) \quad \) (\(P(A) \ne 0, P(B) \ne 0 \) )
+      </div>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>In the table above, all events for the joint probability are independent of each other. In this case, it is said that the gender variable and the variable of wearing glasses are independent. Looking at the table, the probabilities of "wearing glasses" and "not wearing glasses" events of all students are 0.5 and 0.5, respectively. When the two variables are independent, these ratios are maintained for each male and female student. 
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Example 2.11</h4>
+        Let's practice the conditional probability and independent events using 『eStatH』.
+      <h5>Solution</h5>
+      <p>
+         When 'Conditional Probability' is selected from 『eStatH』 menu, 
+         a window such as &lt;Figure 2.6&gt; appears. Here, if the joint probability
+         is adjusted, the conditional probability can be observed below it, 
+         and a line graph such as &lt;Figure 2.7&gt; and a bar graph of 
+         the conditional probability for each row can be observed.
+      <p>
+      <!-----*** html for Multiplication Rule ***---------------------------------------------------------->
+      <b>[<span data-msgid="ConditionalProb">Multiplication Rule of Probability</span>]</b> 
+      <p> You can calculate the conditional probabilities and their graphs using eStat as follows:
+      <p>
+         <iframe src="./example/020301/020301.html" width="700" height="1000"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 2.7&gt;  Graph of joint probabilities and their conditional probability</div>
+      <p>
+         If you adjust the joint probability as \(P(A_1 \cap B_1 )\) = 0.30, 
+         \(P(A_1 )\) = 0.60 becomes as in &lt;Figure 2.8&gt;. &lt;Figure 2.9&gt;
+         displays a line graph and conditional probability in case of independent events.
+      <p>
+         <img class="imgFig600600" src="./Figure/Fig0208.png">
+         <div class="textLeft">&lt;Figure 2.8&gt; Probabilities when two variables are independent</div>
+      <p>
+         <img class="figure90" src="./Figure/Fig0209.png">
+         <div class="textLeft">&lt;Figure 2.9&gt; Line graph and conditional probabilities when two variables are independent.</div>
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h4>⏱ Practice 2.11</h4> <p>
+            Let \(A\) be the event that the number of dots by drawing a dice is odd 
+            and \(B\) be the event that the number of dots is less than 3. Examine 
+            whether the two events are independent or dependent.
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+       <h4>⏱ Practice 2.12</h4> <p>
+            The distribution of 30 freshmen at a university by gender and region is as follows:
+            <p>
+            <table> 
+              <tr> 
+                 <th></th>
+                 <th>Seoul (\(S\))</th>
+                 <th>Country (\(C\))</th>
+                 <th>Total</th>
+               </tr>
+               <tr> 
+                 <th>Male (\(M\))</th>
+                 <td class="tdCenter">10</td>
+                 <td class="tdCenter">10</td>
+                 <th>20</th>
+               </tr>
+               <tr> 
+                 <th>Female (\(F\))</th>
+                 <td class="tdCenter">5</td>
+                 <td class="tdCenter">5</td>
+                 <th>10</th>
+               </tr>
+               <tr> 
+                 <th>Total</th>
+                 <th>15</th>
+                 <th>15</th>
+                 <th>30</th>
+               </tr>
+            </table>
+            <p>
+               When a student is selected, is the case of Male and Seoul independent of each other?
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40MultiplicationRule.svg" onclick="window.open(addrStr[164])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <iframe src="./exercise/exercise02.html" width="750" height="700" ></iframe>
+
+</body>
+</html>
+

@@ -7,115 +7,39 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>Chapter 4</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
-    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">Table of Contents</a></li>
-            <li><a href="../eStatM/chapter01.html">1. Statistics</a></li>
-            <li><a href="../eStatM/chapter02.html">2. Visualization of Qualitative Data</a></li>
-            <li><a href="../eStatM/chapter03.html">3. Visualization of Qunatitative Data</a></li>
-            <li><a href="../eStatM/chapter04.html">4. Measure of Central Tendency and Dispersion</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
   <!--***********************************************************************-->
   <h1>Chapter 4. Measure of Central Tendency and Dispersion</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 3</b></button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
         <h1>&nbsp; 🎲 🎯 ⚖ μ σ ρ</h1>
         <h4>
         <a href="#0401"><u>4.1 Measure of Central Tendency – Mean and Median</u></a> <p>
         <a href="#0402"><u>4.2 Measure of Dispersion – Standard Deviation</u></a> <p>
         <a href="#0403"><u>4.3 Covariance and Correlation Coefficient</u></a> <p>
 
-        <a href="../eStatM/chapter04.pdf" target="_blank"><u>[Chapter 4 pdf]</u></a> 
+        <a href="./pdf/chapter04.pdf" target="_blank"><u>[Chapter 4 pdf]</u></a> 
         </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
         <p>In the case of quantitative data, the central tendency and dispersion of 
            the data are measured and analyzed.
-        <p>
+        <br>
            - Central tendency : mean / median <br>
-           - Dispersion : variance / standard deviation <br>
-        <p>
+           - Dispersion : variance / standard deviation 
+        <br>
            Data for two quantitative variables are measured using a covariance and 
            a correlation coefficient.
-      </td>
-    </tr>
-  </table>
-      <br>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -126,13 +50,7 @@
   <h3 id="0401">4.1 Measure of Central Tendency – Mean and Median</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
             <b>The data obtained by taking a sample of 5 middle school students and surveying their weight are as follows:</b> 
           <p>
           <div class="textLeft">(Data 4.1) Weights of five middle school students (kg)</div>
@@ -143,20 +61,11 @@
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
+      <p>
           <b>1) What kind of graph is used to find a representative value of these data?<br>
              2) What would be a representative value for the weight of 5 students? 
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -212,57 +121,44 @@
          is located to the right of the other four data. That is, the mean is more sensitive
          to an extreme than the median.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0401.png">
+         <img class="imgFig600600" src="./Figure/Fig0401.png">
          <div class="textLeft">&lt;Figure 4.1&gt; Dot graph of weight data</div>
       <p>
          If there are lots of data, it is time-consuming and difficult to obtain the mean 
          and median manually as above. Let's find the representative value of the data
-        using 『eStatH』 software.
+        using 『eStatM』 software.
   </div>
   <p>
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 4.1</h4>
-        Using 『eStatH』, draw a dot graph for the weights of 5 students (Data 4.1) and find the mean and median.
+        Using 『eStatM』, draw a dot graph for the weights of 5 students (Data 4.1) and find the mean and median.
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>Using the QR on the left, select ‘Dot Graph – Mean / Standard Deviation’ from 
-               the 『eStatH』 menu, then a window like &lt;Figure 4.2&gt; appears.
-            <p>Enter students' weight data in 'Data input'. (You can also copy and paste
-               the data from the e-book)
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0402.png">
-         <div class="textLeft">&lt;Figure 4.2&gt; Data input of weight data for a dot graph </div>
+         Enter students' weight data in 'Data input'. (You can also copy and paste
+         the data from the e-book)
       <p>
          When data are entered, the number of data, minimum, maximum, mean, and median are calculated 
          immediately. If you click the [Execute] button, a dot graph appears as shown in 
          &lt;Figure 4.1&gt; and the mean and median values are displayed.
       <p>
-         Below &lt;Figure 4.1&gt;, a simulation window as shown in &lt;Figure 4.3&gt; appears. 
-         In this simulation window, you move a point with the mouse to see the changes in the 
-         mean and median. For example, if you drag the rightmost point and move it to the right, 
-        the mean changes but the median does not. That is, the median is not affected by the extreme points.
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0403.png">
+      <!------*** Dot graph html ***-------------------------------------------------------------->
+         <iframe src="./example/0401/0401.html" width="700" height="740"> </iframe>
+      <p> 
          <div class="textLeft">&lt;Figure 4.3&gt; Simulation window to see a change in mean and median if you move a point</div>
+      <p>
+         Bottom graph of &lt;Figure 4.3&gt; is a simulation window.  
+         In this simulation window, you can move a point with the mouse to see the changes in the 
+         mean and median. For example, if you drag the rightmost point and move it to the right, 
+         the mean changes but the median does not. That is, the median is not affected by the extreme points.
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
-
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <p><h4>🎲 Practice 4.2</h4>
+      <h4>🎲 Practice 4.2</h4>
       <p>
-         Using 『eStatH』, let's find the mean and median of the daily minimum temperature 
+         Using 『eStatM』, let's find the mean and median of the daily minimum temperature 
          ([Practice 3.2]) in Seoul in February (Data 3.2).
       <p> 
           <div class="textLeft">(Data 3.2) Daily minimum temperature in February 2021 in Seoul (unit: degree in Celcius) </div>
@@ -275,23 +171,16 @@
               </td>
             </tr>
           </table>
-      <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>If you select ‘Dot Graph – Mean/Standard Deviation’ from the 『eStatH』 menu 
+      <h4>Solution</h4>
+          If you select ‘Dot Graph – Mean/Standard Deviation’ from the 『eStatM』 menu 
                using the QR on the left, the data input window as shown in 
                &lt;Figure 4.4&gt; appears.
-          </td>
-        </tr>
-      </table>
       <p>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0404.png">
-         <div class="textLeft">&lt;Figure 4.4&gt; Temperature data input for a dot graph</div>
+         <div class="QRFigure">
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+           <img class="imgFig600600" src="./Figure/Fig0404.png">
+           <div class="textLeft">&lt;Figure 4.4&gt; Temperature data input for a dot graph</div>
+         </div>
       <p>
          When the daily minimum temperature data are entered in 'Data input' (you can copy 
          and paste the data from the e-book), as shown in &lt;Figure 4.4&gt;, 
@@ -302,7 +191,7 @@
          appears and the mean (\(\mu\)) and median (\(\m\)) are displayed. Below this 
          dot graph, a simulation window appears where you can change a point with the mouse and observe the changes in the mean a
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0405.png">
+         <img class="imgFig600600" src="./Figure/Fig0405.png">
          <div class="textLeft">&lt;Figure 4.5&gt; Dot graph of daily minimum temperature and its simulation window</div>
      <p>
         Looking at this dot graph, it can be seen that there is almost no difference
@@ -313,16 +202,9 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 4.1</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 4.1</h4> 
             The following is data on the length of bicycle-only roads by 25 administrative 
-            districts in Seoul as of 2019 ([Exercise 3.1]). Use 『eStatH』 to draw a dot graph, 
+            districts in Seoul as of 2019 ([Exercise 3.1]). Use 『eStatM』 to draw a dot graph, 
             and to find and analyze the representative values of data.
             <p>
             <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul as of 2019 (unit: km) </div>
@@ -334,24 +216,15 @@
                 </td>
               </tr>
             </table>
-         </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 4.2</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 4.2</h4> 
             The following is data on the maximum wind speed of typhoons that passed 
-            through Korea in 2020 ([Exercise 3.2]). Use 『eStatH』 to draw a dot graph, 
+            through Korea in 2020 ([Exercise 3.2]). Use 『eStatM』 to draw a dot graph, 
             and to find and analyze the representative values of data.
             <p>
             <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020 (unit: m/sec)</div>
@@ -363,9 +236,7 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -373,13 +244,7 @@
   <h4> A. Calculation of mean using frequency table</h4>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>Assume that a frequency table of the academic achievement test scores of 
              a middle school class is given as follows:
           </b>
@@ -388,24 +253,14 @@
           <table> 
             <tr> <th class="thGrey">Class</th> <th class="thGrey">Number of data</th>   </tr>
             <tr> <td class="tdCenter">60&le; ~ &lt;70</td> <td class="tdCenter"> 2</td> </tr>
-            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">10</td> </tr>
-            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">15</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">5</td> </tr>
+            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">10</td> </tr>
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
-            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th>   </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey">20</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>How do we find the mean using this frequency table?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -420,11 +275,11 @@
           <div class="textLeft">[Table 4.2] Approximated data using the middle value of each class interval in the academic achievement test scores </div>
           <table> 
             <tr> <th class="thGrey">Weight (kg)</th> <th class="thGrey">Middle value</th> <th class="thGrey">Frequency</th> <th class="thGrey">Approximated data</th>  </tr>
-            <tr> <td class="tdCenter">60&le; ~ &lt;70</td> <td class="tdCenter">65</td> <td class="tdCenter"> 3</td> <td>65 65</td>                          </tr>
-            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">75</td> <td class="tdCenter"> 7</td> <td>75 75 75 75 75</td>                 </tr>
-            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">85</td> <td class="tdCenter">11</td> <td>85 85 85 85 85 85 85 85 85 85 </td> </tr>
-            <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">95</td> <td class="tdCenter"> 5</td> <td>95 95 95</td>                       </tr>
-            <tr> <th class="thGrey">Total</th> <th class="thGrey"></th> <th class="thGrey">30</th> <th class="thGrey"></th>  </tr>
+            <tr> <td class="tdCenter">60&le; ~ &lt;70</td> <td class="tdCenter">65</td> <td class="tdCenter"> 2</td> <td>65 65</td>                          </tr>
+            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">75</td> <td class="tdCenter"> 5</td> <td>75 75 75 75 75</td>                 </tr>
+            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">85</td> <td class="tdCenter">10</td> <td>85 85 85 85 85 85 85 85 85 85 </td> </tr>
+            <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">95</td> <td class="tdCenter"> 3</td> <td>95 95 95</td>                       </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey"></th> <th class="thGrey">20</th> <th class="thGrey"></th>  </tr>
           </table>
 
       <p>Mean is calculated as follows:
@@ -435,28 +290,28 @@
                      &= \frac{1640}{20} = 82
          \end{align}
       $$
+  </div>
+  <p>
+
+  <div class="mainTableGrey">
       <p>
-         Using ‘Frequency Distribution Polygon - Relative Frequency Comparison’ of 『eStatH』, 
+         Using ‘Frequency Distribution Polygon - Relative Frequency Comparison’ of 『eStatM』, 
          the approximate mean of the frequency table can be obtained as shown in 
          &lt;Figure 4.6&gt;. After entering the left value of the class interval and
          ‘Frequency 1’, click the [Execute] button.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0406.png">
+      <!------------- html for Freq Polygon ----------------------------------->
+         <iframe src="./example/0402/0402.html" width="750" height="1020"> </iframe>
+      <p>
          <div class="textLeft">&lt;Figure 4.6&gt; Mean calculation using a frequency table </div>
+      <p>
   </div>
-  <p>
 
 <!--------------------------------------------------------------------------------------->
   <h3 id="0402">4.2 Measure of Dispersion – Standard Deviation</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The quiz scores (out of 10) of five middle school students are as follows: </b>
           <p>
             <div class="textLeft">(Data 4.2) The quiz scores (out of 10) of five middle school students</div>
@@ -467,18 +322,8 @@
                 </td>
               </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>Is there a way to measure how scattered these data are?</b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -538,24 +383,13 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 4.3</h4>
-        Using 『eStatH』, draw a dot graph for the quiz scores of 5 sample students  (Data 4.2) and find the mean and standard deviation.
+        Using 『eStatM』, draw a dot graph for the quiz scores of 5 sample students  (Data 4.2) and find the mean and standard deviation.
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>Using the QR on the left, select ‘Dot Graph – Mean / Standard Deviation’ 
-               from the 『eStatH』 menu. Then a window like &lt;Figure 4.7&gt; appears.
-            <p>Enter students' quiz scores in 'Data input'. (You can also copy and 
-               paste the material from the e-book)
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0407.png">
-         <div class="textLeft">&lt;Figure 4.7&gt; Quiz data input for a dot graph </div>
+          Select ‘Dot Graph – Mean / Standard Deviation’ 
+          from the 『eStatM』 menu. Then a window like &lt;Figure 4.7&gt; appears.
+      <br>Enter students' quiz scores in 'Data input'. (You can also copy and 
+          paste the material from the e-book)
       <p>
          When the data are entered, the number of data, minimum, maximum, mean, median,
          variance and standard deviation are calculated. If you click the [Execute] button, 
@@ -566,30 +400,24 @@
          in the standard deviation by moving a data point with the mouse. 
          The standard deviation is also affected by an extreme point.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0408.png">
+         <iframe src="./example/0403/0403.html" width="700" height="740"> </iframe>
+      <p>
          <div class="textLeft">&lt;Figure 4.8&gt; Dot graph with a line of mean \(\pm\) standard deviation</div>
+      <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 4.4</h4>
-        Using 『eStatH』, let's draw a dot graph for the daily minimum temperature ([Practice 3.2]) in Seoul in February (Data 3.2) and find the mean and standard deviation.
+        Using 『eStatM』, let's draw a dot graph for the daily minimum temperature ([Practice 3.2]) in Seoul in February (Data 3.2) and find the mean and standard deviation.
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>If you select ‘Dot Graph – Mean / Standard Deviation’ from the 『eStatH』 menu
+      <p>If you select ‘Dot Graph – Mean / Standard Deviation’ from the 『eStatM』 menu
                that appears using the QR on the left, the data input window as shown in 
                &lt;Figure 4.9&gt; appears.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0409.png">
+         <img class="imgFig600600" src="./Figure/Fig0409.png">
          <div class="textLeft">&lt;Figure 4.9&gt; Temperature data input for a dot graph</div>
       <p>
          When data are entered, the number of data, minimum, maximum, mean, median, variance 
@@ -601,7 +429,7 @@
          standard deviation by moving a point with the mouse. The standard deviation 
          is also affected by an extreme point.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0410.png">
+         <img class="imgFig600600" src="./Figure/Fig0410.png">
          <div class="textLeft">&lt;Figure 4.10&gt; Dot graph of daily minimum temperature and a simulation window</div>
     </div>
     <!------------------------------------------------------------------------------------------------->
@@ -609,15 +437,8 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 4.3</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>
-              The following is data on the length of bicycle-only roads by 25 administrative districts in Seoul as of 2019 ([Exercise 3.1]). Use 『eStatH』 to draw a dot graph and to find and analyze the mean and standard deviation of the data.
+        <h4>⏱ Exercise 4.3</h4> 
+              The following is data on the length of bicycle-only roads by 25 administrative districts in Seoul as of 2019 ([Exercise 3.1]). Use 『eStatM』 to draw a dot graph and to find and analyze the mean and standard deviation of the data.
             <p>
             <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul as of 2019. (unit km) </div>
             <table> 
@@ -628,23 +449,14 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 4.4</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>
-              The following is data on the maximum wind speed of typhoons that passed through Korea in 2020 ([Exercise 3.2]). Use 『eStatH』 to draw a dot graph and find and analyze the mean and standard deviation of data.
+        <h4>⏱ Exercise 4.4</h4> 
+              The following is data on the maximum wind speed of typhoons that passed through Korea in 2020 ([Exercise 3.2]). Use 『eStatM』 to draw a dot graph and find and analyze the mean and standard deviation of data.
             <p>
             <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020 (unit m/sec) </div>
             <table> 
@@ -655,9 +467,7 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -665,13 +475,7 @@
   <h3>A. Calculation of standard deviation using frequency table</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
             <b>Assume that the frequency table of the academic achievement test scores of a middle school class is given as follows: </b>
           <p>
           <div class="textLeft">[Table 4.3] Frequency table of the academic achievement test scores of a middle school</div>
@@ -683,19 +487,9 @@
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
             <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>How to find the standard deviation of the data in this frequency table?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -731,13 +525,15 @@
         \end{align} 
       $$
       <p>
-         Using ‘Frequency Distribution Polygon - Relative Frequency Comparison’ of 『eStatH』,
+         Using ‘Frequency Distribution Polygon - Relative Frequency Comparison’ of 『eStatM』,
          the approximate mean and standard deviation of the frequency table can be obtained 
          as shown in &lt;Figure 4.6&gt;. After entering the left value of the class interval
          and ‘Frequency 1’, click the [Execute] button.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0411.png">
+         <iframe src="./example/0404/0404.html" width="750" height="1020"> </iframe>
+      <p>
          <div class="textLeft">&lt;Figure 4.11&gt; Standard deviation calculation using a frequency table </div>
+      <p>
   </div>
   <p>
 
@@ -745,13 +541,8 @@
   <h3 id="0403">4.3 Covariance and Correlation Coefficient</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
+      <p>
           <b>The height and weight of 7 male middle school students were investigated as follows: </b>
           <p>
             <div class="textLeft">(Data 4.3) Height and weight of 7 male middle school students</div>
@@ -760,18 +551,8 @@
               <tr> <th class="thGrey">Height</td> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
               <tr> <th class="thGrey">Weight</td> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
             <b>Is there a measure to determine the correlation between two quantitative variables? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -810,91 +591,27 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 4.5</h4>
-        Using 『eStatH』, calculate the covariance and correlation coefficient of the height and weight of 7 students. . 
+        Using 『eStatM』, calculate the covariance and correlation coefficient of the height and weight of 7 students. . 
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_31Correlation.svg" onclick="window.open(addrStr[158])">     
-          </td>
-          <td>
-            <p>If you select ‘Scatter Plot – Correlation Coefficient’ from the 『eStatH』 menu 
-               using the QR on the left, a window like &lt;Figure 4.12&gt; appears.
-            <p>Enter students' height in 'Enter X data' and their weight in 'Enter Y data'. 
-              (You can also copy and paste the material from the e-book)
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0412.png">
-         <div class="textLeft">&lt;Figure 4.12&gt; Calculation of covariance and correlation coefficient using height and weight data</div>
+         Enter students' height in 'Enter X data' and their weight in 'Enter Y data'. 
+         (You can also copy and paste the material from the e-book)
       <p>
          After the data input, click the [Execute] button. Then the number of data, mean,
          variance, standard deviation, covariance and correlation coefficient are calculated 
          as in &lt;Figue 4.12&gt; and a scatter plot is displayed. 
       <p>
-         If you check the ‘regression line’ under the scatterplot, a regression line that 
-         explains the relationship between height and weight is drawn.
-      <p>
          As shown in &lt;Figure 4.12&gt;, the covariance of height and weight in (Data 4.3)
          is 27 and the correlation coefficient is 0.94, indicating a strong positive correlation.
+      <p>
+      <!----------*** scatter plotH html ***-------------------------------> 
+         <iframe src="./example/0405/0405.html" width="730" height="1030"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 4.13&gt; Scatter plot using height and weight data</div>
+      <p>
+         If you check the ‘regression line’ under the scatterplot, a regression line that 
+         explains the relationship between height and weight is drawn.
     </div>
-    <!------------------------------------------------------------------------------------------------->
-    <p>
-    <!-------------------------------------------------------------------------->
-    <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 4.5</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_31Correlation.svg" onclick="window.open(addrStr[158])">     
-          </td>
-          <td>
-            <p>
-              The following data are weekly study hours and test scores of 10 middle school students. Find the covariance and correlation coefficient using 『eStatH』 and analyze what kind of correlation is.
-            <p>
-            <div class="textLeft">(Data 4.4) Weekly study hours and test score of 10 students</div>
-            <table> 
-              <tr> <th class="thGrey"></th> <th class="thGrey">1</th> <th class="thGrey">2</th> <th class="thGrey">3</th> <th class="thGrey">4</th> <th class="thGrey">5</th> <th class="thGrey">6</th> <th class="thGrey">7</th> <th class="thGrey">8</th> <th class="thGrey">9</th> <th class="thGrey">10</th> </tr>
-              <tr> <th class="thGrey">Study hours</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
-              <tr> <th class="thGrey">Test score</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <p>
-    <!-------------------------------------------------------------------------->
-
-  <div class="mainTable">
-      <p>By using 『eStatH』, you can examine examples of data for various correlation coefficients.
-  </div>
-  <p>
-
-    <!------------------------------------------------------------------------------------------------->
-    <div class="mainTableGrey">
-      <p><h4>🎲 Practice 4.6</h4>
-        Let's simulate various correlation coefficients using 『eStatH』. 
-      <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_31Correlation.svg" onclick="window.open(addrStr[158])">     
-          </td>
-          <td>
-            <p>If you select ‘Correlation Coefficient’ from the QR on the left or 『eStatH』 menu, 
-               an initial scatter plot as shown in &lt;Figure 4.13&gt; appears.
-          </td>
-        </tr>
-      </table>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0413.png">
-         <div class="textLeft">&lt;Figure 4.13&gt; Simulation window for a correlation coefficient</div>
-      <p>
-         Change the 'Correlation Coefficient' under the initial scatter plot to the desired value and click the [Execute] button to display a scatter plot for the corresponding correlation coefficient. 
-      <p>
-         If ‘Regression Line’ is checked, a regression line representing the points appears.
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
   <div class="mainTable">
@@ -906,135 +623,21 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <p><h4>🎲 Practice 4.7</h4>
-        Using 『eStatH』, make a point on the plane and observe the correlation coefficient and regression line while moving.
+      <p><h4>🎲 Practice 4.6</h4>
+        Using 『eStatM』, make a point on the plane and observe the correlation coefficient and regression line while moving.
       <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_32Regression.svg" onclick="window.open(addrStr[159])">     
-          </td>
-          <td>
-            <p>If you select ‘Correlation Coefficient – Regression Line Experiment’ 
-               from the QR on the left or the 『eStatH』 menu, a screen for testing the 
-               correlation coefficient and regression line as shown in &lt;Figure 4.14&gt; appears.
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0414.png">
-         <div class="textLeft">&lt;Figure 4.14&gt; Simulation window of a correlation coefficient and a regression line</div>
+         If you decide a correlation coeffcient in 『eStatM』, a scatter plot of the correlation coefficient  
+         appears as shown in &lt;Figure 4.15&gt;. 
       <p>
-         If you place a dot on this blank screen with the mouse, the regression line and 
-         correlation coefficient appear as shown in &lt;Figure 4.15&gt;. You can observe 
-         the change of the regression line and the correlation coefficient by moving 
-         the point after clicking it with the mouse.
+      <!-----*** html for correlation simulation *** ------------------------------------------------------------------------>
+         <iframe src="./example/0406/0406.html" width="700" height="750"> </iframe>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0415.png">
-         <div class="textLeft">&lt;Figure 4.15&gt; Example of dots and its regression line and correlation coefficient</div>
+         <div class="textLeft">&lt;Figure 4.15&gt; Simulation of a correlation coefficient</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
-
-  <div class="mainTablePink">
-    <h4> Exercise </h4>
-    <p style="color:blue">*** Select an answer and click [SUBMIT] button.
-
-
-  <h6 class="textL30M30">4.1 Which of the following data has a mean of 28 and a median of 30?  </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
-    <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
-    <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
-    <label><input type="radio" name="item" value="4"> 12, 40, 20, 40 </label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(24,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">4.2 Six statistical scores are 70, 60, 80, 90, 90, 70. What is the median of these scores?</h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 70</label><br>
-    <label><input type="radio" name="item" value="2"> 75</label><br>
-    <label><input type="radio" name="item" value="3"> 80</label><br>
-    <label><input type="radio" name="item" value="4"> 90</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(24,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">4.3 Which of the following properties of the mean is incorrect?  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> The mean is greatly affected by an extreme value.</label><br>
-    <label><input type="radio" name="item" value="2"> The sum of deviations from the mean is not zero.</label><br>
-    <label><input type="radio" name="item" value="3"> The sum of squares of deviations about the mean is not greater than the sum of squares of deviations of any other number.</label><br>
-    <label><input type="radio" name="item" value="4"> It is the mean that minimizes the sum of squares of deviations.</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(24,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">4.4 What is the variance of the following numbers? </h6>
-      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8, 10, 11, 12, 14 </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 11</label><br>
-    <label><input type="radio" name="item" value="2"> 8</label><br>
-    <label><input type="radio" name="item" value="3"> 4</label><br>
-    <label><input type="radio" name="item" value="4"> 2</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(24,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">4.5 The X and Y data are as follows:</h6>
-      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X: 1, 2, 3, 4, 5, 6 </h6>
-      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y: 2, 4, 6, 8, 10, 12 </h6>
-      <h6> What is their correlation coefficient between X and Y? </h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> 0</label><br>
-    <label><input type="radio" name="item" value="2"> 0.5</label><br>
-    <label><input type="radio" name="item" value="3"> 1</label><br>
-    <label><input type="radio" name="item" value="4"> -1</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(24,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[24][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 3</b></button>
-</div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+    <iframe src="./exercise/exercise04.html" width="750" height="700" ></iframe>
 
 </body>
 </html>

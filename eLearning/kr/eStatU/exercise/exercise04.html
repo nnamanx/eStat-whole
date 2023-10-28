@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 4</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+    <div class="mainTablePink">
+
+      <h6 class="textL30M30">4.1  다음 데이터 중 평균 28, 중앙값 30, 최빈수가 40인 변량은?  </h6> 
+      <form name="Q1">
+        <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
+        <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
+        <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
+        <label><input type="radio" name="item" value="4"> 12, 40, 20, 40</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ1">
+      </form>
+
+      <h6 class="textL30M30">4.2  6명의 통계학 점수가 70, 60, 80, 90, 90, 70이다. 이 점수의 중앙값은 얼마인가? </h6>
+      <form name="Q2">
+        <label><input type="radio" name="item" value="1"> 70</label><br>
+        <label><input type="radio" name="item" value="2"> 75</label><br>
+        <label><input type="radio" name="item" value="3"> 80</label><br>
+        <label><input type="radio" name="item" value="4"> 90</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ2">
+      </form>
+
+      <h6 class="textL30M30">4.3  숫자 1, 2, 3, … , n 을 각각 쓴 카드가 있다. 이들 숫자의 평균은?</h6>
+      <form name="Q3">
+        <label><input type="radio" name="item" value="1"> \( \frac{(n+1)(2n+1)}{2}\)</label><br>
+        <label><input type="radio" name="item" value="2"> \( \frac{2n+1}{3} \)</label><br>
+        <label><input type="radio" name="item" value="3"> \( \frac{n(n+1)}{2} \)</label><br>
+        <label><input type="radio" name="item" value="4"> \( \frac{n+1}{2} \)</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ3">
+      </form>
+
+      <h6 class="textL30M30">4.4  한 개에 100원씩 하는 토마토 10개와 한 개에 150원씩 하는 토마토를 600원어치를 샀다. 1개당 평균 얼마를 주고 산 셈이 되는가? </h6>
+      <form name="Q4">
+        <label><input type="radio" name="item" value="1"> 114.3</label><br>
+        <label><input type="radio" name="item" value="2"> 122.5</label><br>
+        <label><input type="radio" name="item" value="3"> 125.0</label><br>
+        <label><input type="radio" name="item" value="4"> 125.7</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ4">
+      </form>
+
+      <h6 class="textL30M30">4.5  크기가 \(n_1\), \(n_2\)인 두 자료의 평균이 각각 \(\overline x_1\), \(\overline x_2\)일 때, 이 두 자료를 합친 전체의 평균 \(\overline x\)는?  </h6>
+      <form name="Q5">
+        <label><input type="radio" name="item" value="1"> \( \frac{n_1 {\overline x}_1 + n_2 {\overline x}_2}{n_1 + n_2} \)</label><br>
+        <label><input type="radio" name="item" value="2"> \( \frac{n_1 {\overline x}_2 + n_2 {\overline x}_1}{n_1 + n_2} \)</label><br>
+        <label><input type="radio" name="item" value="3"> \( \frac{{\overline x}_1 + {\overline x}_2}{n_1 + n_2} \)</label><br>
+        <label><input type="radio" name="item" value="4"> \( \frac{n_1 n_2 {\overline x}_1 + {\overline x}_2 }{n_1 + n_2} \)</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ5">
+      </form>
+
+      <h6 class="textL30M30">4.6  데이터 \(x_1 , x_2 , ... , x_n \)의 평균이 \(\overline x\)일 때 , \( \sum_{i=1}^{n} {x_i - \overline x}\) 의 값은?</h6>
+      <form name="Q6">
+        <label><input type="radio" name="item" value="1"> 1</label><br>
+        <label><input type="radio" name="item" value="2"> 0</label><br>
+        <label><input type="radio" name="item" value="3"> -1</label><br>
+        <label><input type="radio" name="item" value="4"> n</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ6">
+      </form>
+
+      <h6 class="textL30M30">4.7  산술평균의 성질 중 틀린 것은? </h6>
+      <form name="Q7">
+        <label><input type="radio" name="item" value="1"> 산술평균은 변량 중의 극단값의 영향을 많이 받는다.</label><br>
+        <label><input type="radio" name="item" value="2"> 산술평균에 대한 편차의 합은 0이 아니다.</label><br>
+        <label><input type="radio" name="item" value="3"> 산술평균에 대한 편차의 제곱의 합은 다른 어떤 수에 대한 편차의 제곱의 합보다 크지 않다.</label><br>
+        <label><input type="radio" name="item" value="4"> 편차의 제곱의 합을 최소로 하는 것은 산술평균이다.</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ7">
+      </form>
+
+      <h6 class="textL30M30">4.8  다음 표는 어느 대학생의 평가표이다. 학점수를 가중값으로 하는 가중평균은? </h6>
+          <table style="width:500px"> 
+            <tr>
+              <td class="tdLeft">과목명</td> 
+              <td class="tdCenter">A</td>
+              <td class="tdCenter">B</td>
+              <td class="tdCenter">C</td>
+              <td class="tdCenter">D</td>
+              <td class="tdCenter">E</td>
+              <td class="tdCenter">F</td>
+            </tr>
+            <tr>
+              <td class="tdLeft">학점수</td>
+              <td class="tdCenter">4</td>
+              <td class="tdCenter">3</td>
+              <td class="tdCenter">3</td>
+              <td class="tdCenter">2</td>
+              <td class="tdCenter">2</td>
+              <td class="tdCenter">1</td>
+            </tr>
+            <tr>
+              <td class="tdLeft">점수</td>
+              <td class="tdCenter">80</td>
+              <td class="tdCenter">90</td>
+              <td class="tdCenter">85</td>
+              <td class="tdCenter">95</td>
+              <td class="tdCenter">75</td>
+              <td class="tdCenter">90</td>
+            </tr>
+          </table>     
+      <form name="Q8">
+        <label><input type="radio" name="item" value="1"> 82.85</label><br>
+        <label><input type="radio" name="item" value="2"> 85.00</label><br>
+        <label><input type="radio" name="item" value="3"> 83.25</label><br>
+        <label><input type="radio" name="item" value="4"> 80.00</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ8">
+      </form>
+
+      <h6 class="textL30M30">4.9  어느 도수분포에서 1사분위수가 68.25, 2사분위수가 79.06, 3사분위수가 90.75일 때 다음의 통계적 해석이 틀린 것은?</h6>
+      <form name="Q9">
+        <label><input type="radio" name="item" value="1"> 전체도수의 25%가 68.25 이하이다.</label><br>
+        <label><input type="radio" name="item" value="2"> 전체도수의 50%가 68.25 이하이다.</label><br>
+        <label><input type="radio" name="item" value="3"> 전체도수의 50%가 79.06 이하이다.</label><br>
+        <label><input type="radio" name="item" value="4"> 전체도수의 75%가 90.75 이하이다.</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ9">
+      </form>
+
+      <h6 class="textL30M30">4.10 성질이 다르거나 또는 평균이 다른 자료의 산포도를 비교하는데 편리한 척도는?</h6>
+      <form name="Q10">
+        <label><input type="radio" name="item" value="1"> 상대도수</label><br>
+        <label><input type="radio" name="item" value="2"> 표준편차	</label><br>
+        <label><input type="radio" name="item" value="3"> 변이계수</label><br>
+        <label><input type="radio" name="item" value="4"> 상관계수</label><br>
+        <p>
+        <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ10">
+      </form>
+
+    </div>
+
+  <script src="./js/exercise04.js"></script>   
+ 
+</body>
+</html>
+

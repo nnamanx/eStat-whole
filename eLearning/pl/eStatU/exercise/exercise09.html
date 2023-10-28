@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 9</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>9.4 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+    <h6 class="textL30M30">9.1 Who first announced the ANOVA method?</h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> Laspeyres</label><br>
+      <label><input type="radio" name="item" value="2"> Paasche</label><br>
+      <label><input type="radio" name="item" value="3"> Fisher</label><br>
+      <label><input type="radio" name="item" value="4"> Edgeworth</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">9.2 What are the abbreviation of the analysis of variance?</h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> ANOVA</label><br>
+      <label><input type="radio" name="item" value="2"> t</label><br>
+      <label><input type="radio" name="item" value="3"> F</label><br>
+      <label><input type="radio" name="item" value="4"> Chi-square</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">9.3  Which areas are not the area of application for the analysis of variance?<h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> marketing survey</label><br>
+      <label><input type="radio" name="item" value="2"> quality control	</label><br>
+      <label><input type="radio" name="item" value="3"> economy forecasting</label><br>
+      <label><input type="radio" name="item" value="4"> medical experiment</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">9.4  Which sampling distribution is used for the analysis of variance? </h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> t-distribution</label><br>
+      <label><input type="radio" name="item" value="2"> F-distribution</label><br>
+      <label><input type="radio" name="item" value="3"> Chi-square distribution</label><br>
+      <label><input type="radio" name="item" value="4"> Normal distribution</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">9.5  Which is the correct process for the one-way ANOVA?</h6>
+      <div class="textLeft">a. Calculate Total SS, Treatment SS, Error SS</div>
+      <div class="textLeft">b. Set the hypothesis</div>
+      <div class="textLeft">c. Test the hypothesis</div>
+      <div class="textLeft">d. Calculate the variance ration in the ANOVA table</div>
+      <div class="textLeft">e. Find the value in the F distribution table</div>
+      <p>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> a → b → c → d → e</label><br>
+      <label><input type="radio" name="item" value="2"> b → d → e → a → c</label><br>
+      <label><input type="radio" name="item" value="3"> b → a → d → e → c</label><br>
+      <label><input type="radio" name="item" value="4"> b → e → d → a → c</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+  
+    <h6 class="textL30M30">9.6  Which is the correct relationship between the total sum of squares (SST), between sum of squares (SSB), error sum of squares (SSE)?</h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> SST = SSB + SSE</label><br>
+      <label><input type="radio" name="item" value="2"> SST = SSB - SSE</label><br>
+      <label><input type="radio" name="item" value="3"> SST = SSE - SSB</label><br>
+      <label><input type="radio" name="item" value="4"> SST = SSB * SSE</label><br>
+     <p>
+      <input type="button" value="Submit" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+  
+    <h6 class="textL30M30">9.7  If \(F_{4,30: 0.05} = 2.87\)  and the observed \(F\) ratio is 6.90 in the ANOVA table, what is your conclusion with the 5％ significance level? </h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> significantly different</label><br>
+      <label><input type="radio" name="item" value="2"> no significant difference</label><br>
+      <label><input type="radio" name="item" value="3"> very similar</label><br>
+      <label><input type="radio" name="item" value="4"> unknown</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+  
+    <h6 class="textL30M30">9.8  Which is not appeared in the analysis of variance table? </h6>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> sum of squares</label><br>
+      <label><input type="radio" name="item" value="2"> F ratio</label><br>
+      <label><input type="radio" name="item" value="3"> degrees of freedom</label><br>
+      <label><input type="radio" name="item" value="4"> standard deviation</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">9.9 What is the name of variable which effects response variable in the experimental design? </h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> cause element</label><br>
+      <label><input type="radio" name="item" value="2"> independent variable</label><br>
+      <label><input type="radio" name="item" value="3"> dependent variable</label><br>
+      <label><input type="radio" name="item" value="4"> factor</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">9.10 In order to compare the fuel mileage of three types of cars, three drivers would like to drive cars, but fuel mileage may be affected by the driver. 
+     What is the name of variable like drivers? </h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> block variable</label><br>
+      <label><input type="radio" name="item" value="2"> independent variable</label><br>
+      <label><input type="radio" name="item" value="3"> dependent variable</label><br>
+      <label><input type="radio" name="item" value="4"> factor</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+    
+    <h6 class="textL30M30">9.11 When we compare the fuel mileage of three types of cars, which experimental 
+      design is used to reduce the effect of drivers? </h6>
+    <form name="Q11">
+      <label><input type="radio" name="item" value="1"> completely randomized design</label><br>
+      <label><input type="radio" name="item" value="2"> latin square method</label><br>
+      <label><input type="radio" name="item" value="3"> two-way ANOVA</label><br>
+      <label><input type="radio" name="item" value="4"> randomized block design</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ11">
+    </form>
+
+    <h6 class="textL30M30">9.12 What is called the effect of a factor A that varies depending on the level of the factor B? </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> main effect of factor A</label><br>
+      <label><input type="radio" name="item" value="2"> main effect of factor B</label><br>
+      <label><input type="radio" name="item" value="3"> two-way ANOVA</label><br>
+      <label><input type="radio" name="item" value="4"> interaction effect</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+    <div class="textL30M30">
+      9.1  Complete the following ANOVA table.
+    </div>
+    <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Factor</th>
+           <th>SS</th>
+           <th>df</th>
+           <th>MS</th>
+           <th>F ratio</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Treatment</td>
+           <td class="tdCenter">154.9199</td>
+           <td class="tdCenter">4</td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Error</td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">200.4773</td>
+           <td class="tdCenter">39</td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+         </tr>
+      </table>
+    <p>
+    <div class="textL30M30">
+      9.2  Answer the following questions based on this ANOVA table.
+    </div>
+    <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Factor</th>
+           <th>SS</th>
+           <th>df</th>
+           <th>MS</th>
+           <th>F ratio</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Treatment</td>
+           <td class="tdCenter">5.05835</td>
+           <td class="tdCenter">2</td>
+           <td class="tdCenter">2.52917</td>
+           <td class="tdCenter">1.0438</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Error</td>
+           <td class="tdCenter">65.42090</td>
+           <td class="tdCenter">27</td>
+           <td class="tdCenter">2.4230</td>
+           <td class="tdCenter"></td>
+         </tr>
+      </table>
+    <p>
+    <div class="textL50M30">         
+      1) How many levels of treatment are compared?
+    </div>
+    <div class="textL50M30">         
+      2) How many total number of observations are there?
+    </div>
+    <div class="textL50M30">         
+      3) Can you conclude that the levels of treatment are significantly different with the 5% significance level? Why?
+    </div>
+    <p>
+
+    <div class="textL30M30">
+      9.3   In order to test customers' responses to new products, four different exhibition 
+      methods (A, B, C and D) were used by a company. Each exhibition method was used in nine 
+      stores by selecting 36 stores that met the company's criteria. The total sales in USD for the 
+      weekend are shown in the following table.
+    </div>
+    <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Method A</th>
+           <th>Method B</th>
+           <th>Method C</th>
+           <th>Method D</th>
+         </tr>
+         <tr> <td class="tdCenter">5</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> <td class="tdCenter">6</td> </tr>
+         <tr> <td class="tdCenter">6</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> <td class="tdCenter">6</td> </tr>
+         <tr> <td class="tdCenter">7</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> <td class="tdCenter">7</td> </tr>
+         <tr> <td class="tdCenter">7</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> <td class="tdCenter">8</td> </tr>
+         <tr> <td class="tdCenter">8</td> <td class="tdCenter">3</td> <td class="tdCenter">2</td> <td class="tdCenter">8</td> </tr>
+         <tr> <td class="tdCenter">6</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> <td class="tdCenter">8</td> </tr>
+         <tr> <td class="tdCenter">7</td> <td class="tdCenter">3</td> <td class="tdCenter">2</td> <td class="tdCenter">6</td> </tr>
+         <tr> <td class="tdCenter">7</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> <td class="tdCenter">6</td> </tr>
+         <tr> <td class="tdCenter">6</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> <td class="tdCenter">6</td> </tr>
+      </table>
+    <p>
+    <div class="textL50M30">         
+      1) Draw a scatter plot of sales (y axis) and exhibition method (x axis). Mark the average 
+      sales of each exhibition method and connect them with a line. 
+    </div>
+    <div class="textL50M30">         
+      2) Test that the sales by each exhibition method are different in the amount of sales with 
+      the 5% significance level. Can you conclude that one of the exhibition methods shows significant effect on sales? 
+    </div>
+    <p>
+
+    <div class="textL30M30">
+      9.4  The following table shows mileages in km per one liter of gasoline obtained from experiments to compare 
+      three brands of gasoline. In this experiment, seven cars of the same type were used in a 
+      similar situation to reduce the variation of the car. 
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Gasoline A</th>
+           <th>Gasoline B</th>
+           <th>Gasoline C</th>
+         </tr>
+         <tr> <td class="tdCenter">14</td> <td class="tdCenter">20</td> <td class="tdCenter">20</td> </tr>
+         <tr> <td class="tdCenter">19</td> <td class="tdCenter">21</td> <td class="tdCenter">26</td> </tr>
+         <tr> <td class="tdCenter">19</td> <td class="tdCenter">18</td> <td class="tdCenter">23</td> </tr>
+         <tr> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">19</td> <td class="tdCenter">23</td> </tr>
+         <tr> <td class="tdCenter">17</td> <td class="tdCenter">19</td> <td class="tdCenter">25</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">18</td> <td class="tdCenter">23</td> </tr>
+      </table>
+    <p>
+    <div class="textL50M30">         
+      1) Calculate the average mileages of each gasoline brand. Draw a scatter plot of gas milage 
+      (y axis) and gasoline brand (x axis) to compare.
+    </div>
+    <div class="textL50M30">         
+      2) From this data, test whether there are differences between gasoline brands for gas milage 
+      with the 5% significance level.
+    </div>
+    <p>
+
+    <div class="textL30M30">
+      9.5  The result of a survey on job satisfaction of three companies (A, B, and C) is as 
+      follows: Test whether the averages of job satisfaction of the three companies are different 
+      with the 5% significance level. 
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Company A</th>
+           <th>Company B</th>
+           <th>Company C</th>
+         </tr>
+         <tr> <td class="tdCenter">69</td> <td class="tdCenter">56</td> <td class="tdCenter">71</td> </tr>
+         <tr> <td class="tdCenter">67</td> <td class="tdCenter">63</td> <td class="tdCenter">72</td> </tr>
+         <tr> <td class="tdCenter">65</td> <td class="tdCenter">55</td> <td class="tdCenter">70</td> </tr>
+         <tr> <td class="tdCenter">59</td> <td class="tdCenter">59</td> <td class="tdCenter">68</td> </tr>
+         <tr> <td class="tdCenter">68</td> <td class="tdCenter">52</td> <td class="tdCenter">74</td> </tr>
+         <tr> <td class="tdCenter">61</td> <td class="tdCenter">57</td> <td class="tdCenter"></td> </tr>
+         <tr> <td class="tdCenter">66</td> <td class="tdCenter"></td>   <td class="tdCenter"></td> </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      9.6  Psychologists were asked to investigate the job satisfaction of salespeople in three 
+      companies: A, B and C. Ten salespeople were randomly selected from each company and a test to 
+      measure the job satisfaction was conducted. Test scores are as follows: From this data, can 
+      we claim that the average scores of the job satisfaction of three companies are different 
+      with the significance level of 0.05?
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Company A</th>
+           <th>Company B</th>
+           <th>Company C</th>
+         </tr>
+         <tr> <td class="tdCenter">67</td> <td class="tdCenter">66</td> <td class="tdCenter">87</td> </tr>
+         <tr> <td class="tdCenter">65</td> <td class="tdCenter">68</td> <td class="tdCenter">80</td> </tr>
+         <tr> <td class="tdCenter">59</td> <td class="tdCenter">55</td> <td class="tdCenter">67</td> </tr>
+         <tr> <td class="tdCenter">59</td> <td class="tdCenter">59</td> <td class="tdCenter">89</td> </tr>
+         <tr> <td class="tdCenter">58</td> <td class="tdCenter">61</td> <td class="tdCenter">80</td> </tr>
+         <tr> <td class="tdCenter">61</td> <td class="tdCenter">66</td> <td class="tdCenter">84</td> </tr>
+         <tr> <td class="tdCenter">66</td> <td class="tdCenter">62</td> <td class="tdCenter">78</td> </tr>
+         <tr> <td class="tdCenter">53</td> <td class="tdCenter">65</td> <td class="tdCenter">65</td> </tr>
+         <tr> <td class="tdCenter">51</td> <td class="tdCenter">64</td> <td class="tdCenter">72</td> </tr>
+         <tr> <td class="tdCenter">64</td> <td class="tdCenter">74</td> <td class="tdCenter">85</td> </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      9.7  An advertising agency experimented to find out the effects of various forms (A, B, C, D 
+      and E) of TV advertising. Fifty television viewers were shown five forms of TV commercials 
+      for a cold medicine in random order one by one. The effect of advertising after viewing was 
+      measured and recorded as follows: Test an appropriate hypothesis with the 5% significance level.
+    </div>
+    <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Method A</th>
+           <th>Method B</th>
+           <th>Method C</th>
+           <th>Method D</th>
+           <th>Method E</th>
+         </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">28</td> <td class="tdCenter">33</td> <td class="tdCenter">33</td> <td class="tdCenter">49</td> </tr>
+         <tr> <td class="tdCenter">23</td> <td class="tdCenter">27</td> <td class="tdCenter">34</td> <td class="tdCenter">29</td> <td class="tdCenter">41</td> </tr>
+         <tr> <td class="tdCenter">21</td> <td class="tdCenter">22</td> <td class="tdCenter">25</td> <td class="tdCenter">31</td> <td class="tdCenter">41</td> </tr>
+         <tr> <td class="tdCenter">23</td> <td class="tdCenter">28</td> <td class="tdCenter">26</td> <td class="tdCenter">29</td> <td class="tdCenter">39</td> </tr>
+         <tr> <td class="tdCenter">26</td> <td class="tdCenter">23</td> <td class="tdCenter">27</td> <td class="tdCenter">27</td> <td class="tdCenter">41</td> </tr>
+         <tr> <td class="tdCenter">24</td> <td class="tdCenter">29</td> <td class="tdCenter">33</td> <td class="tdCenter">25</td> <td class="tdCenter">48</td> </tr>
+         <tr> <td class="tdCenter">26</td> <td class="tdCenter">27</td> <td class="tdCenter">25</td> <td class="tdCenter">26</td> <td class="tdCenter">43</td> </tr>
+         <tr> <td class="tdCenter">23</td> <td class="tdCenter">25</td> <td class="tdCenter">32</td> <td class="tdCenter">26</td> <td class="tdCenter">43</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">28</td> <td class="tdCenter">25</td> <td class="tdCenter">33</td> <td class="tdCenter">46</td> </tr>
+         <tr> <td class="tdCenter">24</td> <td class="tdCenter">21</td> <td class="tdCenter">34</td> <td class="tdCenter">32</td> <td class="tdCenter">35</td> </tr>
+      </table>
+    <p>
+    <div class="textL30M30">
+      9.8  The following is the result of an agronomist's survey of the yield of four varieties of 
+      wheat by using the randomized block design of three cultivated areas (block). Test whether 
+      the mean yields of the four wheats are the same or not with the 5% significance level.
+    </div>
+    <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>Wheat Type</th>
+           <th>Area 1</th>
+           <th>Area 2</th>
+           <th>Area 3</th>
+           <th>Average</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Wheat A</td>
+           <td class="tdCenter">60</td>
+           <td class="tdCenter">61</td>
+           <td class="tdCenter">56</td>
+           <td class="tdCenter">59</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Wheat B</td>
+           <td class="tdCenter">59</td>
+           <td class="tdCenter">52</td>
+           <td class="tdCenter">51</td>
+           <td class="tdCenter">54</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Wheat C</td>
+           <td class="tdCenter">55</td>
+           <td class="tdCenter">55</td>
+           <td class="tdCenter">52</td>
+           <td class="tdCenter">54</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Wheat D</td>
+           <td class="tdCenter">58</td>
+           <td class="tdCenter">58</td>
+           <td class="tdCenter">55</td>
+           <td class="tdCenter">57</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      9.9  Answer the following questions based on the following ANOVA table. 
+    </div>
+    <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th>Factor</th>
+           <th>SS</th>
+           <th>df</th>
+           <th>MS</th>
+           <th>F ratio</th>
+           <th>p-value</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">A</td>
+           <td class="tdCenter">12.3152</td>
+           <td class="tdCenter">2</td>
+           <td class="tdCenter">6.1575</td>
+           <td class="tdCenter">29.4021</td>
+           <td class="tdCenter">&lt; 0.005</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">B</td>
+           <td class="tdCenter">19.7844</td>
+           <td class="tdCenter">3</td>
+           <td class="tdCenter">6.5948</td>
+           <td class="tdCenter">31.4898</td>
+           <td class="tdCenter">&lt; 0.005</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">AB</td>
+           <td class="tdCenter">8.9416</td>
+           <td class="tdCenter">6</td>
+           <td class="tdCenter">1.4902</td>
+           <td class="tdCenter">7.1159</td>
+           <td class="tdCenter">&lt; 0.005</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Error</td>
+           <td class="tdCenter">10.0525</td>
+           <td class="tdCenter">48</td>
+           <td class="tdCenter">0.2094</td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Total</td>
+           <td class="tdCenter">51.0938</td>
+           <td class="tdCenter">59</td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+           <td class="tdCenter"></td>
+         </tr>
+      </table>
+    <p>
+    <div class="textL50M30">         
+      1) What method of analysis was used?
+    </div>
+    <div class="textL50M30">         
+      2) What conclusions can be obtained from the above analysis table? The significance level is       0.05.
+    </div>
+    <p>
+
+    <div class="textL30M30">
+      9.10 Research was conducted to compare the job satisfaction of workers in the assembly 
+      process with different working conditions. Another concern is the relationship between the 
+      job satisfaction and years of service. Observers would like to investigate the interaction 
+      effect between the years of service and working conditions. The following table shows the 
+      level of the job satisfaction obtained from the survey. Analyze the data using an appropriate methodology.
+    </div>
+    <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Years of service</th>
+           <th>Good</th>
+           <th>Fair</th>
+           <th>Bad</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">&lt; 5</td>
+           <td class="tdCenter">12<br>15<br>15<br>14<br>12</td>
+           <td class="tdCenter">10<br>10<br>9<br>10<br>9</td>
+           <td class="tdCenter">8<br>7<br>7<br>8<br>6</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">5 - 10</td>
+           <td class="tdCenter">12<br>14<br>12<br>10<br>11</td>
+           <td class="tdCenter">10<br>10<br>14<br>14<br>10</td>
+           <td class="tdCenter">10<br>11<br>12<br>10<br>14</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">11 or more</td>
+           <td class="tdCenter">9<br>10<br>9<br>9<br>10</td>
+           <td class="tdCenter">10<br>11<br>10<br>10<br>12</td>
+           <td class="tdCenter">12<br>14<br>15<br>15<br>15</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      9.11 The following table shows the degree of stress in the work and the level of anxiety 
+      among 27 workers classified as years of service. Analyze data using the analysis of variance 
+      with the 5% significance level.
+    </div>
+    <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Factor A<br>Years of Service</th>
+           <th>Job Pressure<br>Good</th>
+           <th>Job Pressure<br>Fair</th>
+           <th>Job Pressure<br>Bad</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">&lt; 5</td>
+           <td class="tdCenter">25<br>28<br>22</td>
+           <td class="tdCenter">18<br>23<br>19</td>
+           <td class="tdCenter">17<br>24<br>19</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">5 - 10</td>
+           <td class="tdCenter">28<br>32<br>30</td>
+           <td class="tdCenter">16<br>24<br>20</td>
+           <td class="tdCenter">18<br>22<br>20</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">11 or more</td>
+           <td class="tdCenter">25<br>35<br>30</td>
+           <td class="tdCenter">14<br>16<br>15</td>
+           <td class="tdCenter">10<br> 8<br>12</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      9.12 A fertilizer manufacturer hired a research team to study the yields of three grain seeds 
+      (A, B, C)  and three types of fertilizer (1, 2, 3). Three grain seeds in combination of three 
+      types of fertilizer were used and the experiment were repeated three times at each 
+      combination of treatments. Each combination of treatments was randomly assigned to 27 
+      different regions. Analyze data using the analysis of variance with the 5% significance level.
+    </div>
+    <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Seed Type</th>
+           <th>Fertilizer 1</th>
+           <th>Fertilizer 2</th>
+           <th>Fertilizer 3</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">A</td>
+           <td class="tdCenter">5<br>8<br>7  </td>
+           <td class="tdCenter">8<br>8<br>10 </td>
+           <td class="tdCenter">10<br>9<br>10</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">B</td>
+           <td class="tdCenter">6<br>8<br>6</td>
+           <td class="tdCenter">10<br>12<br>11</td>
+           <td class="tdCenter">15<br>14<br>14</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">C</td>
+           <td class="tdCenter">7<br>8<br>10</td>
+           <td class="tdCenter">12<br>12<br>14</td>
+           <td class="tdCenter">16<br>10<br>18</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      9.13 The result of a fertilizer manufacturer's experiment with the production of soybeans on two seeds 
+      using three types of fertilizer (A, B, and C) is as follows: Each fertilizer and seed were tested four times. 
+      Analyze data using the analysis of variance with the 5% significance level.
+    </div>
+    <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th></th>
+           <th>Fertilizer A</th>
+           <th>Fertilizer B</th>
+           <th>Fertilizer C</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Seed 1</td>
+           <td class="tdCenter"> 5<br> 8<br> 7<br> 6</td>
+           <td class="tdCenter"> 8<br> 8<br>10<br>10</td>
+           <td class="tdCenter">10<br>12<br>10<br>10</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Seed 2</td>
+           <td class="tdCenter"> 8<br> 6<br> 8<br>10</td>
+           <td class="tdCenter">12<br>11<br>12<br>14</td>
+           <td class="tdCenter">14<br>16<br>16<br>18</td>
+         </tr>
+      </table>
+  </div>
+
+  <script src="./js/exercise09.js"></script>
+ 
+</body>
+</html>
+

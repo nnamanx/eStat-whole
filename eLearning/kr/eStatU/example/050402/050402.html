@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Normal Distribution">Normal Distribution</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+  <style>
+    .slideR { width:100%; -webkit-appearance: none; background: LightCoral; }
+    .slideG { width:100%; -webkit-appearance: none; background: GreenYellow; }
+    .slideB { width:100%; -webkit-appearance: none; background: Cyan; }
+  </style>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      &nbsp; <b> <span data-msgid="Normal Distribution"></span> <span data-msgid="ComparisonGraph"></span> </b> 
+    </div>
+    <p>
+    <table class="stat">
+        <tr>
+          <td>&nbsp;</td>
+          <td><span style="color:#FF0000"><b>N (</b></span></td>
+          <td><input type="number" size=6 id="a1" value="0" style="color:#FF0000" class="inputNumber60" />
+          <td> , </td>
+          <td><input type="number" size=6 id="b1" value="1" style="color:#FF0000" class="inputNumber60" />&nbsp<sup>2</sup>
+          <td><span style="color:#FF0000"><b>)</b></span></td>
+          <td><span style="color:#FF0000"><b>N (</b></span>
+            <sup><small> -10 </small></sup> 
+            <input type="range" min="0" max="100" value="50" style="width:60px" id="range11" class="slideR" onchange="show11(this.value)"/>  
+            <sup><small>10</small></sup> , &nbsp; 
+            <sup><small> 0.1 </small></sup> 
+            <input type="range" min="1" max="100" value="10" style="width:60px" id="range12" class="slideR"onchange="show12(this.value)"/>  
+            <sup><small>10</small></sup> 
+            <span style="color:#FF0000"><b>)</b></span>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><span style="color:LimeGreen"><b>N (</b></span></td>
+          <td><input type="number" size=6 id="a2" value="-2" style="color:LimeGreen" class="inputNumber60" />
+          <td> , </td>
+          <td><input type="number" size=6 id="b2" value="0.5" style="color:LimeGreen" class="inputNumber60" />&nbsp<sup>2</sup>
+          <td><span style="color:LimeGreen"><b>)</b></span></td>
+          <td><span style="color:LimeGreen"><b>N (</b></span>
+            <sup><small> -10 </small></sup> 
+            <input type="range" min="0" max="100" value="40" style="width:60px" id="range21" class="slideG" onchange="show21(this.value)"/>  
+            <sup><small>10</small></sup> , &nbsp; 
+            <sup><small> 0.1 </small></sup> 
+            <input type="range" min="1" max="100" value="5" style="width:60px" id="range22" class="slideG" onchange="show22(this.value)"/>  
+            <sup><small>10</small></sup> 
+            <span style="color:LimeGreen"><b>)</b></span>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><span style="color:#8000FF"><b>N (</b></span></td>
+          <td><input type="number" size=6 id="a3" value="2" style="color:#8000FF" class="inputNumber60" />
+          <td> , </td>
+          <td><input type="number" size=6 id="b3" value="3" style="color:#8000FF" class="inputNumber60" />&nbsp<sup>2</sup>
+          <td><span style="color:#8000FF"><b>)</b></span></td>
+          <td><span style="color:#8000FF"><b>N (</b></span>
+            <sup><small> -10 </small></sup> 
+            <input type="range" min="0" max="100" value="60" style="width:60px" id="range31" class="slideB" onchange="show31(this.value)"/>  
+            <sup><small>10</small></sup> , &nbsp;
+            <sup><small> 0.1 </small></sup> 
+            <input type="range" min="1" max="100" value="30" style="width:60px" id="range32" class="slideB" onchange="show32(this.value)"/>  
+            <sup><small>10</small></sup> 
+            <span style="color:#8000FF"><b>)</b></span>
+          </td>
+        </tr>
+    </table>
+    &nbsp;&nbsp;
+    <button type="button" id="execute" >
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    <p>
+    <svg id="chart" width="600" height="400"> </svg>
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    <p>&nbsp;
+    <span data-msgid="Reference Site">Reference</span> :  
+      <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/NormalDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 
+      <a href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution" target="_blank" >KhanAcademy </a> &nbsp; 
+  </div>
+
+   <script src="/estat/eStatU/js/50NormalComparison.js"> </script>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Frequency Polygon"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="640" height="640" style="position:absolute; left:10px; top:0px"> 
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Frequency Polygon"></span> - <span data-msgid="RelativeFreq"></span> <span data-msgid="ComparisonGraph"></span></b> 
+    </div>
+    <br>   
+    <table>
+        <tr>
+          <td colspan="2" style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=63 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td>&nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=10 id="ytitle"></td>
+          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
+          <td><input type="text" size=10 id="xtitle"></td>
+ 	</tr>
+    </table>  
+    <table class="data">
+      <tbody>
+	<tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td colspan="3"><b><span data-msgid="Histogram"></span> <span data-msgid="oneColor"></span></b></td>
+          <td style="text-align: center;"><input type="color" id="data02" onclick="changeColor()" style="width:80%"></td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td style="text-align: center;"><input type="color" id="data04" onclick="changeColor()" style="width:80%"></td>
+          <td>&nbsp;</td>
+          <td style="text-align: center;"><input type="color" id="data05" onclick="changeColor()" style="width:80%"></td>
+ 	</tr>
+	<tr>
+          <td>&nbsp;</td>
+	  <td colspan="3" style="text-align: center;"><b><span data-msgid="Category"></span></b></td>
+          <td>&nbsp;</td>
+	  <td style="text-align: center;"><input type="text" size="9" id="freq1"></td>
+          <td>&nbsp;</td>
+	  <td style="text-align: center;"><input type="text" size="9" id="freq2"></td>
+          <td>&nbsp;</td>
+	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span> 1</b></td>
+          <td>&nbsp;</td>
+	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span> 2</b></td>
+	</tr>
+	<tr>
+          <td> 1</td>
+	  <td><input type="text" size="5" id="data10" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;&nbsp;</td>
+          <td><input type="text" size="5" id="data11" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data12" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data13" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data14" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data15" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 2</td>
+	  <td><input type="text" size="5" id="data20" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data21" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data22" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data23" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data24" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data25" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 3</td>
+	  <td><input type="text" size="5" id="data30" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data31" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data32" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data33" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data34" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data35" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 4</td>
+	  <td><input type="text" size="5" id="data40" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data41" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data42" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data43" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data44" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data45" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 5</td>
+	  <td><input type="text" size="5" id="data50" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data51" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data52" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data53" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data54" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data55" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 6</td>
+	  <td><input type="text" size="5" id="data60" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data61" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data62" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data63" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data64" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data65" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 7</td>
+	  <td><input type="text" size="5" id="data70" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data71" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data72" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data73" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data74" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data75" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 8</td>
+	  <td><input type="text" size="5" id="data80" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data81" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data82" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data83" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data84" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data85" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> 9</td>
+	  <td><input type="text" size="5" id="data90" style="text-align: right;"></td>
+          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
+          <td><input type="text" size="5" id="data91" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data92" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data93" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data94" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data95" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Total">Sum</span> </td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data102" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data103" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data104" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size="9" id="data105" style="text-align: right;"></td>
+	</tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Mean"> </span> </td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data112" style="text-align: right;"></td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data113" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Variance"> </span> </td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data122" style="text-align: right;"></td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data123" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Std Deviation"> </span> </td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data132" style="text-align: right;"></td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data133" style="text-align: right;"></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+    <button type="button" id="execute" style="width:90px;"><span data-msgid="Execute">Execute</span></button> 
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="680" height="450"> </svg>
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div>
+  
+  <script src="/estat/eStatU/js/09RelativeFrequency.js"> </script>
+  <script>
+      // init Example of Rel Freq 
+        document.getElementById("mtitle").value = "Test scores of a middle school";
+        document.getElementById("ytitle").value = svgStr[30][langNum];
+        document.getElementById("xtitle").value = "Test score";
+        document.getElementById("data02").value = colr[2]; // Yellow
+        document.getElementById("data04").value = colr[0]; // red
+        document.getElementById("data05").value = colr[6]; // blue
+        document.getElementById("freq1").value  = "Frequency 1";
+        document.getElementById("freq2").value  = "Frequency 2";
+        document.getElementById("data10").value = "60";
+        document.getElementById("data20").value = "70";
+        document.getElementById("data30").value = "80";
+        document.getElementById("data40").value = "90";
+        document.getElementById("data12").value = "2";
+        document.getElementById("data22").value = "5";
+        document.getElementById("data32").value = "10";
+        document.getElementById("data42").value = "3";
+  </script>
+
+</body>
+</html>

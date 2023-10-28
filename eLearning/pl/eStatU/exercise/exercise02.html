@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>2.5 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+
+    <h6 class="textL30M30">2.1 How do you call the following form of organized data? </h6>
+    <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey">Gender</th>
+          <th class="thGrey">Students</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Male</td>
+          <td class="tdCenter">6</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Female</td>
+          <td class="tdCenter">4</td>
+        </tr>
+      </table>
+    <p>
+    <form name="Q1">
+    <label><input type="radio" name="item" value="1"> Discrete Data</label><br>
+    <label><input type="radio" name="item" value="2"> Summary Data</label><br>
+    <label><input type="radio" name="item" value="3"> Raw Data</label><br>
+    <label><input type="radio" name="item" value="4"> Continuous Data</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">2.2 How do you call the following type of data?  </h6>
+    <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey" style="width:250px">Gender<br>(1:Male, 2:Female)</th>
+          <th class="thGrey" style="width:250px">Marital Status<br>(1:Single, 2:Married, 3:Other)</th>
+        </tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">2</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">2</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">2</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">3</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">1</td></tr>
+      </table>
+    <p>
+    <form name="Q2">
+    <label><input type="radio" name="item" value="1"> Discrete Data</label><br>
+    <label><input type="radio" name="item" value="2"> Summary Data</label><br>
+    <label><input type="radio" name="item" value="3"> Raw Data</label><br>
+    <label><input type="radio" name="item" value="4"> Continuous Data</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">2.3 Which of the following graphs is used for visualizing qualitative data?</h6>
+    <form name="Q3">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> stem and leaf plot</label><br>
+    <label><input type="radio" name="item" value="4"> scatter plot</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">2.4 Which of the following graphs is NOT used for visualizing qualitative data?  </h6>
+    <form name="Q4">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> pie chart</label><br>
+    <label><input type="radio" name="item" value="4"> band graph</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">2.5 Which graph is useful for data observed over time, such as annual exports? </h6>
+    <form name="Q5">
+    <label><input type="radio" name="item" value="1"> bar graph</label><br>
+    <label><input type="radio" name="item" value="2"> histogram</label><br>
+    <label><input type="radio" name="item" value="3"> pie chart</label><br>
+    <label><input type="radio" name="item" value="4"> line graph</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ5">
+    </form>
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+      <p class="textL30M30">2.1  Describe qualitative data and give examples.
+      <p>
+      <p class="textL30M30">2.2  Describe summary data and raw data using examples. 
+      <p>
+      <p class="textL30M30">2.3  From the home page of the OECD, download any interesting data for you in Excel format and do the following: 
+      <div class="textL50M30">1) Save data as an Excel file in CSV format.</div>
+      <div class="textL50M30">2) Retrieve the file in 1) to 『eStat』 system.</div> 
+      <div class="textL50M30">3) Draw appropriate graphs using 『eStat』 and save results as graph files.</div>
+      <div class="textL50M30">4) Prepare a report using the MS Word.</div>
+  </div>
+
+  <script src="./js/exercise02.js"></script>
+
+</body>
+</html>
+

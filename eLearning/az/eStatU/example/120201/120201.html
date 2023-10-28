@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="RegressionAnalysis1"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="RegressionAnalysis1"></span></b>
+    </div>
+    <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data2"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data1"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 value="Y" id="ytitle"></td>
+          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 value="X" id="xtitle"></td>
+ 	</tr>
+    </table>   
+
+    <table class="stat">
+      <tbody>
+	<tr>
+ 	  <td>&nbsp;&nbsp;<span data-msgid="NumberData"></span></td>         
+	  <td><span class="fontmath">n<sub>x</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">n<sub>y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span id="msgMean">Mean</span></td>
+	  <td><span class="fontmath">X&#772;</span></td>
+	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">Y&#772;</span></td>
+	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
+	  <td><span class="fontmath">S<sub>x</sub><sup>2</sup></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">S<sub>y</sub><sup>2</sup></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var42"></td>
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span data-msgid="Sample"></span><span data-msgid="Std Deviation"></span></td>
+	  <td><span class="fontmath">S<sub>x</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="std41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">S<sub>y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="std42"></td>
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span data-msgid="Sample"></span> <span id="msgCovariance"></span></td>
+	  <td><span class="fontmath">S<sub>xy</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var43"></td>
+	  <td> </td>
+	  <td><span class="fontmath">r</span></td>
+	  <td><input type="text" class="textarea" size=6 id="std43"></td>
+	</tr>
+      </tbody>
+    </table>
+    <br>
+    <button type="button" id="executeRegression" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;<label><input type="checkbox" id="regressBand"><span data-msgid="RegressionBand">Confidence Band</span></label> 
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="600"> </svg> 
+    <br>
+    &nbsp; 
+    <button type="button" id="scatterPlot" >
+	<span data-msgid="Scatterplot"></span>
+    </button>
+    &nbsp; &nbsp;
+    <button type="button" id="regressResidual" >
+	<span data-msgid="RegressionResidual">잔차와 예측값 산점도</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="regressQQ" >
+	<span data-msgid="RegressionQQ">잔차 Q-Q 산점도</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/estat/eStatU/js/32RegressionAnalysis.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data1").value = "4,6,6,8,8,9,9,10,12,12";
+        stat = simplestat("#data1");  
+        xdata = data;  
+        xobs = stat.n;
+      document.getElementById("data2").value = "39,42,45,47,50,50,52,55,57,60";
+        stat = simplestat("#data2");  
+        ydata = data; 
+        yobs = stat.n;
+  </script>
+
+</body>
+</html>

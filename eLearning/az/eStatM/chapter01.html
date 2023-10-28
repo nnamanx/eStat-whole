@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 1</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <!--***********************************************************************-->
+  <h1>Chapter 1. Statistics</h1> 
+        <h1>&nbsp; 🎲 🎯 💻 📱</h1>
+        <h4>
+        <a href="#0101"><u>1.1 What is Statistics?</u></a> <p>
+        <a href="#0102"><u>1.2 Data Classification</u></a> <p>
+        <a href="#0103"><u>1.3 『eStat』 Software</u></a> <p>
+        <a href="./pdf/chapter01.pdf" target="_blank"><u>[Chapter 1. pdf]</u></a>
+        </h4>
+        <p>- Examine what statistics is. <br>
+           - Examine the classification of data.<br>
+           - Examine statistical software.
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0101">1.1 What is Statistics?</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>The height of 10 students in our class was measured to see how tall they were.
+             The measured height data were recorded on paper as follows:
+          </b>
+          <p>
+          <div class="textLeft">[Table1.1] The height of 10 students in our class (unit cm)</div>
+          <table>
+            <td> 165  163  170  175  155  167  157  153  161  162
+            </td>
+          </table>
+      <h4>💎 Explore</h4>
+          <b>How can I find out where my height (165cm) is located among students 
+             in my class in descending order of height?
+          </b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>Students' heights are called numerical <b>data</b>. In this example, the data 
+         was generated as many as the number of students. In our society, a large amount
+         of data were generated and the number of data is expected to increase further
+         with the development of computer technologies in the future.
+      <p>In order to understand the relative position of my height among students, 
+         arrange the data in descending order from taller to smaller as shown in [Table 1.2].
+      <div class="textLeft">[Table 1.2] Height data in descending order (unit cm)</div>
+      <table>
+        <td> 175  170  167  165  163  162  161  157  155  153 
+        </td>
+      </table>
+      <p>From this data, it is easy to tell that my height of 165cm is the 4th from the top.
+      <p><b>Statistics</b> is the process of collecting, organizing, and summarizing data 
+         in this way and obtaining useful information by analysis. A country needs statistics
+         such as the number of people, the number of households, and the amount of food 
+         in order to solve eating, clothing and sheltering of its people. 
+         Such statistics have been recorded since the time of Egyptian civilization 
+         5,000 years ago.
+      <p>
+         As the modern information society progresses, the size of data has grown 
+         tremendously, which is called <b>Big Data</b>. Typical examples of big data 
+         are as follows:
+      <br>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Google’s search history data
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- SNS data from your smartphone
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Records of access to and out of the Internet
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Telecommunication company's call log data <
+      </div>
+      <p>In the information society of the future, the success or failure of an individual,
+         company, or country can be different depending on how they make scientific 
+         decisions with reasonable statistical information on big data. There are many 
+         examples of statistics applied to reality by analyzing big data.
+      <br>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- Predict the number of car models sold in the United States next month by surveying Google's search engine questions about car purchases.
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- An online shopping mall analyzed customers' web records to find out what products the member customers have and what products they were interested in, and then customized advertisements tailored to each customer, resulting in increased sales.
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- An oil exploration company increased the success rate of oil drilling by analyzing terabytes of geological data.
+      </div>
+      <div class="textL20M20">
+          &nbsp;&nbsp;&nbsp;- A university in the United States analyzed the information that students click on the system in an online class to monitor each student's learning performance, suggested class content for each level tailored to the student's level of understanding, and suggested subjects to take in the future for each student. As a result, the degree acquisition rate by major improved significantly.
+      </div>
+  </div>
+  <p>
+
+<!---------------------------------------------------------------------------------------->
+  <h3 id="0102">1.2 Data Classification </h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>If the gender of 10 students in our class is investigated, they are ‘male’ 
+             or ‘female’, and if the height is measured, it is 160cm, etc., gender 
+             and height data have different attributes.</b>
+      <h4>💎 Explore</h4>
+          <b>1) Is there an appropriate way to classify data? <br>
+             2) Does the analysis method differ depending on the type of data?
+          </b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         Data are values that observe or measure the attributes of objects of interest. 
+         The attribute of such an object or event is called a <b>variable</b>. For example, 
+         if the gender and height of an elementary school were measured, there were two variables 
+         (gender and height). Gender measurements are in the form as male, female, female, male, .... 
+         and height measurements are 160cm, 155cm, 158cm, 165cm, ... 
+      <p>
+         Variable such as 'gender' is classified into qualitative data, and variable such as
+         height is classified into <b>quantitative data</b>. The reason for classifying data is 
+         that processing and analyzing methods are different depending on the type of data. 
+         Chapter 2 discusses visualization of qualitative data, and Chapter 3 discusses 
+         visualization of quantitative data.
+      <p>
+         Qualitative variable such as gender usually have several categories, which are also 
+         called a <b>categorical variable</b>. For a categorical variable, the frequency of 
+         each category is investigated, a frequency table is created, and a bar graph, 
+         pie graph, and band graph are drawn for analysis (Chapter 2). Table 1.3 is an 
+         example of a frequency table for gender in a class. It shows that there are 6 'male' 
+         and 4 'female' students.
+      <div class="textLeft">[Table 1.3]  Frequency table for gender in a class</div>
+      <table> 
+        <tr> 
+          <th class="thGrey">Gender</th>
+          <th class="thGrey">Number of Students</th>
+        </tr>
+        <tr> <td class="tdCenter">Male</td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">Female</td> <td class="tdCenter">4</td> </tr>
+      </table>
+      <p>
+         Qualitative data such as words are analyzed by examining the frequency of each word to form a word cloud.
+      <p>
+         For quantitative data, the mean and standard deviation are calculated and visualized using stem and leaf plot, histogram, and dot graph (Chapter 3).
+  </div>
+  <p>
+<!---------------------------------------------------------------------------------------->
+  <h3 id="0103">1.3 『eStat』 Software</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>[Table 1.2] arranges the height data in descending order on a paper </b>
+      <h4>💎 Explore</h4>
+          <b>Is there any way to use a computer? If yes, which software should I use?</b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         Small class data can be manually organized and analyzed, but if there are more data,
+         it is impossible to analyze data without the help of a computer. In particular, 
+         <b>statistical software</b> with many professional analysis programs is essential for 
+         big data analysis. Statistical software such as SAS, SPSS, and R are now widely 
+         used for data analysis. However, these software are not easy for beginners to learn, 
+         and SAS and SPSS are commercial and are very expensive. In addition, these software 
+         are focused on data analysis and there are few modules required for statistical education.
+      <p>
+         <b>『eStat』</b> is a free educational software designed to teach statistics easily from 
+         elementary school students to college students and general public. Given the data, 
+         you can draw a graph with just a click of the mouse, and experience a dynamic graph.
+         『eStat』 includes many examples from textbooks of each level, and because 
+         it is web-based, users can use it anytime, anywhere with a PC, tablet, 
+         or smartphone. 『eStat』 is provided free of charge and supports multiple languages,
+         and currently 20 languages, including Korean and English are available.
+      <p>
+         『eStat』 system works 100% well with Google's Chrome among many web browsers currently in use. 
+         In browsers such as MS Edge, 『eStat』 works, but some functions may not work.
+      <p>
+         This book is focused on modules in 『eStatM』 developed for elementary and middle school 
+         students in 『eStat』. Open the web browser Chrome, enter www.estat.me in the address bar 
+         and click the icon 『eStatM』, then the screen as shown in &lt;Figure 1.1&gt; appears.
+      <p>
+            <div class="textLeft">『eStatM』</div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatM.svg" onclick="window.open(addrStr[181])">
+      <p>
+            <img class="imgFig600600" src="./Figure/Fig0101.png">
+            <div class="textLeft">&lt;Figure 1.1&gt; 『eStatM』 menu</div>
+      <p>  
+  </div>
+  <p>
+
+    <iframe src="./exercise/exercise01.html" width="750" height="700" ></iframe> 
+
+</body>
+</html>
+

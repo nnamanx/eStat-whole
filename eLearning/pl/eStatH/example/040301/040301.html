@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Dist of Sample Means">Dist of Sample Means</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="640" style="position:absolute; left:10px; top:0px">  
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Dist of Sample Means">Sampling Distribution of Sample Means</span></b> 
+      <button class="menu" onclick="menuLoc()" >
+        <b><span data-msgid="Menu">Menu</span></b>
+      </button>
+    </div>
+    <br>
+    <svg id="chart" width="600" height="620"> </svg>
+    <form name="myForm">  
+      <span data-msgid="Population">Population</span> :
+      <input type="radio" name = "type1" value="1" checked> N(0,1)
+      <input type="radio" name = "type1" value="2" ><span data-msgid="Exponential"> Exponentia(0.3) </span>
+      <input type="radio" name = "type1" value="3" ><span data-msgid="Uniform"> Uniform(0,1)</span> <br>
+    </form>
+    <form> 
+      <button type="button" id="samplingCLT" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      &nbsp;
+      <span data-msgid="Sample Size">Sample Size</span> 
+      n1 = <input type="text" class="textarea" value="5" size=4 id="init1CLT"> &nbsp;
+      n2 = <input type="text" class="textarea" value="10" size=4 id="init2CLT"> &nbsp;
+      n3 = <input type="text" class="textarea" value="20" size=4 id="init3CLT"> <p>
+    </form>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+  </div>
+  
+   <script src="/estat/eStatU/js/62SampleEng.js"> </script>
+
+</body>
+</html>

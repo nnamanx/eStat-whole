@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Confidence Interval">Confidence Interval</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="640" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Confidence Interval Simulation">Confidence Interval Experiment</span></b> 
+    </div>
+    <br>
+    <svg id="chart" width="600" height="630"> </svg>
+    <form> 
+      <button type="button" id="intervalEst" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      &nbsp; 
+      <span data-msgid="Sample Size">Sample Size</span>
+      n = <input type="text" class="textarea" value="20" size=4 id="initEst"> &nbsp; &nbsp;
+      <span data-msgid="Repetition">Repetition</span>
+      r = <input type="text" class="textarea" value="10"  size=4 id="iterEst"> <br>
+    </form>
+
+    <form name="myFormEst">  
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      &nbsp;
+      <span data-msgid="Confidence Level">Confidence Level</span>  
+      &nbsp; <input type="radio" name = "type1" value="1" > 0.90  &nbsp; 
+      <input type="radio" name = "type1" value="2" checked> 0.95  &nbsp; 
+      <input type="radio" name = "type1" value="3" > 0.99
+    </form>
+  </div>
+
+   <script src="/estat/eStatU/js/64SampleEng.js"> </script>
+
+</body>
+</html>

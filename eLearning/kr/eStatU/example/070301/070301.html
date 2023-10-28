@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Hypothesis P_title">Testing Hypothesis P</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; 
+          <span data-msgid="Testing Hypothesis P">
+            Testing Hypothesis : Population Proportion P 
+          </span>
+      </b>
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
+      <span class="fontmath">&nbsp;&nbsp;
+        H<sub>o</sub> : p = p<sub>o</sub> &nbsp;
+      </span>
+      <input type="text" class="textarea" size=6 id="mu">&nbsp;  <span class="fontguide"> 0 < p<sub>o</sub> < 1</span>
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : p &ne;  p<sub>o</sub> &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : p > p<sub>o</sub> &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : p < p<sub>o</sub>    
+      </span>
+    </form>
+
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    <span data-msgid="Z-test">Z-test</span> 
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
+	  <td><span class="fontmath">n</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Proportion">Sample Proportion</span></td>
+	  <td><span class="fontmath">p&#770;</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="pp"></td>
+          <td><span class="fontguide"> 0 < p&#770; < 1</span>  </td>
+	</tr>
+      </tbody>
+    </table>
+    <table class="stat">
+      <tbody>
+        <tr>
+          <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>      
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="fontmath">z<sub>&alpha;/2</sub></span> = 
+          <input type="text" class="textarea" size=6 id="zvalue">
+        </tr>
+	<tr>
+          <td></td>
+	  <td><span class="fontmath">p&#770;</span></td>
+	  <td>&plusmn;</td>
+	  <td><span class="fontmath">z<sub>&alpha;/2<sub></span></td>
+          <td><span class="fontmath"> &radic; ( p&#770; (1-p&#770;) /n )</span></td>
+          <td>&hArr;</td>
+	  <td>(&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;)</td>
+	</tr>
+      </tbody>
+    </table>
+    <p>
+         <div class="figText">&lt;Figure 7.3.1&gt; Data input for testing hypothesis of \(p\) using 『eStatU』 </div>
+    <p>
+    <button type="button" id="executeTH3" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+  </div> 
+
+   <script src="/estat/eStatU/js/74TestingP.js"> </script>
+   <script>
+      // init data
+      document.getElementById("mu").value = 0.6;   
+      document.getElementById("nn").value = 100;   
+      document.getElementById("pp").value = 0.55;
+   </script>
+
+</body>
+</html>

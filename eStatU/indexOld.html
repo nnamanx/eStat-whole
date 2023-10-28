@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>eStatU</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js?20211221" ></script>
+    <script src="/estat/eStat/js/eStatU.js?20211125"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117441368-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-117441368-1');
+    </script>
+</head>
+
+<body>
+  <div width="600" height="600" style="position:absolute; left:10px; top:10px">
+    <h1 style="color:#4CAF50;" >&nbsp;
+      <span data-msgid="eStatU UnivStatEdu">eStatU - University Statistics Education SW</span>
+    </h1> 
+  </div>
+  
+  <div style="position:absolute; left:10px; top:80px">
+    <table>
+      <tr>
+        <td>
+          <input type="image" src="eLearning.svg" onclick="myFunction()">
+          <script>
+            function myFunction() { 
+              if (langNum < 1) window.open("../eLearning/kr/eStatU/index.html");
+              else window.open("../eLearning/en/index.html"); 
+            }
+          </script>
+        </td>
+        <td>
+          <span style="color:blue; font-weight:bold; font-size:1.4em;">eBook</span><br>
+          <a style="color:blue; font-weight:bold; font-size:1.8em;" href="../eLearning/en/index.html" target="_blank">『eStat』 Statistics and Data Science</a>
+        </td>
+        <td> &nbsp;&nbsp;&nbsp;</td>
+        <td>
+          <span style="color:blue; font-weight:bold; font-size:1.4em;">전자책</span><br>
+          <a style="color:blue; font-weight:bold; font-size:1.8em;" href="../eLearning/kr/eStatU/index.html" target="_blank">『eStat』 통계 데이터과학</a>
+        </td>
+        <td>
+          <span style="color:red; font-weight:bold; font-size:1.2em;">Erase Caches to get revised version</span><p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div width="360" height="360" style="position:absolute; left:10px; top:190px">
+  <ul>
+    <li><a href="01BarChart.htm">&#8545; &nbsp;&nbsp;&nbsp; <span data-msgid="Bar Graph"></span> - <span data-msgid="Pie Chart"></span> - <span data-msgid="Band Graph"></span></a></li>
+    <li><a href="02LineGraph.htm">&#8545; &nbsp;&nbsp; <span data-msgid="Line Graph">Line Graph</span></a></li>
+    <li><a href="05WordCloud.htm">&#8545; &nbsp;&nbsp;&nbsp; <span data-msgid="WordCloud">Word Cloud</span></a></li>
+    <li><a href="07StemLeafPlot.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Stem & Leaf Plot">Stem and Leaf Plot</span></a></li>
+    <li><a href="08Histogram.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Histogram">Histogram</span> - <span data-msgid="Frequency Table"></span></a></li>
+    <li><a href="09RelativeFrequency.htm">&#8546; &nbsp; <span data-msgid="Frequency Polygon"></span> - <span data-msgid="RelativeFreq">Relative Frequency</span> <span data-msgid="ComparisonGraph"></span></a></li>
+    <li><a href="10BoxGraph.htm">&#8547; &nbsp; <span data-msgid="Box-Whisker Plot"></span> - <span data-msgid="Basic Statistics"></span></a></li>
+    <li><a href="30ScatterPlotH.htm">&#8547; &nbsp; <span data-msgid="Scatterplot"></span></a></li>
+    <li><a href="40Permutation.htm">&#8548; &nbsp; <span data-msgid="Permutation"></span> - <span data-msgid="Combination"></span></a></li>
+    <li><a href="40Pascal.htm">&#8548; &nbsp; <span data-msgid="BinomialTheorem"></span> - <span data-msgid="PascalTriangle"></span></a></li>
+    <li><a href="63SampleEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="StatisticalProb">Statistical Probability</span></a></li>
+    <li><a href="40AdditionRule.htm">&#8548; &nbsp; <span data-msgid="AdditionRule">Addition Rule</span></a></li>
+    <li><a href="40MultiplicationRule.htm">&#8548; &nbsp; <span data-msgid="ConditionalProb">Conditional Probability</span></a></li>
+    <li><a href="40DiscreteDistribution.htm">&#8548; &nbsp;&nbsp; <span data-msgid="DiscreteDist">Discrete Distribution</span></a></li>
+    <li><a href="41BinomialEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Binomial Experiment">Binomial Experiment</span></a></li>
+    <li><a href="42BinomialEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Binomial Distribution">Binomial Distribution</span></a></li>
+    <li><a href="44PoissonEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Poisson Distribution">Poisson Distribution</span></a></li>
+    <li><a href="45GeometricEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Geometric Distribution">Geometric Distribution</span></a></li>
+    <li><a href="46HyperGeoEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="HyperGeometric Distribution">HyperGeometric Distribution</span></a></li>
+    <li><a href="50NormalComparison.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Normal Distribution"></span> <span data-msgid="ComparisonGraph"></span></a></li>
+    <li><a href="51NormalEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Normal Experiment">Normal Experiment</span></a></li>
+    <li><a href="52NormalEng.htm">&#8548; &nbsp;&nbsp; <span data-msgid="Normal Distribution">Normal Distribution</span></a></li>
+    <li><a href="50ExponentialEng.htm">&#8548;&nbsp; &nbsp; <span data-msgid="Exponential Distribution">Exponential Distribution</span></a></li>
+    <li><a href="54TdistEng.htm">&#8549; &nbsp; <span data-msgid="t Distribution">t Distribution</span></a></li>
+    <li><a href="56ChisqEng.htm">&#8549; &nbsp; <span data-msgid="ChiSquare Distribution">ChiSquare Distribution</span></a></li>
+    <li><a href="58FdistEng.htm">&#8551; &nbsp; <span data-msgid="F Distribution">F Distribution</span></a></li>
+  </ul>
+  </div>
+
+  <div style="position:absolute; left:420px; top:190px">
+    <span style="color:blue; font-weight:bold; font-size:1.2em;">Contact:&nbsp; Prof. Jung Jin Lee</span>, 
+    <span style="color:blue; font-weight:bold; font-size:1.2em;"> jjlee@ssu.ac.kr</span></span><p>
+    <svg id="ScatterPlot2" width="330" height="330"> </svg> <br>
+  </div>
+
+  <div style="position:absolute; left:400px; top:580px">
+  <ul>
+    <li><a href="11RandomNumber.htm">&#8549; &nbsp; <span data-msgid="RandomNumber">Random Number</span></a></li>
+    <li><a href="61SampleEng.htm">&#8549; &nbsp; <span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
+    <li><a href="62SampleEng.htm">&#8549; &nbsp; <span data-msgid="Dist of Sample Means">Dist of Sample Means</span></a></li>
+    <li><a href="64SampleEng.htm">&#8549; &nbsp; <span data-msgid="Confidence Interval Simulation">Confidence Interval</span></a></li>
+    <li><a href="65ConfidenceIntervalMu.htm">&#8549; &nbsp;&nbsp; <span data-msgid="Confidence Interval Mu"></span> <span data-msgid="Confidence Interval"></span></a></li>
+    <li><a href="66ConfidenceIntervalSigma.htm">&#8549; &nbsp;&nbsp; <span data-msgid="Confidence Interval Sigma"></span> <span data-msgid="Confidence Interval"></span></a></li>
+    <li><a href="67ConfidenceIntervalP.htm">&#8549; &nbsp;&nbsp; <span data-msgid="Confidence Interval P"></span> <span data-msgid="Confidence Interval"></span></a></li>
+    <li><a href="65ConfidenceIntervalMuN.htm">&#8549; &nbsp;&nbsp; <span data-msgid="Confidence Interval Mu"></span> <span data-msgid="Sample Size"></span> n</a></li>
+    <li><a href="67ConfidenceIntervalPN.htm">&#8549; &nbsp;&nbsp; <span data-msgid="Confidence Interval P"></span> <span data-msgid="Sample Size"></span> n</a></li>
+    <li><a href="70TestingMu.htm">&#8550; &nbsp; <span data-msgid="Testing Hypothesis mu">Testing Hypothesis &mu;</span></a></li>
+    <li><a href="75TestingMuAlpha.htm">&#8550; &nbsp; <span data-msgid="Testing Hypothesis muA">Testing Hypothesis &mu; : &alpha;, &beta;</span></a></li>
+    <li><a href="76TestingMuAlphaBeta.htm">&#8550; &nbsp; <span data-msgid="Testing Hypothesis muAB">Testing Hypothesis &mu; : &alpha;, &beta;</span></a></li>
+    <li><a href="72TestingSigma.htm">&#8550; &nbsp; <span data-msgid="Testing Hypothesis sigma">Testing Hypothesis &sigma;<sup>2</sup></span></a></li>
+    <li><a href="74TestingP.htm">&#8550; &nbsp; <span data-msgid="Testing Hypothesis P">Testing Hypothesis P</span></a></li>
+    <li><a href="80TestingMu12.htm">&#8551; &nbsp; <span data-msgid="Testing Hypothesis mu12">Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub> </span> </a></li>
+    <li><a href="82TestingSigma12.htm">&#8551; &nbsp; <span data-msgid="Testing Hypothesis sigma12">Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>,&sigma;<sub>2</sub><sup>2</sup></span> </a></li>
+    <li><a href="84TestingP12.htm">&#8551; &nbsp; <span data-msgid="Testing Hypothesis P12">Testing Hypothesis P<sub>1</sub>, P<sub>2</sub> </span> </a></li>
+  </ul>
+  </div>
+
+  <div style="position:absolute; left:790px; top:190px">
+  <ul>
+    <li><a href="90TestingANOVA.htm">&#8552; &nbsp; <span data-msgid="Testing Hypothesis ANOVA">Testing Hypothesis ANOVA </span></a></li>
+    <li><a href="995StudentRangeDist.htm">&#8552; &nbsp; <span data-msgid="StudentRangeDist">Studentized Range Distribution</span></a></li>
+    <li><a href="90TestingANOVA_RBD.htm">&#8552; &nbsp; <span data-msgid="RBD"></span> ANOVA</a></li>
+    <li><a href="90TestingANOVA_Latin.htm">&#8552; &nbsp; <span data-msgid="Latin"></span> ANOVA</a></li>
+    <li><a href="90TestingANOVA_TwoFactors.htm">&#8552; &nbsp; <span data-msgid="Testing Hypothesis ANOVA2"></span></a></li>
+    <li><a href="94SignTest.htm">&#8553; &nbsp;&nbsp; <span data-msgid="SignTest">Sign Test</span></a></li>
+    <li><a href="95SignedRank.htm">&#8553; &nbsp;&nbsp; <span data-msgid="SignedRankTest">Signed Rank Test</span></a></li>
+    <li><a href="96RankSum.htm">&#8553; &nbsp;&nbsp; <span data-msgid="WilcoxonTest">Wilcoxon Test</span></a></li>
+    <li><a href="98Kruskal.htm">&#8553; &nbsp;&nbsp; <span data-msgid="KruskalTest">Kruskal Test</span></a></li>
+    <li><a href="99Friedman.htm">&#8553; &nbsp;&nbsp; <span data-msgid="FriedmanTest">Friedman Test</span></a></li>
+    <li><a href="950SignedRankDist.htm">&#8553; &nbsp;&nbsp; <span data-msgid="SignedRankTestDist">Signed Rank Dist</span></a></li>
+    <li><a href="960RankSumDist.htm">&#8553; &nbsp;&nbsp; <span data-msgid="WilcoxonTestDist">Wilcoxon Dist</span></a></li>
+    <li><a href="980KruskalDist.htm">&#8553; &nbsp;&nbsp; <span data-msgid="KruskalTestDist">Kruskal Dist</span></a></li>
+    <li><a href="990FriedmanDist.htm">&#8553; &nbsp;&nbsp; <span data-msgid="FriedmanTestDist">Friedman Dist</span></a></li>
+    <li><a href="91TestingFit.htm">&#8554; &nbsp; <span data-msgid="TestingFit">Testing Fit</span></a></li>
+    <li><a href="92TestingIndependence.htm">&#8554; &nbsp; <span data-msgid="Testing Independence">Testing Independence</span></a></li>
+    <li><a href="31CorrelationEng.htm">&#8555; &nbsp; <span data-msgid="Correlation Coefficient"></span></a></li>
+    <li><a href="30ScatterPlotU.htm">&#8555; &nbsp; <span data-msgid="CorrelationAnalysis"></span></span></a></li>
+    <li><a href="32RegressionAnalysis.htm">&#8555; &nbsp; <span data-msgid="RegressionAnalysis1"></span></a></li>
+    <li><a href="32RegressionEng.htm">&#8555; &nbsp; <span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
+    <li><a href="32RegressionAnalysis2.htm">&#8555; &nbsp; <span data-msgid="RegressionAnalysis2"></span></a></li>
+    <li><a href="33TimeseriesSmoothing.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="Smoothing"></span>. <span data-msgid="Filtering"></span></a></li>
+    <li><a href="34TimeseriesTransformation.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="Transformation"></span></a></li>
+    <li><a href="35TimeseriesRegression.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="RegressionModel"></span></a></li>
+    <li><a href="36TimeseriesHeuristic.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="EWMA"></span></a></li>
+    <li><a href="37TimeseriesSeasonal.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="SeasonalModel"></span></a></li>
+    <li><a href="38TimeseriesHoltWinter.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="HoltWinter"></span></a></li>
+    <li><a href="39TimeseriesAutoRegressive.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="AR"></span></a></li>
+  </ul>
+  </div>
+
+  <script>
+      localStorage['myKey'] = "../eStatU/index.html";
+      var svg = d3.select("#ScatterPlot2"); 
+
+      var svgWidth    = 330;
+      var svgHeight   = 330;
+      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+//      document.getElementById("msgMean").innerHTML  = svgStr[34][langNum] +" / " +svgStr[46][langNum]; 
+//      document.getElementById("msgCorr").innerHTML = svgStr[60][langNum]; 
+      var stat      = new Array(30);
+      var tobs      = 20;
+      var xdata     = new Array(tobs);
+      var ydata     = new Array(tobs);
+      var generator = d3.randomNormal(0,1);
+      var checkTitle= false;
+
+      svg.selectAll("*").remove();  // 전화면 제거
+      var r = 0.6;  // 시작값 
+      for (var i=0; i<tobs; i++) {
+            xdata[i] = generator();
+            ydata[i] = r*xdata[i] + Math.sqrt(1-r*r)*generator();
+      }
+
+      basicScatterStat(tobs, xdata, ydata, stat);
+      showScatterPlot(tobs, xdata, ydata, stat[5], stat[6], stat[15], stat[16], graphWidth, graphHeight, checkTitle);
+      showRegression2(stat[7], stat[8], stat[9], stat[10], stat[5], stat[6], stat[15], stat[16], checkTitle);
+
+  </script>
+
+</body>
+</html>

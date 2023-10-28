@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Scatterplot">Scatter Plot</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Scatterplot">Scatter Plot</span> - <span data-msgid="Correlation Coefficient">Correlation Coefficient</span></b>
+    </div>
+    <br>
+    <table class="data">
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=65 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=20 id="ytitle"></td>
+          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
+          <td><input type="text" size=20 id="xtitle"></td>
+ 	</tr>
+    </table>   
+    <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data2"></td>
+	</tr>
+    </table>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="NumberData"></span></td>         
+	  <td style="text-align: center;"><span class="fontmath">n<sub>x</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn41" style="text-align: right;"></td>
+	  <td> </td>
+	  <td style="text-align: center;"><span class="fontmath">n<sub>y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn42" style="text-align: right;"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Mean"></span></td>
+	  <td style="text-align: center;"><span class="fontmath">&mu;<sub>x</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="xbar41" style="text-align: right;"></td>
+	  <td> </td>
+	  <td style="text-align: center;"><span class="fontmath">&mu;<sub>y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="xbar42" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td></td>
+          <td><span id="msgVariance">Variance</span></td>
+	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>x</sub><sup>2</sup></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var41" style="text-align: right;"></td>
+	  <td> </td>
+	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>y</sub><sup>2</sup></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var42" style="text-align: right;"></td>
+	  <td> </td>
+          <td><span id="msgCovariance">Covariance</span></td>
+	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>xy</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var43" style="text-align: right;"></td>
+	</tr>
+	<tr>
+          <td></td>
+          <td><span data-msgid="Std Deviation"></span></td>
+	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>x</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="std41" style="text-align: right;"></td>
+	  <td> </td>
+	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="std42" style="text-align: right;"></td>
+	  <td> </td>
+          <td><span id="msgCorr">Correlation</span></td>
+	  <td style="text-align: center;"><span class="fontmath">&rho;</span></td>
+	  <td><input type="text" class="textarea" size=6 id="std43" style="text-align: right;"></td>
+	</tr>
+      </tbody>
+    </table>
+    <br>
+    <button type="button" id="redrawCorr" >
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="600"> </svg> 
+    <br>
+      <label>
+        <input type="checkbox" id="regress2">
+        <span data-msgid="Regression Line">Regression Line </span>
+      </label> 
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div>
+
+  <script src="/estat/eStatU/js/30ScatterPlotH.js"> </script>
+  <script>
+      // init example
+      document.getElementById("mtitle").value = "Height and weight of 7 middle school students";
+      document.getElementById("ytitle").value = "Weight";
+      document.getElementById("xtitle").value = "Height";
+      document.getElementById("data1").value = "162,164,170,158,175,168,172";
+      document.getElementById("data2").value = "54,60,64,52,65,60,67";
+      xdata = [162,164,170,158,175,168,172];
+      ydata = [54,60,64,52,65,60,67];
+      xobs  = xdata.length;
+      yobs  = ydata.length; 
+  </script>
+
+</body>
+</html>

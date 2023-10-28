@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="SignedRankTest">Nonparmetric Test &mu</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 
+         <span data-msgid="SignedRankTest">
+           Testing Hypothesis : Population Means &mu;</sub> 
+         </span>
+      </b>
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
+      <span class="fontmath"> &nbsp;&nbsp; 
+        H<sub>o</sub> : M = M<sub>0</sub>  
+      </span> &nbsp;
+      <input type="text" class="textarea" size=6 id="mu"> 
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : M &ne; M<sub>0</sub> &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : M > M<sub>0</sub>  &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : M < M<sub>0</sub>      
+       </span>
+    </form>
+    
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+       <span data-msgid="SignedRankTest">Wilcoxon Test</span>
+    &nbsp;
+    <span class="fontguide" >
+      <span data-msgid="WilcoxonSignCondition">Wilcoxon Signed Rank Condition</span> 
+    </span>   
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
+     
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span></td>
+	  <td><input type="text" size=75 id="data1"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>         
+	  <td><span class="fontmath">n<sub>-</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
+	  <td><span class="fontmath">n<sub>+</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Range">Sample Range</span></td>
+	  <td><span class="fontmath">R<sub>-</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
+	  <td><span class="fontmath">R<sub>+</sub></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
+	</tr>
+      </tbody>
+    </table>
+       <div class="figText">&lt;Figure 10.1.8&gt; 『eStatU』 Signed rank sum test</div>
+    <p>
+    <button type="button" id="executeTH4" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg>
+    <br>
+    &nbsp;
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
+    <button type="button" id="ranksumBtn" >
+	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
+    </button>
+    &nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div width="650" style="position:absolute; left:10px; top:790px"> <p>
+    <table id="ranksumTable" cellpadding="2" cellspacing="2" border="2" >  </table>
+  </div>
+
+  <script src="/estat/eStatU/js/95SignedRank.js"> </script>
+  <script>
+      // init example
+      document.getElementById("mu").value  = 200;
+      document.getElementById("data1").value = "203,204,197,195,201,205,198,199,194,207";
+      stat = simplestat("#data1");  
+      w = data;  
+  </script>
+ 
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Forecasting"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="TimeSeries"></span> <span data-msgid="Forecasting"></span> : <span data-msgid="EWMA"></span></b>
+   </div>
+    <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=73 id="data2"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="ytitle"></td>
+ 	</tr>
+    </table>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+ 	  <td>&nbsp;&nbsp;<span data-msgid="NumberData"></span></td>         
+	  <td><span class="fontmath">n<sub>Y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"> <span style="color:red;">( ≤ 120)</span></td>     
+ 	  <td>&nbsp;&nbsp;<span data-msgid="Mean"></span></td>         
+	  <td><span class="fontmath">Y&#772;</span></td>
+	  <td><input type="text" class="textarea" size=6 id="yavg"></td>      
+	</tr>
+      </tbody>
+    </table>
+    <br>
+    &nbsp;&nbsp;
+    <button type="button" id="execute" style="width:90px;"><span data-msgid="Execute">Execute</span></button>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+     <svg id="chart" width="620" height="400"> </svg> 
+    <table>
+      <tbody>
+	<tr>
+ 	  <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>               
+          <td><span data-msgid="ForecastingPeriod"></span>&nbsp;&nbsp;</td>
+          <td><input type="number" min="0" max="10" value="0" id="nn42" style="text-align:center" onchange="clearScreen()"></td>
+          <td><button type="button" id="createTable"><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
+          <td><button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="checkbox" id="model1">&nbsp;&nbsp;<span data-msgid="SingleMA"></span>
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp; N = <input type="number" min="2" max="10" size=5 value="3" style="text-align:center" id="ma1N" onchange="redrawModel1()"></td>
+          <td><span style="color:red;">1 < N < 10</span></td>
+          <td></td>
+          <td>&nbsp;RMSE=<input type="text" class="textarea" size=6 id="mse1" style="text-align: right;">&nbsp;</td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="checkbox" id="model2">&nbsp;&nbsp;<span data-msgid="SingleES"></span>
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp; α = <input type="text" size=5 value="0.3" id="es1Alpha" style="text-align:center" onchange="redrawModel2()"></td>
+          <td><span style="color:red;">0 < α < 1</span></td>
+          <td>S₀ = <input type="text" size=5 style="text-align:center" id="S0" onchange="redrawModel2()"></td>
+          <td>&nbsp;RMSE=<input type="text" class="textarea" size=6 id="mse2" style="text-align: right;">&nbsp;</td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="checkbox" id="model3">&nbsp;&nbsp;<span data-msgid="DoubleMA"></span>
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp; N = <input type="number" min="2" max="10" size=5 value="3" style="text-align:center" id="ma2N" onchange="redrawModel3()"></td>
+          <td><span style="color:red;">1 < N < 10</span></td>
+          <td></td>
+          <td>&nbsp;RMSE=<input type="text" class="textarea" size=6 id="mse3" style="text-align: right;">&nbsp;</td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="checkbox" id="model4">&nbsp;&nbsp;<span data-msgid="HoltLinear"></span>
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltLevel"></span> α = <input type="text" size=5 value="0.3" style="text-align:center" id="holtAlpha" onchange="redrawModel4()"></td>
+          <td><span style="color:red;">0 < α < 1</span></td>
+          <td>L₀ = <input type="text" size=5 style="text-align:center" id="holtL0" onchange="redrawModel4()"></td>
+          <td>&nbsp;RMSE=<input type="text" class="textarea" size=6 id="mse4" style="text-align: right;">&nbsp;</td>
+	</tr>
+	<tr>
+          <td></td>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltTrend"></span> γ = <input type="text" size=5 value="0.3" style="text-align:center" id="holtBeta" onchange="redrawModel4()"></td>
+          <td><span style="color:red;">0 < γ < 1</span></td>
+          <td>T₀ = <input type="text" size=5 style="text-align:center" id="holtT0" onchange="redrawModel4()"></td>
+	</tr>
+      </tbody>
+    </table>
+    <p>
+  </div>
+
+  <div width="250" style="position:absolute; left:700px; top:120px;"> 
+    &nbsp;&nbsp;
+    <p>
+    <div id="screenTable" >
+      <div id="loc">
+      </div>
+    </div>
+  </div>
+
+  <script src="/estat/eStatU/js/36TimeseriesHeuristic.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data2").value = "95,100,87,123,90,96,75,78,106,104,89,83,118,86,86,112,85,101,135,120,76,115,90,92";
+        stat  = simplestat("#data2");  
+        ydata = data; 
+        yobs  = stat.n;
+      document.getElementById("mtitle").value = "Sales of Furniture Company (monthly)";
+      document.getElementById("ytitle").value = "million US$";
+  </script>
+
+</body>
+</html>

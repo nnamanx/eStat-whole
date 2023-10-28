@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Binomial Experiment">Binomial Experiment</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      &nbsp; <b><span data-msgid="Binomial Experiment">Binomial Experiment</span></b>
+    </div>
+    <br>
+      <svg id="chartBS" width="640" height="620" style="border-style:solid;"> </svg>  
+      <br>
+      <table style="width:650px;">
+        <tr>
+          <td><button type="button" id="executeBinomial" style="width:100px"><b><span data-msgid="Execute">Execute</span></b></button></td>
+          <td></td>
+          <td style=width:100px;">n = <input type="text" class="textarea" value="2" size=3 id="nn" style="text-align:center"></td>
+          <td><sup><small> 1 </small></sup> </td>
+          <td style=width:100px;"><input type="range" min="1" max="10" value="2" id="range1Binomial" onchange="showValueBinomial1(this.value)"/></td>
+          <td><sup><small> 10 </small></sup></td>
+          <td style=width:100px;">p = <input type="text" class="textarea" value="0.5" size=3 id="pp" style="text-align:center"></td>
+          <td><sup><small> 0 </small></sup></td>
+          <td style="width:100px;"><input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/></td>
+          <td><sup><small> 1</small></sup></td>
+        </tr>
+        <tr>
+          <td><button type="button" id="saveGraphBS" style="width:100px"><b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b></button></td>
+          <td></td>
+          <td colspan="3"><label><input type="checkbox" value="freq" id=freqBinomial> <span data-msgid="Show Probability">show probability</span></label></td>
+        </tr>
+      </table>
+  </div>
+
+  <script src="/estat/eStatU/js/41BinomialEng.js"> </script>
+
+</body>
+</html>

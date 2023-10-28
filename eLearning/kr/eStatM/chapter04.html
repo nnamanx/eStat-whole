@@ -7,114 +7,38 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>4장</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">목차</a></li>
-            <li><a href="../eStatM/chapter01.html">1. 통계</a></li>
-            <li><a href="../eStatM/chapter02.html">2. 질적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter03.html">3. 양적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter04.html">4. 자료의 대푯값과 산포도</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>4. 자료의 대푯값과 산포도</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-<!--
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>3장</b>&nbsp;&nbsp; ➡&#10095;&#10095;</button>
--->
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
         <h1>&nbsp; 🎲 🎯 ⚖ μ σ ρ</h1>
         <h4>
         <a href="#0401"><u>4.1 자료의 대푯값 – 평균 / 중앙값</u></a> <p>
         <a href="#0402"><u>4.2 자료의 산포도 - 표준편차</u></a> <p>
         <a href="#0403"><u>4.3 공분산 - 상관계수</u></a> <p>
 
-        <a href="../eStatM/chapter04.pdf" target="_blank"><u>[4장 pdf]</u></a> 
+        <a href="./pdf/chapter04.pdf" target="_blank"><u>[4장 pdf]</u></a> 
         </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>양적 자료인 경우에 자료의 대푯값과 산포도를 측정하여 분석한다. 
-        <p>-  자료의 대푯값 – 평균 / 중앙값
-        <p>-  자료의 산포도 – 분산 / 표준편차
-        <p>-  두 양적자료의 공분산과 상관계수
-      </td>
-    </tr>
-  </table>
-      <br>
+        양적 자료인 경우에 자료의 대푯값과 산포도를 측정하여 분석한다. <br>
+        -  자료의 대푯값 – 평균 / 중앙값<br>
+        -  자료의 산포도 – 분산 / 표준편차<br>
+        -  두 양적자료의 공분산과 상관계수<br>
+      
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -125,12 +49,7 @@
   <h3 id="0401">4.1 자료의 대푯값 – 평균 / 중앙값</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ 생각열기</h4>
           <p>
           <b>한 중학교 학생 5명을 표본 추출하여 몸무게를 조사한 자료가 다음과 같다. </b>
           <p>
@@ -142,20 +61,10 @@
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>1) 이 자료들을 대표할 수 있는 대푯값을 찾기위한 그래프는 어떠한 것이 있을까? <br>
              2) 10명의 학생 몸무게를 대표할 만한 값으로는 어떠한 것이 있을까? 
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -167,7 +76,7 @@
       $$
          \text{평균} =  \mu = \frac{63 + 60 + 65 + 55 + 77}{5} = \frac{320}{5} = 64
       $$
-      <p>\(n\)개의 표본 자료를 \(x_1 , x_2 , ... , x_n \)으로 표시하였을 때 평균은 다음과 같은 공식으로 나타낼 수 있다.
+      <p>\(n\)개의 자료를 \(x_1 , x_2 , ... , x_n \)으로 표시하였을 때 평균은 다음과 같은 공식으로 나타낼 수 있다.
       $$
         \small \mu = \frac{1}{n} \sum_{i=1}^n x_i 
       $$
@@ -194,12 +103,12 @@
          히스토그램을 생각할 수 있지만 자료를 대표하는 값을 살펴보기에는 점그래프가 적절하다. 
          <b>점그래프</b>는 자료의 최솟값과 최댓값을 구한 후 가로축 상에 이 값들을 먼저 표시하고, 
          각각의 자료를 최솟값과 최댓값에 비례한 위치를 계산하여 점으로 표시한 것이다. 
-      <p><그림 4.1>은 (자료 4.1)에 대한 점그래프이다. 최솟값 55와 최댓값 76에 비례해서 각각의 
+      <p>&lt;그림 4.1&gt;은 (자료 4.1)에 대한 점그래프이다. 최솟값 55와 최댓값 76에 비례해서 각각의 
          자료를 동그란 점으로 표시한 것이다. 초록색 선이 평균 이고 빨강 선이 중앙값 이다. 
          이 자료에서는 평균이 중앙값보다 약간 우측에 위치해 있는데 그 이유는 자료 중에서 77이 
          나머지 네 개의 자료보다느 오른쪽에 위치해 있기 때문이다. 즉 평균은 중앙값보다 극단값에 민감하다. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0401.png">
+         <img class="imgFig600600" src="./Figure/Fig0401.png">
          <div class="textLeft">&lt;그림 4.1&gt; 5명의 몸무게에 대한 점그래프</div>
       <p>자료가 많을 경우 위와 같이 수작업으로 평균과 중앙값을 구하는 것은 시간도 많이 걸리고 쉽지 않다. 『eStat』소프트웨어를 이용하여 자료의 대푯값을 구해보자. 
   </div>
@@ -210,29 +119,24 @@
       <p><h4>🎲 실습 4.1</h4>
         『eStat』을 이용하여 (자료 4.1) 5명 학생들의 몸무게에 대한 점그래프를 그리고 평균 및 중앙값을 구해보자.  
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘점그래프 – 평균/표준편차’를 선택하면 <그림 4.2>와 같은 창이 나타난다.
-            <p>‘자료 입력’에 학생들의 몸무게 자료를 입력한다. (전자책에서 자료를 복사하여 붙여넣기를 해도 됨)  
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0402.png">
-         <div class="textLeft">&lt;그림 4.2&gt; 점그래프를 위한 몸무게 자료 입력</div>
-      <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 <그림 4.1>과 같은 점그래프가 나타나고 평균 및 중앙값이 표시된다. 
-      <p><그림 4.1> 아래에는 <그림 4.3>과 같은 시뮬레이션 창이 나타난다. 이 시뮬레이션은 마우스로 한 점을 이동시켜 평균과 중앙값의 변화를 살펴보는 것이다. 예를 들어 제일 오른쪽의 점을 마우스로 끌어 오른쪽으로 이동하면 평균은 변하지만 중앙값은 변하지 않는다. 즉 중앙값은 극단점에 영향을 받지 않는다
+         『eStatM』 ‘점그래프 – 평균/표준편차’의 ‘자료 입력’에 학생들의 몸무게 자료를 입력한다. 
+         (전자책에서 자료를 복사하여 붙여넣기를 해도 됨)  
+      <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 &lt;그림 4.1&gt;과 같은 점그래프가 나타나고 평균 및 중앙값이 표시된다. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0403.png">
-         <div class="textLeft">&lt;그림 4.3&gt; 한 점의 변화에 따른 평균 / 중앙값 변화의 관찰 시뮬레이션</div>
+      <!------*** Dot graph html ***-------------------------------------------------------------->
+         <iframe src="./example/0401/0401.html" width="700" height="740"> </iframe>
+      <p> 
+         <div class="textLeft">&lt;그림 4.2&gt; 몸무게 자료 입력과 점그래프</div>
+      <p>
+          &lt;그림 4.1&gt; 아래에는 &lt;그림 4.3&gt;과 같은 시뮬레이션 창이 나타난다. 이 시뮬레이션은 마우스로 한 점을 이동시켜 평균과 중앙값의 변화를 살펴보는 것이다. 예를 들어 제일 오른쪽의 점을 마우스로 끌어 오른쪽으로 이동하면 평균은 변하지만 중앙값은 변하지 않는다. 즉 중앙값은 극단점에 영향을 받지 않는다
+      <p>
+               <img class="imgFig600600" src="./Figure/Fig0403.png">
+               <div class="textLeft">&lt;그림 4.3&gt; 한 점의 변화에 따른 평균 / 중앙값 변화의 관찰 시뮬레이션</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
-
+ 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 실습 4.2</h4>
@@ -250,47 +154,33 @@
             </tr>
           </table>
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용하여 나타나는『eStatH』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 
-            <그림 4.4>와 같은 자료 입력창이 나타난다.
-          </td>
-        </tr>
-      </table>
-      <p>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0404.png">
-         <div class="textLeft">&lt;그림 4.4&gt; 점그래프의 자료입력 상자</div>
-      <p>
-      <p>자료 입력’에 일별 최저기온 자료를 입력하면 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
-         즉시 <그림 4.4>와 같이 입력된 자료수 28, 평균 –1.79, 중앙값 –1.90, 최솟값 –10.6도, 최댓값이
-         6.4도임을 보여준다. 
-      <p>[실행] 버튼을 클릭하면 <그림 4.5>와 같은 점그래프가 나타나고 평균(\(\mu\)) 및 중앙값(\(m\))이 표시된다. 
-         이 점그래프 아래에는 점을 마우스로 변화시키며 평균과 중앙값의 변화를 살펴볼수 있는 시뮬레이션창이 나타난다.
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0405.png">
-         <div class="textLeft">&lt;그림 4.5&gt; 일별 최저기온의 점그래프와 시뮬레이션창</div>
+            『eStatM』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 
+            &lt;그림 4.4&gt;와 같은 자료 입력창이 나타난다.
+            <p>
+            <div class="QRFigure">
+              <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+              <img class="imgFig600600" src="./Figure/Fig0404.png">
+              <div class="textLeft">&lt;그림 4.4&gt; 점그래프의 자료입력 상자</div>
+            </div>
+            <p>
+            <p>자료 입력’에 일별 최저기온 자료를 입력하면 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
+               즉시 &lt;그림 4.4&gt;와 같이 입력된 자료수 28, 평균 –1.79, 중앙값 –1.90, 최솟값 –10.6도, 최댓값이
+                6.4도임을 보여준다. 
+            <p>[실행] 버튼을 클릭하면 &lt;그림 4.5&gt;와 같은 점그래프가 나타나고 평균(\(\mu\)) 및 중앙값(\(m\))이 표시된다. 
+               이 점그래프 아래에는 점을 마우스로 변화시키며 평균과 중앙값의 변화를 살펴볼수 있는 시뮬레이션창이 나타난다.
+            <p>
+              <img class="imgFig600600" src="./Figure/Fig0405.png">
+              <div class="textLeft">&lt;그림 4.5&gt; 일별 최저기온의 점그래프와 시뮬레이션창</div>
+            <p>
      </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.1</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 4.1</h4> <p>
             다음은 2016년 현재 서울의 25개 행정구별 자전거 전용 도로 길이에 대한 자료이다. 
             ([과제 3.1]). 『eStat』을 이용하여 점그래프와 자료의 대푯값을 구하고 분석하라.
- 
             <p>
             <div class="textLeft">(자료 3.3) 2019년 서울의 자전거 도로 (단위 km) <br> (서울통계정보시스템)</div>
             <table> 
@@ -301,22 +191,13 @@
                 </td>
               </tr>
             </table>
-         </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10BoxGraph.svg" onclick="window.open(addrStr[146])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.2</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 4.2</h4> <p>
             다음은 2020년 우리나라를 통과한 태풍의 최대 풍속에 대한 자료이다 ([과제 3.2]). 『eStat』을 이용하여 점그래프와 자료의 대푯값을 구하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.4) 2020년 우리나라를 통과한 태품의 최대풍속 <br>(단위 m/초) (기상청)</div>
@@ -328,9 +209,7 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10BoxGraph.svg" onclick="window.open(addrStr[146])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -338,13 +217,7 @@
   <h4> 도수분포표에서 평균구하기 </h4>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>다음과 같이 한 중학교 학급의 학력고사 성적의 도수분포표가 주어졌다고 하자.  </b>
           <p>
           <div class="textLeft">[표 4.1] 중학교 학력고사 성적의 도수분포표</div>
@@ -356,19 +229,9 @@
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
             <tr> <th class="thGrey">합계</th> <th class="thGrey">30</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>이 자료들을 대표할 수 있는 평균을 어떻게 구할까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -393,11 +256,17 @@
                      &= \frac{1640}{20} = 82
          \end{align}
       $$
-      <p>『eStatH』의 ‘도수분포다각형 – 상대도수 비교’를 이용하면 도수분포표의 근사적인 평균을 
-          <그림 4.6>과 같이 구할 수 있다. 계급구간의 왼쪽값과 도수1을 입력한 후 [실행] 버튼을 누르면 된다.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <p>『eStatM』의 ‘도수분포다각형 – 상대도수 비교’를 이용하면 도수분포표의 근사적인 평균을 
+          구할 수 있다. 계급구간의 왼쪽값과 도수1을 입력한 후 [실행] 버튼을 누르면 된다.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0406.png">
-         <div class="textLeft">&lt;그림 4.6&gt; 도수분포표를 이용한 평균의 계산</div>
+      <!------------- html for Freq Polygon ----------------------------------->
+         <iframe src="./example/0402/0402.html" width="750" height="1020"> </iframe>
+      <p>
+         <div class="textLeft">&lt;그림 4.6&gt; 도수분포표다각형을 이용한 평균의 계산</div>
+      <p>
   </div>
   <p>
 
@@ -405,13 +274,7 @@
   <h3 id="0402">4.2 자료의 산포도 - 표준편차</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 중학교 학생 5명의 퀴즈 성적(10점 만점)이 다음과 같다.  </b>
           <p>
             <div class="textLeft">(자료 4.1) 한 중학교 학생 5명의 퀴즈 성적 (10점 만점)</div>
@@ -422,19 +285,9 @@
                 </td>
               </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>이 자료들이 흩어져 있는 정도를 측정하는 방법이 있을까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -486,28 +339,18 @@
       <p><h4>🎲 실습 4.3</h4>
        『eStat』을 이용하여 (자료 4.2) 5명 표본 학생들의 퀴즈 성적에 대한 점그래프를 그리고 평균 및 표준편차를 구해보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘점그래프 – 평균/표준편차’를 선택하면 <그림 4.7>과 같은 창이 나타난다.
-            <p>‘자료 입력’에 학생들의 퀴즈성적 자료를 입력한다. (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0407.png">
-         <div class="textLeft">&lt;그림 4.7&gt;  점그래프를 위한 퀴즈성적 자료 입력</div>
-      <p>
+         『eStatM』 메뉴에서 ‘점그래프 – 평균/표준편차’를 선택하면 &lt;그림 4.7&gt;과 같은 창이 나타난다.
+      <p>실습 4.1과 같이 ‘자료 입력’에 학생들의 퀴즈성적 자료를 입력한다. (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
       <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 
-         <그림 4.8>과 같은 점그래프가 나타나고 평균(\(\mu\)), 중앙값(\(m\)), 표준편차(\(\sigma\)), 
-         그리고 \(\mu\) \(\pm\) \(\sigma\) 길이가 표시된다. 
+               &lt;그림 4.8&gt;과 같은 점그래프가 나타나고 평균(\(\mu\)), 중앙값(\(m\)), 표준편차(\(\sigma\)), 
+               그리고 \(\mu\) \(\pm\) \(\sigma\) 길이가 표시된다. 
       <p>그림 아래에 있는 시뮬레이션 창을 이용하여 마우스로 한 점을 이동시키면서 표준편차 길이의 변화를 살펴볼 수 있다. 표준편차도 극단점에 영향을 받는다. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0408.png">
+         <iframe src="./example/0403/0403.html" width="700" height="740"> </iframe>
+      <p>
          <div class="textLeft">&lt;그림 4.8&gt; \(\mu\) \(\pm\) \(\sigma\)가 표시된 점그래프</div>
+      <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -516,42 +359,29 @@
       <p><h4>🎲 실습 4.4</h4>
         『eStat』을 이용하여 우리나라의 2월 서울의 일별 최저기온([실습 3.2])을 조사한 (자료 3.2)에 대하여 점그래프를 그리고 평균 및 표준편차를 구해보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용하여 나타나는『eStatH』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 <그림 4.9>와 같은 자료 입력창이 나타난다.
-          </td>
-        </tr>
-      </table>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0409.png">
-         <div class="textLeft">&lt;그림 4.9&gt; 점그래프의 자료입력 상자</div>
-      <p>
-      <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 
-         <그림 4.10>과 같은 점그래프가 나타나고 평균(\(\mu\)), 중앙값(\(m\)), 표준편차(\(\sigma\)), 
-         그리고 \(\mu\) \(\pm\) \(\sigma\) 길이가 표시된다.  
-      <p>그림 아래에 있는 시뮬레이션 창을 이용하여 마우스로 한 점을 이동시키면서 표준편차 길이의 
-         변화를 살펴볼 수 있다. 표준편차도 극단점에 영향을 받는다. 
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0410.png">
-         <div class="textLeft">&lt;그림 4.10&gt; 일별 최저기온의 점그래프와 시뮬레이션창</div>
+            왼쪽의 QR을 이용하여 나타나는『eStatM』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 &lt;그림 4.9&gt;>와 같은 자료 입력창이 나타난다.
+            <p>
+            <div class="QRFigure">
+               <img class="imgFig600600" src="./Figure/Fig0409.png">
+               <div class="textLeft">&lt;그림 4.9&gt; 점그래프의 자료입력 상자</div>
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+            </div>
+            <p>
+            <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 
+               &lt;그림 4.10&gt;과 같은 점그래프가 나타나고 평균(\(\mu\)), 중앙값(\(m\)), 표준편차(\(\sigma\)), 
+               그리고 \(\mu\) \(\pm\) \(\sigma\) 길이가 표시된다.  
+            <p>그림 아래에 있는 시뮬레이션 창을 이용하여 마우스로 한 점을 이동시키면서 표준편차 길이의 
+                변화를 살펴볼 수 있다. 표준편차도 극단점에 영향을 받는다. 
+            <p>
+               <img class="imgFig600600" src="./Figure/Fig0410.png">
+               <div class="textLeft">&lt;그림 4.10&gt; 일별 최저기온의 점그래프와 시뮬레이션창</div>
+            <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.3</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 과제 4.3</h4> <p>
             다음은 2016년 현재 서울의 25개 행정구별 자전거 전용 도로 길이에 대한 자료이다 ([과제 3.1]). 『eStat』을 이용하여 점그래프와 자료의 평균 및 표준편차를 구하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.3) 2019년 서울의 자전거 도로 (단위 km) (서울통계정보시스템)</div>
@@ -563,22 +393,13 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.4</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 과제 4.4</h4> <p>
             다음은 2020년 우리나라를 통과한 태풍의 최대 풍속에 대한 자료이다 ([과제 3.2]). 『eStat』을 이용하여 점그래프와 자료의 평균 및 표준편차를 구하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.4) 2020년 우리나라를 통과한 태품의 최대풍속 (단위 m/초) (기상청)</div>
@@ -590,23 +411,15 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
 
-  <h3> 도수분포표에서 표준편차 구하기 </h3>
+  <h3> 도수분포표에서 분산과 표준편차 구하기 </h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>다음과 같이 한 중학교 학급의 학력고사 성적의 도수분포표가 주어졌다고 하자.  </b>
           <p>
           <div class="textLeft">[표 4.3] 중학교 학력고사 성적의 도수분포표</div>
@@ -618,19 +431,9 @@
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
             <tr> <th class="thGrey">합계</th> <th class="thGrey">30</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>이 자료들을 산포도로서 표준편차를 어떻게 구할까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -659,12 +462,14 @@
         &\text{표준편차} \qquad  \sigma ~=~ \sqrt{\sigma^2} ~=~ \sqrt{71} ~=~ 8.43
         \end{align} 
       $$
-      <p>『eStatH』의 ‘도수분포다각형 – 상대도수 비교’를 이용하면 도수분포표의 근사적인 평균과 
-          표준편차를 <그림 4.11>과 같이 구할 수 있다. 계급구간의 왼쪽값과 도수1을 입력한 후 
+      <p>『eStatM』의 ‘도수분포다각형 – 상대도수 비교’를 이용하면 도수분포표의 근사적인 평균과 
+          표준편차를 &lt;그림 4.11&gt;과 같이 구할 수 있다. &lt;그림 4.6&gt;과 같이 계급구간의 왼쪽값과 도수1을 입력한 후 
           [실행] 버튼을 누르면 된다.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0406.png">
+         <iframe src="./example/0404/0404.html" width="750" height="1020"> </iframe>
+      <p>
          <div class="textLeft">&lt;그림 4.11&gt; 도수분포표를 이용한 표준편차의 계산</div>
+      <p>
   </div>
   <p>
 
@@ -672,13 +477,7 @@
   <h3 id="0403">4.3 공분산 - 상관계수</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 중학교 남학생 7명의 신장과 체중을 조사하였더니 다음과 같다. </b>
           <p>
             <div class="textLeft">(자료 4.3) 한 중학교 학생 7명의 신장(cm)과 제중(kg)</div>
@@ -687,20 +486,10 @@
               <tr> <th class="thGrey">신장</th> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
               <tr> <th class="thGrey">체중</th> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>
              -  두 변량의 상관관계를 알아볼 수 있는 측도가 있을까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -728,41 +517,29 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 실습 4.5</h4>
-       『eStatH』를을 이용하여 (자료 4.3) 7명 학생들의 신장과 체중에 대한 산점도를 그려보자. 
+       『eStatM』을 이용하여 (자료 4.3) 7명 학생들의 신장과 체중에 대한 산점도를 그려보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘산점도 – 상관계수’를 선택하면 <그림 4.12>와 같은 창이 나타난다.
-            <p>‘X자료 입력’에 학생들의 신장을, ‘Y자료 입력’에 체중을 입력한다. (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0412.png">
-         <div class="textLeft">&lt;그림 4.12&gt;  산점도를 위한 신장 체중 자료 입력</div>
-      <p>
-      <p>자료를 입력하고 [실행] 버튼을 클릭하면 <그림 3.16>과 같은 산점도가 나타난다.  
+         『eStatM』 ‘산점도 – 상관계수’의 ‘X자료 입력’에 학생들의 신장을, ‘Y자료 입력’에 체중을 입력한다. 
+         (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
+      <p>자료를 입력하고 [실행] 버튼을 클릭하면 &lt;그림 4.12&gt;과 같은 산점도가 나타난다.  
       <p>산점도 아래의 ‘회귀선’을 체크하면 신장과 체중의 관계를 설명하는 회귀직선이 그려진다. 
-      <p><그림 4.12>에서 보듯이 (자료 4.3)의 신장과 체중의 공분산은 27이고 상관계수는 0.94로서 
+      <p>&lt;그림 4.12>에서 보듯이 (자료 4.3)의 신장과 체중의 공분산은 27이고 상관계수는 0.94로서 
          강한 양의 상관관계가 있음을 알 수 있다.
-    </div>
+      <p>
+      <!----------*** scatter plotH html ***-------------------------------> 
+         <iframe src="./example/0405/0405.html" width="730" height="1030"> </iframe>
+      <p>
+         <div class="textLeft">&lt;그림 4.12&gt;  신장 체중 자료 입력과 산점도</div>
+      <p>
+     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
+ 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.5</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
-          </td>
-          <td>
-          <p>
-            다음은 10명 학생들의 주당 학습시간과 시험성적에 대한 자료이다.  『eStatH』를 이용하여 
+        <h4>⏱ 과제 4.5</h4> <p>
+            다음은 10명 학생들의 주당 학습시간과 시험성적에 대한 자료이다.  『eStatM』을 이용하여 
             산점도를 그리고 공분산과 상관관계를 구하라.
             <p>
             <div class="textLeft">(자료 4.4) 학생들의 주당 학습시간과 성적</div>
@@ -771,176 +548,40 @@
               <tr> <th class="thGrey">학습시간</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
               <tr> <th class="thGrey">성적</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_30ScatterPlotH.png" onclick="window.open(addrStr[157])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
 
   <div class="mainTable">
-      <p>『eStatH』를 이용하면 여러 가지 상관계수에 대한 자료의 형태를 살펴볼 수 있다.
+      <p>『eStatM』을 이용하면 여러 가지 상관계수에 대한 자료의 형태를 살펴볼 수 있다.
   </div>
 
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 실습 4.6</h4>
-       『eStatH』를 이용하여 여러 가지 상관계수에 대한 시뮬레이션을 하여 보자. 
+       『eStatM』을 이용하여 여러 가지 상관계수에 대한 시뮬레이션을 하여 보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_31Correlation.svg" onclick="window.open(addrStr[158])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR이나 『eStatH』 메뉴에서 ‘상관계수’를 선택하면 <그림 4.13>과 같은 초기 산점도가 나타난다.
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0413.png">
+         『eStatM』 ‘상관계수실험’에서 상관계수를 정햐고 [실행] 버튼을 클릭하면 &lt;그림 4.13&gt;과 같은
+         해당 상관계수에 대한 산점도가 나타난다. ‘회귀선’을 체크하면 점들을 대표하는 회귀선이 나타난다.
+      <p>
+      <!-----*** html for regression simulation *** ------------------------------------------------------------------------>
+         <iframe src="./example/0406/0406.html" width="700" height="750"> </iframe>
+      <p>
          <div class="textLeft">&lt;그림 4.13&gt;  상관계수 시뮬레이션 창</div>
       <p>
-         초기 산점도 아래의 ‘상관계수’를 원하는 값으로 바꾸고 [실행] 버튼을 클릭하면 <그림 4.13>과 같은
-         해당 상관계수에 대한 산점도가 나타난다. ‘회귀선’을 체크하면 점들을 대표하는 회귀선이 나타난다.
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
   <div class="mainTable">
-      <p>상관관계가 강할 경우에는 변량들의 관계를 잘 설명할 수 있는 직선을 구하는데 이를 <b>회귀선</b>이라 한다. 
-         회귀선에 관한 자세한 설명은 대학 통계에서 다룬다.
+      상관관계가 강할 경우에는 변량들의 관계를 잘 설명할 수 있는 직선을 구하는데 이를 <b>회귀선</b>이라 한다. 
+      회귀선에 관한 자세한 설명은 대학 통계에서 다룬다.
   </div>
   <p>
-
-    <!------------------------------------------------------------------------------------------------->
-    <div class="mainTableGrey">
-      <p><h4>🎲 실습 4.7</h4>
-       『eStatH』를 이용하여 평면에 점을 찍고 이동하면서 상관계수와 회귀선을 관찰 하여 보자. 
-      <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_32Regression.svg" onclick="window.open(addrStr[159])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR이나 『eStatH』 메뉴에서 ‘상관계수 – 회귀선 실험’을 선택하면 <그림 4.14>와 같은
-               상관계수와 회귀선을 실험할 수 있는 화면이 나타난다.
-          </td>
-        </tr>
-      </table>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0414.png">
-         <div class="textLeft">&lt;그림 4.14&gt;  상관계수 회귀선 실험을 위한 빈 화면</div>
-      <p>
-         이 빈 화면에 마우스로 점을 찍으면 <그림 4.15>와 같이 회귀선과 상관계수가 나타난다. 점을 마우스로 누른 후 이동하면 회귀선과 상관계수의 변화를 관찰할 수 있다.
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0415.png">
-         <div class="textLeft">&lt;그림 4.15&gt;  상관계수 회귀선 실험</div>
-    </div>
-    <!------------------------------------------------------------------------------------------------->
-    <p>
-
-
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">4.1  다음 자료 중 평균 28, 중앙값 30인 변량은? </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
-    <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
-    <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
-    <label><input type="radio" name="item" value="4"> 12, 40, 20, 40 </label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">4.2 6명의 통계학 점수가 70, 60, 80, 90, 90, 70이다. 이 점수의 중앙값은 얼마인가?</h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 70</label><br>
-    <label><input type="radio" name="item" value="2"> 75</label><br>
-    <label><input type="radio" name="item" value="3"> 80</label><br>
-    <label><input type="radio" name="item" value="4"> 90</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">4.3 산술평균의 성질 중 틀린 것은?  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 산술평균은 변량 중의 극단값의 영향을 많이 받는다.</label><br>
-    <label><input type="radio" name="item" value="2"> 산술평균에 대한 편차의 합은 0이 아니다.</label><br>
-    <label><input type="radio" name="item" value="3"> 산술평균에 대한 편차의 제곱의 합은 다른 어떤 수에 대한 편차의 제곱의 합보다 크지 않다.</label><br>
-    <label><input type="radio" name="item" value="4"> 편차의 제곱의 합을 최소로 하는 것은 산술평균이다.</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">4.4 다음 자료 8, 10, 11, 12, 14의 분산은? </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 11</label><br>
-    <label><input type="radio" name="item" value="2"> 8</label><br>
-    <label><input type="radio" name="item" value="3"> 4</label><br>
-    <label><input type="radio" name="item" value="4"> 2</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">4.5 X 자료가 1, 2, 3, 4, 5, 6일때 Y자료는 2, 4, 6, 8, 10, 12 이다. 
-     X와 Y의 상관계수는 얼마인가?</h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> 1</label><br>
-    <label><input type="radio" name="item" value="2"> 0.5</label><br>
-    <label><input type="radio" name="item" value="3"> 0</label><br>
-    <label><input type="radio" name="item" value="4"> -1</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[24][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-<!--
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
--->
-</div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+  <iframe src="./exercise/exercise04.html" width="750" height="700" ></iframe>
 
 </body>
 </html>

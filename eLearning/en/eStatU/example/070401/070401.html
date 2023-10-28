@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Hypothesis mu_titleAB">Testing Hypothesis &mu;</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 
+         <span data-msgid="Testing Hypothesis muA">
+           Testing Hypothesis : Population Mean &mu; 
+         </span> 
+      </b>
+    </div>
+    <br>
+
+    <div> 
+      <b>[<span data-msgid="Hypothesis">가설</span>]</b> 
+      <span class="fontmath">&nbsp;&nbsp; H<sub>o</sub> : &mu; = &mu;<sub>o</sub> &nbsp;</span>
+      <input type="text" class="textarea" size=6 id="mu0AB"> 
+      <span class="fontmath">&nbsp;&nbsp; H<sub>1</sub> : &mu; = &mu;<sub>1</sub> &nbsp;</span>
+      <input type="text" class="textarea" size=6 id="mu1AB">
+    </div>
+    <br>
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+          <td><span data-msgid="PopulationStd">모표준편차 </span></td>
+          <td><span class="fontmath">&sigma; = </span><input type="text" class="textarea" size=6 id="stdPAB"> </td>
+        </tr>
+        <tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
+          <td><span class="fontmath">n = </span><input type="text" class="textarea"  size=6 id="nn1AB"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Type1Error">1종오류</span></td>
+	  <td><span class="fontmath">&alpha; = </span><input type="text" class="textarea" value="0.050" size=6 id="alpha1AB"></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+       <div class="figText">&lt;Figure 7.4.1&gt;  Testing hypothesis for &mu; with &alpha; using 『eStatU』 </div>
+    <p>
+    <button type="button" id="executeTH" style="width:90px;"><span data-msgid="Execute">Execute</span></button></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;
+    <span class="fontmath">C = </span>
+    <input type="text" class="textarea"  size=6 id="C">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&beta; = </span>
+    <input type="text" class="textarea" size=6 id="betaAB">
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <div>
+      &nbsp; &nbsp; &nbsp; 
+      <span class="fontmath">&mu;<sub>1</sub> = <input type="text" class="textarea" size=6 id="mu1AB2">
+       &nbsp; &nbsp;<sup><small> &mu;<sub>0</sub>-3&sigma; </small></sup></span>
+      <input type="range" min="0" max="60" value="30" id="rangeMu1AB" onchange="showValueMu1AB(this.value)"/> 
+      <span class="fontmath"><sup><small> &mu;<sub>0</sub>+3&sigma; </small></sup></span>
+    <div>
+    <svg id="chart" width="600" height="400"> </svg>  
+    <div id="sub1AB">
+          &nbsp; &nbsp; &nbsp; 
+	  <span class="fontmath">&alpha;</span> = <input type="text" class="textarea" value="0.050" size=6 id="alpha1AB2">
+          <sup><small> 0.01 </small></sup>
+             <input type="range" min="1" max="50" value="5" id="rangeAlpha1AB" onchange="showValueAlpha1AB(this.value)"/> 
+          <sup><small>0.50</small></sup>
+          &nbsp; &nbsp;
+ 	  <span class="fontmath">n</span> = <input type="text" class="textarea"  size=6 id="nn1AB2">
+          <sup>&nbsp;&nbsp;<small> 1 </small></sup>
+             <input type="range" min="1" max="100" value="100" id="rangenn1AB" onchange="showValuenn1AB(this.value)"/> 
+          <sup><small>100</small></sup>
+    </div>
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+  </div> 
+
+  <script src="/estat/eStatU/js/75TestingMuAlpha.js"> </script>
+  <script>
+        // init data
+        document.getElementById("mu0AB").value  = 1500;
+        document.getElementById("mu1AB").value  = 1600;
+        document.getElementById("stdPAB").value = 200;
+        document.getElementById("nn1AB").value  = 30;
+        document.getElementById("alpha1AB").value  = 0.05;
+        document.getElementById("alpha1AB2").value = 0.05;
+  </script>
+</body>
+</html>

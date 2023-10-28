@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 4</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+
+</head>
+
+<body>
+  <h4> 연습문제 </h4>
+  <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">4.1  다음 자료 중 평균 28, 중앙값 30인 변량은? </h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
+    <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
+    <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
+    <label><input type="radio" name="item" value="4"> 12, 40, 20, 40 </label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">4.2 6명의 통계학 점수가 70, 60, 80, 90, 90, 70이다. 이 점수의 중앙값은 얼마인가?</h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 70</label><br>
+    <label><input type="radio" name="item" value="2"> 75</label><br>
+    <label><input type="radio" name="item" value="3"> 80</label><br>
+    <label><input type="radio" name="item" value="4"> 90</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">4.3 산술평균의 성질 중 틀린 것은?  </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 산술평균은 변량 중의 극단값의 영향을 많이 받는다.</label><br>
+    <label><input type="radio" name="item" value="2"> 산술평균에 대한 편차의 합은 0이 아니다.</label><br>
+    <label><input type="radio" name="item" value="3"> 산술평균에 대한 편차의 제곱의 합은 다른 어떤 수에 대한 편차의 제곱의 합보다 크지 않다.</label><br>
+    <label><input type="radio" name="item" value="4"> 편차의 제곱의 합을 최소로 하는 것은 산술평균이다.</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">4.4 다음 자료 8, 10, 11, 12, 14의 분산은? </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> 11</label><br>
+    <label><input type="radio" name="item" value="2"> 8</label><br>
+    <label><input type="radio" name="item" value="3"> 4</label><br>
+    <label><input type="radio" name="item" value="4"> 2</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">4.5 X 자료가 1, 2, 3, 4, 5, 6일때 Y자료는 2, 4, 6, 8, 10, 12 이다. 
+     X와 Y의 상관계수는 얼마인가?</h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 1</label><br>
+    <label><input type="radio" name="item" value="2"> 0.5</label><br>
+    <label><input type="radio" name="item" value="3"> 0</label><br>
+    <label><input type="radio" name="item" value="4"> -1</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ5">
+  </form>
+
+  </div>
+
+  <script src="./js/exercise04.js"></script>
+ 
+</body>
+</html>
+

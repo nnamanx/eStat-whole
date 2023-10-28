@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Confidence Interval Sigma">Confidence Interval &sigma;</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; 
+          <span data-msgid="Confidence Interval Sigma"></span>
+          <span data-msgid="Confidence Interval"></span> 
+      </b>
+    </div>
+    <br>
+  
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using csv / bsv)
+    </span>   
+   
+    <table class="data">
+      <tbody>
+       <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td><input type="text" size=68 id="data1"></td>
+           <td>&nbsp;&nbsp;
+              <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+          </td>
+      </tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
+    <table class="stat">
+      <tbody>
+         <tr>
+           <td></td>
+           <td><span data-msgid="Sample Size">Sample Size</span></td>
+           <td><span class="fontmath">n</span></td>
+           <td>=</td>
+           <td><input type="text" class="textarea" size=6 id="nn"></td>
+           <td> <span class="fontguide">( > 1) </span></td>
+         </tr>
+         <tr>
+            <td></td>
+            <td><span data-msgid="Sample Variance">Sample Variance</span></td>
+            <td><span class="fontmath">s<sup>2</sup></span></td>
+            <td>=</td>
+            <td><input type="text" class="textarea" size=6 id="varS"></td>
+            <td><span class="fontguide">( > 0)</span> </td>
+         </tr>
+      </tbody>
+    </table>
+
+    <b>[<span data-msgid="Confidence Level">Confidence Level</span>]</b>
+    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+      &nbsp; 
+      <span class="fontmath">1 - &alpha;</span> &nbsp; &nbsp;
+      <input type="radio" name = "type2" value="1" checked> 95%       
+      <input type="radio" name = "type2" value="2" > 99%
+    </form>       
+
+    <div> 
+      <b>[<span data-msgid="Sampling Distribution">Sampling Distribution</span>]</b> &nbsp;
+      <span data-msgid="ChiSquare Distribution">ChiSquare Distribution</span> 
+    </div> 
+    <p>
+         <div class="figText">&lt;Figure 6.3.4&gt; Data input for 『eStatU』 Estimation of population variance</div>
+    <p>
+    <button type="button" id="executeTH2" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;
+    <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>   
+    <table class="stat">
+      <tbody>
+          <tr>
+            <td></td>
+            <td><span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub></span></td>
+            <td>=</td>
+            <td><input type="text" class="textarea" size=6 id="chiLeft"></td>
+            <td></td>
+            <td></td>
+            <td><span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span></td>
+            <td>=</td>
+            <td><input type="text" class="textarea" size=6 id="chiRight"></td>
+          </tr>
+      </tbody>
+    </table>
+
+    <table class="stat">
+      <tbody>
+          <tr>
+            <td></td>
+            <td><span class="fontmath">[&nbsp;(n-1)s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span>&nbsp;,</td>
+            <td><span class="fontmath">(n-1) s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub> &nbsp;]</span></td>
+            <td>&hArr;</td>
+            <td>[&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+            <td><input type="text" class="textarea" size=6 id="cright">&nbsp;]</td>
+         </tr>
+      </tbody>
+    </table>
+    
+    <p>
+    <svg id="chart" width="600" height="200"> </svg> 
+    <br>
+     &nbsp;
+    <span style="color:red;stroke:2">
+      n = <input type="text" class="textarea" value="20" size=3 id="nn2"><sup><small> 2 </small></sup>  
+      <input type="range" min="2" max="200" value="100" id="rangeN" onchange="showValueNN2(this.value)"/>  
+      <sup><small>200</small></sup>  &nbsp;&nbsp;
+      1-&alpha; = <input type="text" class="textarea" value="0.95" size=3 id="alpha2"><sup><small> 0.60 </small></sup> 
+      <input type="range" min="60" max="99" value="95" id="rangeAlpha" onchange="showValueAlpha2(this.value)"/>
+      <sup><small> 0.99 </small></sup> 
+    </span>
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    <p>
+        <div class="figText">&lt;Figure 6.3.5&gt;  『eStatU』 simulation for the confidence interval of the population variance </div>
+    <p>
+  </div> 
+
+   <script src="/estat/eStatU/js/66ConfidenceIntervalSigma.js"> </script>
+   <script>
+      // init data
+      document.getElementById("data1").value = "171,172,185,169,175,177,174,179,168,173";
+      stat = simplestat("#data1");  
+      document.getElementById("nn").value   = stat.n;    
+      document.getElementById("varS").value  = f2(stat.var);  
+   </script>
+
+</body>
+</html>

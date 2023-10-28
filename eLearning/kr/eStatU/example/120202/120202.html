@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Regression Experiment">Regression</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Regression Experiment">Regression Experiment</span></b>
+    </div>
+    <br>
+    <svg id="chart" width="600" height="600"> </svg> <p> 
+    <button type="button" id="erase" >
+        <span data-msgid="Erase All">Erase All</span>
+    </button> 
+    &nbsp;&nbsp;   
+    <input type="radio" name="addtype" id="add_on"  value="on" checked />
+      <label><span data-msgid="Add Point">Add Point</span></label>&nbsp;   
+    <input type="radio" name="addtype" id="add_off" value="off" />
+      <label><span data-msgid="Erase Point">Erase Point</span></label>   
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+ 
+  </div>
+
+   <script src="/estat/eStatU/js/32RegressionEng.js"> </script>
+
+</body>
+</html>

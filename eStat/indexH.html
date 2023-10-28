@@ -1,0 +1,1504 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <title data-msgid="eStat : Stat Education SW">eStat: 통계교육SW</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="css/eStat.css">
+    <link rel="stylesheet" href="lib/handsontable/handsontable.full.min.css">
+    <script src="lib/d3/d3.v4.min.js"></script>
+    <script src="lib/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="lib/jquery/jquery-ui.css">
+    <script src="lib/jquery/jquery-ui.min.js"></script>
+    <script src="lib/handsontable/handsontable.full.min.js"></script>
+    <script src="lib/FileSaver.min.js" ></script>
+    <script src="lib/DistributionsUtil.js" ></script>
+    <script src="lib/convertSVG.js"></script>
+    <script src="lib/jqueryFileTree/jqueryFileTree.js"></script>
+    <link rel="stylesheet" href="lib/jqueryFileTree/jqueryFileTree.css"></script>
+    <script src="js/language.js" ></script>
+    <script src="js/eStat.js" ></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117441368-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-117441368-1');
+    </script>
+  </head>
+
+  <body>
+    <div id="estat-app">
+      <div id="estat-bars">
+	<div id="estat-toolbars" class="toolbar">
+	  <div id="tool-group-file" class="tool-group">
+	    <div class="tooltip">
+	      <img src="img/home.png" id="home" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="Home">eStat 홈</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon2_3.png" id="new" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="New Sheets">새시트</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon3_3.png" id="icon_importCSV" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="csv Open">csv 불러오기</span>
+	      <input type="file" accept=".csv" style="display:none" id="input_importCSV">
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon4_4.png" id="button_readFromURL" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="www Open">WWW 불러오기</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon5_5.png" id="icon_openFile" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="json Open">json 불러오기</span>
+	      <input type="file" accept=".json" style="display:none" id="input_openFile">
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon6_6.png" id="exportCSV" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="csv Save">csv 저장</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon7_7.png" id="save" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="json Save">json 저장</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon8_8.png" id="printSheet" width="38px" height="38px">
+	      <span class="tooltiptext" data-msgid="Print Sheet">시트 인쇄</span>
+	    </div>
+	  </div>
+
+	  <div id="tool-group-graph-categorical" class="tool-group">
+	    <div class="tooltip" >
+		<img src="img/eStat_icon34.png" id="estatE" class="imageBtn1" >
+	      <span class="tooltiptext" data-msgid="Elem Stat Graph Example">초중그래프 예</span>
+	    </div>
+	    <div class="tooltip" >
+	      <img src="img/eStat_icon1.png" id="icon_openExample" class="imageBtn1" >
+	      <span class="tooltiptext" data-msgid="Example">예제 불러오기</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon9.png" id="separate1" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Bar Graph">막대그래프</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon10.png"    id="pie1" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Pie Chart">원그래프</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon11.png" id="band1" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Band Graph">띠그래프</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon12.png"          id="line1" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Line Graph">꺽은선그래프</span>
+	    </div>
+	  </div>
+
+	  <div id="tool-group-graph-numeric" class="tool-group">
+	    <div class="tooltip">
+	      <img src="img/eStat_icon13.png"  id="dot1"  class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Dot Graph">점그래프</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon14.png" id="hist1" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Histogram">히스토그램</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon15.png" id="stem1" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Stem & Leaf Plot">줄기와 잎그림</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon16.png" id="box1"  class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Box-Whisker Plot">상자그래프</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon17.png" id="scatter1" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Scatterplot">산점도</span>
+	    </div>
+<!---
+	    <div class="tooltip">
+	      <img src="img/eStat_icon17.png" id="gis" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="GIS">지리정보그래프</span>
+	    </div>
+---->
+	  </div>
+
+	  <div id="tool-group-summary-stat" class="tool-group">
+	    <div class="tooltip">
+	      <img src="img/eStat_icon18.png" id="freqTable" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Frequency Table">도수분포표</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon19.png" id="statTable" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Basic Statistics">기초통계량</span>
+	    </div>
+	  </div>
+<!---
+	  <div id="tool-group-testing" class="tool-group">
+	    <div class="tooltip">
+	      <img src="img/eStat_icon20.png" id="testM1" class="imageBtn3">
+	      <span class="tooltiptext" data-msgid="Testing Hypothesis &amp;mu;">추검정 &mu;</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon21.png" id="testS1" class="imageBtn3">
+	      <span class="tooltiptext" data-msgid="Testing Hypothesis &amp;sigma;<sup>2</sup>">추검정 &sigma;<sup>2</sup></span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon22.png" id="testM12" class="imageBtn3">
+	      <span class="tooltiptext" data-msgid="Testing Hypothesis  &amp;mu;<sub>1</sub>, &amp;mu;<sub>2</sub>">검정 &mu;<sub>1</sub>, &mu;<sub>2</sub></span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon23.png" id="testS12" class="imageBtn3">
+	      <span class="tooltiptext" data-msgid="Testing Hypothesis &amp;sigma;<sub>1</sub><sup>2</sup>, &amp;sigma;<sub>2</sub><sup>2</sup>">검정 &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup></span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon24.png" id="anova" class="imageBtn3">
+	      <span class="tooltiptext" data-msgid="Analysis of Variance">1원 분산분석</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon33.png" id="regression" class="imageBtn3">
+	      <span class="tooltiptext" data-msgid="RegressionAnalysis">회귀분석</span>
+	    </div>
+	  </div>
+--->
+<!---
+	  <div id="tool-group-eStatH" class="tool-group">
+	    <div class="tooltip">
+		<img src="img/eStatM.png" id="estatM" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="Middle School Stat Education">중등 통계교육</span>
+	    </div>
+	  </div>
+	  <div id="tool-group-eStatH" class="tool-group">
+	    <div class="tooltip">
+		<img src="img/eStat_icon25.png" id="estatH" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="High School Stat Education">고등 통계교육</span>
+	    </div>
+	  </div>
+	  <div id="tool-group-eStatU" class="tool-group">
+	    <div class="tooltip" >
+		<img src="img/eStat_icon26.png" id="estatU" class="imageBtn1">
+	      <span class="tooltiptext" data-msgid="University Stat Education">대학 통계교육</span>
+	    </div>
+	  </div>
+--->
+	  <div id="tool-group-edu" class="tool-group">
+	    <div class="tooltip" >
+		<img src="img/eStat_icon29.png" id="estat" class="imageBtn1" >
+	      <span class="tooltiptext" data-msgid="Learning eStat w Example">eStat 예제학습</span>
+	    </div>
+	    <div class="tooltip" >
+		<img src="img/eStat_icon30.png" id="estatLecture" class="imageBtn1" >
+	      <span class="tooltiptext" data-msgid="eStatLecture">eStat 강의</span>
+	    </div>
+	  </div>
+
+	  <div id="tool-group-setting" class="tool-group">
+	    <select id="select_language">
+	      <option title="/estat/eStat/img/Flag/South_Korea.png" value="ko">한국어</option>
+	      <option value="en">English</option>
+	      <option value="ja">日本語</option>
+	      <option value="zh">中國語简体</option>
+	      <option value="zhTW">中國語繁体</option>
+	      <option value="az">Azerbaijani</option>
+	      <option value="fr">French</option>
+	      <option value="de">German</option>
+	      <option value="gr">Greek</option>
+	      <option value="id">Indonesian</option>
+	      <option value="mn">Mongolian</option>
+	      <option value="pl">Polish</option>
+	      <option value="pt">Portugese</option>
+	      <option value="ro">Romanian</option>
+	      <option value="ru">Russian</option>
+	      <option value="es">Spanish</option>
+	      <option value="th">Thai</option>
+	      <option value="tr">Turkish</option>
+	      <option value="uz">Uzbek</option>
+	      <option value="vi">Vietnamese</option>
+	    </select>
+	    <br>
+<!---
+	    <form action="#" name='myForm1'>
+		  <span data-msgid="Level">수준</span>
+		  <input type="radio" name = "type1" value="1" id="level1"><span data-msgid="ElementaryLevel">초</span>
+		  <input type="radio" name = "type1" value="2" id="level2"><span data-msgid="MiddleLevel">중</span>
+		  <input type="radio" name = "type1" value="3" id="level3"><span data-msgid="HighLevel">고</span>
+		  <input type="radio" name = "type1" value="4" id="level4" checked><span data-msgid="UniversityLevel">대</span>
+	    </form>
+--->
+	  </div>
+	</div>
+      </div>
+
+      <div class="splitter-horizontal-1"></div>
+      
+      <main id="estat-main-container">
+	  
+        <div id="screenLeft" style="font-size: 12px;">    
+          <div id="datasheet-option-container">
+            <div class="form-group">
+		<label for='loadFileName' data-msgid="Filename">파일</label>
+		<input type="text" value="" id="loadFileName">
+                <button type="button" id='variableBtn' style='height: 20px; padding: 0 10px; margin-right: 2px;'>
+                   <span data-msgid='Edit Variables'>변량편집</span>
+                </button>
+            </div>
+
+            <div id="top1" class="option-group"> 
+		<div>
+		  <span id="analysisVar" data-msgid="AnalysisVar" style="float: left; width: 50%; padding: 0 0 0 5px;">Analysis Var</span> 
+		  <span style="float: left; width: 45%; padding: 0 0 0 5px;">
+		    <span data-msgid="by" >by</span>
+                    <span id="groupVar" data-msgid="GroupVar">Group Var</span>
+		  </span>
+		</div>
+		<div>
+                  &nbsp;
+                  <select id="analysisSelectMain" size="1" style="width:45%; margin: 0 0 0 5px;">
+                      <option value="0"> --- </option>
+                  </select>
+                  &nbsp;
+                  <select id="groupSelectMain" size="1" style="width:45%;"> 
+                      <option value="0"> --- </option>
+                  </select>
+                </div>
+                <div>
+                  &nbsp; 
+                  <span id="dataType" data-msgid="DataType" style="color:green ; font-size:9px; width:50%;"></span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span id="groupVarMsg" data-msgid="MultiSelect" style="color:red ; font-size:9px; width:50%;"></span>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                &nbsp;<span data-msgid="Selected Variables">선택변량</span>
+		<input type="text" value="" id="selectedVars">
+		<button type="button" id="debugBtn" style='height: 20px; padding: 0 10px; margin-right: 2px;'>
+		  <span data-msgid="Cancel" style='font-size: 12px'>취소</span>
+		</button>
+             </div>
+           </div>
+  
+          <div id="datasheet"> </div>
+        </div>
+
+	<div class="splitter-vertical-1"></div>
+	
+	<div id="screenMiddle">
+
+	  <div id="graph-toolbars" class="toolbar">
+	    <div class="tool-group">
+	    <div class="tooltip">
+	      <img src="img/eStat_icon35.png" id="separate2V" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Vertical Separated Bar">수직 분리형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon36.png" id="stack2V" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Vertical Stacked Bar">수직 쌓는형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon37.png" id="ratio2V" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Vertical Ratio Bar">수직 비율형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon38.png" id="side2V" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Vertical Side by Side Bar">수직 나란형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon39.png" id="bothbar2V" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Vertical Two Sided Bar">수직 양쪽형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon40.png" id="separate2H" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Horizontal Separated Bar">수평 분리형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon41.png" id="stack2H" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Horizontal Stacked Bar">수평 쌓는형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon42.png" id="ratio2H" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Horizontal Ratio Bar">수평 비율형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon43.png" id="side2H" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Horizontal Side by Side Bar">수평 나란형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon44.png" id="bothbar2H" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Horizontal Two Sided Bar">수평 양쪽형</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon45.png"  id="donut2" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Doughnut Graph">도넛그래프</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon46.png" id="bothstem2" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Two Sided Stem & Leaf Plot">양쪽형 줄기</span>
+	    </div>
+	  </div>
+
+	  <div class="tool-group">
+	    <div class="tooltip">
+	      <img src="img/eStat_icon47.png" id="saveGraph" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Graph Save">그래프 저장</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon48.png" id="printGraph" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Graph Print">그래프 인쇄</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon49.png" id="moveGraph" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Move to Table">테이블로 이동</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/eStat_icon50.png" id="editGraph" class="imageBtn2">
+		      <span class="tooltiptext" data-msgid="Edit Title">제목편집</span>
+	    </div>
+	    <div class="tooltip">
+	      <img src="img/copylink.png" id="copylink" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="copy link">링크 복사</span>
+	      <div data-role="popup" id="copylinkPopup" style="display: none;"></div>	      
+	    </div>
+
+	    
+	  </div>
+	  </div> <!-- end of graph-toolbars -->
+
+
+	  <div id="graph-main-container">
+	    <svg id="SVG"></svg>
+	  </div>
+
+	  <div id="graph-option-container">
+
+	    <div id="sub1" class="option-group"> <!--- 막대그래프 --->
+	      <label>&nbsp;&nbsp;<input type="checkbox" id="freq"><span data-msgid="Frequency">도수표시</span></label>
+	    </div>
+
+	    <div id="sub2"  class="option-group">
+	      <form action="#" name="myForm2" class="option-group">
+		&nbsp;<span data-msgid="Sorting">(정렬)</span>
+		<input type="radio" name = "type2" value="1" id="raw" checked><span data-msgid="Raw Data">  원자료</span>
+		<input type="radio" name = "type2" value="2" id="descend">    <span data-msgid="Descending">내림차순</span>
+		<input type="radio" name = "type2" value="3" id="ascend">     <span data-msgid="Ascending">올림차순</span>
+	      </form>
+	    </div>
+	    
+	    <div id="sub3" class="option-group">
+	      <label>&nbsp;<input type="checkbox" id="mean">&nbsp;<span data-msgid="Frequency">도수표시</span></label> <br>
+	    </div>
+
+	    <div id="sub4" class="option-group">	    
+	      <form action="#" name="myForm3" class="option-group">
+		&nbsp;<span data-msgid="(Sorting)">(정렬)</span>&nbsp;
+		<input type="radio" name = "type3" value="1" id="raw2" checked><span data-msgid="Raw Data">  원자료</span>
+		<input type="radio" name = "type3" value="2" id="descend2">    <span data-msgid="Descending">내림차순</span>
+		<input type="radio" name = "type3" value="3" id="ascend2">     <span data-msgid="Ascending">올림차순</span>
+	      </form>
+	    </div>
+
+
+	    <div id="sub5" class="option-group"> <!--- 점그래프 ---->
+	      &nbsp;<label><input type="checkbox" id="DotMean"><span data-msgid="MeanStd"> 평균</span></label>
+	    </div>
+	    <div id="sub52" class="option-group"> <!--- 상자그래프 ---->
+	      <form action="#" name="myForm52" class="option-group">
+		&nbsp;
+                <label><input type="radio" name = "type2" value="1" checked><span data-msgid="Horizontal">Horizontal</span></label>
+                <label><input type="radio" name = "type2" value="2" > <span data-msgid="Vertical">Vertical</span></label>
+                &nbsp;
+		<button type="button" size=12 id="statBox" >
+		  <span data-msgid="Basic Statistics">Basic Statistics</span>
+		</button>&nbsp
+	      </form>
+	    </div>
+
+	    <div id="sub6" class="option-group"> <!--- 산점도  --->
+              <br>
+	      &nbsp;<label><input type="checkbox" id="regress"><span data-msgid="Regression">Regression Line</span></label> 
+              &nbsp;&nbsp; <span data-msgid="GroupVar">그룹변량</span> 
+              <select id="groupSelect" size="1">
+                <option value="0" selected> --- </option>
+              </select>
+              &nbsp;&nbsp; <span data-msgid="SizeVar">크기변량</span> 
+              <select id="sizeSelect" size="1">
+                <option value="0" selected> --- </option>
+              </select>
+	    </div>
+
+	    <div id="sub7" class="option-group"> <!--- 히스토그램 --->
+              <form name="myFormH">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-msgid="yAxis">Y</span>: 
+                <input type="radio" name = "typeH" checked> <span data-msgid="Frequency">도수</span>      
+                <input type="radio" name = "typeH"> <span data-msgid="RelativeFreq">%</span>  
+                <input type="radio" name = "typeH"> <span data-msgid="Density">Density</span>  
+              </form>
+              &nbsp;&nbsp;&nbsp;
+	      <label><input type="checkbox" id="HistMean"><span data-msgid="Mean">평균</span></label>
+	      <label><input type="checkbox" id="HistFreq"><span data-msgid="Frequency">도수</span> / %</label>
+	      <label><input type="checkbox" id="HistLine"><span data-msgid="Frequency Polygon">도수분포다각형</span></label> &nbsp
+	      <button type="button" id="HistTable" >
+		<span data-msgid="Frequency Table">도수분포표</span>
+	      </button>
+              <br>
+	      &nbsp;&nbsp;&nbsp;
+	      <button type="button" id="HistRedraw" >
+		<span data-msgid="Execute New Interval">새 구간으로 실행</span>
+	      </button>&nbsp
+	      &nbsp;<span data-msgid="Interval Start">구간시작</span> <input type="text" class="textarea" value="0" size=4  id="HistInit"> &nbsp
+	      &nbsp;<span data-msgid="Interval Width">구간너비</span> <input type="text" class="textarea" value="10" size=4 id="HistStep"> 
+	    </div>
+
+	    <div id="sub8" class="option-group"> <!-- TH 1 Mean -->
+              &nbsp; 
+	      <button type="button" id="DotMu1" >
+		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistNormal" >
+		<span data-msgid="HistogramNormal">확률 히스토그램</span>
+	      </button>
+              &nbsp;
+              <button type="button" id="HistNormalQQ" >
+		  <span data-msgid="HistogramNormalQQ">정규 Q-Q 산점도</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistChisq" >
+		  <span data-msgid="HistogramChisq">정규 적합성검정</span>
+	      </button>
+              <p>
+	      <form action="#" name="myForm80">
+		<span class="fontmath">&nbsp;&nbsp;
+		  H<sub>o</sub> : &mu; = &mu;<sub>o</sub> &nbsp;
+		</span>
+		<input type="text" class="textarea" size=6 id="mu8">
+		&nbsp;&nbsp;
+		<span class="fontmath">
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &mu; &ne;  &mu;<sub>o</sub></label> &nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &mu; > &mu;<sub>o</sub> </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &mu; < &mu;<sub>o</sub> </label>
+		</span>
+	      </form>
+	      <form action="#" name="myForm82" class="option-group">
+                &nbsp;&nbsp;&nbsp;
+		<span class="fontmath">
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha8"> 
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
+		</span>
+	      </form>
+	      <form action="#" name="myForm81" class="option-group">&nbsp; 
+		<span class="fontmath">
+		  <label><input type="radio" name = "type1" value="2" checked> <span data-msgid="t-test">t</span></label>&nbsp;
+		  <label><input type="radio" name = "type1" value="1" > <span data-msgid="Z-test">Z</span></label>
+		</span>
+		&nbsp;
+		<span class="fontmath">&sigma;</span> =
+		<input type="text" class="textarea" size=6 id="std8"> 
+		<span class="fontguide" data-msgid="(if Z-test, enter &amp;sigma;)">(Z-검정이면 입력)</span>
+		&nbsp;
+		<button type="button" size=12 id="executeTH8" >
+		  <span data-msgid="t-test">t-검정</span>(Z)
+		</button>
+                &nbsp;&nbsp;
+		<button type="button" size=12 id="executeTH8NP" >
+		  <span data-msgid="SignedRankTest">부호순위검정</span>
+		</button>&nbsp
+	      </form>
+
+<!---
+	      <table>
+		<tbody>
+		  <tr>
+		    <td colspan="5"><span class="fontmath" data-msgid="(Confidence Interval)">&nbsp; [Confidence Interval] </span> </td>
+		    <td>&nbsp;</td>
+		    <td><span class="fontmath">m</span></td>
+		    <td>&plusmn;</td>
+		    <td><span class="fontmath">t<sub>n-1, 1-&alpha;/2</sub></span></td>
+		    <td><span class="fontmath"> (s / &radic; n )</span></td>
+		    <td colspan="4"><span class="fontguide" data-msgid="(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)">(Z, &sigma;)</span> </td>
+		    <td>&nbsp;</td>   
+		  </tr>
+		</tbody>
+	      </table>
+--->
+	    </div>
+
+	    <div id="sub9" class="option-group">  <!-- TH 1 Variance -->
+              &nbsp; 
+	      <button type="button" id="DotSigma1" >
+		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistNormalS" >
+		<span data-msgid="HistogramNormal">확률 히스토그램</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistNormalQQS" >
+		<span data-msgid="HistogramNormalQQ">정규 Q-Q 산점도</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistChisqS" >
+		<span data-msgid="HistogramChisq">정규 적합성검정</span>
+	      </button>
+              <p>
+	      <form action="#" name="myForm90">
+		<span class="fontmath">&nbsp;&nbsp;
+		  H<sub>o</sub> : &sigma; <sup>2</sup> = &sigma;<sub>o</sub><sup>2</sup> &nbsp;
+		</span>
+		<input type="text" class="textarea" size=6 id="vari9">
+		&nbsp;&nbsp;
+		<span class="fontmath">
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &sigma;<sup>2</sup> &ne;  &sigma;<sub>o</sub><sup>2</sup> </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &sigma;<sup>2</sup> > &sigma;<sub>o</sub><sup>2</sup> </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &sigma;<sup>2</sup> < &sigma;<sub>o</sub><sup>2</sup></label>
+		</span>
+	      </form>
+
+	      <form action="#" name="myForm92" class="option-group">	
+		&nbsp;&nbsp;&nbsp;
+		<span class="fontmath">
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha9"> 
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
+		</span>
+		&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+		<button type="button" size=12 id="executeTH9" >
+		  <span data-msgid="Chi-test">&chi;<sup>2</sup> test </span>
+		</button>
+	      </form>
+<!----
+	      <table>
+		<tbody>
+		  <tr>
+		    <td colspan="8">&nbsp; <span class="fontmath" data-msgid="(Confidence Interval)">[Confidence Interval] </span> </td>
+		    <td>&nbsp;</td>
+		    <td><span class="fontmath">(&nbsp;(n-1)s<sup>2</sup> / &chi;<sup>2</sup> <sub>n-1,1-&alpha;/2</sub></span>&nbsp;,</td>
+		    <td><span class="fontmath">(n-1)s<sup>2</sup> / &chi;<sup>2</sup> <sub>n-1,&alpha;/2</sub> &nbsp;)</span></td>
+		  </tr>
+		</tbody>
+	      </table>
+--->
+	    </div>
+
+	    <div id="sub10" class="option-group"> <!-- TH 2 Means -->
+              &nbsp;
+	      <button type="button" id="DotMu12" >
+		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistNormalMu12" >
+		<span data-msgid="HistogramNormal">확률 히스토그램</span>
+	      </button>
+              <p>
+	      <form action="#" name="myForm100">
+		<span class="fontmath"> &nbsp;&nbsp;
+		  H<sub>o</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D &nbsp;
+		</span>
+		<input type="text" class="textarea" value=0 size=6 id="mu10">&nbsp;
+		<span class="fontmath">
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> &ne; D </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> > D </label>&nbsp;&nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> < D </label>
+		</span>
+	      </form>
+
+	      <form action="#" name="myForm101">
+		&nbsp; &nbsp; 
+		<span class="fontmath" data-msgid="Variance Assumption"> Assume </span>
+		<span>
+		  <label><input type="radio" name = "type1" value="1" checked>
+		  &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> </label> &nbsp;&nbsp;
+		  <label><input type="radio" name = "type1" value="2" >
+		  &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup> </label>
+                </span>
+	      </span>
+	      </form>
+
+	      <form action="#" name="myForm102">
+		&nbsp; &nbsp;
+		<span class="fontmath">
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha10"> 
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span>  
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
+		</span>
+		&nbsp; &nbsp; 
+		<button type="button" size=12 id="executeTH10" >
+		  <span data-msgid="t-test">t-test </span>
+		</button>
+                &nbsp;
+		<button type="button" size=12 id="executeTH10NP" >
+		  <span data-msgid="WilcoxonTest">윌콕슨순위합검정</span>
+		</button>
+	      </form>
+	    </div>
+
+	    <div id="sub11" class="option-group"> <!-- TH 2 Variances -->
+              &nbsp;
+	      <button type="button" id="DotSigma12" >
+		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistNormalSigma12" >
+		<span data-msgid="HistogramNormal">확률 히스토그램</span>
+	      </button>
+              <p>
+	      <form action="#" name="myForm110">
+		<span class="fontmath"> &nbsp;&nbsp;
+		  H<sub>o</sub> : &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup>&nbsp;
+		</span>
+		&nbsp;&nbsp;
+		<span class="fontmath" >
+		  <label><input type="radio" name = "type0" value="1" checked>
+		    H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup> </label>&nbsp; &nbsp;
+		  <label><input type="radio" name = "type0" value="2" >
+		    H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  >   &sigma;<sub>2</sub><sup>2</sup> </label>&nbsp; &nbsp;
+		  <label><input type="radio" name = "type0" value="3" >
+		    H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  <   &sigma;<sub>2</sub><sup>2</sup> </label>
+		</span>
+	      </form>
+
+	      <form action="#" name="myForm112">
+                &nbsp;&nbsp;&nbsp;
+		<span class="fontmath"> 
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha11"> 
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
+		</span>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" size=12 id="executeTH11" >
+		  <span data-msgid="F-test">F-test </span>
+		</button>
+	      </form>
+	    </div>
+
+	    <div id="sub12" class="option-group"> <!-- 1 way Analysis of Variance -->
+              &nbsp;
+	      <button type="button" id="DotANOVA" >
+		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="HistNormalANOVA" >
+		<span data-msgid="HistogramNormal">확률 히스토그램</span>
+	      </button>     
+              <p>      
+	      <div class="fontmath">
+		&nbsp;&nbsp;&nbsp;H<sub>o</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub> 
+                &nbsp;&nbsp;&nbsp;
+		&nbsp;H<sub>1</sub> : <span data-msgid="At least one pair of means is different">at least one pair of population means is not equal</span>
+                &nbsp;
+                <button type="button" size=12 id="executeTH12" >
+		  ANOVA <span data-msgid="F-test" >F-test </span>
+                </button>
+	      </div>   
+	      <form action="#" name="myForm122">
+		&nbsp;&nbsp;&nbsp;
+		<span class="fontmath"> 
+		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha12"> 
+                  &nbsp;&nbsp;
+		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
+                  <label><input type="radio" name = "type3" value="1" checked> 95%</label>
+                  <label><input type="radio" name = "type3" value="2" > 99%</label>
+		</span>
+		&nbsp;&nbsp;
+                <button type="button" id="anovaResidual" >
+		  <span data-msgid="AnovaResidual">잔차와 예측값 산점도</span>
+	        </button>
+	      </form>
+	      <form action="#" name="myForm123">
+                &nbsp; 
+                <button type="button" id="multipleComparison1" >
+		  <span data-msgid="MultipleComparison">다중비교</span>
+	        </button>
+                <label><input type="radio" name = "type4" value="1" checked> LSD</label>
+                <label><input type="radio" name = "type4" value="2" > 5%HSD</label>
+                <label><input type="radio" name = "type4" value="3" > 1%HSD</label>
+                &nbsp;&nbsp; 
+		<button type="button" size=12 id="executeTH12NP" >
+		  <span data-msgid="KruskalTest">크루스칼-월리스검정</span>
+		</button>
+	      </form>
+<!---
+              &nbsp;
+              <button type="button" id="anovaTable" >
+	          <span data-msgid="AnovaTable">분산분석표</span>
+              </button>
+              &nbsp;
+	      <button type="button" id="multipleComparison" >
+		  <span data-msgid="MultipleComparison">다중비교</span>
+              </button>
+              &nbsp;
+	      <button type="button" id="anovaQQ" >
+		<span data-msgid="ANOVAQQ">잔차 Q-Q 산점도</span>
+	      </button>
+--->
+	    </div>
+
+	    <div id="sub13" class="option-group"> <!-- 그래프 제목 편집 -->
+	      <form action="#">
+		&nbsp;&nbsp;<span data-msgid="Main Title : ">주 제목 :</span> <input type="text" id="titleMain" size="50">  <br>
+		&nbsp;&nbsp;<span data-msgid="y title : ">y축제목 :</span> <input type="text" id="titleY" size="20">  <br>
+		&nbsp;&nbsp;<span data-msgid="x title : ">x축제목 :</span> <input type="text" id="titleX" size="20">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" size=12 id="executeTH13" >
+			    <span data-msgid="Modify">수정</span>
+		</button>
+	      </form>
+	    </div>
+
+	    <div id="sub15" class="option-group"> <!-- Two Way Analysis of Variance -->
+	      <div class="fontmath">&nbsp;
+		(<span data-msgid="Factor">Factor</span> 1)&nbsp;&nbsp; 
+                H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k1</sub> &nbsp;&nbsp;
+		H<sub>1</sub> : <span data-msgid="At least one pair of means is different">at least one pair of population means is not equal</span>
+                <br>&nbsp;
+		(<span data-msgid="Factor">Factor</span> 2)&nbsp;&nbsp; 
+                H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k2</sub> &nbsp;&nbsp;
+		H<sub>1</sub> : <span data-msgid="At least one pair of means is different">at least one pair of population means is not equal</span>
+                <br>&nbsp;
+		(<span data-msgid="Interaction">Interaction</span>) 
+                H<sub>o</sub> : <span data-msgid="NoInteraction">No Interaction</span> 
+                &nbsp;&nbsp;&nbsp;&nbsp;
+		H<sub>1</sub> : <span data-msgid="ExistInteraction">Exist Interaction</span>
+	      </div>
+<!--
+              &nbsp; &nbsp;
+	      <button type="button" id="DotANOVA2" >
+		<span data-msgid="MeanDotGraph">Mean Dot Graph</span>
+	      </button>
+-->
+              &nbsp; &nbsp; &nbsp;
+              <button type="button" id="anova2Table" >
+	          ANOVA <span data-msgid="F-test" >F-test </span>
+	      </button>
+<!---
+              &nbsp; &nbsp; &nbsp;
+	      <button type="button" id="multipleComparison2" >
+		  <span data-msgid="MultipleComparison">다중비교</span>
+              </button>
+              &nbsp;
+	      <button type="button" id="anova2Residual" >
+		<span data-msgid="AnovaResidual">잔차와 예측값 산점도</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="anova2QQ" >
+		<span data-msgid="ANOVAQQ">잔차 Q-Q 산점도</span>
+	      </button>
+--->
+	    </div>
+
+	    <div id="sub16" class="option-group"> <!--- 선형회귀분석 --->
+              <br>
+	      &nbsp;<label><input type="checkbox" id="regressBand"><span data-msgid="RegressionBand">Confidence Band</span></label> 
+              &nbsp; &nbsp;
+	      <button type="button" id="ScatterRegression" >
+		<span data-msgid="ScatterRegression">Regression Scatter Plot</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="regressTable" >
+		<span data-msgid="RegressionTable">Regression Analysis</span>
+	      </button>
+              <p>
+              &nbsp;
+	      <button type="button" id="regressResidual" >
+		<span data-msgid="RegressionResidual">잔차와 예측값 산점도</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="regressResidualLeverage" >
+		<span data-msgid="RegressionResidualLeverage">잔차와 지렛값 산점도</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="regressQQ" >
+		<span data-msgid="RegressionQQ">잔차 Q-Q 산점도</span>
+	      </button>
+              &nbsp;
+	      <button type="button" id="regressCook" >
+		<span data-msgid="RegressionCook">Cook's Distance</span>
+	      </button>
+
+	    </div>
+
+	  </div> <!-- end of graph-option-container -->
+	</div> <!-- end of screenMiddle -->
+
+	<div class="splitter-vertical-1"></div>
+	
+	<div id="screenRight">
+	  <div id="screenTableTop" class="toolbar">
+	    &nbsp;
+	    <div class="tooltip" style="position:relative; left:0px; top:0px; ">
+	      <img src="img/eStat_icon51.png" id="saveTable" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Table Save">테이블 저장</span>
+	    </div>
+	    <div class="tooltip" style="position:relative; left:0px; top:0px; ">
+	      <img src="img/eStat_icon52.png" id="printTable" class="imageBtn2">
+	      <span class="tooltiptext" data-msgid="Table Print">테이블 인쇄</span>
+	    </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="color:red; font-weight:bold; font-size:1em;">Erase Caches for updated version</span> &nbsp;&nbsp;
+            <span style="color:blue; font-weight:bold; font-size:1em;">Dr JJ Lee, jjlee@ssu.ac.kr </span>
+	  </div>
+
+	  <div id="screenTable">
+	    <div id="loc">
+	    </div>
+	  </div>
+	</div> <!-- end of screenRight -->
+
+      </main>
+
+      
+      <!---- Dialogs ---->
+      <div class="dialog" id="exampleFileListing"></div>
+      
+      <div class="dialog" id="dialog_readFromURL" style="display: none;">
+	URL: <input type="text" value="" id="text_readFromURL" size=70>
+	&nbsp;&nbsp;
+	<button type="button" id="button_readFromURLSubmit" >
+	  <span data-msgid="Confirm">확인</span>
+	</button>
+	<br>
+	<p>Ex: https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/iris.csv</p>
+      </div>
+
+<div class="dialog" style="display:none;" id="sub14">
+  <button id="valueLabelBtn" style="width:130px;" onclick="openEditVar('valueLabel')"><span data-msgid="Value Label">Value Label</span></button> &nbsp;
+  <button id="sortingBtn"    style="width:130px;" onclick="openEditVar('sorting')">   <span data-msgid="Sorting">Sorting</span>     </button> &nbsp;
+  <button id="categoryBtn"   style="width:130px;" onclick="openEditVar('category')">  <span data-msgid="Categorize">Category</span> </button> &nbsp;
+  <button id="recodeBtn"     style="width:130px;" onclick="openEditVar('recode')">    <span data-msgid="Recode">Recode</span>       </button> &nbsp;
+  <button id="computeBtn"    style="width:130px;" onclick="openEditVar('compute')">   <span data-msgid="Compute">Compute</span>     </button> &nbsp;
+  <button id="selectIfBtn"   style="width:130px;" onclick="openEditVar('selectIf')">  <span data-msgid="SelectIf">Select If</span>  </button> &nbsp;
+  <p>
+  <!-- Value Label ------------------------------------------------------------------------->
+  <div id="valueLabel" style="display:block;">
+    <h4><span data-msgid="Value Label">Value Label</span> &nbsp;&nbsp; <span id="valueLabelWarning" style="color:red;"></span></h4>
+    <span style="color:blue;" data-msgid="InfoValueLabel"></span>
+	<div>
+	  <select id="varlist">
+	  </select>
+	  &nbsp; <span data-msgid="Variable Name">변량명</span>
+	  <input type="text" size=10 id="vname" >
+	</div>
+
+	<table>
+	  <tbody>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>#</td>
+	      <td><span data-msgid="Variable Value">변량값</span></td>
+	      <td><span data-msgid="Value Label">변량값명</span></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>1</td>
+	      <td><input type="text" size=5 id="cell11" ></td>
+	      <td><input type="text" size=8 id="cell12" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>2</td>
+	      <td><input type="text" size=5 id="cell21" ></td>
+	      <td><input type="text" size=8 id="cell22" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>3</td>
+	      <td><input type="text" size=5 id="cell31" ></td>
+	      <td><input type="text" size=8 id="cell32" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>4</td>
+	      <td><input type="text" size=5 id="cell41" ></td>
+	      <td><input type="text" size=8 id="cell42" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>5</td>
+	      <td><input type="text" size=5 id="cell51" ></td>
+	      <td><input type="text" size=8 id="cell52" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>6</td>
+	      <td><input type="text" size=5 id="cell61" ></td>
+	      <td><input type="text" size=8 id="cell62" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>7</td>
+	      <td><input type="text" size=5 id="cell71" ></td>
+	      <td><input type="text" size=8 id="cell72" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>8</td>
+	      <td><input type="text" size=5 id="cell81" ></td>
+	      <td><input type="text" size=8 id="cell82" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>9</td>
+	      <td><input type="text" size=5 id="cell91" ></td>
+	      <td><input type="text" size=8 id="cell92" ></td>
+	    </tr>
+	  </tbody>
+	</table>
+	<h5>&nbsp;&nbsp; <span data-msgid="* Less than nine value labels allowed.">* 9개 이하의 변량값명을 지정할 수 있음</span> </h5>
+	&nbsp;&nbsp;
+	<button style="width:130px" type="button" id="vconfirm" size="10" >
+	  <span data-msgid="Save">저장</span>
+	</button>
+	&nbsp;&nbsp;
+	<button style="width:130px" type="button" id="vcancel" size="10" >
+	  <span data-msgid="Exit">Cancel</span>
+	</button>
+    <br>
+  </div> <!-- end of valueLabel --->
+
+  <!-- Sorting ------------------------------------------------------------------------->
+  <div id="sorting" style="display:none;">
+  <h4><span data-msgid="Sorting">Sorting</span> &nbsp;&nbsp; <span id="sortingWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoSorting"></span>
+    <table>
+      <tr>
+        <th><span data-msgid="SortingVariable"></span></th>
+        <th><span data-msgid="SortingMethod"></span></th>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSorting1">
+	  </select>
+        </td>
+	<td>
+          <form name="sortingForm1">&nbsp;&nbsp;&nbsp; 
+            <input type="radio" name = "sortingType1" value="1" checked> <span data-msgid="Ascending"></span>     
+            <input type="radio" name = "sortingType1" value="2" > <span data-msgid="Descending"></span>     
+          </form>   
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSorting2">
+	  </select>
+        </td>
+	<td>
+          <form name="sortingForm2">&nbsp;&nbsp;&nbsp; 
+            <input type="radio" name = "sortingType2" value="1" checked> <span data-msgid="Ascending"></span>     
+            <input type="radio" name = "sortingType2" value="2" > <span data-msgid="Descending"></span>
+          </form>   
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSorting3">
+	  </select>
+        </td>
+	<td>
+          <form name="sortingForm3">&nbsp;&nbsp;&nbsp; 
+            <input type="radio" name = "sortingType3" value="1" checked> <span data-msgid="Ascending"></span>     
+            <input type="radio" name = "sortingType3" value="2" > <span data-msgid="Descending"></span>
+          </form>   
+        </td>
+      </tr>
+    </table>
+    <p>
+    <button style="width:130px" type="button" id="executeSorting" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelSorting" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="sortingWarning" style="color:red;"></span>
+  </div> <!-- end of sorting --->
+
+  <!-- Categorize ------------------------------------------------------------------------->
+  <div id="category" style="display:none;">
+  <h4><span data-msgid="Categorize">Categorize</span>  &nbsp;&nbsp; <span id="categoryWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoCategorize"></span>
+    <table>
+      <tr>
+        <th colspan="2"><span data-msgid="NewVariable"></span></th>
+        <th><span data-msgid="CategoryVariable"></span></th>
+      </tr>
+      <tr>
+	<td>
+          <input type="text" size=1 id="newCategoryVar" >
+        </td>
+	<td>
+          <span data-msgid="Variable Name"></span> &nbsp; <input type="text" size=8 id="newCategoryVarName" >
+        </td>
+	<td>
+	  <select id="varlistCategory">
+	  </select>
+        </td>
+        <td>min = <input type="text" size=4 id="minimumValue" style="text-align:center;"></td>
+        <td>max = <input type="text" size=4 id="maximumValue" style="text-align:center;"></td>
+      </tr>
+      <tr>
+	<td></td>
+        <td style="text-align:right;"><span data-msgid="Interval Start"></span></td>
+	<td>
+          <input type="text" size=5 value="" id="intervalStart" style="text-align:center;"> 
+        </td>
+        <td style="text-align:left;"><span style="color:blue;"> ≤ min </span></td>
+      </tr>
+      <tr>
+	<td></td>
+        <td style="text-align:right;"><span data-msgid="Interval Width"></span></td>
+	<td>
+          <input type="text" size=5 value="" id="intervalWidth" style="text-align:center;"> 
+        </td>
+        <td style="text-align:left;"><span style="color:blue;"> ≤ 9 </span><span style="color:blue;" data-msgid="CategoryD"></span></td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" id="categoryList" size="10" ><span data-msgid="CategoryListCheck"></span></button>
+    &nbsp;&nbsp;<span id="categoryListWarning" style="color:red;"></span>
+    <table>
+	  <tbody>
+	    <tr>
+              <th></th>
+	      <th>&nbsp;&nbsp; </th>
+	      <th>#&nbsp;&nbsp;</th>
+              <th colspan="5"><span data-msgid="CategoryInterval"></span></th>
+              <th></th>
+              <th></th>
+	      <th><span data-msgid="CategoryLabel"></span></th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td> 1&nbsp; </td>
+	      <td><input type="text" size=5 id="category11" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category12" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category13" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category14" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td> 2&nbsp;</td>
+	      <td><input type="text" size=5 id="category21" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category22" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category23" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category24" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td> 3&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="category31" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category32" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category33" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category34" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>4</td>
+	      <td><input type="text" size=5 id="category41" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category42" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category43" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category44" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>5</td>
+	      <td><input type="text" size=5 id="category51" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category52" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category53" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category54" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>6</td>
+	      <td><input type="text" size=5 id="category61" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category62" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category63" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category64" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>7</td>
+	      <td><input type="text" size=5 id="category71" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category72" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category73" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category74" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>8</td>
+	      <td><input type="text" size=5 id="category81" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category82" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category83" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category84" ></td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>&nbsp;</td>
+	      <td>9</td>
+	      <td><input type="text" size=5 id="category91" style="text-align:center;"></td>
+              <td> ≤ </td>
+              <td><input type="text" size=1 id="category92" style="text-align:center;"><th>
+              <td> < </td>           
+	      <td><input type="text" size=5 id="category93" style="text-align:center;"></td>
+	      <td>&nbsp;</td>
+	      <td><input type="text" size=20 id="category94" ></td>
+	    </tr>
+	  </tbody>
+    </table>
+    <p>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="executeCategory" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelCategory" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="categoryWarning" style="color:red;"></span>
+  </div>
+
+  <!-- Recode ------------------------------------------------------------------------->
+  <div id="recode" style="display:none;">
+  <h4><span data-msgid="Recode">Recode</span> &nbsp;&nbsp; <span id="recodeWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoRecode"></span>
+    <table>
+      <tr>
+        <th style="text-align:left" colspan="2"><span data-msgid="NewVariable"></span></th>
+        <th style="text-align:left"><span data-msgid="RecodeVariable"></span></th>
+      </tr>
+      <tr>
+	<td>
+          <input type="text" size=1 id="newRecodeVar" >
+        </td>
+	<td>
+          <span data-msgid="Variable Name"></span> &nbsp; <input type="text" size=8 id="newRecodeVarName" >
+        </td>
+	<td>
+	  <select id="varlistRecode">
+	  </select>
+        </td>
+        <td colspan="3" style="color:blue;"><span data-msgid="InfoRecode2"></span></td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;<span id="recodeVarWarning" style="color:red;"></span>
+    <table>
+	  <tbody>
+	    <tr>
+	      <th>&nbsp;&nbsp; </th>
+	      <th>#&nbsp;&nbsp;</th>
+              <th><span data-msgid="CurrentValue"></span></th>
+              <th></th>
+	      <th><span data-msgid="NewValue"></span></th>
+              <td style="color:blue">(<span data-msgid="MissingValue"></span>: "MISSING")</td>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td> 1&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="recode11" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode12"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td> 2&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="recode21" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode22"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td> 3&nbsp;&nbsp; </td>
+	      <td><input type="text" size=5 id="recode31" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode32"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>4</td>
+	      <td><input type="text" size=5 id="recode41" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode42"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>5</td>
+	      <td><input type="text" size=5 id="recode51" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode52"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>6</td>
+	      <td><input type="text" size=5 id="recode61" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode62"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>7</td>
+	      <td><input type="text" size=5 id="recode71" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode72"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>8</td>
+	      <td><input type="text" size=5 id="recode81" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode82"><th>
+	    </tr>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td>9</td>
+	      <td><input type="text" size=5 id="recode91" ></td>
+              <td> &nbsp; &nbsp; </td>
+              <td><input type="text" size=5 id="recode92"><th>
+	    </tr>
+	  </tbody>
+    </table>
+    <p>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="executeRecode" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelRecode" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="recodeWarning" style="color:red;"></span>
+  </div>
+
+  <!-- Compute ------------------------------------------------------------------------->
+  <div id="compute" style="display:none;">
+  <h4><span data-msgid="Compute">Compute</span> &nbsp;&nbsp; <span id="computeWarning0" style="color:red;"></span></h4>
+    <table>
+      <tr>
+        <th colspan="2"><span data-msgid="NewVariable"></span></th>
+	<td>
+          <input type="text" size=1 id="newComputeVar" >
+        </td>
+	<td>
+          <span data-msgid="Variable Name"></span> &nbsp; <input type="text" size=8 id="newComputeVarName" >
+        </td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="color:blue;" data-msgid="InfoCompute"></span> <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="color:blue;"> Ex: 2*V1 + 3*V2 + LOG(V3)</span><br>
+    <table>
+      <tr>
+        <th><span data-msgid="ComputeFormula"></span></th>
+	<td>
+          <input type="text" size=60 id="computeFormula" >
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td>
+	  <select id="varlistCompute">
+	  </select>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td><button type="button" id="n1" size="4" >1</button></td>
+	<td><button type="button" id="n2" size="4" >2</button></td>
+	<td><button type="button" id="n3" size="4" >3</button></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td><button type="button" id="nplus" size="4" >+</button></td>
+	<td><button type="button" id="nlog" size="4" >LOG </button></td>
+      </tr>
+      <tr>
+        <td></td>
+	<td></td>
+        <td></td>
+	<td><button type="button" id="n4" size="4" >4</button></td>
+	<td><button type="button" id="n5" size="4" >5</button></td>
+	<td><button type="button" id="n6" size="4" >6</button></td>
+        <td></td>
+	<td><button type="button" id="nminus" size="4" >-</button></td>
+	<td><button type="button" id="nexp" size="4" >EXP </button></td>
+      </tr>
+      <tr>
+        <td></td>
+	<td></td>
+        <td></td>
+	<td><button type="button" id="n7" size="4" >7</button></td>
+	<td><button type="button" id="n8" size="4" >8</button></td>
+	<td><button type="button" id="n9" size="4" >9</button></td>
+        <td></td>
+	<td><button type="button" id="nmult" size="4" >*</button></td>
+	<td><button type="button" id="nsqrt" size="4" >SQRT</button></td>
+      </tr>
+      <tr>
+        <td></td>
+	<td></td>
+        <td></td>
+	<td><button type="button" id="n0" size="4" >0</button></td>
+	<td><button type="button" id="ndot" size="4" >∙</button></td>
+        <td></td>
+        <td></td>
+	<td><button type="button" id="ndivide" size="4" >/</button></td>
+	<td><button type="button" id="nopen" size="4" >(</button></td>
+	<td><button type="button" id="nclose" size="4" >)</button></td>
+      </tr>
+    </table>
+    <p>
+    <button style="width:130px" type="button" id="executeCompute" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelCompute" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="computeWarning" style="color:red;"></span>
+  </div>
+
+  <!-- Select If ------------------------------------------------------------------------->
+  <div id="selectIf" style="display:none;">
+  <h4><span data-msgid="SelectIf">Select If</span> &nbsp;&nbsp; <span id="selectIfWarning0" style="color:red;"></span></h4>
+  <span style="color:blue;" data-msgid="InfoSelectIf"></span>
+    <table>
+      <tr>
+        <th><span data-msgid="SelectVariable"></span></th>
+        <th><span data-msgid="RelationOperator"></span></th>
+        <th><span data-msgid="SelectValue"></span></th>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSelectIf1">
+	  </select>
+        </td>
+	<td>
+	  <select id="varlistOperatorSelectIf1">
+	    <option value="1"> = </option>
+	    <option value="2"> < </option>
+	    <option value="3"> ≤ </option>
+	    <option value="4"> > </option>
+	    <option value="5"> ≥ </option>
+	    <option value="6"> ≠ </option>
+	  </select>
+        </td>
+	<td>
+          <input type="text" size=8 value="" id="selectIf1">
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSelectIf2">
+	  </select>
+        </td>
+	<td>
+	  <select id="varlistOperatorSelectIf2">
+	    <option value="1"> = </option>
+	    <option value="2"> < </option>
+	    <option value="3"> ≤ </option>
+	    <option value="4"> > </option>
+	    <option value="5"> ≥ </option>
+	    <option value="6"> ≠ </option>
+	  </select>
+        </td>
+	<td>
+          <input type="text" size=8 value="" id="selectIf2">
+        </td>
+      </tr>
+      <tr>
+	<td>
+	  <select id="varlistSelectIf3">
+	  </select>
+        </td>
+	<td>
+	  <select id="varlistOperatorSelectIf3">
+	    <option value="1"> = </option>
+	    <option value="2"> < </option>
+	    <option value="3"> ≤ </option>
+	    <option value="4"> > </option>
+	    <option value="5"> ≥ </option>
+	    <option value="6"> ≠ </option>
+	  </select>
+        </td>
+	<td>
+          <input type="text" size=8 value="" id="selectIf3">
+        </td>
+      </tr>
+    </table>
+    <p>
+    <button style="width:130px" type="button" id="executeSelectIf" size="10" >
+	<span data-msgid="Execute"></span>
+    </button>
+    &nbsp;&nbsp;
+    <button style="width:130px" type="button" id="cancelSelectIf" size="10" >
+	<span data-msgid="Exit">Exit</span>
+    </button>
+    <br>&nbsp;&nbsp;
+    <span id="selectIfWarning" style="color:red;"></span>
+  </div>
+
+</div> <!-- end of dialog --->
+
+    <script> var eStatMH = true; </script>
+    <script src="js/app.js"> </script>
+  </body>
+</html>

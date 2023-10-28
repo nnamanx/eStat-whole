@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="DiscreteDist">Discrete Distribution</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+<style>
+table {
+//  font-family: arial, sans-serif;
+  border-collapse: collapse;
+//  width: 100%;
+}
+td, th {
+//  border: 1px solid black;
+  text-align: center;
+  padding: 2px;
+  height: 20px;
+}
+</style>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; <span data-msgid="DiscreteDist">Discrete Distribution</span></b>
+    </div>
+    <br>
+      <table style="width: 700px;">
+	<tr>
+          <td><b><span data-msgid="input data">Data Input</span></b></td>
+          <td style="text-align: center;">x<sub>1</sub></td>
+          <td style="text-align: center;">x<sub>2</sub></td>
+          <td style="text-align: center;">x<sub>3</sub></td>
+          <td style="text-align: center;">x<sub>4</sub></td>
+          <td style="text-align: center;">x<sub>5</sub></td>
+          <td style="text-align: center;">x<sub>6</sub></td>
+          <td style="text-align: center;">x<sub>7</sub></td>
+          <td style="text-align: center;">x<sub>8</sub></td>
+          <td style="text-align: center;">x<sub>9</sub></td>
+	</tr>
+        <tr>
+	  <td><b>X</b></td>
+	  <td><input type="text" size=2 id="data11" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data12" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data13" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data14" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data15" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data16" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data17" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data18" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data19" style="text-align: center;"></td>
+	  <td style="text-align: center;"><span data-msgid="Total">Sum</span> </td>
+        </tr>
+	<tr>
+	  <td><b>P( X = x<sub>i</sub> )</b></td>
+	  <td><input type="text" size=2 id="data21" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data22" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data23" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data24" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data25" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data26" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data27" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data28" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="data29" style="text-align: center;"></td>
+	  <td><input type="text" size=2 id="ptot"   style="text-align: center;"></td>
+	</tr>
+      </table>
+      <p>
+      <button type="button" id="execute"  style="width:100px;"><b><span data-msgid="Execute">Execute</span></b></button>
+      &nbsp;&nbsp;
+      <button type="button" id="eraseDiscrete" style="width:100px;"><b><span data-msgid="Erase All"></span></b></button>
+      <p>
+      <table style="width:600px">
+        <tr>
+          <td style="width:20px"></td>
+          <td style="color:blue;"><span data-msgid="Mean">Mean</span> E(X) = </td> 
+          <td><input type="text" size=3 id="mean" style="text-align: center;"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td style="color:blue;"><span data-msgid="Variance">Variance</span> V(X) = </td> 
+          <td><input type="text" size=3 id="vari" style="text-align: center;"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td style="color:blue;"><span data-msgid="Std Dev">Standard Deviation</span> σ(X) = </td> 
+          <td><input type="text" size=3 id="stdv" style="text-align: center;"></td>
+        </tr>
+      </table>
+      <svg id="chart" width="640" height="620" style="border-style:solid;"> </svg>
+      <p>
+      <button type="button" id="saveGraphDiscrete" >
+	<b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b>
+      </button>
+      <p> 
+  </div> 
+
+   <script src="/estat/eStatU/js/40DiscreteDistribution.js"> </script>
+   <script>
+      // init example
+      document.getElementById("data11").value = 0;
+      document.getElementById("data12").value = 1;
+      document.getElementById("data13").value = 2;
+      document.getElementById("data14").value = 3;
+      document.getElementById("data15").value = 4;
+      document.getElementById("data21").value = 0.37;
+      document.getElementById("data22").value = 0.40;
+      document.getElementById("data23").value = 0.15;
+      document.getElementById("data24").value = 0.05;
+      document.getElementById("data25").value = 0.03;
+   </script>
+
+</body>
+</html>

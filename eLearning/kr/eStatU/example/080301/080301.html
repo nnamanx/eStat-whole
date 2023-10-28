@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Hypothesis P12_title">Testing P1, P2</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 
+         <span data-msgid="Testing Hypothesis P12">
+           Testing Hypothesis : Two Population Proportion P<sub>1</sub>, P<sub>2</sub>
+         </span>
+      </b>
+   </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
+      <span class="fontmath"> &nbsp;&nbsp; 
+        H<sub>o</sub> : p<sub>1</sub> - p<sub>2</sub> = D &nbsp; 
+      </span>
+      <input type="text" class="textarea" size=6 value=0 id="mu6">
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : p<sub>1</sub> - p<sub>2</sub> &ne; D &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : p<sub>1</sub> - p<sub>2</sub> > D &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : p<sub>1</sub> - p<sub>2</sub> < D      
+       </span>
+    </form>
+    
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    &nbsp;<span class="fontmath" data-msgid="Z-test">Z-test</span> 
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>         
+	  <td><span class="fontmath">n<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn61"></td>
+	  <td><span class="fontmath">n<sub>2</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn62"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Proportion">Sample Proportion</span></td>
+	  <td><span class="fontmath">p&#770;<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="pp61"></td>
+	  <td><span class="fontmath">p&#770;<sub>2</sub></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="pp62"></td>
+	</tr>
+      </tbody>
+    </table>
+    <table class="stat">
+      <tbody>
+        <tr>
+          <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>      
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="fontmath">z<sub>&alpha;/2</sub></span> = 
+          <input type="text" class="textarea" size=6 id="zvalue">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="fontmath">p&#772; = (n<sub>1</sub> p<sub>1</sub> + n<sub>2</sub> p<sub>2</sub>) / (n<sub>1</sub>+n<sub>2</sub>)</span> = 
+          <input type="text" class="textarea" size=6 id="pbar">
+        </tr>
+	<tr>
+          <td></td>
+	  <td><span class="fontmath">(p&#770;<sub>1</sub> - p&#770;<sub>2</sub> - D)</span>
+	    &plusmn;
+	    <span class="fontmath">z<sub>&alpha;/2<sub></span>
+            <span class="fontmath"> &radic; ( p&#772; (1-p&#772;) / n<sub>1</sub> + p&#772; (1-p&#772;) / n<sub>2</sub> )</span>
+          </td>
+          <td>&hArr;</td>
+	  <td>(&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;)</td>
+	</tr>
+      </tbody>
+    </table>
+        <div class="figText">&lt;Figure 8.3.1&gt; Data input for testing two population proportions in 『eStatU』</div>
+    <p>
+    <button type="button" id="executeTH6" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+
+    <br>
+    <svg id="chart" width="600" height="400"> </svg>
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script src="/estat/eStatU/js/84TestingP12.js"> </script>
+  <script>
+      // init data
+      document.getElementById("nn61").value = 225;   
+      document.getElementById("nn62").value = 175;  
+      document.getElementById("pp61").value = 0.240;  
+      document.getElementById("pp62").value = 0.297;   
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 7</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+    <div class="mainTablePink">
+
+    <h6 class="textL30M30">7.1 1종오류란 무엇인가? </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> 귀무가설이 옳은 데도 기각하는 오류</label><br>
+      <label><input type="radio" name="item" value="2"> 귀무가설이 옳은 데도 옳다고 하는 오류</label><br>
+      <label><input type="radio" name="item" value="3"> 귀무가설이 옳지 않은 데도 기각되는 오류</label><br>
+      <label><input type="radio" name="item" value="4"> 귀무가설이 옳지 않은 데도 옳다고 하는 오류</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">7.2 귀무가설이 기각될 때 대신 받아들이려는 가설은?</h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> 귀무가설</label><br>
+      <label><input type="radio" name="item" value="2"> 유의수준</label><br>
+      <label><input type="radio" name="item" value="3"> 대립가설</label><br>
+      <label><input type="radio" name="item" value="4"> 기본가설</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+   
+    <h6 class="textL30M30">7.3  다음 중 옳은 설명은? </h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> 통계적 가설에 대한 결론은 항상 절대적이다.</label><br>
+      <label><input type="radio" name="item" value="2"> 귀무가설이 기각된다는 것은 대립가설을 채택한다는 뜻이다.</label><br>
+      <label><input type="radio" name="item" value="3"> 1종오류를 줄이기 위해서는 유의수준 0.01보다는 0.05를 채택하는 것이 좋다.</label><br>
+      <label><input type="radio" name="item" value="4"> 2종오류를 줄이기 위해서는 유의수준 0.05보다는 0.01을 채택하는 것이 좋다.</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">7.4  유의수준 &alpha; = 0.05의 의미는? </h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> 동일한 검정법을 여러 번 반복하여 사용할 때 잘못으로 귀무가설 를 기각하게 될 경우가 전체의 5％ 이하일 것이라는 뜻이다.</label><br>
+      <label><input type="radio" name="item" value="2"> 대립가설이 기각될 확률이 0.05라는 뜻이다.</label><br>
+      <label><input type="radio" name="item" value="3"> 대립가설이 귀무가설보다 채택될 확률이 0.05가 된다는 뜻이다.</label><br>
+      <label><input type="radio" name="item" value="4"> 2종오류를 허용하는 확률 범위가 5％ 이하라는 뜻이다.</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">7.5  표준정규분포를 이용하는 모평균의 우측검정에서 유의수준 5％일 때 검정통계량의 기각 기준선은 얼마인가? </h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> 2.58</label><br>
+      <label><input type="radio" name="item" value="2"> 1.64</label><br>
+      <label><input type="radio" name="item" value="3"> 2.33</label><br>
+      <label><input type="radio" name="item" value="4"> 1.96</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+    <h6 class="textL30M30">7.6  귀무가설 \(\small H_0 : \mu = \mu_0 \)일 때 양측검정의 대립가설은? </h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> \(\small H_1 ; \mu > \mu_0 \)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small H_1 ; \mu < \mu_0 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small H_1 ; \mu = \mu_0 \)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small H_1 ; \mu \ne \mu_0 \)</label><br>
+     <p>
+      <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">7.7  다음은 통계적 가설검정의 순서를 나열한 것이다. 올바른 순서는?  
+       a. 가설을 설정한다.  
+       b. 유의수준을 결정한다.
+       c. 가설의 채택 여부를 결정한다.
+       d. 검정통계량을 계산한다.
+       e. 기각역을 구한다. 
+    </h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> a→d→e→b→c</label><br>
+      <label><input type="radio" name="item" value="2"> a→d→b→e→c</label><br>
+      <label><input type="radio" name="item" value="3"> b→e→d→a→c</label><br>
+    <label><input type="radio" name="item" value="4"> a→c→b→d→e</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+   
+    <h6 class="textL30M30">7.8  다음 설명 중 틀린 것은?  </h6>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> 귀무가설이 기각된다는 것은 대립가설을 채택한다는 뜻이다.</label><br>
+      <label><input type="radio" name="item" value="2"> 1종오류를 범할 확률의 최대허용한계를 유의수준이라고 한다.</label><br>
+      <label><input type="radio" name="item" value="3"> 귀무가설이 거짓일 때 귀무가설을 채택하는 오류를 1종오류라고 한다.</label><br>
+      <label><input type="radio" name="item" value="4"> 대립가설이 옳은데도 귀무가설을 채택하는 오류를 2종오류라고 한다.</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">7.9  귀무가설 \(\small H_0 : \sigma^2 = \sigma^2_0 \)일 때 양측검정의 선택기준은?  &alpha;= 0.05.</h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha; }^{2}\), reject \(\small H_0\)</label><br>
+      <label><input type="radio" name="item" value="2"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} < \chi_{n-1: &alpha; }^{2}\), reject \(\small H_0\)</label><br>
+      <label><input type="radio" name="item" value="3"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha;/2 }^{2}\), reject \(\small H_0\)</label><br>
+      <label><input type="radio" name="item" value="4"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha;/2 }^{2}\) or \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: 1-&alpha;/2 }^{2}\), reject \(\small H_0\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">7.10 한 동전이 정상적인지 검정하기 위해 동전을 10,000번 던졌더니 앞면이 5020번, 뒷면이 4980번 나왔다. 검정하고자하는 가설은? </h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> \(\small H_0 : \mu = 10000\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small H_0 : \mu > 5000\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small H_0 : p >  0.5\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small H_0 : p \ne 0.5\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+
+    <h6 class="textL30M30">7.11 가설검정의 검정력이란? </h6> 
+    <form name="Q11">
+      <label><input type="radio" name="item" value="1"> &alpha;</label><br>
+      <label><input type="radio" name="item" value="2"> 1-&alpha;</label><br>
+      <label><input type="radio" name="item" value="3"> &beta;</label><br>
+      <label><input type="radio" name="item" value="4"> 1-&beta;</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ11">
+    </form>
+  
+    <h6 class="textL30M30">7.12 가설검정의 운영특성함수란? </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> &alpha;</label><br>
+      <label><input type="radio" name="item" value="2"> 1-&alpha;</label><br>
+      <label><input type="radio" name="item" value="3"> &beta;</label><br>
+      <label><input type="radio" name="item" value="4"> 1-&beta;</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+  </div>
+
+  <script src="./js/exercise07.js"></script>   
+ 
+</body>
+</html>
+

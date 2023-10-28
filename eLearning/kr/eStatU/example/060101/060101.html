@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="RandomNumber">Random Number</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      &nbsp; <b><span data-msgid="RandomNumber">Random Number Generation</span></b> 
+      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <p>
+    <form name="myForm">&nbsp;&nbsp; 
+      <table>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="1" checked>
+                    <span data-msgid="UniformDist">Uniform</span> 
+             </label>
+          </td>
+          <td>(<input type="text" class="textarea" value="1" size=3 id="left1"> , </td>
+          <td> <input type="text" class="textarea" value="50" size=3 id="right1"> )</td>
+          <td><span data-msgid="IntegerNumber">Integer</span></td>
+          <td>(<span data-msgid="WithoutReplacement">without replacement</span>)</td>
+        </tr>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="2">
+                    <span data-msgid="UniformDist">Uniform</span> 
+             </label>
+          </td>
+          <td>(<input type="text" class="textarea" value="1" size=3 id="left2"> , </td>
+          <td> <input type="text" class="textarea" value="100" size=3 id="right2"> )</td>
+          <td><span data-msgid="IntegerNumber">Integer</span></td>
+          <td>(<span data-msgid="WithReplacement">with replacement</span>)</td>
+        </tr>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="3">
+                    <span data-msgid="UniformDist">Uniform</span> 
+             </label>
+          </td>
+          <td>(<input type="text" class="textarea" value="0" size=3 id="left3"> , </td>
+          <td> <input type="text" class="textarea" value="1" size=3 id="right3"> )</td>
+          <td><span data-msgid="RealNumber">Real</span></td>
+        </tr>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="4">
+                    <span data-msgid="Normal Distribution">Normal</span> 
+             </label>       
+          </td>
+          <td>(<input type="text" class="textarea" value="0" size=3 id="mean"> ,</td>
+          <td> <input type="text" class="textarea" value="1" size=3 id="std"> )</td>
+          <td>(<span data-msgid="Mean">Mean</span> μ ,</td>
+          <td><span data-msgid="Std Dev">Standard Deviation</span> σ )</td>
+        </tr>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="5">
+                    2D <span data-msgid="Normal Distribution">Normal</span> 
+             </label>   
+          </td>
+          <td>( <input type="text" class="textarea" value="0" size=3 id="mu1"> ,  </td>
+          <td>  <input type="text" class="textarea" value="0" size=3 id="mu2"> ,  </td>
+          <td>  <input type="text" class="textarea" value="1" size=3 id="sigma1"> , </td>
+          <td>  <input type="text" class="textarea" value="1" size=3 id="sigma2"> , </td>
+          <td>  <input type="text" class="textarea" value="0.9" size=3 id="rho"> )</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>(&nbsp;&nbsp;<span data-msgid="Mean"></span> μ₁</td>
+          <td>&nbsp;<span data-msgid="Mean"></span> μ₂</td>
+          <td><span data-msgid="Std Dev"></span> σ₁</td>
+          <td><span data-msgid="Std Dev"></span> σ₂</td>
+          <td><span data-msgid="Correlation Coefficient"></span> ρ)</td>
+        </tr>
+      </table>
+    </form>   
+    <br>
+    &nbsp;&nbsp;
+    <button type="button" id="execute"> <span data-msgid="Execute">Execute</span> </button>
+    &nbsp;&nbsp;
+    <span data-msgid="NumberData">Number of Data</span>   n = <input type="number" class="textarea" value="3" size=3 min=1 max=100 id="nn"> 
+    <span class="fontguide" id="nmax"> ( &leq; 100) </span>
+    &nbsp;&nbsp;
+    <span data-msgid="NumberDigit">Number of Decimal Digit</span> <span class="fontguide" >0 &leq; </span>
+      <input type="number" class="textarea" value="0" size=3 min=0 max=4 id="digit"> <span class="fontguide" > &leq; 4 </span>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <p><span id="warning")</span>
+    <div width="650" > 
+      <p>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+   <script src="/estat/eStatU/js/11RandomNumber.js"> </script>
+
+</body>
+</html>

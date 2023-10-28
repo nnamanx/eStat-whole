@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title data-msgid="Word Cloud">Word Cloud</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+  </head>
+  <body>
+
+  <div width="640" height="640" style="position:absolute; left:10px; top:0px"> 
+    <br>
+
+    <div class="title">
+      <b>&nbsp; <span data-msgid="WordCloud">Word Cloud</span></b> 
+      <button class="menu" onclick="menuLoc()" >
+        <b><span data-msgid="Menu">Menu</span></b>
+      </button>
+    </div>
+
+    <p> 
+      <!--------Word cloud html ------------------------------------------------------------------------->
+      <p> 
+      <b>[<span data-msgid="input data">Data Input</span>]</b> 
+      &nbsp;
+      <button type="button" id="eraseWordData" style="width:140px;"><span data-msgid="Erase All"></span></button>
+      <p>
+      <textarea id="textarea" name="textarea" rows="10" cols="99"></textarea>  
+      <p> 
+      <button type="button" id="executeWord" style="width:140px;">
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <svg id="chartWord" width="750" height="540" style="border-style:solid;"> </svg> 
+      <p> 
+      <button type="button" id="saveGraphWord" style="width:140px;">
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+  </div>
+
+  <script src="/estat/eStatU/js/05WordCloud.js"> </script>
+  <script>
+      document.getElementById("textarea").value = "The development of these technologies has created massive data, simply called ‘Big Data’, that were unimaginable in the past. Typical examples of the big data include data from Google's search records, social media messages by mobile phones, web logs by internet connections, and telephone records of global telecom companies. The big data are expected to grow and increase exponentially in the future and the hyper-forecasting is also expected to be possible. The success or failure of each individual, group, company and even country would depend on how to utilize the big data efficiently. The analysis of the big data that emerged this century is so enormous and diverse in the amount of data that can not be fully utilized just by traditional statistical approaches. For the analysis and utilization of the big data, theories of statistics, computer science, mathematics, management or related disciplines must also be applied simultaneously. Data Science is a new area of study in which statistics, mathematics, computer science and other disciplines are fused to analyze and utilize the big data that emerged this century."; 
+  </script>
+
+</body>
+</html>

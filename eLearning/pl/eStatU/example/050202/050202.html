@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="ConditionalProb">Multiplication Rule</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+<style>
+
+table {
+//  font-family: arial, sans-serif;
+  border-collapse: collapse;
+//  width: 100%;
+}
+
+td, th {
+  border: 1px solid black;
+  text-align: center;
+  padding: 8px;
+  height: 30px;
+}
+
+</style>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="ConditionalProb">Multiplication Rule of Probability</span> 
+    </div>
+    <p>
+    <table>
+       <tr>
+          <td style="background-color: #dddddd; width:100px"><span data-msgid="JointProb"></span></td>
+          <td style="background-color: #dddddd; width:150px">\(B_1\)</td>
+          <td style="background-color: #dddddd; width:150px">\(B_2\)</td>
+          <td style="background-color: #dddddd; width:150px"><span data-msgid="Total"></span> </td>
+       </tr>
+       <tr>
+          <td style="background-color: #dddddd;">\(A_1\)</td>
+          <td style="text-align:left">
+              \( P(A_1 ∩ B_1 )\) = <input type="text" style="text-align: center;" size="1" value="0.4" id="p11" >
+              <br>
+              <sup><small> 0 </small></sup>
+              <input type="range" style="width: 100px;" min="0" max="20" value="16" id="rangeP11" onchange="showValueP11(this.value)">
+              <sup><small> <span id="p11max"></span>  </small></sup>
+          </td>
+          <td style="text-align:left">\( P(A_1 ∩ B_2 )\) = <span id="p12"></span><br>&nbsp;</td>
+          <td style="background-color: #dddddd; text-align:left">
+              \( P(A_{1})\) = <input type="text" style="text-align: center;" size="1" value="0.6" id="p1dot" >
+              <br>
+              <sup><small> 0 </small></sup>
+              <input type="range" style="width: 100px;" min="0" max="20" value="12" id="rangeP1dot" onchange="showValueP1dot(this.value)">
+              <sup><small> 1 </small></sup>
+          </td>          
+       </tr>
+       <tr>
+          <td style="background-color: #dddddd;">\(A_2\)</td>
+          <td style="text-align:left">\( P(A_2 ∩ B_1 )\) = <span id="p21"></span></td>
+          <td style="text-align:left">\( P(A_2 ∩ B_2 )\) = <span id="p22"></span></td>
+          <td style="background-color: #dddddd; text-align:left">\( P(A_{2})\) = <span id="p2dot"></span></td>
+       </tr>
+       <tr>
+          <td style="background-color: #dddddd;"><span data-msgid="Total"></span></td>
+          <td style="background-color: #dddddd; text-align:left">
+              \( P(B_{1})\) = <input type="text" style="text-align: center;" size="1" value="0.5" id="pdot1" >
+              <br>
+              <sup><small> 0 </small></sup>
+              <input type="range" style="width: 100px;" min="0" max="20" value="10" id="rangePdot1" onchange="showValuePdot1(this.value)">
+              <sup><small> 1 </small></sup>
+          </td>
+          <td style="background-color: #dddddd; text-align:left">\( P(B_{2})\) = <span id="pdot2"></span><br>&nbsp;</td>
+          <td style="background-color: #dddddd;"><span id="ptotal"></span></td>
+        </tr>
+    </table>
+    <br>
+    <table>
+       <tr>
+          <td style="background-color: #dddddd; width:100px"><span data-msgid="ConditionalProb"></span></td>
+          <td style="background-color: #dddddd; width:200px">\(B_1\)</td>
+          <td style="background-color: #dddddd; width:200px">\(B_2\)</td>
+          <td style="background-color: #dddddd; width:50px"><span data-msgid="Total"></span> </td>
+       </tr>
+       <tr>
+          <td style="background-color: #dddddd;">\(A_1\)</td>
+          <td>\( P(B_1 | A_1 ) = \frac{P(A_1 ∩ B_1 )}{P(A_{1}) } = \)<span id="c11"><span></td>
+          <td>\( P(B_2 | A_1 ) = \frac{P(A_1 ∩ B_2 )}{P(A_{1}) } = \)<span id="c12"><span></td>
+          <td style="background-color: #dddddd;">1.00</td>
+       </tr>
+       <tr>
+          <td style="background-color: #dddddd;">\(A_2\)</td>
+          <td>\( P(B_1 | A_2 ) = \frac{P(A_2 ∩ B_1 )}{P(A_{2}) } = \)<span id="c21"><span></td>
+          <td>\( P(B_2 | A_2 ) = \frac{P(A_2 ∩ B_2 )}{P(A_{2}) } = \)<span id="c22"><span></td>
+          <td style="background-color: #dddddd;">1.00</td>
+       </tr>
+    </table>
+    <br>
+    <b><button type="button" style="width:100px;" id="execute"><span data-msgid="Execute"></span></button> </b>
+    <p>
+    <svg id="chart" width="640" height="500"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script src="/estat/eStatU/js/40MultiplicationRule.js"> </script>
+
+</body>
+</html>

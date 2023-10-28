@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="AR"></title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+
+  <div width="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="TimeSeries"></span> <span data-msgid="Forecasting"></span> : <span data-msgid="AR"></span></b>
+      <button class="menu" onclick="menuLoc()" >
+        <b><span data-msgid="Menu">Menu</span></b>
+      </button>
+    </div>
+    <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=73 id="data2"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="ytitle"></td>
+ 	  <td><span data-msgid="NumberData"></span>&nbsp;&nbsp; <span class="fontmath">n<sub>Y</sub> = </span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"> <span style="color:red;">( ≤ 120)</span></td>      
+        </tr>
+    </table>   
+    <p>
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td>
+            <button type="button" id="execute" style="width:90px;">
+              <span data-msgid="Execute">Execute</span>
+            </button>
+          </td>
+          <td>&nbsp;<span data-msgid="Diff"></span> d = &nbsp;<input type="number" min="1" max="3" size=5 value="0" style="text-align:center" id="diff" onchange="drawDifference()">
+              <span style="color:red"> ≤ 3 </span>
+          </td>
+          <td><label><input type="radio" name="corr" id="acf" checked onchange="drawACF()"> ACF</label>
+              <label><input type="radio" name="corr" id="pacf" onchange="drawPACF()"> PACF</label>
+          </td>
+          <td>
+            <button type="button" id="corrTable" >
+              <span data-msgid="AutoCorrTable"></span>
+            </button>
+          </td>
+          <td><button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button></td>
+	</tr>
+      </tbody>
+    </table>
+    <svg id="chart" width="620" height="400"> </svg> 
+    <table>
+      <tbody>
+	<tr>
+ 	  <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>               
+ 	  <td>&nbsp;&nbsp;<b>AR(p)</b></td>
+          <td>p = <input type="number" min="0" max="9" value="0" id="arP" style="text-align:center" onchange="drawAR()"> <span style="color:red;">( ≤ 9)</span>
+          </td>      
+          <td>&nbsp;&nbsp;
+              <button type="button" id="regressionTable"><span class="tooltiptext" data-msgid="ResultTable"></span></button>    
+          </td>
+          <td>&nbsp;&nbsp;
+              <button type="button" id="saveTable" ><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
+          </td>
+	</tr>
+	<tr>
+ 	  <td></td>               
+          <td>&nbsp;&nbsp;<span data-msgid="ForecastingPeriod"></span> </td>
+          <td><input type="number" min="0" max="9" value="0" id="nn42" style="text-align:center" onchange="forecasting()"></td>
+          <td><label><input type="radio" name="forecast" id="diffData" checked onchange="forecasting()"><span data-msgid="DiffSeries"></span></label></td>
+	</tr>
+	<tr>
+ 	  <td></td>               
+ 	  <td></td>               
+ 	  <td></td>               
+          <td><label><input type="radio" name="forecast" id="rawData"  onchange="forecasting()"><span data-msgid="RawSeries"></span></label></td>
+          <td>&nbsp;&nbsp;
+              <button type="button" id="forecastTable" ><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
+          </td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div width="250" style="position:absolute; left:640px; top:120px;"> 
+    &nbsp;&nbsp;
+    <p>
+    <div id="screenTable" >
+      <div id="loc">
+      </div>
+    </div>
+  </div>
+
+   <script src="/estat/eStatU/js/39TimeseriesAutoRegressive.js"> </script>
+
+</body>
+</html>

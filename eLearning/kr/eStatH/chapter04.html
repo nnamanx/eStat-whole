@@ -7,110 +7,38 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>4장</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../indexH.html">목차</a></li>
-            <li><a href="../eStatH/chapter01.html">1장 경우의 수</a></li>
-            <li><a href="../eStatH/chapter02.html">2장 확률</a></li>
-            <li><a href="../eStatH/chapter03.html">3장 확률변수와 확률분포</a></li>
-            <li><a href="../eStatH/chapter04.html">4장 통계적 추정</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>4장 통계적 추정</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(153)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
         <h1>&nbsp; 🎯 ⚖ μ </h1>
         <h4>
         <a href="#0401"><u>4.1  모집단과 표본</u></a> <p>
         <a href="#0402"><u>4.2  모평균과 표본평균</u></a> <p>
         <a href="#0403"><u>4.3  모평균의 추정</u></a> <p>
-
-        <a href="../eStatH/chapter04.pdf" target="_blank"><u>[4장 pdf]</u></a> 
+        <a href="./pdf/chapter04.pdf" target="_blank"><u>[4장 pdf]</u></a> 
         </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
         <p>자료의 전체 집단이 매우 크게 되면 이 집단의 평균이나 분산같은 특성값을 구하기가 쉽지 않다.
            이러한 경우 전체집단을 모집단이라고 하는데 이 중에서 적당한 수의 표본을 뽑아 모집단의 
            특성을 추정하는 것을 통계적 추정이라 한다. 
         <p>이러한 추정을 이용해 불확실한 상황에서 합리적인 의사결정을 하는 것이 현대 통계학의 
            중요한 기능이다.
-      </td>
-    </tr>
-  </table>
+
       <br>
 <!--
   <h6>
@@ -122,24 +50,11 @@
   <h3 id="0401">4.1 모집단과 표본</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>어느 공장에서 스마트폰을 하루에 수 만대씩 생산한다. 스마트폰 화면의 강화유리는 
              강도가 일정한 높이에서 떨어뜨렸을 때 그 충격을 견뎌고 깨지지 않아아 충격 품질검사에서 
              합격한다. 
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>
           <div class="textL20M20">
              1) 이 공장에서 어느 날 생산한 모든 스마트폰에 대한 충격검사를 실시할까?
@@ -148,9 +63,6 @@
              2) 만일 생산한 모든 스마트폰을 조사하기 어렵다면 어떠한 방법으로 충격 품질검사를 실시할까?
           </div>
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -167,7 +79,7 @@
          또 조사 과정에서 충격 품질검사와 같이 제품이 파괴되는 경우는 전수조사가 적합지 않다.
       <p>
          이와 같이 전수조사가 어려운 경우에 모집단에서 일부 표본을 뽑은 후 이 표본들에 대하여 
-         조사하는 <b>표본조사</b>를 이용한다. 모집단에서 일부를 추출한 표본을 이용하여 전체 모집단의 특성을 예측하는 것을 추측통계라 한다.
+         조사하는 <b>표본조사</b>를 이용한다. 모집단에서 일부를 추출한 표본을 이용하여 전체 모집단의 특성을 예측하는 것을 <b>추측통계</b>라 한다.
   </div>
   <p>
 
@@ -183,7 +95,7 @@
           </div>
       <p><b>풀이</b>
           <div class="textL20M20">
-            1) 2020년도 우리나라 출생 인구수 조사를 위해서는 모집단 전체를 조사해야 정확한 값을 알 수 있다. 따라서 전수조사가 더 적절하다.
+            1) 2020년도 우리나라 출생 인구수 조사를 위해서는 모집단 전체를 조사해야 정확한 값을 알 수 있다. 따라서 전수조사가 적절하다.
           </div>
           <div class="textL20M20">
             2) 한 국회의원 선거에서 특정 후보의 지지율을 모집단 전체를 조사하기 위해서는 많은 시간과 노력이 소요된다. 하지만 특정 후보의 지지율은 빠른 시간 내에 알아야 이 결과에 따라 선거 전략의 수립 등을 할 수 있다. 따라서 표본조사가 더 적절하다.
@@ -194,20 +106,11 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table>
-        <tr>
-          <td  style="width:130px">
-            <h4>⏱ 문제 4.1</h4> <p>
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 문제 4.1</h4> <p>
             다음과 같은 내용을 조사하기 위하여 전수조사와 표본조사 중 어떤 방법이 더 적절한가? 
             <p>
                1) 2020년도 우리나라 산업재해 현황 <br>
                2) 한 TV 프로그램의 시청률
-         </td>
-        </tr>
-      </table>
     </div>
     <p>
 
@@ -215,27 +118,11 @@
   <h4>가. 표본의 추출</h4>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>스마트폰의 충격 품질검사를 표본조사로 하기로 결정하였다.   </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>하루에 생산된 전체 스마트폰에서 어떻게 표본을 추출하는 것이 좋을까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -260,7 +147,7 @@
          흩어 놓은 것으로 [표 4.1]은 이와 같은 난수를 행과 열로 모아 놓은 난수표의 일부이다. 
       <p>
             <div class="figText">[표 4.1] 난수를 행과 열로 모아 놓은 난수표</div>
-            <img class="imgFig600600" src="../FigureH/HTable0401.png">
+            <img class="imgFig600600" src="./Figure/HTable0401.png">
       <p>
          예를 들어 한 학급에 50명의 학생이 있고 이들의 출석부 번호가 1, 2, ... , 50이라고 하자. 
          이들 중 3명을 임의추출하려면 먼저 임의의 행과 열을 선택한다. 만일 3행과 11열을 선택하였다면
@@ -270,37 +157,22 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 4.2</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 4.2</h5>
             우리 학교 학생 7명이 한 취미 동아리를 만들었다. 이 중에서 대표 1명을 [표 4.1]의 
             난수표를 이용하여 추출하라. 각 학생은 1에서 7까지 번호가 부여되어 있다고 가정하자. 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTable">
       <p>위와 같이 난수표를 이용하는 임의추출은 표본의 크기가 클 경우에는 쉽지 않아 최근에는 
-         컴퓨터로 균등분포를 이용하여 난수 생성을 하는데 <그림 4.1>은 『eStatH』를 이용하여 
+         컴퓨터로 균등분포를 이용하여 난수 생성을 하는데 &lt;그림 4.1&gt;은 『eStatH』를 이용하여 
          1에서 100까지 숫자 중 10개의 난수를 비복원추출로 뽑은 것이다.  
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_11RandomNumber.svg" onclick="window.open(addrStr[160])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0401.png">
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU110_RandomNum.svg" onclick="window.open(addrStr[160])">
+            <img class="imgFig600600" src="./Figure/HFig0401.png">
             <div class="figText">&lt;그림 4.1&gt; 『eStatH』를 이용한 균등분포(1, 100)에서 10개의 난수생성</div>
-          </td>
-        </tr>
-      </table>
+         </div>
       <p>
          『eStatH』를 이용하면 이밖에도 정수형 균등분포\([a,b]\) 복원추출, 실수형 균등분포\([a,b]\),
           정규분포 \(N(\mu, \sigma^2 )\), 그리고 2차원 정규분포
@@ -318,37 +190,23 @@
          50명 중 3명의 표본을 추출하기 위해서는 먼저 학생의 명단을 만든 후 1번에서 50번까지 
          일련번호를 부여하여야 한다. 만일 출석부가 있다면 이를 사용하여도 무방하다. 
          학생을 추출하기 위해서 『eStatH』의 ‘확률난수 생성’에서 정수형 균등분포 비복원추출을 
-         선택하고, (1, 50) 을 입력한 후 자료수 3개를 선택한 후 [실행] 버튼을 누르면 <그림 4.2>와
+         선택하고, (1, 50) 을 입력한 후 자료수 3개를 선택한 후 [실행] 버튼을 누르면 &lt;그림 4.2&gt;와
          같이 난수가 생성된다. 
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_11RandomNumber.svg" onclick="window.open(addrStr[160])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0402.png">
-            <div class="figText">&lt;그림 4.2&gt; 『eStatH』의 균등분포(1,50) 난수생성</div>
-          </td>
-        </tr>
-      </table>
+      <!--------*** html for random number generator ***------------------------------>
+      <b>[<span data-msgid="RandomNumber">Random Number Generation</span>]</b> 
+      <p>
+         <iframe src="./example/040101/040101.html" width="800" height="500"> </iframe>
+      <p>
+    <div class="figText">&lt;그림 4.2&gt; 『eStatH』의 균등분포(1,50) 난수생성</div>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
+
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 4.3</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_11RandomNumber.svg" onclick="window.open(addrStr[160])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 4.3</h5>
             한 학급에 30명 학생이 있을때 『eStatH』를 이용하여 5명의 학생을 비복원 임의추출하라.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU110_RandomNum.svg" onclick="window.open(addrStr[160])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -358,28 +216,12 @@
   <h3 id="0402">4.2 모평균과 표본평균</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>우리나라 전체 고등학교 1학년 남학생들의 신장을 조사하고자 한다. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>전체 고등학교 1학년 남학생 모집단의 신장에 대한 평균과 이 모집단에서 100명의 표본을 
              추출했을 때의 표본평균과는 어떠한 관계가 있을까? 
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -420,7 +262,7 @@
       <div class="textLeft">
          \(s = \sqrt{s^2}\)
       </div>
-      <p>예를 들어 고등학교 1학년 남학생 모집단에서 세 개의 표본을 뽑을 때 세 개의 표본이 
+      <p>예를 들어 고등학교 1학년 남학생 모집단에서 세 명의 표본을 뽑을 때 세 명의 표본이 
          뽑힐 경우의 수는 무수히 많으므로 이를 확률변수 \(X_1 , X_2 , X_3 \)로 표시하고 
          실제 뽑힌 세 남학생의 신장이 160cm, 170cm, 180cm 일 때 이 값을 
          \(x_1 = 160, x_2 = 170, x_3 = 180\)으로
@@ -438,58 +280,40 @@
          \(s = \sqrt{100} = 10\)
       </div>
       <p>
-         <그림 4.3>은 『eStatH』를 이용하여 대략 표준정규분포 형태를 갖는 1만개의 모집단에서 
+         &lt;그림 4.3&gt;은 『eStatH』를 이용하여 대략 표준정규분포 형태를 갖는 1만개의 모집단에서 
          약 10%의 표본을 임의추출하였을 때 모집단의 특성값과 표본의 특성값과의 관계를 보여주는
          시뮬레이션이다. 그림을 살펴보면 모집단의 특성값 중 최솟값(min), 최댓값(max) 등은 
          모집단과 표본의 값이 차이가 있지만 모평균과 표본평균은 큰 차이가 없음을 알 수 있다 
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_61Sample.svg" onclick="window.open(addrStr[152])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0403.png">
-            <div class="figText">&lt;그림 4.3&gt; 모집단과 표본의 관계를 보여주는 시뮬레이션</div>
-          </td>
-        </tr>
-      </table>
   </div>
   <p>
+
+  <div class="mainTableGrey">
+      <!------*** html for Population and Sample simulation ***-------------------->
+      <b>[<span data-msgid="Population vs Sample">Population vs Sample</span>]</b>
+      <p> 
+      <iframe src="./example/040201/040201.html" width="700" height="730"> </iframe>
+      <p>
+      <div class="figText">&lt;그림 4.3&gt; 모집단과 표본의 관계를 보여주는 시뮬레이션</div>
+  </div>
 
   <!-------------------------------------------------------------------------->
   <h3>가. 모든 가능한 표본평균의 분포</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 회사의 영업사원이 5명이 있는데 이들이 회사에 근무한 기간은 다음과 같다. 
           <p>
-          <p>  6,   2,   4,   8,   10 (단위 년)
+          <p class="textLeft">  6,   2,   4,   8,   10 (단위 년)
           <p>
           <p>이 5명의 근무 기간을 모집단이라 가정하자. 
           <p>(이렇게 작은 모집단은 실제로는 굳이 표본을 추출할 필요가 없지만, 여기서는 표본평균의 분포를 설명하기 위한 예이다.)
           </b>
           <p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>이 모집단의 평균과, 모집단에서 표본의 크기가 2인 모든 가능한 표본들을 복원 임의추출 
              하였을 때 각각의 표본평균과의 관계는 어떠할까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -509,7 +333,7 @@
       <p>
          모집단의 분포는 다음과 같이 균등분포이다.
       <p>
-            <img class="imgFig600600" src="../FigureH/HFig0404.png">
+            <img class="imgFig600600" src="./Figure/HFig0404.png">
             <div class="figText">&lt;그림 4.4&gt; 모집단의 분포</div>
       <p>
          표본의 크기가 2인 모든 가능한 표본들을 복원 임의추출 하였을 때 각각의 표본을 \(X_1 , X_2\)로
@@ -518,18 +342,18 @@
          모든 가능한 복원추출 \(5^2 = 25\)개 표본과 각 표본의 평균값 \(\overline x \)는 다음과 같다. 
       <p>
             <div class="figText">[표 4.2] 모집단에서 추출 가능한 \(n\)=2인 모든 표본들과 표본평균</div>
-            <img class="imgFig600600" src="../FigureH/HTable0402.png">
+            <img class="imgFig600600" src="./Figure/HTable0402.png">
       <p>
          이 25개 표본평균들의 도수분포표와 그 그래프를 그리면 다음과 같다.
       <p>
             <div class="figText">[표 4.3] 모든 가능한 표본평균의 도수분포</div>
-            <img class="imgFig600600" src="../FigureH/HTable0403.png">
+            <img class="imgFig600600" src="./Figure/HTable0403.png">
       <p>
-         <img class="imgFig600600" src="../FigureH/HFig0405.png">
+         <img class="imgFig600600" src="./Figure/HFig0405.png">
          <div class="textLeft">&lt;그림 4.5&gt; 모든 가능한 표본평균들의 분포 </div>
       <p>
          [표 4.3]의 모든 가능한 표본평균의 도수분포를 보면 표본평균들 중에는 모평균 6과 정확하게 
-         일치하는 값도 있고 2나 10과 같이 차이가 많이 나는 표본평균도 있다. 하지만 <그림 4.5>를 보면
+         일치하는 값도 있고 2나 10과 같이 차이가 많이 나는 표본평균도 있다. 하지만 &lt;그림 4.5&gt;를 보면
          이 표본평균들은 모평균 6 주위에 많이 몰려 있음을 알 수 있다. 
       <p>
          [표 4.2]의 25개 표본평균들의 평균 \(E(\overline X)\)와 분산 \(V(\overline X)\)은 다음과 같다. 
@@ -578,34 +402,18 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 4.4</h5>
-          </td>
-          <td>
-            <p>1에서 6까지의 숫자 중에서 2개의 숫자를 복원추출로 임의추출할 때, 표본평균 
+        <h5>⏱ 문제 4.4</h5>
+            1에서 6까지의 숫자 중에서 2개의 숫자를 복원추출로 임의추출할 때, 표본평균 
             \(\overline X\)의 분포를 구하고 그 평균, 분산, 표준편차를 구하라. 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 4.5</h5>
-          </td>
-          <td>
-            <p>모평균이 170cm, 모표준편차가 10com인 모집단에서 100명의 표본을 임의추출할 때, 
+        <h5>⏱ 문제 4.5</h5>
+            모평균이 170cm, 모표준편차가 10com인 모집단에서 100명의 표본을 임의추출할 때, 
             표본평균 \(\overline X\)의 평균, 분산, 표준편차를 구하라. 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -632,11 +440,12 @@
       <div class="textL20M20">
          2) 모집단이 정규분포를 따르지 않을 경우에도 \(n\)이 충분히 크면
             표본평균 \(\overline X\)의 분포는 근사적으로 \(N(\mu , \frac{\sigma^2}{n} )\)를 따른다. 
+            이를 <b>중심극한정리</b>라 부른다.
       </div>
   </div>
   <p>
   <div class="mainTable">
-      <p>위의 표본평균의 분포는 추측 통계학의 기본이 되는 이론으로 매우 중요하다.  <그림 4.6>은 
+      <p>위의 표본평균의 분포는 추측 통계학의 기본이 되는 이론으로 매우 중요하다.  &lt;그림 4.6&gt;은 
          모집단이 정규분포 형태를 따를 때 표본의 크기에 따라 표본평균의 분포가 어떻게 달라지는지를
          보여주는 『eStatH』의 시뮬레이션이다. 그림을 살펴보면 표본의 크기가 증가하면 표본평균의 
          분포는 평균이 모평균과 같은 정규분포이며 분산이 점차로 작은 형태가 되어 뾰족해 진다.  
@@ -644,40 +453,30 @@
          된다는 것을 의미한다. 즉 우리가 얻는 표본평균은 모든 가능한 표본평균 중에 하나지만 
          모평균에 근접한 값이어서 어느 표본평균이라도 모평균을 잘 추정할 수 있는 근거가 된다.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_62Sample.svg" onclick="window.open(addrStr[153])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0406.png">
-            <div class="figText">&lt;그림 4.6&gt; 『eStatH』의 표본평균의 분포 시뮬레이션 </div>
-          </td>
-        </tr>
-      </table>
   </div>
   <p> 
+  <div class="mainTableGrey">
+      <!-----------***  html for  CLT  ***------------------------------------------------------>
+      <b>[<span data-msgid="Dist of Sample Means">Sampling Distribution of Sample Means</span>]</b> 
+      <p>
+      <iframe src="./example/040301/040301.html" width="700" height="730"> </iframe>
+      <p>
+      <div class="figText">&lt;그림 4.6&gt; 『eStatH』의 표본평균의 분포 시뮬레이션 </div>
+  </div>
+  <p>
+
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTableGrey">
       <p><h5>🎲 예제 4.3</h5>
          고등학교 1학년 전체 모집단의 신장이 모평균 170cm, 모표준편차 10com인 정규분포를 따른다고 
          한다. 100명의 표본을 임의추출할 때, 다음 확률을 구하라. 
       <p>
-        1) \( P(168 \le {\overline X} \le 172) \) <br>
-        2) \( P({\overline X} \ge 173) \) 
+        1) \(\small P(168 \le {\overline X} \le 172) \) <br>
+        2) \(\small P({\overline X} \ge 173) \) 
       <h5>풀이</h5>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p>
-            \( {\overline X} \)는 평균이 170이고 분산이 \(\frac{10^2}{100}\) = 1, 표준편차 1인 
-            정규분포 \(N(170 , \frac{10^2}{100} )\)을 따른다. 그러므로 
-          </td>
-        </tr>
-      </table>
+          <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
+           \( {\overline X} \)는 평균이 170이고 분산이 \(\frac{10^2}{100}\) = 1, 표준편차 1인 
+           정규분포 \(N(170 , \frac{10^2}{100} )\)을 따른다. 그러므로 
       <p>
         1) \(\small P(168 \le {\overline X} \le 172) = P( \frac{168-170}{\frac{10}{\sqrt 100}}  \le \frac{\overline X - 170}{\frac{10}{\sqrt 100}} \le \frac{172-170}{\frac{10}{\sqrt 100}} )
             = P(-2 \le Z \le 2 ) = 0.955 \)
@@ -690,22 +489,13 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 4.6</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 4.6</h5>
             한 공장에서 생산되는 볼트의 길이는 모평균 100mm, 모표준편차 2mm인 정규분포를 따른다고 한다.
             25개의 표본을 임의추출할 때, 다음 확률을 구하라. 
             <p>
             1) \( P(99.5 \le {\overline X} \le 100.5) \) <br>
             2) \( P({\overline X} \ge 100.3) \) 
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -715,41 +505,25 @@
   <h3 id="0403">4.3 모평균의 추정</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>우리나라 전체 고등학교 1학년 남학생들의 평균 신장을 추정하고자 한다. 
              10명의 고1 남학생을 임의 추출하여 신장을 조사하니 표본평균이 170cm 이었다.
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>전체 고등학교 1학년 남학생 모집단의 신장에 대한 평균의 추정값으로 표본평균을 
              이용해도 될까? 
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
   <div class="mainTable">
       <p>표본조사를 실시하면 모집단에서 단지 한 세트의 표본만을 추출하여 모평균을 추정한다. 
          일반적으로 추출된 표본의 표본평균을 모평균의 대한 추정값으로 생각하게 되는데 
-         과연 수없이 가능한 표본들 중 한 조의 표본에서 얻은 표본평균이 값이 모평균을 잘 
+         과연 수없이 가능한 표본들 중 한 세트의 표본에서 얻은 표본평균이 값이 모평균을 잘 
          예측할 수 있을까? 
       <p>앞 절에서 연구한 표본평균의 분포가 이 질문에 대한 해답이다. 즉, 모집단이 
          어떠한 분포이든지 표본의 크기가 충분히 크다면 모든 가능한 표본평균들은 모평균 
-         주위에 정규분포 모양을 하면서 밀집하게 된다. 따라서 우리가 얻은 표본 한 조의 
+         주위에 정규분포 모양을 하면서 밀집하게 된다. 따라서 우리가 얻은 표본 한 세트의 
          평균은 대개 모평균과 가깝고, 제일 나쁜 경우라도 모평균과의 차(오차라고 함)가 크지 않아 
          표본평균이 모평균의 좋은 추정값이라 할 수 있다. 표본의 크기가 크면 클수록 표본평균의 
          분포는 모평균 근처에 더욱 밀집되므로 이 오차는 줄어들게 된다. 
@@ -795,24 +569,23 @@
       $$
           [ \overline X - 2.575 \frac{\sigma}{\sqrt{n}} , \overline X + 2.575 \frac{\sigma}{\sqrt{n}} ]
       $$
-      <p><그림 4.7>은 표준정규분포를 따르는 1만개의 모집단 자료에서 표본의 크기가 \(n = 20\)인 
+      <p>&lt;그림 4.7&gt;은 표준정규분포를 따르는 1만개의 모집단 자료에서 표본의 크기가 \(n = 20\)인 
          100 세트의 표본을 임의추출하여 모평균에 대한 95％ 신뢰구간을 구한 것이다. 이 경우에는
          100개의 신뢰구간 중 94개만 모평균 0을 포함하고 있다. 이러한 실험을 반복할 때마다. 
          결과는 약간씩 달라질 수 있다. 이 시뮬레이션은 위의 공식으로 모평균의 구간추정을 
          여러 번 하였을 때 대략 신뢰도만큼의 구간만 모평균을 포함함을 보여 준다.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_64Sample.svg" onclick="window.open(addrStr[155])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0407.png">
-            <div class="textLeft">&lt;그림 4.7&gt;  『eStatH』 모평균의 95% 구간추정 의미 실험</div>
-          </td>
-        </tr>
-      </table>
+  <div class="mainTableGrey">
+      <!----***   html for confidence interval Simulation  ***--------------------------------------->
+      <b>[<span data-msgid="Confidence Interval Simulation">Confidence Interval Experiment</span>]</b> 
       <p>
+      <iframe src="./example/040302/040302.html" width="700" height="750"> </iframe>
+      <p>
+      <div class="textLeft">&lt;그림 4.7&gt;  『eStatH』 모평균의 95% 구간추정 의미 실험</div>
+  </div>
+  <p>
+
+  <div class="mainTable">
          일반적으로 모집단이 평균이 \(\mu\)인 정규분포이고 모분산 \(\sigma^2\)을 알고 있다면 
          모평균 \(\mu\)의 신뢰구간은 신뢰도를 \(1-\alpha\)로 하였을 때 다음과 같다.
   </div>
@@ -888,43 +661,23 @@
          그러므로, 표본의 크기가 증가하면 구간의 너비가 좁아진다. 즉, 보다 정확한 추정이 된다. 
       </div>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_65ConfidenceIntervalMuH.svg" onclick="window.open(addrStr[156])">     
-          </td>
-          <td>
-            <p>『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서 ‘추정: 모평균 ’를 
-                선택하고 표본크기, 표본평균, 모표준편차를 <그림 4.8>과 같이 입력한 후 [실행] 버튼을 
-                클릭하면 신뢰구간이 계산된다. 그 아래에 있는 표본의 크기와 신뢰도를 조정하며 
-                신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
-            <p>
-               <img class="imgFig600600" src="../FigureH/HFig0408.png">
-               <div class="textLeft">&lt;그림 4.8&gt;  『eStatH』 모평균의 추정</div>
-          </td>
-        </tr>
-      </table>
+         『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서 ‘추정: 모평균 ’를 
+         선택하고 &lt;그림 4.8&gt;에서 표본크기, 표본평균, 모표준편차를 입력한 후 [실행] 버튼을 
+         클릭하면 신뢰구간이 계산된다. 그 아래에 있는 표본의 크기와 신뢰도를 조정하며 
+         신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
+     <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 4.7</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_65ConfidenceIntervalMuH.svg" onclick="window.open(addrStr[156])">     
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 4.7</h5>
             한 공장에서 생산되는 볼트의 길이는 모표준편차 2mm인 정규분포를 따른다고 한다. 25개의 표본을 임의추출할 때 표본평균이 101mm라면,
             <p>
             1) 모집단 볼트 길이의 평균을 95% 신뢰구간으로 추정하라. <br>
             2) 모집단 볼트 길이의 평균을 99% 신뢰구간으로 추정하라. <br> 
             3) 두 신뢰구간의 너비를 비교하라.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_65ConfidenceIntervalMu_H.png" onclick="window.open(addrStr[156])">     
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -944,38 +697,27 @@
          2) 신뢰도 99%의 신뢰구간을 구하라. <br>
          3) 위의 두 신뢰구간을 비교하라. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_65ConfidenceIntervalMuH.svg" onclick="window.open(addrStr[156])">     
-          </td>
-          <td>
-            <p>자료가 있을 경우 『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서
-              ‘추정: 모평균 \(\mu\)’를 선택하고 데이터를  <그림 4.9>와 같이 입력한 후 [실행] 
-               버튼을 클릭하면 신뢰도 95%의 신뢰구간이 계산된다. 
-            <p>
-               <img class="imgFig600600" src="../FigureH/HFig0409.png">
-               <div class="textLeft">&lt;그림 4.9&gt; 자료를 이용항 『eStatH』 모평균의 추정</div>
-            <p>
-               신뢰도를 99%을 선택하고 [실행] 버튼을 누르면 99% 신뢰구간이 계산된다.
-            <p>
-               그 아래에 있는 표본의 크기와 신뢰도를 조정하며 신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
-          </td>
-        </tr>
-      </table>
+      <p>자료가 있을 경우 『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서
+         ‘추정: 모평균 \(\mu\)’를 선택하고 데이터를  &lt;그림 4.8&gt;과 같이 입력한 후 [실행] 
+         버튼을 클릭하면 신뢰도 95%의 신뢰구간이 계산된다. 
+      <p>
+         신뢰도를 99%을 선택하고 [실행] 버튼을 누르면 99% 신뢰구간이 계산된다.
+      <p>
+         그 아래에 있는 표본의 크기와 신뢰도를 조정하며 신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
+      <p>
+      <!----------*** html Confidence Interval ***--------------------------------------->
+      <b>
+         <b>[<span data-msgid="Confidence Interval Mu"></span> <span data-msgid="Confidence Interval"></span>]</b>
+      <p>
+         <iframe src="./example/040303/040303.html" width="700" height="600"> </iframe>
+      <p>
+         <div class="textLeft">&lt;그림 4.8&gt; 자료를 이용항 『eStatH』 모평균의 추정</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 4.8</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_65ConfidenceIntervalMuH.svg" onclick="window.open(addrStr[156])">     
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 4.8</h5>
             한 공장에서 생산되는 볼트의 길이는 모표준편차 2mm인 정규분포를 따른다고 한다. 
             10개의 표본을 임의추출한 자료가 다음과 같다. 
             <p>
@@ -987,141 +729,14 @@
             1) 모집단 볼트 길이의 평균을 95% 신뢰구간으로 추정하라. <br>
             2) 모집단 볼트 길이의 평균을 99% 신뢰구간으로 추정하라. <br> 
             3) 두 신뢰구간의 너비를 비교하라.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_65ConfidenceIntervalMu_H.png" onclick="window.open(addrStr[156])">     
     </div>
     <p>
     <!------------------------------------------------------------------------------------------------->
     <p>
-
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">4.1  한 특성치에 대한 전체 자료의 집합을 무엇이라 하는가?  </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 전체 집합</label><br>
-    <label><input type="radio" name="item" value="2"> 표본     </label><br>
-    <label><input type="radio" name="item" value="3"> 모집단   </label><br>
-    <label><input type="radio" name="item" value="4"> 부분집합 </label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">4.2 모집단의 한 특성을 알아보기 위하여 추춯한 모집단의 부분집합을 무엇이라 하는가? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 전체 집합</label><br>
-    <label><input type="radio" name="item" value="2"> 표본     </label><br>
-    <label><input type="radio" name="item" value="3"> 모집단   </label><br>
-    <label><input type="radio" name="item" value="4"> 부분집합 </label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">4.3 2020년도 우리나라 외국인 노동자의 수와 같은 내용을 조사하기 위하여 어떤 조사 방법이 더 적절한가?   </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 표본조사</label><br>
-    <label><input type="radio" name="item" value="2"> 전수조사</label><br>
-    <label><input type="radio" name="item" value="3"> 일부조사</label><br>
-    <label><input type="radio" name="item" value="4"> 방문조사</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">4.4 한 대통령 선거에서 특정 후보의 지지율을 조사하기 위하여 어떤 조사 방법이 더 적절한가? </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 표본조사</label><br>
-    <label><input type="radio" name="item" value="2"> 전수조사</label><br>
-    <label><input type="radio" name="item" value="3"> 일부조사</label><br>
-    <label><input type="radio" name="item" value="4"> 방문조사</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">4.5 모평균이 10, 모분산이 2인 정규분포 모집단에서 10명의 표본을 임의추출할 때, 표본평균 \(\overline X\)의 평균은?</h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> 1</label><br>
-    <label><input type="radio" name="item" value="2"> 2</label><br>
-    <label><input type="radio" name="item" value="3"> 5</label><br>
-    <label><input type="radio" name="item" value="4"> 10</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  <h6 class="textL30M30">4.6 모평균이 10, 모분산이 4인 정규분포 모집단에서 10명의 표본을 임의추출할 때, 표본평균 \(\overline X\)의 분산은? </h6>
-  <form name="Q6">
-    <label><input type="radio" name="item" value="1"> 4</label><br>
-    <label><input type="radio" name="item" value="2"> 0.4</label><br>
-    <label><input type="radio" name="item" value="3"> 5</label><br>
-    <label><input type="radio" name="item" value="4"> 10</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,6,Q6)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ6">
-  </form>
-
-  <h6 class="textL30M30">4.7 한 공장에서 생산되는 볼트 제품의 길이는 모평균 10mm, 모표준편차 1mm인 정규분포를 따른다고 한다. 25개의 표본을 임의추출할 때, \(P(9.8 \le X \le 10.2)\)를 구하라. </h6>
-  <form name="Q7">
-    <label><input type="radio" name="item" value="1"> 1.000</label><br>
-    <label><input type="radio" name="item" value="2"> 0.955</label><br>
-    <label><input type="radio" name="item" value="3"> 0.999</label><br>
-    <label><input type="radio" name="item" value="4"> 0.683</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,7,Q7)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ7">
-  </form>
-
-  <h6 class="textL30M30">4.8 한 공장에서 생산되는 볼트 제품의 모표준편차 1mm인 정규분포를 따른다고 한다. 25개의 표본을 임의추출하여 표본평균을 조사하니 9mm라할 때, 모평균의 95% 신뢰구간은? </h6>
-  <form name="Q8">
-    <label><input type="radio" name="item" value="1"> 9 ± 1.96 ×1 </label><br>
-    <label><input type="radio" name="item" value="2"> 9 ± 1.96  × \(\frac{1}{\sqrt{25}}\)</label><br>
-    <label><input type="radio" name="item" value="3"> 9 ± 2.575 × \(\frac{1}{25}\)</label><br>
-    <label><input type="radio" name="item" value="4"> 9 ± 1.96  × \(\frac{1}{25}\)</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(34,8,Q8)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ8">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[34][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(153)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-
-</div>
     
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+  <iframe src="./exercise/exercise04.html" width="750" height="700" ></iframe>
+
 
 </body>
 </html>

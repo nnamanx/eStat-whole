@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 7</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h2>Chapter 7. Testing Hypothesis for Single Population Parameter</h2> 
+  <h6>
+      <a href="./pdf/book07.pdf" target="_blank"><u>[book]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+  </h6>
+	      <ul>
+                <li><a href="#0701">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="#0702">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="#0703">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="#0704">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+	      </ul>
+ 
+  <h3>CHAPTER OBJECTIVES</h3> 
+    Estimation of population parameters using sample distributions was discussed in Chapter 6. 
+    However, one might be interested in which one of two hypothesis about the population parameter is reasonable to accept. 
+    This problem is called a testing hypothesis and we take samples and calculate the sample statistics to decide by using the sampling distributions discussed in Chapter 6. 
+    <p>In this chapter we discuss the testing hypothesis of the population mean, population variance and population proportion.
+    A method of testing hypothesis which considers both type 1 and type 2 error is also introduced.
+ 
+  <h3 id="0701">7.1 Testing Hypothesis for a Population Mean</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0701.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/ba0JTGsChY8" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Examples of testing hypothesis for a population mean are as follows.
+      <p>
+      <div class="textL30M10">
+        -  The weight of a cookie bag is indicated as 200g. Would there be enough cookies as the indicated weight?
+      </div>
+      <div class="textL30M10">
+        -  At a light bulb factory, a newly developed light bulb advertises a longer bulb life than the past one. Is this propaganda reliable?
+      </div>
+      <div class="textL30M10">
+        -  Immediately after completing this year's academic test, students said that there will be 5 points increase in the average English score higher than last year. How can you investigate if this is true?
+      </div>
+      <p>Testing hypothesis is the answer to the above questions (hypothesis). That is, the testing hypothesis is to decide statistically which hypothesis is to use for the two hypotheses about the unknown population parameter using samples. In this section, we examine the test of the population mean, population variance, and population proportion which are most commonly used in testing hypothesis.
+      <p>The following example explains the theory of testing hypothesis of the population mean in single population.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 7.1.1</b>
+      At a light bulb factory, the average life expectancy of a light bulb made by a conventional production method is known 
+      to be 1500 hours and the standard deviation is 200 hours. Recently, the company is trying to introduce a new production method, 
+      with the average life expectancy of 1600 hours for light bulbs. To confirm this argument, 30 samples were taken from 
+      the new type of light bulbs by simple random sampling and the sample mean was \(\small \overline x \) = 1555 hours. 
+      Can you tell me that the new type of light bulb has the average life of 1600 hours?
+      <p>
+      <b>Answer</b>
+      <p>
+      A statistical approach to the question of this issue is first to make two assumptions about the different arguments 
+      for the population mean &mu; . Namely,
+      $$ \small
+        \begin{multline}
+        \shoveleft H_0 : &mu; = 1500 \\ 
+        \shoveleft H_1 : &mu; = 1600
+        \end{multline}
+      $$
+      \(\small H_0\) is called a null hypothesis and \(\small H_1\) is an alternative hypothesis. 
+      In most cases, the null hypothesis is defined as an ‘existing known fact’, and the alternative hypothesis is defined as 
+      ‘new facts or changes in current beliefs’. So when choosing between two hypotheses, the basic idea of testing hypothesis 
+      is 'unless there is a significant reason, we accept the null hypothesis (current fact) without choosing the alternative 
+      hypothesis (the fact of the matter). This idea of testing hypothesis is referred to as a ‘conservative decision making’.
+      <p>
+      A common sense criterion for choosing between two hypotheses would be 'which population mean of two hypothesis is 
+      closer in distance to the sample mean'. Based on this common sense criteria which uses the concept of distance, 
+      the sample mean of 1555 is closer to \(\small H_1 : &mu; = 1600\) so the alternative hypothesis will be chosen. 
+      A statistical testing hypothesis is based not only on this common sense criteria, but also on the sampling distribution of \(\small \overline X\). 
+      In other words, the statistical testing hypothesis is to select a critical value \(C\) based on the sampling distribution theory and to make a decision rule as follows: 
+      <p>
+      \( \small
+        \qquad \text {  ‘If \(\overline X\) is smaller than C, then the null hypothesis \(H_0\) will be chosen, else reject \(H_0\)’}
+      \)
+      <p>
+      The area of {\(\small \overline X &lt; C\)} is called an acceptance region of \(\small H_0\) and the area {\(\small \overline X &ge; C\)} is called 
+      a rejection region of \(\small H_0\) (&lt;Figure 7.1.1&gt;).
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig070101.png">
+      <div class="figText">&lt;Figure 7.1.1&gt;  Acceptance and rejection region of  \(H_{0}\)</div>
+      <p>
+      If a hypothesis is chosen by this decision rule, there are always two possible errors in the decision. 
+      One is a <b>Type 1 Error</b> which accepts \(\small H_1\) when \(\small H_0\) is true, 
+      the other is a <b>Type 2 Error</b> which accept \(\small H_0\) when \(\small H_1\) is true. 
+      These errors can be summarized as Table 7.1.1.
+      <p> 
+      <p class="textLeft">Table 7.1.1  Two types of errors in testing hypothesis
+      <table style="width:450px"> 
+        <tr> 
+          <th style="width:150px"></th>
+          <th class="thGrey" style="width:150px">Actual<br>\(\small H_0\) is true</th>
+          <th class="thGrey" style="width:150px">Actual<br>\(\small H_1\) is true</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">Decision : \(\small H_0\) is true</td>
+          <td class="tdCenter">Correct</td>
+          <td class="tdCenter">Type 2 Error</td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">Decision : \(\small H_1\) is true</td>
+          <td class="tdCenter">Type 1 Error</td>
+          <td class="tdCenter">Correct</td>
+        </tr>
+      </table>
+      <p>
+        If you try to reduce one type of error when the sample size is fixed, then the other type of error is increasing. 
+        That is why we came up with a conservative decision making method that defines the null hypothesis \(\small H_0\)
+        as 'past or present facts' and 'accept the null hypothesis unless there is a significance evidence for the 
+        alternative hypothesis.' In this conservative way, we try to reduce the type 1 error as much as possible that selects
+        \(\small H_1\)  when \(\small H_0\) is true, which would be more risky than the type 2 error. Testing hypothesis 
+        determines the tolerance for the probability of the type 1 error, usually 5% or 1% for rigorous test, 
+        and use the selection criteria that satisfy this limitation. The tolerance for the probability that this 
+        type 1 error will occur is called the <b>significance level</b> and is often expressed as &alpha;. 
+        The probability of the type 2 error is expressed as &beta;.
+      <p>
+        If the significance level is established, the decision rule for the two hypotheses can be tested using the 
+        sampling distribution of all possible sample means in Chapter 6. &lt;Figure 7.1.2&gt; shows the distribution 
+        of populations for two hypotheses, and the distribution of all possible sample means for each population.
+      <p>
+       <img class="imgFig400300" src="./Figure/Fig070102.png">
+        <div class="figText">&lt;Figure 7.1.2&gt; Testing Hypothesis</div>
+      <p>
+        If the population corresponds to the distribution of \(\small H_0\) : &mu; = 1500, the sampling distribution of 
+        all possible sample means is approximated as \(\small N(1500,200^2 )\) by the central limit theorem. 
+        If the population corresponds to the distribution of \(\small H_1\) : &mu; = 1600, the sampling distribution of 
+        all possible sample means is approximated as \(\small N(1600,200^2 )\). The standard deviation for each population is 
+        assumed to be 200 from a historical data. Then the decision rule becomes as follows: 
+      <p>
+      \( \small
+        \qquad \text {‘If \(\overline X &lt; C\), then accept \(H_{0}\), else accept \(H_{1}\) (i.e. reject \(H_{0}\) )’}
+      \)
+      <p>
+        In Figure 7.1.2, the shaded area represents the probability of the type 1 error. If we set the significance level, 
+        which is the tolerance level of the type 1 error, is 5%, i.e. \(\small P(\overline X &lt; C) = 0.95\), \(C\)  
+        can be calculated by finding the percentile of the normal distribution \(\small N(1500,\frac{200^2}{30})\) as follows: 
+      <p>
+      \( \small
+        \qquad 1500+1.645 \frac{200}{\sqrt 30 } = 1560.06
+      \)
+      <p>
+      Therefore, the decision rule can be written as follows.
+      <p>
+      \( \small
+        \qquad \text {‘If \(\overline X\) < 1560.06, then accept \(H_0 \), else reject \(H_0\)  (accept \(H_1\) ).’}
+      \)
+      <p>
+        In this problem, the observed sample mean of the random variable \(\small \overline X\) is 
+        \(\small \overline x\)= 1555 and \(\small H_0 \) is accepted. In other words, the hypothesis of 
+        \(\small H_0 \) : &mu; = 1500  is judged to be correct, which contradicts the result of 
+        common sense criteria that \(\small \overline x\) = 1555 is closer to \(\small H_1 \) : &mu; = 1600
+        than \(\small H_0 \) : &mu; = 1500. This result can be interpreted that the sample mean
+        of 1555 is not a sufficient evidence to reject the null hypothesis by a conservative decision making method. 
+      <p>
+      The above decision rule is often written as follows, emphasizing that it is the result from a conservative decision making method. 
+      <p>
+      \( \small
+        \qquad \text {‘If \(\overline X\)  &lt; 1560.06, then do not reject \(H_0\), else reject \(H_0 \).’}
+      \)
+      <p>
+      In addition, this decision rule can be written for calculation purpose as follows.
+      <p>
+      \( \small
+        \qquad \text {‘If \(\frac{\overline X - 1500}{\frac {200}{\sqrt{30}}}\), then accept \(H_0\) , else reject \(H_0\).’}
+      \)
+      <p>
+      In this case, since \(\small\overline x\) = 1555, \(\frac{1555 - 1500}{\frac {200}{\sqrt{30}}}\) 
+      and it is less than 1.645. Therefore, we accept \(\small H_0\). 
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      Since the testing hypothesis by the conservative decision making is only based on the probability of 
+      the type 1 error as seen in [Example 7.1.1], even if the alternative hypothesis is \(H_1 : &mu; &gt; 1500\), 
+      we will have the same decision rule. 
+      <p>
+      Generally, there are three types of alternative hypothesis in the testing hypothesis for the population mean as follows.
+      $$ 
+        \begin{align}
+          & 1)\quad H_1 : \mu \gt \mu_0  \\
+          & 2)\quad H_1 : \mu \lt \mu_0  \\
+          & 3)\quad H_1 : \mu \ne \mu_0  \\
+        \end{align}
+      $$
+      Since 1) has the rejection region on the right side of the sampling distribution of all possible sample means 
+      under the null hypothesis, it is called a <b>right-sided test</b>. Since 2) has the rejection region on the left side
+      of the sampling distribution, it is called a <b>left-sided test</b>. Since 3) has rejection regions on both sides 
+      of the sampling distribution, it is called a <b>two-sided test</b>. The decision rule for each type of three 
+      alternative hypothesis are summarized in Table 7.1.2 when the population standard deviation is known and 
+      &alpha; is the significance level.
+    </div>
+    <p>
+      <p class="textLeft">Table 7.1.2  Testing hypothesis for the population mean  - known &sigma; case
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:400px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu > \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac {\overline X - \mu_0}{ \frac {\sigma}{\sqrt{n}} } > z_{&alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu < \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac {\overline X - \mu_0}{ \frac {\sigma}{\sqrt{n}} } < - z_{1-&alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu \ne \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \left | \frac {\overline X - \mu_0}{ \frac {\sigma}{\sqrt{n}} } \right | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
+        </tr>
+      </table>
+      <p class="figText">Note: The \(H_0\) of 1) can be written as \(\; H_0 : \mu \le \mu_0 \) , 2) as \(\; H_0 : \mu \ge \mu_0 \)
+    <p>
+    <div class="mainTable">
+      The following expression used for the decision rule is referred to as a test statistic for testing hypothesis of the population mean.
+      $$\small
+        \frac {\overline X - \mu_0}{ \frac {\sigma}{\sqrt{n}} }
+      $$	
+      <p>The population standard deviation &sigma; of the test statistic is usually unknown. However, if the sample is large enough 
+         (approximately 30 or more), the hypothesis test can be performed using the sample standard deviation \(S\) 
+         instead of the population standard deviation &sigma;.
+      <p>In [Example 7.1.1], if the sample mean is either 1555 or 1540, the null hypothesis can not be rejected, 
+         but degrees of evidence that the null hypothesis is not rejected are different. 
+         The degree of evidence that the null hypothesis is not rejected is measured by calculating the probability of the type 1 error 
+         when the observed sample mean value is considered as the critical value for decision, which is called the \(p\)-value. 
+         That is, the \(p\)-value indicates where the observed sample mean is located among all possible sample means by 
+         considering the location of the alternative hypothesis. In [Example 7.1.1], the \(p\)-value for \(\small\overline X\) = 1540 
+         is the probability of sample means which is greater than \(\small\overline X\) = 1540 by using \(N(1500, \frac{200^2}{30} )\). 
+         The higher the \(p\)-value, the stronger the reason for not being rejected. If \(H_0\)  is rejected, the smaller 
+         the \(p\)-value, the stronger the grounds for being rejected. Therefore, if the \(p\)-value is less than the significance level 
+         considered by the analyst, then \(H_0\) is rejected, because it means that the sample mean is in the rejection region. 
+         Statistical packages provide this \(p\)-value. 
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Decision rule using \(p\)-value</b>
+      <p>
+      If the \(p\)-value is less than the significance level, then \(H_0\) is rejected, else \(H_0\) is accepted.     
+    </div>
+    <p>
+
+    <div class="mainTable">
+      The calculation of the \(p\)-value depending on the type of the alternative hypothesis is summarized as in Table 7.1.3. 
+    </div>
+    <p>
+
+      <p class="textLeft">Table 7.1.3  Calculation of \(p\)-value
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:400px">\(p\)-value</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu > \mu_0 \)</td>
+          <td class="tdLeft">\(\small P ( \overline X > {\overline x}_{obs} ) \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu < \mu_0 \)</td>
+          <td class="tdLeft">\(\small P ( \overline X < {\overline x}_{obs} ) \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu \ne \mu_0 \)</td>
+          <td class="tdLeft">If \(\small \overline X > \mu_0 \), then \(\small 2 P ( \overline X > {\overline x}_{obs} ) \), else \(\small 2 P ( \overline X < {\overline x}_{obs} ) \)  </td>
+        </tr>
+      </table>
+      <p class="figText">Note \(\small {\overline x}_{obs}  \) is the observed sample mean
+
+    <div class="mainTable">
+      If the population standard deviation &sigma; is unknown and the population is a normal distribution,
+      the test statistic 
+      $$\small
+        \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} }
+      $$	
+      is a \(t\) distribution with \((n-1)\) degrees of freedom. The testing hypothesis for the population 
+      mean can be done as Table 7.1.4 which replace the \(Z\) distribution with the \(t\) distribution in 
+      Table 7.1.2 and &sigma; with \(S\). 
+    </div>
+    <p>
+
+      <p class="textLeft">Table 7.1.4  Testing hypothesis for a population mean  - unknown &sigma; case  
+      <br>   (Assume that the population is a normal distribution)
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:400px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu > \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } > t_{n-1: &alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu < \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } < - t_{n-1: &alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu \ne \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \left | \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } \right | > t_{n-1; &alpha;/2} \), then reject \( H_0 \) </td>
+        </tr>
+      </table>
+      <p class="textLeft">Note: The \(\small H_0\) of 1) can be written as \(\small H_0 : \mu \le \mu_0 \) , 2) as \(\small H_0 : \mu \ge \mu_0 \)
+
+    <div class="mainTable">
+      If the sample size is large enough (approximately 30 or more), the \(t\) distribution is 
+      approximated to the standard normal distribution, so the testing hypothesis in Table 7.1.4 
+      can be performed using the standard normal distribution, \(Z\) , instead of \(t\)  distribution. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 7.1.2</b>
+      The weight of a bag of cookies is supposed to be 250 grams. Suppose the weight of all bags of cookies is a normal distribution. In the survey of 100 samples of bags which were randomly selected, the sample mean was 253 grams and the standard deviation was 10 grams. 
+      <p>
+      <div class="textL20M20">
+        1) Test hypothesis whether the weight of the bag of cookies is 250g or larger and find the \(p\)-value. &alpha; = 1％
+      </div>
+      <div class="textL20M20">
+        2) Test hypothesis whether or not the weight of the bag of cookies is 250g and find the \(p\)-value. &alpha; = 1％
+      </div>
+      <div class="textL20M20">
+        3) Use  『eStatU』  to test the hypothesis above.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) The hypothesis is a right tail test as \(\small H_0 : \mu; \)  = 250,
+        \(\small H_0 : \mu; \) &gt; 250. Since the sample size is large (\(n\)=100), we can use 
+        \(Z\) distribution instead of \(t\) distribution. Decision rule is as follows.
+      </div>
+      $$ \small
+        \begin{multline}
+        \shoveleft \text{'If }  \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } > z_{&alpha;} , \text{ then reject }  H_0  \text{ else accept } H_0 ’ \\
+        \shoveleft \text{'If }  \frac {253 - 250}{ \frac {10}{\sqrt{100}} } > z_{0.01} , \text{ then reject }  H_0  \text{ else accept }  H_0 ’ \\
+        \end{multline}
+      $$
+      <div class="textL20"> 
+        Since  \( \frac {253 - 250}{ \frac {10}{\sqrt{100}} } \) = 3 and  \(z_{0.01}\)= 2.326, \(\small H_0 \) is rejected. 
+        We can write the above decision rule as follows: 
+      </div>
+      $$ \small
+        \begin{multline}
+        \shoveleft \text{'If }  \overline X  > \mu_0 + z_{&alpha;} \frac {S}{\sqrt{n}} , \text{ then reject } H_0 \text{ else accept } H_0 ’ \\
+        \shoveleft \text{'If }  \overline X  > 250 + 2.326 \frac {10}{\sqrt{100}} , \text{ then reject } H_0 \text{ else accept } H_0 ’ \\
+        \shoveleft \text{'If }  \overline X  > 252.326 , \text{ then reject}  H_0 \text{ else accept } H_0 ’
+        \end{multline}
+      $$
+      <div class="textL20"> 
+        Since the \(p\)-value is the probability of Type 1 error when the sample mean is the critical value. 
+        it can be calculated by the probability of ( \(\small P( \overline X\) &gt; 253). Since the distribution of
+        \(\small \overline X\) is approximately \(\small N(250, \frac{100}{100} ) \) when \(\small H_0 : \mu \) = 250 is true, 
+        the \(p\)-value is as follows: 
+      </div>
+      <p>
+      \( \small
+        \qquad \qquad p\text{-value} = P( \overline X \gt 253) = P( Z \gt \frac{253-250}{\frac{10}{10}} ) = P( Z \gt 3) = 0.0013
+      \)
+      <div class="textL20M20">
+        2) The hypothesis is a two-sided test as \(\small H_0 : \mu = 250, H_1 \ne 250 \).  Since the sample size is 
+        large (\(n\)=100), we can use the \(Z\) distribution instead of the \(t\) distribution. 
+        Decision rule is as follows.
+      </div>
+      $$ \small
+        \begin{multline}
+        \shoveleft \text{'If } \left| \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } \right| > z_{&alpha;/2} , \text{ then reject }  H_0  \text{ else accept } H_0 ’ \\
+        \shoveleft \text{'If } \left| \frac {253 - 250}{ \frac {10}{\sqrt{100}} } \right| > z_{0.005} , \text{ then reject }  H_0  \text{ else accept }  H_0 ’ \\
+        \end{multline}
+      $$
+      <div class="textL20"> 
+        Since  \( \frac {253-250} {\frac{10}{10}}  = 3 \) and \(z_{0.005}\) = 2.575, \(\small H_0 \) is rejected. 
+        The \(p\)-value can be calculated as follows: 
+      </div>
+      <p>
+      \( \small
+        \qquad \qquad p\text{-value} = 2 P(\overline X \gt 253) = 2 P(\overline X \gt \frac{253-250}{\frac{10}{10}} = 2 P( Z \gt 3) = 0.0026
+      \)
+      <div class="textL20M20">
+        3) In 『eStatU』 menu, select [Testing Hypothesis &mu;], enter 250 at the box of  on [Hypothesis] and 
+           select the alternative hypothesis as the right test in the window shown in &lt;Figure 7.1.3&gt;. 
+           Check [Test Type] as Z test and enter population variance \(10^2 = 100\). For the Z test, 
+           you must enter the population variance. 
+           Check the significance level at 1%. 
+           At the [Sample Statistics], enter sample size 100, sample mean 253. 
+           If you click the [Execute] button, the confidence Interval for μ is calculated and 
+           the testing result using 『eStatU』 will appear as in &lt;Figure 7.1.4&gt;.
+      </div>
+      <p>
+      <!---   ************ html for Testing Hypothesis Mu ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis mu">Testing Hypothesis : Population Mean &mu; </span>]</b>
+      <p>
+         <iframe src="./example/070101/070101.html" width="700" height="850"> </iframe>
+      <p>
+        <div class="figText">&lt;Figure 7.1.4&gt;  『eStatU』 Testing Hypothes for &mu; - Right Tail Test </div>
+      <p>
+      <div class="textL20"> 
+        If you select the two-tail test at [Hypothesis] of &lt;Figure 7.1.3&gt;, testing result using 『eStatU』 is as &lt;Figure 7.1.5&gt;.
+      </div>
+      <p>
+      <img class="imgFig600400" src="./Figure/Fig070105.png">
+      <div class="figText">&lt;Figure 7.1.5&gt;  『eStatU』 Testing Hypothes for &mu; - Two Tails Test</div>
+      <p>
+    </div>
+
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><b>Example 7.1.3</b>
+      When the sample size is 16 and the sample variance is 100 in [Example 7.1.2], test whether the average weight 
+      of the cookie bags is 250g or greater and obtain the \(p\)-value. Check the result using 『eStatU』 
+      <p>
+      <b>Answer</b>
+      <p>
+      Since the population standard deviation is unknown and the sample size is small, the decision rule 
+      is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft \text{'If }  \frac {\overline X - \mu_0} {\frac {S}{\sqrt{n}} } > t_{n-1: &alpha;} , \text{ then reject }  H_0  \text{ else accept } H_0 ’ \\
+        \shoveleft \text{'If }  \frac {253 - 250}{ \frac {10}{\sqrt{16}} } > t_{16: 0.01} , \text{ then reject }  H_0  \text{ else accept }  H_0 ’ \\
+        \end{multline}
+      $$
+      Since the value of test statistic is \( \frac {253 - 250}{ \frac {10}{\sqrt{16}} } = 1.2 \), 
+      and \(t_{15: 0.01} = 2.602\) , we accept \(\small H_0\). Note that the decision rule can be written as follows.
+      <p>
+      \( \small
+        \qquad \qquad\text{'If }  \overline X  > 250 + 2.602 \frac {10}{\sqrt{16}} , \text{ then reject } H_0 \text{ else accept } H_0 ’ \\
+      \)
+      <p>
+      In &lt;Figure 7.1.3&gt; of 『eStatU』 , select the right-sided test of [Hypothesis], select the \(t\)-test 
+      on [Test Type] and enter sample size \(n\) = 16, then the test result is as &lt;Figure 7.1.6&gt; 
+      if you click the [Execute] button. 
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU700_TestMu.svg" onclick="window.open(addrStr[101])">
+            <img class="imgFig600400" src="./Figure/Fig070106.png">
+            <div class="figText">&lt;Figure 7.1.6&gt; Testing hypothesis for &mu; with \(t\) distribution using 『eStatU』</div>
+         </div>
+      <p>
+      Since the \(p\)-value is the probability that \(t_{15}\) is greater than the test statistics 1.200,
+      the \(p\)-value is 0.124 by using the module of \(t\) distribution in 『eStatU』. 
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.1.4</b>
+      (Heights of college students)
+      <p>10 male students are sampled in a university and examined their heights as follows: 
+      <p>
+      <div class="textLeft">172  175  178  182  176  180  169  185  173  177 (Unit cm) </div>
+      <div class="textLeft">Ex ⇨ eBook ⇨ EX070104_Height.csv. </div>
+      <p>
+      Test the hypothesis whether the population mean is 175cm or greater with the significance level of 5%.
+      <p>
+      <b>Answer</b>
+      <p>
+      After entering data on a sheet as shown in &lt;Figure 7.1.7&gt; in 『eStat』 , clicking the testing 
+      hypothesis for the population mean  and then clicking variable name V1 for 'Analysis Var' in variable 
+      selection box will result in a dot graph with 95% confidence interval as in &lt;Figure 7.1.8&gt;.
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX070104.svg" onclick="window.open(addrStr[24])">
+            <img class="imgFig150200" src="./Figure/Fig070107.png">
+            <div class="figText">&lt;Figure 7.1.7&gt; Data input</div>
+         </div>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig070108.png">
+      <div class="figText">&lt;Figure 7.1.8&gt; Dot graph and confidence interval</div>
+      <p>
+      If you click [Histogram] button from option menu below the graph as in &lt;Figure 7.1.9&gt;, 
+      the corresponding histogram is appeared as in &lt;Figure 7.1.10&gt;. The histogram together with the normal distribution graph can be used to check whether the sample data comes from a normal distribution. The options such as [Normal Q-Q Plot] and [Normality Test] will be explained in chapter 11.
+      <p>
+      <img class="imgFig400100" src="./Figure/Fig070109.png">
+      <div class="figText">&lt;Figure 7.1.9&gt; Options for testing hypothesis of population mean</div>
+      <p>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig070110.png">
+      <div class="figText">&lt;Figure 7.1.10&gt; Histogram and Normal Distribution</div>
+      <p>
+      Enter \(&mu;_0 \) = 175 at the box of option menu, select the right sided test and the significance level of 5%. Then press the [t-Test] button to display the hypothesis test graph as shown in &lt;Figure 7.1.11&gt; and a test result in the Log Area as in &lt;Figure 7.1.12&gt;.
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig070111.png">
+      <div class="figText">&lt;Figure 7.1.11&gt; Testing hypothesis for population mean</div>
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig070112.png">
+      <div class="figText">&lt;Figure 7.1.12&gt; Testing hypothesis for population mean</div>
+      <p>
+      You can select Z-test in the option menu, but you have to enter the population standard deviation &sigma; in this case. 
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 7.1.1</b>
+            The following data are weights of the 7 employees randomly selected who are working in the shipping department of a wholesale food company.
+            <p>
+            <div class="textLeft">154, 186, 159, 174, 183, 163, 181  (unit pound) </div>
+            <div class="textLeft"> Ex ⇨ eBook ⇨ PR070101_Height.csv. </div>
+            <p>
+            Based on this data, can you say that the average weight of employees working in the shipping department is 160 or greater than 160? Use the significance level of 5%.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU700_TestMu.svg" onclick="window.open(addrStr[101])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      <p>The testing hypothesis of the population mean using the sample variance requires the assumption 
+         that the population is normally distributed. Testing whether sample data come from a normal population
+         is called a goodness of fit test which will be explained in Chapter 11. 
+      <p>In this section, we looked at the testing hypothesis for the population mean when the sample size 
+         is already given and only the significance level of the type 1 error is considered. In this case, 
+         if we try to reduce the probability of the type 1 error, then the probability of the type 2 error 
+         will be increased and we can not reduce both types of errors at the same time. 
+         Therefore, if the sample size was predetermined, or if data were given, only the type 1 error 
+         was considered as a conservative decision making to test the hypothesis. However, if the sample size 
+         can be selected by a researcher, there is a testing hypothesis that considers both types of errors 
+         together which will be explained in detail in section 7.4.
+    </div>
+
+  <h3 id="0702">7.2 Testing Hypothesis for a Population Variance</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0702.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/3SDaVzGqPL0" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Examples for testing hypothesis of a population variance are as follows.
+      <p>
+      <div class="textL30M10">
+        -  Bolts produced by a company are currently supplied to an automaker and have an average diameter of 7mm and a variance of 0.25mm. Recently, a rival company has applied for the supply, claiming that their company's bolts have the same average diameter of 7 mm but a variance of 0.16mm. How can I find out if this claim is true?
+      </div>
+      <div class="textL30M10">
+        -  The variance of scores in mathematics on the last year's college scholastic aptitude test was 100.
+           This year's questions in mathematics test are said to be much easier than last year's. How can I test whether the variance of the mathematics score in this year is smaller than the last year?
+      </div>
+      <p>
+      If you understand the testing hypothesis for the population mean, the testing hypothesis 
+      for the population variance differs only from the sampling distribution and the test statistic, 
+      but the basic concept is the same. In Chapter 6, we studied that the distribution of all possible 
+      sample variances multiplied by a constant, \(\frac{(n-1)S^2}{\sigma^2}\), follows a chi-square 
+      distribution with \(n-1\) degrees of freedom when the population is a normal distribution 
+      with variance \(\sigma^2\). Using this theory, testing hypothesis for the population variance
+      can be done as follows.
+    </div>
+    <p>
+
+      <p class="textLeft">Table 7.2.1  Testing hypothesis of the population variance 
+        <br>- the population is normally distributed -
+      <table style="width:720px"> 
+        <tr> 
+          <th class="thGrey" style="width:150px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:570px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \sigma^{2} = \sigma^{2}_0 \)<br>\(\quad\,\, H_1 : \sigma^{2} > \sigma^{2}_0 \)</td>
+          <td class="tdLeft">If \( \frac{(n-1)S^2}{\sigma^2} > \chi^2_{n-1: &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \sigma^{2} = \sigma^{2}_0 \)<br>\(\quad\,\, H_1 : \sigma^{2} < \sigma^{2}_0 \)</td>
+          <td class="tdLeft">If \( \frac{(n-1)S^2}{\sigma^2} < \chi^2_{n-1: 1-&alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \sigma^{2} = \sigma^{2}_0 \)<br>\(\quad\,\, H_1 : \sigma^{2} \ne \sigma^{2}_0 \)</td>
+          <td class="tdLeft">If \( \frac{(n-1)S^2}{\sigma^2} > \chi^2_{n-1: &alpha;/2} \) or \( \frac{(n-1)S^2}{\sigma^2} < \chi^2_{n-1: 1-&alpha;/2} \)  then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+      </table>
+      <p class="textLeft">Note: The \(\small H_0\) of 1) can be written as \(\small \; H_0 : \sigma^{2} \le \sigma^{2}_0 \) , 2) as \(\small \; H_0 : \sigma^{2} \ge \sigma^{2}_0 \)
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.2.1</b>
+        One company produces bolts for an automobile. If the average diameter of bolts is 15mm and 
+        its variance is less than or equal to \(0.1^2\), it can be delivered to the automobile company. 
+        Twenty-five of the most recent products were randomly sampled and their variance was \(0.15^2\). 
+        Assuming that the diameter of a bolt follows a normal distribution, 
+      <p>
+      <div class="textL20M20">
+        1) Conduct testing hypothesis at the 5% significance level to determine if the product can be delivered to the automotive company.
+      </div>
+      <div class="textL20M20">
+        2) Check the result using 『eStatU』 
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) The hypothesis of this problem is \(\small H_0 : \sigma^{2} \le 0.1^{2} , H_1 : \sigma^{2} > 0.1^{2} \)
+           and its decision rule is as follows.
+      </div>
+      <p>
+      \( \small
+        \qquad \qquad '\text{If } \frac{(n-1)S^2}{\sigma^2_{0}} \gt \chi^2_{n-1: &alpha;} , \text{ then reject } H_0 , \text{ else accept } H_0 ’  
+      \)
+      <p>
+      <div class="textL20">
+        Note that \(\small s^2 = 0.15^2 = 0.0225 , \frac {(25-1)×0.15^2}{0.1^2} = 54 \) and  \(\small \chi^2_{25-1: 0.05} = \chi^2_{24: 0.05} = 36.42 \). 
+        Therefore, \(\small H_0\)  is rejected. 
+      </div>
+      <p>
+      <div class="textL20M20">
+        2) Select [Testing Hypothesis \(\sigma^2\)] in 『eStatU』. Enter \(\sigma^2_{0} = 0.1^2 = 0.01\), 
+        select the right sided test and the 5% significance level as &lt;Figure 7.2.1&gt; in the input box. 
+        Then enter the sample size \(n\) = 25 and sample variance \(\small s^2 = 0.15^2 = 0.0225\). 
+        If you click the [Execute] button, the confidence interval of \(\sigma^2\) is calculated and testing result will be shown as &lt;Figure 7.2.2&gt;. 
+      </div>
+      <p>
+      <!---   ************ html for testing variance ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis sigma"></span>]</b>
+      <p>
+         <iframe src="./example/070201/070201.html" width="700" height="850"> </iframe>
+      <p>
+      <div class="figText">&lt;Figure 7.2.2&gt; Testing hypothesis for \(\sigma^2\) </div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 7.2.2</b>
+      (Heights of college students) <br>
+      Using 『eStat』 and the height data of 10 male college students in [Example 7.1.4], 
+      <p>
+      <div class="textLeft">172 175 178 182 176 180 169 185 173 177 <br>
+        Ex ⇨ eBook ⇨ EX070104_Height.csv. 
+      </div>
+      <p>
+        test the hypothesis whether the population variance is greater than 25 at the significance level of 5%. 
+      <p>
+      <b>Answer</b>
+      <p>
+        After entering data as shown in &lt;Figure 7.2.3&gt; on the sheet in 『eStat』 , click the icon of 
+        testing hypothesis for variance and select ‘Height’ as the Analysis Var to display a dot graph 
+        of data with (average) &plusmn; (standard deviation) interval as in&lt;Figure 7.2.4&gt;.
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX070104.svg" onclick="window.open(addrStr[122])">
+            <img class="imgFig150200" src="./Figure/Fig070203.png">
+            <div class="figText">&lt;Figure 7.2.3&gt;  『eStat』 data input</div>
+         </div>
+      <p>
+      <img class="imgFig600400" src="./Figure/Fig070204.png">
+      <div class="figText">&lt;Figure 7.2.4&gt; Dot graph and (Mean) &plusmn; (Std Dev) for Testing hypothesis of \(&sigma;^2 \) </div>
+      <p>
+        In the option box under the Graph Area (&lt;Figure 7.2.5&gt;), enter \(\sigma^2_{0}\) = 25, 
+        and select the alternative hypothesis as right-sided test, significance level as 5%. 
+        By clicking [\(\chi^2\) test] button, the result of the testing hypothesis will be shown 
+        as &lt;Figure 7.2.6&gt; and the result table as &lt;Figure 7.2.7&gt;.
+      <p>
+      <img class="imgFig500100" src="./Figure/Fig070205.png">
+      <div class="figText">&lt;Figure 7.2.5&gt; Option menu for testing hypothesis for \(\sigma^2\)</div>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig070206.png">
+      <div class="figText">&lt;Figure 7.2.6&gt; Testing hypothesis for \(\sigma^2\)</div>
+      <p>
+      <img class="imgFig600400" src="./Figure/Fig070207.png">
+      <div class="figText">&lt;Figure 7.2.7&gt; Testing hypothesis for \(\sigma^2\)</div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      It is necessary to assume that the population is normally distributed to test the hypothesis 
+      of the population variance. Testing whether the population is normally distributed using 
+      sample data is called a goodness of fit test which will be discussed in Chapter 11. 
+      You may test the normality approximately by using a histogram with a normal distribution 
+      which can be drawn from the option box in &lt;Figure 7.2.5&gt;. In addition, [Normal Q-Q Plot] 
+      can be used to test the normality. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 7.2.1</b>
+            If the variance of the diameter of a metal washer product is less than \(0.05^2\), then 
+            the production process is under control. 21 samples were randomly selected from the assembly line
+            and its variance is \(0.06^2\). According to this data, is the assembly process out of control 
+            with the significance level of 0.05? 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU720_TestSigma.svg" onclick="window.open(addrStr[102])">
+    </div>
+
+  <h3 id="0703">7.3 Testing Hypothesis for a Population Proportion</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0703.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/R4gwLC8emuM" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Consider the following examples for testing hypothesis of the population proportion.
+      <p>
+      <div class="textL30M10">
+        -  Will the approval rating of a particular candidate exceed 50 percent in this year's presidential election?
+      </div>
+      <div class="textL30M10">
+        -  The unemployment rate was 7 percent last year. Has this year's unemployment rate increased?
+      </div>
+      <div class="textL30M10">
+        -  10,000 car accessories are imported by ship, of which 2 percent was defective according to the past experience. Is the defective product 2% this time again?
+      </div>
+      <p>
+      When the sample size is large enough, the sampling distribution of all possible sample proportions 
+      (\(\hat p\)) is approximated to a normal distribution with the mean of population proportion (\(p\)) 
+      and the variance of \(\frac{p(1-p)}{n}\). Therefore, the testing hypothesis for the population 
+      proportion is similar to the testing hypothesis for the population mean as Table 7.3.1. 
+      If \(np\) &gt; 5 and \(n(1-p)\) &gt; 5, it is usually considered as a large sample.  
+    </div>
+    <p>
+             
+      <p class="textLeft">Table 7.3.1  Testing hypothesis for population proportion 
+        <br>– large sample case such as \(np\) &gt; 5, \(n(1-p)\) &gt; 5  
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:400px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : p = p_0 \)<br>\(\quad\,\, H_1 : p > p_0 \)</td>
+          <td class="tdLeft">If \( \frac {\hat p - p_0}{ \sqrt { \frac {p_0 (1-p_0)}{n} } } > z_{&alpha;} \), then reject \( H_0 \), else accept \( H_0 \)</td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : p = p_0 \)<br>\(\quad\,\, H_1 : p < p_0 \)</td>
+          <td class="tdLeft">If \( \frac {\hat p - p_0}{ \sqrt { \frac {p_0 (1-p_0)}{n} } } < - z_{&alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : p = p_0 \)<br>\(\quad\,\, H_1 : p \ne p_0 \)</td>
+          <td class="tdLeft">If \( | \frac {\hat p - p_0}{ \sqrt { \frac {p_0 (1-p_0)}{n} } }  | > z_{&alpha;/2} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+      </table>
+      <p class="textLeft">Note: The \(H_0\) of 1) can be written as \(H_0 : p \le p_0 \) , 2) as \(H_0 : p \ge p_0 \)
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.3.1</b>
+      A survey was conducted last month for the election of a national assembly member. According to the survey of the last month, the approval rating of a particular candidate was 60 percent. In order to see if there is a change in the approval rating, a sample survey of 100 people has been conducted and 55 people supported it. 
+      <div class="textL20M20">
+        1) Test whether the current approval rating for a particular candidate is changed comparing with the one of last month of 60%. Use 5% significance level.
+      </div>
+      <div class="textL20M20">
+        2) Check the result using 『eStatU』.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) The hypothesis of this problem is \(\small H_0 : p = 0.6 , \, H_1 : p \ne 0.6 \). 
+        Since \(\small np_0\) = 60, \(\small n(1-p_0 )\) = 40, it can be considered as a large sample and 
+        the decision rule is as follows: 
+      </div>
+      <p>
+      \( \small
+        \qquad \qquad'\text{If } \left | \frac {\hat p - p_0}{ \sqrt { \frac {p_0 (1-p_0)}{n} } } \right | > z_{&alpha;/2} , \text{ then reject } H_0 , \text{ else accept } H_0 '
+      \)
+      <p>
+      <div class="textL20">
+        Since \(\hat p = \frac{55}{100} = 0.55 \),
+      </div>
+      <p>
+      \( \small
+        \qquad \qquad \left | \frac {0.55 - 0.6}{ \sqrt { \frac {0.6 (1-0.6)}{100} } } \right |  = 1.005
+      \)
+      <p>
+      <div class="textL20">
+        and \(z_{0.05/2} = z_{0.025}\) = 1.96, hence \(\small H_0\) is accepted. 
+      </div>
+      <p>
+      <div class="textL20M20">
+        2) Select [Testing Hypothesis \(p\)] at 『eStatU』 menu. Enter \(p_0 =0.6\), select the two sided test
+           and the 5% significance level as &lt;Figure 7.3.1&gt; in the input box window. Then enter the 
+           sample size \(n\) = 100, and the sample proportion \(\hat p = 0.55 \). If you click the 
+           [Execute] button, the confidence interval of \(p\) is calculated and testing result will be 
+           shown as in &lt;Figure 7.3.2&gt;.
+           If you click the [Execute] button, the confidence interval of \(\sigma^2\) is calculated and testing result will be shown as &lt;Figure 7.2.2&gt;. 
+      </div>
+      <p>
+      <!---   ************ html for testing p ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis P">Testing Hypothesis : Population Proportion p</span>]</b>
+      <p>
+         <iframe src="./example/070301/070301.html" width="700" height="800"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 7.3.2&gt; Testing hypothesis for \(p\) using 『eStatU』 </div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 7.3.1</b>
+            A university wants to build a parking lot for students. School authorities think more than 20 percent of students go to school by car. 100 students were randomly selected and 18 of them said that they go to school by car. Test at the significance level of 0.05 whether the school authorities' thinking is correct.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU740_TestP.svg" onclick="window.open(addrStr[103])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      If the sample size is small, the testing hypothesis for population proportion uses the binomial distribution and it will be explained in the Sign Test in Chapter 10. 
+    </div>
+
+  <h3 id="0704">7.4 Testing Hypothesis with &alpha; and &beta; simultaneously</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0704.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/yITE-O5zW70" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Since the testing hypothesis we have learned so far is a conservative decision making method, 
+      we first decide a critical value that reduces the probability of the type 1 error &alpha; 
+      (the error that rejects the null hypothesis even though it is true). This decision rule is 
+      intended to keep the null hypothesis unless there is a sufficient evidence of the alternative 
+      hypothesis which is a new fact or risky.  Thus, the probability of the type 2 error &beta; was 
+      not considered at all in the decision rule. However, sometimes it is unclear which one should be 
+      the null hypothesis and which one should be the alternative hypothesis. Depending on the problem, 
+      both types of errors are important and should be considered simultaneously. If the analyst 
+      can determine the sample size, a testing hypothesis that takes into account both &alpha; and &beta;
+      can be performed.
+    </div>
+    <p>
+
+  <h4>7.4.1 Type 2 Error and Power of a Test</h4> 
+    <div class="mainTable">
+      Consider the following example to find out how to calculate the probability of the type 2 error &beta;. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.4.1</b>
+      For the testing hypothesis of [Example 7.1.1], calculate the probability of the type 2 error &beta;
+      if the significance level is 5%. Check this result using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+        The hypothesis in [Example 7.1.1] is \(\small H_0 : \mu = 1500, H_1 : \mu  = 1600\), the population 
+        standard deviation is assumed &sigma; = 200, the sample size is \(n\) = 30 and hence the 
+        decision rule is as follows if the significance level is 5%. 
+      <p>
+      \( \small
+        \qquad '\text{If } \overline X \lt 1500 + 1.645 \times \frac {200}{30} = 1560.06, \text{ reject } H_0,\text{ else accept } H_0’
+      \)
+      <p>
+        Hence the type 2 error which is the probability of '\(\small H_0\) is true when \(\small H_1\) is true’ 
+        can be calculated as follows: 
+      <p>
+      \( \small \qquad  \beta = P(\overline X \lt 1560.06 | H_1   \) is true)<br>
+      \( \small        \qquad \;\; = P(\frac {\overline X - 1600}{\frac{200}{\sqrt{30}} } <  \frac {1560.06 - 1600}{\frac{200}{\sqrt{30}} }  )  \) <br>
+      \( \small        \qquad \;\; = P( Z \lt -1.09 ) \) <br>
+      \( \small        \qquad \;\; = 0.137   \)
+      <p>
+        Select [Testing \( \mu - C, \beta \)] at 『eStatU』 menu. Enter \(\small \mu_0 = 1500 , \mu_1 = 1600, 
+        \sigma = 200, \alpha = 0.05, n = 30 \) in the input box window as &lt;Figure 7.4.1&gt; 
+        and click the [Execute] button. The result of the testing hypothesis, the critical value \(C\) 
+        and the probability of the type 2 error &beta;, will be shown as in &lt;Figure 7.4.2&gt;.
+      <p>
+      <!---   ************ html for Testing hypothesis mu - C, beta ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis muA">Testing Hypothesis : Population Mean &mu; </span>]</b>
+      <p>
+         <iframe src="./example/070401/070401.html" width="700" height="750"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 7.4.2&gt; Calculation of &beta; and power using 『eStatU』</div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.4.2</b>
+      In [Example 7.1.1], if the null hypothesis is not changed, but the alternative hypothesis is changed as follows: 
+      <p>
+        \(\qquad \small H_0 : \mu = 1500 ,\;\; H_1 : \mu = 1580\)
+      <p>
+      <div class="textL20M20">
+        1) Calculate the probability of the type 2 error &beta; if the significance level is 5%.
+      </div>
+      <div class="textL20M20">
+        2) Check this result using 『eStatU』.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div>
+          1) Although the alternative hypothesis has been changed to \(\small H_1 : \mu = 1580\), the decision rule will not be changed in case of the conservative decision making, because the alternative hypothesis is the same type of \(\small H_1 : \mu > 1500\). 
+      </div>
+      <p>
+        \(\qquad\)‘If \(\small \overline X \lt 1500 + 1.645 \times \frac {200}{30} = 1560.06\), 
+                 reject \(\small H_0\), else accept \(\small H_0\)’
+      <p>
+        Hence the probability of type 2 error is as follows: 
+      <p>
+        \(\qquad \small \beta = P(\overline X \lt 1560.06 \;|\; H_1 \) \( \text{is true} )\) <br>
+        \(\qquad \small   \;\;= P(\frac {\overline X - 1580}{\frac{200}{\sqrt{30}} } <  \frac {1560.06 - 1580}{\frac{200}{\sqrt{30}} }  )  \) <br>
+        \(\qquad \small   \;\;= P( Z \lt -0.546 ) = 0.283 \)
+      <p>
+         <div class="textL20M20">
+              2) In order to calculate &beta; using 『eStatU』 , enter \(\mu_1 = 1580\)  in &lt;Figure 7.4.1&gt; 
+              and click the [Execute] button. 
+         </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 7.4.1</b>
+            Calculate the followings using 『eStatU』.
+            <p>
+            <div class="textL20M20">1) If \(H_0 : \mu = 50, H_1 : \mu = 52, n = 25, \sigma = 3, \alpha = 0.05, \) find \(\beta\). </div>
+            <div class="textL20M20">2) If \(H_0 : \mu = 50, H_1 : \mu = 54, n = 25, \sigma = 3, \alpha = 0.01, \) find \(\beta\). </div>
+            <div class="textL20M20">3) If \(H_0 : \mu = 50, H_1 : \mu = 56, n = 25, \sigma = 3, \alpha = 0.05, \) find \(\beta\). </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU750_TestMuAlpha.svg" onclick="window.open(addrStr[104])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      <p>Comparing [Example 7.4.1] and [Example 7.4.2], the probability of the type 2 error occurring 
+         when \(H_1 : \mu = 1600 \) is less than that of \(H_1 : \mu = 1580 \), so the ability to judge 
+         is greater. In other words, the closer the population mean of \(H_1 \) is to the population mean
+         of \(H_0 \), the less discriminating ability it becomes.
+      <p>Generally, the discriminating ability of two hypothesis is compared by using the following 
+         <b>power of a test</b>.  
+      $$ 
+        \text {Power = 1 - (probability of the type 2 error) = 1 - } \beta
+      $$ 
+      A large power increases the discriminating ability of the hypothesis test. 
+      <p>The power of a test can be obtained for any \(\mu_1\) of the alternative hypothesis
+         \(H_1 : \mu = \mu_1 \). It means that the power is a function over the value of \(\mu_1\)
+         and it is called a <b>power function</b>.
+      <p>A function of the probability that the null hypothesis is correct when the null hypothesis is 
+         true is called an <b>operating characteristic function</b>.
+      $$ 
+        \text {Operating characteristic function = 1 - (probability of the type 1 error) = 1 - }\alpha 
+      $$
+    </div>
+    <p>
+
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.4.3</b>
+      In [Example 7.1.1], calculate the power of the following alternative hypothesis. Use  = 0.05. By using this, approximate the power function.
+      <p>
+      <div class="textL20M20">1) \(\small H_1 : &mu; \) = 1500 </div>     
+      <div class="textL20M20">2) \(\small H_1 : &mu; \) = 1510 </div>     
+      <div class="textL20M20">3) \(\small H_1 : &mu; \) = 1520 </div>
+      <div class="textL20M20">4) \(\small H_1 : &mu; \) = 1530 </div>
+      <div class="textL20M20">5) \(\small H_1 : &mu; \) = 1540 </div>      
+      <div class="textL20M20">6) \(\small H_1 : &mu; \) = 1550 </div>
+      <div class="textL20M20">7) \(\small H_1 : &mu; \) = 1560 </div>     
+      <div class="textL20M20">8) \(\small H_1 : &mu; \) = 1570 </div>     
+      <div class="textL20M20">9) \(\small H_1 : &mu; \) = 1580 </div>
+      <div class="textL20M20">10) \(\small H_1 : &mu; \) = 1590 </div>    
+      <div class="textL20M20">11) \(\small H_1 : &mu; \) = 1600 </div>    
+      <div class="textL20M20">12) \(\small H_1 : &mu; \) = 1610 </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      Although the alternative hypotheses are different, the decision rule is the same as follows: 
+      <p>
+        \( \qquad \small '\text{If } \overline X \lt 1500 + 1.645 \times \frac {200}{30} = 1560.06, \text{ reject } H_0,\text{ else accept } H_0’\)
+      <p>
+      Hence if we calculate the probability of the type 2 error as [Example 7.4.2], the power of each test is as follows: 
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Alternative Hypothesis</th>
+          <th class="thGrey" style="width:100px">&beta;</th>
+          <th class="thGrey" style="width:100px">Power = 1 - &beta;</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft"> 1) \(\small H_1 : \mu = 1500 \)<br>
+                              2) \(\small H_1 : \mu = 1510 \)<br>
+                              3) \(\small H_1 : \mu = 1520 \)<br>
+                              4) \(\small H_1 : \mu = 1530 \)<br>
+                              5) \(\small H_1 : \mu = 1540 \)<br>
+                              6) \(\small H_1 : \mu = 1550 \)<br>
+                              7) \(\small H_1 : \mu = 1560 \)<br>
+                              8) \(\small H_1 : \mu = 1570 \)<br>
+                              9) \(\small H_1 : \mu = 1580 \)<br>
+                             10) \(\small H_1 : \mu = 1590 \)<br>
+                             11) \(\small H_1 : \mu = 1600 \)<br>
+                             12) \(\small H_1 : \mu = 1610 \)
+          </td>
+          <td class="tdCenter">0.95<br>
+                              0.91<br>
+                              0.86<br>
+                              0.79<br>
+                              0.71<br>
+                              0.61<br>
+                              0.50<br>
+                              0.39<br>
+                              0.29<br>
+                              0.21<br>
+                              0.14<br>
+                              0.09
+          </td>
+          <td class="tdCenter">0.05<br>
+                              0.09<br>
+                              0.14<br>
+                              0.21<br>
+                              0.29<br>
+                              0.39<br>
+                              0.50<br>
+                              0.61<br>
+                              0.71<br>
+                              0.79<br>
+                              0.86<br>
+                              0.91
+          </td>
+        </tr>
+      </table>
+      <p>
+      The power function can be approximated by connecting points of (\(\mu\), 1 - \(\beta\) ) in each test as &lt;Figure 7.4.3&gt;. 
+      <p>
+      <img class="imgFig600400" src="./Figure/Fig070403.png">
+      <div class="figText">&lt;Figure 7.4.3&gt; Power function of  [Example 7.4.1]</div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      In case of a two sided test, the power function is a V-shaped, because the type 2 error may appear on either side of the null hypothesis. If the V-shaped valley is deep, it is generally considered to have highly discriminating ability against the null hypotheses.
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 7.4.2</b>
+            If \(\small H_0 : \mu = 50, n = 25, \sigma = 5, \alpha = 0.05 \), calculate the power of the following alternative hypothesis. By using this, approximate the power function.
+            <p>
+            <div class="textL20M20">1) \(\small H_1 : \mu = 51 \) </div>    
+            <div class="textL20M20">2) \(\small H_1 : \mu = 52 \) </div>     
+            <div class="textL20M20">3) \(\small H_1 : \mu = 53 \) </div>
+            <div class="textL20M20">4) \(\small H_1 : \mu = 54 \) </div>
+            <div class="textL20M20">5) \(\small H_1 : \mu = 55 \) </div>
+            <div class="textL20M20">6) \(\small H_1 : \mu = 56 \) </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU750_TestMuAlpha.svg" onclick="window.open(addrStr[104])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+
+  <!--***********************************************************************-->
+  <h4>7.4.2 Testing Hypothesis with &alpha; and &beta;</h4>
+    <div class="mainTable">
+      If the sample size is not predetermined and the analyst can determine it, the testing hypothesis 
+      can be performed with the desired level of &alpha; and &beta;  as following example. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.4.4</b>
+      Consider the testing hypothesis on the bulb life such as \(\small H_0 : \mu = 1500, H_1 : \mu = 1570 \). 
+      Find the sample size \(n\) and the decision rule which satisfies &alpha; of 5% and &beta; of 10%. 
+      Assume that the population standard deviation &sigma;  is 200 hours. Check the result using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+      Let \(n\) be the sample size and \(\small C\) be the critical value of a decision rule. The probability 
+      of the type 1 error &alpha; and the probability of the type 2 error &beta; are defined as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft \alpha = P(\overline X \gt C | H_0 \text{ is true } ) \\
+        \shoveleft \beta = P(\overline X \lt C | H_1 \text{ is true } ) \\
+        \end{multline}
+      $$
+      If \(\small H_0\) is true, the sampling distribution of \(\small \overline X\) is 
+      \(\small N(1500, \frac{200^2}{n})\) and if \(\small H_1\) is true, the sampling distribution of 
+      \(\small \overline X\) is \(\small N(1570, \frac{200^2}{n})\). 
+      If  &alpha; = 0.05 and &beta; = 0.10, then \(z_{0.05}\) = 1.645 and  \(z_{0.90}\) = -1.280. 
+      Hence \(n\) and \(\small C\) should satisfy both of the following equations and they can be calculated 
+      by solving the two system of equations. 
+      $$ \small
+        \begin{multline}
+        \shoveleft C = 1500 + 1.645 \times \frac{200}{\sqrt{n}} \\
+        \shoveleft C = 1570 - 1.280 \times \frac{200}{\sqrt{n}} \\
+        \end{multline}
+      $$
+      The solution is \(n\) = 69.9, \(\small C\) = 1539.4. i.e., the sample size is 70 approximately and the decision rule is as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft '\text{If } \overline X \gt 1539.4, \text { then reject } H_0, \text { else accept } H_0’
+        \end{multline}
+      $$
+      Select [Testing &mu; - \(C, n\)] at 『eStatU』 menu. Enter \(\mu_0 = 1500 ,\mu_1 = 1570 , \sigma = 200, \alpha = 0.05 \),
+      \( \beta = 0.10 \) in the input box window as &lt;Figure 7.4.4&gt;. 
+      <p>
+         If you click the [Execute] button, you will see the test result of 『eStatU』 as in &lt;Figure 7.4.5&gt;. The critical value  and the sample size  are calculated. 
+      <p>
+      <!--- ************ html Testing for alpha and beta ******* ---->
+      <b>[<span data-msgid="Testing Hypothesis muAB">Testing Hypothesis : Population Mean &mu;</span></b>
+      <p>
+         <iframe src="./example/070402/070402.html" width="700" height="700"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 7.4.5&gt; Testing hypothesis for &mu; with &alpha;, &beta;  using 『eStatU』 </div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 7.4.3</b>
+            If \( H_0 : \mu = 50 , H_1 : \mu = 52 , \sigma = 3 , \alpha = 0.05 , \beta = 0.10 \), find \(n, C\)
+            using  『eStatU』.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU760_TestMuAlphaBeta.svg" onclick="window.open(addrStr[105])">
+    </div>
+    <p>
+
+  <iframe src="./exercise/exercise07.html" width="800" height="550" ></iframe>
+</body>
+</html>
+

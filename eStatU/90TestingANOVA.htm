@@ -32,7 +32,7 @@
       <tbody>
 	<tr>  
 	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
-	  <td></span></td>
+	  <td></td>
 	  <td><span class="fontmath">
                 H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub>
               </span>
@@ -49,18 +49,14 @@
 	</tr>
       </tbody>
     </table>
-
     
     <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
     <span class="fontmath" data-msgid="F-test">F-test</span> (ANOVA)
-
-    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
-      <span data-msgid="Significance Level">Significance Level</span> &nbsp;  
-      <span class="fontmath">&alpha;</span> = 
-      <input type="radio" name = "type2" value="1" checked> 5%       
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>       
-    
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
     <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
     <span class="fontguide" data-msgid="input either sample data">
       (input either sample data or sample statistics using csv / bsv)
@@ -127,244 +123,45 @@
 	</tr>
       </tbody>
     </table>
-    <button type="button" id="executeTH7" >
-        <span data-msgid="Execute">Execute</span>
-    </button> 
-    <p>
+    <br>
+    <button type="button" id="execute" style="width:90px;"><span data-msgid="Execute">Execute</span></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"> 
+    <sup><small> 1 </small></sup>
+
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+
+    <br>
     <svg id="chart" width="600" height="400"> </svg> 
     <br>
-    <button type="button" id="saveGraphU" >
+    <form action="#" name="myForm123">
+      <button type="button" id="multipleComparison" >
+		  <span data-msgid="MultipleComparison">다중비교</span>
+      </button>
+                <label><input type="radio" name = "type4" value="1" checked> LSD</label>
+                <label><input type="radio" name = "type4" value="2" > 5%HSD</label>
+                <label><input type="radio" name = "type4" value="3" > 1%HSD</label>
+      &nbsp;
+      <button type="button" id="saveGraphU" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-    </button>
+      </button>
+      &nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    </form>
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
   </div> 
 
-  <script>
+  <script src="/estat/eStatU/js/90TestingANOVA.js"> </script>
 
-      var bar = d3.select("#chart");
-
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
-      svgWidth2   = 600;
-      svgHeight2  = 400;
-
-      var nobs, gxmin, gxmax, gymin, gymax;
-      var title;
-      var i, df1, df2, info, alpha, pvalue, b, c, d, e, f, g, h;
-      var ntot, mtot, ssb, ssw, msb, msw, temp; 
-      var nn7   = new Array(4);
-      var xbar7 = new Array(4);
-      var var7  = new Array(4);
-      var stat  = new Array(9);
-      var hypoType = 7;
-      var h1Type   = 2;
-
-      // alpha
-      var a = document.myForm2.type2;
-      alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; bar.selectAll("*").remove(); }  
-      a[1].onclick = function() { alpha = 0.01; bar.selectAll("*").remove(); }  
-
-     // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
-        document.getElementById("nn71").value   = stat.n;    
-        document.getElementById("xbar71").value = f2(stat.xbar);
-        document.getElementById("var71").value  = f2(stat.var);    
-      });
-
-      d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");   
-        document.getElementById("nn72").value   = stat.n;    
-        document.getElementById("xbar72").value = f2(stat.xbar);
-        document.getElementById("var72").value  = f2(stat.var);    
-      });
-
-      d3.select("#data3").on("input", function() {
-        stat = simplestat("#data3");   
-        document.getElementById("nn73").value   = stat.n;    
-        document.getElementById("xbar73").value = f2(stat.xbar);
-        document.getElementById("var73").value  = f2(stat.var);    
-      });
-
-      d3.select("#data4").on("input", function() {
-        stat = simplestat("#data4");   
-        document.getElementById("nn74").value   = stat.n;    
-        document.getElementById("xbar74").value = f2(stat.xbar);
-        document.getElementById("var74").value  = f2(stat.var);    
-      });
-
-      updateData = function() {
-        document.getElementById("data1").value = '';
-        document.getElementById("data2").value = '';  
-        document.getElementById("data3").value = '';    
-        document.getElementById("data4").value = '';      
-      }
-
-      d3.select("#nn71").on("input", updateData);
-      d3.select("#nn72").on("input", updateData);
-      d3.select("#nn73").on("input", updateData);
-      d3.select("#nn74").on("input", updateData);
-      d3.select("#xbar71").on("input", updateData);
-      d3.select("#xbar72").on("input", updateData);
-      d3.select("#xbar73").on("input", updateData)
-      d3.select("#xbar74").on("input", updateData)
-      d3.select("#var71").on("input", updateData);
-      d3.select("#var72").on("input", updateData);
-      d3.select("#var73").on("input", updateData);
-      d3.select("#var74").on("input", updateData);
-
-      // Testing Hypothesis ===========================================================
-      d3.select("#executeTH7").on("click",function() {
-        bar.selectAll("*").remove();
-
-        // input value
-/*
-        nn7[0]   = parseFloat(d3.select("#nn71").node().value);
-        nn7[1]   = parseFloat(d3.select("#nn72").node().value);
-        nn7[2]   = parseFloat(d3.select("#nn73").node().value);
-        nn7[3]   = parseFloat(d3.select("#nn74").node().value);
-        xbar7[0] = parseFloat(d3.select("#xbar71").node().value);
-        xbar7[1] = parseFloat(d3.select("#xbar72").node().value);
-        xbar7[2] = parseFloat(d3.select("#xbar73").node().value);
-        xbar7[3] = parseFloat(d3.select("#xbar74").node().value);
-        var7[0]  = parseFloat(d3.select("#var71").node().value);
-        var7[1]  = parseFloat(d3.select("#var72").node().value);
-        var7[2]  = parseFloat(d3.select("#var73").node().value);
-        var7[3]  = parseFloat(d3.select("#var74").node().value);
-*/
-        stat = simplestat("#data1");
-        if (stat.n > 0) {
-          nn7[0]    = stat.n;
-          xbar7[0]  = stat.xbar;
-          var7[0]   = stat.var;
-        }
-        else {
-          nn7[0]   = parseFloat(d3.select("#nn71").node().value);
-          xbar7[0] = parseFloat(d3.select("#xbar71").node().value);
-          var7[0]  = parseFloat(d3.select("#var71").node().value);
-        }
-        stat = simplestat("#data2");
-        if (stat.n > 0) {
-          nn7[1]    = stat.n;
-          xbar7[1]  = stat.xbar;
-          var7[1]   = stat.var;
-        }
-        else {
-          nn7[1]   = parseFloat(d3.select("#nn72").node().value);
-          xbar7[1] = parseFloat(d3.select("#xbar72").node().value);
-          var7[1]  = parseFloat(d3.select("#var72").node().value);
-        }
-        stat = simplestat("#data3");
-        if (stat.n > 0) {
-          nn7[2]    = stat.n;
-          xbar7[2]  = stat.xbar;
-          var7[2]   = stat.var;
-        }
-        else {
-          nn7[2]   = parseFloat(d3.select("#nn73").node().value);
-          xbar7[2] = parseFloat(d3.select("#xbar73").node().value);
-          var7[2]  = parseFloat(d3.select("#var73").node().value);
-        }
-        stat = simplestat("#data4");
-        if (stat.n > 0) {
-          nn7[3]    = stat.n;
-          xbar7[3]  = stat.xbar;
-          var7[3]   = stat.var;
-        }
-        else {
-          nn7[3]   = parseFloat(d3.select("#nn74").node().value);
-          xbar7[3] = parseFloat(d3.select("#xbar74").node().value);
-          var7[3]  = parseFloat(d3.select("#var74").node().value);
-        }
-
-        // determine number of populations kk7
-        kk7 = 0;
-        if ( !isNaN(nn7[0]) && isNaN(nn7[1]) && isNaN(nn7[2]) && isNaN(nn7[3]) ) kk7 = 1;
-        else if ( !isNaN(nn7[0]) && !isNaN(nn7[1]) &&  isNaN(nn7[2]) &&  isNaN(nn7[3]) ) kk7 = 2;
-        else if ( !isNaN(nn7[0]) && !isNaN(nn7[1]) && !isNaN(nn7[2]) &&  isNaN(nn7[3]) ) kk7 = 3;
-        else if ( !isNaN(nn7[0]) && !isNaN(nn7[1]) && !isNaN(nn7[2]) && !isNaN(nn7[3]) ) kk7 = 4;
-
-        if (kk7 < 2 || kk7 > 4) {  // wrong input k
-          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
-             .text("No input or wrong input of k !!   Try again.").style("stroke","red")
-        }
-        else if (kk7 == 2  && ( isNaN(nn7[0]) || isNaN(nn7[1]) ||
-             isNaN(xbar7[0])  || isNaN(xbar7[1])  ||
-             isNaN(var7[0]) || isNaN(var7[1]) ||  
-             nn7[0] < 2     || nn7[1] < 2     || 
-             var7[0] <= 0   || var7[1] <= 0 ) ) {  // wrong input when k = 2
-          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
-             .text("No input or wrong input !!   Try again.").style("stroke","red")
-        }
-        else if (kk7 == 3   && ( isNaN(nn7[0])  || isNaN(nn7[1])  || isNaN(nn7[2]) ||
-             isNaN(xbar7[0])  || isNaN(xbar7[1])  || isNaN(xbar7[2])  ||
-             isNaN(var7[0]) || isNaN(var7[1]) || isNaN(var7[2]) ||
-             nn7[0] < 2     || nn7[1] < 2     || nn7[2] < 2     ||
-             var7[0] <= 0   || var7[1] <= 0   || var7[2] <= 0 ) ) {  // wrong input when k = 3
-          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
-             .text("No input or wrong input !!   Try again.").style("stroke","red")
-        }
-        else if (kk7 == 4   && ( isNaN(nn7[0])  || isNaN(nn7[1])  || isNaN(nn7[2]) || isNaN(nn7[3]) &&
-             isNaN(xbar7[0])  || isNaN(xbar7[1])  || isNaN(xbar7[2])  || isNaN(xbar7[3]) ||
-             isNaN(var7[0]) || isNaN(var7[1]) || isNaN(var7[2]) || isNaN(var7[3])||
-             nn7[0] < 2     || nn7[1] < 2     || nn7[2] < 2     || nn7[3] < 2    ||
-             var7[0] <= 0   || var7[1] <= 0   || var7[2] <= 0   || var7[3] <= 0 ) ) {  // wrong input when k = 4
-          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
-             .text("No input or wrong input !!   Try again.").style("stroke","red")
-        }
-        else {   // ANOVA F-test
-          // test statistics
-          df1 = kk7 - 1;
-          ntot = 0;
-          ssb  = 0;
-          ssw  = 0;
-          for (i=0; i<kk7; i++) ntot += nn7[i]; 
-          df2  = ntot - kk7;
-
-          // total mean
-          mtot = 0;
-          for (i=0; i<kk7; i++) mtot += nn7[i] * xbar7[i];
-          mtot /= ntot;
-
-          // between & within sum of squares
-          ssb = 0;
-          ssw = 0;
-          for (i=0; i<kk7; i++) {
-            temp = (xbar7[i]-mtot);
-            ssb += nn7[i] * temp*temp;
-            ssw += (nn7[i] - 1) * var7[i];
-          }
-        
-          msb = ssb / df1;
-          msw = ssw / df2;
-
-          stat[0] = msb / msw;
-          stat[1] = ssb;
-          stat[2] = ssw;
-          stat[3] = ssb + ssw;
-          stat[4] = msb;
-          stat[5] = msw;
-
-          h = alpha;  
-          f = 0;
-          g = f_inv(1-h, df1, df2, info);
-          pvalue = 1 - f_cdf(stat[0], df1, df2, info);
-          drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, f, g, h, pvalue);
-        }        
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth2;
-        var height = svgHeight2;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-  </script>
 </body>
 </html>

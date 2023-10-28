@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 9</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h2>Chapter 9. Testing Hypothesis for Several Population Means</h2> 
+  <h6>
+      <a href="./pdf/book09.pdf" target="_blank"><u>[book]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+  </h6>
+	      <ul>
+                <li><a href="#0901">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="#0902">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="#0903">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+	      </ul>
+  <p>
+
+  <h3>CHAPTER OBJECTIVES</h3> 
+  <p>
+    In testing hypothesis of the population mean described in chapters 7 and 8, the number of populations was one or two. However, many cases are encountered where there are three or more population means to compare. 
+    The analysis of variance (ANOVA) is used to test whether several population means are equal or not. The ANOVA was first published by British statistician R. A. Fisher as a test method applied to the study of agriculture, but today its principles are applied in many experimental sciences, including economics, business administration, psychology and medicine.
+    <p>
+    In section 9.1, the one-way ANOVA for single factor is introduced. In section 9.2, experimental designs for experiments are introduced. In section 9.2, the two-way ANOVA for two factors experiments is introduced.
+
+  <p>
+
+  <h3 id="0901">9.1 Analysis of Variance for Single Factor Experiments</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0901.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/az6KJp26dFA" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      In section 8.1, we discussed how to compare means of two populations using the testing hypothesis. This chapter 
+      discusses how to compare means of several populations. There are many examples of comparing means of several 
+      populations as follows: 
+      <p>   
+      <div class="textL30M10">
+        -  Are average hours of library usage for each grade the same?
+      </div>
+      <div class="textL30M10">
+        -  Are yields of three different rice seeds equal?
+      </div>
+      <div class="textL30M10">
+        -  In a chemical reaction, are response rates the same at four different temperatures? 
+      </div>
+      <div class="textL30M10">
+        -  Are average monthly wages of college graduates the same at three different cities? 
+      </div>
+      <p>
+      The group variable used to distinguish groups of the population, such as the grade or the rice, is called a        factor. 
+    </div>
+      
+    <div class="mainTableYellow">
+      <b>Factor</b>
+      <p>The group variable used to distinguish groups of the population is called a <b>factor</b>.   
+    </div>
+      
+    <p>
+    <div class="mainTable">
+      This section describes the one-way analysis of variance (ANOVA) which compares population means when there is a 
+      single factor. Section 9.2 describes how the experiment is designed to extract sample data. Section 9.3 describes 
+      the two-way  ANOVA to compare several population means when there are two factors. Let's take a look at the 
+      following example.
+    </div>
+    <p>
+       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+         <b>Example 9.1.1</b>
+         In order to compare the English proficiency of each grade at a university, samples were randomly selected from 
+         each grade to take the same English test, and data are as in Table 9.1.1. The last row is a calculation of 
+         the average \({\overline y}_{1\cdot}\), \({\overline y}_{2\cdot}\), \({\overline y}_{3\cdot}\), \({\overline y}_{4\cdot}\) for each grade.
+      <p>
+        <div class="textLeft">Table 9.1.1  English Proficiency Score by Grade</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:100px"> Socre</th>
+           <th>Student 1</th>
+           <th>Student 2</th>
+           <th>Student 3</th>
+           <th>Student 4</th>
+           <th>Student 5</th>
+           <th>Student 6</th>
+           <th style="width:100px">Student Average</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Grade 1</td>
+           <td class="tdCenter">81</td>
+           <td class="tdCenter">75</td>
+           <td class="tdCenter">69</td>
+           <td class="tdCenter">90</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">83</td>
+           <td class="tdCenter">\({\overline y}_{1\cdot}\)=78.3</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">Grade 2</td>
+           <td class="tdCenter">65</td>
+           <td class="tdCenter">80</td>
+           <td class="tdCenter">73</td>
+           <td class="tdCenter">79</td>
+           <td class="tdCenter">81</td>
+           <td class="tdCenter">69</td>
+           <td class="tdCenter">\({\overline y}_{2\cdot}\)=74.5</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">Grade 3</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">67</td>
+           <td class="tdCenter">62</td>
+           <td class="tdCenter">76</td>
+           <td class="tdCenter">80</td>
+           <td class="tdCenter"></td>  
+           <td class="tdCenter">\({\overline y}_{3\cdot}\)=71.4</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Grade 4</td> 
+           <td class="tdCenter">89</td>
+           <td class="tdCenter">94</td>
+           <td class="tdCenter">79</td>
+           <td class="tdCenter">88</td>
+           <td class="tdCenter"></td>  
+           <td class="tdCenter"></td>  
+           <td class="tdCenter">\({\overline y}_{4\cdot}\)=87.5</td>
+         </tr>
+      </table>
+      <p class="textLeft">[Ex] ⇨ eBook ⇨ EX090101_EnglishScoreByGrade.csv. 
+      <p>
+      <div class="textL20M20">
+        1) Using 『eStat』, draw a dot graph of test scores for each grade and compare their averages.
+      </div>
+      <div class="textL20M20">
+        2) We want to test a hypothesis whether average scores of each grade are the same or not. Set up a null 
+           hypothesis and an alternative hypothesis.
+      </div>
+      <div class="textL20M20">
+        3) Apply the one-way analysis of variances to test the hypothesis in question 2).
+      </div>
+      <div class="textL20M20">
+        4) Use 『eStat』 to check the result of the ANOVA test.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) If you draw a dot graph of English scores by each grade, you can see whether scores of each grade are similar. 
+           If you plot the 95% confidence interval of the population mean studied in Chapter 6 on each dot graph, you can 
+           see a more detailed comparison. 
+        <br> 
+           In order to draw a dot graph with data shown in Table 9.1.1 using  『eStat』 , enter data on the sheet 
+           and set variable names to 'Grade' and 'Score' as shown in &lt;Figure 9.1.1&gt;. In the variable selection box 
+           which appears by clicking the ANOVA icon  on the main menu of 『eStat』, select 'Analysis Var' as ‘Score’ 
+          and 'By Group' as ‘Grade’. The dot graph of English scores by each grade and the 95% confidence interval are displayed as shown in &lt;Figure 9.1.2&gt;.
+      </div>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX090101.svg" onclick="window.open(addrStr[27])">
+            <img class="imgFig600400" src="./Figure/Fig090101.png">
+            <div class="figText">&lt;Figure 9.1.1&gt; 『eStat』 data input for ANOVA</div>
+         </div>
+      <p>
+        <img class="imgFig600400" src="./Figure/Fig090102.svg">
+        <div class="figText">&lt;Figure 9.1.2&gt; 95% Confidence Interval by grade</div>
+      <p>
+      <div class="textL20">
+          To review the normality of the data, pressing the [Histogram] button under this graph (&lt;Figure 9.1.3&gt;) will 
+          draw the histogram and normal distribution together, as shown in &lt;Figure 9.1.4&gt;.
+      </div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090103.png">
+          <div class="figText">&lt;Figure 9.1.3&gt; Options of ANOVA</div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090104.svg">
+          <div class="figText">&lt;Figure 9.1.4&gt; Histogram of English score by grade</div>
+        <p><br>
+        <div class="textL20">
+          &lt;Figure 9.1.2&gt; shows sample means as \({\overline y}_{1\cdot}\)= 78.3,
+          \({\overline y}_{2\cdot}\) = 74.5, \({\overline y}_{3\cdot}\) = 71.4,
+          \({\overline y}_{4\cdot}\) = 87.5. The sample mean of the 4th grade is 
+          relatively larger than the other grades and \({\overline y}_{2\cdot}\) and \({\overline y}_{3\cdot}\) are similar. 
+          Therefore, it can be expected that the population mean 
+          \(\mu_{2}\) and \(\mu_{3}\) would be the same and  \(\mu_{4}\) will differ from three other population means. 
+          However, we need to test whether these differences of sample 
+          means are statistically significant.
+        </div>
+        <p>
+      <div class="textL20M20">
+        2) In this example, the null hypothesis to test is that population means of English scores of the four grades 
+           are all the same, and the alternative hypothesis is that population means of the English scores are not the same. 
+           In other words, if  \(\mu_1 , \mu_2 , \mu_3 ,\) and \(\mu_4\) are the population means of English scores 
+           for each grade, the hypothesis to test can be written as follows, 
+        <p>
+        <div class="textL30">
+          Null hypothesis \(\small \qquad \qquad \; H_0\): \(\mu_1 = \mu_2 = \mu_3 = \mu_4\) 
+        </div>
+        <div class="textL30">
+          Alternative hypothesis \( \quad \small H_1\): at least one pair of \(\mu_i\) is not the same
+        </div>
+      </div>
+      <p>
+      <div class="textL20M20">
+        3) A measure that can be considered first as a basis for testing differences in multiple sample means would be 
+           the distance from each mean to the overall mean. In other words, if the overall sample mean for all 21 students 
+           is expressed as \(\overline y_{\cdot \cdot}\), the squared distance from each sample mean to the overall mean is as follows when the number of samples 
+           in each grade is weighted. This squared distance is called the between sum of squares (SSB) or the treatment sum of squares (SSTr). 
+        <p>
+        <div class="textL30">
+          \(\small SSTr = 6(78.3 - {\overline y}_{\cdot \cdot})^2 + 6(74.5 - {\overline y}_{\cdot \cdot})^2 + 5(71.4 - {\overline y}_{\cdot \cdot})^2 + 4(87.5 - {\overline y}_{\cdot \cdot})^2  \) = 643.633
+        </div>
+      </div>
+      <p>
+      <div class="textL20">
+           If the squared distance \(\small SSTr\) is close to zero, all sample means of English scores for four grades are similar.
+        <p>     
+           However, this treatment sum of squares can be larger if the number of populations increases. 
+           It requires modification to become a test statistic to determine whether several population means are equal. 
+           The squared distance from each observation to its sample mean of the grade is called the within sum of squares (SSW) or 
+           the error sum of squares (SSE) as defined below.
+        <p>
+        <div class="textL30">
+           \(\small SSE = (81 -{\overline y}_{1 \cdot})^2 + (75 -{\overline y}_{1 \cdot})^2 + \cdots + (83 -{\overline y}_{1 \cdot})^2\) <br>
+           \(\small \qquad + (65 -{\overline y}_{2 \cdot})^2 + (80 -{\overline y}_{2 \cdot})^2 + \cdots + (69 -{\overline y}_{2 \cdot})^2\) <br>   
+           \(\small \qquad + (72 -{\overline y}_{3 \cdot})^2 + (67 -{\overline y}_{3 \cdot})^2 + \cdots + (80 -{\overline y}_{3 \cdot})^2\) <br>
+           \(\small \qquad + (89 -{\overline y}_{4 \cdot})^2 + (94 -{\overline y}_{4 \cdot})^2 + \cdots + (88 -{\overline y}_{4 \cdot})^2\) <br>  
+           \(\small =  839.033\)
+        </div>
+        <p>
+           If population distributions of English scores in each grade follow normal distributions and their variances are 
+           the same, the following test statistic has the \(F_{3, 17}\) distribution.
+        <div class="textL30">
+          \(\small  F_{0} = \frac { \frac{SSTr}{(4-1)} } { \frac{SSE}{(21-4)} } \)
+        </div>
+        <p>
+           This statistic can be used to test whether population English scores of four grades are the same or not. In 
+           the test statistic, the numerator \(\frac{SSTr}{4-1}\) is called the treatment mean square (MSTr) which implies a variance between 
+           grade means. The denominator \(\frac{SSE}{21-4}\) is called the error mean square (MSE) which implies a variance within each grade. 
+           Thus, the above test statistics are based on the ratio of two variances which is why the test of multiple 
+           population means is called an analysis of variance (ANOVA).
+           <p>
+           Calculated test statistic which is the observed \(\small F\) value, \(\small F_{0}\) , using data of English scores for each grade is as follows.
+        <p>
+        <div class="textLeft">
+          \( F_{0} = \frac { \frac{SSTr}{(4-1)} } { \frac{839.033}{(21-4)} } = \frac { \frac{643.633}{(4-1)} } { \frac{SSE}{(21-4)} } = 4.347\)
+        </div>
+        <p>
+           Since \(\small F_{3,17; 0.05}\) = 3.20, the null hypothesis that population means of English scores of each grade are the same,
+           \(\small H_0 : \mu_1 = \mu_2 = \mu_3 = \mu_4 \) , is rejected at the 5% significance level. 
+           In other words, there is a difference in population means of English scores of each grade. 
+           <p>  
+           The following ANOVA table provides a single view of the above calculation.
+      </div>
+      <p>
+            <table class="width:600px">
+                <tr> 
+                  <th>Factor</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F ratio</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Treatment</td>
+                  <td class="tdCenter">SSTr = 643.633</td>
+                  <td class="tdCenter">4-1</td>
+                  <td class="tdCenter">MSTr = \(\frac{643.633}{3}\)</td>
+                  <td class="tdCenter">\(F_0 = 4.347\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE = 839.033</td>
+                  <td class="tdCenter">21-4</td>
+                  <td class="tdCenter">MSE = \(\frac{839.033}{17}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Total</td>
+                  <td class="tdCenter">SST = 1482.666</td>
+                  <td class="tdCenter">20</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+           <p>
+
+      <div class="textL20M20">
+        4) In &lt;Figure 9.1.3&gt;, if you select the significance level of 5%, confidence level of 95%, 
+           and click [ANOVA F test] button, a graph showing the location of the test statistic in the F distribution
+           is appeared as shown in &lt;Figure 9.1.5&gt;. Also, in the Log Area, the mean and confidence interval tables 
+           and test result for each grade are appeared as in &lt;Figure 9.1.6&gt;.
+      </div>
+      <p>
+      <div class="textL20">
+          <img class="imgFig600400" src="./Figure/Fig090105.svg">
+          <div class="figText">&lt;Figure 9.1.5&gt;  『eStat』  ANOVA F test</div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090106.png">
+          <div class="figText">&lt;Figure 9.1.6&gt;  『eStat』 Basic Statistics and ANOVA table</div>
+        <p><br>
+           The analysis of variance is also possible using 『eStatU』. Entering the data as in &lt;Figure 9.1.7&gt; 
+           and clicking the [Execute] button will have the same result as in &lt;Figure 9.1.5&gt;.
+        <p>
+      </div> 
+      <p>
+      <!---   ************ html for ANOVA ************  ---->
+      <p>
+      <b>[<span data-msgid="Testing Hypothesis ANOVA">Testing Hypothesis : 3+ Population Means (ANOVA)</span>]</b>
+      <p>
+         <iframe src="./example/090101/090101.html" width="700" height="900"> </iframe>
+      <p>    
+    </div>
+
+    <div class="mainTable">
+      The above example refers to two variables, the English score and grade. The variable such as the English score is 
+      called as an analysis variable or a response variable. The response variable is mostly a continuous variable. The 
+      variable used to distinguish populations such as the grade is called a group variable or a factor variable which 
+      is mostly a categorical variable. Each value of a factor variable is called a level of the factor and the number 
+      of these levels is the number of populations to be compared. In the above example, the factor has four levels, 
+      1st, 2nd, 3rd and 4th grade. The term 'response' or 'factor' is originated to analyze data through experiments 
+      in engineering, agriculture, medicine and pharmacy. 
+      <p>
+      The analysis of variance method that examines the effect of single factor on the response variable is called the 
+      one-way ANOVA. Table 9.1.2 shows the typical data structure of the one-way ANOVA when the number of levels of a 
+      factor is \(k\) and the numbers of observation at each level are \(n_1 , n_2 , ... , n_k\).
+    </div>
+    <p>
+      <div class="textLeft">Table 9.1.2  Notation of the one-way ANOVA</div>  
+    <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th style="width:100px">Factor</th>
+           <th>Observed values of sample</th>
+           <th style="width:100px">Average</th>
+         </tr>
+         <tr> <td class="tdCenter">Level 1</td>    <td class="tdCenter">\(Y_{11} \; Y_{12}\; \cdots \;Y_{1n_1} \)</td> <td class="tdCenter">\(\overline Y_{1\cdot}\)</td> </tr>
+         <tr> <td class="tdCenter">Level 2</td>    <td class="tdCenter">\(Y_{21} \; Y_{22}\; \cdots \;Y_{2n_2} \)</td> <td class="tdCenter">\(\overline Y_{2\cdot}\)</td> </tr>
+         <tr> <td class="tdCenter">\(\cdots\)</td> <td class="tdCenter">\(\cdots\)</td>                      <td class="tdCenter">\(\cdots\)</td> </tr>
+         <tr> <td class="tdCenter">Level k</td>    <td class="tdCenter">\(Y_{k1} \; Y_{k2}\; \cdots \;Y_{kn_k} \)</td> <td class="tdCenter">\(\overline Y_{k\cdot}\)</td> </tr>
+      </table>
+    <p>    
+           
+    <div class="mainTable">
+      Statistical model for the one-way analysis of variance is given as follows: 
+        $$
+         \begin{align}
+           Y_{ij} &= \mu_i + \epsilon_{ij} \\
+                  &= \mu + \alpha_i + \epsilon_{ij}, \;i=1,2,...,k; \;j=1,2,..., n_i  \\
+         \end{align}
+        $$
+      \(Y_{ij}\) represents the \(j^{th}\) observed value of the response variable for the \(i^{th}\) level of factor. 
+      The population mean of the \(i^{th}\) level, \(\mu_{i}\), is represented as \(\mu + \alpha_{i}\) where \(\mu\)
+      is the mean of entire population and \(\alpha_{i}\) is the effect of \(i^{th}\) level for the response 
+      variable. \(\epsilon_{ij}\) denotes an error term of the \(j^{th}\) observation 
+      for the \(i^{th}\) level and the all error terms are assumed independent of each other and follow 
+      the same normal distribution with the mean 0 and variance \(\sigma^{2}\).   
+      <p>
+      The error term \(\epsilon_{ij}\) is a random variable in the response variable due to reasons other than levels of the factor. 
+      For example, in the English score example, differences in English performance for each grade can be caused 
+      by other variables besides the variables of grade, such as individual study hours, gender and IQ. 
+      However, by assuming that these variations are relatively small compared to variations due to differences in grade, the 
+      error term can be interpreted as the sum of these various reasons. 
+      <p>
+      The hypothesis to test can be represented using \(\alpha_{i}\) instead of \(\mu_{i}\) as follows: 
+        <p>
+        <div class="textL20">
+          Null hypothesis \(\qquad \quad \;\;\; H_0\): \(\alpha_1 = \alpha_2 = \alpha_3 = \alpha_4\) = 0 <br>
+        </div>
+        <div class="textL20">
+          Alternative hypothesis \( \quad H_1\): at least one \(\alpha_i\) is not equal to 0
+        </div>
+       <p>
+       In order to test the hypothesis, the analysis of variance table as Table 9.1.3 is used. 
+    </div>
+           <p>
+             <div class="textLeft"> Table 9.1.3  Analysis of variance table of the one-way ANOVA</div>
+           <p>
+             <table style="width:600px"> 
+                <tr> 
+                  <th>Factor</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F ratio</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Treatment</td>
+                  <td class="tdCenter">SSTr</td>
+                  <td class="tdCenter">\(k-1\)</td>
+                  <td class="tdCenter">MSTr=\(\frac{SSTr}{k-1}\)</td>
+                  <td class="tdCenter">\(F_0 = \frac{MSTr}{MSE}\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE</td>
+                  <td class="tdCenter">\(n-k\)</td>
+                  <td class="tdCenter">MSE=\(\frac{SSE}{n-k}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Total</td>
+                  <td class="tdCenter">SST</td>
+                  <td class="tdCenter">\(n-1\)</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+           <p>
+        <div class="textL20">
+          \(\qquad n = \sum_{i=1}^{n} \; n_i\) <br>
+        </div>
+        <p>
+    <div class="mainTable">
+       The three sum of squares for the analysis of variances can be described as follows: For an explanation, first define 
+       the following statistics:
+       <p>
+       <div class="textL20">
+          \({\overline Y}_{i \cdot}     \; \) Mean of observations at the \(i^{th}\) level <br>
+          \({\overline Y}_{\cdot \cdot} \; \) Mean of total observations 
+       </div>
+       <p>
+       <b>SST</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2 \;\) : <br>
+       The sum of squared distances between observed values of the response variable and the mean of total observations 
+       is called the <b>total sum of squares</b> (SST). 
+       <p>
+       <b>SSTr</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \;\) : <br>
+       The sum of squared distances between the mean of each level and the mean of total observations is called the 
+       <b>treatment sum of squares</b> (SSTr). It represents the variation between level means. 
+       <p>
+       <b>SSE</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( {Y}_{ij} - {\overline Y}_{i \cdot} )^2 \;\) : <br>
+       The sum of squared distances between observations of the \(i^{th}\) level and the mean of the \(i^{th}\) level is referred to as 
+       'within variation', and is called the <b>error sum of squares</b> (SSE).
+       <p>
+       The degree of freedom of each sum of squares is determined by the following logic: 
+       The SST consists of \(n\) number of squares, \(( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2\), 
+       but \( {\overline Y}_{\cdot \cdot} \) should be calculated first, before SST is calculated,
+       and hence the degree of freedom of SST is \(n-1\). The SSE consists of \(n\) number of squares,
+       \(( {Y}_{ij} - {\overline Y}_{i \cdot} )^2 \), but the  number of values, 
+       \({\overline Y}_{1 \cdot}, {\overline Y}_{2 \cdot}, ... , {\overline Y}_{k \cdot}\) 
+       should be calculated first, before SSE is calculated, and hence the degree of freedom of SSE is \(n-k\).
+       The degree of freedom of SSTr is calculated as the degree of freedom of SST minus the degree of freedom of SSE which is \(k-1\).
+       In the one-way analysis of variance, the following facts are always established:
+    </div>
+
+    <p>    
+    <div class="mainTableYellow">
+       <b>Partition of sum of squares and degrees of freedom
+          <p>
+          Sum of squares:  SST = SSTr + SSE     <br>	
+          Degrees of freedom:  \((n-1) = (k-1) + (n-k)\) 
+       </b>	
+    </div>
+    <p>    
+ 
+    <div class="mainTable">
+      The sum of squares divided by the corresponding degrees of freedom is referred to as the mean squares and Table 
+      9.1.3 defines the treatment mean squares (MSTr) and error mean squares (MSE).  As in the meaning of the sum of 
+      squares, the treatment mean square implies the average variation between each level of the factor, and the error 
+      mean square implies the average variation within observations in each level. Therefore, if MSTr is relatively 
+      much larger than MSE, we can conclude that the population means of each level, \(\mu_i\), are not the same. So by what 
+      criteria can you say it is relatively much larger?
+      <p>
+      The calculated \(F\) value, \(F_0\), in the last column of the ANOVA table represents the relative size of MSTr and MSE. If 
+      the assumptions of \(\epsilon_{ij}\) based on statistical theory are satisfied, and if the null hypothesis
+      \(\small H_0 : \alpha_1 = \alpha_2 = \cdots = \alpha_k \) = 0  is true, then the 
+      below test statistic follows a F distribution with degrees of freedoms \(k-1\) and \(n-k\). 
+      $$
+        F_{0} = \frac { \frac{SSTr}{(k-1)} } { \frac{SSE}{(n-k)} } 
+      $$
+      Therefore, when the significance level is \(\alpha\) for a test, if the calculated value \(F_0\) is greater 
+      than the value of \(F_{k-1,n-k; &alpha;}\), then the null hypothesis is rejected. That is, 
+      it is determined that the population means of each factor level are not all the same. 
+    </div>
+            
+    <p>    
+    <div class="mainTableYellow">
+      <b>One-way analysis of variance  test
+        <p>
+        <div class="textL20">
+          Null hypothesis \(\qquad \quad \; H_0\): \(\alpha_1 = \alpha_2 = \alpha_3 = \alpha_4 = 0\) <br>
+        </div>
+        <div class="textL20">
+          Alternative hypothesis \( \;\; H_1\): at least one \(\alpha_i\) is not equal to 0
+        </div>
+        <div class="textL20">
+          Test Statistic \(\;\; F_{0} = \frac { \frac{SSTr}{(k-1)} } { \frac{SSE}{(n-k)} } \) 
+        </div>
+        <div class="textL20">
+          Decision Rule If \(\;\; F_0 > F_{k-1,n-k; &alpha;} \), then reject \(H_0\)
+        </div>
+      </b>
+      <p>
+       (Note:  『eStat』 calculates the \(p\)-value of this test. Hence if the \(p\)-value is smaller than 
+       the significance level \(\alpha\), then reject the null hypothesis. )
+    </div>
+    <p>   	
+       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+         <b>Practice 9.1.1</b> 
+            <b>(Plant Growth by Condition)</b><br>
+            Results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control 
+            (leveled ‘ctrl’) and two different treatment conditions (leveled ‘trt1’ and ‘trt2’). The weight data with 
+            30 observations on control and two treatments (‘crtl’, ‘trt1’, ‘trt2’), are saved at the following location 
+            of  『eStat』. Answer the followings using 『eStat』 ,
+            <p>
+            <div class="textLeft"> [Ex] ⇨ eBook ⇨ PR090101_Rdatasets_PlantGrowth.csv </div>
+            <p> 
+            <div class="textL20M20">
+              1) Draw a dot graph of weights for each control and treatments. 
+            </div>
+            <div class="textL20M20">
+              2) Test a hypothesis whether the weights are the same or not. Use the 5% significance level. 
+            </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR090101.svg" onclick="window.open(addrStr[65])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>   
+  <h4>9.1.1 Multiple Comparisons</h4>
+  <p>
+  <h6>
+      <a href="./pdf/090101-02.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/Re_gHPIkeNE" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+    <div class="mainTable">
+      If the F test of the one-way ANOVA does not show a significant difference between each level of the factor, it 
+      can be concluded that there is no difference between each level of populations. However, if you conclude that 
+      there are significant differences between each level as shown in [Example 9.1.1], you need to examine which 
+      levels are different from each other. 
+      <p>
+      The analysis of differences between population means after ANOVA requires several tests for the mean difference 
+      to be performed simultaneously and it is called as the multiple comparisons. The hypothesis for the multiple 
+      comparison to test whether the level means, \(\mu_i\) and \(\mu_j\), are equal is as follows:
+      $$
+        H_0 : \mu_i = \mu_j , \quad H_1 : \mu_i \ne \mu_j \quad i=1,2,...,k-1,\; j=i+1,i+2,...,k  
+      $$
+      It means that there are \(_{k}C_{2}\) tests to be done simultaneously for the multiple comparisons 
+      if there are \(k\) levels of the factor. 
+      <p>
+      There are many multiple comparisons tests, but Tukey's Honestly Significant Difference (HSD) test is most commonly 
+      used. The statistic for Tukey's HSD test to compare means \(\mu_i\) and \(\mu_j\) is the sample mean 
+      difference \({\overline y}_{i \cdot} - {\overline y}_{j \cdot}\) and the decision rule to test \(H_0 : \mu_i = \mu_j\) is as follows:
+      <p>
+      <div class="textL20">
+        If \(|{\overline y}_{i\cdot} - {\overline y}_{j\cdot} | > HSD_{ij}\), then reject \(H_0\) <br>
+        where \(HSD_{ij} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_i } + \frac{1}{n_j} ) MSE }\),
+        \(n_i\) and \(n_j\) are the number of samples (repetitions) in \(i^{th}\) level and \(j^{th}\) level, 
+        \(MSE\) is the mean squared error, \(q_{k,n-k; &alpha;}\) is the right tail 100\(\times \alpha\) 
+        percentile of the studentized range distribution with parameter \(k\) and \(n-k\) degrees of freedom. 
+        (It can be found at 『eStatU』 (&lt;Figure 9.1.8&gt;)).
+      </div>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU995_StudentRangeD.svg" onclick="window.open(addrStr[120])">
+            <img class="imgFig600400" src="./Figure/Fig090108.png">
+            <div class="figText">&lt;Figure 9.1.8&gt; 『eStatU』 HSD percentile table</div>
+         </div>
+    </div>
+       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+         <b>Example 9.1.2</b> 
+         In [Example 9.1.1], the analysis variance of English scores by the grade concluded that the null hypothesis was 
+         rejected and the average English scores for each grade were not all the same. Now let's apply the multiple 
+         comparisons to check where the differences exist among each school grade with the significance level of 5%. Use 
+        『eStat』 to check the result.
+      <p>
+      <b>Answer</b>
+      <p>
+      The hypothesis of the multiple comparisons is \(\small H_0 : \mu_i = \mu_j , \quad H_1 : \mu_i \ne \mu_j\)
+      and the decision rule is as follows: 
+      <p> 
+      <div class="textL20">
+        'If \(\small |{\overline y}_{i\cdot} - {\overline y}_{j\cdot}| > HSD_{ij}\), then reject \(\small H_0\)'
+      </div>
+      <p>
+      Since there are four school grades (\(k=4\)), \(_{4}C_{2}\) = 6 multiple comparisons are possible as follows.
+      The 5 percentile from the right tail of HSD distribution which is used to test is 
+      \(q_{k,n-k; &alpha;} = q_{4,21-4; 0.05}\) = 4.02.
+      <p>
+      1) \(\small H_0 : \mu_1 = \mu_2 , \quad H_1 : \mu_1 \ne \mu_2\)  
+      <div class="textL20">
+           \(\small |{\overline y}_{1\cdot} - {\overline y}_{2\cdot} | =|78.3 - 74.5| \) = 3.8 <br>
+           \(\small HSD_{12} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_1 } + \frac{1}{n_2} ) MSE }\)
+           = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{6} ) 49.355 }\) = 11.530 <br>
+           Therefore, accept \(\small H_0\)
+      </div>   
+      <p>
+      2) \(\small H_0 : \mu_1 = \mu_3 , \quad H_1 : \mu_1 \ne \mu_3\)  
+      <div class="textL20">
+           \(\small |{\overline y}_{1\cdot} - {\overline y}_{3\cdot} | =|78.3 - 71.4| \) = 6.9 <br>
+           \(\small HSD_{13} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_1 } + \frac{1}{n_3} ) MSE }\)
+           = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{5} ) 49.355 }\) = 12.092 <br>
+           Therefore, accept \(\small H_0\)
+      </div>   
+      <p>
+      3) \(\small H_0 : \mu_1 = \mu_4 , \quad H_1 : \mu_1 \ne \mu_4\)  
+      <div class="textL20">
+           \(\small |{\overline y}_{1\cdot} - {\overline y}_{4\cdot} | =|78.3 - 88.5| \) = 10.2 <br>
+           \(\small HSD_{14} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_1 } + \frac{1}{n_4} ) MSE }\)
+           = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{4} ) 49.355 }\) = 12.891 <br>
+           Therefore, accept \(\small H_0\)
+      </div>   
+      <p>
+      4) \(\small H_0 : \mu_2 = \mu_3 , \quad H_1 : \mu_2 \ne \mu_3\)  
+      <div class="textL20">
+           \(\small |{\overline y}_{2\cdot} - {\overline y}_{3\cdot} | =|74.5 - 71.4| \) = 3.1 <br>
+           \(\small HSD_{23} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_2 } + \frac{1}{n_3} ) MSE }\)
+           = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{5} ) 49.355 }\) = 12.092 <br>
+           Therefore, accept \(\small H_0\)
+      </div>   
+      <p>
+      5) \(\small H_0 : \mu_2 = \mu_4 , \quad H_1 : \mu_2 \ne \mu_4\)  
+      <div class="textL20">
+           \(\small |{\overline y}_{2\cdot} - {\overline y}_{4\cdot} | =|74.5 -88.5| \) = 14 <br>
+           \(\small HSD_{24} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_2 } + \frac{1}{n_4} ) MSE }\)
+           = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{6} + \frac{1}{4} ) 49.355 }\) = 12.891 <br>
+           Therefore, reject \(\small H_0\)
+      </div>   
+      <p>
+      6) \(\small H_0 : \mu_3 = \mu_4 , \quad H_1 : \mu_3 \ne \mu_4\)  
+      <div class="textL20">
+           \(\small |{\overline y}_{3\cdot} - {\overline y}_{4\cdot} | =|71.4 - 88.5| \) = 17.1 <br>
+           \(\small HSD_{34} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_3 } + \frac{1}{n_4} ) MSE }\)
+           = \(\small q_{4,21-4; 0.05} \cdot \sqrt{\frac{1}{2} ( \frac{1}{5} + \frac{1}{4} ) 49.355 }\) = 13.396 <br>
+           Therefore, reject \(\small H_0\)
+      </div>   
+      <p>
+        The result of the above multiple comparisons shows that there is a difference between \(\mu_2\) and \(\mu_4\), 
+        \(\mu_3\) and \(\mu_4\) as can be seen in the dot graph with average in &lt;Figure 9.1.1&gt;. 
+        It also shows that \(\mu_1\) has no significant difference from other means. 
+      <p> 
+        If you click [Multiple Comparison] in the options of the ANOVA as in &lt;Figure 9.1.3&gt;, 『eStat』 shows 
+        the result of Tukey's multiple comparisons as shown in &lt;Figure 9.1.9&gt;. 『eStat』 also shows the mean 
+        difference and 95% HSD value for the sample mean combination after rearranging levels of rows and columns in 
+        ascending order of the sample means. 
+      <p> 
+        The next table shows that, if the HSD test result for the combination of the two levels is significant with 
+        the 5% significance level, then * will be marked and if it is significant with the 1% significance level, then ** 
+        will be marked, if it is not significant, then the cell is left blank.
+      <p>
+          <img class="imgFig600400" src="./Figure/Fig090109.png">
+          <div class="figText">&lt;Figure 9.1.9&gt; HSD Multiple Comarisons</div>
+      <p>
+        For the analysis of mean differences, confidence intervals for each level may also be used. &lt;Figure 
+        9.1.2&gt; shows the 95% confidence interval for the mean for each level. This confidence interval is created 
+        using the formula described in Chapter 6, but the only difference is that the estimate of the variance for the 
+        error, \(\sigma^2\), is  the pooled variance using overall observations rather than the sample variance of observed values at 
+        each level. In the ANOVA table, MSE is the pooled variance. 
+      <p> 
+        In post-analysis using these confidence intervals, there is a difference between means if the confidence 
+        intervals are not overlapped, so the same conclusion can be obtained as in the previous HSD test.  
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+         <b>Practice 9.1.2</b>      
+            By using the data of [Practice 9.1.1] 
+            <p>
+            <div class="textLeft"> [Ex] ⇨ eBook ⇨ PR090101_Rdatasets_PlantGrowth.csv</div> 
+            <p>
+            apply the multiple comparisons to check where differences exist among Control and two treatments with 
+            the significance level of 5%. Use 『eStat』.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR090101.svg" onclick="window.open(addrStr[65])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+       
+ 
+  <h4>9.1.2 Residual Analysis</h4>
+    <p>
+    <div class="mainTable">
+      Another statistical analysis related to the ANOVA is a residual analysis. Various hypothesis tests 
+      in the ANOVA are performed on the condition that assumptions hold about the error term \(\epsilon_{ij}\). 
+      Assumptions about error terms include independence (\(\epsilon_{ij}\) are independent of each other), 
+      homoscedasticity (each variance of \(\epsilon_{ij}\) is constant as \(\sigma^2\)), normality 
+      (each \(\epsilon_{ij}\) is normally distributed), etc. The validity of these assumptions 
+      should always be investigated. However, since \(\epsilon_{ij}\) can not be observed, the residual 
+      as the estimate of \(\epsilon_{ij}\) is used to check the assumptions. The residuals in 
+      the ANOVA are defined as the deviations used in the equation of the error sum of squares, for example, 
+      \(Y_{ij} - {\overline Y}_{i \cdot}\) in the one-way analysis of variance.
+    </div>
+    <p>   
+       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+         <b>Example 9.1.3</b> 
+         In [Example 9.1.1] of English score comparison by the grade, apply the residual analysis using 『eStat』. 
+      <p>
+      <b>Answer</b>
+      <p>
+        If you click on [Standardized Residual Plot] of the ANOVA option in &lt;Figure 9.1.3&gt;, a scatter plot 
+        of residuals versus fitted values appears as shown in &lt;Figure 9.1.10&gt;. In this scatter plot, if the 
+        residuals show no unusual tendency around zero and appear randomly, then the assumptions of independence and 
+        homoscedasticity are valid. There is no unusual tendency in this scatter plot. Normality of the residuals can be 
+        checked by drawing the histogram of residuals. 
+      <p>
+        <img class="imgFig600400" src="./Figure/Fig090110.svg">
+        <div class="figText">&lt;Figure 9.1.10&gt;  Residual plot of the ANOVA</div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+    
+       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+         <b>Practice 9.1.3</b>
+            By using the data of [Practice 9.1.1] 
+            <p>
+            <div class="textLeft">[Ex] ⇨ eBook ⇨ PR090101_Rdatasets_PlantGrowth.csv</div>
+            <p>
+            apply the residual analysis using 『eStat』. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR090101.svg" onclick="window.open(addrStr[65])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+  <h3 id="0902">9.2 Design of Experiments for Sampling</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0902.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wj_uwiO1JVg" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+       Data such as English scores by the grade in [Example 9.1.1] are not so difficult to collect samples from each of 
+       the grade population. However, obtaining samples through experiments such as engineering, medicine, or 
+       agriculture are often difficult to collect a large number of samples due to the influence of many other external 
+       factors, and should be very cautious about sampling. This section discusses how to design experiments for 
+       collecting small number of data from experiments. 
+    <div class="mainTable">
+       
+  <h4>9.2.1 Completely Randomized Design</h4> 
+    <p>
+    <div class="mainTable">
+      In order to identify the differences accurately that may exist among each level of a factor, you should design 
+      experiments such as little influence from other factors. One method to do this is to make the whole experiments 
+      random. For example, consider experiments to compare a fuel mileage per one liter of gasoline for three types of cars A, B and C. 
+      We want to measure the fuel mileage for five different cars of each type. One driver may try to drive all 15 
+      cars. However, if only five cars can be measured per day, the measurement will take place over a total of three 
+      days. In this case, changes in daily weather, wind speed and wind direction can influence the fuel mileage which 
+      makes it a question of which car should be measured for fuel mileage on each day. 
+      <p>
+      If five drivers (1, 2, 3, 4, 5) plan to drive the car to measure the fuel mileage of all cars a day, the fuel 
+      mileage of the car may be affected by the driver. One solution would be to allocate 15 cars randomly to five 
+      drivers and then to randomize the sequence of experiments as well. For example, each car is numbered from 1 to 15 
+      and then, the experiment of the fuel mileage is conducted in the order of numbers that come out using drawing a 
+      random number. Such an experiment would reduce the likelihood of differences caused by external factors such as 
+      the driver, daily wind speed and wind direction, because randomized experiments make all external factors equally 
+      affecting the all observed measurement values. This method of experiments is called a <b>completely randomized 
+      design</b> of experiments. Table 9.2.1 shows an example allocation of experiments by this method. Symbols A, B and C 
+      represent the three types of cars.
+      <p>
+        <div class="textLeft"> Table 9.2.1 Example of completely randomized design of experiments</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:100px">Driver</th> <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
+         </tr>
+         <tr> <td class="tdCenter">Car Type     </td>  <td class="tdCenter">B</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">A</td> </tr>
+         <tr> <td class="tdCenter">             </td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">A</td> <td class="tdCenter">A</td> <td class="tdCenter">C</td> </tr>
+         <tr> <td class="tdCenter">             </td>  <td class="tdCenter">C</td> <td class="tdCenter">B</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> </tr>
+      </table>
+      <p>
+      In general, in order to achieve the purpose of the analysis of variance, it is necessary to plan experiments 
+      thoroughly in advance for obtaining data properly. The completely randomized design method explained as above is 
+      studied in detail at the Design of Experiments area in Statistics. From the standpoint of the experimental 
+      design, the one-way analysis of variance technique is called an analysis of the single factor design.
+    </div>
+    <p>
+
+ 
+  <h4>9.2.2 Randomized Block Design</h4>
+    <p>
+    <div class="mainTable">
+      In the experiments of completely randomized design for measuring the fuel mileage explained in the previous 
+      section, 15 cars were randomly allocated to five drivers. However, one example allocation as inTable 9.2.1 shows 
+      a problem of this completely randomized design. For example, Driver 1 will only experiment with B and C types of 
+      cars and Driver 3 will only experiment A and B types of cars so that the variable between drivers will not be 
+      averaged in the test. Thus, if there is a significant variation between drivers for measuring the fuel mileage, 
+      the error term of the analysis of variance may not be a simple experimental error. In order to eliminate this 
+      problem, each driver may be required to experiment with each type of the car at least once which is known as a 
+      <b>randomized block design</b>. Table 9.2.2 shows an example of possible allocation in this case. In this table, the 
+      values in parentheses are the values of the observed fuel mileage.
+      <p>
+       <div class="textLeft"> Table 9.2.2  Example of randomized block design</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:130px">Driver</th> <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
+         </tr>
+         <tr> <td class="tdCenter">Car Type     </td>  <td class="tdCenter">A(22.4)</td> <td class="tdCenter">B(12.6)</td> <td class="tdCenter">C(18.7)</td> <td class="tdCenter">A(21.1)</td> <td class="tdCenter">A(24.5)</td> </tr>
+         <tr> <td class="tdCenter">(gas mileage)</td>  <td class="tdCenter">C(20.2)</td> <td class="tdCenter">C(15.2)</td> <td class="tdCenter">A(19.7)</td> <td class="tdCenter">B(17.8)</td> <td class="tdCenter">C(23.8)</td> </tr>
+         <tr> <td class="tdCenter">             </td>  <td class="tdCenter">B(16.3)</td> <td class="tdCenter">A(16.1)</td> <td class="tdCenter">B(15.9)</td> <td class="tdCenter">C(18.9)</td> <td class="tdCenter">B(21.0)</td> </tr>
+      </table>
+      <p>
+      Table 9.2.2 shows that the total observed values are divided into five groups by driver, called <b>blocks</b> so that 
+      they have the same characteristics. The variable representing blocks, such as the driver, is referred to as a 
+      block variable. A block variable is considered generally if experimental results are influenced significantly by 
+      this variable which is different from the factor. For example, when examining the yield resulting from rice 
+      variety, if the fields of the rice paddy used in the experiment do not have the same fertility, divide the fields 
+      into several blocks which have the same fertility and then all varieties of rice are planted in each block of the 
+      rice paddy. This would eliminate the influence of the rice paddy which have different fertility and would allow 
+      for a more accurate examination of the differences in yield between rice varieties.
+      <p>
+      Statistical model of the randomized block design with \(b\) blocks can be represented as follows:
+      $$
+        Y_{ij} = \mu + \alpha_i + B_j + \epsilon_{ij}, \quad i=1,2, ... ,k, \; j=1,2, ... ,b
+      $$
+      In this equation, \(B_j\) is the effect of \(j^{th}\) level of the block variable to the response variable. In the randomized 
+      block design, the variation resulting from the difference between levels of the block variable can be separated 
+      from the error term of the variation of the factor independently. In the randomized block design, the total 
+      variation is divided into as follows:
+      $$
+        Y_{ij} - {\overline Y}_{\cdot \cdot} = (Y_{ij} - {\overline Y}_{i \cdot} - {\overline Y}_{\cdot j} + {\overline Y}_{\cdot \cdot}) + ({\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot}) +({\overline Y}_{\cdot j} - {\overline Y}_{\cdot \cdot})
+      $$    
+      If you square both sides of the equation above and then combine for all \(i\) and \(j\), you can obtain 
+      several sums of squares as in the one-way analysis of variance as follows: 
+      <p>
+      <b>Total sum of squares</b> : <br>
+      <b>SST</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \(bk - 1\) 
+      <p>
+      <b>Error sum of squares</b> : <br>
+      <b>SSE</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {Y}_{ij} - {\overline Y}_{i \cdot} - {\overline Y}_{\cdot j} + {\overline Y}_{\cdot \cdot})^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \((b-1)(k-1)\) 
+      <p>
+      <b>Treatment sum of squares</b> : <br>
+      <b>SSTr</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \)
+         = \(b\sum_{i=1}^{k} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \) ,
+         &nbsp;&nbsp; degrees of freedom ; \(k - 1\) 
+      <p>
+      <b>Block sum of squares</b> : <br>
+      <b>SSB</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {\overline Y}_{\cdot j} - {\overline Y}_{\cdot \cdot} )^2 \) 
+         = \(k \sum_{j=1}^{b} ( {\overline Y}_{\cdot j} - {\overline Y}_{\cdot \cdot} )^2 \),
+         &nbsp;&nbsp; degrees of freedom ; \(b - 1\) 
+      <p> 
+      The following facts are always established in the randomized block design.
+    </div>      
+
+    <p>
+    <div class="mainTableYellow">
+      <b>Division of the sum of squares and degrees of freedom
+        <p>
+         Sum of squares :    SST  = SSE + SSTr + SSB <br>  
+         Degrees of freedom : \(bk -1 = (b-1)(k-1) + (k-1) + (b-1) \)
+      </b>
+    </div>
+      
+    <p>  
+    <div class="mainTable">
+      Table 9.2.3 shows the ANOVA table of the randomized block design. In this ANOVA table, if you combine the sum of 
+      squares and degrees of freedom of the block variable and the error variation, it becomes the sum of squares and 
+      degrees of freedom of the error term in the one-way ANOVA table 9.1.3.
+           <p>
+             <div class="textLeft">Table 9.2.3  Analysis of Variance Table of the randomized block design</div>
+           <p>
+             <table style="width:600px"> 
+                <tr> 
+                  <th>Variation</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F value</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Treatment</td>
+                  <td class="tdCenter">SSTr</td>
+                  <td class="tdCenter">\(k-1\)</td>
+                  <td class="tdCenter">MSTr=\(\frac{SSTr}{k-1}\)</td>
+                  <td class="tdCenter">\(F_0 = \frac{MSTr}{MSE}\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Block</td>
+                  <td class="tdCenter">SSB</td>
+                  <td class="tdCenter">\(b-1\)</td>
+                  <td class="tdCenter">MSB=\(\frac{SSB}{b-1}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE</td>
+                  <td class="tdCenter">\((b-1)(k-1)\)</td>
+                  <td class="tdCenter">MSE=\(\frac{SSE}{(b-1)(k-1)}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Total</td>
+                  <td class="tdCenter">SST</td>
+                  <td class="tdCenter">\(bk-1\)</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+           <p>
+      In the randomized block design, the entire experiments are not randomized unlike the completely randomized 
+      design, but only the experiments in each block are randomized. 
+      <p>
+      Another important thing to note in the randomized block design is that, although the variation of the block 
+      variable was separated from the error variation, the main objective is to test the difference between levels of a 
+      factor as in the one-way analysis of variance. The test for differences between the levels of the block variable 
+      is not important, because the block variable is used to reduce the error variation and to make the test for 
+      differences between the levels of the factor more accurate. 
+      <p>
+      In addition, the error mean square (MSE) does not always decrease, because  although the block variation is 
+      separated from the error variation of the one-way analysis of variance, the degrees of freedom are also reduced.
+    </div>
+       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 9.2.1</b>
+      Table 9.2.4 is the rearrangement of the fuel mileage data in Table 9.2.2 measured by five drivers and car types.
+      <p>
+        <div class="textLeft">Table 9.2.4  Fuel mileage data by five drivers and three car types</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:100px">Driver</th> <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>Average(\(\overline y_{i \cdot}\))</th>
+         </tr>
+         <tr> <td class="tdCenter">Car Type A</td>  <td class="tdCenter">22.4</td> <td class="tdCenter">16.1</td> <td class="tdCenter">19.7</td> <td class="tdCenter">21.1</td> <td class="tdCenter">24.5</td> <td class="tdCenter">20.76</td> </tr>
+         <tr> <td class="tdCenter">Car Type B</td>  <td class="tdCenter">16.3</td> <td class="tdCenter">12.6</td> <td class="tdCenter">15.9</td> <td class="tdCenter">17.8</td> <td class="tdCenter">21.0</td> <td class="tdCenter">16.72</td> </tr>
+         <tr> <td class="tdCenter">Car Type C</td>  <td class="tdCenter">20.2</td> <td class="tdCenter">15.2</td> <td class="tdCenter">18.7</td> <td class="tdCenter">18.9</td> <td class="tdCenter">23.8</td> <td class="tdCenter">19.36</td> </tr>
+         <tr> <td class="tdCenter">Average(\(\overline y_{\cdot j}\))</td>  <td class="tdCenter">19.63</td> <td class="tdCenter">14.63</td> <td class="tdCenter">18.10</td> <td class="tdCenter">19.27</td> <td class="tdCenter">23.10</td> <td class="tdCenter">18.947</td> </tr>
+      </table>
+        <div class="figText">[Ex] ⇨ eBook ⇨ EX090201_GasMilage.csv</div>
+      <p>
+      <div class="textL20M20">
+        1) Assuming that this data have been measured by the completely randomized design, use 『eStat』 to do the 
+           analysis of variance whether the three car types have the same fuel mileage.
+      </div>
+      <div class="textL20M20">      
+        2) Assuming that this data have been measured by the randomized block design, use 『eStat』 to do the analysis of 
+           variance whether the three car types have the same fuel mileage.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">      
+        1) In 『eStat』, enter data as shown in &lt;Figure 9.2.1&gt; and click the icon of analysis of variance . Select 
+           'Analysis Var' as Miles and 'By Group' as Car in the variable selection box, then the confidence interval graph 
+           for each type of cars will appear such as &lt;Figure 9.2.2&gt;.
+        <p>
+         <div class="QRFigure">
+              <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX090201.svg" onclick="window.open(addrStr[28])">
+              <img class="imgFig600400" src="./Figure/Fig090201.png">
+              <div class="figText">&lt;Figure 9.2.1&gt; Data input for randomized block design for 『eStat』 ANOVA</div>
+         </div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090202.svg">
+          <div class="figText">&lt;Figure 9.2.2&gt; Dot graph and 95% confidence interval for population mean of each car type</div>
+        <p>
+      </div>
+      <div class="textL20">      
+        Click the [ANOVA F-test] button in the option below the graph to reveal the ANOVA graph as in &lt;Figure 
+        9.2.3&gt; and the ANOVA table as in &lt;Figure 9.2.4&gt;. The result of the ANOVA is that there is no difference 
+        in fuel mileage between the cars of each company. The same is true for the multiple comparison tests in 
+        &lt;Figure 9.2.5&gt;.
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090203.svg">
+          <div class="figText">&lt;Figure 9.2.3&gt; ANOVA of gas milage</div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090204.png">
+          <div class="figText">&lt;Figure 9.2.4&gt; ANOVA table of gas milage</div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090205.png">
+          <div class="figText">&lt;Figure 9.2.5&gt; Multiple comparisons by car</div>
+      </div>
+      <p>
+      <div class="textL20M20">      
+        2) If this data have been extracted using the randomized block design, the block sum of squares will be separated 
+           from the error sum of squares. Adding Driver variable to 'by Group' in the variable selection box of 『eStat』 will 
+           give you a scatter plot of driver-specific fuel mileage for each car type as shown in &lt;Figure 9.2.6&gt;. This 
+           scatter plot shows a significant difference in fuel mileage per driver.     
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090206.svg">
+          <div class="figText">&lt;Figure 9.2.6&gt; Fuel mileages for each driver</div>
+        <p>
+      </div>      
+      <div class="textL20">    
+        Click the [ANOVA F-Test] button in the options window below the graph to reveal the two-way mean table 
+        shown in &lt;Figure 9.2.7&gt; and the ANOVA table shown in &lt;Figure 9.2.8&gt;. This ANOVA table 
+        clearly shows a decrease in error sum of squares and reduces significantly the mean squares of errors. 
+        This is due to the large variation between drivers being separated from the error variation. 
+        Factor B (driver) represents the block sum of squares separated from error term. The \(p\)-value shows 
+        that, the block (driver) effect is statistically significant. The \(\small F\) value for the hypothesis
+        \(\small H_0 : \alpha_1 = \alpha_2 = \alpha_3 = 0\)  of fuel mileage by Factor A (car type) is 43.447 
+        and is greater than \(\small F_{2,8,0.05}\) = 4.46, so you can reject the \(\small H_0\) at the significance 
+        level of 0.05. Consequently, significant differences in fuel mileages between car types can be found 
+        by removing the variation of the block in the error term.
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090207.png">
+          <div class="figText">&lt;Figure 9.2.7&gt; Two-way mean table by car and driver<br>
+             (There is no standard deviation of single data and denoted as NaN)
+          </div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090208.png">
+          <div class="figText">&lt;Figure 9.2.8&gt; ANOVA table for randomized block design</div>
+        <p>
+        In average, car type A has the best fuel mileage than other car types. In order to examine more about the 
+        differences between car types, the multiple comparison test in the previous section can be applied. 
+        In this example, you can use one HSD value for all mean comparisons, because the number of repetitions
+        at each level is the same. 
+        <p>
+         \(\quad \small  HSD = q_{3,8; 0.05} \sqrt {\frac{MSE}{r}} = (4.041) \sqrt{\frac{0.484}{5}} \) = 1.257
+        <p>
+        Therefore, there is a significant difference in fuel mileage between all three types of cars, since the 
+        differences between the mean values (4.04, 1.40, 2.64) are all greater than the critical value of 1.257. 
+        <p>
+        The same analysis of randomized design can be done using 『eStatU』 by following data input and clicking [Execute] button..
+      </div>
+      <p>
+      <!---   ************ html for ANOVA - RBD ************  ---->
+      <p>
+      <b>[<span data-msgid="Testing Hypothesis ANOVA"></span> - <span data-msgid="RBD"></span>]</b>
+      <p>
+         <iframe src="./example/090201/090201.html" width="700" height="1100"> </iframe>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+         <b>Practice 9.2.1</b> 
+            The following is the result of an agronomist's survey of the yield of four varieties of wheat by using the 
+            randomized block design of the three cultivated areas (block). Test whether the mean yields of the four wheats 
+            are the same or not with 5% significance level.
+            <p>
+            <table style="width:400px"> 
+              <tr> 
+                <th style="width:100px"></th> <th>Area 1</th> <th>Area 2</th> <th>Area 3</th> </th>
+              </tr>
+              <tr> <td>Wheat Type A</td>  <td>50</td> <td>60</td> <td>56</td> </tr>
+              <tr> <td>Wheat Type B</td>  <td>59</td> <td>52</td> <td>51</td> </tr>
+              <tr> <td>Wheat Type C</td>  <td>55</td> <td>55</td> <td>52</td> </tr>
+              <tr> <td>Wheat Type D</td>  <td>58</td> <td>58</td> <td>55</td> </tr>
+            </table>
+            <p>
+            <div class="figText">[Ex] ⇨ eBook ⇨ PR090201_WheatAreaYield.csv</div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU900_TestANOVA_RBD.svg" onclick="window.open(addrStr[172])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+  <h4>9.2.3 Latin Square Design</h4>
+    <p>
+    <div class="mainTable">
+      In the experiments of randomized block design for measuring the fuel mileage explained in the previous section, 
+      there is one extraneous block variation which is the driver. If the researcher feels that there is an additional 
+      variation such as road type, there are two identifiable sources of extraneous block variations, i.e., 
+      two block variables. In this case, the researcher needs a design that will isolate and remove both sources 
+      of block variables from residual. The Latin square design is such a design.
+      <p>
+      In the Latin square design, we assign one sources of extraneous variation to the columns of the square and 
+      the second source of extraneous variation to the rows of the square. We then assign the treatments in such a way 
+      that each treatment occurs one and only once in each row and each column. The number of rows, the number of columns, 
+      and the number of treatments, therefore, are all equal.
+      <p>
+      Table 9.2.5 shows a 3 × 3 typical Latin squares with three rows, three columns and three treatments designated by capital letters A, B, C.
+      <p>
+      <div class="textLeft"> Table 9.2.5  Fuel mileage data by three drivers and three road types of three car types (A, B, C)</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:130px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2</th> <th>Column 3 (Road 3)</th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 (Driver 1)</td>  <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> </tr>
+         <tr> <td class="tdCenter">Row 2 (Driver 2)</td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">A</td> </tr>
+         <tr> <td class="tdCenter">Row 3 (Driver 3)</td>  <td class="tdCenter">C</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> </tr>
+      </table>
+      <p>
+      Table 9.2.6 shows a 4 × 4 typical Latin squares with four rows, four columns and four treatments designated by capital letters A, B, C, D.
+      <p>
+      <div class="textLeft"> Table 9.2.6  Fuel mileage data by four drivers and four road types of four car types (A, B, C, D)</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:130px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2</th> <th>Column 3 (Road 3)</th> <th>Column 4 (Road 4)</th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 (Driver 1)</td>  <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> </tr>
+         <tr> <td class="tdCenter">Row 2 (Driver 2)</td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> </tr>
+         <tr> <td class="tdCenter">Row 3 (Driver 3)</td>  <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> </tr>
+         <tr> <td class="tdCenter">Row 4 (Driver 4)</td>  <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> </tr>
+      </table>
+      <p>
+      In the Latin square design, treatments can be assigned randomly in such a way that the car type occurs one and only once 
+      in each row and each column. Therefore, there are many possible designs of 3 × 3 and 4 × 4 Latin square. 
+      We get randomization in the Latin square by randomly selection a square of the desired dimension from all possible 
+      squares of that dimension. One method of doing this is to randomly assign a different treatments to each cell 
+      in each column, with the restriction that each treatment must appear one and only once in each row.
+      <p>
+      Small Latin squares provided only a small number of degrees of freedom for the error mean square. So a minimum size 
+      of 5 × 5 is usually recommended.
+      <p>
+      The hypothesis of Latin square design with \(r\) treatments is as follows: 
+      <p>
+      Null Hypothesis        \(\qquad \qquad H  _{0} : \mu_{1} = \mu_{2} = \cdots = \mu_{r} \) <br>
+      Alternative Hypothesis \(\quad \; H_{1} : \) At least one pair of \(\mu_i \) is not equal.
+      <p>
+      Statistical model of the \(r × r \) Latin square design with \(r\) treatments can be represented as follows:
+      $$
+        Y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}, \quad i=1,2, ... ,r, \; j=1,2, ... ,r, \; k=1,2, ... , r
+      $$
+      Here \(\mu_i = \mu + \alpha_i\). In this equation, \(\alpha_i\) is the effect of \(i^{th}\) level of the row block variable to the response variable and  
+      \(\beta_j\) is the effect of \(j^{th}\) level of the column block variable to the response variable. 
+      \(\gamma_k\) is the effect of \(k^{th}\) level of the response variable.
+      <p> 
+      Notation for row averages, column averages and treatment averages of \(r × r \) Latin squre data are as follows;
+      <p>
+      <div class="textLeft"> Table 9.2.7 Notation for row means, column means and treatment averages of  ×  Latin squre data</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:130px"></th> <th>Column 1 </th> <th>Column 2 </th> <th>\(\cdots \)</th> <th>Column r</th> <th>Row Average</th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ 1 \cdot \cdot} \)</td></tr>
+         <tr> <td class="tdCenter">Row 2 </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ 2 \cdot \cdot} \)</td></tr>
+         <tr> <td class="tdCenter">\(\cdots \)</td> <td class="tdCenter">\(\cdots \)</td> <td class="tdCenter">\(Y_{ijk}\)</td> <td class="tdCenter"></td> <td class="tdCenter">\(\cdots \)</td> <td class="tdCenter">\(\cdots \)</td></tr>
+         <tr> <td class="tdCenter">Row r </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ r \cdot \cdot} \)</td></tr>
+         <tr> <td class="tdCenter">Column Average</td> 
+              <td class="tdCenter">\({\overline Y}_{ \cdot 1 \cdot} \)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot 2 \cdot} \)</td> 
+              <td class="tdCenter">\(\cdots\)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot r \cdot} \)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot \cdot} \)</td>
+         </tr>
+      </table>
+      <p>
+      <table style="width:600px"> 
+         <tr> <td class="tdCenter">Treatment Average</td> 
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot 1} \)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot 2} \)</td> 
+              <td class="tdCenter">\(\cdots\)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot r} \)</td>
+         </tr>
+      </table>
+      <p>
+      In the Latin square design, the variation resulting from the difference between levels of two block variables can be separated from the error term of the variation of the factor independently. In the Latin square design, the total variation is divided into as follows:
+      $$
+        Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} = (Y_{ijk} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot k} + 2 {\overline Y}_{\cdot \cdot \cdot}) + ({\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot}) + ({\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot}) + ({\overline Y}_{\cdot \cdot k} - {\overline Y}_{\cdot \cdot \cdot})
+      $$    
+      If you square both sides of the equation above and then combine for all \(i , j\) and \(k\), you can obtain 
+      the following sums of squares: 
+      <p>
+      <b>Total sum of squares</b> : <br>
+      <b>SST</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \(r^3 - 1\) 
+      <p>
+      <b>Error sum of squares</b> : <br>
+      <b>SSE</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {Y}_{ijk} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot}  - {\overline Y}_{\cdot \cdot k} + 2 {\overline Y}_{\cdot \cdot \cdot})^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \(r^2 -3r + 2\) 
+      <p>
+      <b>Row sum of squares</b> : <br>
+      <b>SSTr</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
+         &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
+      <p>
+      <b>Column sum of squares</b> : <br>
+      <b>SSB</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) 
+         &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
+      <p> 
+      <b>Treatment sum of squares</b> : <br>
+      <b>SSTr</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot \cdot k} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
+         &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
+      <p>
+      The following facts are always established in the Latin square design.  
+    </div>      
+    <p>
+    <div class="mainTableYellow">
+      <b>Division of the sum of squares and degrees of freedom
+        <p>
+         Sum of squares :    SST  = SSE + SSR + SSC + SSTr <br>  
+         Degrees of freedom : \(r^3 -1 = (r^2 - 3r + 2)  + (r-1) + (r-1) + (r-1) \)
+      </b>
+    </div>
+      
+    <p>  
+    <div class="mainTable">
+      Table 9.2.8 shows the ANOVA table of the Latin squre design. In this ANOVA table, 
+      <p>
+             <div class="textLeft">Table 9.2.8  Analysis of Variance Table of the Latin square design</div>
+           <p>
+             <table style="width:600px"> 
+                <tr> 
+                  <th>Variation</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F value</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Treatment</td>
+                  <td class="tdCenter">SSTr</td>
+                  <td class="tdCenter">\(r-1\)</td>
+                  <td class="tdCenter">MSTr=\(\frac{SSTr}{r-1}\)</td>
+                  <td class="tdCenter">\(F_0 = \frac{MSTr}{MSE}\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Row</td>
+                  <td class="tdCenter">SSR</td>
+                  <td class="tdCenter">\(r-1\)</td>
+                  <td class="tdCenter">MSR=\(\frac{SSB}{r-1}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Columnk</td>
+                  <td class="tdCenter">SSC</td>
+                  <td class="tdCenter">\(r-1\)</td>
+                  <td class="tdCenter">MSC=\(\frac{SSB}{r-1}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE</td>
+                  <td class="tdCenter">\(r^2 - 3r + 2\)</td>
+                  <td class="tdCenter">MSE=\(\frac{SSE}{(r^2 - 3r + 2)}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Total</td>
+                  <td class="tdCenter">SST</td>
+                  <td class="tdCenter">\(r^3 -1\)</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+    </div>
+    <p>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 9.2.2</b>
+      Table 9.2.9 is the fuel mileage data of four car types (A, B, C, D) measured by four drivers and four road types with Latin square design.
+      <p>
+        <div class="textLeft">Table 9.2.9  Fuel mileage data by four drivers and four road types of four car types (A, B, C, D)</div>
+      <table style="width:700px"> 
+         <tr> 
+           <th style="width:120px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2)</th> <th>Column 3 (Road 3)</th> <th>Column 4 (Road 4)</th> </th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 (Driver 1)</td>  <td class="tdCenter">A (22)</td> <td class="tdCenter">B (16)</td> <td class="tdCenter">C (19)</td> <td class="tdCenter">D (21)</td> </tr>
+         <tr> <td class="tdCenter">Row 2 (Driver 2)</td>  <td class="tdCenter">B (24)</td> <td class="tdCenter">C (16)</td> <td class="tdCenter">D (12)</td> <td class="tdCenter">A (15)</td> </tr>
+         <tr> <td class="tdCenter">Row 3 (Driver 3)</td>  <td class="tdCenter">C (17)</td> <td class="tdCenter">D (21)</td> <td class="tdCenter">A (20)</td> <td class="tdCenter">B (15)</td> </tr>
+         <tr> <td class="tdCenter">Row 4 (Driver 4)</td>  <td class="tdCenter">D (18)</td> <td class="tdCenter">A (18)</td> <td class="tdCenter">B (23)</td> <td class="tdCenter">C (22)</td> </tr>
+      </table>
+      <p>
+      Use 『eStatU』 to do the analysis of variance whether the four car types have the same fuel mileage.
+      <p>
+      <b>Answer</b>
+      <p>
+        In 『eStatU』, click [Testing Hypothesis ANOVA – Latin Square Design], select the number of treatment 
+        r = 4 and enter data as shown in &lt;Figure 9.2.10&gt;.
+      <p>
+        Click [Execute] button to show Dot graph by car type in Latin square design as &lt;Figure 9.2.11&gt; and 
+        ANOVA table as in &lt;Figure 9.2.12&gt;. The dot graph and result of the ANOVA is that there is no difference 
+        in fuel mileage between the car types. 
+      <p>
+      <!---   ************ html for ANOVA Latin ************  ---->
+      <p>
+      <b>[<span data-msgid="Testing Hypothesis ANOVA"></span> - <span data-msgid="Latin"></span>]</b>
+      <p>
+         <iframe src="./example/090202/090202.html" width="800" height="1100"> </iframe>
+      <p>
+    </div>
+    <p>       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+         <b>Practice 9.2.2</b> 
+            To study the effect of packaging on the sales of a certain cereal, a researcher tries three different packaging methods (treatments) at four different times of the week (columns) in four different supermarket chains (rows). The variable of interest is daily salse. The following table shows the results of the study. Do these data show a significant difference in shoppers’ response to the different packaging methods? Let \(\alpha\) = 0.05.
+            <p>
+            <table style="width:600px"> 
+              <tr> 
+                <th style="width:130px">Time of week</th> <th>Column 1 (Day 1)</th> <th>Column 2 (Day 2</th> <th>Column 3 (Day 3)</th> <th>Column 4 (Day 4)</th>
+              </tr>
+              <tr> <td class="tdCenter">Row 1 (Store 1)</td>  <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> </tr>
+              <tr> <td class="tdCenter">Row 2 (Store 2)</td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> </tr>
+              <tr> <td class="tdCenter">Row 3 (Store 3)</td>  <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> </tr>
+              <tr> <td class="tdCenter">Row 4 (Store 4)</td>  <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> </tr>
+           </table>
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU900_TestANOVA_Latin.svg" onclick="window.open(addrStr[173])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+  <h3 id="0903">9.3 Analysis of Variance for Two Factors</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0903.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/Cp5_Qydpb74" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      If there are two factors affecting the response variable, the analysis is called a two-way analysis of variances. 
+      This technique is frequently used in experiments such as engineering, medicine and agriculture. The response 
+      variable is observed at each combination of levels of two factors (denoted as A and B). In general, it is 
+      advisable to repeat at least two experiments at each combination of levels of two factors, if possible, in order 
+      to increase the reliability of the experimental results. 
+      <p>
+      When data are obtained from repeated experiments at each factor level, the two-way ANOVA tests whether the 
+      population means of each level of factor A  are the same (called the <b>main effect test of the factor A</b>) as the 
+      one-way ANOVA, or tests whether the population means of each level of factor B are the same (called the <b>main 
+      effect test of the factor B</b>). In addition, the two-way ANOVA tests whether the effect of one factor A is 
+      influenced by each level of the other factor B (called the <b>interaction effect test</b>). For example, in a chemical 
+      process, if the higher the pressure when the temperature is low, the greater the amount of products, and the 
+      lower the pressure when the temperature is high, the greater the amount of products, the interaction effect 
+      exists between the two factors of temperature and pressure. The interaction effect exists where the effects of 
+      one factor change with changes in the level of another factor.
+    </div>
+    <p>
+      
+    <div class="mainTableYellow">
+      <b>Main effect and Interaction effect</b>
+      <p>
+      When data are obtained from repeated experiments at each factor level, the two-way ANOVA tests whether the 
+      population means of each level of factor A (called the main effect test of the factor A) are the same as the 
+      one-way ANOVA, or tests whether the population means of each level of factor B are the same (called the 
+      <b>main effect</b> test of the factor B). 
+      <p>
+      The two-way ANOVA also tests whether the effect of one factor A is influenced by each level of the other factor B 
+      (called the <b>interaction effect</b> test). 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+       <p>
+       <b>Example 9.3.1</b>
+       Table 9.3.1 shows the yield data of three repeated agricultural experiments for each combination of four 
+       fertilizer levels and three rice types to investigate the yield of rice. 
+    <p>
+      <div class="textLeft"> Table 9.3.1  Yield of rice by fertilizers and types of rice (unit kg)</div>
+      <p>
+       <table style="width:500px"> 
+         <tr> 
+           <th style="width:100px">Fertilizer</th>
+           <th>Rice type 1</th>
+           <th>Rice type 2</th>
+           <th>Rice type 3</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">1</td>
+           <td class="tdCenter">64, 66, 70</td>
+           <td class="tdCenter">72, 81, 64</td>
+           <td class="tdCenter">74, 51, 65</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">2</td>
+           <td class="tdCenter">65, 63, 58</td>
+           <td class="tdCenter">57, 43, 52</td>
+           <td class="tdCenter">47, 58, 67</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">3</td>
+           <td class="tdCenter">59, 68, 65</td>
+           <td class="tdCenter">66, 71, 59</td>
+           <td class="tdCenter">58, 45, 42</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">4</td>
+           <td class="tdCenter">58, 50, 49</td>
+           <td class="tdCenter">57, 61, 53</td>
+           <td class="tdCenter">53, 59, 38</td>
+         </tr>
+      </table>
+      <p>
+      <div class="textLeft">[Ex] ⇨ eBook ⇨ EX090301_YieldByRiceFertilzer.csv</div>
+      <p>       
+      <div class="textL20M20">
+        1) Find the average yield for each combination of fertilizers and rice types.
+      </div>       
+      <div class="textL20M20">
+        2) Using 『eStat』, draw a scatter plot with the rice types (1, 2 and 3) as X-axis and the yield as Y-axis. 
+           Separate the color of dots in the scatter plot by the type of fertilizer. Then, show the average of the 
+           combinations at each level on the scatter plot and connect them with lines for each type of fertilizer to observe. 
+      </div>       
+      <div class="textL20M20">
+        3) Test the main effects of fertilizers and rice types and test the interaction effect of the two factors.
+      </div>       
+      <div class="textL20M20">
+        4) Using 『eStat』, check the result of the two-way analysis of variance.
+      </div>       
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) For convenience, let us call the fertilizer as the factor A and the rice type as factor B. 
+           The averages of the rice yield for each level combination of two factors are shown in Table 9.3.2. 
+           Denote the \(k^{th}\) rice yield, \(y_{ijk}\), and average \({\overline y}_{ij\cdot}\) of each combination
+           of \(j^{th}\) level of factor A and \(i^{th}\) level of factor B. Also, denote the average of 
+           \(j^{th}\) level of factor A as \({\overline y}_{\cdot j \cdot}\), the average of \(i^{th}\) level of 
+           factor B as \({\overline y}_{i \cdot \cdot}\), and the global average as 
+           \({\overline y}_{\cdot \cdot \cdot}\). 
+      </div>
+      <p>
+      <div class="textLeft">Table 9.3.2 Average yield of rice by fertilizers and types of rice (unit kg)</div>
+      <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>(Factor B)<br>Fertilizer</th>
+           <th>(Factor A)<br>Rice type 1</th>
+           <th>(Factor A)<br>Rice type 2</th>
+           <th>(Factor A)<br>Rice type 3</th>
+           <th>Row Average</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">1</td>
+           <td class="tdCenter">\(\overline y_{11\cdot}\) = 66.7</td>
+           <td class="tdCenter">\(\overline y_{12\cdot}\) = 72.3</td>
+           <td class="tdCenter">\(\overline y_{13\cdot}\) = 63.3</td>
+           <td class="tdCenter">\(\overline y_{1\cdot\cdot}\) = 67.4</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">2</td>
+           <td class="tdCenter">\(\overline y_{21\cdot}\) = 62.0</td>
+           <td class="tdCenter">\(\overline y_{22\cdot}\) = 50.7</td>
+           <td class="tdCenter">\(\overline y_{23\cdot}\) = 57.3</td>
+           <td class="tdCenter">\(\overline y_{2\cdot\cdot}\) = 56.7</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">3</td>
+           <td class="tdCenter">\(\overline y_{31\cdot}\) = 64.0</td>
+           <td class="tdCenter">\(\overline y_{32\cdot}\) = 65.3</td>
+           <td class="tdCenter">\(\overline y_{33\cdot}\) = 48.3</td>
+           <td class="tdCenter">\(\overline y_{3\cdot\cdot}\) = 59.2</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">4</td>
+           <td class="tdCenter">\(\overline y_{41\cdot}\) = 52.3</td>
+           <td class="tdCenter">\(\overline y_{42\cdot}\) = 57.0</td>
+           <td class="tdCenter">\(\overline y_{43\cdot}\) = 50.0</td>
+           <td class="tdCenter">\(\overline y_{4\cdot\cdot}\) = 53.1</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter"><b>Column Average</b></td>
+           <td class="tdCenter">\(\overline y_{\cdot1\cdot}\) = 61.3</td>
+           <td class="tdCenter">\(\overline y_{\cdot2\cdot}\) = 61.3</td>
+           <td class="tdCenter">\(\overline y_{\cdot3\cdot}\) = 54.8</td>
+           <td class="tdCenter">\(\overline y_{\cdot\cdot\cdot}\) = 59.1</td>
+         </tr>
+      </table>
+      <p>
+
+      <div class="textL20M20">
+        2) To draw a scatter plot for the two-way ANOVA using 『eStat』, enter data as &lt;Figure 9.3.1&gt; 
+           where the fertilizer is variable 1, the rice type is variable 2 and the rice yield is variable 3.
+         <div class="QRFigure">
+              <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX090301.svg" onclick="window.open(addrStr[29])">
+              <img class="imgFig600400" src="./Figure/Fig090301.png">
+              <div class="figText">&lt;Figure 9.3.1&gt; Data input for two-way ANOVA of 『eStat』</div>
+         </div>
+       </div>
+       <p>
+       <div class="textL20">
+            In the variable selection box which appears by clicking the ANOVA icon  on the main menu,
+            select 'Analysis Var' as Yield and 'By Group' as Rice and Fertilizer, then the scatter plot
+            of the yield by rice type will appear as in &lt;Figure 9.3.2&gt;. In addition, the average yields 
+            at each rice type by fertilizer are marked as dots linking them with lines by fertilizer. 
+            In this graph, rice type 1 always yields more than rice type 3 regardless of the fertilizer used. 
+            Rice type 2 varies in yield depending on the type of fertilizer used, which shows the existence of
+            interaction, and the use of fertilizer 1 usually results in a high yield regardless of the rice types. 
+         <p>
+           <img class="imgFig600400" src="./Figure/Fig090302.svg">
+           <div class="figText">&lt;Figure 9.3.2&gt; Yields by rice types and fertilizer types</div>
+      </div>       
+      <p>
+ 
+      <div class="textL20M20">
+        3) Testing the factor A, which is to test the main effect of rice types, implies to test the following null hypothesis.
+      </div>
+      <p>
+      <div class="textL20">
+          \(\quad \small H_0\) : The average yields of the three rice types are the same.
+        <p>
+        If the null hypothesis is rejected, we conclude that the main effect of rice types exists. 
+        In order to test the main effect of rice types, as in the one-way analysis of variance, the sum of 
+        squared distances from each average yield \({\overline y}_{\cdot j \cdot}\) of rice type  to the overall 
+        average yield \({\overline y}_{\cdot \cdot \cdot}\). 
+        <p>
+          \(\quad \small {SSA} = 12(61.3-{\overline y}_{\cdot \cdot \cdot})^2 + 12(61.3-{\overline y}_{\cdot \cdot \cdot})^2 + 12(54.8-{\overline y}_{\cdot \cdot \cdot})^2 \) = 342.39
+        <p>
+        where the weight of 12 of each sum of squares is calculated by the number of data for each rice type. Since there are 
+        3 rice types, the degrees of freedom of \(\small SSA\) is (3-1) and we call the sum of squares \(\small SSA\) divided
+        by (3-1), \(\frac{SSA}{(3-1)}\), is the mean squares of factor A, \(\small MSA\).
+        <p>       
+        Testing the factor B, which is to test the main effect of fertilizer types, implies to test the following 
+        null hypothesis.
+        <p>
+          \(\quad \small H_0\) : The average yields of the four fertilizer types are the same.
+        <p>
+        If the null hypothesis is rejected, we conclude that the main effect of fertilizer types exists. 
+        In order to test the main effect of fertilizer types, as in the one-way analysis of variance, 
+        the sum of squared distances from each average yield \({\overline y}_{i \cdot \cdot}\) of fertilizer type 
+        \(i\) to the overall average yield \({\overline y}_{\cdot \cdot \cdot}\), 
+        <p>
+          \(\quad \small {SSB} = 9(67.4 - {\overline y}_{\cdot \cdot \cdot})^2 + 9(56.7 - {\overline y}_{\cdot \cdot \cdot} )^2 + 9(59.2 - {\overline y}_{\cdot \cdot \cdot})^2 + 9(53.1 - {\overline y}_{\cdot \cdot \cdot})^2  \) = 1002.89
+        <p>
+        where the weight of 9 of each sum of squares is calculated by the number of data for each fertilizer type. 
+        Since there are 4 fertilizer types, the degrees of freedom of \(\small SSB\) is (4-1) and we call 
+        the sum of squares \(\small SSB\) divided by (4-1), \(\frac{SSB}{(4-1)}\), is the mean squares of factor B,
+        \(\small MSB\).
+        <p>
+        Testing the interaction effect of rice and fertilizer (represented as factor AB) is to test the following 
+        null hypothesis.
+        <p>
+          \(\quad \small H_0\) : There is no interaction effect between rice type and fertilizer type.
+        <p>
+        If the null hypothesis is rejected, we conclude that there is an interaction effect between rice types 
+        and fertilizer types. In order to test the interaction effect, the sum of squared distances from each 
+        average yield \({\overline y}_{ij \cdot}\) subtracting the average yield \({\overline y}_{i \cdot \cdot}\) of 
+        fertilizer type \(i\), subtracting the average yield \({\overline y}_{\cdot j \cdot}\) of rice type \(j\), 
+        adding the overall average yield \({\overline y}_{\cdot \cdot \cdot}\). 
+        <p>
+          \(\quad\)  \(\small {SSAB} = 3(66.7- {\overline y}_{1 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(72.3- {\overline y}_{1 \cdot \cdot} -{\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  + 3(63.3- {\overline y}_{1 \cdot \cdot} - {\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 \) <br>
+          \(\qquad\) \(\small + 3(62.0- {\overline y}_{2 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(50.7- {\overline y}_{2 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(57.3- {\overline y}_{2 \cdot \cdot} -{\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  \)<br>
+          \(\qquad\) \(\small + 3(64.0- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(65.3- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  + 3(48.3- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 \)<br>
+          \(\qquad\) \(\small + 3(52.3- {\overline y}_{4 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(57.0- {\overline y}_{4 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(50.0- {\overline y}_{4 \cdot \cdot} -{\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  \)<br>
+        <p>
+        where the weight of 3 of each sum of squares is calculated by the number of data for each cell of rice and fertilizer 
+        type. The degrees of freedom of \(\small SSAB\) is (3-1)(4-1) and we call the sum of squares \(\small SSAB\) divided
+        by  (3-1)(4-1), \(\small \frac {SSAB}{(3-1)(4-1)}\) is the mean squares of interaction AB, \(\small MSAB\).
+        <p>
+        It is not possible to test each effect immediately using these sum of squares, but the error sum of squares
+        should be calculated. In order to calculate the error sum of squares, first we calculate the total sum 
+        of squares which is the sum of the squared distances from each data to the overall average.
+        <p>
+          \(\quad \small {SST} =  ( 64 -{\overline y}_{\cdot \cdot \cdot})^2 + ( 66 -{\overline y}_{\cdot \cdot \cdot})^2 + ( 70 -{\overline y}_{\cdot \cdot \cdot})^2 + \cdots +
+           ( 53 -{\overline y}_{\cdot \cdot \cdot})^2 + ( 59 -{\overline y}_{\cdot \cdot \cdot})^2  + ( 38 -{\overline y}_{\cdot \cdot \cdot})^2 = 3267.56 \)
+        <p>
+        This total sum of squares can be proven mathematically to be the sum of the other sums of squares as follows:
+        <p>
+          \(\quad \small {SST} = SSA + SSB + SSAB + SSE \)
+        <p>
+        Therefore, the error sum of squares can be calculated as follows:
+        <p>
+          \(\quad \small {SSE} = SST - (SSA + SSB + SSAB) \)
+        <p>
+        If the yields on each rice type or fertilizer type are assumed to be normal and the variances are the same, 
+        the statistic which divides the each mean squares by the error mean squares follows \(F\) distribution. 
+        Therefore, the main effects and interaction effect can be tested using \(F\) distributions. 
+        If the interaction effect is separated, we test them first. Testing results using the 5% significance level
+        are as follows:
+        <p>
+        ① Testing of the interaction effect on rice and fertilizer:
+           <p>
+             \(\qquad \small F_0 = \frac {MSAB}{MSE} = \frac { \frac{SSAB}{(3-1)(4-1)} } {\frac {SSE}{24}} \) = 1.77 <br>
+             \(\qquad \small F_{6,24; 0.05} \) = 2.51
+           <p>
+           <div class="textL20">
+             Since \(\small F_0\) < \(\small F_{6,24; 0.05} \), we conclude that there is no interaction.
+             The interaction on rice and fertilizer in &lt;Figure 9.3.2&gt; is so small which is not statistically 
+             significant and it may due to other kind of random error. The calculated \(p\)-value of 
+             \(\small F_0\) = 1.77 using 『eStat』 is 0.1488.  
+           </div>
+        <p>
+        ② Testing of the main effect on rice types (Factor A):
+           <p>
+             \(\qquad \small F_0 = \frac {MSA}{MSE} = \frac { \frac{SSA}{(3-1)} } {\frac {SSE}{24}}  \) = 3.08 <br>
+             \(\qquad \small F_{2,24; 0.05} \) = 3.40
+           <p>
+           <div class="textL20">
+             Since \(\small F_0\) < \(\small F_{2,24; 0.05} \), we can not reject the null hypothesis 
+             that average yields of rice types are the same. There is not enough evidence statistically 
+             that average yields are different depending on rice types. The calculated \(p\)-value of 
+             \(\small F_0\) = 3.08 using 『eStat』 is 0.0644  
+           </div>
+        <p>
+        ③ Testing of the main effect on fertilizer types (Factor B):
+           <p>
+             \(\qquad \small F_0 = \frac {MSB}{MSE} = \frac { \frac{SSB}{(4-1)} } {\frac {SSE}{24}} \) = 6.02 <br>
+             \(\qquad \small F_{3,24; 0.05} \) = 3.01
+           <p>
+           <div class="textL20">
+             Since \(\small F_0\) > \(\small F_{3,24; 0.05} \), we reject the null hypothesis that average yields
+             of fertilizer types are the same. There is enough statistical evidence which shows that average 
+             yields are different depending on fertilizer types. Since there is no interaction effect by 1), 
+             we can conclude that fertilizer 1 produces more yields than other fertilizer. The calculated 
+             \(p\)-value of \(\small F_0\) = 6.02 using 『eStat』 is 0.0033.  
+           </div>
+        <p>
+        The result of the two-way analysis of variances is as Table 9.3.3.
+      </div> 
+
+           <p>
+             <div class="textLeft">Table 9.3.3  two-way analysis of variance of yields by rice and fertilizer types</div>
+           <p>
+             <table style="width:600px"> 
+                <tr> 
+                  <th>Factor</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F value</th>
+                  <th>p value</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Rice Type</td>
+                  <td class="tdCenter">342.3889</td>
+                  <td class="tdCenter">2</td>
+                  <td class="tdCenter">171.1944</td>
+                  <td class="tdCenter">3.0815</td>
+                  <td class="tdCenter">0.0644</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Fertilizer Type</td>
+                  <td class="tdCenter">1002.8889</td>
+                  <td class="tdCenter">3</td>
+                  <td class="tdCenter">334.2963</td>
+                  <td class="tdCenter">6.0173</td>
+                  <td class="tdCenter">0.0033</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Interaction</td>
+                  <td class="tdCenter">588.9444</td>
+                  <td class="tdCenter">6</td>
+                  <td class="tdCenter">98.1574</td>
+                  <td class="tdCenter">1.7668</td>
+                  <td class="tdCenter">0.1488</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">1333.3333</td>
+                  <td class="tdCenter">24</td>
+                  <td class="tdCenter">55.5556</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter"><b>Total</b></td>
+                  <td class="tdCenter"><b>3267.5556</b></td>
+                  <td class="tdCenter"><b>35</b></td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+           <p>
+
+      <div class="textL20M20">
+        4) If you press the [ANOVA F-test] button in the options window below &lt;Figure 9.3.2&gt; of 『eStat』, the 
+           two-dimensional table of means / standard deviations for each level combination as in &lt;Figure 9.3.3&gt; and 
+           the two-way analysis of variance table as in &lt;Figure 9.3.4&gt; will appear in the Log Area. 
+      </div>       
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090303.png">
+          <div class="figText">&lt;Figure 9.3.3&gt; Two dimensional mean / standard deviation table</div>
+        <p>
+          <img class="imgFig600400" src="./Figure/Fig090304.png">
+          <div class="figText">&lt;Figure 9.3.4&gt; two-way analysis of variance table</div>
+        <p>
+      The same analysis of two factors ANOVA can be done using 『eStatU』 by following data input and clicking [Execute] button..
+      <p>
+      <!---   ************ html for two factors ANOVA ************  ---->
+      <p>
+      <b>[<span data-msgid="Testing Hypothesis ANOVA2"></span>]</b>
+      <p>
+         <iframe src="./example/090301/090301.html" width="800" height="1100"> </iframe>
+      <p>
+
+    </div>
+    <p>
+    <div class="mainTable">
+      Let's generalize the theory of the two-way analysis of variance discussed in the example above. 
+      Let \(Y_{ijk}\) be the random variable representing the \(k^{th}\) observation at the \(i^{th}\)
+      level of factor A, which has \(a\) number of levels, and \(j^{th}\) level of factor B, which has
+      \(b\) number of levels. A statistical model of the two-way analysis of variances is as follows:
+        $$
+          Y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ijk} , \quad i=1,2, ... ,a ; \;  j=1,2, ... , b ; \;  k=1,2, ... , r
+        $$
+      <div class="textL20">
+         \(\quad \mu\)  : total mean <br>
+         \(\quad \alpha_i\)  : effect of \(i^{th}\) level of factor A<br>
+         \(\quad \beta_j\)  : effect of \(j^{th}\) level of factor B<br>
+         \(\quad \gamma_{ij}\)  : interaction effect of \(i^{th}\) level of factor A and \(j^{th}\) level of factor B<br>
+         \(\quad \epsilon_{ijk}\)  : error terms which are independent and follow N(0,\(\sigma^{2}\)).
+      </div>
+      <p>
+        Assume that experiments are repeated \(r\) times equally at the \(i^{th}\) level of factor A and 
+        \(j^{th}\) level of factor B. Therefore, the total number of observations is \(n = abr\).
+      <p>
+        The total sum of squared distances from each observation to the total mean  can be partitioned as following sum 
+        of squares similar to the one-way analysis of variance.  
+      <p>
+      <b>Total sum of squares</b> : <br>
+      <b>SST</b> = \(\sum_{i=1}^{a} \sum_{j=1}^{b} \sum_{k=1}^{r}( Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \(n - 1\) 
+      <p>
+      <b>Factor A sum of squares</b> : <br>
+      <b>SSA</b> = \(br \sum_{i=1}^{a} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
+         &nbsp;&nbsp; degrees of freedom ; \(a - 1\) 
+      <p>
+      <b>Factor B sum of squares</b> : <br>
+      <b>SSB</b> = \(ar \sum_{j=1}^{b} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
+         &nbsp;&nbsp; degrees of freedom ; \(b - 1\) 
+      <p>
+      <b>Interaction sum of squares</b> : <br>
+      <b>SSAB</b> = \(r \sum_{i=1}^{a} \sum_{j=1}^{b} ( {\overline Y}_{ij \cdot} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot} + {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
+         &nbsp;&nbsp; degrees of freedom ; \((a - 1)(b - 1)\) 
+      <p>
+      <b>Error sum of squares</b> : <br>
+      <b>SSE</b> = \(\sum_{i=1}^{a} \sum_{j=1}^{b} \sum_{k=1}^{r} ( {Y}_{ijk} - {\overline Y}_{ij \cdot})^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \(n-ab\) 
+      <p>   
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Partition of Sum of Squares and degrees of freedom
+        <p>
+        Sum of Squares: \(\qquad SST = SSA + SSB + SSAB + SSE\) <br>    	
+        degrees of freedom: \((n-1) = (a-1) + (b-1) + (a-1)(b-1) + (n-ab)\)
+      </b>
+    </div>
+    <p>
+  
+    <div class="mainTable">
+      The two-way analysis of variance is summarized as Table 9.3.4.
+           <p>
+             <div class="textLeft">Table 9.3.4  two-way analysis of variance table</div>
+           <p>
+             <table style="width:650px"> 
+                <tr> 
+                  <th>Factor</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F value</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Factor A</td>
+                  <td class="tdCenter">SSA</td>
+                  <td class="tdCenter">\(a-1\)</td>
+                  <td class="tdCenter">MSA=\(\frac{SSA}{a-1}\)</td>
+                  <td class="tdCenter">\(F_1 = \frac{MSA}{MSE}\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Factor B</td>
+                  <td class="tdCenter">SSB</td>
+                  <td class="tdCenter">\(b-1\)</td>
+                  <td class="tdCenter">MSB=\(\frac{SSB}{b-1}\)</td>
+                  <td class="tdCenter">\(F_2 = \frac{MSB}{MSE}\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Interaction</td>
+                  <td class="tdCenter">SSAB</td>
+                  <td class="tdCenter">\((a-1)(b-1)\)</td>
+                  <td class="tdCenter">MSAB=\(\frac{SSAB}{(a-1)(b-1)}\)</td>
+                  <td class="tdCenter">\(F_3 = \frac{MSAB}{MSE}\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE</td>
+                  <td class="tdCenter">\(n-ab\)</td>
+                  <td class="tdCenter">MSE=\(\frac{SSE}{(n-ab)}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter"><b>Total</b></td>
+                  <td class="tdCenter"><b>SST</b></td>
+                  <td class="tdCenter"><b>\(n-1\)</b></td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+    </div>
+    <p>
+
+    <div class="mainTableYellow">
+      <b>Two-way analysis of variance without repetition of experiments</b>
+      <p>
+      If there is no repeated observation at each level combination of two factors, the interaction effect can not be 
+      estimated and the row of interaction factor is deleted from the above two-way ANOVA table. In this case, the 
+      analysis of variance table is the same as the randomized block design as Table 9.2.3. 
+    </div>
+    <p>  
+
+    <div class="mainTable">
+      Testing hypothesis for the main effects and interaction effect of factor A and factor B are as follows. If the 
+      interaction effect is separated, it is reasonable to test the interaction effect first. This is because, 
+      depending on the significance of the interaction effect, the method of interpreting the result of the main effect 
+      test of each factor can be different.  
+      <p>
+      1) Test for the interaction effect: 
+         <div class="textL20">
+           \(H_0 : \gamma_{ij} = 0,\; i=1,2,...,a;\; j=1,2,...,b \) <br>
+           If \(\frac{MSAB}{MSE} \gt F_{(a-1)(b-1),n-ab; &alpha;} \), then reject \(H_0\)
+         </div>  
+         <p>   
+      2)  Test for the main effect of factor A:
+         <div class="textL20">
+           \(H_0 : \alpha_1 = \alpha_2 = \cdots = \alpha_a = 0 \) <br>
+           If \(\frac{MSA}{MSE} \gt F_{(a-1),n-ab; &alpha;} \), then reject \(H_0\)
+         </div>  
+         <p>   
+      3)  Test for the main effect of factor B:
+         <div class="textL20">
+           \(H_0 : \beta_1 = \beta_2 = \cdots = \beta_b = 0 \) <br>
+           If \(\frac{MSB}{MSE} \gt F_{(b-1),n-ab; &alpha;} \), then reject \(H_0\)
+         </div>  
+         <p>   
+       <p>
+      (『eStat』 calculates the \(p\)-value for each of these tests and tests them using it. That is, 
+         for each test, if the \(p\)-value is less than the significance level, the null hypothesis 
+         \(H_0\) is rejected.)
+       <p>
+         If the test for interaction effect is not significant, a test of the main effects of each factor can be performed 
+         to test significant differences between levels. However, if there is a significant interaction effect, the test 
+         for the main effects of each factor is meaningless, so an analysis should be made on which level combinations of 
+         factors show differences in the means.
+       <p>
+         If you conclude that significant differences between the levels of a factor as in the one-way analysis of 
+         variance exist there, you can compare confidence intervals at each level to see which level of the differences 
+         appears. And a residual analysis is necessary to investigate the validity of the assumption.
+    </div>
+      
+      
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+         <b>Practice 9.3.1</b> 
+            The result of an experiment at a production plant of an electronic component to investigate the 
+            life of the product due to changes in temperature (\(T_1 , T_2\)) and humidity (\(H_1 , H_2\)) 
+            is as follows. Analyze data using the analysis of variance with 5% significance level.
+            <p> 
+            <table style="width:400px"> 
+              <tr> 
+                <th>(Unit: Time) </th>
+                <th>Humidity \(H_1\)</th>
+                <th>Humidity \(H_2\)</th>
+              </tr>
+              <tr> 
+                <td class="tdCenter">Time \(T_1\)</td>
+                <td class="tdCenter">6.29<br>6.38<br>6.25</td>
+                <td class="tdCenter">5.95<br>6.05<br>5.89</td>
+              </tr>
+              <tr> 
+                <td class="tdCenter">Time \(T_2\)</td>
+                <td class="tdCenter">5.80<br>5.92<br>5.78</td>
+                <td class="tdCenter">6.32<br>6.44<br>6.29</td>
+              </tr>
+            </table>
+            <p>   
+              <div class="textLeft"> [Ex] ⇨ eBook ⇨ PR090301_LifeByTemperatureHumidity.csv </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR090301.svg" onclick="window.open(addrStr[67])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTableYellow">
+       <b>Design of experiments for the two-way analysis of variances</b>
+       <p>
+       Even in the two-way analysis of variance, obtaining sample data at each level of two factors in engineering or in 
+       agriculture can be influenced by other factors and should be careful in sampling. In order to accurately identify 
+       the differences that may exist between each level of a factor, it is advisable to make as few as possible 
+       influences from other factors. One of the most commonly used methods of doing this is completely randomized 
+       design which makes the entire experiments random. There are many other experimental design methods, and for more 
+       information, refer to the references to the experimental design of several factors.
+    </div>
+    <p>
+
+  <iframe src="./exercise/exercise09.html" width="800" height="550" ></iframe>
+</body>
+</html>
+

@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Independence">Testing Independence</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; 
+          <span data-msgid="Testing Independence">
+            Testing Hypothesis : Independence of Two Variables
+          </span>
+      </b>
+    </div>
+    <br>
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>o</sub> : 
+                <span data-msgid="Row-Col-0">Row and column variables are independent</span> 
+              </span>
+          </td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>1</sub> : 
+                <span data-msgid="Row-Col-1">Row and column variables are not independent</span> 
+              </span> 
+          </td>
+	</tr>
+      </tbody>
+    </table>
+  
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Test Type">Test Type</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontmath" data-msgid="Chi-test">&chi;<sup>2</sup> test</span></td>
+          <td></td>
+	  <td><span data-msgid="Significance Level">Significance Level</span></td>
+          <td>
+              &alpha; = 
+              <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+          </td>
+	</tr>
+      </tbody>
+    </table>
+
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Sample Data">Sample Data</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontguide" data-msgid="Enter any number of row">(input any # of rows & columns)</span></td>
+          <td></td>
+	</tr>
+      </tbody>
+    </table>
+   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> &nbsp;</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 1</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 2</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 3</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 4</td>
+	  <td>&nbsp;<span data-msgid="Column">Column</span> 5</td>
+	  <td>&nbsp;<span data-msgid="Row"></span> <span data-msgid="Total"></span></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 1 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data11"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data12"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data13"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data14"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data15"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data16"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 2 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data21"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data22"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data23"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data24"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data25"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data26"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 3 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data31"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data32"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data33"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data34"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data35"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data36"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 4 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data41"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data42"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data43"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data44"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data45"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data46"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 5 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data51"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data52"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data53"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data54"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data55"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data56"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 6 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data61"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data62"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data63"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data64"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data65"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data66"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 7 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data71"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data72"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data73"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data74"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data75"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data76"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 8 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data81"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data82"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data83"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data84"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data85"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data86"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 9 &nbsp;</td>
+	  <td><input type="text" class"textarea"  size=6 id="data91"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data92"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data93"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data94"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data95"></td>
+	  <td><input type="text" class"textarea"  size=6 id="data96"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Column"></span> <span data-msgid="Total"></span></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="data101"></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="data102"></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="data103"></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="data104"></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="data105"></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="data106"></td>
+	</tr>
+      </tbody>
+    </table>
+       <div class="figText">&lt;Figure 11.2.3&gt; Data input for『eStatU』 Test of Independence</div>
+    <p>
+    <button type="button" id="executeTH8" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script src="/estat/eStatU/js/92TestingIndependence.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data11").value = 40;
+      document.getElementById("data21").value = 20;
+      document.getElementById("data12").value = 10;
+      document.getElementById("data22").value = 30;
+  </script>
+
+</body>
+</html>

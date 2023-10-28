@@ -7,111 +7,38 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>3장</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">목차</a></li>
-            <li><a href="../eStatM/chapter01.html">1. 통계</a></li>
-            <li><a href="../eStatM/chapter02.html">2. 질적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter03.html">3. 양적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter04.html">4. 자료의 대푯값과 산포도</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>3. 양적 자료의 그래프</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)">&#10094;&#10094; &nbsp;&nbsp;<b>2장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>4장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
         <h1>&nbsp; 🌿 📈</h1>
         <h4>
         <a href="#0301"><u>3.1 줄기와 잎 그림</u></a> <p>
         <a href="#0302"><u>3.2 히스토그램 - 도수분포표</u></a> <p>
         <a href="#0303"><u>3.3 도수분포다각형 - 상대도수 비교</u></a> <p>
         <a href="#0304"><u>3.4 산점도</u></a> <p>
-        <a href="../eStatM/chapter03.pdf" target="_blank"><u>[3장 pdf]</u></a>
+        <a href="./pdf/chapter03.pdf" target="_blank"><u>[3장 pdf]</u></a>
         </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>양적 자료인 경우에 다음과 같은 그래프를 그려 분석한다.
-        <p>-  줄기와 잎 그림
-        <p>-  히스토그램 
-        <p>-  도수분포다각형
-      </td>
-    </tr>
-  </table>
+        양적 자료인 경우에 다음과 같은 그래프를 그려 분석한다.<br>
+        -  줄기와 잎 그림<br>
+        -  히스토그램 <br>
+        -  도수분포다각형<br>
+
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -122,13 +49,7 @@
   <h3 id="0301">3.1  줄기와 잎 그림</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>요사이 미세먼지가 자주 발생해 우리 생활에 불편을 주고 있다. 과연 한 달 중 며칠이나 
              미세먼지가 심하게 발생하는지 살펴보기 위해 서울의 미세먼지농도를 조사한 자료가 다음과 같다.
           </b>
@@ -139,37 +60,27 @@
             <tr> 
               <td>
                 39  18  20  22  16  44  59  18  16  23  
-                53  76  77  76  37  15  13  17  24  42  <br>
+                53  76  77  76  37  15  13  17  24  42  
                 46  30  18  25  34  24  11  14  
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <div class="textL20M20">
              <b> 1) 미세먼지농도 자료수가 28개나 있는데 전반적인 자료의 분포를 어떻게 쉽게 표현할 수 있을까?</b>
           </div>
           <div class="textL20M20">
-             <b> 2) 우리나라는 미세먼지 농도가 36(㎍/\(m^3\))을 넘으면 ‘나쁨’으로 으로 평가하는데 
+             <b> 2) 우리나라는 미세먼지 농도가 36(㎍/\(m^3\))을 넘으면 '나쁨'으로 으로 평가하는데 
                  2월 중 며칠이나 있을까?             </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
   <div class="mainTable">
       <p>위의 예에서 미세먼지농도를 39, 18, 20,  과 같이 측정하였는데 이와 같이 자료를 수량으로 나타낸 것을 <b>변량</b>이라 한다. 
       <p><자료 3.1>과 같이 숫자로 된 자료는 십진법을 사용하기 때문에 각각의 십 자릿수에 해당하는 자료를 모아 
-         다음과 같은 표로 정리할 수 있다. 즉, 첫 번째 자료 39는 십 자릿수가 ‘3’ 이므로 이 자료를 세 번째 행에 적고, 
-        그 다음 18은 십 자릿수가 ‘1’이므로 첫 번째 행에 적는다. 같은 방법으로 모든 자료를 정리하면 [표 3.1]과 같다. 
+         다음과 같은 표로 정리할 수 있다. 즉, 첫 번째 자료 39는 십 자릿수가 '3' 이므로 이 자료를 세 번째 행에 적고, 
+        그 다음 18은 십 자릿수가 '1'이므로 첫 번째 행에 적는다. 같은 방법으로 모든 자료를 정리하면 [표 3.1]과 같다. 
       <p>
           <div class="textLeft">[표 3.1] 미세먼지농도를 십의 자릿수에 대해 정리한 자료</div>
           <table> 
@@ -183,10 +94,10 @@
             <tr> <td class="tdCenter">7</td>  <td>76 77 76</td>    </tr>
           </table>
       <p>
-         [표 3.1]에서 각각의 행(십 자릿수)은 ‘10㎍/\(m^3\) 이상 20㎍/ 미만’, ‘20이상 ~ 30미만’, ... 
-        ‘ 70이상 ~ 80미만’과 같은 구간을 의미한다. 이 표에서 각각의 행에 나타난 자료의 일 자릿수만을 
-         오름차순으로 정렬한 [표 3.2]를 줄기와 잎 그림이라 부른다. 줄기와 잎 그림에서는 십 자릿수를 나무의 
-        ‘줄기’, 일 자릿수를 ‘잎’으로 부른다.  
+         [표 3.1]에서 각각의 행(십 자릿수)은 '10㎍/\(m^3\) 이상 20㎍/ 미만', '20이상 ~ 30미만', ... 
+        ' 70이상 ~ 80미만'과 같은 구간을 의미한다. 이 표에서 각각의 행에 나타난 자료의 일 자릿수만을 
+         오름차순으로 정렬한 [표 3.2]를 <b>줄기와 잎 그림</b>이라 부른다. 줄기와 잎 그림에서는 십 자릿수를 나무의 
+        '줄기', 일 자릿수를 '잎'으로 부른다.  
       <p>
           <div class="textLeft">[표 3.2] 미세먼지농도의 일 자릿수를 오름차 순으로 정리한 줄기와 잎 그림</div>
           <table> 
@@ -200,9 +111,9 @@
             <tr> <td class="tdCenter">7</td>  <td>6 6 7</td>    </tr>
           </table>
       <p>
-         [표 3.2]와 같은 줄기와 잎 그림을 관찰하면 미세먼지 농도가 \(m^3\)당 ‘10㎍ 이상 20㎍ 미만’인 날이 제일 많고, 
-         그 다음은 ‘20㎍ 이상 30㎍ 미만’임을 쉽게 알 수 있다. 그리고 자료가 오름차순으로 정렬이 되어있어
-         미세먼지농도가 ‘나쁨’인 36㎍ 이상인 날을 쉽게 세어 볼 수 있는데 28일중에서 미세먼지농도가 ‘나쁨’인 
+         [표 3.2]와 같은 줄기와 잎 그림을 관찰하면 미세먼지 농도가 \(m^3\)당 '10㎍ 이상 20㎍ 미만'인 날이 제일 많고, 
+         그 다음은 '20㎍ 이상 30㎍ 미만'임을 쉽게 알 수 있다. 그리고 자료가 오름차순으로 정렬이 되어있어
+         미세먼지농도가 '나쁨'인 36㎍ 이상인 날을 쉽게 세어 볼 수 있는데 28일중에서 미세먼지농도가 '나쁨'인 
         수준이 10일이나 되어 심각한 공해 문제임을 잘 살펴볼수 있다. 
       <p>자료가 많을 경우 이와 같이 수작업으로 줄기와 잎 그림을 그리는 것은 시간도 많이 걸리고 쉽지 않다. 
         『eStat』소프트웨어를 이용하여 줄기와 잎 그림을 그려보자. 
@@ -214,24 +125,16 @@
       <p><h4>🎲 실습 3.1</h4>
         『eStat』을 이용하여 (자료 3.1) 미세먼지 농도에 대한 줄기와 잎 그림을 그려보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘줄기와 잎 그림’을 선택하면 <그림 3.1>의 위와 같은 창이 나타난다.
-            <p>‘자료 입력’에 미세먼지농도 자료를 입력하고 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) ‘주 제목’에 
-               원하는 그림 제목을 입력한다. 
-            <p>[실행] 버튼을 클릭하면 <그림 3.1> 아래와 같은 줄기와 잎 그림이 나타난다.     
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0301.png">
-         <div class="textLeft">&lt;그림 3.1&gt; 미세먼지 농도의 줄기와 잎 그림</div>
+         『eStatM』 '줄기와 잎 그림'의 '자료 입력'에 미세먼지농도 자료를 입력하고 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) '주 제목'에 
+         원하는 그림 제목을 입력한다. 
+      <p>[실행] 버튼을 클릭하면 &lt;그림 3.1&gt; 아래와 같은 줄기와 잎 그림이 나타난다.  
+      <p>
+      <!----------***  eStatU  stem and leaf plot html ***--------------------->
+      <iframe src="./example/0301/0301.html" width="700" height="730"> </iframe>
+      <p>
+       <div class="textLeft">&lt;그림 3.1&gt; 미세먼지 농도의 줄기와 잎 그림</div>   
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!------------------------------------------------------------------------------------------------->
@@ -251,37 +154,23 @@
             </tr>
           </table>
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용하여 나타나는『eStatH』 메뉴에서 ‘줄기와 잎 그림’을 선택하면 <그림 3.2>와 같은 자료입력창이 나타난다.
-            <p>‘자료 입력’에 일별 최저기온 자료를 입력하고 ‘주 제목’에 원하는 그림 제목을 입력한다. 
-            <p>[실행] 버튼을 클릭하면 <그림 3.2>와 같은 줄기와 잎 그림이 나타난다.
-            <p>온도는 소수점과 음수가 있어 마지막 숫자를 잎으로 하여 줄기와 잎 그림을 그린다.
-          </td>
-        </tr>
-      </table>
       <p>
+         『eStatM』 메뉴에서 '줄기와 잎 그림'을 선택하면 &lt;그림 3.2&gt;와 같은 자료입력창이 나타난다.<br>
+         '자료 입력'에 일별 최저기온 자료를 입력하고 '주 제목'에 원하는 그림 제목을 입력한다. <br>
+         [실행] 버튼을 클릭하면 &lt;그림 3.2&gt;와 같은 줄기와 잎 그림이 나타난다.<br>
+         온도는 소수점과 음수가 있어 마지막 숫자를 잎으로 하여 줄기와 잎 그림을 그린다. <br>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0302.png">
+         <iframe src="./example/0302/0302.html" width="700" height="730"> </iframe>
+      <p>
          <div class="textLeft">&lt;그림 3.2&gt; 서울의 일별 최저기온의 줄기와 잎 그림</div>
-     </div>
+      <p>
+    </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 3.1</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 3.1</h4> <p>
             다음은 2016년 현재 서울의 25개 행정구별 자전거 전용 도로 길이에 대한 자료이다. 
            『eStat』을 이용하여 줄기와 잎 그림 등을 그려 분석하라.  
             <p>
@@ -295,22 +184,13 @@
                 </td>
               </tr>
             </table>
-         </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 3.2</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 3.2</h4> <p>
             다음은 2020년 우리나라를 통과한 태풍의 최대 풍속에 대한 자료이다. <br>
             1)『eStat』을 이용하여 줄기와 잎 그림 등을 그려라.<br>
             2) 태풍의 최대 풍속이 54m/초 이상이면 초강력 태풍으로 분류한다. 몇 개의 초강력 태풍이 통과하였는지 조사하라. 
@@ -325,9 +205,7 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
     </div>
     <p>
 
@@ -335,47 +213,32 @@
   <h3 id="0302">3.2 히스토그램 - 도수분포표</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 중학교 2학년 학생들의 몸무게를 조사한 자료가 (자료 3.5)와 같다. </b>
           <p>
             <div class="textLeft">(자료 3.5) 한 중학교 2학년 학생들의 몸무게 (kg)</div>
             <table> 
               <tr> 
                 <td>
-                  63  65  67  68  61  60  72  55  64  76  68  63  70  61  54 <br> 
+                  63  65  67  68  61  60  72  55  64  76  68  63  70  61  54  
                   63  66  53  58  70  62  62  57  58  59  53  58  58  62  61  
                 </td>
               </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <div class="textL20M20">
             <b> 1) 자료수가 30개나 되는데 학생들 몸무게의 분포를 어떻게 쉽게 그래프로 표현할 수 있을까?</b>
           </div>
           <div class="textL20M20">
             <b> 2) 학생들 몸무게가 70kg이상 75kg미만인 학생의 수가 얼마나 될까? </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
   <div class="mainTable">
       <p>위와 같은 몸무게 자료의 전반적인 분포를 보기위해서는 앞에서 살펴본 줄기와 잎 그림을 생각할 수 있다. 하지만 십 자리수가 5, 6, 7만 있기 때문에 줄기와 잎그림으로는 세밀한 분포를 살펴보기가 어렵다. 그리고 몸무게 70kg이상 75kg미만인 학생의 수를 쉽게 알아볼 수 없다. 조사한 자료에서 전반적인 분포나 특정한 정보를 알기위해서는 자료를 적절히 정리할 필요가 있다. 
-      <p>[표 3.3]은 몸무게 자료를 50kg에서 시작하여 5kg 간격으로 구간을 정하고 각 구간에 해당하는 학생들 몸무게를 조사하여 정리한 것이다. 이러한 자료 정리에는 줄기와 잎 그림이 유용하다.
+      <p>[표 3.3]은 몸무게 자료를 50kg에서 시작하여 5kg 간격으로 구간을 정하고 각 구간에 해당하는 학생들 몸무게를 
+         조사하여 정리한 것이다. 이러한 자료 정리에는 <b>히스토그램</b>이 유용하다.
 
           <div class="textLeft">[표 3.3] 한 중학교 2학년 학생들 몸무게를 각 구간별로  정리한 자료</div>
           <table> 
@@ -388,7 +251,7 @@
             <tr> <td class="tdCenter">75 ~ 80</td>  <td>76</td>                               <td class="tdCenter"> 1</td> </tr>
           </table>
 
-      <p>[표 3.3]과 같이 정리된 표를 이용하면 전반적인 자료의 분포가 ‘60kg이상 ~ 65kg 미만’인 학생이 제일 많고 그 다음이 ‘55kg이상 ~ 60kg미만’ 임을 쉽게 알 수 있다. 그리고 ‘70kg이상 ~ 75kg미만’인 학생의 수가 3명임을 바로 알 수 있다. 
+      <p>[표 3.3]과 같이 정리된 표를 이용하면 전반적인 자료의 분포가 '60kg이상 ~ 65kg 미만'인 학생이 제일 많고 그 다음이 '55kg이상 ~ 60kg미만' 임을 쉽게 알 수 있다. 그리고 '70kg이상 ~ 75kg미만'인 학생의 수가 3명임을 바로 알 수 있다. 
       <p>[표 3.3]과 같이 몸무게라는 변량을 일정한 간격으로 나눈 구간을 <b>계급</b>, 구간의 너비를 
          <b>계급의 크기</b>, 각 계급에 속하는 변량의 개수를 <b>도수</b>라 부르고 이를 정리한 표를 
          <b>도수분포표</b>라고 한다. [표 3.4]는 학생들 몸무게의 도수분포표이다.
@@ -407,11 +270,11 @@
 
       <p>각 계급을 대표하는 값으로서 각 계급의 양 끝값의 중간값을 그 계급의 계급값이라 한다. 
       <p>
-        <div class="textLeft">계급값 = (계급의 양끝의 합) / 2 </div>
+        <div class="textLeft"><b>계급값 = (계급의 양끝의 합) / 2 </b></div>
       <p>
-      <p>예를 들어 [표 3.4]의 도수분포표에서 ‘50kg이상 ~ 55kg 미만’인 계급의 계급값은 다음과 같다. 
+      <p>예를 들어 [표 3.4]의 도수분포표에서 '50kg이상 ~ 55kg 미만'인 계급의 계급값은 다음과 같다. 
       <p>
-        <div class="textLeft">계급 ‘50kg이상 ~ 55kg 미만’의 계급값 = (50 + 55) / 2 = 52.5(kg) </div>
+        <div class="textLeft">계급 '50kg이상 ~ 55kg 미만'의 계급값 = (50 + 55) / 2 = 52.5(kg) </div>
       <p>
       <p>도수분포표에서 각 계급의 도수를 비교하면 전반적인 자료의 분포를 관찰할 수 있다. 하지만 
       각 계급의 도수가 전체 도수에서 차지하는 비율을 계산하면 더 좋을 수 있다. 전체 도수에 대한 
@@ -433,14 +296,14 @@
             <tr> <th class="thGrey">합계</th> <th></th> <th class="thGrey">30</th> <th class="thGrey">1.00</th>   </tr>
           </table>
  
-      <p>도수분포표는 다음 순서에 따라 그래프로 나타낼 수 있는데 이를 히스토그램이라고 한다. <그림 3.3>은 
+      <p>도수분포표는 다음 순서에 따라 그래프로 나타낼 수 있는데 이를 <b>히스토그램</b>이라고 한다. &lt;그림 3.3&gt;은 
          학생들 몸무게에 대한 히스토그램이다.
       <p>
          ① 가로축에 각 계급의 끝값을 적는다.<br>
          ② 세로축에 도수를 적는다. <br>
          ③ 각 계급에서 계급의 크기를 가로로, 도수를 세로로 하는 직사각형을 그린다.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0303.png">
+         <img class="imgFig600600" src="./Figure/Fig0303.png">
          <div class="textLeft">&lt;그림 3.3&gt; 학생들 몸무게의 히스토그램</div>
       <p>
          도수분포표의 계급은 분석자가 정하는 계급의 크기에 따라 여러 가지로 만들 수 있다. 
@@ -465,37 +328,32 @@
       <p><h4>🎲 실습 3.3</h4>
         『eStat』을 이용하여 (자료 3.5) 2학년 학생들의 몸무게에 대한 히스토그램을 그리고 이의 도수분포표를 알아보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘히스토그램 - 도수분포표’를 선택하면 <그림 3.4>와 같은 창이 나타난다.
-            <p>‘자료 입력’에 학생들의 몸무게 자료를 입력하고 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) ‘주 제목’에 원하는 그림 제목을 입력한다. 
-            <p>[실행] 버튼을 클릭하면 <그림 3.3>과 같은 히스토그램이 그려진다.
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0304.png">
-         <div class="textLeft">&lt;그림 3.4&gt; 히스토그램 자료 입력창</div>
+         『eStatM』 '히스토그램 - 도수분포표'의 '자료 입력'에 학생들의 몸무게 자료를 입력하고 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨)
+         '주 제목'에 원하는 그림 제목을 입력한다. 
+      <p>[실행] 버튼을 클릭하면 &lt;그림 3.3&gt;과 같은 히스토그램이 그려진다.
       <p>
-         히스토그램 밑에 선택 사항에서 ‘평균’과 ‘도수’를 체크하면 <그림 3.5>와 같이 히스토그램 막대위에 도수가 표시된다.
+      <!-------- 05Histogram.htm   -------------------------------------------------------------->
+         <iframe src="./example/0303/0303.html" width="730" height="730"> </iframe>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0305.png">
-         <div class="textLeft">&lt;그림 3.5&gt; 도수가 표시된 히스토그램</div>
+         <div class="textLeft">&lt;그림 3.4&gt; 히스토그램 자료 입력과 히스토그램</div>
       <p>
-         히스토그램 밑의 선택 사항에서 [도수분포표] 버튼을 클릭하면 <그림 3.6>과 같이 히스토그램의 도수분포표가 표시된다.
+          히스토그램 밑에 선택 사항에서 '평균'과 '도수'를 체크하면 &lt;그림 3.5&gt;와 같이 히스토그램 막대위에 도수가 표시된다.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0306.png">
-         <div class="textLeft">&lt;그림 3.6&gt; 히스토그램에 대한 도수분포표</div>
-    </div>
-    <!------------------------------------------------------------------------------------------------->
-    <p>
+               <img class="imgFig600600" src="./Figure/Fig0305.png">
+               <div class="textLeft">&lt;그림 3.5&gt; 도수가 표시된 히스토그램</div>
+      <p>
+               히스토그램 밑의 선택 사항에서 [도수분포표] 버튼을 클릭하면 &lt;그림 3.6&gt;과 같이 히스토그램의 도수분포표가 표시된다.
+      <p>
+               <img class="imgFig600600" src="./Figure/Fig0306.png">
+               <div class="textLeft">&lt;그림 3.6&gt; 히스토그램에 대한 도수분포표</div>
+      <p>
+  </div>
+  <p>
   <div class="mainTable">
     도수분포표의 계급 구간의 결정은 분석자가 자료의 최솟값과 최댓값을 살펴보고 결정한다.  
   </div>
+  <p>
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 실습 3.4</h4>
@@ -506,47 +364,32 @@
             <tr> 
               <td>
                 -2.3 -8.2 -9.4 -7.4 -4.4   4.3  -2.6   5.4  -6.1 -1.5 
-                 1.3  0.6  1.0  6.4 -5.2  -7.0 -10.4 -10.6  -7.1  5.5 <br>
+                 1.3  0.6  1.0  6.4 -5.2  -7.0 -10.4 -10.6  -7.1  5.5 
                  4.7  0.4 -3.1 -3.0  0.7   0.5   4.3   3.2 
               </td>
             </tr>
           </table>
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용하여 나타나는『eStatH』 메뉴에서 ‘히스토그램 – 도수분포표’를 선택하면 <그림 3.7>과 같은 자료 입력창이 나타난다.
-            <p>‘자료 입력’에 일별 최저기온 자료를 입력하면 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 즉시 <그림 3.7>과 같이 입력된 자료수 28과 최솟값이 –10.6도이고 최댓값이 6.4도임을 보여준다. 이 정보를 이용하여 구간시작과 구간너비를 정할 수 있다. 여기서는 구간시작을 –15, 구간너비를 5도로 정하였다.
-            <p>원하는 제목을 입력하고 [실행] 버튼을 클릭하면 <그림 3.8>과 같은 히스토그램이 나타난다.
+      <p>왼쪽의 QR을 이용하여 나타나는『eStatM』 메뉴에서 '히스토그램 – 도수분포표'를 선택하면 &lt;그림 3.7&gt;과 같은 자료 입력창이 나타난다.
+      <p>'자료 입력'에 일별 최저기온 자료를 입력하면 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 즉시 &lt;그림 3.7&gt;과 같이 입력된 자료수 28과 최솟값이 –10.6도이고 최댓값이 6.4도임을 보여준다. 이 정보를 이용하여 구간시작과 구간너비를 정할 수 있다. 여기서는 구간시작을 –15, 구간너비를 5도로 정하였다.
+      <p>원하는 제목을 입력하고 [실행] 버튼을 클릭하면 &lt;그림 3.8&gt;과 같은 히스토그램이 나타난다.
+            <p>
+               <iframe src="./example/0304/0304.html" width="730" height="730"> </iframe>
+               <div class="textLeft">&lt;그림 3.8&gt; 서울의 최저기온에 대한 히스토그램</div>
+            <p>
+               <img class="imgFig600600" src="./Figure/Fig0309.png">
+               <div class="textLeft">&lt;그림 3.9&gt; 히스토그램에 대한 도수분포표</div>
+            <p>
           </td>
         </tr>
       </table>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0307.png">
-         <div class="textLeft">&lt;그림 3.7&gt; 히스토그램 자료 입력창</div>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0308.png">
-         <div class="textLeft">&lt;그림 3.8&gt; 서울의 최저기온에 대한 히스토그램</div>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0309.png">
-         <div class="textLeft">&lt;그림 3.9&gt; 히스토그램에 대한 도수분포표</div>
     </div>
     <!------------------------------------------------------------------------------------------------->
-
+    <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 3.3</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 3.3</h4> <p>
             다음은 2016년 현재 서울의 25개 행정구별 자전거 전용 도로 길이에 대한 자료이다 ([과제 3.1]). 『eStat』을 이용하여 히스토그램과 도수분포표를 작성하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.3) 2019년 서울의 자전거 도로 (단위 km) <br>
@@ -554,27 +397,18 @@
             <table> 
               <tr> 
                 <td>
-                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 <br>
+                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 
                   42 11  8 37 13 20 29 53 93 42
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 3.4</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 3.4</h4> <p>
             다음은 2020년 우리나라를 통과한 태풍의 최대 풍속에 대한 자료이다 ([과제 3.2]). 『eStat』을 이용하여 히스토그램과 도수분포표를 작성하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.4) 2020년 우리나라를 통과한 태품의 최대풍속 (단위 m/초) <br>
@@ -582,14 +416,12 @@
             <table> 
               <tr> 
                 <td>
-                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 <br>
-                  24 35 40 56 24 21 43 18 <br>
+                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 
+                  24 35 40 56 24 21 43 18 
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
     </div>
     <p>
 
@@ -597,13 +429,7 @@
   <h3 id="0303">3.3  도수분포다각형 – 상대도수 비교</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 중학교의 2학년과 3학년 학생들의 몸무게를 조사한 도수분포표가 다음과 같다.   </b>
           <p>
           <div class="textLeft">[표 3.7] 2학년과 3학년 학생들 몸무게의 도수분포표</div>
@@ -617,23 +443,13 @@
             <tr> <td class="tdCenter">75 ~ 80</td>       <td class="tdCenter"> 1</td> <td class="tdCenter"> 3</td> </tr>
             <tr> <th class="thGrey">합계</th> <th class="thGrey">30</th> <th class="thGrey">40</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <div class="textL20M20">
             <b> 1) 2학년 학생수는 30명이고 3학년 학생수는 40명인데 어떻게 2학년과 3학년 몸무게의 분포를 비교할 수 있을까? </b>
           </div>
           <div class="textL20M20">
             <b> 2) 3학년 학생들 몸무게가 상대적으로 큰 구간은 어디일까? </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -652,7 +468,7 @@
             <tr> <th class="thGrey">합계</th> <th class="thGrey">30</th> <th class="thGrey">40</th> <th class="thGrey">1.000</th> <th class="thGrey">1.000</th>  </tr>
           </table>
       <p>
-         이 표를 보면 계급 ‘65이상 ~ 70미만’,  ‘70이상 ~ 75미만’,  ‘75이상 ~ 80미만’의 경우 3학년 학생의 상대도수가 2학년보다 높음을 알 수 있다. 
+         이 표를 보면 계급 '65이상 ~ 70미만',  '70이상 ~ 75미만',  '75이상 ~ 80미만'의 경우 3학년 학생의 상대도수가 2학년보다 높음을 알 수 있다. 
       <p>
          히스토그램을 이용하여 각 계급의 도수에 대하여 꺽은선 모양을 그린 그래프를 <b>도수분포다각형</b>
          이라 부른다. 도수분포다각형을 그리는 방법은 다음과 같다. 
@@ -668,14 +484,14 @@
          </div>
       <p>
          히스토그램은 계급의 도수를 이용하여 그리는 것이 일반적이나 상대도수를 이용하여 그릴 수 있다. 단지 도수대신 상대도수를 이용하는 것이라 그리는 방법은 같다. 도수분포다각형도 도수 또는 상대도수를 이용하여 그릴 수 있은데 [표 3.8]과 같이 2학년과 3학년 두 그룹에 대한 도수분포를 비교할 때는 각 그룹의 자료수가 다를 수 있어 상대도수를 이용한 도수분포다각형을 그려 비교한다. 
-      <p><그림 3.10>은 [표 3.8]에서 2학년 학생들 몸무게의 계급별 상대도수를 이용한 히스토그램과 도수분포다각형이다. 
+      <p>&lt;그림 3.10&gt;은 [표 3.8]에서 2학년 학생들 몸무게의 계급별 상대도수를 이용한 히스토그램과 도수분포다각형이다. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0310.png">
+         <img class="imgFig600600" src="./Figure/Fig0310.png">
          <div class="textLeft">&lt;그림 3.10&gt; 계급의 상대도수를 이용한 히스토그램과 도수분포다각형</div>
       <p>
-         <그림 3.11>은 2학년과 3학년 학생들의 계급별 상대도수를 이용하여 도수분포다각형으로 비교한 것이다. 
+         &lt;그림 3.11&gt;은 2학년과 3학년 학생들의 계급별 상대도수를 이용하여 도수분포다각형으로 비교한 것이다. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0311.png">
+         <img class="imgFig600600" src="./Figure/Fig0311.png">
          <div class="textLeft">&lt;그림 3.11&gt; 2학년과 3학년 학생들 몸무게의 도수분포다각형 비교</div>
       <p>
          자료가 많을 경우 위와 같이 수작업으로 도수분포표와 히스토그램을 그리는 것은 시간도 많이 걸리고 쉽지 않다. 『eStat』소프트웨어를 이용하여 도수분포표와 히스토그램을 그려보자. 
@@ -687,28 +503,22 @@
       <p><h4>🎲 실습 3.5</h4>
         『eStat』을 이용하여 [표 3.8]의 2학년과 3학년 학생의 몸무게에 대한 히스토그램과 도수분포다각형을 그려보자.  
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘도수분포다각형 - 상대도수비교’를 선택하면 <그림 3.12>와 같은 창이 나타난다.
-            <p>원하는 제목을 입력한 후 계급 구간의 왼쪽값을 그림과 같이 입력한 후 ‘도수 1’ 열에 2학년 도수를 입력한다. 
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0312.png">
-         <div class="textLeft">&lt;그림 3.12&gt; 2학년 몸무게의 도수분포다각형을 위한 자료 입력</div>
+         『eStatM』 '도수분포다각형 - 상대도수비교'에서 원하는 제목을 입력한 후 각 계급 구간의 왼쪽값을 그림과 같이 
+         입력한 후 '도수 1' 열에 2학년 도수를 입력한다. 
       <p>
-         [실행] 버튼을 클릭하면 <그림 3.10>과 같이 2학년 학생들의 히스토그램과 도수분포다각형이 그려진다. 
-      <p>이어서 다음과 같이 3학년 학생들의 몸무게 도수를 추가로 입력하고, 제목을 바꾼 후 [실행] 버튼을 클릭하면 <그림 3.11>과 같은 2학년과 3학년 학생들의 몸무게에 대한 도수분포다각형이 그려진다.
+              <img class="imgFig600600" src="./Figure/Fig0312.png">
+              <div class="textLeft">&lt;그림 3.12&gt; 2학년 몸무게의 도수분포다각형을 위한 자료 입력</div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0313.png">
+         [실행] 버튼을 클릭하면 &lt;그림 3.10&gt;과 같이 2학년 학생들의 히스토그램과 도수분포다각형이 그려진다. 
+      <p>이어서 다음과 같이 3학년 학생들의 몸무게 도수를 추가로 입력하고, 제목을 바꾼 후 [실행] 버튼을 클릭하면 &lt;그림 3.11&gt;과 같은 2학년과 3학년 학생들의 몸무게에 대한 도수분포다각형이 그려진다.
+      <p>
+      <!--------*** 05Histogram html  ***-------------------------------------------------------------->
+         <iframe src="./example/0305/0305.html" width="730" height="1030"> </iframe>
+      <p>
          <div class="textLeft">&lt;그림 3.13&gt; 2학년과 3학년 도수분포다각형을 위한 자료 입력</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
  
     <!------------------------------------------------------------------------------------------------->
@@ -728,40 +538,27 @@
             <tr> <th class="thGrey">합계</th> <th class="thGrey">2596</th> <th class="thGrey">2586</th>   </tr>
           </table>
      <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘도수분포다각형 - 상대도수비교’를 선택하면 <그림 3.14>와 같은 창이 나타난다.
-            <p>원하는 제목을 입력한 후 계급 구간의 왼쪽값을 그림과 같이 입력한 후 ‘도수 1’ 열에 남자, ‘도수 2’열에 인구를 입력한다. 
-          </td>
-        </tr>
-      </table>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0314.png">
-         <div class="textLeft">&lt;그림 3.14&gt; 상대도수다각형을 위한 남녀 인구자료 입력</div>
-      <p>
-         [실행] 버튼을 클릭하면 <그림 3.15>와 같이 남녀별 도수분포다각형이 그려진다. 남자의 인구가 60세까지는 여자보다 많다가 60세 이상은 여자의 인구가 더 많음을 쉽게 알 수 있다.
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0315.png">
-         <div class="textLeft">&lt;그림 3.15&gt; 우리나라 인구의 남녀별 상대도수다각형</div>
-      <p>
+            <p>왼쪽의 QR을 이용해 『eStatM』 메뉴에서 '도수분포다각형 - 상대도수비교'를 선택하면 &lt;그림 3.14&gt;와 같은 창이 나타난다.
+            <p>원하는 제목을 입력한 후 계급 구간의 왼쪽값을 그림과 같이 입력한 후 '도수 1' 열에 남자, '도수 2'열에 인구를 입력한다. 
+            <p>
+            <div class="QRFigure">
+               <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
+               <img class="imgFig600600" src="./Figure/Fig0314.png">
+               <div class="textLeft">&lt;그림 3.14&gt; 상대도수다각형을 위한 남녀 인구자료 입력</div>
+            </div>
+            <p>
+               [실행] 버튼을 클릭하면 &lt;그림 3.15&gt;와 같이 남녀별 도수분포다각형이 그려진다. 남자의 인구가 60세까지는 여자보다 많다가 60세 이상은 여자의 인구가 더 많음을 쉽게 알 수 있다.
+            <p>
+               <img class="imgFig600600" src="./Figure/Fig0315.png">
+               <div class="textLeft">&lt;그림 3.15&gt; 우리나라 인구의 남녀별 상대도수다각형</div>
+            <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 3.5</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 3.5</h4> <p>
             다음 표는 한 중학교 남녀 선생님의 나이를 조사한 것이다.  『eStat』을 이용하여 도수분포다각형을 그려 비교하라.
             <p>
             <div class="textLeft">[표 3.10] 한 중학교 남녀 선생님의 나이별 도수분포표<br>
@@ -775,22 +572,13 @@
               <tr> <td class="tdCenter">60 ~ 70</td>       <td class="tdCenter">0</td> <td class="tdCenter">2</td> </tr>
               <tr> <th class="thGrey">합계</th> <th class="thGrey">13</th> <th class="thGrey">17</th>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 3.6</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 3.6</h4> <p>
             다음 표는 A 중학교와 B 중학교의 학력고사 성적을 비교한 것이다. 『eStat』을 이용하여 도수분포다각형을 그려 비교하라.
             <p>
             <div class="textLeft">[표 3.11] 두 중학교 학력고사 성적의 도수분포표<br>
@@ -804,9 +592,7 @@
               <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">10</td> <td class="tdCenter"> 5</td> </tr>
               <tr> <th class="thGrey">합계</th> <th class="thGrey">60</th> <th class="thGrey">50</th>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -815,13 +601,7 @@
   <h3 id="0304">3.4 산점도</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 중학교 남학생 7명의 신장과 체중을 조사하였더니 다음과 같다. </b>
           <p>
             <div class="textLeft">(자료 3.5) 한 중학교 학생 7명의 신장(cm)과 제중(kg)</div>
@@ -830,19 +610,9 @@
               <tr> <th class="thGrey">신장</th> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
               <tr> <th class="thGrey">체중</th> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
-          <b>-  신장과 체중 두 변량의 상관관계를 살펴볼 수 있는 그래프가 있을까?<br>
+      <h4>💎 탐구</h4>
+          <b>신장과 체중 두 변량의 상관관계를 살펴볼 수 있는 그래프가 있을까?<br>
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -851,7 +621,7 @@
          <b>산점도</b>는 한 변량의 값을 x축, 다른 변량의 값을 y축으로 하여 좌표평면위에 각각의 점을
          표시한 것이다. 즉 (자료 4.2)를 순서쌍 (162, 54), (164, 60), ... (172, 67)로 <그림 4.12>와 같이 나타낸다.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0316.png">
+         <img class="imgFig600600" src="./Figure/Fig0316.png">
          <div class="textLeft">&lt;그림 3.16&gt;  신장과 체중의 산점도</div>
       <p>
          위의 그림을 보면 신장이 증가할수록 체중도 대개 증가함을 알 수 있다. 즉 산점도를 이용하면 
@@ -865,10 +635,10 @@
             양의 상관관계가 강하다 하고, 흩어져 있으면 양의 상관관계가 약하다고 한다. 
       </p>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0317.png">
+         <img class="imgFig600600" src="./Figure/Fig0317.png">
          <div class="textLeft">&lt;그림 3.17&gt;  강한 양의 상관관계</div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0318.png">
+         <img class="imgFig600600" src="./Figure/Fig0318.png">
          <div class="textLeft">&lt;그림 3.18&gt;  약한 양의 상관관계</div>
       <p class="textL20M20 ">
          2) <b> 음의 상관관계</b> – 한 변량 x의 값이 증가함에 따리 y의 값이 대체적으로 감소하는 경향이 있을 때, 
@@ -877,17 +647,17 @@
             음의 상관관계가 강하다 하고, 흩어져 있으면 음의 상관관계가 약하다고 한다.
       </p>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0319.png">
+         <img class="imgFig600600" src="./Figure/Fig0319.png">
          <div class="textLeft">&lt;그림 3.19&gt;  강한 음의 상관관계</div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0320.png">
+         <img class="imgFig600600" src="./Figure/Fig0320.png">
          <div class="textLeft">&lt;그림 3.20&gt;  약한 음의 상관관계</div>
       <p class="textL20M20 ">
          3) <b> 상관관계 없음</b> – 한 변량 x의 값이 증가함에 따리 y의 값이 증가하거나 감소하는 경향이 분명하지 
             않을 때, 두 변량 사이에 상관관계가 없다고 한다.
       </p>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0321.png">
+         <img class="imgFig600600" src="./Figure/Fig0321.png">
          <div class="textLeft">&lt;그림 3.21&gt; 상관관계가 없는 경우</div>
       <p>
   </div>
@@ -896,39 +666,24 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 실습 3.7</h4>
-       『eStatH』를을 이용하여 (자료 3.5) 7명 학생들의 신장과 체중에 대한 산점도를 그려보자. 
+       『eStatM』을 이용하여 (자료 3.5) 7명 학생들의 신장과 체중에 대한 산점도를 그려보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatH』 메뉴에서 ‘산점도 – 상관계수’를 선택하면 <그림 3.22>와 같은 창이 나타난다.
-            <p>‘X자료 입력’에 학생들의 신장을, ‘Y자료 입력’에 체중을 입력한다. (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
-          </td>
-        </tr>
-      </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0322.png">
-         <div class="textLeft">&lt;그림 3.22&gt;  산점도를 위한 신장 체중 자료 입력</div>
+         『eStatM』 '산점도 – 상관계수'에서 'X자료 입력'에 학생들의 신장을, 'Y자료 입력'에 체중을 입력한다. 
+         (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 자료를 입력하고 [실행] 버튼을 클릭하면 &lt;그림 3.16&gt;과 같은 산점도가 나타난다.  
+      <p>산점도 아래의 '회귀선'을 체크하면 신장과 체중의 관계를 설명하는 회귀직선이 그려진다. 
       <p>
-      <p>자료를 입력하고 [실행] 버튼을 클릭하면 <그림 3.16>과 같은 산점도가 나타난다.  
-      <p>산점도 아래의 ‘회귀선’을 체크하면 신장과 체중의 관계를 설명하는 회귀직선이 그려진다. 
+      <!----------*** scatter plot html ***-----------------------------> 
+         <iframe src="./example/0306/0306.html" width="730" height="1030"> </iframe>
+      <p>
+        <div class="textLeft">&lt;그림 3.22&gt;  산점도를 위한 신장 체중 자료 입력과 산점도</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 3.7</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
-          </td>
-          <td>
-          <p>
-            다음은 10명 학생들의 주당 학습시간과 시험성적에 대한 자료이다.  『eStatH』를 이용하여 
+        <h4>⏱ 과제 3.7</h4> <p>
+            다음은 10명 학생들의 주당 학습시간과 시험성적에 대한 자료이다.  『eStatM』을 이용하여 
             산점도를 그리고 어떤 상관관계가 있는지 살펴보라.
             <p>
             <div class="textLeft">(자료 3.6) 학생들의 주당 학습시간과 성적</div>
@@ -937,108 +692,12 @@
               <tr> <th class="thGrey">학습시간</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
               <tr> <th class="thGrey">성적</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
 
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">3.1  다음 중 양적 자료 분석에 사용되는 그래프는? </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
-    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
-    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
-    <label><input type="radio" name="item" value="4"> 띠그래프</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(23,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">3.2 다음 중 양적 자료의 분석에 사용되는 그래프가 아닌 것은? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 줄기와 잎 그림</label><br>
-    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
-    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
-    <label><input type="radio" name="item" value="4"> 점그래프</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(23,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">3.3 양적 변량의 마지막 숫자를 잎으로 하고 그 앞부분을 줄기로 하여 자료를 표시하는 그래프는?   </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 점그래프</label><br>
-    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
-    <label><input type="radio" name="item" value="3"> 산점도</label><br>
-    <label><input type="radio" name="item" value="4"> 줄기와 잎 그림</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(23,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">3.4 양적 변량의 마지막 숫자를 잎으로 하고 그 앞부분을 줄기로 하여 자료를 표시하는 그래프는?   </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
-    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
-    <label><input type="radio" name="item" value="3"> 산점도</label><br>
-    <label><input type="radio" name="item" value="4"> 줄기와 잎 그림</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(23,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">3.5 다음 중 두 변량 사이의 산점도가 음의 상관관계를 갖는 것은? </h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> 등산 높이와 기온</label><br>
-    <label><input type="radio" name="item" value="2"> 몸무게와 키</label><br>
-    <label><input type="radio" name="item" value="3"> 여름철 기온과 아이스크림 판매량</label><br>
-    <label><input type="radio" name="item" value="4"> 아버지 키와 아들의 키</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(23,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[23][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)">&#10094;&#10094; &nbsp;&nbsp;<b>2장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>4장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-</div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+  <iframe src="./exercise/exercise03.html" width="750" height="700" ></iframe>
 
 </body>
 </html>

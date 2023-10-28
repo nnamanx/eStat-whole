@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Hypothesis mu12_title">Testing &mu;1, &mu;2</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 
+         <span data-msgid="Testing Hypothesis mu12">
+           Testing Hypothesis : Two Population Means &mu;<sub>1</sub>,  &mu;<sub>2</sub> 
+         </span>
+      </b>
+    </div>
+    <br>
+    <form name="myForm0"> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b>
+      <span class="fontmath"> &nbsp;&nbsp; 
+        H<sub>o</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> = D &nbsp; 
+      </span>
+      <input type="text" class="textarea" value=0 size=6 id="mu4">&nbsp; 
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> &ne; D &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> > D &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : &mu;<sub>1</sub> - &mu;<sub>2</sub> < D      
+       </span>
+    </form>
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    <span data-msgid="t-test">t-test</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+   
+    <form name="myForm3">
+      <b>[<span data-msgid="Sampling Type">Sample Type</span>]</b> &nbsp; 
+      <input type="radio" name = "type3" value="1" checked><span data-msgid="Independent Sample">independent</span>  &nbsp;      
+      <input type="radio" name = "type3" value="2" > <span data-msgid="Paired Sample">paired </span> 
+    </form>   
+    <form name="myForm1">
+      <b>[<span data-msgid="Variance Assumption">Variance Assumption</span>]</b> &nbsp;
+      <span class="fontmath">
+      <input type="radio" name = "type1" value="1" id="samevari" checked>
+      &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> &nbsp;&nbsp;
+      <input type="radio" name = "type1" value="2" id="diffvari">
+      &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup>  </span>  
+    </form>
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using bsv)
+    </span>   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 1</td>
+	  <td><input type="text" size=60 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 2</td>
+	  <td><input type="text" size=60 id="data2"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>         
+	  <td><span class="fontmath">n<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
+	  <td><span class="fontmath">n<sub>2</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
+	  <td><span class="fontmath">n<sub>d</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nDiff"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Mean">Sample Mean</span></td>
+	  <td><span class="fontmath">x&#772;<sub>1</sub></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
+	  <td><span class="fontmath">x&#772;<sub>2</sub></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
+	  <td><span class="fontmath">d&#772;</span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="avgDiff"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Variance">Sample Variance</span></td>
+	  <td><span class="fontmath">s<sub>1</sub><sup>2</sup></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="var41"></td>
+	  <td><span class="fontmath">s<sub>2</sub><sup>2</sup></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="var42"></td>
+	  <td><span class="fontmath">s<sub>d</sub><sup>2</sup></span></td>
+	  <td>=</td>	
+	  <td><input type="text" class="textarea" size=6 id="varDiff"></td>
+	</tr>
+      </tbody>
+    </table>
+    <b>[<span data-msgid="Confidence Interval"></span> : &mu;<sub>1</sub> - &mu;<sub>2</sub> ]</b>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath" id="tformula"></span> = 
+    <input type="text" class="textarea" size=6 id="tvalue">
+    <table class="stat">
+      <tbody>
+	<tr>
+	  <td><span class="fontmath" id="intFormula"></span></td>
+          <td>&hArr;</td>
+	  <td>[&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;]</td>
+	</tr>
+      </tbody>
+    </table>
+    <table class="stat">
+      <tbody>
+        <tr>
+          <td> </td>
+          <td> </td>
+	  <td><span class="fontmath" id="varFormula"></span></td>
+          <td> = </td>
+	  <td><input type="text" class="textarea" size=6 id="ansFormula"></td>
+        </tr>
+      </tbody>
+    </table>
+         <div class="figText">&lt;Figure 8.1.1&gt; Testing hypothesis for two population means using  『eStatU』 - paired sample</div>
+    <p>
+    <button type="button" id="executeTH4" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg>
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+  </div> 
+
+  <script src="/estat/eStatU/js/80TestingMu12.js"> </script>
+  <script>
+      // init data
+      document.getElementById("nn41").value   = 15;    
+      document.getElementById("xbar41").value = 275;
+      document.getElementById("var41").value  = 144;    
+      document.getElementById("nn42").value   = 14;    
+      document.getElementById("xbar42").value = 269;
+      document.getElementById("var42").value  = 100; 
+  </script>
+
+</body>
+</html>

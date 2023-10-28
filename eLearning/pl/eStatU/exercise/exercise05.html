@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 5</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>5.5 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">5.1 When two events A and B are mutually exclusive, what is the probability of an event A∪B?   </h6> 
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> P(A)－P(B)</label><br>
+    <label><input type="radio" name="item" value="2"> P(A)P(B)</label><br>
+    <label><input type="radio" name="item" value="3"> P(A)＋P(B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A)/P(B)</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">5.2 Let the probability that event A will occur be P(A) and the probability that event B will occur be P(B). Which of the following is wrong?  </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 0 &le; P(A) &le; 1</label><br>
+    <label><input type="radio" name="item" value="2"> -1 &le; P(B) &le; 0 </label><br>
+    <label><input type="radio" name="item" value="3"> P(A∪B)=P(A)+P(B)-P(A∩B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A∩B)=P(A)․P(B) </label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">5.3  The value of P(A)=0.4, P(B)=0.2, P(A|B)=0.6. What is the probability of P(A∩B)? </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.12</label><br>
+    <label><input type="radio" name="item" value="3"> 0.24</label><br>
+    <label><input type="radio" name="item" value="4"> 0.48</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">5.4  If A ⊂ B, what is the comparison between the conditional probability P(A|B) and P(A)? </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> equal or greater</label><br>
+    <label><input type="radio" name="item" value="2"> smaller</label><br>
+    <label><input type="radio" name="item" value="3"> equal or smaller</label><br>
+    <label><input type="radio" name="item" value="4"> There is no comparison</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">5.5  How likely are 2 and 5 to appear at the same time when throwing 2 dice? </h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/6</label><br>
+    <label><input type="radio" name="item" value="3"> 1/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/18</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ5">
+  </form>
+
+  <h6 class="textL30M30">5.6  When throwing a dice three times, what is the probability that the number of eyes is 5 at the first throw, 3 at the second, and an even number of eyes at the third? </h6>
+  <form name="Q6">
+    <label><input type="radio" name="item" value="1"> 1/30</label><br>
+    <label><input type="radio" name="item" value="2"> 1/72</label><br>
+    <label><input type="radio" name="item" value="3"> 1/108</label><br>
+    <label><input type="radio" name="item" value="4"> 1/276</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ6">
+  </form>
+
+  <h6 class="textL30M30">5.7  When you extract three light bulbs randomly without replacement one by one from a barrel containing five good bulbs and two defective bulbs, what is the probability that one bulb is a defective item?  </h6>
+  <form name="Q7">
+    <label><input type="radio" name="item" value="1"> 1/7</label><br>
+    <label><input type="radio" name="item" value="2"> 2/7</label><br>
+    <label><input type="radio" name="item" value="3"> 3/7.</label><br>
+    <label><input type="radio" name="item" value="4"> 4/7</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ7">
+  </form>
+
+  <h6 class="textL30M30">5.8  When P(B)=0.2, P(A∩B)= 0.12, what is the value of P(A|B)?</h6>
+  <form name="Q8">
+    <label><input type="radio" name="item" value="1"> 0.20</label><br>
+    <label><input type="radio" name="item" value="2"> 0.60</label><br>
+    <label><input type="radio" name="item" value="3"> 0.12</label><br>
+    <label><input type="radio" name="item" value="4"> 0.24</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ8">
+  </form>
+
+  <h6 class="textL30M30">5.9  When P(A)=0.4, P(B)=0.2, P(A|B)=0.6, what is the value of P(B|A)?</h6>
+  <form name="Q9">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.24</label><br>
+    <label><input type="radio" name="item" value="3"> 0.30</label><br>
+    <label><input type="radio" name="item" value="4"> 0.40</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ9">
+  </form>
+
+  <h6 class="textL30M30">5.10 Mark the result of throwing two dice as ( \(x_1 , x_2 \) ) and let \(B = \{ (x_{1} ,x_{2} ) |  x_{1} > x_{2} \} \) . What is the value of P(B)? </h6>
+  <form name="Q10">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/12</label><br>
+    <label><input type="radio" name="item" value="3"> 5/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/36</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ10">
+  </form>
+
+  <h6 class="textL30M30">5.11 Mark the result of throwing two dice as ( \(x_1 , x_2 \) ) and let \(A = \{ (x_{1} ,x_{2} ) | x_{1} + x_{2} =10 \} \),   \(B = \{ (x  _{1} ,x  _{2} ) |  x  _{1} > x  _{2} \} \). What is the value of P(B|A)? </h6> 
+  <form name="Q11">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/12</label><br>
+    <label><input type="radio" name="item" value="3"> 5/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/2</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ11">
+  </form>
+
+    <h6 class="textL30M30">5.12 What is the standard deviation when we multiply each of the values 
+       of one random variable five times? </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> It is five times as much.</label><br>
+      <label><input type="radio" name="item" value="2"> It is one-fifth the size.	</label><br>
+      <label><input type="radio" name="item" value="3"> It is ten times as much. </label><br>
+      <label><input type="radio" name="item" value="4"> Four-tenths the size. </label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+    <h6 class="textL30M30">5.13 In a class, the average of mid-term scores was 24 points and its standard deviation was 3. Because of poor grades, 
+         professor doubled the mid-term scores and then add 10 points for all the students in the class. 
+         What is the average and standard deviation of new scores? </h6>
+    <form name="Q13">
+      <label><input type="radio" name="item" value="1"> 24, 3</label><br>
+      <label><input type="radio" name="item" value="2"> 48, 3</label><br>
+      <label><input type="radio" name="item" value="3"> 48, 6</label><br>
+      <label><input type="radio" name="item" value="4"> 58, 6</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(13,Q13)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ13">
+    </form>
+
+    <h6 class="textL30M30">5.14 If the mean of a random variable \(\small X\) is 20, what is the mean of \(Y=2X+3\)? </h6>
+    <form name="Q14">
+      <label><input type="radio" name="item" value="1"> 20</label><br>
+      <label><input type="radio" name="item" value="2"> 40</label><br>
+      <label><input type="radio" name="item" value="3"> 23</label><br>
+      <label><input type="radio" name="item" value="4"> 43</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(14,Q14)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ14">
+    </form>
+
+    <h6 class="textL30M30">5.15 If the variance of a random variable \(\small X\) is 2, what is the variance of \(Y=2X+1\)? </h6>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> 2</label><br>
+      <label><input type="radio" name="item" value="2"> 3</label><br>
+      <label><input type="radio" name="item" value="3"> 8</label><br>
+      <label><input type="radio" name="item" value="4"> 18</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+
+    <h6 class="textL30M30">5.16 Which of the following is wrong? </h6>
+    <form name="Q16">
+      <label><input type="radio" name="item" value="1"> \(\small E(aX＋b) = aE(X)＋b\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small E(X＋Y) = E(X)＋E(Y)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(V(aX＋b) =  a^2 V(X)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(V(aX＋b) =  a^2 V(X)+b\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(16,Q16)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ16">
+    </form>
+
+    <h6 class="textL30M30">5.17 If the expected value of \(\small X\) is \(\small E(X)=5\) and \(\small E(X^2)\)=25, and what is the variance \(\small V(X)\)?  </h6>
+    <form name="Q17">
+      <label><input type="radio" name="item" value="1"> -5</label><br>
+      <label><input type="radio" name="item" value="2"> 0</label><br>
+      <label><input type="radio" name="item" value="3"> 5</label><br>
+      <label><input type="radio" name="item" value="4"> 25</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(17,Q17)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ17">
+    </form>
+
+    <h6 class="textL30M30">5.18 Which one of the followings is suitable as a probability distribution function? </h6>
+    <form name="Q18">
+      <label><input type="radio" name="item" value="1"> \(f(x) = \frac {x} {5} , \qquad(x = -1, 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="2"> \(f(x) = \frac {(5-x)} {14} , \qquad(x = 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="3"> \(f(x) = x^2 - 1 ,\qquad(x = 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="4"> \(f(x) = x^3 - x^2 + 5 ,\qquad(x = 0, 1, 2, 3) \)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(18,Q18)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ18">
+    </form>
+
+    <h6 class="textL30M30">5.19 Which of the followings is NOT a probability distribution function? </h6>
+    <form name="Q19">
+      <label><input type="radio" name="item" value="1"> \( f(x) \ge 0\)</label><br>
+      <label><input type="radio" name="item" value="2"> \( \int_{-&infin;}^{&infin;} f(x) dx = 1 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \( P(a < X < b) = \int_a^b f(x)dx \)</label><br>
+      <label><input type="radio" name="item" value="4"> \( \int_{-&infin;}^{&infin;} xf(x) dx = 1 \)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(19,Q19)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ19">
+    </form>
+
+    <h6 class="textL30M30">5.20 What is the average value of \(\small X\) when the variables \(\small X\) take values of 0, 1, 2 and 3 and the probability function \( f(x) = \frac{x}{6}\) </h6>
+    <form name="Q20">
+      <label><input type="radio" name="item" value="1"> 5/3</label><br>
+      <label><input type="radio" name="item" value="2"> 6/3</label><br>
+      <label><input type="radio" name="item" value="3"> 7/3</label><br>
+      <label><input type="radio" name="item" value="4"> 8/3</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(20,Q20)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ20">
+    </form>
+
+    <h6 class="textL30M30">5.21 Which of the following is incorrect for the probability distribution function f(x) defined for all values of a continuous random variable \(\small X\)? </h6> 
+    <form name="Q21">
+      <label><input type="radio" name="item" value="1"> \( f(x) \ge 0\)</label><br>
+      <label><input type="radio" name="item" value="2"> \( \int_{-&infin;}^{&infin;} f(x) dx = 1 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \( P(a < X < b) = \int_a^b f(x)dx \)</label><br>
+      <label><input type="radio" name="item" value="4"> \( \int_{0}^{&infin;} f(x) dx = \frac{1}{2} \)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(21,Q21)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ21">
+    </form>
+
+    <h6 class="textL30M30">5.22 What is the mean value of \(\small E(X)\) and the standard deviation \(σ(X)\) when the probability distribution of a random variable \(\small X\) is as follows? </h6>
+      <table style="width:350px"> 
+        <tr>
+          <td class="tdCenter" style="width:70px">\(x\)</td>
+          <td class="tdCenter" style="width:70px">0</td>
+          <td class="tdCenter" style="width:70px">1</td>
+          <td class="tdCenter" style="width:70px">2</td>
+          <td class="tdCenter" style="width:70px">Total</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(\small P(X=x)\)</td>
+          <td class="tdCenter">\(\frac{3}{10}\)</td>
+          <td class="tdCenter">\(\frac{6}{10}\)</td>
+          <td class="tdCenter">\(\frac{1}{10}\)</td>
+          <td class="tdCenter">1</td>
+        </tr>
+      </table>
+    <form name="Q22">
+      <label><input type="radio" name="item" value="1"> \(\small E(X)=0.8, σ(X)=0.6\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small E(X)=0.6, σ(X)=0.8\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small E(X)=0.7, σ(X)=0.1\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small E(X)=0.1, σ(X)=0.7\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(22,Q22)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ22">
+    </form>
+
+    <h6 class="textL30M30">5.23 The number of eyes when we throw one dice is from 1 to 6. If \(\small X\) is a random variable which represents the number of eyes, what is the expected value of \(\small E(X)\)? </h6>
+    <form name="Q23">
+      <label><input type="radio" name="item" value="1"> 2</label><br>
+      <label><input type="radio" name="item" value="2"> 2.5</label><br>
+      <label><input type="radio" name="item" value="3"> 3</label><br>
+      <label><input type="radio" name="item" value="4"> 3.5</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(23,Q23)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ23">
+    </form>
+
+    <h6 class="textL30M30">5.24 What is the expected value of scores if you square the number of eyes appeared when you throw one dice?</h6>
+    <form name="Q24">
+      <label><input type="radio" name="item" value="1"> 23/6</label><br>
+      <label><input type="radio" name="item" value="2"> 41/6</label><br>
+      <label><input type="radio" name="item" value="3"> 53/6</label><br>
+      <label><input type="radio" name="item" value="4"> 91/6</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(24,Q24)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ24">
+    </form>
+
+    <h6 class="textL30M30">5.25 Assuming that a random variable \(\small X\) take three values 0, 1, and 2, and their probabilities are 1/2, 1/3, 1/6 respectively. 
+       What is the value of the cumulative distribution function F(x) if 1 &le; x &lt; 2?  </h6>
+    <form name="Q25">
+      <label><input type="radio" name="item" value="1"> 0</label><br>
+      <label><input type="radio" name="item" value="2"> 5/6</label><br>
+      <label><input type="radio" name="item" value="3"> 1/3</label><br>
+      <label><input type="radio" name="item" value="4"> 2/3</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(25,Q25)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ25">
+    </form>
+
+    <h6 class="textL30M30">5.26 What is the mean and variance of the binomial distribution \( B(100, \frac{1}{5} ) \)? </h6>
+    <form name="Q26">
+      <label><input type="radio" name="item" value="1"> 20, 4</label><br>
+      <label><input type="radio" name="item" value="2"> 100, 16</label><br>
+      <label><input type="radio" name="item" value="3"> 100, 4</label><br>
+      <label><input type="radio" name="item" value="4"> 20, 16</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(26,Q26)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ26">
+    </form>
+
+    <h6 class="textL30M30">5.27 What is the variance of a random variable \(\small X\) which follows a binomial distribution \( P(X) = {}_4 C _x (0.2)^x (1-0.2) ^{4-x} \)</h6>
+    <form name="Q27">
+      <label><input type="radio" name="item" value="1"> 0.16</label><br>
+      <label><input type="radio" name="item" value="2"> 0.80</label><br>
+      <label><input type="radio" name="item" value="3"> 0.32</label><br>
+      <label><input type="radio" name="item" value="4"> 0.64</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(7,Q27)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ27">
+    </form>
+
+    <h6 class="textL30M30">5.28 There are 10 multiple choice problems and only one of the four answers is the right answer. 
+        What is the probability that four questions are correct when answering 10 questions?</h6>
+    <form name="Q28">
+      <label><input type="radio" name="item" value="1"> 0.0162</label><br>
+      <label><input type="radio" name="item" value="2"> 0.0487</label><br>
+      <label><input type="radio" name="item" value="3"> 0.1460</label><br>
+      <label><input type="radio" name="item" value="4"> 0.2050</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(28,Q28)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ28">
+    </form>
+
+  <h6 class="textL30M30">5.29 According to the nature of the normal distribution, what is the probability of taking a value between &mu; &plusmn; 3&sigma;</h6>
+  <form name="Q29">
+    <label><input type="radio" name="item" value="1"> Approximately 99.73%</label><br>
+    <label><input type="radio" name="item" value="2"> Approximately 97.73%</label><br>
+    <label><input type="radio" name="item" value="3"> Approximately 95.73%</label><br>
+    <label><input type="radio" name="item" value="4"> Approximately 68.73%</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(29,Q29)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ29">
+  </form>
+
+  <h6 class="textL30M30">5.30 There was a job test and the distribution of its scores is normal with the mean of 400 and standard deviation of 50. 
+      Scores between 450 and 500 are said to be suitable for the job. 
+      What percentage of scores do you think is appropriate for the job? </h6>
+  <form name="Q30">
+    <label><input type="radio" name="item" value="1"> 80%</label><br>
+    <label><input type="radio" name="item" value="2"> about 50%</label><br>
+    <label><input type="radio" name="item" value="3"> about 30%</label><br>
+    <label><input type="radio" name="item" value="4"> about 14%</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(30,Q30)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ30">
+  </form>
+
+  <h6 class="textL30M30">5.31 Using the standard normal distribution table \(P( -&infin; < Z < z ) \) below, what is the probability of \(P(-0.41 \le Z \le 2.21)\)? </h6> 
+      <table style="width:300px"> 
+        <tr>
+          <td class="tdCenter" style="width:100px">\(\small z\)</td>
+          <td class="tdCenter" style="width:100px">\(P( -&infin; < Z < z ) \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">0.40</td>
+          <td class="tdCenter">0.6554</td>
+        <tr>
+          <td class="tdCenter">0.41</td>
+          <td class="tdCenter">0.6591</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2.20</td>
+          <td class="tdCenter">0.9861</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2.21</td>
+          <td class="tdCenter">0.9864</td>
+        </tr>
+      </table>
+  <form name="Q31">
+    <label><input type="radio" name="item" value="1"> 0.6415</label><br>
+    <label><input type="radio" name="item" value="2"> 0.6455</label><br>
+    <label><input type="radio" name="item" value="3"> 0.6452</label><br>
+    <label><input type="radio" name="item" value="4"> 0.6418</label><br>
+    <p>
+    <input type="button" value="Submit" onClick="radio(31,Q31)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ31">
+  </form>
+
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+      <p class="textL30M30"> 5.1  &nbsp;&nbsp;Calculate the following.
+      <div class="textL30">1) \({}_{8}P_{2} \)  <br>2) \({}_{5}P_{3} \)   <br>3) \({}_{9}P_{9} \)    <br>4) \({}_{10}P_{4} \)    <br>5) \({}_{6}P_{2} \) <br>
+      6) \({}_{10}C_{3} \) <br>7) \({}_{10}C_{7} \)  <br>8) \({}_{7}C_{3} \)    <br>9) \({}_{5}C_{1} \)     <br>10) \({}_{8}C_{4} \) 
+      </div>
+      <p>
+      <p class="textL30M30"> 5.2  &nbsp;&nbsp;When four offices are located side by side, they are run by four middle-level executives. 
+                                  In how many ways can these four executives be assigned to four offices?
+      <p>
+      <p class="textL30M30"> 5.3  &nbsp;&nbsp;A manager employs seven employees and four of them are to form a production team. 
+                                  In how many ways can seven people form different production teams?
+      <p>
+      <p class="textL30M30"> 5.4  &nbsp;&nbsp;An advertising designer wants to design pages of a magazine by selecting three of eight photos. Page location is said to be unimportant. How many designs can be made using different combinations of photos?
+      <p>
+      <p class="textL30M30"> 5.5  &nbsp;&nbsp;A manager of a company that produces five kinds of soap wants to display each 
+                                  sample soap in a row at a show case in his office. In how many ways can the manager display five soaps?
+      <p>
+      <p class="textL30M30"> 5.6  &nbsp;&nbsp;A salesperson has seven items and wants them on display at the counter. 
+                                  He can only display four. If the order in which he displays the item is not important, 
+                                  in how many ways can he display?
+      <p>
+      <p class="textL30M30"> 5.7  &nbsp;&nbsp;An airline company which has six airplanes plans to advertise each airplane's operation 
+                                  in the Sunday newspaper for six weeks.
+      <p>
+      <div class="textL50M30">1) How many ways are there to advertise flight operations?
+      </div>
+      <div class="textL50M30">2) If you have decided to advertise only four times during six weeks, how many ways are there to advertise flight operations?
+      </div>
+      <p>
+      <p class="textL30M30">5.8  &nbsp;&nbsp;A company said that five applicants have applied to fill five different positions. If all applicants are given equal qualifications for five positions, how many ways are there to fill five positions?
+      <p>
+      <p class="textL30M30">5.9  &nbsp;&nbsp;A company has 231 employees and employees are classified by age and rank as the following table.
+      <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey"></th>
+          <th class="thGrey">Age</th>
+        </tr>
+        <tr> 
+          <th class="thGrey">Rank</th>
+          <th class="thGrey">A1<br> &lt; 20</th>
+          <th class="thGrey">A2<br>21 - 25</th>
+          <th class="thGrey">A3<br>26 - 30</th>
+          <th class="thGrey">A4<br>31 - 35</th>
+          <th class="thGrey">A5<br> &gt; 35</th>
+          <th class="thGrey">Total</th>
+        </tr>
+        <tr>
+          <td class="tdLeft">B1 Clerk</td>
+          <td class="tdRight">20</td>
+          <td class="tdRight">20</td>
+          <td class="tdRight">15</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">70</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B2 Manager</td>
+          <td class="tdRight">3</td>
+          <td class="tdRight">6</td>
+          <td class="tdRight">3</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">15</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B3 Technician</td>
+          <td class="tdRight">15</td>
+          <td class="tdRight">30</td>
+          <td class="tdRight">35</td>
+          <td class="tdRight">20</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">110</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B4 Salesman</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">10</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">23</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B5 Director</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">5</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">8</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">B6 Executive</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">0</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">2</td>
+          <td class="tdRight">1</td>
+          <td class="tdRight">5</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Total</td>
+          <td class="tdRight">39</td>
+          <td class="tdRight">62</td>
+          <td class="tdRight">70</td>
+          <td class="tdRight">41</td>
+          <td class="tdRight">19</td>
+          <td class="tdRight">231</td>
+        </tr>
+      </table>
+      <p>
+      <div class="textL30"> Refer to this table to explain the meaning of the following sets and find the number of each employee.</div>
+      <p>
+      <div class="textL30"> 1) B1 ∩ A5     2) A2 ∩ B6     3) B4 ∩ A5     4) A1 ∪ B6     5) A3 ∪ A5
+      </div>
+      <div class="textL30"> 6) B2 ∪ B3     7) A4     8) (A1 ∪ A2) ∩ B3    9) (B3 ∪ B4) ∩ A5
+      </div>
+      <p>
+      <div class="textL30">What is the number of employees who meet each of the following conditions? </div>
+      <p>
+      <div class="textL50M30">10) The number of persons who are neither Director nor Executive.
+      </div>
+      <div class="textL50M30">11) The number of persons in charge of both Director and Executive.
+      </div>
+      <div class="textL50M30">12) The number of persons aged older than 30 and in charge of Clerk or Manager.
+      </div>
+      <div class="textL50M30">13) The number of persons who are both Salesman and 21-25 years of age. The number of persons who are either Salesman or 21-25 years of age.
+      </div>
+      <div class="textL50M30">14) The number of Technicians under the age of 35.
+      </div>
+      <div class="textL50M30">15) The number of persons between the ages of 21 and 30 who are Technician  or Salesman.
+      </div>
+      <div class="textL50M30">16) The number of persons who are Clerk or Manager and are over 30.
+      </div>
+      <p>
+      <p class="textL30M30"> 5.10 A store which has three types of goods, A, B and C, has received orders from 200 customers for a certain period of time.
+      <p>
+      <div class="textL30">Goods A: 100 </div>
+      <div class="textL30">Goods B: 95 </div>
+      <div class="textL30">Goods C: 85 </div>
+      <div class="textL30">Goods A and C: 55 </div>
+      <div class="textL30">Goods B and C: 30 </div>
+      <div class="textL30">Goods A and B: 50  </div>
+      <div class="textL30">Goods A and B and C: 20 </div>
+      <p>
+      <div class="textL30"> Find the number of customers ordered using the Van diagram as follows: </div>
+      <p>
+      <div class="textL50M30">1) Number of customers who have ordered at least one product.</div>
+      <div class="textL50M30">2) Number of customers who have not ordered any product.</div>
+      <div class="textL50M30">3) The exact number of customers who ordered one product.</div>
+      <div class="textL50M30">4) The exact number of customers who have ordered two products.</div>
+      <div class="textL50M30">5) The exact number of customers who have ordered three products.</div>
+      <p>
+      <p class="textL30M30"> 5.11 Two executive positions in a company are vacant. Seven men and three women are fully qualified and equally eligible. The company decided to pick two of these ten people at random. Find the following odds.
+      <div class="textL50M30">1) The probability that a woman will be selected for both seats.</div>
+      <div class="textL50M30">2) The probability that at least one of the two seats will be selected by a woman.</div>
+      <div class="textL50M30">3) The probability that neither of the two seats will be selected by a woman.</div>
+      <p>
+      <p class="textL30M30">5.12 There are 300 households living in a neighborhood. One hundred of them are said to be out of the house in the evening. Of the remaining households, 50 do not respond to telephone surveys. When a person randomly selects a household in the neighborhood and conducts a telephone survey, ask for the following odds.
+      <div class="textL50M30">1) Probability that no one will be present when an investigator calls a house.</div>
+      <div class="textL50M30">2) When an investigator calls a house, there is someone, but there is a chance that they will not respond to the investigation.</div>
+      <div class="textL50M30">3) Probability of responding to a telephone survey.</div>
+      <p>
+      <p class="textL30M30">5.13 When an employee is selected randomly by a company, there is a 0.58 chance that the person is over the age of 31. What is the probability that an employee who is hired randomly is under 30?
+      <p>
+      <p class="textL30M30">5.14 The following table shows the number of absent days due to diseases of 100 workers over the year in a company. Answer the following questions based on this table. 
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <td class="tdCenter" style="width:180px">\(\small X\) (Number of absent days)</td> 
+          <td class="tdCenter" style="width:30px">0</td>
+          <td class="tdCenter" style="width:30px">1</td>
+          <td class="tdCenter" style="width:30px">2</td>
+          <td class="tdCenter" style="width:30px">3</td>
+          <td class="tdCenter" style="width:30px">4</td>
+          <td class="tdCenter" style="width:30px">5</td>
+          <td class="tdCenter" style="width:30px">6</td>
+          <td class="tdCenter" style="width:30px">7</td>
+          <td class="tdCenter" style="width:30px">8</td>
+          <td class="tdCenter" style="width:30px">9</td>
+          <td class="tdCenter" style="width:30px">10</td>
+        </tr>
+        <tr> <td class="tdCenter">Number of workers </td>
+          <td class="tdCenter"> 5</td> 
+          <td class="tdCenter"> 8</td> 
+          <td class="tdCenter">10</td> 
+          <td class="tdCenter">12</td> 
+          <td class="tdCenter">18</td> 
+          <td class="tdCenter">14</td> 
+          <td class="tdCenter">10</td> 
+          <td class="tdCenter"> 9</td> 
+          <td class="tdCenter"> 8</td> 
+          <td class="tdCenter"> 4</td> 
+          <td class="tdCenter"> 2</td> 
+        </tr>
+      </table>
+      <p>
+      <div class="textL50M30">1) Display the probability distribution of absent days due to disease.</div>
+      <div class="textL50M30">2) Draw the cumulative probability distribution.</div>
+      <div class="textL50M30">3) Calculate the expectation and variance.</div>
+      <p>
+      <p class="textL30M30">5.15 When selecting one worker at random in question 5.14, obtain the following probabilities.
+      <div class="textL50M30">1) Probability that the selected person was absent for 3 days.</div>
+      <div class="textL50M30">2) Probability that the selected person has been absent for more than five days.</div>
+      <div class="textL50M30">3) Probability that the selected person was absent from 6 to 8 days.</div>
+      <p>
+      <p class="textL30M30">5.16 In question 5.14, obtain the following.
+      <div class="textL50M30">1) \(\small P(X = 0)\)   </div>  
+      <div class="textL50M30">2) \(\small P(X = 10)\)  </div>   
+      <div class="textL50M30">3) \(\small P(X \ge 6) \)  </div>  
+      <div class="textL50M30">4) \(\small P(X \lt 6)\)  </div>
+      <div class="textL50M30">5) \(\small P(3 \le X \le 7)\)</div>
+      <p>
+      <p class="textL30M30">5.17 A department store surveyed 80 customers about their purchasing habits and asked, 'How many times did you buy at this department store last month?' The answer to the question is as follows.
+      <table style="width:600px"> 
+        <tr> 
+          <td class="tdCenter" style="width:180px">\(\small X\)(Number of purchases)</td> 
+          <td class="tdCenter" style="width:30px">0</td>
+          <td class="tdCenter" style="width:30px">1</td>
+          <td class="tdCenter" style="width:30px">2</td>
+          <td class="tdCenter" style="width:30px">3</td>
+          <td class="tdCenter" style="width:30px">4</td>
+          <td class="tdCenter" style="width:30px">5</td>
+          <td class="tdCenter" style="width:30px">6</td>
+          <td class="tdCenter" style="width:30px">7</td>
+        </tr>
+        <tr> <td class="tdCenter">Number of customers</td>
+          <td class="tdCenter">15</td> 
+          <td class="tdCenter">27</td> 
+          <td class="tdCenter">14</td> 
+          <td class="tdCenter">12</td> 
+          <td class="tdCenter">6</td> 
+          <td class="tdCenter">4</td> 
+          <td class="tdCenter">1</td> 
+          <td class="tdCenter">1</td> 
+        </tr>
+      </table>
+      <p>
+      <div class="textL50M30">1) If \(\small X\) = 'Number of purchases', draw the probability distribution function of \(\small X\).</div>
+      <div class="textL50M30">2) Draw the cumulative distribution function of \(\small X\).</div>
+      <div class="textL50M30">3) When selecting one of customers, obtain the following probability.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ① Probability that a person who purchased more than once will be selected.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ② Probability that a person who has never purchased will be selected.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ③ Probability that a person who has purchased more than 4 times will be selected.</div>
+      <div class="textL50M30">&nbsp;&nbsp;&nbsp;   ④ Probability that a person who purchased less than 3 will be selected.</div>
+      <div class="textL50M30">4)  Find the expectation and variance of \(\small X\).</div>
+      <p>
+      <p class="textL30M30">5.18 Over the years, a salesperson found that there was a 50% chance of selling the product when a customer visited. If one day five customers visit this salesman, calculate the following odds. Check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Exactly how likely is it to sell three product?</div>
+      <div class="textL50M30">2) What is the probability of selling three or more products?</div>
+      <div class="textL50M30">3) What is the probability of selling less than 3 products?</div>
+      <div class="textL50M30">4) What is the probability that none of products could be sold?</div>
+      <div class="textL50M30">5) What is the probability of selling 5 products?</div>
+      <p>
+      <p class="textL30M30">5.19 If a random variable \(\small X\) follows a binomial distribution with \(n = 6, p = 0.2\), find the following probabilities using  『eStatU』.
+      <div class="textL50M30">1) \(\small P(X \gt 2)\) </div>     
+      <div class="textL50M30">2) \(\small P(X \le 4)\) </div> 
+      <div class="textL50M30">3) \(\small P(2 \le X \le 4)\)</div>
+      <p>
+      <p class="textL30M30">5.20 In some cities, 35% of residents are said to be opposed to the idea of expanding the main street. Obtain the following probabilities and check them using  『eStatU』.
+      <div class="textL50M30">1) Probability that the number of residents who oppose the idea of expansion is 10 or more.</div>
+      <div class="textL50M30">2) Probability that the number of residents who oppose the idea of expansion is between 15 and 18.</div>
+      <div class="textL50M30">3) Probability that the number of residents who oppose the idea of expansion is less than 8.</div>
+      <div class="textL50M30">4) Probability that the number of residents who oppose the idea of expansion is at least 12.</div>
+      <div class="textL50M30">5) The probability that the number of residents who oppose the idea of expansion is only 13.</div>
+      <p>
+      <p class="textL30M30">5.21 It is said that 72% of drivers usually use a seat belt. When you select 15 drivers randomly and calculate the following probabilities of drivers who use a seat belt and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Probability of 10 or more drivers. </div>
+      <div class="textL50M30">2) 8 or less probability drivers. </div>
+      <div class="textL50M30">3) Probability of at least 11 drivers.</div>
+      <div class="textL50M30">4) Probability of at least 7 drivers.</div>
+      <p>
+      <p class="textL30M30">5.22 One producer claims that 6% of his product is defective. If you sample 20 products randomly, what is the probability that the number of defective products is as follows. Check the calculation using  『eStatU』.
+      <div class="textL50M30">1) 2 defective products    	</div>
+      <div class="textL50M30">2) more than 2(\ge) products   	</div>
+      <div class="textL50M30">3) 0 product</div>
+      <div class="textL50M30">4) less than 5 products	</div>
+      <div class="textL50M30">5) between 2 and 5 products</div>
+      <p>
+      <p class="textL30M30">5.23 The defect rate of products in a factory is said to be about 3%. When an employee continues to inspect the product until he finds a defective product to investigate the cause of defective products, find the following probabilities and check them using  『eStatU』.  
+      <div class="textL50M30">1) The probability of finding a defective product at the third trial. </div>
+      <div class="textL50M30">2) The probability of finding a defective product at least the third trial?</div>
+      <p>
+      <p class="textL30M30">5.24 The number of defects per 1 \(m^2\)in a fabric follows a Poisson distribution with the average defect  = 0.2. 
+        When 1 \(m^2\)of this fabric is investigated for quality inspection, find the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) What is the probability that the defect count is zero?</div>
+      <div class="textL50M30">2) What is the probability that the defect count is greater than 2?</div>
+      <p>
+      <p class="textL30M30">5.25 Assume that the average number of Hurricanes passing through the southern part of the country is  = 3 times per year. Check the following probabilities using  『eStatU』.
+      <div class="textL50M30">1) What is the probability that a Hurricane will pass once this year?</div>
+      <div class="textL50M30">2) What is the probability that more than 2 Hurricanes will pass this year?</div>
+      <div class="textL50M30">3) What is the probability that two or three Hurricanes will pass this year?</div>
+      <p>
+      <p class="textL30M30">5.26 A candidate has a 60% approval rating in an election. When interviewing voters to hear the opinions of those who oppose the candidate, look for the next probabilities.
+      <div class="textL50M30">1) What is the probability of finding someone who is opposed in the first interview?</div>
+      <div class="textL50M30">2) What is the probability of finding someone who is opposed in the fifth interview?</div>
+      <p>
+      <p class="textL30M30">5.27 Five samples are selected randomly from a box containing 20 tobacco products of which there are 15 normal products and 5 defective products. What is the probability of having one, two, or three defectives in the samples?
+      <p>
+      <p class="textL30M30">5.28 If \(\small Z\) is the standard normal random variable, obtain the following and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Calculate an area between \(\small Z\) = 0 and \(\small Z\) = 1.54.</div>
+      <div class="textL50M30">2) Calculate the probability that \(\small Z\) is between -2.07 and 2.33.</div>
+      <div class="textL50M30">3) \(\small P(Z \ge 0.65 )\)</div>
+      <div class="textL50M30">4) \(\small P(Z \ge -0.65 )\)</div>
+      <div class="textL50M30">5) \(\small P(Z \lt -2.33 )\)</div>
+      <div class="textL50M30">6) \(\small P(Z \lt 2.33 )\)</div>
+      <div class="textL50M30">7) \(\small P(-1.96 \le Z \le 1.96)\)</div>
+      <div class="textL50M30">8) \(\small P(-2.58 \le Z \le 2.58)\)</div>
+      <div class="textL50M30">9) \(\small P(-3.10 \le Z \le1.25)\)</div>
+      <div class="textL50M30">10) \(\small P(1.47 \le Z \le 3.44)\)</div>
+      <p>
+      <p class="textL30M30">5.29 It is said that a tin can lid produced by a company follows a normal distribution with the average diameter of 4 and the standard deviation of 0.012. Calculate the probability that the lids are between 3.97 and 4.03. Check the calculation using  『eStatU』.
+      <p>
+      <p class="textL30M30">5.30 It is said that the weight of a melon follows a normal distribution with the average of 250g and  standard deviation of 12g. Find the probability that the weight of the melon is less than 260 grams. Check the calculation using  『eStatU』.
+      <p>
+      <p class="textL30M30">5.31 A bank employee found that the length of waiting time of a customer to receive a service follows a normal distribution with the average of 3 minutes and the standard deviation of 1 minute. Calculate the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Probability that a customer will wait between 2 and 3 minutes.</div>
+      <div class="textL50M30">2) Probability that a customer will wait less than 1 minute.</div>
+      <div class="textL50M30">3) Probability that a customer will wait at least 5 minutes.</div>
+      <p>
+      <p class="textL30M30">5.32 It takes an average of 10 minutes for a production worker to finish a job at a factory and time follows a normal distribution with a standard deviation of 3 minutes. Calculate the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) Probability of workers completing the work in 4 minutes.</div>
+      <div class="textL50M30">2) Probability of workers completing the work at least 5 minutes.</div>
+      <div class="textL50M30">3) Probability of workers completing the work within 3 minutes.</div>
+      <p>
+      <p class="textL30M30">5.33 An average product has a life expectancy of 100 hours and follows an exponential distribution. Calculate the following probabilities and check the calculation using  『eStatU』.
+      <div class="textL50M30">1) What is the probability that a product has a lifespan less than 50 hours?</div>
+      <div class="textL50M30">2) What is the probability that a product has a lifespan of 120 hours or more? </div>
+  </div>
+
+  <script src="./js/exercise05.js"></script>
+ 
+</body>
+</html>
+

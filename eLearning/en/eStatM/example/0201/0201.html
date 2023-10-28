@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Bar Graph">Bar Chart</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; <span data-msgid="Bar Graph">Bar Chart</span> - <span data-msgid="Pie Chart"></span> - <span data-msgid="Rainbow Chart"></span> - <span data-msgid="Band Graph"></span></b>
+    </div>
+    <br>
+    <table>
+        <tr>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=63 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=20 id="ytitle"></td>
+          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
+          <td><input type="text" size=20 id="xtitle"></td>
+ 	</tr>
+    </table>   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td>&nbsp;</td>
+	  <td style="text-align: center;"><b><span data-msgid="CategoryD">Category</span></b></td>
+          <td>&nbsp;</td>
+	  <td style="text-align: center;"><b><span data-msgid="Frequency">Frequency</span></b></td>
+          <td>&nbsp;</td>
+	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span><b></td>
+          <td>&nbsp;</td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td>1&nbsp;</td>
+	  <td><input type="text" size=15 id="data11"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data12" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data13" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data14" onclick="changeColor(1)" style="width:90px;"></td>
+          <td>
+             <select id="data15" onchange="changeIcon(1)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+             </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 2</td>
+	  <td><input type="text" size=15 id="data21"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data22" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data23" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data24" onclick="changeColor(2)" style="width:90px;"></td>
+          <td>
+            <select id="data25" onchange="changeIcon(2)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+             </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 3</td>
+	  <td><input type="text" size=15 id="data31"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data32" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data33" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data34" onclick="changeColor(3)" style="width:90px;"></td>
+          <td>
+            <select id="data35" onchange="changeIcon(3)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+            </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 4 </td>
+	  <td><input type="text" size=15 id="data41"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data42" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data43" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data44" onclick="changeColor(4)" style="width:90px;"></td>
+          <td>
+            <select id="data45" onchange="changeIcon(4)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+            </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 5</td>
+	  <td><input type="text" size=15 id="data51"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data52" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data53" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data54" onclick="changeColor(5)" style="width:90px;"></td>
+          <td>
+            <select id="data55" onchange="changeIcon(5)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+            </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 6</td>
+	  <td><input type="text" size=15 id="data61"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data62" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data63" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data64" onclick="changeColor(6)" style="width:90px;"></td>
+          <td>
+            <select id="data65" onchange="changeIcon(6)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+            </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 7</td>
+	  <td><input type="text" size=15 id="data71"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data72" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data73" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data74" onclick="changeColor(7)" style="width:90px;"></td>
+          <td>
+            <select id="data75" onchange="changeIcon(7)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+             </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 8</td>
+	  <td><input type="text" size=15 id="data81"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data82" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data83" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data84" onclick="changeColor(8)" style="width:90px;"></td>
+          <td>
+            <select id="data85" onchange="changeIcon(8)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+            </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> 9</td>
+	  <td><input type="text" size=15 id="data91"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data92" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data93" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><input type="color" id="data94" onclick="changeColor(9)" style="width:90px;"></td>
+          <td>
+            <select id="data95" onchange="changeIcon(9)">
+               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
+               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
+               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
+               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
+               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
+               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
+               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
+               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
+               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
+               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
+            </select>
+          </td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Total">Sum</span> </td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data102" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+	  <td><input type="text" size=15 id="data103" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><button type="button" id="defaultColor" style="width:90px;">&nbsp; <b><span data-msgid="defaultColor"></span></b></button></td>
+	</tr>
+      </tbody>
+    </table>
+    <br>
+          &nbsp;&nbsp;&nbsp; 
+          <button type="button" id="executeBar"  style="width:110px;"> <span data-msgid="Bar Graph">Bar Graph</span></button>
+          &nbsp;&nbsp;&nbsp; 
+          <button type="button" id="executePie"  style="width:110px;"> <span data-msgid="Pie Chart">Pie Chart</span></button> 
+          &nbsp;&nbsp;&nbsp; 
+          <button type="button" id="executeRainbow" style="width:110px;"> <span data-msgid="Rainbow Chart">Rainbow Chart</span></button> 
+          &nbsp;&nbsp;&nbsp; 
+          <button type="button" id="executeBand" style="width:110px;"> <span data-msgid="Band Graph">Band Graph</span></button> 
+          &nbsp;&nbsp;&nbsp; 
+          <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button> 
+    <br>
+<!--
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="Gradient1">
+      <stop offset="5%" stop-color="white"/>
+      <stop offset="95%" stop-color="blue"/>
+    </linearGradient>
+    <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="5%" stop-color="red"/>
+      <stop offset="95%" stop-color="orange"/>
+    </linearGradient>
+    <pattern id="Pattern" x="0" y="0" width=".25" height=".25">
+      <rect x="0" y="0" width="50" height="50" fill="skyblue"/>
+      <rect x="0" y="0" width="25" height="25" fill="url(#Gradient2)"/>
+      <circle cx="25" cy="25" r="20" fill="url(#Gradient1)" fill-opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect fill="url(#Pattern)" stroke="black" width="200" height="200"/>
+</svg>
+-->
+    <svg id="chart" width="640" height="540"> </svg> 
+    <form action="#" name="myForm2" class="option-group">
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <label>&nbsp;&nbsp;<input type="checkbox" id="showicon"><span data-msgid="Character">캐릭터</span></label>
+      <label>&nbsp;&nbsp;<input type="checkbox" id="showfreq"><span data-msgid="Frequency">도수표시</span></label>
+      &nbsp;&nbsp;&nbsp;(<span data-msgid="Sorting"></span>)
+      <input type="radio" name = "type2" value="1" id="raw" checked><span data-msgid="Raw Data">  원자료</span>
+      <input type="radio" name = "type2" value="2" id="descend">    <span data-msgid="Descending">내림차순</span>
+      <input type="radio" name = "type2" value="3" id="ascend">     <span data-msgid="Ascending"> 올림차순</span>
+    </form>
+  </div> 
+
+  <script src="/estat/eStatU/js/01BarChart.js"> </script>
+  <script>
+        document.getElementById("mtitle").value = "Favorite Sport";
+        document.getElementById("ytitle").value = "Frequency";
+        document.getElementById("xtitle").value = "Sports";
+        document.getElementById("data11").value = "Soccer";
+        document.getElementById("data21").value = "Basketball";
+        document.getElementById("data31").value = "Baseball";
+        document.getElementById("data41").value = "Volleyball";
+        document.getElementById("data51").value = "Golf";
+        document.getElementById("data12").value = 8;
+        document.getElementById("data22").value = 4;
+        document.getElementById("data32").value = 5;
+        document.getElementById("data42").value = 2;
+        document.getElementById("data52").value = 1;
+        document.getElementById("data15").selectedIndex = 2;
+        document.getElementById("data25").selectedIndex = 3;
+        document.getElementById("data35").selectedIndex = 4;
+        document.getElementById("data45").selectedIndex = 5;
+        document.getElementById("data55").selectedIndex = 6;
+  </script>
+</body>
+</html>

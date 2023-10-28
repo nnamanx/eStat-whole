@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Transformation"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="Transformation"></span></b>
+    </div>
+    <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=73 id="data2"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=73 id="data1"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="ytitle"></td>
+ 	</tr>
+    </table>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+ 	  <td>&nbsp;&nbsp;<span data-msgid="NumberData"></span></td>         
+	  <td><span class="fontmath">n<sub>Y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"> <span style="color:red;">( ≤ 120)</span></td>     
+ 	  <td>&nbsp;&nbsp;<span data-msgid="Mean"></span></td>         
+	  <td><span class="fontmath">Y&#772;</span></td>
+	  <td><input type="text" class="textarea" size=6 id="yavg"></td>      
+	</tr>
+      </tbody>
+    </table>
+    <br>
+    &nbsp;&nbsp;
+    <button type="button" id="execute" style="width:90px;"><span data-msgid="Execute">Execute</span></button>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="620" height="400"> </svg> 
+
+    <form name="modelForm"> 
+      <table>
+	<tr>
+ 	  <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>               
+          <td><button type="button" id="createTable"><span class="tooltiptext" data-msgid="CreateTable"></span></button> </td>   
+          <td><button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button> </td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model0" name="model">&nbsp;&nbsp;<span data-msgid="PercentChange"></span> &nbsp; 100 × (Y<sub>t</sub> - Y<sub>t-1</sub>) / Y<sub>t-1</sub> 
+            </label> 
+          </td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model1" name="model">&nbsp;&nbsp;<span data-msgid="WeightedIndex"></span> &nbsp; 100 × Y<sub>t</sub> / Y<sub>t₀</sub> 
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp; <span data-msgid="BaseTime"></span> = <input type="number" min="1" max="120" size=5 value="1" style="text-align:center" id="baseT1" onchange="drawModel1()">
+          </td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model2" name="model">&nbsp;&nbsp;<span data-msgid="Lag"></span>
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp; <span data-msgid="LagTime"></span> = &nbsp;<input type="number" min="1" max="12" size=5 value="1" style="text-align:center" id="baseT2" onchange="drawModel2()">
+              <span style="color:red"> ≤ 12 </span>
+          </td>
+          <td>
+              <label><input type="checkbox" id="acf">ACF Table</label>
+          </td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model3" name="model">&nbsp;&nbsp;<span data-msgid="Diff"></span>
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp; <span data-msgid="DiffTime"></span> = &nbsp;<input type="number" min="1" max="3" size=5 value="1" style="text-align:center" id="diff" onchange="drawModel3()">
+              <span style="color:red"> ≤ 3 </span>
+          </td>
+          <td>
+              <label><input type="checkbox" id="acfDiff">ACF Table</label>
+          </td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model4" name="model">&nbsp;&nbsp;<span data-msgid="Log"></span> <span data-msgid="Transformation"></span>: log(Y)
+            </label> 
+          </td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model5" name="model">&nbsp;&nbsp;<span data-msgid="SquareRoot"></span> <span data-msgid="Transformation"></span>: √Y
+            </label> 
+          </td>
+        </tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model6" name="model">&nbsp;&nbsp;<span data-msgid="BoxCox"></span>  <span data-msgid="Transformation"></span>: (Y<sup>p</sup> - 1) / p 
+            </label> 
+          </td>
+          <td>&nbsp;&nbsp; p = <input type="number" min="2" max="7" size=5 value="2" style="text-align:center" id="boxP" onchange="drawModel6()">
+              <span style="color:red"> 2 ≤ p ≤ 7 </span>
+          </td>
+	</tr>
+      </table>
+    </form>
+    <p>
+  </div>
+
+  <div width="250" style="position:absolute; left:700px; top:120px;"> 
+    &nbsp;&nbsp;
+    <p>
+    <div id="screenTable" >
+      <div id="loc">
+      </div>
+    </div>
+  </div>
+
+  <script src="/estat/eStatU/js/34TimeseriesTransformation.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data1").value = "2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020";
+        stat = simplestat("#data1");  
+        xdata = data; 
+        xobs = stat.n;
+      document.getElementById("data2").value = "17738.8,18082.1,18414.4,18742.1,19161.2,19559.1,19877.1,20313.4,20818.0,21310.1,21673.5";
+        stat = simplestat("#data2");  
+        ydata = data; 
+        yobs = stat.n;
+      document.getElementById("mtitle").value = "Number of Houses";
+      document.getElementById("ytitle").value = "";
+  </script>
+
+</body>
+</html>

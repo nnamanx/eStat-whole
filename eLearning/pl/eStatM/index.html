@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>eStatBookM</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h1><b>Elementary / Middle School Statistics</b> 
+  <span style="color:blue;"> using 『eStatM』</span> </h1>
+  <p>
+  <h4>
+    <a href="#tableContent"><u>Table of Contents</u></a> &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#author"><u>Author</u></a> &nbsp;&nbsp;
+  </h4>
+     <h1>📊 📈 🌈 </h1>
+         <div style="color:blue">
+            <p> Statistics education is very essential for elementary and 
+            middle school students who will lead the big data society in the future.
+            But, there has been no appropriate educational software for stuendents.
+            『eStatM』 is a free web-based software which is designed specially to study the statistics of middle school
+            so that students can easily learn and practice statistics anytime, anywhere on the Internet.
+            <p>This e-book is linked with 『eStatM』, so you can practice easily 
+            as well as studying statistics .
+            I hope you become a talented person who understand statistics by using this software and 
+            leads the future big data society.
+            </p>
+            I appreciate all who have helped me to develop 『eStat』 over the past few years. 
+            Special thanks should be given to Ms. Kamala Omarova for her careful reading of English manuscipt.
+            <p>
+            Spring 2021
+            <br>
+            Jung Jin Lee, jjlee@ssu.ac.kr
+        </div>
+     <br>『eStat』 is a web-based freeware for statistics education which can be used anytime and anywhere using PC, tablet, or mobile phone.
+     <br>   
+     <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStat.svg" width="100" height="100" onclick="window.open(addrStr[0])">
+        <a href="../eStatBasicOperation.html" target="_blank"><b><u>Basic Operation of 『eStat』</u></b></a> &nbsp;&nbsp;&nbsp;
+        <a href="../eStatBasicOperation.pdf"  target="_blank"><b><u>[pdf]</u></b></a> &nbsp;&nbsp;&nbsp;
+        <a href="https://www.youtube.com/watch?v=jjfCqdDZZ6Q" target="_blank"><b><u>[Video]</u></b></a><br>
+        <p style="color:blue">Project Leader: Professor Jung Jin Lee, Soongsil University, Korea, ADA University, Azerbaijan<br>
+        Contact: jjlee@ssu.ac.kr
+     <br>
+     <span style="color:red">
+       This work is in the public domain. Therefore, it can be copied and reproduced without limitation. 
+       However, we would appreciate a citation where possible. (http://www.estat.me).</span>
+     <p>
+
+  <h4 id="tableContent">Table of Contents</h4>
+  <p>
+  <h5>
+      <a href="chapter01.html">1. Statistics</a>
+      <a href="./pdf/chapter01.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+  <ul>
+     1.1  What is Statistics?<br>
+     1.2  Data Classification<br>
+     1.3  『eStat』 Software<br>
+  </ul>
+
+  <h5>
+    <a href="chapter02.html">2. Visualization of Qualitative Data</a>
+    <a href="./pdf/chapter02.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+  <ul>
+    2.1  Bar / Pie / Rainbow / Band Graph<br>
+    2.2  Line Graph<br>
+    2.3  Word Cloud<br>
+  </ul>
+
+  <h5>
+    <a href="chapter03.html">3. Visualization of Quantitative Data</a>
+    <a href="./pdf/chapter03.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+    <ul>
+    3.1  Stem and Leaf Plot<br>
+    3.2  Histogram – Frequency Table<br>
+    3.3  Frequency Distribution Polygon – Relative Frequency<br>
+    3.4  Scatter Plot<br>
+    </ul>
+  
+  <h5>
+    <a href="chapter04.html">4. Measure of Central Tendency and Dispersion</a>
+    <a href="./pdf/chapter04.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+  <ul>
+    4.1  Measure of Central Tendency – Mean and Median<br>
+    4.2  Measure of Dispersion – Standard Deviation<br>	
+    4.3  Covariance and Correlation Coefficient<br>
+  </ul>
+
+  <h4 id="author">Author</h4>
+        <input type="image" src="./Figure/JJLee_Photo.jpg" width="100" HEIGHT="125">
+        <b> Jung Jin Lee</b></br>  
+        Emeritus Professor, Soongsil University, Korea<br>
+        Professor, ADA University, Azerbaijan<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Case Western Reserve University<br>
+        President, Korean Statistical Society<br>
+        Vice President, International Association for Statistical Computing<br>
+        Council Member, International Statistical Institute (ISI)
+  <p>
+        <input type="image" src="./Figure/TRLee_Photo.gif" width="100" HEIGHT="125">
+        <b> Tae Rim Lee</b><br> 
+        Emeritus Professor, Korea National Open University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Choongang University<br>
+        Vice President, Korean Statistical Society<br>
+        Vice President, International Association for Statistics Education<br>
+        Vice President, International Biometric Society<br>
+  <p>
+        <input type="image" src="./Figure/KangGeunSeog.png" width="100" HEIGHT="125">
+        <b> Geunseog Kang</b><br> 
+        Emeritus Professor, Soongsil University, Korea<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., University of Wisconsin - Madison<br>
+  <p>
+        <input type="image" src="./Figure/KimSungSoo.gif" width="100" HEIGHT="125">
+        <b> Sung Soo Kim</b><br> 
+        Professor, Korea National Open University<br>
+        B.S., M.S., Ph.D., Seoul National University<br>
+  <p>
+        <input type="image" src="./Figure/ParkHeonJin.jpg" width="100" HEIGHT="125">
+        <b> Heon Jin Park</b><br> 
+        Professor, Inha University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Iowa Stat University<br>
+        President, Korean Data Mining Society<br>
+  <p>
+        <input type="image" src="./Figure/SimSongYong.gif" width="100" HEIGHT="125">
+        <b> Song Yong Sim</b><br> 
+        Hallym University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., University of Wisconsin - Madison<br>
+  <p>
+        <input type="image" src="./Figure/LeeYoonDong.jpg" width="100" HEIGHT="125">
+        <b> Yoon Dong Lee</b><br> 
+        Professor, Sogang University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Iowa State University<br>
+  <p>
+        <input type="image" src="./Figure/YouHyunJo.jpg" width="100" HEIGHT="125">
+        <b> Hyun Jo You</b><br> 
+        Professor, Seoul National University<br>
+        B.S., M.S., Ph.D, Seoul National University<br>
+        Ph.D. Soongsil University<br>
+
+</body>
+</html>
+

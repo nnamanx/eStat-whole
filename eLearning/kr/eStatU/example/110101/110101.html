@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="TestingFit">Goodness of Fit Test</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b> &nbsp; 
+          <span data-msgid="TestingFit">
+            Testing Hypothesis : Goodness of Fit Test
+          </span>
+      </b>
+      <button class="menu" onclick="menuLoc()" >
+        <b><span data-msgid="Menu">Menu</span></b>
+      </button>
+    </div>
+    <br>
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>o</sub> : 
+                <span data-msgid="FitTest0">Observed Distritution = Theoretical Distribution</span> 
+              </span>
+          </td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span class="fontmath"> H<sub>1</sub> : 
+                <span data-msgid="FitTest1">Observed Distritution &ne; Theoretical Distribution</span> 
+              </span> 
+          </td>
+	</tr>
+      </tbody>
+    </table>
+  
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Test Type">Test Type</span>]</b></td>
+          <td colspan="2">&chi;<sup>2</sup><sub>k-m-1</sub> test, k = category, m = estimated parameters <input type="text" style="text-align:center;" size=4 value="0" id="mm"></td> 
+        </tr>
+        <tr>
+          <td></td>
+	  <td><span data-msgid="Significance Level">Significance Level</span></td>
+          <td>
+              &alpha; = <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+          </td>
+	</tr>
+      </tbody>
+    </table>
+
+   <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Sample Data">Sample Data</span>]</b></td>
+	  <td></td>
+	  <td><span class="fontguide" data-msgid="InputFitData">(input Observed Frequenc & Expected Probability)</span></td>
+          <td></td>
+	</tr>
+      </tbody>
+    </table>
+   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> &nbsp;</td>
+	  <td>&nbsp;<span data-msgid="ObservedFreq">Observed Frequency</span></td>
+	  <td>&nbsp;<span data-msgid="ExpectedProb">Expected Probability</span> </td>
+	  <td>&nbsp;<span data-msgid="ExpectedFreq">Expected Probability</span></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 1 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data11"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data12"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data13"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 2 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data21"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data22"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data23"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 3 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data31"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data32"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data33"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 4 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data41"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data42"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data43"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 5 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data51"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data52"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data53"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 6 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data61"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data62"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data63"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 7 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data71"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data72"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data73"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 8 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data81"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data82"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data83"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+          <td> <span data-msgid="Row">Row</span> 9 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data91"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data92"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data93"></td>
+	</tr>
+	<tr>
+          <td> &nbsp;&nbsp;&nbsp;</td>
+	  <td style="text-align:right;"><span data-msgid="Total">Sum</span> </td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data101"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data102"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data103"></td>
+	</tr>
+      </tbody>
+    </table>
+          <div class="figText">&lt;Figure 11.1.1&gt; Goodness of fit test in 『eStatU』</div>
+    <p>
+    <button type="button" id="executeTH8" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script src="/estat/eStatU/js/91TestingFit.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data11").value = 60;
+      document.getElementById("data21").value = 50;
+      document.getElementById("data31").value = 40;
+      document.getElementById("data12").value = 0.333;
+      document.getElementById("data22").value = 0.333;
+      document.getElementById("data32").value = 0.333;
+  </script>
+
+</body>
+</html>

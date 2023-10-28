@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 3</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3> Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">3.1  Which one is an appropriate function as a probability distribution function?  </h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> \(f(x) = \frac{x}{5} \;\;(x=-1,0,1,2,3)\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(f(x) = \frac{5-x}{14} \;\;(x=0,1,2,3)\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(f(x) = x^2 - 1 \;\;(x=0,1,2,3) \)</label><br>
+    <label><input type="radio" name="item" value="4"> \(f(x) = x^3 - x^2 + 5 \;\;(x=0,1,2,3)\)</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">3.2 Which one is not the property of a probability distribution function? </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> \(f(x) \ge 0\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\int_{-∞}^{∞} f(x)dx = 1 \)</label><br>
+    <label><input type="radio" name="item" value="3"> \(P(a \le X \le b) = \int_a ^b f(x) dx\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\int_{-∞}^{∞} x f(x)dx = 1 \)</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">3.3 If a random variable \(X\) has values 0, 1, 2, 3 and its probability
+         distribution function is f(x) = \(\frac{x}{6}\), what is the mean of the random variable \(X\)? 
+  </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> \(\frac{5}{3}\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\frac{6}{3}\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(\frac{7}{3}\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\frac{8}{3}\)</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">3.4  If a continuous random variable \(X\) has the probability distribution function \(f(x)\) and it is defined on all real number, which one of the followings is not correct? </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> \(f(x) \ge 0\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\int_{-∞}^{∞} f(x)dx = 1 \)</label><br>
+    <label><input type="radio" name="item" value="3"> \(P(a \le X \le b) = \int_a ^b f(x) dx\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\int_{0}^{∞} x f(x)dx = \frac{1}{2} \)</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">3.5 If a probability distribution function of a random variable \(X\)
+       is as follows, what are the mean \(E(X)\) and standard deviation \(σ(X)\)?   
+  </h6>
+          <table> 
+            <tr>
+              <th class="thGrey" style="width:150px">\(X\)</th>
+              <td class="tdCenter">0</td>
+              <td class="tdCenter">1</td>
+              <td class="tdCenter">2</td>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <th class="thGrey">\(P(X=x)\)</th>
+              <td class="tdCenter">\(\frac{3}{10}\)</td>
+              <td class="tdCenter">\(\frac{6}{10}\)</td>
+              <td class="tdCenter">\(\frac{1}{10}\)</td>
+              <th>1</th>
+            </tr>
+          </table>
+
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> E(X)=0.8, σ(X)=0.6</label><br>
+    <label><input type="radio" name="item" value="2"> E(X)=0.6, σ(X)=0.8</label><br>
+    <label><input type="radio" name="item" value="3"> E(X)=0.7, σ(X)=0.1</label><br>
+    <label><input type="radio" name="item" value="4"> E(X)=0.1, σ(X)=0.7</label><br>
+
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ5">
+  </form>
+
+  <h6 class="textL30M30">3.6  Let the random variable X be the number of dots, 1, 2, ... , 6, 
+       which are appeared on the top when you roll a dice. Find the mean of the random variable  \(X\).
+  </h6>
+  <form name="Q6">
+    <label><input type="radio" name="item" value="1"> 2  </label><br>
+    <label><input type="radio" name="item" value="2"> 2.5</label><br>
+    <label><input type="radio" name="item" value="3"> 3  </label><br>
+    <label><input type="radio" name="item" value="4"> 3.5</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ6">
+  </form>
+
+  <h6 class="textL30M30">3.7  Let the random variable \(X\) be the number of dots when you roll a dice. What is the expected value of the squared value of each \(X\)? </h6>
+  <form name="Q7">
+    <label><input type="radio" name="item" value="1"> \(\frac{23}{6}\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\frac{41}{6}\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(\frac{53}{6}\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\frac{91}{6}\)</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ7">
+  </form>
+
+  <h6 class="textL30M30">3.8 If a random variable X has \(E(X)\)=5 and \(E(X^2)\)=25,
+      what is the variance of \(X\), \(V(X)\)? 
+  </h6>
+  <form name="Q8">
+    <label><input type="radio" name="item" value="1"> 5</label><br>
+    <label><input type="radio" name="item" value="2"> 0</label><br>
+    <label><input type="radio" name="item" value="3"> 5</label><br>
+    <label><input type="radio" name="item" value="4"> 25</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ8">
+  </form>
+
+  <h6 class="textL30M30">3.9 If a random variable \(X\) is multiplied by 5 for each value of \(X\),
+        the standard deviation becomes what?  </h6>
+  <form name="Q9">
+    <label><input type="radio" name="item" value="1"> 5 times</label><br>
+    <label><input type="radio" name="item" value="2"> 1/5 times</label><br>
+    <label><input type="radio" name="item" value="3"> 10 times</label><br>
+    <label><input type="radio" name="item" value="4"> 1/10 times</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ9">
+  </form>
+
+  <h6 class="textL30M30">3.10  Midterm scores of a math class have the mean 24 and standard deviation 3. If each midterm score is multiplied by 2 and add 10 points, what are the mean and standard deviation of the new midterm scores?  </h6>
+  <form name="Q10">
+    <label><input type="radio" name="item" value="1"> 24, 3</label><br>
+    <label><input type="radio" name="item" value="2"> 48, 3</label><br>
+    <label><input type="radio" name="item" value="3"> 48, 6</label><br>
+    <label><input type="radio" name="item" value="4"> 58, 6</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ10">
+  </form>
+
+  <h6 class="textL30M30">3.11 If a random variable \(X\) has the mean of 20, what is the mean of \(Y=2X+3\)?   </h6>
+  <form name="Q11">
+    <label><input type="radio" name="item" value="1"> 20</label><br>
+    <label><input type="radio" name="item" value="2"> 40</label><br>
+    <label><input type="radio" name="item" value="3"> 23</label><br>
+    <label><input type="radio" name="item" value="4"> 43</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ11">
+  </form>
+
+  <h6 class="textL30M30">3.12 If a random variable \(X\) has the variance of 2, what is the variance of \(Y=2X+3\)? </h6>
+  <form name="Q12">
+    <label><input type="radio" name="item" value="1"> 2</label><br>
+    <label><input type="radio" name="item" value="2"> 3</label><br>
+    <label><input type="radio" name="item" value="3"> 8</label><br>
+    <label><input type="radio" name="item" value="4"> 18</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ12">
+  </form>
+
+  <h6 class="textL30M30">3.13  Which one the followings is wrong?  </h6>
+  <form name="Q13">
+    <label><input type="radio" name="item" value="1"> E(aX＋b)=aE(X)＋b</label><br>
+    <label><input type="radio" name="item" value="2"> E(X＋Y)=E(X)＋E(Y)</label><br>
+    <label><input type="radio" name="item" value="3"> V(aX＋b)=\(a^2\)V(X)</label><br>
+    <label><input type="radio" name="item" value="4"> V(aX＋b)=\(a^2\)V(X)+b</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(13,Q13)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ13">
+  </form>
+
+  <h6 class="textL30M30">3.14 What is the mean and variance of binomial distribution  \(B(100, \frac{1}{6})\)?  </h6>
+  <form name="Q14">
+    <label><input type="radio" name="item" value="1"> 20, 4</label><br>
+    <label><input type="radio" name="item" value="2"> 100, 16</label><br>
+    <label><input type="radio" name="item" value="3"> 100, 4</label><br>
+    <label><input type="radio" name="item" value="4"> 20, 16</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(14,Q14)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ14">
+  </form>
+
+  <h6 class="textL30M30">3.15 What is the variance of the binomial distribution which has the distribution function as  \(f(x) = {}_4 C_x (0.2)^x (1-0.2)^{4-x}\)?  </h6>
+  <form name="Q15">
+    <label><input type="radio" name="item" value="1"> 0.16</label><br>
+    <label><input type="radio" name="item" value="2"> 0.8</label><br>
+    <label><input type="radio" name="item" value="3"> 0.32</label><br>
+    <label><input type="radio" name="item" value="4"> 0.64</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(15,Q15)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ15">
+  </form>
+
+  <h6 class="textL30M30">3.16 There are 10 multiple choice questions where there is one correct answer among four possible answers. If a person chooses one answer randomly in each question, what is the probability that he would choose four correct answers? </h6>
+  <form name="Q16">
+    <label><input type="radio" name="item" value="1"> 0.0162</label><br>
+    <label><input type="radio" name="item" value="2"> 0.0487</label><br>
+    <label><input type="radio" name="item" value="3"> 0.1460</label><br>
+    <label><input type="radio" name="item" value="4"> 0.2050</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(16,Q16)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ16">
+  </form>
+
+  <h6 class="textL30M30">3.17 If a normal distribution has the mean  and standard deviation , what is the probability of the interval \(\mu ± 3 \sigma \)?  </h6>
+  <form name="Q17">
+    <label><input type="radio" name="item" value="1"> 99.73% approximately</label><br>
+    <label><input type="radio" name="item" value="2"> 97.73% approximately</label><br>
+    <label><input type="radio" name="item" value="3"> 95.73% approximately</label><br>
+    <label><input type="radio" name="item" value="4"> 68.73% approximately</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(17,Q17)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ17">
+  </form>
+
+  <h6 class="textL30M30">3.18 The entrance examination scores of a company follows a normal distribution with the mean 400 and standard deviation 50. What is the probability that a score belongs to the interval between 450 and 500 ? </h6>
+  <form name="Q18">
+    <label><input type="radio" name="item" value="1"> 80% approximately</label><br>
+    <label><input type="radio" name="item" value="2"> 50% approximately</label><br>
+    <label><input type="radio" name="item" value="3"> 30% approximately</label><br>
+    <label><input type="radio" name="item" value="4"> 14% approximately</label><br>
+    <p>
+    <input type="button" value="SUBMIT" onClick="radio(18,Q18)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ18">
+  </form>
+
+  </div>
+
+  <script src="./js/exercise03.js" ></script>  
+
+</body>
+</html>
+

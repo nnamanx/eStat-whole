@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Hypothesis ANOVA">Testing: ANOVA</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; &nbsp; 
+         <span data-msgid="Testing Hypothesis ANOVA">
+           Testing Hypothesis : 3+ Population Means (ANOVA)
+         </span>
+      </b>
+    </div>
+    <br>
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
+	  <td></td>
+	  <td><span class="fontmath">
+                H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub>
+              </span>
+          </td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span class="fontmath">
+                H<sub>1</sub> : 
+                <span data-msgid="At least one pair">At least one pair of population means is not equal</span>
+              </span> 
+          </td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    <span class="fontmath" data-msgid="F-test">F-test</span> (ANOVA)
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using csv / bsv)
+    </span>   
+    
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 1</td>
+	  <td><input type="text" size=60 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 2</td>
+	  <td><input type="text" size=60 id="data2"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 3</td>
+	  <td><input type="text" size=60 id="data3"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 4</td>
+	  <td><input type="text" size=60 id="data4"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
+    
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><span class="fontmath">&nbsp; n<sub>1</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn71"></td>
+	  <td><span class="fontmath">&nbsp; n<sub>2</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn72"></td>        
+	  <td><span class="fontmath">&nbsp; n<sub>3</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn73"></td>        
+	  <td><span class="fontmath">&nbsp; n<sub>4</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn74"></td>        
+	</tr>
+	<tr>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>1</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="xbar71"></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>2</sub> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="xbar72"></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>3</sub> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="xbar73"></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>4</sub> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="xbar74"></td>
+	</tr>
+	<tr>
+	  <td><span class="fontmath">&nbsp; s<sub>1</sub><sup>2</sup> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="var71"></td>
+	  <td><span class="fontmath">&nbsp; s<sub>2</sub><sup>2</sup> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="var72"></td>
+	  <td><span class="fontmath">&nbsp; s<sub>3</sub><sup>2</sup> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="var73"></td>
+	  <td><span class="fontmath">&nbsp; s<sub>4</sub><sup>2</sup> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="var74"></td>
+	</tr>
+      </tbody>
+    </table>
+        <div class="figText">&lt;Figure 9.1.7&gt; ANOVA data input at 『eStatU』</div>
+    <p>
+    <button type="button" id="execute" style="width:90px;"><span data-msgid="Execute">Execute</span></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"> 
+    <sup><small> 1 </small></sup>
+
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+
+    <br>
+    <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <form action="#" name="myForm123">
+      <button type="button" id="multipleComparison" >
+		  <span data-msgid="MultipleComparison">다중비교</span>
+      </button>
+                <label><input type="radio" name = "type4" value="1" checked> LSD</label>
+                <label><input type="radio" name = "type4" value="2" > 5%HSD</label>
+                <label><input type="radio" name = "type4" value="3" > 1%HSD</label>
+      &nbsp;
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      &nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    </form>
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <script src="/estat/eStatU/js/90TestingANOVA.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data1").value = "81,75,69,90,72,83";
+        stat = simplestat("#data1");  
+        document.getElementById("nn71").value   = stat.n;    
+        document.getElementById("xbar71").value = f2(stat.xbar);
+        document.getElementById("var71").value  = f2(stat.var);    
+      document.getElementById("data2").value = "65,80,73,79,81,69";
+        stat = simplestat("#data2");  
+        document.getElementById("nn72").value   = stat.n;    
+        document.getElementById("xbar72").value = f2(stat.xbar);
+        document.getElementById("var72").value  = f2(stat.var);    
+      document.getElementById("data3").value = "72,67,62,76,80";
+        stat = simplestat("#data3");  
+        document.getElementById("nn73").value   = stat.n;    
+        document.getElementById("xbar73").value = f2(stat.xbar);
+        document.getElementById("var73").value  = f2(stat.var);    
+      document.getElementById("data4").value = "89,94,79,88";
+        stat = simplestat("#data4");  
+        document.getElementById("nn74").value   = stat.n;    
+        document.getElementById("xbar74").value = f2(stat.xbar);
+        document.getElementById("var74").value  = f2(stat.var);    
+  </script>
+
+</body>
+</html>

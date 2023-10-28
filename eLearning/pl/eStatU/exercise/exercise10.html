@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 10</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>10.4 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+    <h6 class="textL30M30">10.1 What is NOT the reason to have a nonparametric test? </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> Population is not normally distributed.</label><br>
+      <label><input type="radio" name="item" value="2"> Ordinal data. </label><br>
+      <label><input type="radio" name="item" value="3"> Data follows a normal distribution.</label><br>
+      <label><input type="radio" name="item" value="4"> There is an extreme point in sample. </label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">10.2 Which of the following nonparametric tests is for testing the location parameter of single population?</h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> Wilcoxon signed rank sum test</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon rank sum test</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis test</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman test</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">10.3 What is the sign test?</h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> Test for the location parameter of single population</label><br>
+      <label><input type="radio" name="item" value="2"> Test for two location parameters of two populations</label><br>
+      <label><input type="radio" name="item" value="3"> Test for several location parameters of multiple populations</label><br>
+      <label><input type="radio" name="item" value="4"> Test for the randomized block design</label><br>
+     <p>
+      <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">10.4 What is the transformation of data that is often used for nonparametric tests?</h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> log transformation</label><br>
+      <label><input type="radio" name="item" value="2"> exponential transformation</label><br>
+      <label><input type="radio" name="item" value="3"> (0-1) transformation</label><br>
+      <label><input type="radio" name="item" value="4"> ranking transformation</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">10.5 What is the test statistic used for the sign test?</h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> rank</label><br>
+      <label><input type="radio" name="item" value="2"> (number of + signs) -  (number of - signs)</label><br>
+      <label><input type="radio" name="item" value="3"> degrees of freedom</label><br>
+      <label><input type="radio" name="item" value="4"> (number of + signs)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+    <h6 class="textL30M30">10.6 Which of the following nonparametric tests is for testing the location parameters of two populations?<h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> Wilcoxon signed rank sum test</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon rank sum test</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis test</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman test</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">10.7 What is the test statistic used for testing two location parameters of two populations using a nonparametric test?</h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> (number of + signs)</label><br>
+      <label><input type="radio" name="item" value="2"> sum of ranks in sample 2</label><br>
+      <label><input type="radio" name="item" value="3"> (number of - signs)</label><br>
+      <label><input type="radio" name="item" value="4"> (sum of ranks in sample 1) - (sum of ranks in sample 2)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+
+    <h6 class="textL30M30">10.8 Which of the following nonparametric tests is for tesing the location parameters of multiple populations?</h6>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> Wilcoxon signed rank sum test</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon rank sum test</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis test</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman test</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">10.9 Which of the following nonparametric tests is appropriate for testing of the randomized block design method?</h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> Wilcoxon signed rank sum test</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon rank sum test</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis test</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman test</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">10.10 What is the theoretical basis for the  statistic used for the Kruskal-Wallis test?</h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> Within sum of squares of rank data</label><br>
+      <label><input type="radio" name="item" value="2"> Error sum of squares of rank data	</label><br>
+      <label><input type="radio" name="item" value="3"> Total sum of squares of rank data</label><br>
+      <label><input type="radio" name="item" value="4"> Treatment sum of squares of rank data</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+    <div class="textL30M30">
+      10.1 A psychologist has selected 12 handicap workers randomly from production workers employed at various 
+      factories in a large industrial complex and their work competency scores are examined as follows: The 
+      psychologist wants to test whether the population average score is 45 or not. Assume the population distribution is symmetrical about the mean.
+    </div>
+    <p>
+    <p class="textLeft">  32, 52, 21, 39, 23, 55, 36, 27, 37, 41, 34, 51
+    <p>
+    <div class="textL50M30">         
+      1) Check whether a parametric test is possible.
+    </div>
+    <div class="textL50M30">         
+      2) Apply the sign test with the significance level of 5%.
+    </div>
+    <div class="textL50M30">         
+      3) Apply the Wilcoxon signed rank test with the significance level of 5%.
+    </div>
+    <p>
+
+    <div class="textL30M30">
+      10.2 A tire production company wants to test whether a new manufacturing process can produce a more durable tire 
+      than the existing process. The tire by a new process was tested to obtain the following data: (unit: 1000) 
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Existing Process</th>
+           <th>New Process</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">62<br>76<br>61<br>90<br>74<br>74<br>75<br>63</td>
+           <td class="tdCenter">73<br>53<br>61<br>65<br>60<br>53<br>70<br>63</td>
+         </tr>
+      </table>
+    <p>
+    <div class="textL50M30">         
+      1) Check whether a parametric test is possible.
+    </div>
+    <div class="textL50M30">         
+      2) Apply the Wilcoxon rank sum test whether the new process and the existing process have the same durability or not with the significance level of 5%.
+    </div>
+    <p>
+
+    <div class="textL30M30">
+      10.3  A company wants to compare two methods of obtaining information about a new product. Among company 
+      employees, 19 were randomly selected and divided into two groups. The first group learned about the new product 
+      by the method A, and the second group learned by the method B. At the end of the experiment, the employees took a 
+      test to measure their knowledge of the new product and their test scores are as follows: Can we conclude from 
+      these data that the median values of the two groups are different? Test with the significance level of 0.05.
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Method A</th>
+           <th>Method B</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">50<br>59<br>60<br>71<br>80<br>78<br>72<br>77<br>73<br>75</td>
+           <td class="tdCenter">52<br>54<br>58<br>78<br>65<br>61<br>60<br>72<br>60</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      10.4 10 men and 10 women working in the same profession were selected independently and their monthly 
+      salaries were surveyed. Can you say that a man in this profession earns more than a woman. Test with the significance level of 0.05. (Unit: 10USD)
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Man</th>
+           <th>Woman</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">381<br>294<br>296<br>389<br>281<br>194<br>193<br>286<br>384<br>494</td>
+           <td class="tdCenter">284<br>279<br>288<br>383<br>489<br>287<br>496<br>393<br>277<br>371</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      10.5 To find out the fuel mileage improvement effect of a new gasoline additive, 10 cars of the same state were 
+      selected. The gas mileage was tested without gasoline additives and with additives  running the same road at the 
+      same speed and obtain the following data. Test whether the new gasoline additive is effective in improving the 
+      fuel mileage with the significance level of 0.05. (gas mileage unit: km/liter) 
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>With additives</th>
+           <th>Without additives</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">11.7<br>13.8<br>11.2<br> 7.7<br> 8.2<br>16.3<br>14.2<br>19.4<br>13.9<br>15.5</td>
+           <td class="tdCenter">10.3<br>12.9<br>12.5<br> 9.5<br>11.2<br>14.6<br>15.9<br>18.5<br>12.0<br>15.1</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      10.6 In order to determine the efficacy of the new pain reliever, seven persons were tested with the  aspirin 
+      and new pain reliever. The experimental time of the two pain relievers were sufficiently spaced, 
+      and the order of the medication experiment was randomly determined. The time (in minutes) until feeling pain relief
+      was measured as follows: Do the data indicate that the new pain reliever has faster pain relief than aspirin? 
+      Test with the significance level of 0.05.
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th style="width:100px">id</th>
+           <th style="width:100px">Aspirin</th>
+           <th style="width:100px">New pain reliever</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 1<br>2<br>3<br>4<br>5<br>6<br>7</td>
+           <td class="tdCenter">15<br>20<br>12<br>20<br>17<br>14<br>17</td>
+           <td class="tdCenter"> 7<br>14<br>13<br>11<br>10<br>16<br>11</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      10.7 A person was asked to taste 15 coffee samples to rank from 1 (hate first) to 15 (best). The 15 samples are 
+      taken from each of the three types of coffee (A, B, C) and are tasted in random order. The following table shows 
+      the ranking of preference by the coffee type. Test the null hypothesis that there is no difference in three types 
+      of coffee preferences at the significance level of 0.05.
+    </div>
+    <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Coffee A</th>
+           <th>Coffee B</th>
+           <th>Coffee C</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter"> 9<br>10<br>11<br>12<br>13</td>
+           <td class="tdCenter">14<br> 1<br> 5<br> 7<br> 8</td>
+           <td class="tdCenter"> 2<br> 3<br> 4<br>15<br> 6</td>
+         </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      10.8 A bread maker wants to compare the four new mix of ingredients. 5 breads were made by each mixing ratio of 
+      ingredients, a total of 20 breads, and a group of judges who did not know the difference in mixing ratio of 
+      ingredients were given the following points. Test the null hypothesis that there is no difference in taste 
+      according to the mixing ratio of ingredients at the significance level of 0.05.
+    </div>
+    <p>
+      <table style="width:400px"> 
+         <tr> 
+           <th>Method A</th>
+           <th>Method B</th>
+           <th>Method C</th>
+           <th>Method D</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">72<br>88<br>70<br>87<br>71</td>
+           <td class="tdCenter">85<br>89<br>86<br>82<br>90</td>
+           <td class="tdCenter">94<br>94<br>88<br>87<br>89</td>
+           <td class="tdCenter">91<br>93<br>92<br>95<br>96</td>
+         </tr>
+      </table>
+    <p>
+  </div>
+
+  <script src="./js/exercise10.js"></script>
+ 
+</body>
+</html>
+

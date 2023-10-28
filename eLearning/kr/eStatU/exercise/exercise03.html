@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 3</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <h4> 연습문제 </h4>
+  <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">3.1  다음 중 양적 자료 분석에 사용되는 그래프는? </h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
+    <label><input type="radio" name="item" value="4"> 띠그래프</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">3.2 다음 중 양적 자료의 분석에 사용되는 그래프가 아닌 것은? </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 줄기와 잎 그림</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
+    <label><input type="radio" name="item" value="4"> 점그래프</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">3.3 양적 변량의 마지막 숫자를 잎으로 하고 그 앞부분을 줄기로 하여 자료를 표시하는 그래프는?   </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 점그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 산점도</label><br>
+    <label><input type="radio" name="item" value="4"> 줄기와 잎 그림</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">3.4 양적 변량의 마지막 숫자를 잎으로 하고 그 앞부분을 줄기로 하여 자료를 표시하는 그래프는?   </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 산점도</label><br>
+    <label><input type="radio" name="item" value="4"> 줄기와 잎 그림</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">3.5 다음 중 두 변량 사이의 산점도가 음의 상관관계를 갖는 것은? </h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 등산 높이와 기온</label><br>
+    <label><input type="radio" name="item" value="2"> 몸무게와 키</label><br>
+    <label><input type="radio" name="item" value="3"> 여름철 기온과 아이스크림 판매량</label><br>
+    <label><input type="radio" name="item" value="4"> 아버지 키와 아들의 키</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ5">
+  </form>
+
+  </div>
+
+  <script src="./js/exercise03.js"></script>   
+
+</body>
+</html>
+

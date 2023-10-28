@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 6</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>6.6 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+    <h6 class="textL30M30">6.1  When the population size is infinite and variance is \(\sigma^2\), what is the 
+      variance of all possible sample means, \(\small \sigma^2_{\overline x}\)? (n is the sample size) </h6>
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> \(\small \sigma^2_{\overline x}=\sigma^2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small \sigma^2_{\overline x}=n\sigma^2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small \sigma^2_{\overline x}=\frac{\sigma^2}{n}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small \sigma^2_{\overline x}=\frac{n\sigma^2}{n-1}\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">6.2  What is the quantitative measure of the characteristic of a population?</h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> parameter</label><br>
+      <label><input type="radio" name="item" value="2"> variation</label><br>
+      <label><input type="radio" name="item" value="3"> representative</label><br>
+      <label><input type="radio" name="item" value="4"> statistic</label><br>
+     <p>
+      <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">6.3  What is the quantitative measure of the characteristic of a sample?</h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> probability</label><br>
+      <label><input type="radio" name="item" value="2"> statistic</label><br>
+      <label><input type="radio" name="item" value="3"> parameter</label><br>
+      <label><input type="radio" name="item" value="4"> variable</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">6.4  Which distribution is used to estimate the population mean in a small sample with a small number of samples? </h6> 
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> Normal distribution</label><br>
+      <label><input type="radio" name="item" value="2"> Exponential distribution</label><br>
+      <label><input type="radio" name="item" value="3"> \(t\) distribution</label><br>
+      <label><input type="radio" name="item" value="4"> F distribution</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">6.5  The following is a description about estimation. Which explanation is wrong? </h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> Estimation is a quantitative estimate using a sample of the characteristics of a population. </label><br>
+      <label><input type="radio" name="item" value="2"> There are two kinds of estimation, one is point estimation and the other is interval estimation. </label><br>
+      <label><input type="radio" name="item" value="3"> An estimator which is unbiased, consistent and efficient is desirable.</label><br>
+      <label><input type="radio" name="item" value="4"> The population standard deviation is an estimator of the sample standard deviation.</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+    <h6 class="textL30M30">6.6  The weight of products produced by a company follows a normal distribution. In order to estimate the average weight, 49 products collected by simple random sampling and examined for their weights, resulting in an average of 6200 grams and a standard deviation of 140 grams. What is the 95% confidence interval for the average weight of this product? </h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> 6200 &plusmn; 32.8</label><br>
+      <label><input type="radio" name="item" value="2"> 6200 &plusmn; 39.2</label><br>
+      <label><input type="radio" name="item" value="3"> 6200 &plusmn; 52.6</label><br>
+      <label><input type="radio" name="item" value="4"> 6200 &plusmn; 77.4</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">6.7  Population variance of a normal population was \(\sigma^2\). A sample of size
+       n  was taken from this population to obtain a sample mean \(\small \overline x\). What is the 99% confidence 
+       interval for the population mean \(\mu\)? </h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> \(\small \overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n}}\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small \overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n-1}}\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small \overline x &plusmn; 2.58\frac{\sigma}{\sqrt{n}}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small \overline x &plusmn; 2.58\frac{\sigma^2}{\sqrt{n}}\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+
+    <h6 class="textL30M30">6.8 Out of 2,000 products made by a company, 400 were randomly extracted to measure the weight and the sample mean was \(\small \overline x = 25.0\) and sample standard deviation was \(s = 4.99\). Obtain a 95% confidence interval of the population mean? </h6> 
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> \(24.5 \le \mu \le 25.5\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(24.0 \le \mu \le 26.0\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(24.3 \le \mu \le 25.7\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(23.6 \le \mu \le 26.4\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">6.9 The average monthly income of 5,000 households which were randomly selected in a city was 3600 US$ and the standard deviation was 500 US$. Obtain a 95% confidence interval of the city’s monthly income.  </h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> \(3600 &plusmn; 1.96 \times \frac{500}{\sqrt{5000}}\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(3600 &plusmn; 2.58 \times \frac{500}{\sqrt{5000}}\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(3600 &plusmn; 1.64 \times \frac{500}{\sqrt{5000}}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(3600 &plusmn; 2.33 \times \frac{500}{\sqrt{5000}}\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">6.10 A sample of size 49 was taken from a population with a population standard 
+      deviation \(\sigma \) = 5. If the sample mean is \(\small \overline x\) = 16.2, what is a 95% confidence 
+      interval for the population mean ? 
+    </h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> (13.8, 16.6) </label><br>
+      <label><input type="radio" name="item" value="2"> (13.4, 17.0) </label><br>
+      <label><input type="radio" name="item" value="3"> (13.6, 16.8) </label><br>
+      <label><input type="radio" name="item" value="4"> (13.2, 17.2) </label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+
+    <h6 class="textL30M30">6.11 When a population follows a normal distribution and a random sample of size 25 was selected, the sample mean was 14.6 and sample standard deviation was 5. What if we get a 95% confidence interval for the population mean? \(t_{24: 0.05} = 2.064, t_{24: 0.01} = 2.797, t_{25: 0.05} = 2.060, t_{25: 0.01} = 2.787, t_{26: 0.05} = 2.056, t_{26: 0.01} = 2.779 \)</h6>
+    <form name="Q11">
+      <label><input type="radio" name="item" value="1"> 14.6 &plusmn; 2.787</label><br>
+      <label><input type="radio" name="item" value="2"> 14.6 &plusmn; 2.056</label><br>
+      <label><input type="radio" name="item" value="3"> 14.6 &plusmn; 2.064</label><br>
+      <label><input type="radio" name="item" value="4"> 14.6 &plusmn; 2.779</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ11">
+    </form>
+
+    <h6 class="textL30M30">6.12  What is the most appropriate sample statistic to estimate the population variance when we collect \(n\) samples by simple random sampling from a normal population?</h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> standard deviation	</label><br>
+      <label><input type="radio" name="item" value="2"> sample variance</label><br>
+      <label><input type="radio" name="item" value="3"> sum of squares</label><br>
+      <label><input type="radio" name="item" value="4"> \(\frac{1}{n}\) of sum of squares</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+    <h6 class="textL30M30">6.13 If the measured values of a sample collected randomly are \(x_1 , x_2 , ... , x_n\) and their sample mean is \(\overline x\), which of the following is an unbiased estimator of the population variance? </h6>
+    <form name="Q13">
+      <label><input type="radio" name="item" value="1"> \(\small \frac{1}{n}\sum|x_i - \overline x |\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small \frac{1}{n}(\sum x_i^2 - (n-1){\overline x}^2 )\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small \frac{1}{n}(\sum x_i^2 - n{\overline x}^2 )\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small \frac{1}{n-1}\sum(x_i - \overline x)^2\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(13,Q13)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ13">
+    </form>
+
+    <h6 class="textL30M30">6.14  400 voters are randomly selected from a city and polled. 240 voters answered ‘yes’ for an issue and the rest were against it. Obtain a 95% confidence interval for the population proportion of ‘yes’. </h6>
+    <form name="Q14">
+      <label><input type="radio" name="item" value="1"> \(0.55 \le p \le 0.65\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(0.50 \le p \le 0.70\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(0.45 \le p \le 0.75\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(0.40 \le p \le 0.80\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(14,Q14)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ14">
+    </form>
+
+    <h6 class="textL30M30">6.15 In a parliamentary election, 60 voters are selected randomly in a district and 36 of them support the candidate A. Obtain a 95% confidence interval that support the candidate A? </h6>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> \(0.576 \le p \le 0.760\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(0.576 \le p \le 0.824\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(0.440 \le p \le 0.760\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(0.440 \le p \le 0.824\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+    <p class="textL30M30"> 6.1  There are 70 workers in a factory. Ten persons will be selected by simple random sampling to investigate the production amount per week. Use the random number generator in  『eStatU』  for sampling.
+
+    <p class="textL30M30"> 6.2  List all cases in which three of the five people A, B, C, D are sampled with replacement.
+
+    <p class="textL30M30"> 6.3  A telephone response service produces a report of the call time at the end of each call. Nine reports were collected by simple random sampling and their sample mean of the call time was 1.2 minutes. If the population follows a normal distribution with a standard deviation of 0.6 minutes, find a 99% confidence interval of the population mean.
+
+    <p class="textL30M30"> 6.4  The quality manager of a large manufacturer wants to know the average weight of 5,500 raw materials. 250 samples were collected by simple random sampling and their sample mean is 65 kg. If the population standard deviation is 15 kg, find a 95% confidence interval for the unknown population mean.
+
+    <p class="textL30M30"> 6.5  A physical health researcher wants to measure the average amount of oxygen consumed after a standard exercise for men between the ages of 17 and 21. Studies show that the population variance is 0.0512. The result of a simple random sampling of 25 persons are as follows.
+    <p>
+    <div class="textLeft">
+      2.87 2.05 2.90 2.41 2.93 2.94 2.26 2.21 2.20 2.88<br> 
+      2.51 2.51 2.56 2.59 2.52 2.51 2.50 2.58 2.52 2.58<br>
+      2.44 2.48 2.43 2.46 2.46 (Liter/min)
+    </div>
+    <p class="textL30">
+      Obtain a 95% confidence interval of the population mean when oxygen consumption follows a normal distribution.
+
+    <p class="textL30M30"> 6.6  An industrial psychologist wants to know the average age of female workers in a particular population. The average age at which 60 samples from the population by simple random sampling was 23.67. Obtain a 99% confidence interval of the population mean when the population standard deviation is 15. 
+
+    <p class="textL30M30"> 6.7  In a study to determine whether a machine can use the flexible plastic hose, an engineer tries to estimate the average pressure the hose receives. The engineer measured the pressure nine times at intervals of 24 hours. The mean and standard deviation of the samples are 362, 45 respectively, and the pressure is approximately normal. Obtain a 99% confidence interval for the average pressure.
+
+    <p class="textL30M30"> 6.8  Sixteen radio stations were collected by simple random sampling to estimate the cost of radio broadcasting for 30 seconds of insertion advertisement. The sample mean is 15 million US$ and the sample variance is 8. Obtain a 95% confidence interval for the population mean when the advertising costs for all radio stations follow a normal distribution.
+
+    <p class="textL30M30"> 6.9  The tension of a thread used to make a piece of cloth is examined. Ten samples of this thread were collected by simple random sampling and tested for tension, and the sample variance is 4. What assumptions do you need for the interval estimation of the population variance? Find a 95% confidence interval of the population variance \(\sigma^2\). 
+
+    <p class="textL30M30"> 6.10 A production manager wants to know the time required to finish a specific work in the product process. A sample of 25 observations by simple random sampling was collected for analysis and the sample variance is 0.32.
+    <div class="textL50M30">
+      1) Obtain a 95% confidence interval of the population variance \(\sigma^2\).<br>
+    </div>
+    <div class="textL50M30">
+      2) Obtain a 99% confidence interval of the population variance \(\sigma^2\).<br>
+    </div>
+    <div class="textL50M30">
+      3) Obtain a 90% confidence interval of the population variance \(\sigma^2\).<br>
+    </div>
+    <div class="textL50M30">
+      4) What assumptions do you need to obtain a valid confidence interval?
+    </div>
+    <p class="textL30M30"> 6.11 An ecologist seeks to measure the amount of certain pollutants that contain 15 samples of water from the river where the factory area is located. If the amount of contaminants is normally distributed and \(\small \sum{(x_i - \overline x)}^2\) = 508.06, obtain a 95% confidence interval of the population variance.
+
+    <p class="textL30M30"> 6.12 The internal diameter of 12 ball bearings made in a manufacturing process was measured by simple random sampling as follows:  
+    <p>
+    <p class="textLeft"> 3.01, 3.05, 2.99, 2.99, 3.00, 3.02, 2.98, 2.99, 2.97, 2.97, 3.02, 3.01 
+    <p class="textL30">
+      If diameters follow a normal distribution, obtain a 99% confidence interval of the population variance.
+
+    <p class="textL30M30"> 6.13 A researcher wants to know office workers who change jobs due to the monotony of work. 400 samples are collected by simple random sampling from office workers who recently changed jobs. Of them, 200 said they changed jobs, because of the monotony of their jobs. Find a 95% confidence interval of the population proportion who have changed jobs, because they are monotonous.
+
+    <p class="textL30M30"> 6.14 A manager of a production company would like to know the ratio of workers who remember the safety management prints distributed to all workers last week. 300 workers collected by simple random sampling and a test was conducted to check whether they remembered the contents of the printed material. Seventy-five of those who took the exam passed it. Obtain a 95% confidence interval in the population proportion of workers who remember the safety management.
+
+    <p class="textL30M30"> 6.15 200 workers were selected to investigate the causes of worker’s turnover. Of the 200, 140 said they moved, because they could not reconcile with their superiors. For this reason, find a 95% confidence interval in the mobile rate for those who have transferred.
+
+    <p class="textL30M30"> 6.16 A manufacturer guarantees a defect rate of less than 5% for a customer company that regularly purchases the product. The customer company collected 200 of the purchased products by simple random sampling and inspected the samples to confirm the manufacturer's claims. If 19 defective products of the 200 samples were found, what would be the 95% confidence interval for the defect rate?
+
+    <p class="textL30M30"> 6.17 A candidate came from the Democratic Party in the mayoral election of a metropolitan city. Polls showed 152 out of 284 samples collected by simple random sampling support the candidate.
+    <div class="textL50M30">
+      1) Find a 95 percent confidence interval in the approval rating of the candidate.
+    </div>
+    <div class="textL50M30">
+      2) Find a 99 percent confidence interval in the approval rating of the candidate.
+    </div>
+    <div class="textL50M30">
+      3) To what extent do you think the election of the candidate of the party is certain?
+    </div>
+    <div class="textL50M30">
+      4) Explain whether the sampling method of the poll will affect the result of 3) above.
+    </div>
+    <p class="textL30M30"> 6.18 In question above, if 1,368 out of 2,556 samples collected by simple random sampling were found to support the candidate, answer the questions 1), 2), and 3) and compare the result.
+
+    <p class="textL30M30"> 6.19 The advertising manager of a company is trying to put the new product on a one-minute commercial for a TV Saturday evening program. He found from the TV station that the one-minute ad was priced as follows.
+
+    <p class="textLeft">Price = 6500 + 350,000\(\hat p\) (Unit: US$)
+
+    <div class="textL30">
+      where \(\hat p\) is an estimate of the nationwide ratings of the program. The station relies on a ratings
+      survey of the M service station, which has installed and operated devices at 1,500 homes nationwide. 
+      According to records from the M Station, 360 households watched the program last Saturday. 
+    </div>
+    <p>
+    <div class="textL50M30">
+      1)  What's the price of this one-minute commercial?
+    </div>
+    <div class="textL50M30">
+      2)  What would you decide if the advertising manager had decided to buy this commercial time only if he could believe that the actual viewing rate was 0.2 or higher with 95 percent confidence level?
+    </div>
+
+    <p class="textL30M30"> 6.20 In order to know the average strength of a plastic product produced by a company, how many experiments do you need to do to have the maximum allowable error bound within 20 (unit: psi) with a 99% confidence level? Previous experience suggests that the estimate for \(\sigma^2\) is 4900.
+
+    <p class="textL30M30"> 6.21 A company with 2,500 workers wants to estimate the average time it takes to commute. The surveyor wants to estimate that the maximum allowable error bound is less than 5 minutes at the 95% confidence level. If the estimate of the population variance obtained from the preliminary study was \(\sigma^2\) = 25, what size of the sample should be extracted?
+
+    <p class="textL30M30"> 6.22 The average IQ of an employee at a company is estimated to be within 5 points of the maximum allowable error bound at a 95% confidence level. Past experience shows that the IQ of this group follows a normal distribution with a variance of 100. How many samples should be taken?
+
+    <p class="textL30M30"> 6.23 When a university opens a lecture Saturday, it tries to estimate the percentage of students enrolled in the class as a 95 percent confidence interval. How many students should be surveyed to keep the maximum allowable error bound within 0.05?
+
+    <p class="textL30M30"> 6.24 Of all manufacturers, we would like to know the percentage of companies that require a doctor's diagnosis from workers when they are absent due to illness for more than three days. How many samples do you need to estimate the maximum allowable error bound within 0.05% at the 95% confidence level? 
+
+    <p class="textL30M30"> 6.25 I want to know what percentage of households in a region where at least one member of the family sees advertisements in newspapers. I want the maximum allowable error bound is 0.04 at the 95% confidence level. When a preliminary survey of 20 households found that at least 35 percent of the responding households saw an advertisement, what should the number of sample households be?
+
+    <p class="textL30M30"> 6.26 The consumer research group believes that TV tube life is normally distributed with two years of standard deviation. How many TV sets should be tested with 95% confidence level if the maximum allowable error bound is two years?  How many TV sets should be tested with 95% confidence level if the maximum allowable error bound is one year?
+
+    <p class="textL30M30"> 6.27 If you want to reduce the length of the confidence interval by half, should you double the size of the sample? Explain.
+
+    <p class="textL30M30"> 6.28 A school district had 100 samples by simple random sampling of the 5th grade elementary school students and took a math test with the sample mean of 74.3 and the sample standard deviation of 9.2.
+
+    <div class="textL50M30">
+      1) Find a 99% confidence interval in the average score of all fifth graders in this school district when they take the test.
+    </div>
+    <div class="textL50M30">
+      2) If this sample mean 74.3 is used as an estimate of the population mean of the math test for all fifth graders in this school district, what is the maximum size of the error bound at the 95% confidence level?
+    </div>
+    <p class="textL30M30"> 6.29 The average weight of 50 cans of peaches which are collected by simple random sampling is 16.1 grams and their standard deviation is 0.4 grams. If the sample mean of 16.1 grams is used as an estimate of the population mean weight of all peach cans, what is the probability that the estimated error bound is less than 0.1 grams?
+  </div>
+
+  <script src="./js/exercise06.js"></script>
+   
+</body>
+</html>
+

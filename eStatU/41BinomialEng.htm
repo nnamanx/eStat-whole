@@ -3,13 +3,13 @@
 
 <head>
     <title data-msgid="Binomial Experiment">Binomial Experiment</title>
-    <link rel="stylesheet" href="../eStat/css/eStatU.css">
-    <script src="../eStat/lib/d3/d3.v4.min.js"></script>
-    <script src="../eStat/lib/jquery/jquery-3.2.1.min.js"></script>
-    <script src="../eStat/lib/jquery/jquery-ui.min.js"></script>
-    <script src="../eStat/lib/DistributionsUtil.js" ></script>
-    <script src="../eStat/js/language.js" ></script>
-    <script src="../eStat/js/eStatU.js"></script>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
     <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
     <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
@@ -25,143 +25,30 @@
       </button>
     </div>
     <br>
-    <svg id="chart" width="600" height="600"> </svg> <br>   
-    <button type="button" id="executeBinomial" >
-      <span data-msgid="Execute">Execute</span>
-    </button> &nbsp;
-      n = <input type="text" class="textarea" value="2"   size=3 id="nn">&nbsp;<sup><small> 1 </small></sup> 
-      <input type="range" min="1" max="10" value="2" id="range1Binomial" onchange="showValueBinomial1(this.value)"/><sup><small> 10 </small></sup> &nbsp;&nbsp;
-      p = <input type="text" class="textarea" value="0.5" size=3 id="pp"><sup><small> 0 </small></sup> 
-      <input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/><sup><small> 1</small></sup> &nbsp;
-    <p>
-    <button type="button" id="saveGraphU" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-    </button>
-    <label><input type="checkbox" value="freq" id=freqBinomial><span data-msgid="Show Probability">show probability</span></label> <p>
+      <svg id="chartBS" width="640" height="620" style="border-style:solid;"> </svg>  
+      <br>
+      <table style="width:650px;">
+        <tr>
+          <td><button type="button" id="executeBinomial" style="width:100px"><b><span data-msgid="Execute">Execute</span></b></button></td>
+          <td></td>
+          <td style=width:100px;">n = <input type="text" class="textarea" value="2" size=3 id="nn" style="text-align:center"></td>
+          <td><sup><small> 1 </small></sup> </td>
+          <td style=width:100px;"><input type="range" min="1" max="10" value="2" id="range1Binomial" onchange="showValueBinomial1(this.value)"/></td>
+          <td><sup><small> 10 </small></sup></td>
+          <td style=width:100px;">p = <input type="text" class="textarea" value="0.5" size=3 id="pp" style="text-align:center"></td>
+          <td><sup><small> 0 </small></sup></td>
+          <td style="width:100px;"><input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/></td>
+          <td><sup><small> 1</small></sup></td>
+        </tr>
+        <tr>
+          <td><button type="button" id="saveGraphBS" style="width:100px"><b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b></button></td>
+          <td></td>
+          <td colspan="3"><label><input type="checkbox" value="freq" id=freqBinomial> <span data-msgid="Show Probability">show probability</span></label></td>
+        </tr>
+      </table>
   </div>
 
-  <script type="text/javascript">
-      function showValueBinomial1(newValue) {document.getElementById("nn").value  = newValue;}
-      function showValueBinomial2(newValue) {document.getElementById("pp").value  = newValue / 100;  }
-      function showValueBinomial3(newValue) {document.getElementById("nn2").value = newValue;}
-      function showValueBinomial4(newValue) {document.getElementById("pp2").value = newValue / 100;  }
-  </script>
+  <script src="/estat/eStatU/js/41BinomialEng.js"> </script>
 
-  <script>
-
-      var dot = d3.select("#chart");
- 
-      // 이항분포 시뮬레이션 초기화면 셋팅
-      var i, j, k, sum, temp, info;
-      var nn, pp, nn2, pp2, avg,  std, savg, sstd;
-      var xmin, xmax, ymin, ymax, gxmin, gxmax, gxrange, gymin, gymax, gyrange;
-      var nobs;
-      var rectSize     = 10;
-      var radiusSize   = 4;
-      var nvalueMax    = 31;
-      var rectSizeDiv2 = rectSize / 2;
-      var checkFreq    = false;
-      var checkFreq2   = false;
-      var checkFreq3   = false;
-
-      var svgWidth, svgHeight, graphWidth, graphHeight;
-      var margin      = {top: 50, bottom: 60, left: 40, right: 40};
-
-      var binomialP1 = new Array(nvalueMax);
-      var binomialP2 = new Array(nvalueMax);
-      var tdataY     = new Array(nvalueMax);
-      var tx         = new Array(nvalueMax);
-      var ty         = new Array(nvalueMax);
-      var valueLabel = new Array(nvalueMax);
-
-      for (i=0; i<nvalueMax; i++) {
-          tx[i] = new Array(nvalueMax);
-          ty[i] = new Array(nvalueMax);
-      }
-   
-      // svg 파라미터
-      svgWidth    = 600;
-      svgHeight   = 300;
-      graphWidth  = svgWidth - margin.left - margin.right;
-      graphHeight = svgHeight - margin.top - margin.bottom;
-     
-      nobs = 100;
-      nn = 2;
-      pp = 0.5;
-      nvalue = nn + 1;
-
-      title  = svgStrU[1][langNum]+" n = "+nn.toString()+", p = "+f2(pp);
-      dot.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top/2).text(title)
-      avg  = nn * pp;
-      std  = Math.sqrt(nn*pp*(1-pp));
-      title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
-      dot.append("text").attr("class","title").attr("x", margin.left+graphWidth -200).attr("y", margin.top/2 ).text(title)
-
-
-      // 확률  계산
-      for (i=0; i<nvalue; i++) binomialP1[i] = binomial_pdf(i, nn, pp, info);
-			  
-      // Draw 이항분포 Triangle and Simulation
-      BinomialTriangle(nvalue, pp, tx, ty);
-//      BinomialSimulation(nobs,nvalue,tdataY);
-
-			  
-      // 시뮬레이션 실행버튼 클릭
-      d3.select("#executeBinomial").on("click",function() {
-        dot.selectAll("*").remove();
-        removeBinomialFreq();
-        checkFreq = false;
-        document.getElementById("freqBinomial").checked = false;
- 
-        nn = parseFloat(d3.select("#nn").node().value);    // 크기 n
-        pp = parseFloat(d3.select("#pp").node().value);    // 성공확률 p
-        if (nn < 1 )   nn = 1;
-        if (nn > 10)   nn = 10;
-        if (pp < 0.001) pp = 0.001;
-        if (pp > 0.999) pp = 0.999;
-        document.getElementById("range1Binomial").value  = nn;
-        document.getElementById("range2Binomial").value  = 100*pp;
-
-        nvalue = nn + 1;
-
-        title  = svgStrU[1][langNum]+" n = "+nn.toString()+", p = "+f2(pp);
-        dot.append("text").attr("class","title").attr("x", margin.left).attr("y", margin.top/2).text(title)
-        avg  = nn * pp;
-        std  = Math.sqrt(nn*pp*(1-pp));
-        title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
-        dot.append("text").attr("class","title").attr("x", margin.left+graphWidth -200).attr("y", margin.top/2 ).text(title)
-
-        // 확률  계산
-        for (i=0; i<nvalue; i++) binomialP1[i] = binomial_pdf(i, nn, pp, info);
-
-        // Draw 이항분포 Triangle and Simulation
-        BinomialTriangle(nvalue, pp, tx, ty);
-	BinomialSimulation(nobs,nvalue,tdataY);
-        if (checkFreq) showBinomialFreq(nvalue, binomialP1, tdataY, tx);
-      })
-
-       // 확률표시 버튼 클릭
-      d3.select("#freqBinomial").on("click",function() {
-        if(this.checked) {
-          checkFreq = true;
-          showBinomialFreq(nvalue, binomialP1, tdataY, tx);
-        } else {
-          checkFreq = false;
-	  removeBinomialFreq();
-        }
-      })
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = 600;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-  </script>
 </body>
 </html>

@@ -182,12 +182,14 @@ function buttonColorChange() {
     document.getElementById("hist1").style.backgroundColor = buttonColorB;
     document.getElementById("scatter1").style.backgroundColor = buttonColorB;
     document.getElementById("statTable").style.backgroundColor = buttonColorB;
+  if (eStatMH == false) {
     document.getElementById("testM1").style.backgroundColor = buttonColorB;
     document.getElementById("testS1").style.backgroundColor = buttonColorB;
     document.getElementById("testM12").style.backgroundColor = buttonColorB;
     document.getElementById("testS12").style.backgroundColor = buttonColorB;
     document.getElementById("anova").style.backgroundColor = buttonColorB;
     document.getElementById("regression").style.backgroundColor = buttonColorB;
+  }
     // sub icon menu background
     document.getElementById("separate2V").style.backgroundColor = buttonColorB;
     document.getElementById("stack2V").style.backgroundColor = buttonColorB;
@@ -214,12 +216,14 @@ function buttonColorChange() {
     document.getElementById("hist1").style.width = iconB1;
     document.getElementById("scatter1").style.width = iconB1;
     document.getElementById("statTable").style.width = iconB1;
+  if (eStatMH == false) {
     document.getElementById("testM1").style.width = iconB1;
     document.getElementById("testS1").style.width = iconB1;
     document.getElementById("testM12").style.width = iconB1;
     document.getElementById("testS12").style.width = iconB1;
     document.getElementById("anova").style.width = iconB1;
     document.getElementById("regression").style.width = iconB1;
+  }
     // sub icon menu width
     document.getElementById("separate2V").style.width = iconB2;
     document.getElementById("stack2V").style.width = iconB2;
@@ -245,12 +249,14 @@ function buttonColorChange() {
     document.getElementById("hist1").style.height = iconB1;
     document.getElementById("scatter1").style.height = iconB1;
     document.getElementById("statTable").style.height = iconB1;
+  if (eStatMH == false) {
     document.getElementById("testM1").style.height = iconB1;
     document.getElementById("testS1").style.height = iconB1;
     document.getElementById("testM12").style.height = iconB1;
     document.getElementById("testS12").style.height = iconB1;
     document.getElementById("anova").style.height = iconB1;
     document.getElementById("regression").style.height = iconB1;
+  }
     // sub icon menu height
     document.getElementById("separate2V").style.height = iconB2;
     document.getElementById("stack2V").style.height = iconB2;
@@ -3772,8 +3778,13 @@ function dataClassifyS() {
     }
     // size 변수
     if (wvarNumber < 1) { // size 변수가 없으면
-        for (j = 0; j < yobs; j++) {
-            wdata[j] = 4;
+        wdata[0] = 4;
+        for (j = 1; j < yobs; j++) {
+          wdata[j] = 4;
+          for (k = 0; k < j; k++) {
+            if (xdata[j] == xdata[k] && ydata[j] == ydata[k]) wdata[j] = wdata[j] + 2;
+          }
+          if(wdata[j] > 10) wdata[j] = 10;
         }
     } else { // size 변량이 있는 경우
         // w data
@@ -4204,22 +4215,27 @@ function dataClassifyANOVA2() {
     statF[3] = SSRC;
     statF[4] = SSE;
     statF[5] = SST;
-    statF[6] = ngroup - 1;
-    statF[7] = ngroup2 - 1;
-    statF[8] = statF[6] * statF[7];
-    statF[10] = dobs - 1;
-    statF[9] = statF[10] - statF[6] - statF[7] - statF[8];
+    statF[6] = ngroup - 1;          // treat A df
+    statF[7] = ngroup2 - 1;         // treat B df (or block)
+    statF[8] = statF[6] * statF[7]; // interaction df
+    statF[10] = dobs - 1;           // total df
+    statF[9] = statF[10] - statF[6] - statF[7] - statF[8]; // error df
     if (checkRBD) statF[9] = statF[8];
-    statF[11] = SSR / statF[6];
-    statF[12] = SSC / statF[7];
-    statF[13] = SSRC / statF[8];
-    statF[14] = SSE / statF[9];
-    statF[15] = statF[11] / statF[14];
-    statF[16] = statF[12] / statF[14];
-    statF[17] = statF[13] / statF[14];
-    statF[18] = 1 - f_cdf(statF[15], statF[6], statF[9], info);
-    statF[19] = 1 - f_cdf(statF[16], statF[7], statF[9], info);
-    statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
+    statF[11] = SSR / statF[6];     // Mean square A
+    statF[12] = SSC / statF[7];     // Mean square B or block
+    statF[13] = SSRC / statF[8];    // Mean square Interaction
+    statF[14] = SSE / statF[9];     // Mean square error
+    if (statF[14] == 0) {
+      for (j=15; j<=20; j++) statF[j] = null;
+    }
+    else {
+      statF[15] = statF[11] / statF[14];   // Fobs for A
+      statF[16] = statF[12] / statF[14];   // Fobs for B 
+      statF[17] = statF[13] / statF[14];   // Fobs for Interaction
+      statF[18] = 1 - f_cdf(statF[15], statF[6], statF[9], info);
+      statF[19] = 1 - f_cdf(statF[16], statF[7], statF[9], info);
+      statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
+    }
 }
 // 이원분산분석 데이터 분류 -- 열 점그래프 그리기 위한 것
 function dataClassifyANOVA3() {
@@ -5811,6 +5827,13 @@ function drawMeanGraph(ngroup, gvalueLabel, nobs, avg, std, graphWidth, graphHei
 
 // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
 function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName) {
+    chart.selectAll("*").remove();
+    document.getElementById("HistMean").checked = false; 
+    document.getElementById("HistFreq").checked = false; 
+    document.getElementById("HistLine").checked = false; 
+    checkHistMean = false;
+    checkHistFreq = false;
+    checkHistLine = false;
     var i, j, k;
     var label, tempx, tempy, tempw, temph;
     var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax, tobs;
@@ -5871,7 +5894,13 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
         .text(dvarName)
     xTitle[graphNum] = dvarName;
     // Y축 제목
-    str = svgStr[16][langNum];
+    if (checkFreqPercentY) {   
+      str = svgStr[16][langNum];
+    }  
+    else { 
+      if (! checkDensity) str = svgStr[30][langNum];
+      else str ="";
+    } 
     chart.append("text")
         .style("font-size", "12px")
         .style("font-family", "sans-seirf")
@@ -6206,13 +6235,24 @@ function drawHistQQ(tobs, tdata, dvarName, option) {
 // 히스토그램 y축, x축 그리기
 function drawHistAxis(ngroup, nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidth, graphHeight) {
     var i, j, k;
-    var tx, ty, x1, x2, y1, y2, z1, z2;
+    var tx, ty, x1, x2, y1, y2, z1, z2, temp, yScale;
     var oneHeight = graphHeight / ngroup;
     var gxrangeH = gxmaxH - gxminH;
 
     // Y축 그리기
-    var yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([oneHeight, 0]);
-
+    if (checkFreqPercentY) {
+      yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([oneHeight, 0]);
+    }
+    else {
+      if (! checkDensity) {
+        temp = gymaxH / dobs;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([oneHeight, 0]);
+      }
+      else {
+        temp = gymaxH / dobs / xstep;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([oneHeight, 0]);
+      }
+    }
     for (k = 0; k < ngroup; k++) {
         tx = margin.left;
         ty = k * oneHeight + margin.top;
@@ -6305,7 +6345,7 @@ function removeHistMean() {
 
 // 히스토그램 도수 표시 함수
 function showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, gyminH, gymaxH) {
-    var x1, y1;
+    var x1, y1, temp;
 
     //        var graphWidth  = svgWidth - margin.left - margin.right;   // 그래프 영역의 너비
     //        var graphHeight = svgHeight - margin.top - margin.bottom;  // 그래프 영역의 높이
@@ -6317,6 +6357,8 @@ function showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, 
         for (var i = 1; i <= nvalueH; i++) {
             x1 = margin.left + graphWidth * (dataValueH[i - 1] + xstep / 2 - gxminH) / gxrangeH;
             y1 = margin.top + (k + 1) * oneHeight - oneHeight * (freq[k][i] - gyminH) / gyrangeH;
+            if (checkFreqPercentY) temp = freq[k][i];
+            else temp = f2( freq[k][i] / dobs );
             chart.append("text")
                 .attr("class", "histfreq")
                 .style("stroke", "red")
@@ -6325,7 +6367,7 @@ function showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, 
                 .style("font-size", "8pt")
                 .attr("x", x1)
                 .attr("y", y1 - 4)
-                .text(freq[k][i])
+                .text(temp)
         }
     }
 }
@@ -6391,9 +6433,11 @@ function removeHistLine() {
 function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gvalueLabel) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
+    var tempRow, tempCol, tempTot;
     loc.appendChild(table);
 
-    var i, j, k, rowsum, totsum, row;
+    var i, j, k, totsum, row;
+    var rowsum = new Array(nvalueH+2);
     var colsum = new Array(ngroup);
     var cell = new Array(5);
 
@@ -6405,7 +6449,12 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
         }
         totsum += colsum[j];
     }
-
+    for (i = 1; i < nvalueH; i++) {
+        rowsum[i] = 0;
+        for (j = 0; j < ngroup; j++) {
+          rowsum[i] += freq[j][i];
+        }
+    }
     table.style.fontSize = "13px";
     k = 0;
     row = table.insertRow(k);
@@ -6445,18 +6494,27 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
             cell[j] = row.insertCell(j);
             cell[j].style.width = "90px";
         }
-        cell[0].innerHTML = (i).toString() + "<br> [" + f2(dataValueH[i]) + ", " + f2(dataValueH[i + 1]) + ")";
+        cell[0].innerHTML = (i).toString() + " : [" + f2(dataValueH[i]) + ", " + f2(dataValueH[i + 1]) + ")"
+                   +"<br>"+svgStr[126][langNum]+"<br>"+svgStr[127][langNum]+"<br>"+svgStr[128][langNum];
         cell[0].style.backgroundColor = "#eee";
         cell[0].style.textAlign = "center";
         cell[ngroup + 1].style.backgroundColor = "#eee";
         cell[ngroup + 1].style.textAlign = "right";
-        rowsum = 0;
         for (j = 0; j < ngroup; j++) {
-            rowsum += freq[j][i + 1];
-            cell[j + 1].innerHTML = freq[j][i + 1].toString() + "<br> (" + f1(100 * freq[j][i + 1] / colsum[j]).toString() + "%)";
+            if (rowsum[i+1] == 0) tempRow = 0;
+            else tempRow = 100 * freq[j][i + 1] / rowsum[i+1];
+            if (colsum[j] == 0) tempCol = 0;
+            else tempCol = 100 * freq[j][i + 1] / colsum[j];
+            if (totsum == 0) tempTot=0;
+            else tempTot = 100 * freq[j][i + 1] / totsum;
+
+            cell[j + 1].innerHTML = freq[j][i + 1].toString() + "<br>" + f1(tempRow).toString() + "%"
+                          + "<br>" + f1(tempCol).toString() + "%"
+                          + "<br>" + f1(tempTot).toString() + "%";
             cell[j + 1].style.textAlign = "right";
         }
-        cell[ngroup + 1].innerHTML = rowsum.toString() + "<br> (" + f1(100 * rowsum / totsum).toString() + "%)";
+        cell[ngroup + 1].innerHTML = rowsum[i+1].toString() + "<br>" + f1(100).toString() + "%"
+                          + "<br>" + f1(100 * rowsum[i+1] / totsum).toString() + "%"+"<br> &nbsp; ";
     }
 
     k++;
@@ -6470,9 +6528,10 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
     cell[0].style.textAlign = "right";
     cell[0].innerHTML = svgStr[23][langNum];
     for (j = 0; j < ngroup; j++) {
-        cell[j + 1].innerHTML = colsum[j].toString() + "<br> (" + f0(100).toString() + "%)";
+        cell[j + 1].innerHTML = colsum[j].toString() + "<br>" + f1(100*colsum[j]/totsum).toString() + "%"
+                     + "<br>" + f1(100).toString() + "%<br> ";
     }
-    cell[ngroup + 1].innerHTML = totsum.toString() + "<br> (" + f0(100).toString() + "%)";
+    cell[ngroup + 1].innerHTML = totsum.toString() + "<br>" + f1(100).toString() + "%" + "<br> &nbsp;" ;
     // 다음 표와의 공백을 위한 것
     k++;
     row = table.insertRow(k);
@@ -10348,8 +10407,10 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
     cell[1].innerHTML = f3(statF[1]).toString();
     cell[2].innerHTML = f0(statF[6]).toString();
     cell[3].innerHTML = f3(statF[11]).toString();
-    cell[4].innerHTML = f3(statF[15]).toString();
-    if (statF[18] < 0.0001) str = " < 0.0001";
+    if (statF[15] == null) cell[4].innerHTML = "null"; 
+    else  cell[4].innerHTML = f3(statF[15]).toString();
+    if (statF[18] == null) str = "null";
+    else if (statF[18] < 0.0001) str = " < 0.0001";
     else str = f4(statF[18]).toString();
     cell[5].innerHTML = str;
 
@@ -10366,11 +10427,14 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
     cell[1].innerHTML = f3(statF[2]).toString();
     cell[2].innerHTML = f0(statF[7]).toString();
     cell[3].innerHTML = f3(statF[12]).toString();
-    cell[4].innerHTML = f3(statF[16]).toString();
-    if (statF[19] < 0.0001) str = " < 0.0001";
-    else str = f4(statF[19]).toString();
-    cell[5].innerHTML = str;
-
+    if (!checkRBD) {
+      if (statF[16] == null) cell[4].innerHTML = "null";
+      else cell[4].innerHTML = f3(statF[16]).toString();
+      if (statF[19] == null) str = "null";
+      else if (statF[19] < 0.0001) str = " < 0.0001";
+      else str = f4(statF[19]).toString();
+      cell[5].innerHTML = str;
+    }
 
     if (!checkRBD) {
         row = table.insertRow(++num);
@@ -10387,7 +10451,8 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
         cell[2].innerHTML = f0(statF[8]).toString();
         cell[3].innerHTML = f3(statF[13]).toString();
         cell[4].innerHTML = f3(statF[17]).toString();
-        if (statF[18] < 0.0001) str = " < 0.0001";
+        if (statF[20] == null) str = "null";
+        else if (statF[20] < 0.0001) str = " < 0.0001";
         else str = f4(statF[20]).toString();
         cell[5].innerHTML = str;
     }
@@ -10424,8 +10489,8 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
 
 }
 
-// 다중비교표 --------------------------------------------------------------------------------------------------
-function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg) {
+// HSD 다중비교표 --------------------------------------------------------------------------------------------------
+function multipleComparisonTableHSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
     loc.appendChild(table);
@@ -10447,7 +10512,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
         cell[j].style.border = "1px solid black";
         cell[j].style.width = "80px";
     }
-    cell[0].innerHTML = "<h3>" + svgStr[90][langNum] + "<h3>"; // "다중비교"
+    cell[0].innerHTML = "<b>" + svgStr[90][langNum] + "</b><br>" + "(HSD)"; // "다중비교"
     cell[1].innerHTML = svgStr[26][langNum]
     cell[2].innerHTML = "(" + dvarName + ")";
     if (ngroup > 1) {
@@ -10463,13 +10528,14 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
         cell[g].style.backgroundColor = "#eee";
     }
     if (ngroup > 1) {
-        if (confidence == 0.95) str = "(95%HSD)";
-        else str = "(99%HSD)";
-        cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
-    } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
+       if (alpha == 0.05) str = "(5%HSD)";
+       else str = "(1%HSD)";
+       cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
+    }
+    else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
         str = "";
-        if (ngroup > 1) str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f2(avg[g - 1]);
+        if (ngroup > 1) str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f3(avg[g - 1]);
         cell[g].innerHTML = str;
         cell[g].style.textAlign = "center";
     }
@@ -10481,16 +10547,16 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             cell[j].style.border = "1px solid black";
         }
         str = "";
-        if (ngroup > 1) str = (g + 1).toString() + " (" + gvalueLabel[g] + ")<br>" + f2(avg[g]);
+        if (ngroup > 1) str = (g + 1).toString() + " (" + gvalueLabel[g] + ")<br>" + f3(avg[g]);
         cell[0].innerHTML = str;
         cell[0].style.backgroundColor = "#eee";
         cell[0].style.textAlign = "center";
         for (k = 0; k < ngroup; k++) {
             if (g == k) continue;
             avgDiff = Math.abs(avg[g] - avg[k]);
-            if (confidence == 0.95) temp = q_inv(0.95, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * statF[5]);
+            if (alpha == 0.05) temp = q_inv(0.95, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * statF[5]);
             else temp = q_inv(0.99, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * statF[5]);
-            cell[k + 1].innerHTML = f2(avgDiff).toString() + "<br>(" + f2(temp) + ")";
+            cell[k + 1].innerHTML = f3(avgDiff).toString() + "<br>(" + f3(temp) + ")";
             cell[k + 1].style.textAlign = "right";
             cell[k + 1].style.width = "80px";
         }
@@ -10510,11 +10576,11 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
         cell[g].style.backgroundColor = "#eee";
     }
     if (ngroup > 1) {
-        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** %"; // "평균차 검정"
+        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** 1%"; // "평균차 검정"
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
         str = "";
-        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + " (" + gvalueLabel[indexA[g - 1]] + ")<br>" + f2(avg[indexA[g - 1]]);
+        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + " (" + gvalueLabel[indexA[g - 1]] + ")<br>" + f3(avg[indexA[g - 1]]);
         cell[g].innerHTML = str;
         cell[g].style.textAlign = "center";
     }
@@ -10527,7 +10593,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             cell[j].style.border = "1px solid black";
         }
         str = "";
-        if (ngroup > 1) str = (indexA[g] + 1).toString() + " (" + gvalueLabel[indexA[g]] + ")<br>" + f2(avg[indexA[g]]);
+        if (ngroup > 1) str = (indexA[g] + 1).toString() + " (" + gvalueLabel[indexA[g]] + ")<br>" + f3(avg[indexA[g]]);
         cell[0].innerHTML = str;
         cell[0].style.backgroundColor = "#eee";
         cell[0].style.textAlign = "center";
@@ -10536,6 +10602,128 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             avgDiff = Math.abs(avg[indexA[g]] - avg[indexA[k]]);
             HSD95 = q_inv(0.95, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
             HSD99 = q_inv(0.99, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
+            temp = "  ";
+            if (avgDiff > HSD99) temp = "**";
+            else if (avgDiff > HSD95) temp = "*";
+            cell[k + 1].innerHTML = temp;
+            cell[k + 1].style.textAlign = "right";
+        }
+    }
+
+    row = table.insertRow(++nrow);
+    row.style.height = "20px";
+}
+// LSD 다중비교표 --------------------------------------------------------------------------------------------------
+function multipleComparisonTableLSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+    var g, k, row, nrow, str, temp, info, avgDiff, HSD95, HSD99;
+    var ncol = 10;
+    var cell = new Array(ncol);
+    nrow = 0;
+    table.style.fontSize = "13px";
+
+    var header = table.createTHead()
+    row = table.insertRow(nrow);
+    row.style.height = "40px";
+    for (j = 0; j < 5; j++) {
+        cell[j] = row.insertCell(j);
+        cell[j].style.width = "70px";
+        cell[j].style.textAlign = "center";
+        cell[j].style.backgroundColor = "#eee";
+        cell[j].style.border = "1px solid black";
+        cell[j].style.width = "80px";
+    }
+    cell[0].innerHTML = "<b>" + svgStr[90][langNum] + "</b></br>" + "(LSD)";
+    cell[1].innerHTML = svgStr[26][langNum]
+    cell[2].innerHTML = "(" + dvarName + ")";
+    if (ngroup > 1) {
+        cell[3].innerHTML = svgStr[37][langNum];
+        cell[4].innerHTML = "(" + gvarName + ")";
+    }
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+       str = "(LSD)";
+       cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
+    }
+    else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f3(avg[g - 1]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+    // 다중비교 - 평균차, LSD
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = (g + 1).toString() + " (" + gvalueLabel[g] + ")<br>" + f3(avg[g]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[g] - avg[k]);
+            temp = t_inv(1-alpha/2, dobs - ngroup, info) * Math.sqrt((1 / nobs[g] + 1 / nobs[k]) * statF[5]);
+            cell[k + 1].innerHTML = f3(avgDiff).toString() + "<br>(" + f3(temp) + ")";
+            cell[k + 1].style.textAlign = "right";
+            cell[k + 1].style.width = "80px";
+        }
+    }
+
+    row = table.insertRow(++nrow); // 공란
+    row.style.height = "20px";
+
+    for (g = 0; g < ngroup; g++) tdata[g] = avg[g];
+    sortAscendIndex(ngroup, tdata, indexA);
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** 1%"; // "평균차 검정"
+    } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + " (" + gvalueLabel[indexA[g - 1]] + ")<br>" + f3(avg[indexA[g - 1]]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+
+    // 다중비교 - 평균 sorting
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = (indexA[g] + 1).toString() + " (" + gvalueLabel[indexA[g]] + ")<br>" + f3(avg[indexA[g]]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[indexA[g]] - avg[indexA[k]]);
+            HSD95 = t_inv(0.975, dobs - ngroup, info) * Math.sqrt((1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
+            HSD99 = t_inv(0.995, dobs - ngroup, info) * Math.sqrt((1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
             temp = "  ";
             if (avgDiff > HSD99) temp = "**";
             else if (avgDiff > HSD95) temp = "*";
@@ -10591,7 +10779,7 @@ function multipleComparisonTable2(ngroup, ngroup2, dvarName, gvarName, gvarName2
         cell[0].innerHTML = svgStr[100][langNum] + "<br> (95%HSD)"; // "평균차"
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
-        str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f2(avg[g - 1]);
+        str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f3(avg[g - 1]);
         cell[g].innerHTML = str;
         cell[g].style.textAlign = "center";
     }
@@ -11326,7 +11514,7 @@ function multivariateTable(numVar, tdobs, tdvar) {
         cell[j].style.border = "1px solid black";
         cell[j].style.width = "90px";
     }
-    cell[0].innerHTML = svgStr[107][langNum] + "<br>H<sub>0</sub>: &rho;=0 &rho;&ne;0 &nbsp;t-" + svgStr[69][langNum] + "<br>p-" + svgStr[69][langNum]; // "상관계수"
+    cell[0].innerHTML = svgStr[60][langNum] + "<br>H<sub>0</sub>: &rho;=0 H<sub>1</sub>:&rho;&ne;0 &nbsp;t-" + svgStr[69][langNum] + "<br>p-" + svgStr[69][langNum]; // "상관계수"
     cell[1].innerHTML = svgStr[64][langNum]; // "변량명";              
     for (k = 0; k < numVar; k++) {
         cell[k + 2].innerHTML = svgStr[63][langNum] + " " + (k + 1); // "변수 "

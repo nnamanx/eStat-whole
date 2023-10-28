@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 3</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h2>Chapter 3. Visualization of Quantitative Data</h2> 
+  <h6>
+      <a href="./pdf/book03.pdf" target="_blank"><u>[book]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+  </h6>
+
+	      <ul>
+                <li><a href="#0301">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="#0302">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="#0303">3.3 Visualization of Two Quantitative Variables</a></li>
+	      </ul>
+
+  <p>
+  <h3>CHAPTER OBJECTIVES</h3> 
+      In this chapter, we introduce graphs to visualize the quantitative data such as dot graph, histogram, stem and leaf plot and scatter plot. 
+      <br>In Section 3.2, we discuss visualization of single quantitative variable using 『eStat』. Visualization of the quantitative data both without group and with group is discussed.
+      In Section 3.3, we discuss visualization of two quantitative variables using the scatter plot of 『eStat』. 
+   
+  <p>
+  <h3 id="0301">3.1 Visualization of Quantitative Data</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0301.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/-OlsEFOcRMk" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+  <div class="mainTable">
+      Data such as height and weight whose possible values are real numbers are called quantitative data. 
+      In order to visualize the quantitative data of a variable, dot graph, histogram, stem and leaf plot are used. In order to visualize the quantitative data of two variables, a scatter plot which utilizes two-dimensional coordinate is used. 
+    <p>
+      <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon13_dot.png">
+      <br>
+      A dot graph is used to visualize the quantitative data with smaller number of data counts. In order to draw the dot graph, we first draw the horizontal line and set its scale so that all data can be displayed on the horizontal line by considering minimum and maximum of the data, then mark each of the data values in dot corresponding to its scale. The dot graph makes it easy to see distribution patterns and anomalies of the data. 
+    <p>
+      <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon14_histo.png">
+      If there are too many observations of the quantitative data and therefore there are too many possible values of the data, the dot graph may not have enough space to show all data. In such cases, we divide usually all possible values of the data into several intervals and count the number of data belonging to each of intervals. Using the frequencies of each interval, we draw a histogram which is similar to the bar graph with no spacing between bars. 
+      <p>You might ask a question, 'How many intervals do I need to have?' There is no exact answer for the number of intervals, but 52 number of intervals is usually used when there are small number of data. A square root of the number of data is also often used as the number of intervals, but, if the number of intervals is too many, it is not easy to analyze the data sometimes. As far as the number of intervals is concerned, it depends on the analyst's judgement. 
+    <p>
+      <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon15_stem.png">
+      <br>
+      A stem and leaf plot is a variation of the histogram which is recently used to visualize the quantitative data. 
+      The stem and leaf plot can easily tell range of observations, shape of distribution, and concentration. 
+      The name literally shows the data in the form of stems and leaves by considering digits of data values, 
+      the first few digits form the stems and the remaining digits form the leaves. In 『eStat』 , 
+      the last digit of the data values forms the leaves and the digits in front of them form the stems. 
+      For each number of the data, first we investigate where it belongs to a stem and then write down the last digit of the number as a leaf corresponding to the stem. After investigating all numbers in the data, rearrange the values of the leaves on each stem in ascending order. The stem and leaf plot have been commonly used in recent years as both an interval-specific frequency distribution and a histogram for the quantitative data. 
+    <p>
+      <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon17_scatter.png">
+      <br>
+      A Scatter plot is to visualize data of two quantitative variables using two dimensional coordinates. 
+      The scatter plot can be considered as an extension of the dot graph for single quantitative variable. 
+      Each pair of the data of two quantitative variables is expressed as a dot with one value on the X-axis 
+      and the other value on the Y-axis in the XY plane. By using the scatter plot, relationship between 
+      two quantitative variables can be observed efficiently. 
+    <p>
+      In this chapter, visualization of the quantitative data is discussed by separating cases of the data 
+      without group and with group. Visualization of the quantitative data is a basic step of statistical analysis 
+      that will be described over the next chapters 7 to 12. It is an exploratory data analysis before 
+      you get into some statistical analysis. Estimation and testing hypothesis for the quantitative data 
+      of single population are described in Chapter 6 and 7. Testing hypothesis for the quantitative data 
+      of two populations is described in Chapter 8. Testing hypothesis for the quantitative data of three 
+      or more populations is described in Chapter 9.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <b>Graphs for Quantitative Data</b>
+      <p><b>Dot graph</b> marks each of the data values in dot on a horizontal line corresponding to its scale. The dot graph makes it easy to see distribution patterns and anomalies of the data. 
+      <p><b>Histogram</b> divides all possible data values into several intervals, count the number of data 
+         belonging to each interval, and draws a bar graph using these frequencies with no spacing between bars. 
+      <p><b>Stem and leaf plot</b> is a variation of the histogram which is recently used to visualize quantitative data. The stem and leaf plot shows the data in the form of stems and leaves by considering digits of data values, the first few digits form the stems and the remaining digits form the leaves.
+      <p><b>Scatter plot</b> is to visualize the data of two quantitative variables using two dimensional coordinates. The scatter plot can be considered as an extension of the dot graph.
+  </div>
+
+  <h3 id="0302">3.2 Visualization of Single Quantitative Variable</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0302.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/j_13J_lIAok" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+      In case of the quantitative data, raw data are directly used to visualize the data. Visualization of the quantitative data is discussed by separating cases of the data without group and with group. 
+  <p>
+  <h4>3.2.1 Visualization of Quantitative Data without Group</h4>
+  <p>
+
+  <div class="mainTable">
+      If the quantitative data are the sample data from a population, visualization of this sample data is used as a basic exploratory data analysis for estimation and testing hypothesis of population parameters such as population mean and population variance (Chapters 6 and 7).
+  </div>
+  <p>
+  <!-------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 3.2.1</b> <b>(Otter Length – single continuous data)</b> <br>
+         The following data show lengths of 30 otters. Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. (unit cm)
+      <p>
+      <div class="textLeft">63.2  65.3  67.6  68.7  69.7  60.7  72.4  75.2  64.4  76.5 </div>
+      <div class="textLeft">68.3  69.3  70.2  71.3  74.2  63.6  66.1  67.9  68.7  70.5 </div>
+      <div class="textLeft">72.3  72.8  77.6  78.1  69.7  69.4  68.6  68.2  67.2  61.7 </div>
+      <p>
+      <b>Answer</b>
+      <p>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX030201.svg" onclick="window.open(addrStr[14])">
+            Enter all 30 data into V1 column of the sheet in 『eStat』 system and specify the variable name of V1 as ‘OtterLength’. This data can also be found at the following location 
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ EX030201_Continuous_OtterLength.csv
+            <p>
+            Click on the dot graph icon <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon13_dot.png">
+            and click the variable name, 'OtterLength', then a dot graph of the otter length will be appeared 
+            in the Graph Area as in &lt;Figure 3.2.1&gt;. You can also select 'OtterLength' variable at the selection box of the Analysis Variable. 
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030201.svg">
+        <div class="figText">&lt;Figure 3.2.1&gt; Dot graph of otter lengths without group</div>
+      <p>
+        Checking the 'Mean/Std Dev' in the options window below the graph shows the average of the data and the (average) &plusmn; (one standard deviation) interval as in &lt;Figure 3.2.2&gt;. We can observe that large number of data can be found around the aveage and the data are distributed symmetrically around the average.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030202.svg">
+        <div class="figText">&lt;Figure 3.2.2&gt; Dot graph of otter lengths with MeanStdDev interval</div>
+      <p>
+        Click on the histogram icon <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon14_histo.png"> 
+        to display the graph as in &lt;Figure 3.2.3&gt;. If you check the options of ‘Mean’, ‘Frequency’ and ‘Frequency Polygon’ below the graph, the histogram is changed as in &lt;Figure 3.2.4&gt;. You can also observe that there are large amount of data near the mean and the data are distributed in almost symmetrical form around the mean.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030203.svg">
+        <div class="figText">&lt;Figure 3.2.3&gt; Histogram of otter lengths</div>
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030204.svg">
+        <div class="figText">&lt;Figure 3.2.4&gt; Histogram polygon of otter lengths with mean</div>
+      <p>
+        Click on the [Frequency Table] button <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon14_histo.png"> 
+        in the options window below the graph (Figure 3.2.5) to output a frequency table by intervals based on the histogram currently drawn in the Log Area as in &lt;Figure 3.2.6&gt;.
+      <p>
+        <img class="imgFig30050" src="./Figure/Fig030205.png">
+        <div class="figText">&lt;Figure 3.2.5&gt; Options of the histogram</div>
+      <p>
+        <img class="imgFig300400" src="./Figure/Fig030206.png">
+        <div class="figText">&lt;Figure 3.2.6&gt; Frequency table of the histogram</div>
+      <p>
+        The number and the width of the intervals in the histogram are automatically calculated by 『eStat』 system, but you can redraw them by specifying the ‘Interval Start’ and ‘Interval Width’ from the option below the graph and then clicking [Execute New Interval] button in &lt;Figure 3.2.5&gt;.
+      <p>
+        Click on the stem and leaf plot icon <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon15_stem.png">
+        to display the graph shown in &lt;Figure 3.2.7&gt;. This graph is a variant of the histogram where intervals are [60, 61), [61, 62), ... , [78, 79). After finding the number of data belonging to each interval, the digits of 60, 61, ... , 78 become the stem of the graph and the last digits of all data values belonging to each interval become the leaves of each stem. The leaves (last digits) of each stem are sorted in ascending order  from small to large. 
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030207.svg">
+        <div class="figText">&lt;Figure 3.2.7&gt; Stem and leaf plot of otter length</div>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.2.1</b> <b>(Bicycle Road in Seoul)</b> <br>
+               The following data are the lengths of bike-only roads in Seoul's 25 administrative districts as of 2016. Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. Analyze the graphs.
+            <p>
+            <div class="textLeft">0.0  0.0  1.5  0.6  0.0  1.4  3.1  0.3  0.1  0.7  0.8  0.0  0.4  2.8  16.1 </div>
+            <div class="textLeft">8.1  1.5  3.8  4.6  0.0  2.9  0.0  4.4 18.4  3.3 </div>
+            <div class="textLeft">(unit km, Seoul City information system, 2016) </div>
+            <p> 
+            <p class="textLeft">Saved at [Ex] ⇨ eBook ⇨ PR030201_Continuous_BikeRoad.csv
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030201.svg" onclick="window.open(addrStr[47])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.2.2</b> <b>(Lengths of Major North American Rivers)</b> <br>
+            The lengths (in miles) of 141 major rivers in North America compiled by the US ecological Survey are saved at the following location of 『eStat』. 
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030202_Rdatasets_rivers.csv
+            <p>
+            <p>Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. Analyze the graphs. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030202.svg" onclick="window.open(addrStr[48])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.2.3</b> <b>(Annual Precipitation in US Cities)</b> <br>
+            The average amount of precipitation (rainfall) in inches for each of 70 United States (and Puerto Rico) cities are saved at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030203_Rdatasets_Precip.csv 
+            <p>
+            <p>Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. Analyze the graphs.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030203.svg" onclick="window.open(addrStr[49])">     
+    </div>
+    <p>
+
+  <!--***********************************************************************-->
+  <h4>3.2.2 Visualization of Quantitative Data with Group</h4>
+  <p>
+  <div class="mainTable">
+      If you can visualize the quantitative data by several groups using the same scale, it is easy to compare characteristics of groups. If the data are the sample data taken from two or more populations (groups), this comparison by visualization  can be used as a basic exploratory data analysis for testing hypothesis in Chapter 8 and Chapter 9. 
+  </div>
+  <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 3.2.2</b> <b>(Teacher’s Age by Gender)</b> <br>
+         In a middle school, the age and gender of all teachers are surveyed. The data are saved at the following location of 『eStat』.
+      <p>
+        <p class="textLeft">[Ex] ⇨ eBook ⇨ EX030202 Continuous_TeacherAgeByGender.csv. 
+      <p>
+        Using this data, draw a dot graph, a histogram, a stem and leaf plot of the age by  gender.
+      <p>
+      <b>Answer</b>
+      <p>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX030202.svg" onclick="window.open(addrStr[15])">
+            Select the file from 『eStat』 by clicking 
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ EX030202 Continuous_TeacherAgeByGender.csv.
+            <p>
+            <p>   or scan the QR.
+            <p>Click on the dot graph icon  <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon13_dot.png">
+               and click the variable names 'age' and 'gender' to draw the dot graph of the age by gender 
+               as in &lt;Figure 3.2.8&gt;. You can select ‘Age’ from the selection box of 'Analysis Var' and ‘Gender’ from the selection box of ‘By Group’ variable. 
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030208.svg">
+        <div class="figText">&lt;Figure 3.2.8&gt; Dot graph of the age by gender: Group 1 is for male and Group 2 for female</div>
+      <p>
+        By checking the 'Mean/StdDev’ in the options window below the graph, the mean line and (average) &plusmn; (one standard deviation) intervals are shown on the graph as in &lt;Figure 3.2.9&gt;.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030209.svg">
+        <div class="figText">&lt;Figure 3.2.9&gt; Dot graph of the age by gender with interval of mean / std dev </div>
+      <p>
+        By looking at the dot graph in &lt;Figure 3.2.9&gt;, the average age of the female teachers is higher than the male teachers. If this data are sampled from two populations, a statistical analysis of testing hypothesis to compare two population means can be applied. It will be discussed in Chapter 8.
+      <p>
+        If you click on the histogram icon <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon14_histo.png">, 
+        the histogram as in &lt;Figure 3.2.10&gt; appears in the Graph Area. By checking the options below the graph, you can draw the mean lines, frequencies, and frequency polygons on the histogram (&lt;Figure 3.2.11&gt;). If you click [Frequency Table] button, the frequency table of the histogram can be displayed in the Log Area as in &lt;Figure 3.2.12&gt;.
+      <p> 
+       『eStat』 calculates the number and the width of the intervals automatically, but you can redraw them by specifying the ‘Interval Start’ and ‘Interval Width’ in the options window below the graph.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030210.svg">
+        <div class="figText">&lt;Figure 3.2.10&gt; Histogram of age by gender: Group 1 is for male and Group 2 for female</div>
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030211.svg">
+        <div class="figText">&lt;Figure 3.2.11&gt; Histogram of age by gender with polygon</div>
+      <p>
+        <img class="imgFig400300" src="./Figure/Fig030212.png">
+        <div class="figText">&lt;Figure 3.2.12&gt; Frequency table of age by gender</div>
+      <p>
+        If you click on the stem and leaf plot icon <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon15_stem.png">,
+        the graph as in &lt;Figure 3.2.13&gt; will be displayed in the Graph Area. This stem and leaf plot is a variant of the histogram in which the age data are divided into intervals as [20, 30), [30, 40), ... [60,70) by using the possible decimal digits of 10s as the stem. The age data belonging to each interval are investigated and displayed using the last digit of the age as the leaf. The last digits (leaf) of the age are sorted in ascending order from small to large. 
+      <p>
+        In case of two groups, a bi-lateral stem and leaf plot as in &lt;Figure 3.2.14&gt; can be drawn 
+        by clicking on the bi-lateral stem and leaf icon 
+        <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon46_stemBilateral.png">.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030213.svg">
+        <div class="figText">&lt;Figure 3.2.13&gt; Stem and leaf plot of age by sex</div>
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030214.svg">
+        <div class="figText">&lt;Figure 3.2.14&gt; Both direction stem and leaf plot of age by sex </div>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 3.2.3</b> <b>(Comparison Hotdog Calories – Three Groups)</b> <br>
+        The calorie data of the hot dogs made by three ingredients (1: beef, 2: pork, 3: chicken) are surveyed and saved at the following location of 『eStat』. 
+      <p>
+        <p class="textLeft">[Ex] ⇨ eBook ⇨ EX030203_Continuous_CalorieByHotdog.csv.
+      <p>
+        Using 『eStat』 , compare the calories of the three hotdog types using a dot graph, a histogram and, a stem and leaf plot.
+      <p>
+      <b>Answer</b>
+      <p>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX030203.svg" onclick="window.open(addrStr[16])">
+            Retrieve the file from 『eStat』 by clicking 
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ EX030203_Continuous_CalorieByHotdog.csv.
+            <p>
+            or scan the QR on the left.
+            <p>
+            Click on the dot graph icon  
+            <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon13_dot.png">
+            and then select the variable 'Calorie' and 'Hot Dog' to draw a dot graph as in&lt;Figure 3.2.15&gt;. You can also select ‘Calorie’ in the 'Analysis Var' selection box and ‘HotDog’ in the 'By Group' selection box. 
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030215.svg">
+        <div class="figText">&lt;Figure 3.2.15&gt; Dot graph of calories of hot dog by type</div>
+      <p>
+        Checking 'Mean/StdDev' in the options window below the graph will show (mean) &plusmn;  (one standard deviation) intervals as shown in &lt;Figure 3.2.16&gt;. 
+      <p>
+        If you look at the dot graph of the calories of the hot dog, the hot dogs made from chicken are lower calories than those made from beef and pork. If this data are sampled from three populations, a statistical analysis of testing hypothesis to compare several population means can be applied. It will be discussed in Chapter 9.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030216.svg">
+        <div class="figText">&lt;Figure 3.2.16&gt; Dot graph of calories of hot dog by type with mean interval</div>
+      <p>
+        Click on the histogram icon  
+        <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon14_histo.png">
+        to display the graph shown in &lt;Figure 3.2.17&gt;. Under the options below the graph, you can draw means, frequency, and frequency polygon as in &lt;Figure 3.2.18&gt; and frequency table as in &lt;Figure 3.2.19&gt; in the Log Area. 
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030217.svg">
+        <div class="figText">&lt;Figure 3.2.17&gt; Histogram of calories of hot dog by type</div>
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030218.svg">
+        <div class="figText">&lt;Figure 3.2.18&gt; Histogram of calories of hot dog by type</div>
+      <p>
+        <img class="imgFig400300" src="./Figure/Fig030219.png">
+        <div class="figText">&lt;Figure 3.2.19&gt; Frequency table of the histogram</div>
+      <p>
+        The histogram of 『eStat』 calculates the number of intervals and the width of the intervals automatically, but you can redraw them by specifying the 'Interval Start' and 'Interval Width.
+      <p>
+        Click on the stem and leaf plot icon 
+        <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon15_stem.png">
+        to display the graph shown in &lt;Figure 3.2.20&gt; This graph is a variant of the histogram which the calories are divided into intervals [80, 90), [90, 100), ... , [190, 200) as the stem in each group. The data belonging to each interval are investigated and displayed as the leaves with the last digits of the data values. The leaves in each interval are sorted in ascending order from small to large. In case of many groups, the stem and leaf plot may overflow the screen as shown in &lt;Figure 3.2.20&gt; (only two groups are visible here). You can move the scroll bar of the screen to watch all the stem and leaf plot.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030220.svg">
+        <div class="figText">&lt;Figure 3.2.20&gt; Stem and leaf plot of hot dot calories. <br>  
+         Move scroll bar to see all graph</div>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.2.4</b>  <b>(Oral Cleanliness by Brushing Methods)</b> <br>
+            Oral cleanliness scores according to the brushing method (1:basic method, 2: rotation method) are examined and stored at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030204_Continuous_ToothCleanByBrushMethod.csv. 
+            <p>
+            <p>Using 『eStat』 , draw a dot graph, a histogram, a stem and leaf plot of the oral cleanliness by the brushing method.     </td>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030204.svg" onclick="window.open(addrStr[50])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.2.5</b> <b>(Plant Growth by Condition)</b> <br>
+               Results from an experiment to compare yields (as measured by dried weight of plants) are obtained under a control (leveled ‘ctrl’) and two different treatment conditions (leveled ‘trt1’ and ‘trt2’). The weights data with 30 observations on each of control and two treatments (‘crtl’, ‘trt1’, ‘trt2’) are saved at the following location of  『eStat』. 
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030205_Rdatasets_PlantGrowth.csv
+            <p>
+            <p>Use  『eStat』  to draw a dot graph, a histogram, a stem and leaf plot of the weights by three groups.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030205.svg" onclick="window.open(addrStr[51])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.2.6</b> <b>(Effectiveness of Insect Sprays)</b> <br>
+              The counts of insects in agricultural experimental units treated with six different insecticides. Data with 72 observations on 2 variables, insect count and sprays (A, B, C, D, E, F), are saved at the following location of 『eStat』. (Source: Beall, G., (1942) The Transformation of data from entomological field experiments, Biometrika, 29, 243–262.)
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030206_Rdatasets_InsectSprays.csv
+            <p>
+            <p>Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot of the insect counts by the types of sprays.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030206.svg" onclick="window.open(addrStr[52])">     
+    </div>
+
+  <h3 id="0303">3.3 Visualization of Two Quantitative Varaibles</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0303.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/M8slek6jD94" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+  <div class="mainTable">
+      In general, we investigate several characteristics from one subject or one observation. For example, when we investigate students in an elementary school, we examine their gender, height and weight simultaneously which are one categorical and two quantitative variables. 
+      <p>If you have data on two quantitative variables, a scatter plot can be used to analyze the data. A scatter plot displays the data on a two-dimensional plane with values for one variable being X-axis and values for the other being Y-axis. If a categorical variable such as gender is also collected together, a scatter plot by differenciating the colors of the dots by gender can be drawn. 
+      <p>If data are sampled from a population, the scatter plot can be used to analyze correlation and regression which will be discussed in Chapter 12.    </td>
+  </div>
+  <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 3.3.1</b> <b>(Height and Weight by Gender)</b> <br>
+      Data on gender, height and weight of 10 elementary school students are saved at the following location of 『eStat』.
+      <p>
+        <p class="textLeft">[Ex] ⇨ eBook ⇨ EX030301_Continuous_HeightWeightByGender.csv. 
+      <p>
+        1) Draw a scatter plot of height and weight using 『eStat』. <br>
+        2) Draw a scatter plot of height and weight by gender using 『eStat』.
+      <p>
+      <b>Answer</b>
+      <p>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX030301.svg" onclick="window.open(addrStr[17])">
+            Retrieve the file from 『eStat』 by clicking 
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ EX030301_Continuous_HeightWeightByGender.csv. 
+            <p>
+            or scan the QR on the left.
+            <p>
+            By clicking on the scatter plot icon <img class="imgIcon" src="http://www.estat.me/assets/icon/eStat_icon17_scatter.png">
+            and clicking on the 'weight' and 'height’ variable names, a scatter plot with the weight on Y-axis (the first selected variable) and the height on X-axis (the second selected variable) will appear in the Graph Area as in &lt;Figure 3.3.1&gt;. 
+            You can also select 'weight' in the 'Y-variable' selection box and 'height in the 'by X-variable' selection box. 
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030301.svg">
+        <div class="figText">&lt;Figure 3.3.1&gt; Scatter plot of height and weight</div>
+      <p>
+        By checking the 'Regression' in the options window below the graph shows a scatter plot with a regression line as in &lt;Figure 3.3.2&gt; which indicates a relationship between weight and height. If you look at the scatter plot, you can see that the larger the height, the heavier the weight is. See Chapter 12 for more discussion on the regression analysis.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030302.svg">
+        <div class="figText">&lt;Figure 3.3.2&gt; Scatter plot of height and weight with a regression line</div>
+      <p>
+        In order to draw a scatter plot by gender, select 'Gender' in the 'Group' box of options. It shows a scatter plot with different colors of gender as in &lt;Figure 3.3.3&gt;. By checking the 'Regression' in the options will show the regression lines to each gender as in &lt;Figure 3.3.4&gt;.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030303.svg">
+        <div class="figText">&lt;Figure 3.3.3&gt; Scatter plot of height and weight by gender groups</div>
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030304.svg">
+        <div class="figText">&lt;Figure 3.3.4&gt; Scatter plot of height and weight by gender with regression lines</div>
+      <p>
+        If you select the height as a 'Size Var' in the option, the dots in the scatter plot are proportional to the height as in &lt;Figure 3.3.5&gt;. 
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig030305.svg">
+        <div class="figText">&lt;Figure 3.3.5&gt; Scatter plot of height and weight by gender with size variable of height </div>
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.3.1</b> <b>(Old Faithful Geiser)<b> <br>
+            Waiting time between eruptions and the duration of the eruption for the Old Faithful geyser in Yellowstone National Park, Wyoming, USA were collected. There are 272 observations on 2 variables, time between eruptions (in seconds) and waiting time to next eruption (in mins). The data are saved at the following location of 『eStat』. 
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030301_Rdatasets_Faithful.csv 
+            <br class="textLeft">(Source: Applied Statistics, 39, 357–365. doi: 10.2307/2347385) 
+            <p>
+            <p>Draw a scatter plot of the time between eruptions and the waiting time to next eruption.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030301.svg" onclick="window.open(addrStr[53])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.3.2</b> <b>(Age and Income by Gender)</b> <br>
+            A survey of age, monthly income and gender (1: man, 2: woman) was conducted and the data are saved at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030302_Continuous_IncomeAge.csv. 
+            <p>
+            <p>Draw a scatter plot of the age and the monthly income by gender.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030302.svg" onclick="window.open(addrStr[54])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <b>Practice 3.3.3</b> <b>(Motor Trend Car Road Tests)</b>  <br>
+            The data of 32 observations were extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles. The data have 11 variables as follows.
+            <p>
+            <table style="width:300px">
+              <tr> <td>V1</td>  <td>mpg</td>  <td>Miles/(US) per gallon</td> </tr>
+              <tr> <td>V2</td>  <td>cyl</td>  <td>Number of cylinders</td> </tr>
+              <tr> <td>V3</td>  <td>disp</td> <td>Displacement (cu.in.)</td> </tr>
+              <tr> <td>V4</td>  <td>hp</td>   <td>Gross horsepower</td> </tr>
+              <tr> <td>V5</td>  <td>drat</td> <td>Rear axle ratio</td> </tr>
+              <tr> <td>V6</td>  <td>wt</td>   <td>Weight (1000 lbs)</td> </tr>
+              <tr> <td>V7</td>  <td>qsec</td> <td>1/4 mile time</td> </tr>
+              <tr> <td>V8</td>  <td>vs</td>   <td>Engine (0 = V-shaped, 1 = straight)</td> </tr>
+              <tr> <td>V9</td>  <td>am</td>   <td>Transmission (0 = automatic, 1 = manual)</td> </tr>
+              <tr> <td>V10</td> <td>gear</td> <td>Number of forward gears</td> </tr>
+              <tr> <td>V11</td> <td>carb</td> <td>Number of carburetors</td> </tr>
+            </table>
+            <p class="figText">(Source: Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.) 
+            <p>
+            <p>This data are saved at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ eBook ⇨ PR030303_Rdatasets_Mtcars.csv
+            <p>
+            <p>Draw a scatter plot of the miles per gallon and the weight of a car by the number of cylinders. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR030303.svg" onclick="window.open(addrStr[55])">     
+    </div>
+    <p>
+  <iframe src="./exercise/exercise03.html" width="800" height="550" ></iframe>
+</body>
+</html>
+

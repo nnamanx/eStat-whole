@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="AdditionRule">Addition Rule</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="AdditionRule">Addition Rule of Probability</span>
+    </div>
+    <p>
+       <table style="width: 400px;">
+        <tr>
+          <td style="text-align: right; width: 120px;"><span class="fontmath">P(A)</span> = </td>
+          <td style="width: 80px;"><input type="text" size=4 id="pa" style="text-align: center;"></td>
+          <td style="width: 20px;"><sup><small> 0.00 </small></sup></td>
+          <td style="width: 150px;"><input type="range" style="width: 150px;" min="0" max="20" value="13" id="rangePA" onchange="showValuePA(this.value)"/></td>
+          <td style="width: 30px;"><sup><small> 1.00 </small></sup></td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><span class="fontmath">P(B)</span> = </td>
+          <td><input type="text" size=4 id="pb" style="text-align: center;"></td>
+          <td><sup><small> 0.00 </small></sup></td>
+          <td><input type="range" style="width: 150px;" min="0" max="20" value="15" id="rangePB" onchange="showValuePB(this.value)"/></td>
+          <td><sup><small> 1.00 </small></sup></td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><span class="fontmath">P(A ∩ B)</span> = </td>
+          <td><input type="text" size=4 id="panb" style="text-align: center;"></td>
+          <td><sup><small><span id="minPANB"></span></small></sup></td>
+          <td><input type="range" style="width: 150px;" min="0" max="20" value="10" id="rangePANB" onchange="showValuePANB(this.value)"/></td>
+          <td><sup><small><span id="maxPANB"></span></small></sup></td>
+        </tr>
+      </table>
+      <br>
+      <b><button type="button" style="width:100px;" id="executeAUB"><span data-msgid="Execute"></span></button> </b>
+      &nbsp;&nbsp;&nbsp;
+      <span class="fontmath" id="paubstr" style="color:red; fontsize:1.5em"></span>
+      <p>
+      <svg id="chartAdd" width="600" height="480" style="border-style:solid;"> </svg> 
+      <br>
+      <button type="button" id="saveGraphADD" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+  </div> 
+
+  <script src="/estat/eStatU/js/40AdditionRule.js"> </script>
+  <script>
+      // init Example
+      document.getElementById("pa").value   = "0.625";
+      document.getElementById("pb").value   = "0.750";
+      document.getElementById("panb").value = "0.500";
+      document.getElementById("rangePA").value = 13;
+      document.getElementById("rangePB").value = 15;
+      document.getElementById("rangePANB").value = 10;
+      document.getElementById("minPANB").innerHTML = f3(0.375);
+      document.getElementById("maxPANB").innerHTML = f3(0.625);
+  </script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>13장</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+</head>
+<body>
+
+    <h4> 연습문제 </h4>
+  <p>
+     다음 연습문제(13.1 – 13.4) 시계열 자료를 그래프로 나타내고 적절한 평활법과 변환을 적용한 후 적젛한 예측모형을 찾아 다음 연도를 예측하라.
+  <p>
+    <div class="textL30M30">
+      13.1 다음 표는 한 제조회사의 2001 - 2014년 동안 선적시에 손상된 품목들의 개수에 대한 자료이다. 
+    </div>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">연도</th>
+          <th class="thGrey">항목</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+           </td> 
+           <td class="tdCenter">
+             533<br>
+             373<br>
+             132<br>
+             555<br>
+             168<br>
+             281<br>
+             175<br>
+             291<br>
+             228<br>
+             204<br>
+             349<br>
+             234<br>
+             209<br>
+             176<br>
+           </td> 
+         </tr>
+      </table>
+      <p>
+
+    <div class="textL30M30">
+      13.2  다음은 한 소매점의 2001-2014년 사이의 판매량(단위:천달러)을 나타낸다.
+    </div>
+    <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">연도</th>
+          <th class="thGrey">매출</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+          </td> 
+           <td class="tdCenter">
+                815<br>
+              1276<br>
+              4752<br>
+              7535<br>
+              10122<br>
+              9642<br>
+              14100<br>
+              12529<br>
+              12824<br>
+              13777<br>
+              15379<br>
+              18705<br>
+              17632<br>
+              16571<br>
+          </td> 
+        </tr>
+      </table>
+    <p> 
+
+    <div class="textL30M30">
+      13.3  다음 표는 한 회사의 2001-2014년 사이 보증기간 동안 수리된 품목들의 수를 보여주고 있다. 
+    </div>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">연도</th>
+          <th class="thGrey">항목</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+           </td> 
+           <td class="tdCenter">
+             749<br>
+             709<br>
+             700<br>
+             678<br>
+             611<br>
+             641<br>
+             631<br>
+             611<br>
+             600<br>
+             574<br>
+             559<br>
+             543<br>
+             534<br>
+             524<br>
+          </td> 
+        </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      13.4  다음 표는 한 회사의 11년간의 연 판매액(단위:십억)을 보여주고 있다.
+    </div>
+      <p>
+            <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">연도</th>
+          <th class="thGrey">매출</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+             2021<br>
+             2022<br>
+          </td> 
+           <td class="tdCenter">
+             12<br>
+             14<br>
+             18<br>
+             20<br>
+             18<br>
+             16<br>
+             20<br>
+             22<br>
+             27<br>
+             24<br>
+             30<br>
+          </td> 
+        </tr>
+      </table>
+    <p>
+
+    <div class="textL30M30">
+      13.5  다음 자료는 각각 2000년과 2015년 사이의 은과 원유의 가격을 나타낸다. 은과 원유의 백분율 변화와 가격 지수를 구한 후 한 그림에 겹쳐서 그려 보라.
+    </div>
+      <p>
+       <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">연도</th>
+          <th class="thGrey">은<br>($/온스)</th>
+          <th class="thGrey">원유<br>($/배럴)</th>
+        </tr>
+       <tr> 
+           <td class="tdCenter">
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+          </td> 
+           <td class="tdCenter">
+             1.771 <br>
+             1.546 <br>
+             1.684 <br>
+             2.558 <br>
+             4.708 <br>
+             4.419 <br>
+             4.353 <br>
+             4.620 <br>
+              5.440<br>
+             11.090<br>
+             20.633<br>
+             10.481<br>
+              7.950<br>
+             11.439<br>
+              8.141<br>
+              6.192<br>
+          </td> 
+           <td class="tdCenter">
+              1.80<br>
+              2.18<br>
+              2.48<br>
+              5.18<br>
+             10.46<br>
+             11.51<br>
+             11.51<br>
+             12.70<br>
+             15.40<br>
+             18.00<br>
+             28.00<br>
+             32.00<br>
+             34.00<br>
+             30.00<br>
+             26.00<br>
+             26.00<br>
+          </td> 
+        </tr>
+      </table>
+    <p> 
+
+    <div class="textL30M30">
+      13.6  다음 표는 한 스포츠 상품 판매사가 2017-2021년 동안 판매한 스키의 수를 나타내고 있다. <br>
+        1) 승법 계절모형으로 다음 연도의 예측을 하라. <br>
+        2) 홀트-윈터스 계절모형으로 다음 연도의 예측을 하라. <br>
+    </div>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">연.월</th>
+          <th class="thGrey">매출</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             2017.1<br>
+             2017.2<br>
+             2017.3<br>
+             2017.4<br>
+             2017.5<br>
+             2017.6<br>
+             2017.7<br>
+             2017.8<br>
+             2017.9<br>
+             2017.10<br>
+             2017.11<br>
+             2017.12<br>
+             2018.1<br>
+             2018.2<br>
+             2018.3<br>
+             2018.4<br>
+             2018.5<br>
+             2018.6<br>
+             2018.7<br>
+             2018.8<br>
+             2018.9<br>
+             2018.10<br>
+             2018.11<br>
+             2018.12<br>
+             2019.1<br>
+             2019.2<br>
+             2019.3<br>
+             2019.4<br>
+             2019.5<br>
+             2019.6<br>
+             2019.7<br>
+             2019.8<br>
+             2019.9<br>
+             2019.10<br>
+             2019.11<br>
+             2019.12<br>
+             2020.1<br>
+             2020.2<br>
+             2020.3<br>
+             2020.4<br>
+             2020.5<br>
+             2020.6<br>
+             2020.7<br>
+             2020.8<br>
+             2020.9<br>
+             2020.10<br>
+             2020.11<br>
+             2020.12<br>
+             2021.1<br>
+             2021.2<br>
+             2021.3<br>
+             2021.4<br>
+             2021.5<br>
+             2021.6<br>
+             2021.7<br>
+             2021.8<br>
+             2021.9<br>
+             2021.10<br>
+             2021.11<br>
+             2021.12<br>
+          </td> 
+           <td class="tdCenter">
+               0<br>
+               2<br>
+              10<br>
+               4<br>
+              89<br>
+              33<br>
+              11<br>
+               4<br>
+              17<br>
+               5<br>
+              17<br>
+               0<br>
+               3<br>
+               0<br>
+               5<br>
+               4<br> 
+              14<br> 
+              23<br> 
+               7<br> 
+              11<br>
+              11<br> 
+               4<br>
+               4<br>
+               8<br>
+               9<br> 
+               2<br> 
+              46<br> 
+              11<br> 
+              14<br> 
+              30<br> 
+              22<br> 
+               4<br>
+               7<br> 
+               4<br>  
+               0<br>  
+               2<br>
+             13<br>  
+              4<br>  
+             56<br> 
+             30<br>
+             90<br>
+             20<br>
+             15<br>
+             11<br>
+              6<br>
+              5<br> 
+              1<br>
+              7<br>
+              4<br>
+             12<br>
+              6<br> 
+             10<br> 
+             17<br> 
+             32<br>
+             24<br>
+              9<br>
+             10<br>
+              5<br>
+             17<br>
+              1<br>
+          </td> 
+        </tr>
+      </table>
+    <p> 
+
+</body>
+</html>
+

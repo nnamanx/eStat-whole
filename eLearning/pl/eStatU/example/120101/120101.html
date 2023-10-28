@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Scatterplot">Scatter Plot</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="CorrelationAnalysis"></span></b>
+    </div>
+    <br>
+    <form name="myForm0"> 
+        <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b> 
+        <span class="fontmath">&nbsp;&nbsp;
+          H<sub>o</sub> : &rho; = 0 &nbsp;
+        </span>
+        &nbsp;&nbsp;
+        <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : &rho; &ne;  0 &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : &rho; > 0 &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : &rho; < 0    
+        </span>
+        <br>
+        <b><span id="msgTestStat"></span></b>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        t<sub>0</sub> = √(n-2) r / √(1-r<sup>2</sup>) = <input type="text" class="textarea" size=6 id="testStat"> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="msgPvalue"></span> = <input type="text" class="textarea" size=6 id="pvalue"> 
+    </form>   
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp;&nbsp;
+    (<span style="color:blue;" data-msgid="SameSampleSize"></span>)
+    <br>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>X <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=65 id="data2"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="ytitle"></td>
+          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="xtitle"></td>
+ 	</tr>
+    </table>   
+
+    <table class="stat">
+      <tbody>
+	<tr>
+ 	  <td>&nbsp;&nbsp;<span data-msgid="NumberData"></span></td>         
+	  <td><span class="fontmath">n<sub>x</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">n<sub>y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span id="msgMean">Mean</span></td>
+	  <td><span class="fontmath">X&#772;</span></td>
+	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">Y&#772;</span></td>
+	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
+	  <td><span class="fontmath">S<sub>x</sub><sup>2</sup></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">S<sub>y</sub><sup>2</sup></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var42"></td>
+	  <td> </td>
+          <td><span data-msgid="Sample"></span> <span id="msgCovariance"></span></td>
+	  <td><span class="fontmath">S<sub>xy</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="var43"></td>
+	</tr>
+	<tr>
+          <td>&nbsp;&nbsp;<span data-msgid="Sample"></span><span data-msgid="Std Deviation"></span></td>
+	  <td><span class="fontmath">S<sub>x</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="std41"></td>
+	  <td> </td>
+	  <td><span class="fontmath">S<sub>y</sub></span></td>
+	  <td><input type="text" class="textarea" size=6 id="std42"></td>
+	  <td> </td>
+          <td><span data-msgid="Sample"></span> <span id="msgCorr"></span></td>
+	  <td><span class="fontmath">r</span></td>
+	  <td><input type="text" class="textarea" size=6 id="std43"></td>
+	</tr>
+      </tbody>
+    </table>
+    <br>
+    <button type="button" id="redrawCorr" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="600"> </svg> 
+    <br>
+      <label>
+        <input type="checkbox" id="regress2">
+        <span data-msgid="Regression Line">Regression Line </span>
+      </label> 
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div>
+
+  <script src="/estat/eStatU/js/30ScatterPlotU.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data1").value = "4,6,6,8,8,9,9,10,12,12";
+        stat = simplestat("#data1");  
+        xdata = data;  
+        xobs = stat.n;
+      document.getElementById("data2").value = "39,42,45,47,50,50,52,55,57,60";
+        stat = simplestat("#data2");  
+        ydata = data; 
+        yobs = stat.n;
+  </script>
+
+</body>
+</html>

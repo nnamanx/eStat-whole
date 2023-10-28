@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Hypothesis mu_title">Testing Hypothesis &mu;</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 
+         <span data-msgid="Testing Hypothesis mu">
+           Testing Hypothesis : Population Mean &mu; 
+         </span> 
+      </b>
+    </div>
+    <br>
+
+    <form name="myForm0"> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b> 
+      <span class="fontmath">&nbsp;&nbsp;
+        H<sub>o</sub> : &mu; = &mu;<sub>o</sub> &nbsp;
+      </span>
+      <input type="text" class="textarea" size=6 id="mu""> 
+      <br> &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1">
+	    H<sub>1</sub> : &mu; &ne;  &mu;<sub>o</sub> &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" checked>
+	    H<sub>1</sub> : &mu; > &mu;<sub>o</sub> &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : &mu; < &mu;<sub>o</sub>    
+      </span>
+    </form>
+
+    <form name="myForm1"> 
+      <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+      <input type="radio" name = "type1" value="1"> <span class="fontmath" data-msgid="t-test">t-test</span>
+      &nbsp; <input type="radio" name = "type1" value="2" checked><span class="fontmath" data-msgid="Z-test"> Z-test</span>      
+      &nbsp; &sigma;<sup>2</sup> = <input type="text" class="textarea" size=6 id="variP"> 
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+      <span class="fontmath">&alpha;</span> = 
+      <input type="text" class="textarea" size=4 id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    </form> 
+
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using csv / bsv)
+    </span>   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><input type="text" size=80 id="data1"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
+	  <td><span class="fontmath">n</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="nn"></td>
+          <td> <span class="fontguide">(>1) </span></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Mean">Sample Mean</span></td>
+	  <td><span class="fontmath">x&#772;</span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="xbar"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Variance">Sample Variance</span></td>
+	  <td><span class="fontmath">s<sup>2</sup></span></td>
+	  <td>=</td>
+	  <td><input type="text" class="textarea" size=6 id="variS"></td>
+<!--
+          <td><span class="fontguide" data-msgid="if Z-test-1">(if Z-test, enter population variance &sigma;<sup>2</sup>)</span> </td>
+-->
+	</tr>
+      </tbody>
+    </table>
+
+    <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath" id="tformula"></span> = 
+    <input type="text" class="textarea" size=6 id="tvalue">
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td><span class="fontmath">x&#772;</span></td>
+	  <td>&plusmn;</td>
+	  <td><span class="fontmath" id="intFormula"></span></td>
+          <td>&hArr;</td>
+	  <td>[&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+	  <td><input type="text" class="textarea" size=6 id="cright">&nbsp;]</td>
+	</tr>
+      </tbody>
+    </table>
+
+       <div class="figText">&lt;Figure 7.1.3&gt; Data input for Testing Hypothes for &mu;</div>
+    <p>
+    <button type="button" id="executeTH" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+  </div> 
+
+  <script src="/estat/eStatU/js/70TestingMu.js"> </script>
+  <script>
+      // init data
+      document.getElementById("mu").value    = 250;   
+      document.getElementById("variP").value = 100;  
+      document.getElementById("alpha").value = 0.01;  
+      document.getElementById("nn").value    = 100;   
+      document.getElementById("xbar").value  = 253;
+  </script>
+
+</body>
+</html>

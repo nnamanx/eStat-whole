@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 9</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+    <div class="mainTablePink">
+
+    <h6 class="textL30M30">9.1 분산분석법을 처음 발표한 사람은? </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> Laspeyres</label><br>
+      <label><input type="radio" name="item" value="2"> Paasche</label><br>
+      <label><input type="radio" name="item" value="3"> Fisher</label><br>
+      <label><input type="radio" name="item" value="4"> Edgeworth</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">9.2 분산분석의 약자는 무엇인가? </h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> ANOVA</label><br>
+      <label><input type="radio" name="item" value="2"> t검정</label><br>
+      <label><input type="radio" name="item" value="3"> F검정</label><br>
+      <label><input type="radio" name="item" value="4"> 카이제곱검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">9.3  분산분석을 이용하는 분야가 아닌 것은? <h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> 시장조사	</label><br>
+      <label><input type="radio" name="item" value="2"> 품질관리	</label><br>
+      <label><input type="radio" name="item" value="3"> 경제예측</label><br>
+      <label><input type="radio" name="item" value="4"> 의학실험</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">9.4  분산분석에서 사용하는 표본통계량의 분포는?  </h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> t 분포</label><br>
+      <label><input type="radio" name="item" value="2"> F 분포</label><br>
+      <label><input type="radio" name="item" value="3"> 카이제곱분포</label><br>
+      <label><input type="radio" name="item" value="4"> 정규분포</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">9.5  일원분산분석을 하는 과정을 맞게 나열한 것은? </h6>
+      <div class="textLeft">a. 총변동, 급간변동, 급내변동을 구한다.</div>
+      <div class="textLeft">b. 가설을 설정한다.</div>
+      <div class="textLeft">c. 가설을 검정한다.</div>
+      <div class="textLeft">d. 분산분석표에서 분산비를 구한다.</div>
+      <div class="textLeft">e. F 분포표에서 값을 찾는다.</div>
+      <p>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> a → b → c → d → e</label><br>
+      <label><input type="radio" name="item" value="2"> b → d → e → a → c</label><br>
+      <label><input type="radio" name="item" value="3"> b → a → d → e → c</label><br>
+      <label><input type="radio" name="item" value="4"> b → e → d → a → c</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+  
+    <h6 class="textL30M30">9.6  총변동(SST), 급간변동(SSB), 급내변동(SSE) 사이의 관계는? </h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> SST = SSB + SSE</label><br>
+      <label><input type="radio" name="item" value="2"> SST = SSB - SSE</label><br>
+      <label><input type="radio" name="item" value="3"> SST = SSE - SSB</label><br>
+      <label><input type="radio" name="item" value="4"> SST = SSB * SSE</label><br>
+     <p>
+      <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+  
+    <h6 class="textL30M30">9.7  \(F_{4,30: 0.05} = 2.87\) 이고, 관찰된  분산비가 6.90일 때, 유의수준 5％로 
+      가설을 검정하면 유의적인 차이는 어떻게 되는가? 
+    </h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> 유의적인 차이가 있다.</label><br>
+      <label><input type="radio" name="item" value="2"> 유의적인 차이가 없다.</label><br>
+      <label><input type="radio" name="item" value="3"> 매우 유사하다.</label><br>
+      <label><input type="radio" name="item" value="4"> 알 수 없다.</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+  
+    <h6 class="textL30M30">9.8  분산분석표에 나타나는 내용이 아닌 것은? </h6>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> 제곱합</label><br>
+      <label><input type="radio" name="item" value="2"> F 값</label><br>
+      <label><input type="radio" name="item" value="3"> 자유도</label><br>
+      <label><input type="radio" name="item" value="4"> 표준편차</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">9.9 실험계획법에서 관측값에 영향을 주는 변량을 무엇이라고 하는가? </h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> 원인요소</label><br>
+      <label><input type="radio" name="item" value="2"> 독립변량</label><br>
+      <label><input type="radio" name="item" value="3"> 종속변량</label><br>
+      <label><input type="radio" name="item" value="4"> 인자</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">9.10 세 종류의 자동차 연비를 비교하기 위하여 3명의 운전자가 나누어서 측정하고자 한다. 
+      연비는 운전자의 영향을 받을 수 있다. 이때 운전자와 같은 요인을 무어라 부르는가?   </h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> 블록변량</label><br>
+      <label><input type="radio" name="item" value="2"> 독립변량</label><br>
+      <label><input type="radio" name="item" value="3"> 종속변량</label><br>
+      <label><input type="radio" name="item" value="4"> 인자</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+    
+    <h6 class="textL30M30">9.11 세 종류의 자동차 연비를 측정할 때 운전자의 영향을 줄이기 위해 사용되는 실험계획법은? </h6>
+    <form name="Q11">
+      <label><input type="radio" name="item" value="1"> 완전확률화계획법</label><br>
+      <label><input type="radio" name="item" value="2"> 라틴제곱법</label><br>
+      <label><input type="radio" name="item" value="3"> 이원분산분석</label><br>
+      <label><input type="radio" name="item" value="4"> 확률화블록계획법</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ11">
+    </form>
+
+    <h6 class="textL30M30">9.12 인자 A의 효과가 인자 B의 수준에 따라 다르게 나타나는 것을 무엇이라고 부르는가? </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> 인자 A의 주효과</label><br>
+      <label><input type="radio" name="item" value="2"> 인자 B의 주효과</label><br>
+      <label><input type="radio" name="item" value="3"> 이원분산분석</label><br>
+      <label><input type="radio" name="item" value="4"> 교호작용효과</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+  </div>
+
+  <script src="./js/exercise09.js"></script>   
+ 
+</body>
+</html>
+

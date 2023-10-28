@@ -27,220 +27,54 @@
       </button>
     </div>
     <p>
-    <table>
-       <tr>
-          <td>&nbsp;</td>
-          <td><span class="fontmath">P(A)</span></td>
-          <td>=</td>
-          <td><input type="text" size=2 id="pa" value="0.40" style="text-align: center;">&nbsp;
-              <sup><small> 0 </small></sup>
-              <input type="range" style="width: 100px;" min="0" max="20" value="8" id="rangePA" onchange="showValuePA(this.value)"/>
-              <sup><small> 1 </small></sup>
-          </td>
+       <table style="width: 400px;">
+        <tr>
+          <td style="text-align: right; width: 120px;"><span class="fontmath">P(A)</span> = </td>
+          <td style="width: 80px;"><input type="text" size=4 id="pa" style="text-align: center;"></td>
+          <td style="width: 20px;"><sup><small> 0.00 </small></sup></td>
+          <td style="width: 150px;"><input type="range" style="width: 150px;" min="0" max="20" id="rangePA" onchange="showValuePA(this.value)"/></td>
+          <td style="width: 30px;"><sup><small> 1.00 </small></sup></td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
-          <td><span class="fontmath">P(B)</span></td>
-          <td>=</td>
-          <td><input type="text" size=2 id="pb" value="0.30" style="text-align: center;">&nbsp;
-              <sup><small> 0 </small></sup>
-              <input type="range" style="width: 100px;" min="0" max="20" value="6" id="rangePB" onchange="showValuePB(this.value)"/>
-              <sup><small> 1 </small></sup>
-          </td>
+          <td style="text-align: right;"><span class="fontmath">P(B)</span> = </td>
+          <td><input type="text" size=4 id="pb" style="text-align: center;"></td>
+          <td><sup><small> 0.00 </small></sup></td>
+          <td><input type="range" style="width: 150px;" min="0" max="20" id="rangePB" onchange="showValuePB(this.value)"/></td>
+          <td><sup><small> 1.00 </small></sup></td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
-          <td><span class="fontmath">P(A ∩ B)</span></td>
-          <td>=</td>
-          <td><input type="text" size=2 id="panb" value="0.20" style="text-align: center;">&nbsp;
-              <sup><small><span id="minPANB"></span></small></sup>
-              <input type="range" style="width: 80px;" min="0" max="20" value="14" id="rangePANB" onchange="showValuePANB(this.value)"/>
-              <sup><small><span id="maxPANB"></span></small></sup>
-          </td>
+          <td style="text-align: right;"><span class="fontmath">P(A ∩ B)</span> = </td>
+          <td><input type="text" size=4 id="panb" style="text-align: center;"></td>
+          <td><sup><small><span id="minPANB"></span></small></sup></td>
+          <td><input type="range" style="width: 150px;" min="0" max="20" id="rangePANB" onchange="showValuePANB(this.value)"/></td>
+          <td><sup><small><span id="maxPANB"></span></small></sup></td>
         </tr>
-    </table>
-    <br>
-    <table>
-        <tr>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td colspan="3"><span class="fontmath" id="paubstr" style="color:red; fontsize:1.5em"></span></td>
-        </tr>
-    </table>
-    <br>
-    <b><button type="button" style="width:100px;" id="execute"><span data-msgid="Execute"></span></button> </b>
-    <p>
-    <svg id="chart" width="600" height="480"> </svg> 
-    <br>
-    <button type="button" id="saveGraphU" >
+      </table>
+      <br>
+      <b><button type="button" style="width:100px;" id="executeAUB"><span data-msgid="Execute"></span></button> </b>
+      &nbsp;&nbsp;&nbsp;
+      <span class="fontmath" id="paubstr" style="color:red; fontsize:1.5em"></span>
+      <p>
+      <svg id="chartAdd" width="600" height="480" style="border-style:solid;"> </svg> 
+      <br>
+      <button type="button" id="saveGraphADD" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-    </button>
+      </button>
+      <p>
   </div> 
 
+  <script src="/estat/eStatU/js/40AdditionRule.js"> </script>
   <script>
-
-      var chart = d3.select("#chart");
- 
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
-      var svgWidth    = 600;
-      var svgHeight   = 480;
-      var graphWidth  = svgWidth - margin.left - margin.right;
-      var graphHeight = svgHeight - margin.top - margin.bottom;
-      var i, pa, pb, panb, paub, temp, tmin, tmax, str1, str2, str3;
-      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
-      str1 = "P(A ∪ B) = P(A) + P(B) - P(A∩B)" ;
-      document.getElementById("minPANB").innerHTML = "0.00";
-      document.getElementById("maxPANB").innerHTML = "0.30";
-
-      // initial calculation and draw
-      pa   = parseFloat(d3.select("#pa").node().value);
-      pb   = parseFloat(d3.select("#pb").node().value);
-      panb = parseFloat(d3.select("#panb").node().value);
-      tmin = 0;
-      tmax = pb;
-      calculate();
-      // Calculate A union B ======================================
-      d3.select("#execute").on("click",function() {
-        chart.selectAll("*").remove();
-        pa   = d3.select("#pa").node().value;
-        pb   = d3.select("#pb").node().value;
-        panb = d3.select("#panb").node().value;
-        document.getElementById("rangePA").value = f0(pa*20);
-        document.getElementById("rangePB").value = f0(pb*20);
-        document.getElementById("rangePANB").value = f0(20 * (panb - tmin) / (tmax - tmin));
-        // input value
-        if ( isNaN(pa) || isNaN(pb) || isNaN(panb) ) {  // wrong input
-          chart.append("text").attr("class","mean")
-             .attr("x", 250).attr("y", 100)
-             .text(alertMsg[48][langNum])
-             .style("stroke","red")
-             .style("font-size","1.2em")
-          return;
-        }
-        if ( panb > pa || panb > pb ) {  // wrong input
-          chart.append("text").attr("class","mean")
-             .attr("x", 250).attr("y", 100)
-             .text("P(A ∩ B) < P(A) or P(B)")
-             .style("stroke","red")
-             .style("font-size","1.2em")
-          return;
-        }
-        calculate();
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-      // Calculate paub
-      function calculate() {
-        pa   = parseFloat(d3.select("#pa").node().value);
-        pb   = parseFloat(d3.select("#pb").node().value);
-        panb = parseFloat(d3.select("#panb").node().value);
-        if (panb > pa) {panb = pa }
-        if (panb > pb) {panb = pb;}
-        if (pa <= pb) tmax = pa;
-        else tmax = pb;
-        tmin = 0;
-        if (pa+pb >= 1) tmin = pa + pb - 1;
-        document.getElementById("pa").value   = f2(pa);
-        document.getElementById("pb").value   = f2(pb);
-        document.getElementById("panb").value = f2(panb);
-        document.getElementById("minPANB").innerHTML = f2(tmin);
-        document.getElementById("maxPANB").innerHTML = f2(tmax);
-        if (tmin == tmax) temp = 20;
-        else temp = 20*(panb-tmin)/(tmax-tmin)
-        document.getElementById("rangePANB").value = temp;
-        // P(A U B)
-        paub = parseFloat(pa) + parseFloat(pb) - parseFloat(panb);
-        str2 = " = " + pa + " + " + pb + " - " + panb; 
-        str3 = " = " + f3(paub);
-        document.getElementById("paubstr").innerHTML = str1 + str2 + str3;
-        drawUnion(pa, pb, panb, paub, str3);   
-      }
-
-      // pa slidebar
-      function showValuePA(newValue) {
-        document.getElementById("pa").value = f2(newValue*0.05);
-        pa   = parseFloat(d3.select("#pa").node().value);
-        pb   = parseFloat(d3.select("#pb").node().value);
-        panb = parseFloat(d3.select("#panb").node().value);
-        calculate();       
-      }
-      // pb slide bar
-      function showValuePB(newValue) {
-        document.getElementById("pb").value = f2(newValue*0.05);
-        pa   = parseFloat(d3.select("#pa").node().value);
-        pb   = parseFloat(d3.select("#pb").node().value);
-        panb = parseFloat(d3.select("#panb").node().value);
-        calculate();
-      }
-      // panb slide bar
-      function showValuePANB(newValue) {
-        panb = tmin + (tmax - tmin) * newValue * 0.05;
-        document.getElementById("panb").value = f2(panb);
-        pa   = parseFloat(d3.select("#pa").node().value);
-        pb   = parseFloat(d3.select("#pb").node().value);
-        panb = parseFloat(d3.select("#panb").node().value);
-        calculate();
-      }
-      // draw paub
-      function drawUnion(pa, pb, panb, paub, str3) {
-        chart.selectAll("*").remove();
-        var i, j, tx, ty, cx, cy, rx, ry, width, height;
-        var radius, radiusA, radiusB, radiusAB;
-        var xgap   = 20;
-        var ygap   = 20;
-        var fontsize  = "0.9em";
-        var fontsize2 = "1.3em";
-        radius   = 150;
-        radiusA  = radius * Math.sqrt(pa);
-        radiusB  = radius * Math.sqrt(pb);
-        radiusAB = radius * Math.sqrt(panb)
-        cx = margin.left + xgap + radius;
-        cy = margin.top  + 170;
-        tx = margin.left + 10;
-        ty = margin.top  + 10;
-        rx = 20;
-        ry = 20;
-        width  = graphWidth - xgap;
-        height = graphHeight - ygap;
-        // A union B
-//        chart.style("fill","yellow");
-        chart.append("rect").attr("x",tx).attr("y",ty).attr("rx",rx).attr("ry",ry).attr("width",width).attr("height",height)
-             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","yellow");
-        chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radiusA)
-             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","red");
-        chart.append("text").attr("x", cx-10).attr("y", cy-radiusA+30).text("P(A)="+pa)
-             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-        if (pa == 1 || pb == 1) tx = cx;
-        else if (panb == 0)  tx = cx + 2*radiusA; 
-        else if (pb == panb) tx = cx + radiusAB/3;
-        else tx = cx + radius - radiusAB/2+10;
-        chart.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radiusB)
-             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","green");
-        chart.append("text").attr("x", tx+20).attr("y", cy-radiusB+30).text("P(B)="+pb)
-             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-        chart.append("text").attr("x", (cx+tx)/2).attr("y", cy+10).text("P(A∩B)="+panb)
-             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-        tx = margin.left + xgap + 30;
-        ty =  cy + 200;
-        chart.append("text").attr("x", tx).attr("y", ty).text(str1)
-             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        chart.append("text").attr("x", tx).attr("y", ty+30).text(str2)
-             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        chart.append("text").attr("x", tx).attr("y", ty+60).text(str3)
-             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-      }
-
+      // init Example
+      document.getElementById("pa").value   = "0.6";
+      document.getElementById("pb").value   = "0.4";
+      document.getElementById("panb").value = "0.2";
+      document.getElementById("rangePA").value = 12;
+      document.getElementById("rangePB").value = 8;
+      document.getElementById("rangePANB").value = 10;
+      document.getElementById("minPANB").innerHTML = f3(0.0);
+      document.getElementById("maxPANB").innerHTML = f3(0.4);
   </script>
+
 </body>
 </html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 8</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+    <div class="mainTablePink">
+
+    <h6 class="textL30M30">8.1  “아침에 공부하는 학생이 저녁에 공부하는 학생보다 더 좋은 수학 점수를 받을 것이다.”
+       라는 가설을 세웠다. 학기말 시험을 본 결과 아침에 공부하는 학생 집단의 평균을 \(\mu_1\), 저녁에 공부하는 
+       학생 집단의 평균을 \(\mu_2\)라고 할 때, 귀무가설은? 
+    </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> \(\mu_1 \gt \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\mu_1 \ge \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\mu_1 \ne \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\mu_1 = \mu_2\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+  
+    <h6 class="textL30M30">8.2  문제 8.1의 대립가설은? </h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> \(\mu_1 \gt \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\mu_1 \ge \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\mu_1 \ne \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\mu_1 = \mu_2\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">8.3  “40세 남녀의 체중에는 차이가 있다”라는 연구 가설이 있다. 남자 집단의 평균을 
+      \(\mu_1\), 여자 집단의 평균을 \(\mu_2\)라고 할 때, 이 가설의 대립가설은 다음 중 어느 것인가? </h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> \(\mu_1 =   \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\mu_1 \ne \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\mu_1 \gt \mu_2\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\mu_1 \lt \mu_2\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+   
+    <h6 class="textL30M30">8.4  두 모집단 평균의 차이가 있는지 t 검정의 사용을 고려중이다. 필요한 가정이 아닌 것은?</h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> 모집단이 정규분포이다.</label><br>
+      <label><input type="radio" name="item" value="2"> 두 모분산이 같다.</label><br>
+      <label><input type="radio" name="item" value="3"> 독립된 표본을 추출한다. </label><br>
+      <label><input type="radio" name="item" value="4"> 집락 표본을 추출한다. </label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+  
+    <h6 class="textL30M30">8.5  두 모평균이 같은지 검정하기위해 사용되는 표본통계량의 분포는</h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> 정규분포</label><br>
+      <label><input type="radio" name="item" value="2"> t 분포</label><br>
+      <label><input type="radio" name="item" value="3"> 카이제곱분포</label><br>
+      <label><input type="radio" name="item" value="4"> F 분포</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+    <h6 class="textL30M30">8.6  16쌍의 부부를 표본추출해서 나이를 조사한 결과가 아래와 같다. 
+       이와 같은 표본 데이터를 무엇이라 부르는가?
+    </h6>
+      <div class="textLeft">   (여자, 남자) </div>
+      <div class="textLeft">   (28, 28) (29, 30) (18, 21) (29, 33) (22, 22) (18, 21) (40, 35) (24, 29)</div>
+      <div class="textLeft">   (21, 31) (20, 24) (20, 34) (23, 25) (33, 39) (33, 35) (40, 29) (39, 40)</div>
+    <p>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> 독립표본</label><br>
+      <label><input type="radio" name="item" value="2"> 대응표본</label><br>
+      <label><input type="radio" name="item" value="3"> 임의표본</label><br>
+      <label><input type="radio" name="item" value="4"> 집락표본</label><br>
+     <p>
+      <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">8.7  두 모집단이 정규분포를 따를때 두 모분산이 같은지 비교하는데 사용되는 표본통계량의 분포는?</h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> 정규분포</label><br>
+      <label><input type="radio" name="item" value="2"> t 분포</label><br>
+      <label><input type="radio" name="item" value="3"> 카이제곱분포</label><br>
+      <label><input type="radio" name="item" value="4"> F 분포</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+
+    <h6 class="textL30M30">8.8  표본의 크기가 충분히 클때 두 모비율이 같은지 비교하는데 사용되는 표본통계량의 분포는? </h6>
+    <form name="Q8">
+     <label><input type="radio" name="item" value="1"> 정규분포</label><br>
+      <label><input type="radio" name="item" value="2"> t 분포</label><br>
+      <label><input type="radio" name="item" value="3"> 카이제곱분포</label><br>
+      <label><input type="radio" name="item" value="4"> F 분포</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+   
+    <h6 class="textL30M30">8.9  한 회사의 영업직사원과 관리직사원의 여가활동에 대한 비교연구를 하였다. 
+       영업직사원과 관리직사원 중 각각 독립적으로 400명을 추출하여 조사하였더니, 288명의 영업직사원과 260명의 
+       관리직사원들이 그들의 여가시간을 주로 스포츠활동에 보낸다고 답하였다. 
+       두 집단의 비교를 위한 귀무가설은 다음 중 어느 것인가?  </h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> \(p_1 =  p_2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(p_1 \ne p_2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(p_1 \gt p_2\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(p_1 \lt p_2\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+  
+    <h6 class="textL30M30">8.10 문제 8.9의 대립가설은 다음 중 어느 것인가?  </h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> \(p_1 =  p_2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(p_1 \ne p_2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(p_1 \gt p_2\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(p_1 \lt p_2\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+
+  </div>
+
+  <script src="./js/exercise08.js"></script>   
+ 
+</body>
+</html>
+

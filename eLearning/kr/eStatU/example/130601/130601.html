@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Seasonal"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="TimeSeries"></span> <span data-msgid="Forecasting"></span> : <span data-msgid="SeasonalModel"></span></b><br>
+      <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Y = (<span data-msgid="Trend"></span>) × (<span data-msgid="Seasonal"></span>) × (<span data-msgid="Irregular"></span>)</b>
+    </div>
+    <p>
+    <table class="data">
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><b>Y <span data-msgid="input data"></span></b></td>
+	  <td colspan="3"><input type="text" size=73 id="data2"></td>
+	</tr>
+        <tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
+          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+        </tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
+          <td><input type="text" size=15 id="ytitle"></td>
+ 	</tr>
+    </table>
+    <table>   
+	<tr>
+          <td>&nbsp;&nbsp;</td>
+          <td><b><span data-msgid="Nseason"></span></b></td>
+          <td>&nbsp;&nbsp;L = </td>
+          <td><input type="number" min="2" max="12" value="4" id="ma1N" style="text-align:center" onchange="clearScreen()"> <span style="color:red;">( 2 ≤ L ≤ 12)</span></td>
+        </tr>
+    </table>
+    <table class="stat">
+      <tbody>
+	<tr>
+          <td>
+            <button type="button" id="execute" style="width:90px;">
+              <span data-msgid="Execute">Execute</span>
+            </button>
+          </td>
+ 	  <td>&nbsp;&nbsp;<span data-msgid="NumberData"></span></td>         
+	  <td><span class="fontmath">n<sub>Y</sub></span></td>
+	  <td><input type="text" class="textarea" size=4 id="nn41"> <span style="color:red;">( ≤ 120)</span></td>      
+          <td>&nbsp;&nbsp;</td>
+          <td><button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button></td>
+	</tr>
+      </tbody>
+    </table>
+    <svg id="chart" width="620" height="400"> </svg> 
+    <form name="modelForm"> 
+    <table>
+      <tbody>
+	<tr>
+ 	  <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>               
+          <td><span data-msgid="ForecastingPeriod"></span></td>
+          <td><input type="number" min="0" max="10" value="0" id="nn42" style="text-align:center" onchange="clearScreen()"></td>
+          <td>
+              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
+              &nbsp;&nbsp;&nbsp;
+              <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><span data-msgid="TrendModel"></span></td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model1" name="model">&nbsp;&nbsp;<span data-msgid="Linear"></span>
+            </label> 
+          </td>
+	  <td><span class="fontmath">y = b<sub>0</sub> + b<sub>1</sub> t</span></td>
+          <td><input type="text" class="textarea" size=6 id="rsquare1" style="text-align: left;">&nbsp;</td>
+          <td><input type="text" class="textarea" size=36 id="equation1" style="text-align: left;"></td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model2" name="model">&nbsp;&nbsp;<span data-msgid="Quadratic"></span>
+            </label> 
+          </td>
+	  <td><span class="fontmath">y = b<sub>0</sub> + b<sub>1</sub> t + b<sub>2</sub> t<sup>2</sup></span></td>
+          <td><input type="text" class="textarea" size=6 id="rsquare2" style="text-align: left;">&nbsp;</td>
+          <td><input type="text" class="textarea" size=36 id="equation2" style="text-align: left;"></td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model3" name="model">&nbsp;&nbsp;<span data-msgid="Cubic"></span>
+            </label> 
+          </td>
+	  <td><span class="fontmath">y = b<sub>0</sub>+b<sub>1</sub>t+b<sub>2</sub>t<sup>2</sup></span>+b<sub>3</sub>t<sup>3</sup></td>
+          <td><input type="text" class="textarea" size=6 id="rsquare3" style="text-align: left;">&nbsp;</td>
+          <td><input type="text" class="textarea" size=36 id="equation3" style="text-align: left;"></td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model4" name="model">&nbsp;&nbsp;<span data-msgid="SquareRoot"></span>
+            </label> 
+          </td>
+	  <td><span class="fontmath">y = b<sub>0</sub> + b<sub>1</sub> √t </span></td>
+          <td><input type="text" class="textarea" size=6 id="rsquare4" style="text-align: left;">&nbsp;</td>
+          <td><input type="text" class="textarea" size=36 id="equation4" style="text-align: left;"></td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model5" name="model">&nbsp;&nbsp;<span data-msgid="Log"></span>
+            </label> 
+          </td>
+	  <td><span class="fontmath">y = b<sub>0</sub> + b<sub>1</sub> ln(t)</span></td>
+          <td><input type="text" class="textarea" size=6 id="rsquare5" style="text-align: left;"></td>
+          <td><input type="text" class="textarea" size=36 id="equation5" style="text-align: left;"></td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model6" name="model">&nbsp;&nbsp;<span data-msgid="Power"></span>
+            </label> 
+          </td>
+	  <td><span class="fontmath">y = b<sub>0</sub> t <sup>b<sub>1</sub></sup></span></td>
+          <td><input type="text" class="textarea" size=6 id="rsquare6" style="text-align: left;"></td>
+          <td><input type="text" class="textarea" size=36 id="equation6" style="text-align: left;"></td>
+	</tr>
+	<tr>
+          <td>
+            <label>
+              <input type="radio" id="model7" name="model">&nbsp;&nbsp;<span data-msgid="Exponent"></span>
+            </label> 
+          </td>
+	  <td><span class="fontmath">y = b<sub>0</sub> e <sup>(b<sub>1</sub> t)</span></sup></td>
+          <td><input type="text" class="textarea" size=6 id="rsquare7" style="text-align: left;"></td>
+          <td><input type="text" class="textarea" size=36 id="equation7" style="text-align: left;"></td>
+	</tr>
+      </tbody>
+    </table>
+    </form>
+    <p>
+  </div>
+
+  <div width="250" style="position:absolute; left:640px; top:120px;"> 
+    &nbsp;&nbsp;
+    <p>
+    <div id="screenTable" >
+      <div id="loc">
+      </div>
+    </div>
+  </div>
+
+  <script src="/estat/eStatU/js/37TimeseriesSeasonal.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data2").value = "75,60,54,59,86,65,63,80,90,72,66,85,100,78,72,93";
+        stat = simplestat("#data2");  
+        ydata = data; 
+        yobs = stat.n;
+      document.getElementById("mtitle").value = "Sales by Quarter";
+      document.getElementById("ytitle").value = "million US$";
+  </script>
+ 
+</body>
+</html>

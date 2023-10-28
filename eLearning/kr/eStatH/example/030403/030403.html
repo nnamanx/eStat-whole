@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Law of Large Number">Law of Large Number</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="600" height="640" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Law of Large Number"></span> </b> 
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      \(X \; \) : <span data-msgid="Binomial Distribution"></span> \(B(n,p)\)&nbsp;&nbsp;&nbsp;
+      \( \quad P(\; \left| \frac{X}{n} - p \right | \,<\, \epsilon ) \;🠖\; 1 \) 
+    </div>
+    <button type="button" id="execute"><span data-msgid="Execute">Execute</span></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    p = <input type="text" value="0.50" size=2 id="pp" class="inputNumber60">
+      <sup><small> 0 </small></sup> 
+      <input type="range" min="1" max="99" value="50" style="width:80px" id="rangeP" onchange="showValueP(this.value)"/>
+      <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ε = <input type="text" value="0.05" size=4 id="epsi" class="inputNumber60"> 
+      <sup><small>0.01</small></sup>  
+      <input type="range" min="1" max="10" value="5" style="width:80px" id="rangeE" onchange="showValueE(this.value)"/>
+      <sup><small>0.10</small></sup>  &nbsp;
+    <br>
+    <p>
+    <svg id="chart" width="600" height="400"> </svg>
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div>
+
+  <script src="/estat/eStatU/js/43LawOfLarge.js"> </script>
+
+</body>
+</html>

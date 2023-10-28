@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+</head>
+
+<body>
+  <h4> 연습문제 </h4>
+  <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">2.1  다음과 같이 자료를 정리하여 만든 표를 무엇이라 부르는가?</h6>
+           <table class="width:600px;"> 
+              <tr> <th class="thGrey">성별</th> <th class="thGrey">학생수</th>  </tr>
+              <tr> <td class="tdCenter">남</td>      <td class="tdCenter">6</td>   </tr>
+              <tr> <td class="tdCenter">여</td>      <td class="tdCenter">4</td>   </tr>
+            </table>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> 학생표</label><br>
+    <label><input type="radio" name="item" value="2"> 도수분포표</label><br>
+    <label><input type="radio" name="item" value="3"> 정리표</label><br>
+    <label><input type="radio" name="item" value="4"> 성적표</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+    <h6 class="textL30M30">2.2 다음과 같이 자료를 정리하여 만든 표를 무엇이라 부르는가? </h6>
+    <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey" style="width:250px">성별<br>(1:남, 2:여)</th>
+          <th class="thGrey" style="width:250px">결혼<br>(1:미혼, 2:기혼, 3:기타)</th>
+        </tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">2</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">2</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">1</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">2</td></tr>
+        <tr><td class="tdCenter">1</td> <td class="tdCenter">3</td></tr>
+        <tr><td class="tdCenter">2</td> <td class="tdCenter">1</td></tr>
+      </table>
+    <p>
+    <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 이산형데이터</label><br>
+    <label><input type="radio" name="item" value="2"> 요약데이터</label><br>
+    <label><input type="radio" name="item" value="3"> 원시데이터</label><br>
+    <label><input type="radio" name="item" value="4"> 연속형데이터</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ2">
+    </form>
+
+  <h6 class="textL30M30">2.3 다음 중 질적 자료 분석에 사용되는 그래프는? </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 줄기와 잎 그림</label><br>
+    <label><input type="radio" name="item" value="4"> 산점도</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">2.4 다음 중 질적 자료 분석에 사용되는 그래프가 아닌 것은?  </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
+    <label><input type="radio" name="item" value="4"> 띠그래프</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">2.5 연도별 수출액과 같이 시간에 따라 수집된 자료를 분석하는데 유용한 그래프는? </h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
+    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
+    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
+    <label><input type="radio" name="item" value="4"> 선그래프</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ5">
+    </form>
+  </div>
+
+  <script src="./js/exercise02.js"></script>   
+
+</body>
+</html>
+

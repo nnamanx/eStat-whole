@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="t Distribution">t Distribution</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="t Distribution">t Distribution</span></b>
+      &nbsp;&nbsp; df = <input type="text" class="textarea" value="7" size=4 id="dft" onfocus="focus0()" onKeyUp="changeRangeTdf()"/> 
+      <sup><small>1 </small></sup>
+      <input type="range" min="1" max="100" value="7" id="range1T" onchange="showValueT0(this.value)"/>
+      <sup><small>100 </small></sup>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label style="color:red"><input type="checkbox" value="freq2" id="normalGraph" > N(0,1)</label>  
+    </div>
+    <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style="color:red;" data-msgid="If typed"></span> 
+    <p>
+    <svg id="chart" width="600" height="400"> </svg> 
+ 
+    <section class="range-slider">
+      <input class="slider" type="range" min="0" max="1000" value="267" id="range21T" onchange="showValueT1(this.value)"/>
+      <input class="slider" type="range" min="0" max="1000" value="713" id="range22T" onchange="showValueT2(this.value)"/>
+    </section>
+ 
+    <form name="myForm"> 
+      <table class="stat">
+      <tbody>
+        <tr>
+          <td>
+            <button type="button" id="Execute">
+              <span data-msgid="Execute">Execute</span>
+            </button>
+          </td>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="button" id="saveGraphU"> 
+              <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+            </button>
+          </td>
+          <td>
+            <button type="button" id="saveTable">
+              <span class="tooltiptext" data-msgid="Table Save">Table Save</span>
+            </button>
+            <br>
+          </td>
+        </tr>
+        <tr>
+          <td><span data-msgid="Probability"></span></td>
+          <td>
+            <label> 
+            <input type="radio" name = "type1" value="1"> 
+            P( <input type="text" class="textarea" value="-2.228" size=6  id="a" onfocus="focus1()" onKeyUp="executeClick()"/>
+            &nbsp;  &le; &nbsp;  t &nbsp; &le; &nbsp; 
+            <input type="text" class="textarea"  value="2.228"  size=6 id="b" onfocus="focus1()" onKeyUp="executeClick()"/> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.9500" size=5 id="c"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="2"> 
+            P( t &nbsp; &le; &nbsp; 
+            <input type="text" class="textarea" value="-1.812" size=6 id="b2" onfocus="focus2()" onKeyUp="executeClick()" /> )
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0500"  size=5 id="c2"></td>
+          <td>
+            <button type="button" id="percentileTable">
+              <span data-msgid="Percentile">Percentile</span>
+            </button> 
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label>
+            <input type="radio" name = "type1" value="3"> 
+              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; t &nbsp; &ge; &nbsp; 
+            <input type="text" class="textarea" value="2.228" size=6 id="a3" onfocus="focus3()" onKeyUp="executeClick()" />  )
+            </label>
+          </td>
+          <td>=</td>
+          <td><input type="text" class="textarea2" value="0.0500"  size=5 id="c3"></td>
+        </tr>
+        <tr>
+          <td><span data-msgid="PercentileValue">Percentile</span></td>
+          <td>
+            <label>
+              <input type="radio" name = "type1" value="4" >   
+              P( <input type="text" class="textarea2" value="-2.228" size=6 id="f"> &nbsp;  &le; &nbsp;  t &nbsp; &le; &nbsp; 
+              <input type="text" class="textarea2"  value="2.228"  size=6 id="g"> )  
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.9500" size=5 id="h" onfocus="focus4()" onKeyUp="executeClick()" />
+          </td>
+          <td>
+<!--
+              <sup><small>0 </small></sup>
+              <input type="range" min="1" max="999" value="950" id="range4T" onchange="showValueT4(this.value)"/>
+              <sup><small>1</small> </sup>
+-->
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="5" checked> 
+              P( t &nbsp; &le; &nbsp;
+              <input type="text" class="textarea2" value="1.895" size=6  id="d"> ) 
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.95" size=5 id="e" onfocus="focus5()" onKeyUp="executeClick()" /> 
+          </td>
+          <td>
+<!--
+            <sup><small>0 </small></sup>
+            <input type="range" min="1" max="999" value="950" id="range3T" onchange="showValueT3(this.value)"/>
+            <sup><small>1</small> </sup> 
+-->
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <label> 
+              <input type="radio" name = "type1" value="6" >
+              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; t &nbsp; &ge; &nbsp; 
+              <input type="text" class="textarea2" value="1.645" size=6  id="a6"/> ) 
+            </label>
+          </td>
+          <td>=</td>
+          <td>
+            <input type="text" class="textarea" value="0.0500" size=5 id="c6" onfocus="focus6()" onKeyUp="executeClick()" /> 
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" id="saveGraphU"> 
+              <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+            </button>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="button" id="saveTable">
+              <span class="tooltiptext" data-msgid="Table Save">Table Save</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <p>
+      &nbsp;
+      <span data-msgid="Reference Site">Reference Site</span> :  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/Studentst-Distribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="http://stattrek.com/probability-distributions/t-distribution.aspx" target="_blank" >StatTrek </a> &nbsp; 
+      <p>
+    </form>
+    <div>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+  </div> 
+ 
+  <script src="/estat/eStatU/js/54TdistEng.js"> </script>
+  <script>
+      // init data
+      document.myForm.type1[4].click();
+  </script>
+
+</body>
+</html>

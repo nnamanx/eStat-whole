@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 4</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+  <!--***********************************************************************-->
+  <h1>Chapter 4. Measure of Central Tendency and Dispersion</h1> 
+  <p>
+        <h1>&nbsp; 🎲 🎯 ⚖ μ σ ρ</h1>
+        <h4>
+        <a href="#0401"><u>4.1 Measure of Central Tendency – Mean and Median</u></a> <p>
+        <a href="#0402"><u>4.2 Measure of Dispersion – Standard Deviation</u></a> <p>
+        <a href="#0403"><u>4.3 Covariance and Correlation Coefficient</u></a> <p>
+
+        <a href="./pdf/chapter04.pdf" target="_blank"><u>[Chapter 4 pdf]</u></a> 
+        </h4>
+        <p>In the case of quantitative data, the central tendency and dispersion of 
+           the data are measured and analyzed.
+        <br>
+           - Central tendency : mean / median <br>
+           - Dispersion : variance / standard deviation 
+        <br>
+           Data for two quantitative variables are measured using a covariance and 
+           a correlation coefficient.
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+  <h3 id="0401">4.1 Measure of Central Tendency – Mean and Median</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+            <b>The data obtained by taking a sample of 5 middle school students and surveying their weight are as follows:</b> 
+          <p>
+          <div class="textLeft">(Data 4.1) Weights of five middle school students (kg)</div>
+          <table> 
+            <tr> 
+              <td>
+                63  60  65  55  77
+              </td>
+            </tr>
+          </table>
+      <h4>💎 Explore</h4>
+      <p>
+          <b>1) What kind of graph is used to find a representative value of these data?<br>
+             2) What would be a representative value for the weight of 5 students? 
+          </b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         The <b>average (or mean)</b> is a measure of central tendency of quantitative 
+         data and is widely used as a representative value for the data. The mean is 
+         the sum of all data and divided by the number of data, which implies the 
+         center of gravity of the data. The mean is expressed as \(\mu\) (read mu), 
+         and the mean of (Data 4.1) is obtained as follows:
+      $$
+         \text{Mean} =  \mu = \frac{63 + 60 + 65 + 55 + 77}{5} = \frac{320}{5} = 64
+      $$
+         When \(n\) number of data is expressed as \(x_1 , x_2 , ... , x_n \), 
+         mean is expressed by the following formula.
+      <p>
+      $$
+        \small \mu = \frac{1}{n} \sum_{i=1}^n x_i 
+      $$
+      <p>
+         In general, the mean is very appropriate as a representative value of the data,
+         but when there is a very large or a small value in the data, it is greatly 
+         affected by this extreme value. In this case, a median can be used. 
+         The <b>median</b> is the value in the middle when the data are sorted in order.
+         In (Data 4.1), the number of data is 5 which is an odd number, and the 3rd 
+         (\(\frac{n+1}{2}\)) number when data is sorted in ascending order is the median as follows: 
+      <p>
+          <div class="textLeft">Data 4.1) is sorted in ascending order.</div> 
+          <div class="textLeft">\(\qquad\)55  60  63  65  77</div>
+          <div class="textLeft">Median is the 3rd number in these sorted data which is 63.</div>
+      <p>
+         If the number of data is 6 which is an even number, how do we find the median? 
+         In this case, the median of the data is calculated as the average of the 
+         3rd (=\(\frac{n}{2}\) ) and 4th (=\(\frac{n+2}{2}\) ) of the sorted data.
+      <p>
+         Generally, a median is expressed as \(m\), and, if the number of data is \(n\) , 
+         it is calculated as follows:
+      <p>
+         1) Data are sorted in ascending order.<br>
+         2) Check whether the number of data  is an odd number or an even number. <br>
+         3) If \(n\) is odd, \(m\) = \( (\frac{n+1}{2})^{th}\)  data in sorted data. <br>
+            \(\quad \;\)If \(n\) is even, \(m\) = Average of (\(\frac{n}{2})^{th}\) data \((\frac{n+2}{2})^{th}\) data in sorted data.
+      <p>
+         In order to see the overall distribution of the weight data, a stem and leaf plot 
+         or a histogram discussed in Chapter 3 can be considered, but a dot graph is more useful. 
+         In a <b>dot graph</b>, after obtaining the minimum and maximum values of data, the position of 
+         each data is calculated on the horizontal axis, and displayed as a dot.
+      <p>
+         &lt;Figure 4.1&gt; is a dot graph for (Data 4.1). In proportion to the minimum 
+         value of 55 and the maximum value of 76, each data is displayed by a dot. 
+         The green line is the mean  and the red line is the median. In this data, 
+         the mean is located slightly to the right of the median because 77 of the data
+         is located to the right of the other four data. That is, the mean is more sensitive
+         to an extreme than the median.
+      <p>
+         <img class="imgFig600600" src="./Figure/Fig0401.png">
+         <div class="textLeft">&lt;Figure 4.1&gt; Dot graph of weight data</div>
+      <p>
+         If there are lots of data, it is time-consuming and difficult to obtain the mean 
+         and median manually as above. Let's find the representative value of the data
+        using 『eStatM』 software.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 4.1</h4>
+        Using 『eStatM』, draw a dot graph for the weights of 5 students (Data 4.1) and find the mean and median.
+      <p><b>Solution</b>
+      <p>
+         Enter students' weight data in 'Data input'. (You can also copy and paste
+         the data from the e-book)
+      <p>
+         When data are entered, the number of data, minimum, maximum, mean, and median are calculated 
+         immediately. If you click the [Execute] button, a dot graph appears as shown in 
+         &lt;Figure 4.1&gt; and the mean and median values are displayed.
+      <p>
+      <!------*** Dot graph html ***-------------------------------------------------------------->
+         <iframe src="./example/0401/0401.html" width="700" height="740"> </iframe>
+      <p> 
+         <div class="textLeft">&lt;Figure 4.3&gt; Simulation window to see a change in mean and median if you move a point</div>
+      <p>
+         Bottom graph of &lt;Figure 4.3&gt; is a simulation window.  
+         In this simulation window, you can move a point with the mouse to see the changes in the 
+         mean and median. For example, if you drag the rightmost point and move it to the right, 
+         the mean changes but the median does not. That is, the median is not affected by the extreme points.
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <h4>🎲 Practice 4.2</h4>
+      <p>
+         Using 『eStatM』, let's find the mean and median of the daily minimum temperature 
+         ([Practice 3.2]) in Seoul in February (Data 3.2).
+      <p> 
+          <div class="textLeft">(Data 3.2) Daily minimum temperature in February 2021 in Seoul (unit: degree in Celcius) </div>
+          <table> 
+            <tr> 
+              <td>
+                -2.3 -8.2 -9.4 -7.4 -4.4   4.3  -2.6   5.4  -6.1 -1.5 
+                 1.3  0.6  1.0  6.4 -5.2  -7.0 -10.4 -10.6  -7.1  5.5 <br>
+                 4.7  0.4 -3.1 -3.0  0.7   0.5   4.3   3.2 
+              </td>
+            </tr>
+          </table>
+      <h4>Solution</h4>
+          If you select ‘Dot Graph – Mean/Standard Deviation’ from the 『eStatM』 menu 
+               using the QR on the left, the data input window as shown in 
+               &lt;Figure 4.4&gt; appears.
+      <p>
+         <div class="QRFigure">
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+           <img class="imgFig600600" src="./Figure/Fig0404.png">
+           <div class="textLeft">&lt;Figure 4.4&gt; Temperature data input for a dot graph</div>
+         </div>
+      <p>
+         When the daily minimum temperature data are entered in 'Data input' (you can copy 
+         and paste the data from the e-book), as shown in &lt;Figure 4.4&gt;, 
+         it shows immediately that the number of data is 28, mean –1.79, median –1.90, 
+         minimum -10.6, maximum 6.4 degrees.
+      <p>
+         If you click the [Execute] button, a dot graph as shown in &lt;Figure 4.5&gt;
+         appears and the mean (\(\mu\)) and median (\(\m\)) are displayed. Below this 
+         dot graph, a simulation window appears where you can change a point with the mouse and observe the changes in the mean a
+      <p>
+         <img class="imgFig600600" src="./Figure/Fig0405.png">
+         <div class="textLeft">&lt;Figure 4.5&gt; Dot graph of daily minimum temperature and its simulation window</div>
+     <p>
+        Looking at this dot graph, it can be seen that there is almost no difference
+        between the mean and the median due to the absence of extreme value.
+     </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h4>⏱ Exercise 4.1</h4> 
+            The following is data on the length of bicycle-only roads by 25 administrative 
+            districts in Seoul as of 2019 ([Exercise 3.1]). Use 『eStatM』 to draw a dot graph, 
+            and to find and analyze the representative values of data.
+            <p>
+            <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul as of 2019 (unit: km) </div>
+            <table> 
+              <tr> 
+                <td>
+                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 
+                  42 11  8 37 13 20 29 53 93 42
+                </td>
+              </tr>
+            </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h4>⏱ Exercise 4.2</h4> 
+            The following is data on the maximum wind speed of typhoons that passed 
+            through Korea in 2020 ([Exercise 3.2]). Use 『eStatM』 to draw a dot graph, 
+            and to find and analyze the representative values of data.
+            <p>
+            <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020 (unit: m/sec)</div>
+            <table> 
+              <tr> 
+                <td>
+                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 
+                  24 35 40 56 24 21 43 18 <br>
+                </td>
+              </tr>
+            </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+ 
+  <h4> A. Calculation of mean using frequency table</h4>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>Assume that a frequency table of the academic achievement test scores of 
+             a middle school class is given as follows:
+          </b>
+          <p>
+          <div class="textLeft">[Table 4.1] Frequency table of the academic achievement test scores of a middle school</div>
+          <table> 
+            <tr> <th class="thGrey">Class</th> <th class="thGrey">Number of data</th>   </tr>
+            <tr> <td class="tdCenter">60&le; ~ &lt;70</td> <td class="tdCenter"> 2</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">5</td> </tr>
+            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">10</td> </tr>
+            <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey">20</th>   </tr>
+          </table>
+      <h4>💎 Explore</h4>
+          <b>How do we find the mean using this frequency table?
+          </b>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         When a frequency table is given rather than the raw data, the mean can be obtained 
+         approximately as follows using the middle values of each class interval.
+      <p>
+         First, find the middle value of each class interval. Then, it is assumed that 
+         each class has the middle value as many as the frequency, and the mean is obtained 
+         using this approximated data.
+      <p>
+          <div class="textLeft">[Table 4.2] Approximated data using the middle value of each class interval in the academic achievement test scores </div>
+          <table> 
+            <tr> <th class="thGrey">Weight (kg)</th> <th class="thGrey">Middle value</th> <th class="thGrey">Frequency</th> <th class="thGrey">Approximated data</th>  </tr>
+            <tr> <td class="tdCenter">60&le; ~ &lt;70</td> <td class="tdCenter">65</td> <td class="tdCenter"> 2</td> <td>65 65</td>                          </tr>
+            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">75</td> <td class="tdCenter"> 5</td> <td>75 75 75 75 75</td>                 </tr>
+            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">85</td> <td class="tdCenter">10</td> <td>85 85 85 85 85 85 85 85 85 85 </td> </tr>
+            <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">95</td> <td class="tdCenter"> 3</td> <td>95 95 95</td>                       </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey"></th> <th class="thGrey">20</th> <th class="thGrey"></th>  </tr>
+          </table>
+
+      <p>Mean is calculated as follows:
+      $$ \small
+         \begin{align}
+         \text{Mean} &= \frac{65+65+75+75+75+75+75+85+85+85+85+85+85+85+85+85+85+95+95+95}{20} \\
+                     &= \frac{65 \times 2 + 75 \times 5 + 85 \times 10  + 95 \times 3} {20} \\
+                     &= \frac{1640}{20} = 82
+         \end{align}
+      $$
+  </div>
+  <p>
+
+  <div class="mainTableGrey">
+      <p>
+         Using ‘Frequency Distribution Polygon - Relative Frequency Comparison’ of 『eStatM』, 
+         the approximate mean of the frequency table can be obtained as shown in 
+         &lt;Figure 4.6&gt;. After entering the left value of the class interval and
+         ‘Frequency 1’, click the [Execute] button.
+      <p>
+      <!------------- html for Freq Polygon ----------------------------------->
+         <iframe src="./example/0402/0402.html" width="750" height="1020"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 4.6&gt; Mean calculation using a frequency table </div>
+      <p>
+  </div>
+
+<!--------------------------------------------------------------------------------------->
+  <h3 id="0402">4.2 Measure of Dispersion – Standard Deviation</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+          <b>The quiz scores (out of 10) of five middle school students are as follows: </b>
+          <p>
+            <div class="textLeft">(Data 4.2) The quiz scores (out of 10) of five middle school students</div>
+            <table> 
+              <tr> 
+                <td>
+                  6  8  7  4  10
+                </td>
+              </tr>
+            </table>
+      <h4>💎 Explore</h4>
+          <b>Is there a way to measure how scattered these data are?</b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         The degree to which data are scattered is called a <b>dispersion</b>. A simple measure 
+         of the dispersion is a <b>range</b> which is the maximum minus the minimum.
+      $$
+         \text{Range} = \text{Maximum - Minimum}</b>
+      $$
+         In (Data 4.2), the maximum value is 10 and the minimum value is 4, so the range is 22.
+      $$
+         \text{Range} = \text{77 - 55 = 22}</b>
+      $$      
+      <p>
+         Since the range is too sensitive to extreme values, a variance or a standard deviation
+         is generally used to measure the dispersion. The <b>variance</b> is obtained by 
+         squaring the distance between each data value and the mean, and dividing it by 
+         the number of data. Therefore, when the data are scattered far from the mean, 
+         the variance is large, and when the data are clustered around the mean, 
+         the variance is small. The variance is expressed as \(\sigma^2\) (read as sigma squared).
+      <p>
+         The mean of the data in (Data 4.2)  is as follows:
+      $$
+          \text{Mean} \quad \mu ~=~ \frac{6+8+7++4+10}{5} ~=~ \frac{35}{5} ~=~ 7
+      $$
+      <p>
+         The variance is calculated by squaring the distances from the mean to each data 
+         value to find the sum, and then finding the mean. That is, it is the average of 
+         squared distances.
+      $$
+        \begin{align}
+          \text{Variance} \quad \sigma^{2} &~=~ \frac{ (6-7)^2 + (8-7)^2 + (7-7)^2 + (4-7)^2 + (10-7)^2} {5} \\
+                                       &~=~ \frac{20}{5} ~=~ 4
+        \end{align}
+      $$
+        When \(n\) number of data is expressed as \(x_1 , x_2 , ... , x_n\) and the mean
+        is expressed as \(\mu\), the variance can be expressed by the following formula.
+      $$
+        \begin{align}
+          \text{Variance} \quad \sigma^{2} ~=~ { {1 \over n} {\sum _{i=1} ^{n} (x_{i} - \mu )^{2}}  } ~~~~	(n:~자료수)  \\
+        \end{align}
+      $$
+      <p>
+         The <b>standard deviation</b> is defined as the square root of the variance 
+         and denoted by \(\sigma\). The variance is not easy to interpret practically 
+         because it is the average of the squared distances, but the standard deviation
+         is the square root of the variance, so it can be interpreted as a measure 
+         of the average distance between each data value and the mean.
+      $$
+          \text{Standard deviation} \quad \sigma ~=~ \sqrt{\sigma^2}  \\
+      $$
+         The standard deviation of (Data 4.2) is  \(\sigma\) = \(\sqrt{\sigma^2}\) = \(\sqrt{4}\) = 2 이다.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 4.3</h4>
+        Using 『eStatM』, draw a dot graph for the quiz scores of 5 sample students  (Data 4.2) and find the mean and standard deviation.
+      <p><b>Solution</b>
+      <p>
+          Select ‘Dot Graph – Mean / Standard Deviation’ 
+          from the 『eStatM』 menu. Then a window like &lt;Figure 4.7&gt; appears.
+      <br>Enter students' quiz scores in 'Data input'. (You can also copy and 
+          paste the material from the e-book)
+      <p>
+         When the data are entered, the number of data, minimum, maximum, mean, median,
+         variance and standard deviation are calculated. If you click the [Execute] button, 
+         a dot graph as shown in &lt;Figure 4.8&gt; appears and the mean, median, 
+         standard deviation, and a line of mean \(\pm\) standard deviation are displayed.
+      <p>
+         Using the simulation window below the figure, you can check the change 
+         in the standard deviation by moving a data point with the mouse. 
+         The standard deviation is also affected by an extreme point.
+      <p>
+         <iframe src="./example/0403/0403.html" width="700" height="740"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 4.8&gt; Dot graph with a line of mean \(\pm\) standard deviation</div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 4.4</h4>
+        Using 『eStatM』, let's draw a dot graph for the daily minimum temperature ([Practice 3.2]) in Seoul in February (Data 3.2) and find the mean and standard deviation.
+      <p><b>Solution</b>
+      <p>If you select ‘Dot Graph – Mean / Standard Deviation’ from the 『eStatM』 menu
+               that appears using the QR on the left, the data input window as shown in 
+               &lt;Figure 4.9&gt; appears.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+      <p>
+         <img class="imgFig600600" src="./Figure/Fig0409.png">
+         <div class="textLeft">&lt;Figure 4.9&gt; Temperature data input for a dot graph</div>
+      <p>
+         When data are entered, the number of data, minimum, maximum, mean, median, variance 
+         and standard deviation are calculated. If you click the [Execute] button, a dot graph
+         as shown in &lt;Figure 4.10&gt; appears and the mean, median, standard deviation, 
+         and a line of mean \(\pm\) standard deviation are displayed.
+      <p>
+         Using the simulation window below the figure, you can check the change in the 
+         standard deviation by moving a point with the mouse. The standard deviation 
+         is also affected by an extreme point.
+      <p>
+         <img class="imgFig600600" src="./Figure/Fig0410.png">
+         <div class="textLeft">&lt;Figure 4.10&gt; Dot graph of daily minimum temperature and a simulation window</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h4>⏱ Exercise 4.3</h4> 
+              The following is data on the length of bicycle-only roads by 25 administrative districts in Seoul as of 2019 ([Exercise 3.1]). Use 『eStatM』 to draw a dot graph and to find and analyze the mean and standard deviation of the data.
+            <p>
+            <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul as of 2019. (unit km) </div>
+            <table> 
+              <tr> 
+                <td>
+                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 <br>
+                  42 11  8 37 13 20 29 53 93 42
+                </td>
+              </tr>
+            </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+    </div>
+    <p>
+
+    <!-------------------------------------------------------------------------->
+    <div class="mainTablePink">
+        <h4>⏱ Exercise 4.4</h4> 
+              The following is data on the maximum wind speed of typhoons that passed through Korea in 2020 ([Exercise 3.2]). Use 『eStatM』 to draw a dot graph and find and analyze the mean and standard deviation of data.
+            <p>
+            <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020 (unit m/sec) </div>
+            <table> 
+              <tr> 
+                <td>
+                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 <br>
+                  24 35 40 56 24 21 43 18 <br>
+                </td>
+              </tr>
+            </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+    </div>
+    <p>
+    <!-------------------------------------------------------------------------->
+
+  <h3>A. Calculation of standard deviation using frequency table</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+            <b>Assume that the frequency table of the academic achievement test scores of a middle school class is given as follows: </b>
+          <p>
+          <div class="textLeft">[Table 4.3] Frequency table of the academic achievement test scores of a middle school</div>
+          <table> 
+            <tr> <th class="thGrey">Class</th> <th class="thGrey">Number of data</th>   </tr>
+            <tr> <td class="tdCenter">60&le; ~ &lt;70</td> <td class="tdCenter"> 2</td> </tr>
+            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">10</td> </tr>
+            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">15</td> </tr>
+            <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th>   </tr>
+          </table>
+      <h4>💎 Explore</h4>
+          <b>How to find the standard deviation of the data in this frequency table?
+          </b>
+  </div>
+  <p>
+  <div class="mainTable">
+      <p>
+         In the previous section, when a frequency table was given rather than the raw data, 
+         the mean was approximated using the middle value of each class interval. 
+         The standard deviation is calculated in a similar way.
+      <p>
+         First, find the middle value of each class. Then, it is assumed that each class 
+         has the middle value as many as the frequency, and the average is obtained 
+         using this approximate data.
+      <p>
+          <div class="textLeft">[Table 4.4] Approximated data using the middle value of each class interval in the academic achievement test scores </div>
+          <table> 
+            <tr> <th class="thGrey">Weight (kg)</th> <th class="thGrey">Middle value</th> <th class="thGrey">Frequency</th> <th class="thGrey">Approximated data</th>  </tr>
+            <tr> <td class="tdCenter">60&le; ~ &lt;70</td> <td class="tdCenter">65</td> <td class="tdCenter"> 3</td> <td>65 65</td>                          </tr>
+            <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">75</td> <td class="tdCenter"> 7</td> <td>75 75 75 75 75</td>                 </tr>
+            <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">85</td> <td class="tdCenter">11</td> <td>85 85 85 85 85 85 85 85 85 85 </td> </tr>
+            <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">95</td> <td class="tdCenter"> 5</td> <td>95 95 95</td>                       </tr>
+            <tr> <th class="thGrey">Total</th> <th class="thGrey"></th> <th class="thGrey">30</th> <th class="thGrey"></th>  </tr>
+          </table>
+      <p>
+         Mean is calculated as follows:
+      $$
+        \text{Mean} ~=~ \frac{65 \times 2 + 75 \times 5 + 85 \times 10 + 95 \times 3} {20} ~=~ \frac{1640}{20} ~=~ 82
+      $$
+      <p>The variance and standard deviation are calculated in a similar way.
+      $$ \small
+        \begin{align}
+        &\text{Variance} \qquad \qquad \sigma^2 ~=~ \frac{(65-82)^2 \times 2 + (75-82)^2 \times 5 + (85-82)^2 \times 10 + (95-82)^2 \times 3} {20} \\
+        &\qquad\qquad\qquad\qquad \;\;   ~=~ \frac{1420}{20} ~=~ 71 \\
+        &\text{Standard deviation} \qquad  \sigma ~=~ \sqrt{\sigma^2} ~=~ \sqrt{71} ~=~ 8.43
+        \end{align} 
+      $$
+      <p>
+         Using ‘Frequency Distribution Polygon - Relative Frequency Comparison’ of 『eStatM』,
+         the approximate mean and standard deviation of the frequency table can be obtained 
+         as shown in &lt;Figure 4.6&gt;. After entering the left value of the class interval
+         and ‘Frequency 1’, click the [Execute] button.
+      <p>
+         <iframe src="./example/0404/0404.html" width="750" height="1020"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 4.11&gt; Standard deviation calculation using a frequency table </div>
+      <p>
+  </div>
+  <p>
+
+<!--------------------------------------------------------------------------------------->
+  <h3 id="0403">4.3 Covariance and Correlation Coefficient</h3>
+  <p>
+  <div class="mainTableYellow">
+      <h4>⭐ Think</h4>
+      <p>
+          <b>The height and weight of 7 male middle school students were investigated as follows: </b>
+          <p>
+            <div class="textLeft">(Data 4.3) Height and weight of 7 male middle school students</div>
+            <table> 
+              <tr> <td></td> <th class="thGrey">1</td> <th class="thGrey">2</td> <th class="thGrey">3</td> <th class="thGrey">4</td> <th class="thGrey">5</td> <th class="thGrey">6</td> <th class="thGrey">7</td> </tr>
+              <tr> <th class="thGrey">Height</td> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
+              <tr> <th class="thGrey">Weight</td> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
+            </table>
+      <h4>💎 Explore</h4>
+            <b>Is there a measure to determine the correlation between two quantitative variables? </b>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <p>
+         Just as the variance is used as a measure of dispersion in one quantitative variable, 
+          the following covariance is used in two quantitative variables. When \(n\) number 
+          of x and y data are expressed as \( (x_1 , y_1 ), (x_2 , y_2 ), ... , (x_n , y_n ) \),
+          and the mean is expressed as \( (\mu_x , \mu_y )\), the <b>covariance</b>
+          \(\sigma_{xy}\) can be expressed by the following formula.
+      $$
+          \text{Covariance} \quad \sigma_{xy} ~ =~ \frac{1}{n} \sum _{i=1} ^{n} (x_{i} - \mu_x ) (y_{i} - u_y )  \qquad (n:\text{ number of data} )
+      $$
+      <p>
+         Covariance implies the total average of the values obtained by multiplying the 
+         x-axis distance and the y-axis distance between each data point and the mean point
+         of data. Therefore, if there are many points on the upper right and lower left of
+         the mean point, the covariance has a positive value, indicating a positive correlation. 
+         If there are many points on the upper left and lower right of the mean point, 
+         the covariance has a negative value, indicating a negative correlation. However, 
+         since covariance can increase in value depending on the unit of data, the following 
+         <b>correlation coefficient</b> denoted as \(\rho\) is used as a measure of correlation.
+      $$
+          \text{Correlation coefficient} \quad \rho ~ =~ \frac{\sigma_{xy}}{\sigma_x \sigma_y} 
+      $$
+      <p>
+         The correlation coefficient is a variation of the covariance and can only have 
+         values between -1 and +1. When the correlation coefficient is close to +1, 
+         the two variables are said to have a strong positive correlation, and when the 
+         correlation coefficient is close to -1, it is said to have a strong negative correlation. 
+         When the correlation coefficient is close to 0, there is no correlation between 
+         the two variables.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 4.5</h4>
+        Using 『eStatM』, calculate the covariance and correlation coefficient of the height and weight of 7 students. . 
+      <p><b>Solution</b>
+      <p>
+         Enter students' height in 'Enter X data' and their weight in 'Enter Y data'. 
+         (You can also copy and paste the material from the e-book)
+      <p>
+         After the data input, click the [Execute] button. Then the number of data, mean,
+         variance, standard deviation, covariance and correlation coefficient are calculated 
+         as in &lt;Figue 4.12&gt; and a scatter plot is displayed. 
+      <p>
+         As shown in &lt;Figure 4.12&gt;, the covariance of height and weight in (Data 4.3)
+         is 27 and the correlation coefficient is 0.94, indicating a strong positive correlation.
+      <p>
+      <!----------*** scatter plotH html ***-------------------------------> 
+         <iframe src="./example/0405/0405.html" width="730" height="1030"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 4.13&gt; Scatter plot using height and weight data</div>
+      <p>
+         If you check the ‘regression line’ under the scatterplot, a regression line that 
+         explains the relationship between height and weight is drawn.
+    </div>
+    <p>
+
+  <div class="mainTable">
+      <p>If the correlation is strong, a straight line that can explain the relationship 
+         between the variables is obtained, which is called a regression line. 
+         A detailed explanation of the regression line is covered in university level of statistics.
+  </div>
+  <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p><h4>🎲 Practice 4.6</h4>
+        Using 『eStatM』, make a point on the plane and observe the correlation coefficient and regression line while moving.
+      <p><b>Solution</b>
+      <p>
+         If you decide a correlation coeffcient in 『eStatM』, a scatter plot of the correlation coefficient  
+         appears as shown in &lt;Figure 4.15&gt;. 
+      <p>
+      <!-----*** html for correlation simulation *** ------------------------------------------------------------------------>
+         <iframe src="./example/0406/0406.html" width="700" height="750"> </iframe>
+      <p>
+         <div class="textLeft">&lt;Figure 4.15&gt; Simulation of a correlation coefficient</div>
+    </div>
+    <p>
+
+    <iframe src="./exercise/exercise04.html" width="750" height="700" ></iframe>
+
+</body>
+</html>
+

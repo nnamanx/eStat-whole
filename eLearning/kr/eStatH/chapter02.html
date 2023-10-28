@@ -7,108 +7,35 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>2장</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../indexH.html">목차</a></li>
-            <li><a href="../eStatH/chapter01.html">1장 경우의 수</a></li>
-            <li><a href="../eStatH/chapter02.html">2장 확률</a></li>
-            <li><a href="../eStatH/chapter03.html">3장 확률변수와 확률분포</a></li>
-            <li><a href="../eStatH/chapter04.html">4장 통계적 추정</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>2장 확률</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(151)">&#10094;&#10094; &nbsp;&nbsp;<b>1장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(153)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:350px">
         <h1>&nbsp; 🎯 🎲 🎰 🎮</h1>        
         <h4>
         <a href="#0201"><u>2.1  확률의 뜻</u></a> <p>
         <a href="#0202"><u>2.2  확률의 덧셈정리</u></a> <p>
         <a href="#0203"><u>2.3  조건부확률과 확률의 곱셈정리</u></a> <p>
-        <a href="../eStatH/chapter02.pdf" target="_blank"><u>[2장 pdf]</u></a> 
-        </h4>
-      </td>
-      <td>
-        <h1></h1>        
+        <a href="./pdf/chapter02.pdf" target="_blank"><u>[2장 pdf]</u></a> 
+        </h4>   
         <p>확률은 한 사건이 일어날 가능성을 0에서 1사이의 값으로 수치화 한 것이다. 여러 가지 상황에 
            대한 확률을 계산하여 의사 결정이나 미래 예측에 많이 이용한다. 
-      </td>
-    </tr>
-  </table>
+
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -119,28 +46,12 @@
   <h3 id="0201">2.1  확률의 뜻</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>● 동전을 던지면 겉면 또는 뒷면이 나타난다. <br>
              ● 한 공장에서 제품을 생산하여 검사면 우량품이든지 아니면 불량품이다. 
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>우리의 생활주변에서 많이 나타나는 위와 같은 예들의 공통점은 무엇일까? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -212,58 +123,41 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.1</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 2.1</h5>
             동전을 던졌을 때 앞면이 나오는 사건을 H, 뒷면이 나오는 사건을 T라고 하자. 
             동전을 두 번 던지는 시행에서 다음을 구하라.<br>
             1) 표본공간 \(S\)<br>
             2) 앞면이 한번 나오는 사건 \(A\)
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.2</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 2.2</h5>
             주사위를 두 번 던지는 시행에서 다음을 구하라. <br>
             1) 표본공간 \(S\)<br>
             2) 두 번 같은 눈이 나오는 사건 \(A\)<br>
             3) 두 번 던져 나오는 눈의 합이 3 이하인 사건 \(B\)
-        </tr>
-      </table>
     </div>
     <p>
   <div class="mainTable">
       <p>표본공간 \(S\)의 두 사건 \(A\)와 \(B\)에 대하여  \(A\)또는 \(B\)가 일어나는 사건을
          \(A \cup B\)로 나타내고, \(A\)와 \(B\)가 동시에 일어나는 사건을 \(A \cap B\)와 같이 나타낸다. 
       <p>
-      <img class="imgFig600600" src="../FigureH/HFig0201.png">
+      <img class="imgFig600600" src="./Figure/HFig0201.png">
       <div class="figText">&lt;그림 2.1&gt; 사건 \(A \cup B\)와 사건 \(A \cap B\)</div>
       <p>
          특히 사건 \(A\)와 \(B\)가 동시에 일어나지 않을 때, 즉 \(A \cap B\)= &oslash;
          일 때, 이 두 사건을 서로 <b>배반사건</b>이라고 한다.
       <p>
-      <img class="imgFig600600" src="../FigureH/HFig0202.png">
+      <img class="imgFig600600" src="./Figure/HFig0202.png">
       <div class="figText">&lt;그림 2.2&gt; 서로 배반인 사건 \(A\)와 사건 \(B\)</div>
       <p>
          어떤 사건 \(A\)에 대하여 사건 \(A\)가 일어나지 않는 사건을 \(A\)의 <b>여사건</b>이라고 하고, 
          이 사건을 \(A^C\)로 나타낸다. \(A\)와 \(A^C\)는 동시에 일어날 수 없으므로 
          \(A \cap A^C\)= &oslash;이고 사건 \(A\)와 \(A^C\)는 서로 배반사건이다.
       <p>
-      <img class="imgFig600600" src="../FigureH/HFig0203.png">
+      <img class="imgFig600600" src="./Figure/HFig0203.png">
       <div class="figText">&lt;그림 2.3&gt; 사건 \(A\)의 여사건 \(A^C\)</div>
   </div>
   <p>
@@ -291,18 +185,9 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.3</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 2.3</h5>
             동전을 두 번 던지는 시행에서 앞면이 한번 이상 나오는 사건을 \(A\), 
             뒷면이 한번 이상 나오는 사건을 \(B\)라 할 때, 두 사건 \(A\)와 \(B\)는 서로 배반사건인가? 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
 
@@ -310,27 +195,11 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>가. 통계적 확률</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>동전을 던지면 앞면(H)이나 뒷면(T)이 나올 가능성이 반반일 것 같다. 이러한 가능성을
              수치로 표시한 것이 확률이다. 앞면이 나올 확률이 \(\frac{1}{2}\)로 정의하는 것이 맞을까?  </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>동전을 10번, 50번, 100번 던져 앞면이 나오는 횟수를 살펴보고 상대도수를 구해보자. </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -359,20 +228,9 @@
       <p>
          동전을 던진 횟수가 적을 때는 앞면이 나오는 횟수의 상대도수는 0.5가 아닐 수 있다. 
          하지만 동전을 던진 횟수가 점차 늘어나면 상대도수는 0.5에 가까워진다. 컴퓨터를 이용하여 
-         동전 던지는 횟수를 더욱 많이 실험하여 보면 상대도수가 <그림 2.4>와 같이 점차 0.5에 
-         가까워짐을 알 수 있다. 이를 동전의 앞면이 나오는 사건의 통계적 확률이라 한다.
+         동전 던지는 횟수를 더욱 많이 실험하여 보면 상대도수가 &lt;그림 2.4&gt;와 같이 점차 0.5에 
+         가까워짐을 알 수 있다. 이를 동전의 앞면이 나오는 사건의 <b>통계적 확률</b>이라 한다.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_63Sample.svg" onclick="window.open(addrStr[154])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0204.png">
-            <div class="figText">&lt;그림 2.4&gt; 『eStatH』 동전 던지기 시뮬레이션</div>
-          </td>
-        </tr>
-      </table>
   </div>
   <p>
   <!------------------------------------------------------------------------------------------------->
@@ -380,33 +238,24 @@
       <p><h5>🎲 예제 2.4</h5>
         『eStatH』를 이용하여 동전던지기 시뮬레이션을 하여 보자.
       <h5>풀이</h5>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_63Sample.svg" onclick="window.open(addrStr[154])">
-          </td>
-          <td>
-            <p>『eStatH』메뉴에서 ‘통계적 확률’을 선택하면 <그림 2.4>와 같은 그래프
+      <p> 『eStatH』 메뉴에서 ‘통계적 확률’을 선택하면 &lt;그림 2.4&gt;와 같은 그래프
             창이 나타난다. 여기에서 \(n\)을 10000으로 입력한 후 [실행]버튼을 클릭하면 동전던지기 시행이 1 만회 실시되어 동전의 앞면이 나온 횟수의 상대도수를 관찰 할 수 있다.
-          </td>
-        </tr>
-      </table>
+      <p>
+      <!------------*** html for  Statistical Probability ***----------------->
+      <b>[<span data-msgid="StatisticalProb">Statistical Probability</span>]</b> 
+      <p>
+         <iframe src="./example/020101/020101.html" width="700" height="770"> </iframe>
+      <p>
+         <div class="figText">&lt;그림 2.4&gt; 『eStatH』 동전 던지기 시뮬레이션</div>
+      <p>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
+
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.4</h5>
-          </td>
-          <td>
-            <p>주사위를 잘 만들었다면 한번 던져을 때 1의 눈이 나올 확률이 \(\frac{1}{6}\)일 것 같다. 
+        <h5>⏱ 문제 2.4</h5>
+            <p>주사위를 잘 만들었다면 한번 던졌을 때 1의 눈이 나올 확률이 \(\frac{1}{6}\)일 것 같다. 
             주사위를 12번, 36번, 120번 던져서 실제로 \(\frac{1}{6}\)인지 확인해 보자.
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -424,7 +273,7 @@
          일반적으로 어떤 시행을 \(n\)번 반복하였을 때 사건 \(A\)가 일어난 횟수를 \(n_A\)라고 하자. 
          시행 횟수 \(n\)이 충분히 커짐에 따라 상대도수 \(\frac{n_A}{n}\)가 일정한 값 \(p\)에
          가까워지면 이 값 \(p\)를 사건 \(A\)의
-         <b>통계적 확률이</b>라고 하고 \(P(A) = \frac{n_A}{n}\)로 표시한다.
+         <b>통계적 확률</b>이라고 하고 \(P(A) = \frac{n_A}{n}\)로 표시한다.
   </div>
   <p>
   <!------------------------------------------------------------------------------------------------->
@@ -464,12 +313,7 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.5</h5>
-          </td>
-          <td>
+        <h5>⏱ 문제 2.5</h5>
             2017년 우리나라의 만 13세 ~ 18세 청소년을 대상으로 신체적으로 건강한지 설문조사를 한 결과가 다음과 같다. 
             (출처: 통계청)
           <p>
@@ -496,9 +340,6 @@
             </tr>
           </table>
             만 13세 ~ 18세 청소년 중 임의로 선택한 한 명이 건강할 확률을 구하라.
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -510,24 +351,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>나. 수학적 확률</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:120px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ 생각열기</h4>
           <b>주사위는 정육면체 모양으로 만들어져 각각의 면에 눈을 한 개에서 여섯 개까지 그린 것이다. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
+      <h4>💎 탐구</h4>
           <b>주사위가 정확히 정육면체로 만들어져 있다면 주사위를 던졌을 때 각각의 눈이 나올 확률은 1/6로 같을 것이다. 이러한 주사위를 이용한 게임이 많은데 과연 이러한 게임이 공정할까? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -537,7 +364,7 @@
       <p>한 개의 주사위를 던지는 경우 표본 공간은 {1, 2, 3, 4, 5, 6}이 되고 각 표본공간의 원소가 
          나올 가능성이 같다고 가정하면 각각의 눈이 나올 확률은 1/6이라고 할 수 있다. 표본공간의 
          원소가 나타날 가능성이 모두 같다는 합리적인 가정 하에 한 사건의 확률을 정의하는 것을 
-         <b>수학적 확률</b>이라 한다. 현실 문제에 대하여 확률적으로 의사결정을 할 경우 
+         <b>수학적 확률</b>이라 한다. 현실 문제에서 표본공간의 원소들이 나타나는 가능성이 같다고 가정할 수 있을 경우  
          수학적 확률이 이용된다. 
       <p>일반적으로 한 시행의 표본공간 \(S\)의 원소가 나타날 가능성이 모두 같다고 가정할 때, 
          사건 \(A\)가 일어날 수학적 확률 \(P(A)\)는 다음과 같다.
@@ -570,7 +397,7 @@
       <h5>풀이</h5>
         주사위를 던져 윗면에 나타나는 점의 수를 세어보는 시행의 표본공간은 \(S\) = {1, 2, 3, 4, 5, 6}
         이고, 홀수가 나올 사건 \(A\) = {1, 3, 5}이다. 표본공간의 원소 개수는 \(n(S)\) = 6이고, 
-        사건 의 원소 개수는  \(n(A)\) = 3 이다. 따라서 식당1이 뽑힐 확률은 다음과 같다.
+        사건 \(A\)의 원소 개수는  \(n(A)\) = 3 이다. 따라서 식당1이 뽑힐 확률은 다음과 같다.
       <p>
       <div class="textLeft">
          \(P(A) = \frac{n(A)}{n(S)} = \frac{3}{6} = 0.5\)
@@ -608,34 +435,18 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.6</h5>
-          </td>
-          <td>
-            <p>한 개의 주사위를 던지는 시행에서 사건 \(A\)를 홀수의 눈이 나오는 사건이라고 하자. 
+        <h5>⏱ 문제 2.6</h5>
+            한 개의 주사위를 던지는 시행에서 사건 \(A\)를 홀수의 눈이 나오는 사건이라고 하자. 
             사건 \(A\)가 일어날 수학적 확률을 구하라. 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
 
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.7</h5>
-          </td>
-          <td>
-            <p>서로 다른 두 개의 주사위를 동시에 던질 때, 나온 두 눈의 합이 5보다 작을 수학적 
+        <h5>⏱ 문제 2.7</h5>
+            서로 다른 두 개의 주사위를 동시에 던질 때, 나온 두 눈의 합이 5보다 작을 수학적 
             확률을 구하라. 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -644,24 +455,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>다. 확률의 기본 성질</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p><b>어떤 사건이 일어날 확률이 1보다 클 수 있을까? 또는 0보다 작을 수 있을까? </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p><b>확률은 한 사건이 일어날 가능성을 0에서 1까지의 숫자로 표시한 것이다. </b>
-        </td>
-      </tr>
-    </table>
+      <h4>⭐ 생각열기</h4>
+          <b>어떤 사건이 일어날 확률이 1보다 클 수 있을까? 또는 0보다 작을 수 있을까? </b>
+      <h4>💎 탐구</h4>
+          <b>확률은 한 사건이 일어날 가능성을 0에서 1까지의 숫자로 표시한 것이다. </b>
   </div>
   <p>
   <div class="mainTable">
@@ -735,19 +532,11 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:100px">
-            <h5>⏱ 문제 2.8</h5>
-          </td>
-          <td>
-            <p>어느 회사에 경비원이 4명(A, B, C, D)있다. 매일 아침 이들 경비원 중 두 사람을 
+        <h5>⏱ 문제 2.8</h5>
+            어느 회사에 경비원이 4명(A, B, C, D)있다. 매일 아침 이들 경비원 중 두 사람을 
             임의로 뽑아 둘 중 한사람은 정문, 다른 사람은 후문경비로 배치한다. 4명을 정문과 
             후문에 배치시키는 전체 경우의 수와 이중 A가 정문에 배치되는 경우의 수를 구하라. 
             A가 정문에 배치될 확률은?
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -757,28 +546,13 @@
   <h3 id="0202">2.2 확률의 덧셈정리</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p><b>한 중학교 학생 50명을 조사해보니 지난 올림픽 때 우리나라와 일본의 축구 경기를 TV에서
+      <h4>⭐ 생각열기</h4>
+          <b>한 중학교 학생 50명을 조사해보니 지난 올림픽 때 우리나라와 일본의 축구 경기를 TV에서
              관람한 학생은 30명이고 배구 경기를 관람한 학생은 20명이다. 축구와 배구 경기 둘 다 
              관람한 학생은 10명이었다. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>축구 또는 배구를 관람한 학생의 확률은 얼마나 될까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -842,69 +616,38 @@
         『eStatH』를 이용하여 위 예제에 대한 확률의 덧셈정리를 실습하여 보자.
       <p><b>풀이</b>
       <p>
-         『eStatH』메뉴에서 ‘확률의 덧셈정리’를 선택하면 <그림 2.5>와 같은 창이 나타난다. 
+         『eStatH』 메뉴에서 ‘확률의 덧셈정리’를 선택하면 &lt;그림 2.5&gt;와 같은 창이 나타난다. 
          여기에서 \(P(A)\) = 0.6, \(P(B)\) = 0.4, \(P(A \cap B)\) = 0.2를 입력한 후 
-         [실행]버튼을 클릭하면 확률의 덧셈정리에 대한 그래프를 관찰 할 수 있다. 
+         [실행] 버튼을 클릭하면 확률의 덧셈정리에 대한 그래프를 관찰 할 수 있다. 
          \(P(A)\), \(P(B)\), \(P(A \cap B)\)를 변화시키면서 덧셈 정리를 살펴볼 수 있다.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40AdditionRule.svg" onclick="window.open(addrStr[161])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0205.png">
-            <div class="textLeft">&lt;그림 2.5&gt; 확률의 덧셈정리</div>
-          </td>
-        </tr>
-      </table>
+      <!---*** html for Addition Rule ***--------------------------------------------->
+      <b>[<span data-msgid="AdditionRule">Addition Rule of Probability</span>]</b> 
+      <p>
+         <iframe src="./example/020201/020201.html" width="700" height="700"> </iframe>
+      <p>
+      <div class="textLeft">&lt;그림 2.5&gt; 확률의 덧셈정리</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 문제 2.9</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40AdditionRule.svg" onclick="window.open(addrStr[161])">
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 문제 2.9</h4> <p>
             한 대학 경영학과 1학년 학생 80명 중 경제학을 수강하는 학생이 50명, 정치학을 듣는 
             학생이 30명, 두 과목을 모두 수강하는 학생이 20명이었다. 경영학과 1학년 학생 한사람을 
             만났을 때 이 학생이 경제학 또는 정치학을(즉, 둘 중 한 과목이나 두 과목 모두) 수강할 
             확률은?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40AdditionRule.svg" onclick="window.open(addrStr[161])">
     </div>
     <p>
 
   <!------------------------------------------------------------------------------------------------->
   <h4>가. 여사건의 확률</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>주사위를 던졌을 때 숫자 1 또는 2가 나오는 확률은 \(\frac{2}{6}\)이다.  </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>나머지 숫자 3, 4, 5, 6 이 나올 확률은 얼마나 될까? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -970,17 +713,8 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ 문제 2.10</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ 문제 2.10</h5>
             부모님을 포함한 6명의 가족이 원형식탁에 앉아 식사를 할 때 부모님이 이웃하지 않을 확률은?
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -991,29 +725,13 @@
   <h3 id="0203">2.3 조건부확률과 확률의 곱셈정리</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:130px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td>
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 고등학교 3학년 학생 40명 중 남학생이 24명, 여학생이 16명인데, 남학생 중 8명, 여학생 중 4명이 안경을 착용한다고 한다.</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>1) 이 고등학교 학생 중 한명을 임의로 뽑을 때 남학생일 확률은? <br>
              2) 한 학생을 임의로 뽑았을 때 이 학생이 남학생이고 안경을 착용했을 확률은? <br>
              3) 남학생 중에서 한 명을 임의로 뽑았을 때 이 학생이 안경을 착용했을 확률은?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1021,7 +739,7 @@
      <p>
         이 문제에 대한 표본공간을 남학생인 사건을 \(A\), 여학생인 사건을 \(F\), 
         안경을 착용한 사건을 \(B\), 착용안한 사건을 \(N\)으로 표시하면 문제에서 주어진 
-        사건의 수는 다음과 같은 표로 정리할 수 있다. 
+        경우의 수는 다음과 같은 표로 정리할 수 있다. 
      <p>
      <table> 
         <tr> 
@@ -1062,24 +780,24 @@
         <tr> 
           <th>남학생(\(A\))</th>
           <td class="tdCenter">\(n(A \cap B) = 8\)</td>
-          <td class="tdCenter">\(n(A \cap N) = 16\)</td>
+          <td class="tdCenter" style="color:red;">\(n(A \cap N) = 16\)</td>
           <th>\(n(A) = 24\)</th>
         </tr>
         <tr> 
           <th>여학생(\(F\))</th>
           <td class="tdCenter">\(n(F \cap B) = 4\)</td>
-          <td class="tdCenter">\(n(F \cap N) = 12\)</td>
+          <td class="tdCenter" style="color:red;">\(n(F \cap N) = 12\)</td>
           <th>\(n(F) = 16\)</th>
         </tr>
         <tr> 
           <th>합계</th>
-          <th>\(n(B) = 12\)</th>
-          <th>\(n(N) = 28\)</th>
+          <th style="color:red;">\(n(B) = 12\)</th>
+          <th style="color:red;">\(n(N) = 28\)</th>
           <th>\(n(S) = 40\)</th>
         </tr>
       </table>
       <p>
-         따라서 1) 이 고등학교 학생 중 한명을 임의로 뽑을 때 남학생일 확률은
+         1) 따라서 이 고등학교 학생 중 한명을 임의로 뽑을 때 남학생일 확률은
       <div class="textLeft">
          \( P(A) = \frac{n(A)}{n(S)}  = \frac{24}{40}\) 
       </div>
@@ -1109,7 +827,7 @@
          \( P(B|A) = \frac{n(A \cap B)}{n(A)} \) 
       </div>
       <p>
-         이다. 이 식의 우변의 분자와 분모를 각각 \(n(S)\)로 나누면 
+         이다. 이 식 우변의 분자와 분모를 각각 \(n(S)\)로 나누면 
       <p>
       <div class="textLeft">
          \( P(B|A) = \frac{\frac{n(A \cap B)}{n(S)}}{\frac{n(A)}{n(S)}} = \frac{P(A \cap B)}{P(A)} \) 
@@ -1130,7 +848,7 @@
   <p>
   <div class="mainTable">
       <p>
-         위의 표에서 두 사건이 동시에 일어날 확률을 정리하면 다음과 같다. 이를 결합확률표라 부른다.
+         위의 표에서 두 사건이 동시에 일어날 확률을 정리하면 다음과 같다. 이를 <b>결합확률분포표</b>라 부른다.
       <p>
       <table> 
         <tr> 
@@ -1277,64 +995,39 @@
       <p><h4>🎲 예제 2.11</h4>
         『eStatH』를 이용하여 조건부확률과 독립인 사건을 실습하여 보자.
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40MultiplicationRule.svg" onclick="window.open(addrStr[164])">     
-          </td>
-          <td>
-            <p>『eStatH』메뉴에서 ‘조건부확률’을 선택하면 <그림 2.6>과 같은 창이 나타난다. 
+      <p> 『eStatH』 메뉴에서 ‘조건부확률’을 선택하면 &lt;그림 2.6&gt;과 같은 창이 나타난다. 
             여기에서 결합확률 \(P(A_1 \cap B_1 )\) 를 조정하면 그 밑에 조건부확률을 관찰할 수 있고 그 밑에 
-            <그림 2.7>과 같은 선그래프와 각각의 행에 대한 조건부확률의 막대그래프를 관찰할 수 있다. 
-          </td>
-        </tr>
-      </table>
+            &lt;그림 2.7&gt;과 같은 선그래프와 각각의 행에 대한 조건부확률의 막대그래프를 관찰할 수 있다. 
       <p>
-         <img class="imgFig600600" src="../FigureH/HFig0206.png">
-         <div class="textLeft">&lt;그림 2.6&gt; 조건부확률</div>
+      <!-----*** html for Multiplication Rule ***---------------------------------------------------------->
+      <b>[<span data-msgid="ConditionalProb">Multiplication Rule of Probability</span>]</b> 
       <p>
-         <img class="imgFig600600" src="../FigureH/HFig0207.png">
+         <iframe src="./example/020301/020301.html" width="700" height="1000"> </iframe>
+      <p>
          <div class="textLeft">&lt;그림 2.7&gt; 결합확률에 대한 그래프와 조건부확률</div>
       <p>
-         만일 결합확률 \(P(A_1 \cap B_1 )\) = 0.30, \(P(A_1 )\) = 0.60으로 <그림 2.8>과 같이 
-         조정하면 <그림 2.9>와 같은 독립인 경우의 조건부확률과 선그래프를 관찰할 수 있다. 
+         만일 결합확률 \(P(A_1 \cap B_1 )\) = 0.30, \(P(A_1 )\) = 0.60으로 &lt;그림 2.8&gt;과 같이 
+         조정하면 &lt;그림 2.9&gt;와 같은 독립인 경우의 조건부확률과 선그래프를 관찰할 수 있다. 
       <p>
-         <img class="imgFig600600" src="../FigureH/HFig0208.png">
+         <img class="imgFig600600" src="./Figure/HFig0208.png">
          <div class="textLeft">&lt;그림 2.8&gt; 두 변량이 독입인 경우의 확률 입력</div>
       <p>
-         <img class="imgFig600600" src="../FigureH/HFig0209.png">
+         <img class="imgFig600600" src="./Figure/HFig0209.png">
          <div class="textLeft">&lt;그림 2.9&gt; 두 변량이 독립인 경우의 꺽은선그래프와 조건부확률</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:130px">
-            <h4>⏱ 문제 2.11</h4> <p>
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 문제 2.11</h4> <p>
             한 개의 주사위를 던져서 나온 눈의 수가 홀수인 사건을 \(A\), 3이하인 사건을 \(B\)라 할 때
             두 사건이 독립인지 종속인지 살펴보라.
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 문제 2.12</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40MultiplicationRule.svg" onclick="window.open(addrStr[164])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 문제 2.12</h4> <p>
             한 대학교 신입생 30명의 남녀별, 출신지역별 분포가 다음과 같다.
             <p>
             <table> 
@@ -1365,177 +1058,11 @@
             </table>
             <p>
                한 학생을 뽑았을 때 남자일 사건과 서울출신일 사건이 서로 독립인가?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU_40MultiplicationRule.svg" onclick="window.open(addrStr[164])">     
     </div>
     <p>
-    <!-------------------------------------------------------------------------->
-
-<!---*******************************************************************************--->
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">2.1  두 사건 A와 B가 서로 배반일 때, 사건 A∪B의 확률 P(A∪B)와 같은 것은?</h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> P(A)－P(B)</label><br>
-    <label><input type="radio" name="item" value="2"> P(A)P(B)</label><br>
-    <label><input type="radio" name="item" value="3"> P(A)＋P(B)</label><br>
-    <label><input type="radio" name="item" value="4"> P(A)/P(B)</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">2.2 사건 A가 일어날 확률을 P(A)로 나타낸다. 두 사건 A, B에 관하여 다음 중 틀린 것은? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1">  0≤P(A)≤1</label><br>
-    <label><input type="radio" name="item" value="2"> -1≤P(B)≤0</label><br>
-    <label><input type="radio" name="item" value="3"> P(A∪B)=P(A)+P(B)-P(A∩B)</label><br>
-    <label><input type="radio" name="item" value="4"> P(A∩B)=P(A)․P(B|A)</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">2.3 P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때 P(A∩B)의 값은?  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 0.08</label><br>
-    <label><input type="radio" name="item" value="2"> 0.12</label><br>
-    <label><input type="radio" name="item" value="3"> 0.24</label><br>
-    <label><input type="radio" name="item" value="4"> 0.48</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">2.4  만일 A⊂B이면 조건부 확률 P(A｜B)는 P(A)보다 어떠한가?</h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 같거나 크다.</label><br>
-    <label><input type="radio" name="item" value="2"> 작다.</label><br>
-    <label><input type="radio" name="item" value="3"> 같거나 작다.</label><br>
-    <label><input type="radio" name="item" value="4"> 비교할 수 없다.</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">2.5 주사위를 2개(또는 한 개의 주사위를 2회) 던질 때에 2의 눈과 5의 눈이 동시에 나타날 확률은?</h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> \(\frac{1}{3}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{1}{6}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{1}{12}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{1}{18}\)</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  <h6 class="textL30M30">2.6 한 개의 주사위를 3번 던져서 첫번째가 5, 두번째가 3, 세번째가 짝수의 눈이 나올 확률은 얼마인가?</h6>
-  <form name="Q6">
-    <label><input type="radio" name="item" value="1"> \(\frac{1}{30}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{1}{72}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{1}{108}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{1}{276}\)</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,6,Q6)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ6">
-  </form>
-  <h6 class="textL30M30">2.7  우량품인 전구 5개와 불량품인 전구 2개가 들어 있는 통에서 3개를 하나씩 임의로 추출(한번 추출한 것은 다시 넣지 않는 비복원 추출)했을 때 이 중에서 1개의 전구가 불량품일 확률을 구하면?</h6>
-  <form name="Q7">
-    <label><input type="radio" name="item" value="1"> \(\frac{1}{7}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{2}{7}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{3}{7}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{4}{7}\)</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,7,Q7)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ7">
-  </form>
-
-  <h6 class="textL30M30">2.8 P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, P(A∩B)의 값은?</h6>
-  <form name="Q8">
-    <label><input type="radio" name="item" value="1"> 0.08</label><br>
-    <label><input type="radio" name="item" value="2"> 0.12</label><br>
-    <label><input type="radio" name="item" value="3"> 0.24</label><br>
-    <label><input type="radio" name="item" value="4"> 0.48</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,8,Q8)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ8">
-  </form>
-
-  <h6 class="textL30M30">2.9 P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, P(B｜A)의 값은?</h6>
-  <form name="Q9">
-    <label><input type="radio" name="item" value="1"> 0.08</label><br>
-    <label><input type="radio" name="item" value="2"> 0.24</label><br>
-    <label><input type="radio" name="item" value="3"> 0.30</label><br>
-    <label><input type="radio" name="item" value="4"> 0.40</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,9,Q9)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ9">
-  </form>
-
-  <h6 class="textL30M30">2.10 두 개의 주사위를 던져 나오는 결과를 \((x_1 , x_2 )\)로 표시한다. 
-      B = {\((x_1 , x_2 ) : x_1 > x_2 \) }라고 하면, P(B)의 값은? </h6>
-  <form name="Q10">
-    <label><input type="radio" name="item" value="1"> \(\frac{1}{3}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{1}{12}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{5}{12}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{1}{36}\)</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(32,10,Q10)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ10">
-  </form>
-
-  <h6 class="textL30M30">2.11 두 개의 주사위를 던져서 나오는 결과를 \((x_1 , x_2 )\)로
-        표시한다. A = {\((x_1 , x_2 ) : x_1 + x_2 = 10 \) }, 
-        B = {\((x_1 , x_2 ) : x_1 > x_2 \) }라고 하면, P(B｜A)의 값은?
-  </h6>
-  <form name="Q11">
-    <label><input type="radio" name="item" value="1"> \(\frac{1}{3}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{1}{12}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{5}{12}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{1}{2}\)</label><br>    <p>
-    <input type="button" value="제출" onClick="radio(32,11,Q11)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ11">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[32][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(151)">&#10094;&#10094; &nbsp;&nbsp;<b>1장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(153)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
- </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+ 
+  <iframe src="./exercise/exercise02.html" width="750" height="700" ></iframe>
 
 </body>
 </html>

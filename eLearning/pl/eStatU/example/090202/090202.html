@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Testing Hypothesis ANOVA">Testing: ANOVA</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; &nbsp; 
+         <span data-msgid="Testing Hypothesis ANOVA"></span> - 
+         <span data-msgid="Latin"></span>
+      </b>
+    </div>
+    <br>
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontmath">
+                H<sub>o</sub> : &nbsp; &mu;<sub>A</sub> = &mu;<sub>B</sub> = ... = &mu;<sub>r</sub>
+              </span>
+          </td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span class="fontmath">
+                H<sub>1</sub> : 
+                <span data-msgid="At least one pair">At least one pair of population means is not equal</span>
+              </span> 
+          </td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    <span class="fontmath" data-msgid="F-test">F-test</span> (ANOVA)
+    <br>
+
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span data-msgid="Treatment"></span> r = 
+       <input type="number" class="textarea" size=1 min=3 max=6 value=4 id="nkk" onchange="showValueAlpha(this.value)">
+       (<span class="fontguide" id="tkk"></span>)      
+    <table class="data">
+      <tbody>
+	<tr>
+          <td></td>
+	  <td></td> <td><span data-msgid="Column"></span>1</td>
+	  <td></td> <td><span data-msgid="Column"></span>2</td>
+	  <td></td> <td><span data-msgid="Column"></span>3</td>
+	  <td></td> <td><span data-msgid="Column"></span>4</td>
+	  <td></td> <td><span data-msgid="Column"></span>5</td>
+	  <td></td> <td><span data-msgid="Column"></span>6</td>
+	  <td></td> <td><span data-msgid="Row"></span></td>
+	</tr>
+	<tr>
+	  <td><span data-msgid="Row">Row</span>1</td>
+	  <td style="text-align: right;"><span id="t11">A</span></td> <td><input type="text" style="text-align:center;" size=3 value="22" id="data11"></td>
+	  <td style="text-align: right;"><span id="t12">B</span></td> <td><input type="text" style="text-align:center;" size=3 value="16" id="data12"></td>
+	  <td style="text-align: right;"><span id="t13">C</span></td> <td><input type="text" style="text-align:center;" size=3 value="19" id="data13"></td>
+	  <td style="text-align: right;"><span id="t14">D</span></td> <td><input type="text" style="text-align:center;" size=3 value="21" id="data14"></td>
+	  <td style="text-align: right;"><span id="t15"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data15"></td>
+	  <td style="text-align: right;"><span id="t16"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data16"></td>
+	  <td>&nbsp; x&#772;<sub>1⋅⋅</sub></td>   <td><input type="text" style="text-align:center;" size=3 id="rowbar1"></td>
+	</tr>
+	<tr>
+	  <td><span data-msgid="Row">Row</span>2</td>
+	  <td style="text-align: right;"><span id="t21">B</span></td> <td><input type="text" style="text-align:center;" size=3 value="24" id="data21"></td>
+	  <td style="text-align: right;"><span id="t22">C</span></td> <td><input type="text" style="text-align:center;" size=3 value="16" id="data22"></td>
+	  <td style="text-align: right;"><span id="t23">D</span></td> <td><input type="text" style="text-align:center;" size=3 value="12" id="data23"></td>
+	  <td style="text-align: right;"><span id="t24">A</span></td> <td><input type="text" style="text-align:center;" size=3 value="15" id="data24"></td>
+	  <td style="text-align: right;"><span id="t25"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data25"></td>
+	  <td style="text-align: right;"><span id="t26"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data26"></td>
+	  <td>&nbsp; x&#772;<sub>2⋅⋅</sub></td> <td><input type="text" style="text-align:center;" size=3 id="rowbar2"></td>
+	</tr>
+	<tr>
+	  <td><span data-msgid="Row">Row</span>3</td>
+	  <td style="text-align: right;"><span id="t31">C</span></td> <td><input type="text" style="text-align:center;" size=3 value="17" id="data31"></td>
+	  <td style="text-align: right;"><span id="t32">D</span></td> <td><input type="text" style="text-align:center;" size=3 value="21" id="data32"></td>
+	  <td style="text-align: right;"><span id="t33">A</span></td> <td><input type="text" style="text-align:center;" size=3 value="20" id="data33"></td>
+	  <td style="text-align: right;"><span id="t34">B</span></td> <td><input type="text" style="text-align:center;" size=3 value="15" id="data34"></td>
+	  <td style="text-align: right;"><span id="t35"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data35"></td>
+	  <td style="text-align: right;"><span id="t36"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data36"></td>
+	  <td>&nbsp; x&#772;<sub>3⋅⋅</sub> </td> <td><input type="text" style="text-align:center;" size=3 id="rowbar3"></td>
+	</tr>
+	<tr>
+	  <td><span data-msgid="Row">Row</span>4</td>
+	  <td style="text-align: right;"><span id="t41">D</span></td> <td><input type="text" style="text-align:center;" size=3 value="18" id="data41"></td>
+	  <td style="text-align: right;"><span id="t42">A</span></td> <td><input type="text" style="text-align:center;" size=3 value="18" id="data42"></td>
+	  <td style="text-align: right;"><span id="t43">B</span></td> <td><input type="text" style="text-align:center;" size=3 value="23" id="data43"></td>
+	  <td style="text-align: right;"><span id="t44">C</span></td> <td><input type="text" style="text-align:center;" size=3 value="22" id="data44"></td>
+	  <td style="text-align: right;"><span id="t45"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data45"></td>
+	  <td style="text-align: right;"><span id="t46"></span></td> <td><input type="text" style="text-align:center;" size=3 id="data46"></td>
+	  <td>&nbsp; x&#772;<sub>4⋅⋅</sub> </td> <td><input type="text" style="text-align:center;" size=3 id="rowbar4"></td>
+	</tr>
+	<tr>
+	  <td><span data-msgid="Row">Row</span>5</td>
+	  <td style="text-align: right;"><span id="t51"></span></td> <td><input type="text" class="textarea" size=3 id="data51"></td>
+	  <td style="text-align: right;"><span id="t52"></span></td> <td><input type="text" class="textarea" size=3 id="data52"></td>
+	  <td style="text-align: right;"><span id="t53"></span></td> <td><input type="text" class="textarea" size=3 id="data53"></td>
+	  <td style="text-align: right;"><span id="t54"></span></td> <td><input type="text" class="textarea" size=3 id="data54"></td>
+	  <td style="text-align: right;"><span id="t55"></span></td> <td><input type="text" class="textarea" size=3 id="data55"></td>
+	  <td style="text-align: right;"><span id="t56"></span></td> <td><input type="text" class="textarea" size=3 id="data56"></td>
+	  <td>&nbsp; x&#772;<sub>5⋅⋅</sub></td> <td><input type="text" class="textarea" size=3 id="rowbar5"></td>
+	</tr>
+	<tr>
+	  <td><span data-msgid="Row">Row</span>6</td>
+	  <td style="text-align: right;"><span id="t61"></span></td> <td><input type="text" class="textarea" size=3 id="data61"></td>
+	  <td style="text-align: right;"><span id="t62"></span></td> <td><input type="text" class="textarea" size=3 id="data62"></td>
+	  <td style="text-align: right;"><span id="t63"></span></td> <td><input type="text" class="textarea" size=3 id="data63"></td>
+	  <td style="text-align: right;"><span id="t64"></span></td> <td><input type="text" class="textarea" size=3 id="data64"></td>
+	  <td style="text-align: right;"><span id="t65"></span></td> <td><input type="text" class="textarea" size=3 id="data65"></td>
+	  <td style="text-align: right;"><span id="t66"></span></td> <td><input type="text" class="textarea" size=3 id="data66"></td>
+	  <td>&nbsp; x&#772;<sub>6⋅⋅</sub></td> <td><input type="text" class="textarea" size=3 id="rowbar6"></td>
+	</tr>
+	<tr>  
+          <td><span data-msgid="Column"></span></td>
+	  <td>&nbsp; x&#772;<sub>⋅1⋅</sub> </td> <td><input type="text" class="textarea" size=3 id="colbar1"></td>
+	  <td>&nbsp; x&#772;<sub>⋅2⋅</sub> </td> <td><input type="text" class="textarea" size=3 id="colbar2"></td>
+	  <td>&nbsp; x&#772;<sub>⋅3⋅</sub> </td> <td><input type="text" class="textarea" size=3 id="colbar3"></td>
+	  <td>&nbsp; x&#772;<sub>⋅4⋅</sub> </td> <td><input type="text" class="textarea" size=3 id="colbar4"></td>
+	  <td>&nbsp; x&#772;<sub>⋅5⋅</sub> </td> <td><input type="text" class="textarea" size=3 id="colbar5"></td>
+	  <td>&nbsp; x&#772;<sub>⋅6⋅</sub> </td> <td><input type="text" class="textarea" size=3 id="colbar6"></td>
+	</tr>
+	<tr>  
+	  <td><span data-msgid="Treatment"></span></td>
+	  <td>&nbsp; x&#772;<sub>⋅⋅1</sub> </td> <td><input type="text" class="textarea" size=3 id="trtbar1"></td>
+	  <td>&nbsp; x&#772;<sub>⋅⋅2</sub> </td> <td><input type="text" class="textarea" size=3 id="trtbar2"></td>
+	  <td>&nbsp; x&#772;<sub>⋅⋅3</sub> </td> <td><input type="text" class="textarea" size=3 id="trtbar3"></td>
+	  <td>&nbsp; x&#772;<sub>⋅⋅4</sub> </td> <td><input type="text" class="textarea" size=3 id="trtbar4"></td>
+	  <td>&nbsp; x&#772;<sub>⋅⋅5</sub> </td> <td><input type="text" class="textarea" size=3 id="trtbar5"></td>
+	  <td>&nbsp; x&#772;<sub>⋅⋅6</sub> </td> <td><input type="text" class="textarea" size=3 id="trtbar6"></td>
+	  <td>&nbsp; x&#772;<sub>⋅⋅⋅</sub> </td> <td><input type="text" class="textarea" size=3 id="totbar"></td>
+	</tr>
+      </tbody>
+    </table>   
+       &lt;Figure 9.2.10&gt; Data input for Latin square design in 『eStatU』
+    <p>
+    &nbsp;&nbsp;
+    <button type="button" id="execute" style="width:90px;"><span data-msgid="Execute">Execute</span></button>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <br>
+        &lt;Figure 9.2.11&gt; Dot graph by car type in Latin square design
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+    <p>
+       &lt;Figure 9.2.12&gt; ANOVA table of Latin square design
+    <p>
+  </div> 
+
+  <script src="/estat/eStatU/js/90TestingANOVA_Latin.js"> </script>
+  <script>
+     showValueAlpha(4);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title data-msgid="HyperGeometric Distribution">HyperGeometric Distribution</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="HyperGeometric Distribution">HyperGeometric Distribution</span></b> 
+    </div>
+    <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+      <span data-msgid="Lot Size">Lot Size</span>  
+      N =   <input type="text" class="textarea" value="30"  size=6 id="NN">  &nbsp; &nbsp; >  &nbsp; &nbsp;
+      <span data-msgid="Defect Size">Defect Size</span>
+      D = <input type="text" class="textarea" value="5"  size=6 id="DD">  <p>
+    <svg id="chart" width="500" height="350"> </svg>
+    <br>
+    <button type="button" id="executeHyperG" >
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;
+      n = <input type="text" class="textarea" value="10"   size=3 id="nn">&nbsp;<sup><small> 1 </small></sup>  
+    <input type="range" min="1" max="20" value="10" id="rangeHyperG" onchange="showValueHyperGeo(this.value, valueLabel, hyperGeoP)"/>  
+      <sup><small>20</small></sup>  &nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" value="freq2" id=freqHyperG>
+      <span data-msgid="Show Probability">Show Probability<span>
+    </label>
+    <p> 
+    <table class="stat">
+        <tr>
+          <td><span data-msgid="Probability"></span></td>
+          <td>
+              P( <input type="number" min="0" max="10" size=3 id="a1" class="inputNumber60" />
+              &nbsp;  &le; &nbsp;  X &nbsp; &le; &nbsp; 
+              <input type="number" min="1" max="10" size=3 id="b1" class="inputNumber60" onKeyUp="calculateC1()"/> )
+          </td>
+          <td>=</td>
+          <td><input type="text" size=3 class="inputNumber60" id="c1"/></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            P( X &nbsp; &le; &nbsp; 
+            <input type="number" min="1" max="10" size=3 id="b2" class="inputNumber60" onKeyUp="calculateC2()" /> )
+          </td>
+          <td>=</td>
+          <td><input type="text" size=3 class="inputNumber60"  id="c2"/></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+              P( X &nbsp; &ge; &nbsp; 
+              <input type="number" min="1" max="10" size=3 id="a3" class="inputNumber60" onKeyUp="calculateC3()" /> )
+          </td>
+          <td>=</td>
+          <td><input type="text" size=3 class="inputNumber60" id="c3"/></td>
+        </tr>
+    </table>
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;  
+    <p>
+    <span data-msgid="Reference Site">Reference</span> :  &nbsp; 
+      <a href="https://en.wikipedia.org/wiki/Hypergeometric_distribution" target="_blank" >Wikipedia </a> &nbsp; 
+      <a href="http://mathworld.wolfram.com/HypergeometricDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
+      <a href="http://stattrek.com/probability-distributions/hypergeometric.aspx" target="_blank" >StatTrek </a> &nbsp; 
+    <p>
+  </div>
+
+  <div width="650" style="position:absolute; left:520px; top:20px;"> 
+      &nbsp;&nbsp;
+      <button type="button" id="executeHyperGeoTable" >
+        <span data-msgid="HyperGeometric Prob Table">HyperGeometric Prob Table</span>
+      </button>
+      &nbsp;&nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+      <p>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+  </div>
+
+   <script src="/estat/eStatU/js/46HyperGeoEng.js"> </script>
+
+</body>
+</html>

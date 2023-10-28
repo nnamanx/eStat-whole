@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Permutation"></title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Permutation">Permutaion</span> - <span data-msgid="Combination">Combination</span>
+    </div>
+    <p>
+    <table>
+        <tr>
+          <td><b><button type="button" style="width:100px;" id="execute1"><span data-msgid="Execute"></span></button> </b></td>
+          <td>&nbsp;</td>
+          <td><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><input type="text" size=2 id="nn" value="10" style="text-align: center;">&nbsp;
+              <sup><small> 1 </small></sup>
+              <input type="range" style="width: 100px;" min="1" max="30" value="10" id="rangeN" onchange="showValueN(this.value)"/>
+              <sup><small>30</small></sup>
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span class="fontmath">r</span></td>
+          <td>=</td>
+          <td><input type="text" size=2 id="xx" value="2" style="text-align: center;">&nbsp;
+              <sup><small> 0 </small></sup><input type="range" style="width: 100px;" min="0" max="30" value="2" id="rangeX" onchange="showValueX(this.value)"/>
+              <sup><small>30</small></sup>
+          </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+          <td><b>[<span data-msgid="Permutation">Permutation</span>]</b></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span style="font-size:1.4em">\(n !\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="nfact" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td><span style="font-size:1.4em">\(r !\) = </span>
+              <input type="text" size=12 id="rfact" style="text-align: right;">
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span style="font-size:1.4em">\({}_n {P}_{r}\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="permu" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td>(<span data-msgid="NonReplacement">Non-replacement</span>)</td>
+          <td>&nbsp;<span style="color:red"> \(r \le n\)</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span style="font-size:1.4em">\({}_n {Π}_{r}\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="permuRep" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td>(<span data-msgid="Replacement">Replacement</span>)</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+          <td colspan=5><b>[<span data-msgid="Combination">Combination</span>]</span></b></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span style="font-size:1.4em">\({}_n {C}_{r}\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="combi" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td>(<span data-msgid="NonReplacement">Non-replacement</span>)</td>
+          <td>&nbsp;<span style="color:red">\( r \le n\)</span></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><span style="font-size:1.4em">\({}_n {H}_{r}\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="combiRep" style="text-align: right;"></td>
+          <td>&nbsp;</td>
+          <td>(<span data-msgid="Replacement">Replacement</span>)</td>
+          <td>&nbsp;<span style="color:blue">\({}_{n+r-1} C_{r} \)</span></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+          <td colspan=5><b>[<span data-msgid="PermutationSame">Permutation with the same thing</span>]</span></b></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><input type="text" size=2 id="nn2" style="text-align: center;"></td>
+          <td><span style="color:red">\(= p + q + r + s\)</span></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span class="fontmath">p</span></td>
+          <td>=</td>
+          <td><input type="text" size=1 id="pp" style="text-align: right;"></td>
+          <td></td>
+          <td><span class="fontmath">q</span></td>
+          <td>=</td>
+          <td><input type="text" size=1 id="qq" style="text-align: right;"></td>
+          <td></td>
+          <td><span class="fontmath">r</span></td>
+          <td>=</td>
+          <td><input type="text" size=1 id="rr" style="text-align: right;"></td>
+          <td></td>
+          <td><span class="fontmath">s</span></td>
+          <td>=</td>
+          <td><input type="text" size=1 id="ss" style="text-align: right;"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><b><button type="button" style="width:80px;" id="execute2"><span data-msgid="Execute"></span></button> </b></td>
+          <td>&nbsp;</td>
+          <td><span style="font-size:1.7em">\(\frac{n!}{p!\, q! \, r! \, s!}\)</span></td>
+          <td>=</td>
+          <td><input type="text" size=20 id="permuMult" style="text-align: right;"></td>
+        </tr>
+    </table>
+<!---
+    <div style="color:red">&nbsp;&nbsp;&nbsp;*** \(\;\; {}_n P_{2},\; {}_n C_{2} \;\;\) <span data-msgid="NumberOfCase"></span>\( \; n &le; 10\) </div>
+    <svg id="chart" width="600" height="520"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+---->
+  </div> 
+
+   <script src="/estat/eStatU/js/40Permutation.js"> </script>
+
+</body>
+</html>

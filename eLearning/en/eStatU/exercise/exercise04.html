@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 4</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+
+<body>
+<h3>4.4 Exercise</h3>
+
+  <h6> Multiple Choice Exercise </h6>
+  <span style="color:blue">*** Choose one answer and click [Submit] button </span>
+
+  <div class="mainTablePink">
+
+      <h6 class="textL30M30">4.1  Which of the following data is an average of 28, a median of 30, and a maximum of 40?  </h6> 
+      <form name="Q1">
+        <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
+        <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
+        <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
+        <label><input type="radio" name="item" value="4"> 12, 40, 20, 40</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ1">
+      </form>
+
+      <h6 class="textL30M30">4.2  Six statistical scores are 70, 60, 80, 90, 90, 70. What is the median value of these scores?  </h6>
+      <form name="Q2">
+        <label><input type="radio" name="item" value="1"> 70</label><br>
+        <label><input type="radio" name="item" value="2"> 75</label><br>
+        <label><input type="radio" name="item" value="3"> 80</label><br>
+        <label><input type="radio" name="item" value="4"> 90</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ2">
+      </form>
+
+      <h6 class="textL30M30">4.3  There are cards that write each and every one of them as Numbers 1, 2, 3, ... \(n\). What is the average of these numbers?  </h6>
+      <form name="Q3">
+        <label><input type="radio" name="item" value="1"> \( \frac{(n+1)(2n+1)}{2}\)</label><br>
+        <label><input type="radio" name="item" value="2"> \( \frac{2n+1}{3} \)</label><br>
+        <label><input type="radio" name="item" value="3"> \( \frac{n(n+1)}{2} \)</label><br>
+        <label><input type="radio" name="item" value="4"> \( \frac{n+1}{2} \)</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ3">
+      </form>
+
+      <h6 class="textL30M30">4.4  I bought 10 tomatoes which cost 1 dollar each and 10 tomatoes which cost 2 dollars each. How much is its cost in average for each?</h6>
+      <form name="Q4">
+        <label><input type="radio" name="item" value="1"> 1.5</label><br>
+        <label><input type="radio" name="item" value="2"> 1</label><br>
+        <label><input type="radio" name="item" value="3"> 2</label><br>
+        <label><input type="radio" name="item" value="4"> 1.3</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ4">
+      </form>
+
+      <h6 class="textL30M30">4.5  If the averages of two data sets are \(\small \overline x_1\), \(\small \overline x_2\) and their data sizes are \(n_1\), \(n_2\) what is the average of the total data combined? </h6>
+      <form name="Q5">
+        <label><input type="radio" name="item" value="1"> \(\small  \frac{n_1 {\overline x}_1 + n_2 {\overline x}_2}{n_1 + n_2} \)</label><br>
+        <label><input type="radio" name="item" value="2"> \(\small  \frac{n_1 {\overline x}_2 + n_2 {\overline x}_1}{n_1 + n_2} \)</label><br>
+        <label><input type="radio" name="item" value="3"> \(\small  \frac{{\overline x}_1 + {\overline x}_2}{n_1 + n_2} \)</label><br>
+        <label><input type="radio" name="item" value="4"> \(\small  \frac{n_1 n_2 {\overline x}_1 + {\overline x}_2 }{n_1 + n_2} \)</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ5">
+      </form>
+
+      <h6 class="textL30M30">4.6  If data are \(x_1 , x_2 , ... , x_n \) and its mean is \(\small \overline x\), what is the value of \(\small  \sum_{i=1}^{n} (x_i - \overline x)\) ?</h6>
+      <form name="Q6">
+        <label><input type="radio" name="item" value="1"> 1</label><br>
+        <label><input type="radio" name="item" value="2"> 0</label><br>
+        <label><input type="radio" name="item" value="3"> -1</label><br>
+        <label><input type="radio" name="item" value="4"> n</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ6">
+      </form>
+
+      <h6 class="textL30M30">4.7  Which of the following properties of the mean is incorrect? </h6>
+      <form name="Q7">
+        <label><input type="radio" name="item" value="1"> The mean is greatly influenced by the extreme value of the data.</label><br>
+        <label><input type="radio" name="item" value="2"> The sum of the deviations from the mean is not zero.</label><br>
+        <label><input type="radio" name="item" value="3"> The sum of the deviations from the mean is zero.</label><br>
+        <label><input type="radio" name="item" value="4"> The mean is a measure of the central tendency.</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ7">
+      </form>
+
+      <h6 class="textL30M30">4.8  The following table is the evaluation scores of a university student. What is the weighted average of the scores using the credits as weights? </h6>
+          <table style="width:500px"> 
+            <tr>
+              <td class="tdLeft">Course Name</td> 
+              <td class="tdCenter">A</td>
+              <td class="tdCenter">B</td>
+              <td class="tdCenter">C</td>
+              <td class="tdCenter">D</td>
+              <td class="tdCenter">E</td>
+              <td class="tdCenter">F</td>
+            </tr>
+            <tr>
+              <td class="tdLeft">Credit</td>
+              <td class="tdCenter">4</td>
+              <td class="tdCenter">3</td>
+              <td class="tdCenter">3</td>
+              <td class="tdCenter">2</td>
+              <td class="tdCenter">2</td>
+              <td class="tdCenter">1</td>
+            </tr>
+            <tr>
+              <td class="tdLeft">Score</td>
+              <td class="tdCenter">80</td>
+              <td class="tdCenter">90</td>
+              <td class="tdCenter">85</td>
+              <td class="tdCenter">95</td>
+              <td class="tdCenter">75</td>
+              <td class="tdCenter">90</td>
+            </tr>
+          </table>     
+      <form name="Q8">
+        <label><input type="radio" name="item" value="1"> 82.85</label><br>
+        <label><input type="radio" name="item" value="2"> 85.00</label><br>
+        <label><input type="radio" name="item" value="3"> 83.25</label><br>
+        <label><input type="radio" name="item" value="4"> 80.00</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ8">
+      </form>
+
+      <h6 class="textL30M30">4.9  Which of the following statistical analysis is wrong if the 1st quartile is 68.25 and the 2nd quartile is 79.06 and the 3rd quartile is 90.75?</h6>
+      <form name="Q9">
+        <label><input type="radio" name="item" value="1"> 25% of the total number is 68.25 or less.	</label><br>
+        <label><input type="radio" name="item" value="2"> 50% of the total frequency is 68.25 or less.</label><br>
+        <label><input type="radio" name="item" value="3"> 50% of the total frequency is 79.06 or less.</label><br>
+        <label><input type="radio" name="item" value="4"> 75% of the total frequency is 90.75 or below.</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ9">
+      </form>
+
+      <h6 class="textL30M30">4.10 What is a convenient measure to compare the dispersion of data which has different units? </h6>
+      <form name="Q10">
+        <label><input type="radio" name="item" value="1"> relative frequency </label><br>
+        <label><input type="radio" name="item" value="2"> standard deviation	</label><br>
+        <label><input type="radio" name="item" value="3"> coefficient of variation</label><br>
+        <label><input type="radio" name="item" value="4"> correlation coefficient</label><br>
+        <p>
+        <input type="button" value="Submit" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+        <input type="text" size=15 id="ansQ10">
+      </form>
+
+  </div>
+
+  <p>
+  <h6> Practice Exercise </h6>
+    <span style="color:blue">*** Answer the followings </span>
+
+  <div class="mainTablePink">
+      <p class="textL30M30">4.1  Mid term scores of a Statistics course are 70, 60, 80, 90, 90, 70. What is the mean and the median of this data?
+      <p>
+      <p class="textL30M30">4.2  There are cards that write numbers 1, 2, 3, ... , n. What is the average of these numbers?
+      <p>
+      <p class="textL30M30">4.3  For data measured as 2, 3, 7, 7, 7, 7, 8, find the mean, the median and the mode.
+      <p>
+      <p class="textL30M30">4.4  The following table is the evaluation scores of the courses taken by a student this semester. What is the weighted mean of these scores by using the credits as their weights? 
+      <p>
+      <table style="width:500px"> 
+        <tr>
+          <td class="tdLeft">Course Name</td> 
+          <td class="tdCenter">A</td>
+          <td class="tdCenter">B</td>
+          <td class="tdCenter">C</td>
+          <td class="tdCenter">D</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Credit</td>
+          <td class="tdCenter">4</td>
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">2</td>
+        </tr>
+        <tr>
+          <td class="tdLeft">Score</td>
+          <td class="tdCenter">80</td>
+          <td class="tdCenter">90</td>
+          <td class="tdCenter">75</td>
+          <td class="tdCenter">90</td>
+        </tr>
+      </table>       
+      <p>
+      <p class="textL30M30">4.5  Test scores of 10 students which we sampled from all students of Statistics course were 6, 8, 7, 8, 5, 9, 7, 10, 9, 4. What is the sample mean and the sample standard deviation? 
+      <p>
+      <p class="textL30M30">4.6  Life expectancies of 10 different automobiles sampled from a population were investigated as follows: (unit year)
+      <p>
+      <p class="textLeft">3  3  8  7  4  6  5  2  5  10
+      <p>
+      <div class="textL30">Calculate </div>
+      <div class="textL30">   1) mean, 2) median, 3) mode, 4) variance and standard deviation,</div> 
+      <div class="textL30">   5) coefficient of variation, 6) range, 7) inter-quartile range.</div>
+      <p>
+      <p class="textL30M30">4.7  After sampling 10 employees from a company, we examined commuting distances (km) from their home to the company and found the following data.
+      <p>   
+      <p class="textLeft">3  16  12  11  14  5  7  14  9  8
+      <p>
+      <div class="textL30">Calculate </div>
+      <div class="textL30">   1) mean, 2) median, 3) mode, 4) variance and standard deviation, </div>
+      <div class="textL30">   5) coefficient of variation, 6) range, 7) inter-quartile range. </div>
+      <p>
+      <p class="textL30M30">4.8  The following is a list of stock prices of a company during the last 25 days of closing. (Unit: US$) 
+      <p>
+      <div class="textLeft">131, 135, 129, 123, 130, 136, 134, 140, 146, 150,</div>
+      <div class="textLeft">153, 150, 148, 151, 153, 158, 161, 165, 160, 155,</div>
+      <div class="textLeft">157, 163, 159, 160, 160.</div>
+      <p>
+      <div class="textL30"> Use 『eStat』 to do the followings.</div>
+      <div class="textL50M30">1) Calculate the mean, the median and the mode for the above data.</div>
+      <div class="textL50M30">2) Obtain the weighted average by weighting 25 on the stock price of the most recent work, then 24 on the next stock price, ... and 1 on the stock price of the first date. Compare the mean value obtained in 1) with that value.</div>
+      <div class="textL50M30">3) Calculate the variance and the standard deviation, the coefficient of variation, the range, the inter-quartile range.</div>
+      <div class="textL50M30">4) Calculate the 1st quartile (Q1) and the 3rd quartile (Q3). </div>
+      <div class="textL50M30">5) Draw a box plot.</div>
+      <p>
+      <p class="textL30M30">4.9  Scores of two bowling players playing 10 games were as follows.
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey">Player A</th> <th class="thGrey">Player B</th>
+        </tr>
+        <tr> <td class="tdCenter">198</td> <td class="tdCenter">196</td> </tr>
+        <tr> <td class="tdCenter">119</td> <td class="tdCenter">159</td> </tr>
+        <tr> <td class="tdCenter">174</td> <td class="tdCenter">162</td> </tr>
+        <tr> <td class="tdCenter">235</td> <td class="tdCenter">178</td> </tr>
+        <tr> <td class="tdCenter">134</td> <td class="tdCenter">188</td> </tr>
+        <tr> <td class="tdCenter">192</td> <td class="tdCenter">169</td> </tr>
+        <tr> <td class="tdCenter">124</td> <td class="tdCenter">173</td> </tr>
+        <tr> <td class="tdCenter">241</td> <td class="tdCenter">183</td> </tr>
+        <tr> <td class="tdCenter">158</td> <td class="tdCenter">177</td> </tr>
+        <tr> <td class="tdCenter">176</td> <td class="tdCenter">152</td> </tr>
+      </table>
+      <p>
+      <div class="textL30">Use 『eStat』 to do the followings.</div>
+      <div class="textL50M30">1) Calculate the mean and the median for each player.</div>
+      <div class="textL50M30">2) Find the standard deviation, the range, the 1st quartile, the 3rd quartile and the inter-quartile range for each player. </div>
+      <div class="textL50M30">3) Draw a box plot.</div>
+      <div class="textL50M30">4) Who do you think is the better player? Why?</div>
+      <p>
+      <p class="textL30M30">4.10 To test the effectiveness of a memory improvement technique developed by a psychologist, 30 samples observed the difference in time taken to memorize 10 numerical sequences of 10 pairs before and after learning the technique, as shown below. (Unit: Minutes)
+      <p>
+      <div class="textLeft">5, 10, 15, 11, 13, 20, 14, 5, 23, 18, 17, 4, 19, 5, 24, 18, 15, 21, </div>
+      <div class="textLeft">24, 16, 2, 15, 19, 22, 24, 21, 14, 18, 26, 10 </div>
+      <p>
+      <div class="textL30">Use 『eStat』 to do the followings.</div>
+      <div class="textL50M30">1) Draw a histogram of the above data. Find the frequency table of the histogram.</div>
+      <div class="textL50M30">2) Calculate the mean and the median and compare their values. </div>
+      <div class="textL50M30">3) Calculate the quartiles and draw a box plot.</div>
+  </div>
+
+  <script src="./js/exercise04.js"></script>   
+ 
+</body>
+</html>
+

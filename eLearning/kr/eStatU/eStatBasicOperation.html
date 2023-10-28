@@ -1,0 +1,514 @@
+﻿<HTML>
+<head>  
+  <title>『eStat』운용</title>
+  <meta charset='utf-8'>
+  <style>
+   .icon  { width:25px; height:25px }
+   .figure30{ width:30%;}  
+   .figure50{ width:50%;}  
+   .figure70{ width:70%;}  
+   .figure90{ width:90%; height:90%;} 
+   .textCenter(text-align: center;} 
+   .textLeft{ margin-left: 20px;}
+  </style>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+</head>
+
+<body>
+
+<div style="position: relative; left: 10px; width:800px;">
+  <h1 style="color:blue;">『eStat』 기본 운용 및 데이터 조작</h1>
+  저자: 이정진 교수 (jjlee@ssu.ac.kr) 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="../kr/eStatBasicOperation.pdf" target="_blank"><u>[『eStat』 기본 운용 pdf]</u></a>
+ 
+  <ol>
+    <li> <a href="#chapter1">『eStat』 기본 운용</li>
+      <ul>
+        <li> <a href="#section11">『eStat』 들어가기 / 주화면 구성</a>
+        <li> <a href="#section12"> 데이터 만들기 / 저장 / 불러오기</a>
+        <li> <a href="#section13"> 데이터 분석</a>
+        <li> <a href="#section14"> 결과 저장, 인쇄 및 『eStat』 나오기</a>
+      </ul>
+    <p>
+    <li> <a href="#chapter2">『eStat』 데이터 조작 (Data Manipulation)</li>
+      <ul>
+        <li> <a href="#section21"> 변량명, 변량값명 (Value Label) 지정</a>
+        <li> <a href="#section22"> 정렬 (Sorting)</a>
+        <li> <a href="#section23"> 범주화 (Categorize)</a>
+        <li> <a href="#section24"> 변량값 재지정 (Recode)</a>
+        <li> <a href="#section25"> 새변량 계산 (Compute)</a>
+        <li> <a href="#section26"> 데이터 선택 (Select If)</a>
+      </ul>
+  </ol>
+
+  <div id="chapter1"><h2>1. 『eStat』 기본 운영</h2> </div> 
+    <table>
+      <tr>
+        <td style="width:100px;">          
+        </td>
+        <td>
+          <div id="section11"><h3>1.1 『eStat』 들어가기 / 주화면 구성</h3> </div> 
+          『eStat』 시스템은 HTML5, CSS3, JavaScript로 만든 웹 소프트웨어라서 반드시 웹브라우저가 필요하다. 현재 통용되는 많은 웹브라우저 중에서 HTML5 표준을 100% 잘 지키는 것은 구글(Google)사의 크롬(Chrome)이어서 가능하면 크롬 이용을 권장한다. MS 엣지(Edge)와 같은 브라우저에서도 『eStat』이 작동은 되나 일부 기능이 안 될 수 있다.  
+           <p>모니터에서 크롬 아이콘 <img src="http://www.estat.me/assets/icon/IconChrome.png" class="icon">을 클릭한 후 나타나는 주소창에 www.estat.me를 입력하면 [그림 1.1]과 같은 『eStat』의 주화면이 나타난다. 
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStat.svg" onclick="window.open(addrStr[0])">
+           <div>&nbsp;&nbsp;&nbsp;『eStat』</div>
+        </td>
+        <td>
+          <br>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0101.png">
+          <p class="textL20">[그림 1.1] 『eStat』 주화면의 구성</p>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <br>주화면은 크게 다섯 부분으로 나뉘어져 있다. 재알 윗부분에는 이 시스템의 메뉴에 해당하는 
+              여러 가지 <b>메뉴 아이콘</b>들이 있고 그 밑에도 여러 가지 <b>부메뉴 아아콘</b>이 있다. 일반적인 
+              소프트웨어에서 많이 사용하는 드롭다운 방식의 메뉴를 사용하지 않고 아이콘들을 펼쳐 놓은 것은 
+              사용자들이 한 눈에 『eStat』에서 할 수 있는 작업을 보기 쉽게 하고, 모바일폰에서도 선택하기
+              쉽도혹 한 것이다. 
+          <p>주화면의 왼쪽은 데이터 입력을 위한 <b>시트</b>이다. 시트창 위에는 각 분석별로 필요한 
+             ‘분석변량’이나 ‘그룹변량’을 선택하는 <b>변수선택 대화상자</b>가 있다. 주화면 가운데는
+              데이터 분석 결과를 그래프로 보여주는 <b>그래프창</b>, 오른쪽은 분석 결과를 표로 보여주거나
+              보관하는 <b>결과저장창</b>(로그(log)창)이 있다. 
+          <p>[그림 1.2]는 간단한 데이터를 입력하여 그래프로 분석하고 결과를 결과저장창으로 보는 예이다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0102.png">
+          <div class="textLeft">[그림 1.2] 『eStat』의 데이터 분석 화면 예</div>
+          <p>고등학생이나 대학생의 효율적인 통계분석을 위해서는 여러 가지 메뉴가 더 있을 수 있어 
+             아이콘 『eStatH』<img src="http://www.estat.me/assets/icon/eStat_icon25_eStatH.png" class="icon">와 
+            『eStatU』<img src="http://www.estat.me/assets/icon/eStat_icon26_eStatU.png" class="icon">을 누르면 다음 그림과 같이 
+             세부 메뉴가 새로운 윈도우창에 나타난다.
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatH.svg" onclick="window.open(addrStr[1])">
+           <div>&nbsp;&nbsp;&nbsp;『eStatH』</div>
+        </td>
+        <td>
+          <br>
+          <img class="figure70" src="/estat/eLearning/kr/eStatU/Figure/Fig0103.png">
+           <br>
+          <div class="textLeft">[그림 1.3] 『eStatH』 메뉴</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU.svg" onclick="window.open(addrStr[2])">
+           <div>『eStatU』</div>
+        </td>
+        <td>
+          <br>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0104.png">
+          <div class="textLeft">[그림 1.4] 『eStatU』 메뉴</div>
+        </td>
+      </tr>
+    </table>
+    <p>
+
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <div id="section12"><h3>1.2 데이터 만들기 / 저장하기 / 불러오기</h3></div>
+          <h4>『eStat』에서 데이터 만들기 </h4>
+          주화면 좌측에 있는 시트에 데이터를 입력한다. 이 시트에서 행(row)은 관찰 대상, 열(column)은
+          변량을 나타낸다. 마우스로 1행 1열을 클릭하면 이 셀에 대한 행과 열이 다른 부분과 달리 진한 
+          색으로 표시되고, 셀에는 직사각형 형태의 외곽선이 생기는데 이를 커서(cursor)라 한다. 
+          이는 커서가 위치하여 있는 1행1열에 데이터를 입력받을 준비가 되어 있다는 것을 의미한다. 
+          이 커서(cursor)는 화살표키  ← → ↑ ↓  나 PgUp  PgDn 키를 사용하면 셀에서 셀로 또는 
+          페이지 단위로 커서를 이동시킬 수 있다. 
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0105.png">
+          <div class="textLeft">[그림 1.5] 『eStat』 데이터 입력 시트</div> 
+          <p>
+          『eStat』에서 허용하는 데이터의 최대수는 9999개, 변량의 최대수는 20개이다. 데이터의 입력은 
+          왼쪽 위의 1행 1열(관찰대상1, 변량1)서부터 데이터를 입력한 후, 아래 방향 화살표키(↓) 
+          (또는 Enter키)를 이용하여 커서를 밑(2행 1열)으로 이동시켜 다음 데이터를 입력한다. 
+          같은 방법으로 화살표키(← → ↑ ↓ )를 이용하여 커서를 이동하면서 모든 데이터를 
+          각 셀에 입력하면 된다. 
+          <p>
+          [그림 1.6]은 두 학급의 남 여 학생수를 입력한 예이다. 각 셀에는 데이터로 문자나 숫자를 입력할 수 있다. 
+          <p>
+          <img class="figure30" src="/estat/eLearning/kr/eStatU/Figure/Fig0106.png">
+          <div class="textLeft">[그림 1.6] 『eStat』 데이터 입력</div>
+          <p>
+          막대, 원, 띠그래프는 문자 데이터을 이용해서 그래프를 그릴 수 있으나. 점그래프, 히스토그램, 줄기와 잎 그림은 반드시 숫자 데이터를 이용하여야 한다. 단 그룹변량은 문자 데이터를 이용할 수 있다.
+          <p>
+          [그림 1.6]에서는 데이터가 시트 화면에 모두 보인다. 만일 데이터가 커서 시트 화면에 일부만 
+          나타날 경우에는 PgUp, PgDn 키를 사용하여 위․아래로 한 화면씩 이동하여 볼 수 있고, 
+          Ctrl키와 화살표키(← → ↑ ↓)를 같이 눌러 데이터의 위/아래/왼쪽/오른쪽 끝으로 쉽게 
+          이동할 수 있다.
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <h4>변량명 및 변량값명의 입력 </h4>
+          데이터의 입력이 끝난 후 『eStat』을 이용하여 데이터 처리를 하면 결과 출력은 변량이름으로 변량1(또는 V1), 변량2(또는 V2), 변량3(또는 V3) ... 라는 고유 이름이 나타난다. 이러한 고유 이름 대신 변량의 실제이름이나 그 변량 값에 대한 설명을 데이터처리 전에 입력하면 결과를 분석하기가 쉽다. 
+          <p>
+          [그림 1.6]에서 변량명의 입력은 데이터 입력 후에 ‘변량편집’ 버튼을 클릭하여 나타나는 
+          [그림 1.7]의 대화상자에서 변량명 V1 대신 ‘성별’을 입력하고, 콤보박스에서 V2를 선택한 후 
+         ‘5-1반’, V3를 선택한 후 ‘5-2반’을 입력하면 된다. 
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0107.png">
+          <div class="textLeft">[그림 1.7] 변량편집의 변량값명 지정 대화상자</div>
+          <p>
+          변량편집 대화상자를 이용하여 <b>정렬(sorting), 범주화(categorize), 변량값 재지정(recode), 
+          새변량 계산(compute), 데이터 선택(select if)</b> 등을 할 수 있다. 
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <h4>데이터의 수정</h4>
+          만일 한 셀에 입력된 데이터를 모두 수정하고 싶으면, 원하는 셀에 커서를 위치한 후 새 데이터를 
+          입력하면 된다. 만일 한 셀에 입력된 데이터의 일부분만 수정하고 싶다면 원하는 셀을 마우스로
+          두 번 누른 후 화살표키(← →)를 이용하여 글자 사이를 이동하면서 수정을 하면 된다.
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <h4>데이터의 저장 </h4>
+          시트에서의 데이터 입력은 컴퓨터의 주기억장치(main memory)를 이용하기 때문에 전원이 끊어지게
+          되면 이 기억장치에 들어 있는 내용은 모두 없어진다. 그러므로 데이터를 모두 입력한 후에는 
+          이를 반드시 하드 디스크나 USB와 같은 보조 기억장치에 저장하여야 한다. 
+          『eStat』에서는 파일이름 박스에 파일명을 입력하고 CSV 저장 아이콘 
+          <img src="http://www.estat.me/assets/icon/eStat_icon06_csvSave.png" class="icon">
+          을 클릭하면 변량명과 데이터를 CSV(comma separated value) 형식으로 저장한다. 이때 파일명의 확장자는
+          csv여야 한다. [그림 1.6]의 데이터를 ‘학급성별데이터.csv’로 저장하여 메모장(Notepad)으로 열어보면 
+          [그림 1.8]과 같다. 변수명은 첫 행에 인용부호를 가지고 콤마(,)로 분리되어 있고, 각 행의 데이터들도 
+          역시 콤마로 구분되어 있음을 알 수 있다. 
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0108.png">
+          <div class="textLeft">[그림 1.8] 메모장으로 열어본 csv 형식 파일</div>
+          <p>
+          만일 변량값명까지 지정하였다면 JSON 저장 아이콘 
+          <img src="http://www.estat.me/assets/icon/eStat_icon07_jsonSave.png" class="icon">을 클릭하여 JSON 형식으로 저장한다. 
+          이때 파일명의 확장자는 json이다. 파일이 저장되는 지점은 시스템의 ‘download’ 폴더가 된다. 
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <h4>저장된 파일 불러오기 </h4>
+          내 컴퓨터에 저장된 CSV 형식으로 저장된 파일은 CSV 불러오기 아이콘 
+          <img src="http://www.estat.me/assets/icon/eStat_icon03_csvOpen.png" class="icon">을 이용하여 불러올 수 있다. 
+          <p>
+          다른 서버 컴퓨터에 저장된 CSV 형식으로 저장된 파일은 www 불러오기 아이콘
+          <img src="http://www.estat.me/assets/icon/eStat_icon04_wwwOpen.png" class="icon">을 이용하여 불러올 수 있다. 
+          <p>
+          내 컴퓨터에 저장된 JSON 형식으로 저장된 파일은 JSON 불러오기 아이콘
+          <img src="http://www.estat.me/assets/icon/eStat_icon05_jsonOpen.png" class="icon">을 이용하여 불러올 수 있다. 
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <h4>엑셀을 이용한 CSV 데이터 만들기</h4>
+          엑셀을 이용하여 [그림 1.6]의 데이터를 [그림 1.9]와 같이 입력한 후 csv 형식으로 저장할 수 있다. 첫 행에 변수명을 그리고 2행 3행에 데이터를 입력한다.
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0109.png">
+          <div class="textLeft">[그림 1.9] 엑셀의 데이터 입력</div>
+          <p>
+          이 엑셀 파일을 저장할 때 (‘파일’ > ‘다른이름으로 저장‘) 여러 가지 선택사항이 있는데 [그림 1.10]과 같이 ’CSV UTF-8 (Comma delimited)’ 형식을 선택하여 저장한다.
+          <p>
+          <img class="figure70" src="/estat/eLearning/kr/eStatU/Figure/Fig0110.png">
+          <div class="textLeft">[그림 1.10] 엑셀에서 csv 형식의 저장</div>
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <div id="section13"><h3>1.3 데이터 분석</h3></div>
+          <h4>도수분포 데이터의 분석</h4>
+          [그림 1.6]과 같은 데이터를 <b>도수분포 데이터</b>라 부른다. 시트에서 마우스로 변량명 ‘성별’과
+         ‘5-1반’ ‘5-2반’을 차례로 클릭하면 선택변량 박스에 ‘V1 V2 V3’ 가 나타나고 기본적으로 
+          선택된 [그림 1.11]과 같은 남녀별 학생수에 대한 막대그래프
+          (<img src="http://www.estat.me/assets/icon/eStat_icon09_bar.png" class="icon">)가 나타난다. 시트위의 변량선택 박스에서 
+         ‘분석변량’을 ‘성별’ ‘by 그룹’ 변량을 ‘5-1반’ ‘5-2반’을 차례로 선택하여도 된다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0111.png">
+          <div class="textLeft">[그림 1.11] 5-1반과 5-2반의 남녀 학생수의 막대그래프</div>
+          <p>
+          그래프의 제목은 원하는 내용으로 수정할 수 있다. 그래프창 위의 편집 아이콘 을 클릭하면 그래프 하단에 다음과 같은 편집 대화상자가 나타난다. 여기에서 주제목, y축제목, x축제목을 바꾼 후 ‘수정’ 버튼을 클릭한다.          
+          <p>
+          <img class="figure70" src="/estat/eLearning/kr/eStatU/Figure/Fig0112.png">
+          <div class="textLeft">[그림 1.12] 그래프 제목 편집 대화상자</div>
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <div id="section14"><h3>1.4 결과 저장, 인쇄 및 『eStat』 시스템 나오기</h3></div>
+          <h4>결과 저장 </h4>
+          『eStat』에서 그래프창에 표시된 분석 결과를 저장하려면 그래프창 위의 저장 아이콘 
+           <img src="http://www.estat.me/assets/icon/eStat_icon47_graphSave.png" class="icon">을 클릭한다. 
+          그러면 그래프가 eStatGraph.png 파일로 저장되는데 주화면 왼쪽 밑에 
+           <img src="/estat/eLearning/kr/eStatU/Figure/IconSaved.png">
+           와 같이 표시된다. 저장되는 위치는 컴퓨터 시스템에서 지정된 다운로드(download) 폴더이다. 
+           이어서 다른 그래프를 저장하면 다운로드 폴더에 eStatGraph(1).png 등과 같이 괄호 안의 번호가 증가되면서 저장된다.
+          <p>
+          그래프창의 결과는 필요시 오른쪽의 결과저장창으로 이동한 후 필요시 인쇄할 수 있다. 
+          그래프창 위의 이동 아이콘 <img src="http://www.estat.me/assets/icon/eStat_icon49_graphMove.png" class="icon">
+           을 누르면 현재 그래프창에 있는 내용이 결과저장창으로 이동한다. 
+          <p>
+          결과저장창에 있는 내용을 저장하려면 결과저장창 위의 저장 아이콘 
+           <img src="http://www.estat.me/assets/icon/eStat_icon49_graphMove.png" class="icon">을 클릭한다. 그러면 결과저장창의 내용이 
+           eStatLog.html 파일로 저장되는데 주화면 왼쪽 밑에 
+           <img src="/estat/eLearning/kr/eStatU/Figure/IconLogSaved.png">와 같이 표시된다. 저장되는 위치는 
+           역시 컴퓨터 시스템에서 지정된 다운로드(download) 폴더이다. 저장된 html 파일은 
+           MS Word나 아래아 한글에서 불러올 수 있다.
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          <h4>결과 인쇄</h4>
+          그래프창의 결과를 인쇄하려면 그래프창 위의 인쇄 아이콘 을 클릭한다. 그러면 [그림 1.13]과 같은 윈도우에서 제공하는 인쇄를 위한 화면이 나타나고 여기서 ‘인쇄’ 버튼을 클릭하면 프린터에 그래프창 결과가 인쇄된다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0113.png">
+          <div class="textLeft">[그림 1.13] 그래프창의 인쇄 </div>
+          <p>
+          결과저장창의 결과를 인쇄하려면 결과저장창 위의 인쇄 아이콘 
+          <img src="http://www.estat.me/assets/icon/eStat_icon52_htmlPrint.png" class="icon">을 클릭한다. 그러면 윈도우에서 제공하는 
+          인쇄를 위한 화면이 나타나고 여기서 ‘인쇄’ 버튼을 클릭하면 프린터에 결과저장창 결과가 인쇄된다.
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px">
+        </td>
+        <td>
+          <h4>시스템 나오기</h4>
+          eStat』시스템을 끝내려면 브라우저를 종료하면 된다. 즉, 브라우저 오른쪽 위의 ☒ 버튼을 클릭한다.
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+
+  <div id="chapter2"><h2>2. 『eStat』 데이터 조작</h2> </div> 
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          『eStat』 에는 일반적인 통계패키지와 같이 여러가지 데이터 조작기능이 있다.버튼 
+          <img src="http://www.estat.me/assets/icon/eStat_icon01_Ex.png" class="icon">를 눌러 나타나는
+          대화상자에서 '01Korean' > '040혼합_여론조사.csv' 를 불러와 데이터 조작 실습을 하여보자.
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0115.png">
+          <div class="textLeft">[그림 1.15] <img src="http://www.estat.me/assets/icon/eStat_icon01_Ex.png" class="icon"> > '01Korean' > '040혼합_여론조사.csv' 데이터 </div>
+          <p>
+           이 데이터는 40개의 행과 6열로 이루어져 있으며 변량명과 범주형 변량에 대한 변량값의 의미는 다음과 같다.
+           <p>
+           V1 성별      1:남자, 2:여자 <br>
+           V2 결혼여부   1:미혼, 2:기혼, 3:기타<br>
+           V3 나이<br>
+           V4 직업      1:회사원, 2:공무원, 3:노무자, 4:정치가, 5:학생, 6:기업가, 7:주부, 8:기타 <br>
+           V5 교육정도   1:무학,   2:국졸, 3:중졸, 4:고졸, 5:대졸<br>
+           V6 월수입  
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>   
+
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          <div id="section21"><h3>2.1 『변량명, 변량값명 (Value Label) 지정</h3> </div> 
+          『eStat』에서 시트 위의 [변량편집] 버튼을 누르면 [그림 1.16]과 같은 대화상자가 나타난다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0116.png">
+          <div class="textLeft">[그림 1.16] 변량편집 대화상자</div>
+          <p>
+          화면에는 V1:성별 변량이 선택되어 있고 변량값 1, 2가 보이는데 그 오른쪽에 변량값명을 그림처럼 '남자', '여자'를 
+          입력하면 된다. 같은 방법으로 다른 범주형 변량을 선택하고 변량값명을 입력한다. 최대 9개까지의 범주화 변량값명을 
+          입력할 수 있다.
+          <p>
+          입력이 끝난 후 [저장]버튼을 누른 후 [나가기] 버튼을 누르면 시스템이 변량값명을 기억한다. 하지만 이 변량값명을 파일에
+          저장하려면 json 형식으로 저장(<img src="http://www.estat.me/assets/icon/eStat_icon07_jsonSave.png" class="icon">)하여야 하고, 
+          불러올 때도 json 불러오기(<img src="http://www.estat.me/assets/icon/eStat_icon05_jsonOpen.png" class="icon">)를 이용하여야 한다. 
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          <div id="section22"><h3>2.2  정렬 (Sorting)</h3> </div> 
+          『eStat』에서 시트 위의 [변량편집] 버튼을 누른 후 메뉴에서 '정렬'을 누르면 [그림 1.17]과 같은 대화상자가 나타난다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0117.png">
+          <div class="textLeft">[그림 1.17] 정렬 대화상자</div>
+          <p>
+          여기에서 정렬변량을 선택하고 올림차순이나 내림차순 정렬방법을 선택한 후 [실행]버튼을 누르면 시트에 정렬된 데이터가 나타난다.
+          세 개까지의 정렬변량을 선택할 수 있는데 첫 째 변량이 정렬된 내에서 두번 째 변량이 정렬되고, 다시 첫 째와 둘째 변량을
+          정렬된 내에서 세번 째 변량이 정렬된다. 
+          <p>
+          나이 올림차순으로 정렬된 데이터가 [그림 1.18]과 같다. 
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0118.png">
+          <div class="textLeft">[그림 1.18] 나이 올림차순으로 정렬된 데이터</div>
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          <div id="section23"><h3>2.3  범주화 (Categorize)</h3> </div> 
+          『eStat』에서 시트 위의 [변량편집] 버튼을 누른 후 메뉴에서 '범주화'를 누르면 [그림 1.19]와 같은 대화상자가 나타난다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0119.png">
+          <div class="textLeft">[그림 1.19] 범주화 대화상자</div>
+          <p>
+          새롭게 만들어지는 범주화 변량은 자동적으로 시트의 제일 오른쪽에 위치한다. 이 예의 경우 6개의 변량이 있으므로
+          V7에 범주화 변량이 만들어 진다. 필요한 경우 새 변량명을 입력하고 (예: 나이범주) 여기에서 범주화 할 변량 변량을
+          선택한다. 여기서는 V3:나이를 선택하였는데 바로 오른쪽에 선택된 나이 변량의 최소값(min) 20과 최대값(max) 59가 보여진다.
+          이 정보를 이용하여 구간시작을 20, 구간너비를 10으로 입력한 후 [범주리스트 확인] 버튼을 누르면 생성되는 범주구간을 
+          [그림 1.19]와 같이 관찰할 수 있다. 
+          <p>
+          새로운 범주화 변량 V7 '나이범주' 데이터가 [그림 1.20]과 같다. 
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0120.png">
+          <div class="textLeft">[그림 1.20] 생성된 나이 범주화 데이터</div>
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          <div id="section24"><h3>2.4 변량값 재지정 (Recode)</h3> </div> 
+          『eStat』에서 시트 위의 [변량편집] 버튼을 누른 후 메뉴에서 '변량값 재지정'을 누르면 [그림 1.21]과 같은 대화상자가 나타난다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0121.png">
+          <div class="textLeft">[그림 1.21] 변량값 재지정 대화상자</div>
+          <p>
+          새롭게 만들어지는 범주화 변량은 자동적으로 시트의 제일 오른쪽에 위치한다. 이 예의 경우 현재 7개의 변량이 있으므로
+          V8에 새로운 변량값 재지정 변량이 만들어 진다. 필요한 경우 새 변량명을 입력하고 (예: 직업재지정) 여기에서 재지정 할 변량 변량을
+          선택한다. 여기서는 V4:직업을 선택하였는데 현재 변량값이 [그림 1.21] 왼쪽에 나타난다. 이 중에서 직업 6, 7, 8을 
+          새로운 변량값으로 5를 지정하고 [실행] 버튼을 누른다. 
+          <p>
+          새로운 범주화 변량 V8 '직업재지정' 데이터가 [그림 1.22]와 같다. 
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0122.png">
+          <div class="textLeft">[그림 1.22] 변량값 재지정된 데이터</div>
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          <div id="section25"><h3>2.5  새변량 계산 (Compute)</h3> </div> 
+          『eStat』에서 시트 위의 [변량편집] 버튼을 누른 후 메뉴에서 '새변량 계산'을 누르면 [그림 1.23]과 같은 대화상자가 나타난다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0123.png">
+          <div class="textLeft">[그림 1.23] 새변량 계산 대화상자</div>
+          <p>
+          새롭게 만들어지는 계산 변량은 자동적으로 시트의 제일 오른쪽에 위치한다. 이 예의 경우 현재 8개의 변량이 있으므로
+          V9에 새로운 계산된 변량이 만들어 진다. 필요한 경우 새 변량명을 입력하고 (예: 세금) '계산식'을 그 밑의
+          변수나 숫자, 산술연산자(+, -, *, /), 함수(LOG, EXP, SQRT)를 이용하여 완성한다. 
+          여기서는 V6:월수입에 0.1을 곱합 계산식  V6*0.1을 만들어 [실행] 버튼을 누른다. 
+          <p>
+          계산된 변량 V9 '세금' 데이터가 [그림 1.24]와 같다. 
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0124.png">
+          <div class="textLeft">[그림 1.24] 새롭게 계산된 변량 데이터</div>
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+    <table>
+      <tr>
+        <td style="width:100px"></td>
+        <td>
+          <div id="section26"><h3>2.6  데이터 선택 (Select If)</h3> </div> 
+          『eStat』에서 시트 위의 [변량편집] 버튼을 누른 후 메뉴에서 '데이터 선택'을 누르면 [그림 1.25]와 같은 대화상자가 나타난다.
+          <p>
+          <img class="figure90" src="/estat/eLearning/kr/eStatU/Figure/Fig0125.png">
+          <div class="textLeft">[그림 1.25] 데이터 선택 대화상자</div>
+          <p>
+          변량을 선택하고 관계연산자(=, <, ≤, >, ≥, ≠)를 선택한 후 값을 입력하여 조건식을 완성한다. 
+          세 변량까지의 조건식을 만들 수 있다. 여기서는 V1:성별에서 남자를 선택하고 V3:나이에서 30세 이상의 
+          조건식을 만든 후 [실행] 버튼을 누른다. 
+          <p>
+          남자이면서 30세 이상으로 선택된 데이터가 [그림 1.26]과 같다. 
+          <p>
+          <img class="figure50" src="/estat/eLearning/kr/eStatU/Figure/Fig0126.png">
+          <div class="textLeft">[그림 1.26] 남자이면서 30세 이상으로 선택된 데이터</div>
+          <p>
+        </td>
+      </tr>
+    </table>
+    <p>
+
+</div>  <!-- endof left -->
+
+</body>
+</html>

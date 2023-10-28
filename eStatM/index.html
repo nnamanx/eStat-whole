@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>eStatM</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+</head>
+
+<body>
+
+    <h1 style="color:#4CAF50;" > &nbsp; 
+      <span data-msgid="eStatM MiddleStatEdu">eStatM - Middle School Statistics Education SW</span>
+    </h1>
+
+  <div style="position:absolute; left:10px; top:80px">
+    <ul width="130px">
+      <li><a href="../eStatU/01BarChart.htm">&#8545; &nbsp;&nbsp; <span data-msgid="Bar Graph"></span> - <span data-msgid="Pie Chart"></span> - <span data-msgid="Band Graph"></span></a></li>
+      <li><a href="../eStatU/02LineGraph.htm">&#8545; &nbsp;&nbsp; <span data-msgid="Line Graph">Line Graph</span></a></li>
+      <li><a href="../eStatU/05WordCloud.htm">&#8545; &nbsp;&nbsp; <span data-msgid="WordCloud">Word Cloud</span></a></li>
+      <li><a href="../eStatU/07StemLeafPlot.htm">&#8546; &nbsp; <span data-msgid="Stem & Leaf Plot">Stem and Leaf Plot</span></a></li>
+      <li><a href="../eStatU/08Histogram.htm">&#8546; &nbsp; <span data-msgid="Histogram">Histogram</span> - <span data-msgid="Frequency Table"></span></a></li>
+      <li><a href="../eStatU/09RelativeFrequency.htm">&#8546; &nbsp; <span data-msgid="Frequency Polygon"></span> - <span data-msgid="RelativeFreq">Relative Frequency</span> <span data-msgid="ComparisonGraph"></span></a></li>
+      <li><a href="../eStatU/10DotGraph.htm">&#8547; &nbsp; <span data-msgid="Dot Graph"></span> - <span data-msgid="MeanStd"></span></a></li>
+      <li><a href="../eStatU/30ScatterPlotH.htm">&#8547; &nbsp; <span data-msgid="Scatterplot"></span> - <span data-msgid="CorrelationAnalysis"></span></a></li>
+      <li><a href="../eStatU/31CorrelationEng.htm">&#8547; &nbsp; <span data-msgid="Correlation Coefficient">Correlation Coefficient</span> - <span data-msgid="Simulation">Simulation</span></a></li>
+      <li><a href="../eStatU/32RegressionEng.htm">&#8547; &nbsp; <span data-msgid="Correlation Coefficient"></span> - <span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
+    </ul>
+  </div>
+
+  <div style="position:absolute; left:400px; top:80px">
+     <button style="color:blue; font-size:1.5em" onclick="myFunctionM()"><span data-msgid="ebookLink"></span></button> 
+          <script>
+            function myFunctionM() { 
+              if (langNum < 1) window.open("../eLearning/kr/eStatM/index.html"); 
+              else window.open("../eLearning/en/eStatM/index.html"); 
+            }
+          </script>
+    <p>&nbsp;&nbsp; <span style="color:#4CAF50;">Contact: jjlee@ssu.ac.kr</span>
+    <br>
+    <svg id="ScatterPlot2" width="300" height="300"> </svg> 
+  </div>
+
+  <script>
+      localStorage['myKey'] = "../eStatM/index.html";
+      var lang = localStorage.getItem("lang");
+      setLanguage(lang);
+      var svg = d3.select("#ScatterPlot2"); 
+      svg.selectAll("*").remove();  // 전화면 제거
+      var svgWidth    = 300;
+      var svgHeight   = 300;
+      var margin      = {top: 0, bottom: 0, left: 0, right: 0};
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+      var stat      = new Array(30);
+      var tobs      = 20;
+      var xdata     = new Array(tobs);
+      var ydata     = new Array(tobs);
+      var generator = d3.randomNormal(0,1) 
+      var checkTitle = true;
+
+      // 초기 그림
+      var r = Math.random();
+      var checkTitle = false;
+      for (i=0; i<tobs; i++) {
+            xdata[i] = generator();
+            ydata[i] = r*xdata[i] + Math.sqrt(1-r*r)*generator()
+      }
+      basicScatterStat(tobs, xdata, ydata, stat);
+      showScatterPlot(tobs, xdata, ydata, stat[5], stat[6], stat[15], stat[16], graphWidth, graphHeight, checkTitle);
+  </script>
+
+</body>
+</html>

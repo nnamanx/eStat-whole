@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Stem & Leaf Plot">Stem and Leaf Plot</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+
+  <div width="640" height="640" style="position:absolute; left:10px; top:0px"> 
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Stem & Leaf Plot"></span></b> 
+    </div>
+    <p>     
+    <table>
+      <tr>
+        <td><b><span data-msgid="Main Title">Main Title</span></b></td>
+        <td><input type="text" size=70 id="mtitle"></td>
+      </tr>
+      <tr>
+        <td><b><span data-msgid="input data">Data Input</span></b></td>
+        <td><input type="text" size=70 id="data1"></td>
+      </tr>
+    </table>
+    <p>
+    <button type="button" style="width:90px;" id="execute" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;<span style="color:red" data-msgid="maxStem">** max number of stems &le; 30 ** </span> 
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <p>
+    <svg id="chart" width="640" height="560"> </svg>
+    <p> 
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div>
+  
+  <script src="/estat/eStatU/js/07StemLeafPlot.js"> </script>
+  <script>
+      // Initial stem and leaf graph example
+      document.getElementById("mtitle").value = "Fine dust concentration in Seoul, February 2021 (㎍/m³)";   
+      document.getElementById("data1").value  = "39 18 20 22 16 44 59 18 16 23 53 76 77 76 37 15 13 17 24 42 46 30 18 25 34 24 11 14";
+      data1 = [39,18,20,22,16,44,59,18,16,23,53,76,77,76,37,15,13,17,24,42,46,30,18,25,34,24,11,14];
+      stat  = simplestat2("#data1");  
+      nobs  = data1.length;
+      mini  = stat.mini;  
+      maxi  = stat.maxi;
+      data  = data1;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Law of Large Number">Law of Large Number</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="640" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="StatisticalProb">Statistical Probability</span></b> 
+    </div>
+    <br>
+      <table style="width:400px">
+        <td style="width:100px"><button type="button" id="large" ><span data-msgid="Execute">Execute</span></button></td>
+        <td style="text-align:right">n = <input type="text" style="text-align:center;" size=4 id="nlarge"></td>
+        <td><sup><small>100</small></sup></td>
+        <td><input type="range" min="100" max="10000" value="1000" id="rangeLarge" onchange="showValueSample(this.value)"/></td>
+        <td><sup><small>10000</small></sup></td>
+      </table>
+      <svg id="chartLaw" width="600" height="630" style="border-style:solid;"> </svg>
+      <p>
+      <button type="button" id="saveGraphLaw" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+  </div>
+
+ <script src="/estat/eStatU/js/63SampleEng.js"> </script>
+
+</body>
+</html>

@@ -33,7 +33,7 @@
       <span class="fontmath">&nbsp;&nbsp;
         H<sub>o</sub> : p = p<sub>o</sub> &nbsp;
       </span>
-      <input type="text" class="textarea" size=6 id="mu">&nbsp;  <span class="fontmath"> 0 < p<sub>o</sub> < 1</span>
+      <input type="text" class="textarea" size=6 id="mu">&nbsp;  <span class="fontguide"> 0 < p<sub>o</sub> < 1</span>
       <br> &nbsp;&nbsp;
       <span class="fontmath">
 	    <input type="radio" name = "type0" value="1" checked>
@@ -45,18 +45,13 @@
       </span>
     </form>
 
-    <div> 
-      <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
-      <span data-msgid="Z-test">Z-test</span> 
-    </div> 
-
-    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
-      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
-      <span class="fontmath">&alpha;</span> = 
-      <input type="radio" name = "type2" value="1" checked> 5%       
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>       
- 
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    <span data-msgid="Z-test">Z-test</span> 
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
     <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
     <table class="stat">
       <tbody>
@@ -73,19 +68,17 @@
 	  <td><span class="fontmath">p&#770;</span></td>
 	  <td>=</td>
 	  <td><input type="text" class="textarea" size=6 id="pp"></td>
-          <td><span class="fontmath"> 0 < p&#770; < 1</span>  </td>
+          <td><span class="fontguide"> 0 < p&#770; < 1</span>  </td>
 	</tr>
       </tbody>
     </table>
-    <br>
-    <button type="button" id="executeTH3" >
-        <span data-msgid="Execute">Execute</span>
-    </button> 
-    <p>    
     <table class="stat">
       <tbody>
         <tr>
           <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>      
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="fontmath">z<sub>&alpha;/2</sub></span> = 
+          <input type="text" class="textarea" size=6 id="zvalue">
         </tr>
 	<tr>
           <td></td>
@@ -99,8 +92,19 @@
 	</tr>
       </tbody>
     </table>
-
-    <p>
+    <br>
+    <button type="button" id="executeTH3" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
     <svg id="chart" width="600" height="400"> </svg> 
     <br>
     <button type="button" id="saveGraphU" >
@@ -109,108 +113,7 @@
 
   </div> 
 
-  <script>
+   <script src="/estat/eStatU/js/74TestingP.js"> </script>
 
-      var bar = d3.select("#chart");
- 
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
-      svgWidth2   = 600;
-      svgHeight2  = 400;
-
-      var nobs, avg, std, info, gxmin, gxmax, gymin, gymax;
-      var title;
-      var alpha, pvalue, b, c, d, e, f, g, h;
-      var mu, nn, pp, std, teststat, left, right, temp;
-      var hypoType = 3;
-
-      // H1 type
-      var h1 = document.myForm0.type0;
-      var h1Type = h1.value; 
-      h1[0].onclick = function() { h1Type = h1.value;  clearText(); }    // 양측검정
-      h1[1].onclick = function() { h1Type = h1.value;  clearText(); }    // 우측검정
-      h1[2].onclick = function() { h1Type = h1.value;  clearText(); }    // 좌측검정
-
-      // alpha
-      var a = document.myForm2.type2;
-      alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05;  clearText(); }  
-      a[1].onclick = function() { alpha = 0.01;  clearText(); }  
-
-      document.getElementById("cleft").disabled  = true;
-      document.getElementById("cright").disabled = true;; 
-
-      // Testing Hypothesis ======================================
-      d3.select("#executeTH3").on("click",function() {
-        bar.selectAll("*").remove();
-
-        // input value
-        mu = parseFloat(d3.select("#mu").node().value);
-        nn = parseFloat(d3.select("#nn").node().value);
-        pp = parseFloat(d3.select("#pp").node().value);
-
-        // confidence interval
-        temp = stdnormal_inv(1 - alpha/2, info) * Math.sqrt(pp*(1-pp)/nn);
-        left  = pp - temp;
-        right = pp + temp;  
-
-        document.getElementById("cleft").value   = f3(left);
-        document.getElementById("cright").value  = f3(right); 
-
-        // test statistics
-        teststat = (pp - mu) / (Math.sqrt(mu*(1-mu)/nn));
-
-        if (isNaN(mu) || isNaN(nn) || isNaN(pp) || mu <= 0 || mu >= 1 || nn < 2 || pp <= 0 || pp >= 1) {  // wrong input
-          bar.append("text").attr("class","mean")
-             .attr("x", 150)
-             .attr("y", 100)
-             .text("No input or wrong input !!   Try again.")
-             .style("stroke","red")
-        }
-        else {    // Z-test
-          if (h1Type == 1) {
-            h = alpha / 2;  
-            f = stdnormal_inv(h, info);
-            g = -f;
-            if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
-            else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
-          }
-          else if (h1Type == 2) {
-            h = alpha;  
-            f = -5
-            g = stdnormal_inv(1-h, info);
-            pvalue = 1 - stdnormal_cdf(teststat);
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
-          }
-          else {
-            h = alpha;  
-            f = stdnormal_inv(h, info);
-            g = 5;
-            pvalue = stdnormal_cdf(teststat);
-            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu);
-          }
-        }
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth2;
-        var height = svgHeight2;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-// alpha t Z 바뀔때 clear
-function clearText() {
-        bar.selectAll("*").remove();
-        document.getElementById("cleft").value  = null;
-        document.getElementById("cright").value = null;
-}
-  </script>
 </body>
 </html>

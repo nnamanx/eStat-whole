@@ -1,0 +1,3365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 13</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h2>Chapter 13. Time Series Analysis</h2> 
+  <h6>
+      <a href="./pdf/book13.pdf" target="_blank"><u>[book]</u></a>&nbsp;&nbsp;&nbsp;
+<!---
+      <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+-->
+  </h6>
+	      <ul>
+                <li><a href="#1301">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="#1302">13.2 Smoothing of Time Series</a></li>
+                <li><a href="#1303">13.3 Transformation of Time Series</a></li>
+                <li><a href="#1304">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="#1305">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="#1306">13.6 Seasonal Model and Forecasting</a></li>
+	      </ul>
+
+  <h3>CHAPTER OBJECTIVES</h3> 
+    In this chapter, we study data observed over time, time series, and introduce about:
+    <p>--- What is time series analysis and what are the types of time series models?<br>
+       --- How to smooth a time series.<br>
+       --- How to transform a time series.<br>
+       --- Prediction method using regression model.<br>
+       --- Prediction method using exponential smoothing model.<br>
+       --- Prediction method for seasonal time series.
+    <p>
+        We will be mainly focused on descriptive methods and simple models, and discussion of the Box-Jenkins model and other theoretical models will not be discussed.
+
+  <h3 id="1301">13.1 What is Time Series Analysis?</h3>
+  <p>
+<!---
+  <h6>
+      <a href="./pdf/1201.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/dPCZ1w59Vm8" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+
+    <div class="mainTable">
+      <b>Time series</b> refers to data recorded according to changes in time. In general, observations are made at regular time intervals such as year, season, month, or day, and this is called a <b>discrete time series</b>. There may be time series that are continuously observed, but this book will only deal with the analysis of discrete time series.
+      <p>
+      An example of a discrete time series is the population of Korea as shown in [Table 13.1.1]. This data is from the census conducted every five years in Korea from 1925 to 2020 (except for 1944 and 1949). 
+      <p>
+      <div class="textLeft">[Table 13.1.1]  Population of Korea</div>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">Year</th>
+          <th class="thGrey">Population</th>
+       </tr>
+        <tr> 
+           <td class="tdCenter">
+             1925<br>
+             1930<br>
+             1935<br>
+             1940<br>
+             1944<br>
+             1949<br>
+             1955<br>
+             1960<br>
+             1966<br>
+             1970<br>
+             1975<br>
+             1980<br>
+             1985<br>
+             1990<br>
+             1995<br>
+             2000<br>
+             2005<br>
+             2010<br>
+             2015<br>
+             2020<br>
+          </td> 
+           <td class="tdCenter">
+             19020030<br>
+             20438108<br>
+             22208102<br>
+             23547465<br>
+             25120174<br>
+             20166756<br>
+             21502386<br>
+             24989241<br>
+             29159640<br>
+             31435252<br>
+             34678972<br>
+             37406815<br>
+             40419652<br>
+             43390374<br>
+             44553710<br>
+             45985289<br>
+             47041434<br>
+             47990761<br>
+             51069375<br>
+             51829136<br>
+          </td> 
+      </table>
+      <p>
+      As shown in the table above, it is not easy to understand the overall shape of the time series displayed in numbers. The first step in time series analysis is to observe the time series by drawing a time series plot with the X axis as time and the Y axis as time series values. For example, the time series plot of the total population in Korea is shown in &lt;Figure 13.1.1&gt;. 
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <img class="imgFig600400" src="./Figure/Fig130101.png">
+            <div class="figText">&lt;Figure 13.1.1&gt;Time Series of Korea Population </div>
+          </td>
+        </tr>
+      </table>
+      <p>
+      Observing this figure, Korea's population has an overall increasing trend, but the population decreased sharply
+      in 1944-1949 due to World War II. It can be seen that the population expanded rapidly after the Korean war in 1953 
+      and slowed since 1990. It can also be seen that the growth has slowed further in the last 10 years. By observing 
+      the time series in this way, trends, change points, and outliers can be observed, which is helpful in selecting an analysis model or method suitable for the data.
+      <p>
+      Time series that we frequently encounter include monthly sales of department stores and companies, daily composite stock index, annual crop production, yearly export and import time series, and yearly national income and economic growth rate, and so on.
+      <p>
+      [Table 13.1.2] shows the percent increase in monthly sales of the US toy/game industry for the past 6 years, and &lt;Figure 13.1.2&gt; is a plot of this time series. As it is the rate of change from the previous month, it can be observed that it is seasonal data showing a large increase in November and December every year, moving up and down based on 0. However, May 2020 is an extreme with an increase rate of 211% unlike other years. For time series, you can better examine the characteristics of the data by converting the raw time series into the rate of change.
+      <p>
+      <div class="textLeft">[Table 13.1.2]  Percent Increase, Monthly Sales of Toy/Game in US(%) (Source: Bureau of Census, US)</div>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">Year.month</th>
+          <th class="thGrey">Percent Increase</th>
+       </tr>
+        <tr> 
+           <td class="tdCenter">
+             2016.01<br>
+             2016.02<br>
+             2016.03<br>
+             2016.04<br>
+             2016.05<br>
+             2016.06<br>
+             2016.07<br>
+             2016.08<br>
+             2016.09<br>
+             2016.10<br>
+             2016.11<br>
+             2016.12<br>
+             2017.01<br>
+             2017.02<br>
+             2017.03<br>
+             2017.04<br>
+             2017.05<br>
+             2017.06<br>
+             2017.07<br>
+             2017.08<br>
+             2017.09<br>
+             2017.10<br>
+             2017.11<br>
+             2017.12<br>
+             2018.01<br>
+             2018.02<br>
+             2018.03<br>
+             2018.04<br>
+             2018.05<br>
+             2018.06<br>
+             2018.07<br>
+             2018.08<br>
+             2018.09<br>
+             2018.10<br>
+             2018.11<br>
+             2018.12<br>
+             2019.01<br>
+             2019.02<br>
+             2019.03<br>
+             2019.04<br>
+             2019.05<br>
+             2019.06<br>
+             2019.07<br>
+             2019.08<br>
+             2019.09<br>
+             2019.10<br>
+             2019.11<br>
+             2019.12<br>
+             2020.01<br>
+             2020.02<br>
+             2020.03<br>
+             2020.04<br>
+             2020.05<br>
+             2020.06<br>
+             2020.07<br>
+             2020.08<br>
+             2020.09<br>
+             2020.10<br>
+             2020.11<br>
+             2020.12<br>
+             2021.01<br>
+             2021.02<br>
+             2021.03<br>
+             2021.04<br>
+             2021.05<br>
+             2021.06<br>
+             2021.07<br>
+             2021.08<br>
+             2021.09<br>
+             2021.10<br>
+             2021.11<br>
+             2021.12<br>
+           </td> 
+           <td class="tdCenter">
+             -66.7<br>
+             2.5<br>
+             12.5<br>
+             -9.0<br>
+             -0.6<br>
+             -4.4<br>
+             4.3<br>
+             0.0<br>
+             6.1<br>
+             8.6<br>
+             56.4<br>
+             53.6<br>
+             -65.6<br>
+             -0.1<br>
+             14.7<br>
+             -5.7<br>
+             -2.4<br>
+             -5.5<br>
+             1.3<br>
+             4.2<br>
+             8.4<br>
+             7.2<br>
+             54.9<br>
+             45.5<br>
+             -63.6<br>
+             3.6<br>
+             39.8<br>
+             -21.0<br>
+             5.9<br>
+             -12.4<br>
+             -16.9<br>
+             5.2<br>
+             7.5<br>
+             8.5<br>
+             54.9<br>
+             5.8<br>
+             -46.2<br>
+             -3.8<br>
+             16.3<br>
+             -8.4<br>
+             6.6<br>
+             -5.3<br>
+             0.8<br>
+             7.7<br>
+             -1.2<br>
+             12.2<br>
+             46.7<br>
+             11.7<br>
+             -49.1<br>
+             2.2<br>
+             -28.2<br>
+             -58.2<br>
+             211.1<br>
+             26.8<br>
+             -0.8<br>
+             7.0<br>
+             4.9<br>
+             5.8<br>
+             44.1<br>
+             8.5<br>
+             -37.1<br>
+             -12.2<br>
+             37.0<br>
+             -10.3<br>
+             -0.5<br>
+             -2.0<br>
+             4.6<br>
+             1.8<br>
+             5.2<br>
+             6.4<br>
+             40.0<br>
+             10.6<br>
+          </td> 
+        </tr>
+      </table>
+      <p>
+      <table style="width:650px">
+        <tr>
+         <td>
+            <img class="imgFig600400" src="./Figure/Fig130102.png">
+            <div class="figText">&lt;Figure 13.1.2&gt;Percent Increase, Monthly Sales of Toy/Game in US(%) </div>
+          </td>
+        </tr>
+      </table>
+      <p>
+      Most time series have four components: trend, seasonal, cycle, and other irregular factors. 
+      <b>Trend</b> is a case in which a time series has a certain trend, such as a line or a curved shape 
+      as time elapses, and there are various types of trends. Trends can be understood as a consumption behavior, 
+      population variations, and inflation that appear in time series over a long period of time. 
+      <b>Seasonal</b> factors are short-term and regular fluctuation factors that exist quarterly, monthly, 
+      or by day of the week. Time series such as monthly rainfall, average temperature, and ice cream sales 
+      have seasonal factors. Seasonal factors generally have a short cycle, but fluctuations when the cycle 
+      occurs over a long period of time rather than due to the season is called a <b>cycle</b> factor. By observing 
+      these cyclical factors, it is possible to predict the boom or recession of a periodic economy. &lt;Figure 13.1.3&gt; shows the US S&P 500 Index from 1997 to 2016, and a six-year cycle can be observed.
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <img class="imgFig600400" src="./Figure/Fig130103.png">
+            <div class="figText">&lt;Figure 13.1.3&gt;] US S&P500 Index (1997- 2016)</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+      Other factors that cannot be explained by trend, season, or cyclical factors are called <b>irregular</b>
+      or <b>random</b> factors, which refer to variable factors that appear due to random causes regardless of regular movement over time.
+
+    </div>
+    <p>
+
+    <h4>13.1.1 Time Series Model</h4>
+      By observing the time series, you can predict how this time series will change in the future by building a time series model that fits the probabilistic characteristics of this data. Because the time series observed in reality has a very diverse form, the time series model is also very diverse, from simple to very complex. In general, time series models for a single variable can be divided into the following four categories.
+    <p>
+    <h6>A. Regression Model</h6>
+      A model that explains data or predicts the future by expressing a time series in the form of 
+      a function related to time is the most intuitive and easy to understand model. That is, 
+      when a time series is an observation of a random variable, \(Y_1 , Y_2 , ... , Y_n\), 
+      it is expressed as the following model:
+      $$
+      Y_t \;=\; f(t) \;+\; \epsilon _ t , \,\, t=1,2, ... , n
+      $$
+      Here \(\epsilon_t\) is the error of the time series that cannot be explained by a function \(f(t)\).
+      In general \(\epsilon_t\)  is assumed independent, \(E(\epsilon_t ) = 0\) , and 
+      \(Var(\epsilon_t ) = \sigma^2)\) which is called a white noise. For example, the following model 
+      can be applied to a time series in which the data is horizontal or has a linear trend.
+    <p>
+      \( \qquad \text{Horizontal:} \qquad Y_t \;=\; \mu \;+\; \epsilon _ t \)
+      <br>
+      \( \qquad \text{Linear Trend:}\quad Y_t \;=\; a \;+\; b\, t \;+\; \epsilon _ t \)
+    <p>
+    <h6>B. Decomposition Model</h6>
+      The model that decomposes the time series into four factors, i.e., trend(\(T_t\)), cycle(\(C_t\)), 
+      seasonal(\(S_t\)), and irregular(\(I_t\)), is an analysis method that has been used for a long time based on empirical facts. It can be divided into additive model and multiplicative model.
+    <p>
+    \( \qquad \text{Additive Model:}     \qquad \qquad Y_t \;=\; T_t \;+\; C_t \;+\; S_t \;+\; I_t \)
+    <br>
+    \( \qquad \text{Multiplicative Model:}\qquad Y_t \;=\; T_t \;\times\; C_t \;\times\; S_t \;\times \; I_t \)
+    <p>
+      Here \(T_t\), \(C_t\), \(S_t\) are deterministic function, \(I_t\)  is a random variable. 
+      If we take the logarithm of a multiplicative model, it becomes an additive model. 
+      If the number of data is not enough, the cycle factor can be omitted in the model.
+    <p>
+    <h6>C. Exponential Smoothing Model</h6>
+      Time series data are often more related to recent data than to past data. The above two types of models are models that do not take into account the relationship between the past time series data and the recent time series data. Models using moving averages and exponential smoothing are often used to explain and predict data using the fact that time series forecasting is more related to recent data.
+
+    <h6>D. Box-Jenkins ARIMA Model</h6>
+      The above models are not methods that can be applied to all types of time series, and the analyst selects and applies them according to the type of data. Box and Jenkins presented the following general ARIMA model that can be applied to all time series of stationary or nonstationary type as follows:
+    $$
+      Y _{t} \,=\, \mu \,+\,  \phi_{1} \, Y  _{t-1} \,+\, \phi  _{2} \, Y_{t-2} \,+\, \cdots \,+\,  \epsilon  _{t} \,+\, \theta  _{1} \, \epsilon  _{t-1} \,+\, \theta  _{2} \, \epsilon  _{t-2} \,+\, \cdots   
+    $$
+      The ARIMA model considers the observed time series as a sample extracted from a population time series, studies the probabilistic properties of each model, and establishes an appropriate time series model through parameter estimation and testing. For the ARIMA model, autocorrelation coefficients between time lags are used to identify a model. The ARIMA model is beyond the scope of this book, so interested readers are encouraged to consult the bibliography.
+    <p>
+      In the above time series model, the regression model and ARIMA model are systematic models based on statistical theory, and the decomposition model and exponential smoothing model are methods based on experience and intuition. In general, regression models using mathematical functions and models using decomposition are known to be suitable for predicting slow-changing time series, whereas exponential smoothing and ARIMA models are known to be effective in predicting very rapidly changing time series.
+    <p>
+      For all time series models, it is impossible to predict due to sudden changes. And because time series has so many different forms, it cannot be said that one time series model is always superior to another. Therefore, rather than applying only one model to a time series, it is necessary to establish and compare several models, combine different models, or make an effort to determine the final model by combining opinions of experts familiar with the time series.
+    <p>
+
+    <h4>13.1.2 Evaluation of Time Series Model</h4>
+    <p>
+       Let the time series be the observed values of the random variables  \(Y_1 , Y_2 , ... , Y_n\)
+       and  \(\hat Y_1 , \hat Y_2 , ... , \hat Y_n\) be the values predicted by the model. 
+       If the model agrees exactly, the observed and predicted values are the same, and the model 
+       error \(\epsilon_t\) is zero. In general, it is assumed that the error \(\epsilon_t\)’s of 
+       the time series model are independent random variables which follow the same normal 
+       distribution with a mean of 0 and a variance of \(\sigma^2\). The accuracy of a time series 
+       model can be evaluated using residual, \(Y_t \,-\, {\hat Y}_t\), which is a measure by 
+       subtracting the predicted value from the observed value. In general, the following mean squared error (MSE) is commonly used for the accuracy of a model and the smaller the MSE value, the more appropriate the predicted model is judged.
+    $$
+      {MSE} \,=\, \frac{ \sum_{t=1}^n \, ( Y_t\,-{\hat Y}_t \,)^{2}  } {n}     
+    $$
+       The mean square error is used as an estimator for the variance \(\sigma^2\) of the error \(\epsilon_t\). 
+       Since MSE can have a large value, the root mean squared error (RMSE) is often used.
+    $$
+      {RMSE} \,=\, \sqrt{MSE  }     
+    $$
+
+  <p>
+
+  <h3 id="1302">13.2 Smoothing of Time Series </h3>
+  <p>
+<!---
+  <h6>
+      <a href="./pdf/1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+      Original time series data can be used to make a time series model by observing trends, but in many cases, 
+      time series can be observed after smoothing to unerstand better. In a time series such as stock price, it is often difficult to find a trend because of temporary or short-term fluctuations due to accidental coincidences or cyclical factors. In this case, smoothing techniques are used as a method to effectively grasp the overall long-term trend by removing temporary or short-term fluctuations. The centered moving average method and the exponential smoothing method are widely used. 
+    </div>
+    <p>
+    <h4>13.2.1 Centered Moving Average</h4>
+    <p>
+    <div class="mainTable">
+      The time series in [Table 13.2.1] is the world crude oil price based on the closing price every year from 1987 to 2022. Looking at &lt;Figure 13.2.1&gt;, it can be seen that the short-term fluctuations in the time series are large. However, causes such as oil shocks are short-term and not continuous, so if we are interested in the long-term trend of gasoline consumption, it would be more effective to look at the fluctuations caused by short-term causes.
+      <p>
+      <div class="textLeft">[Table 13.2.1]  Price of Crude Oil (End of Year Price, US$) and 5-point Centered Moving Average</div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Price of Oil</th>
+          <th class="thGrey" style="width:150px">5-point Centered Moving Average</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1987<br>
+             1988<br>
+             1989<br>
+             1990<br>
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+             2021<br>
+             2022<br>
+           </td> 
+           <td class="tdCenter">
+             16.74 <br>
+             17.12 <br>
+             21.84 <br>
+             28.48 <br>
+             19.15 <br>
+             19.49 <br>
+             14.19 <br>
+             17.77 <br>
+             19.54 <br>
+             25.90 <br>
+             17.65 <br>
+             12.14 <br>
+             25.76 <br>
+             26.72 <br>
+             19.96 <br>
+             31.21 <br>
+             32.51 <br>
+             43.36 <br>
+             61.06 <br>
+             60.85 <br>
+             95.95 <br>
+             44.60 <br>
+             79.39 <br>
+             91.38 <br>
+             98.83 <br>
+             91.83 <br>
+             98.17 <br>
+             53.45 <br>
+             37.13 <br>
+             53.75 <br>
+             60.46 <br>
+             45.15 <br>
+             61.14 <br>
+             48.52 <br>
+             75.21 <br>
+             106.95<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             20.666<br>
+             21.216<br>
+             20.630<br>
+             19.816<br>
+             18.028<br>
+             19.378<br>
+             19.010<br>
+             18.600<br>
+             20.198<br>
+             21.634<br>
+             20.446<br>
+             23.158<br>
+             27.232<br>
+             30.752<br>
+             37.620<br>
+             45.798<br>
+             58.746<br>
+             61.164<br>
+             68.370<br>
+             74.434<br>
+             82.030<br>
+             81.206<br>
+             91.920<br>
+             86.732<br>
+             75.882<br>
+             66.866<br>
+             60.592<br>
+             49.988<br>
+             51.526<br>
+             53.804<br>
+             58.096<br>
+             67.394<br>
+             <br>
+             <br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+
+      <!---   ************ html for Time Series - Smoothing ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span> : <span data-msgid="Smoothing"></span>. <span data-msgid="Filtering"></span>]</b>
+      <p>
+         <iframe src="./example/130201/130201.html" width="700" height="820"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 13.2.1&gt; Price of Crude Oil, Smoothing and Filtering</div>
+      <p>
+        The N-point <b>centered moving average</b> of a time series refers to the average of N data
+        from a single point in time. For example, in crude oil price data, the value of the 
+        five-point moving average for a specific year is the average of the data for two years 
+        before the specific year, that year, and the data for the next two years. Expressed as 
+        an expression, if \(M_t\) is a moving average in time \(t\), the 5-point centered moving
+        average is as follows:
+      $$
+        M_t = \frac{Y_{t-2} \,+\, Y_{t-1} \,+\, Y_{t} \,+\, Y_{t+1} \,+\,  Y_{t+2} } {5 }   
+      $$
+        For example, the 5-point centered moving average for 1989 is as follows.
+      <p>
+        \(\qquad M_{1989} \,=\, \frac {Y_{1987} + Y_{1988} +Y_{1989} + Y_{1990} + Y_{1991} } {5 } \)
+      <br>
+        \( \qquad \qquad \quad =\, \frac {16.74 + 17.12 + 21.84 + 28.48 + 19.15} {5} \,=\, 20.6660 \)
+      <p>
+        [Table 13.2.2] shows the values ​​of all 5-points centered moving averages obtained in this way and &lt;Figure 13.2.1&gt; is the graph of 5-points moving average. Note that the moving averages for the first two years and the last two years cannot be obtained here. It can be seen that the graph of the moving average is better for grasping the long-term trend than the graph of the original data because short-term fluctuations are removed. 
+      <p>
+        The choice of a value N for the N-point moving average is important. A large value of N 
+        will provide a smoother moving average, but it has the disadvantage of losing more points 
+        at both ends and insensitive to detecting important trend changes. On the other hand, 
+        if you choose small N, you will lose less data at both ends, but you may not be able 
+        to get the smoothing effect because you will not sufficiently eliminate short-term fluctuations. 
+        In general, try a few values N​​ to reflect important changes that should not be missed, 
+        while achieving a smoothing effect and balancing the points not to lose too much at both ends.
+      <p>
+        If the value of N is an even number, there is a difficulty in obtaining a central moving average 
+        with the same number of data on both sides of the base year. For example, the center of the 
+        four-point moving average from 1987 to 1990 is between 1988 and 1989. If you denote this as 
+        \(M_{1988.5}\), it can be calculated as follows:
+      <p>
+        \( \qquad M_{1988.5} \,=\, \frac {Y_{1987} + Y_{1988} +Y_{1989} + Y_{1990} } {4 } \)
+      <br>
+        \( \qquad \qquad \quad \,=\, \frac {16.74 + 17.12 + 21.84 + 28.48 } {4} \,=\, 21.045 \)
+      <p>
+        The 4-point moving average obtained in this way is called a non-central 4-points moving average. 
+        In the case of this even number N, the non-central moving average does not match the observation 
+        year of the original data, which is inconvenient. In the case of this even number N, it is 
+        calculated as the average of the noncentral moving average values of two adjacent non-central
+        moving averages. In other words, the central four-point moving average in 1989 is the average 
+        of  \(M_{1988.5}\) and  \(M_{1989.5}\)  as follows:
+      <p>
+        \( \qquad M_{1989} \,=\, \frac {M_{1988.5} \,+\, M_{1989.5} } {2 } \)
+      <br>
+        \( \qquad \qquad \quad =\, \frac {21.0450 \,+\, 21.6475 } {2} \,=\, 21.3463 \)
+      <p>
+        If the time series is quarterly or monthly, a 4-point central moving average or a 12-point central moving average is an average of one year, so it is often used to observe data without seasonality.
+    </div>
+    <p>
+  
+  <h4>13.2.2 Exponential Smoothing</h4>
+  <p>
+    <div class="mainTable">
+      <p>
+        3-point moving average can be considered the weighted average of three data with each weight 
+        \(\frac{1}{3}\) as follows:
+      $$
+        M_t \,=\, \frac{Y_{t-1} \,+\, Y_{t} \,+\, Y_{t+1} } {3 } \,=\, \frac{1}{3}Y_{t-1} \,+\, \frac{1}{3}Y_{t} \,+\, \frac{1}{3}Y_{t+1}
+      $$
+        When the weights are \(w_1 , w_2 , ... , w_n\), the weighted moving average \(M_t\) of the 
+        time series is defined as follows:
+      $$
+        M_t \,=\, \sum_{i=1}^{n} w_i Y_{i}
+      $$
+        where \(n\)  is the number of data, \(w_i \ge 0\) and \(\sum_{i=1}^{n} w_i = 1 \).
+      <p>
+        Various weighted averages with different weights can be used depending on the purpose. 
+        Among them, a smoothing method that gives more weight to data closer to the present and 
+        smaller weights as it is farther from the present is called <b>exponential smoothing</b>. 
+        The exponential smoothing method is determined by an <b>exponential smoothing constant</b> \(\alpha\)
+        that has a value between 0 and 1. The exponentially smoothed data \(E_t\) is calculated as follows:
+      <p>
+        \( \qquad E_{1} \,=\, \alpha \,Y_{1} \,+\, (1- \alpha)\, E_{0} \)      <br>
+        \( \qquad E_{2} \,=\, \alpha \,Y_{2} \,+\, (1- \alpha)\, E_{1} \)      <br>
+        \( \qquad E_{3} \,=\, \alpha \,Y_{3} \,+\, (1- \alpha)\, E_{2} \)      <br>
+        \( \qquad \cdots \)      <br>
+        \( \qquad E_{t} \,=\, \alpha \,Y_{t} \,+\, (1- \alpha)\, E_{t-1} \)      <br>
+      <p>
+        Here, an initial value \(E_{0}\) is required, and \(Y_1\) is usually used a lot, and the average 
+        value of the data can also be used. The exponentially smoothed value \(E_t\) at the point in time 
+        \(t\) gives weight \(\alpha\) to the current data, and the \(1-\alpha\)  weight to the previous 
+        smoothed data is given. The exponentially smoothed value \(E_t\) can be represented with 
+        the original data \(Y_t\) as follows:
+      $$
+        E_t \,=\, \alpha Y_t + \alpha (1-\alpha) Y_{t-1} + \alpha(1-\alpha)^2 Y_{t-2} + \cdots + \alpha(1-\alpha)^{t-2} Y_2 + \alpha(1-\alpha)^{t-1} Y_1 + (1-\alpha)^t E_0   
+      $$
+        Therefore, the exponential smoothing method uses all data from the present and the past, but gives 
+        the current data the highest weight &alpha;, and gives a lower weight as the distance from the present time increases.
+      <p>
+        Exponential smoothing of the crude oil price in [Table 13.2.1] with the initial value 
+        \(E _{1986} = Y _{1987}   \) and exponential smoothing constant \(\alpha\) = 0.3 is as follows.
+      <p>
+        \( \qquad E_{1986} \,=\, E_{1987} = 16.74 \)      <br>
+        \( \qquad E_{1987} \,=\, 0.3  \,Y_{1987} \,+\, (1- 0.3)\, E_{1986} \,=\, (0.3)(16.74)+(0.7)(16.74)=16.74  \)      <br>
+        \( \qquad E_{1988} \,=\, 0.3  \,Y_{1988} \,+\, (1- 0.3)\, E_{1987} \,=\, (0.3)(17.12)+(0.7)(16.74)=16.854  \)      <br>
+      <p>
+        All data exponentially smoothed with \(\alpha\) = 0.3 are given in [Table 13.2.2]. It can be seen that,
+        in the exponential smoothing method, there is no loss of data at both ends, unlike the moving average method. 
+        The crude oil price time series and exponentially smoothed data are shown in &lt;Figure 13.2.2&gt;. 
+        It can be seen that the smoothed data are not significantly different from the original data. 
+        If the value of \(\alpha\)  is small, more weight is given to the past data than to the present, 
+        making it less sensitive to sudden changes in the present data. Conversely, the closer the value of 
+        \(\alpha\) is to 1, that is, the more weight is given to the current data, the more the smoothed data
+        resembles the original data, and the smoothing effect disappears.
+      <p>
+      <div class="textLeft">[Table 13.2.2] Price of Crude Oil and Exponential Smoothing with &alpha; =0.3 </div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Price of Oil</th>
+          <th class="thGrey" style="width:150px">Exponential Smoothing<br>&alpha;=0.3</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1987<br>
+             1988<br>
+             1989<br>
+             1990<br>
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+             2021<br>
+             2022<br>
+           </td> 
+           <td class="tdCenter">
+             16.74 <br>
+             17.12 <br>
+             21.84 <br>
+             28.48 <br>
+             19.15 <br>
+             19.49 <br>
+             14.19 <br>
+             17.77 <br>
+             19.54 <br>
+             25.90 <br>
+             17.65 <br>
+             12.14 <br>
+             25.76 <br>
+             26.72 <br>
+             19.96 <br>
+             31.21 <br>
+             32.51 <br>
+             43.36 <br>
+             61.06 <br>
+             60.85 <br>
+             95.95 <br>
+             44.60 <br>
+             79.39 <br>
+             91.38 <br>
+             98.83 <br>
+             91.83 <br>
+             98.17 <br>
+             53.45 <br>
+             37.13 <br>
+             53.75 <br>
+             60.46 <br>
+             45.15 <br>
+             61.14 <br>
+             48.52 <br>
+             75.21 <br>
+             106.95<br>
+          </td> 
+           <td class="tdCenter">
+             16.740<br>
+             16.854<br>
+             18.350<br>
+             21.389<br>
+             20.717<br>
+             20.349<br>
+             18.501<br>
+             18.282<br>
+             18.659<br>
+             20.832<br>
+             19.877<br>
+             17.556<br>
+             20.017<br>
+             22.028<br>
+             21.408<br>
+             24.348<br>
+             26.797<br>
+             31.766<br>
+             40.554<br>
+             46.643<br>
+             61.435<br>
+             56.385<br>
+             63.286<br>
+             71.714<br>
+             79.849<br>
+             83.443<br>
+             87.861<br>
+             77.538<br>
+             65.416<br>
+             61.916<br>
+             61.479<br>
+             56.580<br>
+             57.948<br>
+             55.120<br>
+             61.146<br>
+             74.888<br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
+            <img class="imgFig600400" src="./Figure/Fig130202.png">
+            <div class="figText">&lt;Figure 13.2.2&gt; Price of Crude Oil and Exponential Smoothing with &alpha;=0.3 </div>
+         </div>
+    </div>
+  <p>
+  <h4>13.2.3 Filtering by Moving Median</h4>
+  <p>
+    <div class="mainTable">
+        The N-point <b>centered moving median</b> of a time series refers to the median of N data from a single point 
+        in time \(t\). For example, in crude oil price data, the value of a five-point moving median for a specific 
+        year is the median of data for two years before a certain year, that year, and data for two years thereafter. 
+        If data are denoted by \(Y_{t-2} ,Y_{t-1} , Y_{t}  , Y_{t+1} ,   Y_{t+2}   \), and the data are sorted from
+        smallest to largest, and expressed as \(Y_{(t-2)} ,Y_{(t-1)} , Y_{(t)} , Y_{(t+1)} , Y_{(t+2)} \), 
+        the median value is \(Moving Median_t \,=\, Y_{(t)}\).
+      <p>
+        For example, the 1989 5-point central moving median for crude oil prices in [Table 13.2.3] is as follows:
+      <p>
+        \(\qquad MovingMedian_{1989} \,=\, median \{ Y_{1987} , Y_{1988} ,Y_{1989} , Y_{1990} , Y_{1991} \} \)
+        \(\qquad \qquad \qquad \qquad \qquad \;\;=\, median \{16.74, 17.12 , 21.84 , 28.48,19.15 \}  \,=\, 19.15 \)
+      <p>
+        [Table 13.2.3] and &lt;Figure 13.2.3&gt; show all the five-point moving median values obtained in this way and their graphs. Note that the moving median for the first two years and the last two years are not available here. Because the centered moving medians remove extreme values, it is called a filtering and the time series is much smoother than the original data.
+      <p>
+      <div class="textLeft"> [Table 13.2.3] Price of Crude Oil and 5-point Centered Moving Median</div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Price of Oil</th>
+          <th class="thGrey" style="width:150px">5-point Centered Moving Median</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1987<br>
+             1988<br>
+             1989<br>
+             1990<br>
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+             2021<br>
+             2022<br>
+           </td> 
+           <td class="tdCenter">
+             16.74 <br>
+             17.12 <br>
+             21.84 <br>
+             28.48 <br>
+             19.15 <br>
+             19.49 <br>
+             14.19 <br>
+             17.77 <br>
+             19.54 <br>
+             25.90 <br>
+             17.65 <br>
+             12.14 <br>
+             25.76 <br>
+             26.72 <br>
+             19.96 <br>
+             31.21 <br>
+             32.51 <br>
+             43.36 <br>
+             61.06 <br>
+             60.85 <br>
+             95.95 <br>
+             44.60 <br>
+             79.39 <br>
+             91.38 <br>
+             98.83 <br>
+             91.83 <br>
+             98.17 <br>
+             53.45 <br>
+             37.13 <br>
+             53.75 <br>
+             60.46 <br>
+             45.15 <br>
+             61.14 <br>
+             48.52 <br>
+             75.21 <br>
+             106.95<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             19.15<br>
+             19.49<br>
+             19.49<br>
+             19.15<br>
+             19.15<br>
+             19.49<br>
+             17.77<br>
+             17.77<br>
+             19.54<br>
+             25.76<br>
+             19.96<br>
+             25.76<br>
+             26.72<br>
+             31.21<br>
+             32.51<br>
+             43.36<br>
+             60.85<br>
+             60.85<br>
+             61.06<br>
+             79.39<br>
+             91.38<br>
+             91.38<br>
+             91.83<br>
+             91.83<br>
+             91.83<br>
+             53.75<br>
+             53.75<br>
+             53.45<br>
+             53.75<br>
+             53.75<br>
+             60.46<br>
+             61.14<br>
+             <br>
+             <br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
+            <img class="imgFig600400" src="./Figure/Fig130203.png">
+            <div class="figText">&lt;Figure 13.2.3&gt;  Price of Crude Oil and 5-point Centered Moving Median</div>
+         </div>
+      <p>
+        If the value of N is an even number, there is a difficulty in obtaining the central moving median having 
+        the same number of data on both sides of the base year. For example, the center of the four-point moving 
+        median from 1987 to 1990 is between 1988 and 1989. If you denote this as \(Median_{1988.5}\), it can be 
+        calculated as follows:
+      <p>
+        \(\qquad MovingMedian_{1988.5} \,=\, median \{Y_{1987} , Y_{1988} , Y_{1989} , Y_{1990} \} \)
+        \(\qquad \qquad \qquad \qquad \qquad \;=\,  median \{16.74 , 17.12 , 21.84 , 28.48 \}  \,=\, \frac {17.12 +21.84} {2} = 19.48 \)
+      <p>
+        The 4-point moving median obtained in this way is called the non-central 4-point moving median. 
+        As such, the non-central moving average in the case of this even number N does not match the 
+        observation year of the original data, which is inconvenient. In the case of this even number, 
+        it is calculated as the average of the values of the two non-central moving medians that are 
+        adjacent to each other. In other words, the central four-point moving median in 1989 is the mean of
+        \(MovingMedian_{1988.5}\)  and \(MovingMedian_{1989.5}\).
+    </div>
+    <p>
+
+  <h3 id="1303">13.3 Transformation of Time Series</h3>
+  <p>
+<!---
+  <h6>
+      <a href="./pdf/1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+    <div class="mainTable">
+      Time series can be viewed by drawing the raw data directly, but in order to examine various characteristics, change in percentage increase or decrease is examined, and an index that is a percentage with respect to base time is alse examined. In addition, in order to examine the relation of the previous data, it is compared with a time lag or converted into horizontal data using the difference. When the variance of the time series increases with time, it is sometimes converted into a form suitable for applying the time series model by using logarithmic, square root, or Box-Cox transformation.   
+    </div>
+    <p>
+  <h4>13.3.1 Percentage Change</h4>
+    <p>
+    <div class="mainTable">
+      <h6>A. Percent Change</h6>    
+      In a time series, you can examine the increase or decrease of a value, but you can easily observe
+      the change by calculating the percentage increase or decrease. When the time series is expressed as
+      \(Y_1 , Y_2 , ... , Y_n\) , the percentage increase or decrease \(P_t\) compared to the previous data is as follows.
+      $$
+          P_{t} \,=\, \frac {Y _{t} - Y_{t-1}} {Y_{t-1}} \times 100 , \quad t=2,3, ... , n
+      $$
+      [Table 13.3.1] shows the number of houses in Korea from 2010 to 2020, and &lt;Figure 13.3.1&gt; shows 
+      the percentage increase or decrease compared to the previous data. Looking at this rate of change, 
+      it can be easily observed that the original time series has an overall increasing trend, but the rate 
+      of change of the previous year has many changes. In other words, it can be observed that there was a 
+      2.23% increase in the number of houses in 2014 compared to the previous year, and a 2.48% increase 
+      in the number of houses in 2018 as well.
+      <p>
+      \(\qquad P_{2014} \,=\, \frac{19161.2 - 18742.1} {18742.1}  \times 100 \,=\, 2.23  \)
+      <p>
+      <div class="textLeft">[Table 13.3.1] Number of Houses in Korea and Percent Change <br>(Korea National Statistical Office, unit 1000)</div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Number of Houses</th>
+          <th class="thGrey" style="width:150px">% change</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+          </td> 
+           <td class="tdCenter">
+             17738.8<br>
+             18082.1<br>
+             18414.4<br>
+             18742.1<br>
+             19161.2<br>
+             19559.1<br>
+             19877.1<br>
+             20313.4<br>
+             20818.0<br>
+             21310.1<br>
+             21673.5<br>
+          </td> 
+           <td class="tdCenter">
+                 <br>
+             1.93<br>
+             1.83<br>
+             1.77<br>
+             2.23<br>
+             2.07<br>
+             1.62<br>
+             2.19<br>
+             2.48<br>
+             2.36<br>
+             1.70<br>
+          </td> 
+        </tr>
+      </table>
+      <p>
+
+      <!---   ************ html for Time Series - Transformation ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span> : <span data-msgid="Transformation"></span>]</b>
+      <p>
+         <iframe src="./example/130301/130301.html" width="700" height="860"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 13.3.1&gt; Number of Houses in Korea and Transformation</div>
+      <p>
+    </div>
+    <p>
+
+  <h4>B. Simple Index</h4>
+  <p>
+    <div class="mainTable">
+       Another way to use percentages to easily characterize changes over time is to calculate an index number. 
+       An <b>index</b> \(I_t\) is a number that indicates the change over time of a time series. The index number
+       \(Index_t\)  of a time series at a certain point in time is the percentage of the total time series data 
+       for a predetermined time point \(t_0\)  called the base period.
+       $$
+         Index_{t} \,=\, \frac {Y _{t}} {Y_{t_0}} \times 100  , \quad t=1,2,..., n
+       $$
+       The most commonly used indices in the economic field are the price index and the quantity index. 
+       For example, the consumer price index is a price index indicating the price change of a set of goods 
+       that can reflect the total consumer price, and the index indicating the change in total electricity 
+       consumption every year is the quantity index. There are several methods of calculating the index,
+       which are broadly divided into simple index number when the number of items represented by the index is one, and composite index number when there are several as in the consumer price index. 
+     <p>
+       [Table 13.3.2] is a simple index for the number of houses in Korea from 2010 to 2020, with the base 
+       time being 2010. If you look at the figure for the index, you can see that in this case, there is no significant change from the original time series and trend. It can be seen that there is a 22.18% increase in the number of houses in 2020 compared to 2010.
+     <p>
+       \(\qquad Index_{2020} \,=\, \frac{Y _{2020}} {Y_{2010}} \times 100  \,=\, \frac{21673.5} {17738.8} \times 100 \,=\, 122.18    \)
+     <p>
+       <div class="textLeft">[Table 13.3.2] Simple Index of Number of Houses in Korea <br>(Korea National Statistical Office, unit 1000)</div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Number of Houses</th>
+          <th class="thGrey" style="width:150px">Simple Index<br>Base: 2010</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+          </td> 
+           <td class="tdCenter">
+             17738.8<br>
+             18082.1<br>
+             18414.4<br>
+             18742.1<br>
+             19161.2<br>
+             19559.1<br>
+             19877.1<br>
+             20313.4<br>
+             20818.0<br>
+             21310.1<br>
+             21673.5<br>
+          </td> 
+           <td class="tdCenter">
+             100.00<br>
+             101.94<br>
+             103.81<br>
+             105.66<br>
+             108.02<br>
+             110.26<br>
+             112.05<br>
+             114.51<br>
+             117.36<br>
+             120.13<br>
+             122.18
+          </td> 
+        </tr>
+      </table>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
+            <img class="imgFig600400" src="./Figure/Fig130302.png">
+            <div class="figText">&lt;Figure 13.3.2&gt; Simple Index of Number of Houses in Korea</div>
+         </div>
+    </div>
+  <p>
+  <h4>C. Composite Index</h4>
+  <p>
+
+    <div class="mainTable">
+        <b>Composite index</b> is a method in which the change in price or quantity of several goods is set at a specific time point as the base period, and then the data at each time point is calculated as a percentage value compared to the base period. An example of the most used composite index is the consumer price index, which reflects price fluctuations of about 500 products in Korea that affect consumer prices. Other commonly used composite indices include the comprehensive stock index, which examines the price fluctuations of all listed stocks traded in the stock market.
+      <p>
+        For the composite index, a weighted composite index that is calculated by weighting the price of each 
+        product with the quantity consumed is often used. When calculating such a weighted composite index, 
+        the case where the quantity consumption at the base time is used as a weight is called the 
+        <b>Laspeyres method</b>, and the case where the quantity consumption at the current time is used 
+        as the weight is called the <b>Paasche method</b>. In general, the Laspeyres method of weighted composite index is widely used, and the consumer price index is a representative example. The price index of the Paasche method is used when the consumption of goods used as weights varies greatly over time, and can be used only when the consumption at each time point is known. It is expensive to examine the quantity consumption at each point in time.
+      <p>
+        Assuming that \(P_{1t} , \cdots , P_{kt} \) are the prices of \(k\) number of products at the time point \(t\), 
+        and \(Q_{1t_0} , \cdots , Q_{kt_0} \) are the quantities of each product consumpted at the base time, 
+        the formula for calculating each composite index is as follows:
+      <p>
+        \( \qquad \text{Laspeyres Index:} \quad  Index_t \,=\, \frac { Q_{1t_0} P_{1t} + \cdots + Q_{kt_0} P_{kt} } {Q_{1t_0} P_{1t_0}+ \cdots + Q_{kt_0} P_{kt_0} } \times 100  \) <br>
+        \( \qquad \text{Paasche Index:}   \qquad Index_t \,=\, \frac { Q_{1t} P_{1t} + \cdots + Q_{kt} P_{kt} } {Q_{1t} P_{1t_0} + \cdots + Q_{kt} P_{kt_0} } \times 100      	\)
+      <p>
+        The data in [Table 13.3.3] shows the price and quantity of three metals by month in 2020.
+      <p>
+      <div class="textLeft">[Table 13.3.3]  Composite Index of three Metal Prices($/ton) and Production Quantity(ton)</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px"><br>Month</th>
+          <th class="thGrey" style="width:150px">Copper<br>Price &nbsp;&nbsp;   Quantity</th>
+          <th class="thGrey" style="width:150px">Metal <br>Price &nbsp;&nbsp;   Quantity</th>
+          <th class="thGrey" style="width:150px">Lead  <br>Price &nbsp;&nbsp;   Quantity</th>
+          <th class="thGrey" style="width:150px"><br>Laspeyres    Paasche</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+           </td> 
+           <td class="tdCenter">
+             1361.6  &nbsp;&nbsp;  100.7<br>
+             1399.0  &nbsp;&nbsp;  &nbsp; 95.1<br>
+             1483.6  &nbsp;&nbsp;  104.0<br>
+             1531.6  &nbsp;&nbsp;  &nbsp; 95.6<br>
+             1431.2  &nbsp;&nbsp;  103.3<br>
+             1383.8  &nbsp;&nbsp;  106.9<br>
+             1326.8  &nbsp;&nbsp;  &nbsp; 95.9<br>
+             1328.8  &nbsp;&nbsp;  &nbsp; 96.7<br>
+             1307.8  &nbsp;&nbsp;  &nbsp; 95.7<br>
+             1278.4  &nbsp;&nbsp;  &nbsp; 89.1<br>
+             1354.2  &nbsp;&nbsp;  100.5<br>
+             1305.2  &nbsp;&nbsp;  &nbsp; 96.9<br>
+          </td> 
+           <td class="tdCenter">
+             213  &nbsp;&nbsp;   4311<br>
+             213  &nbsp;&nbsp;   4497<br>
+             213  &nbsp;&nbsp;   5083<br>
+             213  &nbsp;&nbsp;   5077<br>
+             213  &nbsp;&nbsp;   5166<br>
+             213  &nbsp;&nbsp;   4565<br>
+             213  &nbsp;&nbsp;   4329<br>
+             213  &nbsp;&nbsp;   4057<br>
+             213  &nbsp;&nbsp;   3473<br>
+             213  &nbsp;&nbsp;   3739<br>
+             213  &nbsp;&nbsp;   3817<br>
+             213  &nbsp;&nbsp;   3694<br>
+          </td> 
+           <td class="tdCenter">
+             530.0  &nbsp;&nbsp;   46.1<br>
+             520.0  &nbsp;&nbsp;   47.0<br>
+             529.0  &nbsp;&nbsp;   51.0<br>
+             540.0  &nbsp;&nbsp;   23.0<br>
+             531.0  &nbsp;&nbsp;   26.5<br>
+             580.0  &nbsp;&nbsp;   13.5<br>
+             642.8  &nbsp;&nbsp;   27.4<br>
+             602.6  &nbsp;&nbsp;   25.8<br>
+             513.6  &nbsp;&nbsp;   20.5<br>
+             480.8  &nbsp;&nbsp;   24.6<br>
+             528.4  &nbsp;&nbsp;   21.5<br>
+             462.2  &nbsp;&nbsp;   27.9<br>
+          </td> 
+           <td class="tdCenter">
+             100.00  &nbsp;&nbsp;      100.00<br>
+             100.31  &nbsp;&nbsp;      100.28<br>
+             101.13  &nbsp;&nbsp;      101.01<br>
+             101.63  &nbsp;&nbsp;      101.35<br>
+             100.65  &nbsp;&nbsp;      100.57<br>
+             100.42  &nbsp;&nbsp;      100.27<br>
+             100.16  &nbsp;&nbsp;       99.98<br>
+             100.00  &nbsp;&nbsp;       99.87<br>
+              99.43  &nbsp;&nbsp;       99.38<br>
+              99.01  &nbsp;&nbsp;       99.07<br>
+              99.92  &nbsp;&nbsp;       99.92<br>
+              99.18  &nbsp;&nbsp;       99.21<br>
+          </td> 
+         </tr>
+       </table>
+      <p>
+        In [Table 13.3.3], the Laspeyres index for the data for February with January as the base time is as follows.
+      <p>
+        \( \qquad   Index_t \,=\, \frac { Q_{1t_0} P_{1t} + \cdots + Q_{kt_0} P_{kt} } {Q_{1t_0} P_{1t_0}+ \cdots + Q_{kt_0} P_{kt_0} } \times 100  \) <br>
+        \( \qquad   \quad \,=\, \frac {(100.7)(1399.0)+(4311)(213)+(46.1)(520) } {(100.7)(1361.6)+(4311)(213)+(47.0)(530) } \,=\, 100  .31       	\)
+      <p>
+        Similarly, Paasche index is as follows:
+      <p>
+        \( \qquad  Index_t \,=\, \frac { Q_{1t} P_{1t} + \cdots + Q_{kt} P_{kt} } {Q_{1t} P_{1t_0} + \cdots + Q_{kt} P_{kt_0} } \times 100      	\) <br>
+        \( \qquad   \quad \,=\, \frac {(95.1)(1399.0)+(4497)(213)+(47.0)(520) } {(95.1)(1361.6)+(4497)(213)+(47.0)(530) } \,=\, 100.28 \)   
+      <p>
+        In [Table 13.3.3], it can be seen that the production quantity of iron and lead in the last 4 quarters is significantly different from the production quantity in January, which is the base time. In this way, when the quantity fluctuates greatly and the quantity at each time is known, the Pasche index can be said to be the best index because it appropriately reflects the price change at that time.
+    </div>
+    <p>
+
+    <h4>13.3.2 Time Lag and Difference</h4>
+
+    <h6>A. Time Lag</h6>
+
+    <div class="mainTable">
+        In a time series, current data can usually be related to past data. <b>Lag</b> means a transformation for 
+        comparing data of the present time and observation values ​​at one time point or a certain past time point. 
+        That is, when the observed time series is \(Y_1 , Y_2 , ... , Y_n\), the time series with lag 1 becomes
+        \( - , Y_1 , Y_2 , ... , Y_{n-1}\) . Note that, in case of lag k, there are no data for the first \(k\) number than the original data.
+      <p>
+        The correlation coefficient between the time lag data and the raw data is called the 
+        <b>autocorrelation coefficient</b>. 
+        If the average of time series is \(\small \overline Y\) , the k-lag autocorrelation \(r_k\) is defined as follows:
+      $$ \small
+        r_k =  \frac { \sum_{t = k+1}^ n (Y_t - \overline Y ) (Y_{t-k} - \overline Y ) }   { \sum _{t =1}^n (Y_t - \overline Y )^2 }, \quad k=0, 1, 2, ..., n-1
+      $$
+        \(r_1 , r_2 , ... , r_k \) are called an <b>autocorrelation function</b> and are used to determine a time series model.
+      <p>
+        [Table 13.3.4] shows the monthly consumer price index for the past two years and time lag 1 to 12 for this data, and the autocorrelation coefficients are shown in [Table 13.3.5]. &lt;Figure 13.3.3&gt; shows the original time series and the autocorrelation function.
+
+
+      <p>
+      <div class="textLeft">[Table 13.3.4] Monthly Consumer Price Index and Time Lag 1, Lag 2, ... Lag 12</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px">t</th>
+          <th class="thGrey" style="width:100px">Year.Month</th>
+          <th class="thGrey" style="width:100px">CPI</th>
+          <th class="thGrey" style="width:100px">lag 1</th>
+          <th class="thGrey" style="width:100px">lag 2</th>
+          <th class="thGrey" style="width:100px"> ... </th>
+          <th class="thGrey" style="width:100px">lag 12</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24
+           </td> 
+           <td class="tdCenter">
+             2020.01<br>
+             2020.02<br>
+             2020.03<br>
+             2020.04<br>
+             2020.05<br>
+             2020.06<br>
+             2020.07<br>
+             2020.08<br>
+             2020.09<br>
+             2020.10<br>
+             2020.11<br>
+             2020.12<br>
+             2021.01<br>
+             2021.02<br>
+             2021.03<br>
+             2021.04<br>
+             2021.05<br>
+             2021.06<br>
+             2021.07<br>
+             2021.08<br>
+             2021.09<br>
+             2021.10<br>
+             2021.11<br>
+             2021.12
+           </td> 
+           <td class="tdCenter">
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4<br>
+             105.0<br>
+             105.5<br>
+             106.1<br>
+             106.7<br>
+             107.1<br>
+             107.0<br>
+             106.7<br>
+             107.4<br>
+             108.0<br>
+             107.7<br>
+             107.8<br>
+             108.3
+           </td> 
+           <td class="tdCenter">
+                  <br>
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4<br>
+             105.0<br>
+             105.5<br>
+             106.1<br>
+             106.7<br>
+             107.1<br>
+             107.0<br>
+             106.7<br>
+             107.4<br>
+             108.0<br>
+             107.7<br>
+             107.8
+           </td> 
+           <td class="tdCenter">
+                  <br>
+                  <br>
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4<br>
+             105.0<br>
+             105.5<br>
+             106.1<br>
+             106.7<br>
+             107.1<br>
+             107.0<br>
+             106.7<br>
+             107.4<br>
+             108.0<br>
+             107.7
+           </td>
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             ...<br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4
+          </td> 
+         </tr>
+       </table>
+      <p>      
+      <div class="textLeft">[Table 13.3.5] Autocorrelation Function</div>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey">time </th>
+          <th class="thGrey">autocorrelation</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+          </td> 
+           <td class="tdCenter">
+              0.8318<br>
+              0.6772<br>
+              0.5651<br>
+              0.4479<br>
+              0.3333<br>
+              0.2547<br>
+              0.1647<br>
+              0.0755<br>
+             -0.0143<br>
+             -0.0854<br>
+             -0.1737<br>
+          </td> 
+        </tr>
+      </table>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
+            <img class="imgFig600400" src="./Figure/Fig130303.png">
+            <div class="figText">&lt;Figure 13.3.3&gt; Autocorrelation Function Graph</div>
+         </div>
+    </div>
+    <p>
+    <h6>B. Differencing </h6>
+    <p>
+    <div class="mainTable">
+        Since the price index in [Table 13.3.4] has a linear trend, a model for this trend can be built, 
+        but in some cases, a model can be created by changing the time series to a horizontal trend. 
+        The way to transform a linear trend into a horizontal trend is to use a <b>differencing</b>. 
+        When the time series is \(Y_1 , Y_2 , ... , Y_n \), the first order difference  \(▽ Y_t\)  is as follows:
+      $$
+          ▽ Y_t \,=\, Y_t \,-\, Y_{t-1}, \quad t=2,3,...,n
+      $$
+        If the raw data is a linear trend, the first-order differencing of time series is a horizontal 
+        time series because it means a change in slope. If we make differencing on the first-order difference \(▽ Y_t\), 
+        it becomes the second-order difference as follows:
+      $$
+          ▽^2 Y_t \,=\, ▽Y_t \,-\, ▽Y_{t-1} \,=\,  ( Y_t \,-\, Y_{t-1} ) - ( Y_{t-1} \,-\, Y_{t-2}), \quad t=3,4,...,n
+      $$
+        If the raw data has a trend with a quadratic curve, the second-order differencing of time series becomes a horizontal time series.
+      <p>
+        &lt;Figure 13.3.4&gt; shows the first order differencing of [Table 13.3.4] time series and it becomes horizontal series.  
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
+            <img class="imgFig600400" src="./Figure/Fig130304.png">
+            <div class="figText">&lt;Figure 13.3.4&gt; 1st Order Differencing of Consumer Price Index</div>
+         </div>
+      <p>
+
+    </div>
+    <p>
+
+
+    <!------------------------------------------------------------------------------------------------->
+    <h4>13.3.3 Mathematical Transformation</h4>
+
+    <div class="mainTable">
+      If the original data of the time series is used as it is, modeling may not be easy or it may not satisfy various assumptions. In this case, we can fit the model we want by performing an appropriate functional transformation, such as log transformation. The functions commonly used for mathematical transformations are as follows.
+      <p>
+      \( \qquad  \text{Log function	}     \qquad\qquad \qquad   W = log(Y)   \) <br>
+      \( \qquad  \text{Square root function}  \qquad\quad W = \sqrt(Y) \) <br>
+      \( \qquad  \text{Square function }      \qquad\quad \qquad  W = Y^2      \) <br>
+      \( \qquad  \text{Box-Cox Transformation} \quad \; W = \frac {Y^p - 1 }{p}  \) if p ≠ 0, else log(Y)
+      <p>
+        [Table 13.3.6] is a toy company's quarterly sales, and &lt;Figure 13.3.5&gt; is a 
+        diagram of this data. It is a seasonal data by quarter, but, as time goes on, 
+        dispersion of sales increases over time. It is not easy to apply a time series model
+        to data with this increasing dispersion over time. In this case, log transformation 
+        \(W = log(Y)\)  can reduce the dispersion as time increases, as shown in
+        &lt;Figure 13.3.5&gt;, so that a model can be applied. After predicting by applying
+        the model to log-transformed data, exponential transformation \(Y = exp(W)\) is 
+        performed again to predict the raw data.
+      <p>
+      <div class="textLeft">[Table 13.3.6] Quarterly Sales of a Toy Company (unit million $)</div>
+      <p>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px">time</th>
+          <th class="thGrey" style="width:120px">Year</th>
+          <th class="thGrey" style="width:120px">Sales</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+           </td> 
+           <td class="tdCenter">
+             2017 Quarter 1<br>
+             2017 Quarter 2<br>
+             2017 Quarter 3<br>
+             2017 Quarter 4<br>
+             2018 Quarter 1<br>
+             2018 Quarter 2<br>
+             2018 Quarter 3<br>
+             2018 Quarter 4<br>
+             2019 Quarter 1<br>
+             2019 Quarter 2<br>
+             2019 Quarter 3<br>
+             2019 Quarter 4<br>
+             2020 Quarter 1<br>
+             2020 Quarter 2<br>
+             2020 Quarter 3<br>
+             2020 Quarter 4<br>
+             2021 Quarter 1<br>
+             2021 Quarter 2<br>
+             2021 Quarter 3<br>
+             2021 Quarter 4<br>
+          </td> 
+           <td class="tdRight">
+              38.0<br>
+              53.6<br>
+              57.5<br>
+             200.0<br>
+              56.5<br>
+              75.8<br>
+              78.3<br>
+             269.7<br>
+              70.2<br>
+              92.7<br>
+             101.8<br>
+             332.6<br>
+              97.3<br>
+             123.7<br>
+             132.9<br>
+             429.4<br>
+             138.3<br>
+             167.6<br>
+             189.9<br>
+             545.9<br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
+            <img class="imgFig600400" src="./Figure/Fig130305.png">
+            <div class="figText">&lt;Figure 13.3.5&gt; Log Transformation of Toy Sales</div>
+         </div>
+      <p>
+        The square root transform is used for a similar purpose to the log transform, and the square transform can be used when the variance decreases with time. The Box-Cox transform is a general transformation. 
+    </div>
+ 
+  <p>
+
+  <h3 id="1304">13.4 Regression Model and Forecasting</h3>
+  <p>
+<!---
+  <h6>
+      <a href="./pdf/1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+       If there is a trend factor that shows a continuous increase or decrease in the time series,
+       the regression model learned in Chapter 12 can be applied. For example, if the time series 
+       shows a linear trend, the linear regression model is applied with the time series as 
+       the observation values of the random variable \(Y_1 , Y_2 , ... , Y_n\) and time 
+       as 1, 2, ... , \(n\) as follows.
+     $$
+        Y_t \,=\, \beta_0 \,+\, \beta_1 t \,+\, \epsilon_t
+     $$
+       Here \(\epsilon_t \) is the error term with mean 0 and variance \(\sigma^2\).
+       A characteristic of the linear model is that it increases by a slope \(\beta_1\) 
+       of a certain magnitude over time.
+     <p>
+       When the estimated regression coefficients are \(\beta_0 , \beta_1\), the validity test 
+       of the linear regression model is the same as the method described in Chapter 12. 
+       The standard error of estimate and coefficient of determination are often used. 
+       In a linear trend model, \(\sigma\)  represents the degree to which observations
+       can be scattered around the estimated regression line at each time point. As an estimate 
+       of this \(\sigma\), the following standard error is used.
+     $$
+       s \,=\, \sqrt { \frac{1} {n-2} \sum_{t=1}^n ( Y_t -  {\hat Y}_t )^2 }  
+     $$
+       A smaller standard error \(s\) value  indicates that the observed values are close to 
+       the estimated regression line, which means that the regression line model is well fitted.
+     <p>
+       The coefficient of determination is the ratio of the regression sum of squares, RSS, which is explained out of the total sum of squares, TSS.
+     $$
+         R^2 \,=\, \frac{RSS}{TSS}
+     $$
+       The value of the coefficient of determination is always between 0 and 1, and the closer the value is to 1, the more dense the samples are around the regression line, which means that the estimated regression equation explains the observations well. 
+     <p>
+       As explained in Chapter 12, since it is difficult to determine the absolute criteria for adequacy of 
+       the standard error or the coefficient of determination, a hypothesis test is used to determine whether 
+       the trend parameter \(\beta_1\) is zero or not.
+     <p>
+        \(\small  \qquad \text{Hypothesis: }  \qquad \,\, H_0 : \beta_1 = 0, H_1: \beta_1 \ne 0\) <br>
+        \(\small  \qquad \text{Test statistic:} \qquad t_{obs} = \frac {{\hat \beta}_1 } { SE ({{\hat \beta}_1 }) } \) , 
+             Here, \( SE( \hat{ \beta_1} ) \,=\, \frac{ s} { \sqrt { \sum_{i=1}^ n (i - \overline t  )^2 } }     \) <br>
+        \(\small  \qquad \text{Rejection region:} \quad If \,\; |t_{obs}| \,>\, t_{n-2,\alpha/2}, \,\,reject\,\, H_0     \) with significance level \(\alpha\) <br>
+     <p>
+       If the null hypothesis \(H_0\) is not rejected, the model cannot be considered valid.
+     <p>
+       The assumption for error \(\epsilon_t\) is tested using the residual, which is the difference between the observed time series value and the predicted value which is called residual analysis. Residual analysis usually examines whether assumptions about error terms such as independence and equal variance between errors are satisfied by drawing a scatter plot of the residuals over time or a scatter plot of the residuals and predicted values. In the scatterplots, if the residuals do not show a specific trend around 0 and appear randomly, it means that each assumption is valid. To examine the normality assumption of the error term, draw a normal probability plot of the residuals, and if the points on the figure show the shape of a straight line, it is judged that the assumption of the normal distribution is appropriate.
+     <p>
+       If the linear regression model is suitable, the predicted value 
+       \({\hat Y}_{t_0} \,=\, {\hat \beta}_0  \,+\, {\hat \beta}_1 \cdot t_0 \) at the time point \(t_0\) 
+       can be interpreted as a point estimate for the mean of the random variable \(Y_{t_0}\) at the time point, 
+       and the confidence interval for the mean of \({\hat Y}_{t_0}\) at this time \(t_0\) is as follows:
+     $$\small 
+        {\hat Y}_{t_0}  \,±\, t_{n-2,\alpha/2} \cdot  SE ({\hat Y}_{t_0}  ) \;\;  where \;\, SE ( {\hat Y}_{t_0} )  \,=\, s \cdot \sqrt {  \frac{1}{n} + \frac {(t_0 - \overline t )^2} { \sum_{i=1}^n (i - \overline t )^2 } }   
+     $$
+     <p>
+       If the trend is in the form of a quadratic, cubic or higher polynomial, the following multiple linear regression model can be assumed.
+     <p>
+       \( \qquad \text{Quadratic}  \qquad   Y_t = \beta_0  + \beta_1 \cdot t + \beta_2 \cdot t^2  + \epsilon _t \) <br>
+       \( \qquad \text{Cubic}  \qquad \qquad   Y_t = \beta_0  + \beta_1 \cdot t + \beta_2 \cdot t^2 + \beta_3 \cdot  t^3 + \epsilon _t  \)  
+     <p>		
+       The prediction method is similar to the above simple linear regression model.
+     <p>
+       If the trend is not a polynomial model as above, the following model can also be considered.
+     <p>
+       \( \qquad \text{Square root} \qquad   Y_t = \beta_0  + \beta_1 \cdot \sqrt{t} + \epsilon _t \) <br>
+       \( \qquad \text{Log}  \qquad \qquad \quad \; Y_t = \beta_0  + \beta_1 \cdot log(t) + \epsilon _t  \)  
+     <p>		
+       These models are the same as the linear regression model if \(\sqrt{t}\) or \(log(t)\) 
+       are replaced with the independent variable X in the simple linear regression and the prediction method is similar.
+     <p>
+       In addition, the function types to which the linear regression model can be applied by transformation are as follows.
+     <p>
+       \( \qquad \text{Power} \qquad \qquad  Y _{t} = \beta_{0} \cdot t ^{\beta _{1}} +  \epsilon  _{t}  \) <br>
+       \( \qquad \text{Exponential}  \quad  \;\; Y_t = \beta_0  \cdot e^ {( \beta_1  t)}  + \epsilon _t  \)  
+     <p>		
+       In the case of these two models, the parameters should be estimated using the nonlinear regression model, 
+       but if the error term is ignored, the linear model can be estimated approximately as follows:
+     <p>
+       \( \qquad \text{Power} \qquad \qquad  log(Y_{t}) = log(\beta_{0}) +{\beta _{1}} \cdot log(t)  \) <br>
+       \( \qquad \text{Exponential}  \quad  \;\; log(Y_t) = log(\beta_0) + \beta_1 \cdot t  \)  
+     <p>		
+       Korea's GDP from 1986 to 2021 is shown in [Table 13.4.1]. &lt;Figure 13.4.1&gt; shows the application of 
+       three regression models to this data. Among these models, the quadratic model has the largest value of  
+       \(r^2\) = 0.9591, so it can be said that the time series is the most suitable model. However, additional validation of the model is required.
+
+      <p>
+      <div class="textLeft">[Table 13.4.1] GDP of Korea</div>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey" style="width:150px">Year</th>
+          <th class="thGrey" style="width:150px">GDP (billion $)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+           </td> 
+           <td class="tdRight">
+              330.65<br>
+              355.53<br>
+              392.67<br>
+              463.62<br>
+              566.58<br>
+              610.17<br>
+              569.76<br>
+              383.33<br>
+              497.51<br>
+              576.18<br>
+              547.66<br>
+              627.25<br>
+              702.72<br>
+              793.18<br>
+              934.9<br>
+             1053.22<br>
+             1172.61<br>
+             1047.34<br>
+             943.67<br>
+             1143.98<br>
+             1253.16<br>
+             1278.43<br>
+             1370.8<br>
+             1484.32<br>
+             1465.77<br>
+             1499.36<br>
+             1623.07<br>
+             1725.37<br>
+             1651.42<br>
+             1638.26<br>
+          </td> 
+        </tr>
+      </table>
+
+      <p>
+      <!---   ************ html for Time Series - Regression Model ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span> <span data-msgid="Forecasting"></span> : <span data-msgid="RegressionModel"></span>]</b>
+      <p>
+         <iframe src="./example/130401/130401.html" width="700" height="860"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 13.4.1&gt; Korea GDP data and regression model</div>
+      <p>
+
+  <h3 id="1305">13.5 Exponential Smoothing Model and Forecasting</h3>
+  <p>
+<!---
+  <h6>
+      <a href="./pdf/1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+      When the time series moves in a trend, the future can be predicted well with the regression model. However, it may not be appropriate to predict a time series that is dynamically moving hourly, daily, etc. In this case, a moving average model or an exponential smoothing model can be used. The time series model is explained into two cases where the trend is stationary and linear.
+    </div>
+    <p>
+    <h4>13.5.1 Stationary Time Series</h4>
+    <p>
+    <div class="mainTable">
+      A time series is called <b>stationary</b> if the statistical properties such as mean, variance and covariance
+      are consistent over time. When a time series is the observed values of random variables 
+      \(Y_1 , Y_2 , ... , Y_T\), a stationary time series is the following model that changes around 
+      a constant value \(\mu \).
+      $$
+        Y_i \;=\; \mu \;+\; \epsilon_i , \quad i=1,2,..., T    
+      $$
+      Here \(\mu\) is unknown parameter and \(\epsilon_i\) is an error term which is independent with mean 0 and variance \(\sigma^2\).
+    </div>
+    <p>
+
+  <h6>A. Single Moving Average Model</h6>
+  <p>
+
+    <div class="mainTable">
+        In a stationary time series model, the estimated value of \(\mu\), \(\hat \mu\), is the mean of the data. .
+      $$
+        {\hat \mu} \;=\; \frac{1}{T} \sum_{ i=1}^T Y_i      
+      $$
+        Using this model, the prediction after \(\tau\) time points ahead at the current time \(T\) denoted
+        as \({\hat Y}_{T+\tau}\), is as follows:
+      $$
+        {\hat Y}_{T+\tau} \;=\; \hat \mu, \quad \tau=1,2,...  
+      $$
+        It is called a <b>simple average model</b>. 
+      <p>
+        The simple average model uses all observations until the current time. However, the unknown 
+        parameter \(\mu\) may shift slightly over time, so it would be reasonable to give more weight
+        to recent data than to past data for prediction. If a weight \(\frac{1}{N}\) is given to only 
+        the most recent \(N\) observations at the present time \(T\) and the weight of the remaining 
+        observations is set to 0, the estimated value of \(\mu\) is as follows.
+      $$
+        {\hat \mu} \;=\; \frac{1}{N} \sum_{ i=T-N+1}^T Y_i  \;=\; \frac{1}{N} ( Y_{T-N+1} + Y_{T-N+2} + \cdots + Y_T )    
+ 
+      $$
+        This is called a <b>single moving average</b> at the time point \(T\) and it is denoted by \(M_T\). 
+        The single moving average means the average of the \(N\) observations adjacent to the time point \(T\). 
+        Notice 
+        that \(Y_1, Y_2 , ... , Y_T\) are independent of each other by assumption, but \(M_1, M_2 , ... , M_T\)
+        are not independent of each other, but are correlated.
+      <p>
+        The value of the single moving average varies depending on the size of \(N\). When the value of \(N\)
+        is large, it becomes insensitive to the fluctuations of the original time series, so it changes 
+        gradually, and when the value of \(N\) is small, it becomes sensitive to fluctuations. Therefore, 
+        when the fluctuation of the original time series is small, it is common to set the small value of \(N\),
+        and when the fluctuation is large, it is common to set the value of large \(N\).
+      <p>
+        Using the single moving average model at the time point \(T\), the predicted value and the mean 
+        and variance of the predicted value at the time point \(T+\tau\) are as follows.
+      <p>
+        \(\qquad {\hat Y}_{T+\tau} \;=\; M_T , \quad \tau=1,2, ...  \) <br>
+        \(\qquad E( {\hat Y}_{T+\tau} ) \;=\; E(M_T ) \;=\; \mu   \)  <br>	
+        \(\qquad Var({\hat Y}_{T+\tau} )\;=\; Var(M_t ) \;=\; \frac{ \sigma ^2} {N }  \)   <br> 
+      <p>
+        When the single moving average model is used, the 95% confidence interval estimation of the 
+        predicted value is approximately as follows.
+      <p>
+        \(\qquad {\hat{Y}}  _{T+ \tau } \;±\; 1.96 \sqrt {Var( {\hat{Y}}  _{T+ \tau } )}  \) <br>
+        \(\qquad M_{T} \;±\; 1.96 \sqrt{ \frac{MSE} {N} } \)  <br>	
+      <p>
+        The monthly sales for the last two years of a furniture company are as shown in [Table 13.5.1], 
+        and the residual between the raw data and the predicted value of one point in time was calculated 
+        by obtaining a six-point moving average. &lt;Figure 13.5.1&gt; shows the time series for this. 
+        This time series fluctuates up and down based on approximately 95, and such a time series is 
+        called a stationary time series.
+      <p>
+        When \(N\) = 6, the moving average for the first 5 time points cannot be obtained. 
+        The moving average at time 6 is as follows:
+      $$
+        M_6 \;=\; \frac{95+100+87+123+90+96} {6} \;=\; 98.50    
+      $$
+        Therefore, one time prediction at time 6 becomes \({\hat Y}_{6+1} = 98.50 \) and the residual
+        at time 7 is as follows:
+      $$
+        e_{7} \;=\; Y_{7} \;-\; {\hat{Y}}_{6+1} \;=\; 75-98.50 \;=\; -23.50
+      $$
+        In the same way, the moving average of the remaining time points, the predicted values ​​after one time point, and the residuals are as shown in [Table 13.5.1], so the mean square error is as follows: 
+      $$
+        { MSE} \;=\; \frac { \sum_{ i=7}^{ 24} ( Y_i \;-\; {\hat Y}_i )^{2}  }  {18} \;=\;331.22    
+      $$
+        Sales for the next three months are the last moving average \(M_{24}\), and the 95% confidence 
+        interval for the forecast is as follows:
+      <p>
+        \(\qquad {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; M_{24} \;=\; 104.67    \)<br>
+        \(\qquad  M_T \;±\; 1.96 \sqrt \frac{MSE}{N }              \)<br>
+        \(\qquad   104.67 \;±\; 1.96 \sqrt \frac{331.22}{6}            \)<br>
+        \(\qquad   [90.10, 119.23]  \)<br>
+      <p>
+      <div class="textLeft">[Table 13.5.1] Montly Sales of a Furniture Company and 6-point Moving Average, One Time Forecast and Residuals</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px"><br>time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px">Sales<br>(unit million $)<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">6-pt Moving<br> Average<br>\(M_t\)</th>
+          <th class="thGrey" style="width:150px">One Time <br>Forecast<br>\({\hat Y}_t\)</th>
+          <th class="thGrey" style="width:150px"><br>Residual<br>\(e_t = Y_t - {\hat Y}_t\)</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+          <td class="tdCenter">
+              95<br>
+             100<br>
+              87<br>
+             123<br>
+              90<br>
+              96<br>
+              75<br>
+              78<br>
+             106<br>
+             104<br>
+              89<br>
+              83<br>
+             118<br>
+              86<br>
+              86<br>
+             112<br>
+              85<br>
+             101<br>
+             135<br>
+             120<br>
+              76<br>
+             115<br>
+              90<br>
+              92<br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             98.50<br>
+             95.17<br>
+             91.50<br>
+             94.67<br>
+             91.50<br>
+             91.33<br>
+             89.17<br>
+             96.34<br>
+             97.67<br>
+             94.34<br>
+             95.67<br>
+             95.00<br>
+             98.00<br>
+             100.84<br>
+             106.50<br>
+             104.84<br>
+             105.34<br>
+             106.17<br>
+             104.67<br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             98.50<br>
+             95.17<br>
+             91.50<br>
+             94.67<br>
+             91.50<br>
+             91.33<br>
+             89.17<br>
+             96.34<br>
+             97.67<br>
+             94.34<br>
+             95.67<br>
+             95.00<br>
+             98.00<br>
+             100.84<br>
+             106.50<br>
+             104.84<br>
+             105.34<br>
+             106.17<br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             -23.50<br>
+             -17.17<br>
+              14.50<br>
+               9.33<br>
+              -2.50<br>
+              -8.33<br>
+              28.83<br>
+             -10.33<br>
+             -11.67<br>
+              17.67<br>
+             -10.67<br>
+               6.00<br>
+              37.00<br>
+              19.17<br>
+             -30.50<br>
+              10.17<br>
+             -15.33<br>
+             -14.17<br>
+           </td> 
+         <tr>
+      </table>
+      <p>
+      <!---   ************ html for Time Series - Smoothing ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span> : <span data-msgid="EWMA"></span>]</b>
+      <p>
+         <iframe src="./example/130501/130501.html" width="800" height="780"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 13.5.1&gt; Montly Sales of a Furniture Company and 6-point Moving Average and One Time Forecast</div>
+      <p>
+
+      <h6>※ Moving average at initial period</h6>
+        Since the \(N\)-point single moving average cannot be obtained before the time point \(N\),
+        the prediction model cannot be applied. When there are many time series, this may not be 
+        a big problem, but when the number of data is small, it can affect the prediction. In order to
+        solve this problem, the moving average at initial period can be obtained as follows until 
+        the time point \(N-1\).
+      <p>
+        \(\qquad   t=1   \qquad \quad M_1 = Y_1  \)<br>
+        \(\qquad   t=2   \qquad \quad M_2 = \frac{Y_1 + Y_2 } {2}     \)<br>
+        \(\qquad   \cdots  \)<br>
+        \(\qquad   t=N-1  \quad M_{N-1} = \frac{Y_1 + Y_2 + \cdots + Y_{N-1} } {N - 1}      \)<br>
+      <p>
+ 
+  <h6>B. Single Exponential Smoothing Model</h6>
+  <p>
+
+    <div class="mainTable">
+        In the single moving average model, the same weight \(\frac{1}{N}\) is given to only the latest 
+        \(N\)  observations, and the previous observations are completely ignored by setting the weight to 0. 
+        The <b>single exponential smoothing method</b> compensates for the shortcomings of the moving average 
+        model by assigning weights to all observations when predicting future values from past observations, 
+        but giving more weight to recent data. This single exponential smoothing model uses the value of the 
+        exponential smoothing method as the predicted value.
+      <p>
+        The single exponential smoothing model calculates the weighted average of the exponential 
+        smoothing estimator \({\hat \mu}_{t-1} \) at the immediately preceding time point and the observation 
+        value \(Y_t\) at the time point \(t\). Assuming that the exponential smoothing estimated value 
+        at the time point \(t\) is \(S_t \;=\; {\hat \mu}_t \) and \(\alpha\) is a real number 
+        between 0 and 1, the single exponential smoothing value \(S_t\) is defined as follows:
+      <p>
+        \(\qquad   S_1 \;=\; \alpha \;Y_1 \;+\; (1-\alpha) S_0  \)<br>
+        \(\qquad   S_2 \;=\; \alpha \;Y_2 \;+\; (1-\alpha) S_1  \)<br>
+        \(\qquad   \cdots  \)<br>
+        \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}  \)<br>
+      <p>
+        Here, \(\alpha\) is called the <b>smoothing constant</b>, and the single exponential smoothing value 
+        \(S_t\) is the weighted average value given the weight \(\alpha\) of the most recent observation 
+        \(Y_t\) and the weight (1-\(\alpha\)) of the exponential smoothing value \(S_{t-1}\) at the time \(t-1\). 
+        You can better understand the meaning of exponential smoothing if you write down the recursive 
+        equation as follows:
+      <p>
+        \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}   \)<br>
+        \(\qquad   \;=\; \alpha \; Y_t + (1- \alpha )\;( \alpha Y_{t-1} + (1- \alpha ) S_{t-2} )      \)<br>
+        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_{t-1} + (1- \alpha )^2 S_{t-2}     \)<br>
+        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_{t-1} + \alpha(1- \alpha )^2 Y_{t-2} \;+\cdots\; + \alpha (1- \alpha )^{(t-1)} Y_1 +(1- \alpha )^t S_0        \)
+      <p>
+        In other words, for the single exponential smoothing value \(S_t\), the most recent observation
+        \(Y_t\) is given a weight \(\alpha\), and the next most recent observation is given \(\alpha(1-\alpha)\), 
+        the next is \(\alpha(1-\alpha)^2\) and so on, a gradually smaller weight. Therefore, 
+        if the size of \(\alpha\) is small, the current observation value is given a small weight, 
+        and the exponential smoothing value is insensitive to the fluctuations of the time series. 
+        if the size of \(\alpha\) is large, the current observation value is given a large weight, 
+        and the exponential smoothing value is sensitive to the fluctuations of the time series. 
+        In general, a value between 0.1 and 0.3 is often used as the value of \(\alpha\).
+      <p>
+        In order to obtain a single exponential smoothing value, an initial smoothing value 
+        \(S_0\) is required, and the first observation value or the sample average of several 
+        initial data or the overall sample average can be used. The exponential smoothing method 
+        has the advantage of being less affected by extreme point or intervention than the ARIMA model 
+        and easy to use, although the selection of the smoothing constant is arbitrary and 
+        it is difficult to obtain a prediction interval.
+      <p>
+        The predicted value, average and variance of the predicted value at the time point \(T+\tau\) using the 
+        single exponential smoothing model are as follows:
+      <p>
+        \(\qquad   {\hat Y}_{T+\tau} \;=\;S_T     \)<br>
+        \(\qquad   E( {\hat Y}_{T+\tau} )\;=\;E(S_T )\;=\; \mu         \)<br>
+        \(\qquad   Var( {\hat{Y}}_{T+ \tau } )\;=\; Var(S_{T} )\;=\; \frac{\alpha } {2- \alpha }  \sigma^{2}  \)<br>
+      <p>
+        Therefore, when the single exponential smoothing model is used, the 95% interval estimation in the predicted value is approximately as follows.
+      <p>
+        \(\qquad   {\hat Y}_{T+\tau} \;±\;  1.96 \sqrt { Var ({\hat Y}_{T+\tau})}          \)<br>
+        \(\qquad   S_{T} \;±\;1.96\; \sqrt { \frac{\alpha } {2- \alpha } MSE}        \)<br>
+      <p>
+        To the data of [Table 13.5.1], predict sales for the next three months by a single exponential 
+        smoothing model with smoothing constant \(\alpha\) = 0.1. Lets use the first observed value 
+        for the initial value of exponential smoothing, that is \(S_0 = Y_1 = 95\). The exponential smoothing value for the first three time series are as follows:
+      <p>
+        \(\qquad   S_{1} \;=\;0.1\; \times \;Y  _{1} \;+\;(1-0.1\;)\; \times \;S  _{0} \;=\;\;0.1\; \times \;95\;+\;0.9\; \times \;95\;=\;95     \)<br>
+        \(\qquad   S_{2} \;=\;0.1\; \times\;Y_2 \;+\; (1-0.1\;)\;\times\; S_1 \;=\; \;0.1\;\times\;100\;+\;0.9 \;\times \;95 \;=\; 95.50             \)<br>
+        \(\qquad   S_{3} \;=\;0.1\; \times \;Y  _{3} \;+\;(1-0.1\;)\; \times \;S  _{2} \;=\;\;0.1\; \times \;87\;+\;0.9\; \times \;95.5\;=\;94.65  \)<br>
+        \(\qquad   \cdots   \)<br>
+      <p>
+        At each time point, the prediction after one point in time is as follows:
+      <p>
+        \(\qquad   {\hat Y}_{0+1} \;=\; S_0 \;=\;95.00      \)<br>
+        \(\qquad   {\hat Y}_{1+1} \;=\; S_1 \;=\;95.00      \)<br>
+        \(\qquad   {\hat Y}_{2+1} \;=\; S_2 \;=\;95.50      \)<br>
+      <p>
+        Hence the residuals using the above estimated values are as follows:
+      <p>
+        \(\qquad   e_1 \;=\; Y_1\;-\;{\hat Y}_{0+1} \;=\; 95.00 - 95.00 \;=\; 0       \)<br>
+        \(\qquad   e_2 \;=\; Y_2\;-\;{\hat Y}_{1+1} \;=\; 100.00 - 95.00 \;=\; 5.00           \)<br>
+        \(\qquad   e_3 \;=\; Y_3\;-\;{\hat Y}_{2+1} \;=\; 87.00-95.50\;=\;-8.50  \)<br>
+      <p>
+        In the same way, the single exponential smoothing of the remaining time points, the predicted values after one time point, and the residuals are as shown in [Table 13.5.2]. Therefore, the mean square error is as follows:
+      <p>
+        \(\qquad   {MSE} \;= \; \frac{1}{24} \sum_{i=1}^{24} \; ( Y_i \;-{\hat Y}_i )^{2}    \;=\;269.72             \)<br>
+      <p>
+        In terms of mean square error, the MSE of the 6-point single moving average model is 331.22, so it can be said that the exponential smoothing model has better fit.
+      <p>
+        Sales for the next three months are the last moving average \(S_{24}\), and the 95% confidence interval for the forecast is as follows:
+      <p>
+        \(\qquad   {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; S_{24} \;=\; 98.66       \)<br>
+        \(\qquad   S_{T} \;±\; 1.96\; \sqrt { \frac{\alpha } {2- \alpha} } MSE          \)<br>
+        \(\qquad   98.66 \;±\; 1.96 \; \sqrt { \frac{0.1} {2-0.1} 269.72  }        \)<br>
+        \(\qquad   [65.27, 132.05]      \)<br>
+      <p> 
+        [Table 13.5.2] summarizes the above equations, and &lt;Figure 13.5.2&gt; shows the prediction after 
+        one time point and the prediction for the next 3 months using the single exponential smoothing model with 
+        \(\alpha\) = 0.1.
+      <p>
+      <div class="textLeft">[Table 13.5.2] Exponential Smoothing with  &alpha; = 0.1, One Time Forecast and Residual</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px"><br>time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px">Sales<br>(unit million $)<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">Exponential <br>Smoothing<br>\(S_t\)</th>
+          <th class="thGrey" style="width:150px">One Time <br>Forecast<br>\({\hat Y}_t\)</th>
+          <th class="thGrey" style="width:150px"><br>Residual<br>\(e_t = Y_t - {\hat Y}_t\)</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+          <td class="tdCenter">
+              95<br>
+             100<br>
+              87<br>
+             123<br>
+              90<br>
+              96<br>
+              75<br>
+              78<br>
+             106<br>
+             104<br>
+              89<br>
+              83<br>
+             118<br>
+              86<br>
+              86<br>
+             112<br>
+              85<br>
+             101<br>
+             135<br>
+             120<br>
+              76<br>
+             115<br>
+              90<br>
+              92<br>
+           </td> 
+           <td class="tdCenter">
+              95.00<br>
+              95.50<br>
+              94.65<br>
+              97.48<br>
+              96.74<br>
+              96.66<br>
+              94.50<br>
+              92.85<br>
+              94.16<br>
+              95.15<br>
+              94.53<br>
+              93.38<br>
+              95.84<br>
+              94.86<br>
+              93.97<br>
+              95.77<br>
+              94.70<br>
+              95.33<br>
+              99.29<br>
+             101.36<br>
+              98.83<br>
+             100.45<br>
+              99.40<br>
+              98.66<br>
+          </td> 
+           <td class="tdCenter">
+              95.00<br>
+              95.00<br>
+              95.50<br>
+              94.65<br>
+              97.48<br>
+              96.74<br>
+              96.66<br>
+              94.50<br>
+              92.85<br>
+              94.16<br>
+              95.15<br>
+              94.53<br>
+              93.38<br>
+              95.84<br>
+              94.86<br>
+              93.97<br>
+              95.77<br>
+              94.70<br>
+              95.33<br>
+              99.29<br>
+             101.36<br>
+              98.83<br>
+             100.45<br>
+              99.40<br>
+           </td> 
+           <td class="tdCenter">
+               0.00<br>
+               5.00<br>
+              -8.50<br>
+              28.35<br>
+              -7.48<br>
+              -0.74<br>
+             -21.66<br>
+             -16.50<br>
+              13.15<br>
+               9.84<br>
+              -6.15<br>
+             -11.53<br>
+              24.62<br>
+              -9.84<br>
+              -8.86<br>
+              18.03<br>
+             -10.77<br>
+               6.30<br>
+              39.67<br>
+              20.71<br>
+             -25.36<br>
+              16.17<br>
+             -10.45<br>
+              -7.40<br>
+           </td> 
+         </tr>
+      </table>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+            <img class="imgFig600400" src="./Figure/Fig130502.png">
+            <div class="figText">&lt;Figure 13.5.2&gt; Exponential Smoothing with &alpha; = 0.1 and One Time Forecast </div>
+         </div>
+      <p>
+    <h6>※ Initial value of exponential smoothing</h6>
+      Since the initial exponential smoothing value \(S_0\) at the time point \(t=1\) cannot be obtained, 
+      the following three methods are commonly used.
+    <p>
+      1) The first observation, i.e., \(S_0 \;=\; Y_1\)    <br>
+      2) Partial average using the initial \(n\) observation values, i.e.,   <br>
+         \(\qquad S_0 \;=\; \frac{1}{n} ({Y_1 + Y_2 + \cdots + Y_n })   \) <br>
+      3) The mean up to the entire time point \(T\), i.e.,  <br>
+         \(\qquad S_0 \;=\; \frac{1}{T} ({Y_1 + Y_2 + \cdots + Y_T })       \)
+    <p>   
+    <h6>※ Initial smoothing constant</h6>
+      The same smoothing constant \(\alpha\) can be applied to all time series, but the following 
+      method is also used to reduce the effect of the initial value \(S_0\).
+    <p>
+      \(\qquad  \alpha_t \;=\; \frac{1}{t}    , \quad until \; \alpha_t \; reaches\; \alpha \)
+    <p>
+
+    </div>
+    <p>
+    <h4>13.5.2 Linear Trend Time Series</h4>
+    <p>
+    <h6>A. Double Moving Average Model</h6>
+    <p>
+    <div class="mainTable">
+        In the previous section, we examined that the single moving average model can be applied 
+        to a stationary time series. What would happen if the single moving average model was applied 
+        to a time series with a linear trend? That is, for a time series with a linear trend 
+        \(Y_t \;=\; \beta_0  \;+\; \beta_1 \cdot t \;+\; \epsilon _t \), the \(N\)-point single moving average
+        at time \(T\) is as follows:
+      $$
+         M_T \;= \; \frac{1}{N} ( Y_{T-N+1} \;+\; Y_{T-N+2} \;+\; \cdots \;+\; Y_T )    
+      $$
+        The expected value can be shown as follows:
+      $$
+         E(M_T) \;=\; \beta_0 + \beta_1 T - \frac{N-1} {2} \beta_1    
+      $$
+         That is, in the case of a linear trend model, it can be seen that the single moving average \(M_t\)
+         is biased by \(\frac{N-1}{2} \beta_1 \). For example, if the consumer price index with a linear trend 
+         in [Table 13.5.3] is predicted after one point in time using the 5-point single moving average, 
+         it is as shown in &lt;Figure 13.5.3&gt;. It can be seen that the predicted value using \(M_t\)
+         is under estimated value of the time series .
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+            <img class="imgFig600400" src="./Figure/Fig130503.png">
+            <div class="figText">&lt;Figure 13.5.3&gt; 5-pt Moving Average of Consumer Price Index with Linear Trend</div>
+         </div>
+      <p>
+         In the case of a linear trend, one way to eliminate the bias of the single moving average model 
+         is the <b>double moving average</b>, which obtains the moving average again for the single moving average. 
+         The \(N\)-point double moving average \(M_T^{(2)}\) at the time \(T\) and its expected value are 
+         as follows:
+      $$
+        \begin{align}
+          M_T^{(2)}    &\;=\; \frac{1}{N} (M_T \;+\; M_{T-1} \;+\; \cdots \;+\; M_{T-N+1})    \\ 
+          E(M_T^{(2)}) &\;=\; \beta_0 \;+\; \beta_1 T \;-\; (N-1) \beta_1    
+        \end{align}
+      $$
+         Since \(E(M_T )\) and \(E(M_T ^{(2)} )\)  have the same number of parameters, \(\beta_0 ,\;\beta_1 \)
+         can be estimated by solving the system of two equations as follows: 
+      $$
+        \begin{align}
+          {\hat{\beta }}_{1} &\;=\; \frac{2}{N-1} \; (M_{T} \;-\; M_{T}^{(2)} )   \\
+          {\hat{\beta }}_{0} &\;=\; 2M_{T} \;-\; M_{T}^{(2)} \;-\; {\hat{\beta }}_{1} \;T\;
+        \end{align}
+      $$
+         Therefore, the predicted value at the time point \(T+\tau\) using the double moving average 
+         at time \(T\) as follows:
+      $$
+         {\hat Y}_{T+\tau} \;=\; 2 M_T \;-\; {M_T ^{(2)}} \;+\; \tau \;\; (\frac {2}{N-1} ) \;\; (M_T\;-\; M_T^{(2)})    
+      $$
+         Such a double moving average model can be said to be a kind of heuristic method. That is, although logical, it is not based on any optimization such as least squares method. However, it can be approximated by the least-squares method, which we will omit in this book.
+      <p>
+         [Table 13.5.3] is a calculation table for predicting the consumer price index using the 5-point 
+         double moving average model. Note that the third column is a 5-point single moving average \(M_T\), 
+         but the single moving average cannot be calculated from time points 1 to 4. The fourth column 
+         is the calculation of the 5-point double moving average \(M_t^{(2)}\), but the double moving average 
+         cannot be calculated until 5 single moving averages have been calculated, that is, from time points 
+         1 to 8. Using \(M_9\) and \(M_9^{(2)}\) to obtain the prediction after time 1 from time 9, 
+         \({\hat Y}_{9+1}\) is as follows:
+      $$
+        \begin{align}
+          {\hat Y}_{9+1} &\;=\; 2M_9 \;- M_9^{(2)} \;+ 1 \;\; (\frac{2}{5-1}) \;\;(M_9\;-\;M_9 ^{(2)})    \\
+                         &\;=\; 2 \times 104.50\;-104.028\;+1\;\; ( \frac{2}{5-1} ) \;\;(104.50\;-104.028)\;=\;105.2080  
+        \end{align}
+      $$
+         The predicted values calculated in the same way are shown in the fifth column.
+      <p>
+      <div class="textLeft">[Table 13.5.3] Double Moving Average of Consumer Price Index and One Time Forecast</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px"><br>time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px"><br>CPI<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">5-pt Single<br>Moving Average<br>\( M_t\)</th>
+          <th class="thGrey" style="width:150px">5-pt Double<br>Moving Average<br>\( M_t ^(2)\)</th>
+          <th class="thGrey" style="width:150px"><br>One Time Forecast\({\hat Y}_{(t-1)+1}\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+           <td class="tdCenter">
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4<br>
+             105.0<br>
+             105.5<br>
+             106.1<br>
+             106.7<br>
+             107.1<br>
+             107.0<br>
+             106.7<br>
+             107.4<br>
+             108.0<br>
+             107.7<br>
+             107.8<br>
+             108.3<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             103.38<br>
+             103.78<br>
+             104.12<br>
+             104.36<br>
+             104.50<br>
+             104.66<br>
+             104.64<br>
+             104.62<br>
+             104.64<br>
+             104.78<br>
+             105.04<br>
+             105.54<br>
+             106.08<br>
+             106.48<br>
+             106.72<br>
+             106.98<br>
+             107.24<br>
+             107.36<br>
+             107.52<br>
+             107.84<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             104.028<br>
+             104.284<br>
+             104.456<br>
+             104.556<br>
+             104.612<br>
+             104.668<br>
+             104.744<br>
+             104.924<br>
+             105.216<br>
+             105.584<br>
+             105.972<br>
+             106.36<br>
+             106.70<br>
+             106.956<br>
+             107.164<br>
+             107.388<br>
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             105.2080<br>
+             105.2240<br>
+             104.9160<br>
+             104.7160<br>
+             104.6820<br>
+             104.9480<br>
+             105.4840<br>
+             106.4640<br>
+             107.3760<br>
+             107.8240<br>
+             107.8420<br>
+             107.9100<br>
+             108.0500<br>
+             107.9660<br>
+             108.0540<br>
+          </td> 
+         </tr>
+       </table>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+            <img class="imgFig600400" src="./Figure/Fig130504.png">
+            <div class="figText">&lt;Figure 13.5.4&gt; Forecast using Double Moving Average of Consumer Price Index </div>
+         </div>
+    </div>
+    <p>
+
+    <h6>B. Holt Double Exponential Smoothing Model</h6>
+
+    <div class="mainTable">
+        Holt proposed a model for a linear time series \(Y_t \;=\; \beta_0  \;+\; \beta_1 \cdot t \;+\; \epsilon_t \)
+        which uses a smoothing constant for the level and a smoothing constant for the trend. This is 
+        called <b>Holt's linear trend exponential smoothing model</b> or two-parameters double exponential 
+        smoothing model. Let \({\hat b}_0 \) and \({\hat b}_1 \) be the initial values of the intercept 
+        and slope, and \(\alpha\) be the smoothing constant of the level and \(\gamma\) is the smoothing 
+        constant of the trend. The predicted values \({\hat Y}_t\), level \({\hat \beta}_0 (t)\) and 
+        trend  \({\hat \beta}_1 (t)\) are as follows:  
+      $$
+        \begin{align}
+          & \text{Predicted value:} \quad {\hat Y}_t \;=\; {\hat \beta}_0 (t-1) + {\hat \beta}_1 (t-1)     \\
+          & \text{Level:} \qquad\qquad	\; {\hat \beta}_{0}(t) \;=\; \alpha Y_t   + (1-\alpha) {\hat Y}_t       \\
+          & \text{Trend:} \qquad\qquad   {\hat \beta}_{1}(t) \;=\; {\gamma} \{ {\hat \beta}_0 (t) - {\hat \beta}_0 (t-1) \} + (1-\gamma) {\hat \beta}_1 (t-1)    
+        \end{align}
+      $$
+        That is, the level is the weighted average of the current observed value \(Y_t\) and the predicted value
+        \({\hat Y}_t\), and the trend is the weighted average of the level difference
+        \({\hat \beta}_0 (t) - {\hat \beta}_0 (t-1) \) between the time points \(t\) and \((t-1)\) and 
+        the trend \({\hat \beta}_1 (t-1) \) at the time point \((t-1)\). For this model, initial values 
+        of level \({\hat \beta}_0 (0) \) and slope  \({\hat \beta}_1 (0) \) are required and the intercept 
+        and slope of the simple regression analysis of all observed values are widely used as initial estimates.
+        Similar to the single exponential smoothing model, a value between 0.1 and 0.3 is often used 
+        to determine the smoothing constants \(\alpha\) and \(\gamma\). 
+      <p>
+        The predicted values for the time point \(T+\tau\) at time \(T\) using the trend exponential
+        smoothing model are as follows:
+      $$
+        {\hat Y}_{T+\tau} \;=\; {\hat Y}_T + \tau {\hat \beta}_1 (T)    
+      $$
+        Such a trend exponential smoothing model is also a kind of heuristic method. That is, although logical, it is not based on any optimization such as least squares method.
+      <p>
+        The result of simple linear regression model to all data in [Table 13.5.4] is as follows:
+      $$
+        {\hat{Y}}_{t} =102.574 \;+\; 0.2344 \;\;t
+      $$
+        [Table 13.5.4] is a calculation table for predicting the consumer price index with the Holt 
+        double exponential smoothing model using this initial values. The third column is the predicted 
+        value of the level \({\hat \beta}_0 (t) \), the fourth column is the trend \({\hat \beta}_ (t) \), 
+        and the fifth column is the prediction \({\hat Y}_t = {\hat \beta}_0 (t-1) + {\hat \beta}_1 (t-1)    \)
+        obtained one time after each time point. Therefore, the forecast of the consumer price index for
+        the next three months is as follows:
+     $$
+        \begin{align}
+          & t=25 \qquad {\hat{Y}} _{24+1} \;=\; {\hat{Y}} _{24} \;+\; 1\; \times  {\hat{\beta}} _{1} (24)\;=\;108.19 +0.237\;=\;108.42       \\
+          & t=26 \qquad	{\hat{Y}} _{24+2} \;=\; {\hat{Y}} _{24} \;+\; 2\; \times  {\hat{\beta}} _{1} (24)\;=\;108.19 + 2 \times0.237\;=\;108.66         \\
+          & t=27 \qquad {\hat{Y}} _{24+3} \;=\; {\hat{Y}} _{24} \;+\; 3\; \times  {\hat{\beta}} _{1} (24)\;=\;108.19 + 3 \times0.237\;=\;108.90      
+        \end{align}
+      $$
+      <p>
+      <div class="textLeft">[Table 13.5.4]  Forecasting using Holt Double Exponential Smoothing Model of Consumer Price Index</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px">time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px">CPI<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">Constant<br>\( {\hat \beta}_0 (t)\)</th>
+          <th class="thGrey" style="width:150px">Trend<br>\( {\hat \beta}_1 (t)\)</th>
+          <th class="thGrey" style="width:150px">One Time Forecast\({\hat Y}_{(t-1)+1}\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             0<br>
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4<br>
+             105.0<br>
+             105.5<br>
+             106.1<br>
+             106.7<br>
+             107.1<br>
+             107.0<br>
+             106.7<br>
+             107.4<br>
+             108.0<br>
+             107.7<br>
+             107.8<br>
+             108.3<br>
+          </td> 
+           <td class="tdCenter">
+             102.57<br>
+             102.76<br>
+             102.97<br>
+             103.25<br>
+             103.54<br>
+             103.80<br>
+             104.07<br>
+             104.33<br>
+             104.61<br>
+             104.85<br>
+             105.07<br>
+             105.20<br>
+             105.33<br>
+             105.50<br>
+             105.70<br>
+             105.93<br>
+             106.20<br>
+             106.49<br>
+             106.75<br>
+             106.96<br>
+             107.21<br>
+             107.50<br>
+             107.73<br>
+             107.95<br>
+             108.20<br>
+          </td> 
+           <td class="tdCenter">
+             0.234<br>
+             0.229<br>
+             0.227<br>
+             0.232<br>
+             0.239<br>
+             0.241<br>
+             0.243<br>
+             0.245<br>
+             0.249<br>
+             0.248<br>
+             0.245<br>
+             0.234<br>
+             0.224<br>
+             0.218<br>
+             0.216<br>
+             0.218<br>
+             0.223<br>
+             0.230<br>
+             0.233<br>
+             0.230<br>
+             0.232<br>
+             0.238<br>
+             0.237<br>
+             0.236<br>
+             0.237<br>
+           <td class="tdCenter">
+             <br>
+             102.81<br>
+             102.99<br>
+             103.20<br>
+             103.48<br>
+             103.78<br>
+             104.04<br>
+             104.31<br>
+             104.58<br>
+             104.86<br>
+             105.10<br>
+             105.31<br>
+             105.44<br>
+             105.56<br>
+             105.72<br>
+             105.91<br>
+             106.15<br>
+             106.43<br>
+             106.72<br>
+             106.98<br>
+             107.19<br>
+             107.44<br>
+             107.73<br>
+             107.97<br>
+             108.19<br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+         &lt;Figure 13.5.5&gt; shows the predicted values using the Holt’s double exponential smoothing model.
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+            <img class="imgFig600400" src="./Figure/Fig130505.png">
+            <div class="figText">&lt;Figure 13.5.5&gt;  Forecasting using Holt Double Exponential Smoothing Model of CPI</div>
+         </div>
+    </div>
+
+  <p>
+
+  <h3 id="1306">13.6 Seasonal Model and Forecasting</h3>
+  <p>
+<!---
+  <h6>
+      <a href="./pdf/1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+      As a seasonal time series model, a multiplicative model using a central moving average and a Holt-Winters model are introduced.
+    </div>
+    <p>
+    <h4>13.6.1 Seasonal Multiplicative Model</h4>
+    <p>
+    <div class="mainTable">
+        Assume that a time series \(Y_t\) with a seasonal period \(L\) can be expressed as the product of 
+        a trend (\(T\)), a seasonal (\(S\)), and an irregular component (\(I\)) as follows:
+      $$
+        Y_t \;=\; T_t  \cdot S_t \cdot I_t     
+      $$
+        The <b>ratio to moving average method</b> removes the trend and irregular components to obtain the seasonal component as follows
+      <p>
+        (Step 1) For the time series, find the \(L\)-point centered moving average. This moving average 
+        represents the trend component \(T_t\) after removing seasonal component and irregular component 
+        from the time series.
+      <p>
+        (Step 2) Divide the time series \(Y_t\) by the trend component \(T_t\) obtained in Step 1. This value 
+        implies the seasonal component and the irregular component \({S_t \cdot I_t}\), and is called the 
+        seasonal ratio. 
+      <p>
+      $$
+        \frac{Y_t} {T_t  } \;=\; S_t \cdot I_t    
+      $$
+        (Step 3) Calculate the trimmed average for each seasonal ratio obtained in Step 2. This is 
+        the seasonal index \(S_t\), but the normalization should be performed so that the sum of the seasonal 
+        indices is \(L\).
+      <p>
+        After obtaining the seasonal index as shown, dividing the original time series data by the seasonal
+        index. The results is called a <b>deseasonal time series</b>.
+      <p>
+         \( \qquad \text{Deseasonal time series:} \qquad  D_t \;=\; \frac{Y_t} {S_t } = T \cdot I      \)
+      <p> 
+        This deseasonal time series \(D_t\) implies \(T \cdot I\). An appropriate time series model 
+        is applied to this deseasonal data and predict the future vaules. Then multiply the corresponding 
+        seasonal index to obtain the final predicted value of the desired season.
+      <p>
+        [Table 13.6.1] shows a company's quarterly sales. Since the seasonal period is 4, the 4-point centered moving average is as shown in column 4 of the table. By dividing the original time series by a 4-point centered moving average, the seasonal ratio in column 5 can be calculated. 
+      $$
+        \frac{Y_t} {T_t } \;=\; S_t \cdot I_t    
+      $$
+      <p>
+      <div class="textLeft">[Table 13.6.1] Quarterly Sales of a Company</div>
+      <p>
+     <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:50px"></th>
+          <th class="thGrey" style="width:150px">①<br>Year  Quarter</th>
+          <th class="thGrey" style="width:100px">②<br>Sales<br></th>
+          <th class="thGrey" style="width:100px">③<br>4-point MA</th>
+          <th class="thGrey" style="width:100px">④<br>Centered 4-point MA</th>
+          <th class="thGrey" style="width:100px">⑤<br>Seasonal Ratio</th>
+          <th class="thGrey" style="width:100px">⑥<br>Deseasonal Data \(D_t\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             130<br>
+             14<br>
+             15<br>
+             16<br>
+           </td> 
+           <td class="tdCenter">
+             2018 Quarter 1<br>
+             2018-Quarter 2<br>
+             2018-Quarter 3<br>
+             2018-Quarter 4<br>
+             2019 Quarter 1<br>
+             2019-Quarter 2<br>
+             2019-Quarter 3<br>
+             2019-Quarter 4<br>
+             2020 Quarter 1<br>
+             2020 Quarter 2<br>
+             2020 Quarter 3<br>
+             2020 Quarter 4<br>
+             2021 Quarter 1<br>
+             2021 Quarter 2<br>
+             2021 Quarter 3<br>
+             2021 Quarter 4<br>
+           </td> 
+           <td class="tdCenter">
+             75<br>
+             60<br>
+             54<br>
+             59<br>
+             86<br>
+             65<br>
+             63<br>
+             80<br>
+             90<br>
+             72<br>
+             66<br>
+             85<br>
+             100<br>
+             78<br>
+             72<br>
+             93<br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             62.000<br>
+             64.750<br>
+             66.000<br>
+             68.250<br>
+             73.500<br>
+             74.500<br>
+             76.250<br>
+             77.000<br>
+             78.250<br>
+             80.750<br>
+             82.250<br>
+             83.750<br>
+             85.750<br>
+             <br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             63.375<br>
+             65.375<br>
+             67.125<br>
+             70.875<br>
+             74.000<br>
+             75.375<br>
+             76.625<br>
+             77.625<br>
+             79.500<br>
+             81.500<br>
+             83.000<br>
+             84.750<br>
+             <br>
+             <br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             0.852<br>
+             0.902<br>
+             1.281<br>
+             0.917<br>
+             0.851<br>
+             1.061<br>
+             1.175<br>
+             0.928<br>
+             0.830<br>
+             1.043<br>
+             1.205<br>
+             0.920<br>
+             <br>
+             <br>
+           </td> 
+           <td class="tdCenter">
+             62.552<br>
+             65.502<br>
+             63.754<br>
+             56.840<br>
+             71.726<br>
+             70.961<br>
+             74.380<br>
+             77.071<br>
+             75.063<br>
+             78.603<br>
+             77.922<br>
+             81.888<br>
+             83.403<br>
+             85.153<br>
+             85.006<br>
+             89.595<br>
+           </td> 
+        </tr>
+      </table>
+      <p>
+        [Table 13.6.2] shows the seasonal ratio by year and quarter. If the maximum and minimum values are removed for each quarter and the average is obtained (trimmed  average), it is the seasonal index in column 6. Since the sum of these values is 4.0197, the seasonal index in column is normalized as in column 7. 
+      $$
+        {\hat S}_1 \;=\; 1.199,\quad {\hat S}_2 \;=\; 0.916,\quad {\hat S}_3 \;=\; 0.847,\quad {\hat S}_4 \;=\; 1.038
+      $$
+      <p>
+      <div class="textLeft">[Table 13.6.2] Seasonal Index</div>
+      <p>
+       <table style="width:720px"> 
+        <tr> 
+          <th class="thGrey" style="width:120px">①<br> &nbsp; &nbsp;&nbsp;&nbsp; Year<p>Quarter</th>
+          <th class="thGrey" style="width:100px">②<br>2018</th>
+          <th class="thGrey" style="width:100px">③<br>2019</th>
+          <th class="thGrey" style="width:100px">④<br>2020</th>
+          <th class="thGrey" style="width:100px">⑤<br>2021</th>
+          <th class="thGrey" style="width:100px">⑥<br>Trimmed Mean</th>
+          <th class="thGrey" style="width:100px">⑦<br>Seasonal Index<br>\(s_t\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1st Quarter<br>
+             2nd Quarter<br>
+             3rd Quarter<br>
+             4th Quarter<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             0.852<br>
+             0.902<br>
+          </td> 
+           <td class="tdCenter">
+             1.281<br>
+             0.917<br>
+             0.851<br>
+             1.061<br>
+          </td> 
+           <td class="tdCenter">
+             1.175<br>
+             0.928<br>
+             0.830<br>
+             1.043<br>
+          </td> 
+           <td class="tdCenter">
+             1.205<br>
+             0.920<br>
+             <br>
+             <br>
+          </td> 
+           <td class="tdCenter">
+             1.205<br>
+             0.920<br>
+             0.851<br>
+             1.043<br>
+          </td> 
+           <td class="tdCenter">
+             1.199<br>
+             0.916<br>
+             0.847<br>
+             1.038<br>
+          </td> 
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>sum 4.019</td>
+          <td></td>
+        </tr>
+      </table>
+      <p>
+         Column 6 of [Table 13.6.1] shows the non-seasonal data \(D_t\) obtained by dividing the original 
+         data by the seasonal index of each quarter. The linear regression line for this non-seasonal data is as follows (&lt;Figure 13.6.1&gt;).,
+      $$
+         D_{t} \;=\;  59.335 \;+\; 1.839 \cdot t  
+      $$
+         Therefore, the forecast for the next one year is as follows.
+      $$
+        \begin{align}
+          & \text{Time 17 :} \quad{\hat Y}_{17} \;=\; (59.335 \;+\; 1.839 \times 17) \times 1.199 \;=\; 108.627 \\    
+          & \text{Time 18 :} \quad{\hat Y}_{18} \;=\; (59.335 \;+\; 1.839 \times 18) \times 0.916 \;=\; 84.672  \\
+          & \text{Time 19 :} \quad{\hat Y}_{19} \;=\; (59.335 \;+\; 1.839 \times 19) \times 0.847 \;=\; 79.852  \\
+          & \text{Time 20 :} \quad{\hat Y}_{20} \;=\; (59.335 \;+\; 1.839 \times 20) \times 1.038 \;=\; 99.767  \\
+        \end{align}
+      $$
+        &lt;Figure 13.6.2&gt; is a graph of seasonal forecasts.
+      <p>
+
+      <!---   ************ html for Time Series - Seasonal ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span>  <span data-msgid="Forecasting"></span> : <span data-msgid="SeasonalModel"></span>]</b><br>
+      <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Y = (<span data-msgid="Trend"></span>) × (<span data-msgid="Seasonal"></span>) × (<span data-msgid="Irregular"></span>)</b>
+      <p>
+         <iframe src="./example/130601/130601.html" width="800" height="880"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 13.6.1&gt; Forcasting Model of Deseasonal Sales of a Company</div>
+      <p>
+    </div>
+
+  <p>
+  <h4>13.6.2 Holt-Winters Model</h4>
+  <p>
+
+    <div class="mainTable">
+      Assume that a time series with a seasonal period \(L\) is observed over \(m\) cycles  as follows:
+      <p>
+       <table style="width:720px"> 
+        <tr> 
+          <th class="thGrey" style="width:120px"></th>
+          <th class="thGrey" style="width:100px">Season 1</th>
+          <th class="thGrey" style="width:100px">Season 2</th>
+          <th class="thGrey" style="width:100px">\(\cdots\)</th>
+          <th class="thGrey" style="width:100px">Season \(L\)</th>
+         <tr> 
+           <td class="tdCenter">
+             Cycle 1<br>
+             Cycle 2<br>
+             \(\cdots\)<br>
+             Cycle \(m\)<br>
+           </td> 
+           <td class="tdCenter"> 
+             \(Y_{1}\)<br>
+             \(Y_{L+1}\)<br>
+             \(\cdots\)<br>
+             \(Y_{(m-1)L+1}\)<br>
+           </td> 
+           <td class="tdCenter">
+             \(Y_{2}\)<br>
+             \(Y_{L+2}\)<br>
+             \(\cdots\)<br>
+             \(Y_{(m-1)L+2}\)<br>
+          </td> 
+           <td class="tdCenter">
+             \(\cdots\)<br>
+             \(\cdots\)<br>
+             \(\cdots\)<br>
+             \(\cdots\)<br>
+          </td> 
+           <td class="tdCenter">
+             \(Y_{L}\)<br>
+             \(Y_{2L}\)<br>
+             \(\cdots\)<br>
+             \(Y_{mL}\)<br>
+          </td> 
+        </tr>
+      </table>
+      <p>
+         The <b>Holt-Winters model</b> is an extension of Holt's linear double exponential smoothing method 
+         studied in the previous section to a seasonal model. It consists of a level component \(l_t\), 
+         a trend component \(b_t\), and a seasonal component \(s_t\). There are additive model and
+         multiplicative model, but only the multiplication model is introduced here.
+      $$
+        \begin{align}
+          {\hat{Y}}_{t+h} &\;=\; (l_{t} \;+\; h \cdot b_{t} ) \cdot s_{t+h-m(k+1)} \\
+          l_{t} &\;=\; \alpha \frac{y_t}{s_{t-m} } + (1-\alpha)(l_{t-1} + b_{t-1} )   \\
+          b_{t} &\;=\; \beta (l_{t} - l_{t-1} )+(1- \beta ) b_{t-1}   \\
+          s_{t} &\;=\; \gamma \;\; \frac{y_{t}}{l_{t-1} + b_{t-1}} \;+\; (1- \gamma ) s_{t-m} 
+        \end{align}
+      $$
+        Here \(k\) is integer part of \((h-1)/m\). \(l_t\) is a time series level, which means the 
+        exponential smoothing of the current level (\( \frac{y_t}{s_{t-m} }  \) ) with seasonality 
+        removed and the value predicted one time ago \((l_{t-1} + b_{t-1} )  \). \(b_t\) is the slope 
+        which is the exponential smoothing of the slope of the current time point \( (l_t - l_{t-1} )\)
+        and the previous time point (\(b_{t-1}\)). \(s_t\)  is a seasonal index which is the exponential smoothing
+        of the current seasonal component (\(\frac {y_t}{l_{t-1} + b_{t-1} } \)) and the seasonal
+        component of the previous season \(s_{t-m}\).
+      <p>
+        [Table 13.6.3] calculates exponential smoothing values of level, slope, and seasonal indices 
+        using the Holt-Winters model with &alpha; = 0.3, &beta; = 0.3, &gamma; = 0.3 to the 
+        quarterly sales of a company. The last column is one time prediction at time \(t-1\), 
+        \({\hat Y}_{(t-1)+1}\). The initial values \(l_0\) and \(b_0\) are the intercept and 
+        slope of the linear regression model for all data, and the initial values of the seasonal index 
+        are calculated by the model \(Y \;=\; T \times S \times I  \).
+      <p>
+      <div class="textLeft">[Table 13.6.3] Holt-Winters Forecasting Model of Quarterly Sales </div>
+      <p>
+     <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:50px">time</th>
+          <th class="thGrey" style="width:150px">Year  Quarter</th>
+          <th class="thGrey" style="width:100px">Sales<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:100px">Level<br>\(l_t\)</th>
+          <th class="thGrey" style="width:100px">Slope<br>\(b_t\)</th>
+          <th class="thGrey" style="width:100px">Seasonal<br>\(s_t\)</th>
+          <th class="thGrey" style="width:100px">One Time Forecast<br>\(\hat Y _{(t-1)+1}\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             -3<br>
+             -2<br>
+             -1<br>
+             0<br>
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             2018 Quarter 1<br>
+             2018-Quarter 2<br>
+             2018-Quarter 3<br>
+             2018-Quarter 4<br>
+             2019 Quarter 1<br>
+             2019-Quarter 2<br>
+             2019-Quarter 3<br>
+             2019-Quarter 4<br>
+             2020 Quarter 1<br>
+             2020 Quarter 2<br>
+             2020 Quarter 3<br>
+             2020 Quarter 4<br>
+             2021 Quarter 1<br>
+             2021 Quarter 2<br>
+             2021 Quarter 3<br>
+             2021 Quarter 4
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+                61.2<br>
+             62.7312<br>
+             64.6753<br>
+             65.5795<br>
+             63.9809<br>
+             66.7081<br>
+             68.7061<br>
+             71.6766<br>
+             75.7320<br>
+             76.5997<br>
+             78.2283<br>
+             79.2477<br>
+             81.6382<br>
+             83.21580<br>
+             84.7427<br>
+             86.0501<br>
+             88.4618
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+               1.61<br>
+             1.5863<br>
+             1.6937<br>
+             1.4568<br>
+             0.5402<br>
+             1.1963<br>
+             1.4368<br>
+             1.8969<br>
+             2.5445<br>
+             2.0414<br>
+             1.9176<br>
+             1.6481<br>
+             1.8708<br>
+             1.7829<br>
+             1.7061<br>
+             1.5865<br>
+             1.8341
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             1.61<br>
+             1.5863<br>
+             1.6937<br>
+             1.4568<br>
+             0.5402<br>
+             1.1963<br>
+             1.4368<br>
+             1.8969<br>
+             2.5445<br>
+             2.0414<br>
+             1.9176<br>
+             1.6481<br>
+             1.8708<br>
+             1.7829<br>
+             1.7061<br>
+             1.5865<br>
+             1.8341
+           </td> 
+           <td class="tdCenter">
+             1.1991<br>
+             0.9159<br>
+             0.8472<br>
+             1.0378<br>
+             1.1976<br>
+             0.9210<br>
+             0.8371<br>
+             0.9905<br>
+             1.2382<br>
+             0.9319<br>
+             0.8555<br>
+             1.0195<br>
+             1.2117<br>
+             0.9270<br>
+             0.8459<br>
+             1.0289<br>
+             1.2074<br>
+             0.9242<br>
+             0.8420<br>
+             1.0386
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             75.315<br>
+             58.908<br>
+             56.230<br>
+             69.570<br>
+             77.270<br>
+             62.539<br>
+             58.720<br>
+             72.874<br>
+             96.920<br>
+             73.282<br>
+             68.561<br>
+             82.477<br>
+             01.184<br>
+             78.791<br>
+             73.124<br>
+             90.169
+           </td> 
+        </tr>
+      </table>
+      <p>
+        &lt;Figure 13.6.2&gt; is the Holt-Winters forecast for the next one year and is calculated as follows:
+      $$
+        \begin{align}
+          & \text{Time 17 :} \quad {\hat Y}_{16+1} \;=\;\; (l_{16} + 1 \times\;b_{16} ) \cdot s_{13} \;=\;(88.4618 + 1.8341)\times1.2074 \;=\;109.024   \\    
+          & \text{Time 18 :} \quad {\hat Y}_{16+2} \;=\;\; (l_{16} + 2 \times\;b_{16} ) \cdot s_{14} \;=\;(88.4618+2 \times 1.8341) \times 0.9242\;=\;85.144  \\
+          & \text{Time 19 :} \quad {\hat Y}_{16+3} \;=\;\; (l_{16} + 3 \times\;b_{16} ) \cdot s_{15} \;=\;(88.4618+3 \times 1.8341) \times 0.9420\;=\;79.115    \\
+          & \text{Time 20 :} \quad {\hat Y}_{16+4} \;=\;\; (l_{16} + 4 \times\;b_{16} ) \cdot s_{16} \;=\;(88.4618+4 \times 1.8341) \times 1.0386\;=\;99.495   \\
+        \end{align}
+      $$
+      <p>
+
+      <!---   ************ html for Time Series - Holt Winter Seasonal ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span>  <span data-msgid="Forecasting"></span> : <span data-msgid="HoltWinter"></span>]</b><br>
+      <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Y(t+h) = (L(t) + h × b(t)) × S(t+h-m(k+1)) </b>
+      <p>
+         <iframe src="./example/130602/130602.html" width="850" height="880"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 13.6.2&gt; Holt-Winters Forecasting of Quarterly Sales </div>
+      <p>
+    </div>
+  <p>
+  <iframe src="./exercise/exercise13.html" width="800" height="550" ></iframe>
+
+</body>
+</html>
+

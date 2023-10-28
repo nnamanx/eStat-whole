@@ -1,7 +1,7 @@
 ﻿// language.js
 var langNum;
 var nLanguage = 20;
-var nString = 130;
+var nString = 150;
 var appStr = new Array(nString);
 var svgStr = new Array(nString);
 var svgStrU = new Array(nString);
@@ -17,7 +17,6 @@ languageNumber = {
     'ko': 0,
     'en': 1,
     'ja': 2,
-    'zh': 10,
     'zhTW': 3,
     'fr': 4,
     'de': 5,
@@ -25,6 +24,7 @@ languageNumber = {
     'vi': 7,
     'id': 8,
     'mn': 9,
+    'zh': 10,
     'pt': 11,
     'gr': 12,
     'ro': 13,
@@ -35,6 +35,7 @@ languageNumber = {
     'ru': 18,
     'tr': 19,
 };
+/*
 $(document).ready(function() {
     var lang = localStorage.getItem("lang");
     if (lang == null) {
@@ -48,6 +49,7 @@ $('#select_language').change(function() {
     var lang = $("#select_language option:selected").val();
     setLanguage(lang);
 });
+*/
 function setLanguage(lang) {
     langNum = languageNumber[lang];
     localStorage.setItem("lang", lang);
@@ -55,35 +57,14 @@ function setLanguage(lang) {
         var $this = $(this);
         $this.html($.message[lang][$this.data('msgid')]);
     });
+//    graphTitle()
 };
-// 언어 컨트롤
-var lang = localStorage.getItem("lang");
-if (lang == null) lang = "en";
-if (lang == "ko") langNum = 0;
-else if (lang == "en") langNum = 1;
-else if (lang == "ja") langNum = 2;
-else if (lang == "zh") langNum = 10;
-else if (lang == "zhTW") langNum = 3;
-else if (lang == "fr") langNum = 4;
-else if (lang == "de") langNum = 5;
-else if (lang == "es") langNum = 6;
-else if (lang == "pt") langNum = 11;
-else if (lang == "vi") langNum = 7;
-else if (lang == "id") langNum = 8;
-else if (lang == "mn") langNum = 9;
-else if (lang == "pt") langNum = 11;
-else if (lang == "gr") langNum = 12;
-else if (lang == "ro") langNum = 13;
-else if (lang == "th") langNum = 14;
-else if (lang == "pl") langNum = 15;
-else if (lang == "az") langNum = 16;
-else if (lang == "uz") langNum = 17;
-else if (lang == "ru") langNum = 18;
-// console.log("eStatU.js langNum="+langNum);
+
 $.message = {}
 // Korean
 $.message.ko = {
     "eStat : Stat Education SW": "eStat: 통계교육SW",
+    "Home": "홈",
     "Filename": "파일",
     "Selected Variables": "선택변량",
     "Cancel": "취소",
@@ -113,6 +94,7 @@ $.message.ko = {
     "maxStem": "** 최대 줄기 수 &le; 30 **",
     "Box-Whisker Plot": "상자그래프",
     "Scatterplot": "산점도",
+    "ScatterplotMatrix": "산점도행렬",
     "Frequency Table": "도수분포표",
     "Basic Statistics": "기초통계량",
     "Testing Hypothesis &mu;": "가설검정 &mu;",
@@ -120,6 +102,7 @@ $.message.ko = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "검정 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "검정 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "분산분석",
+    "Middle School Stat Education": "중등 통계교육",
     "High School Stat Education": "고등 통계교육",
     "University Stat Education": "대학 통계교육",
     "Elem Stat Graph Example": "초중그래프 예",
@@ -155,7 +138,10 @@ $.message.ko = {
     "MeanStd": "평균/표준편차",
     "DotMeanStd": "점그래프 - 평균/표준편차",
     "95CI": "95%신뢰구간",
+    "CorrelationAnalysis": "상관분석",
     "RegressionAnalysis": "회귀분석",
+    "RegressionAnalysis1": "단순선형회귀분석",
+    "RegressionAnalysis2": "중회귀분석",
     "ANOVA2": "2원 분산분석",
     "Regression": "회귀선",
     "RegressionLine": "회귀선",
@@ -178,6 +164,7 @@ $.message.ko = {
     "Main Title" : "주 제목",
     "y title": "세로축 제목",
     "x title": "가로축 제목",
+    "yAxis": "Y 축",
     "Modify": "수정",
     "Confirm": "확인",
     "Variable Name": "변량명",
@@ -187,9 +174,11 @@ $.message.ko = {
     "Save": "저장",
     "Exit": "나가기",
     "eStatU UnivStatEdu": "eStatU - 대학 통계교육 SW",
-    "eStatH HighStatEdu": "eStatH 중 / 고 통계교육 SW",
-    "MiddleStat": "중학: 통계",
+    "eStatH HighStatEdu": "eStatH - 고등 통계교육 SW",
+    "eStatM MiddleStatEdu": "eStatM - 초/중 통계교육 SW",
+    "MiddleStat": "초등/중학: 통계",
     "HighStat":   "고등: 확률 및 통계",
+    "UnivStat":   "통계 데이터과학",
     "ebookLink":  "전자책 링크",
     "Menu": "메뉴",
     "Binomial Experiment": "이항분포실험",
@@ -226,9 +215,10 @@ $.message.ko = {
     "Sample Size": "표본크기",
     "Confidence Interval": "신뢰구간",
     "Confidence Interval Simulation": "모평균 신뢰구간 시뮬레이션",
+    "Simulation": "시뮬레이션",
     "Confidence Interval Mu": "추정 : 모평균 &mu;",
     "Mu Confidence Interval": "모평균 신뢰구간",
-    "Confidence Interval Sigma": "추정 : 모분산 &sigma;&#178;",
+    "Confidence Interval Sigma": "추정 : 모분산 &sigma;&#178; ",
     "Confidence Interval P": "추정 : 모비율 p",
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
@@ -248,7 +238,9 @@ $.message.ko = {
     "Testing Hypothesis mu12": "가설검정 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "가설검정 : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "가설검정 : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "가설검정 :분산분석",
+    "Testing Hypothesis ANOVA": "1인자 분산분석 ANOVA",
+    "Testing Hypothesis ANOVA2": "2인자 분산분석 ANOVA",
+    "SameSampleSize": "각 셀의 표본크기는 동일해야 합니다.",
     "Testing Independence": "범주형 : 독립성검정",
     "CategoryD": "범주",
     "Category": "계급",
@@ -281,7 +273,7 @@ $.message.ko = {
     "Show Probability": "확률표시",
     "Probability": "확률",
     "Regression Line": "회귀선",
-    "Erase All": "화면 지우기",
+    "Erase All": "새 데이터",
     "Add Point": "점 더하기",
     "Erase Point": "점 지우기",
     "Reference Site": "참고사이트",
@@ -356,10 +348,10 @@ $.message.ko = {
     "Block": "블록",
     "Treatment": "처리",
     "At least one locations is different": "적어도 한쌍 이상의 위치모수가 다름",
-    "SignCondition": "n ≤ 100 이면 이항분포 검정,  n > 100 근사 정규분포 검정",
-    "WilcoxonSignCondition": "n ≤ 20 이면 윌콕슨 순위합 분포 검정,  n > 20 근사 정규분포 검정",
-    "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 이면 순위합 분포 검정,  n > 25 근사 정규분포 검정",
-    "KruskalCondition": "n ≤ 10 이면 H 분포 검정,  n>10 이면 근사 카이제곱 검정",
+    "SignCondition": "(n ≤ 100) 이항분포, (n > 100) 정규분포근사검정",
+    "WilcoxonSignCondition": "(n ≤ 20) 부호순위검정, (n > 20) 정규분포근사검정",
+    "WilcoxonRankCondition": "(n=n<sub>1</sub>+n<sub>2</sub> ≤ 25) 순위합검정,  (n > 25) 정규분포근사검정",
+    "KruskalCondition": "(n ≤ 10) H분포검정,  (n>10) 카이제곱근사검정",
     "VariableSelect":  "* 자료분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
     "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
     "VariableSelect3": "변량선택",
@@ -391,6 +383,7 @@ $.message.ko = {
     "oneColor":        "색",
     "defaultColor":    "기본색",
     "RelativeFreq":    "상대도수",
+    "Density":         "밀도",
     "MarginOfError":   "오차의 한계",
     "Permutation":     "순열",
     "PermutationSame": "같은 것이 있는 순열",
@@ -430,15 +423,88 @@ $.message.ko = {
     "RelationOperator":  "관계연산자",
     "SelectValue":       "값",
     "MissingValue":      "결측값",
-
-};
+    "option":            "선택",
+    "TimeSeries":        "시계열",
+    "Smoothing":         "평활",
+    "Filtering":         "필터링",
+    "Transformation":    "변환",
+    "Weight":            "가중값",
+    "PercentChange":     "증감백분율",
+    "WeightedIndex":     "단순지수",
+    "BaseTime":          "기준시",
+    "LagTime":           "시차",
+    "Lag":               "시차",
+    "Forecasting":       "예측",
+    "SeasonalModel":     "계절모형",
+    "HoltWinter":        "홀트-윈터스 승법계절모형",
+    "Trend":             "추세",
+    "Seasonal":          "계절",
+    "Deseasonal":        "비계절시계열",
+    "Nseason":           "계절주기",
+    "Irregular":         "비규칙",
+    "TrendModel":        "비계절 시계열의 추세모형",
+    "RegressionModel":   "회귀모형",
+    "ForecastingPeriod": "예측기간",
+    "CreateTable":       "데이터 테이블",
+    "SaveTable":         "테이블 저장",
+    "MA":                "이동평균",
+    "EWMA":              "지수평활모형",
+    "CenterMA":          "중심이동평균",
+    "MovingMedian":      "중심이동중앙값",
+    "ES":                "지수평활",
+    "Default":           "기본값",
+    "Linear":            "선형",
+    "Quadratic":         "이차식",
+    "Cubic":             "삼차식",
+    "SquareRoot":        "제곱근",
+    "Log":               "로그",
+    "Exponent":          "지수",
+    "Power":             "멱함수",
+    "BoxCox":            "박스-콕스",
+    "SingleMA":          "단순이동평균",
+    "SingleES":          "단순지수평활",
+    "DoubleMA":          "이중이동평균",
+    "DoubleES":          "이중이동평균",
+    "HoltLinear":        "홀트 이중지수평활",
+    "DeseasonIntercept": "비계절 절편",
+    "DeseasonSlope":     "비계절 기울기",
+    "SeasonalIndex":     "계절지수",
+    "Diff":              "차분",
+    "DiffTime":          "차분",
+    "AR":                "자기회귀모형",
+    "ResultTable":       "회귀결과표",
+    "ForecastTable":     "예측표",
+    "HoltLevel":         "수평",
+    "HoltTrend":         "추세",
+    "AutoCorrTable":     "자기상관표",
+    "DiffSeries":        "차분시계열",
+    "RawSeries":         "원 시계열",
+    "RBD":               "확률화블록계획법",
+    "Latin":             "라틴방격법",
+    "Chapter01":         "&nbsp;1장 통계 데이터과학",
+    "Chapter02":         "&nbsp;2장 질적 데이터 시각화",
+    "Chapter03":         "&nbsp;3장 양적 데이터 시각화",
+    "Chapter04":         "&nbsp;4장 표/측도를 이용한 데이터 정리",
+    "Chapter05":         "&nbsp;5장 확률 및 확률분포함수",
+    "Chapter06":         "&nbsp;6장 표본 통계량의 분포와 추정",
+    "Chapter07":         "&nbsp;7장 한 모집단 모수의 가설검정",
+    "Chapter08":         "&nbsp;8장 두 모집단 모수의 가설검정",
+    "Chapter09":         "&nbsp;9장 여러 모평균의 가설검정",
+    "Chapter10":         "10장 비모수적 가설검정",
+    "Chapter11":         "11장 범주형 데이터의 가설검정",
+    "Chapter12":         "12장 상관 및 회귀분석",
+    "Chapter13":         "13장 시계열분석",
+    "Distribution":      "확률분포",
+};  
 // Korean
-appStr[1][0] = "../eStatH/index.html";
-appStr[2][0] = "../eStatU/index.html";
-appStr[3][0] = "../eStatE/index.html";
-appStr[4][0] = "../eHelp/index.html";
+appStr[1][0] = "/estat/eStatH/index.html";
+appStr[2][0] = "/estat/eStatU/index.html";
+appStr[3][0] = "/estat/eStatE/index.html";
+appStr[4][0] = "/estat/eHelp/index.html";
 appStr[5][0] = "index_en.html";
-appStr[6][0] = "../eLearning/kr/index.html";
+appStr[6][0] = "/estat/eLearning/kr/eStatM/index.html";
+appStr[7][0] = "/estat/eLearning/kr/eStatH/index.html";
+appStr[8][0] = "/estat/eLearning/kr/eStatU/index.html";
 alertMsg[1][0] = "자료가 없습니다!";
 alertMsg[2][0] = "분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
 alertMsg[3][0] = "선택된 열에 결측치가 있습니다.";
@@ -746,11 +812,33 @@ svgStrU[110][0] = "균등분포의 최대 정수 수";
 svgStrU[111][0] = "마우스로 한 점을 이동";
 svgStrU[112][0] = "복원추출";
 svgStrU[113][0] = "비복원추출"; 
-svgStrU[114][0] = "꺽은선"; 
+svgStrU[114][0] = "꺽은선";
+svgStrU[115][0] = "증감백분율";
+svgStrU[116][0] = "단순지수";
+svgStrU[117][0] = "시차";
+svgStrU[118][0] = "차분";
+svgStrU[119][0] = "자기상관함수";
+svgStrU[120][0] = "로그변환";
+svgStrU[121][0] = "제곱근변환";
+svgStrU[122][0] = "박스-콕스변환";
+svgStrU[123][0] = "기준시"; 
+svgStrU[124][0] = "중심이동평균";
+svgStrU[125][0] = "지수평활";
+svgStrU[126][0] = "중심이동중앙값";
+svgStrU[127][0] = "모형";
+svgStrU[128][0] = "이동평균";
+svgStrU[129][0] = "이중이동평균";
+svgStrU[130][0] = "Holt 이중지수평활";
+svgStrU[131][0] = "계절지수";
+svgStrU[132][0] = "Holt-Winters 승법계절모형";
+svgStrU[133][0] = "비계절시계열";
+svgStrU[134][0] = "블록";
+
 
 // English
 $.message.en = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
+    "Home": "Home",
     "Filename": "File",
     "Selected Variables": "SelectedVar",
     "Cancel": "Cancel",
@@ -779,7 +867,8 @@ $.message.en = {
     "Stem & Leaf Plot": "Stem & Leaf Plot",
     "maxStem": "** max number of stems &le; 30 **",
     "Box-Whisker Plot": "Box Plot",
-    "Scatterplot": "Scatterplot",
+    "Scatterplot": "Scatter Plot",
+    "ScatterplotMatrix": "Scatter Plot Matrix",
     "Frequency Table": "Frequency Table",
     "Basic Statistics": "Descriptive Statistics",
     "Testing Hypothesis &mu;": "Testing Hypothesis &mu;",
@@ -787,6 +876,7 @@ $.message.en = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analysis of Variance",
+    "Middle School Stat Education": "Middle School Stat Education",
     "High School Stat Education": "High School Stat Education",
     "University Stat Education": "University Stat Education",
     "Elem Stat Graph Example": "Elem Stat Graph Example",
@@ -822,7 +912,10 @@ $.message.en = {
     "MeanStd": "Mean/StdDev",
     "DotMeanStd": "Dot Graph - Mean/StdDev",
     "95CI": "95% Confidence Interval",
+    "CorrelationAnalysis": "Correlation Analysis",
     "RegressionAnalysis": "Regression Analysis",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Two way ANOVA",
     "Regression": "Regression",
     "RegressionLine": "Regression Line",
@@ -844,9 +937,10 @@ $.message.en = {
     "Variance": "Variance",
     "F test": "F test",
     "At least one pair of means is different": "At least one pair of means is different",
-    "Main Title : ": "Main Title",
-    "y title : ": "y title",
-    "x title : ": "x title",
+    "Main Title": "Main Title",
+    "y title": "y title",
+    "x title": "x title",
+    "yAxis": "Y Axis",
     "Modify": "Modify",
     "Confirm": "Confirm",
     "Variable Name": "Variable Name",
@@ -856,10 +950,12 @@ $.message.en = {
     "Save": "Save",
     "Exit": "Exit",
     "eStatU UnivStatEdu": "eStatU - University Statistics Education SW",
-    "eStatH HighStatEdu": "eStatH - Middle / High School Statistics Education SW",
-    "MiddleStat": "Middle School Statistics",
+    "eStatH HighStatEdu": "eStatH - High School Statistics SW",
+    "eStatM MiddleStatEdu": "eStatM - Elementary / Middle School Statistics SW",
+    "MiddleStat": "Elementary / Middle School",
     "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link",
     "Menu": "Menu",
     "Binomial Experiment": "Binomial Experiment",
     "Binomial Distribution": "Binomial Distribution",
@@ -895,9 +991,10 @@ $.message.en = {
     "Sample Size": "Sample Size",
     "Confidence Interval": "Confidence Interval",
     "Confidence Interval Simulation": "Confidence Interval Simulation",
+    "Simulation": "Simulation",
     "Confidence Interval Mu": "Estimation : &mu;",
     "Mu Confidence Interval": "Population Mean Confidence Interval",
-    "Confidence Interval Sigma": "Estimation : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimation : &sigma;&#178; ",
     "Confidence Interval P": "Estimation : p",
     "Estimation Accuracy": "Estimation Accuracy",
     "Repetition": "Repetition",
@@ -917,7 +1014,9 @@ $.message.en = {
     "Testing Hypothesis mu12": "Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Testing Hypothesis p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Testing Hypothesis ANOVA",
+    "Testing Hypothesis ANOVA": "Single Factor ANOVA",
+    "Testing Hypothesis ANOVA2": "Two Factors ANOVA",
+    "SameSampleSize": "Sample size of each cell should be the same.",
     "Testing Independence": "Categorical: Independence Test",
     "CategoryD": "Category",
     "Category": "Category",
@@ -934,7 +1033,7 @@ $.message.en = {
     "Paired Sample": "paired sample",
     "Sample Data": "Sample Data",
     "input either sample data": "Input either sample data using BSV or sample statistics at the next boxes",
-    "input data": "Enter Data",
+    "input data": "Data Input",
     "Sample Statistics": "Sample Statistics",
     "Sample Mean": "Sample Mean",
     "Sample Variance": "Sample Variance",
@@ -950,7 +1049,7 @@ $.message.en = {
     "Probability": "Probability",
     "Show Probability": "Show Probability",
     "Regression Line": "Regression Line",
-    "Erase All": "Erase Screen",
+    "Erase All": "Erase Data",
     "Add Point": "Add Point",
     "Erase Point": "Erase Point",
     "Reference Site": "Reference Site",
@@ -988,7 +1087,7 @@ $.message.en = {
     "AnovaMeanGraph": "Mean Confidence Interval",
     "MultipleComparison": "Multiple Comparison",
     "ComparisonGraph": "Comparison",
-    "AnovaResidual": "Standardized Residual Plot",
+    "AnovaResidual": "Residual Plot",
     "AnovaQQ": "Residual Q-Q Plot",
     "TestingFit": "Categorical : Goodness of Fit Test",
     "FitTest0": "Observed & theoretical Dist. are the same",
@@ -1005,30 +1104,30 @@ $.message.en = {
     "NoInteraction": "No Interaction",
     "ExistInteraction": "Exist Interaction",
     "eStatLecture": "eLearning",
-    "NonParametricMu12_title": "Nonparametric : Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Nonparametric : Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
-    "WilcoxonTest": "Nonparametric : Rank Sum Test",
+    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
+    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
+    "WilcoxonTest": "Rank Sum Test",
     "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
     "SignedRankTestDist": "Wilcoxon Signed Rank Sum Dist.",
     "WilcoxonTestDist": "Wilcoxon Rank Sum Distribution",
     "KruskalTestDist": "Kruskal-Wallis H Distribution",
     "FriedmanTestDist": "Friedman S Distribution",
-    "SignedRankTest": "Nonparametric : Signed Rank Sum Test",
-    "SignTest": "Nonparametric : Sign Test",
+    "SignedRankTest": "Signed Rank Sum Test",
+    "SignTest": "Sign Test",
     "SignCount": "Sign Count",
-    "KruskalTest": "Nonparametric : Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Nonparametric : Kruskal-Wallis Test",
+    "KruskalTest": "Kruskal-Wallis Test",
+    "KruskalTestANOVA": "Kruskal-Wallis Test",
     "Total": "Total",
-    "FriedmanTest": "Nonparametric : Friedman Test",
-    "FriedmanTestANOVA": "Nonparametric : Friedman Test",
+    "FriedmanTest": "Friedman Test",
+    "FriedmanTestANOVA": "Friedman Test",
     "Block": "Block",
     "Treatment": "Treatment",
     "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Approximation Test",
-    "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
-    "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;&#178; approximation test",
+    "SignCondition": "(n ≤ 100) Binomial Test,  (n > 100) Normal Approximation Test",
+    "WilcoxonSignCondition": "(n ≤ 20) Signed Rank Sum Test, (n > 20) Normal Approximation Test",
+    "WilcoxonRankCondition": "(n=n<sub>1</sub>+n<sub>2</sub> ≤ 25) Rank Sum Test, (n>25) Normal Approximation Test",
+    "KruskalCondition": "(n ≤ 10) H Distribution Test,  (n > 10) &chi;&#178; approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Selection",
@@ -1059,6 +1158,7 @@ $.message.en = {
     "oneColor":        "Color",
     "defaultColor":    "Default Color",
     "RelativeFreq":    "Relative Freq",
+    "Density":         "Density",
     "MarginOfError":   "Margin of Error",
     "Permutation":     "Permutation",
     "PermutationSame": "Permutation with same objects",
@@ -1066,7 +1166,7 @@ $.message.en = {
     "NumberOfCase":    "Number of cases",
     "BinomialTheorem": "Binomial Theorem",
     "PascalTriangle":  "Pascal Triangle",
-    "Character":       "Emoji",
+    "Character":        "Emoji",
     "AdditionRule":      "Addition Rule of Probability",
     "MultiplicationRule": "Multiplication Rule of Probability",
     "ConditionalProb":   "Conditional Probability",
@@ -1098,6 +1198,79 @@ $.message.en = {
     "RelationOperator":  "Relation<br>Operator",
     "SelectValue":       "Value",
     "MissingValue":      "Missing value",
+    "option":            "option",
+    "TimeSeries":        "Time Series",
+    "Smoothing":         "Smoothing",
+    "Filtering":         "Filtering",
+    "Transformation":    "Transformation",
+    "Weight":            "Weight",
+    "PercentChange":     "Change Percent",
+    "WeightedIndex":     "Simple Index",
+    "BaseTime":          "Base Time",
+    "LagTime":           "Lag Time",
+    "Lag":               "Time Lag",
+    "Forecasting":       "Forecasting",
+    "SeasonalModel":     "Seasonal Model",
+    "HoltWinter":        "Holt-Winters Seasonal Model",
+    "Trend":             "Trend",
+    "Seasonal":          "Seasonal",
+    "Deseasonal":        "Deseasonal Series",
+    "Nseason":           "Times in Season",
+    "Irregular":         "Irregular",
+    "TrendModel":        "Trend Model on Deseasonal",
+    "RegressionModel":   "Regression Model",
+    "ForecastingPeriod": "Forecasting Period",
+    "CreateTable":       "Data Table",
+    "SaveTable":         "Save Table",
+    "MA":                "Moving Average",
+    "EWMA":              "EWMA Model",
+    "CenterMA":          "Centered Moving Average",
+    "MovingMedian":      "Centered Moving Median",
+    "ES":                "Exponential Smoothing",
+    "Default":           "Default",
+    "Linear":            "Linear",
+    "Quadratic":         "Quadratic",
+    "Cubic":             "Cubic",
+    "SquareRoot":        "Square Root",
+    "Log":               "Logarithmic",
+    "Exponent":          "Exponential",
+    "Power":             "Power",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Single Moving Average",
+    "SingleES":          "Single Exponential Smoothing",
+    "DoubleMA":          "Double Moving Average",
+    "DoubleES":          "Double Exponential Smoothing",
+    "HoltLinear":        "Holt Exponential Smoothing",
+    "DeseasonIntercept": "Deseasonal intercept",
+    "DeseasonSlope":     "Deseasonal slope",
+    "SeasonalIndex":     "Seasonal Index",
+    "Diff":              "Difference",
+    "DiffTime":          "Diff Time",
+    "AR":                "Autoregressive Model",
+    "ResultTable":       "Regression Result",
+    "ForecastTable":     "Forecast Table",
+    "HoltLevel":         "Level",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Autocorrelation Table",
+    "DiffSeries":        "Difference Series",
+    "RawSeries":         "Raw Series",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1105,7 +1278,9 @@ appStr[2][1] = "../eStatU/index.html";
 appStr[3][1] = "../eStatE/index_en.html";
 appStr[4][1] = "../eHelp/index_en.html";
 appStr[5][1] = "index.html";
-appStr[6][1] = "../eLearning/en/index.html";
+appStr[6][1] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][1] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][1] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][1] = "One of the selected variables does not have data.";
 alertMsg[2][1] = "Select variables for analysis (click column name or select var at the selection box ) one by one. If two variables for raw data are selected, the first one is analysis(or Y) variable and the 2nd one is group (or X) variable. ";
 alertMsg[3][1] = "Missing data on the selected variable.";
@@ -1150,7 +1325,7 @@ alertMsg[47][1] = "Character data in Frequency are not allowed !!   Try again.";
 alertMsg[48][1] = "Character data are not allowed !!   Try again."; // Stem and Leaf Plot
 alertMsg[49][1] = "Number of observations should be less than 100 !!   Try again.";
 alertMsg[50][1] = "Enter numbers in interval start or step.";
-alertMsg[51][1] = "Enter numbers / Nnumber of rows should be the same!!   Try again.";
+alertMsg[51][1] = "Enter numbers / Number of rows should be the same!!   Try again.";
 alertMsg[52][1] = "Enter numbers in category and frequency.";
 alertMsg[53][1] = "Interval size is not the same !!   Try again.";
 alertMsg[54][1] = "X observation is not equal Y observation !!   Try again.";
@@ -1253,7 +1428,7 @@ svgStr[80][1] = "Standardized Residual Q-Q Plot";
 svgStr[81][1] = "Standardized Residual";
 svgStr[82][1] = "Normal Quantile";
 svgStr[83][1] = "Residual Plot";
-svgStr[84][1] = "Predicted Value";
+svgStr[84][1] = "Prediction";
 svgStr[85][1] = "Two way ANOVA";
 svgStr[86][1] = "Confidence Interval Graph";
 svgStr[87][1] = "Residual";
@@ -1319,7 +1494,7 @@ svgStrU[17][1] = "repetition";
 svgStrU[18][1] = "std err";
 svgStrU[19][1] = "Population Mean";
 svgStrU[20][1] = "Confidence Interval";
-svgStrU[21][1] = "Estimation Accuracy";
+svgStrU[21][1] = "Accuracy";
 svgStrU[22][1] = "sample mean";
 svgStrU[23][1] = "[TestStat]";
 svgStrU[24][1] = "Distribution";
@@ -1349,7 +1524,7 @@ svgStrU[47][1] = "Maximum";
 svgStrU[48][1] = "Total";
 svgStrU[49][1] = "Exponential";
 svgStrU[50][1] = "Uniform";
-svgStrU[51][1] = "Estimation Accuracy";
+svgStrU[51][1] = "Accuracy";
 svgStrU[52][1] = "- Create points by click, then eStat finds a regression line.";
 svgStrU[53][1] = "- Move or erase a point. Watch change of the regression line.";
 svgStrU[54][1] = "[Sample Statistics] ";
@@ -1413,11 +1588,31 @@ svgStrU[111][1] = "Move a point using mouse";
 svgStrU[112][1] = "with replacement";
 svgStrU[113][1] = "without replacement"; 
 svgStrU[114][1] = "Line"; 
-
+svgStrU[115][1] = "Percent Change";
+svgStrU[116][1] = "Simple Index";
+svgStrU[117][1] = "Time Lag";
+svgStrU[118][1] = "Difference";
+svgStrU[119][1] = "Autocorrelation";
+svgStrU[120][1] = "Log";
+svgStrU[121][1] = "Square Root";
+svgStrU[122][1] = "Box-Cox";
+svgStrU[123][1] = "Base time"; 
+svgStrU[124][1] = "Centered Moving Average";
+svgStrU[125][1] = "Exponential Smoothing";
+svgStrU[126][1] = "Centered Moving Median";
+svgStrU[127][1] = "Model";
+svgStrU[128][1] = "Moving Average";
+svgStrU[129][1] = "Double Moving Average";
+svgStrU[130][1] = "Holt Double Exponential Smoothing";
+svgStrU[131][1] = "Seasonal Index";
+svgStrU[132][1] = "Holt-Winters Multiplicative Seasonal Model";
+svgStrU[133][1] = "Deseasonal Series";
+svgStrU[134][1] = "Block";
 
 // Japanese
 $.message.ja = {
     "eStat : Stat Education SW": "eStat: 統計教育SW",
+    "Home": "ホームページ",
     "Filename": "ファイル",
     "Selected Variables": "選択変数",
     "Cancel": "キャンセル",
@@ -1446,6 +1641,7 @@ $.message.ja = {
     "maxStem": "** 最大幹数 <= 30 **",
     "Box-Whisker Plot": "箱ひげ図",
     "Scatterplot": "散布図",
+    "ScatterplotMatrix": "散布図行列",
     "Frequency Table": "度数分布表",
     "Basic Statistics": "基礎統計量",
     "Testing Hypothesis &mu;": "推定・検定 &mu;",
@@ -1453,6 +1649,7 @@ $.message.ja = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "母平均の仮説検定 (2集団) &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "母分散の仮説検定 (2集団) &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "分散分析",
+    "Middle School Stat Education": "中学統計教育",
     "High School Stat Education": "高校統計教育",
     "University Stat Education": "大学統計教育",
     "Elem Stat Graph Example": "小中学グラフの例",
@@ -1488,7 +1685,10 @@ $.message.ja = {
     "MeanStd": "平均/標準偏差",
     "DotMeanStd": "ドットグラフ - 平均/標準偏差",
     "95CI": "95%信頼区間",
+    "CorrelationAnalysis": "相関分析",
     "RegressionAnalysis": "回帰分析",
+    "RegressionAnalysis1": "線形回帰分析",
+    "RegressionAnalysis2": "多数線形回帰分析",
     "ANOVA2": "2元分散分析",
     "Regression": "回帰直線",
     "RegressionLine": "回帰直線",
@@ -1510,9 +1710,10 @@ $.message.ja = {
     "Variance": "分散",
     "F test": "F 検定",
     "At least one pair of means is different": "少なくとも一つ以上のペアの平均が異なる",
-    "Main Title : ": "タイトル",
-    "y title : ": "y軸タイトル",
-    "x title : ": "x軸タイトル",
+    "Main Title": "タイトル",
+    "y title": "y軸タイトル",
+    "x title": "x軸タイトル",
+    "yAxis": "Y軸",
     "Modify": "修正",
     "Confirm": "確認",
     "Variable Name": "変数名",
@@ -1521,10 +1722,12 @@ $.message.ja = {
     "* Less than nine value labels allowed.": "* 9個以下の変数名を指定することができます.",
     "Save": "保存",
     "Exit": "閉じる",
-    "eStatU UnivStatEdu": "eStatU - 大学統計教育",
-    "eStatH HighStatEdu": "eStatH - 中高統計教育",
+    "eStatU UnivStatEdu":   "eStatU - 大学統計教育",
+    "eStatH HighStatEdu":   "eStatH - 高校統計教育",
+    "eStatM MiddleStatEdu": "eStatM - 中学統計教育",
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
+    "UnivStat":   "統計データサイエンス",
     "ebookLink":  "電子書籍リンク (English)",
     "Menu": "メニュー",
     "Binomial Experiment": "二項分布シミュレーション",
@@ -1561,9 +1764,10 @@ $.message.ja = {
     "Sample Size": "サンプルサイズ",
     "Confidence Interval": "信頼区間",
     "Confidence Interval Simulation": "信頼区間シミュレーション",
+    "Simulation": "シミュレーション",
     "Confidence Interval Mu": "推定 : &mu;",
     "Mu Confidence Interval": "信頼区間 &mu;",
-    "Confidence Interval Sigma": "推定 : &sigma;&#178;",
+    "Confidence Interval Sigma": "推定 : &sigma;&#178; ",
     "Confidence Interval P": "推定 : p",
     "Estimation Accuracy": "推定精度",
     "Repetition": "反復数",
@@ -1583,7 +1787,9 @@ $.message.ja = {
     "Testing Hypothesis mu12": "仮説検定母平均 (2集団) : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "仮説検定母分散 (2集団) : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "仮説検定母比率 (2集団) : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "仮説検定分散分析",
+    "Testing Hypothesis ANOVA": "1因子分散分析",
+    "Testing Hypothesis ANOVA2": "2因子分散分析",
+    "SameSampleSize": "各セルのサンプル サイズは同じにする必要があります。",
     "Testing Independence": "カテゴリ型独立性検定",
     "CategoryD": "カテゴリ",
     "Category": "カテゴリ",
@@ -1616,7 +1822,7 @@ $.message.ja = {
     "Probability": "確率",
     "Show Probability": "確率表示",
     "Regression Line": "回帰直線",
-    "Erase All": "画面クリア",
+    "Erase All": "データの消去",
     "Add Point": "点追加",
     "Erase Point": "点クリア",
     "Reference Site": "参考サイト",
@@ -1688,7 +1894,7 @@ $.message.ja = {
     "Total": "全体",
     "FriedmanTest": "ウィルコクソンフリードマン檢定",
     "FriedmanTestANOVA": "ウィルコクソンフリードマン檢定",
-    "Block": "Block",
+    "Block": "ブロック",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
@@ -1725,6 +1931,7 @@ $.message.ja = {
     "oneColor":        "色",
     "defaultColor":    "デフォルトの色",
     "RelativeFreq":    "相対度数",
+    "Density":         "密度",
     "MarginOfError":   "誤差の範囲",
     "Permutation":     "順列",
     "PermutationSame": "同じものがある順列",
@@ -1763,7 +1970,79 @@ $.message.ja = {
     "SelectVariable":    "選択変数",
     "RelationOperator":  "関係演算子",
     "SelectValue":       "値",
-    "MissingValue":      "缺測値"
+    "MissingValue":      "缺測値",
+    "option":            "選択",
+    "TimeSeries":        "時系列",
+    "Smoothing":         "平滑",
+    "Filtering":         "フィルタリング",
+    "Transformation":    "変換",
+    "Weight":            "加重",
+    "WeightedIndex":     "加重指数",
+    "BaseTime":          "基準時",
+    "LagTime":           "時差",
+    "Lag":               "時差",
+    "Forecasting":       "予測",
+    "SeasonalModel":     "季節モデル",
+    "HoltWinter":        "ホルト - ウィンターズ乗法季節モデル",
+    "Trend":             "傾向",
+    "Seasonal":          "季節",
+    "Deseasonal":        "非季節時系列",
+    "Nseason":           "季節サイクル",
+    "Irregular":         "非規則",
+    "TrendModel":        "非季節の傾向モデル",
+    "RegressionModel":   "回帰モデル",
+    "ForecastingPeriod": "予測期間",
+    "CreateTable":       "データテーブル",
+    "SaveTable":         "テーブル保存",
+    "MA":                "移動平均",
+    "EWMA":              "指數平滑",
+    "CenterMA":          "中心移動平均",
+    "MovingMedian":      "中心移動中央値",
+    "ES":                "指数平滑",
+    "Default":           "デフォルト",
+    "Linear":            "線形",
+    "Quadratic":         "二次式",
+    "Cubic":             "三茶式",
+    "SquareRoot":        "平方根",
+    "Log":               "ログ",
+    "Exponent":          "指数",
+    "Power":             "べき関数",
+    "BoxCox":            "ボックス - コックス",
+    "SingleMA":          "単純移動平均",
+    "SingleES":          "単純指数平滑",
+    "DoubleMA":          "二重移動平均",
+    "DoubleES":          "二重指数平滑",
+    "HoltLinear":        "ホルト線形傾向",
+    "DeseasonIntercept": "非季節切片",
+    "DeseasonSlope":     "非季節の傾き",
+    "SeasonalIndex":     "季節指数",
+    "Diff":              "差分",
+    "DiffTime":          "差分時間",
+    "AR":                "自己回帰モデル",
+    "ResultTable":       "回帰結果表",
+    "ForecastTable":     "予測表",
+    "HoltLevel":         "水平",
+    "HoltTrend":         "トレン",
+    "AutoCorrTable":     "自己相関表",
+    "DiffSeries":        "差分時系列",
+    "RawSeries":         "原始時系列",
+    "RBD":               "確率化ブロック計画法",
+    "Latin":             "ラテン防撃法",
+    "Chapter01":         "&nbsp;第1章 統計データ科学",
+    "Chapter02":         "&nbsp;第2章 定性データの可視化",
+    "Chapter03":         "&nbsp;第3章 定量データの可視化",
+    "Chapter04":         "&nbsp;第4章 表測度を使用したデータの整理",
+    "Chapter05":         "&nbsp;第5章 確率と確率分布",
+    "Chapter06":         "&nbsp;第6章 サンプル統計量の分布と推定",
+    "Chapter07":         "&nbsp;第7章 ある母集団変数の仮説検定",
+    "Chapter08":         "&nbsp;第8章 2母集団パラメータの仮説検定",
+    "Chapter09":         "&nbsp;第9章 複数の母平均の仮説検定",
+    "Chapter10":         "第10章 非パラメトリック仮説検定",
+    "Chapter11":         "第11章 カテゴリー型データの仮説検定",
+    "Chapter12":         "第12章 相関と回帰分析",
+    "Chapter13":         "第13章 時系列分析",
+    "Distribution":      "確率分布",
+
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -1771,7 +2050,9 @@ appStr[2][2] = "../eStatU/index.html";
 appStr[3][2] = "../eStatE/index_en.html";
 appStr[4][2] = "../eHelp/index_en.html";
 appStr[5][2] = "index.html";
-appStr[6][2] = "../eLearning/en/index.html";
+appStr[6][2] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][2] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][2] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][2] = "選択した変数の中に、欠損値が含まれています!";
 alertMsg[2][2] = "変数の番号をクリックし，シートから変数を選んでください. 変数が2つ以上の場合は，1番目の変数がグループ変数として指定されます. ";
 alertMsg[3][2] = "選択した列に欠損値があります.";
@@ -2079,10 +2360,32 @@ svgStrU[111][2] = "一点をマウスで移動";
 svgStrU[112][2] = "復元抽出";
 svgStrU[113][2] = "非復元抽出"; 
 svgStrU[114][2] = "折れ線"; 
+svgStrU[115][2] = "増減率";
+svgStrU[116][2] = "単純指数";
+svgStrU[117][2] = "視差";
+svgStrU[118][2] = "差分";
+svgStrU[119][2] = "自己相関関数";
+svgStrU[120][2] = "ログ変換";
+svgStrU[121][2] = "平方根変換";
+svgStrU[122][2] = "ボックスからコックスへの変換";
+svgStrU[123][2] = "基準時";
+svgStrU[124][2] = "中心移動平均";
+svgStrU[125][2] = "指数平滑";
+svgStrU[126][2] = "中心移動中央値";
+svgStrU[127][2] = "モデル";
+svgStrU[128][2] = "移動平均";
+svgStrU[129][2] = "二重移動平均";
+svgStrU[130][2] = "Holt二重指数平滑";
+svgStrU[131][2] = "季節指数";
+svgStrU[132][2] = "Holt-Winters乗法季節モデル";
+svgStrU[133][2] = "非季節時系列";
+svgStrU[134][2] = "ブロック";
+
 
 // Chinese
 $.message.zhTW = {
     "eStat : Stat Education SW": "eStat: 統計教育軟體",
+    "Home": "首頁",
     "Filename": "檔名",
     "Selected Variables": "選擇變數",
     "Cancel": "取消",
@@ -2111,6 +2414,7 @@ $.message.zhTW = {
     "maxStem": "** 最大莖數 <= 30 **",
     "Box-Whisker Plot": "盒形圖",
     "Scatterplot": "散佈圖",
+    "ScatterplotMatrix": "散佈圖矩陣",
     "Frequency Table": "次數分佈表",
     "Basic Statistics": "基本統計量",
     "Testing Hypothesis &mu;": "假設檢定 &mu;",
@@ -2118,6 +2422,7 @@ $.message.zhTW = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "假設檢定 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假設檢定 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "變異數分析",
+    "Middle School Stat Education": "中學統計教育",
     "High School Stat Education": "高級中學統計教育",
     "University Stat Education": "大學統計教育",
     "Elem Stat Graph Example": "中小學圖表例題",
@@ -2153,7 +2458,10 @@ $.message.zhTW = {
     "MeanStd": "平均/標準差",
     "DotMeanStd": "點圖 - 平均/標準差",
     "95CI": "95%信頼区間",
+    "CorrelationAnalysis": "相關分析",
     "RegressionAnalysis": "回歸分析",
+    "RegressionAnalysis1": "線形回歸分析",
+    "RegressionAnalysis2": "多数線形回歸分析",
     "ANOVA2": "二因子變異數分析",
     "Regression": "回歸",
     "Frequency Polygon": "次數分佈多邊形",
@@ -2172,9 +2480,10 @@ $.message.zhTW = {
     "Variance": "變異數",
     "F test": "F 檢定",
     "At least one pair of means is different": "至少有一對平均數不相等",
-    "Main Title : ": "主標題",
-    "y title : ": "y軸標題",
-    "x title : ": "x軸標題",
+    "Main Title": "主標題",
+    "y title": "y軸標題",
+    "x title": "x軸標題",
+    "yAxis": "Y軸",
     "Modify": "修正",
     "Confirm": "確認",
     "Variable Name": "變數名",
@@ -2185,8 +2494,10 @@ $.message.zhTW = {
     "Exit": "離開",
     "eStatU UnivStatEdu": "eStatU - 大學統計教育軟體",
     "eStatH HighStatEdu": "eStatH - 中學統計教育軟體",
+    "eStatM MiddleStatEdu": "eStatM - 初中學統計教育軟體",
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "電子書連結 (English)",
     "Menu": "選單",
     "Binomial Experiment": "二項式分佈實驗",
@@ -2223,9 +2534,10 @@ $.message.zhTW = {
     "Sample Size": "樣本數",
     "Confidence Interval": "信頼區間",
     "Confidence Interval Simulation": "信頼區間實驗",
+    "Simulation": "實驗",
     "Confidence Interval Mu": "估計 : &mu;",
     "Mu Confidence Interval": "信頼區間 &mu;",
-    "Confidence Interval Sigma": "估計 : &sigma;&#178;",
+    "Confidence Interval Sigma": "估計 : &sigma;&#178; ",
     "Confidence Interval P": "估計 : p",
     "Estimation Accuracy": "估計準確率",
     "Repetition": "重覆數",
@@ -2245,7 +2557,9 @@ $.message.zhTW = {
     "Testing Hypothesis mu12": "假設檢定 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "假設檢定 : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "假設檢定 : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "假設檢定變異數分析",
+    "Testing Hypothesis ANOVA": "1因子變異數分析",
+    "Testing Hypothesis ANOVA2": "2因子變異數分析",
+    "SameSampleSize": "每個單元格的樣本大小應該相同。",
     "Testing Independence": "分類的獨立性檢定",
     "CategoryD": "分類",
     "Category": "分類",
@@ -2278,7 +2592,7 @@ $.message.zhTW = {
     "Probability": "機率",
     "Show Probability": "顯示機率",
     "Regression Line": "回歸線",
-    "Erase All": "清除營幕",
+    "Erase All": "刪除數據",
     "Add Point": "增加點",
     "Erase Point": "刪除點",
     "Reference Site": "参考站",
@@ -2387,6 +2701,7 @@ $.message.zhTW = {
     "oneColor":        "色",
     "defaultColor":    "默認顏色",
     "RelativeFreq":    "相對頻率",
+    "Density":         "密度",
     "MarginOfError":   "誤差範圍",
     "Permutation":     "排列",
     "PermutationSame": "等次序列",
@@ -2405,8 +2720,8 @@ $.message.zhTW = {
     "Compute":           "新變體計算",
     "SelectIf":          "數據選擇",
     "InfoValueLabel":    "*** 選擇一個變量，輸入變量名稱或變量值名稱，然後單擊運行按鈕。",
-    "InfoSorting":       "*** 最多選擇 3 個要排序的變量，選擇一種排序方法，然後單擊“運行”按鈕。",
-    "InfoCategorize":    "*** 選擇要分類的變量後，輸入區間開始和區間寬度，“檢查類別列表”並單擊“運行”按鈕。",
+    "InfoSorting":       "*** 最多選擇 3 個要排序的變量，選擇一種排序方法，然後單擊運行按鈕。",
+    "InfoCategorize":    "*** 選擇要分類的變量後，輸入區間開始和區間寬度，檢查類別列表並單擊運行按鈕。",
     "InfoRecode":        "*** 選擇一個要重新分配的變量，輸入一個新的隨機值，然後單擊運行按鈕。",
     "InfoRecode2":       "* 您最多可以覆蓋九個值。",
     "InfoCompute":       "*** 使用下面的按鈕創建用於計算新方差的公式，然後單擊運行按鈕。",
@@ -2426,6 +2741,78 @@ $.message.zhTW = {
     "RelationOperator":  "關係運算符",
     "SelectValue":       "價值",
     "MissingValue":      "缺失值",
+    "option":           "選擇",
+    "TimeSeries":       "時間序列",
+    "Smoothing":        "光滑的",
+    "Filtering":        "過濾",
+    "Transformation":   "轉換",
+    "Weight":           "重量",
+    "WeightedIndex":    "加權指數",
+    "BaseTime":         "基準時間",
+    "LagTime":          "視差",
+    "Lag":              "視差",
+    "Forecasting":      "預言",
+    "SeasonalModel":    "季節模型",
+    "HoltWinter":       "Holt-Winters 乘法季節性模型",
+    "Trend":            "趨勢",
+    "Seasonal":         "季節",
+    "Deseasonal":       "非季節性時間序列",
+    "Nseason":          "季節性週期",
+    "Irregular":        "不規律的",
+    "TrendModel":       "非季節性趨勢模型",
+    "RegressionModel":  "回歸模型",
+    "ForecastingPeriod": "預測期",
+    "CreateTable":       "資料表",
+    "SaveTable":        "保存表",
+    "MA":               "移動平均線",
+    "EWMA":              "EWMA Model",
+    "CenterMA":         "中心移動平均線",
+    "MovingMedian":     "中心偏移中位數",
+    "ES":               "指數平滑",
+    "Default":          "默認",
+    "Linear":           "線性的",
+    "Quadratic":        "二次方",
+    "Cubic":            "第三",
+    "SquareRoot":       "平方根",
+    "Log":              "Log",
+    "Exponent":         "指數",
+    "Power":            "冪函數",
+    "BoxCox":           "盒子考克斯",
+    "SingleMA":         "簡單移動平均線",
+    "SingleES":         "簡單指數平滑",
+    "DoubleMA":         "雙移動平均線",
+    "DoubleES":         "雙移指數平滑",
+    "HoltLinear":       "霍爾特線性趨勢",
+    "DeseasonIntercept":"淡季",
+    "DeseasonSlope":    "非季節性梯度",
+    "SeasonalIndex":    "季節性指數",
+    "Diff":              "時間差",
+    "DiffTime":          "時差",
+    "AR":                "自回歸模型",
+    "ResultTable":       "回歸結果表",
+    "ForecastTable":     "預測表",
+    "HoltLevel":         "水平",
+    "HoltTrend":         "趨勢",
+    "AutoCorrTable":     "自相關表",
+    "DiffSeries":        "差分時間序列",
+    "RawSeries":         "原始時間序列",
+    "RBD":               "隨機塊編程",
+    "Latin":             "拉丁文語法n",
+    "Chapter01":         "&nbsp;第1章 統計數據科學",
+    "Chapter02":         "&nbsp;第2章 定性數據可視化",
+    "Chapter03":         "&nbsp;第3章 定量數據可視化",
+    "Chapter04":         "&nbsp;第4章 使用表格/度量組織數據",
+    "Chapter05":         "&nbsp;第5章 概率和概率分佈函數",
+    "Chapter06":         "&nbsp;第6章 樣本統計數據的分佈和估計",
+    "Chapter07":         "&nbsp;第7章 總體參數的假設檢驗",
+    "Chapter08":         "&nbsp;第8章 兩個總體參數的假設檢驗",
+    "Chapter09":         "&nbsp;第9章 多種總體均值的假設檢驗",
+    "Chapter10":         "第10章 非參數假設檢驗",
+    "Chapter11":         "第11章 分類數據的假設檢驗",
+    "Chapter12":         "第12章 相關性和回歸",
+    "Chapter13":         "第13章 時間序列分析",
+    "Distribution":      "概率分佈",
+
 };
 // Chinese 
 appStr[1][3] = "../eStatH/index.html";
@@ -2433,8 +2820,9 @@ appStr[2][3] = "../eStatU/index.html";
 appStr[3][3] = "../eStatE/index_en.html";
 appStr[4][3] = "../eHelp/index_en.html";
 appStr[5][3] = "index.html";
-appStr[6][3] = "../eLearning/en/index.html";
-alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
+appStr[6][3] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][3] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][3] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[2][3] = "逐一選取變數進行分析(選按欄位名稱)。若是同時選取兩變數，則第一個視為群組變數。";
 alertMsg[3][3] = "所選的變數有缺失值。";
 alertMsg[4][3] = "若選取的變數觀察值不同，則無法進行分析。";
@@ -2741,10 +3129,31 @@ svgStrU[111][3] = "用鼠標移動點";
 svgStrU[112][3] = "修復抽樣";
 svgStrU[113][3] = "非復原抽樣"; 
 svgStrU[114][3] = "折線"; 
+svgStrU[115][3] = "% 增加或減少";
+svgStrU[116][3] = "簡單指數";
+svgStrU[117][3] = "視差";
+svgStrU[118][3] = "差異";
+svgStrU[119][3] = "自相關函數";
+svgStrU[120][3] = "對數變換";
+svgStrU[121][3] = "平方根變換";
+svgStrU[122][3] = "Box-Cox 變換";
+svgStrU[123][3] = "基準時間";
+svgStrU[124][3] = "中心移動平均線";
+svgStrU[125][3] = "指數平滑";
+svgStrU[126][3] = "中位數中心偏移";
+svgStrU[127][3] = "模型";
+svgStrU[128][3] = "移動平均線";
+svgStrU[129][3] = "雙移動平均線";
+svgStrU[130][3] = "Holt雙指數平滑";
+svgStrU[131][3] = "季節性指數";
+svgStrU[132][3] = "Holt-Winters 乘法季節性模型";
+svgStrU[133][3] = "非季節性時間序列";
+svgStrU[134][3] = "塊";
 
 // French
 $.message.fr = {
     "eStat : Stat Education SW": "eStat : Stat éducation SW",
+    "Home": "Page d'accueil",
     "Filename": "Fichier",
     "Selected Variables": "Var Sélectionnées",
     "Cancel": "Annuler",
@@ -2773,6 +3182,7 @@ $.message.fr = {
     "maxStem": "** nombre maximum de tiges <= 30 **",
     "Box-Whisker Plot": "Boîte à moustaches",
     "Scatterplot": "Diagramme de dispersion",
+    "ScatterplotMatrix": "Scatter Plot Matrice",
     "Frequency Table": "Tableau des fréquences",
     "Basic Statistics": "Statistiques élémentaires",
     "Testing Hypothesis &mu;": "Test d'hypothèse &mu;",
@@ -2780,6 +3190,7 @@ $.message.fr = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Test d'hypothèse &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analyse de la variance",
+    "Middle School Stat Education": "Enseignement des statistiques au collège",
     "High School Stat Education": "L'enseignement de la statistique au lycée",
     "University Stat Education": "Enseignement de la statistique à l'université",
     "Elem Stat Graph Example": "élémentaire Statistiques graphique Exemple",
@@ -2815,7 +3226,10 @@ $.message.fr = {
     "MeanStd": "Moyenne/Ecart-type",
     "DotMeanStd": "Graphique à points - Moyenne/Ecart-type",
     "95CI": "95% Intervalle de confinace",
+    "CorrelationAnalysis": "Analyse de corrélation",
     "RegressionAnalysis": "Régression Analyse",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Two way ANOVA",
     "Regression": "Régression",
     "Frequency Polygon": "Polygone des fréquences",
@@ -2834,9 +3248,10 @@ $.message.fr = {
     "Variance": "Variance",
     "F test": "F test",
     "At least one pair of means is different": "Au moins deux moyennes sont différentes",
-    "Main Title : ": "Titre principal",
-    "y title : ": "y Titre",
-    "x title : ": "x Titre",
+    "Main Title": "Titre principal",
+    "y title": "y Titre",
+    "x title": "x Titre",
+    "yAxis": "Y Axe",
     "Modify": "Modifiez",
     "Confirm": "Confirmer",
     "Variable Name": "Nom de variable",
@@ -2847,9 +3262,11 @@ $.message.fr = {
     "Exit": "Terminer",
     "eStatU UnivStatEdu": "eStatU - Enseignement de la statistique à l'université SW",
     "eStatH HighStatEdu": "eStatH - L'enseignement de la statistique au lycée SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Primaire / Statistiques du collège SW",
+    "MiddleStat": "Statistiques du collège",
+    "HighStat":   "Statistiques du lycée",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Essai binomialt",
     "Binomial Distribution": "Loi binomiale",
@@ -2885,9 +3302,10 @@ $.message.fr = {
     "Sample Size": "Taille de l'échantillon",
     "Confidence Interval": "Intervalle de confinace",
     "Confidence Interval Simulation": "Essai Intervalle de confinace",
+    "Simulation": "Essai",
     "Confidence Interval Mu": "Estimation : &mu;",
     "Mu Confidence Interval": "Estimation : &mu;",
-    "Confidence Interval Sigma": "Estimation : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimation : &sigma;&#178; ",
     "Confidence Interval P": "Estimation : p",
     "Estimation Accuracy": "Précision de l'estimation",
     "Repetition": "Répétition",
@@ -2907,7 +3325,9 @@ $.message.fr = {
     "Testing Hypothesis mu12": "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Test d'hypothèse &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Test d'hypothèse p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Test d'hypothèse ANOVA",
+    "Testing Hypothesis ANOVA": "1 Facteur ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Facteur ANOVA",
+    "SameSampleSize": "La taille de l'échantillon de chaque cellule doit être la même.",
     "Testing Independence": "Test d'indépendance",
     "CategoryD": "Catégorie",
     "Category": "Catégorie",
@@ -3049,6 +3469,7 @@ $.message.fr = {
     "oneColor":        "couleur",
     "defaultColor":    "couleur par défaut",
     "RelativeFreq":    "Fréquence relative",
+    "Density":         "Densité",
     "MarginOfError":   "Margines błędu",
     "Permutation":     "Permutation",
     "PermutationSame": "la même rangée de colonnes",
@@ -3088,6 +3509,79 @@ $.message.fr = {
     "RelationOperator":  "Relation<br>Opérateur",
     "SelectValue":       "Valeur",
     "MissingValue":      "valeur manquante",
+    "option":            "option",
+    "TimeSeries":        "Des séries chronologiques",                      
+    "Smoothing":         "Lissage",
+    "Filtering":         "Filtration",
+    "Transformation":    "Transformation",
+    "Weight":            "Masse",
+    "PercentChange":     "Modifier le pourcentage",
+    "WeightedIndex":     "Index simplifié",
+    "BaseTime":          "Base de temps",
+    "LagTime":           "Temps de latence",
+    "Lag":               "Décalage horaire",
+    "Forecasting":       "Prévision",
+    "SeasonalModel":     "Modèle saisonnier",
+    "HoltWinter":        "Modèle saisonnier Holt-Winters",
+    "Trend":             "Tendance",
+    "Seasonal":          "Saisonnier",
+    "Deseasonal":        "Série désaisonnalisée",
+    "Nseason":           "Heures en saison",
+    "Irregular":         "Irrégulier",
+    "TrendModel":        "Modèle de tendance sur la désaisonnalisation",
+    "RegressionModel":   "Modèle de régression",
+    "ForecastingPeriod": "Période de prévision",
+    "CreateTable":       "Tableau de données",
+    "SaveTable":         "Enregistrer le tableau",
+    "MA":                "Moyenne mobile",
+    "EWMA":              "Modèle EWMA",
+    "CenterMA":          "Moyenne mobile centrée",
+    "MovingMedian":      " Médiane mobile centrée ",
+    "ES":                "Lissage exponentiel",
+    "Default":           "Défaut",
+    "Linear":            "Linéaire",
+    "Quadratic":         "Quadratique",
+    "Cubic":             "Cubique",
+    "SquareRoot":        "Racine carrée",
+    "Log":               "Logarithmique",
+    "Exponent":          "Exponentiel",
+    "Power":             "Pouvoir",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Moyenne mobile unique",
+    "SingleES":          "Lissage exponentiel simple",
+    "DoubleMA":          "Double moyenne mobile",
+    "DoubleES":          "Lissage double exponentiel",
+    "HoltLinear":        "Lissage exponentiel Holt",
+    "DeseasonIntercept": "Interception désaisonnalisée",
+    "DeseasonSlope":     "Pente désaisonnalisée",
+    "SeasonalIndex":     "Index saisonnier",
+    "Diff":              "Différence",
+    "DiffTime":          "Temps Différent",
+    "AR":                "Modèle autorégressif",
+    "ResultTable":       "Résultat de la régression",
+    "ForecastTable":     "Tableau de prévisions",
+    "HoltLevel":         "Niveau",
+    "HoltTrend":         "Tendance",
+    "AutoCorrTable":     "Table d'autocorrélation",
+    "DiffSeries":        "Série Différence",
+    "RawSeries":         "Série brute",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -3095,7 +3589,9 @@ appStr[2][4] = "../eStatU/index.html";
 appStr[3][4] = "../eStatE/index_en.html";
 appStr[4][4] = "../eHelp/index_en.html";
 appStr[5][4] = "index.html";
-appStr[6][4] = "../eLearning/en/index.html";
+appStr[6][4] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][4] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][4] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][4] = "Une des variables sélectionnées ne contient pas de données.";
 alertMsg[2][4] = "Selectionnez une par une les variables à analyser en cliquant sur chaque nom de colonne. Pour deux variables, la premiere est la variable de groupe. ";
 alertMsg[3][4] = "Données manquantes dans la variable sélectionnée.";
@@ -3403,10 +3899,32 @@ svgStrU[111][4] = "Déplacer un point avec la souris";
 svgStrU[112][4] = "Récupération";
 svgStrU[113][4] = "Extraction non restaurée"; 
 svgStrU[114][4] = "Courbe"; 
+svgStrU[115][4] = "Pourcentage de changement" ;
+svgStrU[116][4] = "Index simple" ;
+svgStrU[117][4] = "Décalage" ;
+svgStrU[118][4] = "Différence" ;
+svgStrU[119][4] = "Autocorrélation" ;
+svgStrU[120][4] = "Journal" ;
+svgStrU[121][4] = "Racine carrée" ;
+svgStrU[122][4] = "Box-Cox" ;
+svgStrU[123][4] = "Temps de base" ;
+svgStrU[124][4] = "Moyenne mobile centrée" ;
+svgStrU[125][4] = "Lissage exponentiel" ;
+svgStrU[126][4] = "Médiane mobile centrée" ;
+svgStrU[127][4] = "Modèle" ;
+svgStrU[128][4] = "Moyenne mobile" ;
+svgStrU[129][4] = "Moyenne mobile double" ;
+svgStrU[130][4] = "Lissage exponentiel double Holt" ;
+svgStrU[131][4] = "Index saisonnier" ;
+svgStrU[132][4] = "Modèle saisonnier multiplicatif de Holt-Winters" ;
+svgStrU[133][4] = "Séries désaisonnalisées" ;
+svgStrU[134][4] = "Bloc";
+
 
 // German
 $.message.de = {
     "eStat : Stat Education SW": "eStat : Statistikausbildung SW",
+    "Home": "Startseite",
     "Filename": "Datei",
     "Selected Variables": "Wähle Variablen aus",
     "Cancel": "Entfernen",
@@ -3435,6 +3953,7 @@ $.message.de = {
     "maxStem": "** maximale Anzahl von Stamm <= 30 **",
     "Box-Whisker Plot": "Box-Whisker-Plot",
     "Scatterplot": "Streudiagramm",
+    "ScatterplotMatrix": "Streudiagramm-Matrix",
     "Frequency Table": "Häufigkeitstabelle",
     "Basic Statistics": "Basisstatistik",
     "Testing Hypothesis &mu;": "Hypothesen testen  &mu;",
@@ -3442,6 +3961,7 @@ $.message.de = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hypothesen testen  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hypothesen testen &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Varianzanalyse",
+    "Middle School Stat Education": "Statistische Bildung in der Mittelstufe",
     "High School Stat Education": "Statistikausbildung an High Schools",
     "University Stat Education": "Statistikausausbildung an Universitäten",
     "Elem Stat Graph Example": "Diagramm Beispiel",
@@ -3477,7 +3997,10 @@ $.message.de = {
     "MeanStd": "Mittelwert/Standardabweichung",
     "DotMeanStd": "eindimensionales Streudiagramm - Mittelwert/Standardabweichung",
     "95CI": "95% Konfidenzintervall",
+    "CorrelationAnalysis": "Korrelationsanalyse",
     "RegressionAnalysis": "Regressionanalyse",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Zweiweg ANOVA",
     "Regression": "Regression",
     "Frequency Polygon": "Häufigkeitspolygon",
@@ -3496,9 +4019,10 @@ $.message.de = {
     "Variance": "Varianz",
     "F test": "F test",
     "At least one pair of means is different": "mindestens ein Paar von Mittelwerten ist verschieden",
-    "Main Title : ": "Hauptüberschrift",
-    "y title : ": "y titel",
-    "x title : ": "x titel",
+    "Main Title": "Hauptüberschrift",
+    "y title": "y titel",
+    "x title": "x titel",
+    "yAxis": "Y-Achse",
     "Modify": "Verändern",
     "Confirm": "Bestätige",
     "Variable Name": "Variablenname",
@@ -3509,9 +4033,11 @@ $.message.de = {
     "Exit": "Exit",
     "eStatU UnivStatEdu": "eStatU - Statistikausausbildung an Universitäten",
     "eStatH HighStatEdu": "eStatH - Statistikausbildung an High Schools",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Grundschule / Statistik Mittelschule SW",
+    "MiddleStat": "Statistik Mittelschule",
+    "HighStat":   "Statistik des Gymnasiums",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menü",
     "Binomial Experiment": "Binomialexperiment",
     "Binomial Distribution": "Binomialverteilung",
@@ -3547,9 +4073,10 @@ $.message.de = {
     "Sample Size": "Stichprobenumfang",
     "Confidence Interval": "Konfidenzintervall",
     "Confidence Interval Simulation": "Konfidenzintervallexperiment",
+    "Simulation": "Experiment",
     "Confidence Interval Mu": "Einschätzung : &mu;",
     "Mu Confidence Interval": "Einschätzung : &mu;",
-    "Confidence Interval Sigma": "Einschätzung : &sigma;&#178;",
+    "Confidence Interval Sigma": "Einschätzung : &sigma;&#178; ",
     "Confidence Interval P": "Einschätzung : p",
     "Estimation Accuracy": "Schätzgenauigkeit",
     "Repetition": "Wiederholung",
@@ -3569,7 +4096,9 @@ $.message.de = {
     "Testing Hypothesis mu12": "Hypothesen testen &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Hypothesen testen  &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Hypothesen testen  p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Hypothesen testen ANOVA",
+    "Testing Hypothesis ANOVA": "1 Faktor ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Faktor ANOVA",
+    "SameSampleSize": "Die Stichprobengröße jeder Zelle sollte gleich sein.",
     "Testing Independence": "Hypothesen testen auf Unabhängigkeit",
     "CategoryD": "Kategorie",
     "Category": "Kategorie",
@@ -3708,6 +4237,7 @@ $.message.de = {
     "oneColor":        "Farbe",
     "defaultColor":    "Standardfarbe",
     "RelativeFreq":    "Relative Frequenz",
+    "Density":         "Dichte",
     "MarginOfError":   "Fehlermarge",
     "Permutation":     "Permutation",
     "PermutationSame": "Die gleiche Reihenfolge.",
@@ -3747,6 +4277,79 @@ $.message.de = {
     "RelationOperator":  "Beziehung<br>Betreiber",
     "SelectValue":       "Wert",
     "MissingValue":      "fehlender Wert",
+    "option":            "Möglichkeit",                  
+    "TimeSeries":        "Zeitfolgen",
+    "Smoothing":         "Glättung",
+    "Filtering":         "Filtern",
+    "Transformation":    "Transformation",
+    "Weight":            "Gewicht",
+    "PercentChange":     "Prozent ändern",
+    "WeightedIndex":     "Einfacher Index",
+    "BaseTime":          "Basiszeit",
+    "LagTime":           "Verzögerungszeit",
+    "Lag":               "Zeitverzögerung",
+    "Forecasting":       "Prognose",
+    "SeasonalModel":     "Saisonmodell",
+    "HoltWinter":        "Holt-Winters Saisonmodell",
+    "Trend":             "Trend",
+    "Seasonal":          "Saisonal",
+    "Deseasonal":        "Saisonale Serie",
+    "Nseason":           "Zeiten in der Saison",
+    "Irregular":         "Irregulär",
+    "TrendModel":        "Trendmodell auf Deseasonal",
+    "RegressionModel":   "Regressionsmodell",
+    "ForecastingPeriod": "Prognosezeitraum",
+    "CreateTable":       "Datentabelle",
+    "SaveTable":         "Tabelle speichern",
+    "MA":                "Gleitender Durchschnitt",
+    "EWMA":              "EWMA-Modell",
+    "CenterMA":          "Zentrierter gleitender Durchschnitt",
+    "MovingMedian":      "Zentrierter gleitender Median",
+    "ES":                "Exponentielle Glättung",
+    "Default":           "Standard",
+    "Linear":            "Linear",
+    "Quadratic":         "Quadratisch",
+    "Cubic":             "kubisch",
+    "SquareRoot":        "Quadratwurzel",
+    "Log":               "Logarithmisch",
+    "Exponent":          "Exponentiell",
+    "Power":             "Leistung",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Einfacher gleitender Durchschnitt",
+    "SingleES":          "Einzelne exponentielle Glättung",
+    "DoubleMA":          "Doppelter gleitender Durchschnitt",
+    "DoubleES":          "Doppelte exponentielle Glättung",
+    "HoltLinear":        "Holt Exponentielle Glättung",
+    "DeseasonIntercept": "Saisonales Abfangen",
+    "DeseasonSlope":     "Nebensaison",
+    "SeasonalIndex":     "Saisonindex",
+    "Diff":              "Unterschied",
+    "DiffTime":          "Diff-Zeit",
+    "AR":                "Autoregressives Modell",
+    "ResultTable":       "Regressionsergebnis",
+    "ForecastTable":     "Prognosetabelle",
+    "HoltLevel":         "Stufe",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Autokorrelationstabelle",
+    "DiffSeries":        "Unterschiedsserie",
+    "RawSeries":         "Raw-Serie",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // German 
 appStr[1][5] = "../eStatH/index.html";
@@ -3754,7 +4357,9 @@ appStr[2][5] = "../eStatU/index.html";
 appStr[3][5] = "../eStatE/index_en.html";
 appStr[4][5] = "../eHelp/index_en.html";
 appStr[5][5] = "index.html";
-appStr[6][5] = "../eLearning/en/index.html";
+appStr[6][5] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][5] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][5] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][5] = "Zu einer der ausgewählten Variablen fehlen Daten.";
 alertMsg[2][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.  If two variables, first one is group variable. ";
 alertMsg[3][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.";
@@ -4062,10 +4667,31 @@ svgStrU[111][5] = "Bewegen Sie einen Punkt mit der Maus";
 svgStrU[112][5] = "Wiederherstellungs-Extraktion";
 svgStrU[113][5] = "ohne Ersatz"; 
 svgStrU[114][5] = "Linen"; 
+svgStrU[115][5] = "Prozentänderung";
+svgStrU[116][5] = "Einfacher Index";
+svgStrU[117][5] = "Zeitverzögerung";
+svgStrU[118][5] = "Unterschied";
+svgStrU[119][5] = "Autokorrelation";
+svgStrU[120][5] = "Protokoll";
+svgStrU[121][5] = "Quadratwurzel";
+svgStrU[122][5] = "Box-Cox";
+svgStrU[123][5] = "Basiszeit";
+svgStrU[124][5] = "Zentrierter gleitender Durchschnitt";
+svgStrU[125][5] = "Exponentielle Glättung";
+svgStrU[126][5] = "Zentrierter beweglicher Median";
+svgStrU[127][5] = "Modell";
+svgStrU[128][5] = "Gleitender Durchschnitt";
+svgStrU[129][5] = "Doppelter gleitender Durchschnitt";
+svgStrU[130][5] = "Holt doppelte exponentielle Glättung";
+svgStrU[131][5] = "Saisonaler Index";
+svgStrU[132][5] = "Multiplikatives Saisonmodell von Holt-Winters";
+svgStrU[133][5] = "Seasonal Series";
+svgStrU[134][5] = "Block";
 
 // Spanish
 $.message.es = {
     "eStat : Stat Education SW": "eStat : Software para Educación Estadística",
+    "Home": "Página de inicio",
     "Filename": "Archivo",
     "Selected Variables": "Var seleccionadas",
     "Cancel": "Cancelar",
@@ -4094,6 +4720,7 @@ $.message.es = {
     "maxStem": "** número máximo de tallo <= 30 **",
     "Box-Whisker Plot": "Box-Whisker Plot",
     "Scatterplot": "Diagrama de dispersión",
+    "ScatterplotMatrix": "Matriz de trazado de dispersión",
     "Frequency Table": "Tabla de frecuencias",
     "Basic Statistics": "Estadística básica",
     "Testing Hypothesis &mu;": "Prueba de hipótesis &mu;",
@@ -4101,6 +4728,7 @@ $.message.es = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Prueba de hipótesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Prueba de hipótesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Análisis de Varianza",
+    "Middle School Stat Education": "Educación estadística de la escuela secundaria",
     "High School Stat Education": "Educación Estadística de Bachillerato",
     "University Stat Education": "Educación Estadística Universitaria",
     "Elem Stat Graph Example": "Estadística Gráfico Ejemplo",
@@ -4136,7 +4764,10 @@ $.message.es = {
     "MeanStd": "Media/Desviación estándar",
     "DotMeanStd": "Gráfico de puntos - Mean/StdDev",
     "95CI": "95% Nivel de confianza",
+    "CorrelationAnalysis": "Análisis de correlación",
     "RegressionAnalysis": "Regresión Análisis",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Bidireccional ANOVA",
     "Regression": "Regresión",
     "Frequency Polygon": "Polígono de frecuencias",
@@ -4155,9 +4786,10 @@ $.message.es = {
     "Variance": "Varianza",
     "F test": "Prueba F",
     "At least one pair of means is different": "Al menos un par de medias es diferente",
-    "Main Title : ": "Titulo principal",
-    "y title : ": "y titulo",
-    "x title : ": "x titulo",
+    "Main Title": "Titulo principal",
+    "y title": "y titulo",
+    "x title": "x titulo",
+    "yAxis": "Y Eje",
     "Modify": "Modificar",
     "Confirm": "Confirmar",
     "Variable Name": "Nombre de la Variable",
@@ -4168,9 +4800,11 @@ $.message.es = {
     "Exit": "Salir",
     "eStatU UnivStatEdu": "eStatU - Educación Estadística Universitaria SW",
     "eStatH HighStatEdu": "eStatH - Educación Estadística de Bachillerato SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - elemental / Estadísticas de la escuela intermedia SW",
+    "MiddleStat": "Estadísticas de la escuela intermedia",
+    "HighStat":   "Estadísticas de la escuela secundaria",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menú",
     "Binomial Experiment": "Experimento Binomial",
     "Binomial Distribution": "Distribución Binomial",
@@ -4206,9 +4840,10 @@ $.message.es = {
     "Sample Size": "Tamaño muestral",
     "Confidence Interval": "Nivel de confianza",
     "Confidence Interval Simulation": "Experimento Nivel de confianza",
+    "Simulation": "Experimento",
     "Confidence Interval Mu": "Estimación : &mu;",
     "Mu Confidence Interval": "Estimación : &mu;",
-    "Confidence Interval Sigma": "Estimación : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimación : &sigma;&#178; ",
     "Confidence Interval P": "Estimación : p",
     "Estimation Accuracy": "Precisión de la estimación",
     "Repetition": "Repetición",
@@ -4228,7 +4863,9 @@ $.message.es = {
     "Testing Hypothesis mu12": "Prueba de hipótesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Prueba de hipótesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Prueba de hipótesis p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Prueba de hipótesis ANOVA",
+    "Testing Hypothesis ANOVA": "1 Factor ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Factor ANOVA",
+    "SameSampleSize": "El tamaño de la muestra de cada celda debe ser el mismo.",
     "Testing Independence": "Prueba de independencia",
     "CategoryD": "Categoria",
     "Category": "Categoría",
@@ -4370,6 +5007,7 @@ $.message.es = {
     "oneColor":        "color",
     "defaultColor":    "color predeterminado",
     "RelativeFreq":    "Frecuencia relativa",
+    "Density":         "Densidad",
     "MarginOfError":   "Margen de error",
     "Permutation":     "Permutación",
     "PermutationSame": "Permutación con lo mismo",
@@ -4409,6 +5047,79 @@ $.message.es = {
     "RelationOperator":  "Relación <br> operador",
     "SelectValue":       "Valor",
     "MissingValue":      "valor que falta",
+    "option":            "opción",                                      
+    "TimeSeries":        "Series de tiempo",
+    "Smoothing":         "Suavizado",
+    "Filtering":         "Filtración",
+    "Transformation":    "Transformación",
+    "Weight":            "Peso",
+    "PercentChange":     "Cambiar porcentaje",
+    "WeightedIndex":     "Índice simple",
+    "BaseTime":          "Tiempo básico",
+    "LagTime":           "Tiempo de retraso",
+    "Lag":               "Lapso de tiempo",
+    "Forecasting":       "Pronóstico",
+    "SeasonalModel":     "Modelo de temporada",
+    "HoltWinter":        "Modelo estacional de Holt-Winters",
+    "Trend":             "Tendencia",
+    "Seasonal":          "Estacional",
+    "Deseasonal":        "Serie de temporada",
+    "Nseason":           "Tiempos en temporada",
+    "Irregular":         "Irregular",
+    "TrendModel":        "Modelo de tendencia en desestacionalizado",
+    "RegressionModel":   "Modelo de regresión",
+    "ForecastingPeriod": "Período de previsión",
+    "CreateTable":       "Tabla de datos",
+    "SaveTable":         "Guardar tabla",
+    "MA":                "Media móvil",
+    "EWMA":              "Modelo EWMA",
+    "CenterMA":          "Promedio móvil centrado",
+    "MovingMedian":      "Mediana Móvil Centrada",
+    "ES":                "Suavizado exponencial",
+    "Default":           "Defecto",
+    "Linear":            "Lineal",
+    "Quadratic":         "Cuadrático",
+    "Cubic":             "Cúbico",
+    "SquareRoot":        "Raíz cuadrada",
+    "Log":               "Logarítmico",
+    "Exponent":          "Exponencial",
+    "Power":             "Energía",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Promedio móvil único",
+    "SingleES":          "Suavizado exponencial único",
+    "DoubleMA":          "Promedio móvil doble",
+    "DoubleES":          "Suavizado exponencial doble",
+    "HoltLinear":        "Suavizado exponencial de Holt",
+    "DeseasonIntercept": "Intercepción estacional",
+    "DeseasonSlope":     "Pendiente estacional",
+    "SeasonalIndex":     "Índice estacional",
+    "Diff":              "Diferencia",
+    "DiffTime":          "Tiempo de diferencia",
+    "AR":                "Modelo autorregresivo",
+    "ResultTable":       "Resultado de regresión",
+    "ForecastTable":     "Tabla de pronóstico",
+    "HoltLevel":         "Nivel",
+    "HoltTrend":         "Tendencia",
+    "AutoCorrTable":     "Tabla de autocorrelación",
+    "DiffSeries":        "Serie de diferencias",
+    "RawSeries":         "Serie cruda",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -4416,7 +5127,9 @@ appStr[2][6] = "../eStatU/index.html";
 appStr[3][6] = "../eStatE/index_en.html";
 appStr[4][6] = "../eHelp/index_en.html";
 appStr[5][6] = "index.html";
-appStr[6][6] = "../eLearning/en/index.html";
+appStr[6][6] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][6] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][6] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][6] = "Una de las variables seleccionadas no contiene datos";
 alertMsg[2][6] = "Seleccionar una a una las  variables para el análisis (clicando los nombres de las columnas). Si hay dos variables, la primera es la variable grupo";
 alertMsg[3][6] = "Datos faltantes en la variable seleccionada";
@@ -4724,10 +5437,31 @@ svgStrU[111][6] = "Mueve un punto con el mouse";
 svgStrU[112][6] = "desmovilización";
 svgStrU[113][6] = "sin reemplazo"; 
 svgStrU[114][6] = "Líneas"; 
+svgStrU[115][6] = "Cambio porcentual";
+svgStrU[116][6] = "Índice simple";
+svgStrU[117][6] = "Lapso de tiempo";
+svgStrU[118][6] = "Diferencia";
+svgStrU[119][6] = "Autocorrelación";
+svgStrU[120][6] = "Registro";
+svgStrU[121][6] = "Raíz cuadrada";
+svgStrU[122][6] = "Box-Cox";
+svgStrU[123][6] = "Hora base";
+svgStrU[124][6] = "Promedio móvil centrado";
+svgStrU[125][6] = "Suavizado exponencial";
+svgStrU[126][6] = "Mediana móvil centrada";
+svgStrU[127][6] = "Modelo";
+svgStrU[128][6] = "Promedio móvil";
+svgStrU[129][6] = "Promedio móvil doble";
+svgStrU[130][6] = "Suavizado exponencial doble Holt";
+svgStrU[131][6] = "Índice estacional";
+svgStrU[132][6] = "Modelo estacional multiplicativo de Holt-Winters";
+svgStrU[133][6] = "Serie estacional";
+svgStrU[134][6] = "Bloquear";
 
 // Vietnamese
 $.message.vi = {
     "eStat : Stat Education SW": "eStat : Phần mềm thống kê giáo dục",
+    "Home": "Trang chủ",
     "Filename": "Tên tệp",
     "Selected Variables": "Biến đã chọn",
     "Cancel": "Thoát",
@@ -4756,6 +5490,7 @@ $.message.vi = {
     "maxStem": "** số lượng thân cây tối đa <= 30 **",
     "Box-Whisker Plot": "Biểu đồ Box-Whisker",
     "Scatterplot": "Biểu đồ phân tán",
+    "ScatterplotMatrix": "Ma trận đồ thị phân tán",
     "Frequency Table": "Bảng tần số",
     "Basic Statistics": "Thống kê cơ bản",
     "Testing Hypothesis &mu;": "Kiểm định giả thuyết &mu;",
@@ -4763,6 +5498,7 @@ $.message.vi = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Kiểm định giả thuyết &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Kiểm định giả thuyết &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Phân tích ANOVA",
+    "Middle School Stat Education": "Giáo dục thống kê trung học cơ sở",
     "High School Stat Education": "Thống kê trung học",
     "University Stat Education": "Thống kê Đại học",
     "Elem Stat Graph Example": "biểu đồ Ví dụ",
@@ -4799,7 +5535,10 @@ $.message.vi = {
     "MeanStd": "Trung bình/Độ lệch chuẩn",
     "DotMeanStd": "Biểu đồ điểm - Trung bình/Độ lệch chuẩn",
     "95CI": "Khoảng tin cậy 95%",
+    "CorrelationAnalysis": "Phân tích tương quan",
     "RegressionAnalysis": "Phân tích hồi quy",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "ANOVA 2",
     "Frequency Polygon": "Miền tần số",
     "Execute New Interval": "Thực thi khoảng mới",
@@ -4817,9 +5556,10 @@ $.message.vi = {
     "Variance": "phương sai",
     "F test": "Kiểm định F",
     "At least one pair of means is different": "Có ít nhất một cặp trung bình khác nhau",
-    "Main Title : ": "Tiêu đề chính",
-    "y title : ": "Tên y",
-    "x title : ": "Tên x",
+    "Main Title": "Tiêu đề chính",
+    "y title": "Tên y",
+    "x title": "Tên x",
+    "yAxis": "Y trục",
     "Modify": "Chỉnh sửa",
     "Confirm": "Xác nhận",
     "Variable Name": "Tên biến",
@@ -4830,9 +5570,11 @@ $.message.vi = {
     "Exit": "Thoát",
     "eStatU UnivStatEdu": "eStatU - T/kê Đại học",
     "eStatH HighStatEdu": "eStatH - T/kê Trung học",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - tiểu học / Trường trung học thống kê SW",
+    "MiddleStat": "Trường trung học thống kê",
+    "HighStat":   "thống kê trường trung học",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Thí nghiệm nhị thức",
     "Binomial Distribution": "Phân phối nhị thức",
@@ -4868,9 +5610,10 @@ $.message.vi = {
     "Sample Size": "Cỡ mẫu",
     "Confidence Interval": "Khoảng tin cậy",
     "Confidence Interval Simulation": "Thí Khoảng tin cậy",
+    "Simulation": "Thi",
     "Confidence Interval Mu": "Ước lượng : &mu;",
     "Mu Confidence Interval": "Ước lượng : &mu;",
-    "Confidence Interval Sigma": "Ước lượng : &sigma;&#178;",
+    "Confidence Interval Sigma": "Ước lượng : &sigma;&#178; ",
     "Confidence Interval P": "Ước lượng : p",
     "Estimation Accuracy": "Độ chính xác của ước lượng",
     "Repetition": "Sự lặp lại",
@@ -4890,7 +5633,9 @@ $.message.vi = {
     "Testing Hypothesis mu12": "Kiểm định giả thuyết &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Kiểm định giả thuyết &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Kiểm định giả thuyết p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Kiểm định ANOVA",
+    "Testing Hypothesis ANOVA": "1 Hệ số ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Hệ số ANOVA",
+    "SameSampleSize": "Kích thước mẫu của mỗi ô phải giống nhau.",
     "Testing Independence": "Kiểm định độc lập",
     "CategoryD": "thể loại",
     "Category": "thể loại",
@@ -5028,6 +5773,7 @@ $.message.vi = {
     "oneColor":        "màu đơn",
     "defaultColor":    "màu mặc định",
     "RelativeFreq":    "Tần số tương đối",
+    "Density":         "Tỉ trọng",
     "MarginOfError":   "Biên độ của lỗi",
     "Permutation":     "Hoán vị",
     "PermutationSame": "Hoán vị với cùng một thứ",
@@ -5067,6 +5813,79 @@ $.message.vi = {
     "RelationOperator":  "Mối quan hệ <br> Nhà điều hành",
     "SelectValue":       "Giá trị",
     "MissingValue":      "thiếu giá trị",
+    "option":            "lựa chọn",                                  
+    "TimeSeries":        "Chuỗi thời gian",
+    "Smoothing":         "Làm mịn",
+    "Filtering":         "Lọc",
+    "Transformation":    "Chuyển đổi",
+    "Weight":            "Cân nặng",
+    "PercentChange":     "Phần trăm thay đổi",
+    "WeightedIndex":     "Chỉ mục đơn giản",
+    "BaseTime":          "Giờ gốc",
+    "LagTime":           "Thời gian trễ",
+    "Lag":               "Thời gian trễ",
+    "Forecasting":       "Dự báo",
+    "SeasonalModel":     "Mô hình theo mùa",
+    "HoltWinter":        "Mô hình theo mùa Holt-Winters",
+    "Trend":             "Xu hướng",
+    "Seasonal":          "Theo mùa",
+    "Deseasonal":        "Deseasonal Series",
+    "Nseason":           "Times in Season",
+    "Irregular":         "Không thường xuyên",
+    "TrendModel":        "Mô hình xu hướng trên Deseasonal",
+    "RegressionModel":   "Mô hình hồi quy",
+    "ForecastingPeriod": "Khoảng thời gian dự báo",
+    "CreateTable":       "Bảng dữ liệu",
+    "SaveTable":         "Lưu bảng",
+    "MA":                "Đường trung bình động",
+    "EWMA":              "Mô hình EWMA",
+    "CenterMA":          "Đường trung bình động ở giữa",
+    "MovingMedian":      "Trung vị Di chuyển Căn giữa",
+    "ES":                "Làm mịn theo cấp số nhân",
+    "Default":           "Mặc định",
+    "Linear":            "Tuyến tính",
+    "Quadratic":         "Bậc hai",
+    "Cubic":             "Khối",
+    "SquareRoot":        "Căn bậc hai",
+    "Log":               "Lôgarit",
+    "Exponent":          "Số mũ",
+    "Power":             "Quyền lực",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Đường trung bình trượt đơn",
+    "SingleES":          "Làm trơn theo cấp số nhân đơn",
+    "DoubleMA":          "Đường trung bình động kép",
+    "DoubleES":          "Làm mịn theo cấp số nhân kép",
+    "HoltLinear":        "Holt Exponential Smoothing",
+    "DeseasonIntercept": "Đánh chặn trái chiều",
+    "DeseasonSlope":     "Độ dốc trái mùa",
+    "SeasonalIndex":     "Chỉ số theo mùa",
+    "Diff":              "Sự khác biệt",
+    "DiffTime":          "Thời gian chênh lệch",
+    "AR":                "Mô hình tự phục hồi",
+    "ResultTable":       "Kết quả hồi quy",
+    "ForecastTable":     "Bảng Dự báo",
+    "HoltLevel":         "Cấp độ",
+    "HoltTrend":         "Xu hướng",
+    "AutoCorrTable":     "Bảng tự tương quan",
+    "DiffSeries":        "Chuỗi sự khác biệt",
+    "RawSeries":         "Dòng thô",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -5074,7 +5893,9 @@ appStr[2][7] = "../eStatU/index.html";
 appStr[3][7] = "../eStatE/index_en.html";
 appStr[4][7] = "../eHelp/index_en.html";
 appStr[5][7] = "index.html";
-appStr[6][7] = "../eLearning/en/index.html";
+appStr[6][7] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][7] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][7] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][7] = "Đã chọn biến không chứa dữ liệu";
 alertMsg[2][7] = "Chọn từng biến để phân tích (click tên cột). Nếu chọn 2 biến, biến đầu tiên là biến định tính";
 alertMsg[3][7] = "Biến đã chọn thiếu số liệu";
@@ -5382,10 +6203,31 @@ svgStrU[111][7] = "Di chuyển một điểm bằng chuột";
 svgStrU[112][7] = "Khai thác phục hồi";
 svgStrU[113][7] = "không có vật thay thế"; 
 svgStrU[114][7] = "đường"; 
+svgStrU[115][7] = "Phần trăm thay đổi";
+svgStrU[116][7] = "Chỉ mục đơn giản";
+svgStrU[117][7] = "Trễ thời gian";
+svgStrU[118][7] = "Chênh lệch";
+svgStrU[119][7] = "Tự tương quan";
+svgStrU[120][7] = "Nhật ký";
+svgStrU[121][7] = "Căn bậc hai";
+svgStrU[122][7] = "Hộp-Cox";
+svgStrU[123][7] = "Giờ gốc";
+svgStrU[124][7] = "Đường trung bình động ở giữa";
+svgStrU[125][7] = "Làm trơn theo cấp số nhân";
+svgStrU[126][7] = "Trung vị Di chuyển Căn giữa";
+svgStrU[127][7] = "Kiểu máy";
+svgStrU[128][7] = "Trung bình động";
+svgStrU[129][7] = "Trung bình động kép";
+svgStrU[130][7] = "Holt Double Exponential Smoothing";
+svgStrU[131][7] = "Chỉ số theo mùa";
+svgStrU[132][7] = "Mô hình theo mùa đa số Holt-Winters";
+svgStrU[133][7] = "Dòng Deseasonal";
+svgStrU[134][7] = "Khối";
 
 // Indonesian
 $.message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
+    "Home": "Halaman Beranda",
     "Filename": "File",
     "Selected Variables": "Variabel terpilih",
     "Cancel": "Batal",
@@ -5414,6 +6256,7 @@ $.message.id = {
     "maxStem": "** jumlah batang maksimal <= 30 **",
     "Box-Whisker Plot": "Diagram Kotak Garis",
     "Scatterplot": "Diagram Pencar",
+    "ScatterplotMatrix": "Matriks Diagram Pencar",
     "Frequency Table": "Tabel Frekuensi",
     "Basic Statistics": "Statistika Dasar",
     "Testing Hypothesis &mu;": "Pengujian Hipotesis &mu;",
@@ -5421,6 +6264,7 @@ $.message.id = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": " Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": " Pengujian Hipotesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analisis Varians",
+    "Middle School Stat Education": "Pendidikan Statistik Sekolah Menengah",
     "High School Stat Education": "Pelajaran Statistika tingkat Sekolah Menengah Atas",
     "University Stat Education": "Pelajaran Statistika tingkat Universitas",
     "Elem Stat Graph Example": "Contoh Diagram Statistik Dasar",
@@ -5456,7 +6300,10 @@ $.message.id = {
     "MeanStd": "Rata-rata/Standar Deviasi",
     "DotMeanStd": "Diagram Dot - Rata-rata/Standar Deviasi",
     "95CI": "95% Selang Kepercayaan",
+    "CorrelationAnalysis": "Analisis korelasi",
     "RegressionAnalysis": "Analisis regresi",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "dua arah ANOVA",
     "Regression": "Regresi",
     "Frequency Polygon": "Frekuensi Poligon",
@@ -5475,9 +6322,10 @@ $.message.id = {
     "Variance": "Varians",
     "F test": "Uji F",
     "At least one pair of means is different": "Setidaknya ada satu pasang Rata-rata yang berbeda",
-    "Main Title : ": "Judul Utama",
-    "y title : ": "Judul y",
-    "x title : ": "Judul x",
+    "Main Title": "Judul Utama",
+    "y title": "Judul y",
+    "x title": "Judul x",
+    "yAxis": "Y Sumbu",
     "Modify": "Modifikasi",
     "Confirm": "Konfirmasi",
     "Variable Name": "Nama Variabel",
@@ -5486,11 +6334,13 @@ $.message.id = {
     "* Less than nine value labels allowed.": "* Kurang dari sembilan label nilai diperbolehkan.",
     "Save": "Simpan",
     "Exit": "Keluar",
-    "eStatU UnivStatEdu": "eStatU ? Pelajaran Statistika Tingkat Universitas SW",
-    "eStatH HighStatEdu": "eStatH ? Pelajaran Statistika Tingkat Sekolah Menengah Atas SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatU UnivStatEdu": "eStatU - Pelajaran Statistika Tingkat Universitas SW",
+    "eStatH HighStatEdu": "eStatH - Pelajaran Statistika Tingkat Sekolah Menengah Atas SW",
+    "eStatM MiddleStatEdu": "eStatM - Dasar / Statistik Sekolah Menengah SW",
+    "MiddleStat": "Statistik Sekolah Menengah",
+    "HighStat":   "Statistik SMA",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Percobaan Binomial",
     "Binomial Distribution": "Distribusi Binomial ",
@@ -5526,9 +6376,10 @@ $.message.id = {
     "Sample Size": "Ukuran Sampel",
     "Confidence Interval": "Selang Kepercayaan",
     "Confidence Interval Simulation": "Percobaan Selang Kepercayaan",
+    "Simulation": "Percobaan",
     "Confidence Interval Mu": "Estimasi : &mu;",
     "Mu Confidence Interval": "Estimasi : &mu;",
-    "Confidence Interval Sigma": "Estimasi : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimasi : &sigma;&#178; ",
     "Confidence Interval P": "Estimasi : p",
     "Estimation Accuracy": "Keakurasian Nilai Estimasi",
     "Repetition": "Ulangan",
@@ -5548,7 +6399,9 @@ $.message.id = {
     "Testing Hypothesis mu12": "Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Pengujian Hipotesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Pengujian Hipotesis p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Pengujian Hipotesis ANOVA",
+    "Testing Hypothesis ANOVA": "1 Faktor ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Faktor ANOVA",
+    "SameSampleSize": "Ukuran sampel setiap sel harus sama.",
     "Testing Independence": "Uji Independensi",
     "CategoryD": "kategori",
     "Category": "kategori",
@@ -5690,6 +6543,7 @@ $.message.id = {
     "oneColor":        "warna",
     "defaultColor":    "warna default",
     "RelativeFreq":    "Frekuensi relatif",
+    "Density":         "Kepadatan",
     "MarginOfError":   "Margin of Error",
     "Permutation":     "Permutasi",
     "PermutationSame": "Permutasi dengan hal yang sama",
@@ -5729,6 +6583,79 @@ $.message.id = {
     "RelationOperator":  "Hubungan<br>Operator",
     "SelectValue":       "Nilai",
     "MissingValue":      "nilai yang hilang",
+    "option":            "pilihan",                                   
+    "TimeSeries":        "Seri Waktu",
+    "Smoothing":         "Menghaluskan",
+    "Filtering":         "Penyaringan",
+    "Transformation":    "Transformasi",
+    "Weight":            "Bobot",
+    "PercentChange":     "Ubah Persen",
+    "WeightedIndex":     "Indeks Sederhana",
+    "BaseTime":          "Waktu Dasar",
+    "LagTime":           "Jeda waktu",
+    "Lag":               "Jeda waktu",
+    "Forecasting":       "Peramalan",
+    "SeasonalModel":     "Model Musiman",
+    "HoltWinter":        "Model Musiman Holt-Winters",
+    "Trend":             "Kecenderungan",
+    "Seasonal":          "Musiman",
+    "Deseasonal":        "Seri Demusiman",
+    "Nseason":           "Waktu dalam Musim",
+    "Irregular":         "Tidak teratur",
+    "TrendModel":        "Model Tren di Deseasonal",
+    "RegressionModel":   "Model Regresi",
+    "ForecastingPeriod": "Periode Peramalan",
+    "CreateTable":       "Tabel data",
+    "SaveTable":         "Simpan Tabel",
+    "MA":                "Rata-rata Bergerak",
+    "EWMA":              "Model EWMA",
+    "CenterMA":          "Rata-Rata Pergerakan Terpusat",
+    "MovingMedian":      "Median Bergerak Tengah",
+    "ES":                "Perataan Eksponensial",
+    "Default":           "Bawaan",
+    "Linear":            "Linier",
+    "Quadratic":         "Kuadrat",
+    "Cubic":             "Kubik",
+    "SquareRoot":        "Akar pangkat dua",
+    "Log":               "Logaritma",
+    "Exponent":          "Eksponensial",
+    "Power":             "Kekuatan",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Rata-rata Pergerakan Tunggal",
+    "SingleES":          "Perataan Eksponensial Tunggal",
+    "DoubleMA":          "Rata-rata Pergerakan Ganda",
+    "DoubleES":          "Perataan Eksponensial Ganda",
+    "HoltLinear":        "Perataan Eksponensial Holt",
+    "DeseasonIntercept": "Intersepsi deseasonal",
+    "DeseasonSlope":     "Kemiringan demusim",
+    "SeasonalIndex":     "Indeks Musiman",
+    "Diff":              "Perbedaan",
+    "DiffTime":          "Waktu Berbeda",
+    "AR":                "Model Autoregresif",
+    "ResultTable":       "Hasil Regresi",
+    "ForecastTable":     "Tabel Prakiraan",
+    "HoltLevel":         "Tingkat",
+    "HoltTrend":         "Kecenderungan",
+    "AutoCorrTable":     "Tabel Autokorelasi",
+    "DiffSeries":        "Seri Perbedaan",
+    "RawSeries":         "Seri Mentah",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -5736,7 +6663,9 @@ appStr[2][8] = "../eStatU/index.html";
 appStr[3][8] = "../eStatE/index_en.html";
 appStr[4][8] = "../eHelp/index_en.html";
 appStr[5][8] = "index.html";
-appStr[6][8] = "../eLearning/en/index.html";
+appStr[6][8] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][8] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][8] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
 alertMsg[2][8] = "Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
 alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
@@ -6044,10 +6973,31 @@ svgStrU[111][8] = "Pindahkan satu titik dengan mouse";
 svgStrU[112][8] = "Ekstraksi restorasi";
 svgStrU[113][8] = "tanpa penggantian"; 
 svgStrU[114][8] = "Garis"; 
+svgStrU[115][8] = "Persen Perubahan";
+svgStrU[116][8] = "Indeks Sederhana";
+svgStrU[117][8] = "Jeda Waktu";
+svgStrU[118][8] = "Perbedaan";
+svgStrU[119][8] = "Otokorelasi";
+svgStrU[120][8] = "Masuk";
+svgStrU[121][8] = "Akar Kuadrat";
+svgStrU[122][8] = "Kotak-Cox";
+svgStrU[123][8] = "Waktu dasar";
+svgStrU[124][8] = "Rata-Rata Pergerakan Terpusat";
+svgStrU[125][8] = "Penghalusan Eksponensial";
+svgStrU[126][8] = "Median Bergerak Tengah";
+svgStrU[127][8] = "Model";
+svgStrU[128][8] = "Rata-rata Bergerak";
+svgStrU[129][8] = "Rata-rata Pergerakan Ganda";
+svgStrU[130][8] = "Holt Penghalusan Eksponensial Ganda";
+svgStrU[131][8] = "Indeks Musiman";
+svgStrU[132][8] = "Model Musiman Perkalian Holt-Winters";
+svgStrU[133][8] = "Seri Deseasonal";
+svgStrU[134][8] = "Blok";
 
 // Mongolian
 $.message.mn = {
     "eStat : Stat Education SW": "eStat : Статистикийн боловсролын програм хангамж",
+    "Home": "Нүүр хуудас",
     "Filename": "Файл",
     "Selected Variables": "Сонгогдсон хувьсагч",
     "Cancel": "Цуцлах",
@@ -6076,6 +7026,7 @@ $.message.mn = {
     "maxStem": "** ишний хамгийн их тоо <= 30 **",
     "Box-Whisker Plot": "Boxplot график",
     "Scatterplot": "Тархалтын график",
+    "ScatterplotMatrix": "Тархалтын график Matrix",
     "Frequency Table": "Давтамжит хүснэгт",
     "Basic Statistics": "Суурь, үндсэн статистик",
     "Testing Hypothesis &mu;": "Тестэн таамаглал &mu;",
@@ -6083,6 +7034,7 @@ $.message.mn = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Тестэн таамаглал &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Дундаж кватрат хазайлтын шинжилгээ",
+    "Middle School Stat Education": "Дунд сургуулийн статистикийн боловсрол",
     "High School Stat Education": "Ахлах сургуулийн статистикийн боловсрол",
     "University Stat Education": "Их сургуулийн статистикийн боловсрол ",
     "Elem Stat Graph Example": "График жишээ",
@@ -6118,7 +7070,10 @@ $.message.mn = {
     "MeanStd": "Дундаж  утга/Стандарт хэлбэлзэл",
     "DotMeanStd": "Цэгэн график - Дундаж  утга/Стандарт хэлбэлзэл",
     "95CI": "95% Найдварт завсар",
+    "CorrelationAnalysis": "Корреляцийн шинжилгээ",
     "RegressionAnalysis": "Регрессийн шинжилгээ",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "2 арга зам ANOVA",
     "Regression": "Регресси",
     "Frequency Polygon": "давтамжит олон өнцөг",
@@ -6137,9 +7092,10 @@ $.message.mn = {
     "Variance": "хэлбэлзэл",
     "F test": "F Тестийн",
     "At least one pair of means is different": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр. ",
-    "Main Title : ": "Үндсэн гарчиг",
-    "y title : ": "У хувьсагч",
-    "x title : ": "Х хувьсагч",
+    "Main Title": "Үндсэн гарчиг",
+    "y title": "У хувьсагч",
+    "x title": "Х хувьсагч",
+    "yAxis": "Y тэнхлэг",
     "Modify": "Өөрчлөн сайжруулах",
     "Confirm": "Батлах ",
     "Variable Name": "Хувьсагчийн нэр",
@@ -6150,9 +7106,11 @@ $.message.mn = {
     "Exit": "гарах",
     "eStatU UnivStatEdu": "eStatU - Их сургуулийн статистикийн боловсрол",
     "eStatH HighStatEdu": "eStatH - Ахлах сургуулийн статистикийн боловсрол",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Бага анги / Дунд сургуулийн статистик SW",
+    "MiddleStat": "Дунд сургуулийн статистик",
+    "HighStat":   "Ахлах сургуулийн статистик",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Цэс",
     "Binomial Experiment": "Бином туршилт",
     "Binomial Distribution": "Бином тархалт",
@@ -6188,9 +7146,10 @@ $.message.mn = {
     "Sample Size": "Жишээ хэмжээ ",
     "Confidence Interval": "Найдварт завсар ",
     "Confidence Interval Simulation": "Найдварт завсар туршилт",
+    "Simulation": "туршилт",
     "Confidence Interval Mu": "Тооцоолол : &mu;",
     "Mu Confidence Interval": "Тооцоолол : &mu;",
-    "Confidence Interval Sigma": "Тооцоолол : &sigma;&#178;",
+    "Confidence Interval Sigma": "Тооцоолол : &sigma;&#178; ",
     "Confidence Interval P": "Тооцоолол : p",
     "Estimation Accuracy": "нарийвчлалыг үнэлэх",
     "Repetition": "Давтамж",
@@ -6210,7 +7169,9 @@ $.message.mn = {
     "Testing Hypothesis mu12": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Тестэн таамаглал &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Тестэн таамаглал p<sub>1</sub>, <sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Тестэн таамаглал ANOVA",
+    "Testing Hypothesis ANOVA": "1 Фактор ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Фактор ANOVA",
+    "SameSampleSize": "Нүд бүрийн дээжийн хэмжээ ижил байх ёстой.",
     "Testing Independence": "Тестэн хамааралгүй байдал",
     "CategoryD": "ангилал",
     "Category": "ангилал",
@@ -6350,6 +7311,7 @@ $.message.mn = {
     "oneColor":        "өнгө",
     "defaultColor":    "анхдагч өнгө",
     "RelativeFreq":    "Харьцангуй давтамж",
+    "Density":         "Нягт",
     "MarginOfError":   "Алдааны хэмжээ",
     "Permutation":     "Зөвшөөрөл",
     "PermutationSame": "Үүнтэй ижил зүйл хийх",
@@ -6389,6 +7351,79 @@ $.message.mn = {
     "RelationOperator":  "Харилцаа<br>оператор",
     "SelectValue":       "Үнэ цэнэ",
     "MissingValue":      "утга алга",
+    "option":            "сонголт",                                             
+    "TimeSeries":        "Цагийн цуврал",
+    "Smoothing":         "гөлгөр болгох",
+    "Filtering":         "Шүүх",
+    "Transformation":    "Өөрчлөлт",
+    "Weight":            "Жин",
+    "PercentChange":     "Өөрчлөлтийн хувь",
+    "WeightedIndex":     "Энгийн индекс",
+    "BaseTime":          "Үндсэн цаг",
+    "LagTime":           "Хоцрох хугацаа",
+    "Lag":               "Цаг хугацааны хоцрогдол",
+    "Forecasting":       "Урьдчилан мэдээлэх",
+    "SeasonalModel":     "Улирлын загвар",
+    "HoltWinter":        "Холт-Өвлийн улирлын загвар",
+    "Trend":             "Тренд",
+    "Seasonal":          "Улирлын чанартай",
+    "Deseasonal":        "Улиралгүй цуврал",
+    "Nseason":           "Улиралын цаг",
+    "Irregular":         "Тогтмол бус",
+    "TrendModel":        "Тренд загвар улирлын бус",
+    "RegressionModel":   "Регрессийн загвар",
+    "ForecastingPeriod": "Урьдчилан таамаглах хугацаа",
+    "CreateTable":       "Өгөгдлийн хүснэгт",
+    "SaveTable":         "Хүснэгтийг хадгалах",
+    "MA":                "Хөдөлгөөнт дундаж",
+    "EWMA":              "EWMA загвар",
+    "CenterMA":          "Төвлөрсөн хөдөлгөөнт дундаж",
+    "MovingMedian":      "Төвлөсөн хөдөлгөөнт медиан",
+    "ES":                "Экспоненциал тэгшитгэх",
+    "Default":           "Өгөгдмөл",
+    "Linear":            "шугаман",
+    "Quadratic":         "Квадрат",
+    "Cubic":             "куб",
+    "SquareRoot":        "Квадрат язгуур",
+    "Log":               "Логарифм",
+    "Exponent":          "Экспоненциал",
+    "Power":             "Хүч",
+    "BoxCox":            "Бокс-Кокс",
+    "SingleMA":          "Нэг хөдөлгөөнт дундаж",
+    "SingleES":          "Нэг экспоненциал тэгшитгэх",
+    "DoubleMA":          "Давхар хөдөлгөөнтэй дундаж",
+    "DoubleES":          "Давхар экспоненциал тэгшитгэх",
+    "HoltLinear":        "Холт экспоненциал тэгшитгэх",
+    "DeseasonIntercept": "Улирлын бус тасалдал",
+    "DeseasonSlope":     "Улирлын бус налуу",
+    "SeasonalIndex":     "Улирлын индекс",
+    "Diff":              "Ялгаа",
+    "DiffTime":          "Өөр цаг",
+    "AR":                "Авторегрессив загвар",
+    "ResultTable":       "Регрессийн үр дүн",
+    "ForecastTable":     "Урьдчилан таамаглах хүснэгт",
+    "HoltLevel":         "Түвшин",
+    "HoltTrend":         "Тренд",
+    "AutoCorrTable":     "Автокорреляцийн хүснэгт",
+    "DiffSeries":        "Ялгаатай цуврал",
+    "RawSeries":         "Түүхий цуврал",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -6396,7 +7431,9 @@ appStr[2][9] = "../eStatU/index.html";
 appStr[3][9] = "../eStatE/index_en.html";
 appStr[4][9] = "../eHelp/index_en.html";
 appStr[5][9] = "index.html";
-appStr[6][9] = "../eLearning/en/index.html";
+appStr[6][9] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][9] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][9] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][9] = "Нэг сонгогдсон хувьсагч нь өгөгдөл байхгүй ";
 alertMsg[2][9] = "Судалгаа шинжилгээнд хувьсагчуудыг нэг нэгээр сонгох. Хэрэв эхнийх нь 2 хувьсагч бол групп хувьсагч болно.";
 alertMsg[3][9] = "Сонгогдсон хувьсагчаас өгөгдөл орхигдсон.";
@@ -6704,11 +7741,31 @@ svgStrU[111][9] = "Хулганы тусламжтайгаар цэгийг ши
 svgStrU[112][9] = "Сэргээлтийн олборлолт";
 svgStrU[113][9] = "орлуулахгүйгээр"; 
 svgStrU[114][9] = "Шугаман"; 
- 
+svgStrU[115][9] = "Хувийн өөрчлөлт";
+svgStrU[116][9] = "Энгийн индекс";
+svgStrU[117][9] = "Цагийн хоцрогдол";
+svgStrU[118][9] = "Ялгаа";
+svgStrU[119][9] = "Автокорреляци";
+svgStrU[120][9] = "Бүртгэл";
+svgStrU[121][9] = "Дөрвөлжин үндэс";
+svgStrU[122][9] = "Бокс-Кокс";
+svgStrU[123][9] = "Үндсэн хугацаа";
+svgStrU[124][9] = "Төвлүүлсэн дундаж";
+svgStrU[125][9] = "Экспоненциал тэгшитгэх";
+svgStrU[126][9] = "Төвлүүлсэн хөдөлгөөнт медиан";
+svgStrU[127][9] = "Загвар";
+svgStrU[128][9] = "Хөдөлгөөнт дундаж";
+svgStrU[129][9] = "Давхар хөдөлж буй дундаж";
+svgStrU[130][9] = "Холт давхар экспоненциал тэгшитгэх";
+svgStrU[131][9] = "Улирлын индекс";
+svgStrU[132][9] = "Холт-Винтерсийн үржүүлэх улирлын загвар";
+svgStrU[133][9] = "Улиралгүй цуврал";
+svgStrU[134][9] = "Блок"; 
 
 // Chinese - Simplified
 $.message.zh = {
     "eStat : Stat Education SW": "eStat: 统计教育软件",
+    "Home": "主页",
     "Filename": "文件",
     "Selected Variables": "选择变量",
     "Cancel": "取消",
@@ -6737,6 +7794,7 @@ $.message.zh = {
     "maxStem": "** 最大茎数 <= 30 **",
     "Box-Whisker Plot": "箱线图",
     "Scatterplot": "散点图",
+    "ScatterplotMatrix": "矩阵散点图",
     "Frequency Table": "频频率分布表",
     "Basic Statistics": "基本统计量",
     "Testing Hypothesis &mu;": "假设检验 &mu;",
@@ -6744,6 +7802,7 @@ $.message.zh = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "假设检验 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假设检验 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "方差分析",
+    "Middle School Stat Education": "中学统计",
     "High School Stat Education": "高中统计",
     "University Stat Education": "大学统计",
     "Elem Stat Graph Example": "小学统计图表示例",
@@ -6780,7 +7839,10 @@ $.message.zh = {
     "MeanStd": "平均/标准差",
     "DotMeanStd": "点图 - 平均/标准差",
     "95CI": "95%置信区间",
+    "CorrelationAnalysis": "相关分析",
     "RegressionAnalysis": "回归分析",
+    "RegressionAnalysis1": "线性回归分析",
+    "RegressionAnalysis2": "多线性回归分析",
     "ANOVA2": "2元方差分析",
     "Frequency Polygon": "频数分布多边形",
     "Execute New Interval": "执行新区间",
@@ -6798,9 +7860,10 @@ $.message.zh = {
     "Variance": "方差",
     "F test": "F 检验",
     "At least one pair of means is different": "至少有一对平均数不相等",
-    "Main Title : ": "主标题",
-    "y title : ": "y轴标题",
-    "x title : ": "x轴标题",
+    "Main Title": "主标题",
+    "y title": "y轴标题",
+    "x title": "x轴标题",
+    "yAxis": "Y轴",
     "Modify": "修改",
     "Confirm": "确认",
     "Variable Name": "变量名",
@@ -6810,9 +7873,11 @@ $.message.zh = {
     "Save": "保存",
     "Exit": "退出",
     "eStatU UnivStatEdu": "eStatU - 大学统计教育软件",
-    "eStatH HighStatEdu": "eStatH - 中学统计教育软件",
-    "MiddleStat": "中统计",
-    "HighStat":   "高统计",
+    "eStatH HighStatEdu": "eStatH - 高中统计教育软件",
+    "eStatM MiddleStatEdu": "eStatM - 小学 / 中学统计教育软件",
+    "MiddleStat": "中学统计",
+    "HighStat":   "高中统计",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "韩文电子书连结",
     "Menu": "选择",
     "Binomial Experiment": "二项式分布试验",
@@ -6849,9 +7914,10 @@ $.message.zh = {
     "Sample Size": "样本数",
     "Confidence Interval": "置信区间",
     "Confidence Interval Simulation": "置信区间试验",
+    "Simulation": "试验",
     "Confidence Interval Mu": "估计 : &mu;",
     "Mu Confidence Interval": "估计 : &mu;",
-    "Confidence Interval Sigma": "估计 : &sigma;&#178;",
+    "Confidence Interval Sigma": "估计 : &sigma;&#178; ",
     "Confidence Interval P": "估计 : p",
     "Estimation Accuracy": "估计准确率",
     "Repetition": "重复数",
@@ -6871,7 +7937,9 @@ $.message.zh = {
     "Testing Hypothesis mu12": "假设检验 : &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "假设检验 : &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "假设检验 : p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "假设检验方差分析",
+    "Testing Hypothesis ANOVA": "1因子方差分析",
+    "Testing Hypothesis ANOVA2": "2因子方差分析",
+    "SameSampleSize": "每个单元格的样本大小应该相同。",
     "Testing Independence": "分类的独立性检验",
     "CategoryD": "分类",
     "Category": "分类",
@@ -6904,7 +7972,7 @@ $.message.zh = {
     "Probability": "概率",
     "Show Probability": "显示概率",
     "Regression Line": "回归线",
-    "Erase All": "清除全部",
+    "Erase All": "删除数据",
     "Add Point": "增加点",
     "Erase Point": "刪除点",
     "Reference Site": "参考站",
@@ -6976,7 +8044,7 @@ $.message.zh = {
     "Total": "全体",
     "FriedmanTest": "非參數Friedman檢定",
     "FriedmanTestANOVA": "非參數Friedman 檢定",
-    "Block": "Block",
+    "Block": "堵塞",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
@@ -7012,6 +8080,7 @@ $.message.zh = {
     "oneColor":        "色",
     "defaultColor":    "默认颜色",
     "RelativeFreq":    "相对频率",
+    "Density":         "密度",
     "MarginOfError":   "误差范围",
     "Permutation":     "排列",
     "PermutationSame": "排列相同的东西",
@@ -7032,12 +8101,12 @@ $.message.zh = {
     "Compute":           "新变体计算",
     "SelectIf":          "数据选择",
     "InfoValueLabel":    "*** 选择一个变量，输入变量名称或变量值名称，然后单击运行按钮。",
-    "InfoSorting":       "*** 最多选择 3 个要排序的变量，选择一种排序方法，然后单击“运行”按钮。",
-    "InfoCategorize":    "*** 选择要分类的变量后，输入区间开始和区间宽度，“检查类别列表”并单击“运行”按钮。",
+    "InfoSorting":       "*** 最多选择 3 个要排序的变量，选择一种排序方法，然后单击运行按钮。",
+    "InfoCategorize":    "*** 选择要分类的变量后，输入区间开始和区间宽度，检查类别列表并单击运行按钮。",
     "InfoRecode":        "*** 选择一个要重新分配的变量，输入一个新的随机值，然后单击运行按钮。",
     "InfoRecode2":       "* 您最多可以覆盖九个值。",
     "InfoCompute":       "*** 使用下面的按钮创建用于计算新方差的公式，然后单击运行按钮。",
-    "InfoSelectIf":      "*** 多选择三个变量进行数据选择，为每个变量输入条件表达式，然后单击运行按钮。。",
+    "InfoSelectIf":      "*** 多选择三个变量进行数据选择，为每个变量输入条件表达式，然后单击运行按钮。",
     "SortingVariable":   "对齐方式",
     "SortingMethod":     "排序方式",
     "NewVariable":       "新变量",
@@ -7053,6 +8122,77 @@ $.message.zh = {
     "RelationOperator":  "关系运算符",
     "SelectValue":       "价值",
     "MissingValue":      "缺失值",
+    "option":           "选择",
+    "TimeSeries":       "时间序列",
+    "Smoothing":        "光滑的",
+    "Filtering":        "过滤",
+    "Transformation":   "转换",
+    "Weight":           "重量",
+    "WeightedIndex":    "加权指数",
+    "BaseTime":         "基准时间",
+    "LagTime":          "视差",
+    "Lag":              "视差",
+    "Forecasting":      "预言",
+    "SeasonalModel":    "季节模型",
+    "HoltWinter":       "Holt-Winters 乘法季节性模型",
+    "Trend":            "趋势",
+    "Seasonal":         "季节",
+    "Deseasonal":       "非季节性时间序列",
+    "Nseason":          "季节性周期",
+    "Irregular":        "不规律的",
+    "TrendModel":       "非季节性趋势模型",
+    "RegressionModel":  "回归模型",
+    "ForecastingPeriod":"预测期",
+    "CreateTable":      "预测表",
+    "SaveTable":        "保存表",
+    "MA":               "移动平均线",
+    "EWMA":             "指數平滑 Model",
+    "CenterMA":         "中心移动平均线",
+    "MovingMedian":     "中心偏移中位数",
+    "ES":               "指数平滑",
+    "Default":          "默认",
+    "Linear":           "线性的",
+    "Quadratic":        "二次方",
+    "Cubic":            "第三",
+    "SquareRoot":       "平方根",
+    "Log":              "Log",
+    "Exponent":         "指数",
+    "Power":            "幂函数",
+    "BoxCox":           "盒子考克斯",
+    "SingleMA":         "简单移动平均线",
+    "SingleES":         "简单指数平滑",
+    "DoubleMA":         "双移动平均线",
+    "DoubleES":         "双移指数平滑",
+    "HoltLinear":       "霍尔特线性趋势",
+    "DeseasonIntercept": "反季节拦截",
+    "DeseasonSlope":     "淡季坡度",
+    "SeasonalIndex":     "季节性指数",
+    "Diff":              "差异",
+    "DiffTime":          "差异时间",
+    "AR":                "自回归模型",
+    "ResultTable":       "结果表",
+    "ForecastTable":     "预测表",
+    "HoltLevel":         "水平",
+    "HoltTrend":         "趋势",
+    "AutoCorrTable":     "自相关表",
+    "DiffSeries":        "差分时间序列",
+    "RawSeries":         "原始系列",
+    "RBD":               "随机块编程",
+    "Latin":             "拉丁文语法",
+    "Chapter01":         "&nbsp;第1章 统计数据科学",
+    "Chapter02":         "&nbsp;第2章 定性数据可视化",
+    "Chapter03":         "&nbsp;第3章 定量数据可视化",
+    "Chapter04":         "&nbsp;第4章 使用表格/度量组织数据",
+    "Chapter05":         "&nbsp;第5章 概率和概率分布函数",
+    "Chapter06":         "&nbsp;第6章 样本统计数据的分布和估计",
+    "Chapter07":         "&nbsp;第7章 总体参数的假设检验",
+    "Chapter08":         "&nbsp;第8章 两个总体参数的假设检验",
+    "Chapter09":         "&nbsp;第9章 多种总体均值的假设检验",
+    "Chapter10":         "第10章 非参数假设检验",
+    "Chapter11":         "第11章 分类数据的假设检验",
+    "Chapter12":         "第12章 相关性和回归",
+    "Chapter13":         "第13章 时间序列分析",
+    "Distribution":      "概率分布",
 
 };
 // Chinese Simplified
@@ -7061,7 +8201,9 @@ appStr[2][10] = "../eStatU/index.html";
 appStr[3][10] = "../eStatE/index_en.html";
 appStr[4][10] = "../eHelp/index_en.html";
 appStr[5][10] = "index.html";
-appStr[6][10] = "../eLearning/en/index.html";
+appStr[6][10] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][10] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][10] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][10] = "所选的变量，其中之一没有包含资料。";
 alertMsg[2][10] = "逐一选取变量进行分析（选按栏位名称）。若是同事选取两个变量，则第一个视为群组变量。";
 alertMsg[3][10] = "所选的变量有缺失值。";
@@ -7344,11 +8486,31 @@ svgStrU[111][10] = "用鼠标移动点";
 svgStrU[112][10] = "恢复提取";
 svgStrU[113][10] = "不可回收提取";
 svgStrU[114][10] = "折线"; 
-
+svgStrU[115][10] = "% 增加或减少";
+svgStrU[116][10] = "简单指数";
+svgStrU[117][10] = "视差";
+svgStrU[118][10] = "差异";
+svgStrU[119][10] = "自相关函数";
+svgStrU[120][10] = "对数变换";
+svgStrU[121][10] = "平方根变换";
+svgStrU[122][10] = "Box-Cox 变换";
+svgStrU[123][10] = "基准时间";
+svgStrU[124][10] = "中心移动平均线";
+svgStrU[125][10] = "指数平滑";
+svgStrU[126][10] = "中位数中心偏移";
+svgStrU[127][10] = "模型";
+svgStrU[128][10] = "移动平均线";
+svgStrU[129][10] = "双移动平均线";
+svgStrU[130][10] = "霍尔特双指数平滑";
+svgStrU[131][10] = "季节性指数";
+svgStrU[132][10] = "Holt-Winters 乘法季节性模型";
+svgStrU[133][10] = "非季节性时间序列";
+svgStrU[134][10] = "堵塞";
 
 // Portugese
 $.message.pt = {
     "eStat : Stat Education SW": "eStat : Educação Estatística SW",
+    "Home": "Pagina inicial",
     "Filename": "Arquivo",
     "Selected Variables": "Var Selecionadas",
     "Cancel": "Cancelar",
@@ -7377,6 +8539,7 @@ $.message.pt = {
     "maxStem": "** número máximo de haste <= 30 **",
     "Box-Whisker Plot": "Diagrama de Caixas",
     "Scatterplot": "Diagrama de Dispersão",
+    "ScatterplotMatrix": "Matriz de Diagramas de Dispersão",
     "Frequency Table": "Tabela de Frequências",
     "Basic Statistics": "Estatísticas Básicas",
     "Testing Hypothesis &mu;": "Teste de Hipóteses &mu;",
@@ -7384,6 +8547,7 @@ $.message.pt = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Teste de Hipóteses  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Análise de Variância",
+    "Middle School Stat Education": "Ensino Médio Estatística Educação",
     "High School Stat Education": "Educação Estatística no Ensino Médio",
     "University Stat Education": "Educação Estatística Universitária",
     "Elem Stat Graph Example": "Gráfico Exemplo",
@@ -7419,7 +8583,10 @@ $.message.pt = {
     "MeanStd": "Média/Desvio Padrão",
     "DotMeanStd": "Gráfico de Pontos - Média/Desvio Padrão",
     "95CI": "95% Intervalo de Confiança",
+    "CorrelationAnalysis": "Análise de correlação",
     "RegressionAnalysis": "análise de regressão",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Dois sentidos ANOVA",
     "Regression": "Regressão",
     "RegressionLine": "Reta de Regressão",
@@ -7441,9 +8608,10 @@ $.message.pt = {
     "Variance": "variâncias",
     "F test": "F teste",
     "At least one pair of means is different": "Pelo menos um par de médias difere",
-    "Main Title : ": "Título Principal",
-    "y title : ": "Título da ordenada (y)",
-    "x title : ": "Título da abscissa (x)",
+    "Main Title": "Título Principal",
+    "y title": "Título da ordenada (y)",
+    "x title": "Título da abscissa (x)",
+    "yAxis": "Y Eixo",
     "Modify": "Modifique",
     "Confirm": "Confirme",
     "Variable Name": "Nome da Variável",
@@ -7454,9 +8622,11 @@ $.message.pt = {
     "Exit": "Sair",
     "eStatU UnivStatEdu": "eStatU - Educação Estatística Universitária SW",
     "eStatH HighStatEdu": "eStatH - Educação Estatística no Ensino Médio SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Elementar / Estatísticas do ensino médio SW",
+    "MiddleStat": "Estatísticas do ensino médio",
+    "HighStat":   "Estatísticas do ensino médio",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Experimento Binomial",
     "Binomial Distribution": "Distribuição Binomial",
@@ -7492,9 +8662,10 @@ $.message.pt = {
     "Sample Size": "Tamanho da Amostra",
     "Confidence Interval": "Intervalo de Confiança",
     "Confidence Interval Simulation": "Intervalo de Confiança Experimento",
+    "Simulation": "Experimento",
     "Confidence Interval Mu": "Estimativo : &mu;",
     "Mu Confidence Interval": "Estimativo : &mu;",
-    "Confidence Interval Sigma": "Estimativo : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimativo : &sigma;&#178; ",
     "Confidence Interval P": "Estimativo : p",
     "Estimation Accuracy": "Acurácia ",
     "Repetition": "Repetição",
@@ -7514,7 +8685,9 @@ $.message.pt = {
     "Testing Hypothesis mu12": "Teste Hipótese &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Teste Hipótese &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Teste Hipótese p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Teste Hipótese ANOVA",
+    "Testing Hypothesis ANOVA": "1 Fator ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Fator ANOVA",
+    "SameSampleSize": "O tamanho da amostra de cada célula deve ser o mesmo.",
     "Testing Independence": "Teste de Independência",
     "CategoryD": "Categoria",
     "Category": "Categoria",
@@ -7655,6 +8828,7 @@ $.message.pt = {
     "oneColor":        "cor",
     "defaultColor":    "cor padrão",
     "RelativeFreq":    "Frequência relativa",
+    "Density":         "Densidade",
     "MarginOfError":   "Margem de erro",
     "Permutation":     "Permutação",
     "PermutationSame": "Permutação com a mesma coisa",
@@ -7694,6 +8868,79 @@ $.message.pt = {
     "RelationOperator":  "Relação <br> Operador",
     "SelectValue":       "Valor",
     "MissingValue":      "valor faltando",
+    "option":            "opção",                                       
+    "TimeSeries":        "Série Temporal",
+    "Smoothing":         "Suavizando",
+    "Filtering":         "Filtragem",
+    "Transformation":    "Transformação",
+    "Weight":            "Peso",
+    "PercentChange":     "Alterar Porcentagem",
+    "WeightedIndex":     "Índice Simples",
+    "BaseTime":          "Hora Base",
+    "LagTime":           "Tempo de atraso",
+    "Lag":               "Atraso",
+    "Forecasting":       "Previsão",
+    "SeasonalModel":     "Modelo Sazonal",
+    "HoltWinter":        "Modelo Sazonal Holt-Winters",
+    "Trend":             "Tendência",
+    "Seasonal":          "Sazonal",
+    "Deseasonal":        "Série Desazonal",
+    "Nseason":           "Tempos na Temporada",
+    "Irregular":         "Irregular",
+    "TrendModel":        "Modelo de Tendência em Sazonal",
+    "RegressionModel":   "Modelo de regressão",
+    "ForecastingPeriod": "Período de previsão",
+    "CreateTable":       "Tabela de dados",
+    "SaveTable":         "Salvar Tabela",
+    "MA":                "Média Móvel",
+    "EWMA":              "Modelo EWMA",
+    "CenterMA":          "Média Móvel Centrada",
+    "MovingMedian":      "Media Móvel Centrada",
+    "ES":                "Suavização Exponencial",
+    "Default":           "Predefinição",
+    "Linear":            "Linear",
+    "Quadratic":         "Quadrático",
+    "Cubic":             "Cúbico",
+    "SquareRoot":        "Raiz quadrada",
+    "Log":               "Logarítmico",
+    "Exponent":          "Exponencial",
+    "Power":             "Poder",
+    "BoxCox":            "Caixa-Cox",
+    "SingleMA":          "Média Móvel Única",
+    "SingleES":          "Alisamento Exponencial Simples",
+    "DoubleMA":          "Média Móvel Dupla",
+    "DoubleES":          "Suavização Exponencial Dupla",
+    "HoltLinear":        "Alisamento Exponencial Holt",
+    "DeseasonIntercept": "Interceptação dessazonalizada",
+    "DeseasonSlope":     "Inclinação dessazonalizada",
+    "SeasonalIndex":     "Índice Sazonal",
+    "Diff":              "Diferença",
+    "DiffTime":          "Tempo Diferencial",
+    "AR":                "Modelo Autoregressivo",
+    "ResultTable":       "Resultado da regressão",
+    "ForecastTable":     "Tabela de Previsão",
+    "HoltLevel":         "Nível",
+    "HoltTrend":         "Tendência",
+    "AutoCorrTable":     "Tabela de Autocorrelação",
+    "DiffSeries":        "Série Diferencial",
+    "RawSeries":         "Série Bruta",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -7701,7 +8948,9 @@ appStr[2][11] = "../eStatU/index.html";
 appStr[3][11] = "../eStatE/index_en.html";
 appStr[4][11] = "../eHelp/index_en.html";
 appStr[5][11] = "index.html";
-appStr[6][11] = "../eLearning/en/index.html";
+appStr[6][11] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][11] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][11] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][11] = "Uma das variáveis selecionadas não contém observações.";
 alertMsg[2][11] = "Selecione as variáveis para a análise uma por uma (clique nos nomes das colunas). Se houverem duas variáveis, a primeira deve ser a de agrupamento.";
 alertMsg[3][11] = "Dados faltantes para variável selecionada.";
@@ -8009,10 +9258,32 @@ svgStrU[111][11] = "Mover um ponto com o mouse";
 svgStrU[112][11] = "Extração de restauração";
 svgStrU[113][11] = "Sem substituição";
 svgStrU[114][11] = "Linha"; 
+svgStrU[115][11] = "Percentual de alteração";
+svgStrU[116][11] = "Índice simples";
+svgStrU[117][11] = "Atraso de tempo";
+svgStrU[118][11] = "Diferença";
+svgStrU[119][11] = "Autocorrelação";
+svgStrU[120][11] = "Log";
+svgStrU[121][11] = "Raiz quadrada";
+svgStrU[122][11] = "Box-Cox";
+svgStrU[123][11] = "Hora base";
+svgStrU[124][11] = "Média Móvel Centrada";
+svgStrU[125][11] = "Suavização exponencial";
+svgStrU[126][11] = "Media móvel centralizada";
+svgStrU[127][11] = "Modelo";
+svgStrU[128][11] = "Média móvel";
+svgStrU[129][11] = "Média Móvel Dupla";
+svgStrU[130][11] = "Holt suavização exponencial dupla";
+svgStrU[131][11] = "Índice sazonal";
+svgStrU[132][11] = "Modelo Sazonal Multiplicativo de Holt-Winters";
+svgStrU[133][11] = "Série Fora de Temporada";
+svgStrU[134][11] = "Bloco";
+
 
 // Greek
 $.message.gr = {
     "eStat : Stat Education SW": "eStat : Στατιστική Εκπαίδευση SW",
+    "Home": "Αρχική Σελίδα",
     "Filename": "Όνομα Φακέλου",
     "Selected Variables": "Επιλεγμένες Μεταβλητές",
     "Cancel": "Ακύρωση",
@@ -8041,6 +9312,7 @@ $.message.gr = {
     "maxStem": "** μέγιστος αριθμός στελεχών <= 30 **",
     "Box-Whisker Plot": "Θηκόγραμμα",
     "Scatterplot": "Διάγραμμα Διασκορπισμού",
+    "ScatterplotMatrix": "Πίνακας Διαγράμματος Διασκορπισμού",
     "Frequency Table": "Πίνακας Συχνοτήτων",
     "Basic Statistics": "Βασικά Στατιστικά Χαρακτηριστικά",
     "Testing Hypothesis &mu;": "Έλεγχος Υπόθεσης &mu;",
@@ -8048,6 +9320,7 @@ $.message.gr = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Έλεγχος Υπόθεσης &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Έλεγχος Υπόθεσης &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Ανάλυση Μεταβλητών",
+    "Middle School Stat Education": "Εκπαίδευση Στατιστικής Γυμνασίου",
     "High School Stat Education": "Εκπαίδευση Στατιστικής Λυκείου",
     "University Stat Education": "Ακαδημαϊκή Εκπαίδευση Στατιστικής",
     "Elem Stat Graph Example": "παραδείγματος γραφήματος",
@@ -8083,7 +9356,10 @@ $.message.gr = {
     "MeanStd": "Μέσος/Τυπική Απόκλιση",
     "DotMeanStd": "Σημειόγραμμα - Μέσος/Τυπική Απόκλιση",
     "95CI": "95% Διάστημα Εμπυστοσύνης",
+    "CorrelationAnalysis": "Ανάλυση συσχέτισης",
     "RegressionAnalysis": "Ανάλυση Παλινδρόμησης",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Ανάλυση Διακύμανσης Δύο Παραγόντων",
     "Regression": "Παλινδρόμηση",
     "RegressionLine": "Ευθεία Παλινδρόμησης",
@@ -8097,7 +9373,7 @@ $.message.gr = {
     "Z-test": "Z Έλεγχος",
     "(if Z-test, enter &sigma;)": "(αν Ζ-τεστ, καταχωρείστε &sigma;)",
     "Significance Level": "Επίπεδο Σημαντικότητας",
-    "Execute": "Επίπεδο Σημαντικότητας",
+    "Execute": "Εκτέλεση",
     "(Confidence Interval)": "(Διάστημα Εμπυστοσύνης)",
     "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(αν Ζ-τεστ, χρησιμοποιήστε Z<sub>&alpha;/2</sub>)",
     "&chi;<sup>2</sup> test": "&chi;&#178; Έλεγχος",
@@ -8105,9 +9381,10 @@ $.message.gr = {
     "Variance": "Υπόθεση",
     "F test": "F Έλεγχος",
     "At least one pair of means is different": "Τουλάχιστον ένα ζευγάρι μέσων να είναι διαφορετικοί",
-    "Main Title : ": "Κύριος Τίτλος",
-    "y title : ": "τίτλος y",
-    "x title : ": "τίτλος x",
+    "Main Title": "Κύριος Τίτλος",
+    "y title": "τίτλος y",
+    "x title": "τίτλος x",
+    "yAxis": "Άξονας Υ",
     "Modify": "Τροποποιείστε",
     "Confirm": "Επιβεβαιώστε",
     "Variable Name": "Όνομα Μεταβλητης",
@@ -8118,9 +9395,11 @@ $.message.gr = {
     "Exit": "Έξοδος",
     "eStatU UnivStatEdu": "eStatU - Ακαδημαϊκή Εκπαίδευση Στατιστικής SW",
     "eStatH HighStatEdu": "eStatH - Εκπαίδευση Στατιστικής Λυκείου SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Δημοτικό / Στατιστικά Γυμνασίου SW",
+    "MiddleStat": "Στατιστικά Γυμνασίου",
+    "HighStat":   "Στατιστικά Λυκείου",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Μενού",
     "Binomial Experiment": "Διωνυμικό Πείραμα",
     "Binomial Distribution": "Διωνυμική Κατανομή",
@@ -8156,9 +9435,10 @@ $.message.gr = {
     "Sample Size": "Μέγεθος Δείγματος",
     "Confidence Interval": "Διάστημα Εμπυστοσύνης",
     "Confidence Interval Simulation": "Διάστημα Εμπυστοσύνης προσομοίωση",
+    "Simulation": "προσομοίωση",
     "Confidence Interval Mu": "Εκτίμηση : &mu;",
     "Mu Confidence Interval": "Εκτίμηση : &mu;",
-    "Confidence Interval Sigma": "Εκτίμηση : &sigma;&#178;",
+    "Confidence Interval Sigma": "Εκτίμηση : &sigma;&#178; ",
     "Confidence Interval P": "Εκτίμηση : p",
     "Estimation Accuracy": "Εκτίμηση Ορθότητας",
     "Repetition": "Επανάληψη",
@@ -8178,7 +9458,9 @@ $.message.gr = {
     "Testing Hypothesis mu12": "Έλεγχος Υπόθεσης &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Έλεγχος Υπόθεσης &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Έλεγχος Υπόθεσης p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Έλεγχος Υπόθεσης ANOVA",
+    "Testing Hypothesis ANOVA": "1 Παράγοντας ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Παράγοντας ANOVA",
+    "SameSampleSize": "Το μέγεθος του δείγματος κάθε κελιού πρέπει να είναι το ίδιο.",
     "Testing Independence": "Έλεγχος Ανεξαρτησίας",
     "CategoryD": "κατηγορία",
     "Category": "κατηγορία",
@@ -8319,6 +9601,7 @@ $.message.gr = {
     "oneColor":        "μονόχρωμο",
     "defaultColor":    "προεπιλεγμένο χρώμα",
     "RelativeFreq":    "Σχετική Συχνότητα",
+    "Density":         "Πυκνότητα",
     "MarginOfError":   "Περιθώριο σφάλματος",
     "Permutation":     "Μετάθεση",
     "PermutationSame": "Παραλλαγή με το ίδιο πράγμα",
@@ -8358,6 +9641,79 @@ $.message.gr = {
     "RelationOperator":  "Σχέση<br>Χειριστής",
     "SelectValue":       "Αξία",
     "MissingValue":      "λείπει τιμή",
+    "option":            "επιλογή",                                        
+    "TimeSeries":        "Χρονική σειρά",
+    "Smoothing":         "Εξομάλυνση",
+    "Filtering":         "Φιλτράρισμα",
+    "Transformation":    "Μεταμόρφωση",
+    "Weight":            "Βάρος",
+    "PercentChange":     "Αλλαγή ποσοστού",
+    "WeightedIndex":     "Απλός Ευρετήριο",
+    "BaseTime":          "Ώρα βάσης",
+    "LagTime":           "Χρόνος καθυστέρησης",
+    "Lag":               "Χρονική υστέρηση",
+    "Forecasting":       "Πρόβλεψη",
+    "SeasonalModel":     "εποχιακό μοντέλο",
+    "HoltWinter":        "Holt-Winters Seasonal Model",
+    "Trend":             "Τάση",
+    "Seasonal":          "Εποχής",
+    "Deseasonal":        "Deseasonal Series",
+    "Nseason":           "Times in Season",
+    "Irregular":         "Ακανόνιστος",
+    "TrendModel":        "Trend Model on Deseasonal",
+    "RegressionModel":   "Μοντέλο παλινδρόμησης",
+    "ForecastingPeriod": "Περίοδος Πρόβλεψης",
+    "CreateTable":       "Πίνακας δεδομένων",
+    "SaveTable":         "Αποθήκευση πίνακα",
+    "MA":                "Κινούμενος μέσος όρος",
+    "EWMA":              "Μοντέλο EWMA",
+    "CenterMA":          "Κεντρικός κινούμενος μέσος όρος",
+    "MovingMedian":      "Κεντρική κινούμενη διάμεσος",
+    "ES":                "Εκθετική εξομάλυνση",
+    "Default":           "Προκαθορισμένο",
+    "Linear":            "Γραμμικός",
+    "Quadratic":         "Τετραγωνικός",
+    "Cubic":             "Κυβικός",
+    "SquareRoot":        "Τετραγωνική ρίζα",
+    "Log":               "Λογαριθμική",
+    "Exponent":          "Εκθετικός",
+    "Power":             "Εξουσία",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Ενιαίος κινούμενος μέσος όρος",
+    "SingleES":          "Ενιαία εκθετική εξομάλυνση",
+    "DoubleMA":          "Διπλός κινούμενος μέσος όρος",
+    "DoubleES":          "Διπλή εκθετική εξομάλυνση",
+    "HoltLinear":        "Holt Exponential Smoothing",
+    "DeseasonIntercept": "Παρεποχιακή αναχαίτιση",
+    "DeseasonSlope":     "Περιοχική πλαγιά",
+    "SeasonalIndex":     "Εποχιακός Δείκτης",
+    "Diff":              "Διαφορά",
+    "DiffTime":          "Ώρα διαφοράς",
+    "AR":                "Αυτοπαλινδρομικό μοντέλο",
+    "ResultTable":       "Αποτέλεσμα παλινδρόμησης",
+    "ForecastTable":     "Πίνακας προβλέψεων",
+    "HoltLevel":         "Επίπεδο",
+    "HoltTrend":         "Τάση",
+    "AutoCorrTable":     "Πίνακας αυτοσυσχέτισης",
+    "DiffSeries":        "Σειρά Διαφορά",
+    "RawSeries":         "Πρωτότυπη χρονοσειρά",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -8365,7 +9721,9 @@ appStr[2][12] = "../eStatU/index.html";
 appStr[3][12] = "../eStatE/index_en.html";
 appStr[4][12] = "../eHelp/index_en.html";
 appStr[5][12] = "index.html";
-appStr[6][12] = "../eLearning/en/index.html";
+appStr[6][12] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][12] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][12] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][12] = "Μία από τις επιλεγμένες μεταβλητές δεν έχει δεδομένα.";
 alertMsg[2][12] = "Επιλέξτε μεταβλητές για ανάλυση (επιλέξτε ονόματα στηλών) μία προς μία. Αν έχετε δύο μεταβλητές θέστε τη μία ως ομάδα μεταβλητών.";
 alertMsg[3][12] = "Ελλιπείς δεδομένα στις επιλεγμένες μεταβλητές.";
@@ -8672,11 +10030,32 @@ svgStrU[111][12] = "Μετακινήστε ένα σημείο με το πον�
 svgStrU[112][12] = "Εξόρυξη αποκατάστασης";
 svgStrU[113][12] = "χωρίς αντικατάσταση";
 svgStrU[114][12] = "Γραμμικό"; 
+svgStrU[115][12] = "Ποσοστό αλλαγής";
+svgStrU[116][12] = "Απλός Ευρετήριο";
+svgStrU[117][12] = "Χρονική καθυστέρηση";
+svgStrU[118][12] = "Διαφορά";
+svgStrU[119][12] = "Αυτοσυσχέτιση";
+svgStrU[120][12] = "Καταγραφή";
+svgStrU[121][12] = "Τετράγωνη ρίζα";
+svgStrU[122][12] = "Box-Cox";
+svgStrU[123][12] = "Βασικός χρόνος";
+svgStrU[124][12] = "Κεντρικός κινούμενος μέσος όρος";
+svgStrU[125][12] = "Εκθετική εξομάλυνση";
+svgStrU[126][12] = "Κεντρική κινούμενη διάμεσος";
+svgStrU[127][12] = "Μοντέλο";
+svgStrU[128][12] = "Κινούμενος μέσος όρος";
+svgStrU[129][12] = "Διπλός κινούμενος μέσος όρος";
+svgStrU[130][12] = "Holt Double Exponential Smoothing";
+svgStrU[131][12] = "Seasonal Index";
+svgStrU[132][12] = "Πολλαπλασιαστικό εποχικό μοντέλο Holt-Winters";
+svgStrU[133][12] = "Deseasonal Series";
+svgStrU[134][12] = "ΟΙΚΟΔΟΜΙΚΟ ΤΕΤΡΑΓΩΝΟ";
 
 
 // Romanian
 $.message.ro = {
     "eStat : Stat Education SW": "eStat : Stat Educatie SW",
+    "Home": "Pagina principala",
     "Filename": "Nume Fișier",
     "Selected Variables": "Var Selectate",
     "Cancel": "Îinchidere",
@@ -8705,6 +10084,7 @@ $.message.ro = {
     "maxStem": "** numărul maxim de tulpină <= 30 **",
     "Box-Whisker Plot": "Box complot",
     "Scatterplot": "Diagramă prin Puncte",
+    "ScatterplotMatrix": "Matricea Diagramei prin Puncte",
     "Frequency Table": "Tabelul Frecvențelor",
     "Basic Statistics": "Bazele Statisticii",
     "Testing Hypothesis &mu;": "Testare Ipoteza &mu;",
@@ -8712,6 +10092,7 @@ $.message.ro = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testare Ipoteza  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testare Ipoteza &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analiza Varianței",
+    "Middle School Stat Education": "Educație statistică pentru școala medie",
     "High School Stat Education": "Statistică La Nivel Liceal",
     "University Stat Education": "Statistică la Nivel Universitar",
     "Elem Stat Graph Example": "Nivel Gimnazial",
@@ -8747,7 +10128,10 @@ $.message.ro = {
     "MeanStd": "Medie/AbatereStandard",
     "DotMeanStd": "Diagramă prin Puncte - Medie/AbatereStandard",
     "95CI": "95% Interval de Încredere",
+    "CorrelationAnalysis": "Analiza corelației",
     "RegressionAnalysis": "Analiza Regresiei",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Two way ANOVA",
     "Regression": "Regresiei",
     "RegressionLine": "Regresiei Line",
@@ -8769,9 +10153,10 @@ $.message.ro = {
     "Variance": "Varianței",
     "F test": "F Testare",
     "At least one pair of means is different": "Cel puțin o pereche de medii este diferită",
-    "Main Title : ": "Titlu Principal",
-    "y title : ": "Axa y",
-    "x title : ": "Axa x",
+    "Main Title": "Titlu Principal",
+    "y title": "Axa y",
+    "x title": "Axa x",
+    "yAxis": "Y Axa",
     "Modify": "Modificați",
     "Confirm": "Confirmare",
     "Variable Name": "Nume Variabilă",
@@ -8782,9 +10167,11 @@ $.message.ro = {
     "Exit": "Leșire",
     "eStatU UnivStatEdu": "eStatU - Statistică la Nivel Universitar SW",
     "eStatH HighStatEdu": "eStatH - Statistică La Nivel Liceal SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - elementar / Statistica gimnaziului SW",
+    "MiddleStat": "Statistica gimnaziului",
+    "HighStat":   "Statistica liceului",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Meniu",
     "Binomial Experiment": "Experiment Binomial",
     "Binomial Distribution": "Distribuție Binomială",
@@ -8820,9 +10207,10 @@ $.message.ro = {
     "Sample Size": "Volumul Eșantionului",
     "Confidence Interval": "Interval de Încredere",
     "Confidence Interval Simulation": "Interval de Încredere Simulare",
+    "Simulation": "Simulare",
     "Confidence Interval Mu": "Estimației : &mu;",
     "Mu Confidence Interval": "Estimației : &mu;",
-    "Confidence Interval Sigma": "Estimației : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimației : &sigma;&#178; ",
     "Confidence Interval P": "Estimației : p",
     "Estimation Accuracy": "Acuretețea Estimației",
     "Repetition": "Repetiție",
@@ -8842,7 +10230,9 @@ $.message.ro = {
     "Testing Hypothesis mu12": "Testare Ipoteza &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Testare Ipoteza &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Testare Ipoteza p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Testare Ipoteza ANOVA",
+    "Testing Hypothesis ANOVA": "1 Factor ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Factor ANOVA",
+    "SameSampleSize": "Dimensiunea eșantionului pentru fiecare celulă ar trebui să fie aceeași.",
     "Testing Independence": "Testarea Independenței",
     "CategoryD": "Categorie",
     "Category": "Categorie",
@@ -8984,6 +10374,7 @@ $.message.ro = {
     "oneColor":        "culoare",
     "defaultColor":    "culoare implicită",
     "RelativeFreq":    "Frecventa relativa",
+    "Density":         "Densitate",
     "MarginOfError":   "Marja de eroare",
     "Permutation":     "Permutare",
     "PermutationSame": "Permutarea cu același lucru",
@@ -9023,6 +10414,79 @@ $.message.ro = {
     "RelationOperator":  "Relație<br>Operator",
     "SelectValue":       "Valoare",
     "MissingValue":      "valoare lipsă",
+    "option":            "opțiune",                          
+    "TimeSeries":        "Serial temporal",
+    "Smoothing":         "Netezire",
+    "Filtering":         "Filtrare",
+    "Transformation":    "Transformare",
+    "Weight":            "Greutate",
+    "PercentChange":     "Procentul de schimbare",
+    "WeightedIndex":     "Index simplu",
+    "BaseTime":          "Timp de bază",
+    "LagTime":           "Timp de întârziere",
+    "Lag":               "Decalaj",
+    "Forecasting":       "Prognoză",
+    "SeasonalModel":     "Model sezonier",
+    "HoltWinter":        "Model sezonier Holt-Winters",
+    "Trend":             "Tendinţă",
+    "Seasonal":          "Sezonier",
+    "Deseasonal":        "Serial de sezon",
+    "Nseason":           "Timpurile din sezon",
+    "Irregular":         "Neregulat",
+    "TrendModel":        "Model de tendință pe desezon",
+    "RegressionModel":   "Model de regresie",
+    "ForecastingPeriod": "Perioada de prognoză",
+    "CreateTable":       "Tabel de date",
+    "SaveTable":         "Salvare tabel",
+    "MA":                "Media mobilă",
+    "EWMA":              "Model EWMA",
+    "CenterMA":          "Media mobilă centrată",
+    "MovingMedian":      "Median în mișcare centrat",
+    "ES":                "Netezire exponențială",
+    "Default":           "Mod implicit",
+    "Linear":            "Liniar",
+    "Quadratic":         "Cadratic",
+    "Cubic":             "Cub",
+    "SquareRoot":        "Rădăcină pătrată",
+    "Log":               "Logaritmic",
+    "Exponent":          "Exponential",
+    "Power":             "Putere",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Media mobilă unică",
+    "SingleES":          "Single Exponential Soothing",
+    "DoubleMA":          "Media mobilă dublă",
+    "DoubleES":          "Netezire exponențială dublă",
+    "HoltLinear":        "Netezirea exponențială Holt",
+    "DeseasonIntercept": "Interceptarea sezonieră",
+    "DeseasonSlope":     "Panta sezonieră",
+    "SeasonalIndex":     "Indexul sezonier",
+    "Diff":              "Diferență",
+    "DiffTime":          "Timp diferit",
+    "AR":                "Model autoregresiv",
+    "ResultTable":       "Resultatul regresiei",
+    "ForecastTable":     "Tabelul de prognoză",
+    "HoltLevel":         "Nivel",
+    "HoltTrend":         "Tendinţă",
+    "AutoCorrTable":     "Tabelul de autocorelare",
+    "DiffSeries":        "Seria diferențe",
+    "RawSeries":         "Serial temporal original",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Romanian
 appStr[1][13] = "../eStatH/index.html";
@@ -9030,7 +10494,9 @@ appStr[2][13] = "../eStatU/index.html";
 appStr[3][13] = "../eStatE/index_en.html";
 appStr[4][13] = "../eHelp/index_en.html";
 appStr[5][13] = "index.html";
-appStr[6][13] = "../eLearning/en/index.html";
+appStr[6][13] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][13] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][13] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][13] = "Una dintre variabilele selectate nu are date introduse.";
 alertMsg[2][13] = "Selectați variabilele pentru analiză(click pe numele coloanelor) una câte una. În cazul a două variabile, prima este considerată un grup de variabile.";
 alertMsg[3][13] = "Date lipsă în variabila selectată.";
@@ -9338,10 +10804,32 @@ svgStrU[111][13] = "Deplasați un punct cu mouse-ul";
 svgStrU[112][13] = "Extracția restaurării";
 svgStrU[113][13] = "fără înlocuire";
 svgStrU[114][13] = "Liniară"; 
+svgStrU[115][13] = "Modificare procentuală";
+svgStrU[116][13] = "Index simplu";
+svgStrU[117][13] = "Decalaj";
+svgStrU[118][13] = "Diferență";
+svgStrU[119][13] = "Autocorelare";
+svgStrU[120][13] = "Jurnal";
+svgStrU[121][13] = "Rădăcină pătrată";
+svgStrU[122][13] = "Box-Cox";
+svgStrU[123][13] = "Timp de bază";
+svgStrU[124][13] = "Media mobilă centrată";
+svgStrU[125][13] = "Netezire exponențială";
+svgStrU[126][13] = "Median în mișcare centrat";
+svgStrU[127][13] = "Model";
+svgStrU[128][13] = "Media mobilă";
+svgStrU[129][13] = "Medie mobilă dublă";
+svgStrU[130][13] = "Netezire exponențială dublă Holt";
+svgStrU[131][13] = "Index sezonier";
+svgStrU[132][13] = "Model sezonier multiplicativ Holt-Winters";
+svgStrU[133][13] = "Serial de sezon";
+svgStrU[134][13] = "Bloc";
+
 
 // Thai
 $.message.th = {
     "eStat : Stat Education SW": "eStat : ซอฟต์แวร์การศึกษาสถิติ",
+    "Home": "หน้าแรก",
     "Filename": "ชื่อไฟล์",
     "Selected Variables": "ตัวแปรที่เลือกไว้",
     "Cancel": "ยกเลิก",
@@ -9370,6 +10858,7 @@ $.message.th = {
     "maxStem": "** จำนวนก้านสูงสุด <= 30 **",
     "Box-Whisker Plot": "แผนภาพกล่อง",
     "Scatterplot": "แผนภาพการกระจาย",
+    "ScatterplotMatrix": "เมทริกซ์แผนภาพการกระจาย",
     "Frequency Table": "ตารางแจกแจงความถี่",
     "Basic Statistics": "สถิติพื้นฐาน",
     "Testing Hypothesis &mu;": "ทดสอบสมมติฐาน &mu;",
@@ -9377,6 +10866,7 @@ $.message.th = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "ทดสอบสมมติฐาน  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "ทดสอบสมมติฐาน &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "ตัวแปรวิเคราะห์",
+    "Middle School Stat Education": "การศึกษาสถิติโรงเรียนมัธยม",
     "High School Stat Education": "สถิติระดับมัธยมศึกษา",
     "University Stat Education": "สถิติระดับมหาวิทยาลัย",
     "Elem Stat Graph Example": "ตัวอย่างกราฟเชิงสถิติ",
@@ -9412,7 +10902,10 @@ $.message.th = {
     "MeanStd": "ค่าเฉลี่ย/ส่วนเบี่ยงเบนมาตรฐาน",
     "DotMeanStd": "แผนภาพจุด - ค่าเฉลี่ย/ส่วนเบี่ยงเบนมาตรฐาน",
     "95CI": "95% ช่วงความเชื่อมั่น",
+    "CorrelationAnalysis": "การวิเคราะห์สหสัมพันธ์",
     "RegressionAnalysis": "การวิเคราะห์การถดถอย",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "การวิเคราะห์ความแปรปรวนแบบสองทาง",
     "Regression": "การถดถอย",
     "RegressionLine": "เส้นการถดถอย",
@@ -9434,9 +10927,10 @@ $.message.th = {
     "Variance": "ความแปรปรวน",
     "F test": "F การทดสอบ",
     "At least one pair of means is different": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
-    "Main Title : ": "หัวข้อหลัก",
-    "y title : ": "ชื่อแกนตั้ง",
-    "x title : ": "ชื่อแกนนอน",
+    "Main Title": "หัวข้อหลัก",
+    "y title": "ชื่อแกนตั้ง",
+    "x title": "ชื่อแกนนอน",
+    "yAxis": "แกน Y",
     "Modify": "ปรับเปลี่ยน",
     "Confirm": "ยืนยัน",
     "Variable Name": "ชื่อตัวแปร",
@@ -9447,9 +10941,11 @@ $.message.th = {
     "Exit": "ออก",
     "eStatU UnivStatEdu": "eStatU - สถิติระดับมหาวิทยาลัย",
     "eStatH HighStatEdu": "eStatH - สถิติระดับมัธยมศึกษา",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - ประถมศึกษา / สถิติมัธยมต้น SW",
+    "MiddleStat": "สถิติมัธยมต้น",
+    "HighStat":   "สถิติมัธยมปลาย",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "เมนู",
     "Binomial Experiment": "การทดลองทวินาม",
     "Binomial Distribution": "การแจกแจงทวินาม",
@@ -9485,9 +10981,10 @@ $.message.th = {
     "Sample Size": "ขนาดตัวอย่าง",
     "Confidence Interval": "ช่วงความเชื่อมั่น",
     "Confidence Interval Simulation": "ช่วงความเชื่อมั่น จำลอง",
+    "Simulation": "จำลอง",
     "Confidence Interval Mu": "การประเมิน :  &mu;",
     "Mu Confidence Interval": "การประเมิน :  &mu;",
-    "Confidence Interval Sigma": "การประเมิน :  &sigma;&#178;",
+    "Confidence Interval Sigma": "การประเมิน :  &sigma;&#178; ",
     "Confidence Interval P": "การประเมิน :  p",
     "Estimation Accuracy": "ความแม่นยำของการประมาณ",
     "Repetition": "การทำซ้ำ",
@@ -9507,7 +11004,9 @@ $.message.th = {
     "Testing Hypothesis mu12": "ทดสอบสมมติฐาน &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "ทดสอบสมมติฐาน &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "ทดสอบสมมติฐาน p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "ทดสอบสมมติฐาน ANOVA",
+    "Testing Hypothesis ANOVA": "1 ปัจจัย ANOVA",
+    "Testing Hypothesis ANOVA2": "2 ปัจจัย ANOVA",
+    "SameSampleSize": "ขนาดตัวอย่างของแต่ละเซลล์ควรเท่ากันขนาดตัวอย่างของแต่ละเซลล์ควรเท่ากัน",
     "Testing Independence": "ทดสอบสมมติฐาน",
     "CategoryD": "ประเภท",
     "Category": "ประเภท",
@@ -9649,6 +11148,7 @@ $.message.th = {
     "oneColor":        "สีเดียว",
     "defaultColor":    "สีเริ่มต้น",
     "RelativeFreq":    "ความถี่สัมพัทธ์",
+    "Density":         "ความหนาแน่น",
     "MarginOfError":   "ขอบของข้อผิดพลาด",
     "Permutation":     "การเรียงสับเปลี่ยน",
     "Combination":     "การรวมกัน",
@@ -9687,6 +11187,79 @@ $.message.th = {
     "RelationOperator":  "ความสัมพันธ์<br>โอเปอเรเตอร์",
     "SelectValue":       "ค่า",
     "MissingValue":      "ไม่มีค่า",
+    "option":            "ตัวเลือก",                                  
+    "TimeSeries":        "ไทม์ซีรีส์",
+    "Smoothing":         "เรียบ",
+    "Filtering":         "การกรอง",
+    "Transformation":    "การเปลี่ยนแปลง",
+    "Weight":            "น้ำหนัก",
+    "PercentChange":     "เปอร์เซ็นต์การเปลี่ยนแปลง",
+    "WeightedIndex":     "ดัชนีอย่างง่าย",
+    "BaseTime":          "เวลาพื้นฐาน",
+    "LagTime":           "เวลาล่าช้า",
+    "Lag":               "เวลาล่าช้า",
+    "Forecasting":       "พยากรณ์",
+    "SeasonalModel":     "แบบจำลองตามฤดูกาล",
+    "HoltWinter":        "แบบจำลองตามฤดูกาลของ Holt-Winters",
+    "Trend":             "แนวโน้ม",
+    "Seasonal":          "ตามฤดูกาล",
+    "Deseasonal":        "ซีรีส์ดีซีซัน",
+    "Nseason":           "ครั้งในฤดูกาล",
+    "Irregular":         "ผิดปกติ",
+    "TrendModel":        "เทรนด์โมเดลเกี่ยวกับดีซีซันอล",
+    "RegressionModel":   "แบบจำลองการถดถอย",
+    "ForecastingPeriod": "ระยะเวลาพยากรณ์",
+    "CreateTable":       "ตารางข้อมูล",
+    "SaveTable":         "บันทึกตาราง",
+    "MA":                "ค่าเฉลี่ยเคลื่อนที่",
+    "EWMA":              "แบบจำลอง EWMA",
+    "CenterMA":          "เส้นค่าเฉลี่ยเคลื่อนที่กึ่งกลาง",
+    "MovingMedian":      "ค่ามัธยฐานการย้ายศูนย์กลาง",
+    "ES":                "การปรับให้เรียบแบบเอ็กซ์โพเนนเชียล",
+    "Default":           "ค่าเริ่มต้น",
+    "Linear":            "เชิงเส้น",
+    "Quadratic":         "กำลังสอง",
+    "Cubic":             "ลูกบาศก์",
+    "SquareRoot":        "รากที่สอง",
+    "Log":               "ลอการิทึม",
+    "Exponent":          "เลขชี้กำลัง",
+    "Power":             "พลัง",
+    "BoxCox":            "บ็อกซ์-ค็อกซ์",
+    "SingleMA":          "เส้นค่าเฉลี่ยเคลื่อนที่เดี่ยว",
+    "SingleES":          "การปรับให้เรียบแบบเอกซ์โปเนนเชียล",
+    "DoubleMA":          "เส้นค่าเฉลี่ยเคลื่อนที่สองเท่า",
+    "DoubleES":          "การปรับให้เรียบแบบเอกซ์โพเนนเชียลสองเท่า",
+    "HoltLinear":        "โฮลท์เอ็กซ์โปเนนเชียล สมูทติ้ง",
+    "DeseasonIntercept": "การสกัดกั้น Deseasonal",
+    "DeseasonSlope":     "ความลาดชันตามฤดูกาล",
+    "SeasonalIndex":     "ดัชนีตามฤดูกาล",
+    "Diff":              "ความแตกต่าง",
+    "DiffTime":          "แตกต่างเวลา",
+    "AR":                "แบบจำลองการถดถอยอัตโนมัติ",
+    "ResultTable":       "ผลการถดถอย",
+    "ForecastTable":     "ตารางพยากรณ์",
+    "HoltLevel":         "ระดับ",
+    "HoltTrend":         "แนวโน้ม",
+    "AutoCorrTable":     "ตารางความสัมพันธ์อัตโนมัติ",
+    "DiffSeries":        "ชุดความแตกต่าง",
+    "RawSeries":         "อนุกรมเวลาเดิม",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Thai
 appStr[1][14] = "../eStatH/index.html";
@@ -9694,7 +11267,9 @@ appStr[2][14] = "../eStatU/index.html";
 appStr[3][14] = "../eStatE/index_en.html";
 appStr[4][14] = "../eHelp/index_en.html";
 appStr[5][14] = "index.html";
-appStr[6][14] = "../eLearning/en/index.html";
+appStr[6][14] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][14] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][14] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][14] = "หนึ่งในตัวแปรที่เลือกไว้ไม่มีข้อมูล";
 alertMsg[2][14] = "เลือกตัวแปรเพื่อนำมาวิเคราะห์ (คลิกที่ชื่อคอลัมน์) ทีละตัวแปร หากมีตัวแปรสองตัว ตัวแปรแรกเป็นตัวแปรกลุ่ม";
 alertMsg[3][14] = "ตัวแปรที่เลือกไว้มีข้อมูลสูญหาย";
@@ -10001,11 +11576,32 @@ svgStrU[111][14] = "เลื่อนจุดด้วยเมาส์";
 svgStrU[112][14] = "การสกัดการฟื้นฟู";
 svgStrU[113][14] = "โดยไม่ต้องเปลี่ยน";
 svgStrU[114][14] = "แผนภาพเส้น"; 
+svgStrU[115][14] = "เปอร์เซ็นต์การเปลี่ยนแปลง";
+svgStrU[116][14] = "ดัชนีอย่างง่าย";
+svgStrU[117][14] = "เวลาหน่วง";
+svgStrU[118][14] = "ความแตกต่าง";
+svgStrU[119][14] = "ความสัมพันธ์อัตโนมัติ";
+svgStrU[120][14] = "บันทึก";
+svgStrU[121][14] = "รากที่สอง";
+svgStrU[122][14] = "บ็อกซ์-ค็อกซ์";
+svgStrU[123][14] = "เวลาพื้นฐาน";
+svgStrU[124][14] = "เส้นค่าเฉลี่ยเคลื่อนที่กึ่งกลาง";
+svgStrU[125][14] = "การปรับให้เรียบแบบเอ็กซ์โพเนนเชียล";
+svgStrU[126][14] = "ค่ามัธยฐานการเคลื่อนที่ที่กึ่งกลาง";
+svgStrU[127][14] = "รุ่น";
+svgStrU[128][14] = "เส้นค่าเฉลี่ยเคลื่อนที่";
+svgStrU[129][14] = "เส้นค่าเฉลี่ยเคลื่อนที่สองเท่า";
+svgStrU[130][14] = "โฮลทดับเบิลเอ็กซ์โพเนนเชียล Smoothing";
+svgStrU[131][14] = "ดัชนีตามฤดูกาล";
+svgStrU[132][14] = "รูปแบบการคูณตามฤดูกาลของ Holt-Winters";
+svgStrU[133][14] = "ซีรีส์ที่ไม่เป็นไปตามฤดูกาล";
+svgStrU[134][14] = "กลุ่ม";
 
 
 // Polish
 $.message.pl = {
     "eStat : Stat Education SW": "eStat : Stat Edukacja SW",
+    "Home": "Strona główna",
     "Filename": "Nazwa pliku",
     "Selected Variables": "Wybrane zmienne",
     "Cancel": "Anuluj",
@@ -10034,6 +11630,7 @@ $.message.pl = {
     "maxStem": "** maksymalna liczba łodyg <= 30 **",
     "Box-Whisker Plot": "Wykres pudełkowy",
     "Scatterplot": "Wykres rozrzutu",
+    "ScatterplotMatrix": "Wykres rozrzutu Matrix",
     "Frequency Table": "Tabela częstości",
     "Basic Statistics": "Statystyki opisowe",
     "Testing Hypothesis &mu;": "Hipoteza testowa &mu;",
@@ -10041,6 +11638,7 @@ $.message.pl = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hipoteza testowa  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hipoteza testowa &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analiza wariancji",
+    "Middle School Stat Education": "Edukacja Statystyczna Gimnazjum",
     "High School Stat Education": "Statystyka - wykształcenie w szkole średniej",
     "University Stat Education": "Statystyka - edukacja poziom uniwersytecki",
     "Elem Stat Graph Example": "Przykłady wykresów statystyki elementarnej",
@@ -10076,7 +11674,10 @@ $.message.pl = {
     "MeanStd": "Śrdenia/Odchylenie standardowe",
     "DotMeanStd": "Wykres punktowy - Śrdenia/Odchylenie standardowe",
     "95CI": "95% Przedział ufności",
+    "CorrelationAnalysis": "Analiza korelacji",
     "RegressionAnalysis": "Analiza regresji",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Dwuczynnikowa analiza wariancji ",
     "Regression": "Regresja",
     "RegressionLine": "Linia regresji",
@@ -10098,9 +11699,10 @@ $.message.pl = {
     "Variance": "wariancji",
     "F test": "F test",
     "At least one pair of means is different": "Co najmniej jedna para średnich jest inna",
-    "Main Title : ": "Główny tytuł",
-    "y title : ": "y tytuł",
-    "x title : ": "x tytuł",
+    "Main Title": "Główny tytuł",
+    "y title": "y tytuł",
+    "x title": "x tytuł",
+    "yAxis": "Oś Y",
     "Modify": "Modyfikuj",
     "Confirm": "Potwierdź",
     "Variable Name": "Nazwa zmiennej",
@@ -10111,9 +11713,11 @@ $.message.pl = {
     "Exit": "Wyjście",
     "eStatU UnivStatEdu": "eStatU - Statystyka - edukacja poziom uniwersytecki SW",
     "eStatH HighStatEdu": "eStatH - Statystyka - wykształcenie w szkole średniej SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Podstawowy / Statystyka Gimnazjum SW",
+    "MiddleStat": "Statystyka Gimnazjum",
+    "HighStat":   "Statystyki szkół średnich",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Eksperyment dla rozkładu dwumianowego",
     "Binomial Distribution": "Rozkład dwumianowy",
@@ -10149,9 +11753,10 @@ $.message.pl = {
     "Sample Size": "Wielkość próby",
     "Confidence Interval": "Przedział ufności",
     "Confidence Interval Simulation": "Przedział ufności Symulacja",
+    "Simulation": "Symulacja",
     "Confidence Interval Mu": "Oszacowanie : &mu;",
     "Mu Confidence Interval": "Oszacowanie : &mu;",
-    "Confidence Interval Sigma": "Oszacowanie : &sigma;&#178;",
+    "Confidence Interval Sigma": "Oszacowanie : &sigma;&#178; ",
     "Confidence Interval P": "Oszacowanie : p",
     "Estimation Accuracy": "Dokładność szacowania",
     "Repetition": "Powtórzenie",
@@ -10171,7 +11776,9 @@ $.message.pl = {
     "Testing Hypothesis mu12": "Hipoteza testowa &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Hipoteza testowa &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Hipoteza testowa p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Hipoteza testowa ANOVA",
+    "Testing Hypothesis ANOVA": "1 Czynnik ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Czynnik ANOVA",
+    "SameSampleSize": "Rozmiar próbki każdej komórki powinien być taki sam.",
     "Testing Independence": "Test niezależności",
     "CategoryD": "Kategoria",
     "Category": "Kategoria",
@@ -10313,6 +11920,7 @@ $.message.pl = {
     "oneColor":        "kolor",
     "defaultColor":    "domyślny kolor",
     "RelativeFreq":    "Procent",
+    "Density":         "Gęstość",
     "MarginOfError":   "Margines błędu",
     "Permutation":     "Permutacja",
     "PermutationSame": "Permutacja z tym samym",
@@ -10352,6 +11960,79 @@ $.message.pl = {
     "RelationOperator":  "Relacja<br>Operator",
     "SelectValue":       "Wartość",
     "MissingValue":      "brakująca wartość",
+    "option":            "opcja",                                 
+    "TimeSeries":        "Szereg czasowy",
+    "Smoothing":         "Wygładzanie",
+    "Filtering":         "Filtracja",
+    "Transformation":    "Transformacja",
+    "Weight":            "Waga",
+    "PercentChange":     "Zmień procent",
+    "WeightedIndex":     "Prosty indeks",
+    "BaseTime":          "Czas Bazowy",
+    "LagTime":           "Czas opóźnienia",
+    "Lag":               "Opóźnienie czasowe",
+    "Forecasting":       "Prognozowanie",
+    "SeasonalModel":     "Model sezonowy",
+    "HoltWinter":        "Model sezonowy Holt-Winters",
+    "Trend":             "Tendencja",
+    "Seasonal":          "Sezonowy",
+    "Deseasonal":        "Seria pozasezonowa",
+    "Nseason":           "Czasy w sezonie",
+    "Irregular":         "Nieregularny",
+    "TrendModel":        "Model trendu w sezonowości",
+    "RegressionModel":   "Model regresji",
+    "ForecastingPeriod": "Okres Prognozowany",
+    "CreateTable":       "Tabela danych",
+    "SaveTable":         "Zapisz tabelę",
+    "MA":                "Średnia Ruchoma",
+    "EWMA":              "Model EWMA",
+    "CenterMA":          "Wyśrodkowana Średnia Ruchoma",
+    "MovingMedian":      "Centralna Ruchoma Mediana",
+    "ES":                "Wygładzanie wykładnicze",
+    "Default":           "Domyślna",
+    "Linear":            "Liniowy",
+    "Quadratic":         "Kwadratowy",
+    "Cubic":             "Sześcienny",
+    "SquareRoot":        "Pierwiastek kwadratowy",
+    "Log":               "logarytmiczna",
+    "Exponent":          "Wykładniczy",
+    "Power":             "Moc",
+    "BoxCox":            "Box-Cox",
+    "SingleMA":          "Pojedyncza średnia krocząca",
+    "SingleES":          "Pojedyncze wygładzanie wykładnicze",
+    "DoubleMA":          "Podwójna średnia krocząca",
+    "DoubleES":          "Podwójne wygładzanie wykładnicze",
+    "HoltLinear":        "Holt Expnential Smoothing",
+    "DeseasonIntercept": "Przechwytywanie pozasezonowe",
+    "DeseasonSlope":     "Niesezonowy stok",
+    "SeasonalIndex":     "Indeks sezonowy",
+    "Diff":              "Różnica",
+    "DiffTime":          "Czas Różnic",
+    "AR":                "Model autoregresyjny",
+    "ResultTable":       "Wynik regresji",
+    "ForecastTable":     "Tabela Prognoz",
+    "HoltLevel":         "Poziom",
+    "HoltTrend":         "Tendencja",
+    "AutoCorrTable":     "Tabela Autokorelacji",
+    "DiffSeries":        "Seria Różnic",
+    "RawSeries":         "Oryginalna seria czasowa",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 
 // Polish
@@ -10360,7 +12041,9 @@ appStr[2][15] = "../eStatU/index.html";
 appStr[3][15] = "../eStatE/index_en.html";
 appStr[4][15] = "../eHelp/index_en.html";
 appStr[5][15] = "index.html";
-appStr[6][15] = "../eLearning/en/index.html";
+appStr[6][15] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][15] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][15] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][15] = "Jedna z wybranych zmiennych nie zawiera danych.";
 alertMsg[2][15] = "Wybierz zmienne do analizy (klikając nazwy kolumn) jedną po drugiej. Jeśli dwie zmienne to pierwsza zmienna jest grupująca.";
 alertMsg[3][15] = "Brak danych dla wybranej zmiennej.";
@@ -10669,348 +12352,382 @@ svgStrU[111][15] = "Przesuń punkt za pomocą myszy";
 svgStrU[112][15] = "Ekstrakcja renowacji";
 svgStrU[113][15] = "bez zamiany";
 svgStrU[114][15] = "liniowy"; 
+svgStrU[115][15] = "Zmiana procentowa";
+svgStrU[116][15] = "Indeks prosty";
+svgStrU[117][15] = "Opóźnienie";
+svgStrU[118][15] = "Różnica";
+svgStrU[119][15] = "Autokorelacja";
+svgStrU[120][15] = "Dziennik";
+svgStrU[121][15] = "Pierwiastek kwadratowy";
+svgStrU[122][15] = "Box-Cox";
+svgStrU[123][15] = "Czas podstawowy";
+svgStrU[124][15] = "Wyśrodkowana średnia ruchoma";
+svgStrU[125][15] = "Wygładzanie wykładnicze";
+svgStrU[126][15] = "Wyśrodkowana ruchoma mediana";
+svgStrU[127][15] = "Model";
+svgStrU[128][15] = "Średnia krocząca";
+svgStrU[129][15] = "Podwójna średnia krocząca";
+svgStrU[130][15] = "Wstrzymaj podwójne wygładzanie wykładnicze";
+svgStrU[131][15] = "Indeks sezonowy";
+svgStrU[132][15] = "Model sezonowy multiplikatywny Holt-Winters";
+svgStrU[133][15] = "Seria pozasezonowa";
+svgStrU[134][15] = "Blok";
+
  
 // Azerbaijan
 $.message.az = {
     "eStat : Stat Education SW": "eStat : Stat Təhsil SW",
+    "Home": "Əsas Səhifə",
     "Filename": "Faylın adı",
-    "Selected Variables": "seçilmiş dəyişən",
-    "Cancel": "Ləğv etmək",
-    "Edit Variables": "dəyişənləri redaktə etmək",
-    "Level": "səviyyə",
+    "Selected Variables": "Seçilmiş dəyişənlər",
+    "Cancel": "Ləğv et",
+    "Edit Variables": "Dəyişənləri redaktə et",
+    "Level": "Səviyyə",
     "ElementaryLevel": "I",
     "MiddleLevel": "O",
     "HighLevel": "A",
     "UniversityLevel": "U",
-    "Example": "nümunə",
-    "New Sheets": "yeni vərəqlər",
-    "csv Open": "csv aç",
-    "www Open": "www aç",
-    "json Open": "json aç",
-    "csv Save": "csv Yadda saxla",
-    "json Save": "json Yadda saxla",
-    "Print Sheet": "vərəqi çap et",
-    "Bar Graph": "Sütun qrafiki",
-    "Pie Chart": "dairə",
-    "Band Graph": "Zolaq qrafiki",
-    "Line": "xətti",
-    "Line Graph": "xətti qrafik",
-    "Dot Graph": "nöqtə qrafiki",
-    "Histogram": "Histogram",
-    "Stem & Leaf Plot": "saplaq və yarpaq sahəsi",
-    "maxStem": "** maksimum kök sayı <= 30 **",
-    "Box-Whisker Plot": "Qutu qrafiki",
-    "Scatterplot": "Səpələnmə diaqramı",
-    "Frequency Table": "tezlik cədvəli",
-    "Basic Statistics": "təsviri statistika",
-    "Testing Hypothesis &mu;": "Fərziyyənin yoxlanması &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Fərziyyənin yoxlanması &sigma;&#178;",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Fərziyyənin yoxlanması  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Fərziyyənin yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
-    "Analysis of Variance": "Dispersiya analizi",
-    "High School Stat Education": "Ali məktəb stat təhsil",
-    "University Stat Education": "Universitet stat təhsil",
-    "Elem Stat Graph Example": "İbtidai məktəb qrafik nümunəsi",
+    "Example": "Nümunə",
+    "New Sheets": "Yeni Səhifələr",
+    "csv Open": "csv Aç",
+    "www Open": "www Aç",
+    "json Open": "json Aç",
+    "csv Save": "csv Yadda Saxla",
+    "json Save": "json Yadda Saxla",
+    "Print Sheet": "Səhifəni Çap Et",
+    "Bar Graph": "Sütun Qrafiki",
+    "Pie Chart": "Dairə Qrafiki",
+    "Band Graph": "Zolaq Qrafiki",
+    "Line": "Xətt",
+    "Line Graph": "Xətti Qrafik",
+    "Dot Graph": "Nöqtə Qrafiki",
+    "Histogram": "Histoqram",
+    "Stem & Leaf Plot": "Gövdə & Yarpaq Qrafiki",
+    "maxStem": "** Maksimum Gövdə Sayı <= 30 **",
+    "Box-Whisker Plot": "Box-Whisker Qrafiki",
+    "Scatterplot": "Səpələnmə Qrafiki",
+    "ScatterplotMatrix": "Səpələnmə Qrafiki Matrisi",
+    "Frequency Table": "Tezlik Cədvəli",
+    "Basic Statistics": "Təsviri Statistika",
+    "Testing Hypothesis &mu;": "Fərziyyənin Yoxlanması &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Fərziyyənin Yoxlanması &sigma;&#178;",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Fərziyyənin Yoxlanması  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Fərziyyənin Yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
+    "Analysis of Variance": "Dispersiya Analizi",
+    "Middle School Stat Education": "Orta Məktəb Statistikası",
+    "High School Stat Education": "Yuxarı Sinif Statistikası",
+    "University Stat Education": "Universitet Statistikası",
+    "Elem Stat Graph Example": "Elementar Qrafik Nümunəsi",
     "Learning eStat w Example": "eStat ?",
     "Vertical": "Şaquli",
     "Horizontal": "Üfüqi",
     "Vertical Separated Bar": "Şaquli Ayrılmış Sütun Qrafiki",
-    "Vertical Stacked Bar": "Şaquli üst-üstə Sütun qrafiki",
-    "Vertical Ratio Bar": "Şaquli nisbət sütun qrafiki",
+    "Vertical Stacked Bar": "Şaquli üst-üstə Sütun Qrafiki",
+    "Vertical Ratio Bar": "Şaquli Nisbət Sütun Qrafiki",
     "Vertical Side by Side Bar": "Şaquli Yanbayan Sütun Qrafiki",
-    "Vertical Two Sided Bar": "Şaquli iki tərəfli Sütun qrafiki",
-    "Horizontal Separated Bar": "Üfüqi Ayrılmış sütun Qrafiki",
-    "Horizontal Stacked Bar": "Üfüqi üst-üstə sütun qrafiki",
-    "Horizontal Ratio Bar": "Üfüqi nisbət bar qrafiki",
-    "Horizontal Side by Side Bar": "Üfüqi Yanaşı Sütun Qrafiki",
-    "Horizontal Two Sided Bar": "Üfüqi iki tərəfli sütun qrafiki",
-    "Doughnut Graph": "Halqa qrafiki",
-    "Two Sided Stem & Leaf Plot": "İki tərəfli saplaq və yarpaq diaqramı",
-    "Graph Save": "qrafiki yadda saxlamaq",
-    "Graph Print": "qrafiki çap etmək",
+    "Vertical Two Sided Bar": "Şaquli İki Tərəfli Sütun Qrafiki",
+    "Horizontal Separated Bar": "Üfüqi Ayrılmış Sütun Qrafiki",
+    "Horizontal Stacked Bar": "Üfüqi Üst-Üstə Sütun Qrafiki",
+    "Horizontal Ratio Bar": "Üfüqi Nisbət Sütun Qrafiki",
+    "Horizontal Side by Side Bar": "Üfüqi Yanbayan Sütun Qrafiki",
+    "Horizontal Two Sided Bar": "Üfüqi iki tərəfli sütun Qrafiki",
+    "Doughnut Graph": "Halqa Qrafiki",
+    "Two Sided Stem & Leaf Plot": "İki tərəfli Gövdə və Yarpaq Qrafiki",
+    "Graph Save": "Qrafiki Yadda Saxla",
+    "Graph Print": "Qrafiki Çap Et",
     "Move to Table": "Cədvələ köçürün",
-    "Edit Title": "başlığı redaktə etmək",
-    "Table Save": "cadvəli yadda saxlamaq",
-    "Table Print": "cədvəli çap etmək",
-    "Frequency": "tezlik",
-    "Sorting": "Çeşidləmə",
-    "SortData": "Çeşidləmə",
-    "Raw Data": "Xam Məlumat",
-    "Descending": "azalan",
-    "Ascending": "artan",
-    "Mean": "Ədədi orta",
-    "Std Deviation": "standart kənarlaşma",
-    "MeanStd": "Ədədi ortan/standart kənarlaşma",
-    "DotMeanStd": "nöqtə qrafiki - Ədədi ortan/standart kənarlaşma",
-    "95CI": "95% İnam intervalı",
-    "RegressionAnalysis": "reqressiya analizi",
-    "ANOVA2": "İki üsulluq Dispersiya analizi",
-    "Regression": "reqressiya",
-    "RegressionLine": "reqressiya xətti",
-    "RegressionBand": "İnam zolağı",
-    "RegressionTable": "reqressiya analizi",	
-    "Frequency Polygon": "tezlik çoxbucaqlısı",
-    "Execute New Interval": "yeni intervalı icra etmək",
-    "Interval Start": "intervalın başlanğıcı",
-    "Interval Width": "intervalın eni",
-    "t-test": "t test",
-    "Z-test": "Z test",
+    "Edit Title": "Başlığı Redaktə Et",
+    "Table Save": "Cadvəli Yadda Saxla",
+    "Table Print": "Cədvəli Çap Et",
+    "Frequency": "Tezlik",
+    "Sorting": "Sıralama",
+    "SortData": "Verilənləri (data) Sırala",
+    "Raw Data": "Emal Edilməmiş Verilənlər (Data)",
+    "Descending": "Azalan Sıra",
+    "Ascending": "Artan Sıra",
+    "Mean": "Ədədi Orta",
+    "Std Deviation": "Standart Kənarlaşma",
+    "MeanStd": "Ədədi Orta/Standart Kənarlaşma",
+    "DotMeanStd": "Nöqtə Qrafiki - Ədədi Orta/Standart Kənarlaşma",
+    "95CI": "95% Etibarlı interval",
+    "CorrelationAnalysis": "Korrelyasiya Analizi",
+    "RegressionAnalysis": "Reqressiya Analizi",
+    "RegressionAnalysis1": "Sadə Xətti Reqresiya Analizi",
+    "RegressionAnalysis2": "Çoxhədli Xətti Reqresiya Analizi",
+    "ANOVA2": "ANOVA2",
+    "Regression": "Reqressiya",
+    "RegressionLine": "Reqressiya Xətti",
+    "RegressionBand": "Etibarlılıq Zolağı",
+    "RegressionTable": "Reqressiya Analizi",	
+    "Frequency Polygon": "Tezlik Çoxbucaqlısı",
+    "Execute New Interval": "Yeni İntervalı icra Et",
+    "Interval Start": "İntervalın Başlanğıcı",
+    "Interval Width": "İntervalın Eni",
+    "t-test": "t-test",
+    "Z-test": "Z-test",
     "(if Z-test, enter &sigma;)": "(Z-testdirsə, &sigma; daxil edin.)",
-    "Significance Level": "Əhəmiyyət səviyyəsi",
-    "Execute": "icra etmək",
-    "(Confidence Interval)": "(İnam intervalı)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-testidirsə, Z<sub>&alpha;/2</sub> istifadə edin.)",
+    "Significance Level": "Əhəmiyyətlilik Dərəcəsi",
+    "Execute": "İcra Et",
+    "(Confidence Interval)": "(Etibarlı İnterval)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-testidirsə, Z<sub>&alpha;/2</sub> istifadə edilir.)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
-    "Variance Assumption": "Dispersiya fərziyyəsi",
+    "Variance Assumption": "Dispersiya Fərziyyəsi",
     "Variance": "Dispersiya",
     "F test": "F test",
-    "At least one pair of means is different": "Ən azı bir cüt ədədi orta fərqlidir",
-    "Main Title : ": "əsas başlıq",
-    "y title : ": "Y başlığı",
-    "x title : ": "X başlığı",
-    "Modify": "dəyişmək",
-    "Confirm": "Təsdiq etmək",
-    "Variable Name": "dəyişənin adı",
-    "Variable Value": "dəyişkən dəyəri",
-    "Value Label": "dəyər etiketi",
-    "* Less than nine value labels allowed.": "* Doqquz dəyərdən az etiketə icazə verilir..",
+    "At least one pair of means is different": "Ədədi Ortaların Ən Azı Bir Cütü Fərqlidir",
+    "Main Title": "Əsas Başlıq",
+    "y title": "Y Dəyişəninin İzahı",
+    "x title": "X Dəyişəninin İzahı",
+    "yAxis": "Y Oxu",
+    "Modify": "Dəyişmək",
+    "Confirm": "Təsdiq Et",
+    "Variable Name": "Dəyişənin Adı",
+    "Variable Value": "Dəyişənin Dəyəri",
+    "Value Label": "dəyərin etiketi",
+    "* Less than nine value labels allowed.": "* Doqquz dəyər etiketindən daha aza icazə verilir..",
     "Save": "Yadda saxla",
-    "Exit": "çıxmaq",
-    "eStatU UnivStatEdu": "eStatU - Universitet statistika təhsili SW",
-    "eStatH HighStatEdu": "eStatH - Ali məktəb statistika təhsili SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "Exit": "Çıxmaq",
+    "eStatU UnivStatEdu": "eStatU - Universitet Statistika Təhsili SW",
+    "eStatH HighStatEdu": "eStatH - Yuxarı Sinif Statistikası SW",
+    "eStatM MiddleStatEdu": "eStatM - Orta məktəb Statistikası SW",
+    "MiddleStat": "Orta məktəb Statistikası",
+    "HighStat":   "Yuxarı Sinif Statistikası",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "menyu",
-    "Binomial Experiment": "Binomial təcrübə",
-    "Binomial Distribution": "Binomial paylanma",
-    "Binomial Prob Table": "Binomial ehtimal cədvəli",
-    "Poisson Distribution": "Poisson Paylanması",
-    "Poisson Prob Table": "Poisson Ehtimal Cədvəli",
-    "Geometric Distribution": "həndəsi paylanma",
-    "Geometric Prob Table": "həndəsi ehtimal cədvəli",
-    "HyperGeometric Distribution": "hiper həndəsi paylanma",
-    "HyperGeometric Prob Table": "hiper həndəsi ehtimal cədvəli",
-    "Exponential Distribution": "qüvvətli paylanma",
-    "Normal Experiment": "normal təcrübə",
-    "Normal Distribution": "normal paylanma",
-    "Normal Approx": "normal təxmin",
-    "t Distribution": "t Paylanma",
-    "ChiSquare Distribution": "&chi;&#178; Paylanma",
-    "F Distribution": "F Paylanma",
-    "Sampling": "nümunə götürülməsi",
-    "Population vs Sample": "Populyasiya vs Nümunə",
-    "Population": "Populyasiya",
-    "Sample": "nümunə",
-    "Exponential": "qüvvət(0.3)",
-    "Uniform": "Vahid paylanma(0,1)",
-    "UniformDist": "Vahid paylanmam",
-    "Sample05": "nümunə götürülməsi 5%",
-    "Sample10": "nümunə götürülməsi 10%",
-    "Sample20": "nümunə götürülməsi 20%",
-    "Statistics/BoxPlot": "statistika/Qutu qrafiki",
-    "StatisticalProb":     "Statistik ehtimal",
-    "Law of Large Number": "böyük rəqəmlər qanunu",
-    "Dist of Sample Means": "nümunə ədədi ortaların paylanması",
-    "Sampling Distribution": "nümunə götürülməsi paylanma",
-    "Sample Size": "nümunə ölçüsü",
-    "Confidence Interval": "İnam intervalı",
-    "Confidence Interval Simulation": "İnam intervalı Simulyasiya",
-    "Confidence Interval Mu": "Hesablama : &mu;",
-    "Mu Confidence Interval": "Hesablama : &mu;",
-    "Confidence Interval Sigma": "Hesablama : &sigma;&#178;",
-    "Confidence Interval P": "Hesablama : p",
-    "Estimation Accuracy": "Hesablama dəqiqliyi",
-    "Repetition": "təkrar",
-    "Confidence Level": "İnam sərhədi",
-    "Testing Hypothesis mu_titleAB": "Fərziyyənin yoxlanması Ədədi orta",
-    "Testing Hypothesis mu_title": "Fərziyyənin yoxlanması Ədədi orta",
-    "Testing Hypothesis sigma_title": "Fərziyyənin yoxlanması Dispersiya",
-    "Testing Hypothesis P_title": "Fərziyyənin yoxlanması Proporsiyanın",
-    "Testing Hypothesis mu12_title": "Fərziyyənin yoxlanması iki ədədi ortanın",
-    "Testing Hypothesis sigma12_title": "Fərziyyənin yoxlanması iki Dispersiya",
-    "Testing Hypothesis P12_title": "Fərziyyənin yoxlanması ike Proporsiyanın",
-    "Testing Hypothesis muA":  "Fərziyyənin yoxlanması &mu; - C, &beta;",
-    "Testing Hypothesis muAB": "Fərziyyənin yoxlanması &mu; - C, n",
-    "Testing Hypothesis mu": "Fərziyyənin yoxlanması &mu;",
-    "Testing Hypothesis sigma": "Fərziyyənin yoxlanması &sigma;&#178;",
-    "Testing Hypothesis P": "Fərziyyənin yoxlanması p",
-    "Testing Hypothesis mu12": "Fərziyyənin yoxlanması &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Fərziyyənin yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
-    "Testing Hypothesis P12": "Fərziyyənin yoxlanması p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Fərziyyənin yoxlanması ANOVA",
-    "Testing Independence": "Kateqoriyalara aiddir: asılı olmama testi",
+    "Binomial Experiment": "Binomial Eksperiment",
+    "Binomial Distribution": "Binomial Paylanma",
+    "Binomial Prob Table": "Binomial Ehtimal Cədvəli",
+    "Poisson Distribution": "Puasson Paylanması",
+    "Poisson Prob Table": "Puasson Ehtimal Cədvəli",
+    "Geometric Distribution": "Həndəsi Paylanma",
+    "Geometric Prob Table": "Həndəsi Ehtimal Cədvəli",
+    "HyperGeometric Distribution": "Hiper - Həndəsi Paylanma",
+    "HyperGeometric Prob Table": "Hiper - Həndəsi Ehtimal Cədvəli",
+    "Exponential Distribution": "Üstlü paylanma",
+    "Normal Experiment": "Normal Paylanmaya Aid Sınaq",
+    "Normal Distribution": "Normal Paylanma",
+    "Normal Approx": "Normal Təqribiləşdirmə",
+    "t Distribution": "t Paylanması",
+    "ChiSquare Distribution": "&chi;&#178; Paylanması",
+    "F Distribution": "F Paylanması",
+    "Sampling": "Nümunə Seçimi",
+    "Population vs Sample": "Populyasiya (Ana Kütlə) vs Nümunə",
+    "Population": "Populyasiya (Ana Kütlə)",
+    "Sample": "Nümunə",
+    "Exponential": "Üst(0.3)",
+    "Uniform": "Müntəzəm(0,1)",
+    "UniformDist": "Müntəzəm Paylanma",
+    "Sample05": "Nümunə Seçimi 5%",
+    "Sample10": "Nümunə Seçimi 10%",
+    "Sample20": "Nümunə Seçimi 20%",
+    "Statistics/BoxPlot": "Statistika/Qutu Qrafiki",
+    "StatisticalProb":     "Statistik Ehtimal",
+    "Law of Large Number": "Böyük Ədədlər Qanunu",
+    "Dist of Sample Means": "Nümunələrin Ədədi Ortasının Nümunə Paylanması",
+    "Sampling Distribution": "Nümunə paylanması",
+    "Sample Size": "Nümunə Ölçüsü",
+    "Confidence Interval": "Etibarlı interval",
+    "Confidence Interval Simulation": "Etibarlı İntervalın Simulyasiyası",
+    "Simulation": "Simulyasiya",
+    "Confidence Interval Mu": "Etibarlı İnterval : &mu;",
+    "Mu Confidence Interval": "Populyasiya Ədədi Ortası Üçün Etibarlı İnterval : &mu;",
+    "Confidence Interval Sigma": "Etibarlı İnterval : &sigma;&#178; ",
+    "Confidence Interval P": "Etibarlı İnterval : p",
+    "Estimation Accuracy": "Hesablama Dəqiqliyi",
+    "Repetition": "Təkrar",
+    "Confidence Level": "Etibarlı İnterval",
+    "Testing Hypothesis mu_titleAB": "Ədədi Ortayla Bağlı Fərziyyənin Yoxlanması",
+    "Testing Hypothesis mu_title": "Ədədi Ortayla Bağlı Fərziyyənin Yoxlanması",
+    "Testing Hypothesis sigma_title": "Dispersiya Haqda Fərziyyənin yoxlanması",
+    "Testing Hypothesis P_title": "Nisbət Haqda Fərziyyənin Yoxlanması",
+    "Testing Hypothesis mu12_title": "iki Ədədi Ortanın Bərabərliyi Fərziyyəsinin Yoxlanması",
+    "Testing Hypothesis sigma12_title": "iki Dispersiyanın Bərabərliyi Fərziyyəsinin Yoxlanması",
+    "Testing Hypothesis P12_title": "iki Nisbətin Bərabərliyi Fərziyyəsinin Yoxlanması",
+    "Testing Hypothesis muA":  "Fərziyyənin Yoxlanması &mu; - C, &beta;",
+    "Testing Hypothesis muAB": "Fərziyyənin Yoxlanması &mu; - C, n",
+    "Testing Hypothesis mu": "Fərziyyənin Yoxlanması &mu;",
+    "Testing Hypothesis sigma": "Fərziyyənin Yoxlanması &sigma;&#178;",
+    "Testing Hypothesis P": "Fərziyyənin Yoxlanması p",
+    "Testing Hypothesis mu12": "Fərziyyənin Yoxlanması &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis sigma12": "Fərziyyənin Yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
+    "Testing Hypothesis P12": "Fərziyyənin Yoxlanması p<sub>1</sub>, p<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "Fərziyyənin Yoxlanması ANOVA", 
+    "Testing Hypothesis ANOVA2": "Fərziyyənin Yoxlanması ANOVA2",
+    "SameSampleSize": "Hər bir hüceyrənin nümunə ölçüsü eyni olmalıdır. Hər bir hüceyrənin nümunə ölçüsü eyni olmalıdır.",
+    "Testing Independence": "Kateqoriyalara aiddir: Asılı Olmamazlıq Testi",
     "CategoryD": "Kateqoriya",
     "Category": "Kateqoriya",
-    "Correlation Coefficient": "Korrelyasiya əmsalı",
-    "Regression Experiment": "reqressiya təcrübəsi",
+    "Correlation Coefficient": "Korrelyasiya Əmsalı",
+    "Regression Experiment": "Reqressiyaya Aid Sınaq",
     "Hypothesis": "Fərziyyə",
-    "Test Type": "Test növü",
+    "Test Type": "Test Növü",
     "Z-test": "Z test",
     "t-test": "t test",
     "Chi-test": "&chi;&#178; test",
     "F-test": "F test",
-    "Sampling Type": "nümunə götürülməsinin növü",
-    "Independent Sample": "asılı olmayan nümunə",
-    "Paired Sample": "cütlü nümunə",
-    "Sample Data": "məlumat nümunəsi",
-    "input either sample data": "csv / bsv istifadə edərək növbəti qutularda nümunə məlumatlarını və ya nümunə statistikasını daxil edin",
-    "input data": "Məlumat daxil edin",
-    "Sample Statistics": "nümunə statistikası",
-    "Sample Mean": "nümumənin ədədi ortası",
-    "Sample Variance": "Nümunənin dispersiyası",
-    "Sample Proportion": "Nümunənin proposiyası",
-    "if Z-test-1": "(Z-testdirsə, populyasiya dispersiyasını daxil edin &sigma;&#178;)",
-    "if Z-test-2": "(Z-testdirsə, z<sub>&alpha;/2 </sub> istifadə edin)",
-    "At least one pair": "Ən azı bir cüt ədədi orta fərqlidir",
-    "Row-Col-0": "sətir və sütun dəyişənləri asılı olmayandır",
-    "Row-Col-1": "sətir və sütun dəyişənləri asılıdır",
+    "Sampling Type": "Nümunə Seçiminin Növü",
+    "Independent Sample": "Asılı Olmayan Nümunə",
+    "Paired Sample": "Cütlü Nümunə",
+    "Sample Data": "Nümunə Verilənləri",
+    "input either sample data": "növbəti qutularda ya csv / bsv istifadə edərək nümunə verilənlərini ya da nümunə statistikasını daxil edin",
+    "input data": "Verilənləri Daxil Et",
+    "Sample Statistics": "Nümunə Statistikası",
+    "Sample Mean": "Nümunə Ədədi Ortası",
+    "Sample Variance": "Nümunə Dispersiyası",
+    "Sample Proportion": "Nümunə Nisbəti",
+    "if Z-test-1": "(Z-testdirsə, populyasiya (ana kütlə) dispersiyasını daxil edin &sigma;&#178;)",
+    "if Z-test-2": "(Z-testdirsə, z<sub>&alpha;/2 </sub> istifadə edilir)",
+    "At least one pair": "Ədədi ortaların ən az bir cütü fərqlidir",
+    "Row-Col-0": "Sətir və Sütun Dəyişənləri Asılı Olmayandır",
+    "Row-Col-1": "Sətir və Sütun Dəyişənləri Asılıdır",
     "Enter any number of row": "(Sol üst hücrədən müşahidəni daxil edin)",
-    "Row": "sətir",
-    "Column": "sütun",
-    "Probability": "ehtimal",
-    "Show Probability": "ehtimalı göstərin",
-    "Regression Line": "reqressiya xətti",
-    "Erase All": "hamısını sil",
-    "Add Point": "nöqtə əlavə edin",
-    "Erase Point": "silmək nöqtəsi",
-    "Reference Site": "rəy saytı",
-    "Lot Size": "ərazi ölçüsü",
-    "Defect Size": "qüsur ölçüsü",
-    "If typed": "Nömrəni yazdıqdan sonra [İcra et] və ya [Enter] vurun",
-    "Stat/BoxPlot": "statistika/Qutu qrafiki",
+    "Row": "Sətir",
+    "Column": "Sütun",
+    "Probability": "Ehtimal",
+    "Show Probability": "Ehtimalı Göstərin",
+    "Regression Line": "Reqressiya Xətti",
+    "Erase All": "Hamısını Sil",
+    "Add Point": "Nöqtə Əlavə Et",
+    "Erase Point": "Nöqtəni Sil",
+    "Reference Site": "İstinad Saytı",
+    "Lot Size": "Lot Ölçüsü",
+    "Defect Size": "Qüsur Ölçüsü",
+    "If typed": "Rəqəmi yazdıqdan sonra [Execute] və ya [Enter] vurun",
+    "Stat/BoxPlot": "Statistika/Qutu Qrafiki",
     "Mean": "Ədədi orta",
-    "Std Dev": "standart kənarlaşma",
-    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
-    "OneGroup": "(bir qrup)",
-    "AnalysisVar": "Analiz dəyişəni",
-    "AnalysisVar2": "Y dəyişənin",
-    "GroupVar": "Grup",
-    "GroupVar2": "X dəyişənin",
-    "GroupVar3": "Vuruq1",
-    "GroupVar4": "Vuruq2",
-    "AnalysisVarMu12": "Analizi(or X1) dəyişənin",
-    "GroupVarMu12": "Grup(or X2) dəyişənin",
-    "PairedMu12": " X1, X2 : cütlü dəyişən",
-    "SizeVar": "ölçü dəyişəni",
-    "RegressionBand": "İnam zolağı",
-    "RegressionTable": "reqressiya analizi",
-    "RegressionResidual": "qalıqların qrafiki",
-    "RegressionResidualLeverage": "qalıqların vs kaldıraç",
-    "RegressionCook": "Kuk məsafəsi",
-    "RegressionQQ": "qalıqların Q-Q Süjet",
-    "HistogramNormal": "Histogram",
-    "HistogramChisq": "normallıq testi",
-    "HistogramNormalQQ": "Normal Q-Q Süjet",
-    "PopulationStd": "Populyasiya standart kənarlaşması",
-    "Type1Error": "1-turdagi xato",
-    "Type2Error": "2-turdagi xato",
-    "AnovaTable": "Dispersiya analizi cədvəli",
-    "AnovaMeanGraph": "Orta etimad intervalı",
-    "MultipleComparison": "çoxsaylı müqayisə",
-    "ComparisonGraph": "Müqayisə qrafiki",
-    "AnovaResidual": "standart qalıq Süjet",
-    "AnovaQQ": "qalıq Q-Q Süjet",
-    "TestingFit": "kategoriyali : Uyğunluğun keyfiyyəti testi",
-    "FitTest0": "Müşahidə olunan və nəzəri bölgülər eynidır",
-    "FitTest1": "Müşahidə olunan və nəzəri bölgülər fərqlidir",
-    "ObservedFreq": "müşahidə olunmuş tezlik O",
-    "ExpectedProb": "gözlənilən ehtimal p",
-    "ExpectedFreq": "gözlənilən tezlik E(>5)",
+    "Std Dev": "Standart Kənarlaşma",
+    "SimulationWarning": "(Növbəti simulyasiyaya başlamazdan öncə mövcud simulyasiya tamamlanmalıdır)",
+    "OneGroup": "(Bir Qrup)",
+    "AnalysisVar": "Dəyişən Analizi",
+    "AnalysisVar2": "Y Dəyişəni",
+    "GroupVar": "Qrup",
+    "GroupVar2": "X Dəyişəni",
+    "GroupVar3": "Faktor 1",
+    "GroupVar4": "Faktor 2",
+    "AnalysisVarMu12": "Analiz(və ya X1) Dəyişəni",
+    "GroupVarMu12": "Grup(və ya X2) Dəyişəni",
+    "PairedMu12": " X1, X2 : Cütlü Dəyişənlər",
+    "SizeVar": "Dəyişənin Ölçüsü",
+    "RegressionBand": "Etibarlı Zolaq",
+    "RegressionTable": "Reqressiya Analizi",
+    "RegressionResidual": "Qalıqların Qrafiki",
+    "RegressionResidualLeverage": "Qalıqlar və Ling (Leverage)",
+    "RegressionCook": "Kukun məsafə Qrafiki",
+    "RegressionQQ": "Qalıqlar Q-Q Qrafiki",
+    "HistogramNormal": "Histoqram",
+    "HistogramChisq": "Normallıq Testi",
+    "HistogramNormalQQ": "Normal Q-Q Qrafik",
+    "PopulationStd": "Populyasiya (Ana Kütlə) Standart Kənarlaşması",
+    "Type1Error": "I Tip Xəta",
+    "Type2Error": "II Tip Xəta",
+    "AnovaTable": "Dispersiya Analizi Cədvəli",
+    "AnovaMeanGraph": "Ədədi Orta Üçün Etibarlı İnterval",
+    "MultipleComparison": "Çoxhədli Müqayisə",
+    "ComparisonGraph": "Müqayisə Qrafiki",
+    "AnovaResidual": "Qalıqlar Qrafiki",
+    "AnovaQQ": "Qalıqların Q-Q Qrafiki",
+    "TestingFit": "kategoriyali : Uyğunluq Dərəcəsi Testi",
+    "FitTest0": "Empirik və Nəzəri Paylanmalar Eynidir",
+    "FitTest1": "Empirik və Nəzəru Paylanmalar Fərqlidir",
+    "ObservedFreq": "Empirik Tezlik O",
+    "ExpectedProb": "Ehtimalın Riyazi Gözləməsi p",
+    "ExpectedFreq": "Tezliyin Riyazi Gözləməsi E(>5)",
     "InputFitData": "Sol üst hücrədən müşahidəni daxil edin",
-    "ExecuteTable": "statistika",
-    "MeanDotGraph": "İnam intervalı qrafiki",
-    "ScatterRegression": "Səpələnmə diaqramı",
-    "Factor": "Vuruq",
-    "Interaction": "qarşılıqlı əlaqə",
-    "NoInteraction": "qarşlıqlı əlaqə yoxdur",
-    "ExistInteraction": "qarşılıqlı əlaqə mövcuddur",
-    "eStatLecture": "eStat operatsiya ma'ruzasi",
-    "NonParametricMu12_title": "Parametrik emas : Wilcoxon Reytinq cəmi Test", 
-    "NonParametricMu12": "Parametrik emas : Wilcoxon Reytinq cəmi Test : joylashuv parametrlari M<sub>1</sub>, M<sub>2</sub>", 
-    "WilcoxonTest": "Parametrik emas : Reytinq cəmi Test",
-    "Sample Range": "Reytinq cəmi",
-    "DistributionTable": "paylanma cədvəli",
-    "SignedRankTestDist": "Wilcoxon Signed Reytinq cəmi Dist.",
-    "WilcoxonTestDist": "Wilcoxon Reytinq cəmi Distribution",
-    "KruskalTestDist": "Kruskal-Wallis H Distribution",
-    "FriedmanTestDist": "Friedman S Distribution",
-    "SignedRankTest": "Parametrik emas : işarə Reytinq Cəmi Test",
-    "SignTest": "Parametrik emas : işarə sınağı",
-    "SignCount": "işarələrin sayı",
-    "KruskalTest": "Parametrik emas : Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Parametrik emas : Kruskal-Wallis Test",
-    "Total": "Cəm",
-    "FriedmanTest": "Parametrik emas : Friedman Test",
-    "FriedmanTestANOVA": "Parametrik emas : Friedman Test",
+    "ExecuteTable": "Statistika",
+    "MeanDotGraph": "Etibarlı İnterval Qrafiki",
+    "ScatterRegression": "Səpələnmə Diaqramı",
+    "Factor": "Faktor",
+    "Interaction": "Qarşılıqlı Əlaqə",
+    "NoInteraction": "Qarşlıqlı Əlaqə Yoxdur",
+    "ExistInteraction": "Qarşılıqlı Əlaqə Mövcuddur",
+    "eStatLecture": "eStat eTəhsil",
+    "NonParametricMu12_title": "Vilkokson Cərgələrin Cəmi Testi", 		
+    "NonParametricMu12": "Vilkokson Cərgələrin Cəmi Testi: Mövqe Parametri M<sub>1</sub>, M<sub>2</sub>", 
+    "WilcoxonTest": "Cərgələrin Cəmi Testi",
+    "Sample Range": "Cərgələrin Cəmi",
+    "DistributionTable": "Paylanma Cədvəli",
+    "SignedRankTestDist": "Vilkokson İşarələnmiş Cərgələrin Cəmi Testi Üçün Paylanma",
+    "WilcoxonTestDist": "Vilkokson Cərgələrin Cəmi Testi Üçün Paylanma",
+    "KruskalTestDist": "Kruskal-Vallis H Paylanması",
+    "FriedmanTestDist": "Fridman S Paylanması",
+    "SignedRankTest": "İşarələnmiş Cərgələrin Cəmi Testi",
+    "SignTest": "İşarə Testi",
+    "SignCount": "İşarə Sayı",
+    "KruskalTest": "Kruskal-Vallis Testi",
+    "KruskalTestANOVA": "Kruskal-Vallis Testi",
+    "Total": "Toplam",
+    "FriedmanTest": "Fridman Testi",
+    "FriedmanTestANOVA": "Fridman Testi",
     "Block": "Blok",
-    "Treatment": "rəftar",
-    "At least one locations is different": "Ən azı bir cüt lokasiya fərqlidir",
-    "SignCondition": "Agar n ≤ 100 Binomial Test,  n > 100 Normal Təxmin Test",
-    "WilcoxonSignCondition": "Agar n ≤ 20 Wilcoxon Reytinq Cəmi Test,  n > 20 Normal Təxmin Test",
-    "WilcoxonRankCondition": "Agar n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Reytinq Cəmi Test,  n>25 Normal Təxmin Test",
-    "KruskalCondition": "Agar n ≤ 10 H Paylanma Test, yana &chi;&#178; Təxmin test",
-    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* dəyişənin seçimi : O'zgaruvchan nomni bosing yoki RHS tanlash oynasidan foydalaning",
-    "VariableSelect3": "dəyişənin seçimi",
-    "VariableSelect4": "Ko'proq tahlil o'zgaruvchini tanlash mumkin",
-    "VariableSelect5": "Ko'proq X o'zgaruvchini tanlash mumkin",
-    "SummaryData": "xulosa ma'lumotlari",
-    "RawData": "Xam Məlumat",
+    "Treatment": "Müdaxilə",
+    "At least one locations is different": "Mövqelərdən ən azı bir cütü fərqlidir",
+    "SignCondition": "(n ≤ 100) Binomial Test,  (n > 100) Normal Təqribiləşdirmə Testi",
+    "WilcoxonSignCondition": "(n ≤ 20) İşarələnmiş Cərgələrin Cəmi Testi, (n > 20) Normal Təqribiləşdirmə Testi",
+    "WilcoxonRankCondition": "(n=n<sub>1</sub>+n<sub>2</sub> ≤ 25) Cərgələrin Cəmi Testi, (n>25) Normal Təqribiləşdirmə Testi",
+    "KruskalCondition": "(n ≤ 10) H Paylanması Testi,  (n > 10) &chi;&#178; Təqribiləşdirmə Testi",
+    "VariableSelect":  "* Verilənlərin Analizi : Faylı Yüklə >> Dəyişənləri Seç >>  Kliklə",
+    "VariableSelect2": "* Dəyişənləri Seç : Dəyişən adına kliklə və ya sağdakı seçim qutusundan istifadə et",
+    "VariableSelect3": "Dəyişənləri Seç",
+    "VariableSelect4": "Daha Çox Analiz Dəyişəni Seçilə Bilər.",
+    "VariableSelect5": "Daha Çox X Dəyişəni Seçilə Bilər.",
+    "SummaryData": "Müxtəsər Verilənlər",
+    "RawData": "Emal Edilməmiş Verilənlər",
     "MultiSelect": "",
-    "DataType": "(O'zgaruvchilarni chertish nomi bilan tanlang)",
-    "by": "tomonidan",
-    "NameVar": "nom o'zgaruvchisi",
+    "DataType": "(Dəyişən adına klikləyərək seç)",
+    "by": "görə",
+    "NameVar": "Dəyişən Adı",
     "n_variance": "n-1 formula",
-    "RandomNumber": "təsadüfi rəqəm",
-    "RealNumber":     "həqiqi ədəd",
-    "IntegerNumber":  "tam",
-    "NumberData":     "məlumatların sayı",
-    "NumberDigit":    "onluq rəqəm",
-    "NormalTable":    "normal paylanma jadval",
-    "Percentile":     "faiz cədvəli",
-    "PercentileValue": "faiz",
-    "StudentRangeDist": "HSD Tələbəli İnterval Paylanması",
-    "copy link": "havola nusxasi",
-    "WithoutReplacement": "almashtirishsiz",
-    "WithReplacement":    "Bərpa hasilatı",
-    "Replacement":     "Bərpa hasilatı",
-    "NonReplacement":  "almashtirishsiz",
-    "WordCloud":       "Söz Buludu (İngilis dili)",
-    "oneColor":        "rəng",
-    "defaultColor":    "standart rəng",
-    "RelativeFreq":    "nisbiy tezlik",
-    "MarginOfError":   "Xəta həddi",
-    "Permutation":     "İcazə",
-    "PermutationSame": "Eyni şey ilə icazə",
+    "RandomNumber":   "Təsadüfi Ədədlər Yarat",
+    "RealNumber":     "Real",
+    "IntegerNumber":  "Tam",
+    "NumberData":     "Verilənlərin Sayı",
+    "NumberDigit":    "Onluqlar",
+    "NormalTable":    "Normal Paylanma Cədvəli",
+    "Percentile":     "Persentil Cədvəli",
+    "PercentileValue": "Persentil",
+    "StudentRangeDist": "HSD Studentləşdirilmiş İnterval Paylanması",
+    "copy link": "linki kopyala",
+    "WithReplacement":    "Əvəzetmə ilə",
+    "WithoutReplacement": "Əvəzetməsiz",
+    "Replacement":     "Əvəzetmə ilə",
+    "NonReplacement":  "Əvəzetməsiz",
+    "WordCloud":       "Söz Buludu",
+    "oneColor":        "Rəng",
+    "defaultColor":    "Standart Rəng",
+    "RelativeFreq":    "Nisbi Tezlik",
+    "Density":         "Sıxlıq",
+    "MarginOfError":   "Xəta Həddi",
+    "Permutation":     "Permutasiya",
+    "PermutationSame": "Eyni obyektlər ilə Permutasiyalar",
     "Combination":     "Kombinasiya",
-    "NumberOfCase":    "İşlərin sayı",
-    "BinomialTheorem": "Binom Teoremi",
+    "NumberOfCase":    "Halların sayı",
+    "BinomialTheorem": "Binomial Teorem",
     "PascalTriangle":  "Paskal Üçbucağı",
-    "Character":       "Emoji",
-    "AdditionRule":      "Ehtimalın toplanması qaydası",
-    "MultiplicationRule":"Ehtimalın vurma qaydası",
+    "Character":       "Xarakter",
+    "AdditionRule":      "Ehtimalın Toplanması Qaydası",
+    "MultiplicationRule":"Ehtimalın Hasili Qaydası",
     "ConditionalProb":   "Şərti Ehtimal",
     "JointProb":         "Birgə Ehtimal",
-    "DiscreteDist":      "Diskret paylama",
-    "Categorize":        "Kateqoriyalara",
-    "Recode":            "Yenidən kodla",
+    "DiscreteDist":      "Diskret Paylanma",
+    "Categorize":        "Təsnifləşdir",
+    "Recode":            "Yenidən Kodla",
     "Compute":           "Hesablama",
-    "SelectIf":          "Əgər seçin",
+    "SelectIf":          "Əgər Seçin",
     "InfoValueLabel":    "*** Dəyişən seçin, dəyişən adını və/yaxud dəyər etiketini daxil edin.",
     "InfoSorting":       "*** Çeşidləmə dəyişənini seçin, 3 dəyişənə qədər çeşidləmə metodunu daxil edin.",
     "InfoCategorize":    "*** Kateqoriya üçün dəyişəni seçin, interval başlanğıcını və interval enini daxil edin.",
-    "InfoRecode":        "*** Qeyd üçün dəyişəni seçin, yeni dəyər daxil edin.",
-    "InfoRecode2":       "* 9 dəyərə qədər qeyd etməyə icazə verin.",
+    "InfoRecode":        "*** Yenidən kodlaşdırma üçün dəyişəni seçin, yeni dəyər daxil edin.",
+    "InfoRecode2":       "* 9 dəyərə qədər yenidən kodlaşdırmaya icazə verilir",
     "InfoCompute":       "*** Aşağıdakı düymələrdən istifadə edərək hesablama formulunu yaradın.",
     "InfoSelectIf":      "*** 3 dəyişənə qədər seçin, onların şərtlərini daxil edin.",
-    "SortingVariable":   "Dəyişənlərin çeşidlənməsi",
-    "SortingMethod":     "Çeşidləmə üsulu",
+    "SortingVariable":   "Dəyişənlərin Sıralanması",
+    "SortingMethod":     "Sıralama Üsulu",
     "NewVariable":       "Yeni Dəyişən",
-    "CategoryVariable":  "Dəyişənləri kateqoriyalara ayırın",
-    "CategoryListCheck": "Kateqoriya siyahısı yoxlanışı",
-    "CategoryInterval":  "Kateqoriya intervalı",
-    "CategoryLabel":     "Kateqoriya etiketi",
+    "CategoryVariable":  "Dəyişənləri Təsnifləşdirin",
+    "CategoryListCheck": "Siniflərin Siyahısını Yoxla",
+    "CategoryInterval":  "Sinif İntervalı",
+    "CategoryLabel":     "Sinif Etiketi",
     "RecodeVariable":    "Dəyişənləri yenidən kodla",
     "CurrentValue":      "Cari dəyər",
     "NewValue":          "Yeni dəyər",
@@ -11018,7 +12735,79 @@ $.message.az = {
     "SelectVariable":    "Seçmək üçün<br>dəyişən",
     "RelationOperator":  "Əlaqə<br>Operator",
     "SelectValue":       "Dəyər",
-    "MissingValue":      "itkin dəyər",
+    "MissingValue":      "Kəm Dəyər",
+    "option":            "seçim",                                  
+    "TimeSeries":        "Zaman Sırası",
+    "Smoothing":         "Hamarlama",
+    "Filtering":         "Süzgəcləmə",
+    "Transformation":    "Çevrilmə",
+    "Weight":            "Çəki",
+    "PercentChange":     "Dəyişmə faizi",
+    "WeightedIndex":     "Sadə İndeks",
+    "BaseTime":          "Əsas vaxt",
+    "LagTime":           "Gecikmə vaxtı",
+    "Lag":               "Gecikmə",
+    "Forecasting":       "Proqnozlaşdırma",
+    "SeasonalModel":     "Mövsümi Model",
+    "HoltWinter":        "Holt-Vinters Mövsümi Modeli",
+    "Trend":             "Trend",
+    "Seasonal":          "Mövsümi",
+    "Deseasonal":        "Mövsümi Sıra",
+    "Nseason":           "Mövsümdə vaxtlar",
+    "Irregular":         "Qaydasız",
+    "TrendModel":        "Mövsümi Trend Modeli",
+    "RegressionModel":   "Reqressiya Modeli",
+    "ForecastingPeriod": "Proqnozlaşdırma dövrü",
+    "CreateTable":       "Verilənlər cədvəli",
+    "SaveTable":         "Cədvəli Yadda Saxla",
+    "MA":                "Hərəkətli Orta",
+    "EWMA":              "EWMA (Üstlü Çəkiyə Malik Hərəkətli Orta) Modeli",
+    "CenterMA":          "Mərkəzləşdirilmiş Hərəkətli Orta",
+    "MovingMedian":      "Mərkəzləşdirilmiş Hərəkətli Median",
+    "ES":                "Üstlü Hamarlama",
+    "Default":           "Standart",
+    "Linear":            "Xətti",
+    "Quadratic":         "Kvadratik",
+    "Cubic":             "Kubik",
+    "SquareRoot":        "kvadrat kök",
+    "Log":               "Loqarifmik",
+    "Exponent":          "Üstlü (eksponensial)",
+    "Power":             "Qüvvət",
+    "BoxCox":            "Boks-Koks",
+    "SingleMA":          "Tək Hərəkətli Orta",
+    "SingleES":          "Tək Üstlü Hamarlama",
+    "DoubleMA":          "İkiqat Hərəkətli Orta",
+    "DoubleES":          "İkiqat Üstlü Hamarlama",
+    "HoltLinear":        "Holt Üstlü Hamarlama",
+    "DeseasonIntercept": "Mövsümsüz Sabit Hədd",
+    "DeseasonSlope":     "Mövsümsüz Əmsal",
+    "SeasonalIndex":     "Mövsümi İndeks",
+    "Diff":              "Fərq",
+    "DiffTime":          "Zaman Fərqi",
+    "AR":                "Autoreqressiv Model",
+    "ResultTable":       "Reqressiya Nəticəsi",
+    "ForecastTable":     "Proqnoz Cədvəli",
+    "HoltLevel":         "Səviyyə",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Avtokorrelyasiya Cədvəli",
+    "DiffSeries":        "Fərqlər sırası",
+    "RawSeries":         "Emal Edilməmiş Zaman Sırası",
+    "RBD":               "Təsadüfi Blok Dizaynı",
+    "Latin":             "Latın Kvadrat Dizaynı",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
 
 };
 // Azerbaijan
@@ -11027,56 +12816,58 @@ appStr[2][16] = "../eStatU/index.html";
 appStr[3][16] = "../eStatE/index_en.html";
 appStr[4][16] = "../eHelp/index_en.html";
 appStr[5][16] = "index.html";
-appStr[6][16] = "../eLearning/en/index.html";
-alertMsg[1][16] = "seçilmiş dəyişənlərdən birində məlumat yoxdur.";
-alertMsg[2][16] = "seçilmiş dəyişənlərdən birində məlumat yoxdur. ";
-alertMsg[3][16] = "seçilmiş dəyişən haqqında məlumat çatışmazlığı.";
-alertMsg[4][16] = "Əgər seçilmiş dəyişənlərin muşahidələri müxtəlifdirsə, analizə icazə verilmir.";
-alertMsg[5][16] = "THəddən çox qrup! Ekranın ölçüsünə görə qrafiklər üst-üstə düşə bilər..";
-alertMsg[6][16] = "Xülasə məlumatlarındakı analiz dəyişəninində simvol varsa, statistik analiz və ya cədvəl yaratmağa icazə verilmir..";
-alertMsg[7][16] = "Xam məlumatlardan üçdən çox dəyişən seçilibsə, analizə icazə verilmir.";
-alertMsg[8][16] = "Müşahidələrin sayı 200-dən az olduqda nöqtə qrafikinə icazə verilir.";
-alertMsg[9][16] = "Müşahidələrin sayı 100-dən az olduqda kök və yarpaq diaqramına icazə verilir.";
+appStr[6][16] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][16] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][16] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
+alertMsg[1][16] = "Seçilmiş dəyişənlərdən birində verilənlər yoxdur.";
+alertMsg[2][16] = "Təhlil üçün dəyişənləri bir-bir seçin (sütun adına klikləyin və ya seçim qutusunda dəyişəni seçin). Emal Edilməmiş Verilənlər üçün iki dəyişən seçilərsə, birincisi analiz (və ya Y) dəyişəni, ikincisi isə qrup (və ya X) dəyişənidir. ";
+alertMsg[3][16] = "Seçilmiş dəyişən haqqında verilənlərin çatışmazlığı.";
+alertMsg[4][16] = "Əgər hər bir sütunda muşahidələrin sayı müxtəlifdirsə, analizə icazə verilmir.";
+alertMsg[5][16] = "Həddən çox qrup! Ekranın ölçüsünə görə qrafiklər üst-üstə düşə bilər..";
+alertMsg[6][16] = "Müxtəsər verilənlərin analiz dəyişəninində simvol varsa, statistik analiz və ya cədvəl yaratmağa icazə verilmir..";
+alertMsg[7][16] = "Emal edilməmiş verilənlər üçün üçdən çox dəyişən seçilibsə, analizə və ya cədvəl yaratmağa icazə verilmir.";
+alertMsg[8][16] = "Müşahidələrin sayı 200-dən az olduqda nöqtə Qrafikinə icazə verilir.";
+alertMsg[9][16] = "Müşahidələrin sayı 100-dən az olduqda gövdə və yarpaq diaqramına icazə verilir.";
 alertMsg[10][16] = "Analiz dəyişəni seçilməyib.";
 alertMsg[11][16] = "Analiz/Qrup dəyişənləri seçilməyib.";
-alertMsg[12][16] = "Təhlil dəyişənində simvol varsa, analizə icazə verilmir.";
+alertMsg[12][16] = "Analiz dəyişənində simvol varsa, analizə və ya cədvəl yaratmağa icazə verilmir.";
 alertMsg[13][16] = "";
-alertMsg[14][16] = "davamlı qrafiklər və fərziyyələrin testi üçün xülasə məlumatlarına icazə verilmir.";
-alertMsg[16][16] = "fərziyyəni yoxlamaq üçün yalnız iki qrupa icazə verilir.";
-alertMsg[17][16] = "Səpələnmə diaqramı ən azı x dəyişənini və y dəyişənini tələb edir.";
+alertMsg[14][16] = "Kəsilməz qrafiklər və fərziyyələrin testi üçün müxtəsər verilənlərə icazə verilmir.";
+alertMsg[16][16] = "Bu fərziyyəni yoxlamaq üçün yalnız iki qrupa icazə verilir.";
+alertMsg[17][16] = "Səpələnmə diaqramı x dəyişənini və y dəyişənini tələb edir.";
 alertMsg[18][16] = "Səpələnmə diaqramında üçdən çox dəyişənə icazə verilmir.";
-alertMsg[19][16] = "Məlumatlarda simvol varsa, analizə icazə verilmir.";
-alertMsg[20][16] = "Məlumatlarda simvol varsa, reqressiya təhlili edilə bilməz.";
-alertMsg[21][16] = "Əgər məlumat əksikliyi varsa, yadda saxlamağa icazə verilmir.";
-alertMsg[22][16] = "Mənfi rəqəm varsa, sütun qrafiki çəkilə bilməz.";
-alertMsg[25][16] = "Yalnız bir qrup varsa, üst-üstə sütun qrafikinə icazə verilmir.";
-alertMsg[27][16] = "IYalnız bir qrup varsa, nisbət sütun qrafikinə icazə verilmir.";
-alertMsg[29][16] = "Yalnız bir qrup varsa, yanaşı sütun qrafikinə icazə verilmir.";
-alertMsg[31][16] = "Yalnız bir qrup varsa, ikitərfli sütun qrafikinə icazə verilmir.";
-alertMsg[32][16] = "Mənfi rəqəm varsa, dairə qrafiki çəkilə bilməz.";
-alertMsg[33][16] = "Mənfi rəqəm varsa, halqa qrafiki çəkilə bilməz.";
-alertMsg[34][16] = "Mənfi rəqəm varsa, zolaq qrafiki çəkilə bilməz.";
+alertMsg[19][16] = "Verilənlərda simvol varsa, analizə icazə verilmir.";
+alertMsg[20][16] = "Verilənlərda simvol varsa, reqressiya təhlili edilə bilməz.";
+alertMsg[21][16] = "Əgər verilənlərin əksikliyi varsa, yadda saxlamağa icazə verilmir.";
+alertMsg[22][16] = "Mənfi rəqəm varsa, sütun Qrafiki çəkilə bilməz.";
+alertMsg[25][16] = "Yalnız bir qrup varsa, üst-üstə sütun Qrafikinə icazə verilmir.";
+alertMsg[27][16] = "Yalnız bir qrup varsa, nisbət sütun Qrafikinə icazə verilmir.";
+alertMsg[29][16] = "Yalnız bir qrup varsa, yanbayan sütun Qrafikinə icazə verilmir.";
+alertMsg[31][16] = "Yalnız bir qrup varsa, ikitərəfli sütun Qrafikinə icazə verilmir.";
+alertMsg[32][16] = "Mənfi rəqəm varsa, dairə Qrafiki çəkilə bilməz.";
+alertMsg[33][16] = "Mənfi rəqəm varsa, halqa Qrafiki çəkilə bilməz.";
+alertMsg[34][16] = "Mənfi rəqəm varsa, lent (band) Qrafiki çəkilə bilməz.";
 alertMsg[35][16] = "Mənfi rəqəm varsa, tezlik cədvəli çəkilə bilməz.";
-alertMsg[36][16] = "Bu sütun qrafiki yalnız iki qrup üçündür.";
-alertMsg[37][16] = "Bu fərziyyə yoxlanışı yalnız bir dəyişən üçündür.";
+alertMsg[36][16] = "Bu sütun Qrafikinə yalnız iki qrup üçün icazə verilir.";
+alertMsg[37][16] = "Bu fərziyyə yoxlanışına yalnız bir dəyişən üçün icazə verilir.";
 alertMsg[38][16] = "mu rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
 alertMsg[39][16] = "Standart kənarlaşma ya sıfır, ya da rəqəm deyil. Yenidən cəhd edin!";
 alertMsg[40][16] = "Giriş dispersiyası rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
-alertMsg[41][16] = "Bu fərziyyə yoxlanışı yalnız iki dəyişən üçündür. Qrup dəyişənlərinin yalnız iki qrupu olmalıdır.";
+alertMsg[41][16] = "Bu fərziyyə yoxlanışı yalnız iki dəyişən üçündür. Birinci Analiz dəyişənidir, ikinci isə grup dəyişənidir. Qrup dəyişənlərinin yalnız iki qrupu olmalıdır.";
 alertMsg[42][16] = "Fərziyyə yoxlanışının başlığının redaktəsinə icazə verilmir.";
 alertMsg[43][16] = "Adi xətti reqressiya yalnız bir qrup üçündür.";
-alertMsg[44][16] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][16] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][16] = "Xuddi shu o'zgaruvchan raqam tanlangan.";
-alertMsg[47][16] = "Tezlikdə xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
-alertMsg[48][16] = "Xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
+alertMsg[44][16] = "Daxil edin Birinci:Ad, İkinci:Enlik, Üçüncü:Uzunluq, Dördüncü:Analiz Dəyişəni(istəyə bağlı)";
+alertMsg[45][16] = "beşdən çox dəyişəndirsə, GIS grafik çəkilə bilməz.";
+alertMsg[46][16] = "Ən azı iki sıra tələb olunur. Yenidən cəhd edin";
+alertMsg[47][16] = "Tezlikdə xarakter verilənlərinə icazə verilmir !! Yenidən cəhd edin.";
+alertMsg[48][16] = "Xarakter Verilənlərinə icazə verilmir !! Yenidən cəhd edin.";
 alertMsg[49][16] = "Müşahidələrin sayı 100-dən az olmalıdır !! Yenidən cəhd edin.";
 alertMsg[50][16] = "İnterval başlanğıcında və ya addımında nömrələri daxil edin.";
 alertMsg[51][16] = "Nömrələri daxil edin / Sətirlərin sayı eyni olmalıdır! Yenidən cəhd edin.";
 alertMsg[52][16] = "Kateqoriya və tezlikdə nömrələri daxil edin.";
 alertMsg[53][16] = "İnterval ölçüsü eyni deyil !! Yenidən cəhd edin.";
 alertMsg[54][16] = "X müşahidəsi Y müşahidəsinə bərabər deyil !! Yenidən cəhd edin.";
-alertMsg[55][16] = "!!! Vərəqdə məlumat yoxdur.";
+alertMsg[55][16] = "!!! Vərəqdə verilənlər yoxdur.";
 alertMsg[56][16] = "!!! Heç bir dəyişən seçilməyib";
 alertMsg[57][16] = "!!! Interval başlanğıcını və interval enini daxil edin";
 alertMsg[58][16] = "!!! Rəqəmsal interval başlanğıcını və interval enini daxil edin";
@@ -11084,7 +12875,7 @@ alertMsg[59][16] = "!!! 9-dan çox interval - intervalın enini dəyişdirin";
 alertMsg[60][16] = "!!! Bu dəyişənin 9-dan çox qiyməti var";
 alertMsg[61][16] = "!!! Heç bir dəyər daxil edilmədi";
 alertMsg[62][16] = "!!! Formula daxil edin";
-alertMsg[63][16] = "!!! Şərtlərə cavab verən məlumat yoxdur.";
+alertMsg[63][16] = "!!! Şərtlərə cavab verən verilənlər yoxdur.";
 alertMsg[64][16] = "";
 alertMsg[65][16] = ""; 
 alertMsg[66][16] = "";
@@ -11092,123 +12883,123 @@ alertMsg[67][16] = "";
 alertMsg[68][16] = "";
 alertMsg[69][16] = "";
 
-svgStr[1][16] = " Sütun qrafiki";
-svgStr[2][16] = " dairə ";
-svgStr[3][16] = " Halqa qrafiki";
-svgStr[4][16] = " Zolaq qrafiki";
-svgStr[5][16] = " xətti qrafik";
-svgStr[6][16] = " nöqtə qrafiki";
-svgStr[7][16] = " Qutu qrafiki";
-svgStr[8][16] = " saplaq və yarpaq sahəsi";
+svgStr[1][16] = " Sütun Qrafiki";
+svgStr[2][16] = " Dairə Qrafiki";
+svgStr[3][16] = " Halqa Qrafiki";
+svgStr[4][16] = " Zolaq Qrafiki";
+svgStr[5][16] = " Xətti qrafik";
+svgStr[6][16] = " Nöqtə Qrafiki";
+svgStr[7][16] = " Qutu Qrafiki";
+svgStr[8][16] = " Gövdə və yarpaq sahəsi";
 svgStr[9][16] = " Histogram";
 svgStr[10][16] = " Səpələnmə diaqramı";
-svgStr[11][16] = " Fərziyyənin yoxlanması: Populyasiya ortası";
-svgStr[12][16] = " Fərziyyənin yoxlanması: Populyasiya Dispersiyası";
-svgStr[13][16] = " Fərziyyənin yoxlanması: İki populyasiya ədədi ortası";
-svgStr[14][16] = " Fərziyyənin yoxlanması: İki populyasiya dispersiyası";
+svgStr[11][16] = " Fərziyyənin Yoxlanması: Populyasiya ortası";
+svgStr[12][16] = " Fərziyyənin Yoxlanması: Populyasiya Dispersiyası";
+svgStr[13][16] = " Fərziyyənin Yoxlanması: İki populyasiya ədədi ortası";
+svgStr[14][16] = " Fərziyyənin Yoxlanması: İki populyasiya dispersiyası";
 svgStr[15][16] = " Dispersiya analizi";
-svgStr[16][16] = "tezlik";
-svgStr[17][16] = "nisbət";
-svgStr[18][16] = "Grup ";
+svgStr[16][16] = "Tezlik";
+svgStr[17][16] = "Nisbət";
+svgStr[18][16] = "Qrup ";
 svgStr[19][16] = " ";
-svgStr[20][16] = "<h3>Xülasə məlumatları <br> Tezlik Cədvəli</h3>";
-svgStr[21][16] = "qrup dəyişəni";
-svgStr[22][16] = "sətir dəyişəni";
+svgStr[20][16] = "<h3>Müxtəsər Verilənlərin <br> Tezlik Cədvəli</h3>";
+svgStr[21][16] = "Qrup dəyişəni";
+svgStr[22][16] = "Sətir dəyişəni";
 svgStr[23][16] = "Cəm";
-svgStr[24][16] = "doira hajmi";
+svgStr[24][16] = "Dairə ölçüsü";
 svgStr[25][16] = "<h3>tezlik cədvəli</h3>";
 svgStr[26][16] = "Analiz dəyişəni";
-svgStr[27][16] = "dəyişkən dəyəri";
-svgStr[28][16] = "dəyər etiketi";
-svgStr[29][16] = "tezlik";
-svgStr[30][16] = "nisbiy tezlik";
+svgStr[27][16] = "Dəyişən dəyəri";
+svgStr[28][16] = "Dəyər etiketi";
+svgStr[29][16] = "Tezlik";
+svgStr[30][16] = "Nisbi tezlik";
 svgStr[31][16] = "<h3>Kəsişən Cədvəl</h3>";
-svgStr[32][16] = "sütun dəyişəni";
-svgStr[33][16] = "sətir dəyişəni";
+svgStr[32][16] = "Sütun dəyişəni";
+svgStr[33][16] = "Sətir dəyişəni";
 svgStr[34][16] = "Ədədi orta"
-svgStr[35][16] = "standart kənarlaşma"
-svgStr[36][16] = "<h3> Histogram<br>tezlik cədvəli</h3>";
-svgStr[37][16] = "qrup adı";
-svgStr[38][16] = "interval";
-svgStr[39][16] = "saplaq";
-svgStr[40][16] = " yarpaq";
-svgStr[41][16] = "Grup 1  yarpaq";
-svgStr[42][16] = "Grup 2  yarpaq"
-svgStr[43][16] = "<h3>Ta'rif statistikasi</h3>";
-svgStr[44][16] = "müşahidə";
+svgStr[35][16] = "Standart kənarlaşma"
+svgStr[36][16] = "<h3> Histoqram<br>tezlik cədvəli</h3>";
+svgStr[37][16] = "Qrup adı";
+svgStr[38][16] = "İnterval";
+svgStr[39][16] = "Gövdə";
+svgStr[40][16] = "Yarpaq";
+svgStr[41][16] = "Qrup 1  yarpaq";
+svgStr[42][16] = "Qrup 2  yarpaq"
+svgStr[43][16] = "<h3>Təsviri statistika</h3>";
+svgStr[44][16] = "Müşahidə";
 svgStr[45][16] = "Minimum";
 svgStr[46][16] = "Median";
-svgStr[47][16] = "Makximum";
+svgStr[47][16] = "Maksimum";
 svgStr[48][16] = "Cəm";
-svgStr[49][16] = "<h3>normallıq testi</h3>";
-svgStr[50][16] = "gözlənilən tezlik > 5 <br> tavsiya eting";
+svgStr[49][16] = "<h3>Normallıq testi</h3>";
+svgStr[50][16] = "Tezliyin riyazi gözləməsi > 5 <br> tövsiyə olunur";
 svgStr[51][16] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
-svgStr[52][16] = "Məlumat<br>müşahidə olunmuş tezlik<br>(O<sub>i</sub>)";
+svgStr[52][16] = "Verilənlər<br>Empirik tezlik<br>(O<sub>i</sub>)";
 svgStr[53][16] = "Normal paylanma<br>gözlənilən ehtimal<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][16] = "Normal paylanma<br>gözlənilən tezlik<br>(E<sub>i</sub>)";
-svgStr[55][16] = "interval<br>&chi;&#178; qiymati<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
-svgStr[56][16] = "cəm &chi;&#178; qiymati";
-svgStr[57][16] = "Ehtimal Histogram va Normal Paylanma";
-svgStr[58][16] = "Normal Q-Q Süjet";
-svgStr[59][16] = "Normal Kvant";
+svgStr[55][16] = "interval<br>&chi;&#178; qiyməti<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][16] = "cəm &chi;&#178; qiyməti";
+svgStr[57][16] = "Ehtimal Histoqram va Normal Paylanma";
+svgStr[58][16] = "Normal Q-Q Qrafik";
+svgStr[59][16] = "Normal Kvantil";
 svgStr[60][16] = "Korrelyasiya əmsalı";
 svgStr[61][16] = "Təyinetmə əmsalı";
-svgStr[62][16] = "standart xəta";
-svgStr[63][16] = "dəyişənin";
-svgStr[64][16] = "dəyişənin adı";
-svgStr[65][16] = "mustaqil dəyişənin";
-svgStr[66][16] = "qaram dəyişənin";
+svgStr[62][16] = "Standart xəta";
+svgStr[63][16] = "Dəyişənin";
+svgStr[64][16] = "Dəyişənin adı";
+svgStr[65][16] = "Müstəqil dəyişən";
+svgStr[66][16] = "Asılı dəyişən";
 svgStr[67][16] = "Parametr";
-svgStr[68][16] = "hesablanmış qiymət";
-svgStr[69][16] = "qiymati";
-svgStr[70][16] = "kəsişmə";
-svgStr[71][16] = "bucaq";
-svgStr[72][16] = "Vuruq";
-svgStr[73][16] = "kvadratlar cəmi";
-svgStr[74][16] = "sərbəstlik dərəcəsi";
-svgStr[75][16] = "orta kvadratlar";
-svgStr[76][16] = "reqressiya";
-svgStr[77][16] = "xəta";
+svgStr[68][16] = "Hesablanmış dəyər";
+svgStr[69][16] = "Dəyər";
+svgStr[70][16] = "Kəsişmə";
+svgStr[71][16] = "Bucaq";
+svgStr[72][16] = "Faktor";
+svgStr[73][16] = "Kvadratlar cəmi";
+svgStr[74][16] = "Sərbəstlik dərəcəsi";
+svgStr[75][16] = "Orta kvadratlar";
+svgStr[76][16] = "Reqressiya";
+svgStr[77][16] = "Xəta";
 svgStr[78][16] = "Cəm";
 svgStr[79][16] = "<h3>Reqressiya Analizi</h3>";
-svgStr[80][16] = "standart qalıq Q-Q Süjet";
-svgStr[81][16] = "standart qalıq";
-svgStr[82][16] = "Normal Kvant";
-svgStr[83][16] = "qalıqların qrafiki";
-svgStr[84][16] = "ehtimal olunmuş dəyər";
+svgStr[80][16] = "Standart qalıq Q-Q Qrafik";
+svgStr[81][16] = "Standart qalıq";
+svgStr[82][16] = "Normal Kvantil";
+svgStr[83][16] = "Qalıqlar Qrafiki";
+svgStr[84][16] = "Təqribiləşdirmə";
 svgStr[85][16] = "İki üsulluq Dispersiya analizi";
-svgStr[86][16] = "İnam intervalı qrafiki";
-svgStr[87][16] = "qalıq";
-svgStr[88][16] = "ikki o'lchovli statistika";
-svgStr[89][16] = "səpələnmə diaqramı matrisi";
-svgStr[90][16] = "çoxsaylı müqayisə";
+svgStr[86][16] = "Etibarlı İnterval Qrafiki";
+svgStr[87][16] = "Qalıq";
+svgStr[88][16] = "iki istiqamətli statistika";
+svgStr[89][16] = "Səpələnmə diaqramı matriksi";
+svgStr[90][16] = "Çoxhədli müqayisə";
 svgStr[91][16] = "Statistika";
-svgStr[92][16] = "Vuruq";
-svgStr[93][16] = "səviyyə";
-svgStr[94][16] = "cütlü nümunə grafiki";
-svgStr[95][16] = "standart qalıq vs bashorat qilish grafiki";
-svgStr[96][16] = "standart qalıq vs kaldıraç grafiki";
+svgStr[92][16] = "Faktor";
+svgStr[93][16] = "Səviyyə";
+svgStr[94][16] = "Cütlü Nümunə Verilənləri Qrafiki";
+svgStr[95][16] = "Standart qalıq vs proqnozlaşdırma grafiki";
+svgStr[96][16] = "Standart qalıq vs rıçaq grafiki";
 svgStr[97][16] = "Kuk məsafəsi grafiki";
 svgStr[98][16] = "Kuk məsafəsi";
-svgStr[99][16] = "Məlumat sıralaması";
-svgStr[100][16] = "ədədi orta fərqi";
-svgStr[101][16] = "Ədədi ortanın yoxlanması";
-svgStr[102][16] = "rəftar";
-svgStr[103][16] = "qarşılıqlı əlaqə";
+svgStr[99][16] = "Verilənlərin sıralaması";
+svgStr[100][16] = "Ədədi orta fərqi";
+svgStr[101][16] = "Ədədi ortaların yoxlanması";
+svgStr[102][16] = "Müdaxilə";
+svgStr[103][16] = "Qarşılıqlı əlaqə";
 svgStr[104][16] = "Sətir cəmi";
 svgStr[105][16] = "Sütun cəmi";
-svgStr[106][16] = "çoxsaylı korrelyasiya əmsalı";
+svgStr[106][16] = "Çoxhədli korrelyasiya əmsalı";
 svgStr[107][16] = "<h3>Korrelyasiya analizi</h3>";
 svgStr[108][16] = "Korrelyasiya matrisi";
-svgStr[109][16] = "Vuruq A - Vuruq B Ədədi orta grafiki";
-svgStr[110][16] = "ling";
-svgStr[111][16] = "Geographic Information Graph";
-svgStr[112][16] = "təyin intervalı";
+svgStr[109][16] = "Faktor A - Faktor B Ədədi orta grafiki";
+svgStr[110][16] = "Rıçaq";
+svgStr[111][16] = "Coğrafi İnformasiya Qrafiki";
+svgStr[112][16] = "Təyin intervalı";
 svgStr[113][16] = "Ədədi orta - standart kənarlaşma grafiki";
 svgStr[114][16] = "Populyasiya Dispersiyası";
-svgStr[115][16] = "fərziyyə";
+svgStr[115][16] = "Fərziyyə";
 svgStr[116][16] = "Test";
-svgStr[117][16] = "Dispersiyası";
+svgStr[117][16] = "Dispersiya";
 svgStr[118][16] = "İnterval dəyəri";
 svgStr[119][16] = "Kateqoriya";
 svgStr[120][16] = "Rejim";
@@ -11216,33 +13007,33 @@ svgStr[121][16] = "Kovariasiya";
 svgStr[122][16] = "Paskal üçbucağı";
 svgStr[123][16] = "Birgə Ehtimal";
 svgStr[124][16] = "Şərti";
-svgStr[125][16] = "Diskret Dağıtım";
+svgStr[125][16] = "Diskret Dağılma";
 svgStr[126][16] = "sıra %";
 svgStr[127][16] = "sütun %";
 svgStr[128][16] = "ümumi %";
 
 svgStrU[1][16] = "Binomial paylanma";
-svgStrU[2][16] = "təkrar";
+svgStrU[2][16] = "Təkrar";
 svgStrU[3][16] = "Ədədi orta";
-svgStrU[4][16] = "standart kənarlaşma";
-svgStrU[5][16] = "Poisson Paylanması";
-svgStrU[6][16] = "həndəsi paylanma";
-svgStrU[7][16] = "hiper həndəsi paylanma";
-svgStrU[8][16] = "Populyasiya";
+svgStrU[4][16] = "Standart kənarlaşma";
+svgStrU[5][16] = "Puasson Paylanma";
+svgStrU[6][16] = "Həndəsi paylanma";
+svgStrU[7][16] = "Hiper - Həndəsi paylanma";
+svgStrU[8][16] = "Populyasiya (Ana Kütlə)";
 svgStrU[9][16] = "Nümunə paylanması";
-svgStrU[10][16] = "böyük rəqəmlər qanunu";
+svgStrU[10][16] = "Böyük Ədədlər qanunu";
 svgStrU[11][16] = "Quyruq";
 svgStrU[12][16] = "baş";
-svgStrU[13][16] = "tanga baş";
+svgStrU[13][16] = "qəpik baş";
 svgStrU[14][16] = "Başların sayı";
 svgStrU[15][16] = "Sınaqların sayı";
-svgStrU[16][16] = "nümunə ədədi ortaların paylanması";
-svgStrU[17][16] = "təkrar";
-svgStrU[18][16] = "standart xəta";
+svgStrU[16][16] = "Nümunə ədədi ortalarının paylanması";
+svgStrU[17][16] = "Təkrar";
+svgStrU[18][16] = "Standart xəta";
 svgStrU[19][16] = "Populyasiya ortası";
-svgStrU[20][16] = "İnam intervalı";
-svgStrU[21][16] = "hesablama dəqiqliyi";
-svgStrU[22][16] = "nümumənin ədədi ortası";
+svgStrU[20][16] = "Etibarlı İnterval";
+svgStrU[21][16] = "Hesablama dəqiqliyi";
+svgStrU[22][16] = "Nümumənin ədədi ortası";
 svgStrU[23][16] = "[TestStat]";
 svgStrU[24][16] = "Paylanma";
 svgStrU[25][16] = "H\u2080 rədd et";
@@ -11250,95 +13041,116 @@ svgStrU[26][16] = "H\u2080 qəbul et";
 svgStrU[27][16] = "p-dəyər";
 svgStrU[28][16] = "[Qərar] ";
 svgStrU[29][16] = "[Dispersiya analizi]";
-svgStrU[30][16] = "Dispersiya analizi";
-svgStrU[31][16] = "reqressiya";
-svgStrU[32][16] = "sətir dəyişəni";
-svgStrU[33][16] = "sütun dəyişəni";
+svgStrU[30][16] = "Korrelyasiya əmsalını daxil edin və İcra et düyməsini basın";
+svgStrU[31][16] = "Reqressiya";
+svgStrU[32][16] = "Sətir dəyişəni";
+svgStrU[33][16] = "Sütun dəyişəni";
 svgStrU[34][16] = "Ədədi orta"
-svgStrU[35][16] = "standart kənarlaşma"
-svgStrU[36][16] = "<h3> Histogram<br>tezlik cədvəli</h3>";
-svgStrU[37][16] = "Grup adı";
+svgStrU[35][16] = "Standart kənarlaşma"
+svgStrU[36][16] = "<h3> Histoqram<br>tezlik cədvəli</h3>";
+svgStrU[37][16] = "Qrup adı";
 svgStrU[38][16] = "Interval";
-svgStrU[39][16] = "saplaq";
-svgStrU[40][16] = " yarpaq";
-svgStrU[41][16] = "Grup 1  yarpaq";
-svgStrU[42][16] = "Grup 2  yarpaq"
-svgStrU[43][16] = "<h3>təsviri statistika</h3>";
-svgStrU[44][16] = "müşahidə ";
+svgStrU[39][16] = "Gövdə";
+svgStrU[40][16] = "Yarpaq";
+svgStrU[41][16] = "Qrup 1  yarpaq";
+svgStrU[42][16] = "Qrup 2  yarpaq"
+svgStrU[43][16] = "<h3>Təsviri statistika</h3>";
+svgStrU[44][16] = "Müşahidə ";
 svgStrU[45][16] = "Minimum";
 svgStrU[46][16] = "Median";
-svgStrU[47][16] = "Makximum";
+svgStrU[47][16] = "Maksimum";
 svgStrU[48][16] = "Cəm";
 svgStrU[49][16] = "qüvvət";
-svgStrU[50][16] = "Vahid paylanma";
+svgStrU[50][16] = "Müntəzəm paylanma";
 svgStrU[51][16] = "hesablama dəqiqliyi";
-svgStrU[52][16] = "- Bosish orqali nuqtalar yarating, so'ngra eStat regressiya chizig'ini topadi.";
-svgStrU[53][16] = "- Nuqtani siljiting yoki o'chiring. Regressiya chizig'ining o'zgarishini tomosha qiling.";
+svgStrU[52][16] = "- Kliklə nöqtələri yaradın, sonra eStat reqressiya xəttini tapır.";
+svgStrU[53][16] = "- Nöqtəni köçürün və ya silin. Reqressiya xəttinin dəyişməsinə baxın.";
 svgStrU[54][16] = "[nümunə statistikası] ";
 svgStrU[55][16] = "[nümunə 1 statistikası] ";
 svgStrU[56][16] = "[nümunə 2 statistikası] ";
-svgStrU[57][16] = "İnam sərhədi";
-svgStrU[58][16] = "sətir və sütun dəyişənləri asılı olmayandır";
-svgStrU[59][16] = "sətir və sütun dəyişənləri asılıdır";
-svgStrU[60][16] = "müşahidə olunmuş paylanma";
+svgStrU[57][16] = "Etibarlı İnterval";
+svgStrU[58][16] = "Sətir və sütun dəyişənləri asılı olmayandır";
+svgStrU[59][16] = "Sətir və sütun dəyişənləri asılıdır";
+svgStrU[60][16] = "Empirik paylanma";
 svgStrU[61][16] = "Nəzəri paylanma";
-svgStrU[62][16] = "Uyğunluğun keyfiyyəti testi";
-svgStrU[63][16] = "Wilcoxon Reytinq Cəmi Test";
-svgStrU[64][16] = "Wilcoxon Reytinq Cəmi Test cədvəl";
-svgStrU[65][16] = "Kruskal-Wallis Test";
-svgStrU[66][16] = "Kruskal-Wallis H paylanması";
-svgStrU[67][16] = "Kruskal-Wallis H Statistika";
-svgStrU[68][16] = "Wilcoxon işarə Reytinq Cəmi Test";
-svgStrU[69][16] = "işarə Test";
-svgStrU[70][16] = "Friedman Test";
-svgStrU[71][16] = "Friedman S Statistika";
-svgStrU[72][16] = "Friedman S paylanması";
-svgStrU[73][16] = "t dəyər (yoki Z)";
-svgStrU[74][16] = "ChiSq dəyər";
-svgStrU[75][16] = "Nümunənin dispersiyası";
-svgStrU[76][16] = "nümunə ədədi ortalarının fərqi";
-svgStrU[77][16] = "Nümunə dispersiyasının nisbəti";
+svgStrU[62][16] = "Empirik tezlik üçün Uyğunluğun dərəcəsi testi";
+svgStrU[63][16] = "Vilcokson Cərgələrin Cəmi Testi";
+svgStrU[64][16] = "Vilkokson Cərgələrin Cəmi Testi Cədvəli";
+svgStrU[65][16] = "Kruskal-Vallis Testi";
+svgStrU[66][16] = "Kruskal-Vallis H paylanması";
+svgStrU[67][16] = "Kruskal-Vallis H Statistikası";
+svgStrU[68][16] = "Vilkokson İşarələnmiş Cərgələrin Cəmi Testi";
+svgStrU[69][16] = "işarə Testi";
+svgStrU[70][16] = "Fridman Test";
+svgStrU[71][16] = "Fridman S Statistikası";
+svgStrU[72][16] = "Fridman S paylanması";
+svgStrU[73][16] = "t dəyər (və ya Z)";
+svgStrU[74][16] = "ChiSq dəyəri";
+svgStrU[75][16] = "Nümunə dispersiyası";
+svgStrU[76][16] = "Nümunə ədədi ortalarının fərqi";
+svgStrU[77][16] = "Nümunə dispersiyalarının nisbəti";
 svgStrU[78][16] = "Dispersiya fərziyyəsi";
-svgStrU[79][16] = "Xülasə məlumatları";
-svgStrU[80][16] = "çoxsaylı seçim";
+svgStrU[79][16] = "Müxtəsər Verilənlər";
+svgStrU[80][16] = "Çoxsaylı seçim";
 svgStrU[81][16] = "İki qrupa qədər seçin";
-svgStrU[82][16] = "X dəyişənin";
-svgStrU[83][16] = "Y dəyişənin";
-svgStrU[84][16] = "tomonidan";
-svgStrU[85][16] = "Yo'q Grup dəyişənin";
-svgStrU[86][16] = "seçilmiş məlumat: ";
-svgStrU[87][16] = "Xam Məlumat";
-svgStrU[88][16] = "Dəyişənin adını tıklayaraq dəyişənləri seçin";
-svgStrU[89][16] = "çatışmayan müşahidələr";
-svgStrU[90][16] = "Reytinq cəmi";
-svgStrU[91][16] = "Longitude";
-svgStrU[92][16] = "Latitude";
-svgStrU[93][16] = "Ən azı bir cüt lokasiya fərqlidir";
-svgStrU[94][16] = "Wilcoxon işarə Reytinq Cəmi Paylanma";
+svgStrU[82][16] = "X dəyişəni";
+svgStrU[83][16] = "Y dəyişəni";
+svgStrU[84][16] = "üzrə";
+svgStrU[85][16] = "Qrup Dəyişəni yoxdur";
+svgStrU[86][16] = "Seçilmiş Verilənlər: ";
+svgStrU[87][16] = "Emal Edilməmiş Verilənlər";
+svgStrU[88][16] = "Dəyişənin adına klikləyərək dəyişənləri seçin";
+svgStrU[89][16] = "Kəm müşahidələr";
+svgStrU[90][16] = "Cərgələrin cəmi";
+svgStrU[91][16] = "Uzunluq";
+svgStrU[92][16] = "Enlik";
+svgStrU[93][16] = "Ən azı bir cüt mövqe fərqlidir";
+svgStrU[94][16] = "Vilkokson İşarələnmiş Cərgələrin Cəmi Paylanması";
 svgStrU[95][16] = "cütlü dəyişən";
-svgStrU[96][16] = "cütlü nümunə";
-svgStrU[97][16] = "asılı olmama testi";
+svgStrU[96][16] = "Cütlü verilənlər";
+svgStrU[97][16] = "Asılı olmama testi";
 svgStrU[98][16] = "Simulyasiya";
-svgStrU[99][16] = "təsadüfi rəqəm";
+svgStrU[99][16] = "Təsadüfi Ədəd";
 svgStrU[100][16] = "Normal Paylanma";
-svgStrU[101][16] = "t Paylanman";
-svgStrU[102][16] = "&chi;&#178; Paylanma";
-svgStrU[103][16] = "F Paylanma";
-svgStrU[104][16] = "HSD Tələbəli İnterval Paylanması";
-svgStrU[105][16] = "birinchi kvartil";
-svgStrU[106][16] = "uchinchi kvartil";
-svgStrU[107][16] = "kvartil oralig'i";
-svgStrU[108][16] = "o'zgaruvchanlik koeffitsienti";
-svgStrU[109][16] = "To'plangan nisbiy chastota (%)";
-svgStrU[110][16] = "Uniform Distribution butun sonlarining maksimal soni";
-svgStrU[111][16] = "Sichqoncha yordamida nuqtani siljiting";
-svgStrU[112][16] = "Bərpa hasilatı";
-svgStrU[113][16] = "almashtirishsiz";
-svgStrU[114][16] = "xətti"; 
+svgStrU[101][16] = "t Paylanması";
+svgStrU[102][16] = "&chi;&#178; Paylanması";
+svgStrU[103][16] = "F Paylanması";
+svgStrU[104][16] = "HSD Studentləşdirilmiş İnterval Paylanması";
+svgStrU[105][16] = "Birinci kvartil";
+svgStrU[106][16] = "Üçüncü kvartil";
+svgStrU[107][16] = "Kvartillərarası diapazon";
+svgStrU[108][16] = "Dəyişmə əmsalı";
+svgStrU[109][16] = "Toplanmış Nisbi Tezlik (%)";
+svgStrU[110][16] = "Müntəzəm Paylanma tam ədədlərinin maksimum sayı";
+svgStrU[111][16] = "Mausu istifadə edərək nöqtəni hərəkət etdirin";
+svgStrU[112][16] = "Əvəzetmə ilə";
+svgStrU[113][16] = "Əvəzetməsiz";
+svgStrU[114][16] = "Xətt"; 
+svgStrU[115][16] = "Faiz Dəyişikliyi";
+svgStrU[116][16] = "Sadə İndeks";
+svgStrU[117][16] = "Vaxt gecikməsi";
+svgStrU[118][16] = "Fərq";
+svgStrU[119][16] = "Avtokorrelyasiya";
+svgStrU[120][16] = "Giriş";
+svgStrU[121][16] = "Kvadrat Kök";
+svgStrU[122][16] = "Boks-Koks";
+svgStrU[123][16] = "Əsas vaxt";
+svgStrU[124][16] = "Mərkəzləşdirilmiş Hərəkətli Orta";
+svgStrU[125][16] = "Üstlü Hamarlama";
+svgStrU[126][16] = "Mərkəzləşdirilmiş Hərəkətli Median";
+svgStrU[127][16] = "Model";
+svgStrU[128][16] = "Hərəkətli Orta";
+svgStrU[129][16] = "İkiqat Hərəkətli Orta";
+svgStrU[130][16] = "Holt İkiqat Üstlü Hamarlama";
+svgStrU[131][16] = "Mövsümi İndeks";
+svgStrU[132][16] = "Holt-Winters Multiplikativ Mövsümi Zaman Sırası Modeli";
+svgStrU[133][16] = "Mövsümi Zaman Sırası";
+svgStrU[134][16] = "Blok";
 
 // Uzbekistan
 $.message.uz = {
     "eStat : Stat Education SW": "eStat : statistika ta'limi dasturi",
+    "Home": "Bosh sahifa",
     "Filename": "Fayl",
     "Selected Variables": "tanlangan o'zgauvchilar",
     "Cancel": "Bekor qilish",
@@ -11367,6 +13179,7 @@ $.message.uz = {
     "maxStem": "** poyaning maksimal soni <= 30 **",
     "Box-Whisker Plot": "Quti uchastkasi",
     "Scatterplot": "tarqatiladigan fitna",
+    "ScatterplotMatrix": "tarqatiladigan chizma matritsasi",
     "Frequency Table": "Chastotalar jadvali",
     "Basic Statistics": "tavsif statistikasi",
     "Testing Hypothesis &mu;": "sinov gipotezasi &mu;",
@@ -11374,6 +13187,7 @@ $.message.uz = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "sinov gipotezasi  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "sinov gipotezasi &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Tafovutni tahlil qilish",
+    "Middle School Stat Education": "O'rta maktab statistikasi ta'limi",
     "High School Stat Education": "Maktab Stat Ta'lim",
     "University Stat Education": "Universitet Stat Ta'lim",
     "Elem Stat Graph Example": "Boshlang'ich maktab Grafik namunasi",
@@ -11409,7 +13223,10 @@ $.message.uz = {
     "MeanStd": "anglatadi/standart og'ish",
     "DotMeanStd": "Nuqta grafigi - nglatadi/standart og'ish",
     "95CI": "95% ishonch oralig'i",
+    "CorrelationAnalysis": "Korrelyatsiya tahlili",
     "RegressionAnalysis": "Regressiya tahlili",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "tafovutni ikki tomonlama tahlil qilish",
     "Regression": "Regressiya ",
     "RegressionLine": "Regressiya chizigi",
@@ -11431,9 +13248,10 @@ $.message.uz = {
     "Variance": "dispersiya",
     "F test": "F-sinov",
     "At least one pair of means is different": "Hech bolmaganda bita juft vosita farq qiladi",
-    "Main Title : ": "Asosiy sarlavha",
-    "y title : ": "y sarlavha",
-    "x title : ": "x sarlavha",
+    "Main Title": "Asosiy sarlavha",
+    "y title": "y sarlavha",
+    "x title": "x sarlavha",
+    "yAxis": "Y o'qi",
     "Modify": "O'zgartiring",
     "Confirm": "Tasdiqlang",
     "Variable Name": "o'zgaruvchan ism",
@@ -11444,9 +13262,11 @@ $.message.uz = {
     "Exit": "Chiqish",
     "eStatU UnivStatEdu": "eStatU - Universitet Statistika Ta'lim SW",
     "eStatH HighStatEdu": "eStatH - Maktab Statistika Ta'lim SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Boshlang'ich / O'rta maktab statistikasi SW",
+    "MiddleStat": "O'rta maktab statistikasi",
+    "HighStat":   "Oliy maktab statistikasi",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Menyu",
     "Binomial Experiment": "Binominal tajriba",
     "Binomial Distribution": "Binominal Tarqatish",
@@ -11482,9 +13302,10 @@ $.message.uz = {
     "Sample Size": "namuna hajmi",
     "Confidence Interval": "ishonch oralig'i",
     "Confidence Interval Simulation": "ishonch oralig'i simulyatsiya",
+    "Simulation": "Simulyatsiya",
     "Confidence Interval Mu": "Hisoblash : &mu;",
     "Mu Confidence Interval": "Hisoblash : &mu;",
-    "Confidence Interval Sigma": "Hisoblash : &sigma;&#178;",
+    "Confidence Interval Sigma": "Hisoblash : &sigma;&#178; ",
     "Confidence Interval P": "Hisoblash : p",
     "Estimation Accuracy": "Hisoblash Aniqlik",
     "Repetition": "takrorlash",
@@ -11504,7 +13325,9 @@ $.message.uz = {
     "Testing Hypothesis mu12": "sinov gipotezasi &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "sinov gipotezasi &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "sinov gipotezasi p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "sinov gipotezasi ANOVA",
+    "Testing Hypothesis ANOVA": "1 Faktor ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Faktor ANOVA",
+    "SameSampleSize": "Har bir hujayraning namuna o'lchami bir xil bo'lishi kerak.",
     "Testing Independence": "mustaqillik testi",
     "CategoryD": "toifasi",
     "Category": "toifasi",
@@ -11646,6 +13469,7 @@ $.message.uz = {
     "oneColor":        "rang",
     "defaultColor":    "standart rang",
     "RelativeFreq":    "nisbiy chastota",
+    "Density":         "Zichlik",
     "MarginOfError":   "Xato chegarasi",
     "Permutation":     "Permutatsiya",
     "PermutationSame": "Xuddi shu narsa bilan ruxsat",
@@ -11685,6 +13509,79 @@ $.message.uz = {
     "RelationOperator":  "Aloqa<br>operator",
     "SelectValue":       "Qiymat",
     "MissingValue":      "etishmayotgan qiymat",
+    "option":            "variant",
+    "TimeSeries":        "Vaqt seriyasi",                                 
+    "Smoothing":         "Temizlash",
+    "Filtering":         "Filtrlash",
+    "Transformation":    "Transformatsiya",
+    "Weight":            "Og'irlik",
+    "PercentChange":     "O'zgarish foizi",
+    "WeightedIndex":     "Oddiy indeks",
+    "BaseTime":          "Asosiy vaqt",
+    "LagTime":           "Kechikish vaqti",
+    "Lag":               "Vaqtning kechikishi",
+    "Forecasting":       "Prognozlash",
+    "SeasonalModel":     "Mavsumiy model",
+    "HoltWinter":        "Holt-Winters mavsumiy modeli",
+    "Trend":             "Trend",
+    "Seasonal":          "Mavsumiy",
+    "Deseasonal":        "Mavsumiy seriya",
+    "Nseason":           "Mavsumdagi vaqtlar",
+    "Irregular":         "tartibsiz",
+    "TrendModel":        "Mavsumiy trend modeli",
+    "RegressionModel":   "Regressiya modeli",
+    "ForecastingPeriod": "Prognoz davri",
+    "CreateTable":       "Ma'lumotlar jadvali",
+    "SaveTable":         "Jadvalni saqlash",
+    "MA":                "Harakatlanuvchi o'rtacha",
+    "EWMA":              "EWMA modeli",
+    "CenterMA":          "Markazlangan harakatlanuvchi o'rtacha",
+    "MovingMedian":      "Markazlangan harakatlanuvchi median",
+    "ES":                "Eksponensial tekislash",
+    "Default":           "Standart",
+    "Linear":            "chiziqli",
+    "Quadratic":         "Kvadrat",
+    "Cubic":             "Kubik",
+    "SquareRoot":        "Kvadrat ildiz",
+    "Log":               "Logarifmik",
+    "Exponent":          "eksponensial",
+    "Power":             "Kuch",
+    "BoxCox":            "Boks-Koks",
+    "SingleMA":          "Yagona harakatlanuvchi o'rtacha",
+    "SingleES":          "Yagona eksponensial tekislash",
+    "DoubleMA":          "Ikki marta harakatlanuvchi o'rtacha",
+    "DoubleES":          "Ikki eksponensial tekislash",
+    "HoltLinear":        "Holt eksponentsial silliqlash",
+    "DeseasonIntercept": "Mavsumiy kesish",
+    "DeseasonSlope":     "Mavsumiy qiyalik",
+    "SeasonalIndex":     "Mavsumiy indeks",
+    "Diff":              "Farq",
+    "DiffTime":          "Vaqt farqi",
+    "AR":                "Autoregressiv model",
+    "ResultTable":       "Regressiya natijasi",
+    "ForecastTable":     "Prognoz jadvali",
+    "HoltLevel":         "Daraja",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Avtokorrelyatsiya jadvali",
+    "DiffSeries":        "Farqlar seriyasi",
+    "RawSeries":         "Xom seriya",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Uzbekistan
 appStr[1][17] = "../eStatH/index.html";
@@ -11692,7 +13589,9 @@ appStr[2][17] = "../eStatU/index.html";
 appStr[3][17] = "../eStatE/index_en.html";
 appStr[4][17] = "../eHelp/index_en.html";
 appStr[5][17] = "index.html";
-appStr[6][17] = "../eLearning/en/index.html";
+appStr[6][17] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][17] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][17] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][17] = "Tanlangan ozgaruvchilardan birida malumot yoq.";
 alertMsg[2][17] = "o'zgaruvchilarni bir ma bir tahlil qiling.ikkita o'zgaruvchisi birinchi b'olib guruh o'zgaruvchisidir.";
 alertMsg[3][17] = "tanlangan o'zgaruvchiga oid m'alumotlar yoq.";
@@ -12000,10 +13899,31 @@ svgStrU[111][17] = "Sichqoncha yordamida nuqtani siljiting";
 svgStrU[112][17] = "Qayta tiklash ekstrakti";
 svgStrU[113][17] = "almashtirishsiz";
 svgStrU[114][17] = "chiziq"; 
+svgStrU[115][17] = "Foiz o'zgarishi";
+svgStrU[116][17] = "Oddiy indeks";
+svgStrU[117][17] = "Vaqtdagi kechikish";
+svgStrU[118][17] = "Farq";
+svgStrU[119][17] = "Avtokorrelyatsiya";
+svgStrU[120][17] = "Jurnal";
+svgStrU[121][17] = "Kvadrat ildiz";
+svgStrU[122][17] = "Boks-Koks";
+svgStrU[123][17] = "Asosiy vaqt";
+svgStrU[124][17] = "Markazlangan harakatlanuvchi o'rtacha";
+svgStrU[125][17] = "Eksponensial tekislash";
+svgStrU[126][17] = "Markazlangan harakatlanuvchi median";
+svgStrU[127][17] = "Model";
+svgStrU[128][17] = "Harakatlanuvchi o'rtacha";
+svgStrU[129][17] = "Ikki marta harakatlanuvchi o'rtacha";
+svgStrU[130][17] = "Holt ikki tomonlama eksponensial tekislash";
+svgStrU[131][17] = "Mavsumiy indeks";
+svgStrU[132][17] = "Holt-Winters multiplikativ mavsumiy modeli";
+svgStrU[133][17] = "Mavsumiy seriya";
+svgStrU[134][17] = "Bloklash";
 
 // Russian
 $.message.ru = {
     "eStat : Stat Education SW": "eStat : Статистическое образование SW",
+    "Home": "Домашняя страница",
     "Filename": "файл",
     "Selected Variables": "Выбранные переменные",
     "Cancel": "Отмена",
@@ -12032,6 +13952,7 @@ $.message.ru = {
     "maxStem": "** максимальное количество стволов <= 30 **",
     "Box-Whisker Plot": "Коробочный сюжет",
     "Scatterplot": "Точечная диаграмма",
+    "ScatterplotMatrix": "Матрица точечных диаграмм",
     "Frequency Table": "Таблица частот",
     "Basic Statistics": "Дескриптивная статистика",
     "Testing Hypothesis &mu;": "Тестирование гипотезы &mu;",
@@ -12039,6 +13960,7 @@ $.message.ru = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Тестирование гипотезы  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Тестирование гипотезы &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Дисперсионный анализ",
+    "Middle School Stat Education": "Статистическое образование в средней школе",
     "High School Stat Education": "Статистика для старших классов школы",
     "University Stat Education": "Статистика для высшего образования",
     "Elem Stat Graph Example": "Пример графика",
@@ -12074,7 +13996,10 @@ $.message.ru = {
     "MeanStd": "Среднее значение/Среднеквадратичное отклонение",
     "DotMeanStd": "Точечный график - Среднее значение/Среднеквадратичное отклонение",
     "95CI": "95% Доверительный интервал",
+    "CorrelationAnalysis": "Корреляционный анализ",
     "RegressionAnalysis": "Регрессионный анализ",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
     "ANOVA2": "Двусторонний дисперсионный анализ",
     "Regression": "Регрессия",
     "RegressionLine": "Линия регрессии",
@@ -12096,9 +14021,10 @@ $.message.ru = {
     "Variance": "отклонение",
     "F test": "F-Тест",
     "At least one pair of means is different": "Минимум одна пара средних отличается",
-    "Main Title : ": "Основной заголовок",
-    "y title : ": "Заголовок y",
-    "x title : ": "Заголовок х",
+    "Main Title": "Основной заголовок",
+    "y title": "Заголовок y",
+    "x title": "Заголовок х",
+    "yAxis": "Ось Y",
     "Modify": "Изменить",
     "Confirm": "Подтверждение",
     "Variable Name": "Название переменной",
@@ -12109,9 +14035,11 @@ $.message.ru = {
     "Exit": "Выход",
     "eStatU UnivStatEdu": "eStatU - Статистика для высшего образования SW",
     "eStatH HighStatEdu": "eStatH - Статистика для старших классов школы SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
+    "eStatM MiddleStatEdu": "eStatM - Элементарный / Статистика средней школы SW",
+    "MiddleStat": "Статистика средней школы",
+    "HighStat":   "Статистика средней школы",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "webBook Link (English)",
     "Menu": "Меню",
     "Binomial Experiment": "Биномиальный эксперимент",
     "Binomial Distribution": "Биномиальное распределение",
@@ -12147,9 +14075,10 @@ $.message.ru = {
     "Sample Size": "Размер выборки",
     "Confidence Interval": "Доверительный интервал",
     "Confidence Interval Simulation": "Доверительный интервал Симуляция",
+    "Simulation": "Симуляция",
     "Confidence Interval Mu": "Oценки : &mu;",
     "Mu Confidence Interval": "Oценки : &mu;",
-    "Confidence Interval Sigma": "Oценки : &sigma;&#178;",
+    "Confidence Interval Sigma": "Oценки : &sigma;&#178; ",
     "Confidence Interval P": "Oценки : p",
     "Estimation Accuracy": "Точность оценки",
     "Repetition": "Повторение",
@@ -12169,7 +14098,9 @@ $.message.ru = {
     "Testing Hypothesis mu12": "Тестирование гипотезы &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis sigma12": "Тестирование гипотезы &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Testing Hypothesis P12": "Тестирование гипотезы p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Тестирование гипотезы ANOVA",
+    "Testing Hypothesis ANOVA": "1 фактор ANOVA",
+    "Testing Hypothesis ANOVA2": "2 фактор ANOVA",
+    "SameSampleSize": "Размер выборки каждой ячейки должен быть одинаковым.",
     "Testing Independence": "категорический: Проверка гипотезы независимости",
     "CategoryD": "категория",
     "Category": "категория",
@@ -12311,6 +14242,7 @@ $.message.ru = {
     "oneColor":        "цветr",
     "defaultColor":    "цвет по умолчанию",
     "RelativeFreq":    "Относительная частота",
+    "Density":         "Плотность",
     "MarginOfError":   "Допустимая погрешность",
     "Permutation":     "Перестановка",
     "PermutationSame": "Перестановка с тем же",
@@ -12350,6 +14282,79 @@ $.message.ru = {
     "RelationOperator":  "Связь <br> Оператор",
     "SelectValue":       "Ценить",
     "MissingValue":      "отсутствующее значение",
+    "option":            "вариант",
+    "TimeSeries":        "Временная последовательность",   
+    "Smoothing":         "Сглаживание",
+    "Filtering":         "Фильтрация",
+    "Transformation":    "Преображение",
+    "Weight":            "Масса",
+    "PercentChange":     "Изменить процент",
+    "WeightedIndex":     "Простой указатель",
+    "BaseTime":          "Базовое время",
+    "LagTime":           "Время задержки",
+    "Lag":               "Отставание во времени",
+    "Forecasting":       "Прогнозирование",
+    "SeasonalModel":     "Сезонная модель",
+    "HoltWinter":        "Сезонная модель Холт-Уинтерс",
+    "Trend":             "Тренд",
+    "Seasonal":          "Сезонный",
+    "Deseasonal":        "Десезонный сериал",
+    "Nseason":           "Время в сезоне",
+    "Irregular":         "Нерегулярный",
+    "TrendModel":        "Трендовая модель десезонности",
+    "RegressionModel":   "Регрессионная модель",
+    "ForecastingPeriod": "Период прогнозирования",
+    "CreateTable":       "Таблица данных",
+    "SaveTable":         "Сохранить таблицу",
+    "MA":                "Скользящее среднее",
+    "EWMA":              "Модель ЭВМА",
+    "CenterMA":          "Центрированная скользящая средняя",
+    "MovingMedian":      "Центрированная движущаяся медиана",
+    "ES":                "Экспоненциальное сглаживание",
+    "Default":           "По умолчанию",
+    "Linear":            "Линейный",
+    "Quadratic":         "Квадратный",
+    "Cubic":             "Кубик",
+    "SquareRoot":        "Квадратный корень",
+    "Log":               "логарифмический",
+    "Exponent":          "Экспоненциальный",
+    "Power":             "Власть",
+    "BoxCox":            "Бокс-Кокс",
+    "SingleMA":          "Единая скользящая средняя",
+    "SingleES":          "Однократное экспоненциальное сглажив",
+    "DoubleMA":          "Двойная скользящая средняя",
+    "DoubleES":          "Двойное экспоненциальное сглаживание",
+    "HoltLinear":        "Экспоненциальное сглаживание Холта",
+    "DeseasonIntercept": "Десезонный перехват",
+    "DeseasonSlope":     "Десезонный склон",
+    "SeasonalIndex":     "Сезонные индексы",
+    "Diff":              "Разница",
+    "DiffTime":          "Разное время",
+    "AR":                "Авторегрессионная модель",
+    "ResultTable":       "Результат регрессии",
+    "ForecastTable":     "Таблица прогнозов",
+    "HoltLevel":         "Уровень",
+    "HoltTrend":         "Тренд",
+    "AutoCorrTable":     "Таблица автокорреляции",
+    "DiffSeries":        "Серия отличий",
+    "RawSeries":         "Сырая серия",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
@@ -12357,7 +14362,9 @@ appStr[2][18] = "../eStatU/index.html";
 appStr[3][18] = "../eStatE/index_en.html";
 appStr[4][18] = "../eHelp/index_en.html";
 appStr[5][18] = "index.html";
-appStr[6][18] = "../eLearning/en/index.html";
+appStr[6][18] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][18] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][18] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][18] = "В одном из выбранных переменных отсутствуют данные.";
 alertMsg[2][18] = "Выберите переменные для анализа (щелкнув названия столбцов) поочерёдно. Если имеются два переменных, то первая - это групповая переменная.";
 alertMsg[3][18] = "Отсутствуют данные по выбранной переменной.";
@@ -12664,356 +14671,462 @@ svgStrU[111][18] = "Переместить точку с помощью мыши
 svgStrU[112][18] = "Восстановление извлечения";
 svgStrU[113][18] = "без заменыt";
 svgStrU[114][18] = "Линейный"; 
+svgStrU[115][18] = "Изменение в процентах";
+svgStrU[116][18] = "Простой индекс";
+svgStrU[117][18] = "Задержка";
+svgStrU[118][18] = "Разница";
+svgStrU[119][18] = "Автокорреляция";
+svgStrU[120][18] = "Журнал";
+svgStrU[121][18] = "Квадратный корень";
+svgStrU[122][18] = "Бокс-Кокс";
+svgStrU[123][18] = "Базовое время";
+svgStrU[124][18] = "Скользящая средняя по центру";
+svgStrU[125][18] = "Экспоненциальное сглаживание";
+svgStrU[126][18] = "Центрированная движущаяся медиана";
+svgStrU[127][18] = "Модель";
+svgStrU[128][18] = "Скользящее среднее";
+svgStrU[129][18] = "Двойная скользящая средняя";
+svgStrU[130][18] = "Двойное экспоненциальное сглаживание Холта";
+svgStrU[131][18] = "Сезонные индексы";
+svgStrU[132][18] = "Мультипликативная сезонная модель Холта-Уинтерса";
+svgStrU[133][18] = "Десезонная серия";
+svgStrU[134][18] = "Блок";
+
 
 // Turkish
 $.message.tr = {
-    "eStat : Stat Education SW": "eStat : Stat Təhsil SW",
-    "Filename": "Faylın adı",
-    "Selected Variables": "seçilmiş dəyişən",
-    "Cancel": "Ləğv etmək",
-    "Edit Variables": "dəyişənləri redaktə etmək",
-    "Level": "səviyyə",
+    "eStat : Stat Education SW": "eStat : Stat Eğitim SW",
+    "Home": "Ana Sayfa",
+    "Filename": "Dosya",
+    "Selected Variables": "Seçilmiş değişkenler",
+    "Cancel": "Iptal",
+    "Edit Variables": "Değişkenleri düzenlemək",
+    "Level": "Seviye",
     "ElementaryLevel": "I",
     "MiddleLevel": "O",
     "HighLevel": "A",
     "UniversityLevel": "U",
-    "Example": "nümunə",
-    "New Sheets": "yeni vərəqlər",
-    "csv Open": "csv aç",
-    "www Open": "www aç",
-    "json Open": "json aç",
-    "csv Save": "csv Yadda saxla",
-    "json Save": "json Yadda saxla",
-    "Print Sheet": "vərəqi çap et",
-    "Bar Graph": "Sütun qrafiki",
-    "Pie Chart": "dairə",
-    "Band Graph": "Zolaq qrafiki",
-    "Line": "xətti",
-    "Line Graph": "xətti qrafik",
-    "Dot Graph": "nöqtə qrafiki",
+    "Example": "Örnek",
+    "New Sheets": "Yeni sayfalar",
+    "csv Open": "csv Aç",
+    "www Open": "www Aç",
+    "json Open": "json Aç",
+    "csv Save": "csv Kaydet",
+    "json Save": "json Kaydet",
+    "Print Sheet": "Sayfayı yazdır",
+    "Bar Graph": "Çubuk grafiği",
+    "Pie Chart": "Yuvarlak diyagram",
+    "Band Graph": "Bant grafiği",
+    "Line": "Çizgi",
+    "Line Graph": "Çizgi grafiği",
+    "Dot Graph": "Nokta grafiği",
     "Histogram": "Histogram",
-    "Stem & Leaf Plot": "saplaq və yarpaq sahəsi",
-    "maxStem": "** maksimum kök sayı <= 30 **",
-    "Box-Whisker Plot": "Qutu qrafiki",
-    "Scatterplot": "Səpələnmə diaqramı",
-    "Frequency Table": "tezlik cədvəli",
-    "Basic Statistics": "təsviri statistika",
-    "Testing Hypothesis &mu;": "Fərziyyənin yoxlanması &mu;",
-    "Testing Hypothesis &sigma;<sup>2</sup>": "Fərziyyənin yoxlanması &sigma;&#178;",
-    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Fərziyyənin yoxlanması  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Fərziyyənin yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
-    "Analysis of Variance": "Dispersiya analizi",
-    "High School Stat Education": "Ali məktəb stat təhsil",
-    "University Stat Education": "Universitet stat təhsil",
-    "Elem Stat Graph Example": "İbtidai məktəb qrafik nümunəsi",
-    "Learning eStat w Example": "eStat ?",
-    "Vertical": "Şaquli",
-    "Horizontal": "Üfüqi",
-    "Vertical Separated Bar": "Şaquli Ayrılmış Sütun Qrafiki",
-    "Vertical Stacked Bar": "Şaquli üst-üstə Sütun qrafiki",
-    "Vertical Ratio Bar": "Şaquli nisbət sütun qrafiki",
-    "Vertical Side by Side Bar": "Şaquli Yanbayan Sütun Qrafiki",
-    "Vertical Two Sided Bar": "Şaquli iki tərəfli Sütun qrafiki",
-    "Horizontal Separated Bar": "Üfüqi Ayrılmış sütun Qrafiki",
-    "Horizontal Stacked Bar": "Üfüqi üst-üstə sütun qrafiki",
-    "Horizontal Ratio Bar": "Üfüqi nisbət bar qrafiki",
-    "Horizontal Side by Side Bar": "Üfüqi Yanaşı Sütun Qrafiki",
-    "Horizontal Two Sided Bar": "Üfüqi iki tərəfli sütun qrafiki",
-    "Doughnut Graph": "Halqa qrafiki",
-    "Two Sided Stem & Leaf Plot": "İki tərəfli saplaq və yarpaq diaqramı",
-    "Graph Save": "qrafiki yadda saxlamaq",
-    "Graph Print": "qrafiki çap etmək",
-    "Move to Table": "Cədvələ köçürün",
-    "Edit Title": "başlığı redaktə etmək",
-    "Table Save": "cadvəli yadda saxlamaq",
-    "Table Print": "cədvəli çap etmək",
-    "Frequency": "tezlik",
-    "Sorting": "Çeşidləmə",
-    "SortData": "Çeşidləmə",
-    "Raw Data": "Xam Məlumat",
-    "Descending": "azalan",
-    "Ascending": "artan",
-    "Mean": "Ədədi orta",
-    "Std Deviation": "standart kənarlaşma",
-    "MeanStd": "Ədədi ortan/standart kənarlaşma",
-    "DotMeanStd": "nöqtə qrafiki - Ədədi ortan/standart kənarlaşma",
-    "95CI": "95% İnam intervalı",
-    "RegressionAnalysis": "reqressiya analizi",
-    "ANOVA2": "İki üsulluq Dispersiya analizi",
-    "Regression": "reqressiya",
-    "RegressionLine": "reqressiya xətti",
-    "RegressionBand": "İnam zolağı",
-    "RegressionTable": "reqressiya analizi",	
-    "Frequency Polygon": "tezlik çoxbucaqlısı",
-    "Execute New Interval": "yeni intervalı icra etmək",
-    "Interval Start": "intervalın başlanğıcı",
-    "Interval Width": "intervalın eni",
-    "t-test": "t test",
-    "Z-test": "Z test",
-    "(if Z-test, enter &sigma;)": "(Z-testdirsə, &sigma; daxil edin.)",
-    "Significance Level": "Əhəmiyyət səviyyəsi",
-    "Execute": "icra etmək",
-    "(Confidence Interval)": "(İnam intervalı)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-testidirsə, Z<sub>&alpha;/2</sub> istifadə edin.)",
+    "Stem & Leaf Plot": "Kök ve yaprak diyagramı",
+    "maxStem": "** maksimum kök sayısı <= 30 **",
+    "Box-Whisker Plot": "Kutu qrafiği",
+    "Scatterplot": "Dağılım grafiği",
+    "ScatterplotMatrix": "Dağılım grafiği matrisi",
+    "Frequency Table": "Frekans tablosu",
+    "Basic Statistics": "Temel istatistikler",
+    "Testing Hypothesis &mu;": "Hipotez testi &mu;",
+    "Testing Hypothesis &sigma;<sup>2</sup>": "Hipotez testi &sigma;&#178;",
+    "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hipotez testi  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
+    "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hipotez testi &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
+    "Analysis of Variance": "Varyans analizi",
+    "Middle School Stat Education": "Ortaokul İstatistik Eğitimi",
+    "High School Stat Education": "Lise istatistik eğitimi",
+    "University Stat Education": "Üniversite istatistik eğitimi",
+    "Elem Stat Graph Example": "Temel istatistik grafiği örneği",
+    "Learning eStat w Example": "eStat'i örnek ile öğrenmek",
+    "Vertical": "Dikey",
+    "Horizontal": "Yatay",
+    "Vertical Separated Bar": "Dikey ayrılmış çubuk grafiği",
+    "Vertical Stacked Bar": "Dikey toplanmış çubuk grafiği",
+    "Vertical Ratio Bar": "Dikey oran çubuk grafiği",
+    "Vertical Side by Side Bar": "Dikey yan yana çubuk grafiği",
+    "Vertical Two Sided Bar": "Dikey iki taraflı çubuk grafiği",
+    "Horizontal Separated Bar": "Yatay ayrılmış çubuk grafiği",
+    "Horizontal Stacked Bar": "Yatay toplanmış çubuk grafiği",
+    "Horizontal Ratio Bar": "Yatay oran çubuk grafiği",
+    "Horizontal Side by Side Bar": "Yatay yan yana çubuk grafiği",
+    "Horizontal Two Sided Bar": "Yatay iki taraflı çubuk grafiği",
+    "Doughnut Graph": "Halka grafiği",
+    "Two Sided Stem & Leaf Plot": "İki tarafı kök ve yaprak diyagramı",
+    "Graph Save": "Grafiği kaydet",
+    "Graph Print": "Grafiği yazdır",
+    "Move to Table": "Tabloya taşı",
+    "Edit Title": "Başlığı düzenle",
+    "Table Save": "Tabloyu kaydet",
+    "Table Print": "Tabloyu yazdır",
+    "Frequency": "Sıklık",
+    "Sorting": "Sıralama",
+    "SortData": "Verileri sırala",
+    "Raw Data": "Xam veri",
+    "Descending": "Azalan",
+    "Ascending": "Artan",
+    "Mean": "Ortalama",
+    "Std Deviation": "Standart sapma",
+    "MeanStd": "Ortalama standart sapma",
+    "DotMeanStd": "Ortalama standart sapma nokta grafiği",
+    "95CI": "95% güven aralığı",
+    "RegressionAnalysis": "Regresyon analizi",
+    "RegressionAnalysis1": "Simple Linear Regression Analysis",
+    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
+    "ANOVA2": "İki yönlü ANOVA",
+    "Regression": "Regresyon",
+    "RegressionLine": "Regresyon çizgisi",
+    "RegressionBand": "Regresyon bandı",
+    "RegressionTable": "Regresyon tablosu",	
+    "Frequency Polygon": "Frekans poligonu",
+    "Execute New Interval": "Yeni aralık uygula",
+    "Interval Start": "Aralık başlangıcı",
+    "Interval Width": "Aralık genişliği",
+    "t-test": "t testi",
+    "Z-test": "Z testi",
+    "(if Z-test, enter &sigma;)": "(Z-test ise, girin &sigma;)",
+    "Significance Level": "Önem düzeyi",
+    "Execute": "Uygula",
+    "(Confidence Interval)": "(Güven aralığı)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-test ise, Z<sub>&alpha;/2</sub> kullan)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
-    "Variance Assumption": "Dispersiya fərziyyəsi",
-    "Variance": "Dispersiya",
-    "F test": "F test",
-    "At least one pair of means is different": "Ən azı bir cüt ədədi orta fərqlidir",
-    "Main Title : ": "əsas başlıq",
-    "y title : ": "Y başlığı",
-    "x title : ": "X başlığı",
-    "Modify": "dəyişmək",
-    "Confirm": "Təsdiq etmək",
-    "Variable Name": "dəyişənin adı",
-    "Variable Value": "dəyişkən dəyəri",
-    "Value Label": "dəyər etiketi",
-    "* Less than nine value labels allowed.": "* Doqquz dəyərdən az etiketə icazə verilir..",
-    "Save": "Yadda saxla",
-    "Exit": "çıxmaq",
-    "eStatU UnivStatEdu": "eStatU - Universitet statistika təhsili SW",
-    "eStatH HighStatEdu": "eStatH - Ali məktəb statistika təhsili SW",
-    "MiddleStat": "Middle School Statistics",
-    "HighStat":   "High School Statistics",
-    "ebookLink":  "eBook Link (English)",
-    "Menu": "menyu",
-    "Binomial Experiment": "Binomial təcrübə",
-    "Binomial Distribution": "Binomial paylanma",
-    "Binomial Prob Table": "Binomial ehtimal cədvəli",
-    "Poisson Distribution": "Poisson Paylanması",
-    "Poisson Prob Table": "Poisson Ehtimal Cədvəli",
-    "Geometric Distribution": "həndəsi paylanma",
-    "Geometric Prob Table": "həndəsi ehtimal cədvəli",
-    "HyperGeometric Distribution": "hiper həndəsi paylanma",
-    "HyperGeometric Prob Table": "hiper həndəsi ehtimal cədvəli",
-    "Exponential Distribution": "qüvvətli paylanma",
-    "Normal Experiment": "normal təcrübə",
-    "Normal Distribution": "normal paylanma",
-    "Normal Approx": "normal təxmin",
-    "t Distribution": "t Paylanma",
-    "ChiSquare Distribution": "&chi;&#178; Paylanma",
-    "F Distribution": "F Paylanma",
-    "Sampling": "nümunə götürülməsi",
-    "Population vs Sample": "Populyasiya vs Nümunə",
-    "Population": "Populyasiya",
-    "Sample": "nümunə",
-    "Exponential": "qüvvət(0.3)",
-    "Uniform": "Vahid paylanma(0,1)",
-    "UniformDist": "Vahid paylanmam",
-    "Sample05": "nümunə götürülməsi 5%",
-    "Sample10": "nümunə götürülməsi 10%",
-    "Sample20": "nümunə götürülməsi 20%",
-    "Statistics/BoxPlot": "statistika/Qutu qrafiki",
-    "StatisticalProb":     "Statistik ehtimal",
-    "Law of Large Number": "böyük rəqəmlər qanunu",
-    "Dist of Sample Means": "nümunə ədədi ortaların paylanması",
-    "Sampling Distribution": "nümunə götürülməsi paylanma",
-    "Sample Size": "nümunə ölçüsü",
-    "Confidence Interval": "İnam intervalı",
-    "Confidence Interval Simulation": "İnam intervalı Simulyasiya",
-    "Confidence Interval Mu": "Hesablama : &mu;",
-    "Mu Confidence Interval": "Hesablama : &mu;",
-    "Confidence Interval Sigma": "Hesablama : &sigma;&#178;",
-    "Confidence Interval P": "Hesablama : p",
-    "Estimation Accuracy": "Hesablama dəqiqliyi",
-    "Repetition": "təkrar",
-    "Confidence Level": "İnam sərhədi",
-    "Testing Hypothesis mu_titleAB": "Fərziyyənin yoxlanması Ədədi orta",
-    "Testing Hypothesis mu_title": "Fərziyyənin yoxlanması Ədədi orta",
-    "Testing Hypothesis sigma_title": "Fərziyyənin yoxlanması Dispersiya",
-    "Testing Hypothesis P_title": "Fərziyyənin yoxlanması Proporsiyanın",
-    "Testing Hypothesis mu12_title": "Fərziyyənin yoxlanması iki ədədi ortanın",
-    "Testing Hypothesis sigma12_title": "Fərziyyənin yoxlanması iki Dispersiya",
-    "Testing Hypothesis P12_title": "Fərziyyənin yoxlanması ike Proporsiyanın",
-    "Testing Hypothesis muA":  "Fərziyyənin yoxlanması &mu; - C, &beta;",
-    "Testing Hypothesis muAB": "Fərziyyənin yoxlanması &mu; - C, n",
-    "Testing Hypothesis mu": "Fərziyyənin yoxlanması &mu;",
-    "Testing Hypothesis sigma": "Fərziyyənin yoxlanması &sigma;&#178;",
-    "Testing Hypothesis P": "Fərziyyənin yoxlanması p",
-    "Testing Hypothesis mu12": "Fərziyyənin yoxlanması &mu;<sub>1</sub>, &mu;<sub>2</sub>",
-    "Testing Hypothesis sigma12": "Fərziyyənin yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
-    "Testing Hypothesis P12": "Fərziyyənin yoxlanması p<sub>1</sub>, p<sub>2</sub>",
-    "Testing Hypothesis ANOVA": "Fərziyyənin yoxlanması ANOVA",
-    "Testing Independence": "Kateqoriyalara aiddir: asılı olmama testi",
-    "CategoryD": "Kateqoriya",
-    "Category": "Kateqoriya",
-    "Correlation Coefficient": "Korrelyasiya əmsalı",
-    "Regression Experiment": "reqressiya təcrübəsi",
-    "Hypothesis": "Fərziyyə",
-    "Test Type": "Test növü",
+    "Variance Assumption": "Varyans varsayımı",
+    "Variance": "Varyans",
+    "F test": "F testi",
+    "At least one pair of means is different": "En az bir çift ortalama farklıdır",
+    "Main Title": "Ana başlık",
+    "y title": "Y başlığı",
+    "x title": "X başlığı",
+    "yAxis": "Y Ekseni",
+    "Modify": "Değiştir",
+    "Confirm": "Onayla",
+    "Variable Name": "Değişken adı",
+    "Variable Value": "Değişken değeri",
+    "Value Label": "Değer etiketi",
+    "* Less than nine value labels allowed.": "* Dokuzdan az değer etiketine icaze var.",
+    "Save": "Kaydet",
+    "Exit": "Çıkış",
+    "eStatU UnivStatEdu": "eStatU - Üniversite istatistik eğitimi",
+    "eStatH HighStatEdu": "eStatH - Lise istatistik eğitimi",
+    "eStatM MiddleStatEdu": "eStatM - İlkokul / Ortaokul İstatistikleri",
+    "MiddleStat": "Orta okul istatistiği",
+    "HighStat":   "Lise istatistiği",
+    "UnivStat":   "Statistics and Data Science",
+    "ebookLink":  "eKitab linki (İngilizce)",
+    "Menu": "Menü",
+    "Binomial Experiment": "Binom deneyi",
+    "Binomial Distribution": "Binom dağılımı",
+    "Binomial Prob Table": "Binom olasılık tablosu",
+    "Poisson Distribution": "Poisson dağılımı",
+    "Poisson Prob Table": "Poisson olasılık tablosu",
+    "Geometric Distribution": "Geometrik dağılımı",
+    "Geometric Prob Table": "Geometrik olasılık tablosu",
+    "HyperGeometric Distribution": "Hipergeometrik dağılımı",
+    "HyperGeometric Prob Table": "Hipergeometrik olasılık tablosu",
+    "Exponential Distribution": "Üslü dağılım",
+    "Normal Experiment": "Normal deney",
+    "Normal Distribution": "Normal dağılım",
+    "Normal Approx": "Normal yaklaşık",
+    "t Distribution": "t dağılım",
+    "ChiSquare Distribution": "Chi kare dağılım",
+    "F Distribution": "F dağılım",
+    "Sampling": "numune alma",
+    "Population vs Sample": "Nüfus vs numune",
+    "Population": "Nüfus",
+    "Sample": "Numunə",
+    "Exponential": "Üstel",
+    "Uniform": "Üniform",
+    "UniformDist": "Üniform dağılım",
+    "Sample05": "5% numune",
+    "Sample10": "10% numune",
+    "Sample20": "20% numune",
+    "Statistics/BoxPlot": "Istatistik/kutu qrafiği",
+    "StatisticalProb":     "İstatistiksel olasılık",
+    "Law of Large Number": "Büyük sayılar kanunı",
+    "Dist of Sample Means": "Numune ortalama dağılımı",
+    "Sampling Distribution": "Numune dağılımı",
+    "Sample Size": "Numune ölçüsü",
+    "Confidence Interval": "Güven aralığı",
+    "Confidence Interval Simulation": "Güven aralığı simülasyonu",
+    "Simulation": "simülasyonu",
+    "Confidence Interval Mu": "Tahmin : &mu;",
+    "Mu Confidence Interval": "Nüfus ortalama güven aralığı",
+    "Confidence Interval Sigma": "Tahmin: &sigma;&#178 ",
+    "Confidence Interval P": "Tahmin : p",
+    "Estimation Accuracy": "Tahmin doğruluğu",
+    "Repetition": "Tekrar",
+    "Confidence Level": "Güven derecesi",
+    "Testing Hypothesis mu_titleAB": "Hipotez ortalaması testi",
+    "Testing Hypothesis mu_title": "Ortalama testi",
+    "Testing Hypothesis sigma_title": "Varyans testi",
+    "Testing Hypothesis P_title": "Oran testi",
+    "Testing Hypothesis mu12_title": "2 ortalama testi",
+    "Testing Hypothesis sigma12_title": "2 varyans testi",
+    "Testing Hypothesis P12_title": "2 oran testi",
+    "Testing Hypothesis muA":  "Varsayım testi &mu; - C, &beta;",
+    "Testing Hypothesis muAB": "Varsayım testi &mu; - C, n",
+    "Testing Hypothesis mu": "Varsayım testi &mu;",
+    "Testing Hypothesis sigma": "Varsayım testi &sigma;&#178;",
+    "Testing Hypothesis P": "P varsayım testi",
+    "Testing Hypothesis mu12": "Varsayım testi &mu;<sub>1</sub>, &mu;<sub>2</sub",
+    "Testing Hypothesis sigma12":  "Varsayım testi &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
+    "Testing Hypothesis P12": "Varsayımın testi p<sub>1</sub>, p<sub>2</sub>",
+    "Testing Hypothesis ANOVA": "1 Faktör ANOVA",
+    "Testing Hypothesis ANOVA2": "2 Faktör ANOVA",
+    "SameSampleSize": "Her hücrenin örnek boyutu aynı olmalıdır.",
+    "Testing Independence": "Kategorik: Bağımsızlık Testi",
+    "CategoryD": "Kategori",
+    "Category": "Kategori",
+    "Correlation Coefficient": "Korelasyon katsayısı",
+    "Regression Experiment": "Regresyon deneyi",
+    "Hypothesis": "Varsayım",
+    "Test Type": "Test türü",
     "Z-test": "Z test",
     "t-test": "t test",
-    "Chi-test": "&chi;&#178; test",
+    "Chi-test": "&chi;&#178; testi",
     "F-test": "F test",
-    "Sampling Type": "nümunə götürülməsinin növü",
-    "Independent Sample": "asılı olmayan nümunə",
-    "Paired Sample": "cütlü nümunə",
-    "Sample Data": "məlumat nümunəsi",
-    "input either sample data": "csv / bsv istifadə edərək növbəti qutularda nümunə məlumatlarını və ya nümunə statistikasını daxil edin",
-    "input data": "Məlumat daxil edin",
-    "Sample Statistics": "nümunə statistikası",
-    "Sample Mean": "nümumənin ədədi ortası",
-    "Sample Variance": "Nümunənin dispersiyası",
-    "Sample Proportion": "Nümunənin proposiyası",
-    "if Z-test-1": "(Z-testdirsə, populyasiya dispersiyasını daxil edin &sigma;&#178;)",
-    "if Z-test-2": "(Z-testdirsə, z<sub>&alpha;/2 </sub> istifadə edin)",
-    "At least one pair": "Ən azı bir cüt ədədi orta fərqlidir",
-    "Row-Col-0": "sətir və sütun dəyişənləri asılı olmayandır",
-    "Row-Col-1": "sətir və sütun dəyişənləri asılıdır",
-    "Enter any number of row": "(Sol üst hücrədən müşahidəni daxil edin)",
-    "Row": "sətir",
-    "Column": "sütun",
-    "Probability": "ehtimal",
-    "Show Probability": "ehtimalı göstərin",
-    "Regression Line": "reqressiya xətti",
-    "Erase All": "hamısını sil",
-    "Add Point": "nöqtə əlavə edin",
-    "Erase Point": "silmək nöqtəsi",
-    "Reference Site": "rəy saytı",
-    "Lot Size": "ərazi ölçüsü",
-    "Defect Size": "qüsur ölçüsü",
-    "If typed": "Nömrəni yazdıqdan sonra [İcra et] və ya [Enter] vurun",
-    "Stat/BoxPlot": "statistika/Qutu qrafiki",
-    "Mean": "Ədədi orta",
-    "Std Dev": "standart kənarlaşma",
-    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
-    "OneGroup": "(bir qrup)",
-    "AnalysisVar": "Analiz dəyişəni",
-    "AnalysisVar2": "Y dəyişənin",
+    "Sampling Type": "Numune alma türü",
+    "Independent Sample": "Bağımsız numune",
+    "Paired Sample": "Eşli numune",
+    "Sample Data": "Örnek Veri",
+    "input either sample data": "BSV kullanarak örnek verileri veya sonraki kutulara örnek istatistikleri girin",
+    "input data": "Veri girin",
+    "Sample Statistics": "Numune istatistikleri",
+    "Sample Mean": "Numumə ortalaması",
+    "Sample Variance": "Numumə dispersiyası",
+    "Sample Proportion": "Numumə oranı",
+    "if Z-test-1": "(Z testi ise, popülasyon varyansını &sigma;&#178; girin)",
+    "if Z-test-2": "(Z testi ise, z<sub>&alpha;/2 </sub> kullanılır.)",
+    "At least one pair": "En az bir çift ortalama farklıdır",
+    "Row-Col-0": "Satır ve sütun değişkenleri bağımsızdır",
+    "Row-Col-1": "Satır ve sütun değişkenleri bağımsız değil",
+    "Enter any number of row": "(Sol üst hücreden gözlemi girin)",
+    "Row": "Satır",
+    "Column": "Sütun",
+    "Probability": "Olasılık",
+    "Show Probability": "Olasılığı göster",
+    "Regression Line": "Regresyon çizgisi",
+    "Erase All": "Tümünü sil",
+    "Add Point": "Nokta ekle",
+    "Erase Point": "Noktayı sil",
+    "Reference Site": "Referans site",
+    "Lot Size": "Alan ölçüsü",
+    "Defect Size": "Hata boyutu",
+    "If typed": "Numarayı yazdıktan sonra [Yürüt] veya [Giriş]'e tıklayın",
+    "Stat/BoxPlot": "Istatitik/Kutu grafiği",
+    "Mean": "Ortalama",
+    "Std Dev": "Standart sapma",
+    "SimulationWarning": "(Bir sonraki simülasyona başlamadan önce mevcut simülasyon bitirilmelidir)",
+    "OneGroup": "Bir grup",
+    "AnalysisVar": "Analiz değişkeni",
+    "AnalysisVar2": "Y değişkeni",
     "GroupVar": "Grup",
-    "GroupVar2": "X dəyişənin",
-    "GroupVar3": "Vuruq1",
-    "GroupVar4": "Vuruq2",
-    "AnalysisVarMu12": "Analizi(or X1) dəyişənin",
-    "GroupVarMu12": "Grup(or X2) dəyişənin",
-    "PairedMu12": " X1, X2 : cütlü dəyişən",
-    "SizeVar": "ölçü dəyişəni",
-    "RegressionBand": "İnam zolağı",
-    "RegressionTable": "reqressiya analizi",
-    "RegressionResidual": "qalıqların qrafiki",
-    "RegressionResidualLeverage": "qalıqların vs kaldıraç",
-    "RegressionCook": "Kuk məsafəsi",
-    "RegressionQQ": "qalıqların Q-Q Süjet",
+    "GroupVar2": "X değişkeni",
+    "GroupVar3": "Faktör1",
+    "GroupVar4": "Faktör2",
+    "AnalysisVarMu12": "Analiz(veya X1) değişkeni",
+    "GroupVarMu12": "Grup(veya X2) değişkeni",
+    "PairedMu12": " X1, X2 : Eşleştirilmiş değişkenler",
+    "SizeVar": "Değişkeni boyutu",
+    "RegressionBand": "Güven bandı",
+    "RegressionTable": "Regresyon analizi",
+    "RegressionResidual": "Kalıntı plotu",
+    "RegressionResidualLeverage": "Kalıntısı ve kaldıraç",
+    "RegressionCook": "Kuk'un mesafe grafiği",
+    "RegressionQQ": "Artık Q-Q grafiği",
     "HistogramNormal": "Histogram",
-    "HistogramChisq": "normallıq testi",
-    "HistogramNormalQQ": "Normal Q-Q Süjet",
-    "PopulationStd": "Populyasiya standart kənarlaşması",
-    "Type1Error": "1-turdagi xato",
-    "Type2Error": "2-turdagi xato",
-    "AnovaTable": "Dispersiya analizi cədvəli",
-    "AnovaMeanGraph": "Orta etimad intervalı",
-    "MultipleComparison": "çoxsaylı müqayisə",
-    "ComparisonGraph": "Müqayisə qrafiki",
-    "AnovaResidual": "standart qalıq Süjet",
-    "AnovaQQ": "qalıq Q-Q Süjet",
-    "TestingFit": "kategoriyali : Uyğunluğun keyfiyyəti testi",
-    "FitTest0": "Müşahidə olunan və nəzəri bölgülər eynidır",
-    "FitTest1": "Müşahidə olunan və nəzəri bölgülər fərqlidir",
-    "ObservedFreq": "müşahidə olunmuş tezlik O",
-    "ExpectedProb": "gözlənilən ehtimal p",
-    "ExpectedFreq": "gözlənilən tezlik E(>5)",
-    "InputFitData": "Sol üst hücrədən müşahidəni daxil edin",
-    "ExecuteTable": "statistika",
-    "MeanDotGraph": "İnam intervalı qrafiki",
-    "ScatterRegression": "Səpələnmə diaqramı",
-    "Factor": "Vuruq",
-    "Interaction": "qarşılıqlı əlaqə",
-    "NoInteraction": "qarşlıqlı əlaqə yoxdur",
-    "ExistInteraction": "qarşılıqlı əlaqə mövcuddur",
-    "eStatLecture": "eStat operatsiya ma'ruzasi",
-    "NonParametricMu12_title": "Parametrik emas : Wilcoxon Reytinq cəmi Test", 
-    "NonParametricMu12": "Parametrik emas : Wilcoxon Reytinq cəmi Test : joylashuv parametrlari M<sub>1</sub>, M<sub>2</sub>", 
-    "WilcoxonTest": "Parametrik emas : Reytinq cəmi Test",
-    "Sample Range": "Reytinq cəmi",
-    "DistributionTable": "paylanma cədvəli",
-    "SignedRankTestDist": "Wilcoxon Signed Reytinq cəmi Dist.",
-    "WilcoxonTestDist": "Wilcoxon Reytinq cəmi Distribution",
-    "KruskalTestDist": "Kruskal-Wallis H Distribution",
-    "FriedmanTestDist": "Friedman S Distribution",
-    "SignedRankTest": "Parametrik emas : işarə Reytinq Cəmi Test",
-    "SignTest": "Parametrik emas : işarə sınağı",
-    "SignCount": "işarələrin sayı",
-    "KruskalTest": "Parametrik emas : Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Parametrik emas : Kruskal-Wallis Test",
-    "Total": "Cəm",
-    "FriedmanTest": "Parametrik emas : Friedman Test",
-    "FriedmanTestANOVA": "Parametrik emas : Friedman Test",
-    "Block": "Blok",
-    "Treatment": "rəftar",
-    "At least one locations is different": "Ən azı bir cüt lokasiya fərqlidir",
-    "SignCondition": "Agar n ≤ 100 Binomial Test,  n > 100 Normal Təxmin Test",
-    "WilcoxonSignCondition": "Agar n ≤ 20 Wilcoxon Reytinq Cəmi Test,  n > 20 Normal Təxmin Test",
-    "WilcoxonRankCondition": "Agar n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Reytinq Cəmi Test,  n>25 Normal Təxmin Test",
-    "KruskalCondition": "Agar n ≤ 10 H Paylanma Test, yana &chi;&#178; Təxmin test",
-    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* dəyişənin seçimi : O'zgaruvchan nomni bosing yoki RHS tanlash oynasidan foydalaning",
-    "VariableSelect3": "dəyişənin seçimi",
-    "VariableSelect4": "Ko'proq tahlil o'zgaruvchini tanlash mumkin",
-    "VariableSelect5": "Ko'proq X o'zgaruvchini tanlash mumkin",
-    "SummaryData": "xulosa ma'lumotlari",
-    "RawData": "Xam Məlumat",
+    "HistogramChisq": "Normallik testi",
+    "HistogramNormalQQ": "Normal Q-Q grafiği",
+    "PopulationStd": "Nüfus standart sapması",
+    "Type1Error": "1. tip hata",
+    "Type2Error": "2. tip hata",
+    "AnovaTable": " ANOVA tablosu",
+    "AnovaMeanGraph": "Ortalama güven aralığı",
+    "MultipleComparison": "Çoklu karşılaştırma",
+    "ComparisonGraph": "Karşılaştırma",
+    "AnovaResidual": "Standartlaştırılmış kalıntı plotu",
+    "AnovaQQ": "Artık Q-Q grafiği",
+    "TestingFit": "Kategorik: uygunluk testi",
+    "FitTest0": "Gözlemlenen ve teorik dağılım aynıdır",
+    "FitTest1": "Gözlemlenen ve teorik Dağılım farklıdır",
+    "ObservedFreq": "Gözlemlenen frekans 0",
+    "ExpectedProb": "Beklenen olasılık p",
+    "ExpectedFreq": "Beklenen frekans E(>5)",
+    "InputFitData": "Sol üst hücreden girin",
+    "ExecuteTable": "İstatistikler",
+    "MeanDotGraph": "Güven aralığı grafiği",
+    "ScatterRegression": "Dağılım grafiği",
+    "Factor": "Faktör",
+    "Interaction": "Etkileşim",
+    "NoInteraction": "Etkileşim yoktur",
+    "ExistInteraction": "Etkileşim vardir",
+    "eStatLecture": "e-Eğitim",
+    "NonParametricMu12_title": "Parametrik olmayan: Wilcoxon sıra toplamı testi", 
+    "NonParametricMu12": "Parametrik Olmayan : Wilcoxon sıra toplamı testi : Konum Parametresi M<sub>1</sub>, M<sub>2</sub>", 
+    "WilcoxonTest": "Parametrik Olmayan: Sıra Toplamı Testi",
+    "Sample Range":  "Sıra Toplamı",
+    "DistributionTable": "Dağıtım tablosu",
+    "SignedRankTestDist": "Wilcoxon işaretli sıra test dağılımı",
+    "WilcoxonTestDist": "Wilcoxon sıra toplamı dağılımı",
+    "KruskalTestDist": "Kruskal-Wallis H Dağıtımı",
+    "FriedmanTestDist": "Friedman S Dağıtımı",
+    "SignedRankTest": "Parametrik olmayan: işaretli sıra toplamı testi",
+    "SignTest": "Parametrik olmayan: işaret Testi",
+    "SignCount": "İşaret sayısı",
+    "KruskalTest": "Parametrik Olmayan: Kruskal-Wallis Testi",
+    "KruskalTestANOVA": "Parametrik Olmayan: Kruskal-Wallis Testi",
+    "Total": "İşlem",
+    "FriedmanTest": "Parametrik olmayan: Friedman testi",
+    "FriedmanTestANOVA": "Parametrik Olmayan: Friedman Testi",
+    "Block": "Engelle",
+    "Treatment": "İşlem",
+    "At least one locations is different": "En az bir konum çifti farklı",
+    "SignCondition": "n ≤ 100 ise binom testi, n > 100 ise normal yaklaşım testi",
+    "WilcoxonSignCondition": "n ≤ 20 ise Wilcoxon sıra toplamı Testi, n > 20 ise normal yaklaşım testi",
+    "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 ise Wilcoxon sıra toplamı testi, n>25 ise normal yaklaşım testi",
+    "KruskalCondition": "n ≤ 10 ise H dağılım testi, yoksa &chi;&#178; yaklaşım testi",
+    "VariableSelect":  "* Veri analizi : Dosya yükle >> Değişkenleri seç >> Simgeye tıkla",
+    "VariableSelect2": "* Değişken Seçimi : Değişken adını tıklayın veya RHS seçim kutusunu kullanın ",
+    "VariableSelect3": "Değişken seçimi",
+    "VariableSelect4": "Daha fazla analiz değişkeni seçilebilir.",
+    "VariableSelect5": "Daha fazla X değişkeni seçilebilir.",
+    "SummaryData": "Özet veriler",
+    "RawData": "Ham veriler",
     "MultiSelect": "",
-    "DataType": "(O'zgaruvchilarni chertish nomi bilan tanlang)",
-    "by": "tomonidan",
-    "NameVar": "nom o'zgaruvchisi",
-    "n_variance": "n-1 formula",
-    "RandomNumber": "təsadüfi rəqəm",
-    "RealNumber":     "həqiqi ədəd",
-    "IntegerNumber":  "tam",
-    "NumberData":     "məlumatların sayı",
-    "NumberDigit":    "onluq rəqəm",
-    "NormalTable":    "normal paylanma jadval",
-    "Percentile":     "faiz cədvəli",
-    "PercentileValue": "faiz",
-    "StudentRangeDist": "HSD Tələbəli İnterval Paylanması",
-    "copy link": "havola nusxasi",
-    "WithoutReplacement": "almashtirishsiz",
-    "WithReplacement":    "Bərpa hasilatı",
-    "Replacement":     "Bərpa hasilatı",
-    "NonReplacement":  "almashtirishsiz",
-    "WordCloud":       "Söz Buludu (İngilis dili)",
-    "oneColor":        "rəng",
-    "defaultColor":    "standart rəng",
-    "RelativeFreq":    "nisbiy tezlik",
-    "MarginOfError":   "Xəta həddi",
-    "Permutation":     "İcazə",
-    "PermutationSame": "Eyni şey ilə icazə",
-    "Combination":     "Kombinasiya",
-    "NumberOfCase":    "İşlərin sayı",
-    "BinomialTheorem": "Binom Teoremi",
-    "PascalTriangle":  "Paskal Üçbucağı",
-    "Character":       "Emoji",
-    "AdditionRule":      "Ehtimalın toplanması qaydası",
-    "MultiplicationRule":"Ehtimalın vurma qaydası",
-    "ConditionalProb":   "Şərti Ehtimal",
-    "JointProb":         "Birgə Ehtimal",
-    "DiscreteDist":      "Diskret paylama",
-    "Categorize":        "Kateqoriyalara",
-    "Recode":            "Yenidən kodla",
-    "Compute":           "Hesablama",
-    "SelectIf":          "Əgər seçin",
-    "InfoValueLabel":    "*** Dəyişən seçin, dəyişən adını və/yaxud dəyər etiketini daxil edin.",
-    "InfoSorting":       "*** Çeşidləmə dəyişənini seçin, 3 dəyişənə qədər çeşidləmə metodunu daxil edin.",
-    "InfoCategorize":    "*** Kateqoriya üçün dəyişəni seçin, interval başlanğıcını və interval enini daxil edin.",
-    "InfoRecode":        "*** Qeyd üçün dəyişəni seçin, yeni dəyər daxil edin.",
-    "InfoRecode2":       "* 9 dəyərə qədər qeyd etməyə icazə verin.",
-    "InfoCompute":       "*** Aşağıdakı düymələrdən istifadə edərək hesablama formulunu yaradın.",
-    "InfoSelectIf":      "*** 3 dəyişənə qədər seçin, onların şərtlərini daxil edin.",
-    "SortingVariable":   "Dəyişənlərin çeşidlənməsi",
-    "SortingMethod":     "Çeşidləmə üsulu",
-    "NewVariable":       "Yeni Dəyişən",
-    "CategoryVariable":  "Dəyişənləri kateqoriyalara ayırın",
-    "CategoryListCheck": "Kateqoriya siyahısı yoxlanışı",
-    "CategoryInterval":  "Kateqoriya intervalı",
-    "CategoryLabel":     "Kateqoriya etiketi",
-    "RecodeVariable":    "Dəyişənləri yenidən kodla",
-    "CurrentValue":      "Cari dəyər",
-    "NewValue":          "Yeni dəyər",
-    "ComputeFormula":    "Düstur",
-    "SelectVariable":    "Seçmək üçün<br>dəyişən",
-    "RelationOperator":  "Əlaqə<br>Operator",
-    "SelectValue":       "Dəyər",
+    "DataType": "(Değişken adını tıklayarak seçin)",
+    "by": "ile",
+    "NameVar": "Değişken adi",
+    "n_variance": "n-1 formülü",
+    "RandomNumber": "Rastgele sayı üreticisi",
+    "RealNumber":     "Gerçek",
+    "IntegerNumber":  "Tamsayı",
+    "NumberData":     "Veri sayı",
+    "NumberDigit":    "Sayı basamağı",
+    "NormalTable":    "Normal dağılım tablosu",
+    "Percentile":     "Yüzdelik tablo",
+    "PercentileValue": "Yüzdelik",
+    "StudentRangeDist": "HSD öğrenci aralığı dağılımı",
+    "copy link": "linki kopyala",
+    "WithoutReplacement": "Değiştirmesiz",
+    "WithReplacement":    "Değiştirme ile",
+    "Replacement":     "Değiştirme",
+    "NonReplacement":  "Değiştirilmeden",
+    "WordCloud":       "Kelime bulutu",
+    "oneColor":        "Renk",
+    "defaultColor":    "Standart renk",
+    "RelativeFreq":    "Bağıl frekans",
+    "Density":         "Yoğunluk",
+    "MarginOfError":   "Hata marjı",
+    "Permutation":     "Permütasyon",
+    "PermutationSame": "Aynı nesnelerler permütasyon",
+    "Combination":     "Kombinasyon",
+    "NumberOfCase":    "Vaka Sayısı",
+    "BinomialTheorem": "Binom teoremi",
+    "PascalTriangle":  "Paskal Üçgeni",
+    "Character":       "Karakter",
+    "AdditionRule":      "Olasılığın Toplama kuralı",
+    "MultiplicationRule":"Olasılığın Çarpma kuralı",
+    "ConditionalProb":   "Koşullu olasılık",
+    "JointProb":         "Ortak olasılık",
+    "DiscreteDist":      "Ayrık dağıtım",
+    "Categorize":        "Kategorize et",
+    "Recode":            "Yeniden kodla",
+    "Compute":           "Hesaplama",
+    "SelectIf":          "İse seç",
+    "InfoValueLabel":    "*** Değişken seçin, değişken adını ve/veya değer etiketini girin.",
+    "InfoSorting":       "*** Sıralama değişkenini seçin, 3 değişkene kadar sıralama yöntemini girin.",
+    "InfoCategorize":    "*** Kategori için değişken seçin, 'Aralık başlangıcı' ve 'Aralık genişliği' girin.",
+    "InfoRecode":        "*** Yeniden kodlamak için değişken seçin, 'Yeni değer'i girin.",
+    "InfoRecode2":       "* 9 değere kadar yeniden kodlamaya izin ver.",
+    "InfoCompute":       "*** Aşağıdaki düğmeleri kullanarak hesaplama formülü oluşturun.",
+    "InfoSelectIf":      "*** En fazla 3 değişken seçin, koşullarını girin.",
+    "SortingVariable":   "Değişken sıralama",
+    "SortingMethod":     "Sıralama yöntemi",
+    "NewVariable":       "Yeni değişken",
+    "CategoryVariable":  "Değişkeni kategorize et",
+    "CategoryListCheck": "Kategori listesi kontrolü",
+    "CategoryInterval":  "Kategori aralığı",
+    "CategoryLabel":     "Kategori etiketi",
+    "RecodeVariable":    "Değişkeni yenidən kodla",
+    "CurrentValue":      "Mevcut değer",
+    "NewValue":          "Yeni değer",
+    "ComputeFormula":    "Hesaplama formülü",
+    "SelectVariable":    "Seçim için<br>Değişken",
+    "RelationOperator":  "İlişki<br>operatörü",
+    "SelectValue":       "Değer",
     "MissingValue":      "Eksik değer",
+    "option":            "seçenek",
+    "TimeSeries":        "Zaman serisi",                    
+    "Smoothing":         "yumuşatma",
+    "Filtering":         "Filtreleme",
+    "Transformation":    "Dönüşüm",
+    "Weight":            "Ağırlık",
+    "PercentChange":     "Yüzde Değişim",
+    "WeightedIndex":     "Basit Dizin",
+    "BaseTime":          "Temel Zaman",
+    "LagTime":           "Gecikme süresi",
+    "Lag":               "Gecikme süresi",
+    "Forecasting":       "Tahmin",
+    "SeasonalModel":     "Mevsimlik Model",
+    "HoltWinter":        "Holt-Winters Mevsimlik Modeli",
+    "Trend":             "Akım",
+    "Seasonal":          "Mevsimsel",
+    "Deseasonal":        "Sezonluk Serisi",
+    "Nseason":           "Sezondaki Zamanlar",
+    "Irregular":         "Düzensiz",
+    "TrendModel":        "Sezonsuz Trend Modeli",
+    "RegressionModel":   "Regresyon modeli",
+    "ForecastingPeriod": "Tahmin Dönemi",
+    "CreateTable":       "Veri tablosu",
+    "SaveTable":         "Tabloyu Kaydet",
+    "MA":                "Hareketli ortalama",
+    "EWMA":              "EWMA Modeli",
+    "CenterMA":          "Merkezli Hareketli Ortalama",
+    "MovingMedian":      "Merkezli Hareketli Medyan",
+    "ES":                "Üstel Yumuşatma",
+    "Default":           "Varsayılan",
+    "Linear":            "Doğrusal",
+    "Quadratic":         "Kuadratik",
+    "Cubic":             "Kübik",
+    "SquareRoot":        "Kare kök",
+    "Log":               "Logaritmik",
+    "Exponent":          "Üstel",
+    "Power":             "Güç",
+    "BoxCox":            "Kutu Cox",
+    "SingleMA":          "Tek Hareketli Ortalama",
+    "SingleES":          "Tek Üstel Düzeltme",
+    "DoubleMA":          "Çift Hareketli Ortalama",
+    "DoubleES":          "Çift Üstel Düzeltme",
+    "HoltLinear":        "Holt Üstel Düzeltme",
+    "DeseasonIntercept": "Sezonsuz müdahale",
+    "DeseasonSlope":     "Mevsimsiz eğim",
+    "SeasonalIndex":     "Mevsimsel İndeksi",
+    "Diff":              "Fark",
+    "DiffTime":          "Fark Zamanı",
+    "AR":                "Otoregresif Model",
+    "ResultTable":       "Regresyon Sonucu",
+    "ForecastTable":     "Tahmin Tablosu",
+    "HoltLevel":         "Seviye",
+    "HoltTrend":         "Akım",
+    "AutoCorrTable":     "Otokorelasyon Tablosu",
+    "DiffSeries":        "Fark Serisi",
+    "RawSeries":         "Ham Serisi",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
+    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
+    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
+    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
+    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
+    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Distribution":      "Distribution",
+
 };
 
 // Turkish
@@ -13022,312 +15135,324 @@ appStr[2][19] = "../eStatU/index.html";
 appStr[3][19] = "../eStatE/index_en.html";
 appStr[4][19] = "../eHelp/index_en.html";
 appStr[5][19] = "index.html";
-appStr[6][19] = "../eLearning/en/index.html";
-alertMsg[1][19] = "seçilmiş dəyişənlərdən birində məlumat yoxdur.";
-alertMsg[2][19] = "seçilmiş dəyişənlərdən birində məlumat yoxdur. ";
-alertMsg[3][19] = "seçilmiş dəyişən haqqında məlumat çatışmazlığı.";
-alertMsg[4][19] = "Əgər seçilmiş dəyişənlərin muşahidələri müxtəlifdirsə, analizə icazə verilmir.";
-alertMsg[5][19] = "THəddən çox qrup! Ekranın ölçüsünə görə qrafiklər üst-üstə düşə bilər..";
-alertMsg[6][19] = "Xülasə məlumatlarındakı analiz dəyişəninində simvol varsa, statistik analiz və ya cədvəl yaratmağa icazə verilmir..";
-alertMsg[7][19] = "Xam məlumatlardan üçdən çox dəyişən seçilibsə, analizə icazə verilmir.";
-alertMsg[8][19] = "Müşahidələrin sayı 200-dən az olduqda nöqtə qrafikinə icazə verilir.";
-alertMsg[9][19] = "Müşahidələrin sayı 100-dən az olduqda kök və yarpaq diaqramına icazə verilir.";
-alertMsg[10][19] = "Analiz dəyişəni seçilməyib.";
-alertMsg[11][19] = "Analiz/Qrup dəyişənləri seçilməyib.";
-alertMsg[12][19] = "Təhlil dəyişənində simvol varsa, analizə icazə verilmir.";
+appStr[6][19] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][19] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][19] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
+alertMsg[1][19] = "Seçilen değişkenlerden birinin verisi yok";
+alertMsg[2][19] = "Analiz için değişkenleri tek tek seçin (sütun adını tıklayın veya seçim kutusundaki var'ı seçin). Ham veriler için iki değişken seçilirse, ilki analiz(veya Y) değişkenidir ve 2. grup (veya X) değişkenidir.";
+alertMsg[3][19] = "Seçilen değişkende veri eksik.";
+alertMsg[4][19] = "Her sütundaki gözlem sayısı farklıysa analiz yapilamaz.";
+alertMsg[5][19] = "Çok fazla grup var! Ekranın boyutundan dolayı grafikler çakışıyor olabilir.";
+alertMsg[6][19] = "Özet verilerdeki analiz değişkeni karakter içeriyorsa, analize veya tablo oluşturulamaz.";
+alertMsg[7][19] = "Ham veri için üçten fazla değişken seçilirse, analize veya tablo oluşturulamaz.";
+alertMsg[8][19] = "Gözlem sayısı 200'den az isa nokta grafiği oluşturulabilir.";
+alertMsg[9][19] = "Gözlem sayısı 100'den az ise gövde ve yaprak grafiği oluşturulabilir.";
+alertMsg[10][19] = "Analiz değişkeni seçilmedi.";
+alertMsg[11][19] = "Analiz/grup değişkeni seçilmedi.";
+alertMsg[12][19] = "Analiz değişkeni karakter içeriyorsa, analize veya tablo oluşturulamaz.";
 alertMsg[13][19] = "";
-alertMsg[14][19] = "davamlı qrafiklər və fərziyyələrin testi üçün xülasə məlumatlarına icazə verilmir.";
-alertMsg[16][19] = "fərziyyəni yoxlamaq üçün yalnız iki qrupa icazə verilir.";
-alertMsg[17][19] = "Səpələnmə diaqramı ən azı x dəyişənini və y dəyişənini tələb edir.";
-alertMsg[18][19] = "Səpələnmə diaqramında üçdən çox dəyişənə icazə verilmir.";
-alertMsg[19][19] = "Məlumatlarda simvol varsa, analizə icazə verilmir.";
-alertMsg[20][19] = "Məlumatlarda simvol varsa, reqressiya təhlili edilə bilməz.";
-alertMsg[21][19] = "Əgər məlumat əksikliyi varsa, yadda saxlamağa icazə verilmir.";
-alertMsg[22][19] = "Mənfi rəqəm varsa, sütun qrafiki çəkilə bilməz.";
-alertMsg[25][19] = "Yalnız bir qrup varsa, üst-üstə sütun qrafikinə icazə verilmir.";
-alertMsg[27][19] = "IYalnız bir qrup varsa, nisbət sütun qrafikinə icazə verilmir.";
-alertMsg[29][19] = "Yalnız bir qrup varsa, yanaşı sütun qrafikinə icazə verilmir.";
-alertMsg[31][19] = "Yalnız bir qrup varsa, ikitərfli sütun qrafikinə icazə verilmir.";
-alertMsg[32][19] = "Mənfi rəqəm varsa, dairə qrafiki çəkilə bilməz.";
-alertMsg[33][19] = "Mənfi rəqəm varsa, halqa qrafiki çəkilə bilməz.";
-alertMsg[34][19] = "Mənfi rəqəm varsa, zolaq qrafiki çəkilə bilməz.";
-alertMsg[35][19] = "Mənfi rəqəm varsa, tezlik cədvəli çəkilə bilməz.";
-alertMsg[36][19] = "Bu sütun qrafiki yalnız iki qrup üçündür.";
-alertMsg[37][19] = "Bu fərziyyə yoxlanışı yalnız bir dəyişən üçündür.";
-alertMsg[38][19] = "mu rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
-alertMsg[39][19] = "Standart kənarlaşma ya sıfır, ya da rəqəm deyil. Yenidən cəhd edin!";
-alertMsg[40][19] = "Giriş dispersiyası rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
-alertMsg[41][19] = "Bu fərziyyə yoxlanışı yalnız iki dəyişən üçündür. Qrup dəyişənlərinin yalnız iki qrupu olmalıdır.";
-alertMsg[42][19] = "Fərziyyə yoxlanışının başlığının redaktəsinə icazə verilmir.";
-alertMsg[43][19] = "Adi xətti reqressiya yalnız bir qrup üçündür.";
-alertMsg[44][19] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][19] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][19] = "Xuddi shu o'zgaruvchan raqam tanlangan.";
-alertMsg[47][19] = "Tezlikdə xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
-alertMsg[48][19] = "Xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
-alertMsg[49][19] = "Müşahidələrin sayı 100-dən az olmalıdır !! Yenidən cəhd edin.";
-alertMsg[50][19] = "İnterval başlanğıcında və ya addımında nömrələri daxil edin.";
-alertMsg[51][19] = "Nömrələri daxil edin / Sətirlərin sayı eyni olmalıdır! Yenidən cəhd edin.";
-alertMsg[52][19] = "Kateqoriya və tezlikdə nömrələri daxil edin.";
-alertMsg[53][19] = "İnterval ölçüsü eyni deyil !! Yenidən cəhd edin.";
-alertMsg[54][19] = "X müşahidəsi Y müşahidəsinə bərabər deyil !! Yenidən cəhd edin.";
-alertMsg[55][19] = "!!! Sayfada veri yok.";
-alertMsg[56][19] = "!!! Değişken seçilmedi";
-alertMsg[57][19] = "!!! Aralık başlangıcını ve aralık genişliğini girin";
-alertMsg[58][19] = "!!! Sayısal aralık başlangıcını ve aralık genişliğini girin";
-alertMsg[59][19] = "!!! 9'dan fazla aralık - aralık genişliğini değiştir";
-alertMsg[60][19] = "!!! Bu değişken 9'dan fazla değere sahip";
-alertMsg[61][19] = "!!! Değer girilmedi";
-alertMsg[62][19] = "!!! Formülü giriniz";
-alertMsg[63][19] = "!!! Koşulları karşılayan veri yok.";
-alertMsg[64][19] = "";
-alertMsg[65][19] = ""; 
-alertMsg[66][19] = "";
-alertMsg[67][19] = "";
-alertMsg[68][19] = "";
-alertMsg[69][19] = "";
+alertMsg[14][19] = "Devamli grafikler ve test hipotezi için özet verileri oluşturulamaz.";
+alertMsg[16][19] = "Bu hipotez testi için yalnızca iki gruba izin verilir.";
+alertMsg[17][19] = "Dağılım grafiği, Y değişkeni ve X değişkeni gerektirir.";
+alertMsg[18][19] = "Üçten fazla değişken olmamalı.";
+alertMsg[19][19] = "Verilerde karakter varsa analiz yapılamaz.";
+alertMsg[20][19] = "Veri üzerinde karakter varsa regresyon analizi yapılamaz.";
+alertMsg[21][19] = "Eksik veri varsa kaydedilemez.";
+alertMsg[22][19] = "Negatif bir sayı varsa çubuk grafiği oluşturulamaz.";
+alertMsg[25][19] = "Sadece bir grup varsa, yığın çubuk grafiği oluşturulamaz.";
+alertMsg[27][19] = "Sadece bir grup varsa, oran çubuk grafiği oluşturulamaz.";
+alertMsg[29][19] = "Sadece bir grup varsa, yan-yana çubuk grafiği oluşturulamaz.";
+alertMsg[31][19] = "Sadece bir grup varsa, iki taraflı çubuk grafiği oluşturulamaz.";
+alertMsg[32][19] = "Negatif bir sayı varsa, dairesel grafik oluşturulamaz.";
+alertMsg[33][19] = "Negatif bir sayı varsa, halka grafiği oluşturulamaz.";
+alertMsg[34][19] = "Negatif bir sayı varsa, bant grafiği oluşturulamaz.";
+alertMsg[35][19] = "Negatif bir sayı varsa, frekans tablosu oluşturulamaz.";
+alertMsg[36][19] = "Bu çubuk grafiği sadece iki grup için oluşturulabilir.";
+alertMsg[37][19] = "Bu hipotez testi sadece bir değişken için yapilabilir.";
+alertMsg[38][19] = "mu sayı değil. Değeri girin ve yeniden deneyin!";
+alertMsg[39][19] = "Standart sapma ya sıfır ya da sayı değil. Yeniden deneyin!";
+alertMsg[40][19] = "Varyansı sayı değil. Değeri girin ve ardından yeniden deneyin!";
+alertMsg[41][19] = "Bu hipotez testi sadece iki değişken ile yapılabilir. 1.si bir analiz değişkenidir ve 2.si bir grup değişkenidir. Grup değişkeninin sadece iki grubu olmalıdır.";
+alertMsg[42][19] = "Hipotez testinin başlığı düzenlenemez!";
+alertMsg[43][19] = "Basit doğrusal regresyon sadece bir grup içindir.";
+alertMsg[44][19] = "1.:Ad, 2.:enlem, 3.:boylam, 4.:analysis değişken (isteğe bağlı) giriniz";
+alertMsg[45][19] = "Beşten fazla değişken varsa GIS grafiği çizilemez.";
+alertMsg[46][19] = "En az iki satır gereklidir! Tekrar deneyin."; // Grafik çubuğu;
+alertMsg[47][19] = "Frekansda karakter verilerine izin verilmez yok! Tekrar deneyin."; // Grafik çubuğu;
+alertMsg[48][19] = "Karakter verilerine izin verilmiyor! Tekrar deneyin."; // Gövde ve yaprak grafiği;
+alertMsg[49][19] = "Gözlem sayısı 100'den az olmalıdır! Tekrar deneyin.";
+alertMsg[50][19] = "Sayıları aralık başlangıcında veya adımında girin.";
+alertMsg[51][19] = "Sayıları girin / satır sayısı aynı olmalı! Tekrar deneyin.";
+alertMsg[52][19] = "Kategori ve frekans sayıları girin.";
+alertMsg[53][19] = "Aralık boyutu aynı değil! Tekrar deneyin.";
+alertMsg[54][19] = "X gözlemi, Y gözlemine eşit değil! Tekrar deneyin.";
+alertMsg[55][19] = "!!! Sayfada veri yok";
+alertMsg[56][19] = "Aynı değişken numarası seçildi.";
+alertMsg[57][19] = "Aynı değişken numarası seçildi.";
+alertMsg[58][19] = "Aynı değişken numarası seçildi.";
+alertMsg[59][19] = "Aynı değişken numarası seçildi.";
 
-svgStr[1][19] = " Sütun qrafiki";
-svgStr[2][19] = " dairə ";
-svgStr[3][19] = " Halqa qrafiki";
-svgStr[4][19] = " Zolaq qrafiki";
-svgStr[5][19] = " xətti qrafik";
-svgStr[6][19] = " nöqtə qrafiki";
-svgStr[7][19] = " Qutu qrafiki";
-svgStr[8][19] = " saplaq və yarpaq sahəsi";
-svgStr[9][19] = " Histogram";
-svgStr[10][19] = " Səpələnmə diaqramı";
-svgStr[11][19] = " Fərziyyənin yoxlanması: Populyasiya ortası";
-svgStr[12][19] = " Fərziyyənin yoxlanması: Populyasiya Dispersiyası";
-svgStr[13][19] = " Fərziyyənin yoxlanması: İki populyasiya ədədi ortası";
-svgStr[14][19] = " Fərziyyənin yoxlanması: İki populyasiya dispersiyası";
-svgStr[15][19] = " Dispersiya analizi";
-svgStr[16][19] = "tezlik";
-svgStr[17][19] = "nisbət";
-svgStr[18][19] = "Grup ";
+svgStr[1][19] = "Çubuk grafiği";
+svgStr[2][19] = "Daire grafiği";
+svgStr[3][19] = "Halka grafiği";
+svgStr[4][19] = "Bant grafiği";
+svgStr[5][19] = "Çizgi grafiği";
+svgStr[6][19] = "Nokta grafiği";
+svgStr[7][19] = "Box-Whisker plotu";
+svgStr[8][19] = "Kök ve yaprak plotu";
+svgStr[9][19] = "Histogram";
+svgStr[10][19] = "Dağılım diagramı";
+svgStr[11][19] = "Hipotez testi: nüfus ortalaması";
+svgStr[12][19] = "Hipotez testi: nüfus varyansı";
+svgStr[13][19] = "Hipotez testi: iki nüfus varyansı";
+svgStr[14][19] = "Hipotez testi: iki nüfus varyansı";
+svgStr[15][19] = "Varyans analizi";
+svgStr[16][19] = "Frekans";
+svgStr[17][19] = "Oran";
+svgStr[18][19] = "Grup";
 svgStr[19][19] = " ";
-svgStr[20][19] = "<h3>Xülasə məlumatları <br> Tezlik Cədvəli</h3>";
-svgStr[21][19] = "qrup dəyişəni";
-svgStr[22][19] = "sətir dəyişəni";
-svgStr[23][19] = "Cəm";
-svgStr[24][19] = "doira hajmi";
-svgStr[25][19] = "<h3>tezlik cədvəli</h3>";
-svgStr[26][19] = "Analiz dəyişəni";
-svgStr[27][19] = "dəyişkən dəyəri";
-svgStr[28][19] = "dəyər etiketi";
-svgStr[29][19] = "tezlik";
-svgStr[30][19] = "nisbiy tezlik";
-svgStr[31][19] = "<h3>Kəsişən Cədvəl</h3>";
-svgStr[32][19] = "sütun dəyişəni";
-svgStr[33][19] = "sətir dəyişəni";
-svgStr[34][19] = "Ədədi orta"
-svgStr[35][19] = "standart kənarlaşma"
-svgStr[36][19] = "<h3> Histogram<br>tezlik cədvəli</h3>";
-svgStr[37][19] = "qrup adı";
-svgStr[38][19] = "interval";
-svgStr[39][19] = "saplaq";
-svgStr[40][19] = " yarpaq";
-svgStr[41][19] = "Grup 1  yarpaq";
-svgStr[42][19] = "Grup 2  yarpaq"
-svgStr[43][19] = "<h3>Ta'rif statistikasi</h3>";
-svgStr[44][19] = "müşahidə";
+svgStr[20][19] = "<h3> Özet Veriler <br> Frekans tablosu</h3>";
+svgStr[21][19] = "Grup değişkeni";
+svgStr[22][19] = "Satır değişkeni";
+svgStr[23][19] = "Toplam";
+svgStr[24][19] = "Daire boyutu";
+svgStr[25][19] = "<h3>Frekans tablosu</h3>";
+svgStr[26][19] = "Analiz değişkeni";
+svgStr[27][19] = "Değişken değeri";
+svgStr[28][19] = "Değişken etiketi";
+svgStr[29][19] = "Frekans";
+svgStr[30][19] = "Göreceli frekans";
+svgStr[31][19] = "<h3>Çapraz tablo</h3>";
+svgStr[32][19] = "Sütun değişkeni";
+svgStr[33][19] = "Sıra değişkeni";
+svgStr[34][19] = "Ortalama"
+svgStr[35][19] = "Standart sapma"
+svgStr[36][19] = "<h3>Histogram<br>Frekans tablosu</h3>";
+svgStr[37][19] = "Grup adı";
+svgStr[38][19] = "Aralık";
+svgStr[39][19] = "Sap";
+svgStr[40][19] = "Yaprak";
+svgStr[41][19] = "Grup 1 yaprak";
+svgStr[42][19] = "Grup 2 yaprak"
+svgStr[43][19] = "<h3>Tanımlayıcı istatistikler</h3>";
+svgStr[44][19] = "Gözlem";
 svgStr[45][19] = "Minimum";
-svgStr[46][19] = "Median";
-svgStr[47][19] = "Makximum";
-svgStr[48][19] = "Cəm";
-svgStr[49][19] = "<h3>normallıq testi</h3>";
-svgStr[50][19] = "gözlənilən tezlik > 5 <br> tavsiya eting";
-svgStr[51][19] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
-svgStr[52][19] = "Məlumat<br>müşahidə olunmuş tezlik<br>(O<sub>i</sub>)";
-svgStr[53][19] = "Normal paylanma<br>gözlənilən ehtimal<br>P([a<sub>i</sub> , b<sub>i</sub>))";
-svgStr[54][19] = "Normal paylanma<br>gözlənilən tezlik<br>(E<sub>i</sub>)";
-svgStr[55][19] = "interval<br>&chi;&#178; qiymati<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
-svgStr[56][19] = "cəm &chi;&#178; qiymati";
-svgStr[57][19] = "Ehtimal Histogram va Normal Paylanma";
-svgStr[58][19] = "Normal Q-Q Süjet";
-svgStr[59][19] = "Normal Kvant";
-svgStr[60][19] = "Korrelyasiya əmsalı";
-svgStr[61][19] = "Təyinetmə əmsalı";
-svgStr[62][19] = "standart xəta";
-svgStr[63][19] = "dəyişənin";
-svgStr[64][19] = "dəyişənin adı";
-svgStr[65][19] = "mustaqil dəyişənin";
-svgStr[66][19] = "qaram dəyişənin";
-svgStr[67][19] = "Parametr";
-svgStr[68][19] = "hesablanmış qiymət";
-svgStr[69][19] = "qiymati";
-svgStr[70][19] = "kəsişmə";
-svgStr[71][19] = "bucaq";
-svgStr[72][19] = "Vuruq";
-svgStr[73][19] = "kvadratlar cəmi";
-svgStr[74][19] = "sərbəstlik dərəcəsi";
-svgStr[75][19] = "orta kvadratlar";
-svgStr[76][19] = "reqressiya";
-svgStr[77][19] = "xəta";
-svgStr[78][19] = "Cəm";
-svgStr[79][19] = "<h3>Reqressiya Analizi</h3>";
-svgStr[80][19] = "standart qalıq Q-Q Süjet";
-svgStr[81][19] = "standart qalıq";
-svgStr[82][19] = "Normal Kvant";
-svgStr[83][19] = "qalıqların qrafiki";
-svgStr[84][19] = "ehtimal olunmuş dəyər";
-svgStr[85][19] = "İki üsulluq Dispersiya analizi";
-svgStr[86][19] = "İnam intervalı qrafiki";
-svgStr[87][19] = "qalıq";
-svgStr[88][19] = "ikki o'lchovli statistika";
-svgStr[89][19] = "səpələnmə diaqramı matrisi";
-svgStr[90][19] = "çoxsaylı müqayisə";
-svgStr[91][19] = "Statistika";
-svgStr[92][19] = "Vuruq";
-svgStr[93][19] = "səviyyə";
-svgStr[94][19] = "cütlü nümunə grafiki";
-svgStr[95][19] = "standart qalıq vs bashorat qilish grafiki";
-svgStr[96][19] = "standart qalıq vs kaldıraç grafiki";
-svgStr[97][19] = "Kuk məsafəsi grafiki";
-svgStr[98][19] = "Kuk məsafəsi";
-svgStr[99][19] = "Məlumat sıralaması";
-svgStr[100][19] = "ədədi orta fərqi";
-svgStr[101][19] = "Ədədi ortanın yoxlanması";
-svgStr[102][19] = "rəftar";
-svgStr[103][19] = "qarşılıqlı əlaqə";
-svgStr[104][19] = "Sətir cəmi";
-svgStr[105][19] = "Sütun cəmi";
-svgStr[106][19] = "çoxsaylı korrelyasiya əmsalı";
-svgStr[107][19] = "<h3>Korrelyasiya analizi</h3>";
-svgStr[108][19] = "Korrelyasiya matrisi";
-svgStr[109][19] = "Vuruq A - Vuruq B Ədədi orta grafiki";
-svgStr[110][19] = "ling";
-svgStr[111][19] = "Geographic Information Graph";
-svgStr[112][19] = "təyin intervalı";
-svgStr[113][19] = "Ədədi orta - standart kənarlaşma grafiki";
-svgStr[114][19] = "Populyasiya Dispersiyası";
-svgStr[115][19] = "fərziyyə";
+svgStr[46][19] = "Medyan";
+svgStr[47][19] = "Maksimum";
+svgStr[48][19] = "Toplam";
+svgStr[49][19] = "<h3>Normallik testi</h3>";
+svgStr[50][19] = "Beklenen frekans> 5 <br> tavsiye edilir";
+svgStr[51][19] = "&chi;&#178; Test<br>Aralık i <br>[a<sub>i</sub> , b<sub>i</sub>)";
+svgStr[52][19] = "Veri<br>Beklenen frekans<br>(O<sub>i</sub>)";
+svgStr[53][19] = "Normal dağılım<br>beklenen olasılık<br>P([a<sub>i</sub> , b<sub>i</sub>))";
+svgStr[54][19] = "Normal dağılım<br>beklenen frekans<br>(E<sub>i</sub>)";
+svgStr[55][19] = "Aralık<br>&chi;&#178; değeri <br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][19] = "Chi toplam;&#178; değeri";
+svgStr[57][19] = "Olasılık histogramı ve normal dağılım";
+svgStr[58][19] = "Normal Q-Q plotu";
+svgStr[59][19] = "Normal miktar";
+svgStr[60][19] = "Korelasyon katsayısı";
+svgStr[61][19] = "Belirleme katsayısı";
+svgStr[62][19] = "Standart hata";
+svgStr[63][19] = "Değişken";
+svgStr[64][19] = "Değişken adı";
+svgStr[65][19] = "Bağımsız değişken";
+svgStr[66][19] = "Bağımlı değişken";
+svgStr[67][19] = "Parametre";
+svgStr[68][19] = "Tahmini değer";
+svgStr[69][19] = "Değer";
+svgStr[70][19] = "Kesişme";
+svgStr[71][19] = "Eğim";
+svgStr[72][19] = "Faktör";
+svgStr[73][19] = "Karelerin toplamı";
+svgStr[74][19] = "Özgürlük derecesi";
+svgStr[75][19] = "Ortalama kareler";
+svgStr[76][19] = "Regresyon";
+svgStr[77][19] = "Hata";
+svgStr[78][19] = "Toplam";
+svgStr[79][19] = "<h3>Reqresyon analizi</h3>";
+svgStr[80][19] = "Standart kalıntı Q-Q plotu";
+svgStr[81][19] = "Standart kalıntı";
+svgStr[82][19] = "Normal miktar";
+svgStr[83][19] = "Kalıntı qrafiği";
+svgStr[84][19] = "Tahmin edilen değer";
+svgStr[85][19] = "İki Yönlü ANOVA";
+svgStr[86][19] = "Güven aralığı grafiği";
+svgStr[87][19] = "Kalıntı";
+svgStr[88][19] = "İki boyutlu istatistikler";
+svgStr[89][19] = "Dağılım grafiği matrisi";
+svgStr[90][19] = "Çoklu karşılaştırma";
+svgStr[91][19] = "İstatistik";
+svgStr[92][19] = "Faktör";
+svgStr[93][19] = "Seviyə";
+svgStr[94][19] = "Eşleştirilmiş örnek veri grafiği";
+svgStr[95][19] = "Standart kalıntı VS Tahmin grafiği";
+svgStr[96][19] = "Standart kalıntı vs Kaldıraç grafiği";
+svgStr[97][19] = "Kuk'un mesafe grafiği";
+svgStr[98][19] = "Kuk'un mesafesi";
+svgStr[99][19] = "Veri sıralaması";
+svgStr[100][19] = "Ortalama fark";
+svgStr[101][19] = "Ortalama testi";
+svgStr[102][19] = "İşlem";
+svgStr[103][19] = "Etkileşim";
+svgStr[104][19] = "Toplam satır";
+svgStr[105][19] = "Toplam sütun";
+svgStr[106][19] = "Çoklu korelasyon katsayısı";
+svgStr[107][19] = "<h3>Korelasyon analizi</h3>";
+svgStr[108][19] = "Korelasyon matrisi";
+svgStr[109][19] = "Faktör A - faktör B ortalama grafiği";
+svgStr[110][19] = "Kaldıraç";
+svgStr[111][19] = "Coğrafi bilgi grafiği";
+svgStr[112][19] = "Aralık";
+svgStr[113][19] = "Ortalama - standart sapma grafiği";
+svgStr[114][19] = "Nüfus varyansı";
+svgStr[115][19] = "Hipotez";
 svgStr[116][19] = "Test";
-svgStr[117][19] = "Dispersiyası";
-svgStr[118][19] = "İnterval dəyəri";
-svgStr[119][19] = "Kateqoriya";
-svgStr[120][19] = "Rejim";
-svgStr[121][19] = "Kovariasiya";
-svgStr[122][19] = "Paskal üçbucağı";
-svgStr[123][19] = "Birgə Ehtimal";
-svgStr[124][19] = "Şərti";
-svgStr[125][19] = "Diskret Dağıtım";
-svgStr[126][19] = "sıra %";
-svgStr[127][19] = "sütun %";
-svgStr[128][19] = "ümumi %";
+svgStr[117][19] = "Varyans";
+svgStr[118][19] = "Aralık değeri";
+svgStr[119][19] = "Kategori";
+svgStr[120][19] = "Mod";
+svgStr[121][19] = "Kovaryans";
+svgStr[122][19] = "Paskal üçgeni";
+svgStr[123][19] = "Ortak olasılık";
+svgStr[124][19] = "Koşullu";
+svgStr[125][19] = "Ayrık dağılım";
+svgStr[126][19] = "Sıra %";
+svgStr[127][19] = "Sütun %";
+svgStr[128][19] = "Toplam %";
 
-svgStrU[1][19] = "Binomial paylanma";
-svgStrU[2][19] = "təkrar";
-svgStrU[3][19] = "Ədədi orta";
-svgStrU[4][19] = "standart kənarlaşma";
-svgStrU[5][19] = "Poisson Paylanması";
-svgStrU[6][19] = "həndəsi paylanma";
-svgStrU[7][19] = "hiper həndəsi paylanma";
-svgStrU[8][19] = "Populyasiya";
-svgStrU[9][19] = "Nümunə paylanması";
-svgStrU[10][19] = "böyük rəqəmlər qanunu";
-svgStrU[11][19] = "Quyruq";
-svgStrU[12][19] = "baş";
-svgStrU[13][19] = "tanga baş";
-svgStrU[14][19] = "Başların sayı";
-svgStrU[15][19] = "Sınaqların sayı";
-svgStrU[16][19] = "nümunə ədədi ortaların paylanması";
-svgStrU[17][19] = "təkrar";
-svgStrU[18][19] = "standart xəta";
-svgStrU[19][19] = "Populyasiya ortası";
-svgStrU[20][19] = "İnam intervalı";
-svgStrU[21][19] = "hesablama dəqiqliyi";
-svgStrU[22][19] = "nümumənin ədədi ortası";
+svgStrU[1][19] = "Binom dağılımı";
+svgStrU[2][19] = "Tekrar";
+svgStrU[3][19] = "Ortalama";
+svgStrU[4][19] = "Standart sapma";
+svgStrU[5][19] = "Poisson dağılımı";
+svgStrU[6][19] = "Geometrik dağılım";
+svgStrU[7][19] = "Hipergeometrik dağılım";
+svgStrU[8][19] = "Nüfus";
+svgStrU[9][19] = "Örnek dağıtım";
+svgStrU[10][19] = "Büyük sayılar yasası";
+svgStrU[11][19] = "Kuyruk";
+svgStrU[12][19] = "Baş";
+svgStrU[13][19] = "Madeni para başı";
+svgStrU[14][19] = "Baş sayısı";
+svgStrU[15][19] = "Deneme sayısı";
+svgStrU[16][19] = "Örnek ortalamaların dağılımı";
+svgStrU[17][19] = "Tekrar";
+svgStrU[18][19] = "Standart hata";
+svgStrU[19][19] = "Nüfus ortalaması";
+svgStrU[20][19] = "Güven aralığı";
+svgStrU[21][19] = "Tahmin doğruluğu";
+svgStrU[22][19] = "Numune ortalaması";
 svgStrU[23][19] = "[TestStat]";
-svgStrU[24][19] = "Paylanma";
-svgStrU[25][19] = "H\u2080 rədd et";
-svgStrU[26][19] = "H\u2080 qəbul et";
-svgStrU[27][19] = "p-dəyər";
-svgStrU[28][19] = "[Qərar] ";
-svgStrU[29][19] = "[Dispersiya analizi]";
-svgStrU[30][19] = "Dispersiya analizi";
-svgStrU[31][19] = "reqressiya";
-svgStrU[32][19] = "sətir dəyişəni";
-svgStrU[33][19] = "sütun dəyişəni";
-svgStrU[34][19] = "Ədədi orta"
-svgStrU[35][19] = "standart kənarlaşma"
-svgStrU[36][19] = "<h3> Histogram<br>tezlik cədvəli</h3>";
+svgStrU[24][19] = "Dağıtım";
+svgStrU[25][19] = "H\u2080'i Reddet";
+svgStrU[26][19] = "H\u2080'i Kabul et";
+svgStrU[27][19] = "p-dəğər";
+svgStrU[28][19] = "[Karar] ";
+svgStrU[29][19] = "[ANOVA]";
+svgStrU[30][19] = "Korelasyon katsayını girin ve uygula düğmesinı tıklayın";
+svgStrU[31][19] = "Regresyon";
+svgStrU[32][19] = "Satır değişkeni";
+svgStrU[33][19] = "Sütun değişkeni";
+svgStrU[34][19] = "Ortalama"
+svgStrU[35][19] = "Standart sapma"
+svgStrU[36][19] = "<h3> Histogram<br>frekans tablosu</h3>";
 svgStrU[37][19] = "Grup adı";
-svgStrU[38][19] = "Interval";
-svgStrU[39][19] = "saplaq";
-svgStrU[40][19] = " yarpaq";
-svgStrU[41][19] = "Grup 1  yarpaq";
-svgStrU[42][19] = "Grup 2  yarpaq"
-svgStrU[43][19] = "<h3>təsviri statistika</h3>";
-svgStrU[44][19] = "müşahidə ";
+svgStrU[38][19] = "Aralık";
+svgStrU[39][19] = "Kök";
+svgStrU[40][19] = "Yarpak";
+svgStrU[41][19] = "Grup 1 yaprak";
+svgStrU[42][19] = "Grup 2 yaprak"
+svgStrU[43][19] = "<h3>Tanımlayıcı istatistikler</h3>";
+svgStrU[44][19] = "Gözlem";
 svgStrU[45][19] = "Minimum";
-svgStrU[46][19] = "Median";
-svgStrU[47][19] = "Makximum";
-svgStrU[48][19] = "Cəm";
-svgStrU[49][19] = "qüvvət";
-svgStrU[50][19] = "Vahid paylanma";
-svgStrU[51][19] = "hesablama dəqiqliyi";
-svgStrU[52][19] = "- Bosish orqali nuqtalar yarating, so'ngra eStat regressiya chizig'ini topadi.";
-svgStrU[53][19] = "- Nuqtani siljiting yoki o'chiring. Regressiya chizig'ining o'zgarishini tomosha qiling.";
-svgStrU[54][19] = "[nümunə statistikası] ";
-svgStrU[55][19] = "[nümunə 1 statistikası] ";
-svgStrU[56][19] = "[nümunə 2 statistikası] ";
-svgStrU[57][19] = "İnam sərhədi";
-svgStrU[58][19] = "sətir və sütun dəyişənləri asılı olmayandır";
-svgStrU[59][19] = "sətir və sütun dəyişənləri asılıdır";
-svgStrU[60][19] = "müşahidə olunmuş paylanma";
-svgStrU[61][19] = "Nəzəri paylanma";
-svgStrU[62][19] = "Uyğunluğun keyfiyyəti testi";
-svgStrU[63][19] = "Wilcoxon Reytinq Cəmi Test";
-svgStrU[64][19] = "Wilcoxon Reytinq Cəmi Test cədvəl";
-svgStrU[65][19] = "Kruskal-Wallis Test";
-svgStrU[66][19] = "Kruskal-Wallis H paylanması";
-svgStrU[67][19] = "Kruskal-Wallis H Statistika";
-svgStrU[68][19] = "Wilcoxon işarə Reytinq Cəmi Test";
-svgStrU[69][19] = "işarə Test";
-svgStrU[70][19] = "Friedman Test";
-svgStrU[71][19] = "Friedman S Statistika";
-svgStrU[72][19] = "Friedman S paylanması";
-svgStrU[73][19] = "t dəyər (yoki Z)";
-svgStrU[74][19] = "ChiSq dəyər";
-svgStrU[75][19] = "Nümunənin dispersiyası";
-svgStrU[76][19] = "nümunə ədədi ortalarının fərqi";
-svgStrU[77][19] = "Nümunə dispersiyasının nisbəti";
-svgStrU[78][19] = "Dispersiya fərziyyəsi";
-svgStrU[79][19] = "Xülasə məlumatları";
-svgStrU[80][19] = "çoxsaylı seçim";
-svgStrU[81][19] = "İki qrupa qədər seçin";
-svgStrU[82][19] = "X dəyişənin";
-svgStrU[83][19] = "Y dəyişənin";
-svgStrU[84][19] = "tomonidan";
-svgStrU[85][19] = "Yo'q Grup dəyişənin";
-svgStrU[86][19] = "seçilmiş məlumat: ";
-svgStrU[87][19] = "Xam Məlumat";
-svgStrU[88][19] = "Dəyişənin adını tıklayaraq dəyişənləri seçin";
-svgStrU[89][19] = "çatışmayan müşahidələr";
-svgStrU[90][19] = "Reytinq cəmi";
-svgStrU[91][19] = "Longitude";
-svgStrU[92][19] = "Latitude";
-svgStrU[93][19] = "Ən azı bir cüt lokasiya fərqlidir";
-svgStrU[94][19] = "Wilcoxon işarə Reytinq Cəmi Paylanma";
-svgStrU[95][19] = "cütlü dəyişən";
-svgStrU[96][19] = "cütlü nümunə";
-svgStrU[97][19] = "asılı olmama testi";
-svgStrU[98][19] = "Simulyasiya";
-svgStrU[99][19] = "təsadüfi rəqəm";
-svgStrU[100][19] = "Normal Paylanma";
-svgStrU[101][19] = "t Paylanman";
-svgStrU[102][19] = "&chi;&#178; Paylanma";
-svgStrU[103][19] = "F Paylanma";
-svgStrU[104][19] = "HSD Tələbəli İnterval Paylanması";
-svgStrU[105][19] = "birinchi kvartil";
-svgStrU[106][19] = "uchinchi kvartil";
-svgStrU[107][19] = "kvartil oralig'i";
-svgStrU[108][19] = "o'zgaruvchanlik koeffitsienti";
-svgStrU[109][19] = "To'plangan nisbiy chastota (%)";
-svgStrU[110][19] = "Uniform Distribution butun sonlarining maksimal soni";
-svgStrU[111][19] = "Sichqoncha yordamida nuqtani siljiting";
-svgStrU[112][19] = "Bərpa hasilatı";
-svgStrU[113][19] = "almashtirishsiz";
-svgStrU[114][19] = "xətti"; 
+svgStrU[46][19] = "Medyan";
+svgStrU[47][19] = "Maksimum";
+svgStrU[48][19] = "Toplam";
+svgStrU[49][19] = "Üslü";
+svgStrU[50][19] = "Üniforma";
+svgStrU[51][19] = "Tahmin doğruluğu";
+svgStrU[52][19] = "- Tıklayarak noktalar oluşturduktan sonra eStat bir regresyon çizgisi bulur.";
+svgStrU[53][19] = "- Bir noktayı hareket ettirin veya silin. Regresyon çizgisinin değişimini izleyin.";
+svgStrU[54][19] = "[Numunə istatistik] ";
+svgStrU[55][19] = "[Numunə 1 istatistik] ";
+svgStrU[56][19] = "[Numunə 2 istatistik] ";
+svgStrU[57][19] = "Güven düzeyi";
+svgStrU[58][19] = "Satır ve sütun bağımsız";
+svgStrU[59][19] = "Satır ve sütun bağımslı";
+svgStrU[60][19] = "Gözlemlenen dağılım";
+svgStrU[61][19] = "Teorik dağılım";
+svgStrU[62][19] = "Gözlemlenen frekans uygunluk testi";
+svgStrU[63][19] = "Wilcoxon sıra toplamı testi";
+svgStrU[64][19] = "Wilcoxon Sıra toplamı test tablosu";
+svgStrU[65][19] = "Kruskal-Wallis testi";
+svgStrU[66][19] = "Kruskal-Wallis H dağılımı";
+svgStrU[67][19] = "Kruskal-Wallis H İstatistik";
+svgStrU[68][19] = "Wilcoxon işaretli sıra toplamı testi";
+svgStrU[69][19] = "İşaretli test";
+svgStrU[70][19] = "Friedman testi";
+svgStrU[71][19] = "Friedman S İstatistik";
+svgStrU[72][19] = "Friedman S dağıtımı";
+svgStrU[73][19] = "t değeri (veya Z)";
+svgStrU[74][19] = "Chi kare değeri";
+svgStrU[75][19] = "Numune varyansı";
+svgStrU[76][19] = "Numunə ortalamaların farkı";
+svgStrU[77][19] = "Numunə varyansının oranı";
+svgStrU[78][19] = "Varyans varsayımı";
+svgStrU[79][19] = "Özet veri";
+svgStrU[80][19] = "Birden çok seçim";
+svgStrU[81][19] = "En fazla iki grup seçin";
+svgStrU[82][19] = "X değişkeni";
+svgStrU[83][19] = "Y değişkeni";
+svgStrU[84][19] = "tarafından";
+svgStrU[85][19] = "Grup değişkeni yok";
+svgStrU[86][19] = "Seçilen veriler:";
+svgStrU[87][19] = "Ham veri";
+svgStrU[88][19] = "Değişken adını tıklayarak değişkenleri seçin";
+svgStrU[89][19] = "Eksik gözlemler";
+svgStrU[90][19] = "Sıralama toplamı";
+svgStrU[91][19] = "Boylam";
+svgStrU[92][19] = "Enlem";
+svgStrU[93][19] = "En az bir konum çifti farklı";
+svgStrU[94][19] = "Wilcoxon işaretli sıra toplamı dağılımı";
+svgStrU[95][19] = "Eşleştirilmiş değişken";
+svgStrU[96][19] = "Eşleştirilmiş veri";
+svgStrU[97][19] = "Bağımsızlık Testi";
+svgStrU[98][19] = "Simülasyon";
+svgStrU[99][19] = "Rastgele sayı";
+svgStrU[100][19] = "Normal dağılım";
+svgStrU[101][19] = "t dağılım";
+svgStrU[102][19] = "&chi;&#178; dağılım";
+svgStrU[103][19] = "F dağılım";
+svgStrU[104][19] = "HSD öğrencileştirilmiş aralık dağılımı";
+svgStrU[105][19] = "1. Çeyrek";
+svgStrU[106][19] = "3. Çeyrek";
+svgStrU[107][19] = "Çeyrekler arası aralık";
+svgStrU[108][19] = "Varyasyon katsayısı";
+svgStrU[109][19] = "Kümüle göreli frekans (%)";
+svgStrU[110][19] = "Tekdüzen dağın maksimum tamsayı sayısı";
+svgStrU[111][19] = "Mouse'i kullanarak noktayı taşıyın";
+svgStrU[112][19] = "Değiştirilmiş";
+svgStrU[113][19] = "Değişimsiz";
+svgStrU[114][19] = "Satır";
+svgStrU[115][19] = "Yüzde Değişim";
+svgStrU[116][19] = "Basit Dizin";
+svgStrU[117][19] = "Gecikme Süresi";
+svgStrU[118][19] = "Fark";
+svgStrU[119][19] = "Otokorelasyon";
+svgStrU[120][19] = "Günlük";
+svgStrU[121][19] = "Kare Kök";
+svgStrU[122][19] = "Box-Cox";
+svgStrU[123][19] = "Temel zaman";
+svgStrU[124][19] = "Ortalanmış Hareketli Ortalama";
+svgStrU[125][19] = "Üstel Düzeltme";
+svgStrU[126][19] = "Merkezli Hareketli Medyan";
+svgStrU[127][19] = "Model";
+svgStrU[128][19] = "Hareketli Ortalama";
+svgStrU[129][19] = "Çift Hareketli Ortalama";
+svgStrU[130][19] = "Holt Çift Üstel Düzeltme";
+svgStrU[131][19] = "Mevsimsel Dizin";
+svgStrU[132][19] = "Holt-Winters Çarpımsal Mevsimsel Model";
+svgStrU[133][19] = "Sezonluk Seriler";
+svgStrU[134][19] = "Engelle";
 

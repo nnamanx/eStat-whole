@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <h4> 연습문제 </h4>
+  <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">2.1  두 사건 A와 B가 서로 배반일 때, 사건 A∪B의 확률 P(A∪B)와 같은 것은?</h6>
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> P(A)－P(B)</label><br>
+    <label><input type="radio" name="item" value="2"> P(A)P(B)</label><br>
+    <label><input type="radio" name="item" value="3"> P(A)＋P(B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A)/P(B)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">2.2 사건 A가 일어날 확률을 P(A)로 나타낸다. 두 사건 A, B에 관하여 다음 중 틀린 것은? </h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1">  0≤P(A)≤1</label><br>
+    <label><input type="radio" name="item" value="2"> -1≤P(B)≤0</label><br>
+    <label><input type="radio" name="item" value="3"> P(A∪B)=P(A)+P(B)-P(A∩B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A∩B)=P(A)․P(B|A)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">2.3 P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때 P(A∩B)의 값은?  </h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.12</label><br>
+    <label><input type="radio" name="item" value="3"> 0.24</label><br>
+    <label><input type="radio" name="item" value="4"> 0.48</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">2.4  만일 A⊂B이면 조건부 확률 P(A｜B)는 P(A)보다 어떠한가?</h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> 같거나 크다.</label><br>
+    <label><input type="radio" name="item" value="2"> 작다.</label><br>
+    <label><input type="radio" name="item" value="3"> 같거나 작다.</label><br>
+    <label><input type="radio" name="item" value="4"> 비교할 수 없다.</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">2.5 주사위를 2개(또는 한 개의 주사위를 2회) 던질 때에 2의 눈과 5의 눈이 동시에 나타날 확률은?</h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> \(\frac{1}{3}\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\frac{1}{6}\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(\frac{1}{12}\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\frac{1}{18}\)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ5">
+  </form>
+
+  <h6 class="textL30M30">2.6 한 개의 주사위를 3번 던져서 첫번째가 5, 두번째가 3, 세번째가 짝수의 눈이 나올 확률은 얼마인가?</h6>
+  <form name="Q6">
+    <label><input type="radio" name="item" value="1"> \(\frac{1}{30}\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\frac{1}{72}\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(\frac{1}{108}\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\frac{1}{276}\)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ6">
+  </form>
+  <h6 class="textL30M30">2.7  우량품인 전구 5개와 불량품인 전구 2개가 들어 있는 통에서 3개를 하나씩 임의로 추출(한번 추출한 것은 다시 넣지 않는 비복원 추출)했을 때 이 중에서 1개의 전구가 불량품일 확률을 구하면?</h6>
+  <form name="Q7">
+    <label><input type="radio" name="item" value="1"> \(\frac{1}{7}\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\frac{2}{7}\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(\frac{3}{7}\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\frac{4}{7}\)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ7">
+  </form>
+
+  <h6 class="textL30M30">2.8 P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, P(A∩B)의 값은?</h6>
+  <form name="Q8">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.12</label><br>
+    <label><input type="radio" name="item" value="3"> 0.24</label><br>
+    <label><input type="radio" name="item" value="4"> 0.48</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ8">
+  </form>
+
+  <h6 class="textL30M30">2.9 P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, P(B｜A)의 값은?</h6>
+  <form name="Q9">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.24</label><br>
+    <label><input type="radio" name="item" value="3"> 0.30</label><br>
+    <label><input type="radio" name="item" value="4"> 0.40</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ9">
+  </form>
+
+  <h6 class="textL30M30">2.10 두 개의 주사위를 던져 나오는 결과를 \((x_1 , x_2 )\)로 표시한다. 
+      B = {\((x_1 , x_2 ) : x_1 > x_2 \) }라고 하면, P(B)의 값은? </h6>
+  <form name="Q10">
+    <label><input type="radio" name="item" value="1"> \(\frac{1}{3}\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\frac{1}{12}\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(\frac{5}{12}\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\frac{1}{36}\)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ10">
+  </form>
+
+  <h6 class="textL30M30">2.11 두 개의 주사위를 던져서 나오는 결과를 \((x_1 , x_2 )\)로
+        표시한다. A = {\((x_1 , x_2 ) : x_1 + x_2 = 10 \) }, 
+        B = {\((x_1 , x_2 ) : x_1 > x_2 \) }라고 하면, P(B｜A)의 값은?
+  </h6>
+  <form name="Q11">
+    <label><input type="radio" name="item" value="1"> \(\frac{1}{3}\)</label><br>
+    <label><input type="radio" name="item" value="2"> \(\frac{1}{12}\)</label><br>
+    <label><input type="radio" name="item" value="3"> \(\frac{5}{12}\)</label><br>
+    <label><input type="radio" name="item" value="4"> \(\frac{1}{2}\)</label><br>    <p>
+    <input type="button" value="제출" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=25 id="ansQ11">
+  </form>
+
+  </div>
+
+  <script src="./js/exercise02.js"></script>
+
+</body>
+</html>
+

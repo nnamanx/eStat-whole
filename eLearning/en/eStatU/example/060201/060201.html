@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Sampling">Sampling</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+
+  <div width="600" height="640" style="position:absolute; left:10px; top:0px"> 
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Population vs Sample">Population vs Sample</span></b> 
+    </div>
+    <br> 
+    <svg id="chart" width="600" height="600"> </svg>
+    <form name="myForm">  
+      <span data-msgid="Population">Population</span> :
+      <input type="radio" name = "type1" value="1" checked> N(0,1)
+      <input type="radio" name = "type1" value="2" ><span data-msgid="Exponential"> Exponentia(0.3) </span>
+      <input type="radio" name = "type1" value="3" ><span data-msgid="Uniform"> Uniform(0,1)</span> <br>
+    </form>
+    <div> 
+      <span data-msgid="Sample">Sample</span> : &nbsp;&nbsp;&nbsp;
+      <button type="button" id="sampling05" >
+        <span data-msgid="Sample05">Sampling 5%</span>
+      </button> &nbsp;
+      <button type="button" id="sampling10" >
+        <span data-msgid="Sample10">Sampling 10%</span>
+      </button> &nbsp;
+      <button type="button" id="sampling20" >
+        <span data-msgid="Sample20">Sampling 20%</span>
+      </button> 
+      &nbsp;&nbsp;&nbsp;
+      <label><input type="checkbox" id=meanSample>
+        <span data-msgid="Statistics/BoxPlot"> Statistics/BoxPlot</span>
+      </label> 
+    <br> 
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
+
+    </div>
+  </div>
+  
+   <script src="/estat/eStatU/js/61SampleEng.js"> </script>
+
+</body>
+</html>

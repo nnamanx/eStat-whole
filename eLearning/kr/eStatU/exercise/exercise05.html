@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 5</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+  <h4> 연습문제 </h4>
+  <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+  <div class="mainTablePink">
+
+  <h6 class="textL30M30">5.1 두 사건 A와 B가 서로 배반일 때, 사건 A∪B의 확률 P(A∪B)와 같은 것은?</h6> 
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> P(A)－P(B)</label><br>
+    <label><input type="radio" name="item" value="2"> P(A)P(B)</label><br>
+    <label><input type="radio" name="item" value="3"> P(A)＋P(B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A)/P(B)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">5.2 사건 A가 일어날 확률을 P(A)로 나타낸다. 두 사건 A, B에 관하여 다음 중 틀린 것은?</h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 0 &le; P(A) &le; 1</label><br>
+    <label><input type="radio" name="item" value="2"> -1 &le; P(B) &le; 0 </label><br>
+    <label><input type="radio" name="item" value="3"> P(A∪B)=P(A)+P(B)-P(A∩B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A∩B)=P(A)․P(B) </label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">5.3  P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때 P(A∩B)의 값은?</h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.12</label><br>
+    <label><input type="radio" name="item" value="3"> 0.24</label><br>
+    <label><input type="radio" name="item" value="4"> 0.48</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">5.4  만일 A⊂B이면 조건부 확률 P(A｜B)는 P(A)보다 어떠한가? </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> 같거나 크다.</label><br>
+    <label><input type="radio" name="item" value="2"> 작다</label><br>
+    <label><input type="radio" name="item" value="3"> 같거나 작다</label><br>
+    <label><input type="radio" name="item" value="4"> 비교할 수 없다. </label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">5.5  주사위를 2개(또는 한 개의 주사위를 2회) 던질 때에 2의 눈과 5의 눈이 동시에 나타날 확률은?</h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/6</label><br>
+    <label><input type="radio" name="item" value="3"> 1/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/18</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ5">
+  </form>
+
+  <h6 class="textL30M30">5.6  한 개의 주사위를 3번 던져서 첫번째가 5, 두번째가 3, 세번째가 짝수의 눈이 나올 확률은 얼마인가?</h6>
+  <form name="Q6">
+    <label><input type="radio" name="item" value="1"> 1/30</label><br>
+    <label><input type="radio" name="item" value="2"> 1/72</label><br>
+    <label><input type="radio" name="item" value="3"> 1/108</label><br>
+    <label><input type="radio" name="item" value="4"> 1/276</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ6">
+  </form>
+
+  <h6 class="textL30M30">5.7   우량품인 전구 5개와 불량품인 전구 2개가 들어 있는 통에서 3개를 하나씩 임의로 추출(한번 추출한 것은 다시 넣지 않는 비복원 추출)했을 때 이 중에서 1개의 전구가 불량품일 확률을 구하면? </h6>
+  <form name="Q7">
+    <label><input type="radio" name="item" value="1"> 1/7</label><br>
+    <label><input type="radio" name="item" value="2"> 2/7</label><br>
+    <label><input type="radio" name="item" value="3"> 3/7.</label><br>
+    <label><input type="radio" name="item" value="4"> 4/7</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ7">
+  </form>
+
+  <h6 class="textL30M30">5.8  P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, 의 값은?  </h6>
+  <form name="Q8">
+    <label><input type="radio" name="item" value="1"> 0.20</label><br>
+    <label><input type="radio" name="item" value="2"> 0.60</label><br>
+    <label><input type="radio" name="item" value="3"> 0.12</label><br>
+    <label><input type="radio" name="item" value="4"> 0.24</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ8">
+  </form>
+
+  <h6 class="textL30M30">5.9  P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, P(B｜A)의 값은? </h6>
+  <form name="Q9">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.24</label><br>
+    <label><input type="radio" name="item" value="3"> 0.30</label><br>
+    <label><input type="radio" name="item" value="4"> 0.40</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ9">
+  </form>
+
+  <h6 class="textL30M30">5.10   두 개의 주사위를 던져 나오는 결과를 (\(x_1 , x_2 \))로 표시한다.
+     \(B = \{ (x_{1} ,x_{2} ) |  x_{1} > x_{2} \} \)라고 하면, P(B)의 값은? 
+  </h6>
+  <form name="Q10">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/12</label><br>
+    <label><input type="radio" name="item" value="3"> 5/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/36</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ10">
+  </form>
+
+  <h6 class="textL30M30">5.11 두 개의 주사위를 던져서 나오는 결과를 (\(x_1 , x_2 \) )로 표시한다.
+    \(A = \{ (x_{1} ,x_{2} ) | x_{1} + x_{2} =10 \} \),   \(B = \{ (x  _{1} ,x  _{2} ) |  x  _{1} > x  _{2} \} \)
+    라고 하면, P(B｜A)의 값은?
+  </h6> 
+  <form name="Q11">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/12</label><br>
+    <label><input type="radio" name="item" value="3"> 5/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/2</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ11">
+  </form>
+
+    <h6 class="textL30M30">5.12 한 확률변량의 수치들에 각각 5배를 하였을 때 그 표준편차는? </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> 5배가 된다.</label><br>
+      <label><input type="radio" name="item" value="2"> 1/5배가 된다.</label><br>
+      <label><input type="radio" name="item" value="3"> 10배가 된다. </label><br>
+      <label><input type="radio" name="item" value="4"> 1/10배가 된다. </label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+    <h6 class="textL30M30">5.13 어떤 학급에서 시험을 본 결과 평균이 24점, 표준편차가 3점이었다. 
+      성적이 나빠 학급의 모든 학생에게 성적을 2배하여 10점을 더하여 주었다. 이때, 이 학급의 평균과 표준편차를 구하면? </h6>
+    <form name="Q13">
+      <label><input type="radio" name="item" value="1"> 24, 3</label><br>
+      <label><input type="radio" name="item" value="2"> 48, 3</label><br>
+      <label><input type="radio" name="item" value="3"> 48, 6</label><br>
+      <label><input type="radio" name="item" value="4"> 58, 6</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(13,Q13)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ13">
+    </form>
+
+    <h6 class="textL30M30">5.14 X의 평균이 20일 때, Y=2X+3의 관계가 있는 Y의 평균을 구하면? </h6>
+    <form name="Q14">
+      <label><input type="radio" name="item" value="1"> 20</label><br>
+      <label><input type="radio" name="item" value="2"> 40</label><br>
+      <label><input type="radio" name="item" value="3"> 23</label><br>
+      <label><input type="radio" name="item" value="4"> 43</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(14,Q14)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ14">
+    </form>
+
+    <h6 class="textL30M30">5.15 X의 분산이 2일 때, Y=2X＋1의 관계가 있는 Y의 분산은 얼마인가?</h6>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> 2</label><br>
+      <label><input type="radio" name="item" value="2"> 3</label><br>
+      <label><input type="radio" name="item" value="3"> 8</label><br>
+      <label><input type="radio" name="item" value="4"> 18</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+
+    <h6 class="textL30M30">5.16 다음 중 틀린 것은?  </h6>
+    <form name="Q16">
+      <label><input type="radio" name="item" value="1"> \(\small E(aX＋b) = aE(X)＋b\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small E(X＋Y) = E(X)＋E(Y)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(V(aX＋b) =  a^2 V(X)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(V(aX＋b) =  a^2 V(X)+b\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(16,Q16)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ16">
+    </form>
+
+    <h6 class="textL30M30">5.17 기대값 E(X)=5, \(\small E(X^2)\)=25일 때, 분산 V(X)는 얼마인가? </h6>
+    <form name="Q17">
+      <label><input type="radio" name="item" value="1"> -5</label><br>
+      <label><input type="radio" name="item" value="2"> 0</label><br>
+      <label><input type="radio" name="item" value="3"> 5</label><br>
+      <label><input type="radio" name="item" value="4"> 25</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(17,Q17)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ17">
+    </form>
+
+    <h6 class="textL30M30">5.18 다음에서 확률분포함수로 적당한 것은? </h6>
+    <form name="Q18">
+      <label><input type="radio" name="item" value="1"> \(f(x) = \frac {x} {5} , \qquad(x = -1, 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="2"> \(f(x) = \frac {(5-x)} {14} , \qquad(x = 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="3"> \(f(x) = x^2 - 1 ,\qquad(x = 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="4"> \(f(x) = x^3 - x^2 + 5 ,\qquad(x = 0, 1, 2, 3) \)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(18,Q18)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ18">
+    </form>
+
+    <h6 class="textL30M30">5.19 다음에서 확률분포함수의 성질이 아닌 것은? </h6>
+    <form name="Q19">
+      <label><input type="radio" name="item" value="1"> \( f(x) \ge 0\)</label><br>
+      <label><input type="radio" name="item" value="2"> \( \int_{-&infin;}^{&infin;} f(x) dx = 1 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \( P(a < X < b) = \int_a^b f(x)dx \)</label><br>
+      <label><input type="radio" name="item" value="4"> \( \int_{-&infin;}^{&infin;} xf(x) dx = 1 \)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(19,Q19)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ19">
+    </form>
+
+    <h6 class="textL30M30">5.20 변량 X가 0, 1, 2, 3의 값을 취하고, 확률함수 \( f(x) = \frac{x}{6}\)일 때, X의 평균값은? </h6>
+    <form name="Q20">
+      <label><input type="radio" name="item" value="1"> 5/3</label><br>
+      <label><input type="radio" name="item" value="2"> 6/3</label><br>
+      <label><input type="radio" name="item" value="3"> 7/3</label><br>
+      <label><input type="radio" name="item" value="4"> 8/3</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(20,Q20)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ20">
+    </form>
+
+    <h6 class="textL30M30">5.21 연속확률변량 X의 모든 값에서 정의된 확률밀도함수 f(x)에 대해서 다음 중 틀린 것은? </h6> 
+    <form name="Q21">
+      <label><input type="radio" name="item" value="1"> \( f(x) \ge 0\)</label><br>
+      <label><input type="radio" name="item" value="2"> \( \int_{-&infin;}^{&infin;} f(x) dx = 1 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \( P(a < X < b) = \int_a^b f(x)dx \)</label><br>
+      <label><input type="radio" name="item" value="4"> \( \int_{0}^{&infin;} f(x) dx = \frac{1}{2} \)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(21,Q21)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ21">
+    </form>
+
+    <h6 class="textL30M30">5.22 확률변량 X의 확률분포가 다음과 같을 때 평균 E(X)와 표준편차 σ(X)의 값은? </h6>
+      <table style="width:350px"> 
+        <tr>
+          <td class="tdCenter" style="width:70px">\(x\)</td>
+          <td class="tdCenter" style="width:70px">0</td>
+          <td class="tdCenter" style="width:70px">1</td>
+          <td class="tdCenter" style="width:70px">2</td>
+          <td class="tdCenter" style="width:70px">합계</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(\small P(X=x)\)</td>
+          <td class="tdCenter">\(\frac{3}{10}\)</td>
+          <td class="tdCenter">\(\frac{6}{10}\)</td>
+          <td class="tdCenter">\(\frac{1}{10}\)</td>
+          <td class="tdCenter">1</td>
+        </tr>
+      </table>
+    <form name="Q22">
+      <label><input type="radio" name="item" value="1"> \(\small E(X)=0.8, σ(X)=0.6\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small E(X)=0.6, σ(X)=0.8\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small E(X)=0.7, σ(X)=0.1\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small E(X)=0.1, σ(X)=0.7\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(22,Q22)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ22">
+    </form>
+
+    <h6 class="textL30M30">5.23 1개의 주사위를 던져 나오는 눈은 1부터 6까지이다. 나오는 눈을 확률변량 X라고 할 때, X의 기대값 E(X)를 구하면 얼마인가? </h6>
+    <form name="Q23">
+      <label><input type="radio" name="item" value="1"> 2</label><br>
+      <label><input type="radio" name="item" value="2"> 2.5</label><br>
+      <label><input type="radio" name="item" value="3"> 3</label><br>
+      <label><input type="radio" name="item" value="4"> 3.5</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(23,Q23)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ23">
+    </form>
+
+    <h6 class="textL30M30">5.24 주사위를 한 개 던져 나온 수의 제곱의 점수를 얻을 때 점수의 기대값은?</h6>
+    <form name="Q24">
+      <label><input type="radio" name="item" value="1"> 23/6</label><br>
+      <label><input type="radio" name="item" value="2"> 41/6</label><br>
+      <label><input type="radio" name="item" value="3"> 53/6</label><br>
+      <label><input type="radio" name="item" value="4"> 91/6</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(24,Q24)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ24">
+    </form>
+
+    <h6 class="textL30M30">5.25 확률변량 X가 세 값 0, 1, 2에서 각각 1/2, 1/3, 1/6 을 취한다고 가정하면 구간 1 ≤ x < 2에서의 누적분포함수 F(x)의 값은 얼마인가? 
+    </h6>
+    <form name="Q25">
+      <label><input type="radio" name="item" value="1"> 0</label><br>
+      <label><input type="radio" name="item" value="2"> 5/6</label><br>
+      <label><input type="radio" name="item" value="3"> 1/3</label><br>
+      <label><input type="radio" name="item" value="4"> 2/3</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(25,Q25)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ25">
+    </form>
+
+    <h6 class="textL30M30">5.26 이항분포 \( B(100, \frac{1}{5} ) \)에서 변량 X의 평균과 분산은?  </h6>
+    <form name="Q26">
+      <label><input type="radio" name="item" value="1"> 20, 4</label><br>
+      <label><input type="radio" name="item" value="2"> 100, 16</label><br>
+      <label><input type="radio" name="item" value="3"> 100, 4</label><br>
+      <label><input type="radio" name="item" value="4"> 20, 16</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(26,Q26)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ26">
+    </form>
+
+    <h6 class="textL30M30">5.27 이항분포 \( P(X) = {}_4 C _x (0.2)^x (1-0.2) ^{4-x} \)를 따르는 확률변량 X의 분산은? </h6>
+    <form name="Q27">
+      <label><input type="radio" name="item" value="1"> 0.16</label><br>
+      <label><input type="radio" name="item" value="2"> 0.80</label><br>
+      <label><input type="radio" name="item" value="3"> 0.32</label><br>
+      <label><input type="radio" name="item" value="4"> 0.64</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(7,Q27)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ27">
+    </form>
+
+    <h6 class="textL30M30">5.28 선다형 문제가 10문제 있다. 한 문제가 4가지 답 중 단 하나가 옳은 답이라고 한다. 짐작으로 10문제를 답할 때 4개가 정답일 확률은 얼마인가?</h6>
+    <form name="Q28">
+      <label><input type="radio" name="item" value="1"> 0.0162</label><br>
+      <label><input type="radio" name="item" value="2"> 0.0487</label><br>
+      <label><input type="radio" name="item" value="3"> 0.1460</label><br>
+      <label><input type="radio" name="item" value="4"> 0.2050</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(28,Q28)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ28">
+    </form>
+
+  <h6 class="textL30M30">5.29 정규분포의 성질에 의하면 &mu; &plusmn; 3&sigma; 사이의 값을 취할 확률은? </h6>
+  <form name="Q29">
+    <label><input type="radio" name="item" value="1"> 대략 99.73%</label><br>
+    <label><input type="radio" name="item" value="2"> 대략 97.73%</label><br>
+    <label><input type="radio" name="item" value="3"> 대략 95.73%</label><br>
+    <label><input type="radio" name="item" value="4"> 대략 68.73%</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(29,Q29)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ29">
+  </form>
+
+  <h6 class="textL30M30">5.30 취직 시험이 있었다. 점수가 450과 500사이인 사람은 그 직업에 적당하다고 한다. 만일 평균점수가 400이고, 표준편차가 50인 정규분포를 이룬다면 그 직업에 적당하다고 생각되는 점수는 몇 %에 해당하는가?  </h6>
+  <form name="Q30">
+    <label><input type="radio" name="item" value="1"> 80%</label><br>
+    <label><input type="radio" name="item" value="2"> 약 50%</label><br>
+    <label><input type="radio" name="item" value="3"> 약 30%</label><br>
+    <label><input type="radio" name="item" value="4"> 약 14%</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(30,Q30)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ30">
+  </form>
+
+  <h6 class="textL30M30">5.31 아래의 표준정규분포표 \(P( -&infin; < Z < z ) \)를 참고로 해서 
+     \(P(-0.41 \le Z \le 2.21)\)를 구하면?  (Z는 표준정규확률변량이다.) 
+  </h6> 
+      <table style="width:300px"> 
+        <tr>
+          <td class="tdCenter" style="width:100px">\(\small z\)</td>
+          <td class="tdCenter" style="width:100px">\( P (-&infin; < Z < z ) \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">0.40</td>
+          <td class="tdCenter">0.6554</td>
+        <tr>
+          <td class="tdCenter">0.41</td>
+          <td class="tdCenter">0.6591</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2.20</td>
+          <td class="tdCenter">0.9861</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2.21</td>
+          <td class="tdCenter">0.9864</td>
+        </tr>
+      </table>
+  <form name="Q31">
+    <label><input type="radio" name="item" value="1"> 0.6415</label><br>
+    <label><input type="radio" name="item" value="2"> 0.6455</label><br>
+    <label><input type="radio" name="item" value="3"> 0.6452</label><br>
+    <label><input type="radio" name="item" value="4"> 0.6418</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(31,Q31)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ31">
+  </form>
+
+  </div>
+
+  <script src="./js/exercise05.js"></script>   
+ 
+</body>
+</html>
+

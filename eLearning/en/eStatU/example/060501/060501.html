@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Confidence Interval Mu"> n</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 
+         <span data-msgid="Confidence Interval Mu"> </span> - <span data-msgid="Sample Size"></span> n
+      </b>
+    </div>
+    <br>
+
+    <b>[<span id="estimate" data-msgid="input data"></span>]</b>   
+    <table class="stat">
+      <tbody>
+        <tr>
+          <td></td>
+          <td><span data-msgid="MarginOfError"></span></td>
+          <td><span class="fontmath">d</span> </td>
+          <td>=</td>
+          <td><input type="text" class="textarea" size=6 id="xbar"></td>
+          <td> = z<sub>&alpha;/2</sub> (&sigma; / &radic; n)</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="PopulationStd">Population Std Dev</span></td>
+          <td><span class="fontmath">&sigma;</span></td>
+          <td>=</td>
+          <td><input type="text" class="textarea" size=6 id="variS"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Confidence Level">Confidence Level</span></td>
+          <td><span class="fontmath">1 - &alpha;</span></td>
+          <td>=</td>
+          <td><input type="text" class="textarea" value="0.95" size=6 id="confidence"></td>
+        </tr>
+      </tbody>
+    </table>
+      
+    <p>
+    <button type="button" id="executeTH" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+  
+    <table class="stat"> 
+      <tbody>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Sample Size">Sample Size</span></td>
+          <td><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><span class="fontmath">(z<sub>&alpha;/2</sub> &sigma; / d)<sup>2</sup> </span></td>
+          <td>=</td>
+          <td><input type="text" class="textarea" size=6 id="nn"></td>
+        </tr>
+      </tbody>
+    </table>
+<!--
+    <p>
+    <svg id="chart" width="600" height="200"> </svg> 
+    <br>
+    &nbsp;
+    <span style="color:red;stroke:2">
+      n = <input type="text" class="textarea" value="20" size=3 id="nn2"><sup><small> 1 </small></sup>  
+      <input type="range" min="1" max="200" value="100" id="rangeN" onchange="showValueNN2(this.value)"/>  
+      <sup><small>200</small></sup>  &nbsp;&nbsp;
+      1-&alpha; = <input type="text" class="textarea" value="0.95" size=3 id="alpha2"><sup><small> 0.60 </small></sup> 
+      <input type="range" min="60" max="99" value="95" id="rangeAlpha" onchange="showValueAlpha2(this.value)"/>
+      <sup><small> 0.99 </small></sup> 
+    </span>
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+-->
+  </div> 
+
+   <script src="/estat/eStatU/js/65ConfidenceIntervalMuN.js"> </script>
+   <script>
+        document.getElementById("xbar").value       = 20;
+        document.getElementById("variS").value      = 100;
+        document.getElementById("confidence").value = 0.95;
+   </script>
+
+</body>
+</html>

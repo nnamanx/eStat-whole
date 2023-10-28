@@ -47,14 +47,11 @@
   
     <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
     <span class="fontmath" data-msgid="Chi-test">&chi;<sup>2</sup>-test</span>
-
-    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
-      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
-      <span class="fontmath">&alpha;</span> = 
-      <input type="radio" name = "type2" value="1" checked> 5%       
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>       
-
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
     <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
     <span class="fontguide" data-msgid="input either sample data">
       (input either sample data or sample statistics using csv / bsv)
@@ -64,7 +61,7 @@
       <tbody>
 	<tr>
           <td> &nbsp; &nbsp;</td>
-	  <td><input type="text" size=60 id="data1"></td>
+	  <td><input type="text" size=80 id="data1"></td>
 	</tr>
       </tbody>
     </table>
@@ -93,6 +90,12 @@
     </table>
 
     <b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b>   
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub></span> = 
+    <input type="text" class="textarea" size=6 id="chiValueL">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span> = 
+    <input type="text" class="textarea" size=6 id="chiValueR">
     <table class="stat">
       <tbody>
 	<tr>
@@ -105,11 +108,19 @@
 	</tr>
       </tbody>
     </table>
-    
-    <button type="button" id="executeTH2" >
+    <br>
+    <button type="button" id="executeTH2" style="width:90px;">
         <span data-msgid="Execute">Execute</span>
     </button> 
-    <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
     <svg id="chart" width="600" height="400"> </svg> 
     <br>
     <button type="button" id="saveGraphU" >
@@ -118,139 +129,7 @@
 
   </div> 
 
-  <script>
+   <script src="/estat/eStatU/js/72TestingSigma.js"> </script>
 
-      var bar = d3.select("#chart");
-
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
-      svgWidth2   = 600;
-      svgHeight2  = 400;
-
-      var nobs, gxmin, gxmax, gymin, gymax;
-      var stat = new Array(30);
-      var title;
-      var df, info, alpha, pvalue, b, c, d, e, f, g, h;
-      var var2, nn2, var2, teststat, left, right;
-      var hypoType = 2;
-
-      document.getElementById("cleft").disabled  = true;
-      document.getElementById("cright").disabled = true; 
-
-      // H1 type
-      var h1 = document.myForm0.type0;
-      var h1Type = h1.value; 
-      h1[0].onclick = function() { h1Type = h1.value; clearText(); }    // 양측검정
-      h1[1].onclick = function() { h1Type = h1.value; clearText(); }    // 우측검정
-      h1[2].onclick = function() { h1Type = h1.value; clearText(); }    // 좌측검정
-
-      // alpha
-      var a = document.myForm2.type2;
-      alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; clearText(); }  
-      a[1].onclick = function() { alpha = 0.01; clearText(); }  
-
-     // data input control =====================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
-        document.getElementById("nn2").value   = stat.n;    
-        document.getElementById("var2S").value  = f3(stat.var);    
-        left  = (stat.n - 1) * stat.var / chisq_inv(1 - alpha/2, stat.n - 1, info);
-        right = (stat.n - 1) * stat.var / chisq_inv(alpha/2, stat.n - 1, info);
-        document.getElementById("cleft").value   = f3(left);
-        document.getElementById("cright").value  = f3(right); 
-      });
-
-      updateData = function() {
-        document.getElementById("data1").value = ''; 
-      }
-
-      d3.select("#nn2").on("input", updateData);
-      d3.select("#var2S").on("input", updateData);
-
-      // Testing Hypothesis ======================================
-      d3.select("#executeTH2").on("click",function() {
-        bar.selectAll("*").remove();
-
-        // input value
-        var2  = parseFloat(d3.select("#var2").node().value);
-        stat = simplestat("#data1");
-        if (stat.n > 0) {
-          nn2   = stat.n;
-          var2S = stat.var;
-        }
-        else {
-          nn2   = parseFloat(d3.select("#nn2").node().value);
-          var2S = parseFloat(d3.select("#var2S").node().value);
-        }
-        df = nn2 - 1;
-
-        // confidence interval
-        left  = (nn2 - 1) * var2S / chisq_inv(1 - alpha/2, df, info)
-        right = (nn2 - 1) * var2S / chisq_inv(alpha/2, df, info)
-        document.getElementById("cleft").value   = f3(left);
-        document.getElementById("cright").value  = f3(right);
-
-        // test statistics
-        teststat = df *  var2S / var2;
-
-        if (isNaN(var2) || isNaN(nn2) || isNaN(var2S) || var2 <= 0 || nn2 < 2 || var2S <= 0 ) {  // wrong input
-          bar.append("text").attr("class","mean")
-             .attr("x", 150)
-             .attr("y", 100)
-             .text("No input or wrong input !!   Try again.")
-             .style("stroke","red")
-        }
-        else { // chisq-test
-          if (h1Type == 1) {
-            h = alpha / 2;  
-            f = chisq_inv(h, df, info);
-            g = chisq_inv(1-h, df, info);
-            pvalue = chisq_cdf(teststat, df, info);
-            if (pvalue > 0.5 ) pvalue = 1 - pvalue; 
-            pvalue = 2 * pvalue;
-            drawChisqGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, var2);
-          }
-          else if (h1Type == 2) {
-            h = alpha;  
-            if (df < 10) f = 0;
-            else f = chisq_inv(0.0001, df, info);
-            g = chisq_inv(1-h, df, info);
-            pvalue = 1 - chisq_cdf(teststat, df, info);
-            drawChisqGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, var2);
-          }
-          else {
-            h = alpha;  
-            f = chisq_inv(h, df, info);
-            if (df < 5) g = 12;
-            else if (df < 10) g = 30;
-            else g = chisq_inv(0.9999, df, info);
-            pvalue = chisq_cdf(teststat, df, info);
-            drawChisqGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, var2);
-          }          
-        }
-
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth2;
-        var height = svgHeight2;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-// alpha t Z 바뀔때 clear
-function clearText() {
-        bar.selectAll("*").remove();
-        document.getElementById("cleft").value  = null;
-        document.getElementById("cright").value = null;
-}
-
-  </script>
 </body>
 </html>

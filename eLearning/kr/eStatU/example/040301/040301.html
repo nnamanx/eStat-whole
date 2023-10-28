@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+<body>
+      <!---   ************ html for Descriptive Measue ************  ---->
+      <b>[<span data-msgid="Box-Whisker Plot"></span> - <span data-msgid="Basic Statistics"></span>]</b> 
+      <p>
+      <b><span data-msgid="input data">Data Input</span></b>  
+      &nbsp;<input type="text" size=70 id="data1">&nbsp; 
+      <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+   
+      <table style="width:700px">
+        <tr>
+          <td><span data-msgid="NumberData">Data Size</span></td>
+          <td><span class="fontmath">n</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="nn" style="text-align: right;"></td>
+          <td></td>
+          <td><span id="msgMin"></span></td>
+          <td><span class="fontmath">min</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="mini" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td><span id="msgMean">Mean</span></td>
+          <td><span class="fontmath">&mu; , x&#772;</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="xbar" style="text-align: right;"></td>
+          <td></td>
+          <td><span id="msgQ1"></span></td>
+          <td><span class="fontmath">Q1</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="q1" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td><span id="msgPopVar">Population Variance</span>(n)</td>
+          <td><span class="fontmath">&sigma;<sup>2</sup></span> = </td>
+          <td><input type="text" class="textarea" size=6 id="variP" style="text-align: right;"></td>
+          <td></td>
+          <td><span id="msgMed"></span></td>
+          <td><span class="fontmath">m</span> =</td>
+          <td><input type="text" class="textarea" size=6 id="medi" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td><span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
+          <td><span class="fontmath">s<sup>2</sup></span> = </td>
+          <td><input type="text" class="textarea" size=6 id="variS" style="text-align: right;"></td>
+          <td></td>
+          <td><span id="msgQ3"></span></td>
+          <td><span class="fontmath">Q3</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="q3" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td><span data-msgid="Population"></span> <span data-msgid="Std Deviation"></td>
+          <td><span class="fontmath">&sigma;</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="stdP" style="text-align: right;"></td>
+          <td></td>
+          <td><span id="msgMax"></span></td>
+          <td><span class="fontmath">max</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="maxi" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td><span data-msgid="Sample"></span> <span data-msgid="Std Deviation"></span></td>
+          <td><span class="fontmath">s</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="stdS" style="text-align: right;"></td>
+          <td></td>
+          <td><span id="msgRange"></span></td>
+          <td><span class="fontmath">range</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="range" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span id="msgIQR"></span></td>
+          <td><span class="fontmath">IQR</span> = </td>
+          <td><input type="text" class="textarea" size=6 id="iqr" style="text-align: right;"></td>
+        </tr>
+      </table>
+      <div class="figText">&lt;Figure 4.3.4&gt;  『eStatU』 basic statistics of data</div>
+      <p>
+      <button type="button" id="executeTH" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <br>
+      <svg id="chart" width="640" height="400" style="border-style:solid;"> </svg> 
+      <br>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+
+  <!---   ************ script for Descriptive Measue ************  ---->
+  <script src="/estat/eStatU/js/10BoxGraph.js"> </script>
+  <script>
+      // initial data input
+        document.getElementById("data1").value = "5, 6, 3, 7, 9, 4, 8";  
+        stat = simplestat2("#data1");  
+        nn   = stat.n;
+        document.getElementById("nn").value    = stat.n;    
+        document.getElementById("xbar").value  = f2(stat.xbar);
+        variS = stat.var;
+        stdS  = Math.sqrt(variS);
+        variP = (nn-1)*variS/nn;
+        stdP  = Math.sqrt(variP);
+        document.getElementById("variP").value = f2(variP);  
+        document.getElementById("variS").value = f2(variS);  
+        document.getElementById("stdP").value  = f2(stdP);  
+        document.getElementById("stdS").value  = f2(stdS);  
+        document.getElementById("range").value = f2(stat.range);  
+        document.getElementById("iqr").value   = f2(stat.iqr);  
+        document.getElementById("mini").value  = f2(stat.mini);  
+        document.getElementById("q1").value    = f2(stat.q1);  
+        document.getElementById("medi").value  = f2(stat.medi);  
+        document.getElementById("q3").value    = f2(stat.q3);  
+        document.getElementById("maxi").value  = f2(stat.maxi);  
+  </script>
+
+</body>
+</html>
+

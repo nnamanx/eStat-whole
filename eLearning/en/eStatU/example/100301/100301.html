@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="KruskalTest">Kruskal-Wallis Test</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; &nbsp; 
+         <span data-msgid="KruskalTestANOVA">
+           Testing Hypothesis : 3 Population Means (ANOVA)
+         </span>
+      </b>
+    </div>
+    <br>
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
+	  <td></span></td>
+	  <td><span class="fontmath">
+                H<sub>o</sub> : &nbsp; M<sub>1</sub> = M<sub>2</sub> = ... = M<sub>k</sub>
+              </span>
+          </td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td><span class="fontmath">
+                H<sub>1</sub> : 
+                <span data-msgid="At least one locations is different">At least one pair of locations is not equal</span>
+              </span> 
+          </td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+       <span data-msgid="KruskalTest">Kruskal-Wallis Test</span>
+    &nbsp; 
+    <span class="fontguide" data-msgid="KruskalCondition"></span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
+     
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 1</td>
+	  <td><input type="text" size=60 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 2</td>
+	  <td><input type="text" size=60 id="data2"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 3</td>
+	  <td><input type="text" size=60 id="data3"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample">Sample</span> 4</td>
+	  <td><input type="text" size=60 id="data4"></td>
+	</tr>
+      </tbody>
+    </table>   
+    
+    <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
+    <table class="stat">
+      <tbody>
+	<tr>  
+	  <td><span class="fontmath">&nbsp; n<sub>1</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn71"></td>
+	  <td><span class="fontmath">&nbsp; n<sub>2</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn72"></td>        
+	  <td><span class="fontmath">&nbsp; n<sub>3</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn73"></td>        
+	  <td><span class="fontmath">&nbsp; n<sub>4</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="nn74"></td>        
+	</tr>
+	<tr>
+	  <td><span class="fontmath">&nbsp; R<sub>1</sub> =</span></td>
+	  <td><input type="text" class="textarea" size=5 id="xbar71"></td>
+	  <td><span class="fontmath">&nbsp; R<sub>2</sub> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="xbar72"></td>
+	  <td><span class="fontmath">&nbsp; R<sub>3</sub> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="xbar73"></td>
+	  <td><span class="fontmath">&nbsp; R<sub>4</sub> =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="xbar74"></td>
+	</tr>
+	<tr>
+	  <td><span class="fontmath">&nbsp; k =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="kgroup"></td>
+	  <td><span class="fontmath">&nbsp; H =</span></td>	
+	  <td><input type="text" class="textarea" size=5 id="statH"></td>
+	</tr>
+      </tbody>
+    </table>
+        <div class="figText">&lt;Figure 10.3.5&gt; 『eStatU』 Kruskal-Wallis test </div>
+    <p>
+    <button type="button" id="executeTH4" style="width:90px;">
+        <span data-msgid="Execute">Execute</span>
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <br>
+    <svg id="chart" width="600" height="400"> </svg>
+    <br>
+    &nbsp;
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+    &nbsp;
+    <button type="button" id="ranksumBtn" >
+	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
+    </button>
+    &nbsp;
+    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <script src="/estat/eStatU/js/98Kruskal.js"> </script>
+  <script>
+      // init example
+      document.getElementById("data1").value = "69,67,65,59";
+      stat = simplestat("#data1");  
+      w = data;
+      nobs[1] = w.length;
+      document.getElementById("nn71").value   = nobs[1];    
+      document.getElementById("data2").value = "56,63,55";
+      stat = simplestat("#data2");  
+      x = data;
+      nobs[2] = x.length;
+      document.getElementById("nn72").value   = nobs[2];    
+      document.getElementById("data3").value = "71,72,70";
+      stat = simplestat("#data3");  
+      y = data;
+      nobs[3] = y.length;
+      document.getElementById("nn73").value   = nobs[3];    
+  </script>
+
+</body>
+</html>

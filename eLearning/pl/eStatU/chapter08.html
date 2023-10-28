@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 8</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h2>Chapter 8. Testing Hypothesis for Two Population Parameters</h2> 
+  <h6>
+      <a href="./pdf/book08.pdf" target="_blank"><u>[book]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://www.youtube.com/channel/UCw2Rzl9A4rXMcT8ue8GH3IA" target="_blank"><u>[eStat YouTube Channel]</u></a>
+  </h6>
+	      <ul>
+                <li><a href="#0801">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="#0802">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="#0803">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+	      </ul>
+
+  <p>
+
+  <h3>CHAPTER OBJECTIVES</h3> 
+    In Chapter 7, we discussed how to test hypotheses about parameters in a single population. 
+    In this chapter, we discuss testing hypothesis to compare population parameters of two populations.
+    <p>Section 8.1 discusses a t-test for testing hypothesis of two population means when samples are independent and when samples are paired.
+    Section 8.2 discusses a F-test for testing hypothesis of two population variances.
+    Section 8.3 discusses a Z-test for testing hypothesis of two population proportions when samples are large enough.
+  <p>
+
+  <h3 id="0801">8.1 Testing Hypothesis for Two Population Means</h3>
+  <p>
+  <h6>
+      <a href="./pdf/080101.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/S21BDljaOKM" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      There are many examples comparing means of two populations as follows: 
+      <p>
+      <div class="textL30M10">
+        -  Is there a difference between the starting salary of male graduates and of female graduates in this year’s college graduates?
+      </div>
+      <div class="textL30M10">
+        -  Is there a difference in the weight of the products produced in the two production lines?
+      </div>
+      <div class="textL30M10">
+        -  Did the special training for typists to increase the speed of typing really bring about an increase in the speed of typing?
+      </div>
+      <p>
+      As such, a comparison of the two population means (\(\mu_1\) and \(\mu_2\)) is possible by testing hypothesis that the difference in the population means is greater than, or less than, or equal to zero. The comparison of two population means differs depending on whether samples are extracted independently from each population or not (referred to as paired samples).
+      <p>
+    </div>
+    <p>
+
+    <h4>8.1.1 Two Independent Samples</h4>
+    <p>
+    <div class="mainTable">
+      Generally, testing hypothesis for two population means can be divided into three types, 
+      depending on the type of the alternative hypothesis as follows.
+      $$ 
+        \begin{multline}
+        \shoveleft 1)\quad H_0 : \mu_1 - \mu_2 = D_0 \qquad H_1 : \mu_1 - \mu_2 \gt D_0 \\
+        \shoveleft 2)\quad H_0 : \mu_1 - \mu_2 = D_0 \qquad H_1 : \mu_1 - \mu_2 \lt D_0 \\
+        \shoveleft 3)\quad H_0 : \mu_1 - \mu_2 = D_0 \qquad H_1 : \mu_1 - \mu_2 \ne D_0 \\
+        \end{multline}
+      $$
+      Here \(D_0\) is the value for the difference in population means to be tested. 
+      <p>
+      When samples are selected independently from each other in the population, 
+      the estimator of the difference of the population means \(\mu_1 - \mu_2\) is the difference 
+      in sample means \(\small {\overline x}_1 - {\overline x}_2\). The sampling distribution of 
+      all possible sample mean differences is approximately a normal distribution with the mean
+      \(\mu_1 - \mu_2\) and variance \(\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}\) 
+      if both sample sizes are large enough.
+      <p>
+      Since the population variances \( \sigma^2_1 \) and \( \sigma^2_2 \) are usually unknown, 
+      estimates of these variances, \( s^2_1 \) and \( s^2_2 \), are used to test the hypothesis. 
+      The test statistic differs slightly depending on the assumption of two population variances.
+      If two populations follow normal distributions and their variances can be assumed the same,
+      the testing hypothesis for the difference of two population means uses the following statistic.
+      $$ \small 
+        \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } 
+        \qquad \text{where } s^2_p  = \frac{(n_1 -1 )s^2_1 + (n_2 -1)s^2_2}{n_1 + n_2 -2}
+      $$
+      \(s^2_p\) is an estimator of the population variance called as a <b>pooled variance</b> 
+      which is an weighted average of two sample variances \( s^2_1 \) and \( s^2_2 \) by using 
+      the sample sizes as weights when population variances are assumed to be the same. 
+      <p>
+      The above statistic follows a \(t\)-distribution with \(n_1 + n_2 -2\) degrees of freedom 
+      and it is used to test the difference of two population means as follows: 
+      <p class="textLeft">Table 8.1.1  Testing hypothesis of two population means 
+      <br>-  independent samples, populations are normal distributions, two population variances are assumed to be equal
+      <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:500px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 > D_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } > t_{n_1 + n_2 -2; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 < D_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } < - t_{n_1 + n_2 -2; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 \ne D_0 \)</td>
+          <td class="tdLeft">If \(\small  \left | \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } \right | > t_{n_1 + n_2 -2; &alpha;/2} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+      </table>
+      <p class="textLeft">
+        Note: If sample sizes are large enough (\(n_1 > 30, n_2 >30 \)), \(t\)-distribution is 
+        approximately close to the standard normal distribution and the decision rule may use the standard
+        normal distribution. 
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 8.1.1</b>
+      Two machines produce cookies at a factory and the average weight of a cookie bag should be 270g. Cookie bags were sampled from each of two machines to examine the weight of the cookie bag. The average weight of 15 cookie bags extracted from the machine 1 was 275g and their standard deviation was 12g, and the average weight of 14 cookie bags extracted from the machine 2 was 269g and the standard deviation was 10g. Test whether weights of cookie bags produced by two machines are different at the 1% significance level. Check the test result using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+      The hypothesis of this problem is \(\small H_0 : \mu_1 = \mu_2 ,\, H_1 : \mu_1 \ne \mu_2 \). Hence the decision rule is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft '\text{If } \left | \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } \right | > t_{n_1 + n_2 -2; &alpha;/2} , \text{ then reject } H_0 ’ \\
+        \end{multline}
+      $$
+      where \(\small D_0 = 0\) and the information in this example can be summarized as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft n_1 = 15,\quad \overline x_1 = 275,\quad s_1 = 12 \\
+        \shoveleft n_2 = 14,\quad \overline x_2 = 269,\quad s_2 = 10 \\
+        \end{multline}
+      $$
+      Therefore, the calculation of the statistics are as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft s^2_p  = \frac{(n_1 -1 )s^2_1 + (n_2 -1)s^2_2}{n_1 + n_2 -2} 
+          = \frac{(15 - 1 ) 12^2 + (14 - 1) 10^2}{15 + 14 -2} = 122.815 \\
+        \shoveleft \left | \frac {275 - 269} { \sqrt{\frac{122.815}{15} +\frac{122.815}{14} } } \right | = 1.457 \\
+        \shoveleft t_{15 + 14 -2; 0.01/2} = t_{27: 0.005} = 2.7707 \\
+        \end{multline}
+      $$
+      Since 1.457 &lt; 2.7707, \(H_0\) can not be rejected. 
+      <p>In 『eStatU』 menu, select [Testing Hypothesis \(\mu_1 , \mu_2\)]. At the window shown in &lt;Figure 8.1.1&gt;, 
+      check the alternative hypothesis of not equal case at [Hypothesis], check the variance assumption of 
+      [Test Type] as the equal case, check the significance level of 1%, check the independent sample, 
+      and enter sample sizes \(n_1 , n_2\), sample means \(\small \overline x_1 , \overline x_2\), and sample variances
+      as in &lt;Figure 8.1.1&gt;. 
+      <p>
+      <!---   ************ html for testing mu1 and mu2 ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis mu12">Testing Hypothesis : Two Population Means &mu;<sub>1</sub>,  &mu;<sub>2</sub></span>]</b>
+      <p>
+         <iframe src="./example/080101/080101.html" width="800" height="900"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 8.1.2&gt; Testing hypothesis for two population means – case of the same population variances</div>
+    </div>
+    <p>
+
+    <div class="mainTable">
+      If variances of two populations are different, the test statistic 
+      $$\small  
+        \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_1}{n_1} +\frac{s^2_2}{n_2} } } 
+      $$
+      do not follow a \(t\)-distribution even if populations are normally distributed. The testing hypothesis
+      for two population means when their population variances are different is called a Behrens-Fisher problem
+      and several methods to solve this problem have been studied. The Satterthwaite method approximates 
+      the degrees of freedom  of the \(t\)-distribution in the decision rule in Table 8.1.1 with \(\phi\) as follows.
+      $$
+        \phi = \frac { \left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2 }
+                     { \frac { \left( \frac{s_1^2}{n_1} \right)^2 } {n_1 -1} + \frac { \left( \frac{s_2^2}{n_2} \right)^2 } {n_2 -1} }  
+      $$
+    </div>
+    <p>
+      <p class="textLeft">Table 8.1.2  Testing hypothesis of two population means 
+      <br>-  independent samples, populations are normal distributions, two population variances are assumed to be different
+      <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:500px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 > D_0 \)</td>
+          <td class="tdLeft">If \( \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_1}{n_1} +\frac{s^2_2}{n_2} } } > t_{\phi ; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 < D_0 \)</td>
+          <td class="tdLeft">If \( \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_1}{n_1} +\frac{s^2_2}{n_2} } } < - t_{\phi ; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 \ne D_0 \)</td>
+          <td class="tdLeft">If \( | { \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_1}{n_1} +\frac{s^2_2}{n_2} } } } | > t_{\phi ; &alpha;/2} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+      </table>
+	
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 8.1.2</b>
+      If two population variances are assumed to be different in [Example 8.1.1], test whether weights of cookie bags produced from two machines are equal or not at a 1% significance level. Check the test result using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+      Since the population variances are different, the degrees of freedom  of  distribution is approximated as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft \phi = \frac { \left( \frac{12^2}{15} + \frac{10^2}{14} \right)^2 }
+                     { \frac { \left( \frac{12^2}{15} \right)^2 } {15 -1} + \frac { \left( \frac{10^2}{14} \right)^2 } {14 - 1} } = 26.67 \\
+        \shoveleft t_{26.7; 0.01/2} = 2.773 \\
+        \end{multline}
+      $$
+      Since 1.457 &lt; 2.773, \(H_0\) can not be rejected. 
+      <p>In order to practice using 『eStatU』, select the different population variances assumption  of [Test Type] at the window of &lt;Figure 8.1.1&gt; and click the [Execute] button to see the result as shown in &lt;Figure 8.1.3&gt;.
+      <p>
+      <img class="imgFig600400" src="./Figure/Fig080103.png">
+      <div class="figText">&lt;Figure 8.1.3&gt; Testing hypothesis for two population means – Case of two different population variances</div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 8.1.3</b>
+      (Monthly wages by male and female) 
+      <p>Samples of 10 male and female college graduates this year were randomly taken and their monthly average wages were examined as follows: (Unit 10,000 KRW)
+      <p>
+      <div class="textLeft">
+        Male   	272 255 278 282 296 312 356 296 302 312 <br>
+        Female 	276 280 369 285 303 317 290 250 313 307 <br>
+        Ex ⇨ eBook ⇨ EX080103_WageByGender.csv. 
+      </div>
+      <p>
+      Using 『eStat』, answer the following questions.
+      <p>
+      <div class="textL20M20">1) If population variances are assumed to be the same, test the hypothesis at the 5% significance level whether the average monthly wage for male and female is the same. 
+      </div>
+      <div class="textL20M20">2) If population variances are assumed to be different, test the hypothesis at the 5% significance level whether the average monthly wage for male and female is the same.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) In  『eStat』, enter raw data of gender (M or F) and income as shown in &lt;Figure 8.1.4&gt; 
+           on the sheet. This type of data input is similar to all statistical packages. 
+           After entering the data, click the icon  for testing two population means and select 
+           'Analysis Var' as V2 and 'By Group' variable as V1. A 95% confidence interval graph 
+           that compares sample means of two populations will be displayed as &lt;Figure 8.1.5&gt;.
+      </div>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX080103.svg" onclick="window.open(addrStr[25])">
+            <img class="imgFig150200" src="./Figure/Fig080104.png">
+            <div class="figText">&lt;Figure 8.1.4&gt; Data input for testing two population means </div>
+         </div>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig080105.png">
+      <div class="figText">&lt;Figure 8.1.5&gt; Dot graph and confidence Intervals by gender for testing two population means</div>
+      <p>
+      In the options window as in &lt;Figure 8.1.6&gt; located at the below of the Graph Area, 
+      enter the average difference \(\small D = 0\) for the desired test, select the variance assumption
+      \(\sigma_1^2 = \sigma_2^2\), the 5% significance level and click the [t-test] button. 
+      Then the graphical result of testing hypothesis for two population means will be shown as in &lt;Figure 8.1.7&gt; and the test result as in &lt;Figure 8.1.8&gt;.
+      <p>
+      <img class="imgFig400100" src="./Figure/Fig080106.png">
+      <div class="figText">&lt;Figure 8.1.6&gt; Options to test for two population means</div>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig080107.png">
+      <div class="figText">&lt;Figure 8.1.7&gt; Testing hypothesis for  and  – case of the same population variances</div>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig080108.png">
+      <div class="figText">&lt;Figure 8.1.8&gt; result of testing hypothesis for two population means if population variances are the same</div>
+      <p>
+      <div class="textL20M20">
+        2) Select the variance assumption \(\sigma_1^2 \ne \sigma_2^2\) at the option window and 
+           click [t-test] button under the graph to display the graph of the hypothesis test and 
+           the test result table as in &lt;Figure 8.1.9&gt; and &lt;Figure 8.1.10&gt;.
+      </div>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig080109.png">
+      <div class="figText">&lt;Figure 8.1.9&gt; Testing hypothesis for   and   – case of the different population variances</div>
+      <p>
+      <img class="imgFig600540" src="./Figure/Fig080110.png">
+      <div class="figText">&lt;Figure 8.1.10&gt; result of testing hypothesis for two population means if population variances are different</div>
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 8.1.1</b>  (Oral Cleanliness by Brushing Methods)<br>
+            Oral cleanliness scores were examined for 8 samples who are using the basic brushing method (coded 1) and 7 samples who are using the rotation method (coded 2). The data are saved at the following location of 『eStat』.
+            <p>
+            <div clsss="textLeft">Ex ⇨ eBook ⇨ PR080101_ToothCleanByBrushMethod.csv</div> 
+            <p>
+            <div class="textL20M20">
+              1) If population variances are the same, test the hypothesis at the 5% significance level  whether scores for both brushing methods are the same using 『eStat』.  
+            </div>
+            <div class="textL20M20">
+              2) If population variances are different, test the hypothesis at the 5% significance level  whether scores for both brushing methods are the same using 『eStat』. 
+            </div>
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR080101.svg" onclick="window.open(addrStr[63])">
+    </div>
+    <p>
+
+  <h4>8.1.2 Paired Sample</h4>
+  <p>
+  <h6>
+      <a href="./pdf/080102.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/LmjMNOvDB7A" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      The testing hypothesis for two population means in the previous section is based on two samples 
+      extracted independently from each population. However, in some cases it is difficult to extract 
+      samples independently, or if samples are extracted independently, then the resulting analysis 
+      may be meaningless, because characteristics of each sample differ too much. 
+      <p>
+      For example, you want to give typists a special education to increase the speed of typing 
+      and want to see if this training has been effective in the speed of typing. In this case, 
+      if different samples are extracted before and after education, it is difficult to measure 
+      the effectiveness of education because individual differences are severe. In order to overcome 
+      the individual difference for a typist who has sampled before training education, if you measure 
+      the typing speed before and after the training for the typist, the effect of special education 
+      can be well understood. 
+      <p>
+      A hypothesis test that uses same samples to perform similar experiments to compare means of 
+      two populations is called a paired comparison. In the paired comparison, we calculate the 
+      difference (\(d_i\)) between paired data \(x_{i1}\) and \(x_{i2}\) as shown in Table 8.1.3 
+      and obtain the mean of differences (\(\overline d\)) and variance of differences (\(s_{d}^2\)).
+
+      <p class="textLeft">Table 8.1.3  Data for a paired comparison
+      <table style="width:600px"> 
+        <tr> 
+          <th class="thGrey" style="width:150px">Sample of population 1<br>\(x_{i1}\)</th>
+          <th class="thGrey" style="width:150px">Sample of population 2<br>\(x_{i2}\)</th>
+          <th class="thGrey" style="width:300px">Difference of pair<br>\(d_{i} = x_{i1} - x{i2}\)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(x_{11}\)<br>\(x_{21}\)<br>\(\cdots\)<br>\(x_{n1}\)</td>
+          <td class="tdCenter">\(x_{12}\)<br>\(x_{22}\)<br>\(\cdots\)<br>\(x_{n2}\)</td>
+          <td class="tdCenter">\(d_1 = x_{11} - x_{12}\)<br>\(d_2 = x_{21} - x_{22}\)<br>\(\cdots\)<br>\(d_n = x_{n1} - x_{n2}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter"></td>
+          <td class="tdCenter"></td>
+          <td class="tdCenter">
+            Mean of \(d_i\) : \(\overline d = \frac{1}{n} \sum d_i \)<br>
+            Variance of \(d_i\) : \(s_d^2 = \frac{1}{n-1} \sum (d_i - \overline d )^2 \)
+          </td>
+        </tr>
+      </table>     
+      <p>
+        When two populations of normal distributions have the same mean, the sample statistic  
+        \(\frac{\overline d}{\frac{s_d}{\sqrt{n}}}\) follows a \(t\)-distribution with the 
+        \(n-1\) degrees of freedom. It allows the testing of the difference between two population 
+        means in case of the paired comparison as follows.
+    </div>
+    <p>
+
+      <p class="textLeft">Table 8.1.4  Testing hypothesis of two population means (paired comparison)
+        <br>- two populations are normal distributions, and paired sample case 
+      <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:500px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 > D_0 \)</td>
+          <td class="tdLeft">If \( \frac{\overline d - D_0}{\frac{s_d}{\sqrt{n}}} > t_{n-1; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 < D_0 \)</td>
+          <td class="tdLeft">If \( \frac{\overline d - D_0}{\frac{s_d}{\sqrt{n}}} < - t_{n-1; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 \ne D_0 \)</td>
+          <td class="tdLeft">If \( | \frac{\overline d - D_0}{\frac{s_d}{\sqrt{n}}}  | > t_{n-1; &alpha;/2} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+      </table>
+      <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 8.1.4</b>
+      The following is the result of a special training to improve the typing speed of eight typists before 
+      and after the training. Test whether or not the typing speed has increased at the 5% significance level. 
+      Assume that the speed of typing follows a normal distribution. Check the test result using 『eStat』 and 『eStatU』.
+      <p>
+      <table style="width:500px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">id</th>
+          <th class="thGrey" style="width:200px">Typing speed<br>before training<br>(unit: words/min)</th>
+          <th class="thGrey" style="width:200px">Typing speed<br> after training<br>(unit: words/min)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</td>
+          <td class="tdCenter">52<br>60<br>63<br>43<br>46<br>56<br>62<br>50</td>
+          <td class="tdCenter">58<br>62<br>62<br>48<br>50<br>55<br>68<br>57</td>
+        </tr>
+      </table>     
+      <p>
+      <b>Answer</b>
+      <p>
+      This problem is for testing the null hypothesis \(\small H_0 : \mu_1 - \mu_2 = 0 \) to the alternative hypothesis
+      \(\small  H_1 : \mu_1 - \mu_2 < 0 \) to compare the typing speed of typists before training (population 1) and 
+      after training (population 2) using paired samples. Therefore, the decision rule is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft \text{If } \frac{\overline d - D_0}{\frac{s_d}{\sqrt{n}}} < - t_{n-1; &alpha;}, \text{ then reject } H_0 \\
+        \end{multline}
+      $$
+      Calculated differences (\(d_i\)) of paired samples before and after training, the mean (\(\overline d\)) 
+      and standard deviation (\(s_d\)) of differences are as follows.
+      <p>
+      <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">id</th>
+          <th class="thGrey" style="width:200px">Typing speed<br>before training<br>(unit: words/min)</th>
+          <th class="thGrey" style="width:200px">Typing speed<br> after training<br>(unit: words/min)</th>
+          <th class="thGrey" style="width:200px">Difference<br>\(d_i\)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</td>
+          <td class="tdCenter">52<br>60<br>63<br>43<br>46<br>56<br>62<br>50</td>
+          <td class="tdCenter">58<br>62<br>62<br>48<br>50<br>55<br>68<br>57</td>
+          <td class="tdCenter">-6<br>-2<br> 1<br>-5<br>-4<br> 1<br>-6<br>-7</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="tdCenter">
+            Mean of \(d_i\) : \(\overline d = -3.5 \)<br>
+            Variance of \(d_i\) : \(s_d^2 = 10 \)<br> 
+            Standard deviation of \(d_i\) : \(s_d = 3.162 \)
+          </td>
+        </tr>
+      </table>  
+      <p>
+      The test statistic is as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft \frac{\overline d - D_0}{\frac{s_d}{\sqrt{n}}} = \frac{-3.5}{\frac{3.16}{\sqrt{8}}} = -3.130 \\
+        \shoveleft - t_{n-1; &alpha;} = - t_{8-1: 0.05} = - t_{7: 0.05} = -1.895 \\
+        \end{multline}
+      $$
+      Therefore, \(\small H_0\) is rejected and we conclude that the training increased the typing speed. 
+      <p>
+        In 『eStatU』 menu, select [Testing Hypothesis: \(\mu_1 , \mu_2\)], select the alternative hypothesis 
+        at [Hypothesis], check the 5% significance level, check ‘paired sample’ at [Test Type], 
+        and enter data of sample 1 and sample 2 of paired samples at [Sample Data] as in &lt;Figure 8.1.11&gt;. 
+      <br>
+        Click the [Execute] button to calculate the sample mean and sample standard deviation of differences
+        (\(\overline d\) and \(s_d^2\) ) and to show the result of the hypothesis test as &lt;Figure 8.1.12&gt;.
+      <p>
+      <!---   ************ html for testing mu1 and mu2 : paired sample************  ---->
+      <b>[<span data-msgid="Testing Hypothesis mu12">Testing Hypothesis : Two Population Means &mu;<sub>1</sub>,  &mu;<sub>2</sub></span>]</b>
+      <p>
+         <iframe src="./example/080102/080102.html" width="800" height="900"> </iframe>
+      <p>
+        <div class="figText">&lt;Figure 8.1.12&gt; Result of testing hypothesis for two population means using  『eStatU』 - paired sample</div>
+      <p>
+        In 『eStat』, the paired data is entered in two columns as shown in &lt;Figure 8.1.13&gt;. 
+        Click the icon for testing two population means  and select 'Analysis Var' as V1 and 'by Group' 
+        as V2 to show the dot graph and the confidence interval for differences of paired data as in &lt;Figure 8.1.14&gt;.
+      <p>
+      <p class="textLeft"> Ex ⇨ eBook ⇨ EX080104_TypingSpeedEducation.csv. 
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX080104.svg" onclick="window.open(addrStr[26])">
+            <img class="imgFig150200" src="./Figure/Fig080113.png">
+            <div class="figText">&lt;Figure 8.1.13&gt; Data input of paired sample</div>
+         </div>
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig080114.png">
+        <div class="figText">&lt;Figure 8.1.14&gt;  Dot graph of difference data of paired sample</div>
+      <p>
+        Enter the mean difference \(\small D\) = 0 for the desired test in the options window below the graph, 
+        select the 5% significance level, and press the [t-test] button to display the result of 
+        the hypothesis test for paired samples such as &lt;Figure 8.1.15&gt; and &lt;Figure 8.1.16&gt;.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig080115.png">
+        <div class="figText">&lt;Figure 8.1.15&gt; Testing hypothesis for two population means using 『eStat』  - paired sample</div>
+      <p>
+        <img class="imgFig600600" src="./Figure/Fig080116.png">
+        <div class="figText">&lt;Figure 8.1.16&gt; Result of testing hypothesis for two population means using 『eStat』  - paired sample  </div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 8.1.2</b>
+            Randomly sampled data of 8 couples for their (wife age, husband age) are as follows.
+            <p>
+            <div class="textLeft">(28, 28) (29, 30) (18, 21) (29, 33) (22, 22) (18, 21) (40, 35) (24, 29)</div>
+            <div class="textLeft">Ex ⇨ eBook ⇨ PR080102_CoupleAge.csv.</div>
+            <p>
+            Test whether the population mean of wife's age is the same as the population mean of husband's age or not. Use the significance level of 0.05.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/PR080102.svg" onclick="window.open(addrStr[64])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+  <h3 id="0802">8.2 Testing Hypothesis for Two Population Variances</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0802.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/y5x9ZOQ-F0o" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Consider following examples to compare two population variances.
+      <p>
+      <div class="textL30M10">
+        -  When comparing two population means in the previous section, we studied that if the sample size was small, the decision rule for testing hypothesis were different depending on whether two population variances were the same or different. So how can we test whether two population variances are the same? 
+      </div>
+      <div class="textL30M10">
+        -  The quality of bolts used to assemble cars depends on the strict specification for their diameters. Average diameters of bolts produced by two factories were said to be the same and if the variance of diameters is smaller, it is considered as superior production. How can you compare variances of the diameter?  
+      </div>
+      <p>
+        When comparing variances (\(\sigma_1^2\) and \(\sigma_2^2\)) of two populations, 
+        the ratio (\(\frac{\sigma_1^2}{\sigma_2^2}\)) of variances is calculated instead of comparing 
+        the difference in variances. If the ratio of variances is greater, smaller, or equal to 1, you can see that 
+        \(\sigma_1^2\) is greater, smaller, or equal to \(\sigma_2^2\). The reason for using the ratio of variances 
+        instead of the difference of variances is that it is easy to find the sampling distribution of the 
+        ratio of variances mathematically. If two populations follow normal distributions, and if \(n_1\) and \(n_2\) 
+        samples are collected randomly from each population, the ratio of two sample variances \(S_1^2\) and \(S_2^2\) such as
+      $$
+        \frac{ \left( \frac{S_1^2}{\sigma_1^2} \right) } { \left( \frac{S_2^2}{\sigma_2^2} \right) }
+      $$
+        follows a \(F\)-distribution with the numerator degrees of freedom \(n_1 - 1\) and the 
+        denominator degrees of freedom \(n_2 - 1\).  Using this fact, we can perform testing hypothesis 
+        on the ratio of population variances. 
+      <p>
+        \(F\)-distribution is an asymmetrical distribution group with two parameters, the numerator 
+        degrees of freedom and denominator degrees of freedom. &lt;Figure 8.2.1&gt; shows \(F\)-distributions 
+        for different parameters.
+      <p>
+      <!---   ************ html for Testing Variance 1 and 2 ************  ---->
+      <b>[<span data-msgid="F Distribution">F Distribution</span>]</b>
+      <p>
+         <iframe src="./example/080200/080200.html" width="800" height="800"> </iframe>
+      <p>
+      <img class="imgFig400300" src="./Figure/Fig080201.png">
+      <div class="figText">&lt;Figure 8.2.1&gt;  \(F\)-distribution of different degrees of freedom.</div>
+      <p>
+        Testing hypothesis for two population variances can be performed using the \(F\)-distribution 
+        as following Table 8.2.1.
+    </div>
+    <p>
+      <p class="textLeft">Table 8.2.1  Testing hypothesis for two population variances   
+      <br>- Two populations are normally distributed -
+        <table style="width:760px"> 
+        <tr> 
+          <th class="thGrey" style="width:170px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:590px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \sigma_1^2 = \sigma_2^2 \)<br>\(\quad\,\, H_1 : \sigma_1^2 \gt \sigma_2^2 \)</td>
+          <td class="tdLeft">If \( \frac {S_1^2}{S_2^2} > F_{n_1 -1, n_2 -1; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \sigma_1^2 = \sigma_2^2 \)<br>\(\quad\,\, H_1 : \sigma_1^2 \lt \sigma_2^2 \)</td>
+          <td class="tdLeft">If \( \frac {S_1^2}{S_2^2} < F_{n_1 -1, n_2 -1; 1-&alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \sigma_1^2 = \sigma_2^2 \)<br>\(\quad\,\, H_1 : \sigma_1^2 \ne \sigma_2^2 \)</td>
+          <td class="tdLeft">If \( \frac {S_1^2}{S_2^2} < F_{n_1 -1, n_2 -1; 1-&alpha;/2} \) or 
+             \( \frac {S_1^2}{S_2^2} > F_{n_1 -1, n_2 -1; &alpha;/2} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+      </table>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 8.2.1</b>
+        A company that produces a bolt has two plants. One day, ten bolts produced in Plant 1 were sampled 
+        randomly and the variance of diameter was \(0.11^2\). 12 bolts produced in Plant 2 were sampled 
+        randomly and the variance of diameter was \(0.13^2\). Test whether variances of the bolt from 
+        two plants are the same or not with the 5% significance level. Check the test result using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+        The hypothesis of this problem is \(\small H_0 : \sigma_1^2 = \sigma_2^2 ,\; H_1 : \sigma_1^2 \ne \sigma_2^2 \),  
+        and its decision rule is as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft \text{If } \frac {S_1^2}{S_2^2} < F_{n_1 -1, n_2 -1; 1-&alpha;/2}  \text{ or } 
+             \frac {S_1^2}{S_2^2} > F_{n_1 -1, n_2 -1; &alpha;/2} \text{ then reject } H_0  
+        \end{multline}
+      $$
+        The test statistic using two sample variances  and the percentile of \(\small F\)-distribution is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft  \frac {S_1^2}{S_2^2} = \frac{0.0121}{0.0169} = 0.716 \\ 
+        \shoveleft   F_{n_1 -1, n_2 -1; 1-&alpha;/2} = F_{11,9;0.975} = 0.279 \\  
+        \shoveleft   F_{n_1 -1, n_2 -1; &alpha;/2}   = F_{11,9;0.025} = 3.912 \\  
+        \end{multline}
+      $$
+        Hence the hypothesis \(\small H_0\) can not be rejected and conclude that two variances are equal. 
+      <p>
+        In 『eStatU』 menu, select [Testing Hypothesis \(\sigma_1^2 , \sigma_2^2\)]. At the window shown 
+        in &lt;Figure 8.2.2&gt;, enter \(n_1 = 12, n_2 = 10, s_1^2 = 0.0121, s_2^2 = 0.0169\). 
+        Click the [Execute] button to reveal the hypothesis test result shown in &lt;Figure 8.2.3&gt;.
+      <p>
+      <!---   ************ html for Testing Variance 1 and 2 ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis sigma12">Testing Hypothesis : Two Population Variances &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup></span>]</b>
+      <p>
+         <iframe src="./example/080201/080201.html" width="800" height="820"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 8.2.3&gt; Testing hypothesis for two population variances using 『eStatU』</div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 8.2.2</b>
+      (Income of college graduates, data of [Example 8.1.3])
+      <br>
+        Samples of 10 male and 10 female graduates of the college this year were taken and the average monthly income were examined as follows: Test whether variances of two populations are equal.
+      <p>
+      <div class="textLeft">Male    272  255  278  282  296  312  356  296  302  312
+      </div>
+      <div class="textLeft">Female  276  280  369  285  303  317  290  250  313  307   (Unit 10000 KRW)
+      </div>
+      <div class="textLeft">Ex ⇨ eBook ⇨ EX080103_WageByGender.csv. 
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+        In 『eStat』, enter the gender and income in two columns on the sheet as shown in &lt;Figure 8.2.4&gt;. This type of data input is similar to all statistical packages. Once you entered the data, click on the icon  for testing two population variances and select 'Analysis Var' as V2 and 'By Groups' as V1. Then a mean-standard deviation graph for each group will be appeared as in &lt;Figure 8.2.5&gt;.
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/EX080202.svg" onclick="window.open(addrStr[123])">
+            <img class="imgFig150200" src="./Figure/Fig080204.png">
+            <div class="figText">&lt;Figure 8.2.4&gt; Data input for testing two population variances</div>
+         </div>
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig080205.png">
+        <div class="figText">&lt;Figure 8.2.5&gt; Dot graph and mean-standard deviation interval of each group </div>
+      <p>
+        If you click the [F-Test] button int the options window below the graph, a test result graph using \(F\)-distribution such as &lt;Figure 8.2.6&gt; is appeared in the Graph Area and the result table is appeared as in &lt;Figure 8.2.7&gt; appears in the Log Area.
+      <p>
+        <img class="imgFig600540" src="./Figure/Fig080206.png">
+        <div class="figText">&lt;Figure 8.2.6&gt; Testing hypothesis for two population variances</div>
+       <p>
+        <img class="imgFig600400" src="./Figure/Fig080207.png">
+        <div class="figText">&lt;Figure 8.2.7&gt; Result table of testing two population variances</div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 8.2.1</b>
+            Tire products from two companies are known to have the same average life span of 80,000km. However, there seems to be a difference in the variance. Sixteen tires from each of the two companies were randomly selected and run under similar conditions to measure their life span. The sample variance was 4,500 and 2,500, respectively. 
+            <p>
+            Using 『eStatU』, test the null hypothesis that the variances of the tire life of two products are the same at the 5% significance level.
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU820_TestSigma12.svg" onclick="window.open(addrStr[107])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+  <h3 id="0803">8.3 Testing Hypothesis for Two Population Proportions</h3>
+  <p>
+  <h6>
+      <a href="./pdf/0803.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/-lI78tN44X8" target="_blank"><u>[video]</u></a>
+  </h6>
+  <p>
+
+    <div class="mainTable">
+      Consider the following examples which compare two population proportions.
+      <p>
+      <div class="textL30M10">
+        -  Is there a gender gap in the approval rating for a particular candidate in this year's presidential election?
+      </div>
+      <div class="textL30M10">
+        -  A factory has two machines that make products. Have two machines different defect rates?
+      </div>
+      <p>
+        Comparing proportions \(p_1\) and \(p_2\) of two populations is possible by testing the difference
+        between two proportions \(p_1 - p_2\) as the comparison of two population means. The difference 
+        in sample proportions \({\hat p}_1 - {\hat p}_2\) from two populations follows a normal distribution
+        with the mean \(p_1 - p_2\) and variance \(\frac{p_1 (1-p_1 )}{n_1} + \frac{p_2 (1-p_2 )}{n_2}\) 
+        when two sample sizes are large enough. Since we do not know population proportions 
+        \(p_1\) and \(p_2\) to estimate the variance, weighted average value \(\overline p\) 
+        for two sample proportions  \({\hat p}_1 \) and \( {\hat p}_2\) by using sample sizes 
+        as weights is used as follows:  
+      <p>
+      $$
+         \overline p = \frac { n_1 {\hat p}_1 + n_2 {\hat p}_2 } {n_1 + n_2 }
+      $$
+        The testing hypothesis for two population proportions uses the following test statistic. 
+      $$
+        \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } } 
+      $$
+      <p>
+      <p class="textLeft">Table 8.3.1  Testing hypothesis for two population proportions
+        <br>- two independent large samples -
+      <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:200px">Type of Hypothesis</th>
+          <th class="thGrey" style="width:500px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : p_1 = p_2 \)<br>\(\quad\,\, H_1 : p_1 > p_2 \)</td>
+          <td class="tdLeft">If \( \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  > z_{&alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : p_1 = p_2 \)<br>\(\quad\,\, H_1 : p_1 < p_2 \)</td>
+          <td class="tdLeft">If \( \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  < - z_{&alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : p_1 = p_2 \)<br>\(\quad\,\, H_1 : p_1 \ne p_2 \)</td>
+          <td class="tdLeft">If \( | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+ 
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 8.3.1</b>
+        A survey was conducted for a presidential election and samples were selected independently 
+        from both male and female populations. 54 out of 225 samples from the male population 
+        supported the candidate A and 52 out of 175 samples from the female population supported 
+        the candidate A. Test whether there is a difference in approval ratings of the male and 
+        female populations with the 5% significance level. Check the result using 『eStatU』.
+      <p>
+      <b>Answer</b>
+      <p>
+      The hypothesis of this problem is \(\small  \; H_0 : p_1 = p_2 , H_1 : p_1 \ne p_2 \),  and its decision rule is as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft '\text{If } \; | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  | > z_{&alpha;/2}, \text{ then reject } H_0 \;'
+        \end{multline}
+      $$
+        Since \({\hat p}_1 = \frac{54}{225} \) = 0.240, \({\hat p}_2 = \frac{52}{175} = 0.297,\; \overline p  \) 
+        and the test statistic can be calculated as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft \overline p = \frac{54 + 52}{ 225 + 175} = \frac{106}{400} = 0.266 \\
+        \shoveleft  | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  |  
+           = | \frac { {0.240} - {0.297} } { \sqrt{ \frac{0.265(1 - 0.265)}{225} + \frac{0.265(1 - 0.265)}{175}  } }  | = 1.28\\
+        \shoveleft z_{&alpha;/2} = z_{0.05/2} = z_{0.025} = 1.96 \\
+        \end{multline}
+      $$
+        Therefore, the hypothesis \(\small H_0\) can not be rejected and we conclude that there is not enough 
+        evidence that the approval ratings of male and female are different. 
+      <p>
+        In 『eStatU』 menu, select [Testing Hypothesis \(p_1 , p_2\)] and enter 
+        \(n_1 = 225,\; {\hat p}_1 = 0.240,\; n_2 = 175,\; {\hat p}_2 = 0.297\) as shown in &lt;Figure 8.3.1&gt;. 
+        Clicking the [Execute] button will show the result of the hypothesis test as shown in &lt;Figure 8.3.2&gt;.
+      <p>
+      <!---   ************ html for Testing Proportion 1 and 2 ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis P12"></span>]</b>
+      <p>
+         <iframe src="./example/080301/080301.html" width="800" height="770"> </iframe>
+      <p>
+        <div class="figText">&lt;Figure 8.3.2&gt;Result of testing hypothesis for two population proportions using 『eStatU』</div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <p>
+      <b>Example 8.3.2</b>
+      In the year 2000, a simple random sampling of 1,000 people aged 15 to 29 across the country examined the status of marriage, and 63.5 percent were single. In the year 2020, another 1,000 people were surveyed independently, with 69.8 percent of them being single. From this fact, can you say that there has been a tendency to get married late in recent years? In other words, test at the 5% significance level whether the population aged 15 to 29 in 2020 is more likely to be single than in 2000. What is the p-value of this test?
+      <p>
+      <b>Answer</b>
+      <p>
+      The hypothesis of this problem is \(\small  \; H_0 : p_1 = p_2 , \; H_1 : p_1 < p_2 \) ,  and its decision rule is as follows.
+      $$ \small
+        \begin{multline}
+        \shoveleft '\text{If } \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  < - z_{&alpha;},  \text{ then reject } H_0 ' \\
+        \end{multline}
+      $$
+        Since \({\hat p}_1 = 0.635 \) and \({\hat p}_2 = 0.698\), \(\overline p\) and the test statistic are as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft \overline p = \frac{1000 \times 0.635 + 1000 \times 0.698}{1000 + 1000} = \frac{0.635 + 0.698}{2} = 0.667 \\
+        \shoveleft \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }    
+           =  \frac { {0.635} - {0.698} } { \sqrt{ \frac{0.667(1 - 0.667)}{1000} + \frac{0.667(1 - 0.667)}{1000}  } }  = -2.989\\
+        \shoveleft - z_{&alpha;} = - z_{0.05} = -1.645 \\
+        \end{multline}
+      $$
+      Therefore, \(\small H_0\) is rejected. and conclude that the proportion of unmarried people in 2020 
+      has been increased. \(p\)-value can be calculated as follows: 
+      $$ \small
+        \begin{multline}
+        \shoveleft p-\text{value} = P(Z \lt -2.989) = 0.0014 \\
+        \end{multline}
+      $$
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+         <b>Practice 8.3.1</b>
+            In a company, the labor union found that 63 percent of 200 salesmen who did not receive a college 
+            education wanted to take it back even now. The company did a similar study 10 years ago and 
+            it was only 58 percent of 100 salesmen wanted it. Test the null hypothesis that the desire 
+            for college education is not different from 10 years ago using the significance level of 0.05. 
+            Samples were selected independently. 
+            <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatU840_TestP12.svg" onclick="window.open(addrStr[108])">
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <div class="mainTable">
+      In the previous two examples of comparing two population proportions, two sample proportions 
+      were calculated from independent samples. 
+      <p>
+      Suppose two candidates ran in an election and one thousand samples were selected to test 
+      whether there was any difference on the candidate's approval rating. The approval ratings 
+      \(p_1\) and \(p_2\) of two candidates obtained from the sample are not independent, 
+      because unlike two previous examples they are calculated from one set of samples. 
+      So the test method should be different. The following statistic are used to test whether 
+      there is a difference in approval ratings of two candidates.
+      $$
+        \frac{{\hat p}_1 - {\hat p}_2}{\sigma_{{\hat p}_1 - {\hat p}_2}},\quad 
+        \text{ where } \sigma_{{\hat p}_1 - {\hat p}_2} = \sqrt{\frac{p_1 (1-p_1) + p_2 (1-p_2) +2p_1 p_2}{n}}
+      $$
+      Here, \(\sigma_{{\hat p}_1 - {\hat p}_2}\) is the standard error of \({\hat p}_1 - {\hat p}_2 \).
+      <p>
+      Assuming that two population proportions are equal, the estimated value \(\sigma_{{\hat p}_1 - {\hat p}_2}\) is as follows
+      $$
+        \sigma_{{\hat p}_1 - {\hat p}_2} = \sqrt{\frac{2 \overline p}{n}}, \text { where } \overline p = \frac{{\hat p}_1 + {\hat p}_2}{2} 
+      $$
+      If the sample size is large, the test statistic follows a normal distribution which allows 
+      proper testing hypothesis according to the form of the alternative hypothesis. As such, 
+      it is important to distinguish between sample proportions from independent samples and 
+      not independent samples when we compare two population proportions.
+    </div>
+    <p>
+
+  <iframe src="./exercise/exercise08.html" width="800" height="550" ></iframe>
+</body>
+</html>
+

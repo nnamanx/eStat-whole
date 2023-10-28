@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 6</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+    <div class="mainTablePink">
+
+    <h6 class="textL30M30">6.1 모집단의 크기가 무한이고, 분산이 \(\sigma^2\)일 때, 표본평균의 분산 \(\small \sigma^2_{\overline x}\)은? 
+      (n은 표본크기)</h6>
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> \(\small \sigma^2_{\overline x}=\sigma^2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small \sigma^2_{\overline x}=n\sigma^2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small \sigma^2_{\overline x}=\frac{\sigma^2}{n}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small \sigma^2_{\overline x}=\frac{n\sigma^2}{n-1}\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">6.2  모집단의 특성을 나타내는 양적인 측도는? </h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> 모수</label><br>
+      <label><input type="radio" name="item" value="2"> 산포도</label><br>
+      <label><input type="radio" name="item" value="3"> 대표값</label><br>
+      <label><input type="radio" name="item" value="4"> 통계량</label><br>
+     <p>
+      <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">6.3  표본의 특성을 나타내는 양적인 측도는?</h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> 확률</label><br>
+      <label><input type="radio" name="item" value="2"> 통계량</label><br>
+      <label><input type="radio" name="item" value="3"> 모수</label><br>
+      <label><input type="radio" name="item" value="4"> 변량</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">6.4  표본수가 적은 소표본에서 모평균의 추정에 사용되는 분포는 어느 것인가? </h6> 
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> 정규분포</label><br>
+      <label><input type="radio" name="item" value="2"> 지수분포</label><br>
+      <label><input type="radio" name="item" value="3"> t 분포</label><br>
+      <label><input type="radio" name="item" value="4"> F 분포</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">6.5  다음은 추정에 관한 설명이다. 틀린 것은?  </h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> 통계에서 추정이란 모집단의 특성에 대해 표본을 이용한 수량적인 추정을 말한다.  </label><br>
+      <label><input type="radio" name="item" value="2"> 추정에는 점추정(point estimation)과 구간추정(interval Estimation)이 있다.  </label><br>
+      <label><input type="radio" name="item" value="3"> 비편향성(unbiased), 일치성(consistent), 효율성(efficient)이 있는 추정량이 바람직하다.</label><br>
+      <label><input type="radio" name="item" value="4"> 모표준편차는 표본표준편차의 추정량이다.</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+    <h6 class="textL30M30">6.6  어느 회사가 생산하는 제품의 무게는 정규분포를 따른다. 평균 무게를 추정하기 위하여 
+       49개의 제품을 임의로 추출하여 이들 무게를 조사한 결과 평균이 6200ｇ이고, 표준편차가 140ｇ이었다. 이 제품의 평균 
+       무게에 대한 95%의 신뢰구간을 구하면 얼마인가? 
+    </h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> 6200 &plusmn; 32.8</label><br>
+      <label><input type="radio" name="item" value="2"> 6200 &plusmn; 39.2</label><br>
+      <label><input type="radio" name="item" value="3"> 6200 &plusmn; 52.6</label><br>
+      <label><input type="radio" name="item" value="4"> 6200 &plusmn; 77.4</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">6.7  정규 모집단에서 분산이 \(\sigma^2\)이었다. 이 모집단에서 n개의 표본을 추출하여 
+       표본평균 \(\small \overline x\)를 얻었다. 모평균(\(\mu\))에 대한 99% 신뢰구간은 어느 것인가? </h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> \(\small \overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n}}\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small \overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n-1}}\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small \overline x &plusmn; 2.58\frac{\sigma}{\sqrt{n}}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small \overline x &plusmn; 2.58\frac{\sigma^2}{\sqrt{n}}\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+
+    <h6 class="textL30M30">6.8 2000개의 제품 중에서 400개를 임의로 추출하여 무게를 측정하였더니, 평균 
+       \(\small \overline x = 25.0\), 표준편차 \(s = 4.99\) 이었다. 모평균을 신뢰도 95％로 추정하면?
+    </h6> 
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> \(24.5 \le \mu \le 25.5\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(24.0 \le \mu \le 26.0\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(24.3 \le \mu \le 25.7\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(23.6 \le \mu \le 26.4\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">6.9 어떤 도시에서 5,000세대에 대한 월수입을 조사했더니 평균 366만원, 표준편차 8만원이었다. 
+       이 도시의 평균수입을 95％의 신뢰도로 추정하면 어떻게 되는가? (단위 만원) 
+    </h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> \(366 &plusmn; 1.96 \times \frac{8}{\sqrt{5000}}\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(366 &plusmn; 2.58 \times \frac{8}{\sqrt{5000}}\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(366 &plusmn; 1.64 \times \frac{8}{\sqrt{5000}}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(366 &plusmn; 2.33 \times \frac{8}{\sqrt{5000}}\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">6.10  모표준편차가 \(\sigma \) = 5 인 모집단으로부터 크기 49인 임의 표본이 추출되었다. 
+      표본평균 \(\small \overline x\) = 16.2가 얻어졌다면, 모평균에 대한 95％ 신뢰구간은 얼마인가? 
+    </h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> (13.8, 16.6) </label><br>
+      <label><input type="radio" name="item" value="2"> (13.4, 17.0) </label><br>
+      <label><input type="radio" name="item" value="3"> (13.6, 16.8) </label><br>
+      <label><input type="radio" name="item" value="4"> (13.2, 17.2) </label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+
+    <h6 class="textL30M30">6.11 어떤 모집단이 정규분포를 따를 때, 그 표본의 크기가 25, 평균이 14.6, 표준편차가 5였다. 
+      모평균에 대한 95％ 신뢰한계를 구하면?  
+       \(\small t_{24: 0.05} = 2.064, t_{24: 0.01} = 2.797, t_{25: 0.05} = 2.060, t_{25: 0.01} = 2.787, t_{26: 0.05} = 2.056, t_{26: 0.01} = 2.779 \)</h6>
+    <form name="Q11">
+      <label><input type="radio" name="item" value="1"> 14.6 &plusmn; 2.787</label><br>
+      <label><input type="radio" name="item" value="2"> 14.6 &plusmn; 2.056</label><br>
+      <label><input type="radio" name="item" value="3"> 14.6 &plusmn; 2.064</label><br>
+      <label><input type="radio" name="item" value="4"> 14.6 &plusmn; 2.779</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(11,Q11)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ11">
+    </form>
+
+    <h6 class="textL30M30">6.12  정규분포 모집단에서 단순임의추출로 n개의 표본을 추출하여 모분산을 추정하고자 한다. 
+       적당한 표본 통계량은? 
+    </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> 표본표준편차</label><br>
+      <label><input type="radio" name="item" value="2"> 표본분산</label><br>
+      <label><input type="radio" name="item" value="3"> 표본제곱합</label><br>
+      <label><input type="radio" name="item" value="4"> \(\frac{1}{n}\) 표본제곱합</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+    <h6 class="textL30M30">6.13  단순임의추출된 표본을 \(x_1 , x_2 , ... , x_n\)이라하고 표본평균이 
+      \(\small \overline x\)라면 다음 중 어느 것이 모분산의 불편추정량인가?
+    </h6>
+    <form name="Q13">
+      <label><input type="radio" name="item" value="1"> \(\small \frac{1}{n}\sum|x_i - \overline x |\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small \frac{1}{n}(\sum x_i^2 - (n-1){\overline x}^2 )\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small \frac{1}{n}(\sum x_i^2 - n{\overline x}^2 )\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small \frac{1}{n-1}\sum(x_i - \overline x)^2\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(13,Q13)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ13">
+    </form>
+
+    <h6 class="textL30M30">6.14  어떤 도시의 유권자 중에서 임의로 400명을 추출하여 여론 조사를 하였다. 이 조사에서 
+       찬성이라고 대답한 사람은 240명이었고, 나머지는 모두 반대하였다. 유권자 전체에 대한 찬성자 비율을 95％의 신뢰도로 
+       추정하면? 
+    </h6>
+    <form name="Q14">
+      <label><input type="radio" name="item" value="1"> \(0.55 \le p \le 0.65\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(0.50 \le p \le 0.70\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(0.45 \le p \le 0.75\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(0.40 \le p \le 0.80\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(14,Q14)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ14">
+    </form>
+
+    <h6 class="textL30M30">6.15 국회의원 선거에 있어 어느 지역구에서 60명에 대하여 무작위 표본을 취하여 의견을 들은 결과
+       A후보를 지지하는 사람은 36명이라고 한다. 이 지역에서 A후보를 지지하는 비율 \(p\)의 95％ 신뢰구간을 구하면 어떻게 되는가?
+    </h6>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> \(0.576 \le p \le 0.760\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(0.576 \le p \le 0.824\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(0.440 \le p \le 0.760\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(0.440 \le p \le 0.824\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+
+  </div>
+
+  <script src="./js/exercise06.js"></script>   
+ 
+</body>
+</html>
+

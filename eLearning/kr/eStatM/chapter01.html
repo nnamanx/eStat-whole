@@ -7,109 +7,36 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
   <title>1장</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <style type="text/css">code{white-space: pre;}</style>
-       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
-       <script>
-	 $(document).ready(function() {
-  	     toc = $("#sidebar > ul > li > ul");
-  	     sections = toc.children();   // <li>
-  	     for(var i=0; i<sections.length; i++) {
-  		 if ($(sections[i]).children().length == 1) { continue; }
-  		 var first = sections[i].firstElementChild;  // <a>
-  		 var last = sections[i].lastElementChild;
-  		 var li = $("<li>");
-  		 var details = $("<details>");
-  		 var summary = $("<summary>");
-  		 $(summary).append(first)
-  		 $(details).append(summary);
-  		 $(details).append(last);
-  		 $(li).append(details);	
-  		 $(sections[i]).replaceWith(li);
-  	     }
-	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">목차</a></li>
-            <li><a href="../eStatM/chapter01.html">1. 통계</a></li>
-            <li><a href="../eStatM/chapter02.html">2. 질적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter03.html">3. 양적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter04.html">4. 자료의 대푯값과 산포도</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>1. 통계</h1> 
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(140)"> &#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
         <h1>&nbsp; 🎲 🎯 💻 📱</h1>
         <h4>
         <a href="#0101"><u>1.1 통계란?</u></a> <p>
         <a href="#0102"><u>1.2 자료의 구분</u></a> <p>
         <a href="#0103"><u>1.3 『eStat』 소프트웨어</u></a> <p>
-        <a href="../eStatM/chapter01.pdf" target="_blank"><u>[1장 pdf]</u></a>
+        <a href="./pdf/chapter01.pdf" target="_blank"><u>[1장 pdf]</u></a>
         </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>- 통계가 무엇인지 살펴본다.
-        <p>- 자료의 구분에 대해 살펴본다.
-        <p>- 통계 소프트웨어에 대해 살펴본다.
-      </td>
-    </tr>
-  </table>
+        - 통계가 무엇인지 살펴본다.<br>
+        - 자료의 구분에 대해 살펴본다.<br>
+        - 통계 소프트웨어에 대해 살펴본다.<br>
+
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -120,36 +47,21 @@
   <h3 id="0101">1.1 통계란?</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
-          <b>우리 학급 10명 학생의 신장은 어느 정도나 알아보기 위해 자를 이용하여 측정하였다.
+      <h4>⭐ 생각열기</h4>
+          <b>우리 학급 10명 학생의 신장은 어느 정도인지 알아보기 위해 자를 이용하여 측정하였다.
              측정된 신장 자료는 종이에 기록하였다.
           </b>
           <p>
           <div class="textLeft">[표 1.1] 우리 학급 학생들의 신장 자료 (단위 cm)</div>
-          <table>
-            <td> 165  163  170  175  155  167  157  153  161  162
-            </td>
+          <table style="width:400px">
+            <tr>
+              <td> 165  163  170  175  155  167  157  153  161  162
+              </td>
+            </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>우리 반 학생 중 내 신장 (165cm)이 키가 큰 순으로 몇 번째에 있는지 
              알아 보려면 어떻게 하나?
-          </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -160,7 +72,7 @@
       <p>내 신장의 상대 위치를 파악하기 위해서는 이 자료를 신장이 큰 사람부터 내림차 순으로 
          [표 1.2]와 같이 정리한다.
       <div class="textLeft">[표 1.2] 키가 큰 순으로 정리한 학생들의 신장 자료 (단위 cm)</div>
-      <table>
+      <table style="width:600px">
         <td> 175  170  167  165  163  162  161  157  155  153 
         </td>
       </table>
@@ -208,28 +120,12 @@
   <h3 id="0102">1.2 자료의 구분</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>우리 학급 10명 학생의 성별을 조사하면 ‘남’ ‘여’ 이고,  신장을 조사하면 160cm 등이다.</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>1) 성별과 신장은 속성이 다른데 자료를 구분하는 적당한 방법이 있을까? <br>
              2) 자료의 종류에 따라 분석 방법이 다를까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -262,27 +158,11 @@
   <h3 id="0103">1.3 『eStat』 소프트웨어</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>[표 1.1]의 신장 자료를 측정해 종이에 적고 이를 내림차순으로 정리하였다.</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>컴퓨터를 이용하는 방법은 없을까? 있다면 어떤 소프트웨어를 사용하여야 하나?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -291,121 +171,28 @@
          자료의 분석이 불가능하다. 특히 빅데이터 분석을 위해서는 전문적인 분석 프로그램을 많이 가지고 있는 
          <b>통계 소프트웨어</b>가 반드시 필요하다. 현재 자료 분석을 위해서는 SAS, SPSS, R과 같은 통계 소프트웨어가 
          많이 사용되고 있다. 하지만 이들 소프트웨어는 초보자가 배우기는 쉽지 않고, SAS와 SPSS는 상업용이어서 
-         엄청난 고가이다. 그리고 이러한 소프트웨어는 자료 분석의 핵심인 통계 교육에 필요한 모듈의 기능은 거의 없다. 
+         엄청난 고가이다. 그리고 이러한 소프트웨어는 통계 교육에 필요한 기능은 거의 없다. 
       <p><b>『eStat』</b>시스템은 통계를 초등생부터 대학 및 일반인까지 쉽게 교육하기 위하여 만든 교육용 소프트웨어이다. 
          자료가 주어지면 단지 마우스 클릭만으로 그래프를 그릴 수 있고, 동적인 그래프를 경험할 수 있다. 
         『eStat』은 각급 교과서에 있는 많은 예를 포함하고 있으며, 웹 기반이어서 사용자들은 언제 어디서나 
-         PC, 태블릿, 또는 스마트폰으로 이용할 수 있다. 『eStat』은 무료로 서비스하고 있고 다국적 언어를 지원하며 
+         PC, 태블릿, 또는 스마트폰으로 이용할 수 있다. 『eStat』은 무료이고 다국적 언어를 지원하며 
          현재 한국어, 영어를 포함한 20개 언어가 가능하다. 
       <p>『eStat』 시스템은 현재 통용되는 많은 웹브라우저 중에서 구글(Google)사의 크롬(Chrome)에서 100% 잘 작동한다.
          MS 엣지(Edge)와 같은 브라우저에서도 『eStat』이 작동은 되나 일부 기능이 안 될 수 있다.  
-      <p>이 책은 『eStat』에서 중학생 및 고등학생을 대상으로 개발된 <b>『eStatH』</b>에서 중학생이 공부할 수 있는 
+      <p>이 책은 『eStat』에서 초등 및 중학생을 대상으로 개발된 <b>『eStatM』</b>을 이용하여  
          그래프와 측도 등에 대해 설명한다. 
-         웹브라우져 크롬을 열어 주소창에 www.estat.me 를 입력한 후 아이콘 『eStatH』를 클릭하면 <그림 1.1>과 같다.  
+         웹브라우저 크롬을 열어 주소창에 www.estat.me 를 입력한 후 아이콘 『eStatM』을 클릭하면 &lt;그림 1.1&gt;과 같다.  
       <p>
-
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH.svg" onclick="window.open(addrStr[1])">
-            <div class="textLeft">『eStatH』</div>
-          </td>
-          <td>
-           <img class="imgFig600600" src="../FigureM/Fig0101.png">
-           <div class="textLeft">&lt;그림 1.1&gt; 『eStatH』 메뉴의 구성</div>
-          </td>
-        </tr>
-      </table>
+           <div class="textLeft">『eStatM』</div>
+         <div class="QRFigure">
+           <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStatM.svg" onclick="window.open(addrStr[181])">
+           <img class="imgFig600600" src="./Figure/Fig0101.png">
+           <div class="textLeft">&lt;그림 1.1&gt; 『eStatM』 메뉴의 구성</div>
+         </div>
       <p>  
   </div>
-  <p>
-
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">1.1  다음 중 통계에 대한 설명으로 맞는 것은?</h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 날씨에 대한 변화를 연구</label><br>
-    <label><input type="radio" name="item" value="2"> 자료를 수집 정리하여 분석</label><br>
-    <label><input type="radio" name="item" value="3"> 화학 반응을 연구</label><br>
-    <label><input type="radio" name="item" value="4"> 전자제품 생산 연구</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">1.2 다음 중 잘적 자료는? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 신장</label><br>
-    <label><input type="radio" name="item" value="2"> 체중</label><br>
-    <label><input type="radio" name="item" value="3"> 교육정도</label><br>
-    <label><input type="radio" name="item" value="4"> 나이</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">1.3 다음 중 양적 자료는? </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 성별</label><br>
-    <label><input type="radio" name="item" value="2"> 교육정도</label><br>
-    <label><input type="radio" name="item" value="3"> 결혼여부</label><br>
-    <label><input type="radio" name="item" value="4"> 나이</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">1.4 다음 중 통계패키지가 아닌 것은? </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> SPSS</label><br>
-    <label><input type="radio" name="item" value="2"> SAS</label><br>
-    <label><input type="radio" name="item" value="3"> eStat</label><br>
-    <label><input type="radio" name="item" value="4"> Word</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[21][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(140)">&#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-
-</div>
     
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+  <iframe src="./exercise/exercise01.html" width="750" height="700" ></iframe>
 
 </body>
 </html>

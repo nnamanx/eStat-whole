@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>eStatBookH</title>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+
+</head>
+<body>
+
+  <h1><b>Probability and Statistics</b> 
+  <span style="color:blue;"> using 『eStatH』</span> </h1>
+  <p>
+  <h4>
+    &nbsp;&nbsp; <a href="#tableContent"><u>Table of Contents</u></a> &nbsp;&nbsp;
+    <a href="#author"><u>Author</u></a> 
+  </h4>
+  <h1>📊 📈 🌈 </h1>
+         <div style="color:blue">
+            <p> Statistics education is very essential for elementary and 
+            middle school students who will lead the big data society in the future.
+            But, there has been no appropriate educational software for stuendents.
+            『eStatH』 is a free web-based software which is designed specially to study the statistics of high school
+            so that students can easily learn and practice statistics anytime, anywhere on the Internet.
+            </p>
+            <p>This web-book is linked with 『eStatH』, so you can practice easily 
+            as well as studying statistics.
+            I hope you become a talented person who understand statistics by using this software and 
+            leads the future big data society.
+            </p>
+            I appreciate all who have helped me to develop 『eStat』 over the past few years. 
+            Special thanks should be given to Ms. Kamala Omarova for her careful reading of English manuscipt.
+            <p>
+            Spring 2021
+            <br>
+            Jung Jin Lee, jjlee@ssu.ac.kr
+        </div>
+     <br>『eStat』 is a web-based freeware for statistics education which can be used anytime and anywhere using PC, tablet, or mobile phone.
+     <br>   
+     <input class="qrBtn" type="image" src="http://www.estat.me/assets/qr/eStat.svg" width="100" height="100" onclick="window.open(addrStr[0])">
+        <a href="eStatBasicOperation.html" target="_blank"><b><u>Basic Operation of 『eStat』</u></b></a> &nbsp;&nbsp;&nbsp;
+        <a href="eStatBasicOperation.pdf"  target="_blank"><b><u>[pdf]</u></b></a> &nbsp;&nbsp;&nbsp;
+        <a href="https://www.youtube.com/watch?v=jjfCqdDZZ6Q" target="_blank"><b><u>[Video]</u></b></a><br>
+        <p style="color:blue">Project Leader: Professor Jung Jin Lee, Soongsil University, Korea, ADA University, Azerbaijan<br>
+        Contact: jjlee@ssu.ac.kr
+     <br>
+     <span style="color:red">
+       This work is in the public domain. Therefore, it can be copied and reproduced without limitation. 
+       However, we would appreciate a citation where possible. (http://www.estat.me).</span>
+     <p>
+
+  <h4 id="tableContent">Table of Contents</h4>
+  <p>
+  <h5>
+      <a href="chapter01.html">Chapter 1. Number of Cases</a>
+      <a href="./pdf/chapter01.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+  <ul>
+     1.1  Permutation and Combination<br>
+     1.2  Binomial Theorem<br>
+  </ul>
+
+  <h5>
+    <a href="chapter02.html">Chapter 2. Probability</a>
+    <a href="./pdf/chapter02.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+  <ul>
+    2.1  Probability<br>
+    2.2  Addition Rule of Probability<br>
+    2.3  Conditional Probability and Multiplication Rule of Probability<br>
+  </ul>
+
+  <h5>
+    <a href="chapter03.html">Chapter 3. Random Variable and Probability Distribution</a>
+    <a href="./pdf/chapter03.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+    <ul>
+    3.1  Random Variable<br>
+    3.2  Probability Distribution of Discrete Random Variable<br>
+    3.3  Probability Distribution of Continuous Random Variable<br>
+    3.4  Binomial Distribution<br>
+    3.5  Normal Distribution<br>
+    </ul>
+  
+  <h5>
+    <a href="chapter04.html">Chapter 4. Estimation</a>
+    <a href="./pdf/chapter04.pdf" target="_blank"><u>[pdf]</u></a>
+  </h5>
+  <ul>
+    4.1  Population and Sample<br>
+    4.2  Population Mean and Sample Mean<br>
+    4.3  Estimation of Population Mean<br>
+  </ul>
+
+  <h4 id="author">Author</h4>
+        <input type="image" src="./Figure/JJLee_Photo.jpg" width="100" HEIGHT="125">
+        <b> Jung Jin Lee</b><br> 
+        Emeritus Professor, Soongsil University, Korea<br>
+        Professor, ADA University, Azerbaijan<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Case Western Reserve University<br>
+        President, Korean Statistical Society<br>
+        Vice President, International Association for Statistical Computing<br>
+        Council Member, International Statistical Institute (ISI)
+     <p>
+        <input type="image" src="./Figure/TRLee_Photo.gif" width="100" HEIGHT="125">
+        <b> Tae Rim Lee</b><br> 
+        Emeritus Professor, Korea National Open University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Choongang University<br>
+        Vice President, Korean Statistical Society<br>
+        Vice President, International Association for Statistics Education<br>
+        Vice President, International Biometric Society<br>
+     <p>
+        <input type="image" src="./Figure/KangGeunSeog.png" width="100" HEIGHT="125">
+        <b> Geunseog Kang</b><br> 
+        Emeritus Professor, Soongsil University, Korea<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., University of Wisconsin - Madison<br>
+     <p>
+        <input type="image" src="./Figure/KimSungSoo.gif" width="100" HEIGHT="125">
+        <b> Sung Soo Kim</b><br> 
+        Professor, Korea National Open University<br>
+        B.S., M.S., Ph.D., Seoul National University<br>
+     <p>
+        <input type="image" src="./Figure/ParkHeonJin.jpg" width="100" HEIGHT="125">
+        <b> Heon Jin Park</b><br> 
+        Professor, Inha University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Iowa Stat University<br>
+        President, Korean Data Mining Society<br>
+     <p>
+        <input type="image" src="./Figure/SimSongYong.gif" width="100" HEIGHT="125">
+        <b> Song Yong Sim</b><br> 
+        Hallym University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., University of Wisconsin - Madison<br>
+     <p>
+        <input type="image" src="./Figure/LeeYoonDong.jpg" width="100" HEIGHT="125">
+        <b> Yoon Dong Lee</b><br> 
+        Professor, Sogang University<br>
+        B.S. and M.S., Seoul National University<br>
+        Ph.D., Iowa State University<br>
+     <p>
+        <input type="image" src="./Figure/YouHyunJo.jpg" width="100" HEIGHT="125">
+        <b> Hyun Jo You</b><br> 
+        Professor, Seoul National University<br>
+        B.S., M.S., Ph.D, Seoul National University<br>
+        Ph.D. Soongsil University<br>
+
+</body>
+</html>
+

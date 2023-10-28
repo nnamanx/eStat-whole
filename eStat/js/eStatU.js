@@ -413,10 +413,10 @@ function basicScatterStat(nobs, xdata, ydata, stat) {
           if (ymax < ydata[i]) ymax = ydata[i];
         } 
         // 그래프 화면 정의 
-        var gxmin   = -4;
-        var gxmax   =  4;
-        var gymin   = -4;
-        var gymax   =  4;
+        var gxmin   = -3.3;
+        var gxmax   =  3.3;
+        var gymin   = -3.3;
+        var gymax   =  3.3;
         var gxrange = gxmax - gxmin;
         var gyrange = gymax - gymin;
         // save statistic
@@ -1054,10 +1054,7 @@ function showValueBinomial3(newValue, valueLabel, binomialP2) {
         document.getElementById("b1").max = newValue;
         document.getElementById("b2").max = newValue;
         document.getElementById("a3").max = newValue;
-        document.getElementById("a1").value = "";
-        document.getElementById("b1").value = "";
-        document.getElementById("b2").value = "";
-        document.getElementById("a3").value = "";
+        clearInputValue1();
 
         var nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
         var pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
@@ -1073,6 +1070,7 @@ function showValueBinomial4(newValue, valueLabel, binomialP2) {
         removeBinomialFreq2();
         removeBinomialNormal();
         document.getElementById("pp2").value = newValue / 100;
+        clearInputValue1();
         var nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
         var pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
         drawBinomialBarGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, valueLabel);
@@ -1182,6 +1180,7 @@ function showValueLambda(newValue, valueLabel, poissonP) {
         bar.selectAll("*").remove();
         document.getElementById("freqPoisson").checked = false;
         removeBinomialFreq2();
+        clearInputValue1();
         var lambda = parseFloat(d3.select("#lambda").node().value);    // 성공 rate
         drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax);
 }
@@ -1306,8 +1305,17 @@ function showValueGeoP(newValue, valueLabel, geometricP) {
         document.getElementById("b1").max = nvalue;
         document.getElementById("b2").max = nvalue;
         document.getElementById("a3").max = nvalue;
-
+        clearInputValue1();
         drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP);
+}
+function clearInputValue1() {
+        document.getElementById("a1").value = "";
+        document.getElementById("b1").value = "";
+        document.getElementById("c1").value = "";
+        document.getElementById("b2").value = "";
+        document.getElementById("c2").value = "";
+        document.getElementById("a3").value = "";
+        document.getElementById("c3").value = "";
 }
 // Geometric 분포 막대그래프 함수 --------------------------------------------------
 function drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP) {
@@ -1420,6 +1428,7 @@ function showValueHyperGeo(newValue, valueLabel, hyperGeoP) {
         document.getElementById("b1").max = newValue;
         document.getElementById("b2").max = newValue;
         document.getElementById("a3").max = newValue;
+        clearInputValue1();
         drawHyperGeoBarGraph(valueLabel, hyperGeoP, xmin, xmax, ymin, ymax);
 }
 // 초기하분포 막대그래프 함수 --------------------------------------------------
@@ -4321,7 +4330,7 @@ function drawDotSample(obs, tdata, tdataY, gxmin, gxmax, start) {
             .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
             .attr("fill","#0055FF").style("stroke","black")
        } else if (checkInterval) {
-         dot2.selectAll("circle")
+         dot.selectAll("circle")
             .data(tdata)
             .enter()
             .append("circle")
@@ -4335,12 +4344,28 @@ function drawDotSample(obs, tdata, tdataY, gxmin, gxmax, start) {
             .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
             .attr("fill","#0055FF").style("stroke","black")
        }
-}// x축 눈금 표시
+}
+// x축 눈금 표시
 function drawAxisSample(start, gxmin, gxmax) {
         var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
         var ty = start + margin.top + graphHeight;
       if (checkSampling) {
         dot.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+      else if (checkInterval) {
+        dot.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+}
+// x축 눈금 표시
+function drawAxisSample2(start, gxmin, gxmax) {
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        var ty = start + margin.top + graphHeight;
+      if (checkSampling) {
+        dot2.append("g")
            .attr("transform","translate("+margin.left+","+ty+")")
            .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
       }
@@ -4803,38 +4828,38 @@ function drawInterval(nobs, avg, statP, gxmin, xrange, clevel, height, niter, st
         if (avg - temp > statP[1]) checkMu = false;
         if (avg + temp < statP[1]) checkMu = false;
         if (checkMu) {
-          dot2.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
-              .style("stroke","green")
-          dot2.append("line")  .attr("class","meanG").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .style("stroke","green")
-          dot2.append("line")  .attr("class","meanG").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+          dot.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
+             .style("stroke","green")
+          dot.append("line")  .attr("class","meanG").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+             .style("stroke","green")
+          dot.append("line")  .attr("class","meanG").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
               .style("stroke","green")
         }
         else {
-          dot2.append("circle").attr("class","meanR").attr("cx",avgx).attr("cy",ty).attr("r",2)
-              .style("stroke","red")
-          dot2.append("line")  .attr("class","meanR").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .style("stroke","red")
-          dot2.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .style("stroke","red")
+          dot.append("circle").attr("class","meanR").attr("cx",avgx).attr("cy",ty).attr("r",2)
+             .style("stroke","red")
+          dot.append("line")  .attr("class","meanR").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+             .style("stroke","red")
+          dot.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+             .style("stroke","red")
         }
         if (niter < 11) {
-          if (checkMu) dot2.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
-                           .style("stroke","green")
-		           .style("font-family","sans-serif").style("font-size","9pt")
-          else dot2.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
-                   .style("stroke","red")
-		   .style("font-family","sans-serif").style("font-size","9pt")
+          if (checkMu) dot.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                          .style("stroke","green")
+		          .style("font-family","sans-serif").style("font-size","9pt")
+          else dot.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                  .style("stroke","red")
+		  .style("font-family","sans-serif").style("font-size","9pt")
         }
 }// 전체 구간추정 표본그림 제거
 function removeAllSample3() {
-	dot2.selectAll("circle.circleS").remove();
-	dot2.selectAll("circle.meanG").remove();
-	dot2.selectAll("circle.meanR").remove();
-	dot2.selectAll("text.meanG").remove();
-	dot2.selectAll("text.meanR").remove();
-	dot2.selectAll("line.meanG").remove();
-	dot2.selectAll("line.meanR").remove();
+	dot.selectAll("circle.circleS").remove();
+	dot.selectAll("circle.meanG").remove();
+	dot.selectAll("circle.meanR").remove();
+	dot.selectAll("text.meanG").remove();
+	dot.selectAll("text.meanR").remove();
+	dot.selectAll("line.meanG").remove();
+	dot.selectAll("line.meanR").remove();
 }// =============================================================================================================
 // Testing Hypothesis : mu
 // =============================================================================================================
@@ -5477,9 +5502,11 @@ function inputValueAB() {
         if (mu0 < mu1) h1Type = 2; // 우측검정: 2
         else h1Type = 3;          // 좌측검정: 3
 }
+
 // alpha, beta 가설검정용 mu1
 function showValueMu1AB(newValue) {
         document.getElementById("mu1AB").value  = mu0 + stdP * (newValue-30)/10;
+        document.getElementById("mu1AB2").value = mu0 + stdP * (newValue-30)/10;
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5487,6 +5514,7 @@ function showValueMu1AB(newValue) {
 // alpha, beta 가설검정용 alpha1
 function showValueAlpha1AB(newValue) {
         document.getElementById("alpha1AB").value  = f3(newValue/100);
+        document.getElementById("alpha1AB2").value = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5494,6 +5522,7 @@ function showValueAlpha1AB(newValue) {
 // alpha, beta 가설검정용 nn1
 function showValuenn1AB(newValue) {
         document.getElementById("nn1AB").value  = f0(newValue);
+        document.getElementById("nn1AB2").value = f0(newValue);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5501,6 +5530,7 @@ function showValuenn1AB(newValue) {
 // alpha, beta 가설검정용 alpha2
 function showValueAlpha2AB(newValue) {
         document.getElementById("alpha2AB").value  = f3(newValue/100);
+        document.getElementById("alpha2AB2").value  = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5508,6 +5538,7 @@ function showValueAlpha2AB(newValue) {
 // alpha, beta 가설검정용 beta2
 function showValueBeta2AB(newValue) {
         document.getElementById("beta2AB").value  = f3(newValue/100);
+        document.getElementById("beta2AB2").value = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -6079,7 +6110,7 @@ function drawTitle(mTitle, yTitle, xTitle) {
 // eStatU 공유를 위한 함수  eStatH, Distribution
 var indexLoc = localStorage['myKey'];
 function menuLoc() {
-    console.log(indexLoc)
+//    console.log(indexLoc)
     // Create anchor element.
     var a = document.createElement('a'); 
     // Set the href property.
@@ -6088,4 +6119,654 @@ function menuLoc() {
     // Append the anchor element to the body.
     document.body.appendChild(a);
     document.getElementById("menu").click()
+}
+// Time Series Analysis 함수
+// Two variable Basic Statistics
+function model1Stat(nobs, tdata, xdata, ydata, stat) {
+        var tempx, tempy;
+        var xsum = 0;
+        var ysum = 0;
+        for (i=0; i<nobs; i++) {
+          xsum += xdata[i];
+          ysum += ydata[i];
+        }
+        var xavg = xsum / nobs;
+        var yavg = ysum / nobs;
+        var sxx = 0;
+        var sxy = 0;
+        var syy = 0;
+        for (i=0; i<nobs; i++) {
+          tempx = xdata[i] - xavg;
+          tempy = ydata[i] - yavg;
+          sxx += tempx*tempx;
+          syy += tempy*tempy;
+          sxy += tempx*tempy; 
+        }
+        var xvar = sxx / (nobs-1);
+        var xstd = Math.sqrt(xvar);
+        var yvar = syy / (nobs-1);
+        var ystd = Math.sqrt(yvar);
+        var beta    = sxy / sxx;
+        var alpha   = yavg - beta*xavg;
+        var cov     = sxy / (nobs-1);
+        var corr    = sxy / Math.sqrt(sxx * syy);
+        var rsquare = corr * corr;
+        var sse     = 0;
+        for (i=0; i<nobs; i++) {
+            tempy = ydata[i] - (alpha + beta*xdata[i])
+            sse += tempy*tempy;
+        }
+        var mse = sse / (nobs-2);
+        var rmse = Math.sqrt(mse);
+        // save statistic
+        stat[0]  = nobs;
+        stat[1]  = xavg;    stat[11] = yavg;
+        stat[2]  = xstd;    stat[12] = ystd;
+        stat[3]  = xmin;    stat[13] = ymin;
+        stat[4]  = xmax;    stat[14] = ymax;
+        stat[5]  = gxmin;   stat[15] = gymin
+        stat[6]  = gxmax;   stat[16] = gymax;
+        stat[7]  = alpha;   stat[17] = xvar;
+        stat[8]  = beta;    stat[18] = yvar;
+        stat[9]  = corr;    stat[19] = cov;
+        stat[10] = rsquare; stat[20] = syy; 
+        stat[21] = sxx; 
+        stat[22] = sse;
+        stat[23] = mse;
+        stat[24] = rmse;
+        stat[25] = syy - sse; //regression ss 
+}
+// 산점도 그리기 함수 -------------------------------------------------------------
+function showTimeSeriesPlot(model, nobs, nforecast, xdata, ydata, checkTitle) {
+     var xgrid    = new Array(nobs);
+     var ygrid    = new Array(nobs);
+     var tempx    = new Array(nobs);
+     var tempy    = new Array(nobs);
+     var i, tx, ty;
+     var radius = 3;
+     var strLabel = "reglabel"+model;
+     // 주제목
+         svg.append("text")
+            .attr("x", margin.left + graphWidth/2)
+            .attr("y", margin.top / 2 + 10)
+            .style("font-size", "1.8em")
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .text(mTitle)
+     // X축 제목
+         svg.append("text")
+            .style("font-size", fontsize)
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .attr("x", margin.left + graphWidth / 2)
+            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 15)
+            .text(xTitle)
+     // Y축 제목
+         tx = margin.left / 2 - 30;
+         ty = margin.top + 15;
+         svg.append("text")
+            .style("font-size", fontsize)
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "end")
+            .attr("x", tx)
+            .attr("y", ty)
+            .text(yTitle)
+            .attr("transform", "rotate(-90 30 100)")
+     // x축 그리기
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        xgrid = xScale.ticks();
+     // x축 그리드
+        for (i = 1; i < xgrid.length; i++) {
+          tx = margin.left + xScale(xgrid[i]);
+          svg.append("line")
+           .attr("x1", tx)
+           .attr("x2", tx)
+           .attr("y1", margin.top)
+           .attr("y2", margin.top + graphHeight)
+           .style("stroke", "lightgrey")
+        }
+        ty = margin.top + graphHeight;
+        svg.append("g")
+             .attr("transform","translate("+margin.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisBottom(xScale)) 
+
+        svg.append("g")
+             .attr("transform","translate("+margin.left+","+margin.top+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisTop(xScale)) 
+
+    // y축 그리기
+        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeight, 0])
+        ygrid = yScale.ticks();
+    // Y축 그리드
+        for (i = 1; i < ygrid.length; i++) {
+          ty = margin.top + yScale(ygrid[i]);
+          svg.append("line")
+           .attr("x1", margin.left)
+           .attr("x2", margin.left + graphWidth)
+           .attr("y1", ty)
+           .attr("y2", ty)
+           .style("stroke", "lightgrey")
+        }
+        ty = margin.top;
+        svg.append("g")
+             .attr("transform","translate("+margin.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisLeft(yScale)) 
+
+        var tx = margin.left + graphWidth;
+        svg.append("g")
+             .attr("transform","translate("+tx+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisRight(yScale)) 
+
+    // 산점도 점 그리기
+    for (i=0; i<nobs; i++) {
+          svg.append("circle")
+             .attr("cx", margin.left+graphWidth*(xdata[i]-gxmin)/gxrange)
+             .attr("cy", margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange)         
+             .attr("r", radius)
+             .attr("class","circle")
+             .style("fill","grey")
+    }
+    x1  = margin.left + graphWidth*(xdata[0]-gxmin)/gxrange;
+    y1  = margin.top  + graphHeight - graphHeight*(ydata[0]-gymin)/gyrange;
+    for (i=1; i<nobs; i++) {
+      x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+      y2  = margin.top  + graphHeight - graphHeight*(ydata[i]-gymin)/gyrange;
+      svg.append("line")
+         .attr("x1",x1)
+         .attr("y1",y1)
+         .attr("x2",x2)
+         .attr("y2",y2)
+         .style("stroke",myColor[0]) 
+      x1 = x2;
+      y1 = y2;
+    }
+
+    // forecast 점 그리기
+    if( checkForecast ) {
+      for (i=nobs; i<nobs+nforecast; i++) {
+          x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+          y2  = margin.top  + graphHeight - graphHeight*(ydata[i]-gymin)/gyrange;
+          svg.append("circle").attr("class",strLabel)
+             .attr("cx", margin.left+graphWidth*(xdata[i]-gxmin)/gxrange)
+             .attr("cy", margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange)         
+             .attr("r", 3)
+             .style("fill",myColor[model])
+      }
+      x1  = margin.left + graphWidth*(xdata[nobs]-gxmin)/gxrange;
+      y1  = margin.top  + graphHeight - graphHeight*(ydata[nobs]-gymin)/gyrange;
+      for (i=nobs+1; i<nobs+nforecast; i++) {
+          x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+          y2  = margin.top  + graphHeight - graphHeight*(ydata[i]-gymin)/gyrange;
+          svg.append("line").attr("class",strLabel)
+             .attr("x1",x1)
+             .attr("y1",y1)
+             .attr("x2",x2)
+             .attr("y2",y2)
+             .style("stroke",myColor[model]) 
+             x1 = x2;
+             y1 = y2;
+      }
+    }
+}
+// Draw time series model on the plot
+function showModel(strModel, strLabel, nobs, nforecast, ibegin, xdata, yhat) {
+    var ty = margin.top + model*20;;
+    for (i=ibegin; i<nobs+nforecast; i++) {
+          svg.append("circle").attr("class",strLabel)
+             .attr("cx", margin.left+graphWidth*(xdata[i]-gxmin)/gxrange)
+             .attr("cy", margin.top+graphHeight-graphHeight*(yhat[i]-gymin)/gyrange)         
+             .attr("r", 3)
+             .style("fill",myColor[model])
+    }
+
+    var x1  = margin.left + graphWidth*(xdata[ibegin]-gxmin)/gxrange;
+    var y1  = margin.top  + graphHeight - graphHeight*(yhat[ibegin]-gymin)/gyrange;
+    for (i=ibegin+1; i<nobs+nforecast; i++) {
+      var x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+      var y2  = margin.top  + graphHeight - graphHeight*(yhat[i]-gymin)/gyrange;
+      svg.append("line").attr("class",strLabel)
+                .attr("x1",x1)
+                .attr("y1",y1)
+                .attr("x2",x2)
+                .attr("y2",y2)
+                .style("stroke",myColor[model]) 
+      x1 = x2;
+      y1 = y2;
+    }
+    if(checkTitle) {   
+        svg.append("text").attr("class",strLabel)
+                .attr("x", margin.left + 20)
+                .attr("y", ty)
+                .text(strModel)
+                .style("stroke",myColor[model]) 
+     }
+}
+// time series plot 좌표 계산
+function initialCordinate(tobs, tdata, ydata) {
+     xmin = tdata[0];
+     xmax = tdata[tobs-1];
+     xgap = xmax - xmin;
+     xgap = (xmax - xmin) / 20;
+     gxmin   = xmin - xgap;
+     gxmax   = xmax + xgap;
+     gxrange = gxmax - gxmin;
+     // Yt 통계량
+     ymin = ydata[0];
+     ymax = ydata[0];
+     for (i=1; i<tobs; i++) {
+        if (ymin > ydata[i]) ymin = ydata[i];
+        if (ymax < ydata[i]) ymax = ydata[i];
+     } 
+     ygap    = (ymax - ymin) / 10;
+     gymin   = ymin - 4*ygap;
+     gymax   = ymax + 4*ygap;
+     gyrange = gymax - gymin;
+}
+// 신뢰대 그리기
+function confidenceBand(model, tobs, nforecast, clow, chigh) {
+     var tx, ty, pathStr, classStr;
+     var bandColor=["LightGrey","LightPink","LightGreen","LightYellow","MistyRose","PaleGoldenRod","LightCyan","Bisque"];
+     classStr="reglabel"+model;
+     if (nforecast > 0) {
+       removeConfidenceBand();
+       pathStr = "M";
+       tx = margin.left+graphWidth*(tdata[tobs]-gxmin)/gxrange;
+       pathStr += tx.toString()+",";
+       ty = margin.top+graphHeight-graphHeight*(clow[tobs]-gymin)/gyrange;
+       pathStr += ty.toString();
+       for (i=tobs+1; i<tobs+nforecast; i++) {
+          tx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
+          pathStr += "L"+tx.toString()+",";
+          ty = margin.top+graphHeight-graphHeight*(clow[i]-gymin)/gyrange;
+          pathStr += ty.toString()
+       }
+       for (i=tobs+nforecast-1; i>=tobs; i--) {
+          tx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
+          pathStr += "L"+tx.toString()+",";
+          ty = margin.top+graphHeight-graphHeight*(chigh[i]-gymin)/gyrange;
+          pathStr += ty.toString()
+       }
+       tx = margin.left+graphWidth*(tdata[tobs]-gxmin)/gxrange;
+       pathStr += "L"+tx.toString()+",";
+       ty = margin.top+graphHeight-graphHeight*(clow[tobs]-gymin)/gyrange;
+       pathStr += ty.toString()
+       svg.append("path").attr("class",classStr)
+          .attr("d", pathStr)
+          .style("fill",bandColor[model]) 
+          .style("stroke", myColor[model])
+     }
+}
+// 신뢰대 지우기
+function removeConfidenceBand() {
+     svg.selectAll("path.reglabel1").remove();
+     svg.selectAll("path.reglabel2").remove();
+     svg.selectAll("path.reglabel3").remove();
+     svg.selectAll("path.reglabel4").remove();
+     svg.selectAll("path.reglabel5").remove();
+     svg.selectAll("path.reglabel6").remove();
+     svg.selectAll("path.reglabel7").remove();
+}
+
+// 다변량 통계량 ----------------------------------------------------------------------------------------------
+function statMultivariate(numVar, tobs) {
+    var i, j, k, nAug;
+    var temp, tempx, tempy, sum;
+    prow = tobs;
+    nAug = 2 * numVar;
+    var X = new Array(prow); // 2차원 행렬
+    var T = new Array(numVar);
+    //   var avgX     = new Array(numVar);
+    //   var Cov      = new Array(numVar);
+    //   var Corr     = new Array(numVar);
+    var SS = new Array(numVar); // 2차원 행렬
+    var XP = new Array(numVar); // 2차원 행렬
+    var XPX = new Array(numVar); // 2차원 행렬
+    var L = new Array(numVar); // 2차원 행렬
+    var U = new Array(numVar); // 2차원 행렬
+    var invL = new Array(numVar); // 2차원 행렬
+    var invU = new Array(numVar); // 2차원 행렬
+    var invXPX   = new Array(numVar); // 2차원 행렬
+    for (i = 0; i < prow; i++) {
+        X[i] = new Array(numVar);
+    }
+    for (j = 0; j < numVar; j++) {
+        //     Cov[j]    = new Array(numVar);
+        //     Corr[j]   = new Array(numVar);
+        XP[j] = new Array(prow);
+        XPX[j] = new Array(numVar);
+        L[j] = new Array(nAug);
+        U[j] = new Array(nAug);
+        invL[j] = new Array(numVar);
+        invU[j] = new Array(numVar);
+        invXPX[j] = new Array(numVar);
+    }
+
+    // vector Y, matrix X
+    for (i = 0; i < prow; i++) {
+        for (j = 0; j < numVar; j++) {
+            X[i][j] = D[j][i];
+        } // endof j
+    } // endof i
+    // matrix XP
+    for (i = 0; i < prow; i++) {
+        for (j = 0; j < numVar; j++) {
+            XP[j][i] = X[i][j];
+        } // endof j
+    } // endof i
+    // matrix XPX
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) {
+            temp = 0;
+            for (k = 0; k < prow; k++) {
+                temp += XP[i][k] * X[k][j];
+            }
+            XPX[i][j] = temp;
+            L[i][j] = temp;
+        }
+    }
+
+    // Cholesky Decomposition LU
+    for (k = 0; k < numVar; k++) {
+        for (i = 0; i <= k - 1; i++) {
+            sum = 0;
+            for (j = 0; j <= i - 1; j++) {
+                sum += L[i][j] * L[k][j];
+            }
+            L[k][i] = (L[k][i] - sum) / L[i][i];
+        }
+        sum = 0;
+        for (j = 0; j <= k - 1; j++) sum += L[k][j] * L[k][j];
+        L[k][k] = Math.sqrt(L[k][k] - sum);
+    }
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) {
+            if (j > i) L[i][j] = 0;
+            U[j][i] = L[i][j];
+        }
+    }
+
+    // Augment matrix
+    for (i = 0; i < numVar; i++) {
+        for (k = numVar; k < nAug; k++) {
+            if (k == i + numVar) {
+                L[i][k] = 1;
+                U[i][k] = 1;
+            } else {
+                L[i][k] = 0;
+                U[i][k] = 0;
+            }
+        }
+    }
+    // inverse of L by Gauss Elimination
+    for (k = 0; k < numVar; k++) {
+        temp = L[k][k];
+        for (j = k; j < nAug; j++) L[k][j] = L[k][j] / temp;
+        for (i = k + 1; i < numVar; i++) {
+            temp = L[i][k];
+            for (j = k; j < nAug; j++) {
+                L[i][j] = L[i][j] - temp * L[k][j];
+            }
+        }
+    }
+    for (i = 0; i < numVar; i++) {
+        for (j = numVar; j < nAug; j++) invL[i][j - numVar] = L[i][j];
+    }
+    // inverse of U = (invL)^T
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) invU[i][j] = invL[j][i];
+    }
+    // inverse of XPX = (invU)(invL)
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) {
+            sum = 0;
+            for (k = 0; k < numVar; k++) sum += invU[i][k] * invL[k][j];
+            invXPX[i][j] = sum;
+        }
+    }
+    // Final Test for identity
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) {
+            sum = 0;
+            for (k = 0; k < numVar; k++) sum += XPX[i][k] * invXPX[k][j];
+            // console.log(sum)
+        }
+    }
+    // Mean Vector
+    for (j = 0; j < numVar; j++) {
+        if (prow == 0) {
+            avgX[j] = NaN;
+            continue;
+        }
+        avgX[j] = 0;
+        for (i = 0; i < prow; i++) {
+            avgX[j] += X[i][j];
+        } // endof i
+        avgX[j] /= prow;
+    } // endof j
+    // Covariance Matrix   
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) {
+            Cov[i][j] = 0;
+            for (k = 0; k < prow; k++) {
+                Cov[i][j] += (X[k][i] - avgX[i]) * (X[k][j] - avgX[j]);
+            }
+        }
+    }
+    // Correlation Matrix
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) {
+            if (Cov[i][i] == 0 || Cov[j][j] == 0) Corr[i][j] = NaN;
+            else Corr[i][j] = Cov[i][j] / Math.sqrt(Cov[i][i] * Cov[j][j]);
+        }
+    }
+    for (i = 0; i < numVar; i++) {
+        for (j = 0; j < numVar; j++) {
+            if (prow == 1) Cov[i][j] = NaN;
+            else Cov[i][j] /= (prow - 1);
+        }
+    }
+}
+// Residual Plot 그리기 ----------------------------------------------------------------------------------------------
+function regressionResidual(tobs, yhat, residual) {
+    var i, j, k, tobs, temp1, temp2, temp;
+    var tdata = new Array(tobs);
+
+    // residual 임시저장 
+    for (i = 0; i < tobs; i++) tdata[i] = residual[i];
+
+    // 그래프 화면 정의 
+    xmin = gmin(tobs, yhat);
+    xmax = gmax(tobs, yhat);
+    ymin = gmin(tobs, tdata);
+    ymax = gmax(tobs, tdata);
+    xbuffer = (xmax - xmin) / 5; // 경계점이 보이기위한 완충거리
+    ybuffer = (ymax - ymin) / 3; // 경계점이 보이기위한 완충거리
+    titleBuffer = 150;
+    gxmin = xmin - xbuffer;
+    gxmax = xmax + xbuffer;
+    gymin = -3.0;
+    gymax = 3.0;
+    gxrange = gxmax - gxmin;
+    gyrange = gymax - gymin;
+
+    chart.selectAll("*").remove();
+
+    margin = {
+        top: 90,
+        bottom: 90,
+        left: 100,
+        right: 120
+    };
+
+    var bufferScatter = 40;
+    graphWidth = svgWidth - margin.left - margin.right;
+    graphHeight = svgHeight - margin.top - margin.bottom;
+
+    // 제목
+    chart.append("text")
+        .attr("x", margin.left + titleBuffer)
+        .attr("y", margin.top / 2)
+        .style("font-size", "17px")
+        .style("font-family", "sans-seirf")
+        .style("stroke", "black")
+        .style("text-anchor", "middle")
+        .text(svgStr[95][langNum]) // "잔차와 예측값/지렛값의 산점도"
+    // y축 제목
+    chart.append("text")
+        .attr("x", margin.left / 2)
+        .attr("y", margin.top + graphHeight / 2 + 5)
+        .style("font-size", "10px")
+        .style("font-family", "sans-seirf")
+        .style("stroke", "black")
+        .style("text-anchor", "middle")
+        .text(svgStr[81][langNum]) // "표준화 잔차"
+        .attr("transform", "rotate(-90 50 280)")
+
+    // x축 제목
+    chart.append("text")
+        .attr("x", margin.left + graphWidth / 2)
+        .attr("y", margin.top + graphHeight + margin.bottom / 2)
+        .style("font-size", "10px")
+        .style("font-family", "sans-seirf")
+        .style("stroke", "black")
+        .style("text-anchor", "middle")
+        .text(svgStr[84][langNum]) // "예측값"    
+    // 축 그리기
+    drawScatterAxis(gxmin, gxmax, gymin, gymax, graphWidth, graphHeight);
+    // 가운데 y=0 직선 그리기   
+    x1 = margin.left;
+    x2 = margin.left + graphWidth;
+    y1 = margin.top + graphHeight / 2;
+    y2 = y1;
+    chart.append("line")
+        .attr("x1", x1)
+        .attr("y1", y1)
+        .attr("x2", x2)
+        .attr("y2", y2)
+        .style("stroke", "greenyellow")
+    // 점 그리기
+    for (j = 0; j < tobs; j++) {
+        chart.append("circle")
+            .attr("data-sheetrowid", j)
+            .attr("class", "datapoint")
+            .style("stroke", "black")
+            .style("fill", myColor[1])
+            .attr("r", 4)
+            .attr("cx", margin.left + graphWidth * (yhat[j] - gxmin) / gxrange)
+            .attr("cy", margin.top + graphHeight - graphHeight * (tdata[j] - gymin) / gyrange)
+    }
+}
+// 산점도 축 눈금 표시
+function drawScatterAxis(gxmin, gxmax, gymin, gymax, graphWidth, graphHeight) {
+        var tx, ty;
+        // x축
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        ty = margin.top + graphHeight;
+        chart.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                    // 눈금을 표시할 함수 호출
+        chart.append("g")
+           .attr("transform","translate("+margin.left+","+margin.top+")")
+           .call(d3.axisTop(xScale))                    // 눈금을 표시할 함수 호출
+        // y축
+        var yScale = d3.scaleLinear().domain([gymin, gymax]).range([graphHeight, 0]);
+        tx = margin.left + graphWidth;
+        ty = margin.top ;
+        chart.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisLeft(yScale))                    // 눈금을 표시할 함수 호출
+        chart.append("g")
+           .attr("transform","translate("+tx+","+ty+")")
+           .call(d3.axisRight(yScale))                    // 눈금을 표시할 함수 호출
+}
+// 회귀분석 Q-Q Plot 그리기 ----------------------------------------------------------------------------------------------
+function regressionQQ(tobs, yhat, residual) {
+    var i, j, k, info, temp1, temp2;
+    var normalQ = new Array(tobs);
+    var tdata = new Array(tobs);
+
+    for (j = 0; j < tobs; j++) {
+        tdata[j] = residual[j]; // residual 임시저장 sorting때문에 변하기 때문
+        normalQ[j] = stdnormal_inv((j + 0.5) / tobs, info);
+    }
+    tdata.sort(function(a, b) {
+        return a - b
+    });
+
+    // 그래프 화면 정의 
+    gxmin = -3;
+    gxmax = 3;
+    gymin = -3;
+    gymax = 3;
+    gxrange = gxmax - gxmin;
+    gyrange = gymax - gymin;
+
+    chart.selectAll("*").remove();
+
+    margin = {
+        top: 90,
+        bottom: 90,
+        left: 100,
+        right: 120
+    };
+
+    graphWidth = svgWidth - margin.left - margin.right;
+    graphHeight = svgHeight - margin.top - margin.bottom;
+
+    // 제목
+    chart.append("text")
+        .attr("x", margin.left + titleBuffer)
+        .attr("y", margin.top / 2)
+        .style("font-size", "17px")
+        .style("font-family", "sans-seirf")
+        .style("stroke", "black")
+        .style("text-anchor", "middle")
+        .text(svgStr[80][langNum]) // "표준화 잔차의 Q-Q Plot"
+    // y축 제목
+    chart.append("text")
+        .attr("x", margin.left / 2)
+        .attr("y", margin.top + graphHeight / 2 + 5)
+        .style("font-size", "10px")
+        .style("font-family", "sans-seirf")
+        .style("stroke", "black")
+        .style("text-anchor", "middle")
+        .text(svgStr[81][langNum]) // "표준화 잔차"
+        .attr("transform", "rotate(-90 50 280)")
+    //           .attr("transform", "rotate(-90 10 240)")
+    // x축 제목
+    chart.append("text")
+        .attr("x", margin.left + graphWidth / 2)
+        .attr("y", margin.top + graphHeight + margin.bottom / 2)
+        .style("font-size", "10px")
+        .style("font-family", "sans-seirf")
+        .style("stroke", "black")
+        .style("text-anchor", "middle")
+        .text(svgStr[82][langNum]) // "정규 분위수"
+
+    // 축 그리기
+    drawScatterAxis(gxmin, gxmax, gymin, gymax, graphWidth, graphHeight);
+    // y = x 그리기     
+    chart.append("line")
+        .attr("x1", margin.left)
+        .attr("y1", margin.top + graphHeight)
+        .attr("x2", margin.left + graphWidth)
+        .attr("y2", margin.top)
+        .style("stroke", "greenyellow")
+    // 점 그리기
+    for (j = 0; j < tobs; j++) {
+        chart.append("circle")
+            .attr("class", "circle")
+            .style("fill", myColor[1])
+            .attr("r", 4)
+            .attr("cx", margin.left + graphWidth * (normalQ[j] - gxmin) / gxrange)
+            .attr("cy", margin.top + graphHeight - graphHeight * (tdata[j] - gymin) / gyrange)
+    }
+
 }

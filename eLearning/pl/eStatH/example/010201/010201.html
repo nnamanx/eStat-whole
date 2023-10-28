@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="BonomialTheorem">Binomial Theorem</title>
+       <link rel="stylesheet" href="http://www.estat.me/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('en'); </script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="BinomialTheorem">Binomial Theorem</span> - <span data-msgid="PascalTriangle">Pascal Triangle</span>
+    </div>
+    <p>
+    <table>
+        <tr>
+          <td><b><button type="button" style="width:100px;" id="execute"><span data-msgid="Execute"></span></button> </b></td>
+          <td>&nbsp;</td>
+          <td><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><input type="text" size=2 id="nn" value="8" style="text-align: center;">&nbsp;
+              <sup><small> 1 </small></sup>
+              <input type="range" style="width: 100px;" min="1" max="8" value="8" id="rangeN" onchange="showValueN(this.value)"/>
+              <sup><small>8</small></sup>
+          </td>
+        </tr>
+    </table>
+    <br>
+    <svg id="chart" width="600" height="460"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script src="/estat/eStatU/js/40Pascal.js"> </script>
+
+</body>
+</html>

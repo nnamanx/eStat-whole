@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Confidence Interval Mu">Confidence Interval &mu;</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+  <div width="600" height="410" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; 
+         <span data-msgid="Confidence Interval Mu">
+           Confidence Interval : Population Mean &mu; 
+         </span> 
+      </b>
+      <button class="menu" onclick="menuLoc()" >
+        <b><span data-msgid="Menu">Menu</span></b>
+      </button>
+    </div>
+    <br>
+
+    &nbsp;
+    <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+    <span class="fontguide" data-msgid="input either sample data">
+      (input either sample data or sample statistics using csv / bsv)
+    </span>   
+    <table class="data">
+      <tbody>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><input type="text" size=70 id="data1"></td>
+	</tr>
+      </tbody>
+    </table>
+    
+    <table class="stat">
+      <tbody>
+        <tr>
+          <td>&nbsp;&nbsp;<b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b></td>
+          <td><span data-msgid="Sample Size">Sample Size</span></td>
+          <td><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><input type="text" class="textarea" size=6 id="nn"></td>
+          <td> <span class="fontguide">(>1) </span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Sample Mean">Sample Mean</span></td>
+          <td><span class="fontmath">x&#772;</span></td>
+          <td>=</td>
+          <td><input type="text" class="textarea" size=6 id="xbar"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;<b>[<span data-msgid="PopulationStd">Population Std</span>]</b></td>
+          <td></td>
+          <td>&sigma;</td>
+          <td>=</td>
+          <td><input type="text" class="textarea" size=6 id="stdP"></td>
+        </tr>
+      </tbody>
+    </table>
+    <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+      <b>[<span data-msgid="Confidence Level">Confidence Level</span>]</b>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      <span class="fontmath">1 - &alpha;</span> &nbsp; &nbsp;
+      <input type="radio" name = "type2" value="1" checked> 95%       
+      <input type="radio" name = "type2" value="2" > 99%
+    </form>       
+    <br>
+
+    <button type="button" id="executeTH" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    <br>
+
+    <table class="stat">
+      <tbody>
+        <tr>
+          <td></td>
+          <td><span class="fontmath" id="tFormula"></span></td>
+          <td>=</td>
+          <td><input type="text" class="textarea" size=6 id="tvalue"></td>
+          <td><span class="fontmath" id="stderrFormula"></span> &nbsp;= </td>
+          <td><input type="text" class="textarea" size=6 id="stderr"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;<b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b></td>
+          <td><span class="fontmath">x&#772;</span></td>
+          <td>&plusmn;</td>
+          <td><span class="fontmath" id="intFormula"></span></td>
+          <td class="textarea">&hArr;</td>
+          <td>[&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+          <td><input type="text" class="textarea" size=6 id="cright">&nbsp;]</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+    <svg id="chart" width="600" height="200"> </svg> 
+    <br>
+    &nbsp;
+    <span style="color:red;stroke:2">
+      n = <input type="text" class="textarea" value="20" size=3 id="nn2"><sup><small> 1 </small></sup>  
+      <input type="range" min="1" max="200" value="100" id="rangeN" onchange="showValueNN2(this.value)"/>  
+      <sup><small>200</small></sup>  &nbsp;&nbsp;
+      1-&alpha; = <input type="text" class="textarea" value="0.95" size=3 id="alpha2"><sup><small> 0.60 </small></sup> 
+      <input type="range" min="60" max="99" value="95" id="rangeAlpha" onchange="showValueAlpha2(this.value)"/>
+      <sup><small> 0.99 </small></sup> 
+    </span>
+    <p>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+  </div> 
+
+  <script src="/estat/eStatU/js/65ConfidenceIntervalMu_H.js"> </script>
+
+</body>
+</html>

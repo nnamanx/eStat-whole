@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 10</title>
+
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="http://www.estat.me/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="http://www.estat.me/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="http://www.estat.me/estat/eStat/lib/convertSVG.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eBook.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/eStatU.js"></script>
+       <script src="http://www.estat.me/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+</head>
+
+<body>
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+    <div class="mainTablePink">
+
+    <h6 class="textL30M30">10.1 비모수적 검정이 필요한 이유가 아닌 것은? </h6> 
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> 모집단이 정규분포라고 가정할 수 없다. </label><br>
+      <label><input type="radio" name="item" value="2"> 순서식 데이터이다.  </label><br>
+      <label><input type="radio" name="item" value="3"> 데이터가 정규분포를 따른다.</label><br>
+      <label><input type="radio" name="item" value="4"> 표본에 극단점이 있다.</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">10.2 다음 중 한 모집단의 위치모수에 대한 비모수적 검정은? </h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> Wilcoxon 부호순위합검정</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon 순위합검정</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis 검정</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman 검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">10.3 부호검정은 어떠한 검정인가? </h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> 한 모집단의 위치모수 검정</label><br>
+      <label><input type="radio" name="item" value="2"> 두 모집단의 위치모수 검정</label><br>
+      <label><input type="radio" name="item" value="3"> 여러 모집단의 위치모수 검정</label><br>
+      <label><input type="radio" name="item" value="4"> 확률화블록계획법</label><br>
+     <p>
+      <input type="button" value="제출" onClick="radio(3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+
+    <h6 class="textL30M30">10.4 비모수적 검정에 많이 사용되는 데이터의 변환은? </h6>
+    <form name="Q4">
+      <label><input type="radio" name="item" value="1"> 로그변환</label><br>
+      <label><input type="radio" name="item" value="2"> 지수변환</label><br>
+      <label><input type="radio" name="item" value="3"> (0-1) 변환</label><br>
+      <label><input type="radio" name="item" value="4"> 순위변환</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(4,Q4)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ4">
+    </form>
+
+    <h6 class="textL30M30">10.5 부호검정에 사용되는 통계량은? </h6>
+    <form name="Q5">
+      <label><input type="radio" name="item" value="1"> 순위</label><br>
+      <label><input type="radio" name="item" value="2"> (+ 부호의 수) -  (- 부호의 수)</label><br>
+      <label><input type="radio" name="item" value="3"> 자유도</label><br>
+      <label><input type="radio" name="item" value="4"> (+ 부호의 수)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,Q5)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ5">
+    </form>
+
+    <h6 class="textL30M30">10.6 다음 중 두 모집단의 위치모수에 대한 비모수적 검정은? </h6>
+    <form name="Q6">
+      <label><input type="radio" name="item" value="1"> Wilcoxon 부호순위합검정</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon 순위합검정</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis 검정</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman 검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(6,Q6)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ6">
+    </form>
+
+    <h6 class="textL30M30">10.7 두 모집단의 위치모수에 대한 비모수적 검정에 사용되는 통계량은? </h6>
+    <form name="Q7">
+      <label><input type="radio" name="item" value="1"> (+ 부호의 수)</label><br>
+      <label><input type="radio" name="item" value="2"> 표본 2의 순위합</label><br>
+      <label><input type="radio" name="item" value="3"> (- 부호의 수)</label><br>
+      <label><input type="radio" name="item" value="4"> (표본 1의 순위합) - (표본 2의 순위합)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(7,Q7)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ7">
+    </form>
+    <h6 class="textL30M30">10.8 여러 모집단의 위치모수에 대한 비모수적 검정은? </h6>
+    <form name="Q8">
+      <label><input type="radio" name="item" value="1"> Wilcoxon 부호순위합검정</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon 순위합검정</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis 검정</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman 검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(8,Q8)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ8">
+    </form>
+
+    <h6 class="textL30M30">10.9 확률화블록계획법에 적합한 비모수적 검정은? </h6>
+    <form name="Q9">
+      <label><input type="radio" name="item" value="1"> Wilcoxon 부호순위합검정</label><br>
+      <label><input type="radio" name="item" value="2"> Wilcoxon 순위합검정</label><br>
+      <label><input type="radio" name="item" value="3"> Kruskal-Wallis 검정</label><br>
+      <label><input type="radio" name="item" value="4"> Friedman 검정</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(9,Q9)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ9">
+    </form>
+
+    <h6 class="textL30M30">10.10 크루스칼-왈리스 검정에 사용되는 H 통계량의 이론적 근거는?</h6>
+    <form name="Q10">
+      <label><input type="radio" name="item" value="1"> 순위 데이터의 급내변동</label><br>
+      <label><input type="radio" name="item" value="2"> 순위 데이터의 오차제곱합	</label><br>
+      <label><input type="radio" name="item" value="3"> 순위 데이터의 총변동</label><br>
+      <label><input type="radio" name="item" value="4"> 순위 데이터의 처리제곱합</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(10,Q10)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ10">
+    </form>
+
+  </div>
+  <p>
+
+  <script src="./js/exercise10.js"></script>   
+ 
+ 
+</body>
+</html>
+
