@@ -57,12 +57,12 @@ p {
 .main-heading {
   font-weight: 500;
   font-size: 2rem;
-  line-height: 1.5;
+  line-height: 1.5
 }
 
 .feature-heading {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .feature-box button {
@@ -243,36 +243,9 @@ a {
   }
 }
 
-.mainpage-content {
-  padding-top: 60px;
-}
-
 .container-fluid {
   padding: 1.5% 7% 15%;
 }
-
-/* .explore-btn a {
-  color: var(--white);
-} */
-
-/* .explore-btn {
-  background-color: var(--main-dark-color);
-  color: var(--white);
-} */
-
-/* .explore-more-btn a {
-  color: var(--white);
-} */
-
-/* .explore-more-btn:hover {
-  color: var(--main-dark-color);
-} */
-
-/* .explore-btn:hover,
-.explore-more-btn:hover {
-  transition: background-color 0.5s ease;
-  columns: #fff;
-} */
 
 /* !Animation */
 #perspective {
@@ -358,7 +331,8 @@ a {
 }
 
 .feature-box h3 {
-  color: var(--main-dark-color);
+  color: var(--white-color);
+
 }
 
 .icon {
