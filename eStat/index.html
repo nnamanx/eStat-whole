@@ -187,7 +187,7 @@
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
         data-bs-slide="next">
-        <span class="carousel-control-next-icon"  aria-hidden="true"></span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
@@ -209,17 +209,17 @@
             <label for="fullName">Full Name:</label>
             <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
           </section>
-          
-          <section>
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email address" required />
-        </section>
 
-        <section> 
-          <label for="amount">Donation Amount:</label>
-          <input type="number" id="amount" name="amount" placeholder="Enter donation amount" min="1" required />
-        </section>
-        
+          <section>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+          </section>
+
+          <section>
+            <label for="amount">Donation Amount:</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter donation amount" min="1" required />
+          </section>
+
           <button type="submit" class="donate-btn">Donate</button>
         </form>
       </div>
@@ -242,6 +242,8 @@
       <p>Copyright &copy; 2023 eStat. All Rights Reserved</p>
     </div>
   </footer>
+
+  <!-- <a href="/eLearning/az/eStatM/index.html"></a>  -->
 </body>
 
 <!--! ========================================== JS ==========================================  -->
@@ -393,13 +395,25 @@
       else if (level == "3") loadH();
       else if (level == "4") loadU();
   */
-  function loadM() {
-    levelNum = "2";
-    localStorage.setItem("level", levelNum);
-    window.open("/eStatM/index.html", "_self");
 
-   /* <a href="/eStatM/index.html"></a> */
+  function loadM() {
+   /* levelNum = "2";
+    localStorage.setItem("level", levelNum);
+    window.open("/eStatM/index.html", "_self"); */
+
+
+    window.open("/eLearning/az/eStatM/index.html");
+    window.open("/eStatM/index.html");
+
+    if (window1 && window2 && window3) {
+      console.log('All windows opened successfully.');
+  } else {
+      console.log('Some windows may not have been opened.');
   }
+
+    /*window.open('file3.html');*/
+  }
+
   function loadH() {
     levelNum = "3";
     localStorage.setItem("level", levelNum);
