@@ -505,7 +505,7 @@ label {
   /* border: 1px solid red;  */
 }
 
-.left-container {
+.right-container {
   display: flex;
   flex-basis: auto;
   align-items: center;
@@ -597,7 +597,7 @@ label {
   justify-content: center;
   align-items: center;
   flex: 1;
-  max-width: 50%;
+  /* max-width: 100%; */
   padding: 0.8rem;
   margin-top: 1rem;
   border: 1px solid var(--main-color);
@@ -619,6 +619,12 @@ label {
 .donation-form {
   display: flex;
   flex-direction: column;
+  width: 80%;
+}
+
+.donation-form section{
+  display: flex;
+  justify-content: space-between;
 }
 
 .donation-form label {
@@ -636,6 +642,7 @@ label {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 0.75rem;
+  width: 70%;
 }
 
 .donation-form input[type="text"]:focus,
